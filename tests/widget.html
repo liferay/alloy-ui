@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../src/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../src/core.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+<h1>Alloy Base File</h1>
+
+<input id="myTestWidget" type="text" value="" />
+
+<script type="text/javascript" charset="utf-8">
+Alloy().use('widget',function(AUI) {
+
+	function MyWidget() {
+		MyWidget.superclass.constructor.apply(this, arguments);
+	}
+
+	MyWidget.NAME = 'mywidget';
+
+	MyWidget.ATTRS = {
+		defaultValue: {
+			value: 'This is my widget. Enter something'
+		}
+	};
+
+	MyWidget.INPUT_CLASS = AUI.ClassNameManager.getClassName(MyWidget.NAME, 'value');
+
+	AUI.extend(
+		MyWidget,
+		AUI.Widget,
+		{
+			renderUI: function() {
+				var instance = this;
+
+				var input = instance.get('contentBox');
+
+				if (!input) {
+					input = AUI.get(input);
+				}
+
+				instance.inputNode = input;
+			},
+
+			bindUI: function() {
+				var instance = this;
+				// console.log(AUI.Node.getDOMNode(instance.inputNode));
+				instance.inputNode.on('blur', instance._onMyBlur, instance);
+				instance.inputNode.on('focus', instance._onMyFocus, instance);
+			},
+
+			_onFocus: function(event) {
+				var instance = this;
+
+				MyWidget.superclass._onFocus.apply(this, arguments);
+
+				console.log('This is a method called _onFocus', this, arguments, AUI.Node.getDOMNode(event.target), MyWidget.superclass._onFocus);
+			},
+
+			_onMyBlur: function(event) {
+				var instance = this;
+
+				var inputNode = instance.inputNode;
+
+				var value = inputNode.get('value');
+
+				if (value == '') {
+					value = instance.get('defaultValue')
+				}
+
+				inputNode.set('value', value);
+
+				console.log(event.type, inputNode, inputNode.get('value'));
+			},
+
+			_onMyFocus: function(event) {
+				var instance = this;
+
+				// console.log(instance.inputNode, instance.get('defaultValue'), event.type, AUI.Node.getDOMNode(event.target));
+
+				var inputNode = instance.inputNode;
+
+				var value = inputNode.get('value');
+
+				if (value == instance.get('defaultValue')) {
+					value = '';
+				}
+
+				inputNode.set('value', value);
+
+				console.log(event.type, inputNode, inputNode.get('value'));
+
+				event.stopPropagation();
+			}
+		}
+	);
+
+	AUI.on('domready', function(event) {
+		var widg = new MyWidget(
+			{
+				contentBox: '#myTestWidget'
+			}
+		);
+
+		widg.render();
+	})
+});
+
+Alloy().ready(function(instance) {
+return;
+    instance.get('body').on('click', function(e) {
+		console.log("Click", e, this);
+	});
+
+});
+
+</script>
+
+</body>
+</html>
