@@ -15,7 +15,7 @@
 	window.Alloy = {
 		defaults: {
 
-			classNameDelimiter: 'aui',
+			classNamePrefix: 'aui',
 
 			//base: '',
 
