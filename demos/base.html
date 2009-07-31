@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../src/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../src/core.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+<h1>Alloy Base File</h1>
+
+<script type="text/javascript" charset="utf-8">
+
+Alloy().ready(function(instance) {
+
+    instance.get('body').on('click', function(e) {
+		console.log("Click", e, this);
+	});
+
+});
+
+</script>
+
+</body>
+</html>

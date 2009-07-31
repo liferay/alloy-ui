@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+/*!
+ * Alloy JavaScript Library
+ * http://alloyui.com/
+ *
+ * Copyright (c) 2009 Liferay Inc.
+ * Licensed under the MIT license.
+ * http://alloyui.com/License
+ *
+ * Nate Cavanaugh (nate.cavanaugh@liferay.com)
+ * Eduardo Lundgren (eduardo.lundgren@liferay.com)
+ */
+-->
+
+<project name="Alloy" default="release" basedir=".">
+	<property name="project.dir" value="../"/>
+	<property name="build.dir" value="${project.dir}/build/"/>
+	<property name="src.dir" value="${project.dir}/src/"/>
+
+	<property name="alloy.version" value="0.1a"/>
+	<property name="alloy.core.files" value="defaults.js, core.js"/>
+
+	<property name="yui3.file" value="yui_3.0.0b1.zip" />
+	<property name="yui3.dir" value="${project.dir}/lib/yui/" />
+
+	<property name="release.name" value="alloy-${alloy.version}" />
+	<property name="release.dir" value="${build.dir}/${release.name}/" />
+	<property name="yui.compressor.file" value="yuicompressor-2.4.2.jar" />
+	<property name="yui.compressor.path" value="${build.dir}/lib/${yui.compressor.file}" />
+
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+		<classpath>
+			<pathelement location="${build.dir}/lib/ant-contrib-0.6.jar"/>
+		</classpath>
+	</taskdef>
+
+
+	<target name="init-yui" depends="whitespace" description="Create the YUI Library folders.">
+		<echo>Initializing YUI Library.</echo>
+
+		<delete dir="${yui3.dir}" />
+		<unzip src="${project.dir}/lib/${yui3.file}" dest="${project.dir}/lib/" />
+	</target>
+
+
+	<target name="clean">
+		<delete dir="${release.dir}" />
+		<delete file="${build.dir}/${release.name}.zip" />
+	</target>
+
+
+	<target name="whitespace">
+		<echo>Removing trailing spaces of the source files.</echo>
+
+		<replaceregexp match="[\t ]+$" replace="" flags="g" byline="true">
+			<fileset dir="${src.dir}" includes="*.js"/>
+		</replaceregexp>
+	</target>
+
+
+	<target name="release" depends="init-release, minify, zip" />
+
+
+	<target name="init-release" depends="clean, whitespace">
+		<echo>Preparing files and folders for release.</echo>
+
+		<copy todir="${release.dir}">
+			<fileset dir="${project.dir}">
+				<include name="src/**" />
+				<include name="demos/**" />
+				<include name="themes/**" />
+			</fileset>
+		</copy>
+
+		<copy todir="${release.dir}">
+            <filelist dir="${project.dir}/" files="version.txt" />
+        </copy>
+
+		<replaceregexp match="@VERSION" replace="${alloy.version}" flags="g" byline="true">
+            <fileset dir="${release.dir}/" includes="**/*.js, **/*.css, **/*.txt"/>
+        </replaceregexp>
+	</target>
+
+
+	<target name="concatenate" depends="init-release">
+		<echo>Concatenating JavaScript files.</echo>
+
+		<property name="alloy.dest.file" value="${release.dir}/src/${release.name}.js" />
+		<delete file="${alloy.dest.file}"/>
+
+		<concat destfile="${alloy.dest.file}">
+	        <filelist dir="${release.dir}/src/" files="${alloy.core.files}"/>
+	        <fileset dir="${release.dir}/src/" includes="*.js" excludes="${alloy.core.files}"/>
+	    </concat>
+	</target>
+
+
+	<target name="zip" depends="minify">
+		<echo>Creating Zip file ${release.name}.zip</echo>
+
+		<zip basedir="${release.dir}" destfile="${build.dir}/${release.name}.zip" />
+	</target>
+
+
+	<target name="minify" depends="minify-javascript, minify-css" />
+
+
+	<target name="minify-javascript" depends="concatenate">
+		<echo>Minifying JavaScript files.</echo>
+
+		<mkdir dir="${release.dir}/src/minified/"/>
+
+		<apply executable="java" parallel="false">
+			<fileset dir="${release.dir}/src/" includes="*.js" />
+			<arg line="-jar" />
+			<arg path="${yui.compressor.path}" />
+			<arg value="--charset"/>
+            <arg value="UTF-8"/>
+			<srcfile/>
+			<arg line="-o" />
+			<mapper type="glob" from="*.js" to="${release.name}/src/minified/*-min.js" />
+			<targetfile/>
+		</apply>
+	</target>
+
+
+	<target name="minify-css" depends="concatenate">
+		<echo>Minifying CSS files.</echo>
+
+		<apply executable="java" parallel="false">
+			<fileset dir="${release.dir}/themes/" includes="**/*.css" />
+			<arg line="-jar" />
+			<arg path="${yui.compressor.path}" />
+			<arg value="--charset"/>
+            <arg value="UTF-8"/>
+			<srcfile/>
+			<arg line="-o" />
+			<mapper type="glob" from="*.css" to="${release.name}/themes/*-min.css" />
+			<targetfile/>
+		</apply>
+	</target>
+</project>
