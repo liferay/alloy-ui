@@ -25,7 +25,7 @@
 	<property name="yui3.file" value="yui_3.0.0b1.zip" />
 	<property name="yui3.dir" value="${project.dir}/lib/yui/" />
 
-	<property name="release.name" value="alloy-${alloy.version}" />
+	<property name="release.name" value="alloy" />
 	<property name="release.dir" value="${build.dir}/${release.name}/" />
 	<property name="yui.compressor.file" value="yuicompressor-2.4.2.jar" />
 	<property name="yui.compressor.path" value="${build.dir}/lib/${yui.compressor.file}" />
@@ -47,7 +47,7 @@
 
 	<target name="clean">
 		<delete dir="${release.dir}" />
-		<delete file="${build.dir}/${release.name}.zip" />
+		<delete file="${build.dir}/${release.name}-${alloy.version}.zip" />
 	</target>
 
 
@@ -100,7 +100,7 @@
 	<target name="zip" depends="minify">
 		<echo>Creating Zip file ${release.name}.zip</echo>
 
-		<zip basedir="${release.dir}" destfile="${build.dir}/${release.name}.zip" />
+		<zip basedir="${release.dir}" destfile="${build.dir}/${release.name}-${alloy.version}.zip" />
 	</target>
 
 
