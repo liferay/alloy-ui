@@ -69,12 +69,18 @@
 			var match = src.match(/^(.*)yui[\.-].*js(\?.*)?$/);
 
 			if (match && (base = match[1])) {
-				base = base.substring(0, base.length - 4);
+				base = base.split(/[\/\\]/);
+
+				// removing the last path level /yui/../
+				base = base.splice(0, base.length - 2).concat(
+					base.splice(base.length - 1, base.length)
+				);
+
 				break;
 			}
 		}
 
-		return base;
+		return base.join('/');
 	};
 
 	/*!
