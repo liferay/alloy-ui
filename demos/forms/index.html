@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>index</title>
+	<meta name="author" content="Nate Cavanaugh">
+
+	<link rel="stylesheet" href="../../src/css/base.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../src/css/layout.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../src/css/forms.css" type="text/css" media="screen" />
+
+	<style type="text/css" media="screen">
+		#wrapper {
+			font-size: 1.2em;
+			margin: 20px auto;
+			width: 800px;
+		}
+
+		.aui-form .aui-ctrl-holder {
+			border-bottom: 1px solid #DFDFDF;
+			padding: 7px 0;
+		}
+
+		.aui-form .aui-ctrl-last {
+			border-bottom-width: 0;
+		}
+	</style>
+</head>
+<body>
+<div id="wrapper">
+	<form class="aui-form">
+		<fieldset class="aui-column aui-column-first aui-form-column aui-w50">
+			<legend>Your network information</legend>
+
+			<div class="aui-column-content aui-form-column-content">
+				<div class="aui-ctrl-holder">
+					<label for="username">Username</label>
+					<input class="aui-text-input" id="username" name="username" type="text" />
+					<p class="aui-form-hint">
+						<span>The username you wish to use.</span>
+					</p>
+				</div>
+
+				<div class="aui-ctrl-holder">
+					<label for="email">Email</label>
+					<input class="aui-text-input" id="email" name="email" type="text" />
+					<p class="aui-form-hint">
+						<span>The email address to associate with this account.</span>
+					</p>
+				</div>
+
+				<div class="aui-ctrl-holder">
+					<label for="accountType">Account type</label>
+					<select class="aui-select-input" id="accountType" name="accountType">
+						<option selected="selected" value="premium">Premium user</option>
+						<option value="midlevel">Mid-level user</option>
+						<option value="regular">Regular user</option>
+					</select>
+					<p class="aui-form-hint">
+						<span>What level of user would you like to be?</span>
+					</p>
+				</div>
+
+				<div class="aui-ctrl-holder">
+					<label for="interests">Interests</label>
+					<textarea id="interests" name="interests"></textarea>
+					<p class="aui-form-hint">
+						<span>What are some of your interests?</span>
+					</p>
+				</div>
+
+				<div class="aui-ctrl-holder aui-ctrl-last">
+					<p class="aui-label">
+						User options
+					</p>
+					<div class="aui-multi-field">
+						<label class="aui-inline-label" for="notifyMessages">
+							<input id="notifyMessages" name="notifyMessages" type="checkbox" value="1" />
+							<span>Do you wish to be notified by email when another user sends you a message?</span>
+						</label>
+
+						<label class="aui-inline-label" for="displayEmail">
+							<input id="displayEmail" name="displayEmail" type="checkbox" value="1" />
+							<span>Do you wish for other users to be able to see your email address?</span>
+						</label>
+
+						<label class="aui-inline-label" for="subscribeNewsletter">
+							<input id="subscribeNewsletter" name="subscribeNewsletter" type="checkbox" value="1" />
+							<span>Would you like to receive our monthly newsletter?</span>
+						</label>
+					</div>
+
+					<p class="aui-form-hint">
+						We will not sell your information, or needlessly spam you. This is just to keep you in the loop.
+					</p>
+
+				</div>
+			</div>
+		</fieldset>
+
+		<fieldset class="aui-inline-labels aui-column aui-column-last aui-form-column aui-w50">
+			<legend>Your personal information</legend>
+
+			<div class="aui-column-content aui-form-column-content">
+
+				<div class="aui-ctrl-holder">
+					<label for="fullName">Full name</label>
+					<input class="aui-text-input" id="fullName" name="fullName" type="text" />
+					<p class="aui-form-hint">
+						<span>Your full name.</span>
+					</p>
+				</div>
+
+				<div class="aui-ctrl-holder">
+					<label for="email">City, State</label>
+					<input class="aui-text-input" id="email" name="email" type="text" />
+					<p class="aui-form-hint">
+						<span>What city and state do you live in?.</span>
+					</p>
+				</div>
+
+				<div class="aui-ctrl-holder">
+					<label for="ageGroup">Your age group</label>
+					<select class="aui-select-input" id="ageGroup" name="ageGroup">
+						<option selected="selected" value="teen">13 - 19</option>
+						<option value="young-adult">20-30</option>
+						<option value="adult">31-50</option>
+						<option value="vintage-adult">51+</option>
+					</select>
+					<p class="aui-form-hint">
+						<span>The age group that best describes you.</span>
+					</p>
+				</div>
+
+				<div class="aui-ctrl-holder">
+					<label for="description">Description</label>
+					<textarea id="description" name="description"></textarea>
+					<p class="aui-form-hint">
+						<span>Please describe yourself.</span>
+					</p>
+				</div>
+
+				<div class="aui-ctrl-holder aui-ctrl-last">
+					<p class="aui-label">
+						How often do you think you will use this service?
+					</p>
+
+					<div class="aui-multi-field">
+						<label class="aui-inline-label" for="usageLevelFrequently">
+							<input checked="checked" id="usageLevelFrequently" name="usageLevel" type="radio" value="1" />
+							<span>All the time. I'm already addicted just by signing up.</span>
+						</label>
+
+						<label class="aui-inline-label" for="usageLevelSoSo">
+							<input id="usageLevelSoSo" name="usageLevel" type="radio" value="1" />
+							<span>Sometimes, but maybe more. Depends how good it is.</span>
+						</label>
+
+						<label class="aui-inline-label" for="usageLevelRarely">
+							<input id="usageLevelRarely" name="usageLevel" type="radio" value="1" />
+							<span>Probably not that often, I'm just checking it out.</span>
+						</label>
+					</div>
+
+					<p class="aui-form-hint">
+						This helps us guage your interest in us.
+					</p>
+				</div>
+			</div>
+		</fieldset>
+
+		<div class="aui-button-holder">
+			<input id="submit" name="submit" type="submit" value="Submit" />
+			<input id="reset" name="reset" type="reset" value="Reset" />
+		</div>
+	</form>
+</div>
+
+</body>
+</html>
