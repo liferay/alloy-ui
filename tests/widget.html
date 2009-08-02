@@ -47,9 +47,23 @@ Alloy().use('widget',function(AUI) {
 
 			bindUI: function() {
 				var instance = this;
-				// console.log(AUI.Node.getDOMNode(instance.inputNode));
+
 				instance.inputNode.on('blur', instance._onMyBlur, instance);
 				instance.inputNode.on('focus', instance._onMyFocus, instance);
+			},
+
+			syncUI: function() {
+				var instance = this;
+
+				var inputNode = instance.inputNode;
+
+				var value = inputNode.get('value');
+
+				if (value == '') {
+					value = instance.get('defaultValue')
+				}
+
+				inputNode.set('value', value);
 			},
 
 			_onFocus: function(event) {
