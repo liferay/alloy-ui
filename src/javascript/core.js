@@ -153,21 +153,17 @@
 	Alloy.extend(Alloy.prototype, {
 		ready: function() {
 			var instance = this;
-			var slice = Array.prototype.slice;
-			var args = slice.call(arguments, 0), index = args.length - 1;
+			var args = Array.prototype.slice.call(arguments);
 
 			// user callback
-			var fn = args[index];
+			var fn = args.pop();
 
-			// array with YUI modules to be loaded
-			var modules = slice.call(arguments, 0, index);
-
-			if (!modules.length) {
-				modules.push('event');
+			if (!args.length) {
+				args.push('event');
 			}
 
 			// adding Alloy().use() callback
-			modules.push(
+			args.push(
 				function(instance) {
 					var args = arguments;
 					instance.on('domready', function() {
@@ -176,7 +172,7 @@
 				}
 			);
 
-			instance.use.apply(instance, modules);
+			instance.use.apply(instance, args);
 		}
 	});
 
