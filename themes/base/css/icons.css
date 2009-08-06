@@ -1,9 +1,10 @@
 .aui-tool {
-	display: inline-block;
+	float: left;
 	height: 16px;
 	width: 16px;
 	overflow: hidden;
 	padding: 3px;
+	margin: 2px;
 }
 
 .aui-icon {
