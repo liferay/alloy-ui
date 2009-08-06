@@ -62,28 +62,23 @@
 
 	// temporary crappy method to get the base path
 	var getBasePath = function () {
-		var nodes = document.getElementsByTagName('script'), i, base;
+		var nodes = document.getElementsByTagName('script');
+		var length = nodes.length;
+		var node, match, base;
 
-		for (i = 0; i < nodes.length; i = i + 1) {
-			var src = nodes[i].src;
-			var match = src.match(/^(.*)yui[\.-].*js(\?.*)?$/);
+		while(--length) {
+			node = nodes[length];
+			match = node.src && node.src.match(/^(.*)yui[\.-].*js(\?.*)?$/);
+			base = match && match[1];
 
-			if (match && (base = match[1])) {
-				base = base.split(/[\/\\]/);
-
-				// removing the last path level /yui/../
-				base = base.splice(0, base.length - 2).concat(
-					base.splice(base.length - 1, base.length)
-				);
+			if (base) {
+				base = base.substring(0, base.length - 4);
 
 				break;
 			}
 		}
 
-		alert('Need to update the getBasePath function in core.js');
-
-		return '/lib/yui/build/';
-		return base.join('/');
+		return base;
 	};
 
 	/*!
