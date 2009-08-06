@@ -1,0 +1,106 @@
+/* ---------- Interaction styles ---------- */
+
+.aui-state-default {
+	background: #eee;
+	border: 1px solid #ccc;
+}
+
+.aui-state-active {
+	background: #efefef;
+	border-color: #333;
+}
+
+.aui-state-hover {
+	background: #ddd;
+	border-color: #999;
+	cursor: pointer;
+}
+
+.aui-state-disabled {
+	cursor: default !important;
+}
+
+.aui-state-highlight {
+	
+}
+
+.aui-state-error {
+	
+}
+
+.aui-state-error-text {
+	
+}
+
+.aui-priority-primary {
+	
+}
+
+.aui-priority-secondary {
+	
+}
+
+.aui-html-template {
+	display: none;
+}
+
+.aui-helper-hidden {
+	display: none !important;
+}
+
+.aui-helper-hidden-accessible {
+	left: -99999em;
+	position: absolute;
+	top: -99999em;
+}
+
+.aui-helper-reset {
+	margin: 0;
+	padding: 0;
+	outline: 0;
+	line-height: 1.3;
+	text-decoration: none;
+	font-size: 100%;
+	list-style: none;
+	border: 0;
+}
+
+.aui-helper-clearfix:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+.aui-helper-clearfix {
+	display: inline-block;
+
+	/* IE7 & below */
+	*display: block;
+	/* IE6 */
+	_height: 1%;
+}
+
+.aui-helper-zfix {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+	opacity: 0;
+
+	/* IE8 */
+	-ms-filter: alpha(opacity=0);
+	/* IE7/IE8(quirks) */
+	filter: alpha(opacity=0);
+}
+
+/*
+The rules below set the base font size and background color. These are best overwritten inside of custom.css.
+*/
+
+body {
+	background-color: #FFF;
+	font: 62.5%/1.6em Arial,Helvetica,Verdana,sans-serif;
+}
