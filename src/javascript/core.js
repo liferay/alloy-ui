@@ -66,7 +66,7 @@
 		var length = nodes.length;
 		var node, match, base;
 
-		while(--length) {
+		while(length--) {
 			node = nodes[length];
 			match = node.src && node.src.match(yuiRE);
 			base = match && match[1];
