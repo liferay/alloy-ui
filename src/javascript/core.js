@@ -60,7 +60,6 @@
 		return target;
 	};
 
-	// temporary crappy method to get the base path
 	var getBasePath = function () {
 		var nodes = document.getElementsByTagName('script');
 		var yuiRE = /^(.*)yui[\.-].*js(\?.*)?$/;
