@@ -3,6 +3,7 @@
 .aui-state-default {
 	background: #eee;
 	border: 1px solid #ccc;
+	border-color: #bbb #999 #999 #bbb;
 }
 
 .aui-state-active {
@@ -12,7 +13,7 @@
 
 .aui-state-hover {
 	background: #ddd;
-	border-color: #999;
+	border-color: #999 #bbb #bbb #999;
 	cursor: pointer;
 }
 
