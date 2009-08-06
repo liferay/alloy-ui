@@ -80,6 +80,9 @@
 			}
 		}
 
+		alert('Need to update the getBasePath function in core.js');
+
+		return '/lib/yui/build/';
 		return base.join('/');
 	};
 
@@ -118,6 +121,35 @@
 		defaults.base = getBasePath();
 	}
 
+	YUI.prototype.ready = function() {
+		var instance = this;
+
+		var slice = Array.prototype.slice;
+		var args = slice.call(arguments, 0), index = args.length - 1;
+
+		// user callback
+		var fn = args[index];
+
+		// array with YUI modules to be loaded
+		var modules = slice.call(arguments, 0, index);
+
+		if (!modules.length) {
+			modules.push('event');
+		}
+
+		// adding Alloy().use() callback
+		modules.push(
+			function(instance) {
+				var args = arguments;
+				instance.on('domready', function() {
+				   fn.apply(this, args);
+				});
+			}
+		);
+
+		instance.use.apply(instance, modules);
+	};
+
 	var ALLOY = YUI( extend({}, defaults) );
 
 	var originalConfig = ALLOY.config;
@@ -142,38 +174,15 @@
 		return ALLOY;
 	};
 
-	extend(Alloy, YUI, {
-		__version: '@VERSION',
+	extend(
+		Alloy,
+		YUI,
+		{
+			__version: '@VERSION',
 
-		extend: extend,
+			extend: extend,
 
-		defaults: defaults
-	});
-
-	Alloy.extend(Alloy.prototype, {
-		ready: function() {
-			var instance = this;
-			var args = Array.prototype.slice.call(arguments);
-
-			// user callback
-			var fn = args.pop();
-
-			if (!args.length) {
-				args.push('event');
-			}
-
-			// adding Alloy().use() callback
-			args.push(
-				function(instance) {
-					var args = arguments;
-					instance.on('domready', function() {
-					   fn.apply(this, args);
-					});
-				}
-			);
-
-			instance.use.apply(instance, args);
+			defaults: defaults
 		}
-	});
-
+	);
 })();
