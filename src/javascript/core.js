@@ -63,12 +63,13 @@
 	// temporary crappy method to get the base path
 	var getBasePath = function () {
 		var nodes = document.getElementsByTagName('script');
+		var yuiRE = /^(.*)yui[\.-].*js(\?.*)?$/;
 		var length = nodes.length;
 		var node, match, base;
 
 		while(--length) {
 			node = nodes[length];
-			match = node.src && node.src.match(/^(.*)yui[\.-].*js(\?.*)?$/);
+			match = node.src && node.src.match(yuiRE);
 			base = match && match[1];
 
 			if (base) {
