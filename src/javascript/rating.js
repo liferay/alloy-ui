@@ -52,11 +52,6 @@ AUI.mix(Rating, {
 			validator: isNumber
 		},
 
-		disabled: {
-			value: false,
-			validator: isBoolean
-		},
-
 		elements: {
 			writeOnce: true,
 			readOnly: true,
