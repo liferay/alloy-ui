@@ -161,7 +161,6 @@ Alloy.add('rating', function(AUI) {
 
 			var selectedIndex = instance.get(SELECTED_INDEX);
 			var	data = instance._getInputData(selectedIndex);
-
 			var title = ('title' in data) ? data.title : BLANK;
 			var value = ('value' in data) ? data.value : selectedIndex;
 
@@ -170,8 +169,10 @@ Alloy.add('rating', function(AUI) {
 			instance.set('title', title);
 			instance.set('value', value);
 
-			instance.get('hiddenInput').setAttribute('title', title);
-			instance.get('hiddenInput').setAttribute('value', value);
+			var hiddenInput = instance.get('hiddenInput');
+
+			hiddenInput.setAttribute('title', title);
+			hiddenInput.setAttribute('value', value);
 
 			instance.fire('select');
 		},
@@ -199,10 +200,7 @@ Alloy.add('rating', function(AUI) {
 			var hiddenInput = AUI.Node.create('<input type="hidden" />');
 
 			if (size > 0) {
-
-				if (!inputName) {
-					inputName = inputs.item(0).getAttribute('name');
-				}
+				inputName = inputName || inputs.item(0).getAttribute('name');
 
 				instance.set('size', size);
 
