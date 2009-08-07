@@ -22,6 +22,7 @@ Alloy.add('rating', function(AUI) {
 	var RATING = 'rating';
 	var SELECTED_INDEX = 'selectedIndex';
 	var SIZE = 'size';
+	var SHOW_TITLE = 'showTitle';
 
 	var getCN = AUI.ClassNameManager.getClassName;
 
@@ -78,6 +79,11 @@ Alloy.add('rating', function(AUI) {
 			selectedIndex: {
 				value: -1,
 				validator: isNumber
+			},
+
+			showTitle: {
+				value: true,
+				validator: isBoolean
 			},
 
 			size: {
@@ -241,7 +247,7 @@ Alloy.add('rating', function(AUI) {
 				var	data = instance._getInputData(i);
 				var element = ratingElement.cloneNode();
 
-				if (data && data.title) {
+				if (instance.get(SHOW_TITLE) && data && data.title) {
 					element.setAttribute('title', data.title);
 				}
 
