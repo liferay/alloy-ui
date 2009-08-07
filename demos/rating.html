@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link type="text/css" rel="stylesheet" href="../themes/base/css/rating.css" />
+</head>
+
+<body>
+<h1>Alloy - Rating</h1>
+
+<div id="rating1">
+	<input type="radio" name="rating1" value="v1" title="Horrible" />
+	<input type="radio" name="rating1" value="v2" title="Very bad" />
+	<input type="radio" name="rating1" value="v3" title="Bad" />
+	<input type="radio" name="rating1" value="v4" title="Acceptable" />
+	<input type="radio" name="rating1" value="v5" title="Good" />
+	<input type="radio" name="rating1" value="v6" title="Very good" />
+	<input type="radio" name="rating1" value="v7" title="perfect" />
+</div>
+
+<br/>
+
+<div id="rating2"></div>
+
+<br/>
+
+<div id="rating3"></div>
+
+<br/>
+
+<script type="text/javascript" charset="utf-8">
+
+Alloy().ready('rating', function(AUI) {
+
+	var rating1 = new AUI.Rating({
+		//size: 8,
+		boundingBox: '#rating1',
+		defaultSelected: 3,
+		disabled: false,
+		//inputName: 'name',
+		on: {
+			mouseover: function() {
+				//console.log('mouseover', arguments);
+			},
+			mouseout: function() {
+				//console.log('mouseout', arguments);
+			},
+			click: function() {
+				//console.log('click', arguments);
+			},
+			select: function(event) {
+				var instance = event.target;
+
+				//console.log('select', arguments);
+			}
+		}
+	});
+
+	var rating2 = new AUI.Rating({
+		boundingBox: '#rating2',
+		disabled: false
+	});
+
+	var rating3 = new AUI.Rating({
+		boundingBox: '#rating3',
+		defaultSelected: 4
+	});
+
+	// public methods
+	// rating1.select(index);
+	// rating1.fillTo(index);
+	// rating1.destructor();
+	// rating1.clearSelection();
+
+	// getters
+	// rating1.get('defaultSelected');
+	// rating1.get('disabled');
+	// rating1.get('inputName');
+	// rating1.get('selectedIndex');
+	// rating1.get('size');
+	// rating1.get('title');
+	// rating1.get('value');
+});
+
+</script>
+
+</body>
+</html>

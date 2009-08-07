@@ -23,7 +23,12 @@
 
 			skin: { },
 
-			modules: { }
+			modules: {
+				'rating': {
+					fullpath: '/alloy/trunk/src/javascript/rating.js',
+					requires: [ 'widget' ]
+				}
+			}
 		}
 	}
 
