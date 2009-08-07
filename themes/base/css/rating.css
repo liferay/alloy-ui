@@ -15,9 +15,9 @@
 .aui-rating-element-off {}
 
 .aui-rating-element-on {
-	background-position: 0 -32px;
+	background-position: 0 -16px;
 }
 
 .aui-rating-element-hover {
-	background-position: 0 -16px;
+	background-position: 0 -32px;
 }
