@@ -34,8 +34,7 @@
 				'rating-css': {
 					fullpath: TRUNK_BASE_PATH + 'themes/base/css/rating.css',
 					type: 'css'
-				},
-
+				}
 			}
 		}
 	}
