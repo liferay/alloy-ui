@@ -8,6 +8,7 @@ Alloy.add('rating', function(AUI) {
 	var	BOUNDING_BOX = 'boundingBox';
 	var A = 'a';
 	var BLANK = '';
+	var CAN_RESET = 'canReset';
 	var CONTENT_BOX = 'contentBox';
 	var DEFAULT_SELECTED = 'defaultSelected';
 	var DESTROY = 'destroy';
@@ -39,6 +40,11 @@ Alloy.add('rating', function(AUI) {
 		NAME: 'Rating',
 
 		ATTRS: {
+			canReset: {
+				value: true,
+				validator: isBoolean
+			},
+
 			defaultSelected: {
 				value: 0,
 				writeOnce: true,
@@ -151,9 +157,10 @@ Alloy.add('rating', function(AUI) {
 		select: function(index) {
 			var instance = this;
 			var oldIndex = instance.get(SELECTED_INDEX);
+			var canReset = instance.get(CAN_RESET);
 
 			// clear selection when the first element is clicked
-			if ((oldIndex == 0) && (oldIndex == index)) {
+			if (canReset && (oldIndex == 0) && (oldIndex == index)) {
 				index = -1;
 			}
 
