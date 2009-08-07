@@ -1,0 +1,23 @@
+.aui-rating {}
+
+.aui-rating-content {}
+
+.aui-rating-disabled {}
+
+.aui-rating-element {
+	background: transparent url(../images/rating.png) no-repeat scroll 0 0;
+	width: 16px;
+	height: 16px;
+	display: block;
+	float: left;
+}
+
+.aui-rating-element-off {}
+
+.aui-rating-element-on {
+	background-position: 0 -32px;
+}
+
+.aui-rating-element-hover {
+	background-position: 0 -16px;
+}
