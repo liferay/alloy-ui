@@ -12,6 +12,9 @@
 
 ;(function() {
 
+	// temp
+	var TRUNK_BASE_PATH = '/alloy/trunk/';
+
 	window.Alloy = {
 		defaults: {
 
@@ -25,9 +28,14 @@
 
 			modules: {
 				'rating': {
-					fullpath: '/alloy/trunk/src/javascript/rating.js',
-					requires: [ 'widget' ]
-				}
+					fullpath: TRUNK_BASE_PATH + 'src/javascript/rating.js',
+					requires: [ 'widget', 'rating-css' ]
+				},
+				'rating-css': {
+					fullpath: TRUNK_BASE_PATH + 'themes/base/css/rating.css',
+					type: 'css'
+				},
+
 			}
 		}
 	}
