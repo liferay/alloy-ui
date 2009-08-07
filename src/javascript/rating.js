@@ -152,8 +152,8 @@ Alloy.add('rating', function(AUI) {
 			var instance = this;
 			var oldIndex = instance.get(SELECTED_INDEX);
 
-			// reset rating
-			if (oldIndex == index) {
+			// clear selection when the first element is clicked
+			if ((oldIndex == 0) && (oldIndex == index)) {
 				index = -1;
 			}
 
