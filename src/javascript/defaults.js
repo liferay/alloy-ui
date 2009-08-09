@@ -15,7 +15,7 @@
 	// temp
 	var TRUNK_BASE_PATH = '/alloy/trunk/';
 
-	window.Alloy = {
+	window.AUI = {
 		defaults: {
 
 			classNamePrefix: 'aui',
@@ -27,6 +27,9 @@
 			skin: { },
 
 			modules: {
+				/*
+				* Rating
+				*/
 				'rating': {
 					fullpath: TRUNK_BASE_PATH + 'src/javascript/rating.js',
 					requires: [ 'widget', 'rating-css' ]

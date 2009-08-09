@@ -96,7 +96,7 @@
 	 * Revision: @REVISION
 	 */
 
-	window.Alloy = window.Alloy || {};
+	window.AUI = window.AUI || {};
 
 	var defaults = {};
 	var defaultModules = [ 'event', 'oop', 'widget' ];
@@ -107,8 +107,8 @@
 		}
 	};
 
-	if ('defaults' in Alloy) {
-		defaults = Alloy.defaults;
+	if ('defaults' in AUI) {
+		defaults = AUI.defaults;
 	}
 
 	// get the base path in case the user has not specified
@@ -132,7 +132,7 @@
 			modules.push('event');
 		}
 
-		// adding Alloy().use() callback
+		// adding AUI().use() callback
 		modules.push(
 			function(instance) {
 				var args = arguments;
@@ -155,13 +155,13 @@
 	// loading default modules
 	ALLOY.use.apply(ALLOY, defaultModules);
 
-	Alloy = function(o) {
+	AUI = function(o) {
 		var instance = this;
 
-		ALLOY.config = ALLOY.merge(originalConfig, Alloy.defaults);
+		ALLOY.config = ALLOY.merge(originalConfig, AUI.defaults);
 
-		if (o || instance instanceof Alloy) {
-			// new Alloy() creates a new YUI sandbox
+		if (o || instance instanceof AUI) {
+			// new AUI() creates a new YUI sandbox
 			return YUI( ALLOY.merge(ALLOY.config, o) );
 		}
 
@@ -170,7 +170,7 @@
 	};
 
 	extend(
-		Alloy,
+		AUI,
 		YUI,
 		{
 			__version: '@VERSION',

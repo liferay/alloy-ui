@@ -13,7 +13,7 @@
 <input id="myTestWidget" type="text" value="" />
 
 <script type="text/javascript" charset="utf-8">
-Alloy().use('widget',function(AUI) {
+AUI().use('widget',function(A) {
 
 	function MyWidget() {
 		MyWidget.superclass.constructor.apply(this, arguments);
@@ -27,11 +27,11 @@ Alloy().use('widget',function(AUI) {
 		}
 	};
 
-	MyWidget.INPUT_CLASS = AUI.ClassNameManager.getClassName(MyWidget.NAME, 'value');
+	MyWidget.INPUT_CLASS = A.ClassNameManager.getClassName(MyWidget.NAME, 'value');
 
-	AUI.extend(
+	A.extend(
 		MyWidget,
-		AUI.Widget,
+		A.Widget,
 		{
 			renderUI: function() {
 				var instance = this;
@@ -39,7 +39,7 @@ Alloy().use('widget',function(AUI) {
 				var input = instance.get('contentBox');
 
 				if (!input) {
-					input = AUI.get(input);
+					input = A.get(input);
 				}
 
 				instance.inputNode = input;
@@ -71,7 +71,7 @@ Alloy().use('widget',function(AUI) {
 
 				MyWidget.superclass._onFocus.apply(this, arguments);
 
-				console.log('This is a method called _onFocus', this, arguments, AUI.Node.getDOMNode(event.target), MyWidget.superclass._onFocus);
+				console.log('This is a method called _onFocus', this, arguments, A.Node.getDOMNode(event.target), MyWidget.superclass._onFocus);
 			},
 
 			_onMyBlur: function(event) {
@@ -93,7 +93,7 @@ Alloy().use('widget',function(AUI) {
 			_onMyFocus: function(event) {
 				var instance = this;
 
-				// console.log(instance.inputNode, instance.get('defaultValue'), event.type, AUI.Node.getDOMNode(event.target));
+				// console.log(instance.inputNode, instance.get('defaultValue'), event.type, A.Node.getDOMNode(event.target));
 
 				var inputNode = instance.inputNode;
 
@@ -112,7 +112,7 @@ Alloy().use('widget',function(AUI) {
 		}
 	);
 
-	AUI.on('domready', function(event) {
+	A.on('domready', function(event) {
 		var widg = new MyWidget(
 			{
 				contentBox: '#myTestWidget'
@@ -123,7 +123,7 @@ Alloy().use('widget',function(AUI) {
 	})
 });
 
-Alloy().ready(function(instance) {
+AUI().ready(function(instance) {
 return;
     instance.get('body').on('click', function(e) {
 		console.log("Click", e, this);
