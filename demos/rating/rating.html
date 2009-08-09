@@ -34,9 +34,9 @@
 
 <script type="text/javascript" charset="utf-8">
 
-Alloy().ready('rating', function(AUI) {
+AUI().ready('rating', function(A) {
 
-	var rating1 = new AUI.Rating({
+	var rating1 = new A.Rating({
 		//size: 8,
 		boundingBox: '#rating1',
 		defaultSelected: 3,
@@ -61,13 +61,13 @@ Alloy().ready('rating', function(AUI) {
 		}
 	});
 
-	var rating2 = new AUI.Rating({
+	var rating2 = new A.Rating({
 		boundingBox: '#rating2',
 		disabled: false,
 		canReset: false
 	});
 
-	var rating3 = new AUI.Rating({
+	var rating3 = new A.Rating({
 		boundingBox: '#rating3',
 		defaultSelected: 4
 	});

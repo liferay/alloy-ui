@@ -1,11 +1,11 @@
-Alloy.add('rating', function(AUI) {
+AUI.add('rating', function(A) {
 
-var L = AUI.Lang,
+var L = A.Lang,
 	isBoolean = L.isBoolean,
 	isNumber = L.isNumber,
 	isString = L.isString,
 
-	A = 'a',
+	ANCHOR = 'a',
 	BLANK = '',
 	BOUNDING_BOX = 'boundingBox',
 	CAN_RESET = 'canReset',
@@ -24,7 +24,7 @@ var L = AUI.Lang,
 	SHOW_TITLE = 'showTitle',
 	SIZE = 'size',
 
-	getCN = AUI.ClassNameManager.getClassName,
+	getCN = A.ClassNameManager.getClassName,
 
 	C_CLEAR_FIX = 'aui-helper-clearfix',
 	C_RATING_DISABLED = getCN(RATING, DISABLED),
@@ -37,7 +37,7 @@ function Rating() {
 	Rating.superclass.constructor.apply(this, arguments);
 }
 
-AUI.mix(Rating, {
+A.mix(Rating, {
 	NAME: 'Rating',
 
 	ATTRS: {
@@ -56,13 +56,13 @@ AUI.mix(Rating, {
 			writeOnce: true,
 			readOnly: true,
 			validator: function(v) {
-				return (v instanceof AUI.NodeList);
+				return (v instanceof A.NodeList);
 			}
 		},
 
 		hiddenInput: {
 			validator: function(v) {
-				return (v instanceof AUI.Node);
+				return (v instanceof A.Node);
 			}
 		},
 
@@ -94,7 +94,7 @@ AUI.mix(Rating, {
 	}
 });
 
-AUI.extend(Rating, AUI.Widget, {
+A.extend(Rating, A.Widget, {
 	/*
 	* Lifecycle
 	*/
@@ -160,8 +160,8 @@ AUI.extend(Rating, AUI.Widget, {
 		var oldIndex = instance.get(SELECTED_INDEX);
 		var canReset = instance.get(CAN_RESET);
 
-		// clear selection when the first element is clicked
-		if (canReset && (oldIndex == 0) && (oldIndex == index)) {
+		// clear selection when the selected element is clicked
+		if (canReset && (oldIndex == index)) {
 			index = -1;
 		}
 
@@ -205,7 +205,7 @@ AUI.extend(Rating, AUI.Widget, {
 		var inputs = boundingBox.queryAll(INPUT);
 		var size = inputs.size();
 		var inputName = instance.get(INPUT_NAME);
-		var hiddenInput = AUI.Node.create('<input type="hidden" />');
+		var hiddenInput = A.Node.create('<input type="hidden" />');
 
 		if (size > 0) {
 			inputName = inputName || inputs.item(0).getAttribute('name');
@@ -232,7 +232,7 @@ AUI.extend(Rating, AUI.Widget, {
 	_initElements: function() {
 		var instance = this;
 		var contentBox = instance.get(CONTENT_BOX);
-		var ratingElement = AUI.Node.create('<a href="javascript:void(0);"></a>');
+		var ratingElement = A.Node.create('<a href="javascript:void(0);"></a>');
 
 		contentBox.addClass(C_CLEAR_FIX);
 		ratingElement.addClass(C_RATING_EL);
@@ -249,7 +249,7 @@ AUI.extend(Rating, AUI.Widget, {
 			contentBox.appendChild(element);
 		}
 
-		instance.set('elements', contentBox.queryAll(A));
+		instance.set('elements', contentBox.queryAll(ANCHOR));
 	},
 
 	_syncElements: function(){
@@ -265,9 +265,9 @@ AUI.extend(Rating, AUI.Widget, {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
 
-		boundingBox.delegate('click', AUI.bind(instance._onElementClick, this), A);
-		boundingBox.delegate('mouseover', AUI.bind(instance._onElementMouseOver, this), A);
-		boundingBox.delegate('mouseout', AUI.bind(instance._onElementMouseOut, this), A);
+		boundingBox.delegate('click', A.bind(instance._onElementClick, this), ANCHOR);
+		boundingBox.delegate('mouseover', A.bind(instance._onElementMouseOver, this), ANCHOR);
+		boundingBox.delegate('mouseout', A.bind(instance._onElementMouseOut, this), ANCHOR);
 	},
 
 	_getInputData: function(index) {
@@ -329,6 +329,6 @@ AUI.extend(Rating, AUI.Widget, {
 	}
 });
 
-AUI.Rating = Rating;
+A.Rating = Rating;
 
 }, '@VERSION' , { requires: [ 'widget' ] });
