@@ -70,6 +70,7 @@
 
 		<copy todir="${release.dir}">
 			<fileset dir="${project.dir}">
+				<include name="lib/**" />
 				<include name="src/**" />
 				<include name="demos/**" />
 				<include name="themes/**" />
