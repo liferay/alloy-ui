@@ -4,11 +4,19 @@ recieve a gracefully degrading chrome enhancement such as a drop
 shadow or rounded corners.
 */
 
-/* ---------- CSS 3 Shadows ---------- */
+/* ---------- CSS3 shadows ---------- */
 .aui-overlay {
-	box-shadow: 4px 4px 14px #777;
 	-moz-box-shadow: 4px 4px 14px #777;
 	-webkit-box-shadow: 4px 4px 14px #777;
+	box-shadow: 4px 4px 14px #777;
+}
+
+/* No shadow */
+
+.aui-null-selector {
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
 }
 
 /* ---------- Rounded corners ---------- */
@@ -21,6 +29,14 @@ shadow or rounded corners.
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
+}
+
+/* No corners */
+
+.aui-null-selector {
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
 }
 
 /* Left corners */
