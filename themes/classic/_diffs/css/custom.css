@@ -1,0 +1,14 @@
+a {
+	color: #369;
+}
+
+.aui-state-default {
+	background: #D3DADD;
+	border: 1px solid;
+	border-color: #dedede #bfbfbf #bfbfbf #dedede;
+}
+
+.aui-state-hover {
+	background: #DFF4FF;
+	border-color: #bfbfbf #dedede #dedede #bfbfbf;
+}
