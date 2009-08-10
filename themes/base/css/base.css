@@ -1,6 +1,8 @@
 /* ---------- Interaction styles ---------- */
 
-.aui-state-default {
+.aui-state-default,
+.aui-state-active,
+.aui-state-hover {
 	background: #eee;
 	border: 1px solid #ccc;
 	border-color: #bbb #999 #999 #bbb;
