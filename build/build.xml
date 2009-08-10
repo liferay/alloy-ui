@@ -71,6 +71,7 @@
 		<copy todir="${release.dir}">
 			<fileset dir="${project.dir}">
 				<include name="lib/**" />
+				<exclude name="lib/*.zip" />
 				<include name="src/**" />
 				<include name="demos/**" />
 				<include name="themes/**" />
