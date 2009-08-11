@@ -11,35 +11,58 @@
  */
 
 ;(function() {
-
-	// temp
-	var TRUNK_BASE_PATH = '/alloy/trunk/';
+	var PATH_JAVASCRIPT = '/alloy/trunk/src/javascript/';
+	var PATH_THEME_ROOT = '/alloy/trunk/themes/base/css/';
 
 	window.AUI = {
 		defaults: {
-
 			classNamePrefix: 'aui',
 
 			//base: '',
 
-			filter: 'raw',
-
-			skin: { },
+			//filter: 'raw',
 
 			modules: {
 				/*
 				* Rating
 				*/
 				'rating': {
-					fullpath: TRUNK_BASE_PATH + 'src/javascript/rating.js',
-					requires: [ 'widget', 'rating-css' ]
+					fullpath: PATH_JAVASCRIPT + 'rating.js',
+					requires: [ 'rating-css' ]
 				},
 				'rating-css': {
-					fullpath: TRUNK_BASE_PATH + 'themes/base/css/rating.css',
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'rating.css',
+					type: 'css'
+				},
+
+				/*
+				* Tooltip
+				*/
+				'tooltip': {
+					fullpath: PATH_JAVASCRIPT + 'tooltip.js',
+					requires: [ 'tooltip-css' ]
+				},
+				'tooltip-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'tooltip.css',
+					type: 'css'
+				},
+
+				/*
+				* Dialog
+				*/
+				'dialog': {
+					fullpath: PATH_JAVASCRIPT + 'dialog.js',
+					requires: [ 'overlay', 'dialog-css' ],
+					use: [ 'dd-constrain' ]
+				},
+				'dialog-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'dialog.css',
 					type: 'css'
 				}
 			}
 		}
 	}
-
 })();
