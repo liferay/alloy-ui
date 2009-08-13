@@ -5,7 +5,16 @@ var L = A.Lang,
 	isNumber = L.isNumber,
 	isString = L.isString,
 
+	isNodeList = function(v) {
+		return (v instanceof A.NodeList);
+	},
+
+	isNode = function(v) {
+		return (v instanceof A.Node);
+	},
+
 	ANCHOR = 'a',
+	AUTO_RENDER = 'autoRender',
 	BLANK = '',
 	BOUNDING_BOX = 'boundingBox',
 	CAN_RESET = 'canReset',
@@ -14,20 +23,27 @@ var L = A.Lang,
 	DESTROY = 'destroy',
 	DISABLED = 'disabled',
 	ELEMENT = 'element',
+	ELEMENTS = 'elements',
 	HOVER = 'hover',
+	INNER_HTML = 'innerHTML',
 	INPUT = 'input',
 	INPUT_NAME = 'inputName',
+	LABEL = 'label',
+	LABEL_ELEMENT = 'labelElement',
+	NAME = 'name',
 	OFF = 'off',
 	ON = 'on',
 	RATING = 'rating',
 	SELECTED_INDEX = 'selectedIndex',
 	SHOW_TITLE = 'showTitle',
 	SIZE = 'size',
+	TITLE = 'title',
+	VALUE = 'value',
 
 	getCN = A.ClassNameManager.getClassName,
 
 	C_CLEAR_FIX = 'aui-helper-clearfix',
-	C_RATING_DISABLED = getCN(RATING, DISABLED),
+	C_RATING_LABEL_EL = getCN(RATING, LABEL, ELEMENT),
 	C_RATING_EL = getCN(RATING, ELEMENT),
 	C_RATING_EL_HOVER  = getCN(RATING, ELEMENT, HOVER),
 	C_RATING_EL_OFF = getCN(RATING, ELEMENT, OFF),
@@ -41,6 +57,11 @@ A.mix(Rating, {
 	NAME: 'Rating',
 
 	ATTRS: {
+		autoRender: {
+			value: true,
+			validator: isBoolean
+		},
+
 		canReset: {
 			value: true,
 			validator: isBoolean
@@ -55,18 +76,23 @@ A.mix(Rating, {
 		elements: {
 			writeOnce: true,
 			readOnly: true,
-			validator: function(v) {
-				return (v instanceof A.NodeList);
-			}
+			validator: isNodeList
 		},
 
 		hiddenInput: {
-			validator: function(v) {
-				return (v instanceof A.Node);
-			}
+			validator: isNode
+		},
+
+		labelElement: {
+			validator: isNode
 		},
 
 		inputName: {
+			value: BLANK,
+			validator: isString
+		},
+
+		label: {
 			value: BLANK,
 			validator: isString
 		},
@@ -103,9 +129,11 @@ A.extend(Rating, A.Widget, {
 
 		instance.inputElementsData = {};
 
-		instance.after('disabledChange', this._afterSetDisabled);
+		instance.after('labelChange', this._afterSetLabel);
 
-		instance.render();
+		if (instance.get(AUTO_RENDER)) {
+			instance.render();
+		}
 	},
 
 	renderUI: function () {
@@ -127,19 +155,11 @@ A.extend(Rating, A.Widget, {
 		instance._syncElements();
 	},
 
-	unbindUI: function() {
-		var instance = this;
-		var boundingBox = instance.get(BOUNDING_BOX);
-
-		boundingBox.detachAll();
-	},
-
 	destructor: function(){
 		var instance = this;
 		var	boundingBox = instance.get(BOUNDING_BOX);
 
-		instance.unbindUI();
-
+		boundingBox.detachAll();
 		boundingBox.remove();
 	},
 
@@ -149,7 +169,7 @@ A.extend(Rating, A.Widget, {
 	clearSelection: function() {
 		var instance = this;
 
-		instance.get('elements').each(function(node) {
+		instance.get(ELEMENTS).each(function(node) {
 			node.removeClass(C_RATING_EL_ON);
 			node.removeClass(C_RATING_EL_HOVER);
 		});
@@ -169,18 +189,19 @@ A.extend(Rating, A.Widget, {
 
 		var selectedIndex = instance.get(SELECTED_INDEX);
 		var	data = instance._getInputData(selectedIndex);
-		var title = ('title' in data) ? data.title : BLANK;
-		var value = ('value' in data) ? data.value : selectedIndex;
+
+		var title = (TITLE in data) ? data.title : BLANK;
+		var value = (VALUE in data) ? data.value : selectedIndex;
 
 		instance.fillTo(selectedIndex);
 
-		instance.set('title', title);
-		instance.set('value', value);
+		instance.set(TITLE, title);
+		instance.set(VALUE, value);
 
 		var hiddenInput = instance.get('hiddenInput');
 
-		hiddenInput.setAttribute('title', title);
-		hiddenInput.setAttribute('value', value);
+		hiddenInput.setAttribute(TITLE, title);
+		hiddenInput.setAttribute(VALUE, value);
 
 		instance.fire('select');
 	},
@@ -191,7 +212,7 @@ A.extend(Rating, A.Widget, {
 		instance.clearSelection();
 
 		if (index >= 0) {
-			instance.get('elements').some(function(node, i) {
+			instance.get(ELEMENTS).some(function(node, i) {
 				node.addClass(className || C_RATING_EL_ON);
 
 				return (index == i);
@@ -208,21 +229,21 @@ A.extend(Rating, A.Widget, {
 		var hiddenInput = A.Node.create('<input type="hidden" />');
 
 		if (size > 0) {
-			inputName = inputName || inputs.item(0).getAttribute('name');
+			inputName = inputName || inputs.item(0).getAttribute(NAME);
 
-			instance.set('size', size);
+			instance.set(SIZE, size);
 
 			inputs.each(function(node, index) {
 				instance.inputElementsData[index] = {
-					value: node.getAttribute('value') || index,
-					title: node.getAttribute('title')
+					value: node.getAttribute(VALUE) || index,
+					title: node.getAttribute(TITLE)
 				};
 			});
 
 			inputs.remove();
 		}
 
-		hiddenInput.setAttribute('name', inputName);
+		hiddenInput.setAttribute(NAME, inputName);
 
 		boundingBox.appendChild(hiddenInput);
 
@@ -233,30 +254,45 @@ A.extend(Rating, A.Widget, {
 		var instance = this;
 		var contentBox = instance.get(CONTENT_BOX);
 		var ratingElement = A.Node.create('<a href="javascript:void(0);"></a>');
+		var labelElement = A.Node.create('<div></div>');
 
 		contentBox.addClass(C_CLEAR_FIX);
 		ratingElement.addClass(C_RATING_EL);
 		ratingElement.addClass(C_RATING_EL_OFF);
+		labelElement.addClass(C_RATING_LABEL_EL);
 
+		contentBox.append(labelElement);
+
+		// creating rating elements
 		for (var i = 0, size = this.get(SIZE); i < size; i++) {
 			var	data = instance._getInputData(i);
+			var title = data.title;
 			var element = ratingElement.cloneNode();
 
-			if (instance.get(SHOW_TITLE) && data && data.title) {
-				element.setAttribute('title', data.title);
+			if (!title) {
+				title = instance.get(TITLE);
+			}
+
+			if (instance.get(SHOW_TITLE) && title) {
+				element.setAttribute(TITLE, title);
 			}
 
 			contentBox.appendChild(element);
 		}
 
-		instance.set('elements', contentBox.queryAll(ANCHOR));
+		instance.set(LABEL_ELEMENT, labelElement);
+
+		instance.set(ELEMENTS, contentBox.queryAll(ANCHOR));
 	},
 
 	_syncElements: function(){
 		var instance = this;
+		var labelText = instance.get(LABEL);
 		var selectedIndex = instance.get(DEFAULT_SELECTED) - 1;
 
 		instance.set(SELECTED_INDEX, selectedIndex);
+
+		instance.get(LABEL_ELEMENT).set(INNER_HTML, labelText);
 
 		instance.select();
 	},
@@ -265,9 +301,9 @@ A.extend(Rating, A.Widget, {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
 
-		boundingBox.delegate('click', A.bind(instance._onElementClick, this), ANCHOR);
-		boundingBox.delegate('mouseover', A.bind(instance._onElementMouseOver, this), ANCHOR);
-		boundingBox.delegate('mouseout', A.bind(instance._onElementMouseOut, this), ANCHOR);
+		boundingBox.delegate('click', A.bind(instance._delegateMethod, this), ANCHOR);
+		boundingBox.delegate('mouseover', A.bind(instance._delegateMethod, this), ANCHOR);
+		boundingBox.delegate('mouseout', A.bind(instance._delegateMethod, this), ANCHOR);
 	},
 
 	_getInputData: function(index) {
@@ -279,53 +315,37 @@ A.extend(Rating, A.Widget, {
 	/*
 	* Delegated events
 	*/
-	_onElementClick: function(event) {
+	_delegateMethod: function(event){
 		var instance = this;
-		var	elements = instance.get('elements');
+		var type = event.type;
+		var disabled = instance.get(DISABLED);
+		var	elements = instance.get(ELEMENTS);
+		var selectedIndex = instance.get(SELECTED_INDEX);
 		var index = elements.indexOf(event.target);
 
-		instance.select(index);
+		var on = {
+			click: function() {
+				instance.select(index);
+			},
+			mouseover: function() {
+				instance.fillTo(index, C_RATING_EL_HOVER);
+			},
+			mouseout: function() {
+				instance.fillTo(selectedIndex);
+			}
+		};
 
-		instance.fire('click');
-	},
-
-	_onElementMouseOver: function(event) {
-		var instance = this;
-		var	elements = instance.get('elements');
-
-		var value = elements.indexOf(event.target);
-
-		instance.fillTo(value, C_RATING_EL_HOVER);
-
-		instance.fire('mouseover');
-	},
-
-	_onElementMouseOut: function(event) {
-		var instance = this;
-		var selectedIndex = instance.get(SELECTED_INDEX);
-
-		instance.fillTo(selectedIndex);
-
-		instance.fire('mouseout');
+		if (!disabled && type) {
+			on[type]();
+			instance.fire(type);
+		}
 	},
 
 	/*
 	* Attribute Listeners
 	*/
-	_afterSetDisabled: function(event) {
-		var instance = this;
-		var	contentBox = instance.get(CONTENT_BOX);
-
-		if (event.newVal == true) {
-			contentBox.addClass(C_RATING_DISABLED);
-
-			instance.unbindUI();
-		}
-		else {
-			contentBox.removeClass(C_RATING_DISABLED);
-
-			instance.bindUI();
-		}
+	_afterSetLabel: function(event) {
+		this.syncUI();
 	}
 });
 

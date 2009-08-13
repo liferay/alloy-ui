@@ -38,9 +38,12 @@ AUI().ready('rating', function(A) {
 
 	var rating1 = new A.Rating({
 		//size: 8,
+		//autoRender: false,
 		boundingBox: '#rating1',
 		defaultSelected: 3,
 		disabled: false,
+		label: 'Label...',
+		// title: 'testing..',
 		//showTitle: false,
 		//inputName: 'name',
 		on: {
@@ -63,9 +66,22 @@ AUI().ready('rating', function(A) {
 
 	var rating2 = new A.Rating({
 		boundingBox: '#rating2',
-		disabled: false,
-		canReset: false
+		label: 'abc',
+		title: 'testing..',
+		disabled: true,
+		defaultSelected: 3,
+		canReset: false,
+		on: {
+			mouseover: function() {
+				console.log('mouseover', arguments);
+			},
+		}
 	});
+
+	//rating2.enable();
+	rating2.set('label', 'New Label')
+	rating2.set('disabled', false)
+	// rating2.set('disabled', true)
 
 	var rating3 = new A.Rating({
 		boundingBox: '#rating3',
