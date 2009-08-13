@@ -21,3 +21,8 @@
 .aui-rating-element-hover {
 	background-position: 0 -32px;
 }
+
+.aui-rating-label-element {
+	font-size: 12px;
+	padding: 0 2px;
+}
