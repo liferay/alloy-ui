@@ -335,8 +335,11 @@ A.extend(Rating, A.Widget, {
 			}
 		};
 
-		if (!disabled && type) {
-			on[type]();
+		if (type) {
+			if (!disabled) {
+				on[type]();
+			}
+			// trigger user callback even when disabled
 			instance.fire(type);
 		}
 	},
