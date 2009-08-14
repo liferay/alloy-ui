@@ -145,6 +145,53 @@
 		instance.use.apply(instance, modules);
 	};
 
+	YUI.prototype.toQueryString = function(obj) {
+		var instance = this;
+
+		var Lang = instance.Lang;
+		var isArray = Lang.isArray;
+		var isFunction = Lang.isFunction;
+
+		var buffer = [];
+		var isNodeList = false;
+
+		if (isArray(obj) || (isNodeList = (instance.NodeList && (obj instanceof instance.NodeList)))) {
+			if (isNodeList) {
+				obj = instance.NodeList.getDOMNodes(obj);
+			}
+
+			var length = obj.length;
+
+			for (var i=0; i < length; i++) {
+				var el = obj[i];
+
+				buffer.push(encodeURIComponent(el.name) + '=' + encodeURIComponent(el.value));
+			}
+		}
+		else {
+			for (var i in obj){
+				var value = obj[i];
+
+				if (isArray(value)) {
+					var vlength = value.length;
+
+					for (var j = 0; j < vlength; j++) {
+						buffer.push(encodeURIComponent(i) + '=' + encodeURIComponent(value[j]));
+					}
+				}
+				else {
+					if (isFunction(value)) {
+						value = value();
+					}
+
+					buffer.push(encodeURIComponent(i) + '=' + encodeURIComponent(value));
+				}
+			}
+		}
+
+		return buffer.join('&').replace(/%20/g, '+');
+	};
+
 	var ALLOY = YUI( extend({}, defaults) );
 
 	var originalConfig = ALLOY.config;
