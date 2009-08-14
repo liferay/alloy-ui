@@ -24,6 +24,18 @@
 
 			modules: {
 				/*
+				* AutoComplete
+				*/
+				'autocomplete': {
+					fullpath: PATH_JAVASCRIPT + 'autocomplete.js',
+					requires: [ 'overlay', 'datasource', 'dataschema', 'autocomplete-css' ]
+				},
+				'autocomplete-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'autocomplete.css',
+					type: 'css'
+				},
+				/*
 				* Rating
 				*/
 				'rating': {
