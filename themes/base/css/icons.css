@@ -708,3 +708,8 @@
 .aui-icon-grip-diagonal-se {
 	background-position: -80px -224px; 
 }
+
+.aui-icon-loading {
+	background-image: url(../images/loading_indicator.gif);
+	background-position: 0 0;
+}
