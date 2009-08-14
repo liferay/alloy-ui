@@ -1435,23 +1435,6 @@ var Lang = A.Lang,
 		}
 	);
 
-	AutoComplete.CSS_BUTTON_TRIGGER = CSS_BUTTON_TRIGGER;
-	AutoComplete.CSS_HIGLIGHT = CSS_HIGLIGHT;
-	AutoComplete.CSS_HOVER = CSS_HOVER;
-	AutoComplete.CSS_INPUT = CSS_INPUT;
-	AutoComplete.CSS_LIST_ITEM = CSS_LIST_ITEM;
-	AutoComplete.CSS_ICON_BUTTON_TRIGGER = CSS_ICON_BUTTON_TRIGGER;
-	AutoComplete.CSS_ICON_DEFAULT = CSS_ICON_DEFAULT;
-	AutoComplete.CSS_ICON_ERROR = CSS_ICON_ERROR;
-	AutoComplete.CSS_ICON_LOADING = CSS_ICON_LOADING;
-	AutoComplete.CSS_NO_RESULTS = CSS_NO_RESULTS;
-	AutoComplete.CSS_RESULTS_LIST = CSS_RESULTS_LIST;
-	AutoComplete.CSS_RESULTS_OVERLAY = CSS_RESULTS_OVERLAY;
-	AutoComplete.CSS_RESULTS_OVERLAY_CONTENT = CSS_RESULTS_OVERLAY;
-
-	AutoComplete.TPL_INPUT = TPL_INPUT;
-	AutoComplete.TPL_BUTTON = TPL_BUTTON;
-
 	A.AutoComplete = AutoComplete;
 
 }, '@VERSION' , { requires: [ 'datasource', 'dataschema', 'overlay' ] });
