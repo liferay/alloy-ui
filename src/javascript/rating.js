@@ -281,7 +281,6 @@ A.extend(Rating, A.Widget, {
 		}
 
 		instance.set(LABEL_ELEMENT, labelElement);
-
 		instance.set(ELEMENTS, contentBox.queryAll(ANCHOR));
 	},
 
@@ -352,6 +351,55 @@ A.extend(Rating, A.Widget, {
 	}
 });
 
+
+/*
+* ThumbRating
+*/
+var DOWN = 'down',
+	THUMB = 'thumb',
+	UP = 'up',
+
+	C_RATING_THUMB_DOWN = getCN(RATING, THUMB, DOWN),
+	C_RATING_THUMB_UP = getCN(RATING, THUMB, UP);
+
+function ThumbRating(config) {
+	ThumbRating.superclass.constructor.apply(this, arguments);
+}
+
+ThumbRating.NAME = 'ThumbRating';
+
+ThumbRating.ATTRS = {
+	size: {
+		value: 2,
+		readOnly: true
+	}
+}
+
+A.extend(ThumbRating, Rating, {
+	renderUI: function() {
+		ThumbRating.superclass.renderUI.apply(this, arguments);
+
+		var elements = this.get(ELEMENTS);
+		elements.item(0).addClass(C_RATING_THUMB_UP);
+		elements.item(1).addClass(C_RATING_THUMB_DOWN);
+	},
+	fillTo: function(index, className) {
+		this.clearSelection();
+
+		if (index >= 0) {
+			this.get(ELEMENTS).item(index).addClass(className || C_RATING_EL_ON);
+		}
+	},
+	_syncElements: function(){
+		var instance = this;
+		var labelText = instance.get(LABEL);
+
+		instance.get(LABEL_ELEMENT).set(INNER_HTML, labelText);
+	}
+});
+
 A.Rating = Rating;
+A.StarRating = Rating;
+A.ThumbRating = ThumbRating;
 
 }, '@VERSION' , { requires: [ 'widget' ] });

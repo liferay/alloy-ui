@@ -30,13 +30,18 @@
 
 <div id="rating3"></div>
 
+<div id="ratingThumbs1">
+	<input type="radio" name="rating1" value="v1" title="Horrible" />
+	<input type="radio" name="rating1" value="v2" title="Very bad" />
+</div>
+
 <br/>
 
 <script type="text/javascript" charset="utf-8">
 
 AUI().ready('rating', function(A) {
 
-	var rating1 = new A.Rating({
+	var rating1 = new A.StarRating({
 		//size: 8,
 		//autoRender: false,
 		boundingBox: '#rating1',
@@ -64,7 +69,7 @@ AUI().ready('rating', function(A) {
 		}
 	});
 
-	var rating2 = new A.Rating({
+	var rating2 = new A.StarRating({
 		boundingBox: '#rating2',
 		label: 'abc',
 		title: 'testing..',
@@ -83,9 +88,20 @@ AUI().ready('rating', function(A) {
 	rating2.set('disabled', false)
 	// rating2.set('disabled', true)
 
-	var rating3 = new A.Rating({
+	var rating3 = new A.StarRating({
 		boundingBox: '#rating3',
 		defaultSelected: 4
+	});
+
+	var ratingThumb1 = new A.ThumbRating({
+		boundingBox: '#ratingThumbs1',
+		label: 'Thumb Rating',
+		on: {
+			click: function(event) {
+				console.log( this.get('value') );
+				this.set('label', 'test' + (new Date()).getTime())
+			}
+		}
 	});
 
 	// public methods
