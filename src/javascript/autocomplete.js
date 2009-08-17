@@ -43,7 +43,13 @@ var Lang = A.Lang,
 	KEY_INSERT = 44,
 	KEY_KOREAN_IME = 229,
 
+	OVERLAY_ALIGN = {
+		node: null,
+		points: ['tl', 'bl']
+	},
+
 	TPL_INPUT = '<input type="text" />',
+	TPL_INPUT_WRAPPER = '<span class="aui-ctrl-holder"></span>',
 	TPL_BUTTON = '<span class="aui-state-default aui-tool"><span class="aui-icon aui-icon-trigger"></span></span>',
 
 	BLANK = '',
@@ -72,6 +78,10 @@ var Lang = A.Lang,
 
 		applyLocalFilter: {
 			value: null
+		},
+
+		button: {
+			value: true
 		},
 
 		dataSource: {
@@ -245,6 +255,8 @@ var Lang = A.Lang,
 				instance.publish('typeAhead');
 
 				instance.publish('unmatchedItemSelect');
+
+				instance.overlay.on('visibleChange', instance._realignContainer);
 			},
 
 			syncUI: function() {
@@ -1125,10 +1137,18 @@ var Lang = A.Lang,
 				icon.addClass(CSS_ICON_BUTTON_TRIGGER);
 				icon.addClass(CSS_ICON_DEFAULT);
 
-				contentBox.appendChild(button);
+				if (instance.get('button') !== false) {
+					instance.inputWrapper.appendChild(button);
+				}
 
 				instance.buttonNode = button;
 				instance.buttonIcon = icon;
+			},
+
+			_realignContainer: function(event) {
+				var instance = this;
+
+				instance._uiSetAlign(OVERLAY_ALIGN.node, OVERLAY_ALIGN.points);
 			},
 
 			_renderInput: function() {
@@ -1148,9 +1168,16 @@ var Lang = A.Lang,
 					contentBox.appendChild(input);
 				}
 
+				var wrapper = A.Node.create(TPL_INPUT_WRAPPER);
+
+				contentBox.insertBefore(wrapper, input);
+
+				wrapper.appendChild(input);
+
 				instance.set('uniqueName', A.stamp(input));
 
 				instance.inputNode = input;
+				instance.inputWrapper = wrapper;
 			},
 
 			_renderListElements: function() {
@@ -1172,12 +1199,11 @@ var Lang = A.Lang,
 			_renderOverlay: function() {
 				var instance = this;
 
+				OVERLAY_ALIGN.node = instance.inputNode;
+
 				var overlay = new A.Overlay(
 					{
-						align: {
-							node: instance.inputNode,
-							points: ['tl', 'bl']
-						},
+						align: OVERLAY_ALIGN,
 						bodyContent: '<ul></ul>',
 						visible: false,
 						width: instance.inputNode.get('offsetWidth') + instance.buttonNode.get('offsetWidth')
