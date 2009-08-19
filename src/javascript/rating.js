@@ -140,7 +140,7 @@ A.extend(Rating, A.Widget, {
 		var instance = this;
 
 		instance._parseInputElements();
-		instance._initElements();
+		instance._renderElements();
 	},
 
 	bindUI: function () {
@@ -250,7 +250,7 @@ A.extend(Rating, A.Widget, {
 		instance.set('hiddenInput', hiddenInput);
 	},
 
-	_initElements: function() {
+	_renderElements: function() {
 		var instance = this;
 		var contentBox = instance.get(CONTENT_BOX);
 		var ratingElement = A.Node.create('<a href="javascript:void(0);"></a>');
