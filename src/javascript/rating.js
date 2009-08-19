@@ -42,12 +42,12 @@ var L = A.Lang,
 
 	getCN = A.ClassNameManager.getClassName,
 
-	C_CLEAR_FIX = 'aui-helper-clearfix',
-	C_RATING_LABEL_EL = getCN(RATING, LABEL, ELEMENT),
-	C_RATING_EL = getCN(RATING, ELEMENT),
-	C_RATING_EL_HOVER  = getCN(RATING, ELEMENT, HOVER),
-	C_RATING_EL_OFF = getCN(RATING, ELEMENT, OFF),
-	C_RATING_EL_ON = getCN(RATING, ELEMENT, ON);
+	CSS_CLEAR_FIX = 'aui-helper-clearfix',
+	CSS_RATING_LABEL_EL = getCN(RATING, LABEL, ELEMENT),
+	CSS_RATING_EL = getCN(RATING, ELEMENT),
+	CSS_RATING_EL_HOVER  = getCN(RATING, ELEMENT, HOVER),
+	CSS_RATING_EL_OFF = getCN(RATING, ELEMENT, OFF),
+	CSS_RATING_EL_ON = getCN(RATING, ELEMENT, ON);
 
 function Rating() {
 	Rating.superclass.constructor.apply(this, arguments);
@@ -170,8 +170,8 @@ A.extend(Rating, A.Widget, {
 		var instance = this;
 
 		instance.get(ELEMENTS).each(function(node) {
-			node.removeClass(C_RATING_EL_ON);
-			node.removeClass(C_RATING_EL_HOVER);
+			node.removeClass(CSS_RATING_EL_ON);
+			node.removeClass(CSS_RATING_EL_HOVER);
 		});
 	},
 
@@ -213,7 +213,7 @@ A.extend(Rating, A.Widget, {
 
 		if (index >= 0) {
 			instance.get(ELEMENTS).some(function(node, i) {
-				node.addClass(className || C_RATING_EL_ON);
+				node.addClass(className || CSS_RATING_EL_ON);
 
 				return (index == i);
 			});
@@ -256,10 +256,10 @@ A.extend(Rating, A.Widget, {
 		var ratingElement = A.Node.create('<a href="javascript:void(0);"></a>');
 		var labelElement = A.Node.create('<div></div>');
 
-		contentBox.addClass(C_CLEAR_FIX);
-		ratingElement.addClass(C_RATING_EL);
-		ratingElement.addClass(C_RATING_EL_OFF);
-		labelElement.addClass(C_RATING_LABEL_EL);
+		contentBox.addClass(CSS_CLEAR_FIX);
+		ratingElement.addClass(CSS_RATING_EL);
+		ratingElement.addClass(CSS_RATING_EL_OFF);
+		labelElement.addClass(CSS_RATING_LABEL_EL);
 
 		contentBox.append(labelElement);
 
@@ -327,7 +327,7 @@ A.extend(Rating, A.Widget, {
 				instance.select(index);
 			},
 			mouseover: function() {
-				instance.fillTo(index, C_RATING_EL_HOVER);
+				instance.fillTo(index, CSS_RATING_EL_HOVER);
 			},
 			mouseout: function() {
 				instance.fillTo(selectedIndex);
@@ -359,8 +359,8 @@ var DOWN = 'down',
 	THUMB = 'thumb',
 	UP = 'up',
 
-	C_RATING_THUMB_DOWN = getCN(RATING, THUMB, DOWN),
-	C_RATING_THUMB_UP = getCN(RATING, THUMB, UP);
+	CSS_RATING_THUMB_DOWN = getCN(RATING, THUMB, DOWN),
+	CSS_RATING_THUMB_UP = getCN(RATING, THUMB, UP);
 
 function ThumbRating(config) {
 	ThumbRating.superclass.constructor.apply(this, arguments);
@@ -380,14 +380,14 @@ A.extend(ThumbRating, Rating, {
 		ThumbRating.superclass.renderUI.apply(this, arguments);
 
 		var elements = this.get(ELEMENTS);
-		elements.item(0).addClass(C_RATING_THUMB_UP);
-		elements.item(1).addClass(C_RATING_THUMB_DOWN);
+		elements.item(0).addClass(CSS_RATING_THUMB_UP);
+		elements.item(1).addClass(CSS_RATING_THUMB_DOWN);
 	},
 	fillTo: function(index, className) {
 		this.clearSelection();
 
 		if (index >= 0) {
-			this.get(ELEMENTS).item(index).addClass(className || C_RATING_EL_ON);
+			this.get(ELEMENTS).item(index).addClass(className || CSS_RATING_EL_ON);
 		}
 	},
 	_syncElements: function(){
