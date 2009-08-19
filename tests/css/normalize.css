@@ -1,0 +1,119 @@
+/* This CSS sets the default styles for the base components. */
+
+/* ---------- Global ---------- */
+
+html {
+	overflow-y: scroll;
+}
+
+body,
+dl,
+input,
+fieldset,
+form,
+ol,
+pre,
+td,
+th,
+ul {
+	margin: 0;
+}
+
+body {
+	line-height: 1.14;
+}
+
+/* ---------- Block ---------- */
+
+article,
+aside,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+	display: block;
+}
+
+blockquote {
+	margin: 0 4em;
+}
+
+code,
+pre {
+	font: 90% "Courier New", Courier, monospace;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: 1.2em;
+	margin: 0 0 1em;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+h2 {
+	font-size: 1.5em;
+}
+
+hr {
+	border: 0 solid #BFBFBF;
+	border-width: 0 0 1px;
+	height: 0;
+}
+
+li {
+	margin: 0 2em;
+}
+
+ol,
+ul {
+	padding: 0 1em;
+}
+
+p {
+	margin: 0 0 1em;
+}
+
+/* ---------- Inline ---------- */
+
+a {
+	outline: none;
+}
+
+abbr {
+	border-bottom: 1px dotted #000;
+	border-bottom-color: inherit;
+}
+
+dfn {
+	font-style: italic;
+}
+
+q:before,
+q:after {
+	content: '';
+}
+
+/* ---------- Inline-block ---------- */
+
+img {
+	border: 0;
+	vertical-align: baseline;
+}
+
+sub,
+sup {
+	line-height: 0;
+}
+
+table {
+	border-collapse: collapse;
+}
