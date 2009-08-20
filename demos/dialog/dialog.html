@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+</head>
+
+<style type="text/css" media="screen">
+
+</style>
+
+<body>
+<h1>Alloy - Dialog</h1>
+
+<p><button id="showAll">Show All</button></p>
+<p><button id="hideAll">Hide All</button></p>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('dialog', function(A) {
+
+	var options = {
+		title: 'Dialog',
+		bodyContent: 'Testing body',
+		centered: true,
+		constrain2view: true,
+		draggable: true,
+		group: 'default',
+		height: 250,
+		stack: true,
+		width: 500,
+		// zIndex: 0,
+		buttons: [
+			{
+				text: 'Disable draggable',
+				handler: function() {
+					this.set('draggable', false);
+					console.log(this);
+				}
+			},
+			{
+				text: 'Change title',
+				handler: function() {
+					this.set('title', 'Dialog - new title');
+				}
+			},
+			{
+				text: 'Change body',
+				handler: function() {
+					this.set('bodyContent', 'New body content');
+				}
+			},
+			{
+				text: 'Toggle stack',
+				handler: function() {
+					this.set('stack', !this.get('stack'));
+				}
+			}
+		]
+	};
+
+	var dialog1 = new A.Dialog(
+		A.merge(options, {
+			title: 'Dialog 1'
+		})
+	)
+	.render();
+
+	var dialog2 = new A.Dialog(
+		A.merge(options, {
+			title: 'Dialog 2'
+		})
+	)
+	.render();
+
+	var dialog3 = new A.Dialog(
+		A.merge(options, {
+			title: 'Dialog 3 - no buttons',
+			buttons: null
+		})
+	)
+	.render();
+
+	A.get('#showAll').on('click', function() {
+		dialog1.OverlayManager.showAll();
+	});
+
+	A.get('#hideAll').on('click', function() {
+		dialog1.OverlayManager.hideAll();
+	});
+
+});
+
+</script>
+
+</body>
+</html>
