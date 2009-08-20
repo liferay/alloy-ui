@@ -26,7 +26,7 @@ AUI().ready('dialog', function(A) {
 	var options = {
 		title: 'Dialog',
 		bodyContent: 'Testing body',
-		centered: true,
+		// centered: true,
 		constrain2view: true,
 		draggable: true,
 		group: 'default',
@@ -65,14 +65,16 @@ AUI().ready('dialog', function(A) {
 
 	var dialog1 = new A.Dialog(
 		A.merge(options, {
-			title: 'Dialog 1'
+			title: 'Dialog 1',
+			xy: [100, 50]
 		})
 	)
 	.render();
 
 	var dialog2 = new A.Dialog(
 		A.merge(options, {
-			title: 'Dialog 2'
+			title: 'Dialog 2',
+			xy: [125, 100]
 		})
 	)
 	.render();
@@ -80,6 +82,7 @@ AUI().ready('dialog', function(A) {
 	var dialog3 = new A.Dialog(
 		A.merge(options, {
 			title: 'Dialog 3 - no buttons',
+			xy: [150, 150],
 			buttons: null
 		})
 	)
