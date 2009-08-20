@@ -6,6 +6,7 @@ html {
 	overflow-y: scroll;
 }
 
+body,
 dl,
 input,
 fieldset,
@@ -17,7 +18,6 @@ body {
 	background: #FFF;
 	color: #000;
 	font: 16px/1.25 "Times New Roman", serif;
-	margin: 0.5em;
 }
 
 /* ---------- Block ---------- */
@@ -43,7 +43,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-size: 1.2em;
+	font-size: 1.25em;
 	margin: 0.75em 0;
 }
 
@@ -103,7 +103,7 @@ img {
 sub,
 sup {
 	line-height: 0;
-	font-size: normal;
+	font-size: 75%;
 }
 
 table {
