@@ -101,12 +101,6 @@
 	var defaults = {};
 	var defaultModules = [ 'event', 'oop', 'widget' ];
 
-	var errorCallback = function(instance, result) {
-		if (!result.success) {
-			throw result.msg;
-		}
-	};
-
 	if ('defaults' in AUI) {
 		defaults = AUI.defaults;
 	}
@@ -116,88 +110,114 @@
 		defaults.base = getBasePath();
 	}
 
-	YUI.prototype.ready = function() {
-		var instance = this;
+	// extending YUI prototype
+	extend(YUI.prototype, {
+		ready: function() {
+			var instance = this;
 
-		var slice = Array.prototype.slice;
-		var args = slice.call(arguments, 0), index = args.length - 1;
+			var slice = Array.prototype.slice;
+			var args = slice.call(arguments, 0), index = args.length - 1;
 
-		// user callback
-		var fn = args[index];
+			// user callback
+			var fn = args[index];
 
-		// array with YUI modules to be loaded
-		var modules = slice.call(arguments, 0, index);
+			// array with YUI modules to be loaded
+			var modules = slice.call(arguments, 0, index);
 
-		if (!modules.length) {
-			modules.push('event');
-		}
-
-		// adding AUI().use() callback
-		modules.push(
-			function(instance) {
-				var args = arguments;
-				instance.on('domready', function() {
-				   fn.apply(this, args);
-				});
-			}
-		);
-
-		instance.use.apply(instance, modules);
-	};
-
-	YUI.prototype.toQueryString = function(obj) {
-		var instance = this;
-
-		var Lang = instance.Lang;
-		var isArray = Lang.isArray;
-		var isFunction = Lang.isFunction;
-
-		var buffer = [];
-		var isNodeList = false;
-
-		if (isArray(obj) || (isNodeList = (instance.NodeList && (obj instanceof instance.NodeList)))) {
-			if (isNodeList) {
-				obj = instance.NodeList.getDOMNodes(obj);
+			if (!modules.length) {
+				modules.push('event');
 			}
 
-			var length = obj.length;
-
-			for (var i=0; i < length; i++) {
-				var el = obj[i];
-
-				buffer.push(encodeURIComponent(el.name) + '=' + encodeURIComponent(el.value));
-			}
-		}
-		else {
-			for (var i in obj){
-				var value = obj[i];
-
-				if (isArray(value)) {
-					var vlength = value.length;
-
-					for (var j = 0; j < vlength; j++) {
-						buffer.push(encodeURIComponent(i) + '=' + encodeURIComponent(value[j]));
-					}
+			// adding AUI().use() callback
+			modules.push(
+				function(instance) {
+					var args = arguments;
+					instance.on('domready', function() {
+					   fn.apply(this, args);
+					});
 				}
-				else {
-					if (isFunction(value)) {
-						value = value();
-					}
+			);
 
-					buffer.push(encodeURIComponent(i) + '=' + encodeURIComponent(value));
+			instance.use.apply(instance, modules);
+		},
+
+		toQueryString: function(obj) {
+			var instance = this;
+
+			var Lang = instance.Lang;
+			var isArray = Lang.isArray;
+			var isFunction = Lang.isFunction;
+
+			var buffer = [];
+			var isNodeList = false;
+
+			if (isArray(obj) || (isNodeList = (instance.NodeList && (obj instanceof instance.NodeList)))) {
+				if (isNodeList) {
+					obj = instance.NodeList.getDOMNodes(obj);
+				}
+
+				var length = obj.length;
+
+				for (var i=0; i < length; i++) {
+					var el = obj[i];
+
+					buffer.push(encodeURIComponent(el.name) + '=' + encodeURIComponent(el.value));
 				}
 			}
-		}
+			else {
+				for (var i in obj){
+					var value = obj[i];
 
-		return buffer.join('&').replace(/%20/g, '+');
-	};
+					if (isArray(value)) {
+						var vlength = value.length;
+
+						for (var j = 0; j < vlength; j++) {
+							buffer.push(encodeURIComponent(i) + '=' + encodeURIComponent(value[j]));
+						}
+					}
+					else {
+						if (isFunction(value)) {
+							value = value();
+						}
+
+						buffer.push(encodeURIComponent(i) + '=' + encodeURIComponent(value));
+					}
+				}
+			}
+
+			return buffer.join('&').replace(/%20/g, '+');
+		}
+	});
 
 	var ALLOY = YUI( extend({}, defaults) );
 
 	var originalConfig = ALLOY.config;
 
 	// adding callback for .use()
-	defaultModules.push(errorCallback);
+	defaultModules.push(
+		function(A, result) {
+			if (result.success) {
+				// extending A.Array singleton
+				A.mix(A.Array, {
+					remove: function(a, from, to) {
+					  var rest = a.slice((to || from) + 1 || a.length);
+					  a.length = (from < 0) ? (a.length + from) : from;
+
+					  return a.push.apply(a, rest);
+					},
+
+					removeItem: function(a, item) {
+						var index = A.Array(a).indexOf(item);
+
+					  	return A.Array.remove(a, index);
+					}
+				});
+			}
+			else {
+				throw result.msg;
+			}
+		}
+	);
 
 	// loading default modules
 	ALLOY.use.apply(ALLOY, defaultModules);
