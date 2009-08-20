@@ -11,8 +11,9 @@
  */
 
 ;(function() {
-	var PATH_JAVASCRIPT = '/alloy/trunk/src/javascript/';
-	var PATH_THEME_ROOT = '/alloy/trunk/themes/base/css/';
+	var PATH_BASE = YUI.config.base + '../../../';
+	var PATH_JAVASCRIPT = PATH_BASE + 'src/javascript/';
+	var PATH_THEME_ROOT = PATH_BASE + 'themes/base/css/';
 
 	window.AUI = {
 		defaults: {
