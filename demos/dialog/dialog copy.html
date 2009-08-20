@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+</head>
+
+<style type="text/css" media="screen">
+
+</style>
+
+<body>
+<h1>Alloy - Dialog</h1>
+
+<p><button id="show-fbOverlay">show overlay</button></p>
+<p><button id="disable-draggable">disable draggable</button></p>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('dialog', function(A) {
+
+	//console.dir(A.Overlay);
+
+if (false) {
+
+	var WidgetPositionExt = A.WidgetPositionExt;
+
+	var dialog = new A.Dialog({
+		//boundingBox: '#fbOverlay',
+		//align: {node: window, points:[ 'cc', 'cc' ]},
+		centered: true,
+		visible: false,
+		headerContent: '<div class="aui-dialog-header aui-state-default">Alloy Overlay Example</div><span class="aui-dialog-close aui-tool aui-state-default"><span class="aui-icon aui-icon-close"/></span>',
+		bodyContent: '<b>Testing</b>',
+		footerContent: '<div><button id="hide-fbOverlay">close</button></div>',
+		width: '540px',
+		height: '300px',
+	})
+	.render();
+
+	// make overlay draggable
+	new A.DD.Drag({
+
+		node : dialog.get('boundingBox'),
+		handles : ['.aui-widget-hd']
+
+	}).plug(A.Plugin.DDConstrained, { constrain2view : true });
+
+}
+
+var handleSubmit = function() {
+	console.log('click on the button', this, arguments);
+};
+
+var handleCancel = function() {
+	this.hide();
+};
+
+
+	var dialog2 = new A.Dialog({
+		title: 'Alloy Overlay Example',
+
+		//footerContent: '<div><button id="hide-fbOverlay">close</button></div>',
+		width: '300px',
+		height: '120px',
+		centered: true,
+		constraintoviewport: false,
+		// draggable: true,
+		draggable: {
+			on: {
+				drag: function() {
+					//console.log('drag', this, arguments);
+				},
+				mouseDown: function(event) {
+					var dragInstance = event.target;
+					var dialogInstance = this;
+
+					//console.log('mouseDown', this, arguments);
+				}
+			}
+		},
+
+		shim: false,
+
+		zIndex: 1,
+
+		on: {
+			close: function() {
+				console.log('close', this, arguments);
+			},
+			focus: function() {
+				console.log('focus', this, arguments);
+			}
+		},
+
+		//align: {node: window, points:[ 'cc', 'cc' ]},
+
+		//visible: false,
+		title: 'dialog2',
+		// headerContent:'sdfsd',
+		bodyContent: '<b>Testing</b>',
+		// footerContent: '<div><button id="hide-fbOverlay">close</button></div>',
+// modal:true,
+		buttons: [
+			{ text: 'Submit', handler: handleSubmit, isDefault: true },
+			{ text: 'Cancel' },
+			{ text: 'Help?', handler: handleCancel }
+		],
+		stack: true
+	}).render();
+
+
+	var dialog3 = new A.Dialog({
+		title: 'testing',
+		width: 300,
+		height: 100,
+		draggable: true,
+		bodyContent: '<b>Testing</b>',
+		shim: false,
+		zIndex: 2,
+		stack: true,
+		centered: true,
+		group: 'group1'
+	}).render();
+
+	var dialog4 = new A.Dialog({
+		title: 'testing123',
+		width: 300,
+		height: 100,
+		draggable: true,
+		zIndex: 3,
+		centered: true,
+		bodyContent: '<b>Testing</b>',
+		stack: true,
+		group: 'group1'
+	}).render();
+	
+
+
+ // dialog2.set('stack', false);
+
+ //dialog3.set('stack', false);
+ //
+ // dialog2.set('stack', true);
+ // dialog3.set('stack', true);
+
+ // dialog2.set('draggable', false);
+
+// dialog2.get('dragInstance').on('drag:mouseDown', function() {
+// 	console.log('mouseDown');
+// });
+
+// dialog2.destroy()
+// dialog2.hide()
+
+A.get('#show-fbOverlay').on('click', function() {
+	dialog2.show();
+	dialog2.set('draggable', true)
+});
+
+A.get('#disable-draggable').on('click', function() {
+	//dialog2.set('draggable', false);
+	dialog3.destructor();
+});
+
+});
+
+</script>
+
+</body>
+</html>
