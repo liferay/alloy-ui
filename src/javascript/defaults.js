@@ -67,13 +67,21 @@
 				*/
 				'dialog': {
 					fullpath: PATH_JAVASCRIPT + 'dialog.js',
-					requires: [ 'overlay', 'dialog-css' ],
-					use: [ 'dd-constrain' ]
+					requires: [ 'overlay', 'dialog-css', 'plugin' ],
+					use: [ 'dd-constrain', 'overlay-manager' ]
 				},
 				'dialog-css': {
 					ext: false,
 					fullpath: PATH_THEME_ROOT + 'dialog.css',
 					type: 'css'
+				},
+
+				/*
+				* OverlayManager
+				*/
+				'overlay-manager': {
+					fullpath: PATH_JAVASCRIPT + 'overlay-manager.js',
+					requires: [ 'overlay' ]
 				}
 			}
 		}
