@@ -386,6 +386,7 @@ A.extend(ThumbRating, Rating, {
 		elements.item(0).addClass(CSS_RATING_THUMB_UP);
 		elements.item(1).addClass(CSS_RATING_THUMB_DOWN);
 	},
+
 	fillTo: function(index, className) {
 		this.clearSelection();
 
@@ -393,6 +394,7 @@ A.extend(ThumbRating, Rating, {
 			this.get(ELEMENTS).item(index).addClass(className || CSS_RATING_EL_ON);
 		}
 	},
+
 	_syncElements: function(){
 		var instance = this;
 		var labelText = instance.get(LABEL);
