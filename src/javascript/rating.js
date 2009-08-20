@@ -357,6 +357,7 @@ A.extend(Rating, A.Widget, {
 */
 var DOWN = 'down',
 	THUMB = 'thumb',
+	THUMB_RATING = 'ThumbRating',
 	UP = 'up',
 
 	CSS_RATING_THUMB_DOWN = getCN(RATING, THUMB, DOWN),
@@ -366,14 +367,16 @@ function ThumbRating(config) {
 	ThumbRating.superclass.constructor.apply(this, arguments);
 }
 
-ThumbRating.NAME = 'ThumbRating';
+A.mix(ThumbRating, {
+	NAME: THUMB_RATING,
 
-ThumbRating.ATTRS = {
-	size: {
-		value: 2,
-		readOnly: true
+	ATTRS: {
+		size: {
+			value: 2,
+			readOnly: true
+		}
 	}
-}
+});
 
 A.extend(ThumbRating, Rating, {
 	renderUI: function() {
