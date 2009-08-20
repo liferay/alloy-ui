@@ -10,12 +10,7 @@ body,
 dl,
 input,
 fieldset,
-form,
-ol,
-pre,
-td,
-th,
-ul {
+form {
 	margin: 0;
 }
 
@@ -37,7 +32,7 @@ section {
 }
 
 blockquote {
-	margin: 0 4em;
+	margin: 1em 2.5em;
 }
 
 code,
@@ -52,7 +47,7 @@ h4,
 h5,
 h6 {
 	font-size: 1.2em;
-	margin: 0 0 1em;
+	margin: 0.75em 0;
 }
 
 h1 {
@@ -75,11 +70,14 @@ li {
 
 ol,
 ul {
-	padding: 0 1em;
+	padding: 0 2.5em;
 }
 
-p {
-	margin: 0 0 1em;
+ol,
+p,
+pre,
+ul {
+	margin: 1em 0;
 }
 
 /* ---------- Inline ---------- */
@@ -99,19 +97,20 @@ dfn {
 
 q:before,
 q:after {
-	content: '';
+	content: "";
 }
 
 /* ---------- Inline-block ---------- */
 
 img {
 	border: 0;
-	vertical-align: baseline;
+	vertical-align: text-bottom;
 }
 
 sub,
 sup {
 	line-height: 0;
+	font-size: normal;
 }
 
 table {
