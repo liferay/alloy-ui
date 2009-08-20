@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+</head>
+
+<style type="text/css" media="screen">
+
+#overlay-blue .aui-overlay {
+	background: blue;
+	color: #fff;
+	border: 4px solid #000;
+}
+
+#overlay-red .aui-overlay {
+	background: red;
+	color: #fff;
+	border: 4px solid #000;
+}
+
+</style>
+
+<body>
+<h1>Alloy - OverlayManager</h1>
+
+<p><button id="showAll-blue">Show All (blue group)</button></p>
+<p><button id="hideAll-blue">Hide All (blue group)</button></p>
+
+<p><button id="showAll-red">Show All (red group)</button></p>
+<p><button id="hideAll-red">Hide All (red group)</button></p>
+
+<div id="overlay-blue"></div>
+<div id="overlay-red"></div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('overlay-manager', 'dd', 'node', function(A) {
+
+	// Blue
+
+	var overlay1 = new A.Overlay({
+		bodyContent: 'Overlay1',
+		width: 150,
+		height: 150,
+		xy: [ 200, 100 ]
+	})
+	.render('#overlay-blue');
+
+	var overlay2 = new A.Overlay({
+		bodyContent: 'Overlay2',
+		width: 150,
+		height: 150,
+		xy: [ 220, 200 ]
+	})
+	.render('#overlay-blue');
+
+	var overlay3 = new A.Overlay({
+		bodyContent: 'Overlay3',
+		width: 150,
+		height: 150,
+		xy: [ 240, 300 ]
+	})
+	.render('#overlay-blue');
+
+	// Red
+
+	var overlay4 = new A.Overlay({
+		bodyContent: 'Overlay4',
+		width: 150,
+		height: 150,
+		xy: [ 500, 100 ]
+	})
+	.render('#overlay-red');
+
+	var overlay5 = new A.Overlay({
+		bodyContent: 'Overlay5',
+		width: 150,
+		height: 150,
+		xy: [ 520, 200 ]
+	})
+	.render('#overlay-red');
+
+	var overlay6 = new A.Overlay({
+		bodyContent: 'Overlay6',
+		width: 150,
+		height: 150,
+		xy: [ 540, 300 ]
+	})
+	.render('#overlay-red');
+
+	// plug OverlayManager
+
+	overlay1.plug(A.OverlayManager, { group: 'blue' });
+	overlay2.plug(A.OverlayManager, { group: 'blue' });
+	overlay3.plug(A.OverlayManager, { group: 'blue' });
+
+	overlay4.plug(A.OverlayManager, { group: 'red' });
+	overlay5.plug(A.OverlayManager, { group: 'red' });
+	overlay6.plug(A.OverlayManager, { group: 'red' });
+
+	var bringToTop = function(e) {
+		var widget = A.Widget.getByNode(e.target);
+
+		widget.OverlayManager.bringToTop();
+	};
+
+	A.Node.get('#overlay-blue').queryAll('.aui-overlay').on('click', bringToTop);
+	A.Node.get('#overlay-red').queryAll('.aui-overlay').on('click', bringToTop);
+
+
+	// extras
+
+	new A.DD.Drag({	node: overlay1.get('boundingBox') });
+	new A.DD.Drag({	node: overlay2.get('boundingBox') });
+	new A.DD.Drag({	node: overlay3.get('boundingBox') });
+	new A.DD.Drag({	node: overlay4.get('boundingBox') });
+	new A.DD.Drag({	node: overlay5.get('boundingBox') });
+	new A.DD.Drag({	node: overlay6.get('boundingBox') });
+
+	A.get('#showAll-blue').on('click', function() {
+		overlay1.OverlayManager.showAll();
+	});
+
+	A.get('#hideAll-blue').on('click', function() {
+		overlay1.OverlayManager.hideAll();
+	});
+
+	A.get('#showAll-red').on('click', function() {
+		overlay4.OverlayManager.showAll();
+	});
+
+	A.get('#hideAll-red').on('click', function() {
+		overlay4.OverlayManager.hideAll();
+	});
+
+});
+
+</script>
+
+</body>
+</html>
