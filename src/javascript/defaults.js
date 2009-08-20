@@ -81,7 +81,7 @@
 				*/
 				'overlay-manager': {
 					fullpath: PATH_JAVASCRIPT + 'overlay-manager.js',
-					requires: [ 'overlay' ]
+					requires: [ 'overlay', 'plugin' ]
 				}
 			}
 		}
