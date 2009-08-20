@@ -17,6 +17,7 @@
 <project name="Alloy" default="release" basedir=".">
 	<property name="project.dir" value="../"/>
 	<property name="build.dir" value="${project.dir}/build/"/>
+	<property name="demo.dir" value="${project.dir}/demos/"/>
 	<property name="src.dir" value="${project.dir}/src/"/>
 	<property name="css.src.dir" value="${src.dir}/css/"/>
 	<property name="javascript.src.dir" value="${src.dir}/javascript/"/>
@@ -87,6 +88,41 @@
         </replaceregexp>
 	</target>
 
+	<target name="create-demo">
+		<if>
+			<available file="${demo.dir}${demo.name}" />
+			<then>
+				<echo message="${demo.dir}${demo.name} already exists." />
+			</then>
+			<else>
+				<mkdir dir="${demo.dir}${demo.name}" />
+
+				<copy todir="${demo.dir}${demo.name}">
+					<fileset dir="${build.dir}/_demo_template">
+						<include name="**" />
+					</fileset>
+				</copy>
+
+				<move todir="${demo.dir}${demo.name}">
+					<fileset dir="${demo.dir}${demo.name}">
+						<include name="**/_demo_template.*"/>
+					</fileset>
+
+					<mapper type="glob" from="_demo_template.*" to="${demo.name}.*"/>
+				</move>
+
+				<replace dir="${demo.dir}${demo.name}">
+					<replacefilter token="@demo.name@" value="${demo.name}" />
+				</replace>
+
+				<move
+					file="${demo.dir}${demo.name}/${demo.name}.css"
+					tofile="${project.dir}themes/base/css/${demo.name}.css"
+					overwrite="no"
+				/>
+			</else>
+		</if>
+	</target>
 
 	<target name="concatenate" depends="init-release">
 		<echo>Concatenating JavaScript files.</echo>
