@@ -302,16 +302,16 @@ A.extend(Dialog, A.Overlay, {
 
 		AUI().use('io-stdmod', function(A) {
 			if (value) {
-				instance.unplug(A.StdModIOPlugin);
+				instance.unplug(A.Plugin.StdModIOPlugin);
 
-				instance.plug(A.StdModIOPlugin, {
+				instance.plug(A.Plugin.StdModIOPlugin, {
 					uri: value.uri || value.url,
 					cfg: value.cfg || {},
 					formatter: value.formatter
 				});
 			}
 			else {
-				instance.unplug(A.StdModIOPlugin);
+				instance.unplug(A.Plugin.StdModIOPlugin);
 			}
 		});
 
@@ -323,14 +323,14 @@ A.extend(Dialog, A.Overlay, {
 
 		AUI().use('overlay-manager', function(A) {
 			if (value) {
-				instance.unplug(A.OverlayManager);
+				instance.unplug(A.Plugin.OverlayManager);
 
-				instance.plug(A.OverlayManager, {
+				instance.plug(A.Plugin.OverlayManager, {
 					group: instance.get(GROUP)
 				});
 			}
 			else {
-				instance.unplug(A.OverlayManager);
+				instance.unplug(A.Plugin.OverlayManager);
 			}
 		});
 

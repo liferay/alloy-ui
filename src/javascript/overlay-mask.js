@@ -23,6 +23,7 @@ A.extend(OverlayMask, A.Plugin.Base, {
 
 });
 
-A.OverlayMask = OverlayMask;
+A.namespace('Plugin');
+A.Plugin.OverlayMask = OverlayMask;
 
 }, '@VERSION', { requires: [ 'overlay' ] });
