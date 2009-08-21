@@ -30,6 +30,7 @@ var L = A.Lang,
 	HOVER = 'hover',
 	ICON = 'icon',
 	INNER_HTML = 'innerHTML',
+	IO = 'io',
 	REMOVE_CLASS = 'removeClass',
 	STACK = 'stack',
 	STATE = 'state',
@@ -89,6 +90,13 @@ A.mix(Dialog, {
 			writeOnce: true,
 			getter: function() {
 				return this.titleContainter;
+			}
+		},
+
+		io: {
+			value: {},
+			setter: function(v) {
+				return this._setIO(v);
 			}
 		},
 
@@ -283,6 +291,25 @@ A.extend(Dialog, A.Overlay, {
 			}
 			else {
 				destroyDraggable();
+			}
+		});
+
+		return value;
+	},
+
+	_setIO: function(value){
+		var instance = this;
+
+		AUI().use('io-stdmod', function(A) {
+			if (value) {
+				instance.plug(A.StdModIOPlugin, {
+					uri: value.uri || value.url,
+					cfg: value.cfg || {},
+					formatter: value.formatter
+				});
+			}
+			else {
+				instance.unplug(A.StdModIOPlugin);
 			}
 		});
 

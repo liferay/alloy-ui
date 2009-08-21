@@ -2,6 +2,10 @@
 
 }
 
+.aui-dialog .aui-icon-loading {
+	margin: 0 auto;
+}
+
 .aui-dialog .aui-widget-hd {
 	color: #333333;
 	font-size: 15px;
