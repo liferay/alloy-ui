@@ -34,14 +34,13 @@ AUI().ready('dialog', function(A) {
 		stack: true,
 		width: 500,
 		// zIndex: 0,
+		io: {
+			url: 'assets/content.html',
+			formatter: function(v) {
+				return '<b>' + v + '</b>';
+			}
+		},
 		buttons: [
-			{
-				text: 'Disable draggable',
-				handler: function() {
-					this.set('draggable', false);
-					console.log(this);
-				}
-			},
 			{
 				text: 'Change title',
 				handler: function() {
@@ -58,6 +57,12 @@ AUI().ready('dialog', function(A) {
 				text: 'Toggle stack',
 				handler: function() {
 					this.set('stack', !this.get('stack'));
+				}
+			},
+			{
+				text: 'Refresh content',
+				handler: function() {
+					this.io.refresh();
 				}
 			}
 		]
