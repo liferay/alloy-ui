@@ -19,10 +19,11 @@
 <p><button id="showAll">Show All</button></p>
 <p><button id="hideAll">Hide All</button></p>
 <p><button id="alignHere">Align here</button></p>
+<p><button id="createNew">Create a new Dialog</button></p>
 
 <script type="text/javascript" charset="utf-8">
 
-AUI().ready('dialog', function(A) {
+AUI().ready('dialog', 'overlay-manager', 'io-stdmod', 'dd-constrain', function(A) {
 
 	var options = {
 		title: 'Dialog',
@@ -73,7 +74,7 @@ AUI().ready('dialog', function(A) {
 	var dialog1 = new A.Dialog(
 		A.merge(options, {
 			title: 'Dialog 1',
-			xy: [100, 50]
+			xy: [200, 50]
 		})
 	)
 	.render();
@@ -81,7 +82,7 @@ AUI().ready('dialog', function(A) {
 	var dialog2 = new A.Dialog(
 		A.merge(options, {
 			title: 'Dialog 2',
-			xy: [125, 100]
+			xy: [225, 100]
 		})
 	)
 	.render();
@@ -89,11 +90,21 @@ AUI().ready('dialog', function(A) {
 	var dialog3 = new A.Dialog(
 		A.merge(options, {
 			title: 'Dialog 3 - no buttons',
-			xy: [150, 150],
+			xy: [250, 150],
 			buttons: null
 		})
 	)
 	.render();
+
+	A.get('#createNew').on('click', function() {
+		new A.Dialog(
+			A.merge(options, {
+				title: 'New Dialog - no buttons',
+				xy: [150, 150]
+			})
+		)
+		.render();
+	});
 
 	A.get('#showAll').on('click', function() {
 		dialog1.OverlayManager.showAll();
