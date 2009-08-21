@@ -73,7 +73,7 @@ A.mix(Dialog, {
 		},
 
 		draggable: {
-			value: true,
+			value: false,
 			setter: function(v) {
 				return this._setDraggable(v);
 			}
@@ -94,14 +94,14 @@ A.mix(Dialog, {
 		},
 
 		io: {
-			value: {},
+			value: null,
 			setter: function(v) {
 				return this._setIO(v);
 			}
 		},
 
 		stack: {
-			value: true,
+			value: false,
 			setter: function(v) {
 				return this._setStack(v);
 			},
@@ -302,6 +302,8 @@ A.extend(Dialog, A.Overlay, {
 
 		AUI().use('io-stdmod', function(A) {
 			if (value) {
+				instance.unplug(A.StdModIOPlugin);
+
 				instance.plug(A.StdModIOPlugin, {
 					uri: value.uri || value.url,
 					cfg: value.cfg || {},
@@ -321,6 +323,8 @@ A.extend(Dialog, A.Overlay, {
 
 		AUI().use('overlay-manager', function(A) {
 			if (value) {
+				instance.unplug(A.OverlayManager);
+
 				instance.plug(A.OverlayManager, {
 					group: instance.get(GROUP)
 				});
@@ -345,4 +349,4 @@ A.extend(Dialog, A.Overlay, {
 
 A.Dialog = Dialog;
 
-}, '@VERSION', { requires: [ 'overlay' ], use: [ 'overlay-manager' ] });
+}, '@VERSION', { requires: [ 'overlay', 'plugin' ], use: [ 'dd-constrain', 'overlay-manager', 'io-stdmod' ] });
