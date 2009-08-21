@@ -109,9 +109,8 @@ AUI().ready('overlay-manager', 'dd', 'node', function(A) {
 		widget.OverlayManager.bringToTop();
 	};
 
-	A.Node.get('#overlay-blue').queryAll('.aui-overlay').on('mousedown', bringToTop);
-	A.Node.get('#overlay-red').queryAll('.aui-overlay').on('mousedown', bringToTop);
-
+	A.on('mousedown', bringToTop, '#overlay-blue .aui-overlay');
+	A.on('mousedown', bringToTop, '#overlay-red .aui-overlay');
 
 	// extras
 
