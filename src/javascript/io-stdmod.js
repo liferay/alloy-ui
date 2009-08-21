@@ -1,0 +1,124 @@
+AUI.add('io-stdmod', function(A) {
+
+var L = A.Lang,
+	isString = L.isString,
+
+	SECTION = 'section',
+	URI = 'uri',
+	CFG = 'cfg',
+	FORMATTER = 'formatter',
+	LOADING = 'loading';
+
+var StdMod = A.WidgetStdMod;
+
+/* Standard Module IO Plugin Constructor */
+function StdModIOPlugin(config) {
+	StdModIOPlugin.superclass.constructor.apply(this, arguments);
+}
+
+StdModIOPlugin.NS = 'io';
+
+StdModIOPlugin.NAME = 'stdModIOPlugin';
+
+StdModIOPlugin.ATTRS = {
+
+	uri : {
+		value:null
+	},
+
+	cfg : {
+		value:null
+	},
+
+	/*
+	* The default formatter to use when formatting response data. The default
+	* implementation simply passes back the response data passed in.
+	*/
+	formatter : {
+		valueFn: function() {
+			return this._defFormatter;
+		}
+	},
+
+	/*
+	* The Standard Module section to which the io plugin instance is bound.
+	* Response data will be used to populate this section, after passing through
+	* the configured formatter.
+	*/
+	section: {
+		value: StdMod.BODY,
+		validator: function(val) {
+			return (!val || val == StdMod.BODY || val == StdMod.HEADER || val == StdMod.FOOTER);
+		}
+	},
+
+	loading: {
+		value: '<div class="aui-icon-loading"></div>'
+	}
+};
+
+A.extend(StdModIOPlugin, A.Plugin.Base, {
+	destructor: function() {
+		if (this._activeIO) {
+			A.io.abort(this._activeIO);
+			this._activeIO = null;
+		}
+	},
+
+	/*
+	* IO Plugin specific method, use to initiate a new io request using the current
+	* io configuration settings.
+	*/
+	refresh: function() {
+		section = this.get(SECTION);
+
+		if (section && !this._activeIO) {
+			var uri = this.get(URI);
+
+			if (uri) {
+
+				cfg = this.get(CFG) || {};
+				cfg.on = cfg.on || {};
+
+				cfg.on.start = cfg.on.start || A.bind(this._defStartHandler, this);
+				cfg.on.complete = cfg.on.complete || A.bind(this._defCompleteHandler, this);
+
+				cfg.on.success = cfg.on.success || A.bind(this._defSuccessHandler, this);
+				cfg.on.failure = cfg.on.failure || A.bind(this._defFailureHandler, this);
+
+				cfg.method = cfg.method;
+
+				A.io(uri, cfg);
+			}
+		}
+	},
+
+	_defSuccessHandler: function(id, o) {
+		var response = o.responseXML || o.responseText;
+		var section = this.get(SECTION);
+		var formatter = this.get(FORMATTER);
+
+		this.get('host').setStdModContent(section, formatter(response));
+	},
+
+	_defFailureHandler: function(id, o) {
+		this.get('host').setStdModContent(this.get(SECTION), 'Failed to retrieve content');
+	},
+
+	_defStartHandler: function(id, o) {
+		this._activeIO = o;
+		this.get('host').setStdModContent(this.get(SECTION), this.get(LOADING));
+	},
+
+	_defCompleteHandler: function(id, o) {
+		this._activeIO = null;
+	},
+
+	_defFormatter: function(val) {
+		return val;
+	}
+});
+
+A.StdModIOPlugin = StdModIOPlugin;
+
+}, '@VERSION', { requires: [ 'overlay', 'substitute', 'io', 'json', 'plugin' ] });
