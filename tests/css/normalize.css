@@ -6,18 +6,17 @@ html {
 	overflow-y: scroll;
 }
 
-body,
 dl,
-input,
-fieldset,
-form {
+form,
+input {
 	margin: 0;
 }
 
 body {
 	background: #FFF;
 	color: #000;
-	font: 16px/1.25 "Times New Roman", serif;
+	font: 16px/1.25 Times, "Times New Roman", Georgia, serif;
+	margin: 0.5em;
 }
 
 /* ---------- Block ---------- */
@@ -108,4 +107,30 @@ sup {
 
 table {
 	border-collapse: collapse;
+}
+
+/* ---------- Forms ---------- */
+
+button {
+	width: auto;
+	overflow: visible;
+}
+
+fieldset {
+	padding: 0.5em;
+	margin: 0;
+	border: 1px solid #CCC;
+}
+
+input,
+label {
+	vertical-align: middle;
+}
+
+* html legend {
+	margin: -7px 0 7px -7px;
+}
+
+* + html legend {
+	margin: -7px 0 7px -7px;
 }

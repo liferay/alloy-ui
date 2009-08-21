@@ -3,7 +3,7 @@
 <html>
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta charset="utf-8" />
 
 	<title>HTML 5 Document</title>
 
@@ -37,54 +37,45 @@
 
 	<style type="text/css">
 
-pre {
-}
-
 	</style>
 </head>
 
 <body>
 
 <header>
+	<a id="heading"></a>
 	<hgroup>
 		<h1>
-			Liferay
+			This is heading 1
 		</h1>
 		<h2>
-			Enterprise. Open Source. For Life.
+		
+			This is heading 2
 		</h2>
+		<h3>
+			This is heading 3
+		</h3>
+		<h4>
+			This is heading 4
+		</h4>
+		<h5>
+			This is heading 5
+		</h5>
+		<h6>
+			This is heading 6
+		
+		</h6>
 	</hgroup>
 </header>
-
-<section>
-	<a id="heading"></a>
-	<h1>
-		This is heading 1
-	</h1>
-	<h2>
-	
-		This is heading 2
-	</h2>
-	<h3>
-		This is heading 3
-	</h3>
-	<h4>
-		This is heading 4
-	</h4>
-	<h5>
-		This is heading 5
-	</h5>
-	<h6>
-		This is heading 6
-	
-	</h6>
-</section>
 
 <nav>
 	<a id="navigation"></a>
 	<ul>
 		<li>
 			<a href="#heading">Heading</a>
+		</li>
+		<li>
+			<a href="#navigation">Navigation</a>
 		</li>
 		<li>
 			<a href="#paragraph">Paragraph</a>
@@ -99,7 +90,10 @@ pre {
 			<a href="#table">Table</a>
 		</li>
 		<li>
-			<a href="#list">Lists</a>
+			<a href="#list">List</a>
+		</li>
+		<li>
+			<a href="#form">Forms</a>
 		</li>
 		<li>
 			<a href="#footer">Footer</a>
@@ -164,15 +158,15 @@ line breaks</pre>
 <section>
 	<a id="image"></a>
 	<p>
-		<img alt="This is a picture of the google logo." src="normalize_google_logo.gif" /><br />
+		<img alt="This is a picture of the google logo." src="images/google_logo.gif" /><br />
 		That is a picture of the <del>Microsoft</del> <ins>Google</ins> logo.
 	</p>
 	<p>
-		<a href="http://www.google.com/"><img alt="This is a picture of the google logo." src="normalize_google_logo.gif" /></a><br />
+		<a href="http://www.google.com/"><img alt="This is a picture of the google logo." src="images/google_logo.gif" /></a><br />
 		That is a picture of the Google logo which links to <a href="http://www.google.com/">Google's website</a>.
 	</p>
 	<p>
-		<a href="http://www.google.com/"><img alt="This is a picture of the google logo." src="normalize_google_logo.gif" style="border: 0;" /></a><br />
+		<a href="http://www.google.com/"><img alt="This is a picture of the google logo." src="images/google_logo.gif" style="border: 0;" /></a><br />
 		That is a picture of the Google logo with 0 border which links to <a href="http://www.google.com/">Google's website</a>.
 	</p>
 </section>
@@ -240,11 +234,23 @@ line breaks</pre>
 	</ul>
 </section>
 
+<section>
+	<a id="form"></a>
+	<form>
+		<fieldset>
+			<legend>Tackle This</legend>
+			<p>
+				<label for="name">Name</label><input id="name" type="text" />
+			</p>
+		</fieldset>
+	</form>
+</section>
+
 <footer>
 	<a id="footer"></a>
 	<p>
-		<a href="http://validator.w3.org/check/referer?doctype=HTML5"><img alt="This document is W3C HTML 5 valid." src="normalize_badge_html5.png" /></a>
-		<a href="http://jigsaw.w3.org/css-validator/check/referer/?profile=css3"><img alt="This document is W3C CSS 3 valid." src="normalize_badge_css3.png" /></a>
+		<a href="http://validator.w3.org/check/referer?doctype=HTML5"><img alt="This document is W3C HTML 5 valid." src="images/badge_html5.png" /></a>
+		<a href="http://jigsaw.w3.org/css-validator/check/referer/?profile=css3"><img alt="This document is W3C CSS 3 valid." src="images/badge_css3.png" /></a>
 	</p>
 	<p>
 		Copyright &copy; 2009 Liferay
