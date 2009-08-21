@@ -67,7 +67,7 @@
 				*/
 				'dialog': {
 					fullpath: PATH_JAVASCRIPT + 'dialog.js',
-					requires: [ 'overlay', 'dialog-css', 'plugin' ],
+					requires: [ 'overlay', 'dialog-css' ],
 					use: [ 'dd-constrain', 'overlay-manager', 'io-stdmod' ]
 				},
 				'dialog-css': {
@@ -85,11 +85,19 @@
 				},
 
 				/*
+				* OverlayMask
+				*/
+				'overlay-mask': {
+					fullpath: PATH_JAVASCRIPT + 'overlay-mask.js',
+					requires: [ 'overlay', 'plugin' ]
+				},
+
+				/*
 				* StdModIOPlugin
 				*/
 				'io-stdmod': {
 					fullpath: PATH_JAVASCRIPT + 'io-stdmod.js',
-					requires: [ 'overlay', 'substitute', 'io', 'json', 'plugin' ]
+					requires: [ 'overlay', 'io', 'plugin' ]
 				}
 			}
 		}
