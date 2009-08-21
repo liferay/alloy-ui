@@ -18,6 +18,7 @@
 
 <p><button id="showAll">Show All</button></p>
 <p><button id="hideAll">Hide All</button></p>
+<p><button id="alignHere">Align here</button></p>
 
 <script type="text/javascript" charset="utf-8">
 
@@ -32,6 +33,7 @@ AUI().ready('dialog', function(A) {
 		group: 'default',
 		height: 250,
 		stack: true,
+		// shim: true,
 		width: 500,
 		// zIndex: 0,
 		io: {
@@ -99,6 +101,10 @@ AUI().ready('dialog', function(A) {
 
 	A.get('#hideAll').on('click', function() {
 		dialog1.OverlayManager.hideAll();
+	});
+
+	A.get('#alignHere').on('click', function() {
+		dialog1.set('align', { node: '#alignHere', points: [ 'tl', 'tr' ]});
 	});
 
 });
