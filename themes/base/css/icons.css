@@ -712,4 +712,6 @@
 .aui-icon-loading {
 	background-image: url(../images/loading_indicator.gif);
 	background-position: 0 0;
+	width: 16px;
+	height: 16px;
 }
