@@ -126,6 +126,7 @@ A.extend(StdModIOPlugin, A.Plugin.Base, {
 	}
 });
 
-A.StdModIOPlugin = StdModIOPlugin;
+A.namespace('Plugin');
+A.Plugin.StdModIOPlugin = StdModIOPlugin;
 
 }, '@VERSION', { requires: [ 'overlay', 'substitute', 'io', 'json', 'plugin' ] });

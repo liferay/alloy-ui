@@ -134,6 +134,7 @@ A.extend(OverlayManager, A.Plugin.Base, {
 	}
 });
 
-A.OverlayManager = OverlayManager;
+A.namespace('Plugin');
+A.Plugin.OverlayManager = OverlayManager;
 
 }, '@VERSION', { requires: [ 'overlay' ] });
