@@ -3,11 +3,16 @@ AUI.add('io-stdmod', function(A) {
 var L = A.Lang,
 	isString = L.isString,
 
-	SECTION = 'section',
-	URI = 'uri',
 	CFG = 'cfg',
 	FORMATTER = 'formatter',
-	LOADING = 'loading';
+	ICON = 'icon',
+	LOADING = 'loading',
+	SECTION = 'section',
+	URI = 'uri',
+
+	getCN = A.ClassNameManager.getClassName,
+
+	CSS_ICON_LOADING = getCN(ICON, LOADING);
 
 var StdMod = A.WidgetStdMod;
 
@@ -16,46 +21,48 @@ function StdModIOPlugin(config) {
 	StdModIOPlugin.superclass.constructor.apply(this, arguments);
 }
 
-StdModIOPlugin.NS = 'io';
+A.mix(StdModIOPlugin, {
+	NAME: 'stdModIOPlugin',
 
-StdModIOPlugin.NAME = 'stdModIOPlugin';
+	NS: 'io',
 
-StdModIOPlugin.ATTRS = {
+	ATTRS: {
 
-	uri : {
-		value:null
-	},
+		uri : {
+			value:null
+		},
 
-	cfg : {
-		value:null
-	},
+		cfg : {
+			value:null
+		},
 
-	/*
-	* The default formatter to use when formatting response data. The default
-	* implementation simply passes back the response data passed in.
-	*/
-	formatter : {
-		valueFn: function() {
-			return this._defFormatter;
+		/*
+		* The default formatter to use when formatting response data. The default
+		* implementation simply passes back the response data passed in.
+		*/
+		formatter : {
+			valueFn: function() {
+				return this._defFormatter;
+			}
+		},
+
+		/*
+		* The Standard Module section to which the io plugin instance is bound.
+		* Response data will be used to populate this section, after passing through
+		* the configured formatter.
+		*/
+		section: {
+			value: StdMod.BODY,
+			validator: function(val) {
+				return (!val || val == StdMod.BODY || val == StdMod.HEADER || val == StdMod.FOOTER);
+			}
+		},
+
+		loading: {
+			value: '<div class="' + CSS_ICON_LOADING + '"></div>'
 		}
-	},
-
-	/*
-	* The Standard Module section to which the io plugin instance is bound.
-	* Response data will be used to populate this section, after passing through
-	* the configured formatter.
-	*/
-	section: {
-		value: StdMod.BODY,
-		validator: function(val) {
-			return (!val || val == StdMod.BODY || val == StdMod.HEADER || val == StdMod.FOOTER);
-		}
-	},
-
-	loading: {
-		value: '<div class="aui-icon-loading"></div>'
 	}
-};
+});
 
 A.extend(StdModIOPlugin, A.Plugin.Base, {
 	destructor: function() {
