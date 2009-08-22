@@ -8,23 +8,47 @@
 
 	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<link rel="stylesheet" href="../../themes/base/css/@demo.name@.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+	</style>
 </head>
 
 <body>
-<h1>Alloy - @demo.name@ Demo</h1>
 
-<div id="demo"></div>
+<div id="wrapper">
+	<h1>Alloy - @demo.name@ Demo</h1>
+
+
+	<div id="demo"></div>
+</div>
 
 <script type="text/javascript" charset="utf-8">
 
-/*
+AUI().add(
+	'@demo.name@',
+	function(A) {
+		
+	},
+	'@VERSION',
+	{
+		requires: [],
+		use: []
+	}
+);
+
 AUI().ready(
 	'@demo.name@',
 	function(A) {
 		
 	}
 );
-*/
 
 </script>
 
