@@ -79,7 +79,9 @@ A.mix(Dialog, {
 			}
 		},
 
-		dragInstance: null,
+		dragInstance: {
+			value: null
+		},
 
 		group: {
 			value: DEFAULT,
