@@ -33,7 +33,8 @@ shadow or rounded corners.
 
 /* No corners */
 
-.aui-dialog .aui-widget-hd {
+.aui-dialog .aui-widget-hd,
+.aui-editable-hover {
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
 	border-radius: 0;

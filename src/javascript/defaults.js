@@ -36,6 +36,20 @@
 					fullpath: PATH_THEME_ROOT + 'autocomplete.css',
 					type: 'css'
 				},
+
+				/*
+				* Editable
+				*/
+				'editable': {
+					fullpath: PATH_JAVASCRIPT + 'editable.js',
+					requires: [ 'editable-css' ]
+				},
+				'editable-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'editable.css',
+					type: 'css'
+				},
+
 				/*
 				* Rating
 				*/
