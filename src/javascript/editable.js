@@ -3,17 +3,27 @@ AUI().add(
 	function(A) {
 		var getClassName = A.ClassNameManager.getClassName,
 
+			CONTENT = 'content',
+			CTRL = 'ctrl',
+			HELPER = 'helper',
+			HIDDEN = 'hidden',
+			HOLDER = 'holder',
+			HOVER = 'hover',
+			INPUT = 'input',
 			NAME = 'editable',
+			STATE = 'state',
+			WRAPPER = 'wrapper',
 
-			CSS_HOVER = getClassName(NAME, 'hover') + ' aui-state-hover',
-			CSS_HIDDEN = 'aui-helper-hidden',
-			CSS_CONTENT_WRAPPER = getClassName(NAME, 'content-wrapper'),
-			CSS_INPUT_WRAPPER = getClassName(NAME, 'ctrl-holder'),
-			CSS_INPUT = getClassName(NAME, 'input'),
+			CSS_CTRL_HOLDER = getClassName(CTRL, HOLDER),
+			CSS_HOVER = [ getClassName(NAME, HOVER), getClassName(CTRL, HOLDER) ].join(' '),
+			CSS_HIDDEN = getClassName(HELPER, HIDDEN),
+			CSS_CONTENT_WRAPPER = getClassName(NAME, CONTENT, WRAPPER),
+			CSS_INPUT_WRAPPER = getClassName(NAME, CTRL, HOLDER),
+			CSS_INPUT = getClassName(NAME, INPUT),
 
 			TPL_INPUT = '<input class="' + CSS_INPUT + '" type="text" />',
 			TPL_TEXTAREA = '<textarea class="' + CSS_INPUT + '"></textarea>',
-			TPL_INPUT_WRAPPER = '<span class="aui-ctrl-holder ' + CSS_HIDDEN + ' ' + CSS_INPUT_WRAPPER + '"></span>',
+			TPL_INPUT_WRAPPER = '<span class="' + [ CSS_CTRL_HOLDER, CSS_HIDDEN, CSS_INPUT_WRAPPER ].join(' ') + '"></span>',
 			TPL_CONTENT_WRAPPER_OPEN = '<div class="' + CSS_CONTENT_WRAPPER + '">',
 			TPL_CONTENT_WRAPPER_CLOSE = '</div>',
 
