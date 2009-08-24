@@ -91,6 +91,14 @@
 				},
 
 				/*
+				* ContextOverlay
+				*/
+				'context-overlay': {
+					fullpath: PATH_JAVASCRIPT + 'context-overlay.js',
+					requires: [ 'overlay' ]
+				},
+
+				/*
 				* OverlayManager
 				*/
 				'overlay-manager': {
