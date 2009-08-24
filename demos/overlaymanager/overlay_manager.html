@@ -95,13 +95,13 @@ AUI().ready('overlay-manager', 'dd', 'node', function(A) {
 
 	// plug OverlayManager
 
-	overlay1.plug(A.OverlayManager, { group: 'blue' });
-	overlay2.plug(A.OverlayManager, { group: 'blue' });
-	overlay3.plug(A.OverlayManager, { group: 'blue' });
+	overlay1.plug(A.Plugin.OverlayManager, { group: 'blue' });
+	overlay2.plug(A.Plugin.OverlayManager, { group: 'blue' });
+	overlay3.plug(A.Plugin.OverlayManager, { group: 'blue' });
 
-	overlay4.plug(A.OverlayManager, { group: 'red' });
-	overlay5.plug(A.OverlayManager, { group: 'red' });
-	overlay6.plug(A.OverlayManager, { group: 'red' });
+	overlay4.plug(A.Plugin.OverlayManager, { group: 'red' });
+	overlay5.plug(A.Plugin.OverlayManager, { group: 'red' });
+	overlay6.plug(A.Plugin.OverlayManager, { group: 'red' });
 
 	var bringToTop = function(e) {
 		var widget = A.Widget.getByNode(e.target);
