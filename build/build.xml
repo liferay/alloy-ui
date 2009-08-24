@@ -45,6 +45,8 @@
 
 		<delete dir="${yui3.dir}" />
 		<unzip src="${project.dir}/lib/${yui3.file}" dest="${project.dir}/lib/" />
+		
+		<antcall target="apply-patches" />
 	</target>
 
 
@@ -180,5 +182,14 @@
 			<mapper type="glob" from="*.css" to="${release.name}/themes/*-min.css" />
 			<targetfile/>
 		</apply>
+	</target>
+
+	<target name="apply-patches">
+		<echo>Applying needed patches.</echo>
+
+		<exec executable="patch">
+			<arg value="${project.dir}/lib/yui/build/pluginhost/pluginhost.js"/>
+			<arg value="${project.dir}/lib/patches/pluginhost.diff"/>
+		</exec>
 	</target>
 </project>
