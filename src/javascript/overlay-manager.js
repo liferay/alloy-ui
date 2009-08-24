@@ -103,15 +103,15 @@ A.extend(OverlayManager, A.Plugin.Base, {
 		A.Array.each(overlays, fn);
 	},
 
-	showAll: function(){
+	showAll: function(force) {
 		this.applyToAll(function(overlay) {
-			overlay.show();
+			overlay.show(force);
 		});
 	},
 
-	hideAll: function(){
+	hideAll: function(force) {
 		this.applyToAll(function(overlay) {
-			overlay.hide();
+			overlay.hide(force);
 		});
 	},
 
