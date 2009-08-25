@@ -1222,7 +1222,7 @@ var Lang = A.Lang,
 						align: OVERLAY_ALIGN,
 						bodyContent: '<ul></ul>',
 						visible: false,
-						width: instance.inputNode.get('offsetWidth') + instance.buttonNode.get('offsetWidth')
+						width: instance.inputNode.get('offsetWidth')
 					}
 				);
 
