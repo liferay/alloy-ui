@@ -8,6 +8,7 @@
 
 .aui-dialog .aui-widget-hd {
 	color: #333333;
+	cursor: move;
 	font-size: 15px;
 	font-weight: bold;
 	padding: 8px 10px;
@@ -28,6 +29,7 @@
 }
 
 .aui-dialog-close {
+	cursor: pointer;
 	position: absolute;
 	right: 0;
 	top: 0;
