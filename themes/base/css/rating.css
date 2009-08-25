@@ -23,6 +23,7 @@
 }
 
 .aui-rating-label-element {
+	display: block;
 	font-size: 12px;
 	padding: 0 2px;
 }
@@ -51,5 +52,5 @@
 
 .aui-thumbrating .aui-rating-label-element {
 	padding: 0 2px;
-	float: right;
+	float: left;
 }
