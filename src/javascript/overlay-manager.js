@@ -20,6 +20,8 @@ A.mix(OverlayManager, {
 
 	overlays: {},
 
+	zIndexBase: 1000,
+
 	ATTRS: {
 		group: {
 			value: DEFAULT,
@@ -72,15 +74,16 @@ A.extend(OverlayManager, A.Plugin.Base, {
 		var group = instance.get(GROUP);
 		var overlay = instance.get(HOST);
 		var overlays = OverlayManager.overlays[group];
+		var zIndexBase = OverlayManager.zIndexBase;
 		var canRegister = overlays.indexOf(overlay) == -1;
 
 		if (canRegister && overlay && (overlay instanceof A.Overlay)) {
-			var zIndex = overlay.get(Z_INDEX);
 			overlays.push(overlay);
 
-			if (!zIndex) {
-				overlay.set(Z_INDEX, overlays.length);
-			}
+			var zIndex = overlay.get(Z_INDEX) || 0;
+			var newZIndex = overlays.length + zIndex + zIndexBase;
+
+			overlay.set(Z_INDEX, newZIndex);
 		}
 
 		return overlays;
