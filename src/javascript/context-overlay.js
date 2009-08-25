@@ -168,23 +168,26 @@ A.extend(ContextOverlay, A.Overlay, {
 
 	_bindShowHide: function(eventType, fn, delay) {
 		var instance = this;
+
 		var align = instance.get(ALIGN);
 		var trigger = instance.get(TRIGGER);
 
-		var handle = function(event) {
-			var node = align.node || event.currentTarget;
-
-			instance._uiSetAlign(node, align.points);
-
-			fn.apply(instance);
-
-			event.stopPropagation();
-			event.preventDefault();
-		};
-
 		if (isNumber(delay)) {
-			trigger.on(eventType, A.bind(handle, instance));
+			trigger.on(eventType, A.rbind(instance._showHideContextOverlay, instance, align, fn));
 		}
+	},
+
+	_showHideContextOverlay: function(event, align, fn) {
+		var instance = this;
+
+		var node = align.node || event.currentTarget;
+
+		instance._uiSetAlign(node, align.points);
+
+		fn.call(instance);
+
+		event.stopPropagation();
+		event.preventDefault();
 	},
 
 	/*
