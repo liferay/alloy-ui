@@ -3,7 +3,6 @@ AUI.add('io-stdmod', function(A) {
 var L = A.Lang,
 	isString = L.isString,
 
-	CFG = 'cfg',
 	FORMATTER = 'formatter',
 	ICON = 'icon',
 	LOADING = 'loading',
@@ -30,10 +29,6 @@ A.mix(StdModIOPlugin, {
 
 		uri : {
 			value:null
-		},
-
-		cfg : {
-			value: null
 		},
 
 		/*
