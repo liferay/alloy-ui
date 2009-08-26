@@ -60,7 +60,6 @@ var L = A.Lang,
 	TPL_LOADING = '<div class="' + CSS_ICON_LOADING + '"></div>';
 
 function Dialog(config) {
-	this._lazyAddAttrs = false;
 	Dialog.superclass.constructor.apply(this, arguments);
 }
 
@@ -79,8 +78,10 @@ A.mix(Dialog, {
 		},
 
 		draggable: {
+			lazyAdd: true,
 			value: false,
 			setter: function(v) {
+				console.log('_setDraggable');
 				return this._setDraggable(v);
 			}
 		},
@@ -102,15 +103,19 @@ A.mix(Dialog, {
 		},
 
 		io: {
+			lazyAdd: true,
 			value: null,
 			setter: function(v) {
+				console.log('_setIO');
 				return this._setIO(v);
 			}
 		},
 
 		stack: {
+			lazyAdd: true,
 			value: false,
 			setter: function(v) {
+				console.log('_setStack');
 				return this._setStack(v);
 			},
 			validator: isBoolean
@@ -225,13 +230,9 @@ A.extend(Dialog, A.Overlay, {
 
 		instance._initButtons();
 
-		if (instance.get(IO)) {
-			AUI().use('io-stdmod', function(A) {
-				if (instance.io) {
-					instance.io.refresh();
-				}
-			});
-		}
+		// forcing lazyAdd:true attrs call the setter
+		instance.get(DRAGGABLE);
+		instance.get(IO);
 	},
 
 	_initButtons: function() {
@@ -338,6 +339,10 @@ A.extend(Dialog, A.Overlay, {
 				}
 
 				instance.plug(A.Plugin.StdModIOPlugin, value);
+
+				if (instance.io) {
+					instance.io.refresh();
+				}
 			}
 			else {
 				instance.unplug(A.Plugin.StdModIOPlugin);

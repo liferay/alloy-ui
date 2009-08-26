@@ -187,23 +187,21 @@
 	<target name="apply-patches">
 		<echo>Applying needed patches.</echo>
 
+		<!--
 		<exec executable="patch">
 			<arg value="${project.dir}/lib/yui/build/pluginhost/pluginhost.js"/>
 			<arg value="${project.dir}/lib/patches/pluginhost.diff"/>
 		</exec>
-
-		<!-- Recreating -min.js file after patch -->
 
 		<delete file="${project.dir}/lib/yui/build/pluginhost/pluginhost-min.js" />
 
 		<exec executable="java">
 			<arg value="-jar"/>
 			<arg value="${yui.compressor.path}"/>
-			<arg value="--charset"/>
-            <arg value="UTF-8"/>
 			<arg value="${project.dir}/lib/yui/build/pluginhost/pluginhost.js"/>
 			<arg line="-o" />
 			<arg value="${project.dir}/lib/yui/build/pluginhost/pluginhost-min.js"/>
 		</exec>
+		-->
 	</target>
 </project>
