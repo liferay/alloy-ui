@@ -81,7 +81,6 @@ A.mix(Dialog, {
 			lazyAdd: true,
 			value: false,
 			setter: function(v) {
-				console.log('_setDraggable');
 				return this._setDraggable(v);
 			}
 		},
@@ -106,7 +105,6 @@ A.mix(Dialog, {
 			lazyAdd: true,
 			value: null,
 			setter: function(v) {
-				console.log('_setIO');
 				return this._setIO(v);
 			}
 		},
@@ -115,7 +113,6 @@ A.mix(Dialog, {
 			lazyAdd: true,
 			value: false,
 			setter: function(v) {
-				console.log('_setStack');
 				return this._setStack(v);
 			},
 			validator: isBoolean
