@@ -9,6 +9,7 @@ var L = A.Lang,
 	ADD_CLASS = 'addClass',
 	ANCHOR = 'a',
 	BLANK = '',
+	BODY_CONTENT = 'bodyContent',
 	BOUNDING_BOX = 'boundingBox',
 	BUTTON = 'button',
 	BUTTONS = 'buttons',
@@ -31,12 +32,14 @@ var L = A.Lang,
 	ICON = 'icon',
 	INNER_HTML = 'innerHTML',
 	IO = 'io',
+	LOADING = 'loading',
 	REMOVE_CLASS = 'removeClass',
 	STACK = 'stack',
 	STATE = 'state',
 	TITLE = 'title',
 	TOOL = 'tool',
 	WIDGET = 'widget',
+	POST = 'POST',
 
 	getCN = A.ClassNameManager.getClassName,
 
@@ -47,11 +50,14 @@ var L = A.Lang,
 	CSS_DIALOG_TITLE = getCN(DIALOG, TITLE),
 	CSS_ICON = getCN(ICON),
 	CSS_ICON_CLOSE = getCN(ICON, CLOSE),
+	CSS_ICON_LOADING = getCN(ICON, LOADING),
 	CSS_PREFIX = getCN(DD),
 	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
 	CSS_STATE_HOVER = getCN(STATE, HOVER),
 	CSS_TOOL = getCN(TOOL),
-	CSS_WIDGET_HD = getCN(WIDGET, HD);
+	CSS_WIDGET_HD = getCN(WIDGET, HD),
+
+	TPL_LOADING = '<div class="' + CSS_ICON_LOADING + '"></div>';
 
 function Dialog(config) {
 	this._lazyAddAttrs = false;
@@ -218,6 +224,14 @@ A.extend(Dialog, A.Overlay, {
 		closeIconContainter.append(instance.closeIcon);
 
 		instance._initButtons();
+
+		if (instance.get(IO)) {
+			AUI().use('io-stdmod', function(A) {
+				if (instance.io) {
+					instance.io.refresh();
+				}
+			});
+		}
 	},
 
 	_initButtons: function() {
@@ -302,15 +316,28 @@ A.extend(Dialog, A.Overlay, {
 	_setIO: function(value){
 		var instance = this;
 
+		if (value && !instance.get(BODY_CONTENT)) {
+			instance.set(BODY_CONTENT, TPL_LOADING);
+		}
+
 		AUI().use('io-stdmod', function(A) {
 			if (value) {
 				instance.unplug(A.Plugin.StdModIOPlugin);
 
-				instance.plug(A.Plugin.StdModIOPlugin, {
-					uri: value.uri || value.url,
-					cfg: value.cfg || {},
-					formatter: value.formatter
-				});
+				value.uri = value.uri || value.url;
+
+				value.cfg = A.merge({
+					method: POST
+				},
+				value.cfg);
+
+				var data = value.cfg.data;
+
+				if (typeof data == 'object') {
+					value.cfg.data = A.toQueryString(data);
+				}
+
+				instance.plug(A.Plugin.StdModIOPlugin, value);
 			}
 			else {
 				instance.unplug(A.Plugin.StdModIOPlugin);
