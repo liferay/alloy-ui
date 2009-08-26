@@ -33,7 +33,7 @@ A.mix(StdModIOPlugin, {
 		},
 
 		cfg : {
-			value:null
+			value: null
 		},
 
 		/*
@@ -84,7 +84,7 @@ A.extend(StdModIOPlugin, A.Plugin.Base, {
 
 			if (uri) {
 
-				cfg = this.get(CFG) || {};
+				cfg = {};
 				cfg.on = cfg.on || {};
 
 				cfg.on.start = cfg.on.start || A.bind(this._defStartHandler, this);
@@ -129,4 +129,4 @@ A.extend(StdModIOPlugin, A.Plugin.Base, {
 A.namespace('Plugin');
 A.Plugin.StdModIOPlugin = StdModIOPlugin;
 
-}, '@VERSION', { requires: [ 'overlay', 'substitute', 'io', 'json', 'plugin' ] });
+}, '@VERSION', { requires: [ 'overlay', 'io', 'plugin' ] });
