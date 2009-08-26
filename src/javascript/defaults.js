@@ -91,6 +91,23 @@
 				},
 
 				/*
+				* Resize
+				*/
+				'resize': {
+					fullpath: PATH_JAVASCRIPT + 'resize.js',
+					requires: [ 'dd', 'resize-css' ]
+				},
+				'resize-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'resize.css',
+					type: 'css'
+				},
+				'resize-plugin': {
+					fullpath: PATH_JAVASCRIPT + 'resize.js',
+					requires: [ 'resize' ]
+				},
+
+				/*
 				* ContextOverlay
 				*/
 				'context-overlay': {

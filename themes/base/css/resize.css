@@ -1,0 +1,221 @@
+.aui-resize {
+    position: relative;
+    z-index: 0;
+
+    zoom: 1;
+}
+
+.aui-resize-wrap {
+    zoom: 1;
+}
+
+.aui-draggable {
+    cursor: move;
+}
+
+.aui-resize-handle {
+	font-size: 0;
+	height: 1px;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	z-index: 1;
+
+	zoom: 1;
+}
+
+.aui-resize-handle-br {
+    bottom: 0;
+    cursor: se-resize;
+    height: auto;
+	overflow: visible;
+    right: 0;
+    width: auto;
+    z-index: 2;
+
+    zoom: 1;
+}
+
+.aui-resize-handle-bl {
+    bottom: 0;
+    cursor: sw-resize;
+    height: 5px;
+    left: 0;
+    width: 5px;
+    z-index: 2;
+
+    zoom: 1;
+}
+
+.aui-resize-handle-tl {
+    cursor: nw-resize;
+    height: 5px;
+    left: 0;
+    top: 0;
+    width: 5px;
+    z-index: 2;
+
+    zoom: 1;
+}
+
+.aui-resize-handle-tr {
+    cursor: ne-resize;
+    height: 5px;
+    right: 0;
+    top: 0;
+    width: 5px;
+    z-index: 2;
+
+    zoom: 1;
+}
+
+.aui-resize-handle-r {
+    cursor: e-resize;
+    height: 100%;
+    right: 0;
+    top: 0;
+    width: 5px;
+
+    zoom: 1;
+}
+
+.aui-resize-inner-t,
+.aui-resize-inner-r,
+.aui-resize-inner-b,
+.aui-resize-inner-l {
+	position: absolute;
+}
+
+.aui-resize-inner-r,
+.aui-resize-inner-l {
+	top: 50%;
+	left: -6px;
+}
+
+.aui-resize-inner-t,
+.aui-resize-inner-b {
+	left: 50%;
+	top: -6px;
+}
+
+.aui-resize-inner-br {
+	bottom: 0;
+	right: 0;
+}
+
+.aui-resize-handle-l {
+    height: 100%;
+    width: 5px;
+    top: 0;
+    left: 0;
+    cursor: w-resize;
+
+    zoom: 1;
+}
+
+.aui-resize-handle-b {
+    width: 100%;
+    height: 5px;
+    bottom: 0;
+    right: 0;
+    cursor: s-resize;
+
+    zoom: 1;
+}
+
+.aui-resize-handle-t {
+    width: 100%;
+    height: 5px;
+    top: 0;
+    right: 0;
+    cursor: n-resize;
+
+    zoom: 1;
+}
+
+.aui-resize-proxy {
+    border: 1px dashed #000;
+    position: absolute;
+    visibility: hidden;
+    z-index: 1000;
+}
+
+.aui-resize-hover .aui-resize-handle,
+.aui-resize-hidden .aui-resize-handle {
+    opacity: 0;
+
+    filter: alpha(opacity=0);
+}
+
+.aui-resize-ghost {
+    opacity: 0.5;
+
+    filter: alpha(opacity=50);
+}
+
+.aui-resize-knob .aui-resize-handle {
+    height: 6px;
+    width: 6px;
+}
+
+.aui-resize-knob .aui-resize-handle-tr {
+    right: -3px;
+    top: -3px;
+}
+
+.aui-resize-knob .aui-resize-handle-tl {
+    left: -3px;
+    top: -3px;
+}
+
+.aui-resize-knob .aui-resize-handle-bl {
+    bottom: -3px;
+    left: -3px;
+}
+
+.aui-resize-knob .aui-resize-handle-br {
+    right: -3px;
+    bottom: -3px;
+}
+
+.aui-resize-knob .aui-resize-handle-t {
+    left: 45%;
+    top: -3px;
+}
+
+.aui-resize-knob .aui-resize-handle-r {
+    right: -3px;
+    top: 45%;
+}
+
+.aui-resize-knob .aui-resize-handle-l {
+    left: -3px;
+    top: 45%;
+}
+
+.aui-resize-knob .aui-resize-handle-b {
+    bottom: -3px;
+    left: 45%;
+}
+
+.aui-resize-status {
+    display: none;
+    font-size: 80%;
+    left: -999px;
+    padding: 2px;
+    position: absolute;
+    top: -999px;
+    z-index: 9999;
+
+    zoom: 1;
+}
+
+.aui-resize-status strong, .aui-resize-status em {
+    font-weight: normal;
+    font-style: normal;
+    padding: 1px;
+ 
+   zoom: 1;
+}
