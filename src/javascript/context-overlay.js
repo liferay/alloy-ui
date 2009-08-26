@@ -231,7 +231,7 @@ A.extend(ContextOverlay, A.Overlay, {
 	},
 
 	_setTrigger: function(value) {
-		return (isNodeList(value) ? value : A.get(document).queryAll(value));
+		return (isNodeList(value) ? value : A.all(value));
 	}
 });
 
