@@ -66,6 +66,14 @@ AUI().add(
 			Editable,
 			A.Widget,
 			{
+				initializer: function() {
+					var instance = this;
+
+					instance._scopedSave = A.bind(instance.save, instance);
+
+					instance._createEvents();
+				},
+
 				renderUI: function() {
 					var instance = this;
 
@@ -108,8 +116,6 @@ AUI().add(
 					inputNode.on('keypress', instance._onKeypressEditable, instance);
 
 					instance.after('contentTextChange', instance._syncContentText);
-
-					instance.inputNode.on('blur', instance._stopEditing, instance);
 				},
 
 				syncUI: function() {
@@ -122,18 +128,132 @@ AUI().add(
 					currentText = instance._toText(currentText);
 
 					instance._setInput(currentText);
+
+					instance.set(
+						'contentText',
+						currentText,
+						{
+							initial: true
+						}
+					);
 				},
 
 				cancel: function() {
 					var instance = this;
 
-					instance._stopEditing(false);
+					instance.fire('cancel');
 				},
 
-				save: function() {
+				save: function(event) {
 					var instance = this;
 
-					instance._stopEditing(true);
+					instance.fire('save');
+				},
+
+				_createEvents: function() {
+					var instance = this;
+
+					instance.publish(
+						'startEditing',
+						{
+							bubbles: true,
+							defaultFn: instance._defStartEditingFn,
+							emitFacade: true,
+							queable: false
+						}
+					);
+
+					instance.publish(
+						'stopEditing',
+						{
+							bubbles: true,
+							defaultFn: instance._defStopEditingFn,
+							emitFacade: true,
+							queable: false
+						}
+					);
+
+					instance.publish(
+						'save',
+						{
+							bubbles: true,
+							defaultFn: instance._defSaveFn,
+							emitFacade: true,
+							queable: false
+						}
+					);
+
+					instance.publish(
+						'cancel',
+						{
+							bubbles: true,
+							defaultFn: instance._defCancelFn,
+							emitFacade: true,
+							queable: false
+						}
+					);
+				},
+
+				_defCancelFn: function(event) {
+					var instance = this;
+
+					instance.fire('stopEditing', false);
+				},
+
+				_defStartEditingFn: function(event) {
+					var instance = this;
+
+					var contentBox = instance.get(CONTENT_BOX);
+					var inputNode = instance.inputNode;
+					var inputWrapper = instance.inputWrapper;
+
+					var contentWrapperHeight = contentBox.get('offsetHeight');
+					var contentWrapperWidth = contentBox.get('offsetWidth');
+
+					inputWrapper.removeClass(CSS_HIDDEN);
+
+					var xy = contentBox.getXY();
+
+					inputNode.setStyle('height', contentWrapperHeight + 'px');
+					inputNode.setStyle('width', contentWrapperWidth + 'px');
+
+					inputWrapper.setStyle('left', xy[0] + 'px');
+					inputWrapper.setStyle('top', xy[1] + 'px');
+					inputWrapper.setStyle('height', contentWrapperHeight + 'px');
+					inputWrapper.setStyle('width', contentWrapperWidth + 'px');
+
+					instance._blurHandle = inputNode.on('blur', instance._scopedSave);
+
+					inputNode.focus();
+					inputNode.select();
+				},
+
+				_defStopEditingFn: function(event, save) {
+					var instance = this;
+
+					instance.inputWrapper.addClass(CSS_HIDDEN);
+
+					var contentWrapper = instance.contentWrapper;
+
+					contentWrapper.removeClass(CSS_HIDDEN);
+					contentWrapper.removeClass(CSS_HOVER);
+
+					if (instance._blurHandle) {
+						instance._blurHandle.detach();
+					}
+
+					if (save) {
+						instance.set('contentText', instance.inputNode.get('value'));
+					}
+					else {
+						instance._setInput(instance.get('contentText'));
+					}
+				},
+
+				_defSaveFn: function(event) {
+					var instance = this;
+
+					instance.fire('stopEditing', true);
 				},
 
 				_onKeypressEditable: function(event) {
@@ -180,56 +300,20 @@ AUI().add(
 				_startEditing: function(event) {
 					var instance = this;
 
-					var contentBox = instance.get(CONTENT_BOX);
-					var inputNode = instance.inputNode;
-					var inputWrapper = instance.inputWrapper;
-
-					var contentWrapperHeight = contentBox.get('offsetHeight');
-					var contentWrapperWidth = contentBox.get('offsetWidth');
-
-					inputWrapper.removeClass(CSS_HIDDEN);
-
-					var xy = contentBox.getXY();
-
-					inputNode.setStyle('height', contentWrapperHeight + 'px');
-					inputNode.setStyle('width', contentWrapperWidth + 'px');
-
-					inputWrapper.setStyle('left', xy[0] + 'px');
-					inputWrapper.setStyle('top', xy[1] + 'px');
-					inputWrapper.setStyle('height', contentWrapperHeight + 'px');
-					inputWrapper.setStyle('width', contentWrapperWidth + 'px');
-
-					inputNode.focus();
-					inputNode.select();
+					instance.fire('startEditing');
 
 					event.halt();
-				},
-
-				_stopEditing: function(save) {
-					var instance = this;
-
-					instance.inputWrapper.addClass(CSS_HIDDEN);
-
-					var contentWrapper = instance.contentWrapper;
-
-					contentWrapper.removeClass(CSS_HIDDEN);
-					contentWrapper.removeClass(CSS_HOVER);
-
-					if (save) {
-						instance.set('contentText', instance.inputNode.get('value'));
-					}
-					else {
-						instance._setInput(instance.get('contentText'));
-					}
 				},
 
 				_syncContentText: function(event) {
 					var instance = this;
 
-					var contentText = event.newVal;
+					if (!event.initial) {
+						var contentText = event.newVal;
 
-					instance._setInput(contentText);
-					instance._setOutput(contentText);
+						instance._setInput(contentText);
+						instance._setOutput(contentText);
+					}
 				},
 
 				_toHTML: function(text) {
