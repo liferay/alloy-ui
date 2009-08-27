@@ -29,6 +29,7 @@
 				* AUI Base modules
 				*/
 				'aui-base': {
+					fullpath: PATH_JAVASCRIPT + 'base.js',
 					requires: [ 'aui-node' ]
 				},
 
