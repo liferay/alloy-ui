@@ -996,7 +996,7 @@ AUI().add(
 							var statusSize = '<strong>' + parseInt(height, 10) + ' x ' + parseInt(width, 10) + '</strong>';
 							var statusDelta = '<em>' + (diffHeight > 0 ? '+' : '') + diffHeight + ' x ' + (diffWidth > 0 ? '+' : '') + diffWidth + '</em>';
 
-							instance._status.set('innerHTML', statusSize + statusDelta);
+							instance._status.html(statusSize + statusDelta);
 
 							instance._status.setXY(instance._resizeEvent.pageX + 12, instance._resizeEvent.pageY + 12);
 						}

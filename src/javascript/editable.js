@@ -89,7 +89,7 @@ AUI().add(
 
 					inputNode.addClass(CSS_INPUT);
 
-					contentBox.set('innerHTML', TPL_CONTENT_WRAPPER_OPEN + currentHTML + TPL_CONTENT_WRAPPER_CLOSE);
+					contentBox.html(TPL_CONTENT_WRAPPER_OPEN + currentHTML + TPL_CONTENT_WRAPPER_CLOSE);
 
 					A.get('body').appendChild(inputWrapper);
 
@@ -294,7 +294,7 @@ AUI().add(
 
 					value = instance._toHTML(value);
 
-					instance.contentWrapper.set('innerHTML', value);
+					instance.contentWrapper.html(value);
 				},
 
 				_startEditing: function(event) {
