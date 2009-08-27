@@ -21,15 +21,23 @@
 
 			//base: '',
 
-			//filter: 'raw',
+			filter: 'raw',
 
 			modules: {
+
+				/*
+				* AUI Base modules
+				*/
+				'aui-base': {
+					requires: [ 'aui-node' ]
+				},
+
 				/*
 				* AutoComplete
 				*/
 				'autocomplete': {
 					fullpath: PATH_JAVASCRIPT + 'autocomplete.js',
-					requires: [ 'overlay', 'datasource', 'dataschema', 'autocomplete-css' ]
+					requires: [ 'aui-base', 'overlay', 'datasource', 'dataschema', 'autocomplete-css' ]
 				},
 				'autocomplete-css': {
 					ext: false,
@@ -42,7 +50,7 @@
 				*/
 				'editable': {
 					fullpath: PATH_JAVASCRIPT + 'editable.js',
-					requires: [ 'editable-css' ]
+					requires: [ 'aui-base', 'editable-css' ]
 				},
 				'editable-css': {
 					ext: false,
@@ -55,7 +63,7 @@
 				*/
 				'rating': {
 					fullpath: PATH_JAVASCRIPT + 'rating.js',
-					requires: [ 'rating-css' ]
+					requires: [ 'aui-base', 'rating-css' ]
 				},
 				'rating-css': {
 					ext: false,
@@ -64,24 +72,11 @@
 				},
 
 				/*
-				* Tooltip
-				*/
-				'tooltip': {
-					fullpath: PATH_JAVASCRIPT + 'tooltip.js',
-					requires: [ 'tooltip-css' ]
-				},
-				'tooltip-css': {
-					ext: false,
-					fullpath: PATH_THEME_ROOT + 'tooltip.css',
-					type: 'css'
-				},
-
-				/*
 				* Dialog
 				*/
 				'dialog': {
 					fullpath: PATH_JAVASCRIPT + 'dialog.js',
-					requires: [ 'overlay', 'dialog-css' ],
+					requires: [ 'aui-base', 'overlay', 'dialog-css' ],
 					use: [ 'dd-constrain', 'overlay-manager', 'io-stdmod' ]
 				},
 				'dialog-css': {
@@ -95,7 +90,7 @@
 				*/
 				'resize': {
 					fullpath: PATH_JAVASCRIPT + 'resize.js',
-					requires: [ 'dd', 'resize-css' ]
+					requires: [ 'aui-base', 'dd', 'resize-css' ]
 				},
 				'resize-css': {
 					ext: false,
@@ -112,7 +107,7 @@
 				*/
 				'context-overlay': {
 					fullpath: PATH_JAVASCRIPT + 'context-overlay.js',
-					requires: [ 'overlay' ]
+					requires: [ 'aui-base', 'overlay' ]
 				},
 
 				/*
@@ -120,7 +115,7 @@
 				*/
 				'overlay-manager': {
 					fullpath: PATH_JAVASCRIPT + 'overlay-manager.js',
-					requires: [ 'overlay', 'plugin' ]
+					requires: [ 'aui-base', 'overlay', 'plugin' ]
 				},
 
 				/*
@@ -128,7 +123,7 @@
 				*/
 				'overlay-mask': {
 					fullpath: PATH_JAVASCRIPT + 'overlay-mask.js',
-					requires: [ 'overlay', 'plugin' ]
+					requires: [ 'aui-base', 'overlay', 'plugin' ]
 				},
 
 				/*
@@ -136,7 +131,7 @@
 				*/
 				'io-stdmod': {
 					fullpath: PATH_JAVASCRIPT + 'io-stdmod.js',
-					requires: [ 'overlay', 'io', 'plugin' ]
+					requires: [ 'aui-base', 'overlay', 'io', 'plugin' ]
 				}
 			}
 		}
