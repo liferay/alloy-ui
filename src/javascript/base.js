@@ -1,6 +1,8 @@
+/*
+* AUI Base
+*/
 AUI.add('aui-base', function(A) {
 
-	// extending A.Array singleton
 	A.mix(A.Array, {
 		remove: function(a, from, to) {
 		  var rest = a.slice((to || from) + 1 || a.length);
@@ -18,6 +20,9 @@ AUI.add('aui-base', function(A) {
 
 }, '@VERSION', { requires: [ 'yui-base' ] });
 
+/*
+* AUI Node
+*/
 AUI.add('aui-node', function(A) {
 
 	var L = A.Lang,
@@ -39,5 +44,13 @@ AUI.add('aui-node', function(A) {
 			return this;
 		}
 	}, true);
+
+	A.Node.ATTRS.innerHTML = {
+		setter: function(v) {
+			A.Node.DEFAULT_SETTER.apply(this, [ INNER_HTML, v ]);
+
+			return v;
+		}
+	};
 
 }, '@VERSION', { requires: [ 'node' ] });

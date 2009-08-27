@@ -81,7 +81,7 @@
 		return base;
 	};
 
-	/*!
+	/*
 	 * Alloy JavaScript Library v@VERSION
 	 * http://alloyui.com/
 	 *
