@@ -293,7 +293,7 @@ A.extend(Rating, A.Widget, {
 
 		instance.set(SELECTED_INDEX, selectedIndex);
 
-		instance.get(LABEL_ELEMENT).set(INNER_HTML, labelText);
+		instance.get(LABEL_ELEMENT).html(labelText);
 
 		instance.select();
 	},
@@ -401,7 +401,7 @@ A.extend(ThumbRating, Rating, {
 		var instance = this;
 		var labelText = instance.get(LABEL);
 
-		instance.get(LABEL_ELEMENT).set(INNER_HTML, labelText);
+		instance.get(LABEL_ELEMENT).html(labelText);
 	}
 });
 

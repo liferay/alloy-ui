@@ -210,7 +210,7 @@ A.extend(Dialog, A.Overlay, {
 		closeIconContainter.addClass(CSS_TOOL);
 		titleContainter.addClass(CSS_DIALOG_TITLE);
 
-		instance.titleContainter.set(INNER_HTML, title);
+		instance.titleContainter.html(title);
 	},
 
 	_afterRenderer: function() {
@@ -252,7 +252,7 @@ A.extend(Dialog, A.Overlay, {
 				node.on('click', A.bind(button.handler, instance));
 			}
 
-			node.set(INNER_HTML, button.text || BLANK);
+			node.html(button.text || BLANK);
 
 			container.append(node);
 		});
@@ -374,7 +374,7 @@ A.extend(Dialog, A.Overlay, {
 	_afterSetTitle: function(event) {
 		var instance = this;
 
-		instance.titleContainter.set(INNER_HTML, event.newVal);
+		instance.titleContainter.html(event.newVal);
 	}
 });
 

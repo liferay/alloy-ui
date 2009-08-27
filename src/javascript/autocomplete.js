@@ -1096,7 +1096,7 @@ var Lang = A.Lang,
 										node._resultMatch = resultMatch;
 
 										node._resultData = result;
-										node.set('innerHTML', instance.formatResult(result, currentQuery, resultMatch));
+										node.html(instance.formatResult(result, currentQuery, resultMatch));
 
 										node.removeClass('aui-helper-hidden');
 									}
@@ -1209,7 +1209,7 @@ var Lang = A.Lang,
 					listItems[maxResultsDisplayed] = '<li class="aui-helper-hidden ' + CSS_LIST_ITEM + '" data-listItemIndex="' + maxResultsDisplayed + '"></li>';
 				}
 
-				resultList.set('innerHTML', listItems.join(''));
+				resultList.html(listItems.join(''));
 			},
 
 			_renderOverlay: function() {
