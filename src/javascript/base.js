@@ -40,12 +40,4 @@ AUI.add('aui-node', function(A) {
 		}
 	}, true);
 
-	A.Node.ATTRS.innerHTML = {
-		setter: function(v) {
-			A.Node.DEFAULT_SETTER.apply(this, [ INNER_HTML, v ]);
-
-			return v;
-		}
-	};
-
 }, '@VERSION', { requires: [ 'node' ] });
