@@ -96,7 +96,7 @@ A.extend(StdModIOPlugin, A.Plugin.Base, {
 	},
 
 	_defSuccessHandler: function(id, o) {
-		var response = o.responseXML || o.responseText;
+		var response = o.responseText || "";
 		var section = this.get(SECTION);
 		var formatter = this.get(FORMATTER);
 
