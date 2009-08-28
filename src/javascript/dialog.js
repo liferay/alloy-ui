@@ -80,7 +80,7 @@ A.mix(Dialog, {
 
 		draggable: {
 			lazyAdd: true,
-			value: false,
+			value: true,
 			setter: function(v) {
 				return this._setDraggable(v);
 			}
@@ -116,7 +116,7 @@ A.mix(Dialog, {
 
 		stack: {
 			lazyAdd: true,
-			value: false,
+			value: true,
 			setter: function(v) {
 				return this._setStack(v);
 			},
@@ -379,4 +379,4 @@ A.extend(Dialog, A.Overlay, {
 
 A.Dialog = Dialog;
 
-}, '@VERSION', { requires: [ 'aui-base', 'overlay', 'dd-constrain', 'overlay-manager', 'io-stdmod', 'dialog-css' ] });
+}, '@VERSION', { requires: [ 'aui-base', 'overlay-manager', 'dd-constrain', 'io-stdmod', 'dialog-css' ] });
