@@ -110,6 +110,10 @@ A.mix(Dialog, {
 			}
 		},
 
+		ioCfg: {
+			value: null
+		},
+
 		stack: {
 			lazyAdd: true,
 			value: false,
@@ -310,7 +314,7 @@ A.extend(Dialog, A.Overlay, {
 		return value;
 	},
 
-	_setIO: function(value){
+	_setIO: function(value) {
 		var instance = this;
 
 		if (value && !instance.get(BODY_CONTENT)) {
