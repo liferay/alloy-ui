@@ -77,8 +77,7 @@
 				*/
 				'dialog': {
 					fullpath: PATH_JAVASCRIPT + 'dialog.js',
-					requires: [ 'aui-base', 'overlay', 'dialog-css' ],
-					use: [ 'dd-constrain', 'overlay-manager', 'io-stdmod' ]
+					requires: [ 'aui-base', 'overlay', 'dd-constrain', 'overlay-manager', 'io-stdmod', 'dialog-css' ]
 				},
 				'dialog-css': {
 					ext: false,
