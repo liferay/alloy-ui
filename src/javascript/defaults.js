@@ -30,7 +30,7 @@
 				*/
 				'aui-base': {
 					fullpath: PATH_JAVASCRIPT + 'base.js',
-					requires: [ 'aui-node' ]
+					requires: [ 'event', 'oop', 'widget', 'aui-node' ]
 				},
 
 				/*

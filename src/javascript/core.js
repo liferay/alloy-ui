@@ -99,7 +99,6 @@
 	window.AUI = window.AUI || {};
 
 	var defaults = {};
-	var defaultModules = [ 'event', 'oop', 'widget' ];
 
 	if ('defaults' in AUI) {
 		defaults = AUI.defaults;
@@ -189,34 +188,14 @@
 		}
 	});
 
-	var ALLOY = YUI( extend({}, defaults) );
+	AUI = function() {
+		var args = Array.prototype.slice.call(arguments);
 
-	var originalConfig = ALLOY.config;
-
-	// adding callback for .use()
-	defaultModules.push(
-		function(A, result) {
-			if (!result.success) {
-				throw result.msg;
-			}
-		}
-	);
-
-	// loading default modules
-	ALLOY.use.apply(ALLOY, defaultModules);
-
-	AUI = function(o) {
-		var instance = this;
-
-		ALLOY.config = ALLOY.merge(originalConfig, AUI.defaults);
-
-		if (o || instance instanceof AUI) {
-			// new AUI() creates a new YUI sandbox
-			return YUI( ALLOY.merge(ALLOY.config, o) );
+		if (!args.length) {
+			args.push( extend({}, AUI.defaults || {}) );
 		}
 
-		// returns the cached YUI sandbox
-		return ALLOY;
+		return YUI.apply(this, args);
 	};
 
 	extend(
