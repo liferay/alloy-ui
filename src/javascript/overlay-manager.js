@@ -36,7 +36,7 @@ A.extend(OverlayManager, A.Plugin.Base, {
 		var group = instance.get(GROUP);
 
 		if (!(group in OverlayManager.overlays)) {
-			OverlayManager.overlays[group] = A.Array([]);
+			OverlayManager.overlays[group] = [];
 		}
 
 		instance.register();
@@ -75,7 +75,8 @@ A.extend(OverlayManager, A.Plugin.Base, {
 		var overlay = instance.get(HOST);
 		var overlays = OverlayManager.overlays[group];
 		var zIndexBase = OverlayManager.zIndexBase;
-		var canRegister = overlays.indexOf(overlay) == -1;
+
+		var canRegister = A.Array.indexOf(overlays, overlay) == -1;
 
 		if (canRegister && overlay && (overlay instanceof A.Overlay)) {
 			overlays.push(overlay);

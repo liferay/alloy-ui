@@ -12,7 +12,7 @@ AUI.add('aui-base', function(A) {
 		},
 
 		removeItem: function(a, item) {
-			var index = A.Array(a).indexOf(item);
+			var index = A.Array.indexOf(a, item);
 
 		  	return A.Array.remove(a, index);
 		}
