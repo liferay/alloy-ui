@@ -67,7 +67,6 @@ AUI.add('aui-node', function(A) {
 		},
 
 		evalScript: function(elem) {
-			try{
 			if (elem.src) {
 				A.io(elem.src, {
 					async: false,
@@ -81,7 +80,6 @@ AUI.add('aui-node', function(A) {
 			else {
 				A.Node.globalEval(elem.text || elem.textContent || elem.innerHTML || "");
 			}
-		}catch(e){alert(e)}
 		},
 
 		domManip: function(html) {
