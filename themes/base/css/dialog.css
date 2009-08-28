@@ -19,6 +19,7 @@
 	border-color: transparent #999 #999 #bbb;
 	padding: 10px;
 	background: #fff;
+	overflow: auto;
 }
 .aui-dialog .aui-widget-ft {
 	border: 1px solid #ccc;
