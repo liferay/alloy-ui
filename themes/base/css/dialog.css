@@ -40,5 +40,5 @@
 }
 
 .aui-dialog-hidden {
-	visibility: hidden;
+	display: none;
 }
