@@ -5,6 +5,7 @@ var L = A.Lang,
 	isNumber = L.isNumber,
 	isString = L.isString,
 	isArray = L.isArray,
+	isObject = L.isObject,
 
 	ADD_CLASS = 'addClass',
 	ANCHOR = 'a',
@@ -328,7 +329,7 @@ A.extend(Dialog, A.Overlay, {
 
 			var data = value.cfg.data;
 
-			if (typeof data == 'object') {
+			if (isObject(data)) {
 				value.cfg.data = A.toQueryString(data);
 			}
 
