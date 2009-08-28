@@ -4,7 +4,9 @@ var L = A.Lang,
 	isString = L.isString,
 
 	FORMATTER = 'formatter',
+	HOST = 'host',
 	ICON = 'icon',
+	IO_CFG = 'ioCfg',
 	LOADING = 'loading',
 	SECTION = 'section',
 	URI = 'uri',
@@ -78,8 +80,8 @@ A.extend(StdModIOPlugin, A.Plugin.Base, {
 			var uri = this.get(URI);
 
 			if (uri) {
+				cfg = this.get(HOST).get(IO_CFG) || {};
 
-				cfg = {};
 				cfg.on = cfg.on || {};
 
 				cfg.on.start = cfg.on.start || A.bind(this._defStartHandler, this);
@@ -100,16 +102,16 @@ A.extend(StdModIOPlugin, A.Plugin.Base, {
 		var section = this.get(SECTION);
 		var formatter = this.get(FORMATTER);
 
-		this.get('host').setStdModContent(section, formatter(response));
+		this.get(HOST).setStdModContent(section, formatter(response));
 	},
 
 	_defFailureHandler: function(id, o) {
-		this.get('host').setStdModContent(this.get(SECTION), 'Failed to retrieve content');
+		this.get(HOST).setStdModContent(this.get(SECTION), 'Failed to retrieve content');
 	},
 
 	_defStartHandler: function(id, o) {
 		this._activeIO = o;
-		this.get('host').setStdModContent(this.get(SECTION), this.get(LOADING));
+		this.get(HOST).setStdModContent(this.get(SECTION), this.get(LOADING));
 	},
 
 	_defCompleteHandler: function(id, o) {
