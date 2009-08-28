@@ -276,37 +276,35 @@ A.extend(Dialog, A.Overlay, {
 			}
 		};
 
-		AUI().use('dd-constrain', function(A) {
-			A.DD.DDM.CSS_PREFIX = CSS_PREFIX;
+		A.DD.DDM.CSS_PREFIX = CSS_PREFIX;
 
-			if (value) {
-				var defaults = {
-					node: boundingBox,
-					handles: [ DOT + CSS_WIDGET_HD ]
-				};
-				var dragOptions = A.merge(defaults, instance.get(DRAGGABLE) || {});
+		if (value) {
+			var defaults = {
+				node: boundingBox,
+				handles: [ DOT + CSS_WIDGET_HD ]
+			};
+			var dragOptions = A.merge(defaults, instance.get(DRAGGABLE) || {});
 
-				// change the drag scope callback to execute using the dialog scope
-				if (dragOptions.on) {
-					A.each(dragOptions.on, function(fn, eventName) {
-						dragOptions.on[eventName] = A.bind(fn, instance);
-					});
-				}
-
-				destroyDraggable();
-
-				var dragInstance = new A.DD.Drag(dragOptions);
-
-				dragInstance.plug(A.Plugin.DDConstrained, {
-					constrain2view: instance.get(CONSTRAIN_TO_VIEWPORT)
+			// change the drag scope callback to execute using the dialog scope
+			if (dragOptions.on) {
+				A.each(dragOptions.on, function(fn, eventName) {
+					dragOptions.on[eventName] = A.bind(fn, instance);
 				});
+			}
 
-				instance.set(DRAG_INSTANCE, dragInstance);
-			}
-			else {
-				destroyDraggable();
-			}
-		});
+			destroyDraggable();
+
+			var dragInstance = new A.DD.Drag(dragOptions);
+
+			dragInstance.plug(A.Plugin.DDConstrained, {
+				constrain2view: instance.get(CONSTRAIN_TO_VIEWPORT)
+			});
+
+			instance.set(DRAG_INSTANCE, dragInstance);
+		}
+		else {
+			destroyDraggable();
+		}
 
 		return value;
 	},
@@ -318,33 +316,31 @@ A.extend(Dialog, A.Overlay, {
 			instance.set(BODY_CONTENT, TPL_LOADING);
 		}
 
-		AUI().use('io-stdmod', function(A) {
-			if (value) {
-				instance.unplug(A.Plugin.StdModIOPlugin);
+		if (value) {
+			instance.unplug(A.Plugin.StdModIOPlugin);
 
-				value.uri = value.uri || value.url;
+			value.uri = value.uri || value.url;
 
-				value.cfg = A.merge({
-					method: POST
-				},
-				value.cfg);
+			value.cfg = A.merge({
+				method: POST
+			},
+			value.cfg);
 
-				var data = value.cfg.data;
+			var data = value.cfg.data;
 
-				if (typeof data == 'object') {
-					value.cfg.data = A.toQueryString(data);
-				}
-
-				instance.plug(A.Plugin.StdModIOPlugin, value);
-
-				if (instance.io) {
-					instance.io.refresh();
-				}
+			if (typeof data == 'object') {
+				value.cfg.data = A.toQueryString(data);
 			}
-			else {
-				instance.unplug(A.Plugin.StdModIOPlugin);
+
+			instance.plug(A.Plugin.StdModIOPlugin, value);
+
+			if (instance.io) {
+				instance.io.refresh();
 			}
-		});
+		}
+		else {
+			instance.unplug(A.Plugin.StdModIOPlugin);
+		}
 
 		return value;
 	},
@@ -352,18 +348,16 @@ A.extend(Dialog, A.Overlay, {
 	_setStack: function(value) {
 		var instance = this;
 
-		AUI().use('overlay-manager', function(A) {
-			if (value) {
-				instance.unplug(A.Plugin.OverlayManager);
+		if (value) {
+			instance.unplug(A.Plugin.OverlayManager);
 
-				instance.plug(A.Plugin.OverlayManager, {
-					group: instance.get(GROUP)
-				});
-			}
-			else {
-				instance.unplug(A.Plugin.OverlayManager);
-			}
-		});
+			instance.plug(A.Plugin.OverlayManager, {
+				group: instance.get(GROUP)
+			});
+		}
+		else {
+			instance.unplug(A.Plugin.OverlayManager);
+		}
 
 		return value;
 	},
@@ -380,4 +374,4 @@ A.extend(Dialog, A.Overlay, {
 
 A.Dialog = Dialog;
 
-}, '@VERSION', { requires: [ 'overlay', 'plugin' ], use: [ 'dd-constrain', 'overlay-manager', 'io-stdmod' ] });
+}, '@VERSION', { requires: [ 'aui-base', 'overlay', 'dd-constrain', 'overlay-manager', 'io-stdmod', 'dialog-css' ] });
