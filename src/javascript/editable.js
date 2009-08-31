@@ -1,7 +1,10 @@
 AUI().add(
 	'editable',
 	function(A) {
-		var getClassName = A.ClassNameManager.getClassName,
+		var Lang = A.Lang,
+			isFunction = Lang.isFunction,
+
+			getClassName = A.ClassNameManager.getClassName,
 
 			CONTENT = 'content',
 			CTRL = 'ctrl',
@@ -15,17 +18,24 @@ AUI().add(
 			WRAPPER = 'wrapper',
 
 			CSS_CTRL_HOLDER = getClassName(CTRL, HOLDER),
+			CSS_BUTTON_ROW = getClassName('button-row'),
+			CSS_EDITING = getClassName(NAME, 'editing'),
+			CSS_TRIGGER_ROW = getClassName(NAME, 'form-triggers'),
 			CSS_HOVER = [ getClassName(NAME, HOVER), getClassName(CTRL, HOLDER) ].join(' '),
-			CSS_HIDDEN = getClassName(HELPER, HIDDEN),
+			CSS_ICON = getClassName('icon'),
+			CSS_ICON_SAVE = getClassName('icon-circle-check'),
+			CSS_ICON_CANCEL = getClassName('icon-circle-close'),
+			CSS_TOOL = getClassName('tool'),
+			CSS_STATE_DEFAULT = getClassName('state-default'),
 			CSS_CONTENT_WRAPPER = getClassName(NAME, CONTENT, WRAPPER),
 			CSS_INPUT_WRAPPER = getClassName(NAME, CTRL, HOLDER),
 			CSS_INPUT = getClassName(NAME, INPUT),
 
 			TPL_INPUT = '<input class="' + CSS_INPUT + '" type="text" />',
 			TPL_TEXTAREA = '<textarea class="' + CSS_INPUT + '"></textarea>',
-			TPL_INPUT_WRAPPER = '<span class="' + [ CSS_CTRL_HOLDER, CSS_HIDDEN, CSS_INPUT_WRAPPER ].join(' ') + '"></span>',
-			TPL_CONTENT_WRAPPER_OPEN = '<div class="' + CSS_CONTENT_WRAPPER + '">',
-			TPL_CONTENT_WRAPPER_CLOSE = '</div>',
+			TPL_INPUT_WRAPPER = '<span class="' + [ CSS_CTRL_HOLDER, CSS_INPUT_WRAPPER ].join(' ') + '"></span>',
+			TPL_BUTTON_ROW = '<span class="' + [ CSS_BUTTON_ROW, CSS_TRIGGER_ROW ].join(' ') + '"></span>',
+			TPL_BUTTON = '<span class="aui-state-default aui-tool"><span class="aui-icon aui-icon-trigger"></span></span>',
 
 			CONTENT_BOX = 'contentBox';
 
@@ -40,12 +50,66 @@ AUI().add(
 				setter: function(value) {
 					var instance = this;
 
+					value = Lang.trim(value);
+
 					instance._toText(value);
+
+					return value;
+				}
+			},
+
+			formatInput: {
+				value: null,
+				validator: isFunction
+			},
+
+			formatOutput: {
+				value: null,
+				validator: isFunction
+			},
+
+			node: {
+				setter: function(value) {
+					var node = A.get(value);
+
+					if (!node) {
+						A.error('AUI.Editable: Invalid Node Given: ' + value);
+					}
+					else {
+						node = node.item(0);
+					}
+
+					return node;
 				}
 			},
 
 			eventType: {
 				value: 'click'
+			},
+
+			renderTo: {
+				value: document.body,
+				setter: function(value) {
+					var instance = this;
+
+					var node;
+
+					if (value == 'node') {
+						node = instance.get(value);
+					}
+					else {
+						node = A.get(value);
+					}
+
+					if (!node) {
+						A.error('AUI.Editable: Invalid renderTo Given: ' + value);
+					}
+					else {
+						node = node.item(0);
+					}
+
+					return node;
+				}
 			},
 
 			inputType: {
@@ -71,6 +135,14 @@ AUI().add(
 
 					instance._scopedSave = A.bind(instance.save, instance);
 
+					var node = instance.get('node');
+					var eventType = instance.get('eventType');
+
+					node.on('mouseenter', instance._onMouseEnterEditable, instance);
+					node.on('mouseleave', instance._onMouseLeaveEditable, instance);
+
+					node.on(eventType, instance._startEditing, instance);
+
 					instance._createEvents();
 				},
 
@@ -80,50 +152,66 @@ AUI().add(
 					var contentBox = instance.get(CONTENT_BOX);
 					var inputType = instance.get('inputType');
 
+					var buttonRow = A.Node.create(TPL_BUTTON_ROW);
 					var inputWrapper = A.Node.create(TPL_INPUT_WRAPPER);
 					var inputNode = A.Node.create(inputType == 'text' ? TPL_INPUT : TPL_TEXTAREA);
 
-					var currentHTML = contentBox.get('innerHTML');
+					var cancelButton = A.Node.create(TPL_BUTTON);
+					var saveButton = A.Node.create(TPL_BUTTON);
+
+					var cancelIcon = cancelButton.get('firstChild');
+					var saveIcon = saveButton.get('firstChild');
+
+					cancelIcon.addClass(CSS_ICON_CANCEL);
+					saveIcon.addClass(CSS_ICON_SAVE);
+
+					buttonRow.appendChild(cancelButton);
+					buttonRow.appendChild(saveButton);
 
 					inputWrapper.appendChild(inputNode);
 
+					contentBox.appendChild(inputWrapper);
+					contentBox.appendChild(buttonRow);
+
 					inputNode.addClass(CSS_INPUT);
 
-					contentBox.html(TPL_CONTENT_WRAPPER_OPEN + currentHTML + TPL_CONTENT_WRAPPER_CLOSE);
-
-					A.get('body').appendChild(inputWrapper);
-
-					instance.contentWrapper = contentBox.get('firstChild');
-
 					instance.inputWrapper = inputWrapper;
+					instance.buttonRow = buttonRow;
+
+					instance.cancelButton = cancelButton;
+					instance.cancelIcon = cancelIcon;
+
+					instance.saveButton = saveButton;
+					instance.saveIcon = saveIcon;
+
 					instance.inputNode = inputNode;
 				},
 
 				bindUI: function() {
 					var instance = this;
 
-					var eventType = instance.get('eventType');
-
 					var contentBox = instance.get(CONTENT_BOX);
-					var contentWrapper = instance.contentWrapper;
+					var node = instance.get('node');
+
 					var inputNode = instance.inputNode;
-
-					contentBox.on('mouseenter', instance._onMouseEnterEditable, instance);
-					contentBox.on('mouseleave', instance._onMouseLeaveEditable, instance);
-
-					contentWrapper.on(eventType, instance._startEditing, instance);
 
 					inputNode.on('keypress', instance._onKeypressEditable, instance);
 
+					instance.cancelButton.on('click', instance.cancel, instance);
+					instance.saveButton.on('click', instance.save, instance);
+
 					instance.after('contentTextChange', instance._syncContentText);
+
+					instance.after('focusedChange', instance._afterFocusedChangeEditable);
 				},
 
 				syncUI: function() {
 					var instance = this;
 
-					var currentText = instance.contentWrapper.get('innerHTML');
+					var currentText = instance.get('node').get('innerHTML');
 
 					currentText = currentText.replace(/\n|\r/gim, '');
+					currentText = Lang.trim(currentText);
 
 					currentText = instance._toText(currentText);
 
@@ -148,6 +236,14 @@ AUI().add(
 					var instance = this;
 
 					instance.fire('save');
+				},
+
+				_afterFocusedChangeEditable: function(event) {
+					var instance = this;
+
+					if (event.newVal === false) {
+						instance.fire('stopEditing', instance.get('visible'));
+					}
 				},
 
 				_createEvents: function() {
@@ -203,26 +299,28 @@ AUI().add(
 				_defStartEditingFn: function(event) {
 					var instance = this;
 
-					var contentBox = instance.get(CONTENT_BOX);
+					var boundingBox = instance.get('boundingBox');
+					var node = instance.get('node');
+
 					var inputNode = instance.inputNode;
-					var inputWrapper = instance.inputWrapper;
 
-					var contentWrapperHeight = contentBox.get('offsetHeight');
-					var contentWrapperWidth = contentBox.get('offsetWidth');
+					var nodeHeight = node.get('offsetHeight');
+					var nodeWidth = node.get('offsetWidth');
 
-					inputWrapper.removeClass(CSS_HIDDEN);
+					instance.show();
 
-					var xy = contentBox.getXY();
+					node.addClass(CSS_EDITING);
 
-					inputNode.setStyle('height', contentWrapperHeight + 'px');
-					inputNode.setStyle('width', contentWrapperWidth + 'px');
+					var xy = node.getXY();
 
-					inputWrapper.setStyle('left', xy[0] + 'px');
-					inputWrapper.setStyle('top', xy[1] + 'px');
-					inputWrapper.setStyle('height', contentWrapperHeight + 'px');
-					inputWrapper.setStyle('width', contentWrapperWidth + 'px');
-
-					instance._blurHandle = inputNode.on('blur', instance._scopedSave);
+					boundingBox.setStyles(
+						{
+							height: nodeHeight + 'px',
+							left: xy[0] + 'px',
+							top: xy[1] + 'px',
+							width: nodeWidth + 'px'
+						}
+					);
 
 					inputNode.focus();
 					inputNode.select();
@@ -231,16 +329,9 @@ AUI().add(
 				_defStopEditingFn: function(event, save) {
 					var instance = this;
 
-					instance.inputWrapper.addClass(CSS_HIDDEN);
+					instance.hide();
 
-					var contentWrapper = instance.contentWrapper;
-
-					contentWrapper.removeClass(CSS_HIDDEN);
-					contentWrapper.removeClass(CSS_HOVER);
-
-					if (instance._blurHandle) {
-						instance._blurHandle.detach();
-					}
+					instance.get('node').removeClass(CSS_EDITING);
 
 					if (save) {
 						instance.set('contentText', instance.inputNode.get('value'));
@@ -274,17 +365,26 @@ AUI().add(
 				_onMouseEnterEditable: function(event) {
 					var instance = this;
 
-					instance.contentWrapper.addClass(CSS_HOVER);
+					instance.get('node').addClass(CSS_HOVER);
 				},
 
 				_onMouseLeaveEditable: function(event) {
 					var instance = this;
 
-					instance.contentWrapper.removeClass(CSS_HOVER);
+					instance.get('node').removeClass(CSS_HOVER);
 				},
 
 				_setInput: function(value) {
 					var instance = this;
+
+					var inputFormatter = instance.get('formatInput');
+
+					if (inputFormatter) {
+						value = inputFormatter.call(instance, value);
+					}
+					else {
+						value = instance._toText(value);
+					}
 
 					instance.inputNode.set('value', value);
 				},
@@ -292,13 +392,24 @@ AUI().add(
 				_setOutput: function(value) {
 					var instance = this;
 
-					value = instance._toHTML(value);
+					var outputFormatter = instance.get('formatOutput');
 
-					instance.contentWrapper.html(value);
+					if (outputFormatter) {
+						value = outputFormatter.call(instance, value);
+					}
+					else {
+						value = instance._toHTML(value);
+					}
+
+					instance.get('node').set('innerHTML', value);
 				},
 
 				_startEditing: function(event) {
 					var instance = this;
+
+					if (!instance.get('rendered')) {
+						instance.render(instance.get('renderTo'));
+					}
 
 					instance.fire('startEditing');
 
