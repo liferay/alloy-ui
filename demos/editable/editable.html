@@ -47,16 +47,16 @@ AUI().ready(
 	function(A) {
 		(new A.Editable(
 			{
-				contentBox: '#editor1'
+				node: '#editor1'
 			}
-		)).render();
+		));
 
 		(new A.Editable(
 			{
-				contentBox: '#editor2',
+				node: '#editor2',
 				inputType: 'textarea'
 			}
-		)).render();
+		));
 	}
 );
 
