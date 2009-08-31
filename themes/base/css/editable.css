@@ -1,6 +1,29 @@
+.aui-editable-content-wrapper {
+	border: 1px solid transparent;
+	padding: 3px;
+}
+
 .aui-editable-ctrl-holder {
-	left: 0;
+}
+
+.aui-editable {
 	position: absolute;
+}
+
+.aui-editable-editing {
+	visibility: hidden;
+}
+
+.aui-editable-hidden {
+	display: none;
+}
+
+.aui-editable-form-triggers {
+	background-color: transparent;
+	border-width: 0;
+	padding: 0;
+	position: absolute;
+	right: 0;
 	top: 0;
 }
 
@@ -9,17 +32,5 @@
 }
 
 .aui-editable-content {
-	position: relative;
-}
-
-.aui-editable-content-wrapper {
-	border: 1px solid transparent;
-	padding: 3px;
-}
-
-.aui-editable-hover {
-	background: #fff;
-	border: 1px solid;
-	border-color: #777 #ccc #ccc #777;
-	cursor: text;
+	padding-right: 60px;
 }
