@@ -99,6 +99,7 @@
 	window.AUI = window.AUI || {};
 
 	var defaults = {};
+	var defaultModules = [ 'aui-base' ];
 
 	if ('defaults' in AUI) {
 		defaults = AUI.defaults;
@@ -188,14 +189,34 @@
 		}
 	});
 
-	AUI = function() {
-		var args = Array.prototype.slice.call(arguments);
+	var ALLOY = YUI( extend({}, defaults) );
 
-		if (!args.length) {
-			args.push( extend({}, AUI.defaults || {}) );
+	var originalConfig = ALLOY.config;
+
+	// adding callback for .use()
+	defaultModules.push(
+		function(A, result) {
+			if (!result.success) {
+				throw result.msg;
+			}
+		}
+	);
+
+	// loading default modules
+	ALLOY.use.apply(ALLOY, defaultModules);
+
+	AUI = function(o) {
+		var instance = this;
+
+		ALLOY.config = ALLOY.merge(originalConfig, AUI.defaults);
+
+		if (o || instance instanceof AUI) {
+			// new AUI() creates a new YUI sandbox
+			return YUI( ALLOY.merge(ALLOY.config, o) );
 		}
 
-		return YUI.apply(this, args);
+		// returns the cached YUI sandbox
+		return ALLOY;
 	};
 
 	extend(
