@@ -106,7 +106,7 @@
 				* ContextOverlay
 				*/
 				'context-overlay': {
-					fullpath: PATH_JAVASCRIPT + 'context_overlay.js',
+					fullpath: PATH_JAVASCRIPT + 'context-overlay.js',
 					requires: [ 'aui-base', 'overlay' ]
 				},
 
@@ -114,7 +114,7 @@
 				* OverlayManager
 				*/
 				'overlay-manager': {
-					fullpath: PATH_JAVASCRIPT + 'overlay_manager.js',
+					fullpath: PATH_JAVASCRIPT + 'overlay-manager.js',
 					requires: [ 'aui-base', 'overlay', 'plugin' ]
 				},
 
@@ -122,7 +122,7 @@
 				* OverlayMask
 				*/
 				'overlay-mask': {
-					fullpath: PATH_JAVASCRIPT + 'overlay_mask.js',
+					fullpath: PATH_JAVASCRIPT + 'overlay-mask.js',
 					requires: [ 'aui-base', 'overlay', 'plugin' ]
 				},
 
@@ -130,7 +130,7 @@
 				* StdModIOPlugin
 				*/
 				'io-stdmod': {
-					fullpath: PATH_JAVASCRIPT + 'io_stdmod.js',
+					fullpath: PATH_JAVASCRIPT + 'io-stdmod.js',
 					requires: [ 'aui-base', 'overlay', 'io', 'plugin' ]
 				}
 			}
