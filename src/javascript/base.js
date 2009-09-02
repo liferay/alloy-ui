@@ -102,14 +102,65 @@ AUI.add('delayed-task', function(A) {
 /*
 * AUI Node
 */
+
 AUI.add('aui-node', function(A) {
 
-	var L = A.Lang,
-		isString = L.isString,
+	var Lang = A.Lang,
+		isString = Lang.isString,
+		isUndefined = Lang.isUndefined,
 
 		INNER_HTML = 'innerHTML';
 
 	A.mix(A.Node.prototype, {
+		after: function(content) {
+			var instance = this;
+
+			instance.insertBefore(content, instance.get('nextSibling'));
+		},
+
+		appendTo: function(selector) {
+			var instance = this;
+
+			A.get(selector).append(instance);
+		},
+
+		attr: function(name, value) {
+			var instance = this;
+
+			if (!isUndefined(value)) {
+				return instance.setAttribute(name, value);
+			}
+			else {
+				return instance.getAttribute(name);
+			}
+		},
+
+		before: function(content) {
+			var instance = this;
+
+			instance.insertBefore(content, instance);
+		},
+
+		empty: function() {
+			var instance = this;
+
+			instance.queryAll('>*').remove();
+
+			var el = A.Node.getDOMNode(instance);
+
+			while (el.firstChild) {
+				el.removeChild(el.firstChild);
+			}
+
+			return instance;
+		},
+
+		getDOM: function() {
+			var instance = this;
+
+			return A.Node.getDOMNode(instance);
+		},
+
 		html: function() {
 			var args = arguments, length = args.length;
 
@@ -121,6 +172,57 @@ AUI.add('aui-node', function(A) {
 			}
 
 			return this;
+		},
+
+		insertAfter: function(content) {
+			var instance = this;
+
+			return instance.insertBefore(content, instance.get('nextSibling'));
+		},
+
+		prependTo: function(selector) {
+			var instance = this;
+
+			A.get(selector).prepend(instance);
+		},
+
+		text: function(text) {
+			var instance = this;
+
+			if (!isUndefined(text)) {
+				text = A.DOM._getDoc(A.Node.getDOMNode(instance)).createTextNode(text);
+
+				return instance.empty().append(text);
+			}
+
+			var el = A.Node.getDOMNode(instance);
+
+			return instance._getText(el.childNodes);
+		},
+
+		_getText: function(childNodes) {
+			var instance = this;
+
+			var length = childNodes.length;
+			var childNode;
+
+			var str = [];
+
+			for (var i = 0; i < length; i++) {
+				childNode = childNodes[i];
+
+				if (childNode && childNode.nodeType != 8) {
+					if (childNode.nodeType != 1) {
+						str.push(childNode.nodeValue);
+					}
+
+					if (childNode.childNodes) {
+						str.push(instance._getText(childNode.childNodes));
+					}
+				}
+			}
+
+			return str.join('');
 		}
 	}, true);
 
@@ -196,6 +298,35 @@ AUI.add('aui-node', function(A) {
 
 			A.Node.DEFAULT_SETTER.apply(this, [ INNER_HTML, v ]);
 		}
+	};
+
+	A.NodeList.importMethod(
+		A.Node.prototype,
+		[
+			'after',
+
+			'appendTo',
+
+			'attr',
+
+			'before',
+
+			'empty',
+
+			'html',
+
+			'insertAfter',
+
+			'prepend',
+
+			'prependTo',
+
+			'text'
+		]
+	);
+
+	A.NodeList.prototype.getDOM = function() {
+		return A.NodeList.getDOMNodes(this);
 	};
 
 }, '@VERSION', { requires: [ 'node' ] });
