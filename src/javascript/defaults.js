@@ -107,7 +107,7 @@
 				*/
 				'context-overlay': {
 					fullpath: PATH_JAVASCRIPT + 'context-overlay.js',
-					requires: [ 'aui-base', 'overlay' ]
+					requires: [ 'aui-base', 'overlay', 'delayed-task' ]
 				},
 
 				/*
