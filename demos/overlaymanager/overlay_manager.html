@@ -11,13 +11,13 @@
 
 <style type="text/css" media="screen">
 
-#overlay-blue .aui-overlay {
+#overlay-blue .aui-overlay, #overlay-mixed .blue {
 	background: blue;
 	color: #fff;
 	border: 4px solid #000;
 }
 
-#overlay-red .aui-overlay {
+#overlay-red .aui-overlay, #overlay-mixed .red {
 	background: red;
 	color: #fff;
 	border: 4px solid #000;
@@ -34,8 +34,12 @@
 <p><button id="showAll-red">Show All (red group)</button></p>
 <p><button id="hideAll-red">Hide All (red group)</button></p>
 
+<p><button id="showAll-mixed">Show All (mixed group)</button></p>
+<p><button id="hideAll-mixed">Hide All (mixed group)</button></p>
+
 <div id="overlay-blue"></div>
 <div id="overlay-red"></div>
+<div id="overlay-mixed"></div>
 
 <script type="text/javascript" charset="utf-8">
 
@@ -93,15 +97,52 @@ AUI().ready('overlay-manager', 'dd', 'node', function(A) {
 	})
 	.render('#overlay-red');
 
+	// Mixed...
+	var overlay7 = new A.Overlay({
+		bodyContent: 'Overlay7',
+		width: 150,
+		height: 150,
+		xy: [ 800, 100 ]
+	})
+	.render('#overlay-mixed');
+	overlay7.get('boundingBox').addClass('blue');
+
+	var overlay8 = new A.Overlay({
+		bodyContent: 'Overlay8',
+		width: 150,
+		height: 150,
+		xy: [ 820, 200 ]
+	})
+	.render('#overlay-mixed');
+	overlay8.get('boundingBox').addClass('red');
+
+	var overlay9 = new A.Overlay({
+		bodyContent: 'Overlay9',
+		width: 150,
+		height: 150,
+		xy: [ 840, 300 ]
+	})
+	.render('#overlay-mixed');
+	overlay9.get('boundingBox').addClass('blue');
+
+	var overlay10 = new A.Overlay({
+		bodyContent: 'Overlay10',
+		width: 150,
+		height: 150,
+		xy: [ 860, 400 ]
+	})
+	.render('#overlay-mixed');
+	overlay10.get('boundingBox').addClass('red');
+
 	// plug OverlayManager
 
-	overlay1.plug(A.Plugin.OverlayManager, { group: 'blue' });
-	overlay2.plug(A.Plugin.OverlayManager, { group: 'blue' });
-	overlay3.plug(A.Plugin.OverlayManager, { group: 'blue' });
+	var blueOverlayManager = new A.OverlayManager();
+	var redOverlayManager = new A.OverlayManager();
+	var mixedOverlayManager = new A.OverlayManager();
 
-	overlay4.plug(A.Plugin.OverlayManager, { group: 'red' });
-	overlay5.plug(A.Plugin.OverlayManager, { group: 'red' });
-	overlay6.plug(A.Plugin.OverlayManager, { group: 'red' });
+	blueOverlayManager.register([overlay1, overlay2, overlay3, overlay7, overlay9]);
+	redOverlayManager.register([overlay4, overlay5, overlay6, overlay8, overlay10]);
+	mixedOverlayManager.register([overlay7, overlay8, overlay9, overlay10]);
 
 	var bringToTop = function(e) {
 		var widget = A.Widget.getByNode(e.target);
@@ -111,6 +152,7 @@ AUI().ready('overlay-manager', 'dd', 'node', function(A) {
 
 	A.on('mousedown', bringToTop, '#overlay-blue .aui-overlay');
 	A.on('mousedown', bringToTop, '#overlay-red .aui-overlay');
+	A.on('mousedown', bringToTop, '#overlay-mixed .aui-overlay');
 
 	// extras
 
@@ -120,25 +162,36 @@ AUI().ready('overlay-manager', 'dd', 'node', function(A) {
 	new A.DD.Drag({	node: overlay4.get('boundingBox') });
 	new A.DD.Drag({	node: overlay5.get('boundingBox') });
 	new A.DD.Drag({	node: overlay6.get('boundingBox') });
+	new A.DD.Drag({	node: overlay7.get('boundingBox') });
+	new A.DD.Drag({	node: overlay8.get('boundingBox') });
+	new A.DD.Drag({	node: overlay9.get('boundingBox') });
+	new A.DD.Drag({	node: overlay10.get('boundingBox') });
 
 	A.get('#showAll-blue').on('click', function() {
-		overlay1.OverlayManager.showAll();
+		blueOverlayManager.showAll();
 	});
 
 	A.get('#hideAll-blue').on('click', function() {
-		overlay1.OverlayManager.hideAll();
+		blueOverlayManager.hideAll();
 	});
 
 	A.get('#showAll-red').on('click', function() {
-		overlay4.OverlayManager.showAll();
+		redOverlayManager.showAll();
 	});
 
 	A.get('#hideAll-red').on('click', function() {
-		overlay4.OverlayManager.hideAll();
+		redOverlayManager.hideAll();
+	});
+
+	A.get('#showAll-mixed').on('click', function() {
+		mixedOverlayManager.showAll();
+	});
+
+	A.get('#hideAll-mixed').on('click', function() {
+		mixedOverlayManager.hideAll();
 	});
 
 });
-
 </script>
 
 </body>
