@@ -5,13 +5,10 @@ var L = A.Lang,
 	isNumber = L.isNumber,
 	isObject = L.isObject,
 
-	isNodeList = function(v) {
-		return (v instanceof A.NodeList);
-	},
-
 	ALIGN = 'align',
 	BL = 'bl',
-	CONTEXT_OVERLAY = 'ContextOverlay',
+	BOUNDING_BOX = 'boundingBox',
+	CONTEXT_OVERLAY = 'contextoverlay',
 	DELAY = 'delay',
 	HIDE_DELAY = 'hideDelay',
 	HIDE_ON = 'hideOn',
@@ -23,7 +20,18 @@ var L = A.Lang,
 	VISIBLE = 'visible';
 
 function ContextOverlay(config) {
+	var instance = this;
+
 	this._lazyAddAttrs = false;
+
+	instance._hideTask = new A.DelayedTask(instance._hideContextOverlay, instance);
+	instance._showTask = new A.DelayedTask(instance._showContextOverlay, instance);
+	instance._toggleTask = new A.DelayedTask(instance._toggleContextOverlay, instance);
+
+	instance._hideCallbackContextOverlay = null;
+	instance._showCallbackContextOverlay = null;
+	instance._toggleCallbackContextOverlay = null;
+
  	ContextOverlay.superclass.constructor.apply(this, arguments);
 }
 
@@ -71,11 +79,17 @@ A.mix(ContextOverlay, {
 
 		trigger: {
 			value: null,
-			validator: function(v) {
-				return isString(v) || isNodeList(v);
-			},
-			setter: function(v) {
-				return this._setTrigger(v);
+			setter: function(value) {
+				var node = A.get(value);
+
+				if (!node) {
+					A.error('AUI.ContextOverlay: Invalid Trigger Given: ' + value);
+				}
+				else {
+					node = node.item(0);
+				}
+
+				return node;
 			}
 		},
 
@@ -92,149 +106,191 @@ A.extend(ContextOverlay, A.Overlay, {
 	bindUI: function(){
 		var instance = this;
 
-		instance.before('showOnChange', instance._beforeSetHideShow);
-		instance.before('hideOnChange', instance._beforeSetHideShow);
+		instance.before('showOnChange', instance._syncListeners);
+		instance.before('hideOnChange', instance._syncListeners);
 	},
 
 	/*
 	* Methods
 	*/
-	show: function(force) {
-		var instance = this;
-		var delay = force ? 0 : instance.get(SHOW_DELAY);
 
-		instance.fire('beforeShow');
-
-		instance.clearIntervals();
-
-		var interval = A.later(delay, instance, function() {
-			ContextOverlay.superclass.show.apply(this, arguments);
-
-			instance.fire('show');
-		});
-
-		var intervals = A.merge(
-			instance.get(INTERVALS),
-			{ show: interval }
-		);
-
-		instance.set(INTERVALS, intervals);
-	},
-
-	hide: function(force) {
-		var instance = this;
-		var delay = force ? 0 : instance.get(HIDE_DELAY);
-
-		instance.fire('beforeHide');
-
-		instance.clearIntervals();
-
-		var interval = A.later(delay, instance, function() {
-			ContextOverlay.superclass.hide.apply(this, arguments);
-
-			instance.fire('hide');
-		});
-
-		var intervals = A.merge(
-			instance.get(INTERVALS),
-			{ hide: interval }
-		);
-
-		instance.set(INTERVALS, intervals);
-	},
-
-	toggle: function(force) {
+	toggle: function() {
 		var instance = this;
 
 		if (instance.get(VISIBLE)) {
-			instance.hide(force);
+			instance.hide();
 		}
 		else {
-			instance.show(force);
+			instance.show();
 		}
 	},
 
-	clearIntervals: function() {
+	_hideContextOverlay: function(event) {
 		var instance = this;
-		var intervals = instance.get(INTERVALS) || {};
 
-		if (intervals.hide) {
-			intervals.hide.cancel();
-		}
-		if (intervals.show) {
-			intervals.show.cancel();
-		}
+		instance._showTask.cancel();
+
+		instance.fire('hide');
+
+		instance.hide();
+
+		event.halt();
 	},
 
-	_bindShowHide: function(eventType, fn, delay) {
+	_showContextOverlay: function(event) {
 		var instance = this;
 
-		var align = instance.get(ALIGN);
-		var trigger = instance.get(TRIGGER);
+		instance._hideTask.cancel();
 
-		if (isNumber(delay)) {
-			trigger.on(eventType, A.rbind(instance._showHideContextOverlay, instance, align, fn));
+		instance.fire('show');
+
+		if (event.currentTarget.compareTo(instance.get(TRIGGER))) {
+			var align = instance.get('align');
+
+			var node = align.node || event.currentTarget;
+
+			instance._uiSetAlign(node, align.points);
 		}
+
+		instance.show();
+
+		event.halt();
 	},
 
-	_showHideContextOverlay: function(event, align, fn) {
+	_toggleContextOverlay: function() {
 		var instance = this;
 
-		var node = align.node || event.currentTarget;
-
-		instance._uiSetAlign(node, align.points);
-
-		fn.call(instance);
-
-		event.stopPropagation();
-		event.preventDefault();
+		if (instance.get(VISIBLE)) {
+			instance.hide();
+		}
+		else {
+			instance.show();
+		}
 	},
 
 	/*
 	* Attribute Listeners
 	*/
-	_beforeSetHideShow: function(event) {
+	_syncListeners: function(event) {
 		var instance = this;
 
-		instance.get(TRIGGER).detach(event.prevVal);
+		var trigger = instance.get(TRIGGER);
+		var boundingBox = instance.get(BOUNDING_BOX);
+
+		var hideOn = instance.get(HIDE_ON);
+		var showOn = instance.get(SHOW_ON);
+
+		var oldEventType = event.prevVal;
+		var attrName = event.attrName;
+
+		// Changing from a toggle
+		if (oldEventType == hideOn || oldEventType == showOn) {
+			trigger.detach(oldEventType, instance._toggleCallbackContextOverlay);
+		}
+		else {
+			var oldListener;
+
+			if (attrName == HIDE_ON) {
+				oldListener = instance._hideCallbackContextOverlay;
+			}
+			else if (attrName == SHOW_ON) {
+				oldListener = instance._showCallbackContextOverlay;
+			}
+
+			if (oldListener) {
+				trigger.detach(oldEventType, oldListener);
+				boundingBox.detach(oldEventType, oldListener);
+			}
+		}
+	},
+
+	_addListenersContextOverlay: function(eventType, listener) {
+		var instance = this;
+
+		var trigger = instance.get(TRIGGER);
+		var boundingBox = instance.get(BOUNDING_BOX);
+
+		trigger.on(eventType, listener);
+		boundingBox.on(eventType, listener);
+	},
+
+	_createToggleOn: function(eventType) {
+		var instance = this;
+
+		if (!instance._toggleCallbackContextOverlay) {
+			var fn = instance._toggleTask;
+			var hideDelay = instance.get(HIDE_DELAY);
+			var showDelay = instance.get(SHOW_DELAY);
+
+			var delay = Math.min(hideDelay, showDelay);
+
+			instance._toggleCallbackContextOverlay = A.bind(fn.delay, fn, delay, null, null);
+		}
+
+		var trigger = instance.get(TRIGGER);
+		var boundingBox = instance.get(BOUNDING_BOX);
+
+		var hideCallback = instance._hideCallbackContextOverlay;
+		var showCallback = instance._showCallbackContextOverlay;
+
+		trigger.detach(eventType, hideCallback);
+		trigger.detach(eventType, showCallback);
+
+		boundingBox.detach(eventType, hideCallback);
+		boundingBox.detach(eventType, showCallback);
+
+		trigger.on(eventType, instance._toggleCallbackContextOverlay);
 	},
 
 	/*
 	* Setters
 	*/
+
 	_setHideOn: function(eventType) {
 		var instance = this;
-		var delay = instance.get(HIDE_DELAY);
-		var fn = instance.hide;
 
 		if (eventType == instance.get(SHOW_ON)) {
-			fn = instance.toggle;
+			instance._createToggleOn(eventType);
 		}
+		else {
+			var trigger = instance.get(TRIGGER);
 
-		instance._bindShowHide(eventType, fn, delay);
+			if (!instance._hideCallbackContextOverlay) {
+				var fn = instance._hideTask;
+				var delay = instance.get(HIDE_DELAY);
+
+				instance._hideCallbackContextOverlay = A.bind(fn.delay, fn, delay, null, null);
+			}
+
+			instance._addListenersContextOverlay(eventType, instance._hideCallbackContextOverlay);
+		}
 
 		return eventType;
 	},
 
 	_setShowOn: function(eventType) {
 		var instance = this;
-		var delay = instance.get(SHOW_DELAY);
-		var fn = instance.show;
 
 		if (eventType == instance.get(HIDE_ON)) {
-			fn = instance.toggle;
+			instance._createToggleOn(eventType);
+		}
+		else {
+			var trigger = instance.get(TRIGGER);
+
+			if (!instance._showCallbackContextOverlay) {
+				var fn = instance._showTask;
+				var delay = instance.get(SHOW_DELAY);
+
+				instance._showCallbackContextOverlay = A.bind(fn.delay, fn, delay, null, null);
+			}
+
+			instance._addListenersContextOverlay(eventType, instance._showCallbackContextOverlay);
 		}
 
-		instance._bindShowHide(eventType, fn, delay);
-
 		return eventType;
-	},
-
-	_setTrigger: function(value) {
-		return (isNodeList(value) ? value : A.all(value));
 	}
 });
 
 A.ContextOverlay = ContextOverlay;
 
-}, '@VERSION', { requires: [ 'overlay' ] });
+}, '@VERSION', { requires: [ 'aui-base', 'overlay', 'delayed-task' ] });
