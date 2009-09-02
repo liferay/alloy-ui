@@ -64,6 +64,10 @@ AUI.add('delayed-task', function(A) {
 			instance._scope = newScope || instance._scope;
 			instance._args = newArgs || instance._args;
 
+			if (!A.Lang.isArray(instance._args)) {
+				instance._args = [instance._args];
+			}
+
 			if (!instance._id) {
 				if (instance._delay > 0) {
 					instance._id = setInterval(instance._base, instance._delay);
