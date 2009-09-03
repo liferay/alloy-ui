@@ -2,13 +2,16 @@ AUI.add('overlay-manager', function(A) {
 
 var Lang = A.Lang,
 	isArray = Lang.isArray,
+	isBoolean = Lang.isBoolean,
+	isNumber = Lang.isNumber,
 	isString = Lang.isString,
 
 	DEFAULT = 'default',
 	HOST = 'host',
 	OVERLAY_MANAGER = 'OverlayManager',
 	GROUP = 'group',
-	Z_INDEX = 'zIndex';
+	Z_INDEX = 'zIndex',
+	Z_INDEX_BASE = 'zIndexBase';
 
 	function OverlayManager(config) {
 	 	OverlayManager.superclass.constructor.apply(this, arguments);
@@ -19,12 +22,20 @@ var Lang = A.Lang,
 		{
 			NAME: OVERLAY_MANAGER.toLowerCase(),
 
-			zIndexBase: 1000,
-
 			ATTRS: {
-				group: {
-					value: DEFAULT,
-					validator: isString
+				zIndexBase: {
+					value: 1000,
+					setter: function(value) {
+						if (isString(value)) {
+							value = parseInt(value, 10);
+						}
+
+						if (!isNumber(value)) {
+							value = A.Attribute.INVALID_VALUE;
+						}
+
+						return value;
+					}
 				}
 			}
 		}
@@ -71,7 +82,7 @@ var Lang = A.Lang,
 				}
 			}
 			else {
-				var zIndexBase = OverlayManager.zIndexBase;
+				var zIndexBase = instance.get(Z_INDEX_BASE);
 
 				var canRegister = (A.Array.indexOf(overlays, overlay) == -1);
 
@@ -81,9 +92,14 @@ var Lang = A.Lang,
 					var zIndex = overlay.get(Z_INDEX) || 0;
 					var newZIndex = overlays.length + zIndex + zIndexBase;
 
-					overlay.set(Z_INDEX, newZIndex);
+					overlay.plug(
+						OverlayManagerPlugin,
+						{
+							group: instance
+						}
+					);
 
-					overlay.plug(A.Plugin.OverlayManager);
+					overlay.set(Z_INDEX, newZIndex);
 
 					overlay.on('focusedChange', instance._onFocusChange, instance);
 				}
@@ -108,7 +124,7 @@ var Lang = A.Lang,
 			A.Array.each(overlays, fn);
 		},
 
-		showAll: function() {console.log('each...', this.each);
+		showAll: function() {
 			this.each(
 				function(overlay) {
 					overlay.show();
@@ -166,12 +182,13 @@ var Lang = A.Lang,
 
 		managers: {},
 
-		zIndexBase: 1000,
-
 		ATTRS: {
 			group: {
-				value: DEFAULT,
-				validator: isString
+				value: DEFAULT
+			},
+
+			zIndexBase: {
+				value: null
 			}
 		}
 	});
@@ -184,16 +201,23 @@ var Lang = A.Lang,
 				var instance = this;
 
 				var group = instance.get(GROUP);
+				var zIndexBase = instance.get(Z_INDEX_BASE);
 
-				if (!(group in OverlayManagerPlugin.managers)) {
-					OverlayManagerPlugin.managers[group] = new OverlayManager(
-						{
-							group: group
-						}
-					);
+				if (group instanceof OverlayManager) {
+					OverlayManagerPlugin.managers[group.toString()] = group;
 				}
+				else {
+					if (!(group in OverlayManagerPlugin.managers)) {
+						OverlayManagerPlugin.managers[group] = new OverlayManager(
+							{
+								group: group,
+								zIndexBase: zIndexBase
+							}
+						);
+					}
 
-				instance.register();
+					instance.register();
+				}
 			},
 
 			bringToTop: function() {
