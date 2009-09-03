@@ -262,7 +262,9 @@ var Lang = A.Lang,
 				return manager;
 			},
 
-			hideAll: function(force) {
+			hideAll: function() {
+				var instance = this;
+
 				var group = instance.get(GROUP);
 				var manager = instance.getManager();
 
