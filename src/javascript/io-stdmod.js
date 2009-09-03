@@ -30,7 +30,7 @@ A.mix(StdModIOPlugin, {
 	ATTRS: {
 
 		uri : {
-			value:null
+			value: null
 		},
 
 		/*
