@@ -6,7 +6,7 @@ var L = A.Lang,
 	FORMATTER = 'formatter',
 	HOST = 'host',
 	ICON = 'icon',
-	IO_CFG = 'ioCfg',
+	IO_CFG = 'cfg',
 	LOADING = 'loading',
 	SECTION = 'section',
 	URI = 'uri',
@@ -30,6 +30,10 @@ A.mix(StdModIOPlugin, {
 	ATTRS: {
 
 		uri : {
+			value: null
+		},
+
+		cfg : {
 			value: null
 		},
 
@@ -80,7 +84,7 @@ A.extend(StdModIOPlugin, A.Plugin.Base, {
 			var uri = this.get(URI);
 
 			if (uri) {
-				cfg = this.get(HOST).get(IO_CFG) || {};
+				cfg = this.get(IO_CFG) || {};
 
 				cfg.on = cfg.on || {};
 
@@ -90,7 +94,7 @@ A.extend(StdModIOPlugin, A.Plugin.Base, {
 				cfg.on.success = cfg.on.success || A.bind(this._defSuccessHandler, this);
 				cfg.on.failure = cfg.on.failure || A.bind(this._defFailureHandler, this);
 
-				cfg.method = cfg.method;
+				cfg.method = cfg.method || 'POST';
 
 				A.io(uri, cfg);
 			}
@@ -98,7 +102,7 @@ A.extend(StdModIOPlugin, A.Plugin.Base, {
 	},
 
 	_defSuccessHandler: function(id, o) {
-		var response = o.responseText || "";
+		var response = o.responseText || '';
 		var section = this.get(SECTION);
 		var formatter = this.get(FORMATTER);
 
