@@ -257,4 +257,118 @@
 	};
 
 	checkScriptEvalSupport();
+
+	/*
+		UA extensions
+	*/
+
+	var UA = ALLOY.UA;
+
+	var p = navigator.platform;
+	var u = navigator.userAgent;
+	var b = /(Firefox|Opera|Safari|KDE|iCab|Flock|IE)/.exec(u);
+	var os = /(Win|Mac|Linux|iPhone|Sun|Solaris)/.exec(p);
+	var versionDefaults = [0,0];
+
+	b = (!b || !b.length) ? (/(Mozilla)/.exec(u) || ['']) : b;
+	os = (!os || !os.length) ? [''] : os;
+
+	extend(
+		UA,
+		{
+			gecko: /Gecko/.test(u) && !/like Gecko/.test(u),
+			webkit: /WebKit/.test(u),
+
+			aol: /America Online Browser/.test(u),
+			camino: /Camino/.test(u),
+			firefox: /Firefox/.test(u),
+			flock: /Flock/.test(u),
+			icab: /iCab/.test(u),
+			konqueror: /KDE/.test(u),
+			mozilla: /mozilla/.test(u),
+			ie: /MSIE/.test(u),
+			netscape: /Netscape/.test(u),
+			opera: /Opera/.test(u),
+			safari: /Safari/.test(u),
+			browser: b[0].toLowerCase(),
+
+			win: /Win/.test(p),
+			mac: /Mac/.test(p),
+			linux: /Linux/.test(p),
+			iphone: /iPhone/.test(p),
+			sun: /Solaris|SunOS/.test(p),
+			os: os[0].toLowerCase(),
+
+			platform: p,
+			agent: u
+		}
+	);
+
+	UA.version = {
+		string: ''
+	};
+
+	if (UA.ie) {
+		UA.version.string = (/MSIE ([^;]+)/.exec(u) || versionDefaults)[1];
+	}
+	else if (UA.firefox) {
+		UA.version.string = (/Firefox\/(.+)/.exec(u) || versionDefaults)[1];
+	}
+	else if (UA.safari) {
+		UA.version.string = (/Version\/([^\s]+)/.exec(u) || versionDefaults)[1];
+	}
+	else if (UA.opera) {
+		UA.version.string = (/Opera\/([^\s]+)/.exec(u) || versionDefaults)[1];
+	}
+
+	UA.version.number = parseFloat(UA.version.string) || versionDefaults[0];
+	UA.version.major = /([^\.]+)/.exec(UA.version.string)[1];
+
+	UA[UA.browser + UA.version.major] = true;
+
+	UA.renderer = '';
+
+	if (UA.ie) {
+		UA.renderer = 'trident';
+	}
+	else if (UA.gecko) {
+		UA.renderer = 'gecko';
+	}
+	else if (UA.webkit) {
+		UA.renderer = 'webkit';
+	}
+	else if (UA.opera) {
+		UA.renderer = 'presto';
+	}
+
+	/*
+		Browser selectors
+	*/
+
+	var selectors = [
+		UA.renderer,
+		UA.browser,
+		UA.browser + UA.version.major,
+		UA.os,
+		'js'
+	];
+
+	if (UA.os == 'macintosh') {
+		selectors.push('mac');
+	}
+	else if (UA.os == 'windows') {
+		selectors.push('win');
+	}
+
+	if (UA.mobile) {
+		selectors.push('mobile');
+	}
+
+	if (UA.secure) {
+		selectors.push('secure');
+	}
+
+	UA.selectors = selectors.join(' ');
+
+	document.getElementsByTagName('html')[0].className += ' ' + UA.selectors;
 })();
