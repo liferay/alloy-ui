@@ -21,6 +21,8 @@
 
 			//base: '',
 
+			defaultModules: [ 'aui-base' ],
+
 			filter: 'raw',
 
 			modules: {

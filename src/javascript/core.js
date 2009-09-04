@@ -98,17 +98,8 @@
 
 	window.AUI = window.AUI || {};
 
-	var defaults = {};
-	var defaultModules = [ 'aui-base' ];
-
-	if ('defaults' in AUI) {
-		defaults = AUI.defaults;
-	}
-
-	// get the base path in case the user has not specified
-	if (!('base' in defaults)) {
-		defaults.base = getBasePath();
-	}
+	var defaults = AUI.defaults || {};
+	var defaultModules = defaults.defaultModules || [];
 
 	// extending YUI prototype
 	extend(YUI.prototype, {
