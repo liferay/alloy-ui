@@ -108,10 +108,6 @@ A.mix(Dialog, {
 			}
 		},
 
-		ioCfg: {
-			value: null
-		},
-
 		stack: {
 			lazyAdd: true,
 			value: true,
