@@ -39,7 +39,6 @@ var L = A.Lang,
 	STACK = 'stack',
 	STATE = 'state',
 	TITLE = 'title',
-	TOOL = 'tool',
 	WIDGET = 'widget',
 
 	getCN = A.ClassNameManager.getClassName,
@@ -55,7 +54,6 @@ var L = A.Lang,
 	CSS_PREFIX = getCN(DD),
 	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
 	CSS_STATE_HOVER = getCN(STATE, HOVER),
-	CSS_TOOL = getCN(TOOL),
 	CSS_WIDGET_HD = getCN(WIDGET, HD),
 
 	TPL_LOADING = '<div class="' + CSS_ICON_LOADING + '"></div>';
@@ -170,20 +168,14 @@ A.extend(Dialog, A.Overlay, {
 	_bindElements: function () {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
-		var closeIconContainter = instance.closeIconContainter;
 
-		var closeFn = function(event) {
-			var method = { mouseover: ADD_CLASS, mouseout: REMOVE_CLASS }[event.type];
-			event.currentTarget[method](CSS_STATE_HOVER);
-		};
-
-		closeIconContainter.on('mouseover', closeFn);
-		closeIconContainter.on('mouseout', closeFn);
-
-		closeIconContainter.on('click', function(event) {
-			instance.hide();
-			instance.fire('close');
-		});
+		instance.closeIcon.on(
+			'click',
+			function(event) {
+				instance.hide();
+				instance.fire('close');
+			}
+		);
 
 		boundingBox.on('mousedown', function() {
 			if (instance.OverlayManager) {
@@ -200,35 +192,35 @@ A.extend(Dialog, A.Overlay, {
 		var instance = this;
 
 		instance.titleContainter = A.Node.create('<div></div>');
-		instance.closeIconContainter = A.Node.create('<span></span>');
-		instance.closeIcon = A.Node.create('<span></span>');
 
-		var closeIcon = instance.closeIcon;
-		var closeIconContainter = instance.closeIconContainter;
+		var closeIcon = new A.ToolItem(
+			{
+				icon: 'close'
+			}
+		);
+
+		closeIcon.get('node').addClass(CSS_DIALOG_CLOSE);
+
+		instance.closeIcon = closeIcon;
+
 		var title = instance.get(TITLE);
 		var titleContainter = instance.titleContainter;
 
-		closeIcon.addClass(CSS_ICON);
-		closeIcon.addClass(CSS_ICON_CLOSE);
-		closeIconContainter.addClass(CSS_DIALOG_CLOSE);
-		closeIconContainter.addClass(CSS_STATE_DEFAULT);
-		closeIconContainter.addClass(CSS_TOOL);
 		titleContainter.addClass(CSS_DIALOG_TITLE);
 
-		instance.titleContainter.html(title);
+		titleContainter.html(title);
 	},
 
 	_afterRenderer: function() {
 		var instance = this;
 		var headerNode = instance.headerNode;
 		var stack = instance.get(STACK);
-		var closeIconContainter = instance.closeIconContainter;
 
 		headerNode.addClass(CSS_STATE_DEFAULT);
 
 		headerNode.append(instance.titleContainter);
-		headerNode.append(closeIconContainter);
-		closeIconContainter.append(instance.closeIcon);
+
+		instance.closeIcon.render(headerNode);
 
 		instance._initButtons();
 
