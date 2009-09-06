@@ -264,7 +264,11 @@ AUI.add('aui-node', function(A) {
 
 		domManip: function(html) {
 			var TPL_NODE = '<div></div>',
+				IE_FIX_PADDING_NODE = '<div>_</div>',
 				SCRIPT = 'script';
+
+			// instead of fix all tags to "XHTML"-style, make the firstChild be a valid non-empty tag
+			html = IE_FIX_PADDING_NODE + A.Lang.trim(html);
 
 			delete A.DOM._cloneCache[html];
 
@@ -279,6 +283,8 @@ AUI.add('aui-node', function(A) {
 				A.Node.evalScript( A.Node.getDOMNode(elem) );
 				elem.remove();
 			});
+
+			temp.removeChild(A.Node.getDOMNode(temp).firstChild);
 
 			var html = temp.html();
 
