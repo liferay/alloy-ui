@@ -122,6 +122,12 @@
 					tofile="${project.dir}themes/base/css/${demo.name}.css"
 					overwrite="no"
 				/>
+
+				<move
+					file="${demo.dir}${demo.name}/${demo.name}.js"
+					tofile="${javascript.src.dir}/${demo.name}.js"
+					overwrite="no"
+				/>
 			</else>
 		</if>
 	</target>
