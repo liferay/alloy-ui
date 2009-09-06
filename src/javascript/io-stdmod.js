@@ -3,11 +3,13 @@ AUI.add('io-stdmod', function(A) {
 var L = A.Lang,
 	isString = L.isString,
 
+	BLANK = '',
+	CFG = 'cfg',
 	FORMATTER = 'formatter',
 	HOST = 'host',
 	ICON = 'icon',
-	IO_CFG = 'cfg',
 	LOADING = 'loading',
+	POST = 'POST',
 	SECTION = 'section',
 	URI = 'uri',
 
@@ -28,20 +30,19 @@ A.mix(StdModIOPlugin, {
 	NS: 'io',
 
 	ATTRS: {
-
-		uri : {
+		uri: {
 			value: null
 		},
 
-		cfg : {
-			value: null
+		cfg: {
+			value: {}
 		},
 
 		/*
 		* The default formatter to use when formatting response data. The default
 		* implementation simply passes back the response data passed in.
 		*/
-		formatter : {
+		formatter: {
 			valueFn: function() {
 				return this._defFormatter;
 			}
@@ -67,10 +68,14 @@ A.mix(StdModIOPlugin, {
 
 A.extend(StdModIOPlugin, A.Plugin.Base, {
 	destructor: function() {
-		if (this._activeIO) {
+		if (this.isActive()) {
 			A.io.abort(this._activeIO);
 			this._activeIO = null;
 		}
+	},
+
+	isActive: function() {
+		return this._activeIO;
 	},
 
 	/*
@@ -78,23 +83,31 @@ A.extend(StdModIOPlugin, A.Plugin.Base, {
 	* io configuration settings.
 	*/
 	refresh: function() {
-		section = this.get(SECTION);
+		var instance = this;
+		var section = this.get(SECTION);
 
-		if (section && !this._activeIO) {
+		if (section && !this.isActive()) {
 			var uri = this.get(URI);
 
 			if (uri) {
-				cfg = this.get(IO_CFG) || {};
+				var cfg = A.mix(
+					this.get(CFG),
+					{
+						method: POST,
+						on: {}
+					}
+				);
 
-				cfg.on = cfg.on || {};
-
-				cfg.on.start = cfg.on.start || A.bind(this._defStartHandler, this);
-				cfg.on.complete = cfg.on.complete || A.bind(this._defCompleteHandler, this);
-
-				cfg.on.success = cfg.on.success || A.bind(this._defSuccessHandler, this);
-				cfg.on.failure = cfg.on.failure || A.bind(this._defFailureHandler, this);
-
-				cfg.method = cfg.method || 'POST';
+				// binding correct scopes on callbacks
+				cfg.on = A.merge(
+					cfg.on,
+					{
+						start: A.bind(cfg.on.start || this._defStartHandler, this),
+						complete: A.bind(cfg.on.complete || this._defCompleteHandler, this),
+						success: A.bind(cfg.on.success || this._defSuccessHandler, this),
+						failure: A.bind(cfg.on.failure || this._defFailureHandler, this)
+					}
+				);
 
 				A.io(uri, cfg);
 			}
@@ -102,7 +115,7 @@ A.extend(StdModIOPlugin, A.Plugin.Base, {
 	},
 
 	_defSuccessHandler: function(id, o) {
-		var response = o.responseText || '';
+		var response = o.responseText || BLANK;
 		var section = this.get(SECTION);
 		var formatter = this.get(FORMATTER);
 
