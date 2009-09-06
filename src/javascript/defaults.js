@@ -134,6 +134,14 @@
 				'io-stdmod': {
 					fullpath: PATH_JAVASCRIPT + 'io-stdmod.js',
 					requires: [ 'aui-base', 'overlay', 'io', 'plugin' ]
+				},
+
+				/*
+				* State Interaction plugin
+				*/
+				'state-interaction': {
+					fullpath: PATH_JAVASCRIPT + 'state-interaction.js',
+					requires: [ 'aui-base', 'plugin' ]
 				}
 			}
 		}
