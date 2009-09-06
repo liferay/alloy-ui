@@ -22,11 +22,6 @@ AUI().add(
 			CSS_EDITING = getClassName(NAME, 'editing'),
 			CSS_TRIGGER_ROW = getClassName(NAME, 'form-triggers'),
 			CSS_HOVER = [ getClassName(NAME, HOVER), getClassName(CTRL, HOLDER) ].join(' '),
-			CSS_ICON = getClassName('icon'),
-			CSS_ICON_SAVE = getClassName('icon-circle-check'),
-			CSS_ICON_CANCEL = getClassName('icon-circle-close'),
-			CSS_TOOL = getClassName('tool'),
-			CSS_STATE_DEFAULT = getClassName('state-default'),
 			CSS_CONTENT_WRAPPER = getClassName(NAME, CONTENT, WRAPPER),
 			CSS_INPUT_WRAPPER = getClassName(NAME, CTRL, HOLDER),
 			CSS_INPUT = getClassName(NAME, INPUT),
@@ -35,7 +30,6 @@ AUI().add(
 			TPL_TEXTAREA = '<textarea class="' + CSS_INPUT + '"></textarea>',
 			TPL_INPUT_WRAPPER = '<span class="' + [ CSS_CTRL_HOLDER, CSS_INPUT_WRAPPER ].join(' ') + '"></span>',
 			TPL_BUTTON_ROW = '<span class="' + [ CSS_BUTTON_ROW, CSS_TRIGGER_ROW ].join(' ') + '"></span>',
-			TPL_BUTTON = '<span class="aui-state-default aui-tool"><span class="aui-icon aui-icon-trigger"></span></span>',
 
 			CONTENT_BOX = 'contentBox';
 
@@ -156,22 +150,31 @@ AUI().add(
 					var inputWrapper = A.Node.create(TPL_INPUT_WRAPPER);
 					var inputNode = A.Node.create(inputType == 'text' ? TPL_INPUT : TPL_TEXTAREA);
 
-					var cancelButton = A.Node.create(TPL_BUTTON);
-					var saveButton = A.Node.create(TPL_BUTTON);
+					var cancelButton = new A.ToolItem(
+						{
+							icon: 'circle-close',
+							classNames: {
+								active: ''
+							}
+						}
+					);
 
-					var cancelIcon = cancelButton.get('firstChild');
-					var saveIcon = saveButton.get('firstChild');
-
-					cancelIcon.addClass(CSS_ICON_CANCEL);
-					saveIcon.addClass(CSS_ICON_SAVE);
-
-					buttonRow.appendChild(cancelButton);
-					buttonRow.appendChild(saveButton);
+					var saveButton = new A.ToolItem(
+						{
+							icon: 'circle-check',
+							classNames: {
+								active: ''
+							}
+						}
+					);
 
 					inputWrapper.appendChild(inputNode);
 
 					contentBox.appendChild(inputWrapper);
 					contentBox.appendChild(buttonRow);
+
+					cancelButton.render(buttonRow);
+					saveButton.render(buttonRow);
 
 					inputNode.addClass(CSS_INPUT);
 
@@ -179,10 +182,7 @@ AUI().add(
 					instance.buttonRow = buttonRow;
 
 					instance.cancelButton = cancelButton;
-					instance.cancelIcon = cancelIcon;
-
 					instance.saveButton = saveButton;
-					instance.saveIcon = saveIcon;
 
 					instance.inputNode = inputNode;
 				},
@@ -451,7 +451,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['widget'],
+		requires: ['widget', 'tool'],
 		use: []
 	}
 );

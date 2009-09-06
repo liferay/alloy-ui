@@ -40,7 +40,7 @@
 				*/
 				'autocomplete': {
 					fullpath: PATH_JAVASCRIPT + 'autocomplete.js',
-					requires: [ 'aui-base', 'overlay', 'datasource', 'dataschema', 'autocomplete-css' ]
+					requires: [ 'aui-base', 'overlay', 'datasource', 'dataschema', 'tool-item', 'autocomplete-css' ]
 				},
 				'autocomplete-css': {
 					ext: false,
@@ -53,7 +53,7 @@
 				*/
 				'editable': {
 					fullpath: PATH_JAVASCRIPT + 'editable.js',
-					requires: [ 'aui-base', 'editable-css' ]
+					requires: [ 'aui-base', 'editable-css', 'tool-item' ]
 				},
 				'editable-css': {
 					ext: false,
@@ -92,7 +92,7 @@
 				*/
 				'dialog': {
 					fullpath: PATH_JAVASCRIPT + 'dialog.js',
-					requires: [ 'plugin', 'overlay', 'dd-constrain', 'aui-base', 'overlay-manager', 'io-stdmod', 'dialog-css' ]
+					requires: [ 'plugin', 'overlay', 'dd-constrain', 'aui-base', 'tool-item', 'overlay-manager', 'io-stdmod', 'dialog-css' ]
 				},
 				'dialog-css': {
 					ext: false,

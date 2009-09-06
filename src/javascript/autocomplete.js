@@ -26,13 +26,13 @@ var Lang = A.Lang,
 	TRIANGLE = 'triangle',
 	TRIGGER = 'trigger',
 
+	ICON_DEFAULT = 'circle-triangle-b',
+	ICON_ERROR = ALERT,
+	ICON_LOADING = LOADING,
+
 	CSS_BUTTON_TRIGGER = getClassName(NAME, TRIGGER),
 	CSS_HIGLIGHT = getClassName(NAME, SELECTED),
-	CSS_HOVER = getClassName(NAME, SELECTED),
 	CSS_ICON_BUTTON_TRIGGER = getClassName(NAME, TRIGGER, ICON),
-	CSS_ICON_DEFAULT = getClassName(ICON, CIRCLE, TRIANGLE, S),
-	CSS_ICON_ERROR = getClassName(ICON, ALERT),
-	CSS_ICON_LOADING = getClassName(ICON, LOADING),
 	CSS_INPUT = getClassName(NAME, INPUT),
 	CSS_LIST_ITEM = getClassName(NAME, LIST, ITEM),
 	CSS_NO_RESULTS = getClassName(NAME, NO, RESULTS),
@@ -66,7 +66,6 @@ var Lang = A.Lang,
 
 	TPL_INPUT = '<input type="text" />',
 	TPL_INPUT_WRAPPER = '<span class="aui-ctrl-holder"></span>',
-	TPL_BUTTON = '<span class="aui-state-default aui-tool"><span class="aui-icon aui-icon-trigger"></span></span>',
 
 	BLANK = '',
 	BOUNDING_BOX = 'boundingBox',
@@ -225,14 +224,12 @@ var Lang = A.Lang,
 			bindUI: function() {
 				var instance = this;
 
-				var button = instance.buttonNode;
+				var button = instance.button;
 				var inputNode = instance.inputNode;
 
-				var buttonIcon = instance.buttonIcon;
+				instance.dataSource.on('request', A.bind(button.set, button, ICON, ICON_LOADING));
 
-				instance.dataSource.on('request', A.bind(buttonIcon.replaceClass, buttonIcon, CSS_ICON_DEFAULT, CSS_ICON_LOADING));
-
-				button.on('mousedown', instance._onButtonMouseDown, instance);
+				button.on('click', instance._onButtonMouseDown, instance);
 
 				inputNode.on('blur', instance._onTextboxBlur, instance);
 				inputNode.on('focus', instance._onTextboxFocus, instance);
@@ -367,13 +364,13 @@ var Lang = A.Lang,
 
 				instance._populateList(event);
 
-				var iconClass = CSS_ICON_DEFAULT;
+				var iconClass = ICON_DEFAULT;
 
 				if (event.error) {
-					iconClass = CSS_ICON_ERROR;
+					iconClass = ICON_ERROR;
 				}
 
-				instance.buttonIcon.replaceClass(CSS_ICON_LOADING, iconClass);
+				instance.button.set(ICON, iconClass);
 			},
 
 			preparseRawResponse: function(event) {
@@ -1142,23 +1139,24 @@ var Lang = A.Lang,
 			_renderButton: function() {
 				var instance = this;
 
-				var contentBox = instance.get(CONTENT_BOX);
+				var button = new A.ToolItem(
+					{
+						icon: ICON_DEFAULT,
+						classNames: {
+							active: ''
+						}
+					}
+				);
 
-				var button = A.Node.create(TPL_BUTTON);
-
-				button.addClass(CSS_BUTTON_TRIGGER);
-
-				var icon = button.get('firstChild');
-
-				icon.addClass(CSS_ICON_BUTTON_TRIGGER);
-				icon.addClass(CSS_ICON_DEFAULT);
+				button.get('boundingBox').addClass(CSS_BUTTON_TRIGGER);
+				button.get('node').addClass(CSS_ICON_BUTTON_TRIGGER);
 
 				if (instance.get('button') !== false) {
-					instance.inputWrapper.appendChild(button);
+					button.render(instance.inputWrapper);
+					console.log('_renderButton', button);
 				}
 
-				instance.buttonNode = button;
-				instance.buttonIcon = icon;
+				instance.button = button;
 			},
 
 			_realignContainer: function(event) {
@@ -1189,7 +1187,7 @@ var Lang = A.Lang,
 				contentBox.insertBefore(wrapper, input);
 
 				wrapper.appendChild(input);
-
+console.log('_renderInput', input);
 				instance.set('uniqueName', A.stamp(input));
 
 				instance.inputNode = input;
@@ -1479,4 +1477,4 @@ var Lang = A.Lang,
 
 	A.AutoComplete = AutoComplete;
 
-}, '@VERSION' , { requires: [ 'datasource', 'dataschema', 'overlay' ] });
+}, '@VERSION' , { requires: [ 'datasource', 'dataschema', 'overlay', 'tool' ] });
