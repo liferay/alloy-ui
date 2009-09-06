@@ -193,11 +193,7 @@ A.extend(Dialog, A.Overlay, {
 
 		instance.titleContainter = A.Node.create('<div></div>');
 
-		var closeIcon = new A.ToolItem(
-			{
-				icon: 'close'
-			}
-		);
+		var closeIcon = new A.ToolItem(CLOSE);
 
 		closeIcon.get('node').addClass(CSS_DIALOG_CLOSE);
 
