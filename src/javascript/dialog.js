@@ -313,11 +313,7 @@ A.extend(Dialog, A.Overlay, {
 			instance.unplug(A.Plugin.StdModIOPlugin);
 
 			value.uri = value.uri || value.url;
-
-			value.cfg = A.merge({
-				method: POST
-			},
-			value.cfg);
+			value.cfg = value.cfg || {};
 
 			var data = value.cfg.data;
 
@@ -327,7 +323,9 @@ A.extend(Dialog, A.Overlay, {
 
 			instance.plug(A.Plugin.StdModIOPlugin, value);
 
-			if (instance.io) {
+			var autoRefresh = ('autoRefresh' in value) ? value.autoRefresh : true;
+
+			if (instance.io && autoRefresh) {
 				instance.io.refresh();
 			}
 		}

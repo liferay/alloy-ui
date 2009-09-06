@@ -37,12 +37,6 @@ AUI().ready('dialog', 'overlay-manager', 'io-stdmod', 'dd-constrain', function(A
 		// shim: true,
 		width: 500,
 		// zIndex: 0,
-		io: {
-			url: 'assets/content.html',
-			formatter: function(v) {
-				return '<b>' + v + '</b>';
-			}
-		},
 		buttons: [
 			{
 				text: 'Change title',
@@ -74,7 +68,13 @@ AUI().ready('dialog', 'overlay-manager', 'io-stdmod', 'dd-constrain', function(A
 	var dialog1 = new A.Dialog(
 		A.merge(options, {
 			title: 'Dialog 1',
-			xy: [200, 50]
+			xy: [200, 50],
+			io: {
+				url: 'assets/content.html',
+				formatter: function(v) {
+					return '<b>' + v + '</b>';
+				}
+			}
 		})
 	)
 	.render();
@@ -82,7 +82,22 @@ AUI().ready('dialog', 'overlay-manager', 'io-stdmod', 'dd-constrain', function(A
 	var dialog2 = new A.Dialog(
 		A.merge(options, {
 			title: 'Dialog 2',
-			xy: [225, 100]
+			xy: [225, 100],
+			io: {
+				url: 'assets/content.html',
+				cfg: {
+					data: 'foo=bar&bar=foo',
+					on: {
+						success: function(id, o) {
+							// overloading the this._defSuccessHandler
+							var section = this.get('section');
+							var host = this.get('host');
+
+							host.setStdModContent(section, o.responseText);
+						}
+					}
+				}
+			}
 		})
 	)
 	.render();
@@ -91,19 +106,29 @@ AUI().ready('dialog', 'overlay-manager', 'io-stdmod', 'dd-constrain', function(A
 		A.merge(options, {
 			title: 'Dialog 3 - no buttons',
 			xy: [250, 150],
-			buttons: null
+			buttons: null,
+			io: {
+				url: 'assets/content.html'
+			}
 		})
 	)
 	.render();
 
 	A.get('#createNew').on('click', function() {
-		new A.Dialog(
+		var dialog = new A.Dialog(
 			A.merge(options, {
 				title: 'New Dialog - no buttons',
-				xy: [150, 150]
+				xy: [150, 150],
+				io: {
+					autoRefresh: false,
+					url: 'assets/content.html'
+				}
 			})
 		)
 		.render();
+
+		// manually refresh
+		dialog.io.refresh();
 	});
 
 	A.get('#showAll').on('click', function() {
