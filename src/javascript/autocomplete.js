@@ -1153,7 +1153,6 @@ var Lang = A.Lang,
 
 				if (instance.get('button') !== false) {
 					button.render(instance.inputWrapper);
-					console.log('_renderButton', button);
 				}
 
 				instance.button = button;
@@ -1187,7 +1186,7 @@ var Lang = A.Lang,
 				contentBox.insertBefore(wrapper, input);
 
 				wrapper.appendChild(input);
-console.log('_renderInput', input);
+
 				instance.set('uniqueName', A.stamp(input));
 
 				instance.inputNode = input;
