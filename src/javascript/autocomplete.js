@@ -1139,14 +1139,7 @@ var Lang = A.Lang,
 			_renderButton: function() {
 				var instance = this;
 
-				var button = new A.ToolItem(
-					{
-						icon: ICON_DEFAULT,
-						classNames: {
-							active: ''
-						}
-					}
-				);
+				var button = new A.ToolItem(ICON_DEFAULT);
 
 				button.get('boundingBox').addClass(CSS_BUTTON_TRIGGER);
 				button.get('node').addClass(CSS_ICON_BUTTON_TRIGGER);

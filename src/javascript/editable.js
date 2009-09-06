@@ -150,23 +150,9 @@ AUI().add(
 					var inputWrapper = A.Node.create(TPL_INPUT_WRAPPER);
 					var inputNode = A.Node.create(inputType == 'text' ? TPL_INPUT : TPL_TEXTAREA);
 
-					var cancelButton = new A.ToolItem(
-						{
-							icon: 'circle-close',
-							classNames: {
-								active: ''
-							}
-						}
-					);
+					var cancelButton = new A.ToolItem('circle-close');
 
-					var saveButton = new A.ToolItem(
-						{
-							icon: 'circle-check',
-							classNames: {
-								active: ''
-							}
-						}
-					);
+					var saveButton = new A.ToolItem('circle-check');
 
 					inputWrapper.appendChild(inputNode);
 
