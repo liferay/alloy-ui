@@ -2,6 +2,7 @@ AUI().add(
 	'tool-item',
 	function(A) {
 		var Lang = A.Lang,
+			isString = Lang.isString,
 
 			getClassName = A.ClassNameManager.getClassName,
 
@@ -16,7 +17,13 @@ AUI().add(
 			TPL_ICON = TPL_GENERIC,
 			TPL_TOOL = TPL_GENERIC;
 
-		var ToolItem = function() {
+		var ToolItem = function(config) {
+			if (isString(config)) {
+				config = {
+					icon: config
+				};
+			}
+
 			ToolItem.superclass.constructor.apply(this, arguments);
 		};
 
@@ -24,7 +31,9 @@ AUI().add(
 
 		ToolItem.ATTRS = {
 			classNames: {
-				value: {}
+				value: {
+					active: ''
+				}
 			},
 
 			icon: {
