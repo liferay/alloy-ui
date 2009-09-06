@@ -115,7 +115,7 @@ AUI.add('aui-node', function(A) {
 		after: function(content) {
 			var instance = this;
 
-			instance.insertBefore(content, instance.get('nextSibling'));
+			return instance.insertAfter(content);
 		},
 
 		appendTo: function(selector) {
@@ -138,7 +138,13 @@ AUI.add('aui-node', function(A) {
 		before: function(content) {
 			var instance = this;
 
-			instance.insertBefore(content, instance);
+			var parent = instance.get('parentNode');
+
+			if (parent) {
+				parent.insert(content, instance);
+			}
+
+			return instance;
 		},
 
 		empty: function() {
@@ -177,7 +183,13 @@ AUI.add('aui-node', function(A) {
 		insertAfter: function(content) {
 			var instance = this;
 
-			return instance.insertBefore(content, instance.get('nextSibling'));
+			var parent = instance.get('parentNode');
+
+			if (parent) {
+				parent.insert(content, instance.get('nextSibling'));
+			}
+
+			return instance;
 		},
 
 		prependTo: function(selector) {
