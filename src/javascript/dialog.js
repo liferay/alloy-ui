@@ -20,6 +20,7 @@ var L = A.Lang,
 	CONTENT_BOX = 'contentBox',
 	DD = 'dd',
 	DEFAULT = 'default',
+	DESTROY_ON_CLOSE = 'destroyOnClose',
 	DIALOG = 'dialog',
 	DOT = '.',
 	DRAGGABLE = 'draggable',
@@ -73,6 +74,11 @@ A.mix(Dialog, {
 
 		constrain2view: {
 			value: true,
+			validator: isBoolean
+		},
+
+		destroyOnClose: {
+			value: false,
 			validator: isBoolean
 		},
 
@@ -168,7 +174,13 @@ A.extend(Dialog, A.Overlay, {
 		instance.closeIcon.on(
 			'click',
 			function(event) {
-				instance.hide();
+				if (instance.get(DESTROY_ON_CLOSE)) {
+					instance.destroy();
+				}
+				else {
+					instance.hide();
+				}
+
 				instance.fire('close');
 			}
 		);
