@@ -400,11 +400,16 @@ A.mix(A.DialogManager, {
 		return A.DialogManager.findByChild(child).close();
 	},
 
-	refreshByChild: function(child) {
+	refreshByChild: function(child, io) {
 		var dialog = A.DialogManager.findByChild(child);
 
 		if (dialog && dialog.io) {
-			dialog.io.refresh();
+			if (io) {
+				dialog.set(IO, io);
+			}
+			else {
+				dialog.io.refresh();
+			}
 		}
 	}
 });
