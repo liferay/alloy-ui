@@ -125,7 +125,9 @@ A.mix(Dialog, {
 
 		title: {
 			value: BLANK,
-			validator: isString
+			validator: function(v) {
+				return isString(v) || isBoolean(v);
+			}
 		}
 	}
 });
@@ -214,19 +216,28 @@ A.extend(Dialog, A.Overlay, {
 		instance.closeIcon = closeIcon;
 
 		var title = instance.get(TITLE);
-		var titleContainter = instance.titleContainter;
 
-		titleContainter.addClass(CSS_DIALOG_TITLE);
+		if (title !== false) {
+			var titleContainter = instance.titleContainter;
 
-		titleContainter.html(title);
+			titleContainter.addClass(CSS_DIALOG_TITLE);
+
+			titleContainter.html(title);
+		}
 	},
 
 	_afterRenderer: function() {
 		var instance = this;
 		var headerNode = instance.headerNode;
 		var stack = instance.get(STACK);
+		var title = instance.get(TITLE);
 
 		headerNode.addClass(CSS_STATE_DEFAULT);
+
+		if (title === false) {
+			headerNode.removeClass(CSS_STATE_DEFAULT);
+			headerNode.removeClass(CSS_WIDGET_HD);
+		}
 
 		headerNode.append(instance.titleContainter);
 
@@ -374,7 +385,14 @@ A.extend(Dialog, A.Overlay, {
 	_afterSetTitle: function(event) {
 		var instance = this;
 
-		instance.titleContainter.html(event.newVal);
+		if (!isBoolean(event.newVal)) {
+			var headerNode = instance.headerNode;
+
+			headerNode.addClass(CSS_WIDGET_HD);
+			headerNode.addClass(CSS_STATE_DEFAULT);
+
+			instance.titleContainter.html(event.newVal);
+		}
 	}
 });
 
