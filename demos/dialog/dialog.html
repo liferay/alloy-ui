@@ -83,6 +83,7 @@ AUI().ready('dialog', 'overlay-manager', 'io-stdmod', 'dd-constrain', function(A
 	var dialog2 = new A.Dialog(
 		A.merge(options, {
 			title: 'Dialog 2',
+			// title: false,
 			xy: [225, 100],
 			io: {
 				url: 'assets/content.html',
@@ -91,10 +92,10 @@ AUI().ready('dialog', 'overlay-manager', 'io-stdmod', 'dd-constrain', function(A
 					on: {
 						success: function(id, o) {
 							// overloading the this._defSuccessHandler
-							var section = this.get('section');
-							var host = this.get('host');
-
-							host.setStdModContent(section, o.responseText);
+							this._defSuccessHandler.apply(this, arguments);
+						},
+						render: function() {
+							console.log('render');
 						}
 					}
 				}
