@@ -26,7 +26,6 @@ var L = A.Lang,
 	DRAGGABLE = 'draggable',
 	DRAG_INSTANCE = 'dragInstance',
 	FOOTER_CONTENT = 'footerContent',
-	GROUP = 'group',
 	HD = 'hd',
 	HEADER = 'header',
 	HEADER_CONTENT = 'headerContent',
@@ -92,11 +91,6 @@ A.mix(Dialog, {
 
 		dragInstance: {
 			value: null
-		},
-
-		group: {
-			value: DEFAULT,
-			validator: isString
 		},
 
 		headerContent: {
@@ -365,15 +359,10 @@ A.extend(Dialog, A.Overlay, {
 		var instance = this;
 
 		if (value) {
-			instance.unplug(A.Plugin.OverlayManager);
-
-			instance.plug(A.Plugin.OverlayManager, {
-				group: instance.get(GROUP),
-				zIndexBase: 1000
-			});
+			A.DialogManager.register(instance);
 		}
 		else {
-			instance.unplug(A.Plugin.OverlayManager);
+			A.DialogManager.remove(instance);
 		}
 
 		return value;
@@ -397,5 +386,9 @@ A.extend(Dialog, A.Overlay, {
 });
 
 A.Dialog = Dialog;
+
+A.DialogManager = new A.OverlayManager({
+	zIndexBase: 1000
+});
 
 }, '@VERSION', { requires: [ 'aui-base', 'overlay-manager', 'dd-constrain', 'io-stdmod', 'dialog-css' ] });
