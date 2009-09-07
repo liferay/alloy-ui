@@ -351,7 +351,8 @@ A.extend(Dialog, A.Overlay, {
 			instance.unplug(A.Plugin.OverlayManager);
 
 			instance.plug(A.Plugin.OverlayManager, {
-				group: instance.get(GROUP)
+				group: instance.get(GROUP),
+				zIndexBase: 1000
 			});
 		}
 		else {
