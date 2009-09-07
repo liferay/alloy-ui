@@ -144,16 +144,6 @@ AUI().ready('overlay-manager', 'dd', 'node', function(A) {
 	redOverlayManager.register([overlay4, overlay5, overlay6, overlay8, overlay10]);
 	mixedOverlayManager.register([overlay7, overlay8, overlay9, overlay10]);
 
-	var bringToTop = function(e) {
-		var widget = A.Widget.getByNode(e.target);
-
-		widget.OverlayManager.bringToTop();
-	};
-
-	A.on('mousedown', bringToTop, '#overlay-blue .aui-overlay');
-	A.on('mousedown', bringToTop, '#overlay-red .aui-overlay');
-	A.on('mousedown', bringToTop, '#overlay-mixed .aui-overlay');
-
 	// extras
 
 	new A.DD.Drag({	node: overlay1.get('boundingBox') });

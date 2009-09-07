@@ -6,6 +6,7 @@ var Lang = A.Lang,
 	isNumber = Lang.isNumber,
 	isString = Lang.isString,
 
+	BOUNDING_BOX = 'boundingBox',
 	DEFAULT = 'default',
 	HOST = 'host',
 	OVERLAY_MANAGER = 'OverlayManager',
@@ -25,16 +26,9 @@ var Lang = A.Lang,
 			ATTRS: {
 				zIndexBase: {
 					value: 1000,
+					validator: isNumber,
 					setter: function(value) {
-						if (isString(value)) {
-							value = parseInt(value, 10);
-						}
-
-						if (!isNumber(value)) {
-							value = A.Attribute.INVALID_VALUE;
-						}
-
-						return value;
+						return parseInt(value, 10);
 					}
 				}
 			}
@@ -77,31 +71,26 @@ var Lang = A.Lang,
 			var overlays = instance._overlays;
 
 			if (isArray(overlay)) {
-				for (var i = overlay.length - 1; i >= 0; i--) {
-					instance.register(overlay[i]);
-				}
+				A.Array.each(overlay, function(o) {
+					instance.register(o);
+				});
 			}
 			else {
 				var zIndexBase = instance.get(Z_INDEX_BASE);
+				var registered = instance._registered(overlay);
 
-				var canRegister = (A.Array.indexOf(overlays, overlay) == -1);
+				if (!registered && overlay && (overlay instanceof A.Overlay)) {
+					var boundingBox = overlay.get(BOUNDING_BOX);
 
-				if (canRegister && overlay && (overlay instanceof A.Overlay)) {
 					overlays.push(overlay);
 
 					var zIndex = overlay.get(Z_INDEX) || 0;
 					var newZIndex = overlays.length + zIndex + zIndexBase;
 
-					overlay.plug(
-						OverlayManagerPlugin,
-						{
-							group: instance
-						}
-					);
-
 					overlay.set(Z_INDEX, newZIndex);
 
-					overlay.on('focusedChange', instance._onFocusChange, instance);
+					overlay.on('focusedChange', instance._onFocusedChange, instance);
+					boundingBox.on('mousedown', instance._onMouseDown, instance);
 				}
 			}
 
@@ -158,146 +147,36 @@ var Lang = A.Lang,
 			}
 		},
 
-		_onFocusChange: function(event) {
+		_registered: function(overlay) {
 			var instance = this;
 
-			var overlay = event.currentTarget;
+			return A.Array.indexOf(instance._overlays, overlay) != -1;
+		},
+
+		_onMouseDown: function(event) {
+			var instance = this;
+			var overlay = A.Widget.getByNode(event.currentTarget || event.target);
+			var registered = instance._registered(overlay);
+
+			if (overlay && registered) {
+				instance.bringToTop(overlay);
+			}
+		},
+
+		_onFocusedChange: function(event) {
+			var instance = this;
 
 			if (event.newVal) {
-				instance.bringToTop(overlay);
+				var overlay = event.currentTarget || event.target;
+				var registered = instance._registered(overlay);
+
+				if (overlay && registered) {
+					instance.bringToTop(overlay);
+				}
 			}
 		}
 	});
 
 	A.OverlayManager = OverlayManager;
-
-	function OverlayManagerPlugin(config) {
-	 	OverlayManagerPlugin.superclass.constructor.apply(this, arguments);
-	}
-
-	A.mix(OverlayManagerPlugin, {
-		NAME: OVERLAY_MANAGER.toLowerCase(),
-
-		NS: OVERLAY_MANAGER,
-
-		managers: {},
-
-		ATTRS: {
-			group: {
-				value: DEFAULT
-			},
-
-			zIndexBase: {
-				value: null
-			}
-		}
-	});
-
-	A.extend(
-		OverlayManagerPlugin,
-		A.Plugin.Base,
-		{
-			initializer: function() {
-				var instance = this;
-
-				var group = instance.get(GROUP);
-				var zIndexBase = instance.get(Z_INDEX_BASE);
-
-				if (group instanceof OverlayManager) {
-					OverlayManagerPlugin.managers[group.toString()] = group;
-				}
-				else {
-					if (!(group in OverlayManagerPlugin.managers)) {
-						OverlayManagerPlugin.managers[group] = new OverlayManager(
-							{
-								group: group,
-								zIndexBase: zIndexBase
-							}
-						);
-					}
-
-					instance.register();
-				}
-			},
-
-			bringToTop: function() {
-				var instance = this;
-
-				var overlay = instance.get(HOST);
-				var manager = instance.getManager();
-
-				manager.bringToTop(overlay);
-			},
-
-			getManager: function(group) {
-				var instance = this;
-
-				return OverlayManagerPlugin.managers[group || instance.get(GROUP)];
-			},
-
-			destroy: function() {
-				var instance = this;
-
-				instance.remove();
-			},
-
-			register: function () {
-				var instance = this;
-
-				var overlay = instance.get(HOST);
-
-				var manager = instance.getManager();
-
-				manager.register(overlay);
-
-				return manager;
-			},
-
-			remove: function () {
-				var instance = this;
-
-				var overlay = instance.get(HOST);
-				var manager = instance.getManager();
-
-				return manager.remove(overlay);
-			},
-
-			each: function(fn) {
-				var instance = this;
-
-				var manager = instance.getManager();
-
-				manager.each(fn);
-			},
-
-			showAll: function() {
-				var instance = this;
-
-				var manager = instance.getManager();
-
-				manager.showAll();
-			},
-
-			setManager: function(manager, group) {
-				var instance = this;
-
-				OverlayManagerPlugin.managers[group || instance.get(GROUP)] = manager;
-
-				return manager;
-			},
-
-			hideAll: function() {
-				var instance = this;
-
-				var group = instance.get(GROUP);
-				var manager = instance.getManager();
-
-				manager.hideAll();
-			}
-		}
-	);
-
-	A.namespace('Plugin');
-	A.Plugin.OverlayManager = OverlayManagerPlugin;
 
 }, '@VERSION', { requires: [ 'overlay', 'plugin' ] });
