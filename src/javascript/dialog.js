@@ -167,6 +167,19 @@ A.extend(Dialog, A.Overlay, {
 	/*
 	* Methods
 	*/
+	close: function() {
+		var instance = this;
+
+		if (instance.get(DESTROY_ON_CLOSE)) {
+			instance.destroy();
+		}
+		else {
+			instance.hide();
+		}
+
+		instance.fire('close');
+	},
+
 	_bindElements: function () {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
@@ -174,14 +187,7 @@ A.extend(Dialog, A.Overlay, {
 		instance.closeIcon.on(
 			'click',
 			function(event) {
-				if (instance.get(DESTROY_ON_CLOSE)) {
-					instance.destroy();
-				}
-				else {
-					instance.hide();
-				}
-
-				instance.fire('close');
+				instance.close();
 			}
 		);
 
