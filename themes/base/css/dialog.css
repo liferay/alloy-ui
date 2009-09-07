@@ -31,7 +31,7 @@
 	visibility: inherit;
 }
 
-.aui-dialog-close {
+.aui-dialog .aui-dialog-close {
 	cursor: pointer;
 	position: absolute;
 	right: 0;
