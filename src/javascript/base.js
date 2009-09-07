@@ -274,7 +274,7 @@ AUI.add('aui-node', function(A) {
 			}
 		},
 
-		domManip: function(html) {
+		clean: function(html) {
 			var TPL_NODE = '<div></div>',
 				IE_FIX_PADDING_NODE = '<div>_</div>',
 				SCRIPT = 'script';
@@ -292,7 +292,6 @@ AUI.add('aui-node', function(A) {
 			var scripts = temp.getElementsByTagName(SCRIPT);
 
 			scripts.each(function(elem) {
-				A.Node.evalScript( A.Node.getDOMNode(elem) );
 				elem.remove();
 			});
 
@@ -303,18 +302,39 @@ AUI.add('aui-node', function(A) {
 			// avoid IE6 memory leak
 			temp = null;
 
-			return html;
+			return [ html, scripts ];
+		},
+
+		domManip: function(html, callback) {
+			var clean = A.Node.clean(html);
+			var content = clean[0];
+			var scripts = clean[1];
+
+			if (callback) {
+				callback.apply(this, [ content ]);
+			}
+
+			scripts.each(function(elem) {
+				A.Node.evalScript( A.Node.getDOMNode(elem) );
+			});
 		}
 	});
 
 	A.Node.ATTRS.innerHTML = {
 		setter: function(v) {
+			var instance = this;
+
+			var defaultSetter = function(value) {
+				A.Node.DEFAULT_SETTER.apply(instance, [ INNER_HTML, value ]);
+			};
+
 			if (isString(v)) {
 				// eval scripts
-				v = A.Node.domManip(v);
+				v = A.Node.domManip(v, defaultSetter);
 			}
-
-			A.Node.DEFAULT_SETTER.apply(this, [ INNER_HTML, v ]);
+			else {
+				defaultSetter(v);
+			}
 		}
 	};
 
