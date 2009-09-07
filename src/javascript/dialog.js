@@ -391,4 +391,22 @@ A.DialogManager = new A.OverlayManager({
 	zIndexBase: 1000
 });
 
+A.mix(A.DialogManager, {
+	findByChild: function(child) {
+		return A.Widget.getByNode(child);
+	},
+
+	closeByChild: function(child) {
+		return A.DialogManager.findByChild(child).close();
+	},
+
+	refreshByChild: function(child) {
+		var dialog = A.DialogManager.findByChild(child);
+
+		if (dialog && dialog.io) {
+			dialog.io.refresh();
+		}
+	}
+});
+
 }, '@VERSION', { requires: [ 'aui-base', 'overlay-manager', 'dd-constrain', 'io-stdmod', 'dialog-css' ] });
