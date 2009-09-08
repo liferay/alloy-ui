@@ -154,7 +154,11 @@ AUI().add(
 
 					var node = instance.get(CONTENT_NODE);
 
-					node.html(value);
+					var currentHTML = node.html();
+
+					if (currentHTML != value) {
+						node.html(value);
+					}
 
 					return value;
 				}
@@ -257,6 +261,8 @@ AUI().add(
 					boundingBox.StateInteraction.on('click', instance._onActivateTab, instance);
 
 					instance.StateInteraction = boundingBox.StateInteraction;
+
+					instance.get('labelNode').on('click', instance._onLabelClick, instance);
 				},
 
 				destructor: function() {
@@ -292,6 +298,10 @@ AUI().add(
 					var tabView = instance.get('tabView');
 
 					tabView.set('activeTab', instance);
+				},
+
+				_onLabelClick: function(event) {
+					event.preventDefault();
 				}
 			}
 		);
@@ -612,7 +622,7 @@ AUI().add(
 
 		A.TabView = TabView;
 	},
-	'@VERSION',
+	'0.1a',
 	{
 		requires: ['widget', 'state-interaction'],
 		use: []

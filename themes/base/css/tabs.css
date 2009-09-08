@@ -15,6 +15,7 @@
 
 .aui-tabview-list {
 	display: block;
+	margin-bottom: 1em;
 
 	/* IE7 & below */
 	*display: block;
