@@ -35,7 +35,7 @@ AUI().add(
 				}
 			},
 
-			default: {
+			'default': {
 				value: false,
 				setter: function(value) {
 					var instance = this;
