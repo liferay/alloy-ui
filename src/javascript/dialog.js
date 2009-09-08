@@ -9,6 +9,7 @@ var L = A.Lang,
 
 	ADD_CLASS = 'addClass',
 	ANCHOR = 'a',
+	BD = 'bd',
 	BLANK = '',
 	BODY_CONTENT = 'bodyContent',
 	BOUNDING_BOX = 'boundingBox',
@@ -26,6 +27,7 @@ var L = A.Lang,
 	DRAGGABLE = 'draggable',
 	DRAG_INSTANCE = 'dragInstance',
 	FOOTER_CONTENT = 'footerContent',
+	FT = 'ft',
 	HD = 'hd',
 	HEADER = 'header',
 	HEADER_CONTENT = 'headerContent',
@@ -55,6 +57,9 @@ var L = A.Lang,
 	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
 	CSS_STATE_HOVER = getCN(STATE, HOVER),
 	CSS_WIDGET_HD = getCN(WIDGET, HD),
+	CSS_DIALOG_HD = getCN(DIALOG, HD),
+	CSS_DIALOG_BD = getCN(DIALOG, BD),
+	CSS_DIALOG_FT = getCN(DIALOG, FT),
 
 	TPL_LOADING = '<div class="' + CSS_ICON_LOADING + '"></div>';
 
@@ -222,15 +227,26 @@ A.extend(Dialog, A.Overlay, {
 
 	_afterRenderer: function() {
 		var instance = this;
+		var bodyNode = instance.bodyNode;
+		var footerNode = instance.footerNode;
 		var headerNode = instance.headerNode;
+
 		var stack = instance.get(STACK);
 		var title = instance.get(TITLE);
 
+		headerNode.addClass(CSS_DIALOG_HD);
 		headerNode.addClass(CSS_STATE_DEFAULT);
+
+		bodyNode.addClass(CSS_DIALOG_BD);
+
+		if (footerNode) {
+			footerNode.addClass(CSS_DIALOG_FT);
+		}
 
 		if (title === false) {
 			headerNode.removeClass(CSS_STATE_DEFAULT);
 			headerNode.removeClass(CSS_WIDGET_HD);
+			headerNode.removeClass(CSS_DIALOG_HD);
 		}
 
 		headerNode.append(instance.titleContainter);
@@ -271,6 +287,8 @@ A.extend(Dialog, A.Overlay, {
 
 		if (buttons.length) {
 			instance.set(FOOTER_CONTENT, container);
+
+			instance.footerNode.addClass(CSS_DIALOG_FT);
 		}
 	},
 
@@ -293,7 +311,7 @@ A.extend(Dialog, A.Overlay, {
 		if (value) {
 			var defaults = {
 				node: boundingBox,
-				handles: [ DOT + CSS_WIDGET_HD ]
+				handles: [ DOT + CSS_DIALOG_HD ]
 			};
 			var dragOptions = A.merge(defaults, instance.get(DRAGGABLE) || {});
 
@@ -378,6 +396,7 @@ A.extend(Dialog, A.Overlay, {
 			var headerNode = instance.headerNode;
 
 			headerNode.addClass(CSS_WIDGET_HD);
+			headerNode.addClass(CSS_DIALOG_HD);
 			headerNode.addClass(CSS_STATE_DEFAULT);
 
 			instance.titleContainter.html(event.newVal);
