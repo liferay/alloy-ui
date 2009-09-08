@@ -351,8 +351,6 @@ A.extend(Dialog, A.Overlay, {
 
 		if (value && !instance.get(BODY_CONTENT)) {
 			instance.set(BODY_CONTENT, TPL_LOADING);
-
-			instance.bodyNode.addClass(CSS_DIALOG_BD);
 		}
 
 		if (value) {
