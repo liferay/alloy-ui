@@ -101,6 +101,19 @@
 				},
 
 				/*
+				* Tabs
+				*/
+				'tabs': {
+					fullpath: PATH_JAVASCRIPT + 'tabs.js',
+					requires: ['widget', 'state-interaction', 'tabs-css']
+				},
+				'tabs-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'tabs.css',
+					type: 'css'
+				},
+
+				/*
 				* Resize
 				*/
 				'resize': {
