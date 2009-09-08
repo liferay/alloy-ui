@@ -38,6 +38,7 @@ var L = A.Lang,
 	LOADING = 'loading',
 	POST = 'POST',
 	REMOVE_CLASS = 'removeClass',
+	SPACE = ' ',
 	STACK = 'stack',
 	STATE = 'state',
 	TITLE = 'title',
@@ -71,6 +72,10 @@ A.mix(Dialog, {
 	NAME: DIALOG,
 
 	ATTRS: {
+		bodyContent: {
+			value: SPACE
+		},
+
 		buttons: {
 			value: [],
 			validator: isArray
@@ -237,7 +242,9 @@ A.extend(Dialog, A.Overlay, {
 		headerNode.addClass(CSS_DIALOG_HD);
 		headerNode.addClass(CSS_STATE_DEFAULT);
 
-		bodyNode.addClass(CSS_DIALOG_BD);
+		if (bodyNode) {
+			bodyNode.addClass(CSS_DIALOG_BD);
+		}
 
 		if (footerNode) {
 			footerNode.addClass(CSS_DIALOG_FT);
