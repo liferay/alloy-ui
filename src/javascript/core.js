@@ -313,7 +313,7 @@
 	}
 
 	UA.version.number = parseFloat(UA.version.string) || versionDefaults[0];
-	UA.version.major = /([^\.]+)/.exec(UA.version.string)[1];
+	UA.version.major = (/([^\.]+)/.exec(UA.version.string) || versionDefaults)[1];
 
 	UA[UA.browser + UA.version.major] = true;
 
