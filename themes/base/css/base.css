@@ -76,7 +76,7 @@
 }
 
 .aui-helper-clearfix {
-	display: inline-block;
+	display: block;
 
 	/* IE7 & below */
 	*display: block;
