@@ -141,7 +141,7 @@ AUI.add('aui-node', function(A) {
 			var parent = instance.get('parentNode');
 
 			if (parent) {
-				parent.insert(content, instance);
+				parent.insertBefore(content, instance);
 			}
 
 			return instance;
@@ -186,7 +186,7 @@ AUI.add('aui-node', function(A) {
 			var parent = instance.get('parentNode');
 
 			if (parent) {
-				parent.insert(content, instance.get('nextSibling'));
+				parent.insertBefore(content, instance.get('nextSibling'));
 			}
 
 			return instance;
