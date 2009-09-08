@@ -138,7 +138,7 @@ AUI().ready('context-overlay', 'overlay-manager', function(A) {
 		on: {
 			show: function(event) {
 				console.log('on show', event);
-				this.OverlayManager.hideAll();
+				overlayManager.hideAll();
 			},
 			hide: function(event) {
 				console.log('on hide', event);
@@ -172,11 +172,12 @@ AUI().ready('context-overlay', 'overlay-manager', function(A) {
 	.render();
 
 	// creating OverlayManager group
-	menuOverlay1.plug(A.Plugin.OverlayManager, { group: 'menu' });
-	menuOverlay2.plug(A.Plugin.OverlayManager, { group: 'menu' });
+	var overlayManager = new A.OverlayManager();
+
+	overlayManager.register([ menuOverlay1, menuOverlay2 ]);
 
 	// hideAll overlays when click on document
-	A.on('click', function(event) { menuOverlay1.OverlayManager.hideAll(); }, document);
+	A.on('click', function(event) { overlayManager.hideAll(); }, document);
 
 	/*
 	* Simple ContextOverlay
