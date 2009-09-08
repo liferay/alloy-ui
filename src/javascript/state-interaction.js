@@ -20,6 +20,51 @@ AUI().add(
 		StateInteractionPlugin.NS = 'StateInteraction';
 
 		StateInteractionPlugin.ATTRS = {
+			active: {
+				value: false,
+				setter: function(value) {
+					var instance = this;
+
+					var action = 'addClass';
+
+					if (!value) {
+						action = 'removeClass';
+					}
+
+					instance.get('host')[action](instance._CSS_STATE_ACTIVE);
+				}
+			},
+
+			default: {
+				value: false,
+				setter: function(value) {
+					var instance = this;
+
+					var action = 'addClass';
+
+					if (!value) {
+						action = 'removeClass';
+					}
+
+					instance.get('host')[action](instance._CSS_STATE_DEFAULT);
+				}
+			},
+
+			hover: {
+				value: false,
+				setter: function(value) {
+					var instance = this;
+
+					var action = 'addClass';
+
+					if (!value) {
+						action = 'removeClass';
+					}
+
+					instance.get('host')[action](instance._CSS_STATE_HOVER);
+				}
+			},
+
 			bubbleTarget: {
 				value: null
 			},
@@ -113,19 +158,19 @@ AUI().add(
 				_defClickFn: function(event) {
 					var instance = this;
 
-					instance.get('host').toggleClass(instance._CSS_STATE_ACTIVE);
+					instance.set('active', !instance.get('active'));
 				},
 
 				_defMouseOutFn: function() {
 					var instance = this;
 
-					instance.get('host').removeClass(instance._CSS_STATE_HOVER);
+					instance.set('hover', false);
 				},
 
 				_defMouseOverFn: function() {
 					var instance = this;
 
-					instance.get('host').addClass(instance._CSS_STATE_HOVER);
+					instance.set('hover', true);
 				}
 			}
 		);
