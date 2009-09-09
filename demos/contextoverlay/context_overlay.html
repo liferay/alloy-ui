@@ -63,6 +63,20 @@
 	color: #336699;
 }
 
+.extended-menus {
+	clear: both;
+	padding: 1em 0;
+}
+
+.extended-menus input {
+	float: left;
+}
+
+.disabled-trigger {
+	opacity: 0.5;
+	color: #333;
+}
+
 </style>
 
 <body>
@@ -82,12 +96,18 @@
 	<span class="menu-item-1">
 		<a href="javascript:;">Menu item 1 - multiple triggers</a>
 	</span>
-	<span id="menuItem2">
-		<a href="javascript:;">Menu item 2</a>
-	</span>
-	<span id="menuItem2-new">
-		<a href="javascript:;">New trigger for "Menu Item 2"</a>
-	</span>
+
+	<div class="extended-menus aui-helper-clearfix">
+		
+		<input id="changeTrigger" name="change1" type="button" value="Change Trigger for Menu to Menu Trigger 2" />
+
+		<span id="menuItem2">
+			<a href="javascript:;">Menu Trigger 1</a>
+		</span>
+		<span id="menuItem2-new" class="disabled-trigger">
+			<a href="javascript:;">Menu Trigger 2</a>
+		</span>
+	</div>
 </div>
 
 <div id="contextOverlay1" class="aui-contextoverlay-hidden">
@@ -183,8 +203,32 @@ AUI().ready('context-overlay', 'overlay-manager', function(A) {
 	)
 	.render();
 
-	// changing the original trigger
-	menuOverlay2.set('trigger', '#menuItem2-new');
+	A.on('click',
+		function(event) {
+			// changing the original trigger
+			
+
+			var menuItem2 = A.get('#menuItem2');
+			var menuItem2New = A.get('#menuItem2-new');
+
+			var currentValue = this.get('value');
+
+			if (menuItem2.hasClass('disabled-trigger')) {
+				currentValue = currentValue.replace(/Trigger 1/, 'Trigger 2');
+				menuOverlay2.set('trigger', '#menuItem2');
+			}
+			else {
+				currentValue = currentValue.replace(/Trigger 2/, 'Trigger 1');
+				menuOverlay2.set('trigger', '#menuItem2-new');
+			}
+
+			this.set('value', currentValue);
+
+			menuItem2.toggleClass('disabled-trigger');
+			menuItem2New.toggleClass('disabled-trigger');
+		},
+		'#changeTrigger'
+	);
 
 	// creating OverlayManager group
 	var overlayManager = new A.OverlayManager();
