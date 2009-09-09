@@ -83,6 +83,19 @@
 				},
 
 				/*
+				* ContextPanel
+				*/
+				'context-panel': {
+					fullpath: PATH_JAVASCRIPT + 'context-panel.js',
+					requires: [ 'context-overlay', 'context-panel-css' ]
+				},
+				'context-panel-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'context-panel.css',
+					type: 'css'
+				},
+
+				/*
 				* Dialog
 				*/
 				'dialog': {
