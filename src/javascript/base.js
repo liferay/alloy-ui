@@ -128,10 +128,10 @@ AUI.add('aui-node', function(A) {
 			var instance = this;
 
 			if (!isUndefined(value)) {
-				return instance.setAttribute(name, value);
+				return instance.set(name, value);
 			}
 			else {
-				return instance.getAttribute(name);
+				return instance.get(name);
 			}
 		},
 
