@@ -5,7 +5,8 @@ shadow or rounded corners.
 */
 
 /* ---------- CSS3 shadows ---------- */
-.aui-dialog-content {
+.aui-dialog-content,
+.aui-contextpanel {
 	-moz-box-shadow: 4px 4px 14px #777;
 	-webkit-box-shadow: 4px 4px 14px #777;
 	box-shadow: 4px 4px 14px #777;
@@ -35,7 +36,8 @@ shadow or rounded corners.
 
 .aui-dialog .aui-widget-hd,
 .aui-editable-hover,
-.aui-tab {
+.aui-tab,
+.aui-contextpanel-pointer.aui-state-default {
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
 	border-radius: 0;
