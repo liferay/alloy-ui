@@ -80,6 +80,7 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		var instance = this;
 
 		instance.after('showArrowChange', instance._afterShowArrowChange);
+		instance.after('alignChange', instance._afterAlignChange);
 	},
 
 	renderUI: function() {
@@ -90,35 +91,13 @@ A.extend(ContextPanel, A.ContextOverlay, {
 
 	syncUI: function() {
 		var instance = this;
-		var boundingBox = instance.get(BOUNDING_BOX);
-		var pointerNode = instance._pointerNode;
-		var overlayPoint = instance.getAlignPoint();
 
-		if (instance.get(SHOW_ARROW)) {
-			pointerNode.removeClass(CSS_CONTEXTPANEL_HIDDEN);
-			boundingBox.removeClass(CSS_CONTEXTPANEL_ARROW + instance._lastOverlayPoint);
-			boundingBox.addClass(CSS_CONTEXTPANEL_ARROW + overlayPoint);
-
-			instance.fixPointerColor();
-		}
-		else {
-			pointerNode.addClass(CSS_CONTEXTPANEL_HIDDEN);
-		}
-
-		instance._lastOverlayPoint = overlayPoint;
+		instance._syncElements();
 	},
 
 	/*
 	* Methods
 	*/
-	align: function (node, points) {
-		var instance = this;
-
-		ContextPanel.superclass.align.apply(this, arguments);
-
-		instance.syncUI();
-	},
-
 	fixPointerColor: function() {
 		var instance = this;
 		var boudingBox = instance.get(BOUNDING_BOX);
@@ -190,13 +169,39 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		);
 	},
 
+	_syncElements: function() {
+		var instance = this;
+		var boundingBox = instance.get(BOUNDING_BOX);
+		var pointerNode = instance._pointerNode;
+		var overlayPoint = instance.getAlignPoint();
+
+		if (instance.get(SHOW_ARROW)) {
+			pointerNode.removeClass(CSS_CONTEXTPANEL_HIDDEN);
+			boundingBox.removeClass(CSS_CONTEXTPANEL_ARROW + instance._lastOverlayPoint);
+			boundingBox.addClass(CSS_CONTEXTPANEL_ARROW + overlayPoint);
+
+			instance.fixPointerColor();
+		}
+		else {
+			pointerNode.addClass(CSS_CONTEXTPANEL_HIDDEN);
+		}
+
+		instance._lastOverlayPoint = overlayPoint;
+	},
+
 	/*
 	* Attribute Listeners
 	*/
+	_afterAlignChange: function () {
+		var instance = this;
+
+		instance._syncElements();
+	},
+
 	_afterShowArrowChange: function() {
 		var instance = this;
 
-		instance.syncUI();
+		instance._syncElements();
 	}
 });
 
