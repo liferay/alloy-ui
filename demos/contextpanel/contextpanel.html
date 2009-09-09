@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+</head>
+
+<style type="text/css" media="screen">
+
+#simpleContextPanelWrapper {
+	margin: 250px auto;
+	width: 300px;
+}
+
+#contextpanel1 {
+	padding: 11px;
+}
+
+</style>
+
+<body>
+<h1>Alloy - ContextPanel</h1>
+
+<p>
+	Overlay point:
+	<select id="overlayPoint">
+		<option value="bc">BOTTOM CENTER</option>
+		<option value="bl" selected="selected">BOTTOM LEFT</option>
+		<option value="br">BOTTOM RIGHT</option>
+		<option value="cc">CENTER CENTER</option>
+		<option value="lc">LEFT CENTER</option>
+		<option value="rc">RIGHT CENTER</option>
+		<option value="tc">TOP CENTER</option>
+		<option value="tl">TOP LEFT</option>
+		<option value="tr">TOP RIGHT</option>
+	</select>
+	Target point:
+	<select id="targetPoint">
+		<option value="bc">BOTTOM CENTER</option>
+		<option value="bl">BOTTOM LEFT</option>
+		<option value="br">BOTTOM RIGHT</option>
+		<option value="cc">CENTER CENTER</option>
+		<option value="lc">LEFT CENTER</option>
+		<option value="rc">RIGHT CENTER</option>
+		<option value="tc" selected="selected">TOP CENTER</option>
+		<option value="tl">TOP LEFT</option>
+		<option value="tr">TOP RIGHT</option>
+	</select>
+	<br/>
+	<br/>
+	<button id="openContextPanelHere">Open ContextPanel here</button>
+</p>
+
+<div id="simpleContextPanelWrapper">
+	<button id="simpleContextPanel">Open simple ContextPanel</button>
+</div>
+
+<div id="contextpanel1"></div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('context-panel', 'overlay-manager', function(A) {
+	/*
+	* Simple ContextPanel
+	*/
+	var contextPanel1 = new A.ContextPanel({
+		bodyContent: "Here's a sample ContextPanel. The pointer requires no images!<br/><br/>Type your name: <input type='text'> <button>Send<button>",
+		trigger: '#simpleContextPanel',
+		// showArrow: false,
+		// arrow: 'bc',
+		boundingBox: '#contextpanel1'
+	})
+	.render();
+
+	// contextPanel1.set('arrow', 'bl');
+	// contextPanel1.set('showArrow', true);
+
+	var contextPanel2 = new A.ContextPanel({
+		bodyContent: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+		trigger: '#openContextPanelHere',
+		align: { node: '#openContextPanelHere', points: [ 'tl', 'bc' ] },
+		width: 300,
+		visible: true
+	})
+	.render();
+
+	// Extras
+
+	var alignContextPanel = function(contextPanel) {
+		var overlayPoint = A.get('#overlayPoint').get('value');
+		var targetPoint = A.get('#targetPoint').get('value');
+
+		contextPanel.align('#simpleContextPanel', [ overlayPoint, targetPoint ]);
+	};
+
+	A.on('click', function() { alignContextPanel(contextPanel1); }, '#overlayPoint');
+	A.on('click', function() { alignContextPanel(contextPanel1); }, '#targetPoint');
+	A.on('keydown', function() { alignContextPanel(contextPanel1); }, '#overlayPoint');
+	A.on('keydown', function() { alignContextPanel(contextPanel1); }, '#targetPoint');
+
+	alignContextPanel(contextPanel1);
+
+	contextPanel1.toggle();
+});
+
+</script>
+
+</body>
+</html>
