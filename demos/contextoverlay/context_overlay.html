@@ -70,18 +70,27 @@
 
 <p><button id="simpleOverlay">Open simple ContextOverlay</button></p>
 
+<p><button id="simpleOverlay2">Open simple ContextOverlay - another trigger</button></p>
+
 <div id="menuList" class="menu-list">
-	<span id="menuItem1">
+	<span class="menu-item-1">
 		<a href="javascript:;">Menu item 1</a>
+	</span>
+	<span class="menu-item-1">
+		<a href="javascript:;">Menu item 1 - multiple triggers</a>
+	</span>
+	<span class="menu-item-1">
+		<a href="javascript:;">Menu item 1 - multiple triggers</a>
 	</span>
 	<span id="menuItem2">
 		<a href="javascript:;">Menu item 2</a>
 	</span>
+	<span id="menuItem2-new">
+		<a href="javascript:;">New trigger for "Menu Item 2"</a>
+	</span>
 </div>
 
 <div id="contextOverlay1" class="aui-contextoverlay-hidden">
-	<button id="hideMe">Hide me now</button>
-	<br/>
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </div>
 
@@ -130,8 +139,8 @@ AUI().ready('context-overlay', 'overlay-manager', function(A) {
 	* Simple Menu example
 	*/
 	var options = {
-		showOn: 'mouseenter',
-		hideOn: 'mouseleave',
+		showOn: 'mouseover',
+		hideOn: 'mouseout',
 		hideDelay: 1500,
 		showDelay: 0,
 
@@ -157,11 +166,14 @@ AUI().ready('context-overlay', 'overlay-manager', function(A) {
 
 	var menuOverlay1 = new A.ContextOverlay(
 		A.merge(options, {
-			trigger: '#menuItem1',
-			boundingBox: '#menu1'
+			trigger: '.menu-item-1',
+			boundingBox: '#menu1',
+			hideDelay: 1000,
+			showDelay: 0,
 		})
 	)
 	.render();
+
 
 	var menuOverlay2 = new A.ContextOverlay(
 		A.merge(options, {
@@ -171,10 +183,27 @@ AUI().ready('context-overlay', 'overlay-manager', function(A) {
 	)
 	.render();
 
+	// changing the original trigger
+	menuOverlay2.set('trigger', '#menuItem2-new');
+
 	// creating OverlayManager group
 	var overlayManager = new A.OverlayManager();
 
 	overlayManager.register([ menuOverlay1, menuOverlay2 ]);
+
+	overlayManager.each(function(overlay) {
+		var boundingBox = overlay.get('boundingBox');
+
+		// clearIntervals on mouseenter the menus
+		boundingBox.on('mouseenter', function() {
+			overlay.clearIntervals();
+		});
+
+		// call _hideTask on mouseleave the menus
+		boundingBox.on('mouseleave', function() {
+			overlay._hideTask.delay(1000);
+		});
+	});
 
 	// hideAll overlays when click on document
 	A.on('click', function(event) { overlayManager.hideAll(); }, document);
@@ -183,18 +212,19 @@ AUI().ready('context-overlay', 'overlay-manager', function(A) {
 	* Simple ContextOverlay
 	*/
 	var contextOverlay1 = new A.ContextOverlay({
-		trigger: '#simpleOverlay',
+		trigger: 'button',
 		boundingBox: '#contextOverlay1',
-		showOn: 'click',
-		hideOn: 'click',
+		showOn: 'mouseover',
+		hideOn: 'mouseout',
 		hideDelay: 0,
 		showDelay: 0,
-		align: { node: '#simpleOverlay', points: [ 'tl', 'tr' ] }
+		// align: { node: '#simpleOverlay', points: [ 'tl', 'tr' ] }
 	})
 	.render();
 
-	A.on('click', function() { contextOverlay1.hide(); }, '#hideMe');
-
+	// you can change the showOn/hideOn events on the fly
+	contextOverlay1.set('showOn', 'click');
+	contextOverlay1.set('hideOn', 'click');
 });
 
 </script>
