@@ -182,7 +182,6 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		var overlayPoint = align.points[0];
 
 		boundingBox.addClass(CSS_STATE_DEFAULT);
-		// boundingBox.addClass(CSS_CONTEXTPANEL_HIDDEN);
 
 		instance._pointerNode = A.Node.create(TPL_POINTER).append(TPL_POINTER_INNER);
 
