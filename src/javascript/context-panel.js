@@ -80,7 +80,6 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		var instance = this;
 
 		instance.after('showArrowChange', instance._afterShowArrowChange);
-		instance.after('alignChange', instance._afterAlignChange);
 	},
 
 	renderUI: function() {
@@ -98,6 +97,14 @@ A.extend(ContextPanel, A.ContextOverlay, {
 	/*
 	* Methods
 	*/
+	align: function (node, points) {
+		var instance = this;
+
+		ContextPanel.superclass.align.apply(this, arguments);
+
+		instance._syncElements();
+	},
+
 	fixPointerColor: function() {
 		var instance = this;
 		var boudingBox = instance.get(BOUNDING_BOX);
@@ -192,12 +199,6 @@ A.extend(ContextPanel, A.ContextOverlay, {
 	/*
 	* Attribute Listeners
 	*/
-	_afterAlignChange: function () {
-		var instance = this;
-
-		instance._syncElements();
-	},
-
 	_afterShowArrowChange: function() {
 		var instance = this;
 
