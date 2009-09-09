@@ -144,8 +144,15 @@ A.extend(ContextOverlay, A.Overlay, {
 
 	_show: function(event) {
 		var instance = this;
+		var trigger = instance.get(TRIGGER);
 		var align = instance.get(ALIGN);
-		var node = align.node || event.currentTarget;
+		var currentTarget = null;
+
+		if (event) {
+			currentTarget = event.currentTarget;
+		}
+
+		var node = align.node || currentTarget || trigger.item(0);
 
 		instance._uiSetAlign(node, align.points);
 
