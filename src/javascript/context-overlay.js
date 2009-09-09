@@ -7,12 +7,11 @@ var L = A.Lang,
 
 	ALIGN = 'align',
 	BL = 'bl',
-	BOUNDING_BOX = 'boundingBox',
 	CONTEXT_OVERLAY = 'contextoverlay',
-	DELAY = 'delay',
+	HIDE = 'hide',
 	HIDE_DELAY = 'hideDelay',
 	HIDE_ON = 'hideOn',
-	INTERVALS = 'intervals',
+	SHOW = 'show',
 	SHOW_DELAY = 'showDelay',
 	SHOW_ON = 'showOn',
 	TL = 'tl',
@@ -22,15 +21,11 @@ var L = A.Lang,
 function ContextOverlay(config) {
 	var instance = this;
 
-	this._lazyAddAttrs = false;
+	instance._hideTask = new A.DelayedTask(instance._hide, instance);
+	instance._showTask = new A.DelayedTask(instance._show, instance);
 
-	instance._hideTask = new A.DelayedTask(instance._hideContextOverlay, instance);
-	instance._showTask = new A.DelayedTask(instance._showContextOverlay, instance);
-	instance._toggleTask = new A.DelayedTask(instance._toggleContextOverlay, instance);
-
-	instance._hideCallbackContextOverlay = null;
-	instance._showCallbackContextOverlay = null;
-	instance._toggleCallbackContextOverlay = null;
+	instance._showCallback = null;
+	instance._hideCallback = null;
 
  	ContextOverlay.superclass.constructor.apply(this, arguments);
 }
@@ -49,6 +44,7 @@ A.mix(ContextOverlay, {
 		},
 
 		hideOn: {
+			lazyAdd: false,
 			value: 'mouseout',
 			validator: isString,
 			setter: function(v) {
@@ -65,6 +61,7 @@ A.mix(ContextOverlay, {
 		},
 
 		showOn: {
+			lazyAdd: false,
 			value: 'mouseover',
 			validator: isString,
 			setter: function(v) {
@@ -78,18 +75,9 @@ A.mix(ContextOverlay, {
 		},
 
 		trigger: {
-			value: null,
-			setter: function(value) {
-				var node = A.get(value);
-
-				if (!node) {
-					A.error('AUI.ContextOverlay: Invalid Trigger Given: ' + value);
-				}
-				else {
-					node = node.item(0);
-				}
-
-				return node;
+			lazyAdd: false,
+			setter: function(v) {
+				return A.all(v);
 			}
 		},
 
@@ -106,186 +94,197 @@ A.extend(ContextOverlay, A.Overlay, {
 	bindUI: function(){
 		var instance = this;
 
-		instance.before('showOnChange', instance._syncListeners);
-		instance.before('hideOnChange', instance._syncListeners);
+		instance.before('triggerChange', instance._beforeTriggerChange);
+		instance.before('showOnChange', instance._beforeShowOnChange);
+		instance.before('hideOnChange', instance._beforeHideOnChange);
+
+		instance.after('triggerChange', instance._afterTriggerChange);
+		instance.after('showOnChange', instance._afterShowOnChange);
+		instance.after('hideOnChange', instance._afterHideOnChange);
 	},
 
 	/*
 	* Methods
 	*/
+	hide: function() {
+		this.clearIntervals();
 
-	toggle: function() {
+		ContextOverlay.superclass.hide.apply(this, arguments);
+	},
+
+	show: function() {
+		this.clearIntervals();
+
+		ContextOverlay.superclass.show.apply(this, arguments);
+	},
+
+	toggle: function(event) {
 		var instance = this;
 
 		if (instance.get(VISIBLE)) {
-			instance.hide();
+			instance._hideTask.delay( instance.get(HIDE_DELAY), null, null, [event] );
 		}
 		else {
-			instance.show();
+			instance._showTask.delay( instance.get(SHOW_DELAY), null, null, [event] );
 		}
 	},
 
-	_hideContextOverlay: function(event) {
-		var instance = this;
+	clearIntervals: function() {
+		this._hideTask.cancel();
+		this._showTask.cancel();
+	},
 
-		instance._showTask.cancel();
+	_hide: function(event) {
+		var instance = this;
 
 		instance.fire('hide');
 
 		instance.hide();
-
-		event.halt();
 	},
 
-	_showContextOverlay: function(event) {
+	_show: function(event) {
 		var instance = this;
+		var align = instance.get(ALIGN);
+		var node = align.node || event.currentTarget;
 
-		instance._hideTask.cancel();
+		instance._uiSetAlign(node, align.points);
 
 		instance.fire('show');
 
-		if (event.currentTarget.compareTo(instance.get(TRIGGER))) {
-			var align = instance.get('align');
-
-			var node = align.node || event.currentTarget;
-
-			instance._uiSetAlign(node, align.points);
-		}
-
 		instance.show();
-
-		event.halt();
 	},
 
-	_toggleContextOverlay: function() {
+	_toggle: function(event) {
 		var instance = this;
+		var currentTarget = event.currentTarget;
 
-		if (instance.get(VISIBLE)) {
+		// check if the target is different and simulate a .hide() before toggle
+		if (instance._lastTarget != currentTarget) {
 			instance.hide();
 		}
-		else {
-			instance.show();
-		}
+
+		instance.toggle(event);
+
+		event.halt();
+
+		instance._lastTarget = event.currentTarget;
 	},
 
 	/*
 	* Attribute Listeners
 	*/
-	_syncListeners: function(event) {
+	_afterShowOnChange: function(event) {
+		var instance = this;
+		var wasToggle = event.prevVal == instance.get(HIDE_ON);
+
+		if (wasToggle) {
+			var trigger = instance.get(TRIGGER);
+
+			// if wasToggle remove the toggle callback
+			trigger.detach(event.prevVal, instance._hideCallback);
+			// and re attach the hide event
+			instance._setHideOn( instance.get(HIDE_ON) );
+		}
+	},
+
+	_afterHideOnChange: function(event) {
+		var instance = this;
+		var wasToggle = event.prevVal == instance.get(SHOW_ON);
+
+		if (wasToggle) {
+			var trigger = instance.get(TRIGGER);
+
+			// if wasToggle remove the toggle callback
+			trigger.detach(event.prevVal, instance._showCallback);
+			// and re attach the show event
+			instance._setShowOn( instance.get(SHOW_ON) );
+		}
+	},
+
+	_afterTriggerChange: function(event) {
 		var instance = this;
 
-		var trigger = instance.get(TRIGGER);
-		var boundingBox = instance.get(BOUNDING_BOX);
+		instance._setShowOn( instance.get(SHOW_ON) );
+		instance._setHideOn( instance.get(HIDE_ON) );
+	},
 
-		var hideOn = instance.get(HIDE_ON);
+	_beforeShowOnChange: function(event) {
+		var instance = this;
+		var trigger = instance.get(TRIGGER);
+
+		// detach the old callback
+		trigger.detach(event.prevVal, instance._showCallback);
+	},
+
+	_beforeHideOnChange: function(event) {
+		var instance = this;
+		var trigger = instance.get(TRIGGER);
+
+		// detach the old callback
+		trigger.detach(event.prevVal, instance._hideCallback);
+	},
+
+	_beforeTriggerChange: function(event) {
+		var instance = this;
+		var trigger = instance.get(TRIGGER);
 		var showOn = instance.get(SHOW_ON);
+		var hideOn = instance.get(HIDE_ON);
 
-		var oldEventType = event.prevVal;
-		var attrName = event.attrName;
-
-		// Changing from a toggle
-		if (oldEventType == hideOn || oldEventType == showOn) {
-			trigger.detach(oldEventType, instance._toggleCallbackContextOverlay);
-		}
-		else {
-			var oldListener;
-
-			if (attrName == HIDE_ON) {
-				oldListener = instance._hideCallbackContextOverlay;
-			}
-			else if (attrName == SHOW_ON) {
-				oldListener = instance._showCallbackContextOverlay;
-			}
-
-			if (oldListener) {
-				trigger.detach(oldEventType, oldListener);
-				boundingBox.detach(oldEventType, oldListener);
-			}
-		}
-	},
-
-	_addListenersContextOverlay: function(eventType, listener) {
-		var instance = this;
-
-		var trigger = instance.get(TRIGGER);
-		var boundingBox = instance.get(BOUNDING_BOX);
-
-		trigger.on(eventType, listener);
-		boundingBox.on(eventType, listener);
-	},
-
-	_createToggleOn: function(eventType) {
-		var instance = this;
-
-		if (!instance._toggleCallbackContextOverlay) {
-			var fn = instance._toggleTask;
-			var hideDelay = instance.get(HIDE_DELAY);
-			var showDelay = instance.get(SHOW_DELAY);
-
-			var delay = Math.min(hideDelay, showDelay);
-
-			instance._toggleCallbackContextOverlay = A.bind(fn.delay, fn, delay, null, null);
-		}
-
-		var trigger = instance.get(TRIGGER);
-		var boundingBox = instance.get(BOUNDING_BOX);
-
-		var hideCallback = instance._hideCallbackContextOverlay;
-		var showCallback = instance._showCallbackContextOverlay;
-
-		trigger.detach(eventType, hideCallback);
-		trigger.detach(eventType, showCallback);
-
-		boundingBox.detach(eventType, hideCallback);
-		boundingBox.detach(eventType, showCallback);
-
-		trigger.on(eventType, instance._toggleCallbackContextOverlay);
+		trigger.detach(showOn, instance._showCallback);
+		trigger.detach(hideOn, instance._hideCallback);
 	},
 
 	/*
 	* Setters
 	*/
-
 	_setHideOn: function(eventType) {
 		var instance = this;
+		var trigger = instance.get(TRIGGER);
+		var toggle = eventType == instance.get(SHOW_ON);
 
-		if (eventType == instance.get(SHOW_ON)) {
-			instance._createToggleOn(eventType);
+		if (toggle) {
+			instance._hideCallback = A.bind(instance._toggle, instance);
+
+			// only one attached event is enough for toggle
+			trigger.detach(eventType, instance._showCallback);
 		}
 		else {
-			var trigger = instance.get(TRIGGER);
+			var delay = instance.get(HIDE_DELAY);
 
-			if (!instance._hideCallbackContextOverlay) {
-				var fn = instance._hideTask;
-				var delay = instance.get(HIDE_DELAY);
+			instance._hideCallback = function(event) {
+				instance._hideTask.delay(delay, null, null, [event]);
 
-				instance._hideCallbackContextOverlay = A.bind(fn.delay, fn, delay, null, null);
-			}
-
-			instance._addListenersContextOverlay(eventType, instance._hideCallbackContextOverlay);
+				event.halt();
+			};
 		}
+
+		trigger.on(eventType, instance._hideCallback);
 
 		return eventType;
 	},
 
 	_setShowOn: function(eventType) {
 		var instance = this;
+		var trigger = instance.get(TRIGGER);
+		var toggle = eventType == instance.get(HIDE_ON);
 
-		if (eventType == instance.get(HIDE_ON)) {
-			instance._createToggleOn(eventType);
+		if (toggle) {
+			instance._showCallback = A.bind(instance._toggle, instance);
+
+			// only one attached event is enough for toggle
+			trigger.detach(eventType, instance._hideCallback);
 		}
 		else {
-			var trigger = instance.get(TRIGGER);
+			var delay = instance.get(SHOW_DELAY);
 
-			if (!instance._showCallbackContextOverlay) {
-				var fn = instance._showTask;
-				var delay = instance.get(SHOW_DELAY);
+			instance._showCallback = function(event) {
+				instance._showTask.delay(delay, null, null, [event]);
 
-				instance._showCallbackContextOverlay = A.bind(fn.delay, fn, delay, null, null);
-			}
-
-			instance._addListenersContextOverlay(eventType, instance._showCallbackContextOverlay);
+				event.halt();
+			};
 		}
+
+		trigger.on(eventType, instance._showCallback);
 
 		return eventType;
 	}
