@@ -212,6 +212,12 @@ AUI.add('aui-node', function(A) {
 			return instance._getText(el.childNodes);
 		},
 
+		val: function(value) {
+			var instance = this;
+
+			return instance.attr('value', value);
+		},
+
 		_getText: function(childNodes) {
 			var instance = this;
 
