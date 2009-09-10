@@ -23,6 +23,7 @@ var L = A.Lang,
 	SHOW_ARROW = 'showArrow',
 	STATE = 'state',
 	STYLE = 'style',
+	VISIBLE = 'visible',
 
 	BC = 'bc',
 	BL = 'bl',
@@ -191,11 +192,15 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		var boundingBox = instance.get(BOUNDING_BOX);
 
 		if(instance._hideAnim) {
-			instance._hideAnim.run();
+			var visible = instance.get(VISIBLE);
 
-			instance._hideAnim.on(END, function() {
-				ContextPanel.superclass.hide.apply(instance, arguments);
-			});
+			if (visible) {
+				instance._hideAnim.run();
+
+				instance._hideAnim.on(END, function() {
+					ContextPanel.superclass.hide.apply(instance, arguments);
+				});
+			}
 		}
 		else {
 			ContextPanel.superclass.hide.apply(instance, arguments);
@@ -300,8 +305,9 @@ A.extend(ContextPanel, A.ContextOverlay, {
 	_beforeShow: function(event) {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
+		var visible = instance.get(VISIBLE);
 
-		if(instance._showAnim) {
+		if(!visible && instance._showAnim) {
 			boundingBox.setStyle(OPACITY, 0);
 
 			instance._showAnim.run();
