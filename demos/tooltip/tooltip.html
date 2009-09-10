@@ -57,14 +57,24 @@ p a {
 <br/><br/><br/>
 
 <p>
-	<a href="javascript:void(0);" id="t3">Tootip - Ajax content</a>
+	<a href="javascript:void(0);" id="t3">Tootip - Simple tooltip without arrow</a>
+	<br/>
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+<br/><br/><br/>
+
+<p>
+	<a href="javascript:void(0);" id="t4">Tootip - Ajax content</a>
 	<br/>
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </p>
 
+<br/><br/><br/>
+
 <p>
-	<a href="javascript:void(0);" id="t4">Tootip - youtube preview</a>
+	<a href="javascript:void(0);" id="t5">Tootip - youtube preview</a>
 	<br/>
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -91,9 +101,16 @@ AUI().ready('tooltip', 'io-stdmod', function(A) {
 	})
 	.render();
 
-
 	var t3 = new A.Tooltip({
 		trigger: '#t3',
+		align: { points: [ 'lc', 'rc' ] },
+		showArrow: false,
+		bodyContent: 'Simple tooltip without arrow!'
+	})
+	.render();
+
+	var t4 = new A.Tooltip({
+		trigger: '#t4',
 		after: {
 			show: function() {
 				this.io.refresh();
@@ -102,13 +119,13 @@ AUI().ready('tooltip', 'io-stdmod', function(A) {
 	})
 	.render();
 
-	t3.plug(A.Plugin.StdModIOPlugin, {
+	t4.plug(A.Plugin.StdModIOPlugin, {
 		uri: '../dialog/assets/content.html'
 	});
 
 
-	var t4 = new A.Tooltip({
-		trigger: '#t4',
+	var t5 = new A.Tooltip({
+		trigger: '#t5',
 		// cancelHideOnInteraction: false,
 		bodyContent: '<object width="560" height="340"><param name="movie" value="http://www.youtube.com/v/PiSxJwB29R8&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/PiSxJwB29R8&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="560" height="340"></embed></object>',
 		// align: { points: [ 'bl', 'tr' ] },
