@@ -96,6 +96,19 @@
 				},
 
 				/*
+				* Tooltip
+				*/
+				'tooltip': {
+					fullpath: PATH_JAVASCRIPT + 'tooltip.js',
+					requires: [ 'context-panel', 'tooltip-css' ]
+				},
+				'tooltip-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'tooltip.css',
+					type: 'css'
+				},
+
+				/*
 				* Dialog
 				*/
 				'dialog': {

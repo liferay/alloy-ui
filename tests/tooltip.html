@@ -8,12 +8,14 @@
 	<script src="../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
 
 	<link rel="stylesheet" href="../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
-	
+
 </head>
 <body>
-	
+
 	<style type="text/css" media="screen">
-		
+
+
+
 		/*Tooltip and Pointer CSS*/
 		.aui-tooltip { padding:8px; width:100px; position:absolute; z-index:9999; }
 		body .aui-tooltip { border-width:2px; }
@@ -61,127 +63,55 @@
 		.aui-tooltip-arrow-lb .aui-tooltip-pointer-inner { border-bottom:0; border-top:12px dotted transparent; bottom:2px; }
 		.aui-tooltip-arrow-lc .aui-tooltip-pointer-inner { border-bottom:8px dotted transparent; border-top:8px dotted transparent; bottom:-8px; }
 		.aui-tooltip-arrow-lt .aui-tooltip-pointer-inner { border-bottom:12px dotted transparent; border-top:0; top:2px; }
-		
+
 	</style>
-	
-	<div class="aui-tooltip aui-widget aui-widget-header">Here's a sample tooltip. The pointer requires no images!</div>
-		
-		
-	
-	<div class="aui-tooltip aui-tooltip-arrow-tl aui-widget aui-state-highlight">Here's a sample tooltip. The pointer requires no images!
-		 <div class="aui-tooltip-pointer aui-state-highlight">
-			<div class="aui-tooltip-pointer-inner"></div>
-		 </div>
-	</div>
-	
-	<div class="aui-tooltip aui-tooltip-arrow-tc aui-widget aui-state-highlight">Here's a sample tooltip. The pointer requires no images!
-		 <div class="aui-tooltip-pointer aui-state-highlight">
-			<div class="aui-tooltip-pointer-inner"></div>
-		 </div>
-	</div>
-	
-	<div class="aui-tooltip aui-tooltip-arrow-lt aui-widget aui-state-highlight">Here's a sample tooltip. The pointer requires no images!
-		 <div class="aui-tooltip-pointer aui-state-highlight">
+
+	<script>
+
+	AUI().ready(function(A) {
+
+		function fixToolTipColor() {
+			//grab the bg color from the tooltip content - set the border color of inner pointer to same
+			A.all('.aui-tooltip-pointer-inner').each(
+				function(elem) {
+					var tool = elem.ancestor('.aui-tooltip');
+					var bColor = tool.getStyle('backgroundColor');
+					var border = 'borderBottomColor';
+
+					var right = '.aui-tooltip-arrow-rb,.aui-tooltip-arrow-rc,.aui-tooltip-arrow-rt';
+					var bottom = '.aui-tooltip-arrow-br,.aui-tooltip-arrow-bc,.aui-tooltip-arrow-bl';
+					var left = '.aui-tooltip-arrow-lb,.aui-tooltip-arrow-lc,.aui-tooltip-arrow-lt';
+
+					if (tool.test(right)) {
+						border = 'borderLeftColor';
+					}
+					else if (tool.test(bottom)) {
+						border = 'borderTopColor';
+					}
+					else if (tool.test(left)) {
+						border = 'borderRightColor';
+					}
+
+					elem.setStyle(border, bColor);
+				}
+			);
+		}
+
+		fixToolTipColor();
+
+	});
+
+	</script>
+
+	<div class="aui-tooltip aui-tooltip-arrow-bc aui-widget aui-state-default">
+		Here's a sample tooltip. The pointer requires no images!
+		 <div class="aui-tooltip-pointer aui-state-default">
 			<div class="aui-tooltip-pointer-inner"></div>
 		 </div>
 	</div>
 
-	
-	<div class="aui-tooltip aui-tooltip-arrow-tr aui-widget aui-widget-header">Here's a sample tooltip. The pointer requires no images!
-		 <div class="aui-tooltip-pointer aui-widget-header">
-			<div class="aui-tooltip-pointer-inner"></div>
-		 </div>
-	</div>
 
-	
-	
-	<div class="aui-tooltip aui-tooltip-arrow-rt aui-widget aui-widget-header">Here's a sample tooltip. The pointer requires no images!
-		 <div class="aui-tooltip-pointer aui-widget-header">
-			<div class="aui-tooltip-pointer-inner"></div>
-		 </div>
-	</div>
-	
-	
-	<div class="aui-tooltip aui-tooltip-arrow-rc aui-widget aui-widget-header">Here's a sample tooltip. The pointer requires no images!
-		 <div class="aui-tooltip-pointer aui-widget-header">
-			<div class="aui-tooltip-pointer-inner"></div>
-		 </div>
-	</div>
 
-	
-	<div class="aui-tooltip aui-tooltip-arrow-rb aui-widget aui-widget-header">Here's a sample tooltip. The pointer requires no images!
-		 <div class="aui-tooltip-pointer aui-widget-header">
-			<div class="aui-tooltip-pointer-inner"></div>
-		 </div>
-	</div>
-	
-	
-	
-	<div class="aui-tooltip aui-tooltip-arrow-br aui-widget aui-widget-header">Here's a sample tooltip. The pointer requires no images!
-		 <div class="aui-tooltip-pointer aui-widget-header">
-			<div class="aui-tooltip-pointer-inner"></div>
-		 </div>
-	</div>
-	
-	
-	<div class="aui-tooltip aui-tooltip-arrow-bc aui-widget aui-widget-header">Here's a sample tooltip. The pointer requires no images!
-		 <div class="aui-tooltip-pointer aui-widget-header">
-			<div class="aui-tooltip-pointer-inner"></div>
-		 </div>
-	</div>
-	
-	
-	<div class="aui-tooltip aui-tooltip-arrow-bl aui-widget aui-widget-header">Here's a sample tooltip. The pointer requires no images!
-		 <div class="aui-tooltip-pointer aui-widget-header">
-			<div class="aui-tooltip-pointer-inner"></div>
-		 </div>
-	</div>
-	
-	
-	
-	<div class="aui-tooltip aui-tooltip-arrow-lb aui-widget aui-widget-header">Here's a sample tooltip. The pointer requires no images!
-		 <div class="aui-tooltip-pointer aui-widget-header">
-			<div class="aui-tooltip-pointer-inner"></div>
-		 </div>
-	</div>
-	
-	
-	<div class="aui-tooltip aui-tooltip-arrow-lc aui-widget aui-widget-header">Here's a sample tooltip. The pointer requires no images!
-		 <div class="aui-tooltip-pointer aui-widget-header">
-			<div class="aui-tooltip-pointer-inner"></div>
-		 </div>
-	</div>
-	
-	
-	<div class="aui-tooltip aui-tooltip-arrow-lt aui-widget aui-widget-header">Here's a sample tooltip. The pointer requires no images!
-		 <div class="aui-tooltip-pointer aui-widget-header">
-			<div class="aui-tooltip-pointer-inner"></div>
-		 </div>
-	</div>
-	
-	<h2>Some additional framework classes</h2>
-	
-	<div class="aui-tooltip aui-tooltip-arrow-lt aui-widget aui-widget-content">Here's a sample tooltip. The pointer requires no images!
-		 <div class="aui-tooltip-pointer aui-widget-content">
-			<div class="aui-tooltip-pointer-inner"></div>
-		 </div>
-	</div>
-	
-	
-	<div class="aui-tooltip aui-tooltip-arrow-lt aui-widget aui-state-error">Here's a sample tooltip. The pointer requires no images!
-		 <div class="aui-tooltip-pointer aui-state-error">
-			<div class="aui-tooltip-pointer-inner"></div>
-		 </div>
-	</div>
-	
-	<div class="aui-tooltip aui-tooltip-arrow-lt aui-widget aui-state-highlight">Here's a sample tooltip. The pointer requires no images!
-		 <div class="aui-tooltip-pointer aui-state-highlight">
-			<div class="aui-tooltip-pointer-inner"></div>
-		 </div>
-	</div>
-	
-	
-	
 
 </body>
 </html>

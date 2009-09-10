@@ -1,3 +1,9 @@
 .aui-tooltip {
-	
+	max-width: 600px;
+}
+
+.aui-tooltip-hidden {
+	visibility: hidden;
+	top: -10000px !important;
+	left: -10000px !important;
 }
