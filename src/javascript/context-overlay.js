@@ -22,8 +22,8 @@ var L = A.Lang,
 function ContextOverlay(config) {
 	var instance = this;
 
-	instance._hideTask = new A.DelayedTask(instance._hide, instance);
-	instance._showTask = new A.DelayedTask(instance._show, instance);
+	instance._hideTask = new A.DelayedTask(instance.hide, instance);
+	instance._showTask = new A.DelayedTask(instance.show, instance);
 
 	instance._showCallback = null;
 	instance._hideCallback = null;
@@ -40,7 +40,10 @@ A.mix(ContextOverlay, {
         },
 
 		currentNode: {
-			value: null
+			valueFn: function() {
+				// define default currentNode as the first item from trigger
+				return this.get(TRIGGER).item(0);
+			}
 		},
 
 		delay: {
@@ -112,15 +115,37 @@ A.extend(ContextOverlay, A.Overlay, {
 	* Methods
 	*/
 	hide: function() {
-		this.clearIntervals();
+		var instance = this;
 
-		ContextOverlay.superclass.hide.apply(this, arguments);
+		instance.clearIntervals();
+
+		instance.fire('hide');
+
+		ContextOverlay.superclass.hide.apply(instance, arguments);
 	},
 
-	show: function() {
-		this.clearIntervals();
+	show: function(event) {
+		var instance = this;
+		var align = instance.get(ALIGN);
+		var currentTarget = null;
 
-		ContextOverlay.superclass.show.apply(this, arguments);
+		if (event) {
+			currentTarget = event.currentTarget;
+		}
+
+		var node = align.node || currentTarget;
+
+		if (node) {
+			instance.set(CURRENT_NODE, node);
+		}
+
+		instance.clearIntervals();
+
+		instance.refreshAlign();
+
+		instance.fire('show');
+
+		ContextOverlay.superclass.show.apply(instance, arguments);
 	},
 
 	toggle: function(event) {
@@ -147,35 +172,6 @@ A.extend(ContextOverlay, A.Overlay, {
 		if (currentNode) {
 			instance._uiSetAlign(currentNode, align.points);
 		}
-	},
-
-	_hide: function(event) {
-		var instance = this;
-
-		instance.fire('hide');
-
-		instance.hide();
-	},
-
-	_show: function(event) {
-		var instance = this;
-		var trigger = instance.get(TRIGGER);
-		var align = instance.get(ALIGN);
-		var currentTarget = null;
-
-		if (event) {
-			currentTarget = event.currentTarget;
-		}
-
-		var node = align.node || currentTarget || trigger.item(0);
-
-		instance.set(CURRENT_NODE, node);
-
-		instance.refreshAlign();
-
-		instance.fire('show');
-
-		instance.show();
 	},
 
 	_toggle: function(event) {
