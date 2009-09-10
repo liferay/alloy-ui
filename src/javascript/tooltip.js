@@ -125,6 +125,7 @@ A.extend(Tooltip, A.ContextPanel, {
 
 		Tooltip.superclass._afterBodyChange.apply(this, arguments);
 
+		// need to refreshAlign() after body change
 		instance.refreshAlign();
 	},
 
