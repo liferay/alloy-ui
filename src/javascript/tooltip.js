@@ -21,16 +21,20 @@ var L = A.Lang,
 	TOOLTIP = 'tooltip';
 
 function Tooltip(config) {
- 	Tooltip.superclass.constructor.apply(this, arguments);
+	Tooltip.superclass.constructor.apply(this, arguments);
 }
 
 A.mix(Tooltip, {
 	NAME: TOOLTIP,
 
 	ATTRS: {
+		anim: {
+			value: true
+		},
+
 		align: {
-            value: { node: null, points: [ BL, TR ] }
-        },
+			value: { node: null, points: [ BL, TR ] }
+		},
 
 		cancelHideOnInteraction: {
 			value: true,
@@ -68,6 +72,8 @@ A.extend(Tooltip, A.ContextPanel, {
 		boudingBox.on('mouseenter', A.bind(instance._cancelHideOnInteraction, instance));
 		boudingBox.on('mouseleave', A.bind(instance._invokeHideTask, instance));
 		instance.after('focusedChange', A.bind(instance._invokeHideTask, instance));
+
+		Tooltip.superclass.bindUI.apply(instance, arguments);
 	},
 
 	/*

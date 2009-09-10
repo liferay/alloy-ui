@@ -57,7 +57,7 @@ p a {
 <br/><br/><br/>
 
 <p>
-	<a href="javascript:void(0);" id="t3">Tootip - Simple tooltip without arrow</a>
+	<a href="javascript:void(0);" id="t3">Tootip - Simple tooltip without arrow and no animation</a>
 	<br/>
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </p>
@@ -95,9 +95,14 @@ AUI().ready('tooltip', 'io-stdmod', function(A) {
 	var t2 = new A.Tooltip({
 		trigger: '#t2',
 		// cancelHideOnInteraction: false,
-		bodyContent: '<img src="http://l.yimg.com/a/i/ww/news/2009/09/08/cream-sand-pd.jpg" /><br/><div style="text-align: center;">Ice cream sandwich taste test winner</div>',
+		bodyContent: '<img src="assets/cream.jpg" /><br/><div style="text-align: center;">Ice cream sandwich taste test winner</div>',
 		// align: { points: [ 'bl', 'tr' ] }
-		title: true
+		title: true,
+		anim: {
+			show: {
+				duration: 1
+			}
+		}
 	})
 	.render();
 
@@ -105,7 +110,8 @@ AUI().ready('tooltip', 'io-stdmod', function(A) {
 		trigger: '#t3',
 		align: { points: [ 'lc', 'rc' ] },
 		showArrow: false,
-		bodyContent: 'Simple tooltip without arrow!'
+		anim: false,
+		bodyContent: 'Simple tooltip without arrow! No animation.'
 	})
 	.render();
 
@@ -115,6 +121,9 @@ AUI().ready('tooltip', 'io-stdmod', function(A) {
 			show: function() {
 				this.io.refresh();
 			}
+		},
+		anim: {
+			show: false
 		}
 	})
 	.render();
