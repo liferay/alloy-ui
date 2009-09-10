@@ -64,10 +64,6 @@ A.mix(ContextOverlay, {
 			value: 0
 		},
 
-		intervals: {
-			value: {}
-		},
-
 		showOn: {
 			lazyAdd: false,
 			value: 'mouseover',
