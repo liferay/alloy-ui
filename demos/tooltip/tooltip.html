@@ -9,14 +9,114 @@
 	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 </head>
 
+<style type="text/css" media="screen">
+
+p {
+	border: 1px solid #CCCCCC;
+	margin: 10px;
+	padding: 20px 15px;
+	font-size: 12px;
+}
+
+p a {
+	font-size: 14px;
+	color: #000;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.aui-tooltip {
+	color: #999;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+</style>
+
 <body>
 <h1>Alloy - Tooltip</h1>
 
-<div id="tooltip1"></div>
+<br/><br/>
+
+<p style="text-align: center;">
+	<a href="javascript:void(0);" class="t1" title="Here s a sample Tooltip. The pointer requires no images! First trigger.">Tootip - Sharing the same trigger, content from title attribute</a>
+	<br/><br/><br/><br/><br/>
+	<a href="javascript:void(0);" class="t1" title="Here s a sample Tooltip. The pointer requires no images! Second trigger.">Tootip - Sharing the same trigger, content from title attribute</a>
+</p>
+
+<br/><br/><br/>
+
+<p>
+	<a href="javascript:void(0);" id="t2">Tootip - with image</a>
+	<br/>
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+<br/><br/><br/>
+
+<p>
+	<a href="javascript:void(0);" id="t3">Tootip - Ajax content</a>
+	<br/>
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+<p>
+	<a href="javascript:void(0);" id="t4">Tootip - youtube preview</a>
+	<br/>
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
 
 <script type="text/javascript" charset="utf-8">
 
-AUI().ready('tooltip', function(A) {
+AUI().ready('tooltip', 'io-stdmod', function(A) {
+
+	var t1 = new A.Tooltip({
+		trigger: '.t1',
+		align: { points: [ 'bc', 'tc' ] },
+		title: true
+	})
+	.render();
+
+
+	var t2 = new A.Tooltip({
+		trigger: '#t2',
+		// cancelHideOnInteraction: false,
+		bodyContent: '<img src="http://l.yimg.com/a/i/ww/news/2009/09/08/cream-sand-pd.jpg" /><br/><div style="text-align: center;">Ice cream sandwich taste test winner</div>',
+		// align: { points: [ 'bl', 'tr' ] }
+		title: true
+	})
+	.render();
+
+
+	var t3 = new A.Tooltip({
+		trigger: '#t3',
+		after: {
+			show: function() {
+				this.io.refresh();
+			}
+		}
+	})
+	.render();
+
+	t3.plug(A.Plugin.StdModIOPlugin, {
+		uri: '../dialog/assets/content.html'
+	});
+
+
+	var t4 = new A.Tooltip({
+		trigger: '#t4',
+		// cancelHideOnInteraction: false,
+		bodyContent: '<object width="560" height="340"><param name="movie" value="http://www.youtube.com/v/PiSxJwB29R8&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/PiSxJwB29R8&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="560" height="340"></embed></object>',
+		// align: { points: [ 'bl', 'tr' ] },
+		title: true
+	})
+	.render();
+
+	// Extras
+
+	A.on('click', function() { A.ContextPanelManager.hideAll() }, document);
 
 });
 
