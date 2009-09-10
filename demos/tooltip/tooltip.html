@@ -36,6 +36,8 @@ p a {
 <body>
 <h1>Alloy - Tooltip</h1>
 
+<button id="showAll">Show all Tooltips</button>
+
 <br/><br/>
 
 <p style="text-align: center;">
@@ -117,6 +119,7 @@ AUI().ready('tooltip', 'io-stdmod', function(A) {
 	// Extras
 
 	A.on('click', function() { A.ContextPanelManager.hideAll() }, document);
+	A.on('click', function(event) { A.ContextPanelManager.showAll(); event.halt(); }, '#showAll');
 
 });
 
