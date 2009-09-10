@@ -8,6 +8,7 @@ var L = A.Lang,
 	ALIGN = 'align',
 	BL = 'bl',
 	CONTEXT_OVERLAY = 'contextoverlay',
+	CURRENT_NODE = 'currentNode',
 	HIDE = 'hide',
 	HIDE_DELAY = 'hideDelay',
 	HIDE_ON = 'hideOn',
@@ -37,6 +38,10 @@ A.mix(ContextOverlay, {
 		align: {
             value: { node: null, points: [ TL, BL ] }
         },
+
+		currentNode: {
+			value: null
+		},
 
 		delay: {
 			value: null,
@@ -134,6 +139,16 @@ A.extend(ContextOverlay, A.Overlay, {
 		this._showTask.cancel();
 	},
 
+	refreshAlign: function() {
+		var instance = this;
+		var align = instance.get(ALIGN);
+		var currentNode = instance.get(CURRENT_NODE);
+
+		if (currentNode) {
+			instance._uiSetAlign(currentNode, align.points);
+		}
+	},
+
 	_hide: function(event) {
 		var instance = this;
 
@@ -154,7 +169,9 @@ A.extend(ContextOverlay, A.Overlay, {
 
 		var node = align.node || currentTarget || trigger.item(0);
 
-		instance._uiSetAlign(node, align.points);
+		instance.set(CURRENT_NODE, node);
+
+		instance.refreshAlign();
 
 		instance.fire('show');
 
@@ -174,7 +191,7 @@ A.extend(ContextOverlay, A.Overlay, {
 
 		event.halt();
 
-		instance._lastTarget = event.currentTarget;
+		instance._lastTarget = currentTarget;
 	},
 
 	/*
