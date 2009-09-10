@@ -98,7 +98,7 @@
 	</span>
 
 	<div class="extended-menus aui-helper-clearfix">
-		
+
 		<input id="changeTrigger" name="change1" type="button" value="Change Trigger for Menu to Menu Trigger 2" />
 
 		<span id="menuItem2">
@@ -166,20 +166,20 @@ AUI().ready('context-overlay', 'overlay-manager', function(A) {
 
 		on: {
 			show: function(event) {
-				console.log('on show', event);
+				// console.log('on show', event);
 				overlayManager.hideAll();
 			},
 			hide: function(event) {
-				console.log('on hide', event);
+				// console.log('on hide', event);
 			}
 		},
 
 		after: {
 			show: function(event) {
-				console.log('after show', event);
+				// console.log('after show', event);
 			},
 			hide: function(event) {
-				console.log('after hide', event);
+				// console.log('after hide', event);
 			}
 		}
 	};
@@ -189,7 +189,7 @@ AUI().ready('context-overlay', 'overlay-manager', function(A) {
 			trigger: '.menu-item-1',
 			boundingBox: '#menu1',
 			hideDelay: 1000,
-			showDelay: 0,
+			showDelay: 0
 		})
 	)
 	.render();
@@ -206,7 +206,7 @@ AUI().ready('context-overlay', 'overlay-manager', function(A) {
 	A.on('click',
 		function(event) {
 			// changing the original trigger
-			
+
 
 			var menuItem2 = A.get('#menuItem2');
 			var menuItem2New = A.get('#menuItem2-new');
@@ -261,7 +261,7 @@ AUI().ready('context-overlay', 'overlay-manager', function(A) {
 		showOn: 'mouseover',
 		hideOn: 'mouseout',
 		hideDelay: 0,
-		showDelay: 0,
+		showDelay: 0
 		// align: { node: '#simpleOverlay', points: [ 'tl', 'tr' ] }
 	})
 	.render();
