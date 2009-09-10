@@ -68,6 +68,15 @@ A.mix(ContextPanel, {
 			lazyAdd: false,
 			value: true,
 			validator: isBoolean
+		},
+
+		stack: {
+			lazyAdd: false,
+			value: true,
+			setter: function(v) {
+				return this._setStack(v);
+			},
+			validator: isBoolean
 		}
 	}
 });
@@ -196,6 +205,19 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		instance._lastOverlayPoint = overlayPoint;
 	},
 
+	_setStack: function(value) {
+		var instance = this;
+
+		if (value) {
+			A.ContextPanelManager.register(instance);
+		}
+		else {
+			A.ContextPanelManager.remove(instance);
+		}
+
+		return value;
+	},
+
 	/*
 	* Attribute Listeners
 	*/
@@ -208,4 +230,8 @@ A.extend(ContextPanel, A.ContextOverlay, {
 
 A.ContextPanel = ContextPanel;
 
-}, '@VERSION', { requires: [ 'context-overlay' ] });
+A.ContextPanelManager = new A.OverlayManager({
+	zIndexBase: 1000
+});
+
+}, '@VERSION', { requires: [ 'context-overlay', 'overlay-manager', 'context-panel-css' ] });
