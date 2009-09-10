@@ -73,11 +73,11 @@ A.extend(Tooltip, A.ContextPanel, {
 	/*
 	* Methods
 	*/
-	_show: function(event) {
+	show: function() {
 		var instance = this;
 		var bodyContent = instance.get(BODY_CONTENT);
 
-		Tooltip.superclass._show.apply(this, arguments);
+		Tooltip.superclass.show.apply(instance, arguments);
 
 		if (instance.get(TITLE)) {
 			instance._loadBodyContentFromTitle( instance.get(CURRENT_NODE) );
