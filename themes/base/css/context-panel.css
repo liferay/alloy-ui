@@ -7,6 +7,12 @@
 	border-width: 2px;
 }
 
+.aui-contextpanel-hidden {
+	visibility: hidden;
+	top: -10000px !important;
+	left: -10000px !important;
+}
+
 .aui-contextpanel .aui-contextpanel-pointer,.aui-contextpanel .aui-contextpanel-pointer-inner {
 	position: absolute;
 	width: 0;
