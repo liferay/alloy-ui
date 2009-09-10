@@ -38,7 +38,7 @@
 	position: absolute;
 }
 
-.aui-overlay-hidden, .aui-contextoverlay-hidden, .aui-tooltip-hidden, .aui-contextpanel-hidden {
+.aui-overlay-hidden, .aui-contextoverlay-hidden {
 	visibility: hidden;
 }
 
