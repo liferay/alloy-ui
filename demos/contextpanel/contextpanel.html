@@ -72,7 +72,8 @@ AUI().ready('context-panel', 'overlay-manager', function(A) {
 		trigger: '#simpleContextPanel',
 		// showArrow: false,
 		// arrow: 'bc',
-		boundingBox: '#contextpanel1'
+		boundingBox: '#contextpanel1',
+		anim: true
 	})
 	.render();
 
@@ -84,9 +85,19 @@ AUI().ready('context-panel', 'overlay-manager', function(A) {
 		trigger: '#openContextPanelHere',
 		align: { node: '#openContextPanelHere', points: [ 'tl', 'bc' ] },
 		width: 300,
-		visible: true
+		// anim: true,
+		anim: {
+			show: {
+				duration: .9
+			},
+			hide: {
+				duration: .2
+			}
+		}
 	})
 	.render();
+
+	contextPanel2.toggle();
 
 	// Extras
 

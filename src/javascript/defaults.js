@@ -87,7 +87,7 @@
 				*/
 				'context-panel': {
 					fullpath: PATH_JAVASCRIPT + 'context-panel.js',
-					requires: [ 'context-overlay', 'overlay-manager', 'context-panel-css' ]
+					requires: [ 'context-overlay', 'overlay-manager', 'anim', 'context-panel-css' ]
 				},
 				'context-panel-css': {
 					ext: false,

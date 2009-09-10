@@ -3,22 +3,26 @@ AUI.add('context-panel', function(A) {
 var L = A.Lang,
 	isBoolean = L.isBoolean,
 	isString = L.isString,
+	isObject = L.isObject,
 
 	ALIGN = 'align',
+	ANIM = 'anim',
 	ARROW = 'arrow',
+	BACKGROUND_COLOR = 'backgroundColor',
 	BLANK = '',
 	BOUNDING_BOX = 'boundingBox',
 	CLICK = 'click',
 	CONTEXTPANEL = 'contextpanel',
 	DEFAULT = 'default',
 	DOT = '.',
+	END = 'end',
 	HIDDEN = 'hidden',
 	INNER = 'inner',
+	OPACITY = 'opacity',
 	POINTER = 'pointer',
 	SHOW_ARROW = 'showArrow',
 	STATE = 'state',
 	STYLE = 'style',
-	BACKGROUND_COLOR = 'backgroundColor',
 
 	BC = 'bc',
 	BL = 'bl',
@@ -51,6 +55,14 @@ A.mix(ContextPanel, {
 	NAME: CONTEXTPANEL,
 
 	ATTRS: {
+		anim: {
+			lazyAdd: false,
+			value: null,
+			setter: function(v) {
+				return this._setAnim(v);
+			}
+		},
+
 		arrow: {
 			value: null,
 			validator: isString
@@ -89,6 +101,10 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		var instance = this;
 
 		instance.after('showArrowChange', instance._afterShowArrowChange);
+
+		instance.before('show', instance._beforeShow);
+
+		ContextPanel.superclass.bindUI.apply(instance, arguments);
 	},
 
 	renderUI: function() {
@@ -170,6 +186,22 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		return instance.get(ARROW) || overlayPoint;
 	},
 
+	hide: function(event) {
+		var instance = this;
+		var boundingBox = instance.get(BOUNDING_BOX);
+
+		if(instance._hideAnim) {
+			instance._hideAnim.run();
+
+			instance._hideAnim.on(END, function() {
+				ContextPanel.superclass.hide.apply(instance, arguments);
+			});
+		}
+		else {
+			ContextPanel.superclass.hide.apply(instance, arguments);
+		}
+	},
+
 	_renderElements: function() {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
@@ -218,9 +250,67 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		return value;
 	},
 
+	_setAnim: function(value) {
+		var instance = this;
+		var boundingBox = instance.get(BOUNDING_BOX);
+
+		if (value) {
+			var defaults = {
+				node: boundingBox,
+				duration: 0.3
+			};
+
+			var showOptions = A.merge(defaults, {
+	    		from: { opacity: 0 },
+	    		to: { opacity: 1 }
+			});
+
+			var hideOptions = A.merge(defaults, {
+				from: { opacity: 1 },
+	    		to: { opacity: 0 }
+			});
+
+			if (isObject(value)) {
+				// loading user settings for animation
+				showOptions = A.merge(showOptions, value.show);
+				hideOptions = A.merge(hideOptions, value.hide);
+			}
+
+			instance._showAnim = new A.Anim(showOptions);
+			instance._hideAnim = new A.Anim(hideOptions);
+
+			// if anim.show or anim.hide === false, cancel respective animation
+			if (isObject(value)) {
+				if (value.show === false) {
+					instance._showAnim = null;
+				}
+
+				if (value.hide === false) {
+					instance._hideAnim = null;
+				}
+			}
+		}
+
+		return value;
+	},
+
 	/*
-	* Attribute Listeners
+	* Listeners
 	*/
+	_beforeShow: function(event) {
+		var instance = this;
+		var boundingBox = instance.get(BOUNDING_BOX);
+
+		if(instance._showAnim) {
+			boundingBox.setStyle(OPACITY, 0);
+
+			instance._showAnim.run();
+		}
+		else {
+			boundingBox.setStyle(OPACITY, 1);
+		}
+	},
+
 	_afterShowArrowChange: function() {
 		var instance = this;
 
