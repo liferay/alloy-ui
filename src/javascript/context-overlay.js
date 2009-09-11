@@ -196,7 +196,7 @@ A.extend(ContextOverlay, A.Overlay, {
 
 		instance.toggle(event);
 
-		event.halt();
+		event.stopPropagation();
 
 		instance._lastTarget = currentTarget;
 	},
@@ -274,7 +274,7 @@ A.extend(ContextOverlay, A.Overlay, {
 			instance.clearIntervals();
 		}
 
-		event.halt();
+		event.stopPropagation();
 	},
 
 	_invokeHideTaskOnInteraction: function(event) {
@@ -305,7 +305,7 @@ A.extend(ContextOverlay, A.Overlay, {
 			instance._hideCallback = function(event) {
 				instance._hideTask.delay(delay, null, null, [event]);
 
-				event.halt();
+				event.stopPropagation();
 			};
 		}
 
@@ -331,7 +331,7 @@ A.extend(ContextOverlay, A.Overlay, {
 			instance._showCallback = function(event) {
 				instance._showTask.delay(delay, null, null, [event]);
 
-				event.halt();
+				event.stopPropagation();
 			};
 		}
 
