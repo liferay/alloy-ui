@@ -119,7 +119,12 @@ AUI().ready('tooltip', 'io-stdmod', function(A) {
 		trigger: '#t4',
 		after: {
 			show: function() {
-				this.io.refresh();
+				this.set('bodyContent', 'Loading...');
+
+				// simulating a delay
+				A.later(1000, this, function() {
+					this.io.refresh();
+				});
 			}
 		},
 		anim: {
