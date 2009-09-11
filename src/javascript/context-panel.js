@@ -242,6 +242,21 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		instance._lastOverlayPoint = overlayPoint;
 	},
 
+	_cancelHideOnInteraction: function(event) {
+		// Overloading ContextOverlay _cancelHideOnInteraction
+		// ContextPanels by default doesn't automatic hide itself
+		/* EMPTY */
+	},
+
+	_invokeHideTaskOnInteraction: function() {
+		// Overloading ContextOverlay _invokeHideTaskOnInteraction
+		// ContextPanels by default doesn't automatic hide itself
+		/* EMPTY */
+	},
+
+	/*
+	* Setters
+	*/
 	_setStack: function(value) {
 		var instance = this;
 

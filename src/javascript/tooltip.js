@@ -7,10 +7,6 @@ var L = A.Lang,
 
 	BL = 'bl',
 	TR = 'tr',
-	FOCUSED = 'focused',
-	CANCEL_HIDE_ON_INTERACTION = 'cancelHideOnInteraction',
-	BOUNDING_BOX = 'boundingBox',
-	HIDE_DELAY = 'hideDelay',
 	BLANK = '',
 	ATTR = 'attr',
 	TITLE = 'title',
@@ -34,11 +30,6 @@ A.mix(Tooltip, {
 
 		align: {
 			value: { node: null, points: [ BL, TR ] }
-		},
-
-		cancelHideOnInteraction: {
-			value: true,
-			validador: isBoolean
 		},
 
 		showOn: {
@@ -66,12 +57,6 @@ A.extend(Tooltip, A.ContextPanel, {
 	*/
 	bindUI: function() {
 		var instance = this;
-		var boudingBox = instance.get(BOUNDING_BOX);
-
-		boudingBox.on('click', A.bind(instance._cancelHideOnInteraction, instance));
-		boudingBox.on('mouseenter', A.bind(instance._cancelHideOnInteraction, instance));
-		boudingBox.on('mouseleave', A.bind(instance._invokeHideTask, instance));
-		instance.after('focusedChange', A.bind(instance._invokeHideTask, instance));
 
 		Tooltip.superclass.bindUI.apply(instance, arguments);
 	},
@@ -109,12 +94,18 @@ A.extend(Tooltip, A.ContextPanel, {
 		}
 	},
 
-	_invokeHideTask: function() {
-		var instance = this;
+	_cancelHideOnInteraction: function(event) {
+		var OverlayManagerClass = Tooltip.superclass.constructor.superclass;
 
-		if (!instance.get(FOCUSED)) {
-			instance._hideTask.delay( instance.get(HIDE_DELAY) );
-		}
+		// Tooltips should have automatic hide like the ContextOverlay
+		OverlayManagerClass._cancelHideOnInteraction.apply(this, arguments);
+	},
+
+	_invokeHideTaskOnInteraction: function() {
+		var OverlayManagerClass = Tooltip.superclass.constructor.superclass;
+
+		// Tooltips should have automatic hide like the ContextOverlay
+		OverlayManagerClass._invokeHideTaskOnInteraction.apply(this, arguments);
 	},
 
 	/*
@@ -127,18 +118,6 @@ A.extend(Tooltip, A.ContextPanel, {
 
 		// need to refreshAlign() after body change
 		instance.refreshAlign();
-	},
-
-	// cancel hide if the user does some interaction with the tooltip
-	// interaction = focus, mouseover
-	_cancelHideOnInteraction: function(event) {
-		var instance = this;
-
-		if (instance.get(CANCEL_HIDE_ON_INTERACTION)) {
-			instance.clearIntervals();
-		}
-
-		event.halt();
 	}
 });
 
