@@ -235,20 +235,6 @@ AUI().ready('context-overlay', 'overlay-manager', function(A) {
 
 	overlayManager.register([ menuOverlay1, menuOverlay2 ]);
 
-	overlayManager.each(function(overlay) {
-		var boundingBox = overlay.get('boundingBox');
-
-		// clearIntervals on mouseenter the menus
-		boundingBox.on('mouseenter', function() {
-			overlay.clearIntervals();
-		});
-
-		// call _hideTask on mouseleave the menus
-		boundingBox.on('mouseleave', function() {
-			overlay._hideTask.delay(1000);
-		});
-	});
-
 	// hideAll overlays when click on document
 	A.on('click', function(event) { overlayManager.hideAll(); }, document);
 

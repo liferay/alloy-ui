@@ -4,11 +4,15 @@ var L = A.Lang,
 	isString = L.isString,
 	isNumber = L.isNumber,
 	isObject = L.isObject,
+	isBoolean = L.isBoolean,
 
 	ALIGN = 'align',
 	BL = 'bl',
+	BOUNDING_BOX = 'boundingBox',
+	CANCEL_HIDE_ON_INTERACTION = 'cancelHideOnInteraction',
 	CONTEXT_OVERLAY = 'contextoverlay',
 	CURRENT_NODE = 'currentNode',
+	FOCUSED = 'focused',
 	HIDE = 'hide',
 	HIDE_DELAY = 'hideDelay',
 	HIDE_ON = 'hideOn',
@@ -38,6 +42,11 @@ A.mix(ContextOverlay, {
 		align: {
             value: { node: null, points: [ TL, BL ] }
         },
+
+		cancelHideOnInteraction: {
+			value: true,
+			validador: isBoolean
+		},
 
 		currentNode: {
 			valueFn: function() {
@@ -97,6 +106,7 @@ A.extend(ContextOverlay, A.Overlay, {
 	*/
 	bindUI: function(){
 		var instance = this;
+		var boudingBox = instance.get(BOUNDING_BOX);
 
 		instance.before('triggerChange', instance._beforeTriggerChange);
 		instance.before('showOnChange', instance._beforeShowOnChange);
@@ -105,6 +115,11 @@ A.extend(ContextOverlay, A.Overlay, {
 		instance.after('triggerChange', instance._afterTriggerChange);
 		instance.after('showOnChange', instance._afterShowOnChange);
 		instance.after('hideOnChange', instance._afterHideOnChange);
+
+		boudingBox.on('click', A.bind(instance._cancelHideOnInteraction, instance));
+		boudingBox.on('mouseenter', A.bind(instance._cancelHideOnInteraction, instance));
+		boudingBox.on('mouseleave', A.bind(instance._invokeHideTaskOnInteraction, instance));
+		instance.after('focusedChange', A.bind(instance._invokeHideTaskOnInteraction, instance));
 	},
 
 	/*
@@ -248,6 +263,26 @@ A.extend(ContextOverlay, A.Overlay, {
 
 		trigger.detach(showOn, instance._showCallback);
 		trigger.detach(hideOn, instance._hideCallback);
+	},
+
+	// cancel hide if the user does some interaction with the tooltip
+	// interaction = focus, click, mouseover
+	_cancelHideOnInteraction: function(event) {
+		var instance = this;
+
+		if (instance.get(CANCEL_HIDE_ON_INTERACTION)) {
+			instance.clearIntervals();
+		}
+
+		event.halt();
+	},
+
+	_invokeHideTaskOnInteraction: function(event) {
+		var instance = this;
+
+		if (!instance.get(FOCUSED)) {
+			instance._hideTask.delay( instance.get(HIDE_DELAY) );
+		}
 	},
 
 	/*
