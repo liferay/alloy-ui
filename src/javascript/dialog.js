@@ -163,10 +163,6 @@ A.extend(Dialog, A.Overlay, {
 	destructor: function() {
 		var instance = this;
 
-		if (instance.OverlayManager) {
-			instance.OverlayManager.destroy();
-		}
-
 		instance.get(BOUNDING_BOX).remove();
 	},
 
@@ -196,14 +192,6 @@ A.extend(Dialog, A.Overlay, {
 				instance.close();
 			}
 		);
-
-		boundingBox.on('mousedown', function() {
-			if (instance.OverlayManager) {
-				instance.OverlayManager.bringToTop();
-			}
-
-			instance.fire('focus');
-		});
 
 		instance.after('titleChange', this._afterSetTitle);
 	},
