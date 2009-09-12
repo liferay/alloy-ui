@@ -6,6 +6,10 @@ var L = A.Lang,
 	isObject = L.isObject,
 	isBoolean = L.isBoolean,
 
+	isNodeList = function(v) {
+		return (v instanceof A.NodeList);
+	},
+
 	ALIGN = 'align',
 	BL = 'bl',
 	BOUNDING_BOX = 'boundingBox',
@@ -90,7 +94,14 @@ A.mix(ContextOverlay, {
 		trigger: {
 			lazyAdd: false,
 			setter: function(v) {
-				return A.all(v);
+				if (isNodeList(v)) {
+					return v;
+				}
+				else if (isString(v)) {
+					return A.all(v);
+				}
+
+				return new A.NodeList([v]);
 			}
 		},
 
@@ -178,7 +189,8 @@ A.extend(ContextOverlay, A.Overlay, {
 	refreshAlign: function() {
 		var instance = this;
 		var align = instance.get(ALIGN);
-		var currentNode = instance.get(CURRENT_NODE);
+		var trigger = instance.get(TRIGGER);
+		var currentNode = instance.get(CURRENT_NODE) || trigger.item(0);
 
 		if (currentNode) {
 			instance._uiSetAlign(currentNode, align.points);
@@ -343,4 +355,4 @@ A.extend(ContextOverlay, A.Overlay, {
 
 A.ContextOverlay = ContextOverlay;
 
-}, '@VERSION', { requires: [ 'aui-base', 'overlay', 'delayed-task' ] });
+}, '0.1a', { requires: [ 'aui-base', 'overlay', 'delayed-task' ] });
