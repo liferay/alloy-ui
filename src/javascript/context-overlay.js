@@ -133,6 +133,12 @@ A.extend(ContextOverlay, A.Overlay, {
 		instance.after('focusedChange', A.bind(instance._invokeHideTaskOnInteraction, instance));
 	},
 
+	destructor: function() {
+		var instance = this;
+
+		instance.get(BOUNDING_BOX).remove();
+	},
+
 	/*
 	* Methods
 	*/
