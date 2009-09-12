@@ -148,20 +148,10 @@ A.extend(ContextOverlay, A.Overlay, {
 
 	show: function(event) {
 		var instance = this;
-		var align = instance.get(ALIGN);
-		var currentTarget = null;
-
-		if (event) {
-			currentTarget = event.currentTarget;
-		}
-
-		var node = align.node || currentTarget;
-
-		if (node) {
-			instance.set(CURRENT_NODE, node);
-		}
 
 		instance.clearIntervals();
+
+		instance.updateCurrentNode(event);
 
 		instance.refreshAlign();
 
@@ -189,11 +179,27 @@ A.extend(ContextOverlay, A.Overlay, {
 	refreshAlign: function() {
 		var instance = this;
 		var align = instance.get(ALIGN);
-		var trigger = instance.get(TRIGGER);
-		var currentNode = instance.get(CURRENT_NODE) || trigger.item(0);
+		var currentNode = instance.get(CURRENT_NODE);
 
 		if (currentNode) {
 			instance._uiSetAlign(currentNode, align.points);
+		}
+	},
+
+	updateCurrentNode: function(event) {
+		var instance = this;
+		var align = instance.get(ALIGN);
+		var trigger = instance.get(TRIGGER);
+		var currentTarget = null;
+
+		if (event) {
+			currentTarget = event.currentTarget;
+		}
+
+		var node = align.node || currentTarget || trigger.item(0);
+
+		if (node) {
+			instance.set(CURRENT_NODE, node);
 		}
 	},
 
