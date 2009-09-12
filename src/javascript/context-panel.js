@@ -277,7 +277,7 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		if (value) {
 			var defaults = {
 				node: boundingBox,
-				duration: 0.3
+				duration: 0.1
 			};
 
 			var showOptions = A.merge(defaults, {

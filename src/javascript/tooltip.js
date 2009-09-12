@@ -41,7 +41,7 @@ A.mix(Tooltip, {
 		},
 
 		hideDelay: {
-			value: 1500
+			value: 500
 		},
 
 		title: {
