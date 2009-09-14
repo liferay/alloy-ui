@@ -39,14 +39,25 @@
 	height: 100px;
 }
 
+.message {
+	color: #fff;
+	font-size: 24px;
+	position: absolute;
+	width: 400px;
+	left: 50%;
+	top: 50%;
+	margin-left: -150px;
+	z-index: 99999;
+}
+
 </style>
 
 <body>
 <h1>Alloy - OverlayMask</h1>
 
 <p><button id="showOn-document">Show on document</button></p>
-<p><button id="showOn-blue">Show on blue</button></p>
 <p><button id="showOn-red">Show on red</button></p>
+<p><button id="showOn-blue">Show on blue</button></p>
 <p><button id="showOn-green">Show on green</button></p>
 
 <div id="element1"></div>
@@ -62,14 +73,31 @@ AUI().ready('overlay-mask', function(A) {
 	// overlayMask.set('target', '#element1');
 	// overlayMask.set('width', 44);
 
+	var message = A.Node.create('<h3 class="message">Click on me to hide this panel</h3>');
+
+	message.on('click',
+		function(event) {
+			overlayMask.hide();
+			message.remove();
+		}
+	)
+
+	var showMessage = function() {
+		message.appendTo(document.body);
+	};
+
 	// Extras
 	var setTarget = function(elem) {
 		overlayMask.set('target', elem).show();
+
+		if (elem == document) {
+			showMessage();
+		}
 	};
 
 	A.on('click', A.bind(setTarget, null, document), '#showOn-document');
-	A.on('click', A.bind(setTarget, null, '#element1'), '#showOn-blue');
-	A.on('click', A.bind(setTarget, null, '#element2'), '#showOn-red');
+	A.on('click', A.bind(setTarget, null, '#element1'), '#showOn-red');
+	A.on('click', A.bind(setTarget, null, '#element2'), '#showOn-blue');
 	A.on('click', A.bind(setTarget, null, '#element3'), '#showOn-green');
 });
 
