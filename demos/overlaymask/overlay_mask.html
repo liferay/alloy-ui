@@ -18,6 +18,7 @@
 	top: 200px;
 	width: 100px;
 	height: 100px;
+	padding: 30px;
 }
 
 #element2 {
@@ -56,7 +57,20 @@
 
 AUI().ready('overlay-mask', function(A) {
 
+	var overlayMask = new A.OverlayMask().render();
 
+	// overlayMask.set('target', '#element1');
+	// overlayMask.set('width', 44);
+
+	// Extras
+	var setTarget = function(elem) {
+		overlayMask.set('target', elem).show();
+	};
+
+	A.on('click', A.bind(setTarget, null, document), '#showOn-document');
+	A.on('click', A.bind(setTarget, null, '#element1'), '#showOn-blue');
+	A.on('click', A.bind(setTarget, null, '#element2'), '#showOn-red');
+	A.on('click', A.bind(setTarget, null, '#element3'), '#showOn-green');
 });
 
 </script>
