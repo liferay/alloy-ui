@@ -10,7 +10,7 @@
 
 .aui-form .aui-ctrl-holder {
 	overflow: hidden;
-	clear: both;
+	clear: right;
 	margin: 0;
 	padding: 0;
 }
