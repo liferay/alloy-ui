@@ -76,13 +76,18 @@
 }
 
 .aui-helper-clearfix {
-	display: block;
-
-	/* IE7 & below */
-	*display: block;
-	/* IE6 */
-	_height: 1%;
+	display: inline-block;
 }
+
+/* start commented backslash hack \*/
+* html .aui-helper-clearfix {
+	height: 1%;
+}
+
+.aui-helper-clearfix {
+	display: block;
+}
+/* close commented backslash hack */
 
 .aui-helper-zfix {
 	width: 100%;
