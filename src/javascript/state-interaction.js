@@ -9,7 +9,7 @@ AUI().add(
 			STATE = 'state',
 
 			CSS_STATE_DEFAULT = getClassName(STATE, 'default'),
-			CSS_STATE_HOVER = getClassName(STATE, 'hover');
+			CSS_STATE_HOVER = getClassName(STATE, 'hover'),
 			CSS_STATE_ACTIVE = getClassName(STATE, 'active');
 
 		var StateInteractionPlugin = function() {
