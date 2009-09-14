@@ -113,7 +113,7 @@
 				*/
 				'dialog': {
 					fullpath: PATH_JAVASCRIPT + 'dialog.js',
-					requires: [ 'plugin', 'overlay', 'dd-constrain', 'aui-base', 'tool-item', 'overlay-manager', 'io-stdmod', 'dialog-css' ]
+					requires: [ 'plugin', 'overlay', 'dd-constrain', 'aui-base', 'tool-item', 'overlay-manager', 'overlay-mask', 'io-stdmod', 'dialog-css' ]
 				},
 				'dialog-css': {
 					ext: false,
@@ -172,7 +172,7 @@
 				*/
 				'overlay-mask': {
 					fullpath: PATH_JAVASCRIPT + 'overlay-mask.js',
-					requires: [ 'aui-base', 'overlay', 'plugin' ]
+					requires: [ 'aui-base', 'overlay', 'event-resize' ]
 				},
 
 				/*
