@@ -32,6 +32,7 @@ var L = A.Lang,
 	HEADER = 'header',
 	HEADER_CONTENT = 'headerContent',
 	HOVER = 'hover',
+	MODAL = 'modal',
 	ICON = 'icon',
 	INNER_HTML = 'innerHTML',
 	IO = 'io',
@@ -110,6 +111,15 @@ A.mix(Dialog, {
 			}
 		},
 
+		modal: {
+			setter: function(v) {
+				return this._setModal(v);
+			},
+			lazyAdd: false,
+			value: false,
+			validator: isBoolean
+		},
+
 		io: {
 			lazyAdd: true,
 			value: null,
@@ -177,6 +187,10 @@ A.extend(Dialog, A.Overlay, {
 		}
 		else {
 			instance.hide();
+		}
+
+		if (instance.get(MODAL)) {
+			A.DialogMask.hide();
 		}
 
 		instance.fire('close');
@@ -368,6 +382,19 @@ A.extend(Dialog, A.Overlay, {
 		return value;
 	},
 
+	_setModal: function(value) {
+		var instance = this;
+
+		if (value) {
+			A.DialogMask.show();
+		}
+		else {
+			A.DialogMask.hide();
+		}
+
+		return value;
+	},
+
 	_setStack: function(value) {
 		var instance = this;
 
@@ -428,4 +455,6 @@ A.mix(A.DialogManager, {
 	}
 });
 
-}, '@VERSION', { requires: [ 'aui-base', 'overlay-manager', 'dd-constrain', 'io-stdmod', 'dialog-css' ] });
+A.DialogMask = new A.OverlayMask().render();
+
+}, '@VERSION', { requires: [ 'aui-base', 'overlay-manager', 'overlay-mask', 'dd-constrain', 'io-stdmod', 'dialog-css' ] });
