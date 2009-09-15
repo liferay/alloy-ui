@@ -131,7 +131,7 @@ AUI.add('aui-node', function(A) {
 				return instance.set(name, value);
 			}
 			else {
-				return instance.get(name);
+				return instance.get(name) || instance.getAttribute(name);
 			}
 		},
 
