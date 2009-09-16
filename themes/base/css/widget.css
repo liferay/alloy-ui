@@ -37,18 +37,3 @@
 .aui-overlay {
 	position: absolute;
 }
-
-.aui-overlay-hidden,
-.aui-contextoverlay-hidden {
-	visibility: hidden;
-}
-
-.aui-overlaymask-hidden {
-	visibility: hidden;
-	top: -10000px !important;
-	left: -10000px !important;
-}
-
-.aui-overlay-focused {
-	
-}
