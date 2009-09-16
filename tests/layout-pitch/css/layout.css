@@ -1,0 +1,229 @@
+.aui-layout {
+	margin: 0 auto;
+}
+
+.aui-col {
+	overflow: hidden;
+	word-wrap: break-word;
+}
+
+.aui-mod {
+	overflow: hidden;
+	zoom: 1;
+}
+
+* html .aui-col {
+	margin-right: expression(!this.nextSibling?'-'+this.parentNode.childNodes.length+'px':0);
+}
+
+*+html .aui-col {
+	margin-right: expression(!this.nextSibling?'-'+this.parentNode.childNodes.length+'px':0);
+}
+
+.aui-layout:after,
+.aui-row:after,
+.aui-col:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+* html .aui-layout,
+* html .aui-row {
+	height: 1%;
+}
+
+*+html .aui-layout,
+*+html .aui-row {
+	height: 1%;
+}
+
+.aui-col,
+.aui-100p {
+	float: left;
+	width: 100%;
+}
+
+.aui-1-16 {
+	width: 6.25%;
+}
+
+.aui-1-12 {
+	width: 8.334%;
+}
+
+.aui-1-10,
+.aui-10p {
+	width: 10%;
+}
+
+.aui-1-8 {
+	width: 12.5%;
+}
+
+.aui-15p {
+	width: 15%;
+}
+
+.aui-1-6 {
+	width: 16.667%;
+}
+
+.aui-3-16 {
+	width: 18.75%;
+}
+
+.aui-1-5,
+.aui-20p {
+	width: 20%;
+}
+
+.aui-1-4,
+.aui-25p {
+	width: 25%;
+}
+
+.aui-3-10,
+.aui-30p {
+	width: 30%;
+}
+
+.aui-5-16 {
+	width: 31.25%;
+}
+
+.aui-1-3,
+.aui-33p {
+	width: 33.333%;
+}
+
+.aui-35p {
+	width: 35%;
+}
+
+.aui-3-8 {
+	width: 37.5%;
+}
+
+.aui-38p {
+	width: 38.2%;
+}
+
+.aui-2-5,
+.aui-40p {
+	width: 40%;
+}
+
+.aui-5-12 {
+	width: 41.667%;
+}
+
+.aui-7-16 {
+	width: 43.75%;
+}
+
+.aui-45p {
+	width: 45%;
+}
+
+.aui-1-2,
+.aui-50p {
+	width: 50%;
+}
+
+.aui-55p {
+	width: 55%;
+}
+
+.aui-9-16 {
+	width: 56.25%;
+}
+
+.aui-7-12 {
+	width: 58.334%;
+}
+
+.aui-3-5,
+.aui-60p {
+	width: 60%;
+}
+
+.aui-5-8 {
+	width: 62.5%;
+}
+
+.aui-62p {
+	width: 61.8%;
+}
+
+.aui-65p {
+	width: 65%;
+}
+
+.aui-2-3,
+.aui-66p {
+	width: 66.667%;
+}
+
+.aui-11-16 {
+	width: 68.75%;
+}
+
+.aui-7-10,
+.aui-70p {
+	width: 70%;
+}
+
+.aui-3-4,
+.aui-75p {
+	width: 75%;
+}
+
+.aui-4-5,
+.aui-80p {
+	width: 80%;
+}
+
+.aui-13-16 {
+	width: 81.25%;
+}
+
+.aui-5-6 {
+	width: 83.334%;
+}
+
+.aui-85p {
+	width: 85%;
+}
+
+.aui-7-8 {
+	width: 87.5%;
+}
+
+.aui-9-10,
+.aui-90p {
+	width: 90%;
+}
+
+.aui-11-12 {
+	width: 91.667%;
+}
+
+.aui-15-16 {
+	width: 93.75%;
+}
+
+.aui-95p {
+	width: 95%;
+}
+
+.aui-left {
+	float: left;
+}
+
+.aui-right {
+	float: right;
+}
