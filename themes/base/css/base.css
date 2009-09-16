@@ -24,23 +24,23 @@
 }
 
 .aui-state-highlight {
-	
+
 }
 
 .aui-state-error {
-	
+
 }
 
 .aui-state-error-text {
-	
+
 }
 
 .aui-priority-primary {
-	
+
 }
 
 .aui-priority-secondary {
-	
+
 }
 
 .aui-html-template {
@@ -51,10 +51,15 @@
 	display: none !important;
 }
 
-.aui-helper-hidden-accessible {
-	left: -99999em;
-	position: absolute;
-	top: -99999em;
+.aui-helper-hidden-accessible,
+.aui-overlay-hidden,
+.aui-contextoverlay-hidden,
+.aui-overlaymask-hidden,
+.aui-calendar-hidden {
+
+	left: -99999px !important;
+	position: absolute !important;
+	top: -99999px !important;
 }
 
 .aui-helper-reset {
