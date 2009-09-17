@@ -22,9 +22,6 @@ var L = A.Lang,
 	DATES = 'dates',
 	DATE_FORMAT = 'dateFormat',
 	DAY = 'day',
-	DAY_NAMES = 'dayNames',
-	DAY_NAMES_MIN = 'dayNamesMin',
-	DAY_NAMES_SHORT = 'dayNamesShort',
 	DEFAULT = 'default',
 	DEFAULT_DATE = 'defaultDate',
 	DOT = '.',
@@ -34,10 +31,9 @@ var L = A.Lang,
 	HIDDEN = 'hidden',
 	HOVER = 'hover',
 	ICON = 'icon',
+	LOCALE = 'locale',
 	MONTH = 'month',
 	MONTHDAYS = 'monthdays',
-	MONTH_NAMES = 'monthNames',
-	MONTH_NAMES_SHORT = 'monthNamesShort',
 	NEXT = 'next',
 	PREV = 'prev',
 	SELECT_MULTIPLE_DATES = 'selectMultipleDates',
@@ -91,23 +87,6 @@ function Calendar(config) {
 }
 
 A.mix(Calendar, {
-	masks: {
-	    "default": "ddd mmm dd yyyy HH:MM:ss",
-	    shortDate: "mm/dd/yyyy",
-	    mediumDate: "mmm d, yyyy",
-	    longDate: "mmmm d, yyyy",
-	    fullDate: "dddd, mmmm d, yyyy",
-	    shortTime: "h:MM TT",
-	    mediumTime: "h:MM:ss TT",
-	    longTime: "h:MM:ss TT Z",
-	    isoDate: "yyyy-mm-dd",
-	    isoTime: "HH:MM:ss",
-	    isoDateTime: "yyyy-mm-dd'T'HH:MM:ss",
-	    isoUtcDateTime: "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'"
-	}
-});
-
-A.mix(Calendar, {
 	NAME: CALENDAR,
 
 	ATTRS: {
@@ -132,34 +111,13 @@ A.mix(Calendar, {
 		},
 
 		dateFormat: {
-			value: Calendar.masks.shortDate,
+			value: '%d/%m/%y',
 			validator: isString
 		},
 
 		defaultDate: {
 			value: new Date()
 		},
-
-		dayNamesMin: {
-			value: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
-		},
-
-		dayNamesShort: {
-			value: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-		},
-
-		dayNames: {
-			value: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-		},
-
-		monthNames: {
-			value: ['January', 'February', 'March', 'April', 'May', 'June',
-            		'July', 'August', 'September', 'October', 'November', 'December']
-        },
-
-        monthNamesShort: {
-        	value: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    	},
 
 		showOn: {
 			value: 'click'
@@ -309,15 +267,19 @@ A.extend(Calendar, A.ContextOverlay, {
 	},
 
 	_renderWeekDays: function() {
+		var day = 0;
 		var instance = this;
-		var dayNamesMin = instance.get(DAY_NAMES_MIN);
 		var weekDay = A.Node.create(TPL_CALENDAR_WEEK);
 
-		A.Array.each(dayNamesMin, function(day) {
+		while(day < 7) {
+			var dayName = instance._getDayNameMin(day);
+
 			instance.weekDaysNode.append(
-				weekDay.cloneNode().html(day)
+				weekDay.cloneNode().html(dayName)
 			);
-		});
+
+			day++;
+		}
 	},
 
 	// blank days are used to align with the week day column
@@ -564,7 +526,7 @@ A.extend(Calendar, A.ContextOverlay, {
 
 		A.Array.each(v, function(date, index) {
 			if (isString(date)) {
-				v[index] = instance.parseDate( date, instance.get(DATE_FORMAT) );
+				v[index] = instance.parseDate( date );
 			}
 		});
 
@@ -574,6 +536,13 @@ A.extend(Calendar, A.ContextOverlay, {
 	/*
 	* Date util methods
 	*/
+	getHelperDate: function(month, weekDay) {
+		// this method use Nov/2009 as helper default date
+		// useful to obtain a Date() with the first day on 'Sunday' for obtain the localized names
+		var instance = this;
+		return ( new Date(2009, month || 10, (weekDay || 0) + 1 ) );
+	},
+
 	getCurrentDate: function() {
 		var instance = this;
 		var date = instance._normalizeYearMonth();
@@ -632,135 +601,67 @@ A.extend(Calendar, A.ContextOverlay, {
 
 	_getDayName: function(weekDay) {
 		var instance = this;
+		var helper = instance.getHelperDate(null, weekDay);
 
-		return instance.get(DAY_NAMES)[weekDay];
+		return instance.formatDate(helper, '%A');
 	},
 
 	_getDayNameShort: function(weekDay) {
 		var instance = this;
+		var helper = instance.getHelperDate(null, weekDay);
 
-		return instance.get(DAY_NAMES_SHORT)[weekDay];
+		return instance.formatDate(helper, '%a');
 	},
 
 	_getDayNameMin: function(weekDay) {
 		var instance = this;
+		var name = instance._getDayNameShort(weekDay);
 
-		return instance.get(DAY_NAMES_MIN)[weekDay];
+		return name.slice(0, name.length-1);
 	},
 
 	_getMonthName: function(month) {
 		var instance = this;
+		var helper = instance.getHelperDate(month);
 
-		return instance.get(MONTH_NAMES)[month];
+		return instance.formatDate(helper, '%B');
 	},
 
 	_getMonthNameShort: function(month) {
 		var instance = this;
+		var helper = instance.getHelperDate(month);
 
-		return instance.get(MONTH_NAMES_SHORT)[month];
+		return instance.formatDate(helper, '%b');
 	},
 
-	parseDate: function(date, mask, utc) {
+	parseDate: function(dateString) {
 		var instance = this;
 
-		return instance._parseDate(date, mask, utc, true);
+		return instance._parseDate(dateString, null, true);
 	},
 
-	formatDate: function(date, mask, utc) {
+	formatDate: function(date, mask) {
 		var instance = this;
 
-		return instance._parseDate(date, mask, utc);
+		return instance._parseDate(date, mask);
 	},
 
 	/*
 	* This method was inspired on Date Format Library
 	* http://blog.stevenlevithan.com/archives/date-time-format
 	*/
-	_parseDate: function (date, mask, utc, returnDate) {
+	_parseDate: function (date, mask, returnDate) {
 		var instance = this;
-	    var token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZ]|"[^"]*"|'[^']*'/g;
-	    var timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g;
-	    var timezoneClip = /[^-+\dA-Z]/g;
+		var locale = instance.get(LOCALE);
 
-	    var pad = function (val, len) {
-	        val = String(val);
-	        len = len || 2;
-	        while (val.length < len) val = "0" + val;
-	        return val;
-	    };
+		if (returnDate) {
+			return ( date = date ? new Date(date) : new Date );
+		}
 
-	    // Regexes and supporting functions are cached through closure
-	    return function (date, mask, utc, returnDate) {
-	        // You can't provide utc if you skip other args (use the "UTC:" mask prefix)
-	        if (arguments.length == 1 && Object.prototype.toString.call(date) == "[object String]" && !/\d/.test(date)) {
-	            mask = date;
-	            date = undefined;
-	        }
-
-	        // Passing date through Date applies Date.parse, if necessary
-	        date = date ? new Date(date) : new Date;
-	        if (isNaN(date)) throw SyntaxError("invalid date");
-
-	        mask = String(A.Calendar.masks[mask] || mask || A.Calendar.masks["default"]);
-
-	        // Allow setting the utc argument via the mask
-	        if (mask.slice(0, 4) == "UTC:") {
-	            mask = mask.slice(4);
-	            utc = true;
-	        }
-
-			if (returnDate) {
-				// needed by instance.parseDate
-				return date;
-			}
-
-	        var _ = utc ? "getUTC" : "get",
-	        d = date[_ + "Date"](),
-	        D = date[_ + "Day"](),
-	        m = date[_ + "Month"](),
-	        y = date[_ + "FullYear"](),
-	        H = date[_ + "Hours"](),
-	        M = date[_ + "Minutes"](),
-	        s = date[_ + "Seconds"](),
-	        L = date[_ + "Milliseconds"](),
-	        o = utc ? 0 : date.getTimezoneOffset(),
-	        flags = {
-	            d: d,
-	            dd: pad(d),
-	            ddd: instance._getDayName(D),
-	            dddd: instance._getDayName(D + 7),
-	            m: m + 1,
-	            mm: pad(m + 1),
-	            mmm: instance._getMonthName(m),
-	            mmmm: instance._getMonthName(m + 12),
-	            yy: String(y).slice(2),
-	            yyyy: y,
-	            h: H % 12 || 12,
-	            hh: pad(H % 12 || 12),
-	            H: H,
-	            HH: pad(H),
-	            M: M,
-	            MM: pad(M),
-	            s: s,
-	            ss: pad(s),
-	            l: pad(L, 3),
-	            L: pad(L > 99 ? Math.round(L / 10) : L),
-	            t: H < 12 ? "a" : "p",
-	            tt: H < 12 ? "am" : "pm",
-	            T: H < 12 ? "A" : "P",
-	            TT: H < 12 ? "AM" : "PM",
-	            Z: utc ? "UTC" : (String(date).match(timezone) || [""]).pop().replace(timezoneClip, ""),
-	            o: (o > 0 ? "-" : "+") + pad(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
-	            S: ["th", "st", "nd", "rd"][d % 10 > 3 ? 0 : (d % 100 - d % 10 != 10) * d % 10]
-	        };
-
-	        return mask.replace(token, function ($0) {
-	            return $0 in flags ? flags[$0] : $0.slice(1, $0.length - 1);
-	        });
-	    }(date, mask, utc, returnDate);
+		return A.DataType.Date.format(date, { format: mask, locale: locale });
 	}
 });
 
 A.Calendar = Calendar;
 
-}, '@VERSION', { requires: [ 'aui-base', 'context-overlay' ] });
+}, '@VERSION', { requires: [ 'aui-base', 'context-overlay', 'datatype-date' ] });

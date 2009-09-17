@@ -6,6 +6,8 @@
 	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
 
+	<script src="../../src/javascript/i18n/calendar-pt-br.js" type="text/javascript" charset="utf-8"></script>
+
 	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 </head>
 
@@ -24,10 +26,10 @@
 <body>
 <h1>Alloy - Calendar</h1>
 
-<input type="text" name="input1" value="" id="input1" />
+<input type="text" name="input1" size="55" value="" id="input1" />
 
 <div class="calendar-icon">
-	Click here
+	Click on the icon to load a Portuguese Calendar
 	<span class="aui-tool aui-state-default">
 		<span class="aui-icon aui-icon-calendar"/>
 	</span>
@@ -40,9 +42,8 @@ AUI().ready('calendar', function(A) {
 	var calendar1 = new A.Calendar({
 		trigger: '#input1',
 		// dates: [ new Date(2009, 08, 15), new Date(2009, 08, 14) ],
-		// dates: [ '09/14/2009', '09/15/2009' ],
-		// dateFormat: A.Calendar.masks.default,
-		// dateFormat: 'mm/dd/yyyy',
+		dates: [ '09/14/2009', '09/15/2009' ],
+		dateFormat: '%d/%m/%y %A',
 		setValue: true,
 		selectMultipleDates: true,
 		on: {
@@ -61,6 +62,7 @@ AUI().ready('calendar', function(A) {
 
 	var calendar2 = new A.Calendar({
 		trigger: '.aui-icon-calendar',
+		locale: 'pt-br',
 		on: {
 			select: function(event) {
 				alert( event.date.formatted )
