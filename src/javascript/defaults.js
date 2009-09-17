@@ -83,6 +83,19 @@
 				},
 
 				/*
+				* Calendar
+				*/
+				'calendar': {
+					fullpath: PATH_JAVASCRIPT + 'calendar.js',
+					requires: [ 'aui-base', 'context-overlay', 'calendar-css' ]
+				},
+				'calendar-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'calendar.css',
+					type: 'css'
+				},
+
+				/*
 				* ContextPanel
 				*/
 				'context-panel': {
