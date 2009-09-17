@@ -7,22 +7,21 @@
 	word-wrap: break-word;
 }
 
+* html .aui-col {
+	margin-right: -1px;
+}
+
+*+html .aui-col {
+	margin-right: -1px;
+}
+
 .aui-mod {
 	overflow: hidden;
 	zoom: 1;
 }
 
-* html .aui-col {
-	margin-right: expression(!this.nextSibling?'-'+this.parentNode.childNodes.length+'px':0);
-}
-
-*+html .aui-col {
-	margin-right: expression(!this.nextSibling?'-'+this.parentNode.childNodes.length+'px':0);
-}
-
 .aui-layout:after,
-.aui-row:after,
-.aui-col:after {
+.aui-row:after {
 	content: ".";
 	display: block;
 	clear: both;
