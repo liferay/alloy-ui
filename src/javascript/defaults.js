@@ -87,7 +87,7 @@
 				*/
 				'calendar': {
 					fullpath: PATH_JAVASCRIPT + 'calendar.js',
-					requires: [ 'aui-base', 'context-overlay', 'calendar-css' ]
+					requires: [ 'aui-base', 'context-overlay', 'datatype-date', 'calendar-css' ]
 				},
 				'calendar-css': {
 					ext: false,
