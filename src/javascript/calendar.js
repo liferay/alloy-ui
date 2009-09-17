@@ -637,22 +637,12 @@ A.extend(Calendar, A.ContextOverlay, {
 	parseDate: function(dateString) {
 		var instance = this;
 
-		return instance._parseDate(dateString, null, true);
+		return ( dateString ? new Date(dateString) : new Date );
 	},
 
-	formatDate: function(date, mask) {
-		var instance = this;
-
-		return instance._parseDate(date, mask);
-	},
-
-	_parseDate: function (date, mask, returnDate) {
+	formatDate: function (date, mask) {
 		var instance = this;
 		var locale = instance.get(LOCALE);
-
-		if (returnDate) {
-			return ( date = date ? new Date(date) : new Date );
-		}
 
 		return A.DataType.Date.format(date, { format: mask, locale: locale });
 	}
