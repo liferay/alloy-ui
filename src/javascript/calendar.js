@@ -379,6 +379,12 @@ A.extend(Calendar, A.ContextOverlay, {
 		return dates;
 	},
 
+	_getLocaleMap: function() {
+		var instance = this;
+
+		return A.DataType.Date.Locale[ instance.get(LOCALE) ];
+	},
+
 	_selectDate: function(date) {
 		var instance = this;
 		var dates = instance.get(DATES);
@@ -536,13 +542,6 @@ A.extend(Calendar, A.ContextOverlay, {
 	/*
 	* Date util methods
 	*/
-	getHelperDate: function(month, weekDay) {
-		// this method use Nov/2009 as helper default date
-		// useful to obtain a Date() with the first day on 'Sunday' for obtain the localized names
-		var instance = this;
-		return ( new Date(2009, month || 10, (weekDay || 0) + 1 ) );
-	},
-
 	getCurrentDate: function() {
 		var instance = this;
 		var date = instance._normalizeYearMonth();
@@ -601,16 +600,16 @@ A.extend(Calendar, A.ContextOverlay, {
 
 	_getDayName: function(weekDay) {
 		var instance = this;
-		var helper = instance.getHelperDate(null, weekDay);
+		var localeMap = instance._getLocaleMap();
 
-		return instance.formatDate(helper, '%A');
+		return localeMap.A[weekDay];
 	},
 
 	_getDayNameShort: function(weekDay) {
 		var instance = this;
-		var helper = instance.getHelperDate(null, weekDay);
+		var localeMap = instance._getLocaleMap();
 
-		return instance.formatDate(helper, '%a');
+		return localeMap.a[weekDay];
 	},
 
 	_getDayNameMin: function(weekDay) {
@@ -622,16 +621,16 @@ A.extend(Calendar, A.ContextOverlay, {
 
 	_getMonthName: function(month) {
 		var instance = this;
-		var helper = instance.getHelperDate(month);
+		var localeMap = instance._getLocaleMap();
 
-		return instance.formatDate(helper, '%B');
+		return localeMap.B[month];
 	},
 
 	_getMonthNameShort: function(month) {
 		var instance = this;
-		var helper = instance.getHelperDate(month);
+		var localeMap = instance._getLocaleMap();
 
-		return instance.formatDate(helper, '%b');
+		return localeMap.b[month];
 	},
 
 	parseDate: function(dateString) {
