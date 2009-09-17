@@ -646,10 +646,6 @@ A.extend(Calendar, A.ContextOverlay, {
 		return instance._parseDate(date, mask);
 	},
 
-	/*
-	* This method was inspired on Date Format Library
-	* http://blog.stevenlevithan.com/archives/date-time-format
-	*/
 	_parseDate: function (date, mask, returnDate) {
 		var instance = this;
 		var locale = instance.get(LOCALE);
