@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+</head>
+
+<style type="text/css" media="screen">
+
+.calendar-icon {
+	font-size:15px;
+	left:400px;
+	line-height:25px;
+	position:absolute;
+	top:100px;
+}
+
+</style>
+
+<body>
+<h1>Alloy - Calendar</h1>
+
+<input type="text" name="input1" value="" id="input1" />
+
+<div class="calendar-icon">
+	Click here
+	<span class="aui-tool aui-state-default">
+		<span class="aui-icon aui-icon-calendar"/>
+	</span>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('calendar', function(A) {
+
+	var calendar1 = new A.Calendar({
+		trigger: '#input1',
+		// dates: [ new Date(2009, 08, 15), new Date(2009, 08, 14) ],
+		// dates: [ '09/14/2009', '09/15/2009' ],
+		// dateFormat: A.Calendar.masks.default,
+		// dateFormat: 'mm/dd/yyyy',
+		setValue: true,
+		selectMultipleDates: true,
+		on: {
+			select: function(event) {
+				var normal = event.date.normal;
+				var detailed = event.date.detailed;
+				var formatted = event.date.formatted;
+
+				// alert(formatted);
+			}
+		}
+	})
+	.render();
+
+	calendar1.toggle();
+
+	var calendar2 = new A.Calendar({
+		trigger: '.aui-icon-calendar',
+		on: {
+			select: function(event) {
+				alert( event.date.formatted )
+			}
+		}
+	})
+	.render();
+
+});
+
+</script>
+
+</body>
+</html>
