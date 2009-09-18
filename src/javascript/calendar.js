@@ -120,11 +120,11 @@ A.mix(Calendar, {
 		},
 
 		showOn: {
-			value: 'click'
+			value: 'mousedown'
 		},
 
 		hideOn: {
-			value: 'click'
+			value: 'mousedown'
 		},
 
 		selectMultipleDates: {
