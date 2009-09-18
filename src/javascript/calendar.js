@@ -53,8 +53,8 @@ var L = A.Lang,
 	CSS_HEADER = getCN(CALENDAR, HEADER),
 	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
 	CSS_ICON = getCN(ICON),
-	CSS_ICON_CIRCLE_TRIANGLE_E = getCN(ICON, CIRCLE, TRIANGLE, 'e'),
-	CSS_ICON_CIRCLE_TRIANGLE_W = getCN(ICON, CIRCLE, TRIANGLE, 'w'),
+	CSS_ICON_CIRCLE_TRIANGLE_R = getCN(ICON, CIRCLE, TRIANGLE, 'r'),
+	CSS_ICON_CIRCLE_TRIANGLE_L = getCN(ICON, CIRCLE, TRIANGLE, 'l'),
 	CSS_MONTHDAYS = getCN(CALENDAR, MONTHDAYS),
 	CSS_NEXT = getCN(CALENDAR, NEXT),
 	CSS_PREV = getCN(CALENDAR, PREV),
@@ -66,8 +66,8 @@ var L = A.Lang,
 	CSS_WEEKDAYS = getCN(CALENDAR, WEEKDAYS),
 
 	TPL_CALENDAR_HEADER = '<div class="'+[ CSS_HEADER, CSS_STATE_DEFAULT, CSS_HELPER_CLEARFIX ].join(' ')+'">' +
-							'<a href="" class="'+[ CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_W, CSS_PREV ].join(' ')+'">Back</a>'+
-							'<a href="" class="'+[ CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_E, CSS_NEXT ].join(' ')+'">Prev</a>'+
+							'<a href="" class="'+[ CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_L, CSS_PREV ].join(' ')+'">Back</a>'+
+							'<a href="" class="'+[ CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_R, CSS_NEXT ].join(' ')+'">Prev</a>'+
 						'</div>',
 
 	TPL_CALENDAR_DAY_BLANK = '<div class="'+[ CSS_DAY_BLANK, CSS_DAY_HIDDEN ].join(' ')+'"></div>',
@@ -315,8 +315,8 @@ A.extend(Calendar, A.ContextOverlay, {
 		var instance = this;
 		var headerContentNode = instance.headerContentNode;
 
-		var nextIcon = headerContentNode.query(DOT+CSS_ICON_CIRCLE_TRIANGLE_E)
-		var prevIcon = headerContentNode.query(DOT+CSS_ICON_CIRCLE_TRIANGLE_W)
+		var nextIcon = headerContentNode.query(DOT+CSS_ICON_CIRCLE_TRIANGLE_R)
+		var prevIcon = headerContentNode.query(DOT+CSS_ICON_CIRCLE_TRIANGLE_L)
 
 		nextIcon.on('click', A.bind(instance._selectNextMonth, instance));
 		prevIcon.on('click', A.bind(instance._selectPrevMonth, instance));
