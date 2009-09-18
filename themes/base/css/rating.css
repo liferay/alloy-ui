@@ -5,7 +5,7 @@
 .aui-rating-disabled {}
 
 .aui-rating-element {
-	background: transparent url(../images/rating.png) no-repeat scroll 0 0;
+	background: transparent url(../images/ratings/rating.png) no-repeat scroll 0 0;
 	width: 17px;
 	height: 16px;
 	display: block;
@@ -29,7 +29,7 @@
 }
 
 .aui-thumbrating .aui-rating-element {
-	background: transparent url(../images/rating_thumbs.png) no-repeat scroll 0 0;
+	background: transparent url(../images/ratings/rating_thumbs.png) no-repeat scroll 0 0;
 	height: 18px;
 	width: 18px;
 }

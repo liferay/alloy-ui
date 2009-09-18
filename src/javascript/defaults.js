@@ -14,6 +14,7 @@
 	var PATH_BASE = YUI.config.base + '../../../';
 	var PATH_JAVASCRIPT = PATH_BASE + 'src/javascript/';
 	var PATH_THEME_ROOT = PATH_BASE + 'themes/base/css/';
+	var PATH_THEME_IMAGES = PATH_THEME_ROOT + '../images/';
 
 	window.AUI = {
 		defaults: {
@@ -203,6 +204,13 @@
 					fullpath: PATH_JAVASCRIPT + 'state-interaction.js',
 					requires: [ 'aui-base', 'plugin' ]
 				}
+			},
+
+			paths: {
+				base: PATH_BASE,
+				images: PATH_THEME_IMAGES,
+				javascript: PATH_JAVASCRIPT,
+				theme: PATH_THEME_ROOT
 			}
 		}
 	}
