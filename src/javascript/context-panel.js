@@ -12,6 +12,7 @@ var L = A.Lang,
 	BLANK = '',
 	BOUNDING_BOX = 'boundingBox',
 	CLICK = 'click',
+	CONTENT_BOX = 'contentBox',
 	CONTEXTPANEL = 'contextpanel',
 	DEFAULT = 'default',
 	DOT = '.',
@@ -133,12 +134,12 @@ A.extend(ContextPanel, A.ContextOverlay, {
 
 	fixPointerColor: function() {
 		var instance = this;
-		var boudingBox = instance.get(BOUNDING_BOX);
-		var pointer = boudingBox.query(DOT+CSS_CONTEXTPANEL_POINTER_INNER);
+		var contentBox = instance.get(CONTENT_BOX);
+		var pointer = contentBox.query(DOT+CSS_CONTEXTPANEL_POINTER_INNER);
 
 		pointer.removeAttribute(STYLE);
 
-		var bColor = boudingBox.getStyle(BACKGROUND_COLOR);
+		var bColor = contentBox.getStyle(BACKGROUND_COLOR);
 		var border = 'borderBottomColor';
 
 		var right = [
@@ -162,13 +163,13 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		]
 		.join(',');
 
-		if (boudingBox.test(right)) {
+		if (contentBox.test(right)) {
 			border = 'borderLeftColor';
 		}
-		else if (boudingBox.test(bottom)) {
+		else if (contentBox.test(bottom)) {
 			border = 'borderTopColor';
 		}
-		else if (boudingBox.test(left)) {
+		else if (contentBox.test(left)) {
 			border = 'borderRightColor';
 		}
 
@@ -209,29 +210,29 @@ A.extend(ContextPanel, A.ContextOverlay, {
 
 	_renderElements: function() {
 		var instance = this;
-		var boundingBox = instance.get(BOUNDING_BOX);
+		var contentBox = instance.get(CONTENT_BOX);
 		var align = instance.get(ALIGN);
 		var overlayPoint = align.points[0];
 
-		boundingBox.addClass(CSS_STATE_DEFAULT);
+		contentBox.addClass(CSS_STATE_DEFAULT);
 
 		instance._pointerNode = A.Node.create(TPL_POINTER).append(TPL_POINTER_INNER);
 
-		boundingBox.append(
+		contentBox.append(
 			instance._pointerNode
 		);
 	},
 
 	_syncElements: function() {
 		var instance = this;
-		var boundingBox = instance.get(BOUNDING_BOX);
+		var contentBox = instance.get(CONTENT_BOX);
 		var pointerNode = instance._pointerNode;
 		var overlayPoint = instance.getAlignPoint();
 
 		if (instance.get(SHOW_ARROW)) {
 			pointerNode.removeClass(CSS_CONTEXTPANEL_HIDDEN);
-			boundingBox.removeClass(CSS_CONTEXTPANEL_ARROW + instance._lastOverlayPoint);
-			boundingBox.addClass(CSS_CONTEXTPANEL_ARROW + overlayPoint);
+			contentBox.removeClass(CSS_CONTEXTPANEL_ARROW + instance._lastOverlayPoint);
+			contentBox.addClass(CSS_CONTEXTPANEL_ARROW + overlayPoint);
 
 			instance.fixPointerColor();
 		}

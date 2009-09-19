@@ -8,6 +8,7 @@
 .aui-contextpanel-content {
 	border-width: 2px;
 	padding: 8px;
+	position: relative;
 }
 
 .aui-contextpanel-hidden {
