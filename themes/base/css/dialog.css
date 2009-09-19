@@ -18,7 +18,6 @@
 	border: 1px solid #ccc;
 	border-color: #fff #999 #999 #bbb;
 	padding: 10px;
-	background: #fff;
 	overflow-y: auto;
 }
 .aui-dialog .aui-dialog-ft {
@@ -26,7 +25,6 @@
 	border-color: #fff #999 #999 #bbb;
 	padding: 5px 10px;
 	text-align: right;
-	background: #fff;
 	visibility: inherit;
 }
 
