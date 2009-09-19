@@ -13,7 +13,7 @@
 }
 
 .aui-colorpicker-canvas {
-	background: #f00 url(../images/colorpicker/picker_bg.png);
+	background: #f00 url(../images/color_picker/picker_bg.png);
 	background-color: #f00;
 	height: 184px;
 	left: 5px;
@@ -65,7 +65,7 @@
 }
 
 .aui-colorpicker-hue-canvas {
-	background: url(../images/colorpicker/hue.png) no-repeat -2px -2px;
+	background: url(../images/color_picker/hue.png) no-repeat -2px -2px;
 	height: 186px;
 	left: 200px;
 	outline: 0 none;
