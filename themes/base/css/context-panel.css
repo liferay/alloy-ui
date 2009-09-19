@@ -1,10 +1,13 @@
 /*Tooltip and Pointer CSS*/
 
 .aui-contextpanel {
-	padding: 8px;
 	position: absolute;
 	z-index: 9999;
+}
+
+.aui-contextpanel-content {
 	border-width: 2px;
+	padding: 8px;
 }
 
 .aui-contextpanel-hidden {
