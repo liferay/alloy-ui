@@ -1,9 +1,11 @@
 .aui-calendar {
 	background: #fafafa;
-	border: 1px solid #DDDDDD;
+	width: 200px;
+}
+
+.aui-calendar-content {
+	border: 1px solid #ddd;
 	padding: 3px;
-/*	position: relative;*/
-	width: 190px;
 }
 
 .aui-calendar-hd {
