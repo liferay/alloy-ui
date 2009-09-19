@@ -4,6 +4,7 @@
 
 .aui-tooltip-content {
 	border-width: 2px;
+	margin: 12px;
 	padding: 8px;
 	position: relative;
 }
