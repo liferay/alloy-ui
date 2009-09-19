@@ -1,3 +1,6 @@
-.aui-overlay {
+.aui-calendar-content,
+.aui-colorpicker-content,
+.aui-dialog-content {
+
 	background: #fff;
 }
