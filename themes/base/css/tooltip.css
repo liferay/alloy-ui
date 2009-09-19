@@ -2,8 +2,8 @@
 	max-width: 600px;
 }
 
-.aui-tooltip-hidden {
-	visibility: hidden;
-	top: -10000px !important;
-	left: -10000px !important;
+.aui-tooltip-content {
+	border-width: 2px;
+	padding: 8px;
+	position: relative;
 }
