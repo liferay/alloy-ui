@@ -220,7 +220,6 @@
 			},
 
 			paths: {
-				base: PATH_BASE,
 				images: PATH_THEME_IMAGES,
 				javascript: PATH_JAVASCRIPT,
 				theme: PATH_THEME_ROOT
