@@ -7,7 +7,6 @@
 
 .aui-contextpanel-content {
 	border-width: 2px;
-	margin: 12px;
 	padding: 8px;
 	position: relative;
 }
@@ -223,4 +222,20 @@
 	border-bottom: 12px dotted transparent;
 	border-top: 0;
 	top: 2px;
+}
+
+.aui-contextpanel-arrow-tl, .aui-contextpanel-arrow-tc, .aui-contextpanel-arrow-tr {
+	margin-top: 12px;
+}
+
+.aui-contextpanel-arrow-bl, .aui-contextpanel-arrow-bc, .aui-contextpanel-arrow-br {
+	margin-bottom: 12px;
+}
+
+.aui-contextpanel-arrow-lt, .aui-contextpanel-arrow-lc, .aui-contextpanel-arrow-lb {
+	margin-left: 12px;
+}
+
+.aui-contextpanel-arrow-rt, .aui-contextpanel-arrow-rc, .aui-contextpanel-arrow-rb {
+	margin-right: 12px;
 }
