@@ -28,7 +28,7 @@ shadow or rounded corners.
 .aui-state-default,
 .aui-state-active,
 .aui-state-hover,
-.aui-calendar {
+.aui-calendar-content {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
