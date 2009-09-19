@@ -322,8 +322,8 @@ AUI().add(
 
 			images: {
 				value: {
-					HUE_THUMB: AUI.defaults.paths.images + 'colorpicker/color_indic.png',
-					PICKER_THUMB: AUI.defaults.paths.images + 'colorpicker/select.png'
+					HUE_THUMB: AUI.defaults.paths.images + 'color_picker/color_indic.png',
+					PICKER_THUMB: AUI.defaults.paths.images + 'color_picker/select.png'
 				}
 			},
 
