@@ -7,7 +7,8 @@ shadow or rounded corners.
 /* ---------- CSS3 shadows ---------- */
 .aui-dialog-content,
 .aui-contextpanel-content,
-.aui-calendar-content {
+.aui-calendar-content,
+.aui-colorpicker-content {
 	-moz-box-shadow: 4px 4px 14px #777;
 	-webkit-box-shadow: 4px 4px 14px #777;
 	box-shadow: 4px 4px 14px #777;
@@ -28,7 +29,8 @@ shadow or rounded corners.
 .aui-state-default,
 .aui-state-active,
 .aui-state-hover,
-.aui-calendar-content {
+.aui-calendar-content,
+.aui-colorpicker-content {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;

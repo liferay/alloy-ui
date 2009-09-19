@@ -110,6 +110,19 @@
 				},
 
 				/*
+				* ContextPanel
+				*/
+				'color-picker': {
+					fullpath: PATH_JAVASCRIPT + 'color-picker.js',
+					requires: [ 'context-overlay', 'dd', 'slider', 'substitute', 'tool-item', 'color-picker-css' ]
+				},
+				'color-picker-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'color-picker.css',
+					type: 'css'
+				},
+
+				/*
 				* Tooltip
 				*/
 				'tooltip': {

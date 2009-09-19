@@ -13,6 +13,10 @@
 .aui-widget-ft {
 }
 
+.aui-widget-close {
+	float: right;
+}
+
 .aui-widget-stacked .aui-widget-shim {
 	border: 0;
 	height: 100%;
