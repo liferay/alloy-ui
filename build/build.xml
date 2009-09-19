@@ -118,6 +118,12 @@
 				</replace>
 
 				<move
+					file="${demo.dir}${demo.name}/${demo.name}.html"
+					tofile="${demo.dir}${demo.name}/index.html"
+					overwrite="no"
+				/>
+
+				<move
 					file="${demo.dir}${demo.name}/${demo.name}.css"
 					tofile="${project.dir}themes/base/css/${demo.name}.css"
 					overwrite="no"
