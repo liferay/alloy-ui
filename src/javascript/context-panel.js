@@ -59,7 +59,9 @@ A.mix(ContextPanel, {
 	ATTRS: {
 		anim: {
 			lazyAdd: false,
-			value: null,
+			value: {
+				show: false
+			},
 			setter: function(v) {
 				return this._setAnim(v);
 			}

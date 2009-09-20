@@ -25,7 +25,9 @@ A.mix(Tooltip, {
 
 	ATTRS: {
 		anim: {
-			value: true
+			value: {
+				show: false
+			}
 		},
 
 		align: {

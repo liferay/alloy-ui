@@ -96,12 +96,7 @@ AUI().ready('tooltip', 'io-stdmod', function(A) {
 		// cancelHideOnInteraction: false,
 		bodyContent: '<img src="assets/cream.jpg" /><br/><div style="text-align: center;">Ice cream sandwich taste test winner</div>',
 		// align: { points: [ 'bl', 'tr' ] }
-		title: true,
-		anim: {
-			show: {
-				duration: .1
-			}
-		}
+		title: true
 	})
 	.render();
 
@@ -109,7 +104,6 @@ AUI().ready('tooltip', 'io-stdmod', function(A) {
 		trigger: '#t3',
 		align: { points: [ 'lc', 'rc' ] },
 		showArrow: false,
-		anim: false,
 		bodyContent: 'Simple tooltip without arrow! No animation.'
 	})
 	.render();
@@ -125,9 +119,6 @@ AUI().ready('tooltip', 'io-stdmod', function(A) {
 					this.io.refresh();
 				});
 			}
-		},
-		anim: {
-			show: false
 		}
 	})
 	.render();
