@@ -23,7 +23,6 @@ var L = A.Lang,
 	DATE_FORMAT = 'dateFormat',
 	DAY = 'day',
 	DEFAULT = 'default',
-	DEFAULT_DATE = 'defaultDate',
 	DOT = '.',
 	HEADER = 'hd',
 	HEADER_CONTENT = 'headerContent',
@@ -115,10 +114,6 @@ A.mix(Calendar, {
 			validator: isString
 		},
 
-		defaultDate: {
-			value: new Date()
-		},
-
 		showOn: {
 			value: 'mousedown'
 		},
@@ -187,9 +182,9 @@ A.extend(Calendar, A.ContextOverlay, {
 		var currentMonth = instance.get(CURRENT_MONTH);
 		var currentYear = instance.get(CURRENT_YEAR);
 
-		instance._syncSelectedDays();
 		instance._syncDays()
 		instance._syncHeader();
+		instance._syncSelectedDays();
 	},
 
 	_syncHeader: function() {
@@ -228,7 +223,7 @@ A.extend(Calendar, A.ContextOverlay, {
 		});
 	},
 
-	_syncSelectedDays: function() {
+	_syncSelectedDays: function(dates) {
 		var instance = this;
 		var currentMonth = instance.get(CURRENT_MONTH);
 		var currentYear = instance.get(CURRENT_YEAR);
@@ -244,7 +239,7 @@ A.extend(Calendar, A.ContextOverlay, {
 
 				dayNode.addClass(CSS_STATE_ACTIVE);
 			}
-		});
+		}, dates);
 	},
 
 	_renderCalendar: function() {
@@ -409,9 +404,12 @@ A.extend(Calendar, A.ContextOverlay, {
 		instance.set(DATES, dates);
 	},
 
-	_eachSelectedDate: function(fn) {
+	_eachSelectedDate: function(fn, dates) {
 		var instance = this;
-		var dates = instance.get(DATES);
+
+		if (!dates) {
+			dates = instance.get(DATES);
+		}
 
 		A.Array.each(dates, function() {
 			fn.apply(this, arguments);
@@ -463,7 +461,7 @@ A.extend(Calendar, A.ContextOverlay, {
 		var detailed = instance.getDetailedSelectedDates();
 		var hasSelected = event.newVal.length;
 
-		instance._syncSelectedDays(event);
+		instance._syncSelectedDays();
 
 		if (hasSelected) {
 			instance.fire('select', {
@@ -527,16 +525,27 @@ A.extend(Calendar, A.ContextOverlay, {
 	/*
 	* Setters
 	*/
-	_setDates: function(v) {
+	_setDates: function(value) {
 		var instance = this;
 
-		A.Array.each(v, function(date, index) {
+		A.Array.each(value, function(date, index) {
 			if (isString(date)) {
-				v[index] = instance.parseDate( date );
+				value[index] = instance.parseDate( date );
 			}
 		});
 
-		return v;
+		var lastSelectedDate = value[value.length - 1];
+
+		if (lastSelectedDate) {
+			// update the current values to the last selected date
+			instance.set(CURRENT_DAY, lastSelectedDate.getDate());
+			instance.set(CURRENT_MONTH, lastSelectedDate.getMonth());
+			instance.set(CURRENT_YEAR, lastSelectedDate.getFullYear());
+
+			instance._syncSelectedDays(value);
+		}
+
+		return value;
 	},
 
 	/*
