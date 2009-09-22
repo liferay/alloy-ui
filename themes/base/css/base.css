@@ -56,6 +56,7 @@
 .aui-contextoverlay-hidden,
 .aui-overlaymask-hidden,
 .aui-calendar-hidden,
+.aui-datepicker-hidden,
 .aui-colorpicker-hidden,
 .aui-tooltip-hidden {
 	left: -99999px !important;
