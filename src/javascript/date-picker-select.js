@@ -13,6 +13,7 @@ var L = A.Lang,
 	CURRENT_MONTH = 'currentMonth',
 	CURRENT_YEAR = 'currentYear',
 	DATEPICKER = 'datepicker',
+	DATE_FORMAT = 'dateFormat',
 	DAY = 'day',
 	DISPLAY = 'display',
 	DISPLAY_BOUNDING_BOX = 'displayBoundingBox',
@@ -123,6 +124,47 @@ A.extend(DatePickerSelect, A.Calendar, {
 	/*
 	* Methods
 	*/
+	selectByValue: function(select, value) {
+		var instance = this;
+		var options = select.all(OPTION);
+
+		options.each(function(option, index) {
+			var select = ( option.val() == value );
+
+			option.attr( SELECTED, (select ? SELECTED : BLANK) );
+		});
+	},
+
+	_getBaseName: function(prefix) {
+		var instance = this;
+
+		// converting first letter to uppercase
+		prefix = prefix.replace(/^./, function(m) {
+		    return m.toUpperCase();
+		});
+
+		return instance.get(BASE_NAME) + prefix;
+	},
+
+	_getAppendOrder: function() {
+		var instance = this;
+		var dateFormat = instance.get(DATE_FORMAT);
+		var extractRegex = /%(\w)+\/%(\w)+?\/%(\w)+/;
+		var match = dateFormat.toLowerCase().match(extractRegex) || [ null, 'm', 'd', 'y' ];
+
+		var mapping = {
+			d: instance._dayField,
+			m: instance._monthField,
+			y: instance._yearField
+		};
+
+		var firstField = mapping[match[1] ];
+		var secondField = mapping[ match[2] ];
+		var thirdField = mapping[ match[3] ];
+
+		return [ firstField, secondField, thirdField ]
+	},
+
 	_renderElements: function() {
 		var instance = this;
 		var displayBoundingBox = instance.get(DISPLAY_BOUNDING_BOX);
@@ -161,9 +203,11 @@ A.extend(DatePickerSelect, A.Calendar, {
 		dayField.set(NAME, instance._getBaseName(DAY));
 
 		// append elements
-		instance._selectWrapper.append(monthField);
-		instance._selectWrapper.append(dayField);
-		instance._selectWrapper.append(yearField);
+		var orderedFields = instance._getAppendOrder();
+
+		instance._selectWrapper.append(orderedFields[0]);
+		instance._selectWrapper.append(orderedFields[1]);
+		instance._selectWrapper.append(orderedFields[2]);
 
 		displayBoundingBox.append( instance._selectWrapper );
 	},
@@ -274,28 +318,6 @@ A.extend(DatePickerSelect, A.Calendar, {
 			i++;
 			index++;
 		}
-	},
-
-	selectByValue: function(select, value) {
-		var instance = this;
-		var options = select.all(OPTION);
-
-		options.each(function(option, index) {
-			var select = ( option.val() == value );
-
-			option.attr( SELECTED, (select ? SELECTED : BLANK) );
-		});
-	},
-
-	_getBaseName: function(prefix) {
-		var instance = this;
-
-		// converting first letter to uppercase
-		prefix = prefix.replace(/^./, function(m) {
-		    return m.toUpperCase();
-		});
-
-		return instance.get(BASE_NAME) + prefix;
 	},
 
 	/*
