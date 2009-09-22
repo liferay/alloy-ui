@@ -57,6 +57,8 @@ A.mix(DatePickerSelect, {
 			value: DATEPICKER
 		},
 
+		// displayBoundingBox is the boundingBox to the selects/button
+		// the default boundingBox attribute refer to the Calendar Overlay
 		displayBoundingBox: {
 			value: null,
 			setter: function(v) {
