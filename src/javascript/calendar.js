@@ -324,12 +324,20 @@ A.extend(Calendar, A.ContextOverlay, {
 	_bindDOMEvents: function() {
 		var instance = this;
 		var headerContentNode = instance.headerContentNode;
+		var boundingBox = instance.get(BOUNDING_BOX);
 
 		var nextIcon = headerContentNode.query(DOT+CSS_ICON_CIRCLE_TRIANGLE_R)
 		var prevIcon = headerContentNode.query(DOT+CSS_ICON_CIRCLE_TRIANGLE_L)
 
-		nextIcon.on('click', A.bind(instance._selectNextMonth, instance));
-		prevIcon.on('click', A.bind(instance._selectPrevMonth, instance));
+		var eventHalt = function(event) {
+			event.halt();
+		};
+
+		boundingBox.on('click', eventHalt);
+		boundingBox.on('mousedown', eventHalt);
+
+		nextIcon.on('mousedown', A.bind(instance._selectNextMonth, instance));
+		prevIcon.on('mousedown', A.bind(instance._selectPrevMonth, instance));
 	},
 
 	_bindDelegateMonthDays: function() {

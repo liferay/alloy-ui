@@ -71,6 +71,10 @@ AUI().ready('calendar', function(A) {
 	})
 	.render();
 
+	// extras
+
+	A.on('mousedown', function() { A.CalendarManager.hideAll() }, document);
+
 });
 
 </script>
