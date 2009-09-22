@@ -1,0 +1,21 @@
+.aui-datepicker-content {
+	border: 1px solid #ddd;
+	padding: 3px;
+}
+
+.aui-datepicker-select-wrapper {
+	float: left;
+	line-height: 28px;
+}
+
+.ie .aui-datepicker-select-wrapper {
+	padding-top: 3px;
+}
+
+.aui-datepicker-select-wrapper select {
+	margin-left: 2px;
+}
+
+.aui-datepicker-button-wrapper {
+	float: left;
+}

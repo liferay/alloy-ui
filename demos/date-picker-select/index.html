@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="../../src/javascript/i18n/calendar-pt-br.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+</head>
+
+<style type="text/css" media="screen">
+
+.datepicker-icon {
+	font-size:15px;
+	left:400px;
+	line-height:25px;
+	position:absolute;
+	top:100px;
+}
+
+</style>
+
+<body>
+<h1>Alloy - DatePicker</h1>
+
+<div id="displayBoundingBox"></div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('date-picker-select', function(A) {
+
+	// default displayBoundingBox being rendered on the body
+	var datepicker1 = new A.DatePickerSelect().render();
+
+	// using displayBoundingBox
+	var datepicker2 = new A.DatePickerSelect({
+		displayBoundingBox: '#displayBoundingBox',
+		// all A.Calendar options available ...
+		// locale: 'pt-br',
+		dateFormat: '%d/%m/%y',
+		on: {
+			select: function(event) {
+				var normal = event.date.normal;
+				var detailed = event.date.detailed;
+				var formatted = event.date.formatted;
+
+				// alert(formatted);
+			}
+		}
+	})
+	.render();
+
+});
+
+</script>
+
+</body>
+</html>
