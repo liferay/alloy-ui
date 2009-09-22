@@ -3,6 +3,14 @@ AUI.add('date-picker-select', function(A) {
 var L = A.Lang,
 	isNumber = L.isNumber,
 
+	nodeSetter = function(v) {
+		return A.get(v);
+	},
+
+	createSelect = function() {
+		return A.Node.create(SELECT_TPL);
+	},
+
 	BASE_NAME = 'baseName',
 	BLANK = '',
 	BODY = 'body',
@@ -15,18 +23,24 @@ var L = A.Lang,
 	DATEPICKER = 'datepicker',
 	DATE_FORMAT = 'dateFormat',
 	DAY = 'day',
+	DAY_FIELD = 'dayField',
 	DISPLAY = 'display',
 	DISPLAY_BOUNDING_BOX = 'displayBoundingBox',
 	DOT = '.',
 	HELPER = 'helper',
 	MONTH = 'month',
+	MONTH_FIELD = 'monthField',
 	NAME = 'name',
 	OPTION = 'option',
+	POPULATE_DAY = 'populateDay',
+	POPULATE_MONTH = 'populateMonth',
+	POPULATE_YEAR = 'populateYear',
 	SELECT = 'select',
 	SELECTED = 'selected',
 	TRIGGER = 'trigger',
 	WRAPPER = 'wrapper',
 	YEAR = 'year',
+	YEAR_FIELD = 'yearField',
 	YEAR_RANGE = 'yearRange',
 
 	getCN = A.ClassNameManager.getClassName,
@@ -62,9 +76,22 @@ A.mix(DatePickerSelect, {
 		// the default boundingBox attribute refer to the Calendar Overlay
 		displayBoundingBox: {
 			value: null,
-			setter: function(v) {
-				return A.get(v);
-			}
+			setter: nodeSetter
+		},
+
+		dayField: {
+			setter: nodeSetter,
+			valueFn: createSelect
+		},
+
+		monthField: {
+			setter: nodeSetter,
+			valueFn: createSelect
+		},
+
+		yearField: {
+			setter: nodeSetter,
+			valueFn: createSelect
 		},
 
 		trigger: {
@@ -84,6 +111,18 @@ A.mix(DatePickerSelect, {
 
 		setValue: {
 			value: false
+		},
+
+		populateDay: {
+			value: true
+		},
+
+		populateMonth: {
+			value: true
+		},
+
+		populateYear: {
+			value: true
 		}
 	}
 });
@@ -153,9 +192,9 @@ A.extend(DatePickerSelect, A.Calendar, {
 		var match = dateFormat.toLowerCase().match(extractRegex) || [ null, 'm', 'd', 'y' ];
 
 		var mapping = {
-			d: instance._dayField,
-			m: instance._monthField,
-			y: instance._yearField
+			d: instance.get(DAY_FIELD),
+			m: instance.get(MONTH_FIELD),
+			y: instance.get(YEAR_FIELD)
 		};
 
 		var firstField = mapping[match[1] ];
@@ -168,7 +207,6 @@ A.extend(DatePickerSelect, A.Calendar, {
 	_renderElements: function() {
 		var instance = this;
 		var displayBoundingBox = instance.get(DISPLAY_BOUNDING_BOX);
-		var selectTemplate = A.Node.create(SELECT_TPL);
 
 		if (!displayBoundingBox) {
 			displayBoundingBox = A.Node.create(DISPLAY_BOUNDING_BOX_TPL);
@@ -178,13 +216,9 @@ A.extend(DatePickerSelect, A.Calendar, {
 			A.get(BODY).append(displayBoundingBox);
 		}
 
-		instance._dayField = selectTemplate.cloneNode();
-		instance._monthField = selectTemplate.cloneNode();
-		instance._yearField = selectTemplate.cloneNode();
-
-		var dayField = instance._dayField;
-		var monthField = instance._monthField;
-		var yearField = instance._yearField;
+		var dayField = instance.get(DAY_FIELD);
+		var monthField = instance.get(MONTH_FIELD);
+		var yearField = instance.get(YEAR_FIELD);
 
 		dayField.addClass(CSS_DATEPICKER_DAY);
 		monthField.addClass(CSS_DATEPICKER_MONTH);
@@ -246,7 +280,7 @@ A.extend(DatePickerSelect, A.Calendar, {
 		var currentDate = instance.getCurrentDate();
 		var selectedValue = currentDate.getDate();
 
-		instance.selectByValue(instance._dayField, selectedValue);
+		instance.selectByValue(instance.get(DAY_FIELD), selectedValue);
 	},
 
 	_selectCurrentMonth: function() {
@@ -254,7 +288,7 @@ A.extend(DatePickerSelect, A.Calendar, {
 		var currentDate = instance.getCurrentDate();
 		var selectedValue = currentDate.getMonth();
 
-		instance.selectByValue(instance._monthField, selectedValue);
+		instance.selectByValue(instance.get(MONTH_FIELD), selectedValue);
 	},
 
 	_selectCurrentYear: function() {
@@ -262,7 +296,7 @@ A.extend(DatePickerSelect, A.Calendar, {
 		var currentDate = instance.getCurrentDate();
 		var selectedValue = currentDate.getFullYear();
 
-		instance.selectByValue(instance._yearField, selectedValue);
+		instance.selectByValue(instance.get(YEAR_FIELD), selectedValue);
 	},
 
 	_pupulateSelects: function() {
@@ -277,27 +311,34 @@ A.extend(DatePickerSelect, A.Calendar, {
 		var instance = this;
 		var now = new Date();
 		var yearRange = instance.get(YEAR_RANGE);
-		var yearField = instance._yearField;
+		var yearField = instance.get(YEAR_FIELD);
 		var year = now.getFullYear();
 
-		instance._populateSelect(yearField, (year - yearRange), (year + yearRange));
+		if (instance.get(POPULATE_YEAR)) {
+			instance._populateSelect(yearField, (year - yearRange), (year + yearRange));
+		}
 	},
 
 	_populateMonths: function() {
 		var instance = this;
-		var monthField = instance._monthField;
+		var monthField = instance.get(MONTH_FIELD);
 		var localeMap = instance._getLocaleMap();
 		var monthLabels = localeMap.B;
 
-		instance._populateSelect(monthField, 0, (monthLabels.length - 1), monthLabels);
+
+		if (instance.get(POPULATE_MONTH)) {
+			instance._populateSelect(monthField, 0, (monthLabels.length - 1), monthLabels);
+		}
 	},
 
 	_populateDays: function() {
 		var instance = this;
-		var dayField = instance._dayField;
+		var dayField = instance.get(DAY_FIELD);
 		var daysInMonth = instance.getDaysInMonth();
 
-		instance._populateSelect(dayField, 1, daysInMonth);
+		if (instance.get(POPULATE_DAY)) {
+			instance._populateSelect(dayField, 1, daysInMonth);
+		}
 	},
 
 	_populateSelect: function(select, fromIndex, toIndex, labels, values) {
@@ -328,9 +369,9 @@ A.extend(DatePickerSelect, A.Calendar, {
 		var target = event.currentTarget || event.target;
 		var monthChanged = target.test(DOT+CSS_DATEPICKER_MONTH);
 
-		var currentDay = instance._dayField.val();
-		var currentMonth = instance._monthField.val();
-		var currentYear = instance._yearField.val();
+		var currentDay = instance.get(DAY_FIELD).val();
+		var currentMonth = instance.get(MONTH_FIELD).val();
+		var currentYear = instance.get(YEAR_FIELD).val();
 
 		instance.set(CURRENT_DAY, currentDay);
 		instance.set(CURRENT_MONTH, currentMonth);
