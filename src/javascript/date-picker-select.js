@@ -228,7 +228,6 @@ A.extend(DatePickerSelect, A.Calendar, {
 		displayBoundingBox.addClass(CSS_DATEPICKER_DISPLAY);
 		displayBoundingBox.addClass(CSS_HELPER_CLEARFIX);
 
-		instance._buttonItem = new A.ToolItem(CALENDAR);
 		instance._selectWrapper = A.Node.create(WRAPPER_SELECT_TPL);
 
 		// setting name of the fields
@@ -250,6 +249,8 @@ A.extend(DatePickerSelect, A.Calendar, {
 		var instance = this;
 		var trigger = instance.get(TRIGGER).item(0);
 		var displayBoundingBox = instance.get(DISPLAY_BOUNDING_BOX);
+
+		instance._buttonItem = new A.ToolItem(CALENDAR);
 
 		displayBoundingBox.append(trigger);
 
