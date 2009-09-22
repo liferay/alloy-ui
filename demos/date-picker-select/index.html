@@ -41,7 +41,7 @@ AUI().ready('date-picker-select', function(A) {
 		baseName: 'customFieldName',
 		// all A.Calendar options available ...
 		// locale: 'pt-br',
-		dateFormat: '%d/%m/%y',
+		dateFormat: '%m/%d/%y',
 		on: {
 			select: function(event) {
 				var normal = event.date.normal;
@@ -53,6 +53,11 @@ AUI().ready('date-picker-select', function(A) {
 		}
 	})
 	.render();
+
+
+	// extras
+
+	A.on('mousedown', function() { A.CalendarManager.hideAll() }, document);
 
 });
 
