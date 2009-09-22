@@ -102,7 +102,7 @@ A.mix(Calendar, {
 		},
 
 		dates: {
-			value: [],
+			value: [ new Date() ],
 			validator: isArray,
 			setter: function(v) {
 				return this._setDates(v);
@@ -238,6 +238,12 @@ A.extend(Calendar, A.ContextOverlay, {
 				var dayNode = instance.monthDays.item( date.getDate() - 1 );
 
 				dayNode.addClass(CSS_STATE_ACTIVE);
+
+				if (!A.UA.ie) {
+					// focus the last selected date
+					// IE doesn't support focus on hidden elements
+					dayNode.focus();
+				}
 			}
 		}, dates);
 	},
@@ -380,10 +386,15 @@ A.extend(Calendar, A.ContextOverlay, {
 		return A.DataType.Date.Locale[ instance.get(LOCALE) ];
 	},
 
-	_selectDate: function(date) {
+	_selectDate: function() {
 		var instance = this;
 		var dates = instance.get(DATES);
 		var currentDate = instance.getCurrentDate();
+
+		// if is single selection reset the selected dates
+		if (!instance.get(SELECT_MULTIPLE_DATES)) {
+			dates = [];
+		}
 
 		if (!instance.alreadySelected(currentDate)) {
 			dates.push(currentDate);
@@ -496,13 +507,7 @@ A.extend(Calendar, A.ContextOverlay, {
 			instance._removeDate(currentDate);
 		}
 		else {
-
-			// if is single selection reset the selected dates
-			if (!instance.get(SELECT_MULTIPLE_DATES)) {
-				instance.set(DATES, []);
-			}
-
-			instance._selectDate(currentDate);
+			instance._selectDate();
 		}
 
 		event.preventDefault();
