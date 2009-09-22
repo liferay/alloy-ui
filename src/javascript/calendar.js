@@ -129,6 +129,15 @@ A.mix(Calendar, {
 		setValue: {
 			value: true,
 			validator: isBoolean
+		},
+
+		stack: {
+			lazyAdd: false,
+			value: true,
+			setter: function(v) {
+				return this._setStack(v);
+			},
+			validator: isBoolean
 		}
 	}
 });
@@ -553,6 +562,19 @@ A.extend(Calendar, A.ContextOverlay, {
 		return value;
 	},
 
+	_setStack: function(value) {
+		var instance = this;
+
+		if (value) {
+			A.CalendarManager.register(instance);
+		}
+		else {
+			A.CalendarManager.remove(instance);
+		}
+
+		return value;
+	},
+
 	/*
 	* Date util methods
 	*/
@@ -663,4 +685,8 @@ A.extend(Calendar, A.ContextOverlay, {
 
 A.Calendar = Calendar;
 
-}, '@VERSION', { requires: [ 'aui-base', 'context-overlay', 'datatype-date' ] });
+A.CalendarManager = new A.OverlayManager({
+	zIndexBase: 1000
+});
+
+}, '@VERSION', { requires: [ 'aui-base', 'context-overlay', 'overlay-manager', 'datatype-date' ] });
