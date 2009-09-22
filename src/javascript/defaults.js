@@ -97,6 +97,19 @@
 				},
 
 				/*
+				* DatePickerSelect
+				*/
+				'date-picker-select': {
+					fullpath: PATH_JAVASCRIPT + 'date-picker-select.js',
+					requires: [ 'calendar', 'tool-item', 'date-picker-select-css' ]
+				},
+				'date-picker-select-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'date-picker-select.css',
+					type: 'css'
+				},
+
+				/*
 				* ContextPanel
 				*/
 				'context-panel': {
