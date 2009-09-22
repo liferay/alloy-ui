@@ -28,6 +28,12 @@
 
 <div id="displayBoundingBox"></div>
 
+<select id="dayField" class="custom-field"></select>
+<select id="monthField" class="custom-field"></select>
+<select id="yearField" class="custom-field">
+	<option value="2009">2009</option>
+</select>
+
 <script type="text/javascript" charset="utf-8">
 
 AUI().ready('date-picker-select', function(A) {
@@ -41,7 +47,17 @@ AUI().ready('date-picker-select', function(A) {
 		baseName: 'customFieldName',
 		// all A.Calendar options available ...
 		// locale: 'pt-br',
+
 		dateFormat: '%m/%d/%y',
+
+		dayField: '#dayField',
+		monthField: '#monthField',
+		yearField: '#yearField',
+
+		// populateDay: false,
+		// populateMonth: false,
+		populateYear: false,
+
 		on: {
 			select: function(event) {
 				var normal = event.date.normal;
