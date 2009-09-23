@@ -45,6 +45,13 @@ AUI().ready('calendar', function(A) {
 		dates: [ '09/14/2009', '09/15/2009' ],
 		dateFormat: '%d/%m/%y %A',
 		setValue: true,
+
+		// minDate: new Date(2009, 8, 5),
+		// maxDate: new Date(2009, 8, 25),
+
+		minDate: '09/05/2009',
+		maxDate: '09/25/2009',
+
 		selectMultipleDates: true,
 		on: {
 			select: function(event) {

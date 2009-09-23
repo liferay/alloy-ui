@@ -29,7 +29,11 @@ var L = A.Lang,
 	DISPLAY = 'display',
 	DISPLAY_BOUNDING_BOX = 'displayBoundingBox',
 	DOT = '.',
+	FIRST_CHILD = 'firstChild',
 	HELPER = 'helper',
+	LAST_CHILD = 'lastChild',
+	MAX_DATE = 'maxDate',
+	MIN_DATE = 'minDate',
 	MONTH = 'month',
 	MONTH_FIELD = 'monthField',
 	MONTH_FIELD_NAME = 'monthFieldName',
@@ -304,6 +308,22 @@ A.extend(DatePickerSelect, A.Calendar, {
 		instance._populateDays();
 		instance._populateMonths();
 		instance._populateYears();
+
+		var monthField = instance.get(MONTH_FIELD);
+		var yearField = instance.get(YEAR_FIELD);
+
+		var firstMonth = monthField.get(FIRST_CHILD).val();
+		var firstYear = yearField.get(FIRST_CHILD).val();
+		var lastMonth = monthField.get(LAST_CHILD).val();
+		var lastYear = yearField.get(LAST_CHILD).val();
+
+		var maxMonthDays = instance.getDaysInMonth(lastYear, lastMonth);
+
+		var minDate = new Date(firstYear, firstMonth, 1);
+		var maxDate = new Date(lastYear, lastMonth, maxMonthDays);
+
+		instance.set(MAX_DATE, maxDate);
+		instance.set(MIN_DATE, minDate);
 	},
 
 	_populateYears: function() {
