@@ -60,3 +60,9 @@
 .aui-calendar-day-hidden {
 	display: none;
 }
+
+.aui-calendar-disabled {
+	opacity: 0.4;
+	-ms-filter: alpha(opacity=40);
+	filter: alpha(opacity=40);
+}
