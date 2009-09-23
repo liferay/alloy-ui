@@ -1,7 +1,7 @@
 AUI.add('date-picker-select', function(A) {
 
 var L = A.Lang,
-	isNumber = L.isNumber,
+	isArray = L.isArray,
 
 	nodeSetter = function(v) {
 		return A.get(v);
@@ -120,8 +120,12 @@ A.mix(DatePickerSelect, {
 		},
 
 		yearRange: {
-			value: 10,
-			validator: isNumber
+			valueFn: function() {
+				var year = new Date().getFullYear();
+
+				return [ year - 10, year + 10 ]
+			},
+			validator: isArray
 		},
 
 		setValue: {
@@ -300,13 +304,11 @@ A.extend(DatePickerSelect, A.Calendar, {
 
 	_populateYears: function() {
 		var instance = this;
-		var now = new Date();
 		var yearRange = instance.get(YEAR_RANGE);
 		var yearField = instance.get(YEAR_FIELD);
-		var year = now.getFullYear();
 
 		if (instance.get(POPULATE_YEAR)) {
-			instance._populateSelect(yearField, (year - yearRange), (year + yearRange));
+			instance._populateSelect(yearField, yearRange[0], yearRange[1]);
 		}
 	},
 
