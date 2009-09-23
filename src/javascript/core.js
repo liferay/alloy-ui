@@ -115,17 +115,19 @@
 			// array with YUI modules to be loaded
 			var modules = slice.call(arguments, 0, index);
 
-			if (!modules.length) {
-				modules.push('event');
-			}
+			modules.push('event');
 
 			// adding AUI().use() callback
 			modules.push(
 				function(instance) {
 					var args = arguments;
-					instance.on('domready', function() {
-					   fn.apply(this, args);
-					});
+
+					instance.on(
+						'domready',
+						function() {
+							fn.apply(this, args);
+						}
+					);
 				}
 			);
 
