@@ -30,9 +30,7 @@
 
 <select id="dayField" class="custom-field"></select>
 <select id="monthField" class="custom-field"></select>
-<select id="yearField" class="custom-field">
-	<option value="2009">2009</option>
-</select>
+<select id="yearField" class="custom-field"></select>
 
 <script type="text/javascript" charset="utf-8">
 
@@ -57,9 +55,11 @@ AUI().ready('date-picker-select', function(A) {
 		monthFieldName: 'monthField',
 		yearFieldName: 'yearField',
 
+		yearRange: [ 1970, 2009 ],
+
 		// populateDay: false,
 		// populateMonth: false,
-		populateYear: false,
+		// populateYear: false,
 
 		on: {
 			select: function(event) {
