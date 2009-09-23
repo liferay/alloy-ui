@@ -23,6 +23,7 @@ var L = A.Lang,
 	DATE_FORMAT = 'dateFormat',
 	DAY = 'day',
 	DEFAULT = 'default',
+	DISABLED = 'disabled',
 	DOT = '.',
 	HEADER = 'hd',
 	HEADER_CONTENT = 'headerContent',
@@ -31,6 +32,8 @@ var L = A.Lang,
 	HOVER = 'hover',
 	ICON = 'icon',
 	LOCALE = 'locale',
+	MAX_DATE = 'maxDate',
+	MIN_DATE = 'minDate',
 	MONTH = 'month',
 	MONTHDAYS = 'monthdays',
 	NEXT = 'next',
@@ -46,14 +49,15 @@ var L = A.Lang,
 	getCN = A.ClassNameManager.getClassName,
 
 	CSS_CALENDAR = getCN(CALENDAR),
+	CSS_CALENDAR_DISABLED = getCN(CALENDAR, DISABLED),
 	CSS_DAY = getCN(CALENDAR, DAY),
 	CSS_DAY_BLANK = getCN(CALENDAR, DAY, BLANK),
 	CSS_DAY_HIDDEN = getCN(CALENDAR, DAY, HIDDEN),
 	CSS_HEADER = getCN(CALENDAR, HEADER),
 	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
 	CSS_ICON = getCN(ICON),
-	CSS_ICON_CIRCLE_TRIANGLE_R = getCN(ICON, CIRCLE, TRIANGLE, 'r'),
 	CSS_ICON_CIRCLE_TRIANGLE_L = getCN(ICON, CIRCLE, TRIANGLE, 'l'),
+	CSS_ICON_CIRCLE_TRIANGLE_R = getCN(ICON, CIRCLE, TRIANGLE, 'r'),
 	CSS_MONTHDAYS = getCN(CALENDAR, MONTHDAYS),
 	CSS_NEXT = getCN(CALENDAR, NEXT),
 	CSS_PREV = getCN(CALENDAR, PREV),
@@ -112,6 +116,20 @@ A.mix(Calendar, {
 		dateFormat: {
 			value: '%m/%d/%Y',
 			validator: isString
+		},
+
+		minDate: {
+			value: null,
+			setter: function(v) {
+				return this._setMinMaxDate(v);
+			}
+		},
+
+		maxDate: {
+			value: null,
+			setter: function(v) {
+				return this._setMinMaxDate(v);
+			}
 		},
 
 		showOn: {
@@ -210,6 +228,7 @@ A.extend(Calendar, A.ContextOverlay, {
 		var instance = this;
 		var daysInMonth = instance.getDaysInMonth();
 		var firstWeekDay = instance.getFirstDayOfWeek();
+		var currentDate = instance.getCurrentDate();
 
 		instance.monthDays.each(function(monthDayNode, day) {
 			if (day >= daysInMonth) {
@@ -219,6 +238,11 @@ A.extend(Calendar, A.ContextOverlay, {
 			else {
 				monthDayNode.removeClass(CSS_DAY_HIDDEN);
 			}
+
+			// restricting date
+			currentDate.setDate(day + 1);
+
+			instance._restrictDate(currentDate, monthDayNode);
 		});
 
 		instance.blankDays.each(function(blankDayNode, day) {
@@ -403,6 +427,22 @@ A.extend(Calendar, A.ContextOverlay, {
 		return A.DataType.Date.Locale[ instance.get(LOCALE) ];
 	},
 
+	_restrictDate: function(currentDate, monthDayNode) {
+		var instance = this;
+		var maxDate = instance.get(MAX_DATE);
+		var minDate = instance.get(MIN_DATE);
+
+		var disablePrev = minDate && (currentDate < minDate);
+		var disableNext = maxDate && (currentDate > maxDate);
+
+		if (disablePrev || disableNext) {
+			monthDayNode.addClass(CSS_CALENDAR_DISABLED);
+		}
+		else {
+			monthDayNode.removeClass(CSS_CALENDAR_DISABLED);
+		}
+	},
+
 	_selectDate: function() {
 		var instance = this;
 		var dates = instance.get(DATES);
@@ -514,17 +554,20 @@ A.extend(Calendar, A.ContextOverlay, {
 		var instance = this;
 		var target  = event.currentTarget || event.target;
 		var day = instance.monthDays.indexOf(target)+1;
+		var disabled = target.test(DOT+CSS_CALENDAR_DISABLED);
 
-		instance.set(CURRENT_DAY, day);
+		if (!disabled) {
+			instance.set(CURRENT_DAY, day);
 
-		var currentDate = instance.getCurrentDate();
-		var alreadySelected = instance.alreadySelected(currentDate);
+			var currentDate = instance.getCurrentDate();
+			var alreadySelected = instance.alreadySelected(currentDate);
 
-		if (alreadySelected) {
-			instance._removeDate(currentDate);
-		}
-		else {
-			instance._selectDate();
+			if (alreadySelected) {
+				instance._removeDate(currentDate);
+			}
+			else {
+				instance._selectDate();
+			}
 		}
 
 		event.preventDefault();
@@ -565,6 +608,16 @@ A.extend(Calendar, A.ContextOverlay, {
 			instance.set(CURRENT_YEAR, lastSelectedDate.getFullYear());
 
 			instance._syncSelectedDays(value);
+		}
+
+		return value;
+	},
+
+	_setMinMaxDate: function(value) {
+		var instance = this;
+
+		if (isString(value)) {
+			value = instance.parseDate( value );
 		}
 
 		return value;
