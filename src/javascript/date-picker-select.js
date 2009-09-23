@@ -163,17 +163,6 @@ A.extend(DatePickerSelect, A.Calendar, {
 	/*
 	* Methods
 	*/
-	selectByValue: function(select, value) {
-		var instance = this;
-		var options = select.all(OPTION);
-
-		options.each(function(option, index) {
-			var select = ( option.val() == value );
-
-			option.attr( SELECTED, (select ? SELECTED : BLANK) );
-		});
-	},
-
 	_getBaseName: function(prefix) {
 		var instance = this;
 
@@ -279,25 +268,22 @@ A.extend(DatePickerSelect, A.Calendar, {
 	_selectCurrentDay: function() {
 		var instance = this;
 		var currentDate = instance.getCurrentDate();
-		var selectedValue = currentDate.getDate();
 
-		instance.selectByValue(instance.get(DAY_FIELD), selectedValue);
+		instance.get(DAY_FIELD).val( currentDate.getDate() );
 	},
 
 	_selectCurrentMonth: function() {
 		var instance = this;
 		var currentDate = instance.getCurrentDate();
-		var selectedValue = currentDate.getMonth();
 
-		instance.selectByValue(instance.get(MONTH_FIELD), selectedValue);
+		instance.get(MONTH_FIELD).val( currentDate.getMonth() );
 	},
 
 	_selectCurrentYear: function() {
 		var instance = this;
 		var currentDate = instance.getCurrentDate();
-		var selectedValue = currentDate.getFullYear();
 
-		instance.selectByValue(instance.get(YEAR_FIELD), selectedValue);
+		instance.get(YEAR_FIELD).val( currentDate.getFullYear() );
 	},
 
 	_pupulateSelects: function() {
