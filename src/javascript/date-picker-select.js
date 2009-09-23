@@ -11,6 +11,7 @@ var L = A.Lang,
 		return A.Node.create(SELECT_TPL);
 	},
 
+	APPEND_ORDER = 'appendOrder',
 	BASE_NAME = 'baseName',
 	BLANK = '',
 	BODY = 'body',
@@ -71,6 +72,11 @@ A.mix(DatePickerSelect, {
 	NAME: DATEPICKER,
 
 	ATTRS: {
+		appendOrder: {
+			value: [ 'm', 'd', 'y' ],
+			validator: isArray
+		},
+
 		baseName: {
 			value: DATEPICKER
 		},
@@ -184,9 +190,7 @@ A.extend(DatePickerSelect, A.Calendar, {
 	*/
 	_getAppendOrder: function() {
 		var instance = this;
-		var dateFormat = instance.get(DATE_FORMAT);
-		var extractRegex = /%(\w)+\/%(\w)+?\/%(\w)+/;
-		var match = dateFormat.toLowerCase().match(extractRegex) || [ null, 'm', 'd', 'y' ];
+		var appendOrder = instance.get(APPEND_ORDER);
 
 		var mapping = {
 			d: instance.get(DAY_FIELD),
@@ -194,9 +198,9 @@ A.extend(DatePickerSelect, A.Calendar, {
 			y: instance.get(YEAR_FIELD)
 		};
 
-		var firstField = mapping[ match[1] ];
-		var secondField = mapping[ match[2] ];
-		var thirdField = mapping[ match[3] ];
+		var firstField = mapping[ appendOrder[0] ];
+		var secondField = mapping[ appendOrder[1] ];
+		var thirdField = mapping[ appendOrder[2] ];
 
 		return [ firstField, secondField, thirdField ]
 	},
