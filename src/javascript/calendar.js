@@ -110,7 +110,7 @@ A.mix(Calendar, {
 		},
 
 		dateFormat: {
-			value: '%d/%m/%y',
+			value: '%m/%d/%Y',
 			validator: isString
 		},
 
