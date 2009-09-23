@@ -186,7 +186,7 @@ A.extend(DatePickerSelect, A.Calendar, {
 			y: instance.get(YEAR_FIELD)
 		};
 
-		var firstField = mapping[match[1] ];
+		var firstField = mapping[ match[1] ];
 		var secondField = mapping[ match[2] ];
 		var thirdField = mapping[ match[3] ];
 
