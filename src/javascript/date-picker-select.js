@@ -309,6 +309,7 @@ A.extend(DatePickerSelect, A.Calendar, {
 		instance._populateMonths();
 		instance._populateYears();
 
+		// restricting dates based on the selects values
 		var monthField = instance.get(MONTH_FIELD);
 		var yearField = instance.get(YEAR_FIELD);
 
