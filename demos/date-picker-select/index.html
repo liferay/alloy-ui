@@ -44,7 +44,6 @@ AUI().ready('date-picker-select', function(A) {
 	// using displayBoundingBox
 	var datepicker2 = new A.DatePickerSelect({
 		displayBoundingBox: '#displayBoundingBox',
-		baseName: 'customFieldName',
 		// all A.Calendar options available ...
 		// locale: 'pt-br',
 
@@ -53,6 +52,10 @@ AUI().ready('date-picker-select', function(A) {
 		dayField: '#dayField',
 		monthField: '#monthField',
 		yearField: '#yearField',
+
+		dayFieldName: 'dayField',
+		monthFieldName: 'monthField',
+		yearFieldName: 'yearField',
 
 		// populateDay: false,
 		// populateMonth: false,

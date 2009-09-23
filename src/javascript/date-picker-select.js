@@ -24,12 +24,14 @@ var L = A.Lang,
 	DATE_FORMAT = 'dateFormat',
 	DAY = 'day',
 	DAY_FIELD = 'dayField',
+	DAY_FIELD_NAME = 'dayFieldName',
 	DISPLAY = 'display',
 	DISPLAY_BOUNDING_BOX = 'displayBoundingBox',
 	DOT = '.',
 	HELPER = 'helper',
 	MONTH = 'month',
 	MONTH_FIELD = 'monthField',
+	MONTH_FIELD_NAME = 'monthFieldName',
 	NAME = 'name',
 	OPTION = 'option',
 	POPULATE_DAY = 'populateDay',
@@ -41,6 +43,7 @@ var L = A.Lang,
 	WRAPPER = 'wrapper',
 	YEAR = 'year',
 	YEAR_FIELD = 'yearField',
+	YEAR_FIELD_NAME = 'yearFieldName',
 	YEAR_RANGE = 'yearRange',
 
 	getCN = A.ClassNameManager.getClassName,
@@ -92,6 +95,18 @@ A.mix(DatePickerSelect, {
 		yearField: {
 			setter: nodeSetter,
 			valueFn: createSelect
+		},
+
+		dayFieldName: {
+			value: DAY
+		},
+
+		monthFieldName: {
+			value: MONTH
+		},
+
+		yearFieldName: {
+			value: YEAR
 		},
 
 		trigger: {
@@ -163,17 +178,6 @@ A.extend(DatePickerSelect, A.Calendar, {
 	/*
 	* Methods
 	*/
-	_getBaseName: function(prefix) {
-		var instance = this;
-
-		// converting first letter to uppercase
-		prefix = prefix.replace(/^./, function(m) {
-		    return m.toUpperCase();
-		});
-
-		return instance.get(BASE_NAME) + prefix;
-	},
-
 	_getAppendOrder: function() {
 		var instance = this;
 		var dateFormat = instance.get(DATE_FORMAT);
@@ -220,9 +224,9 @@ A.extend(DatePickerSelect, A.Calendar, {
 		instance._selectWrapper = A.Node.create(WRAPPER_SELECT_TPL);
 
 		// setting name of the fields
-		monthField.set(NAME, instance._getBaseName(MONTH));
-		yearField.set(NAME, instance._getBaseName(YEAR));
-		dayField.set(NAME, instance._getBaseName(DAY));
+		monthField.set(NAME, instance.get(MONTH_FIELD_NAME));
+		yearField.set(NAME, instance.get(YEAR_FIELD_NAME));
+		dayField.set(NAME, instance.get(DAY_FIELD_NAME));
 
 		// append elements
 		var orderedFields = instance._getAppendOrder();
