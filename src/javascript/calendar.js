@@ -5,6 +5,7 @@ var L = A.Lang,
 	isArray = L.isArray,
 	isBoolean = L.isBoolean,
 	isUndefined = L.isUndefined,
+	isNumber = L.isNumber,
 
 	WidgetStdMod = A.WidgetStdMod,
 
@@ -25,6 +26,7 @@ var L = A.Lang,
 	DEFAULT = 'default',
 	DISABLED = 'disabled',
 	DOT = '.',
+	FIRST_DAY_OF_WEEK = 'firstDayOfWeek',
 	HEADER = 'hd',
 	HEADER_CONTENT = 'headerContent',
 	HELPER = 'helper',
@@ -116,6 +118,11 @@ A.mix(Calendar, {
 		dateFormat: {
 			value: '%m/%d/%Y',
 			validator: isString
+		},
+
+		firstDayOfWeek: {
+			value: 0,
+			validator: isNumber
 		},
 
 		minDate: {
@@ -246,7 +253,9 @@ A.extend(Calendar, A.ContextOverlay, {
 		});
 
 		instance.blankDays.each(function(blankDayNode, day) {
-			if (day < firstWeekDay) {
+			var blankDays = (firstWeekDay - instance.get(FIRST_DAY_OF_WEEK) + 7) % 7;
+
+			if (day < blankDays) {
 				// show padding days to position the firstWeekDay correctly
 				blankDayNode.removeClass(CSS_DAY_HIDDEN);
 			}
@@ -304,9 +313,11 @@ A.extend(Calendar, A.ContextOverlay, {
 		var day = 0;
 		var instance = this;
 		var weekDay = A.Node.create(TPL_CALENDAR_WEEK);
+		var firstWeekDay = instance.get(FIRST_DAY_OF_WEEK);
 
 		while(day < 7) {
-			var dayName = instance._getDayNameMin(day);
+			var fixedDay = (day + firstWeekDay) % 7;
+			var dayName = instance._getDayNameMin(fixedDay);
 
 			instance.weekDaysNode.append(
 				weekDay.cloneNode().html(dayName)
