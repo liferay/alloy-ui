@@ -343,7 +343,6 @@ A.extend(DatePickerSelect, A.Calendar, {
 		var localeMap = instance._getLocaleMap();
 		var monthLabels = localeMap.B;
 
-
 		if (instance.get(POPULATE_MONTH)) {
 			instance._populateSelect(monthField, 0, (monthLabels.length - 1), monthLabels);
 		}
