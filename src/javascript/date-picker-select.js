@@ -29,9 +29,7 @@ var L = A.Lang,
 	DISPLAY = 'display',
 	DISPLAY_BOUNDING_BOX = 'displayBoundingBox',
 	DOT = '.',
-	FIRST_CHILD = 'firstChild',
 	HELPER = 'helper',
-	LAST_CHILD = 'lastChild',
 	MAX_DATE = 'maxDate',
 	MIN_DATE = 'minDate',
 	MONTH = 'month',
@@ -310,13 +308,16 @@ A.extend(DatePickerSelect, A.Calendar, {
 		instance._populateYears();
 
 		// restricting dates based on the selects values
-		var monthField = instance.get(MONTH_FIELD);
-		var yearField = instance.get(YEAR_FIELD);
+		var monthOptions = instance.get(MONTH_FIELD).all(OPTION);
+		var yearOptions = instance.get(YEAR_FIELD).all(OPTION);
 
-		var firstMonth = monthField.get(FIRST_CHILD).val();
-		var firstYear = yearField.get(FIRST_CHILD).val();
-		var lastMonth = monthField.get(LAST_CHILD).val();
-		var lastYear = yearField.get(LAST_CHILD).val();
+		var mLength = monthOptions.size() - 1;
+		var yLength = yearOptions.size() - 1;
+
+		var firstMonth = monthOptions.item(0).val();
+		var firstYear = yearOptions.item(0).val();
+		var lastMonth = monthOptions.item(mLength).val();
+		var lastYear = yearOptions.item(yLength).val();
 
 		var maxMonthDays = instance.getDaysInMonth(lastYear, lastMonth);
 
@@ -411,4 +412,4 @@ A.extend(DatePickerSelect, A.Calendar, {
 
 A.DatePickerSelect = DatePickerSelect;
 
-}, '@VERSION', { requires: [ 'calendar', 'tool-item' ] });
+}, '0.1a', { requires: [ 'calendar', 'tool-item' ] });
