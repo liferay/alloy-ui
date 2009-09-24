@@ -281,11 +281,12 @@ A.extend(Calendar, A.ContextOverlay, {
 
 				dayNode.addClass(CSS_STATE_ACTIVE);
 
-				if (!A.UA.ie) {
+				try {
 					// focus the last selected date
 					// IE doesn't support focus on hidden elements
 					dayNode.focus();
 				}
+				catch (err) {}
 			}
 		}, dates);
 	},
