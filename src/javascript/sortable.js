@@ -7,6 +7,8 @@ AUI().add(
 
 			NAME = 'sortable',
 
+			DDM = A.DD.DDM,
+
 			CSS_SORTABLE = getClassName(NAME),
 			CSS_PLACEHOLDER = getClassName(NAME, 'placeholder'),
 			CSS_DRAGGING = getClassName(NAME, 'dragging'),
@@ -125,13 +127,15 @@ AUI().add(
 					var lastX = instance._lastX;
 					var lastY = instance._lastY;
 
-					var xToleranceMet = Math.abs(x - lastX) > 5;
-					var yToleranceMet = Math.abs(y - lastY) > 5;
+					var xToleranceMet = Math.abs(x - lastX);
+					var yToleranceMet = Math.abs(y - lastY);
 
 					instance._goingUp = ((x < lastX) && xToleranceMet) || ((y < lastY) && yToleranceMet);
 
 					instance._lastX = x;
 					instance._lastY = y;
+
+					A.later(50, DDM, DDM.syncActiveShims);
 				},
 
 				_onDragEnd: function(event) {
