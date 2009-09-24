@@ -7,6 +7,10 @@
 	<title>index</title>
 	<meta name="author" content="Nate Cavanaugh">
 
+	<script src="../../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
 	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 
 	<style type="text/css" media="screen">
@@ -174,6 +178,11 @@
 			<input id="reset" name="reset" type="reset" value="Reset" />
 		</div>
 	</form>
+	<script type="text/javascript" charset="utf-8">
+		YUI().use('node', 'event', function(Y){
+			Y.one('.aui-ctrl-holder').on('mouseenter', function(){});
+		})
+	</script>
 </div>
 
 </body>
