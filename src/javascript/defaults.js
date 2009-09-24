@@ -192,6 +192,19 @@
 				},
 
 				/*
+				* Sortable
+				*/
+				'sortable': {
+					fullpath: PATH_JAVASCRIPT + 'sortable.js',
+					requires: [ 'aui-base', 'aui-base', 'dd' ]
+				},
+				'sortable-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'sortable.css',
+					type: 'css'
+				},
+
+				/*
 				* ContextOverlay
 				*/
 				'context-overlay': {
