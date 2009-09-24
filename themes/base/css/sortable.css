@@ -1,0 +1,14 @@
+.aui-sortable {
+}
+
+.aui-sortable-item {
+	cursor: move;
+}
+
+.aui-sortable-proxy {
+	background: #ccc;
+}
+
+.aui-sortable-dragging {
+	visibility: hidden;
+}

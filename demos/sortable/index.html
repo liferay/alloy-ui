@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="../../themes/base/css/sortable.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+
+		#demo li {
+			list-style: none;
+			margin: 0;
+			padding: 5px;
+		}
+
+		#vertical {
+			width: 200px;
+		}
+
+		#vertical li {
+			border-bottom: 1px solid #999;
+		}
+
+		#horizontal li {
+			float: left;
+		}
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - sortable Demo</h1>
+
+
+	<div id="demo">
+		<ul id="vertical">
+			<li>List Item 1</li>
+			<li>List Item 2</li>
+			<li>List Item 3</li>
+			<li>List Item 4</li>
+			<li>List Item 5</li>
+			<li>List Item 6</li>
+		</ul>
+
+		<ul id="horizontal">
+			<li>List Item 1</li>
+			<li>List Item 2</li>
+			<li>List Item 3</li>
+			<li>List Item 4</li>
+			<li>List Item 5</li>
+			<li>List Item 6</li>
+		</ul>
+	</div>
+
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready(
+	'sortable',
+	function(A) {
+		new A.Sortable(
+			{
+				nodes: '#vertical li'
+			}
+		);
+
+		new A.Sortable(
+			{
+				nodes: '#horizontal li'
+			}
+		);
+	}
+);
+
+</script>
+
+</body>
+</html>
