@@ -70,6 +70,7 @@ AUI().ready('calendar', function(A) {
 	var calendar2 = new A.Calendar({
 		trigger: '.aui-icon-calendar',
 		locale: 'pt-br',
+		firstDayOfWeek: 0,
 		on: {
 			select: function(event) {
 				alert( event.date.formatted )
