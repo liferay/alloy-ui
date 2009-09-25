@@ -213,6 +213,30 @@ AUI.add('aui-node', function(A) {
 			return instance._getText(el.childNodes);
 		},
 
+		unselectable: function() {
+			var instance = this;
+
+			instance.getDOM().unselectable = 'on';
+			instance.swallowEvent('selectstart', true);
+			instance.setStyle('-moz-user-select', 'none');
+			instance.setStyle('-khtml-user-select', 'none');
+			instance.addClass('aui-helper-unselectable');
+
+			return instance;
+		},
+
+		selectable: function() {
+			var instance = this;
+
+			instance.getDOM().unselectable = 'off';
+			instance.detach('selectstart');
+			instance.setStyle('-moz-user-select', '');
+			instance.setStyle('-khtml-user-select', '');
+			instance.removeClass('aui-helper-unselectable');
+
+			return instance;
+		},
+
 		swallowEvent: function(eventName, preventDefault) {
 			var instance = this;
 
