@@ -110,6 +110,13 @@
 	filter: alpha(opacity=0);
 }
 
+/* unselectable */
+
+.aui-helper-unselectable, .aui-helper-unselectable * {
+   -moz-user-select: none;
+   -khtml-user-select: none;
+}
+
 /*
 The rules below set the base font size and background color. These are best overwritten inside of custom.css.
 */
