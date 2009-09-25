@@ -213,25 +213,19 @@ AUI.add('aui-node', function(A) {
 			return instance._getText(el.childNodes);
 		},
 
-		unselectable: function() {
-			var instance = this;
-
-			instance.getDOM().unselectable = 'on';
-			instance.swallowEvent('selectstart', true);
-			instance.setStyle('-moz-user-select', 'none');
-			instance.setStyle('-khtml-user-select', 'none');
-			instance.addClass('aui-helper-unselectable');
-
-			return instance;
-		},
-
 		selectable: function() {
 			var instance = this;
 
 			instance.getDOM().unselectable = 'off';
 			instance.detach('selectstart');
-			instance.setStyle('-moz-user-select', '');
-			instance.setStyle('-khtml-user-select', '');
+
+			instance.setStyles(
+				{
+					'MozUserSelect': '',
+					'KhtmlUserSelect': ''
+				}
+			);
+
 			instance.removeClass('aui-helper-unselectable');
 
 			return instance;
@@ -240,27 +234,50 @@ AUI.add('aui-node', function(A) {
 		swallowEvent: function(eventName, preventDefault) {
 			var instance = this;
 
-			var fn = function(e) {
-				e.stopPropagation();
+			var fn = function(event) {
+				event.stopPropagation();
 
 				if (preventDefault) {
-					e.preventDefault();
-					e.halt();
+					event.preventDefault();
+
+					event.halt();
 				}
 
 				return false;
 			};
 
-			if(isArray(eventName)){
-				A.Array.each(eventName, function(name) {
-					instance.on(name, fn);
-				});
+			if(isArray(eventName)) {
+				A.Array.each(
+					eventName,
+					function(name) {
+						instance.on(name, fn);
+					}
+				);
 
 				return this;
 			}
 			else {
 				instance.on(eventName, fn);
 			}
+
+			return instance;
+		},
+
+		unselectable: function() {
+			var instance = this;
+
+			instance.getDOM().unselectable = 'on';
+
+			instance.swallowEvent('selectstart', true);
+
+			instance.setStyles(
+				{
+					'MozUserSelect': 'none',
+					'KhtmlUserSelect': 'none'
+				}
+			);
+
+			instance.addClass('aui-helper-unselectable');
 
 			return instance;
 		},
