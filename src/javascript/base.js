@@ -240,22 +240,25 @@ AUI.add('aui-node', function(A) {
 		swallowEvent: function(eventName, preventDefault) {
 			var instance = this;
 
-			var fn = function(e){
+			var fn = function(e) {
 				e.stopPropagation();
-				if(preventDefault){
+				if (preventDefault) {
 					e.preventDefault();
 				}
+
+				return false;
 			};
 
 			if(isArray(eventName)){
 				A.Array.each(eventName, function(name) {
-					this.on(name, fn);
+					instance.on(name, fn);
 				});
 
 				return this;
 			}
-
-			instance.on(eventName, fn);
+			else {
+				instance.on(eventName, fn);
+			}
 
 			return instance;
 		},
@@ -413,7 +416,11 @@ AUI.add('aui-node', function(A) {
 
 			'prependTo',
 
-			'text'
+			'selectable',
+
+			'text',
+
+			'unselectable'
 		]
 	);
 
