@@ -113,12 +113,6 @@ AUI.add('aui-node', function(A) {
 		INNER_HTML = 'innerHTML';
 
 	A.mix(A.Node.prototype, {
-		after: function(content) {
-			var instance = this;
-
-			return instance.insertAfter(content);
-		},
-
 		appendTo: function(selector) {
 			var instance = this;
 
@@ -134,18 +128,6 @@ AUI.add('aui-node', function(A) {
 			else {
 				return instance.get(name) || instance.getAttribute(name);
 			}
-		},
-
-		before: function(content) {
-			var instance = this;
-
-			var parent = content.get('parentNode');
-
-			if (parent) {
-				parent.insertBefore(instance, content);
-			}
-
-			return instance;
 		},
 
 		empty: function() {
@@ -181,16 +163,16 @@ AUI.add('aui-node', function(A) {
 			return this;
 		},
 
-		insertAfter: function(content) {
+		placeAfter: function(content) {
 			var instance = this;
 
-			var parent = content.get('parentNode');
+			instance.get('parentNode').insertBefore(content, instance.get('nextSibling'));
+		},
 
-			if (parent) {
-				parent.insertBefore(instance, content.get('nextSibling'));
-			}
+		placeBefore: function(content) {
+			var instance = this;
 
-			return instance;
+			instance.get('parentNode').insertBefore(content, instance);
 		},
 
 		prependTo: function(selector) {
@@ -428,8 +410,6 @@ AUI.add('aui-node', function(A) {
 			'empty',
 
 			'html',
-
-			'insertAfter',
 
 			'prepend',
 
