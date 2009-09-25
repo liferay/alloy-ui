@@ -139,10 +139,10 @@ AUI.add('aui-node', function(A) {
 		before: function(content) {
 			var instance = this;
 
-			var parent = instance.get('parentNode');
+			var parent = content.get('parentNode');
 
 			if (parent) {
-				parent.insertBefore(content, instance);
+				parent.insertBefore(instance, content);
 			}
 
 			return instance;
@@ -184,10 +184,10 @@ AUI.add('aui-node', function(A) {
 		insertAfter: function(content) {
 			var instance = this;
 
-			var parent = instance.get('parentNode');
+			var parent = content.get('parentNode');
 
 			if (parent) {
-				parent.insertBefore(content, instance.get('nextSibling'));
+				parent.insertBefore(instance, content.get('nextSibling'));
 			}
 
 			return instance;
@@ -242,8 +242,10 @@ AUI.add('aui-node', function(A) {
 
 			var fn = function(e) {
 				e.stopPropagation();
+
 				if (preventDefault) {
 					e.preventDefault();
+					e.halt();
 				}
 
 				return false;
