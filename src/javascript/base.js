@@ -14,7 +14,7 @@ AUI.add('aui-base', function(A) {
 		removeItem: function(a, item) {
 			var index = A.Array.indexOf(a, item);
 
-		  	return A.Array.remove(a, index);
+			return A.Array.remove(a, index);
 		}
 	});
 
@@ -108,6 +108,7 @@ AUI.add('aui-node', function(A) {
 	var Lang = A.Lang,
 		isString = Lang.isString,
 		isUndefined = Lang.isUndefined,
+		isArray = Lang.isArray,
 
 		INNER_HTML = 'innerHTML';
 
@@ -210,6 +211,29 @@ AUI.add('aui-node', function(A) {
 			var el = A.Node.getDOMNode(instance);
 
 			return instance._getText(el.childNodes);
+		},
+
+		swallowEvent: function(eventName, preventDefault) {
+			var instance = this;
+
+			var fn = function(e){
+				e.stopPropagation();
+				if(preventDefault){
+					e.preventDefault();
+				}
+			};
+
+			if(isArray(eventName)){
+				A.Array.each(eventName, function(name) {
+					this.on(name, fn);
+				});
+
+				return this;
+			}
+
+			instance.on(eventName, fn);
+
+			return instance;
 		},
 
 		val: function(value) {
