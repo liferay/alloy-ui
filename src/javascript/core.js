@@ -1,62 +1,60 @@
 ;(function() {
 
+	var toString = Object.prototype.toString;
+
+	var isFunction = function(obj) {
+		return toString.call(obj) === "[object Function]";
+	};
+
 	// Based on jQuery.extend
-	var extend = function() {
-		// copy reference to target object
-		var target = arguments[0] || {}, i = 1, length = arguments.length, deep = false, options, toString = Object.prototype.toString;
+	var apply = function() {
+		var target = arguments[0] || {},
+			i = 1,
+			length = arguments.length,
+			deep = false,
+			options;
 
-		var isFunction = function( obj ) {
-			return toString.call(obj) === "[object Function]";
-		};
-
-		// Handle a deep copy situation
-		if ( typeof target === "boolean" ) {
+		if (typeof target === 'boolean') {
 			deep = target;
 			target = arguments[1] || {};
-			// skip the boolean and the target
 			i = 2;
 		}
 
-		// Handle case when target is a string or something (possible in deep copy)
-		if ( typeof target !== "object" && !isFunction(target) ) {
+		if (typeof target !== 'object' && !isFunction(target)) {
 			target = {};
 		}
 
-		// extend Object itself if only one argument is passed
-		if ( length == i ) {
+		if (length == i) {
 			target = this;
 			--i;
 		}
 
-		for ( ; i < length; i++ ) {
-			// Only deal with non-null/undefined values
-			if ( (options = arguments[ i ]) != null ) {
-				// Extend the base object
-				for ( var name in options ) {
-					var src = target[ name ], copy = options[ name ];
+		for (; i < length; i++) {
+			if ((options = arguments[i]) != null) {
+				for (var name in options) {
+					var src = target[name],
+						copy = options[name];
 
-					// Prevent never-ending loop
-					if ( target === copy ) {
+					if (target === copy) {
 						continue;
 					}
 
-					// Recurse if we're merging object values
-					if ( deep && copy && typeof copy === "object" && !copy.nodeType ) {
-						target[ name ] = extend( deep,
-							// Never move original objects, clone them
-							src || ( copy.length != null ? [ ] : { } )
-						, copy );
+					if (deep && copy && typeof copy === 'object' && !copy.nodeType) {
+						target[name] = applyapply(
+							deep,
+							src || (copy.length != null ? [] : {}),
+							copy
+						);
 					}
-					// Don't bring in undefined values
-					else if ( copy !== undefined ) {
-						target[ name ] = copy;
+
+					else if (copy !== undefined) {
+						target[name] = copy;
 					}
 
 				}
 			}
 		}
 
-		// Return the modified object
 		return target;
 	};
 
@@ -80,92 +78,91 @@
 	var defaults = AUI.defaults || {};
 	var defaultModules = defaults.defaultModules || [];
 
-	// extending YUI prototype
-	extend(YUI.prototype, {
-		ready: function() {
-			var instance = this;
+	apply(
+		YUI.prototype,
+		{
+			apply: apply,
+			ready: function() {
+				var instance = this;
 
-			var slice = Array.prototype.slice;
-			var args = slice.call(arguments, 0), index = args.length - 1;
+				var slice = Array.prototype.slice;
+				var args = slice.call(arguments, 0), index = args.length - 1;
 
-			// user callback
-			var fn = args[index];
+				var fn = args[index];
 
-			// array with YUI modules to be loaded
-			var modules = slice.call(arguments, 0, index);
+				var modules = slice.call(arguments, 0, index);
 
-			modules.push('event');
+				modules.push('event');
 
-			// adding AUI().use() callback
-			modules.push(
-				function(instance) {
-					var args = arguments;
+				modules.push(
+					function(instance) {
+						var args = arguments;
 
-					instance.on(
-						'domready',
-						function() {
-							fn.apply(this, args);
-						}
-					);
-				}
-			);
-
-			instance.use.apply(instance, modules);
-		},
-
-		toQueryString: function(obj) {
-			var instance = this;
-
-			var Lang = instance.Lang;
-			var isArray = Lang.isArray;
-			var isFunction = Lang.isFunction;
-
-			var buffer = [];
-			var isNodeList = false;
-
-			if (isArray(obj) || (isNodeList = (instance.NodeList && (obj instanceof instance.NodeList)))) {
-				if (isNodeList) {
-					obj = instance.NodeList.getDOMNodes(obj);
-				}
-
-				var length = obj.length;
-
-				for (var i=0; i < length; i++) {
-					var el = obj[i];
-
-					buffer.push(encodeURIComponent(el.name) + '=' + encodeURIComponent(el.value));
-				}
-			}
-			else {
-				for (var i in obj){
-					var value = obj[i];
-
-					if (isArray(value)) {
-						var vlength = value.length;
-
-						for (var j = 0; j < vlength; j++) {
-							buffer.push(encodeURIComponent(i) + '=' + encodeURIComponent(value[j]));
-						}
+						instance.on(
+							'domready',
+							function() {
+								fn.apply(this, args);
+							}
+						);
 					}
-					else {
-						if (isFunction(value)) {
-							value = value();
-						}
+				);
 
-						buffer.push(encodeURIComponent(i) + '=' + encodeURIComponent(value));
+				instance.use.apply(instance, modules);
+			},
+
+			toQueryString: function(obj) {
+				var instance = this;
+
+				var Lang = instance.Lang;
+				var isArray = Lang.isArray;
+				var isFunction = Lang.isFunction;
+
+				var buffer = [];
+				var isNodeList = false;
+
+				if (isArray(obj) || (isNodeList = (instance.NodeList && (obj instanceof instance.NodeList)))) {
+					if (isNodeList) {
+						obj = instance.NodeList.getDOMNodes(obj);
+					}
+
+					var length = obj.length;
+
+					for (var i=0; i < length; i++) {
+						var el = obj[i];
+
+						buffer.push(encodeURIComponent(el.name) + '=' + encodeURIComponent(el.value));
 					}
 				}
-			}
+				else {
+					for (var i in obj){
+						var value = obj[i];
 
-			return buffer.join('&').replace(/%20/g, '+');
+						if (isArray(value)) {
+							var vlength = value.length;
+
+							for (var j = 0; j < vlength; j++) {
+								buffer.push(encodeURIComponent(i) + '=' + encodeURIComponent(value[j]));
+							}
+						}
+						else {
+							if (isFunction(value)) {
+								value = value();
+							}
+
+							buffer.push(encodeURIComponent(i) + '=' + encodeURIComponent(value));
+						}
+					}
+				}
+
+				return buffer.join('&').replace(/%20/g, '+');
+			}
 		}
-	});
+	);
 
-	var ALLOY = YUI( extend({}, defaults) );
+	var ALLOY = YUI(apply({}, defaults));
 
 	var originalConfig = ALLOY.config;
 
-	// adding callback for .use()
 	defaultModules.push(
 		function(A, result) {
 			if (!result.success) {
@@ -174,7 +171,6 @@
 		}
 	);
 
-	// loading default modules
 	ALLOY.use.apply(ALLOY, defaultModules);
 
 	AUI = function(o) {
@@ -183,21 +179,19 @@
 		ALLOY.config = ALLOY.merge(originalConfig, AUI.defaults);
 
 		if (o || instance instanceof AUI) {
-			// new AUI() creates a new YUI sandbox
-			return YUI( ALLOY.merge(ALLOY.config, o) );
+			return YUI(ALLOY.merge(ALLOY.config, o));
 		}
 
-		// returns the cached YUI sandbox
 		return ALLOY;
 	};
 
-	extend(
+	apply(
 		AUI,
 		YUI,
 		{
 			__version: '@VERSION',
 
-			extend: extend,
+			apply: apply,
 
 			defaults: defaults
 		}
@@ -245,7 +239,7 @@
 	b = (!b || !b.length) ? (/(Mozilla)/.exec(u) || ['']) : b;
 	os = (!os || !os.length) ? [''] : os;
 
-	extend(
+	apply(
 		UA,
 		{
 			gecko: /Gecko/.test(u) && !/like Gecko/.test(u),
