@@ -106,11 +106,16 @@ AUI.add('delayed-task', function(A) {
 AUI.add('aui-node', function(A) {
 
 	var Lang = A.Lang,
+		isArray = Lang.isArray,
 		isString = Lang.isString,
 		isUndefined = Lang.isUndefined,
-		isArray = Lang.isArray,
 
-		INNER_HTML = 'innerHTML';
+		INNER_HTML = 'innerHTML',
+		NEXT_SIBLING = 'nextSibling',
+		NONE = 'none',
+		PARENT_NODE = 'parentNode',
+		SCRIPT = 'script',
+		VALUE = 'value';
 
 	A.mix(A.Node.prototype, {
 		appendTo: function(selector) {
@@ -166,13 +171,13 @@ AUI.add('aui-node', function(A) {
 		placeAfter: function(content) {
 			var instance = this;
 
-			instance.get('parentNode').insertBefore(content, instance.get('nextSibling'));
+			instance.get(PARENT_NODE).insertBefore(content, instance.get(NEXT_SIBLING));
 		},
 
 		placeBefore: function(content) {
 			var instance = this;
 
-			instance.get('parentNode').insertBefore(content, instance);
+			instance.get(PARENT_NODE).insertBefore(content, instance);
 		},
 
 		prependTo: function(selector) {
@@ -183,14 +188,13 @@ AUI.add('aui-node', function(A) {
 
 		text: function(text) {
 			var instance = this;
+			var el = instance.getDOM();
 
 			if (!isUndefined(text)) {
-				text = A.DOM._getDoc(A.Node.getDOMNode(instance)).createTextNode(text);
+				text = A.DOM._getDoc(el).createTextNode(text);
 
 				return instance.empty().append(text);
 			}
-
-			var el = A.Node.getDOMNode(instance);
 
 			return instance._getText(el.childNodes);
 		},
@@ -254,8 +258,8 @@ AUI.add('aui-node', function(A) {
 
 			instance.setStyles(
 				{
-					'MozUserSelect': 'none',
-					'KhtmlUserSelect': 'none'
+					'MozUserSelect': NONE,
+					'KhtmlUserSelect': NONE
 				}
 			);
 
@@ -267,7 +271,7 @@ AUI.add('aui-node', function(A) {
 		val: function(value) {
 			var instance = this;
 
-			return instance.attr('value', value);
+			return instance.attr(VALUE, value);
 		},
 
 		_getText: function(childNodes) {
@@ -299,10 +303,10 @@ AUI.add('aui-node', function(A) {
 	A.mix(A.Node, {
 		globalEval: function(data) {
 			if ( data && /\S/.test(data) ) {
-				var head = document.getElementsByTagName("head")[0] || document.documentElement;
-				var script = document.createElement("script");
+				var head = document.getElementsByTagName('head')[0] || document.documentElement;
+				var script = document.createElement('script');
 
-				script.type = "text/javascript";
+				script.type = 'text/javascript';
 
 				if (AUI.support.scriptEval) {
 					script.appendChild(document.createTextNode(data));
@@ -328,14 +332,13 @@ AUI.add('aui-node', function(A) {
 				});
 			}
 			else {
-				A.Node.globalEval(elem.text || elem.textContent || elem.innerHTML || "");
+				A.Node.globalEval(elem.text || elem.textContent || elem.innerHTML || '');
 			}
 		},
 
 		clean: function(html) {
 			var TPL_NODE = '<div></div>',
-				IE_FIX_PADDING_NODE = '<div>_</div>',
-				SCRIPT = 'script';
+				IE_FIX_PADDING_NODE = '<div>_</div>';
 
 			// instead of fix all tags to "XHTML"-style, make the firstChild be a valid non-empty tag
 			html = IE_FIX_PADDING_NODE + A.Lang.trim(html);
