@@ -60,27 +60,6 @@
 		return target;
 	};
 
-	var getBasePath = function () {
-		var nodes = document.getElementsByTagName('script');
-		var yuiRE = /^(.*)yui[\.-].*js(\?.*)?$/;
-		var length = nodes.length;
-		var node, match, base;
-
-		while(length--) {
-			node = nodes[length];
-			match = node.src && node.src.match(yuiRE);
-			base = match && match[1];
-
-			if (base) {
-				base = base.substring(0, base.length - 4);
-
-				break;
-			}
-		}
-
-		return base;
-	};
-
 	/*
 	 * Alloy JavaScript Library v@VERSION
 	 * http://alloyui.com/
