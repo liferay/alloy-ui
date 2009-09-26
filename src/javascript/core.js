@@ -40,7 +40,7 @@
 					}
 
 					if (deep && copy && typeof copy === 'object' && !copy.nodeType) {
-						target[name] = applyapply(
+						target[name] = apply(
 							deep,
 							src || (copy.length != null ? [] : {}),
 							copy
