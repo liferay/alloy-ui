@@ -161,13 +161,13 @@ AUI().add(
 
 					var dropNode = drop.get('node');
 
-					var where = dropNode;
+					var action = 'placeBefore';
 
 					if (!instance._goingUp) {
-						where = dropNode.next();
+						action = 'placeAfter';
 					}
 
-					dropNode.get('parentNode').insertBefore(drag.get('node'), where);
+					dropNode[action](drag.get('node'));
 
 					drop.sizeShim();
 				},
