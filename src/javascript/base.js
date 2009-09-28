@@ -155,6 +155,26 @@ AUI.add('aui-node', function(A) {
 			return A.Node.getDOMNode(instance);
 		},
 
+		guid: function(prefix) {
+			var instance = this;
+
+			var currentId = instance.get('id');
+
+			if (!currentId) {
+				currentId = A.stamp(instance);
+
+				instance.set('id', currentId);
+			}
+
+			return currentId;
+		},
+
+		hide: function(cssClass) {
+			var instance = this;
+
+			instance.addClass(cssClass || instance._hideClass || 'aui-helper-hidden');
+		},
+
 		html: function() {
 			var args = arguments, length = args.length;
 
@@ -215,6 +235,12 @@ AUI.add('aui-node', function(A) {
 			instance.removeClass('aui-helper-unselectable');
 
 			return instance;
+		},
+
+		show: function(cssClass) {
+			var instance = this;
+
+			instance.removeClass(cssClass || instance._hideClass || 'aui-helper-hidden');
 		},
 
 		swallowEvent: function(eventName, preventDefault) {
@@ -412,6 +438,8 @@ AUI.add('aui-node', function(A) {
 
 			'empty',
 
+			'hide',
+
 			'html',
 
 			'prepend',
@@ -419,6 +447,8 @@ AUI.add('aui-node', function(A) {
 			'prependTo',
 
 			'selectable',
+
+			'show',
 
 			'text',
 
