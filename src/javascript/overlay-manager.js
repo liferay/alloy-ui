@@ -55,7 +55,7 @@ var Lang = A.Lang,
 
 				overlay.set(Z_INDEX, highestZ + 1);
 
-				overlay.focus();
+				overlay.set('focused', true);
 			}
 		},
 
