@@ -80,6 +80,15 @@
 	background: transparent url(../images/treeview/folder_closed.png) no-repeat 50% 50%;
 }
 
+/* TreeNodeIO */
+
 .aui-tree-view-content .aui-tree-node-io-loading .aui-tree-icon {
 	background: url(../images/loading_indicator.gif) no-repeat 50% 50%;
+}
+
+/* TreeNodeCheck */
+
+.aui-tree-node-checkbox-container {
+	float: left;
+	line-height: 19px;
 }

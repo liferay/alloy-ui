@@ -63,6 +63,15 @@ AUI().ready('tree-view', function(A) {
 			expanded: true,
 			children: [
 				{
+					type: 'check',
+					checkName: 'customSelectName',
+					label: 'CheckboxNode',
+					on: {
+						check: defCallback,
+						uncheck: defCallback
+					}
+				},
+				{
 					type: 'io',
 					label: 'CachedTreeNodeIO',
 					cache: true,
