@@ -157,7 +157,6 @@ AUI.add('aui-node', function(A) {
 
 		guid: function(prefix) {
 			var instance = this;
-
 			var currentId = instance.get('id');
 
 			if (!currentId) {
