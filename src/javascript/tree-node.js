@@ -55,6 +55,7 @@ var L = A.Lang,
 	CSS_TREE_HITAREA = getCN(TREE, HITAREA),
 	CSS_TREE_ICON = getCN(TREE, ICON),
 	CSS_TREE_LABEL = getCN(TREE, LABEL),
+	CSS_TREE_NODE_CONTENT = getCN(TREE, NODE, CONTENT),
 	CSS_TREE_NODE_LEAF = getCN(TREE, NODE, LEAF),
 	CSS_TREE_NODE_OVER = getCN(TREE, NODE, OVER),
 	CSS_TREE_NODE_SELECTED = getCN(TREE, NODE, SELECTED),
@@ -65,7 +66,7 @@ var L = A.Lang,
 	NODE_CONTAINER_TPL = '<ul class="'+CSS_TREE_CONTAINER+'"></ul>',
 
 	NODE_BOUNDING_TEMPLATE = '<li></li>',
-	NODE_CONTENT_TEMPLATE = '<div class="'+concat(CSS_HELPER_CLEARFIX)+'"></div>';
+	NODE_CONTENT_TEMPLATE = '<div class="'+concat(CSS_HELPER_CLEARFIX, CSS_TREE_NODE_CONTENT)+'"></div>';
 
 /*
 * TreeNode
@@ -449,4 +450,184 @@ A.extend(TreeNode, A.TreeData, {
 
 A.TreeNode = TreeNode;
 
-}, '@VERSION', { requires: [ 'tree-data' ] });
+
+/*
+* TreeNodeIO
+*/
+var isFunction = L.isFunction,
+
+	CACHE = 'cache',
+	IO = 'io',
+	LOADING = 'loading',
+	LOADED = 'loaded',
+	TREE_NODE_IO = 'tree-node-io',
+
+	CSS_TREE_NODE_IO_LOADING = getCN(TREE, NODE, IO, LOADING);
+
+function TreeNodeIO(config) {
+	TreeNodeIO.superclass.constructor.apply(this, arguments);
+}
+
+A.mix(TreeNodeIO, {
+	NAME: TREE_NODE_IO,
+
+	ATTRS: {
+		io: {
+			lazyAdd: false,
+			value: null,
+			setter: function(v) {
+				return this._setIO(v);
+			}
+		},
+
+		loading: {
+			value: false,
+			validador: isBoolean
+		},
+
+		loaded: {
+			value: false,
+			validador: isBoolean
+		},
+
+		cache: {
+			value: true,
+			validador: isBoolean
+		},
+
+		leaf: {
+			value: false,
+			validador: isBoolean
+		}
+	}
+});
+
+A.extend(TreeNodeIO, A.TreeNode, {
+	/*
+	* Methods
+	*/
+	createNode: function(nodes) {
+		var instance = this;
+
+		A.each(nodes, function(node) {
+			var newNode = TreeNodeIO.superclass.createNode.apply(instance, [node]);
+
+			instance.appendChild(newNode);
+		});
+
+		instance.expand();
+	},
+
+	expand: function() {
+		var instance = this;
+		var io = instance.get(IO);
+		var loaded = instance.get(LOADED);
+		var loading = instance.get(LOADING);
+		var cache = instance.get(CACHE);
+
+		if (!cache) {
+			// if cache is false on expand, always set LOADED to false
+			instance.set(LOADED, false);
+		}
+
+		if (loaded) {
+			TreeNodeIO.superclass.expand.apply(this, arguments);
+		}
+		else {
+			if (!loading) {
+
+				if (!cache) {
+					// remove all children to reload
+					instance.empty();
+				}
+
+				A.io(io.url, io.cfg);
+			}
+		}
+	},
+
+	ioStartHandler: function() {
+		var instance = this;
+		var contentBox = instance.get(CONTENT_BOX);
+
+		instance.set(LOADING, true);
+
+		contentBox.addClass(CSS_TREE_NODE_IO_LOADING);
+	},
+
+	ioCompleteHandler: function() {
+		var instance = this;
+		var contentBox = instance.get(CONTENT_BOX);
+
+		instance.set(LOADING, false);
+		instance.set(LOADED, true);
+
+		contentBox.removeClass(CSS_TREE_NODE_IO_LOADING);
+	},
+
+	ioSuccessHandler: function(id, o) {
+		var instance = this;
+		var responseText = o.responseText;
+
+		try {
+			var nodes = A.JSON.parse(responseText);
+		}
+		catch(e) {}
+
+		instance.createNode(nodes);
+	},
+
+	ioFailureHandler: function() {
+		var instance = this;
+
+		instance.set(LOADING, false);
+		instance.set(LOADED, false);
+	},
+
+	/*
+	* Setters
+	*/
+	_setIO: function(v) {
+		var instance = this;
+
+		if (isString(v)) {
+			v = { url: v };
+		}
+
+		v = v || {};
+		v.cfg = v.cfg || {};
+		v.cfg.on = v.cfg.on || {};
+
+		var defCallbacks = {
+			start: A.bind(instance.ioStartHandler, instance),
+			complete: A.bind(instance.ioCompleteHandler, instance),
+			success: A.bind(instance.ioSuccessHandler, instance),
+			failure: A.bind(instance.ioFailureHandler, instance)
+		};
+
+		A.each(defCallbacks, function(fn, name) {
+			var userFn = v.cfg.on[name];
+
+			if (isFunction(userFn)) {
+				// wrapping user callback and default callback, invoking both handlers
+				var wrappedFn = function() {
+					fn.apply(instance, arguments);
+					userFn.apply(instance, arguments);
+				};
+
+				v.cfg.on[name] = A.bind(wrappedFn, instance);
+			}
+			else {
+				// get from defCallbacks map
+				v.cfg.on[name] = fn;
+			}
+
+		});
+
+		return v;
+	}
+});
+
+A.TreeNodeIO = TreeNodeIO;
+
+}, '@VERSION', { requires: [ 'tree-data', 'io', 'json' ] });
