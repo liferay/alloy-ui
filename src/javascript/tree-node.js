@@ -509,13 +509,13 @@ A.extend(TreeNodeIO, A.TreeNode, {
 	createNode: function(nodes) {
 		var instance = this;
 
+		instance.expand();
+
 		A.each(nodes, function(node) {
 			var newNode = TreeNodeIO.superclass.createNode.apply(instance, [node]);
 
 			instance.appendChild(newNode);
 		});
-
-		instance.expand();
 	},
 
 	expand: function() {
