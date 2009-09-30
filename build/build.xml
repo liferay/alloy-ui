@@ -25,7 +25,7 @@
 	<property name="alloy.version" value="0.1a"/>
 	<property name="alloy.core.files" value="defaults.js, core.js"/>
 
-	<property name="yui3.file" value="yui_3.0.0b1.zip" />
+	<property name="yui3.file" value="yui_3.0.0.zip" />
 	<property name="yui3.dir" value="${project.dir}/lib/yui/" />
 
 	<property name="release.name" value="alloy" />
