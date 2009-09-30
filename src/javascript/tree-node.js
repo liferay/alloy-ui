@@ -630,7 +630,137 @@ A.extend(TreeNodeIO, A.TreeNode, {
 
 A.TreeNodeIO = TreeNodeIO;
 
+
+/*
+* TreeNodeCheck
+*/
+var	CHECKBOX = 'checkbox',
+	CHECKED = 'checked',
+	CHECK_CONTAINER_EL = 'checkContainerEl',
+	CHECK_EL = 'checkEl',
+	CHECK_NAME = 'checkName',
+	NAME = 'name',
+	TREE_NODE_CHECK = 'tree-node-check',
+
+	CSS_TREE_NODE_CHECKBOX = getCN(TREE, NODE, CHECKBOX),
+	CSS_TREE_NODE_CHECKBOX_CONTAINER = getCN(TREE, NODE, CHECKBOX, CONTAINER),
+
+	CHECKBOX_CONTAINER_TPL = '<div class="'+CSS_TREE_NODE_CHECKBOX_CONTAINER+'"></div>',
+	CHECKBOX_TPL = '<input class="'+CSS_TREE_NODE_CHECKBOX+'" type="checkbox" />';
+
+function TreeNodeCheck(config) {
+	TreeNodeCheck.superclass.constructor.apply(this, arguments);
+}
+
+A.mix(TreeNodeCheck, {
+	NAME: TREE_NODE_CHECK,
+
+	ATTRS: {
+		checked: {
+			value: false,
+			validador: isBoolean
+		},
+
+		checkName: {
+			value: TREE_NODE_CHECK,
+			validador: isString
+		},
+
+		checkContainerEl: {
+			setter: nodeSetter,
+			valueFn: function() {
+				return A.Node.create(CHECKBOX_CONTAINER_TPL);
+			}
+		},
+
+		checkEl: {
+			setter: nodeSetter,
+			valueFn: function() {
+				var checkName = this.get(CHECK_NAME);
+
+				return A.Node.create(CHECKBOX_TPL).attr(NAME, checkName);
+			}
+		}
+	}
+});
+
+A.extend(TreeNodeCheck, A.TreeNode, {
+	/*
+	* Lifecycle
+	*/
+	renderUI: function() {
+		var instance = this;
+
+		TreeNodeCheck.superclass.renderUI.apply(instance, arguments);
+
+		var labelEl = instance.get(LABEL_EL);
+		var checkEl = instance.get(CHECK_EL);
+		var checkContainerEl = instance.get(CHECK_CONTAINER_EL);
+
+		checkContainerEl.append(checkEl);
+
+		labelEl.placeBefore(checkContainerEl);
+	},
+
+	bindUI: function() {
+		var instance = this;
+		var labelEl = instance.get(LABEL_EL);
+
+		TreeNodeCheck.superclass.bindUI.apply(instance, arguments);
+
+		instance.publish('check');
+		instance.publish('uncheck');
+
+		labelEl.on('mousedown', A.bind(instance.toggleCheck, instance));
+	},
+
+	/*
+	* Methods
+	*/
+	check: function() {
+		var instance = this;
+		var checkEl = instance.get(CHECK_EL);
+
+		instance.set(CHECKED, true);
+
+		checkEl.attr(CHECKED, CHECKED);
+
+		instance.fire('check');
+	},
+
+	uncheck: function() {
+		var instance = this;
+		var checkEl = instance.get(CHECK_EL);
+
+		instance.set(CHECKED, true);
+
+		checkEl.attr(CHECKED, BLANK);
+
+		instance.fire('uncheck');
+	},
+
+	toggleCheck: function() {
+		var instance = this;
+		var checkEl = instance.get(CHECK_EL);
+		var checked = checkEl.attr(CHECKED);
+
+		if (!checked) {
+			instance.check();
+		}
+		else {
+			instance.uncheck();
+		}
+	}
+});
+
+A.TreeNodeCheck = TreeNodeCheck;
+
+
+/*
+* A.TreeNode.nodeTypes
+*/
 A.TreeNode.nodeTypes = {
+	check: A.TreeNodeCheck,
 	node: A.TreeNode,
 	io: A.TreeNodeIO
 };
