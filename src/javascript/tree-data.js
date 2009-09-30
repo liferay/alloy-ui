@@ -384,6 +384,18 @@ A.extend(TreeData, A.Widget, {
 		}
 	},
 
+	empty: function() {
+		var instance = this;
+
+		instance.eachChildren(function(node) {
+			var parentNode = node.get(PARENT_NODE);
+
+			if (parentNode) {
+				parentNode.removeChild(node);
+			}
+		});
+	},
+
 	insert: function(node, refNode, where) {
 		var instance = refNode || this; // INFO: using instance as refNode
 
