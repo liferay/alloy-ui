@@ -234,7 +234,7 @@ A.extend(TreeData, A.Widget, {
 
 			// Avoid execution of the native action (private methods) while propagate
 			// for example: private _appendChild() is invoked only on the first level of the bubbling
-			// the intention is only invoke the user callback.
+			// the intention is only invoke the user callback on parent nodes.
 			args = args || {};
 
 			if (isUndefined(stopActionPropagation)) {
