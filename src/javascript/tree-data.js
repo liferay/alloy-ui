@@ -3,6 +3,7 @@ AUI.add('tree-data', function(A) {
 var L = A.Lang,
 	isArray = L.isArray,
 	isObject = L.isObject,
+	isString = L.isString,
 	isUndefined = L.isUndefined,
 
 	AFTER = 'after',
@@ -250,8 +251,13 @@ A.extend(TreeData, A.Widget, {
 		}
 	},
 
-	createNode: function(options, classType) {
+	createNode: function(options) {
 		var instance = this;
+		var classType = options.type;
+
+		if (isString(classType) && A.TreeNode.nodeTypes) {
+			classType = A.TreeNode.nodeTypes[classType];
+		}
 
 		if (!classType) {
 			classType = A.TreeNode;
@@ -473,10 +479,8 @@ A.extend(TreeData, A.Widget, {
 		A.Array.each(v, function(node) {
 			if (node) {
 				if (!isTreeNode(node) && isObject(node)) {
-					// setting default node type
-					var type = node.type || A.TreeNode;
 					// creating node from json
-					node = instance.createNode(node, type);
+					node = instance.createNode(node);
 				}
 
 				childNodes.push(node.render());

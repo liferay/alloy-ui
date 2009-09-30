@@ -630,4 +630,9 @@ A.extend(TreeNodeIO, A.TreeNode, {
 
 A.TreeNodeIO = TreeNodeIO;
 
+A.TreeNode.nodeTypes = {
+	node: A.TreeNode,
+	io: A.TreeNodeIO
+};
+
 }, '@VERSION', { requires: [ 'tree-data', 'io', 'json' ] });
