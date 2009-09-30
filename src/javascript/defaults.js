@@ -161,7 +161,7 @@
 				*/
 				'tree-node': {
 					fullpath: PATH_JAVASCRIPT + 'tree-node.js',
-					requires: [ 'tree-data', 'tree-css' ]
+					requires: [ 'tree-data', 'io', 'json', 'tree-css' ]
 				},
 
 				/*

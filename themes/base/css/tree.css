@@ -79,3 +79,7 @@
 .aui-tree-file .aui-tree-collapsed .aui-tree-icon {
 	background: transparent url(../images/treeview/folder_closed.png) no-repeat 50% 50%;
 }
+
+.aui-tree-view-content .aui-tree-node-io-loading .aui-tree-icon {
+	background: url(../images/loading_indicator.gif) no-repeat 50% 50%;
+}

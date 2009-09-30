@@ -63,6 +63,28 @@ AUI().ready('tree-view', function(A) {
 			expanded: true,
 			children: [
 				{
+					type: A.TreeNodeIO,
+					label: 'CachedTreeNodeIO',
+					cache: true,
+					io: 'assets/content.html'
+				},
+				{
+					type: A.TreeNodeIO,
+					label: 'TreeNodeIO',
+					cache: false,
+					io: {
+						url: 'assets/content.html',
+						cfg: {
+							data: 'foo=bar&bar=foo',
+							on: {
+								success: function(id, o) {
+									// console.log('User success handler', arguments);
+								}
+							}
+						}
+					}
+				},
+				{
 					label: 'Folder1',
 					id: 'folder1',
 					expanded: true,
