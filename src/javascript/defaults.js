@@ -149,6 +149,36 @@
 				},
 
 				/*
+				* TreeData
+				*/
+				'tree-data': {
+					fullpath: PATH_JAVASCRIPT + 'tree-data.js',
+					requires: [ 'aui-base' ]
+				},
+
+				/*
+				* TreeNode
+				*/
+				'tree-node': {
+					fullpath: PATH_JAVASCRIPT + 'tree-node.js',
+					requires: [ 'tree-data', 'tree-css' ]
+				},
+
+				/*
+				* TreeView
+				*/
+				'tree-view': {
+					fullpath: PATH_JAVASCRIPT + 'tree-view.js',
+					requires: [ 'tree-node', 'tree-css' ]
+				},
+
+				'tree-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'tree.css',
+					type: 'css'
+				},
+
+				/*
 				* Dialog
 				*/
 				'dialog': {
