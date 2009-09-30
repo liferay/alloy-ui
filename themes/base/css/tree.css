@@ -1,0 +1,81 @@
+.aui-tree-view {
+/*	overflow: auto;*/
+}
+
+.aui-tree-view-content {
+	margin: 0;
+}
+
+.aui-tree-view ul, .aui-tree-view li {
+	list-style: none;
+}
+
+.aui-tree-container {
+	margin: 0 0 0 20px;
+}
+
+.aui-tree-node-content .aui-tree-hitarea {
+	height: 18px;
+	width: 16px;
+	cursor: pointer;
+}
+
+.aui-tree-collapsed .aui-tree-hitarea {
+	background-image: url(../images/treeview/arrows.png);
+	background-repeat: no-repeat;
+}
+
+.aui-tree-expanded .aui-tree-hitarea {
+	background-image: url(../images/treeview/arrows.png);
+	background-repeat: no-repeat;
+	background-position: -16px 50%;
+}
+
+.aui-tree-collapsed.aui-tree-node-over .aui-tree-hitarea {
+	background-position: -32px 50%;
+}
+
+.aui-tree-expanded.aui-tree-node-over .aui-tree-hitarea {
+	background-position: -48px 50%;
+}
+
+.aui-tree-hitarea, .aui-tree-label, .aui-tree-icon {
+	float: left;
+}
+
+.aui-tree-label {
+	cursor: default;
+	line-height: 19px;
+	margin-left: 2px;
+}
+
+.aui-tree-node-leaf {
+	margin-left: 15px;
+}
+
+.aui-tree-hidden {
+	display: none;
+}
+
+.aui-tree-node-selected .aui-tree-label {
+	background: #eee;
+}
+
+/* TreeView file */
+
+.aui-tree-file .aui-tree-icon {
+	height: 18px;
+	width: 18px;
+}
+
+.aui-tree-node-leaf .aui-tree-icon {
+	background: transparent url(../images/treeview/file.png) no-repeat 50% 50%;
+}
+
+.aui-tree-file .aui-tree-expanded .aui-tree-icon {
+	background: transparent url(../images/treeview/folder_opened.png) no-repeat 50% 50%;
+}
+
+.aui-tree-file .aui-tree-collapsed .aui-tree-icon {
+	background: transparent url(../images/treeview/folder_closed.png) no-repeat 50% 50%;
+}
