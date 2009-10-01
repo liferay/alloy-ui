@@ -10,8 +10,6 @@
 	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
 
-	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
-
 	<style type="text/css" media="screen">
 		#wrapper {
 			font-size: 1.2em;
@@ -27,6 +25,18 @@
 		.aui-column-content h4 {
 			background: #eee;
 			padding: 3px;
+		}
+
+		#wrapper .aui-column-content {
+			padding: 20px;
+		}
+
+		.aui-resize-handle {
+			background-color: #eee;
+		}
+
+		.aui-resize-handle-active {
+			background-color: #ccc;
 		}
 	</style>
 </head>
@@ -140,6 +150,16 @@
 		</div>
 	</div>	
 </div>
-
+<script type="text/javascript" charset="utf-8">
+	AUI().use('resize',
+		function(A) {
+			new A.Resize(
+				{
+					node: '#wrapper'
+				}
+			)
+		}
+	)
+</script>
 </body>
 </html>

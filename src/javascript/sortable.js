@@ -13,6 +13,8 @@ AUI().add(
 			CSS_PLACEHOLDER = getClassName(NAME, 'placeholder'),
 			CSS_DRAGGING = getClassName(NAME, 'dragging'),
 			CSS_PROXY = getClassName(NAME, 'proxy'),
+			CSS_HANDLE = getClassName(NAME, 'handle'),
+			CSS_NO_HANDLES = getClassName(NAME, 'no-handles'),
 			CSS_ITEM = getClassName(NAME, 'item');
 
 		var Sortable = function() {
@@ -22,16 +24,26 @@ AUI().add(
 		Sortable.NAME = NAME;
 
 		Sortable.ATTRS = {
+			dd: {
+				value: {
+					target: true
+				}
+			},
+
+			constrain: {
+				value: null
+			},
+
+			container: {
+				value: null
+			},
+
 			groups: {
 				valueFn: function() {
 					var instance = this;
 
 					return [A.guid()];
 				}
-			},
-
-			container: {
-				value: null
 			},
 
 			nodes: {
@@ -80,6 +92,14 @@ AUI().add(
 
 					var nodes = instance.get('nodes');
 
+					var constrain = instance.get('constrain');
+
+					instance._useConstrain = !!constrain;
+
+					if (Lang.isObject(constrain)) {
+						instance._constrainConfig = constrain;
+					}
+
 					var proxy = instance.get('proxy');
 
 					instance._useProxy = !!proxy;
@@ -87,6 +107,10 @@ AUI().add(
 					if (Lang.isObject(proxy)) {
 						instance._proxyConfig = proxy;
 					}
+
+					var ddConfig = instance.get('dd');
+
+					instance._ddConfig = ddConfig;
 
 					nodes.each(instance._initSortable, instance);
 
@@ -101,8 +125,8 @@ AUI().add(
 
 					item.addClass(CSS_ITEM);
 
-					item.plug(
-						A.Plugin.Drag,
+					instance._ddConfig = A.mix(
+						instance._ddConfig,
 						{
 							bubbles: instance,
 							groups: instance.get('groups'),
@@ -110,11 +134,32 @@ AUI().add(
 						}
 					);
 
+					var handles = instance._ddConfig.handles;
+
+					if (handles) {
+						for (var i = handles.length - 1; i >= 0; i--) {
+							var handle = handles[i];
+
+							item.queryAll(handle).addClass(CSS_HANDLE);
+						}
+					}
+					else {
+						item.addClass(CSS_NO_HANDLES);
+					}
+
+					item.plug(A.Plugin.Drag, instance._ddConfig);
+
+					if (instance._useConstrain) {
+						item.dd.plug(A.Plugin.DDConstrained, instance._constrainConfig);
+					}
+
 					if (instance._useProxy) {
 						item.dd.plug(A.Plugin.DDProxy, instance._proxyConfig);
 					}
 
 					item.dd.removeInvalid('a');
+
+					instance.dd = item.dd;
 				},
 
 				_onDrag: function(event) {
