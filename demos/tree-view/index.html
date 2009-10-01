@@ -63,6 +63,18 @@ AUI().ready('tree-view', function(A) {
 			expanded: true,
 			children: [
 				{
+					type: 'task',
+					checkName: 'customSelectName',
+					label: 'TaskNodeRoot',
+					leaf: false,
+					checked: true,
+					io: 'assets/tasks.html',
+					on: {
+						check: defCallback,
+						uncheck: defCallback
+					}
+				},
+				{
 					type: 'check',
 					checkName: 'customSelectName',
 					label: 'CheckboxNode',
