@@ -707,11 +707,16 @@ A.extend(TreeNodeCheck, A.TreeNodeIO, {
 		checkContainerEl.append(checkEl);
 
 		labelEl.placeBefore(checkContainerEl);
+
+		if (instance.isChecked()) {
+			instance.check();
+		}
 	},
 
 	bindUI: function() {
 		var instance = this;
 		var contentBox = instance.get(CONTENT_BOX);
+		var labelEl = instance.get(LABEL_EL);
 
 		TreeNodeCheck.superclass.bindUI.apply(instance, arguments);
 
@@ -719,6 +724,9 @@ A.extend(TreeNodeCheck, A.TreeNodeIO, {
 		instance.publish('uncheck');
 		contentBox.delegate('mousedown', A.bind(instance.toggleCheck, instance), DOT+CSS_TREE_NODE_CHECKBOX_CONTAINER);
 		contentBox.delegate('mousedown', A.bind(instance.toggleCheck, instance), DOT+CSS_TREE_LABEL);
+
+		// cancel dblclick because of the check
+		labelEl.swallowEvent('dblclick');
 	},
 
 	/*
@@ -745,7 +753,7 @@ A.extend(TreeNodeCheck, A.TreeNodeIO, {
 
 		contentBox.removeClass(CSS_TREE_NODE_CHECKED);
 
-		instance.set(CHECKED, true);
+		instance.set(CHECKED, false);
 
 		checkEl.attr(CHECKED, BLANK);
 
@@ -776,9 +784,111 @@ A.TreeNodeCheck = TreeNodeCheck;
 
 
 /*
+* TreeNodeTask
+*/
+var	CHILD = 'child',
+	TREE_NODE_TASK = 'tree-node-task',
+	UNCHECKED = 'unchecked',
+
+	isTreeNodeTask = function(node) {
+		return node instanceof A.TreeNodeCheck;
+	},
+
+	CSS_TREE_NODE_CHILD_UNCHECKED = getCN(TREE, NODE, CHILD, UNCHECKED);
+
+function TreeNodeTask(config) {
+	TreeNodeTask.superclass.constructor.apply(this, arguments);
+}
+
+A.mix(TreeNodeTask, {
+	NAME: TREE_NODE_TASK
+});
+
+A.extend(TreeNodeTask, A.TreeNodeCheck, {
+	/*
+	* Methods
+	*/
+	check: function() {
+		var instance = this;
+		var parentNode = instance.get(PARENT_NODE);
+		var contentBox = instance.get(CONTENT_BOX);
+
+		// invoke default check logic
+		TreeNodeTask.superclass.check.apply(this, arguments);
+
+		// always remove the CSS_TREE_NODE_CHILD_UNCHECKED of the checked node
+		contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+
+		// loop all parentNodes
+		instance.eachParent(
+			function(parentNode) {
+				// if isTreeNodeTask and isChecked
+				if (isTreeNodeTask(parentNode) && parentNode.isChecked()) {
+					var hasUnchecked = false;
+
+					// check if has at least one child uncheked
+					parentNode.eachChildren(function(child) {
+						if (isTreeNodeTask(child) && !child.isChecked()) {
+							hasUnchecked = true;
+						}
+					}, true);
+
+					// if doesn't have unchecked children remove the CSS_TREE_NODE_CHILD_UNCHECKED class
+					if (!hasUnchecked) {
+						parentNode.get(CONTENT_BOX).removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+					}
+				}
+			}
+		);
+
+		if (!instance.isLeaf()) {
+			// check all TreeNodeTask children
+			instance.eachChildren(function(child) {
+				if (isTreeNodeTask(child)) {
+					child.check();
+				}
+			});
+		}
+	},
+
+	uncheck: function() {
+		var instance = this;
+		var contentBox = instance.get(CONTENT_BOX);
+
+		// invoke default uncheck logic
+		TreeNodeTask.superclass.uncheck.apply(this, arguments);
+
+		// always remove the CSS_TREE_NODE_CHILD_UNCHECKED of the clicked node
+		contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+
+		instance.eachParent(
+			function(parentNode) {
+				// if isTreeNodeTask and isChecked
+				if (isTreeNodeTask(parentNode) && parentNode.isChecked()) {
+					// add CSS_TREE_NODE_CHILD_UNCHECKED class
+					parentNode.get(CONTENT_BOX).addClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+				}
+			}
+		);
+
+		if (!instance.isLeaf()) {
+			// uncheck all TreeNodeTask children
+			instance.eachChildren(function(child) {
+				if (child instanceof A.TreeNodeCheck) {
+					child.uncheck();
+				}
+			});
+		}
+	}
+});
+
+A.TreeNodeTask = TreeNodeTask;
+
+/*
 * A.TreeNode.nodeTypes
 */
 A.TreeNode.nodeTypes = {
+	task: A.TreeNodeTask,
 	check: A.TreeNodeCheck,
 	node: A.TreeNode,
 	io: A.TreeNodeIO

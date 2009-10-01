@@ -99,6 +99,6 @@
 	background-position: -18px 50%;
 }
 
-.aui-tree-node-child-checked .aui-tree-node-checkbox-container {
+.aui-tree-node-child-unchecked .aui-tree-node-checkbox-container {
 	background-position: -36px 50%;
 }
