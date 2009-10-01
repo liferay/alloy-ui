@@ -90,5 +90,15 @@
 
 .aui-tree-node-checkbox-container {
 	float: left;
-	line-height: 19px;
+	background: transparent url(../images/treeview/checks.png) no-repeat 0 50%;
+	height: 18px;
+	width: 16px;
+}
+
+.aui-tree-node-checked .aui-tree-node-checkbox-container {
+	background-position: -18px 50%;
+}
+
+.aui-tree-node-child-checked .aui-tree-node-checkbox-container {
+	background-position: -36px 50%;
 }
