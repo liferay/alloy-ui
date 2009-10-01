@@ -530,7 +530,7 @@ A.extend(TreeNodeIO, A.TreeNode, {
 			instance.set(LOADED, false);
 		}
 
-		if (loaded) {
+		if (!io || loaded) {
 			TreeNodeIO.superclass.expand.apply(this, arguments);
 		}
 		else {
@@ -590,7 +590,10 @@ A.extend(TreeNodeIO, A.TreeNode, {
 	_setIO: function(v) {
 		var instance = this;
 
-		if (isString(v)) {
+		if (!v) {
+			return null;
+		}
+		else if (isString(v)) {
 			v = { url: v };
 		}
 
@@ -639,11 +642,13 @@ var	CHECKBOX = 'checkbox',
 	CHECK_CONTAINER_EL = 'checkContainerEl',
 	CHECK_EL = 'checkEl',
 	CHECK_NAME = 'checkName',
+	DOT = '.',
 	NAME = 'name',
 	TREE_NODE_CHECK = 'tree-node-check',
 
 	CSS_TREE_NODE_CHECKBOX = getCN(TREE, NODE, CHECKBOX),
 	CSS_TREE_NODE_CHECKBOX_CONTAINER = getCN(TREE, NODE, CHECKBOX, CONTAINER),
+	CSS_TREE_NODE_CHECKED = getCN(TREE, NODE, CHECKED),
 
 	CHECKBOX_CONTAINER_TPL = '<div class="'+CSS_TREE_NODE_CHECKBOX_CONTAINER+'"></div>',
 	CHECKBOX_TPL = '<input class="'+CSS_TREE_NODE_CHECKBOX+'" type="checkbox" />';
@@ -684,7 +689,7 @@ A.mix(TreeNodeCheck, {
 	}
 });
 
-A.extend(TreeNodeCheck, A.TreeNode, {
+A.extend(TreeNodeCheck, A.TreeNodeIO, {
 	/*
 	* Lifecycle
 	*/
@@ -697,6 +702,8 @@ A.extend(TreeNodeCheck, A.TreeNode, {
 		var checkEl = instance.get(CHECK_EL);
 		var checkContainerEl = instance.get(CHECK_CONTAINER_EL);
 
+		checkEl.hide();
+
 		checkContainerEl.append(checkEl);
 
 		labelEl.placeBefore(checkContainerEl);
@@ -704,14 +711,14 @@ A.extend(TreeNodeCheck, A.TreeNode, {
 
 	bindUI: function() {
 		var instance = this;
-		var labelEl = instance.get(LABEL_EL);
+		var contentBox = instance.get(CONTENT_BOX);
 
 		TreeNodeCheck.superclass.bindUI.apply(instance, arguments);
 
 		instance.publish('check');
 		instance.publish('uncheck');
-
-		labelEl.on('mousedown', A.bind(instance.toggleCheck, instance));
+		contentBox.delegate('mousedown', A.bind(instance.toggleCheck, instance), DOT+CSS_TREE_NODE_CHECKBOX_CONTAINER);
+		contentBox.delegate('mousedown', A.bind(instance.toggleCheck, instance), DOT+CSS_TREE_LABEL);
 	},
 
 	/*
@@ -719,7 +726,10 @@ A.extend(TreeNodeCheck, A.TreeNode, {
 	*/
 	check: function() {
 		var instance = this;
+		var contentBox = instance.get(CONTENT_BOX);
 		var checkEl = instance.get(CHECK_EL);
+
+		contentBox.addClass(CSS_TREE_NODE_CHECKED);
 
 		instance.set(CHECKED, true);
 
@@ -730,7 +740,10 @@ A.extend(TreeNodeCheck, A.TreeNode, {
 
 	uncheck: function() {
 		var instance = this;
+		var contentBox = instance.get(CONTENT_BOX);
 		var checkEl = instance.get(CHECK_EL);
+
+		contentBox.removeClass(CSS_TREE_NODE_CHECKED);
 
 		instance.set(CHECKED, true);
 
@@ -750,6 +763,12 @@ A.extend(TreeNodeCheck, A.TreeNode, {
 		else {
 			instance.uncheck();
 		}
+	},
+
+	isChecked: function() {
+		var instance = this;
+
+		return instance.get(CHECKED);
 	}
 });
 
