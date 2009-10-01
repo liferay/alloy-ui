@@ -224,6 +224,18 @@ A.extend(TreeData, A.Widget, {
 		});
 	},
 
+	eachParent: function(fn) {
+		var instance = this;
+		var parentNode = instance.get(PARENT_NODE);
+
+		while (parentNode) {
+			if (parentNode) {
+				fn.apply(instance, [parentNode]);
+			}
+			parentNode = parentNode.get(PARENT_NODE);
+		}
+	},
+
 	bubbleEvent: function(eventType, args, cancelBubbling, stopActionPropagation) {
 		var instance = this;
 
