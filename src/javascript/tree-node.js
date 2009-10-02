@@ -808,7 +808,7 @@ A.extend(TreeNodeTask, A.TreeNodeCheck, {
 	/*
 	* Methods
 	*/
-	check: function() {
+	check: function(stopPropagation) {
 		var instance = this;
 		var parentNode = instance.get(PARENT_NODE);
 		var contentBox = instance.get(CONTENT_BOX);
@@ -816,38 +816,45 @@ A.extend(TreeNodeTask, A.TreeNodeCheck, {
 		// invoke default check logic
 		TreeNodeTask.superclass.check.apply(this, arguments);
 
-		// always remove the CSS_TREE_NODE_CHILD_UNCHECKED of the checked node
-		contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+		if (!stopPropagation) {
+			// always remove the CSS_TREE_NODE_CHILD_UNCHECKED of the checked node
+			contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
 
-		// loop all parentNodes
-		instance.eachParent(
-			function(parentNode) {
-				// if isTreeNodeTask and isChecked
-				if (isTreeNodeTask(parentNode) && parentNode.isChecked()) {
-					var hasUnchecked = false;
+			// loop all parentNodes
+			instance.eachParent(
+				function(parentNode) {
+					// if isTreeNodeTask and isChecked
+					if (isTreeNodeTask(parentNode)) {
+						var hasUnchecked = false;
 
-					// check if has at least one child uncheked
-					parentNode.eachChildren(function(child) {
-						if (isTreeNodeTask(child) && !child.isChecked()) {
-							hasUnchecked = true;
+						// after check a child always check the parentNode temporary
+						// and add the CSS_TREE_NODE_CHILD_UNCHECKED state until the !hasUnchecked check
+						parentNode.check(true);
+						parentNode.get(CONTENT_BOX).addClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+
+						// check if has at least one child uncheked
+						parentNode.eachChildren(function(child) {
+							if (isTreeNodeTask(child) && !child.isChecked()) {
+								hasUnchecked = true;
+							}
+						}, true);
+
+						// if doesn't have unchecked children remove the CSS_TREE_NODE_CHILD_UNCHECKED class
+						if (!hasUnchecked) {
+							parentNode.get(CONTENT_BOX).removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
 						}
-					}, true);
-
-					// if doesn't have unchecked children remove the CSS_TREE_NODE_CHILD_UNCHECKED class
-					if (!hasUnchecked) {
-						parentNode.get(CONTENT_BOX).removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
 					}
 				}
-			}
-		);
+			);
 
-		if (!instance.isLeaf()) {
-			// check all TreeNodeTask children
-			instance.eachChildren(function(child) {
-				if (isTreeNodeTask(child)) {
-					child.check();
-				}
-			});
+			if (!instance.isLeaf()) {
+				// check all TreeNodeTask children
+				instance.eachChildren(function(child) {
+					if (isTreeNodeTask(child)) {
+						child.check();
+					}
+				});
+			}
 		}
 	},
 
