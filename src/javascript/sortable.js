@@ -9,13 +9,13 @@ AUI().add(
 
 			DDM = A.DD.DDM,
 
-			CSS_SORTABLE = getClassName(NAME),
-			CSS_PLACEHOLDER = getClassName(NAME, 'placeholder'),
 			CSS_DRAGGING = getClassName(NAME, 'dragging'),
-			CSS_PROXY = getClassName(NAME, 'proxy'),
 			CSS_HANDLE = getClassName(NAME, 'handle'),
+			CSS_ITEM = getClassName(NAME, 'item'),
 			CSS_NO_HANDLES = getClassName(NAME, 'no-handles'),
-			CSS_ITEM = getClassName(NAME, 'item');
+			CSS_PLACEHOLDER = getClassName(NAME, 'placeholder'),
+			CSS_PROXY = getClassName(NAME, 'proxy'),
+			CSS_SORTABLE = getClassName(NAME);
 
 		var Sortable = function() {
 			Sortable.superclass.constructor.apply(this, arguments);
