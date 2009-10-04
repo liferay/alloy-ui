@@ -213,6 +213,22 @@ A.extend(TreeData, A.Widget, {
 		}, true);
 	},
 
+	selectAll: function() {
+		var instance = this;
+
+		instance.eachChildren(function(child) {
+			child.select();
+		}, true);
+	},
+
+	unselectAll: function() {
+		var instance = this;
+
+		instance.eachChildren(function(child) {
+			child.unselect();
+		}, true);
+	},
+
 	eachChildren: function(fn, deep) {
 		var instance = this;
 		var children = instance.getChildren(deep);
