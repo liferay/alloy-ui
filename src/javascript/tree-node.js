@@ -106,7 +106,7 @@ A.mix(TreeNode, {
 			value: true,
 			setter: function(v) {
 				// if has children it's not a leaf
-				if (this.get(CHILDREN).length) {
+				if (v && this.get(CHILDREN).length) {
 					return false;
 				}
 
@@ -722,8 +722,8 @@ A.extend(TreeNodeCheck, A.TreeNodeIO, {
 
 		instance.publish('check');
 		instance.publish('uncheck');
-		contentBox.delegate('mousedown', A.bind(instance.toggleCheck, instance), DOT+CSS_TREE_NODE_CHECKBOX_CONTAINER);
-		contentBox.delegate('mousedown', A.bind(instance.toggleCheck, instance), DOT+CSS_TREE_LABEL);
+		contentBox.delegate('click', A.bind(instance.toggleCheck, instance), DOT+CSS_TREE_NODE_CHECKBOX_CONTAINER);
+		contentBox.delegate('click', A.bind(instance.toggleCheck, instance), DOT+CSS_TREE_LABEL);
 
 		// cancel dblclick because of the check
 		labelEl.swallowEvent('dblclick');

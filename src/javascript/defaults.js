@@ -169,7 +169,7 @@
 				*/
 				'tree-view': {
 					fullpath: PATH_JAVASCRIPT + 'tree-view.js',
-					requires: [ 'tree-node', 'tree-css' ]
+					requires: [ 'tree-node', 'dd', 'tree-css' ]
 				},
 
 				'tree-css': {
