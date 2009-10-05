@@ -309,6 +309,7 @@ A.extend(TreeViewDD, A.TreeView, {
 		}, true);
 
 		// when append new nodes, make them draggable
+		instance.after('insert', A.bind(instance._afterAppend, instance));
 		instance.after('append', A.bind(instance._afterAppend, instance));
 
 		instance.on('drag:align', instance._onDragAlign);
