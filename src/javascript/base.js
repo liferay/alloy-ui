@@ -122,6 +122,8 @@ AUI.add('aui-node', function(A) {
 			var instance = this;
 
 			A.get(selector).append(instance);
+
+			return instance;
 		},
 
 		attr: function(name, value) {
@@ -172,6 +174,8 @@ AUI.add('aui-node', function(A) {
 			var instance = this;
 
 			instance.addClass(cssClass || instance._hideClass || 'aui-helper-hidden');
+
+			return instance;
 		},
 
 		html: function() {
@@ -239,7 +243,9 @@ AUI.add('aui-node', function(A) {
 		show: function(cssClass) {
 			var instance = this;
 
-			instance.removeClass(cssClass || instance._hideClass || 'aui-helper-hidden');
+			instance.removeClass(cssClass || instance._hideClass || 'aui-helper-hidden')
+
+			return instance;
 		},
 
 		swallowEvent: function(eventName, preventDefault) {
