@@ -273,8 +273,10 @@ A.extend(TreeViewDD, A.TreeView, {
 
 		TreeViewDD.superclass.renderUI.apply(this, arguments);
 
+		// creating drag helper and hiding it
 		var helper = A.Node.create(HELPER_TPL).hide();
 
+		// append helper to the body
 		A.get(BODY).append(helper);
 
 		instance.set(HELPER, helper);
