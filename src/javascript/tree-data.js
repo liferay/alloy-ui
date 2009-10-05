@@ -480,6 +480,13 @@ A.extend(TreeData, A.Widget, {
 
 		// render node after it's inserted
 		node.render();
+
+		// invoking insert event
+		var output = instance.getEventOutputMap(node);
+
+		output.tree.refNode = refNode;
+
+		instance.bubbleEvent('insert', output);
 	},
 
 	insertAfter: function(node, refNode) {
