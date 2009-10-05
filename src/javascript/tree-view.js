@@ -385,7 +385,7 @@ A.extend(TreeViewDD, A.TreeView, {
 
 		// if 'dragNode' not contains 'dropNode' the dragged node can be appended/inserted
 		if (!contains) {
-			var nTop = nodeContent.get(OFFSET_TOP);
+			var nTop = nodeContent.getY();
 			var nHeight = nodeContent.get(OFFSET_HEIGHT);
 
 			// nArea splits the height in 3 areas top/center/bottom
