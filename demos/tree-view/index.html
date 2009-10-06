@@ -52,7 +52,7 @@
 <script type="text/javascript" charset="utf-8">
 
 AUI().ready('tree-view', 'tooltip', function(A) {
-	new A.Tooltip({ trigger: '#tree1', bodyContent: 'Drag my nodes!' }).render();
+	new A.Tooltip({ trigger: '#tree1', bodyContent: 'Mouseover the tree to activate the Drag&Drop.', width: 150 }).render();
 
 	var defCallback = function(event) {
 		if (window.console && window.console.log) {
