@@ -312,11 +312,12 @@ A.extend(TreeData, A.Widget, {
 		var ownerTree = instance.get(OWNER_TREE);
 		var children = instance.get(CHILDREN);
 
+		// updateReferences first
+		instance.updateReferences(node, instance, ownerTree);
+		// and then set the children, to have the appendChild propagation
+		// the PARENT_NODE references should be updated
 		var length = children.push(node);
 		instance.set(CHILDREN, children);
-
-		// clear all old references
-		instance.updateReferences(node, instance, ownerTree);
 
 		// updating prev/nextSibling attributes
 		var prevIndex = length - 2;
@@ -518,7 +519,15 @@ A.extend(TreeData, A.Widget, {
 					node = instance.createNode(node);
 				}
 
-				childNodes.push(node.render());
+				// before render the node, make sure the PARENT_NODE references are updated
+				// this is required on the render phase of the TreeNode (_createNodeContainer)
+				// to propagate the appendChild callback
+				node.render();
+
+				// avoid duplicated children on the childNodes list
+				if (A.Array.indexOf(childNodes, node) == -1) {
+					childNodes.push(node);
+				}
 			}
 		});
 
