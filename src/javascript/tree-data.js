@@ -82,6 +82,8 @@ A.extend(TreeData, A.Widget, {
 		instance.publish('expandAll', { defaultFn: instance._expandAll });
 		instance.publish('append', { defaultFn: instance._appendChild });
 		instance.publish('remove', { defaultFn: instance._removeChild });
+
+		TreeData.superclass.initializer.apply(this, arguments);
 	},
 
 	/*
@@ -126,6 +128,13 @@ A.extend(TreeData, A.Widget, {
 		if (ownerTree) {
 			// register the new node to the ownerTree index
 			ownerTree.registerNode(node);
+		}
+
+		if (oldOwnerTree != ownerTree) {
+			// when change the OWNER_TREE update the children references also
+			node.eachChildren(function(child) {
+				instance.updateReferences(child, child.get(PARENT_NODE), ownerTree);
+			});
 		}
 
 		// trigger move event
@@ -442,7 +451,7 @@ A.extend(TreeData, A.Widget, {
 		var nodeBounginBox = node.get(BOUNDING_BOX);
 
 		if (node && refParentNode) {
-			var ownerTree = refParentNode.get(OWNER_TREE);
+			var ownerTree = instance.get(OWNER_TREE);
 			var refSiblings = refParentNode.getChildren();
 			var refIndex = refParentNode.indexOf(instance);
 
