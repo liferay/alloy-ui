@@ -415,7 +415,7 @@ A.extend(TreeViewDD, A.TreeView, {
 		var nodeContent = drop.get(NODE);
 		var dropNode = nodeContent.get(PARENT_NODE);
 		var dragNode = drag.get(NODE).get(PARENT_NODE);
-		var dropTreeNode = instance.getNodeById( dropNode.get(ID) );
+		var dropTreeNode = A.Widget.getByNode(dropNode);
 
 		// reset the classNames from the last nodeContent
 		instance._resetState(instance.nodeContent);
