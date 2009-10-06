@@ -23,6 +23,7 @@ var L = A.Lang,
 	ID = 'id',
 	LABEL = 'label',
 	LABEL_EL = 'labelEl',
+	LAST_SELECTED = 'lastSelected',
 	LEAF = 'leaf',
 	NODE = 'node',
 	OVER = 'over',
@@ -259,7 +260,7 @@ A.extend(TreeNode, A.TreeData, {
 		instance.set(CONTAINER, nodeContainer);
 
 		instance.eachChildren(function(node) {
-			instance.appendChild(node, true);
+			instance.appendChild(node);
 		});
 
 		return nodeContainer;
@@ -432,7 +433,14 @@ A.extend(TreeNode, A.TreeData, {
 	},
 
 	select: function() {
-		this.get(CONTENT_BOX).addClass(CSS_TREE_NODE_SELECTED);
+		var instance = this;
+		var ownerTree = instance.get(OWNER_TREE);
+
+		if (ownerTree) {
+			ownerTree.set(LAST_SELECTED, instance);
+		}
+
+		instance.get(CONTENT_BOX).addClass(CSS_TREE_NODE_SELECTED);
 	},
 
 	unselect: function() {
