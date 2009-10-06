@@ -442,7 +442,7 @@ A.extend(TreeViewDD, A.TreeView, {
 			// APPEND: mouse on the center area of the node
 			else if ((mouseY > yCenter) && (mouseY < yBottom)) {
 				// if it's a folder set the state to append
-				if (!dropTreeNode.isLeaf()) {
+				if (dropTreeNode && !dropTreeNode.isLeaf()) {
 					instance._appendState(nodeContent);
 				}
 				// if it's a leaf we need to set the ABOVE or BELOW state instead of append
@@ -488,7 +488,7 @@ A.extend(TreeViewDD, A.TreeView, {
  		var instance = this;
 		var drag = event.target;
 		var dragNode = drag.get(NODE).get(PARENT_NODE);
-		var dragTreeNode = instance.getNodeById( dragNode.get(ID) );
+		var dragTreeNode = A.Widget.getByNode(dragNode);
 		var lastSelected = instance.get(LAST_SELECTED);
 
 		// select drag node
@@ -523,8 +523,9 @@ A.extend(TreeViewDD, A.TreeView, {
 		var dropAction = instance.dropAction;
 		var dragNode = event.drag.get(NODE).get(PARENT_NODE);
 		var dropNode = event.drop.get(NODE).get(PARENT_NODE);
-		var dropTreeNode = instance.getNodeById( dropNode.get(ID) );
-		var dragTreeNode = instance.getNodeById( dragNode.get(ID) );
+
+		var dropTreeNode = A.Widget.getByNode(dropNode);
+		var dragTreeNode = A.Widget.getByNode(dragNode);
 
 		if (dropAction == ABOVE) {
 			dropTreeNode.insertBefore(dragTreeNode);
@@ -533,7 +534,7 @@ A.extend(TreeViewDD, A.TreeView, {
 			dropTreeNode.insertAfter(dragTreeNode);
 		}
 		else if (dropAction == APPEND) {
-			if (!dropTreeNode.isLeaf()) {
+			if (dropTreeNode && !dropTreeNode.isLeaf()) {
 				dropTreeNode.appendChild(dragTreeNode);
 
 				if (!dropTreeNode.get(EXPANDED)) {
