@@ -172,13 +172,13 @@ A.extend(TreeNode, A.TreeData, {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
 
-		// invoking TreeData initializer
-		TreeNode.superclass.initializer.apply(this, arguments);
-
 		if (!instance.get(ID)) {
 			// add a default unique id for the index
 			instance.set( ID, A.guid(TREE_NODE) );
 		}
+
+		// invoking TreeData initializer
+		TreeNode.superclass.initializer.apply(this, arguments);
 	},
 
 	bindUI: function() {
