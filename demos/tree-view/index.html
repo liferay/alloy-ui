@@ -20,6 +20,12 @@
 		margin: 30px;
 	}
 
+	#tree1-1 {
+		left: 300px;
+		position: absolute;
+		top: 100px;
+	}
+
 </style>
 
 <body>
@@ -32,6 +38,7 @@
 
 <h1>A.TreeView Folder Style</h1>
 <div id="tree1"></div>
+<div id="tree1-1"></div>
 
 <br/><br/><br/>
 
@@ -189,6 +196,19 @@ AUI().ready('tree-view', 'tooltip', function(A) {
 	})
 	.render();
 
+	var tree11 = new A.TreeViewDD({
+		boundingBox: '#tree1-1',
+		children: [
+			{
+				label: 'Drag nodes to here!',
+				expanded: true,
+				children: [
+					{ label: 'Click here to activate' }
+				]
+			}
+		]
+	})
+	.render();
 
 	var tree2 = new A.TreeViewDD({
 		width: 200,
