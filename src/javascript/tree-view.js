@@ -15,6 +15,7 @@ var L = A.Lang,
 	HITAREA = 'hitarea',
 	ICON = 'icon',
 	LABEL = 'label',
+	LAST_SELECTED = 'lastSelected',
 	NODE = 'node',
 	OWNER_TREE = 'ownerTree',
 	ROOT = 'root',
@@ -27,6 +28,10 @@ var L = A.Lang,
 
 	concat = function() {
 		return Array.prototype.slice.call(arguments).join(SPACE);
+	},
+
+	isTreeNode = function(v) {
+		return ( v instanceof A.TreeNode );
 	},
 
 	getCN = A.ClassNameManager.getClassName,
@@ -55,6 +60,11 @@ A.mix(TreeView, {
 		type: {
 			value: FILE,
 			validator: isString
+		},
+
+		lastSelected: {
+			value: null,
+			validator: isTreeNode
 		}
 	}
 });
@@ -136,7 +146,12 @@ A.extend(TreeView, A.TreeData, {
 		var treeNode = instance.getNodeByChild( event.currentTarget );
 
 		if (treeNode && !treeNode.isSelected()) {
-			instance.unselectAll();
+			var lastSelected = instance.get(LAST_SELECTED);
+
+			// select drag node
+			if (lastSelected) {
+				lastSelected.unselect();
+			}
 
 			treeNode.select();
 		}
@@ -251,15 +266,6 @@ A.extend(TreeViewDD, A.TreeView, {
 	/*
 	* Lifecycle
 	*/
-	initializer: function() {
-		var instance = this;
-
-		TreeViewDD.superclass.initializer.apply(this, arguments);
-
-		// set DRAG_CURSOR to the default arrow
-		DDM.set(DRAG_CURSOR, DEFAULT);
-	},
-
 	bindUI: function() {
 		var instance = this;
 
@@ -280,6 +286,9 @@ A.extend(TreeViewDD, A.TreeView, {
 		A.get(BODY).append(helper);
 
 		instance.set(HELPER, helper);
+
+		// set DRAG_CURSOR to the default arrow
+		DDM.set(DRAG_CURSOR, DEFAULT);
 	},
 
 	/*
@@ -288,16 +297,38 @@ A.extend(TreeViewDD, A.TreeView, {
 	_createDrag: function(node) {
 		var instance = this;
 
+		if (!instance.dragTimers) {
+			instance.dragTimers = [];
+		}
+
 		if (!DDM.getDrag(node)) {
-			new A.DD.Drag({
-				node: node,
-				bubbles: instance,
-				target: true
-			})
-			.plug(A.Plugin.DDProxy, {
-				moveOnEnd: false,
-				borderStyle: null
-			});
+			var dragTimers = instance.dragTimers;
+			// dragDelay is a incremental delay for create the drag instances
+			var dragDelay = 50 * dragTimers.length;
+
+			// wrapping the _createDrag on a setTimeout for performance reasons
+			var timer = setTimeout(
+				function() {
+					if (!DDM.getDrag(node)) {
+						// creating delayed drag instance
+						new A.DD.Drag({
+							node: node,
+							bubbles: instance,
+							target: true
+						})
+						.plug(A.Plugin.DDProxy, {
+							moveOnEnd: false,
+							positionProxy: false,
+							borderStyle: null
+						});
+					}
+
+					A.Array.removeItem(dragTimers, timer);
+				},
+				dragDelay
+			);
+
+			dragTimers.push(timer);
 		}
 	},
 
@@ -305,15 +336,26 @@ A.extend(TreeViewDD, A.TreeView, {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
 
-		instance.eachChildren(function(child) {
-			// set init elements as draggable
-			instance._createDrag( child.get(CONTENT_BOX) );
-		}, true);
+		instance._createDragInitHandler = A.bind(
+			function() {
+				// set init elements as draggable
+				instance.eachChildren(function(child) {
+					instance._createDrag( child.get(CONTENT_BOX) );
+				}, true);
+
+				boundingBox.detach('mouseover', instance._createDragInitHandler);
+			},
+			instance
+		);
+
+		// only create the drag on the init elements if the user mouseover the boundingBox for init performance reasons
+		boundingBox.on('mouseover', instance._createDragInitHandler);
 
 		// when append new nodes, make them draggable
 		instance.after('insert', A.bind(instance._afterAppend, instance));
 		instance.after('append', A.bind(instance._afterAppend, instance));
 
+		// drag & drop listeners
 		instance.on('drag:align', instance._onDragAlign);
 		instance.on('drag:start', instance._onDragStart);
 		instance.on('drop:exit', instance._onDropExit);
@@ -373,27 +415,20 @@ A.extend(TreeViewDD, A.TreeView, {
 		var nodeContent = drop.get(NODE);
 		var dropNode = nodeContent.get(PARENT_NODE);
 		var dragNode = drag.get(NODE).get(PARENT_NODE);
+		var dropTreeNode = instance.getNodeById( dropNode.get(ID) );
 
 		// reset the classNames from the last nodeContent
 		instance._resetState(instance.nodeContent);
 
-		var direction = instance.direction;
-		var dropTreeNode = instance.getNodeById( dropNode.get(ID) );
-		var dragTreeNode = instance.getNodeById( dragNode.get(ID) );
-		// check if the dragged node is interacting with a child
-		var contains = dragTreeNode.contains(dropTreeNode);
-
-		// if 'dragNode' not contains 'dropNode' the dragged node can be appended/inserted
-		if (!contains) {
-			var nTop = nodeContent.getY();
-			var nHeight = nodeContent.get(OFFSET_HEIGHT);
-
+		// cannot drop the dragged element into any of its children
+		// using DOM contains method for performance reason
+		if ( !dragNode.contains(dropNode) ) {
 			// nArea splits the height in 3 areas top/center/bottom
 			// these areas are responsible for defining the state when the mouse is over any of them
-			var nArea = nHeight / 3;
-			var yTop = nTop;
-			var yCenter = nTop + nArea*1;
-			var yBottom = nTop + nArea*2;
+			var nArea = nodeContent.get(OFFSET_HEIGHT) / 3;
+			var yTop = nodeContent.getY();
+			var yCenter = yTop + nArea*1;
+			var yBottom = yTop + nArea*2;
 			var mouseY = drag.mouseXY[1];
 
 			// UP: mouse on the top area of the node
@@ -412,7 +447,7 @@ A.extend(TreeViewDD, A.TreeView, {
 				}
 				// if it's a leaf we need to set the ABOVE or BELOW state instead of append
 				else {
-					if (direction == UP) {
+					if (instance.direction == UP) {
 						instance._goingUpState(nodeContent);
 					}
 					else {
@@ -454,9 +489,13 @@ A.extend(TreeViewDD, A.TreeView, {
 		var drag = event.target;
 		var dragNode = drag.get(NODE).get(PARENT_NODE);
 		var dragTreeNode = instance.getNodeById( dragNode.get(ID) );
+		var lastSelected = instance.get(LAST_SELECTED);
 
 		// select drag node
- 		instance.unselectAll();
+		if (lastSelected) {
+			lastSelected.unselect();
+		}
+
  		dragTreeNode.select();
 
 		// initialize drag helper
