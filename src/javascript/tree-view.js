@@ -212,6 +212,7 @@ var isNumber = L.isNumber,
 	OFFSET_HEIGHT = 'offsetHeight',
 	OFFSET_TOP = 'offsetTop',
 	PARENT_NODE = 'parentNode',
+	SCROLL_DELAY = 'scrollDelay',
 	STATE = 'state',
 	TREE_DRAG_DROP = 'tree-drag-drop',
 	UP = 'up',
@@ -248,6 +249,11 @@ A.mix(TreeViewDD, {
 	ATTRS: {
 		helper: {
 			value: null
+		},
+
+		scrollDelay: {
+			value: 100,
+			validator: isNumber
 		}
 	}
 });
@@ -320,6 +326,10 @@ A.extend(TreeViewDD, A.TreeView, {
 							moveOnEnd: false,
 							positionProxy: false,
 							borderStyle: null
+						})
+						.plug(A.Plugin.DDNodeScroll, {
+							scrollDelay: instance.get(SCROLL_DELAY),
+							node: instance.get(BOUNDING_BOX)
 						});
 					}
 
