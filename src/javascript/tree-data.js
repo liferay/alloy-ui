@@ -479,7 +479,10 @@ A.extend(TreeData, A.Widget, {
 				// placing nodeBounginBox before nextSibling
 				nextSibling = refSiblings[refIndex + 1];
 				prevSibling = refSiblings[refIndex - 1];
-				nextSibling.get(BOUNDING_BOX).placeBefore(nodeBounginBox);
+
+				if (nextSibling) {
+					nextSibling.get(BOUNDING_BOX).placeBefore(nodeBounginBox);
+				}
 			}
 			else if (where == 'after') {
 				// positioning node on the ref childNodes
@@ -488,7 +491,10 @@ A.extend(TreeData, A.Widget, {
 				// placing nodeBounginBox after prevSibling
 				nextSibling = refSiblings[refIndex + 2];
 				prevSibling = refSiblings[refIndex];
-				prevSibling.get(BOUNDING_BOX).placeAfter(nodeBounginBox);
+
+				if (prevSibling) {
+					prevSibling.get(BOUNDING_BOX).placeAfter(nodeBounginBox);
+				}
 			}
 
 			// updating prev/nextSibling attributes
