@@ -207,6 +207,7 @@ var isNumber = L.isNumber,
 	DISPLAY = 'display',
 	DOWN = 'down',
 	DRAG = 'drag',
+	DRAGGABLE = 'draggable',
 	DRAG_CURSOR = 'dragCursor',
 	DRAG_NODE = 'dragNode',
 	EXPANDED = 'expanded',
@@ -354,7 +355,9 @@ A.extend(TreeViewDD, A.TreeView, {
 			function() {
 				// set init elements as draggable
 				instance.eachChildren(function(child) {
-					instance._createDrag( child.get(CONTENT_BOX) );
+					if (child.get(DRAGGABLE)) {
+						instance._createDrag( child.get(CONTENT_BOX) );
+					}
 				}, true);
 
 				boundingBox.detach('mouseover', instance._createDragInitHandler);
@@ -481,7 +484,9 @@ A.extend(TreeViewDD, A.TreeView, {
 		var instance = this;
 		var treeNode = event.tree.node;
 
-		instance._createDrag( treeNode.get(CONTENT_BOX) );
+		if (treeNode.get(DRAGGABLE)) {
+			instance._createDrag( treeNode.get(CONTENT_BOX) );
+		}
 	},
 
 	_onDragAlign: function(event) {

@@ -82,6 +82,11 @@ A.mix(TreeNode, {
 	NAME: TREE_NODE,
 
 	ATTRS: {
+		draggable: {
+			value: true,
+			validador: isBoolean
+		},
+
 		ownerTree: {
 			value: null
 		},
