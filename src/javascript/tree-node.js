@@ -4,6 +4,7 @@ var L = A.Lang,
 	isString = L.isString,
 	isBoolean = L.isBoolean,
 
+	ALWAYS_SHOW_HITAREA = 'alwaysShowHitArea',
 	BLANK = '',
 	BOUNDING_BOX = 'boundingBox',
 	CHILDREN = 'children',
@@ -57,6 +58,7 @@ var L = A.Lang,
 	CSS_TREE_ICON = getCN(TREE, ICON),
 	CSS_TREE_LABEL = getCN(TREE, LABEL),
 	CSS_TREE_NODE_CONTENT = getCN(TREE, NODE, CONTENT),
+	CSS_TREE_NODE_HIDDEN_HITAREA = getCN(TREE, NODE, HIDDEN, HITAREA),
 	CSS_TREE_NODE_LEAF = getCN(TREE, NODE, LEAF),
 	CSS_TREE_NODE_OVER = getCN(TREE, NODE, OVER),
 	CSS_TREE_NODE_SELECTED = getCN(TREE, NODE, SELECTED),
@@ -147,6 +149,11 @@ A.mix(TreeNode, {
 			}
 		},
 
+		alwaysShowHitArea: {
+			value: true,
+			validador: isBoolean
+		},
+
 		iconEl: {
 			setter: nodeSetter,
 			valueFn: function() {
@@ -187,6 +194,8 @@ A.extend(TreeNode, A.TreeData, {
 		// binding collapse/expand
 		instance.publish('collapse', { defaultFn: instance._collapse });
 		instance.publish('expand', { defaultFn: instance._expand });
+
+		instance.after('childrenChange', A.bind(instance._afterSetChildren, instance));
 	},
 
 	// overloading private _renderUI, don't call this._renderBox method
@@ -201,6 +210,12 @@ A.extend(TreeNode, A.TreeData, {
 
 		instance._renderBoundingBox();
 		instance._renderContentBox();
+	},
+
+	syncUI: function() {
+		var instance = this;
+
+		instance._syncHitArea( instance.get( CHILDREN ) );
 	},
 
 	_renderContentBox: function(v) {
@@ -264,6 +279,19 @@ A.extend(TreeNode, A.TreeData, {
 		});
 
 		return nodeContainer;
+	},
+
+	_syncHitArea: function(children) {
+		var instance = this;
+
+		if (instance.get(ALWAYS_SHOW_HITAREA) || children.length) {
+			instance.showHitArea();
+		}
+		else {
+			instance.hideHitArea();
+
+			instance.collapse();
+		}
 	},
 
 	/*
@@ -453,6 +481,29 @@ A.extend(TreeNode, A.TreeData, {
 
 	out: function() {
 		this.get(CONTENT_BOX).removeClass(CSS_TREE_NODE_OVER);
+	},
+
+	showHitArea: function() {
+		var instance = this;
+		var hitAreaEl = instance.get(HIT_AREA_EL);
+
+		hitAreaEl.removeClass(CSS_TREE_NODE_HIDDEN_HITAREA);
+	},
+
+	hideHitArea: function() {
+		var instance = this;
+		var hitAreaEl = instance.get(HIT_AREA_EL);
+
+		hitAreaEl.addClass(CSS_TREE_NODE_HIDDEN_HITAREA);
+	},
+
+	/*
+	* Listeners
+	*/
+	_afterSetChildren: function(event) {
+		var instance = this;
+
+		instance._syncHitArea(event.newVal);
 	}
 });
 

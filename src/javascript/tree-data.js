@@ -105,8 +105,19 @@ A.extend(TreeData, A.Widget, {
 		var instance = this;
 		var oldParent = node.get(PARENT_NODE);
 		var oldOwnerTree = node.get(OWNER_TREE);
+		var moved = oldParent && (oldParent != parentNode);
 
 		if (oldParent) {
+
+			if (moved) {
+				// when moved update the oldParent children
+				var children = oldParent.get(CHILDREN);
+
+				A.Array.removeItem(children, instance);
+
+				oldParent.set(CHILDREN, children);
+			}
+
 			oldParent.unregisterNode(node);
 		}
 
@@ -138,7 +149,7 @@ A.extend(TreeData, A.Widget, {
 		}
 
 		// trigger move event
-		if (oldParent && (oldParent != parentNode)) {
+		if (moved) {
 			var output = instance.getEventOutputMap(node);
 
 			output.tree.oldParent = oldParent;
