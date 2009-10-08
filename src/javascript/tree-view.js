@@ -65,6 +65,10 @@ A.mix(TreeView, {
 		lastSelected: {
 			value: null,
 			validator: isTreeNode
+		},
+
+		io: {
+			value: null
 		}
 	}
 });
