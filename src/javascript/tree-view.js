@@ -565,12 +565,14 @@ A.extend(TreeViewDD, A.TreeView, {
 					dropTreeNode.expand();
 				}
 
-				// bubbling drop event
 				instance.bubbleEvent('dropAppend', output);
 			}
 		}
 
 		instance._resetState(instance.nodeContent);
+
+		// bubbling drop event
+		instance.bubbleEvent('drop', output);
 	},
 
 	_onDropExit: function() {
