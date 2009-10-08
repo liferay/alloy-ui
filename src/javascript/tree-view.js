@@ -541,11 +541,20 @@ A.extend(TreeViewDD, A.TreeView, {
 		var dropTreeNode = A.Widget.getByNode(dropNode);
 		var dragTreeNode = A.Widget.getByNode(dragNode);
 
+		var output = instance.getEventOutputMap(instance);
+
+		output.tree.dropNode = dropTreeNode;
+		output.tree.dragNode = dragTreeNode;
+
 		if (dropAction == ABOVE) {
 			dropTreeNode.insertBefore(dragTreeNode);
+
+			instance.bubbleEvent('dropInsert', output);
 		}
 		else if (dropAction == BELOW) {
 			dropTreeNode.insertAfter(dragTreeNode);
+
+			instance.bubbleEvent('dropInsert', output);
 		}
 		else if (dropAction == APPEND) {
 			if (dropTreeNode && !dropTreeNode.isLeaf()) {
@@ -555,18 +564,13 @@ A.extend(TreeViewDD, A.TreeView, {
 					// expand node when drop a child on it
 					dropTreeNode.expand();
 				}
+
+				// bubbling drop event
+				instance.bubbleEvent('dropAppend', output);
 			}
 		}
 
 		instance._resetState(instance.nodeContent);
-
-		// bubbling drop event
-		var output = instance.getEventOutputMap(instance);
-
-		output.tree.dropNode = dropTreeNode;
-		output.tree.dragNode = dragTreeNode;
-
-		instance.bubbleEvent('drop', output);
 	},
 
 	_onDropExit: function() {
