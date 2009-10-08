@@ -312,9 +312,12 @@ A.extend(TreeNode, A.TreeData, {
 
 	collapse: function() {
 		var instance = this;
-		var output = instance.getEventOutputMap(instance);
 
-		instance.bubbleEvent('collapse', output);
+		if (instance.get(EXPANDED)) {
+			var output = instance.getEventOutputMap(instance);
+
+			instance.bubbleEvent('collapse', output);
+		}
 	},
 
 	_collapse: function(event) {
@@ -325,7 +328,7 @@ A.extend(TreeNode, A.TreeData, {
 
 		var instance = this;
 
-		if (!instance.isLeaf() && instance.get(EXPANDED)) {
+		if (!instance.isLeaf()) {
 			var container = instance.get(CONTAINER);
 			var contentBox = instance.get(CONTENT_BOX);
 
@@ -354,9 +357,12 @@ A.extend(TreeNode, A.TreeData, {
 
 	expand: function() {
 		var instance = this;
-		var output = instance.getEventOutputMap(instance);
 
-		instance.bubbleEvent('expand', output);
+		if (!instance.get(EXPANDED)) {
+			var output = instance.getEventOutputMap(instance);
+
+			instance.bubbleEvent('expand', output);
+		}
 	},
 
 	_expand: function(event) {
@@ -367,7 +373,7 @@ A.extend(TreeNode, A.TreeData, {
 
 		var instance = this;
 
-		if (!instance.isLeaf() && !instance.get(EXPANDED)) {
+		if (!instance.isLeaf()) {
 			var container = instance.get(CONTAINER);
 			var contentBox = instance.get(CONTENT_BOX);
 
