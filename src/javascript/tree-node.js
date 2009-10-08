@@ -465,9 +465,10 @@ A.TreeNode = TreeNode;
 var isFunction = L.isFunction,
 
 	CACHE = 'cache',
+	FORMATTER = 'formatter',
 	IO = 'io',
-	LOADING = 'loading',
 	LOADED = 'loaded',
+	LOADING = 'loading',
 	TREE_NODE_IO = 'tree-node-io',
 
 	CSS_TREE_NODE_IO_LOADING = getCN(TREE, NODE, IO, LOADING);
@@ -517,8 +518,6 @@ A.extend(TreeNodeIO, A.TreeNode, {
 	createNode: function(nodes) {
 		var instance = this;
 
-		instance.expand();
-
 		A.each(nodes, function(node) {
 			var newNode = TreeNodeIO.superclass.createNode.apply(instance, [node]);
 
@@ -528,10 +527,18 @@ A.extend(TreeNodeIO, A.TreeNode, {
 
 	expand: function() {
 		var instance = this;
+		var cache = instance.get(CACHE);
 		var io = instance.get(IO);
 		var loaded = instance.get(LOADED);
 		var loading = instance.get(LOADING);
-		var cache = instance.get(CACHE);
+		var ownerTree = instance.get(OWNER_TREE);
+
+		// inheriting the IO configuration from the OWNER_TREE
+		if (!io && ownerTree) {
+			instance.set( IO, A.clone(ownerTree.get(IO)) );
+
+			io = instance.get(IO);
+		}
 
 		if (!cache) {
 			// if cache is false on expand, always set LOADED to false
@@ -543,13 +550,20 @@ A.extend(TreeNodeIO, A.TreeNode, {
 		}
 		else {
 			if (!loading) {
-
 				if (!cache) {
 					// remove all children to reload
 					instance.empty();
 				}
 
-				A.io(io.url, io.cfg);
+				if (isFunction(io.loader)) {
+					var loader = A.bind(io.loader, instance);
+
+					// apply loader in the TreeNodeIO scope
+					loader(io.url, io.cfg, instance);
+				}
+				else {
+					A.io(io.url, io.cfg);
+				}
 			}
 		}
 	},
@@ -573,16 +587,34 @@ A.extend(TreeNodeIO, A.TreeNode, {
 		contentBox.removeClass(CSS_TREE_NODE_IO_LOADING);
 	},
 
-	ioSuccessHandler: function(id, o) {
+	ioSuccessHandler: function() {
 		var instance = this;
-		var responseText = o.responseText;
+		var io = instance.get(IO);
+		var args = Array.prototype.slice.call(arguments);
+		var length = args.length;
 
-		try {
-			var nodes = A.JSON.parse(responseText);
+		// if using the first argument as the JSON object
+		var nodes = args[0];
+
+		// if using (id, o) yui callback syntax
+		if (length >= 2) {
+			var id = args[0], o = args[1];
+			// try to convert responseText to JSON
+			try {
+				nodes = A.JSON.parse(o.responseText);
+			}
+			catch(e) {}
 		}
-		catch(e) {}
+
+		var formatter = io.formatter;
+
+		if (formatter) {
+			nodes = formatter(nodes);
+		}
 
 		instance.createNode(nodes);
+
+		instance.expand();
 	},
 
 	ioFailureHandler: function() {
