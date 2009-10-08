@@ -20,6 +20,7 @@ var L = A.Lang,
 	OWNER_TREE = 'ownerTree',
 	PARENT_NODE = 'parentNode',
 	PREV_SIBLING = 'prevSibling',
+	PREVIOUS_SIBLING = 'previousSibling',
 	TREE = 'tree',
 	TREE_DATA = 'tree-data',
 
@@ -451,77 +452,70 @@ A.extend(TreeData, A.Widget, {
 		});
 	},
 
-	insert: function(node, refNode, where) {
-		var instance = refNode || this; // INFO: using instance as refNode
+	insert: function(treeNode, refTreeNode, where) {
+		var instance = this;
+		refTreeNode = refTreeNode || this;
 
-		if (instance == node) {
-			return false;
+		if (refTreeNode == treeNode) {
+			return false; // NOTE: return
 		}
+		var refParentTreeNode = refTreeNode.get(PARENT_NODE);
 
-		var refParentNode = instance.get(PARENT_NODE);
-		var nodeBounginBox = node.get(BOUNDING_BOX);
-
-		if (node && refParentNode) {
-			var ownerTree = instance.get(OWNER_TREE);
-			var refSiblings = refParentNode.getChildren();
-			var refIndex = refParentNode.indexOf(instance);
-
-			// update all references
-			instance.updateReferences(node, refParentNode, ownerTree);
-
-			var nextSibling = null;
-			var prevSibling = null;
+		if (treeNode && refParentTreeNode) {
+			var nodeBoundinBox = treeNode.get(BOUNDING_BOX);
+			var refBoundinBox = refTreeNode.get(BOUNDING_BOX);
+			var ownerTree = refTreeNode.get(OWNER_TREE);
 
 			if (where == 'before') {
-				// positioning node on the ref childNodes
-				refSiblings.splice(refIndex, 0, node);
-
-				// placing nodeBounginBox before nextSibling
-				nextSibling = refSiblings[refIndex + 1];
-				prevSibling = refSiblings[refIndex - 1];
-
-				if (nextSibling) {
-					nextSibling.get(BOUNDING_BOX).placeBefore(nodeBounginBox);
-				}
+				refBoundinBox.placeBefore(nodeBoundinBox);
 			}
 			else if (where == 'after') {
-				// positioning node on the ref childNodes
-				refSiblings.splice(refIndex + 1, 0, node);
-
-				// placing nodeBounginBox after prevSibling
-				nextSibling = refSiblings[refIndex + 2];
-				prevSibling = refSiblings[refIndex];
-
-				if (prevSibling) {
-					prevSibling.get(BOUNDING_BOX).placeAfter(nodeBounginBox);
-				}
+				refBoundinBox.placeAfter(nodeBoundinBox);
 			}
 
-			// updating prev/nextSibling attributes
-			node.set(NEXT_SIBLING, nextSibling);
-			node.set(PREV_SIBLING, prevSibling);
+			var refSiblings = [];
+			// using the YUI selector to regenerate the index based on the real dom
+			// this avoid misscalculations on the nodes index number
+			var DOMChildren = refParentTreeNode.get(BOUNDING_BOX).all('> ul > li');
 
-			// updating refParentNode childNodes
-			refParentNode.set(CHILDREN, refSiblings);
+			DOMChildren.each(function(child) {
+				refSiblings.push( A.Widget.getByNode(child) );
+			});
+
+			// updating prev/nextSibling attributes
+			treeNode.set(
+				NEXT_SIBLING,
+				A.Widget.getByNode( nodeBoundinBox.get(NEXT_SIBLING) )
+			);
+			treeNode.set(
+				PREV_SIBLING,
+				A.Widget.getByNode( nodeBoundinBox.get(PREVIOUS_SIBLING) )
+			);
+
+			// update all references
+			refTreeNode.updateReferences(treeNode, refParentTreeNode, ownerTree);
+
+			// updating refParentTreeNode childTreeNodes
+			refParentTreeNode.set(CHILDREN, refSiblings);
 		}
 
-		// render node after it's inserted
-		node.render();
+		// render treeNode after it's inserted
+		treeNode.render();
 
 		// invoking insert event
-		var output = instance.getEventOutputMap(node);
+		var output = refTreeNode.getEventOutputMap(treeNode);
 
-		output.tree.refNode = refNode;
+		output.tree.refTreeNode = refTreeNode;
 
-		instance.bubbleEvent('insert', output);
+		refTreeNode.bubbleEvent('insert', output);
 	},
 
-	insertAfter: function(node, refNode) {
-		refNode.insert(node, refNode, 'after');
+	insertAfter: function(treeNode, refTreeNode) {
+		refTreeNode.insert(treeNode, refTreeNode, 'after');
 	},
 
-	insertBefore: function(node, refNode) {
-		refNode.insert(node, refNode, 'before');
+	insertBefore: function(treeNode, refTreeNode) {
+		refTreeNode.insert(treeNode, refTreeNode, 'before');
 	},
 
 	getNodeByChild: function(child) {
