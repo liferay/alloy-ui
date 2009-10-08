@@ -80,10 +80,15 @@
 	background: transparent url(../images/treeview/folder_closed.png) no-repeat 50% 50%;
 }
 
+.aui-tree-collapsed .aui-tree-node-hidden-hitarea,
+.aui-tree-expanded .aui-tree-node-hidden-hitarea {
+	background-image: none;
+}
+
 /* TreeNodeIO */
 
 .aui-tree-view-content .aui-tree-node-io-loading .aui-tree-icon {
-	background: url(../images/loading_indicator.gif) no-repeat 50% 50%;
+	background: url(../images/loading_indicator.gif) no-repeat 50% 50% !important;
 }
 
 /* TreeNodeCheck */
