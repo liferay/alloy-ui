@@ -617,6 +617,10 @@ A.extend(TreeNodeIO, A.TreeNode, {
 					instance.empty();
 				}
 
+				if (isFunction(io.cfg.data)) {
+					io.cfg.data = io.cfg.data.apply(instance, [instance]);
+				}
+
 				if (isFunction(io.loader)) {
 					var loader = A.bind(io.loader, instance);
 
