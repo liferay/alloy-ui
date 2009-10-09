@@ -18,6 +18,11 @@ AUI.add('aui-base', function(A) {
 		}
 	});
 
+	// Courtesy of: http://simonwillison.net/2006/Jan/20/escape/
+	A.Lang.escapeRegEx = function(str) {
+		return str.replace(/([.*+?^$(){}|[\]\/\\])/g, '\\$1');
+	};
+
 }, '@VERSION', { requires: [ 'yui-base' ] });
 
 /*
@@ -194,13 +199,21 @@ AUI.add('aui-node', function(A) {
 		placeAfter: function(content) {
 			var instance = this;
 
-			instance.get(PARENT_NODE).insertBefore(content, instance.get(NEXT_SIBLING));
+			var parent = instance.get(PARENT_NODE);
+
+			if (parent) {
+				parent.insertBefore(content, instance.get(NEXT_SIBLING));
+			}
 		},
 
 		placeBefore: function(content) {
 			var instance = this;
 
-			instance.get(PARENT_NODE).insertBefore(content, instance);
+			var parent = instance.get(PARENT_NODE);
+
+			if (parent) {
+				parent.insertBefore(content, instance);
+			}
 		},
 
 		prependTo: function(selector) {
@@ -464,5 +477,40 @@ AUI.add('aui-node', function(A) {
 	A.NodeList.prototype.getDOM = function() {
 		return A.NodeList.getDOMNodes(this);
 	};
+
+	A.mix(
+		A,
+		{
+			getBody: function() {
+				var instance = this;
+
+				if (!instance._bodyNode) {
+					instance._bodyNode = A.get(document.body);
+				}
+
+				return instance._bodyNode;
+			},
+
+			getDoc: function() {
+				var instance = this;
+
+				if (!instance._documentNode) {
+					instance._documentNode = A.get(document);
+				}
+
+				return instance._documentNode;
+			},
+
+			getWin: function() {
+				var instance = this;
+
+				if (!instance._windowNode) {
+					instance._windowNode = A.get(window);
+				}
+
+				return instance._windowNode;
+			}
+		}
+	);
 
 }, '@VERSION', { requires: [ 'node' ] });
