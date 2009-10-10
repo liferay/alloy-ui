@@ -480,10 +480,16 @@ A.extend(TreeNode, A.TreeData, {
 		}
 
 		instance.get(CONTENT_BOX).addClass(CSS_TREE_NODE_SELECTED);
+
+		instance.fire('select');
 	},
 
 	unselect: function() {
-		this.get(CONTENT_BOX).removeClass(CSS_TREE_NODE_SELECTED);
+		var instance = this;
+
+		instance.get(CONTENT_BOX).removeClass(CSS_TREE_NODE_SELECTED);
+
+		instance.fire('unselect');
 	},
 
 	over: function() {
