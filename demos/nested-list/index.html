@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="../../themes/base/css/nested-list.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+
+		#demo li {
+			list-style: none;
+			margin: 0;
+			padding: 5px;
+		}
+
+		.vertical {
+			width: 300px;
+		}
+
+		.vertical li {
+			border-bottom: 1px solid #999;
+		}
+
+		#external {
+			width: 400px;
+		}
+
+		#external li {
+			background: #ccc;
+		}
+
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - nested-list Demo</h1>
+
+
+	<div id="demo">
+		<ul class="vertical" id="vertical">
+			<li>List Item 1</li>
+			<li>List Item 2
+				<ul>
+					<li>Sub-List Item 1</li>
+					<li>
+						Sub-List Container 1
+						<ul class="no-drop">
+							<li>Sub-sub-List Item 1</li>
+							<li>Sub-sub-List Item 2</li>
+							<li>Sub-sub-List Item 3</li>
+							<li>Sub-sub-List Item 4</li>
+							<li>Sub-sub-List Item 5</li>
+							<li>Sub-sub-List Item 6
+								<ul></ul>
+							</li>
+						</ul>
+					</li>
+					<li>Sub-List Item 2</li>
+					<li>Sub-List Item 3</li>
+					<li>Sub-List Item 4</li>
+					<li>Sub-List Item 5</li>
+					<li>Sub-List Item 6</li>
+				</ul>
+			</li>
+			<li>List Item 3</li>
+			<li>List Item 4</li>
+			<li>List Item 5</li>
+			<li>List Item 6</li>
+		</ul>
+
+		<ul id="external">
+			<li>External 1</li>
+			<li>External 2</li>
+			<li>External 3</li>
+			<li>External 4</li>
+		</ul>
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready(
+	'nested-list',
+	function(A) {
+		var nl = new A.NestedList(
+			{
+				nodes: '#vertical li',
+				groups: ['vertical'],
+				on: {
+					'drag:end': function(event) {
+						console.log(event.target.get('node').get('parentNode').getDOM());
+						event.target.get('node').show();
+						// event.stopImmediatePropagation();
+						return;
+						if (event.drag.get('node').get('parentNode').test('#external')) {
+							event.stopImmediatePropagation();
+						}
+					}
+				}
+			}
+		);
+
+		A.all('#external li').each(
+			function(item, index, collection) {
+				nl.add(
+					{
+						node: item,
+						target: false
+					}
+				);
+				return;
+				new A.NestedListItem(
+					{
+						node: item,
+						groups: ['vertical']
+					}
+				);
+			}
+		);
+	}
+);
+
+</script>
+
+</body>
+</html>

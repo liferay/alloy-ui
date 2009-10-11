@@ -226,12 +226,20 @@
 				*/
 				'sortable': {
 					fullpath: PATH_JAVASCRIPT + 'sortable.js',
-					requires: [ 'aui-base', 'aui-base', 'dd' ]
+					requires: [ 'aui-base', 'dd', 'sortable-css' ]
 				},
 				'sortable-css': {
 					ext: false,
 					fullpath: PATH_THEME_ROOT + 'sortable.css',
 					type: 'css'
+				},
+
+				/*
+				* Nested list
+				*/
+				'nested-list': {
+					fullpath: PATH_JAVASCRIPT + 'nested-list.js',
+					requires: [ 'sortable' ]
 				},
 
 				/*
