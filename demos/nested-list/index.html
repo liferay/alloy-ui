@@ -97,19 +97,7 @@ AUI().ready(
 	function(A) {
 		var nl = new A.NestedList(
 			{
-				nodes: '#vertical li',
-				groups: ['vertical'],
-				on: {
-					'drag:end': function(event) {
-						console.log(event.target.get('node').get('parentNode').getDOM());
-						event.target.get('node').show();
-						// event.stopImmediatePropagation();
-						return;
-						if (event.drag.get('node').get('parentNode').test('#external')) {
-							event.stopImmediatePropagation();
-						}
-					}
-				}
+				nodes: '#vertical li'
 			}
 		);
 
@@ -119,13 +107,6 @@ AUI().ready(
 					{
 						node: item,
 						target: false
-					}
-				);
-				return;
-				new A.NestedListItem(
-					{
-						node: item,
-						groups: ['vertical']
 					}
 				);
 			}
