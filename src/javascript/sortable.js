@@ -25,14 +25,10 @@ AUI().add(
 
 		Sortable.ATTRS = {
 			dd: {
-				value: {
-					target: true
-				}
+				value: {}
 			},
 
-			constrain: {
-				value: null
-			},
+			constrain: {},
 
 			container: {
 				value: null
@@ -75,12 +71,9 @@ AUI().add(
 				}
 			},
 
-			proxy: {
-				value: {
-					borderStyle: 0,
-					moveOnEnd: false
-				}
-			}
+			placeholder: {},
+
+			proxy: {}
 		};
 
 		A.extend(
@@ -112,60 +105,59 @@ AUI().add(
 
 					instance._ddConfig = ddConfig;
 
-					nodes.each(instance._initSortable, instance);
-
-					instance.on('drag:drag', instance._onDrag);
-					instance.on('drag:end', instance._onDragEnd);
-					instance.on('drag:over', instance._onDragOver);
-					instance.on('drag:start', instance._onDragStart);
-				},
-
-				_initSortable: function(item, index, collection) {
-					var instance = this;
-
-					item.addClass(CSS_ITEM);
-
 					instance._ddConfig = A.mix(
 						instance._ddConfig,
 						{
 							bubbles: instance,
 							groups: instance.get('groups'),
-							target: true
+							placeholder: instance.get('placeholder'),
+							constrain: instance.get('constrain'),
+							proxy: instance.get('proxy')
 						}
 					);
+					nodes.each(instance.add, instance);
 
-					var handles = instance._ddConfig.handles;
+					instance.after('drag:drag', instance._onDrag);
+					instance.after('drag:end', instance._onDragEnd);
+					instance.after('drag:over', instance._onDragOver);
+					instance.after('drag:start', instance._onDragStart);
+				},
 
-					if (handles) {
-						for (var i = handles.length - 1; i >= 0; i--) {
-							var handle = handles[i];
+				add: function(item) {
+					var instance = this;
 
-							item.queryAll(handle).addClass(CSS_HANDLE);
+					if (item) {
+						var ddConfig = instance._ddConfig;
+
+						if ((item instanceof A.Node) || Lang.isString(item) || item.nodeName) {
+							item = A.get(item);
+
+							ddConfig.node = item;
 						}
+						else if (Lang.isObject(item)) {
+							A.mix(item, ddConfig);
+
+							ddConfig = item;
+						}
+
+						var sortableItem = instance.getSortableItem();
+
+						var dd = new sortableItem(ddConfig);
 					}
-					else {
-						item.addClass(CSS_NO_HANDLES);
-					}
+				},
 
-					item.plug(A.Plugin.Drag, instance._ddConfig);
+				getSortableItem: function() {
+					var instance = this;
 
-					if (instance._useConstrain) {
-						item.dd.plug(A.Plugin.DDConstrained, instance._constrainConfig);
-					}
-
-					if (instance._useProxy) {
-						item.dd.plug(A.Plugin.DDProxy, instance._proxyConfig);
-					}
-
-					item.dd.removeInvalid('a');
-
-					instance.dd = item.dd;
+					return SortableItem;
 				},
 
 				_onDrag: function(event) {
 					var instance = this;
 
-					var lastXY = event.target.lastXY;
+					var drag = event.target;
+
+					var lastXY = drag.lastXY;
 					var x = lastXY[0];
 					var y = lastXY[1];
 
@@ -186,9 +178,9 @@ AUI().add(
 				_onDragEnd: function(event) {
 					var instance = this;
 
-					var node = event.target.get('node');
+					var drag = event.target;
+					var node = drag.get('node');
 
-					node.removeClass(CSS_PLACEHOLDER);
 					node.removeClass(CSS_DRAGGING);
 				},
 
@@ -212,7 +204,7 @@ AUI().add(
 						action = 'placeAfter';
 					}
 
-					dropNode[action](drag.get('node'));
+					dropNode[action](drag.get('placeholder'));
 
 					drop.sizeShim();
 				},
@@ -221,13 +213,13 @@ AUI().add(
 					var instance = this;
 
 					var drag = event.target;
+
 					var node = drag.get('node');
 
 					if (instance._useProxy) {
 						drag.get('dragNode').addClass(CSS_PROXY);
 					}
 
-					node.addClass(CSS_PLACEHOLDER);
 					node.addClass(CSS_DRAGGING);
 				},
 
@@ -236,7 +228,113 @@ AUI().add(
 			}
 		);
 
+		var SortableItem = function(config) {
+			SortableItem.superclass.constructor.call(this, config.dd || config);
+		};
+
+		SortableItem.NAME = 'sortableitem';
+
+		SortableItem.ATTRS = {
+			constrain: {
+				value: null
+			},
+
+			placeholder: {
+				getter: function() {
+					var instance = this;
+
+					return instance.get('node');
+				}
+			},
+
+			proxy: {
+				value: {
+					borderStyle: 0,
+					moveOnEnd: false
+				}
+			},
+
+			target: {
+				value: true
+			},
+
+			syncPlaceholderSize: {
+				value: true
+			}
+		};
+
+		A.extend(
+			SortableItem,
+			A.DD.Drag,
+			{
+				initializer: function() {
+					var instance = this;
+
+					var node = instance.get('node');
+
+					node.dd = instance;
+
+					node.addClass(CSS_ITEM);
+
+					instance._initHandles();
+					instance._initConstrain();
+					instance._initProxy();
+				},
+
+				_initHandles: function() {
+					var instance = this;
+
+					var handles = instance.get('handles');
+					var node = instance.get('node');
+
+					if (handles) {
+						for (var i = handles.length - 1; i >= 0; i--) {
+							var handle = handles[i];
+
+							node.queryAll(handle).addClass(CSS_HANDLE);
+						}
+					}
+					else {
+						node.addClass(CSS_NO_HANDLES);
+					}
+
+					instance.removeInvalid('a');
+				},
+
+				_initConstrain: function() {
+					var instance = this;
+
+					var constrain = instance.get('constrain');
+
+					if (!!constrain) {
+						if (!Lang.isObject(constrain)) {
+							constrain = null;
+						}
+
+						instance.plug(A.Plugin.DDConstrained, constrain);
+					}
+				},
+
+				_initProxy: function() {
+					var instance = this;
+
+					var proxy = instance.get('proxy');
+
+					if (!!proxy) {
+						if (!Lang.isObject(proxy)) {
+							proxy = null;
+						}
+
+						instance.plug(A.Plugin.DDProxy, proxy);
+
+						instance.get('dragNode').addClass(CSS_PROXY);
+					}
+				}
+			}
+		);
+
 		A.Sortable = Sortable;
+		A.SortableItem = SortableItem;
 	},
 	'@VERSION',
 	{
