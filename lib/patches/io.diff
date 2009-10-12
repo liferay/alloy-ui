@@ -9,25 +9,18 @@
     		}
     		catch(e0){
  			if (c.xdr) {
-@@ -239,6 +239,11 @@
- 		}
+@@ -240,6 +240,10 @@
  
     		_ioStart(o.id, c);
-+
+ 
 +		if (c.async === false) {
-+			_readyState(o, c);
++			_readyState();
 +		}
 +
     		// If config.timeout is defined, and the request is standard XHR,
     		// initialize timeout polling.
     		if (c.timeout) {
-@@ -630,16 +635,22 @@
- 	* @return void
-    	*/
-    	function _readyState(o, c) {
--   		if (o.c.readyState === 4) {
-+   		if (o.c && o.c.readyState === 4) {
-    			if (c.timeout) {
+@@ -637,11 +641,17 @@
     				_clearTimeout(o.id);
     			}
  
