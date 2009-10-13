@@ -112,7 +112,7 @@ A.extend(TreeView, A.TreeData, {
 		TreeView.superclass.registerNode.apply(this, arguments);
 	},
 
-	_createFromMarkup: function(container) {
+	_createFromHTMLMarkup: function(container) {
 		var instance = this;
 
 		container.all('> li').each(function(node) {
@@ -139,7 +139,7 @@ A.extend(TreeView, A.TreeData, {
 				treeNode.render();
 
 				// propagating markup recursion
-				instance._createFromMarkup(deepContainer);
+				instance._createFromHTMLMarkup(deepContainer);
 			}
 			else {
 				treeNode.render();
@@ -177,7 +177,7 @@ A.extend(TreeView, A.TreeData, {
 		}
 		else {
 			// if children not specified try to create from markup
-			instance._createFromMarkup(contentBox);
+			instance._createFromHTMLMarkup(contentBox);
 		}
 	},
 
