@@ -16,6 +16,7 @@ var L = A.Lang,
 	ICON = 'icon',
 	LABEL = 'label',
 	LAST_SELECTED = 'lastSelected',
+	LEAF = 'leaf',
 	NODE = 'node',
 	OWNER_TREE = 'ownerTree',
 	ROOT = 'root',
@@ -42,7 +43,9 @@ var L = A.Lang,
 	CSS_TREE_NODE_CONTENT = getCN(TREE, NODE, CONTENT),
 	CSS_TREE_NODE_SELECTED = getCN(TREE, NODE, SELECTED),
 	CSS_TREE_ROOT_CONTAINER = getCN(TREE, ROOT, CONTAINER),
-	CSS_TREE_VIEW_CONTENT = getCN(TREE, VIEW, CONTENT);
+	CSS_TREE_VIEW_CONTENT = getCN(TREE, VIEW, CONTENT),
+
+	DOC_FRAG_TPL = '<div></div>';
 
 
 /*
@@ -109,9 +112,52 @@ A.extend(TreeView, A.TreeData, {
 		TreeView.superclass.registerNode.apply(this, arguments);
 	},
 
+	_createFromMarkup: function(container) {
+		var instance = this;
+
+		container.all('> li').each(function(node) {
+			// use firstChild as label
+			var labelEl = node.one('> *').remove();
+			var label = A.Node.create(DOC_FRAG_TPL).append(labelEl).html();
+
+			// avoid memory leak
+			docFrag = null;
+
+			var treeNode = new A.TreeNode({
+				boundingBox: node,
+				label: label
+			});
+
+			var deepContainer = node.one('> ul');
+
+			if (deepContainer) {
+				// if has deepContainer it's not a leaf
+				treeNode.set(LEAF, false);
+				treeNode.set(CONTAINER, deepContainer);
+
+				// render node before invoke the recursion
+				treeNode.render();
+
+				// propagating markup recursion
+				instance._createFromMarkup(deepContainer);
+			}
+			else {
+				treeNode.render();
+			}
+
+			// find the parent TreeNode...
+			var parentNode = node.get(PARENT_NODE).get(PARENT_NODE);
+			var parentTreeNode = A.Widget.getByNode(parentNode);
+
+			// and simulate the appendChild.
+			parentTreeNode.appendChild(treeNode);
+		});
+	},
+
 	_renderElements: function() {
 		var instance = this;
 		var contentBox = instance.get(CONTENT_BOX);
+		var children = instance.get(CHILDREN);
 		var type = instance.get(TYPE);
 		var CSS_TREE_TYPE = getCN(TREE, type);
 
@@ -123,9 +169,16 @@ A.extend(TreeView, A.TreeData, {
 			concat(CSS_TREE_TYPE, CSS_TREE_ROOT_CONTAINER)
 		);
 
-		instance.eachChildren(function(node) {
-			instance.appendChild(node, true);
-		});
+		if (children.length) {
+			// if has children appendChild them
+			instance.eachChildren(function(node) {
+				instance.appendChild(node, true);
+			});
+		}
+		else {
+			// if children not specified try to create from markup
+			instance._createFromMarkup(contentBox);
+		}
 	},
 
 	/*
