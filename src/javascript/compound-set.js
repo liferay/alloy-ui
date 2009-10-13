@@ -22,7 +22,7 @@ AUI().add(
 				getter: function() {
 					var instance = this;
 
-					var values = instance.get('values');
+					var values = instance.values;
 
 					return values[0];
 				}
@@ -45,7 +45,7 @@ AUI().add(
 				getter: function() {
 					var instance = this;
 
-					var values = instance.get('values');
+					var values = instance.values;
 
 					return values[values.length - 1];
 				}
@@ -303,7 +303,7 @@ AUI().add(
 				indexOf: function(obj) {
 					var instance = this;
 
-					var values = instance.get('values');
+					var values = instance.values;
 
 					return A.Array.indexOf(values, obj);
 				},
@@ -356,7 +356,7 @@ AUI().add(
 					var item;
 
 					if (Lang.isNumber(key)) {
-						var values = instance.get('values');
+						var values = instance.values;
 
 						item = values[key];
 					}
@@ -448,7 +448,7 @@ AUI().add(
 				slice: function(start, end) {
 					var instance = this;
 
-					var values = instance.get('values');
+					var values = instance.values;
 
 					return values.slice.apply(values, arguments);
 				},
