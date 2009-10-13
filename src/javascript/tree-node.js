@@ -66,7 +66,7 @@ var L = A.Lang,
 	HIT_AREA_TPL = '<div class="'+CSS_TREE_HITAREA+'"></div>',
 	ICON_TPL = '<div class="'+CSS_TREE_ICON+'"></div>',
 	LABEL_TPL = '<div class="'+CSS_TREE_LABEL+'"></div>',
-	NODE_CONTAINER_TPL = '<ul class="'+CSS_TREE_CONTAINER+'"></ul>',
+	NODE_CONTAINER_TPL = '<ul></ul>',
 
 	NODE_BOUNDING_TEMPLATE = '<li></li>',
 	NODE_CONTENT_TEMPLATE = '<div class="'+concat(CSS_HELPER_CLEARFIX, CSS_TREE_NODE_CONTENT)+'"></div>';
@@ -275,6 +275,8 @@ A.extend(TreeNode, A.TreeData, {
 
 		// creating <ul class="aui-tree-container">
 		var nodeContainer = instance.get(CONTAINER) || A.Node.create(NODE_CONTAINER_TPL);
+
+		nodeContainer.addClass(CSS_TREE_CONTAINER);
 
 		// when it's not a leaf it has a <ul> container
 		instance.set(CONTAINER, nodeContainer);
