@@ -37,6 +37,14 @@
 				},
 
 				/*
+				* Compound Set
+				*/
+				'compound-set': {
+					fullpath: PATH_JAVASCRIPT + 'compound-set.js',
+					requires: [ 'oop', 'collection', 'base' ]
+				},
+
+				/*
 				* AutoComplete
 				*/
 				'autocomplete': {
