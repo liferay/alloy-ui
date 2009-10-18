@@ -15,6 +15,7 @@ var L = A.Lang,
 	FLOAT = 'float',
 	HEIGHT = 'height',
 	HELPER = 'helper',
+	HIDDEN = 'hidden',
 	LEFT = 'left',
 	NESTED_LIST = 'nested-list',
 	NODE = 'node',
@@ -24,8 +25,11 @@ var L = A.Lang,
 	PLACEHOLDER = 'placeholder',
 	PX = 'px',
 	RIGHT = 'right',
+	SORT_CONDITION = 'sortCondition',
 	UL = 'ul',
 	UP = 'up',
+	VISIBILITY = 'visibility',
+	VISIBLE = 'visible',
 
 	DDM = A.DD.DDM,
 
@@ -72,6 +76,16 @@ A.mix(NestedList, {
 
 		placeholder: {
 			value: null
+		},
+
+		sortCondition: {
+			value: function() {
+				return true;
+			},
+			setter: function(v) {
+				return A.bind(v, this);
+			},
+			validator: isFunction
 		}
 	}
 });
@@ -93,7 +107,9 @@ A.extend(NestedList, A.Base, {
 
 		instance._createHelper();
 
-		instance.addAll(nodes);
+		if (nodes) {
+			instance.addAll(nodes);
+		}
 	},
 
 	/*
@@ -130,7 +146,7 @@ A.extend(NestedList, A.Base, {
 			};
 
 			if (helper) {
-				proxyOptions.borderStyle = 0;
+				proxyOptions.borderStyle = null;
 			}
 
 			// creating delayed drag instance
@@ -248,14 +264,20 @@ A.extend(NestedList, A.Base, {
 
 	_onDragExit: function(event) {
 		var instance = this;
+		var sortCondition = instance.get(SORT_CONDITION);
 
-		instance._updatePlaceholder(event, true);
+		if (sortCondition(event)) {
+			instance._updatePlaceholder(event, true);
+		}
 	},
 
 	_onDragOver: function(event) {
 		var instance = this;
+		var sortCondition = instance.get(SORT_CONDITION);
 
-		instance._updatePlaceholder(event);
+		if (sortCondition(event)) {
+			instance._updatePlaceholder(event);
+		}
 	},
 
 	_onDragStart: function(event) {
@@ -280,7 +302,10 @@ A.extend(NestedList, A.Base, {
 
 		if (helper) {
 			// show helper, we need display block here, yui dd hide it with display none
-			helper.setStyle(DISPLAY, BLOCK).show();
+			helper.setStyles({
+				display: BLOCK,
+				visibility: VISIBLE
+			}).show();
 
 			// update the DRAG_NODE with the new helper
 			drag.set(DRAG_NODE, helper);
