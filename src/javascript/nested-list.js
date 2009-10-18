@@ -182,6 +182,7 @@ A.extend(NestedList, A.Base, {
 
 			// if there is a container waiting for nodes to be appended it's priority
 			if (container && !cancelAppend && dropCondition(event)) {
+				// this checking avoid the parent bubbling drag:over
 				if (!container.contains(placeholder) &&
 					!placeholder.contains(container)) {
 						// append placeholder on the found container
