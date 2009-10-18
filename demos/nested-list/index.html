@@ -9,110 +9,226 @@
 	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<link rel="stylesheet" href="../../themes/base/css/nested-list.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 
-	<style type="text/css" media="screen">
-		body {
-			font-size: 12px;
-		}
+	<style type="text/css">
+	.placeholder-test {
+		background: #fff;
+		height: 30px;
+		border: 1px dashed #ccc !important;
+		opacity: .5;
+	}
 
-		#wrapper {
-			padding: 10px;
-		}
+	.dd-demo {
+		left: 100px;
+		padding: 2px;
+		position: relative;
+	    width: 200px;
+		background: #eee;
+	}
 
-		#demo li {
-			list-style: none;
-			margin: 0;
-			padding: 5px;
-		}
+	#dd-demo-1 {
 
-		.vertical {
-			width: 300px;
-		}
+	}
 
-		.vertical li {
-			border-bottom: 1px solid #999;
-		}
+	#demo-1 li {
+		border: 2px solid #ccc;
+/*		margin: 10px 4px 10px 4px;*/
+		margin: 4px;
+		padding: 3px;
+		list-style: none;
+	}
 
-		#external {
-			width: 400px;
-		}
+	#demo-2 li {
+		border: 2px solid #ccc;
+		margin: 4px;
+		padding: 2px;
+		list-style: none;
+	}
 
-		#external li {
-			background: #ccc;
-		}
+	#demo-4 div {
+		height: 50px;
+		width: 50px;
+		background: red;
+	}
 
+	#demo-4 > div {
+		border: 2px solid #ccc;
+		margin: 4px;
+		padding: 2px;
+		list-style: none;
+		float: left;
+		height: 50px;
+		width: 50px;
+		background: transparent;
+	}
+
+	.yui-dd-dragging {
+		visibility: hidden;
+	}
 	</style>
 </head>
 
 <body>
 
-<div id="wrapper">
-	<h1>Alloy - nested-list Demo</h1>
+<h1>Alloy - Nested List</h1>
 
-
-	<div id="demo">
-		<ul class="vertical" id="vertical">
-			<li>List Item 1</li>
-			<li>List Item 2
-				<ul>
-					<li>Sub-List Item 1</li>
-					<li>
-						Sub-List Container 1
-						<ul class="no-drop">
-							<li>Sub-sub-List Item 1</li>
-							<li>Sub-sub-List Item 2</li>
-							<li>Sub-sub-List Item 3</li>
-							<li>Sub-sub-List Item 4</li>
-							<li>Sub-sub-List Item 5</li>
-							<li>Sub-sub-List Item 6
-								<ul></ul>
-							</li>
-						</ul>
-					</li>
-					<li>Sub-List Item 2</li>
-					<li>Sub-List Item 3</li>
-					<li>Sub-List Item 4</li>
-					<li>Sub-List Item 5</li>
-					<li>Sub-List Item 6</li>
-				</ul>
-			</li>
-			<li>List Item 3</li>
-			<li>List Item 4</li>
-			<li>List Item 5</li>
-			<li>List Item 6</li>
-		</ul>
-
-		<ul id="external">
-			<li>External 1</li>
-			<li>External 2</li>
-			<li>External 3</li>
-			<li>External 4</li>
-		</ul>
-	</div>
 </div>
 
-<script type="text/javascript" charset="utf-8">
+<ul id="demo-1" class="dd-demo">
+	<li id="list1">Node</li>
 
-AUI().ready(
-	'nested-list',
-	function(A) {
-		var nl = new A.NestedList(
-			{
-				nodes: '#vertical li'
-			}
-		);
+	<li id="list2">Node</li>
+	<li id="list3">
+		Node
+		<ul id="demo-1-1" class="demo">
+			<li>Node</li>
+			<li>Node</li>
+			<li>
+				Node
+				<ul id="demo-1-1-1" class="demo">
 
-		A.all('#external li').each(
-			function(item, index, collection) {
-				nl.add(
-					{
-						node: item,
-						target: false
-					}
-				);
-			}
-		);
-	}
-);
+					<li>Node</li>
+					<li>Node</li>
+					<li>Node</li>
+					<li>Node</li>
+					<li>Node</li>
+				</ul>
+
+			</li>
+			<li data-type="list">
+				Node drop condition false
+				<ul class="droppable"></ul>
+			</li>
+			<li>
+				Node
+				<ul class="demo droppable"></ul>
+			</li>
+			<li>Node</li>
+
+		</ul>
+	</li>
+	<li id="list4">Node</li>
+	<li id="list5">Node</li>
+	<li id="list6">Node</li>
+	<li id="list7">
+		Node
+		<ul class="demo droppable"></ul>
+
+	</li>
+	<li id="list8">Node</li>
+	<li id="list9">
+		Node
+		<ul class="demo droppable"></ul>
+	</li>
+</ul>
+
+<ul id="demo-2" class="dd-demo">
+	<li>Node</li>
+
+	<li>Node</li>
+	<li>
+		Node
+		<ul class="demo">
+			<li>Node</li>
+			<li>Node</li>
+			<li>
+				Node
+				<ul class="demo">
+
+					<li>Node</li>
+					<li>Node</li>
+					<li>Node</li>
+					<li>Node</li>
+					<li>Node</li>
+				</ul>
+
+			</li>
+			<li>
+				Node
+				<ul class="demo droppable"></ul>
+			</li>
+			<li>Node</li>
+		</ul>
+	</li>
+	<li>Node</li>
+
+	<li>Node</li>
+	<li>Node</li>
+	<li>
+		Node
+		<ul class="demo droppable"></ul>
+	</li>
+	<li>Node</li>
+	<li>Node</li>
+
+	<li>Node</li>
+	<li>Node</li>
+	<li>Node</li>
+	<li>Node</li>
+	<li>Node</li>
+	<li>Node</li>
+
+	<li>
+		Node
+		<ul class="demo droppable"></ul>
+	</li>
+</ul>
+
+<br/><br/><br/>
+
+<div id="demo-4" class="dd-demo">
+	<div>Node 1</div>
+
+	<div>Node 2</div>
+	<div>
+		Node 3
+	</div>
+	<div>Node 4</div>
+	<br style="clear:both;" />
+</div>
+
+<script type="text/javascript">
+
+AUI().ready('nested-list', function(A) {
+
+	var placeholder = A.Node.create('<li class="placeholder-test"></li>');
+
+	var nl1 = new A.NestedList({
+		nodes: '#demo-1 li',
+		dropContainer: 'ul.droppable',
+		dropCondition: function(event) {
+			return true;
+		},
+		dropOn: 'ul',
+		placeholder: placeholder,
+		// helper: A.Node.create('<div>Helper</div>'),
+		dd: {
+		}
+	});
+
+	var nl2 = new A.NestedList({
+		nodes: '#demo-2 li',
+		dropContainer: 'ul.droppable',
+		dropCondition: function(event) {
+			return true;
+		},
+		dropOn: 'ul',
+		placeholder: placeholder,
+		// helper: A.Node.create('<div>Helper</div>'),
+		dd: {
+		}
+	});
+
+	var nlFloat = new A.NestedList({
+		nodes: '#demo-4 div',
+		// dropContainer: 'ul.droppable',
+		dropCondition: function() {
+			return true;
+		},
+		dd: {
+		}
+	});
+
+});
 
 </script>
 

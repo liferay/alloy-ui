@@ -1,179 +1,322 @@
-AUI().add(
-	'nested-list',
-	function(A) {
-		var Lang = A.Lang,
+AUI.add('nested-list', function(A) {
 
-			getClassName = A.ClassNameManager.getClassName,
+var L = A.Lang,
+	isString = L.isString,
+	isFunction = L.isFunction,
 
-			NAME = 'nestedlist',
+	BLOCK = 'block',
+	BODY = 'body',
+	CLEARFIX = 'clearfix',
+	CONTENT = 'content',
+	DD = 'dd',
+	DISPLAY = 'display',
+	DOWN = 'down',
+	DRAG = 'drag',
+	DRAG_NODE = 'dragNode',
+	DROP_CONDITION = 'dropCondition',
+	DROP_ON = 'dropOn',
+	FLOAT = 'float',
+	HEIGHT = 'height',
+	HELPER = 'helper',
+	ICON = 'icon',
+	LABEL = 'label',
+	LEFT = 'left',
+	NESTED_LIST = 'nested-list',
+	NODE = 'node',
+	NODES = 'nodes',
+	NONE = 'none',
+	OFFSET_HEIGHT = 'offsetHeight',
+	PLACEHOLDER = 'placeholder',
+	PX = 'px',
+	RIGHT = 'right',
+	UL = 'ul',
+	UP = 'up',
 
-			DDM = A.DD.DDM,
+	DDM = A.DD.DDM,
 
-			CSS_NESTEDLIST = getClassName(NAME),
-			CSS_PLACEHOLDER = getClassName(A.Sortable.NAME, 'placeholder');
-
-		var NestedList = function() {
-			NestedList.superclass.constructor.apply(this, arguments);
-		};
-
-		NestedList.NAME = 'nestedlist';
-
-		NestedList.ATTRS = {
-			dropOn: {
-				value: 'ul'
-			}
-		};
-
-		A.extend(
-			NestedList,
-			A.Sortable,
-			{
-				getSortableItem: function() {
-					var instance = this;
-
-					return NestedListItem;
-				},
-
-				_onDragEnd: function(event) {
-					var instance = this;
-
-					var drag = event.target;
-
-					NestedList.superclass._onDragEnd.apply(instance, arguments);
-
-					var node = drag.get('node');
-
-					var placeholder = drag.get('placeholder');
-
-					placeholder.placeBefore(node);
-					placeholder.remove();
-
-					node.show();
-				},
-
-				_onDragOver: function(event) {
-					var instance = this;
-
-					var drag = event.drag;
-					var drop = event.drop;
-
-					var dragNode = drag.get('placeholder');
-					var dropNode = drop.get('node');
-
-					if (drag.sortOn(dragNode, dropNode)) {
-						var container = dropNode.one('> ' + instance.get('dropOn'));
-
-						if (container) {
-							if (!container.contains(dragNode) && !dragNode.contains(container)) {
-								container.appendChild(dragNode);
-							}
-						}
-						else {
-							try {
-								NestedList.superclass._onDragOver.apply(instance, arguments);
-
-								drag.updatePlaceholder(true);
-							}
-							catch (e) {}
-						}
-					}
-				},
-
-				_onDragStart: function(event) {
-					var instance = this;
-
-					var drag = event.target;
-
-					NestedList.superclass._onDragStart.apply(instance, arguments);
-
-					var node = drag.get('node');
-					var placeholder = drag.get('placeholder');
-
-					node.placeAfter(placeholder);
-
-					drag.updatePlaceholder();
-				}
-			}
-		);
-
-		var NestedListItem = function() {
-			NestedListItem.superclass.constructor.apply(this, arguments);
-		};
-
-		NestedListItem.NAME = 'nestedlistitem';
-
-		NestedListItem.ATTRS = {
-			placeholder: {
-				value: CSS_PLACEHOLDER,
-				getter: null,
-				setter: function(value) {
-					var instance = this;
-
-					if (Lang.isString(value)) {
-						var node = instance.get('node');
-
-						var placeholder = new A.Node(document.createElement(node.get('nodeName')));
-
-						placeholder.addClass(value);
-
-						value = placeholder;
-					}
-					else {
-						value = A.get(value);
-					}
-
-					return value;
-				}
-			}
-		};
-
-		A.extend(
-			NestedListItem,
-			A.SortableItem,
-			{
-				sortOn: function(dragNode, dropNode) {
-					var instance = this;
-
-					var sortOn = instance.get('sortOn');
-
-					var sortOnNode = A.get(sortOn);
-
-					if (sortOnNode && !sortOnNode.contains(dropNode)) {
-						return false;
-					}
-
-					return true;
-				},
-
-				updatePlaceholder: function(preventResize) {
-					var instance = this;
-
-					var placeholder = instance.get('placeholder');
-
-					var node = instance.get('node');
-
-					if (!preventResize && instance.get('syncPlaceholderSize')) {
-						placeholder.setStyle('height', node.get('offsetHeight') + 'px');
-					}
-
-					node.hide();
-
-					var drop = DDM.activeDrop;
-
-					if (drop) {
-						drop.sizeShim();
-					}
-
-					return placeholder;
-				}
-			}
-		);
-
-		A.NestedList = NestedList;
-		A.NestedListItem = NestedListItem;
+	isNodeList = function(v) {
+		return (v instanceof A.NodeList);
 	},
-	'@VERSION',
-	{
-		requires: ['sortable']
+
+	getCN = A.ClassNameManager.getClassName,
+
+	CSS_ICON = getCN(ICON),
+	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
+	CSS_NESTED_LIST = getCN(NESTED_LIST),
+	CSS_NESTED_LIST_DRAG_HELPER = getCN(NESTED_LIST, DRAG, HELPER),
+	CSS_NESTED_LIST_DRAG_HELPER_CONTENT = getCN(NESTED_LIST, DRAG, HELPER, CONTENT),
+	CSS_NESTED_LIST_DRAG_HELPER_LABEL = getCN(NESTED_LIST, DRAG, HELPER, LABEL);
+
+function NestedList(config) {
+	NestedList.superclass.constructor.apply(this, arguments);
+}
+
+A.mix(NestedList, {
+	NAME: NESTED_LIST,
+
+	ATTRS: {
+		dd: {
+			value: null
+		},
+
+		dropCondition: {
+			value: function() {
+				return true;
+			},
+			setter: function(v) {
+				return A.bind(v, this);
+			},
+			validator: isFunction
+		},
+
+		dropOn: {
+			value: UL,
+			validator: isString
+		},
+
+		helper: {
+			value: null
+		},
+
+		nodes: {
+			setter: function(v) {
+				return this._setNodes(v);
+			}
+		},
+
+		placeholder: {
+			value: null
+		}
 	}
-);
+});
+
+A.extend(NestedList, A.Base, {
+	/*
+	* Lifecycle
+	*/
+	initializer: function() {
+		var instance = this;
+		var nodes = instance.get(NODES);
+
+		// drag & drop listeners
+		instance.on('drag:align', instance._onDragAlign);
+		instance.on('drag:exit', instance._onDragExit);
+		instance.on('drag:over', instance._onDragOver);
+		instance.on('drag:start', instance._onDragStart);
+		instance.on('drag:end', instance._onDragEnd);
+
+		instance._createHelper();
+
+		instance.addAll(nodes);
+	},
+
+	/*
+	* Methods
+	*/
+	add: function(node) {
+		var instance = this;
+
+		instance._createDrag(node);
+	},
+
+	addAll: function(nodes) {
+		var instance = this;
+
+		nodes.each(function(node) {
+			instance.add(node);
+		});
+	},
+
+	_createDrag: function(node) {
+		var instance = this;
+		var helper = instance.get(HELPER);
+
+		if (!DDM.getDrag(node)) {
+			var dragOptions = {
+				node: node,
+				bubbles: instance,
+				target: true
+			};
+
+			var proxyOptions = {
+				moveOnEnd: false,
+				positionProxy: false
+			};
+
+			if (helper) {
+				proxyOptions.borderStyle = null;
+			}
+
+			// creating delayed drag instance
+			var dd = new A.DD.Drag(
+				A.mix(dragOptions, instance.get(DD))
+			)
+			.plug(A.Plugin.DDProxy, proxyOptions);
+		}
+	},
+
+	_createHelper: function() {
+		var instance = this;
+		var helper = instance.get(HELPER);
+
+		if (helper) {
+			// append helper to the body
+			A.get(BODY).append( helper.hide() );
+
+			instance.set(HELPER, helper);
+		}
+	},
+
+	_updatePlaceholder: function(event, cancelAppend) {
+		var instance = this;
+		var drag = event.target;
+		var drop = event.drop;
+		var dragNode = drag.get(NODE);
+		var dropNode = drop.get(NODE);
+		var container = dropNode.one('>' + instance.get(DROP_ON));
+
+		var floating = false;
+		var xDirection = instance.XDirection;
+		var yDirection = instance.YDirection;
+
+		if (dropNode.getStyle(FLOAT) != NONE) {
+			floating = true;
+		}
+
+		var placeholder = instance.get(PLACEHOLDER);
+
+		if (!placeholder) {
+			// if no placeholder use the dragNode instead
+			placeholder = dragNode;
+		}
+
+		if (!placeholder.contains(dropNode)) {
+			// check for the user dropCondition
+			var dropCondition = instance.get(DROP_CONDITION);
+
+			// if there is a container waiting for nodes to be appended it's priority
+			if (container && !cancelAppend && dropCondition(event)) {
+				if (!container.contains(placeholder) &&
+					!placeholder.contains(container)) {
+						// append placeholder on the found container
+						container.append(placeholder);
+				}
+			}
+			// otherwise, check if it's floating and the xDirection
+			// or if it's not floating and the yDirection
+			else {
+				if (floating && (xDirection == LEFT) || !floating && (yDirection == UP)) {
+					// LEFT or UP directions means to place the placeholder before
+					dropNode.placeBefore(placeholder);
+				}
+				else {
+					// RIGHT or DOWN directions means to place the placeholder after
+					dropNode.placeAfter(placeholder);
+				}
+			}
+		}
+	},
+
+	/*
+	* Listeners
+	*/
+	_onDragAlign: function(event) {
+		var instance = this;
+		var lastX = instance.lastX;
+		var lastY = instance.lastY;
+		var xy = event.target.lastXY;
+
+		var x = xy[0];
+		var y = xy[1];
+
+		// if the y change
+		if (y != lastY) {
+			// set the drag vertical direction
+			instance.YDirection = (y < lastY) ? UP : DOWN;
+		}
+
+		// if the x change
+		if (x != lastX) {
+			// set the drag horizontal direction
+			instance.XDirection = (x < lastX) ? LEFT : RIGHT;
+		}
+
+		instance.lastX = x;
+		instance.lastY = y;
+	},
+
+	_onDragEnd: function(event) {
+		var instance = this;
+		var drag = event.target;
+		var dragNode = drag.get(NODE);
+		var placeholder = instance.get(PLACEHOLDER);
+
+		if (placeholder) {
+			dragNode.show();
+			placeholder.hide();
+			// position dragNode after the placeholder
+			placeholder.placeAfter(dragNode);
+		}
+	},
+
+	_onDragExit: function(event) {
+		var instance = this;
+
+		instance._updatePlaceholder(event, true);
+	},
+
+	_onDragOver: function(event) {
+		var instance = this;
+
+		instance._updatePlaceholder(event);
+	},
+
+	_onDragStart: function(event) {
+ 		var instance = this;
+		var drag = event.target;
+		var dragNode = drag.get(NODE);
+		var helper = instance.get(HELPER);
+		var placeholder = instance.get(PLACEHOLDER);
+
+		if (placeholder) {
+			// update placeholder height
+			placeholder.setStyle(
+				HEIGHT,
+				dragNode.get(OFFSET_HEIGHT) + PX
+			);
+
+			dragNode.hide();
+			placeholder.show();
+			// position placeholder after the dragNode
+			dragNode.placeAfter(placeholder);
+		}
+
+		if (helper) {
+			// show helper, we need display block here, yui dd hide it with display none
+			helper.setStyle(DISPLAY, BLOCK).show();
+
+			// update the DRAG_NODE with the new helper
+			drag.set(DRAG_NODE, helper);
+		}
+ 	},
+
+	/*
+	* Setters
+	*/
+	_setNodes: function(v) {
+		var instance = this;
+
+		if (isNodeList(v)) {
+			return v;
+		}
+		else if (isString(v)) {
+			return A.all(v);
+		}
+
+		return new A.NodeList([v]);
+	}
+});
+
+A.NestedList = NestedList;
+
+}, '@VERSION', { requires: [ 'aui-base', 'dd' ] });

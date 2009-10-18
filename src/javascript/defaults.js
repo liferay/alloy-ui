@@ -247,7 +247,7 @@
 				*/
 				'nested-list': {
 					fullpath: PATH_JAVASCRIPT + 'nested-list.js',
-					requires: [ 'sortable' ]
+					requires: [ 'aui-base', 'dd' ]
 				},
 
 				/*
