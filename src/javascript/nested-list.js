@@ -6,20 +6,15 @@ var L = A.Lang,
 
 	BLOCK = 'block',
 	BODY = 'body',
-	CLEARFIX = 'clearfix',
-	CONTENT = 'content',
 	DD = 'dd',
 	DISPLAY = 'display',
 	DOWN = 'down',
-	DRAG = 'drag',
 	DRAG_NODE = 'dragNode',
 	DROP_CONDITION = 'dropCondition',
 	DROP_ON = 'dropOn',
 	FLOAT = 'float',
 	HEIGHT = 'height',
 	HELPER = 'helper',
-	ICON = 'icon',
-	LABEL = 'label',
 	LEFT = 'left',
 	NESTED_LIST = 'nested-list',
 	NODE = 'node',
@@ -36,16 +31,7 @@ var L = A.Lang,
 
 	isNodeList = function(v) {
 		return (v instanceof A.NodeList);
-	},
-
-	getCN = A.ClassNameManager.getClassName,
-
-	CSS_ICON = getCN(ICON),
-	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
-	CSS_NESTED_LIST = getCN(NESTED_LIST),
-	CSS_NESTED_LIST_DRAG_HELPER = getCN(NESTED_LIST, DRAG, HELPER),
-	CSS_NESTED_LIST_DRAG_HELPER_CONTENT = getCN(NESTED_LIST, DRAG, HELPER, CONTENT),
-	CSS_NESTED_LIST_DRAG_HELPER_LABEL = getCN(NESTED_LIST, DRAG, HELPER, LABEL);
+	};
 
 function NestedList(config) {
 	NestedList.superclass.constructor.apply(this, arguments);
