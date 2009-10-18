@@ -144,7 +144,7 @@ A.extend(NestedList, A.Base, {
 			};
 
 			if (helper) {
-				proxyOptions.borderStyle = null;
+				proxyOptions.borderStyle = 0;
 			}
 
 			// creating delayed drag instance
