@@ -131,6 +131,8 @@ A.extend(ContextOverlay, A.Overlay, {
 		var instance = this;
 		var boudingBox = instance.get(BOUNDING_BOX);
 
+		boudingBox.on(MOUSEDOWN, instance._stopTriggerEventPropagation);
+
 		instance.before('triggerChange', instance._beforeTriggerChange);
 		instance.before('showOnChange', instance._beforeShowOnChange);
 		instance.before('hideOnChange', instance._beforeHideOnChange);
