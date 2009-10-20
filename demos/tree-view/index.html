@@ -22,7 +22,7 @@
 
 	#tree1 {
 		padding: 15px;
-		border: 3px solid #ededed; 
+		border: 3px solid #ededed;
 	}
 
 	#tree1-1 {
@@ -56,7 +56,7 @@
 
 <script type="text/javascript" charset="utf-8">
 
-AUI().ready('tree-view', 'tooltip', function(A) {
+AUI().ready('tree-view', 'tooltip', 'datatype-xml', 'dataschema-xml', function(A) {
 	new A.Tooltip({ trigger: '#tree1', bodyContent: 'Mouseover the tree to activate the Drag&Drop.', width: 150 }).render();
 
 	var defCallback = function(event) {
@@ -74,6 +74,7 @@ AUI().ready('tree-view', 'tooltip', function(A) {
 			label: 'ROOT',
 			id: 'root1',
 			expanded: true,
+			draggable: false,
 			children: [
 				{
 					type: 'task',
@@ -91,8 +92,8 @@ AUI().ready('tree-view', 'tooltip', function(A) {
 					type: 'check',
 					checkName: 'customSelectName',
 					label: 'CheckboxNode',
+					alwaysShowHitArea: false,
 					leaf: false,
-					io: 'assets/content.html',
 					on: {
 						check: defCallback,
 						uncheck: defCallback
@@ -111,7 +112,11 @@ AUI().ready('tree-view', 'tooltip', function(A) {
 					io: {
 						url: 'assets/content.html',
 						cfg: {
-							data: 'foo=bar&bar=foo',
+							data: function(node) {
+								console.log(node);
+
+								return 'foo=bar&bar=foo';
+							},
 							on: {
 								success: function(id, o) {
 									// console.log('User success handler', arguments);
@@ -173,6 +178,40 @@ AUI().ready('tree-view', 'tooltip', function(A) {
 	// display the nodes using the A.TreeView
 	// var tree1 = new A.TreeView({
 	var tree1 = new A.TreeViewDD({
+		io: {
+			cache: false,
+			url: 'assets/content.html',
+			// loader: function(url, config, node) {
+			// 	// config.on.start();
+			// 	// config.on.complete();
+			// 	// console.log(this.get('id'));
+			// 	// config.on.success([ { label: 'asdasd' } ]);
+			//
+			// 	console.log(node, node.get('boundingBox').get('id'));
+			//
+			// 	A.io(url, config);
+			// },
+			// formatter: function(v) {
+			// 	var output = [];
+			//
+			// 	A.each(v, function(node) {
+			// 		var nameXML = A.DataType.XML.parse(node.name);
+			//
+			// 		var schema = {
+			// 			resultListLocator: 'root',
+			// 			resultFields: [ { key: 'label', locator: 'name' } ]
+			// 		};
+			//
+			// 		var sOutput = A.DataSchema.XML.apply(schema, nameXML).results[0];
+			//
+			// 		sOutput.id = 'layoutId_' + node.layoutId;
+			//
+			// 		output.push(sOutput);
+			// 	});
+			//
+			// 	return output;
+			// }
+		},
 		type: 'file',
 		width: 200,
 		height: 400,
@@ -185,9 +224,14 @@ AUI().ready('tree-view', 'tooltip', function(A) {
 			expandAll: defCallback,
 			// insert: defCallback,
 			move: defCallback,
-			remove: defCallback
+			remove: defCallback,
+			drop: defCallback
 		},
 		after: {
+			drop: function(event) {
+				var tree = event.tree;
+				// console.log(tree.dragNode.get('parentNode').indexOf(tree.dragNode));
+			},
 			// collapse: defCallback,
 			// expand: defCallback,
 			append: defCallback,
