@@ -102,7 +102,11 @@ var Lang = A.Lang,
 
 			var overlays = instance._overlays;
 
-			return A.Array.removeItem(overlays, overlay);
+			if (overlays.length) {
+				return A.Array.removeItem(overlays, overlay);
+			}
+
+			return null;
 		},
 
 		each: function(fn) {
