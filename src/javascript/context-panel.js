@@ -245,18 +245,6 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		instance._lastOverlayPoint = overlayPoint;
 	},
 
-	_cancelHideOnInteraction: function(event) {
-		// Overloading ContextOverlay _cancelHideOnInteraction
-		// ContextPanels by default doesn't automatic hide itself
-		/* EMPTY */
-	},
-
-	_invokeHideTaskOnInteraction: function() {
-		// Overloading ContextOverlay _invokeHideTaskOnInteraction
-		// ContextPanels by default doesn't automatic hide itself
-		/* EMPTY */
-	},
-
 	/*
 	* Setters
 	*/
@@ -348,4 +336,4 @@ A.ContextPanelManager = new A.OverlayManager({
 	zIndexBase: 1000
 });
 
-}, '@VERSION', { requires: [ 'context-overlay', 'overlay-manager', 'context-panel-css' ] });
+}, '@VERSION', { requires: [ 'context-overlay', 'context-panel-css' ] });

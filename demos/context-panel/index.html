@@ -72,6 +72,9 @@ AUI().ready('context-panel', 'overlay-manager', function(A) {
 		trigger: '#simpleContextPanel',
 		// showArrow: false,
 		// arrow: 'bc',
+		cancellableHide: true,
+		hideDelay: 1000,
+		hideOnDocumentClick: false,
 		boundingBox: '#contextpanel1',
 		anim: true
 	})
@@ -86,6 +89,7 @@ AUI().ready('context-panel', 'overlay-manager', function(A) {
 		align: { node: '#openContextPanelHere', points: [ 'tl', 'bc' ] },
 		width: 300,
 		// anim: true,
+		// hideOnDocumentClick: false,
 		anim: {
 			show: {
 				duration: .9

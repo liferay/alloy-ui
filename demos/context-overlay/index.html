@@ -189,6 +189,7 @@ AUI().ready('context-overlay', 'overlay-manager', function(A) {
 			trigger: '.menu-item-1',
 			boundingBox: '#menu1',
 			hideDelay: 1000,
+			cancellableHide: false,
 			showDelay: 0
 		})
 	)
@@ -198,6 +199,8 @@ AUI().ready('context-overlay', 'overlay-manager', function(A) {
 	var menuOverlay2 = new A.ContextOverlay(
 		A.merge(options, {
 			trigger: '#menuItem2',
+			hideDelay: 1000,
+			cancellableHide: true,
 			boundingBox: '#menu2'
 		})
 	)
@@ -235,9 +238,6 @@ AUI().ready('context-overlay', 'overlay-manager', function(A) {
 
 	overlayManager.register([ menuOverlay1, menuOverlay2 ]);
 
-	// hideAll overlays when click on document
-	A.on('click', function(event) { overlayManager.hideAll(); }, document);
-
 	/*
 	* Simple ContextOverlay
 	*/
@@ -245,8 +245,10 @@ AUI().ready('context-overlay', 'overlay-manager', function(A) {
 		trigger: 'button',
 		boundingBox: '#contextOverlay1',
 		showOn: 'mouseover',
+		cancellableHide: false,
+		// hideOnDocumentClick: false,
 		hideOn: 'mouseout',
-		hideDelay: 0,
+		hideDelay: 1000,
 		showDelay: 0
 		// align: { node: '#simpleOverlay', points: [ 'tl', 'tr' ] }
 	})

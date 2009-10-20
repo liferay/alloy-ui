@@ -528,9 +528,6 @@ A.extend(Calendar, A.ContextOverlay, {
 		instance.set(CURRENT_YEAR, date.getFullYear());
 	},
 
-	_cancelHideOnInteraction: function() {},
-	_invokeHideTaskOnInteraction: function() {},
-
 	/*
 	* Listeners
 	*/

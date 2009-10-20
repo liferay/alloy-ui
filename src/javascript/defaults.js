@@ -122,7 +122,7 @@
 				*/
 				'context-panel': {
 					fullpath: PATH_JAVASCRIPT + 'context-panel.js',
-					requires: [ 'context-overlay', 'overlay-manager', 'anim', 'context-panel-css' ]
+					requires: [ 'context-overlay', 'anim', 'context-panel-css' ]
 				},
 				'context-panel-css': {
 					ext: false,
@@ -255,7 +255,7 @@
 				*/
 				'context-overlay': {
 					fullpath: PATH_JAVASCRIPT + 'context-overlay.js',
-					requires: [ 'aui-base', 'overlay', 'delayed-task' ]
+					requires: [ 'aui-base', 'overlay', 'overlay-manager', 'delayed-task' ]
 				},
 
 				/*

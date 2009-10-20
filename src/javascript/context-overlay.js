@@ -13,13 +13,16 @@ var L = A.Lang,
 	ALIGN = 'align',
 	BL = 'bl',
 	BOUNDING_BOX = 'boundingBox',
-	CANCEL_HIDE_ON_INTERACTION = 'cancelHideOnInteraction',
+	CANCELLABLE_HIDE = 'cancellableHide',
 	CONTEXT_OVERLAY = 'contextoverlay',
 	CURRENT_NODE = 'currentNode',
 	FOCUSED = 'focused',
 	HIDE = 'hide',
 	HIDE_DELAY = 'hideDelay',
 	HIDE_ON = 'hideOn',
+	HIDE_ON_DOCUMENT_CLICK = 'hideOnDocumentClick',
+	MOUSEDOWN = 'mousedown',
+	OWNER_DOCUMENT = 'ownerDocument',
 	SHOW = 'show',
 	SHOW_DELAY = 'showDelay',
 	SHOW_ON = 'showOn',
@@ -47,7 +50,7 @@ A.mix(ContextOverlay, {
             value: { node: null, points: [ TL, BL ] }
         },
 
-		cancelHideOnInteraction: {
+		cancellableHide: {
 			value: true,
 			validador: isBoolean
 		},
@@ -71,6 +74,15 @@ A.mix(ContextOverlay, {
 			setter: function(v) {
 				return this._setHideOn(v);
 			}
+		},
+
+		hideOnDocumentClick: {
+			lazyAdd: false,
+			setter: function(v) {
+				return this._setHideOnDocumentClick(v);
+			},
+			value: true,
+			validador: isBoolean
 		},
 
 		hideDelay: {
@@ -127,8 +139,8 @@ A.extend(ContextOverlay, A.Overlay, {
 		instance.after('showOnChange', instance._afterShowOnChange);
 		instance.after('hideOnChange', instance._afterHideOnChange);
 
-		boudingBox.on('click', A.bind(instance._cancelHideOnInteraction, instance));
-		boudingBox.on('mouseenter', A.bind(instance._cancelHideOnInteraction, instance));
+		boudingBox.on('click', A.bind(instance._cancelAutoHide, instance));
+		boudingBox.on('mouseenter', A.bind(instance._cancelAutoHide, instance));
 		boudingBox.on('mouseleave', A.bind(instance._invokeHideTaskOnInteraction, instance));
 		instance.after('focusedChange', A.bind(instance._invokeHideTaskOnInteraction, instance));
 	},
@@ -287,14 +299,15 @@ A.extend(ContextOverlay, A.Overlay, {
 
 		trigger.detach(showOn, instance._showCallback);
 		trigger.detach(hideOn, instance._hideCallback);
+		trigger.detach(MOUSEDOWN, instance._stopTriggerEventPropagation);
 	},
 
 	// cancel hide if the user does some interaction with the tooltip
 	// interaction = focus, click, mouseover
-	_cancelHideOnInteraction: function(event) {
+	_cancelAutoHide: function(event) {
 		var instance = this;
 
-		if (instance.get(CANCEL_HIDE_ON_INTERACTION)) {
+		if (instance.get(CANCELLABLE_HIDE)) {
 			instance.clearIntervals();
 		}
 
@@ -303,10 +316,16 @@ A.extend(ContextOverlay, A.Overlay, {
 
 	_invokeHideTaskOnInteraction: function(event) {
 		var instance = this;
+		var cancellableHide = instance.get(cancellableHide);
+		var focused = instance.get(FOCUSED);
 
-		if (!instance.get(FOCUSED)) {
+		if (!focused && !cancellableHide) {
 			instance._hideTask.delay( instance.get(HIDE_DELAY) );
 		}
+	},
+
+	_stopTriggerEventPropagation: function(event) {
+		event.stopPropagation();
 	},
 
 	/*
@@ -338,6 +357,19 @@ A.extend(ContextOverlay, A.Overlay, {
 		return eventType;
 	},
 
+	_setHideOnDocumentClick: function(value) {
+		var instance = this;
+
+		if (value) {
+			A.ContextOverlayManager.register(instance);
+		}
+		else {
+			A.ContextOverlayManager.remove(instance);
+		}
+
+		return value;
+	},
+
 	_setShowOn: function(eventType) {
 		var instance = this;
 		var trigger = instance.get(TRIGGER);
@@ -359,6 +391,13 @@ A.extend(ContextOverlay, A.Overlay, {
 			};
 		}
 
+		if (eventType != MOUSEDOWN) {
+			trigger.on(MOUSEDOWN, instance._stopTriggerEventPropagation);
+		}
+		else {
+			trigger.detach(MOUSEDOWN, instance._stopTriggerEventPropagation);
+		}
+
 		trigger.on(eventType, instance._showCallback);
 
 		return eventType;
@@ -367,4 +406,8 @@ A.extend(ContextOverlay, A.Overlay, {
 
 A.ContextOverlay = ContextOverlay;
 
-}, '0.1a', { requires: [ 'aui-base', 'overlay', 'delayed-task' ] });
+A.ContextOverlayManager = new A.OverlayManager({});
+
+A.on(MOUSEDOWN, function() { A.ContextOverlayManager.hideAll(); }, A.getDoc());
+
+}, '0.1a', { requires: [ 'aui-base', 'overlay', 'overlay-manager', 'delayed-task' ] });

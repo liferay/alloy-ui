@@ -96,20 +96,6 @@ A.extend(Tooltip, A.ContextPanel, {
 		}
 	},
 
-	_cancelHideOnInteraction: function(event) {
-		var OverlayManagerClass = Tooltip.superclass.constructor.superclass;
-
-		// Tooltips should have automatic hide like the ContextOverlay
-		OverlayManagerClass._cancelHideOnInteraction.apply(this, arguments);
-	},
-
-	_invokeHideTaskOnInteraction: function() {
-		var OverlayManagerClass = Tooltip.superclass.constructor.superclass;
-
-		// Tooltips should have automatic hide like the ContextOverlay
-		OverlayManagerClass._invokeHideTaskOnInteraction.apply(this, arguments);
-	},
-
 	/*
 	* Listeners
 	*/
