@@ -129,9 +129,9 @@ A.extend(ContextOverlay, A.Overlay, {
 	*/
 	bindUI: function(){
 		var instance = this;
-		var boudingBox = instance.get(BOUNDING_BOX);
+		var boundingBox = instance.get(BOUNDING_BOX);
 
-		boudingBox.on(MOUSEDOWN, instance._stopTriggerEventPropagation);
+		boundingBox.on(MOUSEDOWN, instance._stopTriggerEventPropagation);
 
 		instance.before('triggerChange', instance._beforeTriggerChange);
 		instance.before('showOnChange', instance._beforeShowOnChange);
@@ -141,9 +141,9 @@ A.extend(ContextOverlay, A.Overlay, {
 		instance.after('showOnChange', instance._afterShowOnChange);
 		instance.after('hideOnChange', instance._afterHideOnChange);
 
-		boudingBox.on('click', A.bind(instance._cancelAutoHide, instance));
-		boudingBox.on('mouseenter', A.bind(instance._cancelAutoHide, instance));
-		boudingBox.on('mouseleave', A.bind(instance._invokeHideTaskOnInteraction, instance));
+		boundingBox.on('click', A.bind(instance._cancelAutoHide, instance));
+		boundingBox.on('mouseenter', A.bind(instance._cancelAutoHide, instance));
+		boundingBox.on('mouseleave', A.bind(instance._invokeHideTaskOnInteraction, instance));
 		instance.after('focusedChange', A.bind(instance._invokeHideTaskOnInteraction, instance));
 	},
 
