@@ -426,6 +426,8 @@ AUI().add(
 				bindUI: function() {
 					var instance = this;
 
+					ColorPicker.superclass.bindUI.apply(this, arguments);
+
 					instance._createEvents();
 
 					instance._colorCanvas.on('mousedown', instance._onCanvasMouseDown, instance);
