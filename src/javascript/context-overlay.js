@@ -22,7 +22,6 @@ var L = A.Lang,
 	HIDE_ON = 'hideOn',
 	HIDE_ON_DOCUMENT_CLICK = 'hideOnDocumentClick',
 	MOUSEDOWN = 'mousedown',
-	OWNER_DOCUMENT = 'ownerDocument',
 	SHOW = 'show',
 	SHOW_DELAY = 'showDelay',
 	SHOW_ON = 'showOn',
@@ -318,7 +317,7 @@ A.extend(ContextOverlay, A.Overlay, {
 
 	_invokeHideTaskOnInteraction: function(event) {
 		var instance = this;
-		var cancellableHide = instance.get(cancellableHide);
+		var cancellableHide = instance.get(CANCELLABLE_HIDE);
 		var focused = instance.get(FOCUSED);
 
 		if (!focused && !cancellableHide) {
