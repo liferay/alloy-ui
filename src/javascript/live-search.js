@@ -109,6 +109,13 @@ A.extend(LiveSearch, A.Base, {
 		instance.publish('search', { defaultFn: instance.search });
 	},
 
+	destroy: function() {
+		var instance = this;
+		var input = instance.get(INPUT);
+
+		input.detach('keyup');
+	},
+
 	/*
 	* Methods
 	*/
