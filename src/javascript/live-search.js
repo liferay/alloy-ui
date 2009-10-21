@@ -17,7 +17,7 @@ var L = A.Lang,
 	NODES = 'nodes',
 	ROWS = 'rows',
 	SHOW = 'show',
-	STAR = 'star',
+	STAR = '*',
 
 	KEY_ENTER = 13,
 
@@ -143,13 +143,12 @@ A.extend(LiveSearch, A.Base, {
 			var excludeCondition = isFunction(exclude) &&
 				exclude.apply(instance, [node]);
 
-			if (!excludeCondition) {
-				results.push({
-					content: content,
-					match: regex.test(content),
-					node: node
-				});
-			}
+			results.push({
+				content: content,
+				excluded: excludeCondition,
+				match: regex.test(content),
+				node: node
+			});
 		});
 
 		return results;
@@ -182,11 +181,13 @@ A.extend(LiveSearch, A.Base, {
 		A.each(results, function(search) {
 			var node = search.node;
 
-			if (search.match) {
-				instance.get(SHOW).apply(instance, [node]);
-			}
-			else {
-				instance.get(HIDE).apply(instance, [node]);
+			if (!search.excluded) {
+				if (search.match) {
+					instance.get(SHOW).apply(instance, [node]);
+				}
+				else {
+					instance.get(HIDE).apply(instance, [node]);
+				}
 			}
 		});
 
