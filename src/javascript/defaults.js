@@ -242,6 +242,15 @@
 					type: 'css'
 				},
 
+
+				/*
+				* LiveSearch
+				*/
+				'live-search': {
+					fullpath: PATH_JAVASCRIPT + 'live-search.js',
+					requires: [ 'aui-base' ]
+				},
+
 				/*
 				* Nested list
 				*/
