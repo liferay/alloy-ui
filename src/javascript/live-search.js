@@ -15,7 +15,6 @@ var L = A.Lang,
 	LIVE_SEARCH = 'live-search',
 	MATCH_REGEX = 'matchRegex',
 	NODES = 'nodes',
-	ROWS = 'rows',
 	SHOW = 'show',
 	STAR = '*',
 
@@ -79,11 +78,6 @@ A.mix(LiveSearch, {
 			}
 		},
 
-		rows: {
-			value: [],
-			validator: isObject
-		},
-
 		show: {
 			value: function(node) {
 				return node.show();
@@ -126,7 +120,7 @@ A.extend(LiveSearch, A.Base, {
 	filter: function(query) {
 		var instance = this;
 		var results = [];
-		var rows = instance.get(ROWS);
+		var nodes = instance.get(NODES);
 		var index = instance.get(INDEX);
 		var exclude = instance.get(EXCLUDE);
 
@@ -138,7 +132,7 @@ A.extend(LiveSearch, A.Base, {
 		);
 
 		A.each(index, function(content, index) {
-			var node = rows[index];
+			var node = nodes.item(index);
 
 			var excludeCondition = isFunction(exclude) &&
 				exclude.apply(instance, [node]);
@@ -157,7 +151,6 @@ A.extend(LiveSearch, A.Base, {
 	refreshIndex: function() {
 		var instance = this;
 		var index = [];
-		var rows = [];
 
 		instance.get(NODES).each(function(node) {
 			var content = L.trim(
@@ -165,11 +158,9 @@ A.extend(LiveSearch, A.Base, {
 			);
 
 			index.push(content);
-			rows.push(node);
 		});
 
 		instance.set(INDEX, index);
-		instance.set(ROWS, rows);
 	},
 
 	search: function(event) {
