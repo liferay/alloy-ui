@@ -95,11 +95,9 @@ AUI().ready('live-search', 'tooltip', function(A) {
 		},
 
 		hide: function(node) {
-			return node.hide().setAttribute('nodeStatus', 'hide');
-		},
-
-		exclude: function(node) {
-			return node.hasClass('excluded');
+			if (!node.hasClass('excluded')) {
+				node.hide().setAttribute('nodeStatus', 'hide');				
+			}
 		},
 
 		on: {

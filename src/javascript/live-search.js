@@ -8,7 +8,6 @@ var L = A.Lang,
 	BLANK = '',
 	DATA = 'data',
 	DELAY = 'delay',
-	EXCLUDE = 'exclude',
 	HIDE = 'hide',
 	INDEX = 'index',
 	INPUT = 'input',
@@ -41,10 +40,6 @@ A.mix(LiveSearch, {
 
 		delay: {
 			value: 250
-		},
-
-		exclude: {
-			validator: isFunction
 		},
 
 		hide: {
@@ -122,7 +117,6 @@ A.extend(LiveSearch, A.Base, {
 		var results = [];
 		var nodes = instance.get(NODES);
 		var index = instance.get(INDEX);
-		var exclude = instance.get(EXCLUDE);
 
 		instance.query = query;
 		instance.normalizedQuery = instance._normalizeQuery(query);
@@ -134,12 +128,8 @@ A.extend(LiveSearch, A.Base, {
 		A.each(index, function(content, index) {
 			var node = nodes.item(index);
 
-			var excludeCondition = isFunction(exclude) &&
-				exclude.apply(instance, [node]);
-
 			results.push({
 				content: content,
-				excluded: excludeCondition,
 				match: regex.test(content),
 				node: node
 			});
@@ -172,13 +162,11 @@ A.extend(LiveSearch, A.Base, {
 		A.each(results, function(search) {
 			var node = search.node;
 
-			if (!search.excluded) {
-				if (search.match) {
-					instance.get(SHOW).apply(instance, [node]);
-				}
-				else {
-					instance.get(HIDE).apply(instance, [node]);
-				}
+			if (search.match) {
+				instance.get(SHOW).apply(instance, [node]);
+			}
+			else {
+				instance.get(HIDE).apply(instance, [node]);
 			}
 		});
 
