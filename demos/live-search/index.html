@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<style type="text/css">
+
+	.query {
+		color: #444444;
+		font-size: 20px;
+		padding: 5px;
+		width: 443px;
+	}
+
+	.list {
+		margin: 30px;
+		width: 500px;
+		border: 2px solid #ccc;
+	}
+
+	.entry, .entry-query {
+		margin: 10px;
+		border: 1px solid #ccc;
+		padding: 10px;
+		font-size: 14px;
+	}
+
+	</style>
+</head>
+
+<body>
+
+<h1>Alloy - LiveSearch</h1>
+
+<div class="list" id="search1">
+	<div class="entry-query">
+		<input class="query" type="text" name="query1" value="" id="query1" />
+	</div>
+
+	<div class="entry">
+		Entry liferay<br/>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</div>
+
+	<div class="entry">
+		Entry google<br/>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</div>
+
+	<div class="entry">
+		Entry yahoo<br/>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</div>
+
+	<div class="entry">
+		Entry microsoft<br/>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</div>
+
+	<div class="entry">
+		Entry ibm<br/>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</div>
+
+	<div class="entry">
+		Entry cisco<br/>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</div>
+
+	<div class="entry excluded">
+		Excluded node<br/>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+AUI().ready('live-search', 'tooltip', function(A) {
+
+	var liveSearch = new A.LiveSearch({
+		input: '#query1',
+		nodes: '#search1 .entry',
+
+		data: function(node) {
+			return node.html();
+		},
+
+		show: function(node) {
+			return node.show().setAttribute('nodeStatus', 'show');
+		},
+
+		hide: function(node) {
+			return node.hide().setAttribute('nodeStatus', 'hide');
+		},
+
+		exclude: function(node) {
+			return node.hasClass('excluded');
+		},
+
+		on: {
+			search: function(event) {
+				console.log('before search');
+				// console.log(event);
+			}
+		},
+
+		after: {
+			search: function(event) {
+				console.log('after search');
+				// console.log(event);
+			}
+		}
+	});
+
+	// extras
+
+	var tooltip = new A.Tooltip({
+		bodyContent: 'Type your search below',
+		trigger: '.query',
+		align: { node: '.query', points: [ 'bc', 'tc' ] }
+	})
+	.render();
+});
+
+</script>
+
+</body>
+</html>
