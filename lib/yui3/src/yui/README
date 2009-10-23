@@ -1,0 +1,96 @@
+The YUI Global
+    Provides core YUI functionality, including module registration and consumption utils,
+    language/array/object utilities, browser detection, a setTimout/setInterval wrapper,
+    and dynamic loading of script and css files.
+
+    The yui module is a rollup of the following modules:
+        yui-base
+        get
+
+3.next
+* Added the ability to define a global configuration object (YUI_config).
+* Added Object.some().
+
+3.0.0
+
+* Extracted the loader from the seed file.  Instead, if loader not included, 'get' is included,
+  and dependencies are missing, the loader will be fetched before continuing.
+* User agent detection is more granular.  e.g., FireFox 3.5 reports gecko 1.91 rather than 1.9.
+* Fixed UA.os.
+* Added additional mobile device detection.
+* Get utility attribute cleanup before purging nodes.
+* cached accepts a parameter to refresh a cached value.
+* yui-log and yui-later are now optional modules that are included with yui.js.
+* queue-base is no longer a submodule of queue -- it is part of yui-base.
+* All YUI submodules end up in the yui build directory.
+* Dynamic loading can be disabled by setting the 'bootstrap' config to false.
+
+3.0.0 beta 1
+
+    Core:
+    - Y.fail has been renamed to Y.error so that Y.fail can be used for the assertion
+      engine.
+    - Y.stamp now accepts a readOnly parameter to be used when you are only interested
+      in reading an existing guid rather than creating a new one.
+    - Y.stamp defends against stamping items that can't be stamped.
+    - Added to Object: values(), hasKey(), hasValue(), size(), getValue, setValue
+      (the latter are for manipulating nested values)
+    - Y.use calls are queued during dynamic loading.
+    - Added Y.cached for function memoizing
+    - added numericSort to Array
+    - The yui:log event broadcasts globally.
+
+    Lang: 
+    - Added Lang.type (typeof abstraction), and refactored some 'is' methods to use it.
+
+    Get:
+    - Accepts an attribute collection config to apply to inserted nodes.
+    - id attributes are globally unique
+    - Now accepts purgethreshold as a config option.  This will set the number of transactions
+      required before auto removing nodes from previous transactions (default is 20)
+
+    Loader:
+    - yuitest renamed to test, now requires collection
+    - lots of new module metadata
+    - added onCSS
+    - Loader requests are queued globally
+    - Accepts jsAttributes and cssAttributes configs for adding attributes to inserted nodes
+    - The force config
+
+    UA:
+    - Added 'secure' property for SSL detection
+    - Added 'os' property for windows vs mac detection
+    - Added Adobe Air and Google Caja detection
+
+3.0.0pr2
+
+    Core:
+
+    - The initial dependency calculation should not allow automatic rollup.
+    - Y.fail with throw/rethrow errors by default (throwFail is now true).
+    - Y.namespace reverted to scrub YAHOO out if included as the first
+      level of the namespace.
+    - 'useConsole' config changed to useBrowserConsole
+
+    Array:
+    - Added Array.some
+
+    Get:
+    - Protects against trailing commas in array of files to load.
+
+    Loader:
+    - get requires yui-base
+    - loader requires get
+    - combo url build process defends against undefined modules
+    - Added combo handler support for CSS
+    - Filters are correctly applied to combo and fullpath urls
+    - Added compat, profiler, yuitest, widget, stylesheet, classnamemanager,
+            overlay, plugin, slider, console
+    - Added io submodules
+    - queue requires event
+    - Added submodule metadata logic
+    - Added plugin metadata logic
+    - Added skin metadata logic
+
+3.0.0pr1
+    Initial release
