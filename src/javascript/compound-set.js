@@ -52,6 +52,7 @@ AUI().add(
 			},
 
 			getKey: {
+				lazyAdd: false,
 				value: null,
 				getter: function(value) {
 					var instance = this;
@@ -191,7 +192,7 @@ AUI().add(
 				each: function(fn, context) {
 					var instance = this;
 
-					return A.Array.each(instance.values, fn, context);
+					return instance._each(instance.values, fn, context);
 				},
 
 				eachKey: function(fn, context) {
@@ -199,7 +200,7 @@ AUI().add(
 
 					var keys = instance.get('keys');
 
-					return A.Array.each(keys, fn, context);
+					return instance._each(keys, fn, context);
 				},
 
 				filter: function(fn, context) {
@@ -350,6 +351,31 @@ AUI().add(
 					);
 				},
 
+				invoke: function(method, args) {
+					var instance = this;
+
+					var values = instance.values;
+					var length = values.length;
+
+					if (!args) {
+						args = [];
+					}
+					else {
+						args = [].concat(args);
+					}
+
+					for (var i = 0; i < length; i++) {
+						var item = values[i];
+						var itemMethod = item && item[method];
+
+						if (Lang.isFunction(itemMethod)) {
+							itemMethod.apply(item, args);
+						}
+					}
+
+					return instance;
+				},
+
 				item: function(key) {
 					var instance = this;
 
@@ -457,6 +483,22 @@ AUI().add(
 					var instance = this;
 
 					instance._sortBy('value', direction, fn);
+				},
+
+				_each: function(arr, fn, context) {
+					var instance = this;
+
+					var length = arr.length;
+
+					context = context || instance;
+
+					for (var i = 0; i < length; i++) {
+						if (fn.call(context, arr[i], i, arr) === false) {
+							return false;
+						}
+					}
+
+					return true;
 				},
 
 				_generateRegEx: function(value, startsWith, caseSensitive) {

@@ -369,6 +369,7 @@ AUI(
 
 					var indices = [];
 					var values = [];
+					var shortValues = [];
 
 					col.each(
 						function(item, index, collection) {
@@ -379,6 +380,18 @@ AUI(
 
 					A.ArrayAssert.itemsAreEqual([2,3,4,5], values);
 					A.ArrayAssert.itemsAreEqual([0,1,2,3], indices);
+
+					col.each(
+						function(item, index, collection) {
+							shortValues.push(item);
+
+							if (index > 1) {
+								return false;
+							}
+						}
+					);
+
+					A.ArrayAssert.itemsAreEqual([2,3,4], shortValues);
 				},
 				testEachKey: function() {
 					var instance = this;
@@ -586,10 +599,39 @@ AUI(
 
 					A.Assert.areSame(0, instance.myCol.indexOf(instance.myData));
 				},
+
 				testIndexOfKey: function() {
 					var instance = this;
 
 					A.Assert.areSame(0, instance.myCol.indexOfKey('keyAdd'));
+				},
+
+				testInvoke: function() {
+					var instance = this;
+
+					var col = instance.myCol;
+
+					var testVal = 10;
+
+					col.addAll(
+						{
+							key2: [],
+							key3: {
+								run: function(n) {
+									testVal *= n;
+									return testVal;
+								}
+							}
+						}
+					);
+
+					var newVal = instance.myCol.invoke('run', 10);
+
+					A.Assert.areSame(100, testVal);
+
+					instance.myCol.invoke('push', [5,6,7]);
+
+					A.ArrayAssert.itemsAreEqual([5,6,7], col.item('key2'));
 				},
 
 				testInsert: function() {
