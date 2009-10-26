@@ -217,7 +217,7 @@ A.extend(Dialog, A.Overlay, {
 
 		var closeIcon = new A.ToolItem(CLOSE);
 
-		closeIcon.get('node').addClass(CSS_DIALOG_CLOSE);
+		closeIcon.get('contentBox').addClass(CSS_DIALOG_CLOSE);
 
 		instance.closeIcon = closeIcon;
 
