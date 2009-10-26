@@ -62,7 +62,7 @@
 				*/
 				'editable': {
 					fullpath: PATH_JAVASCRIPT + 'editable.js',
-					requires: [ 'aui-base', 'editable-css', 'tool-item' ]
+					requires: [ 'aui-base', 'editable-css', 'combobox', 'textarea' ]
 				},
 				'editable-css': {
 					ext: false,
