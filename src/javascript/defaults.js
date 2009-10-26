@@ -88,7 +88,12 @@
 				*/
 				'tool-item': {
 					fullpath: PATH_JAVASCRIPT + 'tool-item.js',
-					requires: [ 'aui-base', 'state-interaction' ]
+					requires: [ 'aui-base', 'state-interaction', 'tool-item-css' ]
+				},
+				'tool-item-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'tool-item.css',
+					type: 'css'
 				},
 
 				/*

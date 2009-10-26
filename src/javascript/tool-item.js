@@ -3,6 +3,8 @@ AUI().add(
 	function(A) {
 		var Lang = A.Lang,
 			isString = Lang.isString,
+			isFunction = Lang.isFunction,
+			isObject = Lang.isObject,
 
 			getClassName = A.ClassNameManager.getClassName,
 
@@ -30,72 +32,65 @@ AUI().add(
 		ToolItem.NAME = 'tool-item';
 
 		ToolItem.ATTRS = {
-			classNames: {
-				value: {
-					active: ''
-				}
+			classNames: {},
+
+			activeState: {
+				value: false
 			},
 
-			icon: {
+			defaultState: {},
+
+			handler: {
+				lazyAdd: false,
+				value: null,
 				setter: function(value) {
 					var instance = this;
 
-					var iconNode = instance.get('iconNode');
+					var fn = value;
+					var context = instance;
+					var args = instance;
+					var type = 'click';
 
-					if (iconNode) {
-						iconNode.addClass(getClassName(ICON, value))
+					if (isObject(fn)) {
+						var handlerConfig = fn;
+
+						fn = handlerConfig.fn || fn;
+						context = handlerConfig.context || context;
+						type = handlerConfig.type || type;
+					}
+
+					if (isFunction(fn)) {
+						instance.on(type, A.rbind(fn, context, args, handlerConfig.args));
 					}
 
 					return value;
 				}
 			},
 
+			hoverState: {},
+
 			iconNode: {
-				value: null,
-				setter: function(value) {
+				valueFn: function() {
 					var instance = this;
 
-					var icon = A.get(value);
-
-					if (!icon) {
-						icon = instance._createDefaultIconNodeToolItem();
-					}
-					else {
-						icon = icon.item(0);
-					}
-
-					icon.addClass(CSS_ICON);
-					icon.addClass(getClassName(ICON, instance.get(ICON)));
-
-					return icon;
+					return A.Node.create(TPL_ICON);
 				}
 			},
 
-			node: {
-				value: null,
+			icon: {
+				lazyAdd: false,
 				setter: function(value) {
 					var instance = this;
 
-					var node = A.get(value);
+					instance._uiSetIcon(value);
 
-					if (!node) {
-						node = instance._createDefaultNodeToolItem();
-					}
-					else {
-						node = node.item(0);
-					}
+					return value;
+				}
+			},
 
-					node.addClass(CSS_TOOL);
-
-					node.plug(
-						A.StateInteractionPlugin,
-						{
-							classNames: instance.get('classNames'),
-							bubbleTarget: instance
-						}
-					);
-
-					return node;
+			id: {
+				valueFn: function() {
+					return A.guid();
 				}
 			},
 
@@ -124,12 +119,25 @@ AUI().add(
 				renderUI: function() {
 					var instance = this;
 
-					var node = instance.get('node');
-					var icon = instance.get('iconNode');
+					var contentBox = instance.get('contentBox');
+					var iconNode = instance.get('iconNode');
 
-					node.appendChild(icon);
+					contentBox.addClass(CSS_TOOL);
 
-					instance.get('contentBox').appendChild(node);
+					iconNode.addClass(CSS_ICON);
+
+					instance.plug(
+						A.StateInteractionPlugin,
+						{
+							activeState: instance.get('activeState'),
+							classNames: instance.get('classNames'),
+							defaultState: instance.get('defaultState'),
+							hoverState: instance.get('hoverState'),
+							bubbleTarget: instance
+						}
+					);
+
+					contentBox.appendChild(iconNode);
 				},
 
 				bindUI: function() {
@@ -141,18 +149,21 @@ AUI().add(
 				_afterIconChange: function(event) {
 					var instance = this;
 
-					var prevVal = event.prevVal;
-					var iconNode = instance.get('iconNode');
-
-					iconNode.removeClass(getClassName(ICON, prevVal));
+					instance._uiSetIcon(event.newVal, event.prevVal);
 				},
 
-				_createDefaultNodeToolItem: function() {
-					return A.Node.create(TPL_TOOL);
-				},
+				_uiSetIcon: function(newVal, prevVal) {
+					var instance = this;
 
-				_createDefaultIconNodeToolItem: function() {
-					return A.Node.create(TPL_ICON);
+					var contentBox = instance.get('iconNode');
+
+					newVal = getClassName(ICON, newVal);
+
+					if (prevVal) {
+						prevVal = getClassName(ICON, prevVal);
+					}
+
+					contentBox.replaceClass(prevVal, newVal);
 				}
 			}
 		);

@@ -2,6 +2,7 @@ AUI().add(
 	'state-interaction',
 	function(A) {
 		var Lang = A.Lang,
+			isBoolean = Lang.isBoolean,
 			isString = Lang.isString,
 
 			getClassName = A.ClassNameManager.getClassName,
@@ -12,7 +13,16 @@ AUI().add(
 			CSS_STATE_HOVER = getClassName(STATE, 'hover'),
 			CSS_STATE_ACTIVE = getClassName(STATE, 'active');
 
-		var StateInteractionPlugin = function() {
+		var StateInteractionPlugin = function(config) {
+			var host = config.host;
+			var node = host;
+
+			if (A.Widget && host instanceof A.Widget) {
+				node = host.get('contentBox');
+			}
+
+			config.node = node;
+
 			StateInteractionPlugin.superclass.constructor.apply(this, arguments);
 		};
 
@@ -21,48 +31,12 @@ AUI().add(
 
 		StateInteractionPlugin.ATTRS = {
 			active: {
-				value: false,
-				setter: function(value) {
-					var instance = this;
-
-					var action = 'addClass';
-
-					if (!value) {
-						action = 'removeClass';
-					}
-
-					instance.get('host')[action](instance._CSS_STATE_ACTIVE);
-				}
+				value: false
 			},
 
-			'default': {
-				value: false,
-				setter: function(value) {
-					var instance = this;
-
-					var action = 'addClass';
-
-					if (!value) {
-						action = 'removeClass';
-					}
-
-					instance.get('host')[action](instance._CSS_STATE_DEFAULT);
-				}
-			},
-
-			hover: {
-				value: false,
-				setter: function(value) {
-					var instance = this;
-
-					var action = 'addClass';
-
-					if (!value) {
-						action = 'removeClass';
-					}
-
-					instance.get('host')[action](instance._CSS_STATE_HOVER);
-				}
+			activeState: {
+				value: true,
+				validator: isBoolean
 			},
 
 			bubbleTarget: {
@@ -71,6 +45,28 @@ AUI().add(
 
 			classNames: {
 				value: {}
+			},
+
+			'default': {
+				value: false
+			},
+
+			defaultState: {
+				value: true,
+				validator: isBoolean
+			},
+
+			hover: {
+				value: false
+			},
+
+			hoverState: {
+				value: true,
+				validator: isBoolean
+			},
+
+			node: {
+				value: null
 			}
 		};
 
@@ -85,11 +81,15 @@ AUI().add(
 					var defaultClass = instance.get('classNames.default');
 					var hoverClass = instance.get('classNames.hover');
 
-					instance._CSS_STATE_ACTIVE = isString(activeClass) ? activeClass : CSS_STATE_ACTIVE;
-					instance._CSS_STATE_DEFAULT = isString(defaultClass) ? defaultClass : CSS_STATE_DEFAULT;
-					instance._CSS_STATE_HOVER = isString(hoverClass) ? hoverClass : CSS_STATE_HOVER;
+					instance._CSS_STATES = {
+						active: isString(activeClass) ? activeClass : CSS_STATE_ACTIVE,
+						'default': isString(defaultClass) ? defaultClass : CSS_STATE_DEFAULT,
+						hover: isString(hoverClass) ? hoverClass : CSS_STATE_HOVER
+					};
 
-					instance.get('host').addClass(instance._CSS_STATE_DEFAULT);
+					if (instance.get('defaultState')) {
+						instance.get('node').addClass(instance._CSS_STATES['default']);
+					}
 
 					instance._createEvents();
 
@@ -99,12 +99,16 @@ AUI().add(
 				_attachInteractionEvents: function() {
 					var instance = this;
 
-					var node = instance.get('host');
+					var node = instance.get('node');
 
 					node.on('click', instance._fireEvents, instance);
 
 					node.on('mouseenter', A.rbind(instance._fireEvents, instance, 'mouseover'));
 					node.on('mouseleave', A.rbind(instance._fireEvents, instance, 'mouseout'));
+
+					instance.after('activeChange', instance._uiSetState);
+					instance.after('hoverChange', instance._uiSetState);
+					instance.after('defaultChange', instance._uiSetState);
 				},
 
 				_fireEvents: function(event, officialType) {
@@ -171,6 +175,22 @@ AUI().add(
 					var instance = this;
 
 					instance.set('hover', true);
+				},
+
+				_uiSetState: function(event) {
+					var instance = this;
+
+					var attrName = event.attrName;
+
+					if (instance.get(attrName + 'State')) {
+						var action = 'addClass';
+
+						if (!event.newVal) {
+							action = 'removeClass';
+						}
+
+						instance.get('node')[action](instance._CSS_STATES[attrName]);
+					}
 				}
 			}
 		);
