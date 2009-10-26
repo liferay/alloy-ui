@@ -64,7 +64,7 @@ AUI().add(
 						instance.set('container', value.item(0).get('parentNode'));
 					}
 					else {
-						value = A.Attribute.INVALID_ATTRIBUTE;
+						value = A.Attribute.INVALID_VALUE;
 					}
 
 					return value;
