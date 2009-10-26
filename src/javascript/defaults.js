@@ -302,6 +302,14 @@
 				},
 
 				/*
+				* Form
+				*/
+				'form': {
+					fullpath: PATH_JAVASCRIPT + 'form.js',
+					requires: [ 'aui-base', 'compound-set', 'io-form', 'field' ]
+				},
+
+				/*
 				* Field
 				*/
 				'field': {
