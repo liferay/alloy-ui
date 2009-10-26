@@ -40,7 +40,7 @@ AUI().add(
 				initializer: function() {
 					var instance = this;
 
-					instance.tools = new A.CompoundSet();
+					instance.tools = new A.DataSet();
 				},
 
 				renderUI: function() {
@@ -102,7 +102,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['compound-set', 'tool-item'],
+		requires: ['data-set', 'tool-item'],
 		use: []
 	}
 );
