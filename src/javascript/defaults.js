@@ -302,6 +302,14 @@
 				},
 
 				/*
+				* Field
+				*/
+				'field': {
+					fullpath: PATH_JAVASCRIPT + 'field.js',
+					requires: [ 'substitute' ]
+				},
+
+				/*
 				* StdModIOPlugin
 				*/
 				'io-stdmod': {
