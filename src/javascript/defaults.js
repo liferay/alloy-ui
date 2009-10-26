@@ -323,6 +323,14 @@
 				},
 
 				/*
+				* Fieldset
+				*/
+				'fieldset': {
+					fullpath: PATH_JAVASCRIPT + 'fieldset.js',
+					requires: [ 'module' ]
+				},
+
+				/*
 				* Field
 				*/
 				'field': {
