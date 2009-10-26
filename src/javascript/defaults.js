@@ -153,7 +153,7 @@
 				*/
 				'color-picker': {
 					fullpath: PATH_JAVASCRIPT + 'color-picker.js',
-					requires: [ 'context-overlay', 'dd', 'slider', 'substitute', 'tool-item', 'color-picker-css', 'form', 'module' ]
+					requires: [ 'context-overlay', 'dd', 'slider', 'substitute', 'tool-item', 'color-picker-css', 'form', 'panel' ]
 				},
 				'color-picker-css': {
 					ext: false,
@@ -303,13 +303,13 @@
 				/*
 				* Module
 				*/
-				'module': {
-					fullpath: PATH_JAVASCRIPT + 'module.js',
-					requires: [ 'module-css', 'widget', 'widget-stdmod', 'tool-set' ]
+				'panel': {
+					fullpath: PATH_JAVASCRIPT + 'panel.js',
+					requires: [ 'panel-css', 'widget', 'widget-stdmod', 'tool-set' ]
 				},
-				'module-css': {
+				'panel-css': {
 					ext: false,
-					fullpath: PATH_THEME_ROOT + 'module.css',
+					fullpath: PATH_THEME_ROOT + 'panel.css',
 					type: 'css'
 				},
 
@@ -326,7 +326,7 @@
 				*/
 				'fieldset': {
 					fullpath: PATH_JAVASCRIPT + 'fieldset.js',
-					requires: [ 'module' ]
+					requires: [ 'panel' ]
 				},
 
 				/*
