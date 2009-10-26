@@ -149,11 +149,11 @@
 				},
 
 				/*
-				* ContextPanel
+				* ColorPicker
 				*/
 				'color-picker': {
 					fullpath: PATH_JAVASCRIPT + 'color-picker.js',
-					requires: [ 'context-overlay', 'dd', 'slider', 'substitute', 'tool-item', 'color-picker-css' ]
+					requires: [ 'context-overlay', 'dd', 'slider', 'substitute', 'tool-item', 'color-picker-css', 'form', 'module' ]
 				},
 				'color-picker-css': {
 					ext: false,

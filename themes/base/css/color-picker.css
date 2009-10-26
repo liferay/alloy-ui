@@ -24,31 +24,24 @@
 }
 
 .aui-colorpicker-controls {
+	height: 115px;
 	left: 226px;
 	position: absolute;
 	top: 75px;
-	height: 100px;
+	width: 80px;
 }
 
-.aui-colorpicker-controls .aui-ctrl-holder {
-	display: block;
-	margin-bottom: 1px;
+.aui-colorpicker-controls .aui-field-content .aui-field-label {
+	margin-top: 0;
+	width: 20%;
 }
 
-.aui-colorpicker-controls label {
-	display: inline-block;
-	text-align: right;
-	padding-right: 5px;
-	width: 10px;
+.aui-colorpicker-controls .aui-field-content .aui-field-input-text {
+	width: auto;
 }
 
-.aui-colorpicker-controls input {
-	padding: 3px 1px;
-}
-
-.aui-colorpicker-hex-controls {
-	clear: both;
-	padding: 2px;
+.aui-colorpicker-controls .aui-field-content {
+	padding: 3px 0;
 }
 
 .aui-colorpicker-hue-thumb {

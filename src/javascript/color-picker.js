@@ -16,14 +16,6 @@ AUI().add(
 			CSS_CONTAINER = getClassName(NAME, 'container'),
 			CSS_CONTROLS_CONTAINER = getClassName(NAME, 'controls'),
 
-			CSS_CONTROL_HOLDER = getClassName('ctrl-holder'),
-			CSS_CONTROL_INPUT = getClassName('input-text'),
-
-			CSS_CONTROL_B = [CSS_CONTROL_INPUT, getClassName(NAME, 'blue')].join(' '),
-			CSS_CONTROL_G = [CSS_CONTROL_INPUT, getClassName(NAME, 'green')].join(' '),
-			CSS_CONTROL_R = [CSS_CONTROL_INPUT, getClassName(NAME, 'red')].join(' '),
-			CSS_CONTROL_HEX = [CSS_CONTROL_INPUT, getClassName(NAME, 'hex')].join(' '),
-
 			CSS_SWATCH_CONTAINER = getClassName(NAME, 'swatch'),
 			CSS_SWATCH_CURRENT = getClassName(NAME, 'swatch-current'),
 			CSS_SWATCH_ORIGINAL = getClassName(NAME, 'swatch-original'),
@@ -33,19 +25,8 @@ AUI().add(
 			CSS_HUE_THUMB_IMAGE = getClassName(NAME, 'hue-thumb-image'),
 			CSS_TRIGGER= getClassName(NAME, 'trigger'),
 			CSS_TRIGGER_IMAGE = getClassName(NAME, 'trigger-image'),
-			CSS_HELPER_CLEARFIX = getClassName('helper', 'clearfix'),
-			CSS_STATE_DEFAULT = getClassName('state-default'),
-			CSS_HEADER = getClassName(NAME, 'hd'),
 
-			CSS_ICON_CLOSE = getClassName('widget', 'close'),
-
-			CSS_PICKER_HEADER = [CSS_HEADER, CSS_STATE_DEFAULT, CSS_HELPER_CLEARFIX].join(' '),
-
-			TPL_HEADER = '<div class="'+ CSS_PICKER_HEADER +'"></div>',
 			TPL_CANVAS = '<div class="' + CSS_CANVAS + '"></div>',
-			TPL_CONTAINER = '<div class="' + CSS_CONTAINER + '"></div>',
-			TPL_CONTROLS_CONTAINER = '<div class="' + CSS_CONTROLS_CONTAINER + '"></div>',
-			TPL_CONTROL = '<span class="' + CSS_CONTROL_HOLDER + '"><label for="{id}">{string}</label><input class="{cssClass}" id="{id}" size="{size}" type="text" /></span>',
 			TPL_HUE_CANVAS = '<div class="' + CSS_HUE_CANVAS + '"></div>',
 			TPL_SWATCH_CONTAINER = '<div class="' + CSS_SWATCH_CONTAINER + '"></div>',
 			TPL_SWATCH_CURRENT = '<div class="' + CSS_SWATCH_CURRENT + '"></div>',
@@ -242,6 +223,23 @@ AUI().add(
 		ColorPicker.NAME = 'colorpicker';
 
 		ColorPicker.ATTRS = {
+			colors: {
+				value: {},
+				getter: function() {
+					var instance = this;
+
+					var rgb = instance.get('rgb');
+					var hex = instance.get('hex');
+
+					var colors = {};
+
+					A.mix(colors, rgb);
+
+					colors.hex = hex;
+
+					return colors;
+				}
+			},
 			hex: {
 				value: 'FFFFFF',
 				getter: function() {
@@ -272,7 +270,7 @@ AUI().add(
 						instance.set('rgb', rgb);
 					}
 					else {
-						value = A.Attribute.INVALID_ATTRIBUTE;
+						value = A.Attribute.INVALID_VALUE;
 					}
 
 					return value;
@@ -308,7 +306,7 @@ AUI().add(
 						};
 					}
 					else if (!isObject(value)) {
-						value = A.Attribute.INVALID_ATTRIBUTE;
+						value = A.Attribute.INVALID_VALUE;
 					}
 
 					return value;
@@ -357,7 +355,7 @@ AUI().add(
 						value = current;
 					}
 					else if (!isObject(value)) {
-						value = A.Attribute.INVALID_ATTRIBUTE;
+						value = A.Attribute.INVALID_VALUE;
 					}
 
 					value.red = Color.constrainTo(value.red, 0, 255, 255);
@@ -420,7 +418,6 @@ AUI().add(
 					instance._renderContainer();
 					instance._renderSliders();
 					instance._renderControls();
-					instance._renderCloseButton();
 				},
 
 				bindUI: function() {
@@ -437,11 +434,9 @@ AUI().add(
 					instance._colorPicker.after('drag:drag', instance._afterThumbDrag, instance);
 					instance._hueSlider.after('valueChange', instance._afterValueChange, instance);
 
-					instance._formFieldR.on('blur', A.rbind(instance._updateColor, instance, 'rgb.red'));
-					instance._formFieldG.on('blur', A.rbind(instance._updateColor, instance, 'rgb.green'));
-					instance._formFieldB.on('blur', A.rbind(instance._updateColor, instance, 'rgb.blue'));
+					var formNode = instance._colorForm.get('contentBox');
 
-					instance._formFieldHex.on('blur', A.rbind(instance._updateColor, instance, 'hex'));
+					formNode.delegate('change', A.bind(instance._onFormChange, instance), 'input');
 
 					instance.after('hexChange', instance._updateRGB);
 					instance.after('rgbChange', instance._updateRGB);
@@ -449,8 +444,6 @@ AUI().add(
 					instance._colorSwatchOriginal.on('click', instance._restoreRGB, instance);
 
 					instance.after('visibleChange', instance._afterVisibleChangeCP);
-
-					instance._containerCloseCP.on('click', instance.hide, instance);
 				},
 
 				syncUI: function() {
@@ -460,11 +453,7 @@ AUI().add(
 
 					var rgb = instance.get('rgb');
 
-					instance._formFieldR.set('value', rgb.red);
-					instance._formFieldG.set('value', rgb.green);
-					instance._formFieldB.set('value', rgb.blue);
-
-					instance._formFieldHex.set('value', instance.get('hex'));
+					instance._updateControls();
 
 					instance._updateOriginalRGB();
 				},
@@ -658,37 +647,51 @@ AUI().add(
 					instance._updateColorSwatch();
 				},
 
+				_onFormChange: function(event) {
+					var instance = this;
+
+					var input = event.currentTarget;
+
+					var colorKey = input.get('id');
+
+					if (colorKey != 'hex') {
+						colorKey = 'rgb.' + colorKey;
+					}
+
+					instance.set(colorKey, input.val());
+				},
+
 				_onThumbDragStart: function(event) {
 					var instance = this;
 
 					instance._updatePickerOffset();
 				},
 
-				_renderCloseButton: function() {
-					var instance = this;
-
-					instance._containerCloseCP = new A.ToolItem('close');
-
-					instance._containerCloseCP.render(instance.headerContentNode);
-
-					instance._containerCloseCP.get('boundingBox').addClass(CSS_ICON_CLOSE);
-				},
-
 				_renderContainer: function() {
 					var instance = this;
 
 					if (!instance._pickerContainer) {
-						var bodyContent = A.Node.create(TPL_CONTAINER);
+						var container = new A.Module(
+							{
+								tools: [
+									{
+										icon: 'close',
+										id: 'close',
+										handler: {
+											fn: instance.hide,
+											context: instance
+										}
+									}
+								]
+							}
+						)
+						.render(instance.get('contentBox'));
 
-						instance.headerContentNode = A.Node.create(TPL_HEADER);
+						var bodyNode = container.bodyNode;
 
-						instance.setStdModContent(WidgetStdMod.HEADER, instance.headerContentNode);
-						instance.setStdModContent(WidgetStdMod.BODY, bodyContent);
+						bodyNode.addClass(CSS_CONTAINER);
 
-						instance.get('contentBox').appendChild(instance.headerContentNode);
-						instance.get('contentBox').appendChild(bodyContent);
-
-						instance._pickerContainer = bodyContent;
+						instance._pickerContainer = bodyNode;
 					}
 				},
 
@@ -704,66 +707,43 @@ AUI().add(
 
 					instance._pickerContainer.appendChild(instance._colorSwatch);
 
-					var formFieldControls = A.Node.create(TPL_CONTROLS_CONTAINER);
-
 					var strings = instance.get('strings');
 
-					var formFieldRTPL = A.substitute(
-						TPL_CONTROL,
+					var form = new A.Form(
 						{
-							cssClass: CSS_CONTROL_R,
-							id: A.guid(),
-							size: 3,
-							string: strings.R
+							labelAlign: 'left'
 						}
+					).render(instance._pickerContainer);
+
+					form.add(
+						[
+							{
+								id: 'red',
+								labelText: strings.R,
+								size: 3
+							},
+							{
+								id: 'green',
+								labelText: strings.G,
+								size: 3
+							},
+							{
+								id: 'blue',
+								labelText: strings.B,
+								size: 3
+							},
+							{
+								id: 'hex',
+								labelText: strings.HEX,
+								size: 6
+							}
+						],
+						true
 					);
 
-					var formFieldGTPL = A.substitute(
-						TPL_CONTROL,
-						{
-							cssClass: CSS_CONTROL_G,
-							id: A.guid(),
-							size: 3,
-							string: strings.G
-						}
-					);
+					form.get('boundingBox').addClass(CSS_CONTROLS_CONTAINER);
 
-					var formFieldBTPL = A.substitute(
-						TPL_CONTROL,
-						{
-							cssClass: CSS_CONTROL_B,
-							id: A.guid(),
-							size: 3,
-							string: strings.B
-						}
-					);
-
-					var formFieldHexTPL = A.substitute(
-						TPL_CONTROL,
-						{
-							cssClass: CSS_CONTROL_HEX,
-							id: A.guid(),
-							size: 6,
-							string: strings.HEX
-						}
-					);
-
-					var formFieldR = A.Node.create(formFieldRTPL);
-					var formFieldG = A.Node.create(formFieldGTPL);
-					var formFieldB = A.Node.create(formFieldBTPL);
-					var formFieldHex = A.Node.create(formFieldHexTPL);
-
-					instance._formFieldR = formFieldR.one('input');
-					instance._formFieldG = formFieldG.one('input');
-					instance._formFieldB = formFieldB.one('input');
-					instance._formFieldHex = formFieldHex.one('input');
-
-					formFieldControls.appendChild(formFieldR);
-					formFieldControls.appendChild(formFieldG);
-					formFieldControls.appendChild(formFieldB);
-					formFieldControls.appendChild(formFieldHex);
-
-					instance._pickerContainer.appendChild(formFieldControls);
+					instance._colorForm = form;
 				},
 
 				_renderSliders: function() {
@@ -884,12 +864,6 @@ AUI().add(
 					instance._colorCanvas.setStyle('backgroundColor', 'rgb(' + [rgb.red, rgb.green, rgb.blue].join(',') + ')');
 				},
 
-				_updateColor: function(event, color) {
-					var instance = this;
-
-					instance.set(color, event.target.get('value'));
-				},
-
 				_updateColorSwatch: function(rgb) {
 					var instance = this;
 
@@ -901,13 +875,9 @@ AUI().add(
 				_updateControls: function() {
 					var instance = this;
 
-					var rgb = instance.get('rgb');
+					var colors = instance.get('colors');
 
-					instance._formFieldR.set('value', rgb.red);
-					instance._formFieldG.set('value', rgb.green);
-					instance._formFieldB.set('value', rgb.blue);
-
-					instance._formFieldHex.set('value', instance.get('hex'));
+					instance._colorForm.set('values', colors);
 				},
 
 				_updateHue: function() {
