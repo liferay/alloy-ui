@@ -110,6 +110,34 @@
 				instance.use.apply(instance, modules);
 			},
 
+			fromQueryString: function(str, allowMultipleValues) {
+				var instance = this;
+
+				var obj = {};
+				var params = str.split('&');
+				var name, value, param;
+
+				var length = params.length;
+
+				for (var i = 0; i < length; i++) {
+					param = params[i];
+
+					param = param.split('=');
+
+					name = decodeURIComponent(param[0]);
+					value = decodeURIComponent(param[1]);
+
+					if (allowMultipleValues) {
+						obj[name] = [].concat(obj[name]).concat(value);
+					}
+					else {
+						obj[name] = value;
+					}
+				}
+
+				return obj;
+			},
+
 			toQueryString: function(obj) {
 				var instance = this;
 
