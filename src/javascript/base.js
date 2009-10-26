@@ -23,7 +23,7 @@ AUI.add('aui-base', function(A) {
 		return str.replace(/([.*+?^$(){}|[\]\/\\])/g, '\\$1');
 	};
 
-}, '@VERSION', { requires: [ 'yui-base' ] });
+}, '@VERSION', { requires: [ 'yui-base', 'base' ] });
 
 /*
 * AUI Delayed Task
