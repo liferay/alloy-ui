@@ -100,7 +100,7 @@ AUI().add(
 				initializer: function() {
 					var instance = this;
 
-					instance.fields = new A.CompoundSet(
+					instance.fields = new A.DataSet(
 						{
 							getKey: instance._getNodeId
 						}
@@ -527,7 +527,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['aui-base', 'compound-set', 'io-form', 'field'],
+		requires: ['aui-base', 'data-set', 'io-form', 'field'],
 		use: []
 	}
 );

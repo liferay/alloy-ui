@@ -194,21 +194,21 @@ AUI(
 		}
 	}
 ).use(
-	'compound-set',
+	'data-set',
 	'console',
 	'test',
 	function(A) {
-		var col = new A.CompoundSet;
+		var col = new A.DataSet;
 
-		var compoundSetTests = new A.Test.Case(
+		var dataSetTests = new A.Test.Case(
 			{
-				name: 'CompoundSetTests',
+				name: 'DataSetTests',
 				setUp: function() {
 					var instance = this;
 
 					instance.myGuid = A.guid();
 					instance.myData = {testVal: instance.myGuid};
-					instance.myCol = new A.CompoundSet;
+					instance.myCol = new A.DataSet;
 
 					instance.myCol.add('keyAdd', instance.myData);
 				},
@@ -831,7 +831,7 @@ AUI(
 			}
 		).render('#demo');
 
-		A.Test.Runner.add(compoundSetTests);
+		A.Test.Runner.add(dataSetTests);
 		A.Test.Runner.run();
 	}
 );

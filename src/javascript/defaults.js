@@ -37,10 +37,10 @@
 				},
 
 				/*
-				* Compound Set
+				* Data Set
 				*/
-				'compound-set': {
-					fullpath: PATH_JAVASCRIPT + 'compound-set.js',
+				'data-set': {
+					fullpath: PATH_JAVASCRIPT + 'data-set.js',
 					requires: [ 'oop', 'collection', 'base' ]
 				},
 
@@ -101,7 +101,7 @@
 				*/
 				'tool-set': {
 					fullpath: PATH_JAVASCRIPT + 'tool-set.js',
-					requires: [ 'compound-set', 'tool-item', 'tool-set-css' ]
+					requires: [ 'data-set', 'tool-item', 'tool-set-css' ]
 				},
 				'tool-set-css': {
 					ext: false,
@@ -318,7 +318,7 @@
 				*/
 				'form': {
 					fullpath: PATH_JAVASCRIPT + 'form.js',
-					requires: [ 'aui-base', 'compound-set', 'io-form', 'field' ]
+					requires: [ 'aui-base', 'data-set', 'io-form', 'field' ]
 				},
 
 				/*

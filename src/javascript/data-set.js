@@ -1,15 +1,15 @@
 AUI().add(
-	'compound-set',
+	'data-set',
 	function(A) {
 		var Lang = A.Lang;
 
-		var CompoundSet = function() {
-			CompoundSet.superclass.constructor.apply(this, arguments);
+		var DataSet = function() {
+			DataSet.superclass.constructor.apply(this, arguments);
 		};
 
-		CompoundSet.NAME = 'compoundset';
+		DataSet.NAME = 'compoundset';
 
-		CompoundSet.ATTRS = {
+		DataSet.ATTRS = {
 			keys: {
 				getter: function(value) {
 					var instance = this;
@@ -81,7 +81,7 @@ AUI().add(
 		};
 
 		A.extend(
-			CompoundSet,
+			DataSet,
 			A.Base,
 			{
 				initializer: function() {
@@ -168,7 +168,7 @@ AUI().add(
 				clone: function() {
 					var instance = this;
 
-					var clone = new CompoundSet();
+					var clone = new DataSet();
 
 					clone._collection = A.Object(instance.collection);
 					clone.length = instance.length;
@@ -206,7 +206,7 @@ AUI().add(
 				filter: function(fn, context) {
 					var instance = this;
 
-					var filtered = new CompoundSet();
+					var filtered = new DataSet();
 
 					filtered.set('getKey', instance.get('getKey'));
 
@@ -216,7 +216,7 @@ AUI().add(
 
 					context = context || instance;
 
-					var filteredCompoundSet = filtered.collection;
+					var filteredDataSet = filtered.collection;
 					var filteredValues = filtered.values;
 
 					var length = values.length;
@@ -613,7 +613,7 @@ AUI().add(
 			}
 		);
 
-		A.CompoundSet = CompoundSet;
+		A.DataSet = DataSet;
 	},
 	'@VERSION',
 	{
