@@ -260,7 +260,6 @@
 					type: 'css'
 				},
 
-
 				/*
 				* LiveSearch
 				*/
