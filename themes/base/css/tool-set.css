@@ -1,11 +1,20 @@
 .aui-toolset {
-	overflow: hidden;
+	white-space: nowrap;
 }
 
 .aui-toolset-content {
-	float: left;
+	float: none;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.aui-toolset-item {
+	display: inline-block;
+	vertical-align: top;
 }
 
 .aui-toolset-item-content {
 	margin: 0;
+	float: none;
+	display: block;
 }
