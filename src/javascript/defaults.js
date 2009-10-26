@@ -318,6 +318,19 @@
 				},
 
 				/*
+				* Textarea
+				*/
+				'textarea': {
+					fullpath: PATH_JAVASCRIPT + 'textarea.js',
+					requires: [ 'textfield', 'textarea-css' ]
+				},
+				'textarea-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'textarea.css',
+					type: 'css'
+				},
+
+				/*
 				* StdModIOPlugin
 				*/
 				'io-stdmod': {
