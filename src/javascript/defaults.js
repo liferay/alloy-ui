@@ -302,6 +302,19 @@
 				},
 
 				/*
+				* Module
+				*/
+				'module': {
+					fullpath: PATH_JAVASCRIPT + 'module.js',
+					requires: [ 'module-css', 'widget', 'widget-stdmod', 'tool-set' ]
+				},
+				'module-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'module.css',
+					type: 'css'
+				},
+
+				/*
 				* Form
 				*/
 				'form': {
