@@ -49,7 +49,7 @@
 				*/
 				'autocomplete': {
 					fullpath: PATH_JAVASCRIPT + 'autocomplete.js',
-					requires: [ 'aui-base', 'overlay', 'datasource', 'dataschema', 'tool-item', 'autocomplete-css' ]
+					requires: [ 'aui-base', 'overlay', 'datasource', 'dataschema', 'autocomplete-css', 'combobox' ]
 				},
 				'autocomplete-css': {
 					ext: false,

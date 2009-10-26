@@ -13,7 +13,6 @@ var Lang = A.Lang,
 	CONTENT = 'content',
 	HELPER = 'helper',
 	ICON = 'icon',
-	INPUT = 'input',
 	ITEM = 'item',
 	LIST = 'list',
 	LOADING = 'loading',
@@ -23,17 +22,12 @@ var Lang = A.Lang,
 	RESULTS = 'results',
 	S = 's',
 	SELECTED = 'selected',
-	TRIANGLE = 'triangle',
-	TRIGGER = 'trigger',
 
 	ICON_DEFAULT = 'circle-triangle-b',
 	ICON_ERROR = ALERT,
 	ICON_LOADING = LOADING,
 
-	CSS_BUTTON_TRIGGER = getClassName(NAME, TRIGGER),
 	CSS_HIGLIGHT = getClassName(NAME, SELECTED),
-	CSS_ICON_BUTTON_TRIGGER = getClassName(NAME, TRIGGER, ICON),
-	CSS_INPUT = getClassName(NAME, INPUT),
 	CSS_LIST_ITEM = getClassName(NAME, LIST, ITEM),
 	CSS_NO_RESULTS = getClassName(NAME, NO, RESULTS),
 	CSS_RESULTS_LIST = getClassName(HELPER, RESET),
@@ -64,10 +58,6 @@ var Lang = A.Lang,
 		points: ['tl', 'bl']
 	},
 
-	TPL_INPUT = '<input type="text" />',
-	TPL_INPUT_WRAPPER = '<span class="aui-ctrl-holder"></span>',
-
-	BLANK = '',
 	BOUNDING_BOX = 'boundingBox',
 	CONTENT_BOX = 'contentBox';
 
@@ -216,8 +206,6 @@ var Lang = A.Lang,
 				var instance = this;
 
 				instance._renderInput();
-				instance._renderButton();
-
 				instance._renderOverlay();
 			},
 
@@ -228,8 +216,6 @@ var Lang = A.Lang,
 				var inputNode = instance.inputNode;
 
 				instance.dataSource.on('request', A.bind(button.set, button, ICON, ICON_LOADING));
-
-				button.on('click', instance._onButtonMouseDown, instance);
 
 				inputNode.on('blur', instance._onTextboxBlur, instance);
 				inputNode.on('focus', instance._onTextboxFocus, instance);
@@ -1136,21 +1122,6 @@ var Lang = A.Lang,
 				}
 			},
 
-			_renderButton: function() {
-				var instance = this;
-
-				var button = new A.ToolItem(ICON_DEFAULT);
-
-				button.get('boundingBox').addClass(CSS_BUTTON_TRIGGER);
-				button.get('node').addClass(CSS_ICON_BUTTON_TRIGGER);
-
-				if (instance.get('button') !== false) {
-					button.render(instance.inputWrapper);
-				}
-
-				instance.button = button;
-			},
-
 			_realignContainer: function(event) {
 				var instance = this;
 
@@ -1163,27 +1134,32 @@ var Lang = A.Lang,
 				var contentBox = instance.get(CONTENT_BOX);
 				var input = instance.get('input');
 
+				var comboConfig = {
+					field: {
+						labelText: false
+					},
+					tools: [
+						{
+							icon: 'circle-triangle-b',
+							id: 'trigger',
+							handler: {
+								fn: instance._onButtonMouseDown,
+								context: instance
+							}
+						}
+					]
+				};
+
 				if (input) {
-					input = A.get(input);
-				}
-				else {
-					input = A.Node.create(TPL_INPUT);
-
-					input.addClass(CSS_INPUT);
-
-					contentBox.appendChild(input);
+					comboConfig.field.node = input;
 				}
 
-				var wrapper = A.Node.create(TPL_INPUT_WRAPPER);
+				var comboBox = new A.Combobox(comboConfig).render(contentBox);
 
-				contentBox.insertBefore(wrapper, input);
+				instance.inputNode = comboBox.get('node');
+				instance.button = comboBox.toolset.tools.item('trigger');
 
-				wrapper.appendChild(input);
-
-				instance.set('uniqueName', A.stamp(input));
-
-				instance.inputNode = input;
-				instance.inputWrapper = wrapper;
+				instance.set('uniqueName', A.stamp(instance.inputNode));
 			},
 
 			_renderListElements: function() {

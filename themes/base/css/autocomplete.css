@@ -2,11 +2,6 @@
 	float: left;
 }
 
-.aui-autocomplete-input,
-.aui-autocomplete-trigger {
-	vertical-align: middle;
-}
-
 .aui-autocomplete-trigger {
 	cursor: pointer;
 	display: inline-block;
