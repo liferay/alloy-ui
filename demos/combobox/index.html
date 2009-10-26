@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="../../themes/base/css/combobox.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - combobox Demo</h1>
+
+
+	<div id="demo"></div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready(
+	'combobox',
+	function(A) {
+		new A.Combobox(
+			{
+				tools: [
+					{
+						id: 'options',
+						icon: 'gear',
+						activeState: true
+					},
+					{
+						id: 'cancel',
+						icon: 'cancel'
+					},
+					{
+						id: 'save',
+						icon: 'check'
+					}
+				]
+			}
+		)
+		.render('#demo');
+	}
+);
+
+</script>
+
+</body>
+</html>

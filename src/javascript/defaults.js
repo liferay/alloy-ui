@@ -331,6 +331,19 @@
 				},
 
 				/*
+				* Combobox
+				*/
+				'combobox': {
+					fullpath: PATH_JAVASCRIPT + 'combobox.js',
+					requires: [ 'textarea', 'combobox-css', 'tool-set' ]
+				},
+				'combobox-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'combobox.css',
+					type: 'css'
+				},
+
+				/*
 				* StdModIOPlugin
 				*/
 				'io-stdmod': {
