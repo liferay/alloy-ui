@@ -188,7 +188,7 @@ AUI().add(
 						}
 					}
 					else {
-						value = A.Attribute.INVALID_ATTRIBUTE;
+						value = A.Attribute.INVALID_VALUE;
 					}
 
 					return value;
@@ -213,7 +213,7 @@ AUI().add(
 						}
 					}
 					else {
-						value = A.Attribute.INVALID_ATTRIBUTE;
+						value = A.Attribute.INVALID_VALUE;
 					}
 
 					return value;
