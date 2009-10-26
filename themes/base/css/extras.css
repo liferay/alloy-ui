@@ -45,7 +45,8 @@ shadow or rounded corners.
 .aui-dialog .aui-widget-hd,
 .aui-editable-hover,
 .aui-tab,
-.aui-contextpanel-pointer.aui-state-default {
+.aui-contextpanel-pointer.aui-state-default,
+.aui-toolset-item-content {
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
 	border-radius: 0;
@@ -53,7 +54,7 @@ shadow or rounded corners.
 
 /* Left corners */
 
-.aui-null-selector {
+.aui-toolset-first .aui-toolset-item-content {
 	-moz-border-radius-topleft: 4px;
 	-moz-border-radius-bottomleft: 4px;
 	-webkit-border-top-left-radius: 4px;
@@ -64,7 +65,7 @@ shadow or rounded corners.
 
 /* Right corners */
 
-.aui-null-selector {
+.aui-toolset-last .aui-toolset-item-content {
 	-moz-border-radius-topright: 4px;
 	-moz-border-radius-bottomright: 4px;
 	-webkit-border-top-right-radius: 4px;
