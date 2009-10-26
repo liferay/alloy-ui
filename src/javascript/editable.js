@@ -19,7 +19,22 @@ AUI().add(
 		};
 
 		Editable.NAME = 'editable';
+
 		Editable.ATTRS = {
+			cancelButton: {
+				valueFn: function() {
+					var instance = this;
+
+					return {
+						id: 'cancel',
+						icon: 'circle-close',
+						handler: {
+							context: instance,
+							fn: instance.cancel
+						}
+					};
+				}
+			},
 			contentText: {
 				value: '',
 				setter: function(value) {
@@ -87,6 +102,25 @@ AUI().add(
 				}
 			},
 
+			saveButton: {
+				valueFn: function() {
+					var instance = this;
+
+					return {
+						id: 'save',
+						icon: 'circle-check',
+						handler: {
+							context: instance,
+							fn: instance.save
+						}
+					};
+				}
+			},
+
+			tools: {
+				value: []
+			},
+
 			inputType: {
 				value: 'text',
 				setter: function(value) {
@@ -127,26 +161,24 @@ AUI().add(
 					var contentBox = instance.get(CONTENT_BOX);
 					var inputType = instance.get('inputType');
 
-					var comboConfig = {
-						tools: [
-							{
-								id: 'cancel',
-								icon: 'circle-close',
-								handler: {
-									context: instance,
-									fn: instance.cancel
-								}
-							},
-							{
-								id: 'save',
-								icon: 'circle-check',
-								handler: {
-									context: instance,
-									fn: instance.save
-								}
-							}
-						]
-					};
+					var comboConfig = {};
+
+					var tools = instance.get('tools');
+
+					if (tools !== false) {
+						var cancelButton = instance.get('cancelButton');
+						var saveButton = instance.get('saveButton');
+
+						if (cancelButton !== false) {
+							tools.push(cancelButton);
+						}
+
+						if (saveButton !== false) {
+							tools.push(saveButton);
+						}
+
+						comboConfig.tools = tools;
+					}
 
 					if (inputType != 'text') {
 						A.mix(
