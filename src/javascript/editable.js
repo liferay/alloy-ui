@@ -6,30 +6,11 @@ AUI().add(
 
 			getClassName = A.ClassNameManager.getClassName,
 
-			CONTENT = 'content',
-			CTRL = 'ctrl',
-			HELPER = 'helper',
-			HIDDEN = 'hidden',
-			HOLDER = 'holder',
 			HOVER = 'hover',
-			INPUT = 'input',
 			NAME = 'editable',
-			STATE = 'state',
-			WRAPPER = 'wrapper',
 
-			CSS_CTRL_HOLDER = getClassName(CTRL, HOLDER),
-			CSS_BUTTON_ROW = getClassName('button-row'),
 			CSS_EDITING = getClassName(NAME, 'editing'),
-			CSS_TRIGGER_ROW = getClassName(NAME, 'form-triggers'),
-			CSS_HOVER = [ getClassName(NAME, HOVER), getClassName(CTRL, HOLDER) ].join(' '),
-			CSS_CONTENT_WRAPPER = getClassName(NAME, CONTENT, WRAPPER),
-			CSS_INPUT_WRAPPER = getClassName(NAME, CTRL, HOLDER),
-			CSS_INPUT = getClassName(NAME, INPUT),
-
-			TPL_INPUT = '<input class="' + CSS_INPUT + '" type="text" />',
-			TPL_TEXTAREA = '<textarea class="' + CSS_INPUT + '"></textarea>',
-			TPL_INPUT_WRAPPER = '<span class="' + [ CSS_CTRL_HOLDER, CSS_INPUT_WRAPPER ].join(' ') + '"></span>',
-			TPL_BUTTON_ROW = '<span class="' + [ CSS_BUTTON_ROW, CSS_TRIGGER_ROW ].join(' ') + '"></span>',
+			CSS_HOVER = getClassName(NAME, HOVER),
 
 			CONTENT_BOX = 'contentBox';
 
@@ -112,7 +93,7 @@ AUI().add(
 					var instance = this;
 
 					if (value != 'text' && value != 'textarea') {
-						value = Attribute.INVALID_ATTRIBUTE;
+						value = A.Attribute.INVALID_VALUE;
 					}
 
 					return value;
@@ -146,31 +127,44 @@ AUI().add(
 					var contentBox = instance.get(CONTENT_BOX);
 					var inputType = instance.get('inputType');
 
-					var buttonRow = A.Node.create(TPL_BUTTON_ROW);
-					var inputWrapper = A.Node.create(TPL_INPUT_WRAPPER);
-					var inputNode = A.Node.create(inputType == 'text' ? TPL_INPUT : TPL_TEXTAREA);
+					var comboConfig = {
+						tools: [
+							{
+								id: 'cancel',
+								icon: 'circle-close',
+								handler: {
+									context: instance,
+									fn: instance.cancel
+								}
+							},
+							{
+								id: 'save',
+								icon: 'circle-check',
+								handler: {
+									context: instance,
+									fn: instance.save
+								}
+							}
+						]
+					};
 
-					var cancelButton = new A.ToolItem('circle-close');
+					if (inputType != 'text') {
+						A.mix(
+							comboConfig,
+							{
+								field: {
+									autoSize: true
+								},
+								fieldWidget: A.Textarea
+							}
+						);
+					}
 
-					var saveButton = new A.ToolItem('circle-check');
+					var comboBox = new A.Combobox(comboConfig).render(contentBox);
 
-					inputWrapper.appendChild(inputNode);
+					instance._comboBox = comboBox;
 
-					contentBox.appendChild(inputWrapper);
-					contentBox.appendChild(buttonRow);
-
-					cancelButton.render(buttonRow);
-					saveButton.render(buttonRow);
-
-					inputNode.addClass(CSS_INPUT);
-
-					instance.inputWrapper = inputWrapper;
-					instance.buttonRow = buttonRow;
-
-					instance.cancelButton = cancelButton;
-					instance.saveButton = saveButton;
-
-					instance.inputNode = inputNode;
+					instance.inputNode = comboBox.get('node');
 				},
 
 				bindUI: function() {
@@ -182,9 +176,6 @@ AUI().add(
 					var inputNode = instance.inputNode;
 
 					inputNode.on('keypress', instance._onKeypressEditable, instance);
-
-					instance.cancelButton.on('click', instance.cancel, instance);
-					instance.saveButton.on('click', instance.save, instance);
 
 					instance.after('contentTextChange', instance._syncContentText);
 
@@ -308,6 +299,11 @@ AUI().add(
 						}
 					);
 
+					var inputField = instance._comboBox._field
+
+					inputField.set('width', nodeWidth);
+					inputField.fire('adjustSize');
+
 					inputNode.focus();
 					inputNode.select();
 				},
@@ -416,7 +412,7 @@ AUI().add(
 				_toHTML: function(text) {
 					var instance = this;
 
-					return String(text).replace(/\n|\r/gim, '<br/>');
+					return String(text).replace(/\n/gim, '<br/>');
 				},
 
 				_toText: function(text) {
