@@ -310,6 +310,14 @@
 				},
 
 				/*
+				* Textfield
+				*/
+				'textfield': {
+					fullpath: PATH_JAVASCRIPT + 'textfield.js',
+					requires: [ 'field' ]
+				},
+
+				/*
 				* StdModIOPlugin
 				*/
 				'io-stdmod': {
