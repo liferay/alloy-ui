@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="../../themes/base/css/textarea.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - textarea Demo</h1>
+
+
+	<div id="demo"></div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready(
+	'textarea',
+	function(A) {
+		new A.Textarea(
+			{
+				autoSize: true,
+				labelText: 'AutoSizing textarea (minimum 100px height, maximum 200px height)',
+				minHeight: 100,
+				maxHeight: 200
+			}
+		).render('#demo');
+	}
+);
+
+</script>
+
+</body>
+</html>
