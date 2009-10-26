@@ -1,0 +1,25 @@
+.aui-module {
+}
+
+.aui-module-hidden {
+	display: none;
+}
+
+.aui-module-toolset {
+	float: right;
+}
+
+.aui-module-hd {
+	background: #eee;
+	border-bottom: 1px solid #999;
+	padding: 2px;
+}
+
+.aui-module-collapsed .aui-module-hd {
+	border-bottom-width: 0;
+}
+
+.aui-module-header-text {
+	float: left;
+	line-height: 2;
+}

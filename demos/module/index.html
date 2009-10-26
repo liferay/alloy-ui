@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="../../themes/base/css/module.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+
+		#demo {
+		}
+
+		.demo-modules {
+			width: 400px;
+		}
+
+		.aui-module-content {
+			border: 1px solid #777;
+		}
+
+		.aui-module-hd {
+			padding: 3px;
+		}
+
+		.aui-module-bd {
+			padding: 3px;
+		}
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - module Demo</h1>
+
+
+	<div class="demo-modules" id="regularModules">
+		<h2>Regular Module</h2>
+	</div>
+	<div class="demo-modules" id="nestedModules">
+		<h2>Nested Modules</h2>
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready(
+	'module',
+	'anim',
+	function(A) {
+		var exampleText = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+
+		var container = new A.Module(
+			{
+				collapsible: true,
+				headerContent: 'Module 1',
+				bodyContent: exampleText
+			}
+		).render('#regularModules');
+
+		var moduleContainer = new A.Module(
+			{
+				collapsible: true,
+				headerContent: 'Module Container'
+			}
+		).render('#nestedModules');
+
+		var child1 = new A.Module(
+			{
+				collapsible: true,
+				headerContent: 'Child Module 1',
+				tools: [
+					{
+						icon: 'refresh',
+						id: 'refresh',
+						handler: function(event, module) {
+							var instance = this;
+
+							child1.set('bodyContent', '<span class="aui-icon aui-icon-loading"></span>');
+
+							setTimeout(
+								function() {
+									child1.set('bodyContent', exampleText);
+								},
+								1000
+							);
+						}
+					},
+					{
+						icon: 'close',
+						id: 'close',
+						handler: function(event) {
+							var instance = this;
+
+							if (confirm('Are you sure you want to close this module?')) {
+								new A.Anim(
+									{
+										node: child1.get('boundingBox'),
+										duration: 0.5,
+										to: {
+											opacity: 0
+										},
+										on: {
+											end: function(event) {
+												var instance = this;
+
+												child1.hide();
+											}
+										}
+									}
+								).run();
+							}
+						}
+					}
+				],
+				bodyContent: exampleText
+			}
+		).render(moduleContainer.bodyNode);
+
+		var child2 = new A.Module(
+			{
+				collapsible: true,
+				headerContent: 'Child Module 2',
+				bodyContent: exampleText
+			}
+		).render(moduleContainer.bodyNode);
+	}
+);
+
+</script>
+
+</body>
+</html>
