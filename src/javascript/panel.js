@@ -1,15 +1,15 @@
 AUI().add(
-	'module',
+	'panel',
 	function(A) {
 		var Lang = A.Lang,
 
 			getClassName = A.ClassNameManager.getClassName,
 
-			NAME = 'module',
+			NAME = 'panel',
 
-			CSS_MODULE = getClassName(NAME),
+			CSS_PANEL = getClassName(NAME),
 
-			CSS_MODULES = {
+			CSS_PANELS = {
 				body: 'bd',
 				footer: 'ft',
 				header: 'hd'
@@ -23,9 +23,9 @@ AUI().add(
 
 			TPL_HEADER_TEXT = '<span class="' + CSS_HEADER_TEXT + '"></span>';
 
-		var Module = function() {};
+		var Panel = function() {};
 
-		Module.ATTRS = {
+		Panel.ATTRS = {
 			collapsed: {
 				value: false,
 				setter: function(value) {
@@ -44,7 +44,7 @@ AUI().add(
 			}
 		};
 
-		Module.prototype = {
+		Panel.prototype = {
 			initializer: function(config) {
 				var instance = this;
 
@@ -56,7 +56,7 @@ AUI().add(
 					instance.set('headerContent', ' ');
 				}
 
-				instance.after('render', instance._afterModuleRender);
+				instance.after('render', instance._afterPanelRender);
 				instance.after('collapsedChange', instance._afterCollapsedChange);
 			},
 
@@ -78,25 +78,25 @@ AUI().add(
 				instance._uiSetCollapsed(event.newVal);
 			},
 
-			_afterModuleRender: function() {
+			_afterPanelRender: function() {
 				var instance = this;
 
-				instance._addModuleClass('body');
-				instance._addModuleClass('footer');
-				instance._addModuleClass('header');
+				instance._addPanelClass('body');
+				instance._addPanelClass('footer');
+				instance._addPanelClass('header');
 
 				instance._renderHeaderText();
 
 				instance._renderToolItems();
 			},
 
-			_addModuleClass: function(section) {
+			_addPanelClass: function(section) {
 				var instance = this;
 
 				var sectionNode = instance[section + 'Node'];
 
 				if (sectionNode) {
-					var rootCssClass = CSS_MODULES[section];
+					var rootCssClass = CSS_PANELS[section];
 
 					var cssClassMod = getClassName(NAME, rootCssClass);
 					var cssClass = getClassName(instance.name, rootCssClass);
@@ -197,7 +197,7 @@ AUI().add(
 			}
 		}
 
-		A.Module = A.Base.build('module', A.Widget, [A.WidgetStdMod, Module]);
+		A.Panel = A.Base.build('panel', A.Widget, [A.WidgetStdMod, Panel]);
 	},
 	'@VERSION',
 	{

@@ -7,7 +7,6 @@
 	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
 
 	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
-	<link rel="stylesheet" href="../../themes/base/css/module.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 
 	<style type="text/css" media="screen">
 		body {
@@ -21,19 +20,19 @@
 		#demo {
 		}
 
-		.demo-modules {
+		.demo-panels {
 			width: 400px;
 		}
 
-		.aui-module-content {
+		.aui-panel-content {
 			border: 1px solid #777;
 		}
 
-		.aui-module-hd {
+		.aui-panel-hd {
 			padding: 3px;
 		}
 
-		.aui-module-bd {
+		.aui-panel-bd {
 			padding: 3px;
 		}
 	</style>
@@ -42,49 +41,49 @@
 <body>
 
 <div id="wrapper">
-	<h1>Alloy - module Demo</h1>
+	<h1>Alloy - panel Demo</h1>
 
 
-	<div class="demo-modules" id="regularModules">
-		<h2>Regular Module</h2>
+	<div class="demo-panels" id="regularPanels">
+		<h2>Regular Panel</h2>
 	</div>
-	<div class="demo-modules" id="nestedModules">
-		<h2>Nested Modules</h2>
+	<div class="demo-panels" id="nestedPanels">
+		<h2>Nested Panels</h2>
 	</div>
 </div>
 
 <script type="text/javascript" charset="utf-8">
 
 AUI().ready(
-	'module',
+	'panel',
 	'anim',
 	function(A) {
 		var exampleText = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
 
-		var container = new A.Module(
+		var container = new A.Panel(
 			{
 				collapsible: true,
-				headerContent: 'Module 1',
+				headerContent: 'Panel 1',
 				bodyContent: exampleText
 			}
-		).render('#regularModules');
+		).render('#regularPanels');
 
-		var moduleContainer = new A.Module(
+		var panelContainer = new A.Panel(
 			{
 				collapsible: true,
-				headerContent: 'Module Container'
+				headerContent: 'Panel Container'
 			}
-		).render('#nestedModules');
+		).render('#nestedPanels');
 
-		var child1 = new A.Module(
+		var child1 = new A.Panel(
 			{
 				collapsible: true,
-				headerContent: 'Child Module 1',
+				headerContent: 'Child Panel 1',
 				tools: [
 					{
 						icon: 'refresh',
 						id: 'refresh',
-						handler: function(event, module) {
+						handler: function(event, panel) {
 							var instance = this;
 
 							child1.set('bodyContent', '<span class="aui-icon aui-icon-loading"></span>');
@@ -103,7 +102,7 @@ AUI().ready(
 						handler: function(event) {
 							var instance = this;
 
-							if (confirm('Are you sure you want to close this module?')) {
+							if (confirm('Are you sure you want to close this panel?')) {
 								new A.Anim(
 									{
 										node: child1.get('boundingBox'),
@@ -126,15 +125,15 @@ AUI().ready(
 				],
 				bodyContent: exampleText
 			}
-		).render(moduleContainer.bodyNode);
+		).render(panelContainer.bodyNode);
 
-		var child2 = new A.Module(
+		var child2 = new A.Panel(
 			{
 				collapsible: true,
-				headerContent: 'Child Module 2',
+				headerContent: 'Child Panel 2',
 				bodyContent: exampleText
 			}
-		).render(moduleContainer.bodyNode);
+		).render(panelContainer.bodyNode);
 	}
 );
 

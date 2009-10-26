@@ -671,7 +671,7 @@ AUI().add(
 					var instance = this;
 
 					if (!instance._pickerContainer) {
-						var container = new A.Module(
+						var container = new A.Panel(
 							{
 								tools: [
 									{
@@ -972,7 +972,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['context-overlay','dd', 'slider', 'substitute', 'tool-item'],
+		requires: ['context-overlay','dd', 'panel', 'slider', 'substitute', 'tool-item'],
 		use: []
 	}
 );
