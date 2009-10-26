@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="../../themes/base/css/tool-set.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+
+		#demo {
+			overflow: hidden;
+		}
+
+		#demo h2 {
+			clear: both;
+		}
+
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - tool-set Demo</h1>
+
+
+	<div id="demo">
+		<div class="aui-helper-clearfix" id="withContextPanel">
+			<h2>With context panel</h2>
+		</div>
+
+		<div class="aui-helper-clearfix" id="withState">
+			<h2>With State</h2>
+		</div>
+
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+AUI().ready(
+	'tool-set',
+	'context-panel',
+	function(A) {
+		toolSet = new A.ToolSet(
+			{
+				activeState: true,
+				tools: [
+					{
+						id: 'options',
+						icon: 'gear',
+						handler: function(event) {
+							var instance = this;
+
+							if (!instance._optionsMenu) {
+								instance._optionsMenu = new A.ContextPanel(
+									{
+										align: {
+											node: instance.get('contentBox'),
+											points: ['tl', 'bl']
+										},
+										bodyContent: 'This is the options panel',
+										trigger: instance.get('contentBox'),
+										visible: true,
+										on: {
+											visibleChange: function(event) {
+												instance.StateInteraction.set('active', event.newVal);
+											}
+										}
+									}
+								).render();
+							}
+						}
+					},
+					{
+						id: 'add',
+						icon: 'plus',
+						handler: function(event) {
+							var instance = this;
+
+							if (!instance._addMenu) {
+								instance._addMenu = new A.ContextPanel(
+									{
+										align: {
+											node: instance.get('contentBox'),
+											points: ['bl', 'tr']
+										},
+										bodyContent: 'This is the where you can add some content',
+										trigger: instance.get('contentBox'),
+										visible: true,
+										on: {
+											visibleChange: function(event) {
+												instance.StateInteraction.set('active', event.newVal);
+											}
+										}
+									}
+								).render();
+							}
+						}
+					}
+				]
+			}
+		).render('#withContextPanel');
+
+		toolSet1 = new A.ToolSet(
+			{
+				activeState: true,
+				tools: [
+					{
+						id: 'collapse',
+						icon: 'minus'
+					},
+					{
+						id: 'close',
+						icon: 'close'
+					},
+					{
+						id: 'expand',
+						icon: 'plus'
+					}
+				]
+			}
+		).render('#withState');
+	}
+);
+
+</script>
+
+</body>
+</html>

@@ -97,6 +97,19 @@
 				},
 
 				/*
+				* Tool Set
+				*/
+				'tool-set': {
+					fullpath: PATH_JAVASCRIPT + 'tool-set.js',
+					requires: [ 'compound-set', 'tool-item', 'tool-set-css' ]
+				},
+				'tool-set-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'tool-set.css',
+					type: 'css'
+				},
+
+				/*
 				* Calendar
 				*/
 				'calendar': {

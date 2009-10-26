@@ -1,0 +1,11 @@
+.aui-toolset {
+	overflow: hidden;
+}
+
+.aui-toolset-content {
+	float: left;
+}
+
+.aui-toolset-item-content {
+	margin: 0;
+}
