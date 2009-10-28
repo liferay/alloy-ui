@@ -654,7 +654,13 @@ A.extend(Paginator, A.Widget, {
 
 				// bind change event to update the rowsPerPage
 				rowsPerPageEl.on('change', function(event) {
-					var rowsPerPage = event.target.val();
+					var rowsPerPage = instance.get(ROWS_PER_PAGE);
+
+					try {
+						// prevent IE error when first access .val() on A.Node
+						rowsPerPage = event.target.val();
+					}
+					catch(e) {}
 
 					// reset the page before render the pageLinks again
 					instance.set(PAGE, 1);
