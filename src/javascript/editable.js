@@ -211,7 +211,9 @@ AUI().add(
 
 					instance.after('contentTextChange', instance._syncContentText);
 
-					instance.after('focusedChange', instance._afterFocusedChangeEditable);
+					contentBox.swallowEvent('click');
+
+					A.getDoc().after('click', instance._afterFocusedChangeEditable, instance);
 				},
 
 				syncUI: function() {
@@ -250,9 +252,7 @@ AUI().add(
 				_afterFocusedChangeEditable: function(event) {
 					var instance = this;
 
-					if (event.newVal === false) {
-						instance.fire('stopEditing', instance.get('visible'));
-					}
+					instance.fire('stopEditing', instance.get('visible'));
 				},
 
 				_createEvents: function() {
