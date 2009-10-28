@@ -318,10 +318,8 @@ A.extend(Paginator, A.Widget, {
 		var instance = this;
 
 		instance._delegateDOM();
-		instance._bindDOMEvents();
 
 		instance.publish('changeRequest');
-		instance.after('pageChange', A.bind(instance._afterSetPage, instance));
 		instance.after('stateChange', A.bind(instance._afterSetState, instance));
 		instance.before('stateChange', A.bind(instance._beforeSetState, instance));
 
@@ -335,7 +333,7 @@ A.extend(Paginator, A.Widget, {
 		var instance = this;
 
 		// fire changeRequest to the first state
-		instance._afterSetPage();
+		instance.changeRequest();
 	},
 
 	_syncPageLinksUI: function() {
@@ -420,6 +418,15 @@ A.extend(Paginator, A.Widget, {
 			start: start,
 			end: end
 		};
+	},
+
+	changeRequest: function() {
+		var instance = this;
+		var state = instance.get(STATE);
+
+		// fires changeRequest, this is the most important event to the user
+		// the user needs to invoke .setState(newState) to update the UI
+		instance.fire('changeRequest', { state: state });
 	},
 
 	hasNextPage: function() {
@@ -567,15 +574,6 @@ A.extend(Paginator, A.Widget, {
 	/*
 	* Listeners
 	*/
-	_afterSetPage: function(event) {
-		var instance = this;
-		var state = instance.get(STATE);
-
-		// fires changeRequest, this is the most important event to the user
-		// the user needs to invoke .setState(newState) to update the UI
-		instance.fire('changeRequest', { state: state });
-	},
-
 	_afterSetState: function(event) {
 		var instance = this;
 
@@ -594,6 +592,8 @@ A.extend(Paginator, A.Widget, {
 
 		instance.set(PAGE, 1);
 
+		instance.changeRequest();
+
 		event.halt();
 	},
 
@@ -604,6 +604,8 @@ A.extend(Paginator, A.Widget, {
 			var page = instance.get(PAGE);
 
 			instance.set(PAGE, page - 1);
+
+			instance.changeRequest();
 		}
 
 		event.halt();
@@ -615,6 +617,8 @@ A.extend(Paginator, A.Widget, {
 
 		instance.set(PAGE, pageNumber);
 
+		instance.changeRequest();
+
 		event.halt();
 	},
 
@@ -625,6 +629,8 @@ A.extend(Paginator, A.Widget, {
 			var page = instance.get(PAGE);
 
 			instance.set(PAGE, page + 1);
+
+			instance.changeRequest();
 		}
 
 		event.halt();
@@ -635,6 +641,8 @@ A.extend(Paginator, A.Widget, {
 		var totalPages = instance.get(TOTAL_PAGES);
 
 		instance.set(PAGE, totalPages);
+
+		instance.changeRequest();
 
 		event.halt();
 	},
@@ -654,6 +662,9 @@ A.extend(Paginator, A.Widget, {
 					instance.get(ROWS_PER_PAGE)
 				);
 
+				// detach change event
+				rowsPerPageEl.detach('change');
+
 				// bind change event to update the rowsPerPage
 				rowsPerPageEl.on('change', function(event) {
 					var rowsPerPage = instance.get(ROWS_PER_PAGE);
@@ -669,6 +680,8 @@ A.extend(Paginator, A.Widget, {
 
 					// set rowsPerPage, this will render the UI again
 					instance.set(ROWS_PER_PAGE, rowsPerPage);
+
+					instance.changeRequest();
 				});
 			}
 		});
