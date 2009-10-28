@@ -196,6 +196,19 @@ AUI.add('aui-node', function(A) {
 			return this;
 		},
 
+		outerHTML: function() {
+			var instance = this;
+			var temp = A.Node.create('<div></div>').append(this);
+
+			try {
+				return temp.html();
+			}
+			catch(e) {}
+			finally {
+				temp = null;
+			}
+		},
+
 		placeAfter: function(content) {
 			var instance = this;
 
@@ -459,6 +472,8 @@ AUI.add('aui-node', function(A) {
 			'hide',
 
 			'html',
+
+			'outerHTML',
 
 			'prepend',
 
