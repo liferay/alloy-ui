@@ -96,6 +96,7 @@ AUI().ready('paginator', function(A) {
 		total: 10,
 		maxPageLinks: 10,
 		rowsPerPage: 1,
+		rowsPerPageOptions: [ 1, 3, 5, 7 ],
 		on: {
 			changeRequest: function(event) {
 				var instance = this;
@@ -124,6 +125,7 @@ AUI().ready('paginator', function(A) {
 	// pgA.set('total', 400);
 	// pgA.set('maxPageLinks', 5);
 	// pgA.set('rowsPerPage', 20);
+	// pgA.set('rowsPerPage', 1);
 	// pgA.set('page', 5);
 
 	var pgB = new A.Paginator({
@@ -132,6 +134,8 @@ AUI().ready('paginator', function(A) {
 		total: 100,
 		maxPageLinks: 5,
 		rowsPerPage: 2,
+		nextPageLinkLabel: 'NEXT',
+		prevPageLinkLabel: 'PREV',
 		on: {
 			changeRequest: function(event) {
 				var instance = this;
