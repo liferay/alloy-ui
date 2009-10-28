@@ -22,7 +22,8 @@
 	font-weight: bold;
 }
 
-.aui-paginator-current-page-report {
+.aui-paginator-current-page-report,
+.aui-paginator-total {
 	font-weight: bold;
 }
 

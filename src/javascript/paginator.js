@@ -34,14 +34,16 @@ var L = A.Lang,
 	PREV_PAGE_LINK_LABEL = 'prevPageLinkLabel',
 	REPORT = 'report',
 	ROWS = 'rows',
-	ROWS_PER_PAGE_OPTIONS = 'rowsPerPageOptions',
 	ROWS_PER_PAGE = 'rowsPerPage',
 	ROWS_PER_PAGE_EL = 'rowsPerPageEl',
+	ROWS_PER_PAGE_OPTIONS = 'rowsPerPageOptions',
 	SELECT = 'select',
 	SPACE = ' ',
 	STATE = 'state',
 	TEMPLATE = 'template',
 	TOTAL = 'total',
+	TOTAL_EL = 'totalEl',
+	TOTAL_LABEL = 'totalLabel',
 	TOTAL_PAGES = 'totalPages',
 
 	nodeSetter = function(v) {
@@ -75,21 +77,23 @@ var L = A.Lang,
 	CSS_PAGINATOR_PAGE_REPORT = getCN(PAGINATOR, CURRENT, PAGE, REPORT),
 	CSS_PAGINATOR_PREV_LINK = getCN(PAGINATOR, PREV, LINK),
 	CSS_PAGINATOR_ROWS_PER_PAGE = getCN(PAGINATOR, ROWS, PER, PAGE),
+	CSS_PAGINATOR_TOTAL = getCN(PAGINATOR, TOTAL),
 
+	TOTAL_LABEL_TPL = '(Total {total})',
 	PAGE_REPORT_LABEL_TPL = '({page} of {totalPages})',
-	DEFAULT_OUTPUT_TPL = '{FirstPageLink} {PrevPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport} {RowsPerPageSelect}',
+	DEFAULT_OUTPUT_TPL = '{FirstPageLink} {PrevPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport} {Total} {RowsPerPageSelect}',
 
 	GT_TPL = '&gt;',
 	LT_TPL = '&lt;',
-	PAGE_CONTAINER_TPL = '<span class="'+concat(CSS_PAGINATOR_PAGE_CONTAINER)+'"></span>',
 	FIRST_LINK_TPL = '<a href="#" class="'+concat(CSS_PAGINATOR_LINK, CSS_PAGINATOR_FIRST_LINK)+'"></a>',
 	LAST_LINK_TPL = '<a href="#" class="'+concat(CSS_PAGINATOR_LINK, CSS_PAGINATOR_LAST_LINK)+'"></a>',
 	NEXT_LINK_TPL = '<a href="#" class="'+concat(CSS_PAGINATOR_LINK, CSS_PAGINATOR_NEXT_LINK)+'"></a>',
+	PAGE_CONTAINER_TPL = '<span class="'+concat(CSS_PAGINATOR_PAGE_CONTAINER)+'"></span>',
 	PAGE_LINK_TPL = '<a href="#" class="'+concat(CSS_PAGINATOR_LINK, CSS_PAGINATOR_PAGE_LINK)+'"></a>',
 	PAGE_REPORT_TPL = '<span class="'+concat(CSS_PAGINATOR_PAGE_REPORT)+'"></span>',
 	PREV_LINK_TPL = '<a href="#" class="'+concat(CSS_PAGINATOR_LINK, CSS_PAGINATOR_PREV_LINK)+'"></a>',
-	ROWS_PER_PAGE_TPL = '<select class="'+CSS_PAGINATOR_ROWS_PER_PAGE+'"></select>';
-
+	ROWS_PER_PAGE_TPL = '<select class="'+CSS_PAGINATOR_ROWS_PER_PAGE+'"></select>',
+	TOTAL_TPL = '<span class="'+concat(CSS_PAGINATOR_TOTAL)+'"></span>';
 
 function Paginator(config) {
 	Paginator.superclass.constructor.apply(this, arguments);
@@ -248,6 +252,26 @@ A.mix(Paginator, {
 			},
 			value: 0,
 			validator: isNumber
+		},
+
+		totalEl: {
+			setter: nodeSetter,
+			valueFn: function() {
+				var label = this.get(TOTAL_LABEL);
+
+				return A.Node.create(TOTAL_TPL).html(label);
+			}
+		},
+
+		totalLabel: {
+			getter: function() {
+				var instance = this;
+
+				return A.substitute(TOTAL_LABEL_TPL, {
+					total: instance.get(TOTAL)
+				});
+			},
+			validator: isString
 		},
 
 		totalPages: {
@@ -529,7 +553,8 @@ A.extend(Paginator, A.Widget, {
 				NextPageLink: outer(NEXT_PAGE_LINK),
 				PageLinks: pageContainer.outerHTML(),
 				PrevPageLink: outer(PREV_PAGE_LINK),
-				RowsPerPageSelect: outer(ROWS_PER_PAGE_EL)
+				RowsPerPageSelect: outer(ROWS_PER_PAGE_EL),
+				Total: outer(TOTAL_EL)
 			});
 		}
 
