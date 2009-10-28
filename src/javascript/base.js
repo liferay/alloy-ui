@@ -235,17 +235,12 @@ AUI.add('aui-node', function(A) {
 			A.get(selector).prepend(instance);
 		},
 
-		text: function(text) {
+		resetId: function(prefix) {
 			var instance = this;
-			var el = instance.getDOM();
 
-			if (!isUndefined(text)) {
-				text = A.DOM._getDoc(el).createTextNode(text);
+			instance.attr('id', A.guid(prefix));
 
-				return instance.empty().append(text);
-			}
-
-			return instance._getText(el.childNodes);
+			return instance;
 		},
 
 		selectable: function() {
@@ -304,6 +299,19 @@ AUI.add('aui-node', function(A) {
 			}
 
 			return instance;
+		},
+
+		text: function(text) {
+			var instance = this;
+			var el = instance.getDOM();
+
+			if (!isUndefined(text)) {
+				text = A.DOM._getDoc(el).createTextNode(text);
+
+				return instance.empty().append(text);
+			}
+
+			return instance._getText(el.childNodes);
 		},
 
 		unselectable: function() {
