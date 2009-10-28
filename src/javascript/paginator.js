@@ -124,6 +124,58 @@ A.mix(Paginator, {
 			}
 		},
 
+		firstPageLink: {
+			setter: nodeSetter,
+			valueFn: function() {
+				var label = this.get(FIRST_PAGE_LINK_LABEL);
+
+				return A.Node.create(FIRST_LINK_TPL).html(label);
+			}
+		},
+
+		firstPageLinkLabel: {
+			value: FIRST,
+			validator: isString
+		},
+
+		lastPageLink: {
+			setter: nodeSetter,
+			valueFn: function() {
+				var label = this.get(LAST_PAGE_LINK_LABEL);
+
+				return A.Node.create(LAST_LINK_TPL).html(label);
+			}
+		},
+
+		lastPageLinkLabel: {
+			value: LAST,
+			validator: isString
+		},
+
+		maxPageLinks: {
+			value: 10,
+			getter: function(v) {
+				var totalPages = this.get(TOTAL_PAGES);
+
+				return Math.min(totalPages, v);
+			},
+			validator: isNumber
+		},
+
+		nextPageLink: {
+			setter: nodeSetter,
+			valueFn: function() {
+				var label = this.get(NEXT_PAGE_LINK_LABEL);
+
+				return A.Node.create(NEXT_LINK_TPL).html(label);
+			}
+		},
+
+		nextPageLinkLabel: {
+			value: concat(NEXT, GT_TPL),
+			validator: isString
+		},
+
 		page: {
 			setter: function(v) {
 				return num(v);
@@ -152,30 +204,6 @@ A.mix(Paginator, {
 			validator: isString
 		},
 
-		firstPageLink: {
-			setter: nodeSetter,
-			valueFn: function() {
-				var label = this.get(FIRST_PAGE_LINK_LABEL);
-
-				return A.Node.create(FIRST_LINK_TPL).html(label);
-			}
-		},
-
-		firstPageLinkLabel: {
-			value: FIRST,
-			validator: isString
-		},
-
-		maxPageLinks: {
-			value: 10,
-			getter: function(v) {
-				var totalPages = this.get(TOTAL_PAGES);
-
-				return Math.min(totalPages, v);
-			},
-			validator: isNumber
-		},
-
 		prevPageLink: {
 			setter: nodeSetter,
 			valueFn: function() {
@@ -187,34 +215,6 @@ A.mix(Paginator, {
 
 		prevPageLinkLabel: {
 			value: concat(LT_TPL, PREV),
-			validator: isString
-		},
-
-		nextPageLink: {
-			setter: nodeSetter,
-			valueFn: function() {
-				var label = this.get(NEXT_PAGE_LINK_LABEL);
-
-				return A.Node.create(NEXT_LINK_TPL).html(label);
-			}
-		},
-
-		nextPageLinkLabel: {
-			value: concat(NEXT, GT_TPL),
-			validator: isString
-		},
-
-		lastPageLink: {
-			setter: nodeSetter,
-			valueFn: function() {
-				var label = this.get(LAST_PAGE_LINK_LABEL);
-
-				return A.Node.create(LAST_LINK_TPL).html(label);
-			}
-		},
-
-		lastPageLinkLabel: {
-			value: LAST,
 			validator: isString
 		},
 
@@ -235,6 +235,17 @@ A.mix(Paginator, {
 			valueFn: function() {
 				return A.Node.create(ROWS_PER_PAGE_TPL);
 			}
+		},
+
+		state: {
+			setter: function(v) {
+				return this._setState(v);
+			},
+			getter: function(v) {
+				return this._getState(v);
+			},
+			value: {},
+			validator: isObject
 		},
 
 		template: {
@@ -281,17 +292,6 @@ A.mix(Paginator, {
 					this.get(TOTAL) / this.get(ROWS_PER_PAGE)
 				);
 			}
-		},
-
-		state: {
-			setter: function(v) {
-				return this._setState(v);
-			},
-			getter: function(v) {
-				return this._getState(v);
-			},
-			value: {},
-			validator: isObject
 		}
 	}
 });
@@ -338,7 +338,7 @@ A.extend(Paginator, A.Widget, {
 		instance._afterSetPage();
 	},
 
-	_syncPageUI: function() {
+	_syncPageLinksUI: function() {
 		var instance = this;
 		var containers = instance.get(CONTAINERS);
 		var page = instance.get(PAGE);
@@ -430,6 +430,13 @@ A.extend(Paginator, A.Widget, {
 		);
 	},
 
+	hasPage: function(page) {
+		var instance = this;
+		var totalPages = instance.get(TOTAL_PAGES);
+
+		return ( (page > 0) && (page <= totalPages) );
+	},
+
 	hasPrevPage: function() {
 		var instance = this;
 
@@ -438,11 +445,15 @@ A.extend(Paginator, A.Widget, {
 		);
 	},
 
-	hasPage: function(page) {
+	_renderRowsPerPageOptions: function() {
 		var instance = this;
-		var totalPages = instance.get(TOTAL_PAGES);
+		var i = 0;
+		var rowsPerPageEl = instance.get(ROWS_PER_PAGE_EL);
+		var rowsPerPageOptions = instance.get(ROWS_PER_PAGE_OPTIONS);
 
-		return ( (page > 0) && (page <= totalPages) );
+		A.each(rowsPerPageOptions, function(value) {
+			rowsPerPageEl.getDOM().options[i++] = new Option(value, value);
+		});
 	},
 
 	_renderTemplateUI: function() {
@@ -457,24 +468,13 @@ A.extend(Paginator, A.Widget, {
 		);
 
 		// sync pageLinks
-		instance._syncPageUI();
+		instance._syncPageLinksUI();
 
 		// sync page report, eg. (1 of 100)
 		instance._syncPageReportUI();
 
 		// bind the DOM events after _renderTemplateUI
 		instance._bindDOMEvents();
-	},
-
-	_renderRowsPerPageOptions: function() {
-		var instance = this;
-		var i = 0;
-		var rowsPerPageEl = instance.get(ROWS_PER_PAGE_EL);
-		var rowsPerPageOptions = instance.get(ROWS_PER_PAGE_OPTIONS);
-
-		A.each(rowsPerPageOptions, function(value) {
-			rowsPerPageEl.getDOM().options[i++] = new Option(value, value);
-		});
 	},
 
 	/*
@@ -484,32 +484,6 @@ A.extend(Paginator, A.Widget, {
 		var instance = this;
 
 		instance.set(STATE, v);
-	},
-
-	_setState: function(v) {
-		var instance = this;
-
-		A.each(v, function(value, key) {
-			instance.set(key, value);
-		});
-
-		return v;
-	},
-
-	_setTotal: function(v) {
-		var instance = this;
-		var alwaysVisible = instance.get(ALWAYS_VISIBLE);
-		var containers = instance.get(CONTAINERS);
-
-		// if !alwaysVisible and there is nothing to show, hide it
-		if (!alwaysVisible && (v == 0)) {
-			containers.hide();
-		}
-		else {
-			containers.show();
-		}
-
-		return v;
 	},
 
 	_getState: function(v) {
@@ -562,6 +536,32 @@ A.extend(Paginator, A.Widget, {
 		return instance.templatesCache;
 	},
 
+	_setState: function(v) {
+		var instance = this;
+
+		A.each(v, function(value, key) {
+			instance.set(key, value);
+		});
+
+		return v;
+	},
+
+	_setTotal: function(v) {
+		var instance = this;
+		var alwaysVisible = instance.get(ALWAYS_VISIBLE);
+		var containers = instance.get(CONTAINERS);
+
+		// if !alwaysVisible and there is nothing to show, hide it
+		if (!alwaysVisible && (v == 0)) {
+			containers.hide();
+		}
+		else {
+			containers.show();
+		}
+
+		return v;
+	},
+
 	/*
 	* Listeners
 	*/
@@ -577,7 +577,7 @@ A.extend(Paginator, A.Widget, {
 	_afterSetState: function(event) {
 		var instance = this;
 
-		instance._syncPageUI();
+		instance._syncPageLinksUI();
 		instance._syncPageReportUI();
 	},
 
