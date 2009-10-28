@@ -71,6 +71,19 @@
 				},
 
 				/*
+				* Paginator
+				*/
+				'paginator': {
+					fullpath: PATH_JAVASCRIPT + 'paginator.js',
+					requires: [ 'aui-base', 'substitute', 'paginator-css' ]
+				},
+				'paginator-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'paginator.css',
+					type: 'css'
+				},
+
+				/*
 				* Rating
 				*/
 				'rating': {
