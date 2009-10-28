@@ -1,6 +1,7 @@
 AUI.add('paginator', function(A) {
 
 var L = A.Lang,
+	isArray = L.isArray,
 	isBoolean = L.isBoolean,
 	isNumber = L.isNumber,
 	isObject = L.isObject,
@@ -33,6 +34,7 @@ var L = A.Lang,
 	PREV_PAGE_LINK_LABEL = 'prevPageLinkLabel',
 	REPORT = 'report',
 	ROWS = 'rows',
+	ROWS_PER_PAGE_OPTIONS = 'rowsPerPageOptions',
 	ROWS_PER_PAGE = 'rowsPerPage',
 	ROWS_PER_PAGE_EL = 'rowsPerPageEl',
 	SELECT = 'select',
@@ -119,8 +121,10 @@ A.mix(Paginator, {
 		},
 
 		page: {
-			value: 1,
-			validator: isNumber
+			setter: function(v) {
+				return num(v);
+			},
+			value: 1
 		},
 
 		pageReportEl: {
@@ -210,9 +214,16 @@ A.mix(Paginator, {
 			validator: isString
 		},
 
+		rowsPerPageOptions: {
+			value: {},
+			validator: isArray
+		},
+
 		rowsPerPage: {
-			value: 1,
-			validator: isNumber
+			setter: function(v) {
+				return num(v);
+			},
+			value: 1
 		},
 
 		rowsPerPageEl: {
@@ -272,8 +283,9 @@ A.extend(Paginator, A.Widget, {
 		var instance = this;
 		var containers = instance.get(CONTAINERS);
 
-		// parse the HTML templape from markup
-		instance._syncTemplateUI();
+		instance._renderRowsPerPageOptions();
+
+		instance._renderTemplateUI();
 
 		containers.addClass(CSS_PAGINATOR_CONTAINER);
 	},
@@ -282,41 +294,24 @@ A.extend(Paginator, A.Widget, {
 		var instance = this;
 
 		instance._delegateDOM();
+		instance._bindDOMEvents();
 
 		instance.publish('changeRequest');
 		instance.after('pageChange', A.bind(instance._afterSetPage, instance));
 		instance.after('stateChange', A.bind(instance._afterSetState, instance));
 		instance.before('stateChange', A.bind(instance._beforeSetState, instance));
 
-		// invoke _syncTemplateUI to recreate the template markup
-		instance.after('maxPageLinksChange', A.bind(instance._syncTemplateUI, instance));
-		instance.after('rowsPerPageChange', A.bind(instance._syncTemplateUI, instance));
-		instance.after('totalChange', A.bind(instance._syncTemplateUI, instance));
+		// invoke _renderTemplateUI to recreate the template markup
+		instance.after('maxPageLinksChange', A.bind(instance._renderTemplateUI, instance));
+		instance.after('rowsPerPageChange', A.bind(instance._renderTemplateUI, instance));
+		instance.after('totalChange', A.bind(instance._renderTemplateUI, instance));
 	},
 
 	syncUI: function() {
 		var instance = this;
 
-		instance._syncTemplateUI();
-
 		// fire changeRequest to the first state
 		instance._afterSetPage();
-	},
-
-	_syncTemplateUI: function() {
-		var instance = this;
-		var containers = instance.get(CONTAINERS);
-
-		instance.templatesCache = null;
-
-		containers.html(
-			instance.get(TEMPLATE)
-		);
-
-		// sync pageLinks
-		instance._syncPageUI();
-		// sync page report, eg. (1 of 100)
-		instance._syncPageReportUI();
 	},
 
 	_syncPageUI: function() {
@@ -335,7 +330,6 @@ A.extend(Paginator, A.Widget, {
 			var pageLinks = node.all(DOT+CSS_PAGINATOR_PAGE_LINK);
 
 			if (pageLinks) {
-				// removeClass from the current page
 				pageLinks.removeClass(CSS_PAGINATOR_CURRENT_PAGE);
 
 				// loop all pages from range.start to range.end
@@ -425,6 +419,37 @@ A.extend(Paginator, A.Widget, {
 		var totalPages = instance.get(TOTAL_PAGES);
 
 		return ( (page > 0) && (page <= totalPages) );
+	},
+
+	_renderTemplateUI: function() {
+		var instance = this;
+		var containers = instance.get(CONTAINERS);
+
+		instance.templatesCache = null;
+
+		// loading HTML template on the containers
+		containers.html(
+			instance.get(TEMPLATE)
+		);
+
+		// sync pageLinks
+		instance._syncPageUI();
+		// sync page report, eg. (1 of 100)
+		instance._syncPageReportUI();
+
+		// bind the DOM events after _renderTemplateUI
+		instance._bindDOMEvents();
+	},
+
+	_renderRowsPerPageOptions: function() {
+		var instance = this;
+		var i = 0;
+		var rowsPerPageEl = instance.get(ROWS_PER_PAGE_EL);
+		var rowsPerPageOptions = instance.get(ROWS_PER_PAGE_OPTIONS);
+
+		A.each(rowsPerPageOptions, function(value) {
+			rowsPerPageEl.getDOM().options[i++] = new Option(value, value);
+		});
 	},
 
 	/*
@@ -558,7 +583,7 @@ A.extend(Paginator, A.Widget, {
 
 	_onClickPageLinkEl: function(event) {
 		var instance = this;
-		var pageNumber = num( event.target.attr(PAGE) );
+		var pageNumber = event.target.attr(PAGE);
 
 		instance.set(PAGE, pageNumber);
 
@@ -584,6 +609,31 @@ A.extend(Paginator, A.Widget, {
 		instance.set(PAGE, totalPages);
 
 		event.halt();
+	},
+
+	_bindDOMEvents: function() {
+		var instance = this;
+		var containers = instance.get(CONTAINERS);
+
+		// loop all containers...
+		containers.each(function(node) {
+			// search for selects rows per page elements
+			var rowsPerPageEl = node.one(DOT+CSS_PAGINATOR_ROWS_PER_PAGE);
+
+			if (rowsPerPageEl) {
+				// update the value with the current rowsPerPage
+				rowsPerPageEl.val(
+					instance.get(ROWS_PER_PAGE)
+				);
+
+				// bind change event to update the rowsPerPage
+				rowsPerPageEl.on('change', function(event) {
+					var rowsPerPage = event.target.val();
+
+					instance.set(ROWS_PER_PAGE, rowsPerPage);
+				});
+			}
+		});
 	},
 
 	_delegateDOM: function() {
