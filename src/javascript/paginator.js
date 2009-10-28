@@ -458,6 +458,7 @@ A.extend(Paginator, A.Widget, {
 
 		// sync pageLinks
 		instance._syncPageUI();
+
 		// sync page report, eg. (1 of 100)
 		instance._syncPageReportUI();
 
@@ -655,6 +656,10 @@ A.extend(Paginator, A.Widget, {
 				rowsPerPageEl.on('change', function(event) {
 					var rowsPerPage = event.target.val();
 
+					// reset the page before render the pageLinks again
+					instance.set(PAGE, 1);
+
+					// set rowsPerPage, this will render the UI again
 					instance.set(ROWS_PER_PAGE, rowsPerPage);
 				});
 			}
