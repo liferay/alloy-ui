@@ -521,16 +521,18 @@ A.extend(Paginator, A.Widget, {
 			};
 
 			// substitute the {keys} on the templates with the real outerHTML templates
-			instance.templatesCache = A.substitute(v, {
-				CurrentPageReport: outer(PAGE_REPORT_EL),
-				FirstPageLink: outer(FIRST_PAGE_LINK),
-				LastPageLink: outer(LAST_PAGE_LINK),
-				NextPageLink: outer(NEXT_PAGE_LINK),
-				PageLinks: pageContainer.outerHTML(),
-				PrevPageLink: outer(PREV_PAGE_LINK),
-				RowsPerPageSelect: outer(ROWS_PER_PAGE_EL),
-				Total: outer(TOTAL_EL)
-			});
+			instance.templatesCache = A.substitute(v,
+				{
+					CurrentPageReport: outer(PAGE_REPORT_EL),
+					FirstPageLink: outer(FIRST_PAGE_LINK),
+					LastPageLink: outer(LAST_PAGE_LINK),
+					NextPageLink: outer(NEXT_PAGE_LINK),
+					PageLinks: pageContainer.outerHTML(),
+					PrevPageLink: outer(PREV_PAGE_LINK),
+					RowsPerPageSelect: outer(ROWS_PER_PAGE_EL),
+					Total: outer(TOTAL_EL)
+				}
+			);
 		}
 
 		return instance.templatesCache;
