@@ -43,10 +43,7 @@ var L = A.Lang,
 	CSS_TREE_NODE_CONTENT = getCN(TREE, NODE, CONTENT),
 	CSS_TREE_NODE_SELECTED = getCN(TREE, NODE, SELECTED),
 	CSS_TREE_ROOT_CONTAINER = getCN(TREE, ROOT, CONTAINER),
-	CSS_TREE_VIEW_CONTENT = getCN(TREE, VIEW, CONTENT),
-
-	DOC_FRAG_TPL = '<div></div>';
-
+	CSS_TREE_VIEW_CONTENT = getCN(TREE, VIEW, CONTENT);
 
 /*
 * TreeView
@@ -118,7 +115,7 @@ A.extend(TreeView, A.TreeData, {
 		container.all('> li').each(function(node) {
 			// use firstChild as label
 			var labelEl = node.one('> *').remove();
-			var label = A.Node.create(DOC_FRAG_TPL).append(labelEl).html();
+			var label = labelEl.outerHTML();
 
 			// avoid memory leak
 			docFrag = null;
