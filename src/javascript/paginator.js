@@ -307,6 +307,8 @@ A.extend(Paginator, A.Widget, {
 		var instance = this;
 		var containers = instance.get(CONTAINERS);
 
+		containers.unselectable();
+
 		instance._renderRowsPerPageOptions();
 
 		instance._renderTemplateUI();
