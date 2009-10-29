@@ -488,12 +488,13 @@ AUI().add(
 				_each: function(arr, fn, context) {
 					var instance = this;
 
-					var length = arr.length;
+					var values = arr.slice(0);
+					var length = values.length;
 
 					context = context || instance;
 
 					for (var i = 0; i < length; i++) {
-						if (fn.call(context, arr[i], i, arr) === false) {
+						if (fn.call(context, values[i], i, values) === false) {
 							return false;
 						}
 					}
