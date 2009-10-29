@@ -314,6 +314,19 @@ AUI.add('aui-node', function(A) {
 			return instance._getText(el.childNodes);
 		},
 
+		toggle: function(cssClass) {
+			var instance = this;
+
+			var action = 'hide';
+			var hideClass = cssClass || instance._hideClass || 'aui-helper-hidden';
+
+			if (instance.hasClass(hideClass)) {
+				action = 'show';
+			}
+
+			instance[action](hideClass);
+		},
+
 		unselectable: function() {
 			var instance = this;
 
