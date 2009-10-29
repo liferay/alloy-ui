@@ -506,6 +506,8 @@ AUI.add('aui-node', function(A) {
 
 			'text',
 
+			'toggle',
+
 			'unselectable'
 		]
 	);
