@@ -1150,11 +1150,25 @@ var Lang = A.Lang,
 					]
 				};
 
+				var inputReference = null;
+				var inputParent = null;
+
 				if (input) {
+					input = A.get(input);
+
 					comboConfig.field.node = input;
+
+					inputReference = input.next();
+					inputParent = input.get('parentNode');
 				}
 
 				var comboBox = new A.Combobox(comboConfig).render(contentBox);
+
+				if (inputParent) {
+					var comboBoundingBox = comboBox.get('boundingBox');
+
+					inputParent.insertBefore(comboBoundingBox, inputReference);
+				}
 
 				instance.inputNode = comboBox.get('node');
 				instance.button = comboBox.toolset.tools.item('trigger');
