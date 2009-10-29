@@ -60,7 +60,7 @@ AUI().add(
 						}
 					}
 
-					if (value instanceof A.NodeList) {
+					if (value instanceof A.NodeList && value.size()) {
 						instance.set('container', value.item(0).get('parentNode'));
 					}
 					else {
@@ -115,7 +115,10 @@ AUI().add(
 							proxy: instance.get('proxy')
 						}
 					);
-					nodes.each(instance.add, instance);
+
+					if (nodes) {
+						nodes.each(instance.add, instance);
+					}
 
 					instance.after('drag:drag', instance._onDrag);
 					instance.after('drag:end', instance._onDragEnd);
