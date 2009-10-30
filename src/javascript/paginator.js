@@ -157,6 +157,7 @@ A.mix(Paginator, {
 			getter: function(v) {
 				var totalPages = this.get(TOTAL_PAGES);
 
+				// maxPageLinks cannot be bigger than totalPages
 				return Math.min(totalPages, v);
 			},
 			validator: isNumber
