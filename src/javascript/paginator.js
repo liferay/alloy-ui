@@ -673,7 +673,7 @@ A.extend(Paginator, A.Widget, {
 					var rowsPerPage = instance.get(ROWS_PER_PAGE);
 
 					try {
-						// prevent IE error when first access .val() on A.Node
+						// prevent IE error when first access .val() on A.Node when wraps a SELECT
 						rowsPerPage = event.target.val();
 					}
 					catch(e) {}
