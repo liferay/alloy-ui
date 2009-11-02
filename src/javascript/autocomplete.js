@@ -199,6 +199,8 @@ var Lang = A.Lang,
 			initializer: function(config) {
 				var instance = this;
 
+				instance._overlayAlign = A.mix({}, OVERLAY_ALIGN);
+
 				instance._createDataSource();
 			},
 
@@ -255,7 +257,7 @@ var Lang = A.Lang,
 
 				instance.publish('unmatchedItemSelect');
 
-				instance.overlay.on('visibleChange', instance._realignContainer);
+				instance.overlay.on('visibleChange', instance._realignContainer, instance);
 			},
 
 			syncUI: function() {
@@ -1125,7 +1127,9 @@ var Lang = A.Lang,
 			_realignContainer: function(event) {
 				var instance = this;
 
-				instance._uiSetAlign(OVERLAY_ALIGN.node, OVERLAY_ALIGN.points);
+				var overlayAlign = instance._overlayAlign;
+
+				instance.overlay._uiSetAlign(overlayAlign.node, overlayAlign.points);
 			},
 
 			_renderInput: function() {
@@ -1195,11 +1199,13 @@ var Lang = A.Lang,
 			_renderOverlay: function() {
 				var instance = this;
 
-				OVERLAY_ALIGN.node = instance.inputNode;
+				var overlayAlign = instance._overlayAlign;
+
+				overlayAlign.node = instance.inputNode;
 
 				var overlay = new A.Overlay(
 					{
-						align: OVERLAY_ALIGN,
+						align: overlayAlign,
 						bodyContent: '<ul></ul>',
 						visible: false,
 						width: instance.inputNode.get('offsetWidth')
