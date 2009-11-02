@@ -198,7 +198,9 @@ AUI.add('aui-node', function(A) {
 
 		outerHTML: function() {
 			var instance = this;
-			var temp = A.Node.create('<div></div>').append(this);
+			var temp = A.Node.create('<div></div>').append(
+				this.cloneNode(true)
+			);
 
 			try {
 				return temp.html();
