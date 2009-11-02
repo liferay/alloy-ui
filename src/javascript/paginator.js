@@ -297,7 +297,7 @@ A.mix(Paginator, {
 	}
 });
 
-A.extend(Paginator, A.Widget, {
+A.extend(Paginator, A.Component, {
 	lastState: null,
 	templatesCache: null,
 

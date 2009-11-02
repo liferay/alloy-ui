@@ -242,7 +242,7 @@ AUI().add(
 
 		A.extend(
 			Tab,
-			A.Widget,
+			A.Component,
 			{
 				BOUNDING_TEMPLATE: '<li></li>',
 				CONTENT_TEMPLATE: '<span></span>',
@@ -378,7 +378,7 @@ AUI().add(
 
 		A.extend(
 			TabView,
-			A.Widget,
+			A.Component,
 			{
 				renderUI: function() {
 					var instance = this;

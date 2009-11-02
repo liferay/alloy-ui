@@ -137,7 +137,7 @@ AUI().add(
 
 		A.extend(
 			Editable,
-			A.Widget,
+			A.Component,
 			{
 				initializer: function() {
 					var instance = this;

@@ -70,7 +70,7 @@ A.mix(TreeData, {
 	}
 });
 
-A.extend(TreeData, A.Widget, {
+A.extend(TreeData, A.Component, {
 	/*
 	* Lifecycle
 	*/

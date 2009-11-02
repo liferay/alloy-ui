@@ -33,7 +33,7 @@
 				*/
 				'aui-base': {
 					fullpath: PATH_JAVASCRIPT + 'base.js',
-					requires: [ 'event', 'oop', 'widget', 'aui-node' ]
+					requires: [ 'event', 'oop', 'component', 'aui-node' ]
 				},
 
 				/*
@@ -235,7 +235,7 @@
 				*/
 				'tabs': {
 					fullpath: PATH_JAVASCRIPT + 'tabs.js',
-					requires: ['widget', 'state-interaction', 'tabs-css']
+					requires: ['component', 'state-interaction', 'tabs-css']
 				},
 				'tabs-css': {
 					ext: false,
@@ -318,7 +318,7 @@
 				*/
 				'panel': {
 					fullpath: PATH_JAVASCRIPT + 'panel.js',
-					requires: [ 'panel-css', 'widget', 'widget-stdmod', 'tool-set' ]
+					requires: [ 'panel-css', 'component', 'widget-stdmod', 'tool-set' ]
 				},
 				'panel-css': {
 					ext: false,

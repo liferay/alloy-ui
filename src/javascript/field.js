@@ -209,7 +209,7 @@ AUI().add(
 
 		A.extend(
 			Field,
-			A.Widget,
+			A.Component,
 			{
 				BOUNDING_TEMPLATE: TPL_BOUNDING_BOX,
 				CONTENT_TEMPLATE: TPL_CONTENT_BOX,

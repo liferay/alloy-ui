@@ -101,7 +101,7 @@ AUI().add(
 
 		A.extend(
 			ToolItem,
-			A.Widget,
+			A.Component,
 			{
 				BOUNDING_TEMPLATE: TPL_GENERIC,
 				CONTENT_TEMPLATE: TPL_GENERIC,

@@ -41,7 +41,7 @@ AUI().add(
 
 		A.extend(
 			Combobox,
-			A.Widget,
+			A.Component,
 			{
 				renderUI: function() {
 					var instance = this;

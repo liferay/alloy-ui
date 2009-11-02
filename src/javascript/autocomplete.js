@@ -194,7 +194,7 @@ var Lang = A.Lang,
 
 	A.extend(
 		AutoComplete,
-		A.Widget,
+		A.Component,
 		{
 			initializer: function(config) {
 				var instance = this;
