@@ -385,6 +385,14 @@
 				},
 
 				/*
+				* Component
+				*/
+				'component': {
+					fullpath: PATH_JAVASCRIPT + 'component.js',
+					requires: [ 'widget' ]
+				},
+
+				/*
 				* StdModIOPlugin
 				*/
 				'io-stdmod': {
