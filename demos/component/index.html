@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="../../themes/base/css/aui-widget.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - aui-widget Demo</h1>
+
+
+	<div id="demo">
+		<input id="cloneButton" type="button" value="Clone" />
+		<input id="toggleButton" type="button" value="Toggle" />
+		<input id="destroyButton" type="button" value="Destroy" />
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready(
+	'component',
+	function(A) {
+		var componentText = 'This is a component';
+
+		cmp = new A.Component(
+			{
+				cssClass: 'lfr-panel',
+				autoRender: '#demo'
+			}
+		);
+
+		cmp.get('contentBox').set('innerHTML', componentText);
+
+		A.get('#cloneButton').on(
+			'click',
+			function(event) {
+				var clone = cmp.clone();
+
+				var cloneText = componentText.replace(/component/, '<strong>cloned</strong> component');
+
+				clone.get('contentBox').set('innerHTML', cloneText);
+			}
+		);
+
+		A.get('#toggleButton').on('click', cmp.toggle, cmp);
+
+		A.get('#destroyButton').on('click', cmp.destroy, cmp);
+	}
+);
+
+</script>
+
+</body>
+</html>
