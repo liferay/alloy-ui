@@ -155,7 +155,7 @@ AUI().add(
 				headerTextNode.set('innerHTML', html);
 				headerNode.set('innerHTML', '');
 
-				headerTextNode.addClass(getClassName(NAME, 'header', 'text'));
+				headerTextNode.addClass(getClassName(NAME, 'hd', 'text'));
 
 				headerNode.prepend(headerTextNode);
 
