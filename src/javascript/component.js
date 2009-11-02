@@ -74,9 +74,9 @@ AUI().add(
 				clone: function(config) {
 					var instance = this;
 
-					config = config || {};
-
 					config.id = config.id || A.guid();
+
+					config = config || {};
 
 					A.mix(config, instance._originalConfig);
 
