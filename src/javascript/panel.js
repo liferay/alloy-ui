@@ -197,7 +197,7 @@ AUI().add(
 			}
 		}
 
-		A.Panel = A.Base.build('panel', A.Widget, [A.WidgetStdMod, Panel]);
+		A.Panel = A.Base.build('panel', A.Component, [A.WidgetStdMod, Panel]);
 	},
 	'@VERSION',
 	{

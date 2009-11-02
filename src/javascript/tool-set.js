@@ -33,7 +33,7 @@ AUI().add(
 
 		A.extend(
 			ToolSet,
-			A.Widget,
+			A.Component,
 			{
 				BOUNDING_TEMPLATE: TPL_GENERIC,
 				CONTENT_TEMPLATE: TPL_GENERIC,

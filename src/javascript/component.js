@@ -76,9 +76,9 @@ AUI().add(
 
 					config = config || {};
 
-					A.mix(config, instance._originalConfig);
-
 					config.id = config.id || A.guid();
+
+					A.mix(config, instance._originalConfig);
 
 					return new instance.constructor(config);
 				},

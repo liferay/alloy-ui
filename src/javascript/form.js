@@ -93,7 +93,7 @@ AUI().add(
 
 		A.extend(
 			Form,
-			A.Widget,
+			A.Component,
 			{
 				CONTENT_TEMPLATE: '<form></form>',
 
