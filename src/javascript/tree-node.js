@@ -180,7 +180,7 @@ A.extend(TreeNode, A.TreeData, {
 	/*
 	* Lifecycle
 	*/
-	initializer: function() {
+	init: function() {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
 
@@ -189,8 +189,7 @@ A.extend(TreeNode, A.TreeData, {
 			instance.set( ID, A.guid(TREE_NODE) );
 		}
 
-		// invoking TreeData initializer
-		TreeNode.superclass.initializer.apply(this, arguments);
+		TreeNode.superclass.init.apply(this, arguments);
 	},
 
 	bindUI: function() {
@@ -277,7 +276,7 @@ A.extend(TreeNode, A.TreeData, {
 		var nodeContainer = instance.get(CONTAINER) || A.Node.create(NODE_CONTAINER_TPL);
 
 		nodeContainer.addClass(CSS_TREE_CONTAINER);
-
+console.log('_createNodeContainer', nodeContainer.getDOM());
 		// when it's not a leaf it has a <ul> container
 		instance.set(CONTAINER, nodeContainer);
 
