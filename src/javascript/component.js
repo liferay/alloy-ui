@@ -61,6 +61,10 @@ AUI().add(
 				initializer: function(config) {
 					var instance = this;
 
+					if (config) {
+						instance._uiSetCssClass(config.cssClass);
+					}
+
 					instance._setOwnerComponent(instance.get('ownerComponent'));
 					instance._setRelayEvents(instance.get('relayEvents'));
 
@@ -131,17 +135,7 @@ AUI().add(
 				_afterCssClassChange: function(event) {
 					var instance = this;
 
-					var prevVal = event.prevVal;
-					var prevValContent = prevVal + '-content';
-
-					var newVal = event.newVal;
-					var newValContent = newVal + '-content';
-
-					var boundingBox = instance.get('boundingBox');
-					var contentBox = instance.get('contentBox');
-
-					boundingBox.replaceClass(prevVal, newVal);
-					contentBox.replaceClass(prevValContent, newValContent);
+					instance._uiSetCssClass(event.newVal, event.prevVal);
 				},
 
 				_relayEvents: function() {
@@ -171,6 +165,20 @@ AUI().add(
 					var instance = this;
 
 					instance._ownerComponent = ownerComponent;
+				},
+
+				_uiSetCssClass: function(newVal, prevVal) {
+					var instance = this;
+
+					var prevValContent = prevVal + '-content';
+
+					var newValContent = newVal + '-content';
+
+					var boundingBox = instance.get('boundingBox');
+					var contentBox = instance.get('contentBox');
+
+					boundingBox.replaceClass(prevVal, newVal);
+					contentBox.replaceClass(prevValContent, newValContent);
 				}
 			}
 		);
