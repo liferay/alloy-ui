@@ -74,16 +74,17 @@ A.extend(TreeData, A.Component, {
 	/*
 	* Lifecycle
 	*/
-	render: function() {
+	initializer: function() {
 		var instance = this;
 
+		// binding on initializer, needed before .render() phase
 		instance.publish('move');
 		instance.publish('collapseAll', { defaultFn: instance._collapseAll });
 		instance.publish('expandAll', { defaultFn: instance._expandAll });
 		instance.publish('append', { defaultFn: instance._appendChild });
 		instance.publish('remove', { defaultFn: instance._removeChild });
 
-		TreeData.superclass.render.apply(this, arguments);
+		TreeData.superclass.initializer.apply(this, arguments);
 	},
 
 	/*
