@@ -7,7 +7,7 @@ AUI().add(
 			DataSet.superclass.constructor.apply(this, arguments);
 		};
 
-		DataSet.NAME = 'compoundset';
+		DataSet.NAME = 'dataset';
 
 		DataSet.ATTRS = {
 			keys: {
@@ -122,6 +122,7 @@ AUI().add(
 						{
 							index: instance.length,
 							attrName: key,
+							item: obj,
 							newVal: obj
 						}
 					);
@@ -346,6 +347,7 @@ AUI().add(
 						{
 							index: instance.length,
 							attrName: key,
+							item: obj,
 							newVal: obj
 						}
 					);
@@ -426,6 +428,16 @@ AUI().add(
 						}
 
 						instance.length--;
+
+						instance.fire(
+							'remove',
+							{
+								index: index,
+								attrName: key,
+								item: obj,
+								prevVal: obj
+							}
+						);
 					}
 				},
 
@@ -459,6 +471,8 @@ AUI().add(
 						'replace',
 						{
 							attrName: key,
+							index: index,
+							item: obj,
 							prevVal: prevVal,
 							newVal: obj
 						}
