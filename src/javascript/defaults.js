@@ -33,7 +33,7 @@
 				*/
 				'aui-base': {
 					fullpath: PATH_JAVASCRIPT + 'base.js',
-					requires: [ 'event', 'oop', 'component', 'aui-node' ]
+					requires: [ 'event', 'oop', 'component', 'aui-node', 'collection' ]
 				},
 
 				/*
