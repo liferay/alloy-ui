@@ -514,9 +514,59 @@ AUI.add('aui-node', function(A) {
 		]
 	);
 
-	A.NodeList.prototype.getDOM = function() {
-		return A.NodeList.getDOMNodes(this);
-	};
+	A.mix(
+		A.NodeList.prototype,
+		{
+			all: function(selector) {
+				var instance = this;
+
+				var newNodeList = [];
+				var nodes = instance._nodes;
+				var length = nodes.length;
+
+				var subList;
+
+				for (var i = 0; i < length; i++) {
+					subList = A.Selector.query(selector, nodes[i]);
+
+					if (subList && subList.length) {
+						newNodeList.push.apply(newNodeList, subList);
+					}
+				}
+
+				newNodeList = A.Array.unique(newNodeList);
+
+				return A.all(newNodeList);
+			},
+
+			getDOM: function() {
+				var instance = this;
+
+				return A.NodeList.getDOMNodes(this);
+			},
+
+			one: function(selector) {
+				var instance = this;
+
+				var newNode = null;
+
+				var nodes = instance._nodes;
+				var length = nodes.length;
+
+				for (var i = 0; i < length; i++) {
+					newNode = A.Selector.query(selector, nodes[i], true);
+
+					if (newNode) {
+						newNode = A.one(newNode);
+
+						break;
+					}
+				}
+
+				return newNode;
+			}
+		}
+	);
 
 	A.mix(
 		A,
@@ -553,4 +603,4 @@ AUI.add('aui-node', function(A) {
 		}
 	);
 
-}, '@VERSION', { requires: [ 'node' ] });
+}, '@VERSION', { requires: [ 'collection', 'node' ] });
