@@ -4,14 +4,21 @@ var L = A.Lang,
 	isString = L.isString,
 	isNumber = L.isNumber,
 
+	UA = A.UA,
+
+	IE_LT_6 = (UA.ie && UA.version.major <= 6),
+
+	ABSOLUTE = 'absolute',
 	ALIGN = 'align',
 	BACKGROUND = 'background',
 	BOUNDING_BOX = 'boundingBox'
+	FIXED = 'fixed',
 	HEIGHT = 'height',
 	OFFSET_HEIGHT = 'offsetHeight',
 	OFFSET_WIDTH = 'offsetWidth',
 	OPACITY = 'opacity',
-	OVERLAY_MASK = 'OverlayMask',
+	OVERLAY_MASK = 'overlaymask',
+	POSITION = 'position',
 	TARGET = 'target',
 	TL = 'tl',
 	WIDTH = 'width';
@@ -99,22 +106,28 @@ A.extend(OverlayMask, A.Overlay, {
 	getTargetSize: function() {
 		var instance = this;
 		var target = instance.get(TARGET);
-		var height = 0, width = 0;
+		var height = target.get(OFFSET_HEIGHT);
+		var width = target.get(OFFSET_WIDTH);
 
+		var HUNDRED_PERCENT = '100%';
 		var isDoc = target.compareTo(document);
 		var isWin = target.compareTo(window);
 
-		if (isDoc) {
-		    width = A.DOM.docWidth();
-		    height = A.DOM.docHeight();
+		if (IE_LT_6) {
+			// IE6 doesn't support height/width 100% on doc/win
+			if (isWin) {
+				width = A.DOM.winWidth();
+				height = A.DOM.winHeight();
+			}
+			else if (isDoc) {
+				width = A.DOM.docWidth();
+				height = A.DOM.docHeight();
+			}
 		}
-		else if (isWin) {
-		    width = A.DOM.winWidth();
-		    height = A.DOM.winHeight();
-		}
-		else {
-			height = target.get(OFFSET_HEIGHT);
-			width = target.get(OFFSET_WIDTH);
+		// good browsers...
+		else if (isDoc || isWin) {
+			height = HUNDRED_PERCENT;
+			width = HUNDRED_PERCENT;
 		}
 
 		return { height: height, width: width };
@@ -127,6 +140,18 @@ A.extend(OverlayMask, A.Overlay, {
 		var instance = this;
 		var align = instance.get(ALIGN);
 		var target = instance.get(TARGET);
+		var boundingBox = instance.get(BOUNDING_BOX);
+
+		var isDoc = target.compareTo(document);
+		var isWin = target.compareTo(window);
+
+		if (!IE_LT_6 && (isDoc || isWin)) {
+			boundingBox.setStyle(POSITION, FIXED);
+		}
+		else {
+			boundingBox.setStyle(POSITION, ABSOLUTE);
+		}
+
 		var size = instance.getTargetSize();
 
 		instance.set(HEIGHT, size.height);
