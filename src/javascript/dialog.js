@@ -208,6 +208,7 @@ A.extend(Dialog, A.Overlay, {
 		);
 
 		instance.after('titleChange', this._afterSetTitle);
+		instance.after('visibleChange', this._afterSetVisible);
 	},
 
 	_renderElements: function() {
@@ -422,6 +423,19 @@ A.extend(Dialog, A.Overlay, {
 			headerNode.addClass(CSS_STATE_DEFAULT);
 
 			instance.titleContainter.html(event.newVal);
+		}
+	},
+
+	_afterSetVisible: function(event) {
+		var instance = this;
+
+		if (instance.get(MODAL)) {
+			if (event.newVal) {
+				A.DialogMask.show();
+			}
+			else {
+				A.DialogMask.hide();
+			}
 		}
 	}
 });
