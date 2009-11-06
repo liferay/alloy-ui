@@ -6,7 +6,7 @@ var L = A.Lang,
 
 	UA = A.UA,
 
-	IE_LT_6 = (UA.ie && UA.version.major <= 6),
+	ie6 = (UA.ie && UA.version.major <= 6),
 
 	ABSOLUTE = 'absolute',
 	ALIGN = 'align',
@@ -109,11 +109,11 @@ A.extend(OverlayMask, A.Overlay, {
 		var height = target.get(OFFSET_HEIGHT);
 		var width = target.get(OFFSET_WIDTH);
 
-		var HUNDRED_PERCENT = '100%';
+		var HUNDRED = '100%';
 		var isDoc = target.compareTo(document);
 		var isWin = target.compareTo(window);
 
-		if (IE_LT_6) {
+		if (ie6) {
 			// IE6 doesn't support height/width 100% on doc/win
 			if (isWin) {
 				width = A.DOM.winWidth();
@@ -126,8 +126,8 @@ A.extend(OverlayMask, A.Overlay, {
 		}
 		// good browsers...
 		else if (isDoc || isWin) {
-			height = HUNDRED_PERCENT;
-			width = HUNDRED_PERCENT;
+			height = HUNDRED;
+			width = HUNDRED;
 		}
 
 		return { height: height, width: width };
@@ -145,7 +145,7 @@ A.extend(OverlayMask, A.Overlay, {
 		var isDoc = target.compareTo(document);
 		var isWin = target.compareTo(window);
 
-		if (!IE_LT_6 && (isDoc || isWin)) {
+		if (!ie6 && (isDoc || isWin)) {
 			boundingBox.setStyle(POSITION, FIXED);
 		}
 		else {
