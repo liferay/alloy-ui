@@ -244,6 +244,14 @@ AUI.add('aui-node', function(A) {
 			A.get(selector).prepend(instance);
 		},
 
+		radioClass: function(cssClass) {
+			var instance = this;
+
+			instance.siblings().removeClass(cssClass);
+
+			instance.addClass(cssClass);
+		},
+
 		resetId: function(prefix) {
 			var instance = this;
 
@@ -276,6 +284,22 @@ AUI.add('aui-node', function(A) {
 			instance.removeClass(cssClass || instance._hideClass || 'aui-helper-hidden')
 
 			return instance;
+		},
+
+		siblings: function() {
+			var instance = this;
+
+			var all = instance.get('parentNode.children');
+			var currentNode = instance._node;
+
+			var siblings = A.Array.filter(
+				all._nodes,
+				function(item, index, collection) {
+					return item != currentNode;
+				}
+			);
+
+			return A.all(siblings);
 		},
 
 		swallowEvent: function(eventName, preventDefault) {
