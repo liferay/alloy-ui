@@ -40,6 +40,15 @@ shadow or rounded corners.
 	border-radius: 4px;
 }
 
+/* Large corners */
+.aui-textboxlistentry,
+.aui-textboxlistentry-close {
+	-moz-border-radius: 14px;
+	-webkit-border-radius: 14px;
+	border-radius: 14px;
+}
+
+
 /* No corners */
 
 .aui-dialog .aui-widget-hd,
