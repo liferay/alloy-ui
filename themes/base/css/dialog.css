@@ -40,3 +40,7 @@
 .aui-dialog-hidden {
 	display: none;
 }
+
+.aui-dialog-button {
+	margin-right: 2px;
+}
