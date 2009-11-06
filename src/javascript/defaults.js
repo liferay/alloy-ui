@@ -218,6 +218,20 @@
 				},
 
 				/*
+				* TextboxList
+				*/
+				'textboxlist': {
+					fullpath: PATH_JAVASCRIPT + 'textboxlist.js',
+					requires: [ 'anim-node-plugin', 'aui-base', 'autocomplete', 'node-focusmanager', 'textboxlist-css' ]
+				},
+
+				'textboxlist-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'textboxlist.css',
+					type: 'css'
+				},
+
+				/*
 				* Dialog
 				*/
 				'dialog': {
