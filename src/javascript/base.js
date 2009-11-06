@@ -198,6 +198,13 @@ AUI.add('aui-node', function(A) {
 
 		outerHTML: function() {
 			var instance = this;
+			var domEl = instance.getDOM();
+
+			// IE, Opera and WebKit all have outerHTML.
+			if ('outerHTML' in domEl) {
+				return domEl.outerHTML;
+			}
+
 			var temp = A.Node.create('<div></div>').append(
 				this.cloneNode(true)
 			);
