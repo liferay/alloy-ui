@@ -15,6 +15,9 @@
 -->
 
 <project name="Alloy" default="release" basedir=".">
+	<property file="compiler"/>
+	<property name="compiler" value="yui"/>
+	
 	<property name="project.dir" value="../"/>
 	<property name="build.dir" value="${project.dir}/build/"/>
 	<property name="demo.dir" value="${project.dir}/demos/"/>
@@ -30,6 +33,8 @@
 
 	<property name="release.name" value="alloy" />
 	<property name="release.dir" value="${build.dir}/${release.name}/" />
+	<property name="closure.compiler.file" value="compiler.jar" />
+	<property name="closure.compiler.path" value="${build.dir}/lib/${closure.compiler.file}" />
 	<property name="yui.compressor.file" value="yuicompressor-2.4.2.jar" />
 	<property name="yui.compressor.path" value="${build.dir}/lib/${yui.compressor.file}" />
 
@@ -162,23 +167,46 @@
 
 
 	<target name="minify-javascript" depends="concatenate">
-		<echo>Minifying JavaScript files.</echo>
+		<if>
+			<equals arg1="${compiler}" arg2="yui" />
+			<then>
+				<echo>Minifying JavaScript files - YUI Compressor.</echo>
 
-		<mkdir dir="${release.dir}/src/javascript/minified/"/>
+				<mkdir dir="${release.dir}/src/javascript/minified/"/>
 
-		<apply executable="java" parallel="false">
-			<fileset dir="${release.dir}/src/javascript/" includes="*.js" />
-			<arg line="-jar" />
-			<arg path="${yui.compressor.path}" />
-			<arg value="--charset"/>
-            <arg value="UTF-8"/>
-			<srcfile/>
-			<arg line="-o" />
-			<mapper type="glob" from="*.js" to="${release.name}/src/javascript/minified/*-min.js" />
-			<targetfile/>
-		</apply>
+				<apply executable="java" parallel="false">
+					<fileset dir="${release.dir}/src/javascript/" includes="*.js" />
+					<arg line="-jar" />
+					<arg path="${yui.compressor.path}" />
+					<arg value="--charset"/>
+		            <arg value="UTF-8"/>
+					<srcfile/>
+					<arg line="-o" />
+					<mapper type="glob" from="*.js" to="${release.name}/src/javascript/minified/*-min.js" />
+					<targetfile/>
+				</apply>
+			</then>
+			<elseif>
+				<equals arg1="${compiler}" arg2="google" />
+				<then>
+					<echo>Minifying JavaScript files - Google Closure Compiler.</echo>
+
+					<mkdir dir="${release.dir}/src/javascript/minified/"/>
+
+					<apply executable="java" parallel="false">
+						<fileset dir="${release.dir}/src/javascript/" includes="*.js" />
+						<arg line="-jar" />
+						<arg path="${closure.compiler.path}" />
+						<arg value="--js"/>
+						<srcfile/>
+						<arg line="--js_output_file" />
+						<mapper type="glob" from="*.js" to="${release.name}/src/javascript/minified/*-min.js" />
+						<targetfile/>
+					</apply>
+				</then>
+			</elseif>
+		</if>
 	</target>
-
 
 	<target name="minify-css" depends="concatenate">
 		<echo>Minifying CSS files.</echo>
