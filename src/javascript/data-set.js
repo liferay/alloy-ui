@@ -345,7 +345,7 @@ AUI().add(
 					instance.fire(
 						'add',
 						{
-							index: instance.length,
+							index: index,
 							attrName: key,
 							item: obj,
 							newVal: obj
