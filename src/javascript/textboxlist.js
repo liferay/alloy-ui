@@ -303,6 +303,7 @@ AUI().add(
 					var inputNode = instance.inputNode;
 					var entryHolder = instance.entryHolder;
 					var item = event.item;
+					var index = event.index;
 
 					if (eventType == 'dataset:add') {
 						var entry = new TextboxListEntry(
@@ -317,7 +318,7 @@ AUI().add(
 
 						entry.render(entryHolder);
 
-						instance.inputContainer.placeBefore(entryNode);
+						entryHolder.all('li').item(index).placeBefore(entryNode);
 
 						entryNode.plug(A.Plugin.NodeFX, CONFIG_ANIM);
 
@@ -338,7 +339,7 @@ AUI().add(
 						var entryNodes = entryHolder.all('li');
 
 						if (entryNodes) {
-							entryNodes.item(event.index).remove();
+							entryNodes.item(index).remove();
 						}
 					}
 				}
