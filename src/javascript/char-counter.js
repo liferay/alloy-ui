@@ -67,9 +67,11 @@ A.extend(CharCounter, A.Base, {
 	bindUI: function() {
 		var instance = this;
 		var input = instance.get(INPUT);
-		var type = 'input';
 
 		instance.after('maxLengthChange', instance.checkLength);
+
+		// priorize input event that supports copy & paste
+		var type = 'input';
 
 		// WebKit before version 531 (3.0.182.2) did not support input events for textareas.
 		// http://dev.chromium.org/developers/webkit-version-table
@@ -77,6 +79,7 @@ A.extend(CharCounter, A.Base, {
 			type = 'keypress';
 		}
 		else if (UA.ie) {
+			// IE doesn't support input event, simulate it with propertychange
 			type = 'propertychange';
 		}
 
