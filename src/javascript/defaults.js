@@ -136,6 +136,14 @@
 				},
 
 				/*
+				* Calendar
+				*/
+				'char-counter': {
+					fullpath: PATH_JAVASCRIPT + 'char-counter.js',
+					requires: [ 'aui-base' ]
+				},
+
+				/*
 				* DatePickerSelect
 				*/
 				'date-picker-select': {
