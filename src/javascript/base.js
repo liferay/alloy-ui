@@ -382,11 +382,11 @@ AUI.add('aui-node', function(A) {
 		val: function(value) {
 			var instance = this;
 
-			if (value) {
-				return instance.set(VALUE, value);
+			if (isUndefined(value)) {
+				return instance.get(VALUE);
 			}
 			else {
-				return instance.get(VALUE);
+				return instance.set(VALUE, value);
 			}
 		},
 
