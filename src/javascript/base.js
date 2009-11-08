@@ -382,7 +382,12 @@ AUI.add('aui-node', function(A) {
 		val: function(value) {
 			var instance = this;
 
-			return instance.attr(VALUE, value);
+			if (value) {
+				return instance.set(VALUE, value);
+			}
+			else {
+				return instance.get(VALUE);
+			}
 		},
 
 		_getText: function(childNodes) {
