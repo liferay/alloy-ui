@@ -49,7 +49,12 @@ AUI().ready('char-counter', function(A) {
 	var cc1 = new A.CharCounter({
 		input: '#input1',
 		counter: '#counter1',
-		maxLength: 10
+		maxLength: 10,
+		on: {
+			maxLength: function(event) {
+				alert('The max length was reach');
+			}
+		}
 	});
 
 	var cc2 = new A.CharCounter({

@@ -68,6 +68,8 @@ A.extend(CharCounter, A.Base, {
 		var instance = this;
 		var input = instance.get(INPUT);
 
+		instance.publish('maxLength');
+
 		instance.after('maxLengthChange', instance.checkLength);
 
 		// priorize input event that supports copy & paste
@@ -110,10 +112,12 @@ A.extend(CharCounter, A.Base, {
 		var scrollTop = input.get(SCROLL_TOP);
 		var scrollLeft = input.get(SCROLL_LEFT);
 
-		if (value.length > maxLength) {
+		if (value.length >= maxLength) {
 			input.val(
 				value.substring(0, maxLength)
 			);
+
+			instance.fire('maxLength');
 		}
 
 		input.set(SCROLL_TOP, scrollTop);
