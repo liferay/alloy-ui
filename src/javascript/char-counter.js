@@ -75,7 +75,9 @@ A.extend(CharCounter, A.Base, {
 
 		// WebKit before version 531 (3.0.182.2) did not support input events for textareas.
 		// http://dev.chromium.org/developers/webkit-version-table
-		if (UA.webkit && UA.version.major <= 2) {
+		// All Chrome versions supports input event
+		// TODO: use UA.chrome when YUI 3 detects it
+		if (!/chrome/i.test(UA.agent) && UA.webkit && UA.version.major <= 2) {
 			type = 'keypress';
 		}
 		else if (UA.ie) {
