@@ -120,7 +120,7 @@ var Lang = A.Lang,
 		},
 
 		matchKey: {
-			value: ''
+			value: 0
 		},
 
 		maxResultsDisplayed: {
@@ -290,7 +290,7 @@ var Lang = A.Lang,
 					var allResults = response.results;
 					var filteredResults = [];
 					var matchFound = false;
-					var matchKey = instance.get('matchKey') || 0;
+					var matchKey = instance.get('matchKey');
 					var matchCase = instance.get('queryMatchCase');
 					var matchContains = instance.get('queryMatchContains');
 					var showAll = (query == '*');
