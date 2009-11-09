@@ -140,7 +140,7 @@
 				*/
 				'char-counter': {
 					fullpath: PATH_JAVASCRIPT + 'char-counter.js',
-					requires: [ 'aui-base' ]
+					requires: [ 'aui-base', 'input-handler' ]
 				},
 
 				/*
@@ -420,6 +420,13 @@
 				'io-stdmod': {
 					fullpath: PATH_JAVASCRIPT + 'io-stdmod.js',
 					requires: [ 'aui-base', 'overlay', 'io', 'plugin' ]
+				},
+
+				/*
+				* Input Event Handler
+				*/
+				'input-handler': {
+					fullpath: PATH_JAVASCRIPT + 'input-handler.js'
 				},
 
 				/*
