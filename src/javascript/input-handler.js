@@ -34,10 +34,13 @@ var evt = {
 		var handler = function(event) {
 			var instance = this;
 			var input = event.target;
+			var originalEvent = event._event;
 
 			// only trigger checkLength() on IE when propertychange happens on the value attribute
-			if ((event.type == 'propertychange') && (event._event.propertyName != 'value')) {
-				return false; // NOTE: return
+			if (event.type == 'propertychange') {
+				if (originalEvent && (originalEvent.propertyName != 'value')) {
+					return false; // NOTE: return
+				}
 			}
 
 			var focused = (input.get(OWNER_DOCUMENT).get(ACTIVE_ELEMENT) == input);
@@ -47,7 +50,7 @@ var evt = {
 			}
 		};
 
-		return A.Event._attach([etype, handler, el]);
+		return A.Event.attach(etype, handler, el);
 	}
 };
 
