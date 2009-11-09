@@ -14,7 +14,7 @@ AUI().add(
 				getter: function(value) {
 					var instance = this;
 
-					return A.Object.keys(instance.collection);
+					return instance.keys;
 				}
 			},
 
@@ -88,6 +88,7 @@ AUI().add(
 					var instance = this;
 
 					instance.collection = {};
+					instance.keys = [];
 					instance.values = [];
 
 					instance.length = 0;
@@ -115,6 +116,7 @@ AUI().add(
 						}
 					}
 
+					instance.keys.push(key);
 					instance.values.push(obj);
 
 					instance.fire(
@@ -160,6 +162,7 @@ AUI().add(
 					var instance = this;
 
 					instance.collection = {};
+					instance.keys = [];
 					instance.values = [];
 					instance.length = 0;
 
@@ -171,8 +174,15 @@ AUI().add(
 
 					var clone = new DataSet();
 
-					clone._collection = A.Object(instance.collection);
-					clone.length = instance.length;
+					var keys = instance.keys;
+					var values = instance.values;
+
+					var length = values.length;
+
+					for (var i = 0; i < length; i++) {
+						clone.add(keys[i], values[i]);
+					}
+
 					clone.set('getKey', instance.get('getKey'));
 
 					return clone;
@@ -199,7 +209,7 @@ AUI().add(
 				eachKey: function(fn, context) {
 					var instance = this;
 
-					var keys = instance.get('keys');
+					var keys = instance.keys;
 
 					return instance._each(keys, fn, context);
 				},
@@ -212,7 +222,7 @@ AUI().add(
 					filtered.set('getKey', instance.get('getKey'));
 
 					var collection = instance.collection;
-					var keys = instance.get('keys');
+					var keys = instance.keys;
 					var values = instance.values;
 
 					context = context || instance;
@@ -305,17 +315,13 @@ AUI().add(
 				indexOf: function(obj) {
 					var instance = this;
 
-					var values = instance.values;
-
-					return A.Array.indexOf(values, obj);
+					return A.Array.indexOf(instance.values, obj);
 				},
 
 				indexOfKey: function(key) {
 					var instance = this;
 
-					var keys = instance.get('keys');
-
-					return A.Array.indexOf(keys, key);
+					return A.Array.indexOf(instance.keys, key);
 				},
 
 				insert: function(index, key, obj) {
@@ -334,6 +340,7 @@ AUI().add(
 						return instance.add(key, obj);
 					}
 
+					instance.keys.splice(index, 0, key);
 					instance.values.splice(index, 0, obj);
 
 					instance.length++;
@@ -414,18 +421,20 @@ AUI().add(
 
 					if (index < instance.length && index >= 0) {
 						var collection = instance.collection;
+						var keys = instance.keys;
 						var values = instance.values;
 
 						var obj = values[index];
 
 						values.splice(index, 1);
 
-						var keys = instance.get('keys');
-						var key = keys[index];
+						var key = instance.keys[index];
 
 						if (!Lang.isUndefined(key)) {
 							delete collection[key];
 						}
+
+						keys.splice(index, 1);
 
 						instance.length--;
 
@@ -571,7 +580,7 @@ AUI().add(
 
 					var asc = 1;
 					var tempValues = [];
-					var keys = instance.get('keys');
+					var keys = instance.keys;
 					var values = instance.values;
 
 					var length = values.length;
@@ -617,8 +626,9 @@ AUI().add(
 						var key = item.key;
 						var value = item.value;
 
-						values[i] = value;
 						collection[key] = value;
+						keys[i] = key;
+						values[i] = value;
 					}
 
 					instance.collection = collection;
