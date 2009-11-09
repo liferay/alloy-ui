@@ -48,8 +48,9 @@ AUI().add(
 			CSS_INPUT_CONTAINER = getClassName(NAME, 'input','container'),
 
 			KEY_BACKSPACE = 8,
-			KEY_RIGHT = 39,
+			KEY_ENTER = 13,
 			KEY_LEFT = 37,
+			KEY_RIGHT = 39,
 
 			TPL_ENTRY_CLOSE = '<span class="' + [CSS_ICON, CSS_ICON_CLOSE, CSS_ENTRY_CLOSE].join(' ') + '"></span>',
 			TPL_ENTRY_TEXT = '<span class="' + CSS_ENTRY_TEXT + '"></span>',
@@ -64,6 +65,9 @@ AUI().add(
 		TextboxList.NAME = NAME;
 
 		TextboxList.ATTRS = {
+			allowAnyEntry: {
+				value: false
+			},
 			delimChar: {
 				value: ''
 			}
@@ -124,7 +128,7 @@ AUI().add(
 						'key',
 						instance._onTBLKeypress,
 						instance.get(BOUNDING_BOX),
-						'down:39,40,37,38,8',
+						'down:39,40,37,38,8,13',
 						instance
 					);
 				},
@@ -188,9 +192,10 @@ AUI().add(
 				_onTBLKeypress: function(event) {
 					var instance = this;
 
-					if (!instance.inputNode.val()) {
-						var keyCode = event.keyCode;
+					var keyCode = event.keyCode;
+					var inputNode = instance.inputNode;
 
+					if (!inputNode.val()) {
 						var lastSelectedEntry = instance._lastSelectedEntry;
 						var currentSelectedEntry = -1;
 
@@ -246,10 +251,15 @@ AUI().add(
 							entries.item(currentSelectedEntry).entry.focus();
 						}
 						else {
-							instance.inputNode.focus();
+							inputNode.focus();
 						}
 
 						instance._lastSelectedEntry = currentSelectedEntry;
+					}
+					else {
+						if (keyCode == KEY_ENTER && instance.get('allowAnyEntry')) {
+							instance.entries.add(inputNode.val(), {});
+						}
 					}
 				},
 
