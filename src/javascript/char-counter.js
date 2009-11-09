@@ -6,17 +6,13 @@ AUI.add('char-counter', function(A) {
 var L = A.Lang,
 	isNumber = L.isNumber,
 
-	ACTIVE_ELEMENT = 'activeElement',
 	BLANK = '',
 	CHAR_COUNTER = 'char-counter',
 	COUNTER = 'counter',
 	INPUT = 'input',
 	MAX_LENGTH = 'maxLength',
-	OWNER_DOCUMENT = 'ownerDocument',
 	SCROLL_LEFT = 'scrollLeft',
-	SCROLL_TOP = 'scrollTop',
-
-	UA = A.UA;
+	SCROLL_TOP = 'scrollTop';
 
 function CharCounter(config) {
 	CharCounter.superclass.constructor.apply(this, arguments);
@@ -50,6 +46,8 @@ A.mix(CharCounter, {
 });
 
 A.extend(CharCounter, A.Base, {
+	handler: null,
+
 	/*
 	* Lifecycle
 	*/
@@ -72,22 +70,8 @@ A.extend(CharCounter, A.Base, {
 
 		instance.after('maxLengthChange', instance.checkLength);
 
-		// priorize input event that supports copy & paste
-		var type = 'input';
-
-		// WebKit before version 531 (3.0.182.2) did not support input events for textareas.
-		// http://dev.chromium.org/developers/webkit-version-table
-		// All Chrome versions supports input event
-		// TODO: use UA.chrome when YUI 3 detects it
-		if (!/chrome/i.test(UA.agent) && UA.webkit && UA.version.major <= 2) {
-			type = 'keypress';
-		}
-		else if (UA.ie) {
-			// IE doesn't support input event, simulate it with propertychange
-			type = 'propertychange';
-		}
-
-		A.Event.attach(type, A.bind(instance._onInputChange, instance), input);
+		// use cross browser input-handler event
+		instance.handler = input.on(INPUT, A.bind(instance._onInputChange, instance));
 	},
 
 	syncUI: function() {
@@ -131,21 +115,8 @@ A.extend(CharCounter, A.Base, {
 	*/
 	_onInputChange: function(event) {
 		var instance = this;
-		var input = instance.get(INPUT);
-		var originalEvent = event._event;
 
-		// only trigger checkLength() on IE when propertychange happens on the value attribute
-		if (event.type == 'propertychange') {
-			if (originalEvent && (originalEvent.propertyName != 'value')) {
-				return false; // NOTE: return
-			}
-		}
-
-		var focused = (input.get(OWNER_DOCUMENT).get(ACTIVE_ELEMENT) == input);
-
-		if (focused) {
-			instance.checkLength();
-		}
+		instance.checkLength();
 	},
 
 	/*
@@ -165,4 +136,4 @@ A.extend(CharCounter, A.Base, {
 
 A.CharCounter = CharCounter;
 
-}, '@VERSION', { requires: [ 'aui-base' ] });
+}, '@VERSION', { requires: [ 'aui-base', 'input-handler' ] });
