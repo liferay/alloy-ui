@@ -129,6 +129,28 @@ AUI().add(
 					);
 				},
 
+				add: function(label) {
+					var instance = this;
+
+					var entry = instance._prepareEntry(label);
+
+					instance.entries.add(entry);
+				},
+
+				insert: function(index, label) {
+					var instance = this;
+
+					var entry = instance._prepareEntry(label);
+
+					return instance.entries.insert(index, entry);
+				},
+
+				remove: function(label) {
+					var instance = this;
+
+					return instance.entries.removeKey(label);
+				},
+
 				_afterItemSelect: function(elListItem) {
 					var instance = this;
 
@@ -229,6 +251,17 @@ AUI().add(
 
 						instance._lastSelectedEntry = currentSelectedEntry;
 					}
+				},
+
+				_prepareEntry: function(label) {
+					var instance = this;
+
+					var entry = {};
+					var matchKey = instance.get('matchKey');
+
+					entry[matchKey] = label;
+
+					return entry;
 				},
 
 				_removeItem: function(event) {
