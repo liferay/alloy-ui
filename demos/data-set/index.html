@@ -296,7 +296,6 @@ AUI(
 
 					var col2 = instance.myCol.clone();
 
-					A.Assert.areNotSame(instance.myCol.item(0), col2.item(0));
 					A.Assert.areSame(instance.myCol.size(), col2.size());
 					col2.add('keyCloneAdd', {test4: instance.myGuid});
 					A.Assert.areNotSame(instance.myCol.size(), col2.size());
