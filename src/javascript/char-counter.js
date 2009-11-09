@@ -87,6 +87,14 @@ A.extend(CharCounter, A.Base, {
 		}
 	},
 
+	destroy: function() {
+		var instance = this;
+
+		if (instance.handler) {
+			instance.handler.detach();
+		}
+	},
+
 	checkLength: function() {
 		var instance = this;
 		var input = instance.get(INPUT);
