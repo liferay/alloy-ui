@@ -6,7 +6,6 @@ AUI.add('char-counter', function(A) {
 var L = A.Lang,
 	isNumber = L.isNumber,
 
-	BLANK = '',
 	CHAR_COUNTER = 'char-counter',
 	COUNTER = 'counter',
 	INPUT = 'input',
@@ -79,7 +78,7 @@ A.extend(CharCounter, A.Base, {
 		var counter = instance.get(COUNTER);
 
 		if (counter) {
-			value = instance.get(INPUT).val() || BLANK;
+			var value = instance.get(INPUT).val();
 
 			counter.html(
 				instance.get(MAX_LENGTH) - value.length
@@ -99,16 +98,18 @@ A.extend(CharCounter, A.Base, {
 		var instance = this;
 		var input = instance.get(INPUT);
 		var maxLength = instance.get(MAX_LENGTH);
-		var value = input.val() || BLANK;
+		var value = input.val();
 
 		var scrollTop = input.get(SCROLL_TOP);
 		var scrollLeft = input.get(SCROLL_LEFT);
 
-		if (value.length >= maxLength) {
+		if (value.length > maxLength) {
 			input.val(
 				value.substring(0, maxLength)
 			);
+		}
 
+		if (value.length == maxLength) {
 			instance.fire('maxLength');
 		}
 
