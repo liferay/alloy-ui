@@ -68,6 +68,8 @@ AUI().add(
 				syncUI: function() {
 					var instance = this;
 
+					Textfield.superclass.syncUI.apply(instance, arguments);
+
 					var node = instance.get('node');
 					var currentValue = node.val();
 
