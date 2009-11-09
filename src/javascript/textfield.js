@@ -29,10 +29,8 @@ AUI().add(
 				}
 			},
 
-			strings: {
-				value: {
-					defaultText: ''
-				}
+			defaultValue: {
+				value: ''
 			},
 
 			validator: {
@@ -58,6 +56,26 @@ AUI().add(
 					if (instance.get('selectOnFocus')) {
 						node.on('focus', instance._selectInputText, instance);
 					}
+
+					var defaultValue = instance.get('defaultValue');
+
+					if (defaultValue) {
+						node.on('blur', instance._checkDefaultValue, instance);
+						node.on('focus', instance._checkDefaultValue, instance);
+					}
+				},
+
+				syncUI: function() {
+					var instance = this;
+
+					var node = instance.get('node');
+					var currentValue = node.val();
+
+					if (!currentValue) {
+						var defaultValue = instance.get('defaultValue');
+
+						node.val(instance.get('defaultValue'));
+					}
 				},
 
 				_filterInputText: function(event) {
@@ -69,6 +87,28 @@ AUI().add(
 
 					if (!allowOnly.test(inputChar)) {
 						event.halt();
+					}
+				},
+
+				_checkDefaultValue: function(event) {
+					var instance = this;
+
+					var defaultValue = instance.get('defaultValue');
+					var node = instance.get('node');
+					var currentValue = Lang.trim(node.val());
+					var eventType = event.type;
+
+					if (defaultValue) {
+						var value = currentValue;
+
+						if (eventType == 'focus' && (currentValue == defaultValue)) {
+							value = '';
+						}
+						else if (eventType == 'blur' && !currentValue) {
+							value = defaultValue;
+						}
+
+						node.val(value);
 					}
 				},
 
