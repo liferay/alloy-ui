@@ -68,16 +68,15 @@ AUI().add(
 				syncUI: function() {
 					var instance = this;
 
-					Textfield.superclass.syncUI.apply(instance, arguments);
-
-					var node = instance.get('node');
-					var currentValue = node.val();
+					var currentValue = instance.get('value');
 
 					if (!currentValue) {
 						var defaultValue = instance.get('defaultValue');
 
-						node.val(instance.get('defaultValue'));
+						instance.set('value', instance.get('defaultValue'));
 					}
+
+					Textfield.superclass.syncUI.apply(instance, arguments);
 				},
 
 				_filterInputText: function(event) {
@@ -97,7 +96,7 @@ AUI().add(
 
 					var defaultValue = instance.get('defaultValue');
 					var node = instance.get('node');
-					var currentValue = Lang.trim(node.val());
+					var currentValue = Lang.trim(instance.get('value'));
 					var eventType = event.type;
 
 					if (defaultValue) {
@@ -110,7 +109,7 @@ AUI().add(
 							value = defaultValue;
 						}
 
-						node.val(value);
+						instance.set('value', value);
 					}
 				},
 
