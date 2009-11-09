@@ -263,6 +263,16 @@ AUI().add(
 					}
 				},
 
+				_onTextboxKeyPress: function(event) {
+					var instance = this;
+
+					TextboxList.superclass._onTextboxKeyPress.apply(instance, arguments);
+
+					if (event.keyCode == KEY_ENTER) {
+						event.halt();
+					}
+				},
+
 				_prepareEntry: function(label) {
 					var instance = this;
 
@@ -307,7 +317,6 @@ AUI().add(
 						labelText: false
 					};
 
-					var inputReference = null;
 					var inputParent = null;
 
 					if (input) {
@@ -315,7 +324,6 @@ AUI().add(
 
 						fieldConfig.node = input;
 
-						inputReference = input.next();
 						inputParent = input.get('parentNode');
 					}
 
@@ -324,11 +332,10 @@ AUI().add(
 					instance.entryHolder.append(inputContainer);
 
 					var inputField = new A.Textfield(fieldConfig).render(inputContainer);
+					var inputBoundingBox = inputField.get(BOUNDING_BOX);
 
-					if (inputParent) {
-						var inputBoundingBox = inputField.get(BOUNDING_BOX);
-
-						inputParent.insertBefore(inputBoundingBox, inputReference);
+					if (inputBoundingBox.get('parentNode') != inputContainer) {
+						inputContainer.appendChild(inputBoundingBox);
 					}
 
 					instance.inputContainer = inputContainer;
