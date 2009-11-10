@@ -99,13 +99,15 @@ AUI().add(
 					var currentValue = Lang.trim(instance.get('value'));
 					var eventType = event.type;
 
+					var focus = (eventType == 'focus' || eventType == 'focusin');
+
 					if (defaultValue) {
 						var value = currentValue;
 
-						if (eventType == 'focus' && (currentValue == defaultValue)) {
+						if (focus && (currentValue == defaultValue)) {
 							value = '';
 						}
-						else if (eventType == 'blur' && !currentValue) {
+						else if (!focus && !currentValue) {
 							value = defaultValue;
 						}
 
