@@ -362,43 +362,49 @@ AUI().add(
 					var entryHolder = instance.entryHolder;
 					var item = event.item;
 					var index = event.index;
+					var key = event.attrName;
 
-					if (eventType == 'dataset:add') {
-						var entry = new TextboxListEntry(
-							{
-								labelText: event.attrName
-							}
-						);
+					if (key) {
+						if (eventType == 'dataset:add') {
+							var entry = new TextboxListEntry(
+								{
+									labelText: key
+								}
+							);
 
-						entry.addTarget(instance);
+							entry.addTarget(instance);
 
-						var entryNode = entry.get(BOUNDING_BOX);
+							var entryNode = entry.get(BOUNDING_BOX);
 
-						entry.render(entryHolder);
+							entry.render(entryHolder);
 
-						entryHolder.all('li').item(index).placeBefore(entryNode);
+							entryHolder.all('li').item(index).placeBefore(entryNode);
 
-						entryNode.plug(A.Plugin.NodeFX, CONFIG_ANIM);
+							entryNode.plug(A.Plugin.NodeFX, CONFIG_ANIM);
 
-						item.entry = entry;
+							item.entry = entry;
 
-						inputNode.val('');
-					}
-					else if (eventType == 'dataset:replace') {
-						inputNode.val('');
-
-						var entry = event.prevVal.entry;
-
-						item.entry = entry;
-
-						entry.get(BOUNDING_BOX).fx.run();
-					}
-					else if (eventType == 'dataset:remove') {
-						var entryNodes = entryHolder.all('li');
-
-						if (entryNodes) {
-							entryNodes.item(index).remove();
+							inputNode.val('');
 						}
+						else if (eventType == 'dataset:replace') {
+							inputNode.val('');
+
+							var entry = event.prevVal.entry;
+
+							item.entry = entry;
+
+							entry.get(BOUNDING_BOX).fx.run();
+						}
+						else if (eventType == 'dataset:remove') {
+							var entryNodes = entryHolder.all('li');
+
+							if (entryNodes) {
+								entryNodes.item(index).remove();
+							}
+						}
+					}
+					else {
+						instance.entries.removeAt(index);
 					}
 				}
 			}
