@@ -39,6 +39,13 @@ AUI().add(
 				value: false
 			},
 
+			title: {
+				value: '',
+				validator: function(v) {
+					return Lang.isString(v) || Lang.isBoolean(v);
+				}
+			},
+
 			tools: {
 				value: []
 			}
@@ -58,6 +65,7 @@ AUI().add(
 
 				instance.after('render', instance._afterPanelRender);
 				instance.after('collapsedChange', instance._afterCollapsedChange);
+				instance.after('titleChange', instance._afterTitleChange);
 			},
 
 			toggle: function() {
@@ -70,6 +78,22 @@ AUI().add(
 				var instance = this;
 
 				instance._toggleProperty('collapsed');
+			},
+
+			_addPanelClass: function(section) {
+				var instance = this;
+
+				var sectionNode = instance[section + 'Node'];
+
+				if (sectionNode) {
+					var rootCssClass = CSS_PANELS[section];
+
+					var cssClassMod = getClassName(NAME, rootCssClass);
+					var cssClass = getClassName(instance.name, rootCssClass);
+
+					sectionNode.addClass(cssClassMod);
+					sectionNode.addClass(cssClass);
+				}
 			},
 
 			_afterCollapsedChange: function(event) {
@@ -90,20 +114,10 @@ AUI().add(
 				instance._renderToolItems();
 			},
 
-			_addPanelClass: function(section) {
+			_afterTitleChange: function(event) {
 				var instance = this;
 
-				var sectionNode = instance[section + 'Node'];
-
-				if (sectionNode) {
-					var rootCssClass = CSS_PANELS[section];
-
-					var cssClassMod = getClassName(NAME, rootCssClass);
-					var cssClass = getClassName(instance.name, rootCssClass);
-
-					sectionNode.addClass(cssClassMod);
-					sectionNode.addClass(cssClass);
-				}
+				instance._uiSetTitle(event.newVal);
 			},
 
 			_renderToolItems: function() {
@@ -150,9 +164,8 @@ AUI().add(
 
 				var html = headerNode.get('innerHTML');
 
-				headerTextNode = A.Node.create(TPL_HEADER_TEXT);
+				var headerTextNode = A.Node.create(TPL_HEADER_TEXT);
 
-				headerTextNode.set('innerHTML', html);
 				headerNode.set('innerHTML', '');
 
 				headerTextNode.addClass(getClassName(NAME, 'hd', 'text'));
@@ -160,6 +173,14 @@ AUI().add(
 				headerNode.prepend(headerTextNode);
 
 				instance.headerTextNode = headerTextNode;
+
+				var title = instance.get('title');
+
+				if (!title) {
+					title = html;
+				}
+
+				instance._uiSetTitle(title);
 			},
 
 			_toggleProperty: function(key) {
@@ -194,6 +215,12 @@ AUI().add(
 				instance.get('boundingBox')[cssAction](CSS_COLLAPSED);
 
 				instance.bodyNode[action]();
+			},
+
+			_uiSetTitle: function(value) {
+				var instance = this;
+
+				instance.headerTextNode.set('innerHTML', value);
 			}
 		}
 

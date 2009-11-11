@@ -244,7 +244,7 @@
 				*/
 				'dialog': {
 					fullpath: PATH_JAVASCRIPT + 'dialog.js',
-					requires: [ 'plugin', 'overlay', 'dd-constrain', 'aui-base', 'tool-item', 'overlay-manager', 'overlay-mask', 'io-stdmod', 'dialog-css' ]
+					requires: [ 'plugin', 'panel', 'dd-constrain', 'aui-base', 'tool-item', 'overlay-manager', 'overlay-mask', 'io-stdmod', 'dialog-css' ]
 				},
 				'dialog-css': {
 					ext: false,

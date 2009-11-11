@@ -63,117 +63,114 @@ var L = A.Lang,
 	CSS_DIALOG_BD = getCN(DIALOG, BD),
 	CSS_DIALOG_FT = getCN(DIALOG, FT),
 
+	TPL_BUTTON = '<button></button>',
+	TPL_GENERIC = '<div></div>',
 	TPL_LOADING = '<div class="' + CSS_ICON_LOADING + '"></div>';
 
-function Dialog(config) {
-	Dialog.superclass.constructor.apply(this, arguments);
-}
+var Dialog = function(config) {};
 
-A.mix(Dialog, {
-	NAME: DIALOG,
+A.mix(
+	Dialog,
+	{
+		NAME: DIALOG,
 
-	ATTRS: {
-		bodyContent: {
-			value: SPACE
-		},
-
-		buttons: {
-			value: [],
-			validator: isArray
-		},
-
-		constrain2view: {
-			value: true,
-			validator: isBoolean
-		},
-
-		destroyOnClose: {
-			value: false,
-			validator: isBoolean
-		},
-
-		draggable: {
-			lazyAdd: true,
-			value: true,
-			setter: function(v) {
-				return this._setDraggable(v);
-			}
-		},
-
-		dragInstance: {
-			value: null
-		},
-
-		headerContent: {
-			writeOnce: true,
-			getter: function() {
-				return this.titleContainter;
-			}
-		},
-
-		modal: {
-			setter: function(v) {
-				return this._setModal(v);
+		ATTRS: {
+			bodyContent: {
+				value: SPACE
 			},
-			lazyAdd: false,
-			value: false,
-			validator: isBoolean
-		},
 
-		io: {
-			lazyAdd: true,
-			value: null,
-			setter: function(v) {
-				return this._setIO(v);
-			}
-		},
-
-		stack: {
-			lazyAdd: true,
-			value: true,
-			setter: function(v) {
-				return this._setStack(v);
+			buttons: {
+				value: [],
+				validator: isArray
 			},
-			validator: isBoolean
-		},
 
-		title: {
-			value: BLANK,
-			validator: function(v) {
-				return isString(v) || isBoolean(v);
+			close: {
+				value: true
+			},
+
+			constrain2view: {
+				value: false,
+				validator: isBoolean
+			},
+
+			destroyOnClose: {
+				value: false,
+				validator: isBoolean
+			},
+
+			draggable: {
+				lazyAdd: true,
+				value: true,
+				setter: function(v) {
+					return this._setDraggable(v);
+				}
+			},
+
+			dragInstance: {
+				value: null
+			},
+
+			headerContent: {
+				writeOnce: true,
+				getter: function() {
+					return this.titleContainter;
+				}
+			},
+
+			modal: {
+				setter: function(v) {
+					return this._setModal(v);
+				},
+				lazyAdd: false,
+				value: false,
+				validator: isBoolean
+			},
+
+			io: {
+				lazyAdd: true,
+				value: null,
+				setter: function(v) {
+					return this._setIO(v);
+				}
+			},
+
+			stack: {
+				lazyAdd: true,
+				value: true,
+				setter: function(v) {
+					return this._setStack(v);
+				},
+				validator: isBoolean
 			}
 		}
 	}
-});
+);
 
-A.extend(Dialog, A.Overlay, {
-	/*
-	* Lifecycle
-	*/
-	renderUI: function () {
+Dialog.prototype = {
+	initializer: function(config) {
 		var instance = this;
 
-		instance._renderElements();
-	},
+		var tools = instance.get('tools');
+		var close = instance.get('close');
 
-	bindUI: function () {
-		var instance = this;
+		if (close) {
+			var closeConfig = {
+				icon: 'close',
+				id: 'close',
+				handler: {
+					fn: instance.close,
+					context: instance
+				}
+			};
 
-		instance._bindElements();
-	},
+			if (tools) {
+				tools.push(closeConfig);
+			}
 
-	renderer: function() {
-		var instance = this;
+			instance.set('tools', tools);
+		}
 
-		Dialog.superclass.renderer.apply(instance, arguments);
-
-		instance._afterRenderer();
-	},
-
-	destructor: function() {
-		var instance = this;
-
-		instance.get(BOUNDING_BOX).remove();
+		instance.after('render', instance._afterRenderer);
 	},
 
 	/*
@@ -196,76 +193,13 @@ A.extend(Dialog, A.Overlay, {
 		instance.fire('close');
 	},
 
-	_bindElements: function () {
-		var instance = this;
-		var boundingBox = instance.get(BOUNDING_BOX);
-
-		instance.closeIcon.on(
-			'click',
-			function(event) {
-				instance.close();
-			}
-		);
-
-		instance.after('titleChange', this._afterSetTitle);
-		instance.after('visibleChange', this._afterSetVisible);
-	},
-
-	_renderElements: function() {
-		var instance = this;
-
-		instance.titleContainter = A.Node.create('<div></div>');
-
-		var closeIcon = new A.ToolItem(CLOSE);
-
-		closeIcon.get('contentBox').addClass(CSS_DIALOG_CLOSE);
-
-		instance.closeIcon = closeIcon;
-
-		var title = instance.get(TITLE);
-
-		if (title !== false) {
-			var titleContainter = instance.titleContainter;
-
-			titleContainter.addClass(CSS_DIALOG_TITLE);
-
-			titleContainter.html(title);
-		}
-	},
-
 	_afterRenderer: function() {
 		var instance = this;
-		var bodyNode = instance.bodyNode;
-		var footerNode = instance.footerNode;
-		var headerNode = instance.headerNode;
-
-		var stack = instance.get(STACK);
-		var title = instance.get(TITLE);
-
-		headerNode.addClass(CSS_DIALOG_HD);
-		headerNode.addClass(CSS_STATE_DEFAULT);
-
-		if (bodyNode) {
-			bodyNode.addClass(CSS_DIALOG_BD);
-		}
-
-		if (footerNode) {
-			footerNode.addClass(CSS_DIALOG_FT);
-		}
-
-		if (title === false) {
-			headerNode.removeClass(CSS_STATE_DEFAULT);
-			headerNode.removeClass(CSS_WIDGET_HD);
-			headerNode.removeClass(CSS_DIALOG_HD);
-		}
-
-		headerNode.append(instance.titleContainter);
-
-		instance.closeIcon.render(headerNode);
 
 		instance._initButtons();
 
 		// forcing lazyAdd:true attrs call the setter
+		instance.get(STACK);
 		instance.get(DRAGGABLE);
 		instance.get(IO);
 	},
@@ -273,27 +207,30 @@ A.extend(Dialog, A.Overlay, {
 	_initButtons: function() {
 		var instance = this;
 		var buttons = instance.get(BUTTONS);
-		var container = A.Node.create('<div></div>');
-		var nodeModel = A.Node.create('<button></button>');
+		var container = A.Node.create(TPL_GENERIC);
+		var nodeModel = A.Node.create(TPL_BUTTON);
 
 		container.addClass(CSS_DIALOG_BUTTON_CONTAINER);
 		nodeModel.addClass(CSS_DIALOG_BUTTON);
 
-		A.each(buttons, function(button, i) {
-			var node = nodeModel.cloneNode();
+		A.each(
+			buttons,
+			function(button, i) {
+				var node = nodeModel.cloneNode();
 
-			if (button.isDefault) {
-				node.addClass(CSS_DIALOG_BUTTON_DEFAULT);
+				if (button.isDefault) {
+					node.addClass(CSS_DIALOG_BUTTON_DEFAULT);
+				}
+
+				if (button.handler) {
+					node.on('click', button.handler, instance);
+				}
+
+				node.html(button.text || BLANK);
+
+				container.append(node);
 			}
-
-			if (button.handler) {
-				node.on('click', A.bind(button.handler, instance));
-			}
-
-			node.html(button.text || BLANK);
-
-			container.append(node);
-		});
+		);
 
 		if (buttons.length) {
 			instance.set(FOOTER_CONTENT, container);
@@ -323,22 +260,29 @@ A.extend(Dialog, A.Overlay, {
 				node: boundingBox,
 				handles: [ DOT + CSS_DIALOG_HD ]
 			};
+
 			var dragOptions = A.merge(defaults, instance.get(DRAGGABLE) || {});
 
 			// change the drag scope callback to execute using the dialog scope
 			if (dragOptions.on) {
-				A.each(dragOptions.on, function(fn, eventName) {
-					dragOptions.on[eventName] = A.bind(fn, instance);
-				});
+				A.each(
+					dragOptions.on,
+					function(fn, eventName) {
+						dragOptions.on[eventName] = A.bind(fn, instance);
+					}
+				);
 			}
 
 			destroyDraggable();
 
 			var dragInstance = new A.DD.Drag(dragOptions);
 
-			dragInstance.plug(A.Plugin.DDConstrained, {
-				constrain2view: instance.get(CONSTRAIN_TO_VIEWPORT)
-			});
+			dragInstance.plug(
+				A.Plugin.DDConstrained,
+				{
+					constrain2view: instance.get(CONSTRAIN_TO_VIEWPORT)
+				}
+			);
 
 			instance.set(DRAG_INSTANCE, dragInstance);
 		}
@@ -412,19 +356,6 @@ A.extend(Dialog, A.Overlay, {
 	/*
 	* Attribute Listeners
 	*/
-	_afterSetTitle: function(event) {
-		var instance = this;
-
-		if (!isBoolean(event.newVal)) {
-			var headerNode = instance.headerNode;
-
-			headerNode.addClass(CSS_WIDGET_HD);
-			headerNode.addClass(CSS_DIALOG_HD);
-			headerNode.addClass(CSS_STATE_DEFAULT);
-
-			instance.titleContainter.html(event.newVal);
-		}
-	},
 
 	_afterSetVisible: function(event) {
 		var instance = this;
@@ -438,37 +369,42 @@ A.extend(Dialog, A.Overlay, {
 			}
 		}
 	}
-});
+};
 
-A.Dialog = Dialog;
+A.Dialog = A.Base.build(DIALOG, A.Panel, [Dialog, A.WidgetPosition, A.WidgetStack, A.WidgetPositionExt]);
 
-A.DialogManager = new A.OverlayManager({
-	zIndexBase: 1000
-});
+A.DialogManager = new A.OverlayManager(
+	{
+		zIndexBase: 1000
+	}
+);
 
-A.mix(A.DialogManager, {
-	findByChild: function(child) {
-		return A.Widget.getByNode(child);
-	},
+A.mix(
+	A.DialogManager,
+	{
+		findByChild: function(child) {
+			return A.Widget.getByNode(child);
+		},
 
-	closeByChild: function(child) {
-		return A.DialogManager.findByChild(child).close();
-	},
+		closeByChild: function(child) {
+			return A.DialogManager.findByChild(child).close();
+		},
 
-	refreshByChild: function(child, io) {
-		var dialog = A.DialogManager.findByChild(child);
+		refreshByChild: function(child, io) {
+			var dialog = A.DialogManager.findByChild(child);
 
-		if (dialog && dialog.io) {
-			if (io) {
-				dialog.set(IO, io);
-			}
-			else {
-				dialog.io.refresh();
+			if (dialog && dialog.io) {
+				if (io) {
+					dialog.set(IO, io);
+				}
+				else {
+					dialog.io.refresh();
+				}
 			}
 		}
 	}
-});
+);
 
 A.DialogMask = new A.OverlayMask().render();
 
-}, '@VERSION', { requires: [ 'aui-base', 'overlay-manager', 'overlay-mask', 'dd-constrain', 'io-stdmod', 'dialog-css' ] });
+}, '@VERSION', { requires: [ 'aui-base', 'panel', 'overlay-manager', 'overlay-mask', 'dd-constrain', 'io-stdmod', 'dialog-css' ] });
