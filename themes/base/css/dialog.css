@@ -1,4 +1,5 @@
 .aui-dialog {
+	position: absolute;
 }
 
 .aui-dialog .aui-icon-loading {
