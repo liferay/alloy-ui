@@ -119,17 +119,17 @@ AUI().add(
 					instance.keys.push(key);
 					instance.values.push(obj);
 
+					var length = (++instance.length);
+
 					instance.fire(
 						'add',
 						{
-							index: instance.length,
+							index: length - 1,
 							attrName: key,
 							item: obj,
 							newVal: obj
 						}
 					);
-
-					instance.length++;
 				},
 
 				addAll: function(obj) {
@@ -418,7 +418,7 @@ AUI().add(
 
 				removeAt: function(index) {
 					var instance = this;
-
+console.log(index, instance.length);
 					if (index < instance.length && index >= 0) {
 						var collection = instance.collection;
 						var keys = instance.keys;
@@ -428,7 +428,7 @@ AUI().add(
 
 						values.splice(index, 1);
 
-						var key = instance.keys[index];
+						var key = keys[index];
 
 						if (!Lang.isUndefined(key)) {
 							delete collection[key];
@@ -437,7 +437,7 @@ AUI().add(
 						keys.splice(index, 1);
 
 						instance.length--;
-
+console.log(instance.length, key, obj, index, keys, values, collection);
 						instance.fire(
 							'remove',
 							{
