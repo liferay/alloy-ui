@@ -135,7 +135,7 @@ A.extend(CharCounter, A.Base, {
 		var instance = this;
 		var input = instance.get(INPUT);
 
-		if (v < Infinity) {
+		if (input && (v < Infinity)) {
 			input.set(MAX_LENGTH, v);
 		}
 
