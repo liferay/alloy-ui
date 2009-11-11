@@ -69,8 +69,10 @@ A.extend(CharCounter, A.Base, {
 
 		instance.after('maxLengthChange', instance.checkLength);
 
-		// use cross browser input-handler event
-		instance.handler = input.on(INPUT, A.bind(instance._onInputChange, instance));
+		if (input) {
+			// use cross browser input-handler event
+			instance.handler = input.on(INPUT, A.bind(instance._onInputChange, instance));
+		}
 	},
 
 	syncUI: function() {
@@ -98,8 +100,12 @@ A.extend(CharCounter, A.Base, {
 		var instance = this;
 		var input = instance.get(INPUT);
 		var maxLength = instance.get(MAX_LENGTH);
-		var value = input.val();
 
+		if (!input) {
+			return false; // NOTE: return
+		}
+
+		var value = input.val();
 		var scrollTop = input.get(SCROLL_TOP);
 		var scrollLeft = input.get(SCROLL_LEFT);
 
