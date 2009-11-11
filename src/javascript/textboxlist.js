@@ -131,6 +131,8 @@ AUI().add(
 						'down:39,40,37,38,8,13',
 						instance
 					);
+
+					instance.inputNode.on('focus', instance._onInputNodeFocus, instance);
 				},
 
 				add: function(label) {
@@ -187,6 +189,12 @@ AUI().add(
 					var instance = this;
 
 					event.currentTarget.addClass(CSS_ICON_CLOSE_HOVER);
+				},
+
+				_onInputNodeFocus: function(event) {
+					var instance = this;
+
+					instance._lastSelectedEntry = -1;
 				},
 
 				_onTBLKeypress: function(event) {
