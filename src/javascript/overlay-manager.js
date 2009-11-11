@@ -79,7 +79,11 @@ var Lang = A.Lang,
 				var zIndexBase = instance.get(Z_INDEX_BASE);
 				var registered = instance._registered(overlay);
 
-				if (!registered && overlay && (overlay instanceof A.Overlay)) {
+				if (
+					!registered && overlay &&
+					((overlay instanceof A.Overlay) ||
+					(A.Component && overlay instanceof A.Component))
+				) {
 					var boundingBox = overlay.get(BOUNDING_BOX);
 
 					overlays.push(overlay);
