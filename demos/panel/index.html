@@ -55,7 +55,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 
 </div>
@@ -71,10 +71,13 @@ AUI().ready(
 		var container = new A.Panel(
 			{
 				collapsible: true,
+				// collapsed: true,
 				headerContent: 'Panel 1',
 				bodyContent: exampleText
 			}
 		).render('#regularPanels');
+
+		// container.collapse();
 
 		var panelContainer = new A.Panel(
 			{
@@ -83,27 +86,30 @@ AUI().ready(
 			}
 		).render('#nestedPanels');
 
+
+		var toolItemTest = new A.ToolItem({
+			icon: 'refresh',
+			id: 'refresh',
+			handler: function(event, panel) {
+				var instance = this;
+
+				child1.set('bodyContent', '<span class="aui-icon aui-icon-loading"></span>');
+
+				setTimeout(
+					function() {
+						child1.set('bodyContent', 'Created from a ToolItem instance.');
+					},
+					1000
+				);
+			}
+		});
+
 		var child1 = new A.Panel(
 			{
 				collapsible: true,
 				headerContent: 'Child Panel 1',
 				tools: [
-					{
-						icon: 'refresh',
-						id: 'refresh',
-						handler: function(event, panel) {
-							var instance = this;
-
-							child1.set('bodyContent', '<span class="aui-icon aui-icon-loading"></span>');
-
-							setTimeout(
-								function() {
-									child1.set('bodyContent', exampleText);
-								},
-								1000
-							);
-						}
-					},
+					toolItemTest,
 					{
 						icon: 'close',
 						id: 'close',
@@ -134,6 +140,19 @@ AUI().ready(
 				bodyContent: exampleText
 			}
 		).render(panelContainer.bodyNode);
+
+		// customizing toolset of the Panel
+		child1.toolset.add('alert');
+		child1.toolset.add('info');
+		child1.toolset.add(
+			new A.ToolItem({
+				id: 'unlocked',
+				icon: 'unlocked'
+			})
+		);
+
+		// child1.collapse();
+		// child1.expand();
 
 		var child2 = new A.Panel(
 			{

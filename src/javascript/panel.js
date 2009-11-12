@@ -2,12 +2,28 @@ AUI().add(
 	'panel',
 	function(A) {
 		var Lang = A.Lang,
+			isArray = Lang.isArray,
+			isBoolean = Lang.isBoolean,
+
+			BOUNDING_BOX = 'boundingBox',
+			COLLAPSE = 'collapse',
+			COLLAPSED = 'collapsed',
+			COLLAPSIBLE = 'collapsible',
+			ICON = 'icon',
+			MINUS = 'minus',
+			PANEL = 'panel',
+			PLUS = 'plus',
+			TITLE = 'title',
+			TOOLS = 'tools',
+			VISIBLE = 'visible',
 
 			getClassName = A.ClassNameManager.getClassName,
 
-			NAME = 'panel',
-
-			CSS_PANEL = getClassName(NAME),
+			CSS_CLEARFIX = getClassName('helper', 'clearfix'),
+			CSS_COLLAPSED = getClassName(PANEL, COLLAPSED),
+			CSS_PANEL = getClassName(PANEL),
+			CSS_PANEL_HD_TEXT = getClassName(PANEL, 'hd', 'text'),
+			CSS_PANEL_TOOLSET = getClassName(PANEL, 'toolset'),
 
 			CSS_PANELS = {
 				body: 'bd',
@@ -15,43 +31,38 @@ AUI().add(
 				header: 'hd'
 			},
 
-			CSS_COLLAPSED = getClassName(NAME, 'collapsed'),
-			CSS_ICON_COLLAPSE = 'minus',
-			CSS_ICON_EXPAND = 'plus',
-			CSS_CLEARFIX = getClassName('helper', 'clearfix'),
-			CSS_HEADER_TEXT = getClassName(NAME, 'hd', 'text'),
-
-			TPL_HEADER_TEXT = '<span class="' + CSS_HEADER_TEXT + '"></span>';
+			TPL_HEADER_TEXT = '<span class="' + CSS_PANEL_HD_TEXT + '"></span>';
 
 		var Panel = function() {};
 
 		Panel.ATTRS = {
 			collapsed: {
 				value: false,
-				setter: function(value) {
-					var instance = this;
-
-					instance._uiSetCollapsed(value);
-				}
+				validator: isBoolean
 			},
 
 			collapsible: {
-				value: false
+				value: false,
+				validator: isBoolean
 			},
 
 			title: {
 				value: '',
 				validator: function(v) {
-					return Lang.isString(v) || Lang.isBoolean(v);
+					return Lang.isString(v) || isBoolean(v);
 				}
 			},
 
 			tools: {
-				value: []
+				value: [],
+				validator: isArray
 			}
 		};
 
 		Panel.prototype = {
+			/*
+			* Lifecycle
+			*/
 			initializer: function(config) {
 				var instance = this;
 
@@ -63,21 +74,44 @@ AUI().add(
 					instance.set('headerContent', ' ');
 				}
 
-				instance.after('render', instance._afterPanelRender);
 				instance.after('collapsedChange', instance._afterCollapsedChange);
+				instance.after('render', instance._afterPanelRender);
 				instance.after('titleChange', instance._afterTitleChange);
+			},
+
+			/*
+			* Methods
+			*/
+			collapse: function() {
+				var instance = this;
+
+				instance.set(COLLAPSED, true);
+			},
+
+			expand: function() {
+				var instance = this;
+
+				instance.set(COLLAPSED, false);
 			},
 
 			toggle: function() {
 				var instance = this;
 
-				instance._toggleProperty('visible');
+				instance.set(
+					VISIBLE,
+					!instance.get(VISIBLE)
+				);
 			},
 
 			toggleCollapse: function() {
 				var instance = this;
 
-				instance._toggleProperty('collapsed');
+				if (instance.get(COLLAPSED)) {
+					instance.expand();
+				}
+				else {
+					instance.collapse();
+				}
 			},
 
 			_addPanelClass: function(section) {
@@ -87,55 +121,29 @@ AUI().add(
 
 				if (sectionNode) {
 					var rootCssClass = CSS_PANELS[section];
+					var cssClassMod = getClassName(PANEL, rootCssClass);
 
-					var cssClassMod = getClassName(NAME, rootCssClass);
-					var cssClass = getClassName(instance.name, rootCssClass);
+					// using instance.name to add the correct component name
+					// when Panel is used to build another component using A.build
+					var instanceName = instance.name;
+					var cssClass = getClassName(instanceName, rootCssClass);
 
 					sectionNode.addClass(cssClassMod);
 					sectionNode.addClass(cssClass);
 				}
 			},
 
-			_afterCollapsedChange: function(event) {
-				var instance = this;
-
-				instance._uiSetCollapsed(event.newVal);
-			},
-
-			_afterPanelRender: function() {
-				var instance = this;
-
-				instance._addPanelClass('body');
-				instance._addPanelClass('footer');
-				instance._addPanelClass('header');
-
-				instance._renderHeaderText();
-
-				instance._renderToolItems();
-			},
-
-			_afterTitleChange: function(event) {
-				var instance = this;
-
-				instance._uiSetTitle(event.newVal);
-			},
-
 			_renderToolItems: function() {
 				var instance = this;
+				var tools = instance.get(TOOLS);
 
-				var tools = instance.get('tools');
-
-				if (instance.get('collapsible')) {
-					var collapsedIcon = CSS_ICON_COLLAPSE;
-
-					if (instance.get('collapsed')) {
-						collapsedIcon = CSS_ICON_EXPAND;
-					}
+				if (instance.get(COLLAPSIBLE)) {
+					var icon = instance.get(COLLAPSED) ? PLUS : MINUS;
 
 					tools.unshift(
 						{
-							icon: collapsedIcon,
-							id: 'collapse',
+							icon: icon,
+							id: COLLAPSE,
 							handler: {
 								fn: instance.toggleCollapse,
 								context: instance
@@ -148,83 +156,103 @@ AUI().add(
 					{
 						tools: tools
 					}
-				).render(instance.headerNode);
+				)
+				.render(instance.headerNode);
 
-				var toolsetClassNameMod = getClassName(NAME, 'toolset');
-
-				instance.toolset.get('boundingBox').addClass(toolsetClassNameMod);
-
-				instance.headerNode.addClass(CSS_CLEARFIX);
+				instance.toolset.get(BOUNDING_BOX).addClass(CSS_PANEL_TOOLSET);
 			},
 
 			_renderHeaderText: function() {
 				var instance = this;
-
 				var headerNode = instance.headerNode;
-
-				var html = headerNode.get('innerHTML');
-
 				var headerTextNode = A.Node.create(TPL_HEADER_TEXT);
+				var html = headerNode.html();
 
-				headerNode.set('innerHTML', '');
+				headerNode.empty();
 
-				headerTextNode.addClass(getClassName(NAME, 'hd', 'text'));
+				headerTextNode.addClass(CSS_PANEL_HD_TEXT);
 
 				headerNode.prepend(headerTextNode);
 
 				instance.headerTextNode = headerTextNode;
 
-				var title = instance.get('title');
-
-				if (!title) {
-					title = html;
+				if (!instance.get(TITLE)) {
+					instance.set(TITLE, html);
 				}
 
-				instance._uiSetTitle(title);
+				instance._syncTitleUI();
 			},
 
-			_toggleProperty: function(key) {
+			_syncCollapsedUI: function() {
 				var instance = this;
 
-				var property = instance.get(key);
+				if (instance.get(COLLAPSIBLE)) {
+					var bodyNode = instance.bodyNode;
+					var boundingBox = instance.get(BOUNDING_BOX);
+					var collapsed = instance.get(COLLAPSED);
 
-				instance.set(key, !property);
-			},
+					if (instance.toolset) {
+						var toolset = instance.toolset;
+						var collapseItem = toolset.tools.item(COLLAPSE);
 
-			_uiSetCollapsed: function(newVal) {
-				var instance = this;
-
-				var action = 'show';
-				var cssAction = 'removeClass';
-
-				if (instance.toolset) {
-					var collapsedIcon = CSS_ICON_COLLAPSE;
-
-					if (newVal) {
-						collapsedIcon = CSS_ICON_EXPAND;
+						if (collapseItem) {
+							collapseItem.set(
+								ICON,
+								collapsed ? PLUS : MINUS
+							);
+						}
 					}
 
-					instance.toolset.tools.item('collapse').set('icon', collapsedIcon);
+					if (collapsed) {
+						bodyNode.hide();
+						boundingBox.addClass(CSS_COLLAPSED);
+					}
+					else {
+						bodyNode.show();
+						boundingBox.removeClass(CSS_COLLAPSED);
+					}
 				}
-
-				if (newVal) {
-					action = 'hide';
-					cssAction  = 'addClass';
-				}
-
-				instance.get('boundingBox')[cssAction](CSS_COLLAPSED);
-
-				instance.bodyNode[action]();
 			},
 
-			_uiSetTitle: function(value) {
+			_syncTitleUI: function() {
+				var instance = this;
+				var title = instance.get(TITLE);
+
+				instance.headerTextNode.html(title);
+			},
+
+			/*
+			* Listeners
+			*/
+			_afterCollapsedChange: function(event) {
 				var instance = this;
 
-				instance.headerTextNode.set('innerHTML', value);
+				instance._syncCollapsedUI();
+			},
+
+			_afterPanelRender: function() {
+				var instance = this;
+
+				instance.headerNode.addClass(CSS_CLEARFIX);
+
+				instance._addPanelClass('body');
+				instance._addPanelClass('footer');
+				instance._addPanelClass('header');
+
+				instance._renderHeaderText();
+				instance._renderToolItems();
+
+				instance._syncCollapsedUI();
+			},
+
+			_afterTitleChange: function(event) {
+				var instance = this;
+
+				instance._syncTitleUI();
 			}
 		}
 
-		A.Panel = A.Base.build('panel', A.Component, [A.WidgetStdMod, Panel]);
+		A.Panel = A.Base.build(PANEL, A.Component, [A.WidgetStdMod, Panel]);
 	},
 	'@VERSION',
 	{
