@@ -418,7 +418,7 @@ AUI().add(
 
 				removeAt: function(index) {
 					var instance = this;
-console.log(index, instance.length);
+
 					if (index < instance.length && index >= 0) {
 						var collection = instance.collection;
 						var keys = instance.keys;
@@ -437,7 +437,7 @@ console.log(index, instance.length);
 						keys.splice(index, 1);
 
 						instance.length--;
-console.log(instance.length, key, obj, index, keys, values, collection);
+
 						instance.fire(
 							'remove',
 							{
