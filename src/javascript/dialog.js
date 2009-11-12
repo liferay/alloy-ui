@@ -2,14 +2,9 @@ AUI.add('dialog', function(A) {
 
 var L = A.Lang,
 	isBoolean = L.isBoolean,
-	isNumber = L.isNumber,
-	isString = L.isString,
 	isArray = L.isArray,
 	isObject = L.isObject,
 
-	ADD_CLASS = 'addClass',
-	ANCHOR = 'a',
-	BD = 'bd',
 	BLANK = '',
 	BODY_CONTENT = 'bodyContent',
 	BOUNDING_BOX = 'boundingBox',
@@ -18,7 +13,6 @@ var L = A.Lang,
 	CLOSE = 'close',
 	CONSTRAIN_TO_VIEWPORT = 'constrain2view',
 	CONTAINER = 'container',
-	CONTENT_BOX = 'contentBox',
 	DD = 'dd',
 	DEFAULT = 'default',
 	DESTROY_ON_CLOSE = 'destroyOnClose',
@@ -27,32 +21,23 @@ var L = A.Lang,
 	DRAGGABLE = 'draggable',
 	DRAG_INSTANCE = 'dragInstance',
 	FOOTER_CONTENT = 'footerContent',
-	FT = 'ft',
 	HD = 'hd',
-	HEADER = 'header',
-	HEADER_CONTENT = 'headerContent',
-	HOVER = 'hover',
-	MODAL = 'modal',
 	ICON = 'icon',
-	INNER_HTML = 'innerHTML',
 	IO = 'io',
 	LOADING = 'loading',
-	POST = 'POST',
-	REMOVE_CLASS = 'removeClass',
+	MODAL = 'modal',
 	SPACE = ' ',
 	STACK = 'stack',
-	STATE = 'state',
-	TITLE = 'title',
-	WIDGET = 'widget',
+	TOOLS = 'tools',
 
 	getCN = A.ClassNameManager.getClassName,
 
 	CSS_DIALOG_BUTTON = getCN(DIALOG, BUTTON),
 	CSS_DIALOG_BUTTON_CONTAINER = getCN(DIALOG, BUTTON, CONTAINER),
 	CSS_DIALOG_BUTTON_DEFAULT = getCN(DIALOG, BUTTON, DEFAULT),
+	CSS_DIALOG_HD = getCN(DIALOG, HD),
 	CSS_ICON_LOADING = getCN(ICON, LOADING),
 	CSS_PREFIX = getCN(DD),
-	CSS_DIALOG_HD = getCN(DIALOG, HD),
 
 	TPL_BUTTON = '<button class="' + CSS_DIALOG_BUTTON + '"></button>',
 	TPL_BUTTON_CONTAINER = '<div class="' + CSS_DIALOG_BUTTON_CONTAINER + '"></div>',
@@ -140,10 +125,8 @@ A.mix(
 Dialog.prototype = {
 	initializer: function(config) {
 		var instance = this;
-
-		var tools = instance.get('tools');
-		var close = instance.get('close');
-
+		var tools = instance.get(TOOLS);
+		var close = instance.get(CLOSE);
 		var buttons = instance.get(BUTTONS);
 
 		if (buttons && buttons.length && !instance.get(FOOTER_CONTENT)) {
@@ -152,8 +135,8 @@ Dialog.prototype = {
 
 		if (close) {
 			var closeConfig = {
-				icon: 'close',
-				id: 'close',
+				icon: CLOSE,
+				id: CLOSE,
 				handler: {
 					fn: instance.close,
 					context: instance
@@ -164,7 +147,7 @@ Dialog.prototype = {
 				tools.push(closeConfig);
 			}
 
-			instance.set('tools', tools);
+			instance.set(TOOLS, tools);
 		}
 
 		instance.after('render', instance._afterRenderer);
@@ -349,7 +332,6 @@ Dialog.prototype = {
 	/*
 	* Attribute Listeners
 	*/
-
 	_afterSetVisible: function(event) {
 		var instance = this;
 
