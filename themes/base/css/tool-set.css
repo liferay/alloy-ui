@@ -11,15 +11,10 @@
 .aui-toolset-item {
 	display: inline-block;
 	vertical-align: top;
-	margin-left: -1px;
 }
 
 .aui-toolset-item-content {
 	margin: 0;
 	float: none;
 	display: block;
-}
-
-.aui-toolset-first {
-	margin-left: 0;
 }
