@@ -2,6 +2,8 @@ AUI().add(
 	'tool-set',
 	function(A) {
 		var Lang = A.Lang,
+			isArray = Lang.isArray,
+			isString = Lang.isString,
 
 			getClassName = A.ClassNameManager.getClassName,
 
@@ -27,7 +29,8 @@ AUI().add(
 			hoverState: {},
 
 			tools: {
-				value: []
+				value: [],
+				validator: isArray
 			}
 		};
 
@@ -37,6 +40,7 @@ AUI().add(
 			{
 				BOUNDING_TEMPLATE: TPL_GENERIC,
 				CONTENT_TEMPLATE: TPL_GENERIC,
+
 				initializer: function() {
 					var instance = this;
 
@@ -64,31 +68,35 @@ AUI().add(
 						hoverState: instance.get('hoverState')
 					};
 
-					for (var i = 0; i < toolItems.length; i++) {
-						var toolItem = toolItems[i];
+					A.each(toolItems, function(item) {
+						var toolItem = null;
 
-						if (Lang.isString(toolItem)) {
-							var toolItemConfig = {
-								icon: toolItem
-							}
-
-							toolItem = toolItemConfig;
+						if (isString(item)) {
+							item = {
+								icon: item
+							};
 						}
 
-						A.mix(toolItem, defaultToolConfig);
+						// check if is needed to instantiate a new ToolItem
+						if (item instanceof A.ToolItem) {
+							toolItem = item;
+						}
+						else {
+							A.mix(item, defaultToolConfig);
 
-						var toolSetItem = new A.ToolItem(toolItem);
+							toolItem = new A.ToolItem(item);
+						}
 
-						var itemBoundingBox = toolSetItem.get('boundingBox');
-						var itemContentBox = toolSetItem.get('contentBox');
+						var itemBoundingBox = toolItem.get('boundingBox');
+						var itemContentBox = toolItem.get('contentBox');
 
 						itemBoundingBox.addClass(CSS_ITEM);
 						itemContentBox.addClass(CSS_ITEM_CONTENT);
 
-						toolSetItem.render(contentBox);
+						toolItem.render(contentBox);
 
-						toolSet.add(toolSetItem);
-					}
+						toolSet.add(toolItem);
+					});
 
 					if (length > 0) {
 						toolSet.get('first').get('boundingBox').addClass(CSS_FIRST);
