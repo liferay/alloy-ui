@@ -146,6 +146,13 @@ AUI().add(
 					instance.after('iconChange', instance._afterIconChange);
 				},
 
+				destroy: function() {
+					var instance = this;
+					var boundingBox = instance.get('boundingBox');
+
+					boundingBox.remove();
+				},
+
 				_afterIconChange: function(event) {
 					var instance = this;
 
