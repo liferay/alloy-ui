@@ -546,7 +546,9 @@ AUI.add('aui-node', function(A) {
 
 			'toggle',
 
-			'unselectable'
+			'unselectable',
+
+			'val'
 		]
 	);
 
