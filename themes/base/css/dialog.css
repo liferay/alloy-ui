@@ -6,40 +6,12 @@
 	margin: 0 auto;
 }
 
-.aui-dialog .aui-dialog-hd {
-	color: #333333;
+.aui-dd-draggable .aui-dialog-hd {
 	cursor: move;
-	font-size: 15px;
-	font-weight: bold;
-	padding: 8px 10px;
-	zoom: 1;
 }
 
-.aui-dialog .aui-dialog-bd {
-	border: 1px solid #ccc;
-	border-color: #fff #999 #999 #bbb;
-	padding: 10px;
+.aui-dialog-bd {
 	overflow-y: auto;
-}
-
-.aui-dialog .aui-dialog-ft {
-	border: 1px solid #ccc;
-	border-color: #fff #999 #999 #bbb;
-	padding: 5px 10px;
-	text-align: right;
-	visibility: inherit;
-}
-
-.aui-dialog .aui-dialog-close {
-	cursor: pointer;
-	position: absolute;
-	right: 0;
-	top: 0;
-	margin: 5px;
-}
-
-.aui-dialog-hidden {
-	display: none;
 }
 
 .aui-dialog-button {
