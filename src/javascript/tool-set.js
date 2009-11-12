@@ -68,35 +68,38 @@ AUI().add(
 						hoverState: instance.get('hoverState')
 					};
 
-					A.each(toolItems, function(item) {
-						var toolItem = null;
+					A.each(
+						toolItems,
+						function(item) {
+							var toolItem = null;
 
-						if (isString(item)) {
-							item = {
-								icon: item
-							};
+							if (isString(item)) {
+								item = {
+									icon: item
+								};
+							}
+
+							// check if is needed to instantiate a new ToolItem
+							if (item instanceof A.ToolItem) {
+								toolItem = item;
+							}
+							else {
+								A.mix(item, defaultToolConfig);
+
+								toolItem = new A.ToolItem(item);
+							}
+
+							var itemBoundingBox = toolItem.get('boundingBox');
+							var itemContentBox = toolItem.get('contentBox');
+
+							itemBoundingBox.addClass(CSS_ITEM);
+							itemContentBox.addClass(CSS_ITEM_CONTENT);
+
+							toolItem.render(contentBox);
+
+							toolSet.add(toolItem);
 						}
-
-						// check if is needed to instantiate a new ToolItem
-						if (item instanceof A.ToolItem) {
-							toolItem = item;
-						}
-						else {
-							A.mix(item, defaultToolConfig);
-
-							toolItem = new A.ToolItem(item);
-						}
-
-						var itemBoundingBox = toolItem.get('boundingBox');
-						var itemContentBox = toolItem.get('contentBox');
-
-						itemBoundingBox.addClass(CSS_ITEM);
-						itemContentBox.addClass(CSS_ITEM_CONTENT);
-
-						toolItem.render(contentBox);
-
-						toolSet.add(toolItem);
-					});
+					);
 
 					if (length > 0) {
 						toolSet.get('first').get('boundingBox').addClass(CSS_FIRST);
