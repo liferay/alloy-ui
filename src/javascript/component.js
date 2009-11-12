@@ -68,6 +68,8 @@ AUI().add(
 					instance._setOwnerComponent(instance.get('ownerComponent'));
 					instance._setRelayEvents(instance.get('relayEvents'));
 
+					instance._setComponentClassNames();
+
 					instance.after('cssClassChange', instance._afterCssClassChange);
 					instance.after('destroy', instance._afterComponentDestroy);
 					instance.after('ownerChange', instance._afterComponentOwnerChange);
@@ -148,6 +150,22 @@ AUI().add(
 					if (ownerComponent) {
 						ownerComponent.fire.apply(ownerComponent, arguments);
 					}
+				},
+
+				_setComponentClassNames: function() {
+					var instance = this;
+
+					var classes = instance._getClasses();
+					var name;
+					var buffer = [];
+
+					for (var i = classes.length - 4; i >= 0; i--) {
+						var name = classes[i].NAME.toLowerCase();
+
+						buffer.push(getClassName(name, 'content'));
+					}
+
+					instance.get('contentBox').addClass(buffer.join(' '));
 				},
 
 				_setRelayEvents: function(relayEvents) {
