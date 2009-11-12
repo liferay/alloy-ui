@@ -41,7 +41,11 @@
 		</div>
 
 		<div class="aui-helper-clearfix" id="withState">
-			<h2>With State</h2>
+			<h2>
+				With State
+				<button id="addMore1">Add more</button>
+				<button id="remove1">Remove last</button>
+			</h2>
 		</div>
 
 	</div>
@@ -131,6 +135,29 @@ AUI().ready(
 				]
 			}
 		).render('#withState');
+
+		// Extras
+		var index = 0;
+		var icons = [ 'alert', 'info', 'signal', 'bookmark', 'unlocked' ];
+
+		A.on('click', function() {
+			if (index < icons.length) {
+				var icon = icons[index++];
+
+				toolSet1.add({ id: icon, icon: icon });
+			}
+		}, '#addMore1');
+
+		A.on('click', function() {
+			if (index > 0) {
+				var icon = icons[--index];
+
+				toolSet1.remove(icon);
+			}
+		}, '#remove1');
+
+		// remove by index
+		// toolSet1.remove(0);
 	}
 );
 
