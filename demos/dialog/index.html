@@ -10,7 +10,9 @@
 </head>
 
 <style type="text/css" media="screen">
-
+body {
+	font-size: 12px;
+}
 </style>
 
 <body>
@@ -108,6 +110,56 @@ AUI().ready('dialog', 'overlay-manager', 'io-stdmod', 'dd-constrain', function(A
 		A.merge(options, {
 			title: 'Dialog 3 - no buttons',
 			xy: [250, 150],
+			buttons: null,
+			io: {
+				url: 'assets/content.html'
+			}
+		})
+	)
+	.render();
+
+	var dialog4 = new A.Dialog(
+		A.merge(options, {
+			collapsible: true,
+			title: 'Dialog 4 - Collapsible',
+			xy: [275, 200],
+			buttons: null,
+			io: {
+				url: 'assets/content.html'
+			}
+		})
+	)
+	.render();
+
+	var dialog5 = new A.Dialog(
+		A.merge(options, {
+			close: false,
+			tools: [
+				{
+					icon: 'pin-l',
+					id: 'pin',
+					activeState: true,
+					handler: function(event, tool) {
+						var instance = this;
+
+						var pinned = !instance.StateInteraction.get('active');
+						var cursor = 'move';
+						var icon = 'pin-l';
+
+						if (pinned) {
+							cursor = 'default';
+							icon = 'pin-b';
+						}
+
+						dialog5.get('dragInstance').set('lock', pinned);
+
+						dialog5.headerNode.setStyle('cursor', cursor);
+						tool.set('icon', icon);
+					}
+				}
+			],
+			title: 'Dialog 5 - Pinnable (uses custom tools option)',
+			xy: [300, 250],
 			buttons: null,
 			io: {
 				url: 'assets/content.html'

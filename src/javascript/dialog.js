@@ -50,21 +50,12 @@ var L = A.Lang,
 	CSS_DIALOG_BUTTON = getCN(DIALOG, BUTTON),
 	CSS_DIALOG_BUTTON_CONTAINER = getCN(DIALOG, BUTTON, CONTAINER),
 	CSS_DIALOG_BUTTON_DEFAULT = getCN(DIALOG, BUTTON, DEFAULT),
-	CSS_DIALOG_CLOSE = getCN(DIALOG, CLOSE),
-	CSS_DIALOG_TITLE = getCN(DIALOG, TITLE),
-	CSS_ICON = getCN(ICON),
-	CSS_ICON_CLOSE = getCN(ICON, CLOSE),
 	CSS_ICON_LOADING = getCN(ICON, LOADING),
 	CSS_PREFIX = getCN(DD),
-	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
-	CSS_STATE_HOVER = getCN(STATE, HOVER),
-	CSS_WIDGET_HD = getCN(WIDGET, HD),
 	CSS_DIALOG_HD = getCN(DIALOG, HD),
-	CSS_DIALOG_BD = getCN(DIALOG, BD),
-	CSS_DIALOG_FT = getCN(DIALOG, FT),
 
-	TPL_BUTTON = '<button></button>',
-	TPL_GENERIC = '<div></div>',
+	TPL_BUTTON = '<button class="' + CSS_DIALOG_BUTTON + '"></button>',
+	TPL_BUTTON_CONTAINER = '<div class="' + CSS_DIALOG_BUTTON_CONTAINER + '"></div>',
 	TPL_LOADING = '<div class="' + CSS_ICON_LOADING + '"></div>';
 
 var Dialog = function(config) {};
@@ -153,6 +144,12 @@ Dialog.prototype = {
 		var tools = instance.get('tools');
 		var close = instance.get('close');
 
+		var buttons = instance.get(BUTTONS);
+
+		if (buttons && buttons.length && !instance.get(FOOTER_CONTENT)) {
+			instance.set(FOOTER_CONTENT, SPACE);
+		}
+
 		if (close) {
 			var closeConfig = {
 				icon: 'close',
@@ -206,12 +203,10 @@ Dialog.prototype = {
 
 	_initButtons: function() {
 		var instance = this;
-		var buttons = instance.get(BUTTONS);
-		var container = A.Node.create(TPL_GENERIC);
-		var nodeModel = A.Node.create(TPL_BUTTON);
 
-		container.addClass(CSS_DIALOG_BUTTON_CONTAINER);
-		nodeModel.addClass(CSS_DIALOG_BUTTON);
+		var buttons = instance.get(BUTTONS);
+		var container = A.Node.create(TPL_BUTTON_CONTAINER);
+		var nodeModel = A.Node.create(TPL_BUTTON);
 
 		A.each(
 			buttons,
@@ -234,8 +229,6 @@ Dialog.prototype = {
 
 		if (buttons.length) {
 			instance.set(FOOTER_CONTENT, container);
-
-			instance.footerNode.addClass(CSS_DIALOG_FT);
 		}
 	},
 
