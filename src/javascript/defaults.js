@@ -253,6 +253,14 @@
 				},
 
 				/*
+				* Dialog
+				*/
+				'component-overlay': {
+					fullpath: PATH_JAVASCRIPT + 'component-overlay.js',
+					requires: [ 'component', 'widget-position', 'widget-stack', 'widget-position-ext', 'widget-stdmod' ]
+				},
+
+				/*
 				* Tabs
 				*/
 				'tabs': {
