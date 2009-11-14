@@ -1203,7 +1203,7 @@ var Lang = A.Lang,
 
 				overlayAlign.node = instance.inputNode;
 
-				var overlay = new A.Overlay(
+				var overlay = new A.ComponentOverlay(
 					{
 						align: overlayAlign,
 						bodyContent: '<ul></ul>',

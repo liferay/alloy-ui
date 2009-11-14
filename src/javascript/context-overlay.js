@@ -122,7 +122,7 @@ A.mix(ContextOverlay, {
 	}
 });
 
-A.extend(ContextOverlay, A.Overlay, {
+A.extend(ContextOverlay, A.ComponentOverlay, {
 	/*
 	* Lifecycle
 	*/

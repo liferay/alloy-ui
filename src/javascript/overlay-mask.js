@@ -79,7 +79,7 @@ A.mix(OverlayMask, {
 	}
 });
 
-A.extend(OverlayMask, A.Overlay, {
+A.extend(OverlayMask, A.ComponentOverlay, {
 	/*
 	* Lifecycle
 	*/
