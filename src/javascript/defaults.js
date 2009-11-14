@@ -49,7 +49,7 @@
 				*/
 				'autocomplete': {
 					fullpath: PATH_JAVASCRIPT + 'autocomplete.js',
-					requires: [ 'aui-base', 'overlay', 'datasource', 'dataschema', 'autocomplete-css', 'combobox' ]
+					requires: [ 'aui-base', 'component-overlay', 'datasource', 'dataschema', 'autocomplete-css', 'combobox' ]
 				},
 				'autocomplete-css': {
 					ext: false,
@@ -253,7 +253,7 @@
 				},
 
 				/*
-				* Dialog
+				* Component Overlay
 				*/
 				'component-overlay': {
 					fullpath: PATH_JAVASCRIPT + 'component-overlay.js',
@@ -324,7 +324,7 @@
 				*/
 				'context-overlay': {
 					fullpath: PATH_JAVASCRIPT + 'context-overlay.js',
-					requires: [ 'aui-base', 'overlay', 'overlay-manager', 'delayed-task' ]
+					requires: [ 'aui-base', 'component-overlay', 'overlay-manager', 'delayed-task' ]
 				},
 
 				/*
@@ -332,7 +332,7 @@
 				*/
 				'overlay-manager': {
 					fullpath: PATH_JAVASCRIPT + 'overlay-manager.js',
-					requires: [ 'aui-base', 'overlay', 'plugin' ]
+					requires: [ 'aui-base', 'component', 'component-overlay', 'overlay', 'plugin' ]
 				},
 
 				/*
@@ -340,7 +340,7 @@
 				*/
 				'overlay-mask': {
 					fullpath: PATH_JAVASCRIPT + 'overlay-mask.js',
-					requires: [ 'aui-base', 'overlay', 'event-resize' ]
+					requires: [ 'aui-base', 'component-overlay', 'event-resize' ]
 				},
 
 				/*
@@ -427,7 +427,7 @@
 				*/
 				'io-stdmod': {
 					fullpath: PATH_JAVASCRIPT + 'io-stdmod.js',
-					requires: [ 'aui-base', 'overlay', 'io', 'plugin' ]
+					requires: [ 'aui-base', 'component-overlay', 'io', 'plugin' ]
 				},
 
 				/*
