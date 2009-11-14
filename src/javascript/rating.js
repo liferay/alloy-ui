@@ -14,7 +14,6 @@ var L = A.Lang,
 	},
 
 	ANCHOR = 'a',
-	AUTO_RENDER = 'autoRender',
 	BLANK = '',
 	BOUNDING_BOX = 'boundingBox',
 	CAN_RESET = 'canReset',
@@ -59,11 +58,6 @@ A.mix(Rating, {
 	NAME: 'Rating',
 
 	ATTRS: {
-		autoRender: {
-			value: true,
-			validator: isBoolean
-		},
-
 		canReset: {
 			value: true,
 			validator: isBoolean
@@ -99,6 +93,10 @@ A.mix(Rating, {
 			validator: isString
 		},
 
+		render: {
+			value: true
+		},
+
 		selectedIndex: {
 			value: -1,
 			validator: isNumber
@@ -122,7 +120,7 @@ A.mix(Rating, {
 	}
 });
 
-A.extend(Rating, A.Widget, {
+A.extend(Rating, A.Component, {
 	/*
 	* Lifecycle
 	*/
@@ -132,10 +130,6 @@ A.extend(Rating, A.Widget, {
 		instance.inputElementsData = {};
 
 		instance.after('labelChange', this._afterSetLabel);
-
-		if (instance.get(AUTO_RENDER)) {
-			instance.render();
-		}
 	},
 
 	renderUI: function () {
