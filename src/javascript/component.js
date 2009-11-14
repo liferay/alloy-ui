@@ -18,23 +18,20 @@ AUI().add(
 
 			Component.superclass.constructor.apply(this, arguments);
 
-			var autoRender = instance.get('autoRender');
+			var render = instance.get('render');
 
-			if (autoRender) {
-				if (autoRender === true) {
-					autoRender = null;
+			if (render) {
+				if (render === true) {
+					render = null;
 				}
 
-				instance.render(autoRender);
+				instance.render(render);
 			}
 		};
 
 		Component.NAME = 'component';
 
 		Component.ATTRS = {
-			autoRender: {
-				value: false
-			},
 			cssClass: {
 				lazyAdd: false,
 				value: null
@@ -51,6 +48,10 @@ AUI().add(
 			},
 			relayEvents: {
 				value: true
+			},
+			render: {
+				value: false,
+				writeOnce: true
 			}
 		};
 
