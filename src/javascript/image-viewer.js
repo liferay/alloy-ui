@@ -306,12 +306,6 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		instance.after('visibleChange', instance._afterVisibleChange);
 	},
 
-	syncUI: function() {
-		var instance = this;
-
-		instance._syncImageViewerUI();
-	},
-
 	destroy: function() {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
@@ -582,7 +576,7 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		// invoke A.Overlay _afterVisibleChange method
 		ImageViewer.superclass._afterVisibleChange.apply(this, arguments)
 
-		instance._syncImageViewerUI();
+		instance._syncControlsUI();
 	},
 
 	_onClickCloseEl: function(event) {
