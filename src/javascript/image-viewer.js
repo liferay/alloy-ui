@@ -48,6 +48,7 @@ var L = A.Lang,
 	OFFSET_WIDTH = 'offsetWidth',
 	OPACITY = 'opacity',
 	OVERLAY = 'overlay',
+	PRELOAD_IMAGES = 'preloadImages',
 	PX = 'px',
 	RIGHT = 'right',
 	SHOW = 'show',
@@ -59,7 +60,7 @@ var L = A.Lang,
 	TOP = 'top',
 	VIEWPORT_REGION = 'viewportRegion',
 	VISIBLE = 'visible',
-    OWNER_DOCUMENT = "ownerDocument",
+    OWNER_DOCUMENT = 'ownerDocument',
 
 	isNodeList = function(v) {
 		return (v instanceof A.NodeList);
@@ -201,6 +202,11 @@ A.mix(ImageViewer, {
 				opacity: .8,
 				background: '#000'
 			}
+		},
+
+		preloadImages: {
+			value: true,
+			validator: isBoolean
 		},
 
 		showClose: {
@@ -405,7 +411,7 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		}
 	},
 
-	preLoadImage: function(index) {
+	preloadImage: function(index) {
 		var instance = this;
 
 		var link = instance.getLink(index);
@@ -691,9 +697,11 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		instance.set(CENTERED, true);
 		instance.set(LOADING, false);
 
-		// preload neighbor images
-		instance.preLoadImage(instance.index + 1);
-		instance.preLoadImage(instance.index - 1);
+		if (instance.get(PRELOAD_IMAGES)) {
+			// preload neighbor images
+			instance.preloadImage(instance.index + 1);
+			instance.preloadImage(instance.index - 1);	
+		}
 	}
 });
 
