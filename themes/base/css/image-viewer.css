@@ -1,0 +1,55 @@
+.aui-image-viewer {}
+
+.aui-image-viewer-link {
+	outline: 0 none;
+}
+
+.aui-image-viewer-content .aui-icon-loading {
+	margin: 0 auto;
+}
+
+.aui-image-viewer-bd {
+	background: #fff;
+	padding: 5px;
+}
+
+.aui-image-viewer-content .aui-widget-ft {
+	padding: 10px;
+	color: white;
+	font-size: larger;
+	font-weight: bold;
+}
+
+.aui-image-viewer-info {
+	color: #777;
+}
+
+.aui-image-viewer-arrow {
+	height: 54px;
+	outline: 0 none;
+	position: absolute;
+	width: 30px;
+	z-index: 3000;
+}
+
+.aui-image-viewer-arrow-left {
+	background-image: url(../images/image-viewer/arrow-left.png);
+	left: 100px;
+}
+
+.aui-image-viewer-arrow-right {
+	background-image: url(../images/image-viewer/arrow-right.png);
+	right: 100px;
+}
+
+.aui-image-viewer-close {
+	background-image: url(../images/image-viewer/close.png);
+	background-repeat: no-repeat;
+	height: 19px;
+	outline: none;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	width: 19px;
+	z-index: 3000;
+}

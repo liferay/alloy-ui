@@ -438,6 +438,20 @@
 				},
 
 				/*
+				* Image Viewer
+				*/
+				'image-viewer': {
+					fullpath: PATH_JAVASCRIPT + 'image-viewer.js',
+					requires: [ 'aui-base', 'anim', 'overlay-mask', 'substitute', 'image-viewer-css' ]
+				},
+
+				'image-viewer-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'image-viewer.css',
+					type: 'css'
+				},
+
+				/*
 				* State Interaction plugin
 				*/
 				'state-interaction': {
