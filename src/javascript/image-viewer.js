@@ -49,6 +49,7 @@ var L = A.Lang,
 	OPACITY = 'opacity',
 	OVERLAY = 'overlay',
 	PRELOAD_IMAGES = 'preloadImages',
+	PRELOAD_NEIGHBOR_IMAGES = 'preloadNeighborImages',
 	PX = 'px',
 	RIGHT = 'right',
 	SHOW = 'show',
@@ -205,6 +206,11 @@ A.mix(ImageViewer, {
 		},
 
 		preloadImages: {
+			value: false,
+			validator: isBoolean
+		},
+
+		preloadNeighborImages: {
 			value: true,
 			validator: isBoolean
 		},
@@ -714,7 +720,7 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 
 		instance.fire('load', { image: image });
 
-		if (instance.get(PRELOAD_IMAGES)) {
+		if (instance.get(PRELOAD_NEIGHBOR_IMAGES)) {
 			// preload neighbor images
 			instance.preloadImage(instance.currentIndex + 1);
 			instance.preloadImage(instance.currentIndex - 1);
