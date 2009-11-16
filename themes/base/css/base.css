@@ -58,7 +58,8 @@
 .aui-calendar-hidden,
 .aui-datepicker-hidden,
 .aui-colorpicker-hidden,
-.aui-tooltip-hidden {
+.aui-tooltip-hidden,
+.aui-image-viewer-hidden {
 	left: -99999px !important;
 	position: absolute !important;
 	top: -99999px !important;
