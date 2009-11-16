@@ -30,6 +30,8 @@
 
 <h1>Alloy - ImageViewer</h1>
 
+<h1 id="log">Loading...</h1>
+
 <div id="gallery1" class="gallery">
 	<a href="assets/lfr-soccer-1.jpg" title="Doug, Meesa and Louis resting">
 		<img class="picture" src="assets/lfr-soccer-1_tn.jpg" />
@@ -86,6 +88,8 @@ AUI().ready('image-viewer', function(A) {
 	.render();
 
 	// imageViewer1.destroy();
+
+	A.one('#log').html('Ready, click on the images.');
 });
 
 </script>
