@@ -507,6 +507,21 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		A.ImageViewerMask.hide();
 	},
 
+	show: function() {
+		var instance = this;
+		var currentLink = instance.getCurrentLink();
+
+		if (currentLink) {
+			instance.showMask();
+
+			ImageViewer.superclass.show.apply(this, arguments);
+
+			instance.loadImage(
+				currentLink.attr(HREF)
+			);
+		}
+	},
+
 	_renderControls: function() {
 		var instance = this;
 		var body = A.one(BODY);
@@ -671,7 +686,6 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 	_onClickLinks: function(event) {
 		var instance = this;
 		var target = event.currentTarget;
-		var src = target.attr(HREF);
 
 		// set the current currentIndex of the clicked image
 		instance.set(
@@ -679,11 +693,7 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 			instance.get(LINKS).indexOf(target)
 		);
 
-		instance.showMask();
-
 		instance.show();
-
-		instance.loadImage(src);
 
 		event.preventDefault();
 	},
