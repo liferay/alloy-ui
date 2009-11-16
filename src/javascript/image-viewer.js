@@ -5,8 +5,9 @@ AUI.add('image-viewer', function(A) {
 */
 var L = A.Lang,
 	isBoolean = L.isBoolean,
-	isString = L.isString,
+	isNumber = L.isNumber,
 	isObject = L.isObject,
+	isString = L.isString,
 
 	NodeFx = A.Plugin.NodeFX,
 
@@ -25,6 +26,7 @@ var L = A.Lang,
 	CLOSE = 'close',
 	CLOSE_EL = 'closeEl',
 	CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
+	CURRENT_INDEX = 'currentIndex',
 	EASE_BOTH_STRONG = 'easeBothStrong',
 	FOOTER = 'footer',
 	HIDDEN = 'hidden',
@@ -132,6 +134,11 @@ A.mix(ImageViewer, {
 			value: true
 		},
 
+		currentIndex: {
+			value: 0,
+			validator: isNumber
+		},
+
 		image: {
 			readyOnly: true,
 			valueFn: function() {
@@ -160,7 +167,7 @@ A.mix(ImageViewer, {
 			getter: function(v) {
 				var instance = this;
 				var total = instance.get(LINKS).size();
-				var current = instance.currentIndex + 1;
+				var current = instance.get(CURRENT_INDEX) + 1;
 
 				return A.substitute(v, {
 					current: current,
@@ -281,7 +288,6 @@ A.mix(ImageViewer, {
 
 A.extend(ImageViewer, A.ComponentOverlay, {
 	activeImage: 0,
-	currentIndex: 0,
 
 	_keyHandler: null,
 
@@ -359,7 +365,9 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 	getCurrentLink: function() {
 		var instance = this;
 
-		return instance.getLink(instance.currentIndex);
+		return instance.getLink(
+			instance.get(CURRENT_INDEX)
+		);
 	},
 
 	loadImage: function(src) {
@@ -404,7 +412,7 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		var instance = this;
 
 		return instance.hasLink(
-			instance.currentIndex + 1
+			instance.get(CURRENT_INDEX) + 1
 		);
 	},
 
@@ -412,16 +420,16 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		var instance = this;
 
 		return instance.hasLink(
-			instance.currentIndex - 1
+			instance.get(CURRENT_INDEX) - 1
 		);
 	},
 
 	next: function() {
 		var instance = this;
-		var currentIndex = instance.currentIndex;
+		var currentIndex = instance.get(CURRENT_INDEX);
 
 		if (instance.hasNext()) {
-			instance.currentIndex = currentIndex + 1;
+			instance.set(CURRENT_INDEX, currentIndex + 1);
 
 			instance.loadImage(
 				instance.getCurrentLink().attr(HREF)
@@ -451,10 +459,10 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 
 	prev: function() {
 		var instance = this;
-		var currentIndex = instance.currentIndex;
+		var currentIndex = instance.get(CURRENT_INDEX);
 
 		if (instance.hasPrev()) {
-			instance.currentIndex = currentIndex - 1;
+			instance.set(CURRENT_INDEX, currentIndex - 1);
 
 			instance.loadImage(
 				instance.getCurrentLink().attr(HREF)
@@ -666,7 +674,10 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		var src = target.attr(HREF);
 
 		// set the current currentIndex of the clicked image
-		instance.currentIndex = instance.get(LINKS).indexOf(target);
+		instance.set(
+			CURRENT_INDEX,
+			instance.get(LINKS).indexOf(target)
+		);
 
 		instance.showMask();
 
@@ -735,8 +746,10 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 
 		if (instance.get(PRELOAD_NEIGHBOR_IMAGES)) {
 			// preload neighbor images
-			instance.preloadImage(instance.currentIndex + 1);
-			instance.preloadImage(instance.currentIndex - 1);
+			var currentIndex = instance.get(CURRENT_INDEX);
+
+			instance.preloadImage(currentIndex + 1);
+			instance.preloadImage(currentIndex - 1);
 		}
 	}
 });
