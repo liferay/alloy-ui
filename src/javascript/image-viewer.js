@@ -159,7 +159,7 @@ A.mix(ImageViewer, {
 			getter: function(v) {
 				var instance = this;
 				var total = instance.get(LINKS).size();
-				var current = instance.index + 1;
+				var current = instance.currentIndex + 1;
 
 				return A.substitute(v, {
 					current: current,
@@ -274,7 +274,7 @@ A.mix(ImageViewer, {
 });
 
 A.extend(ImageViewer, A.ComponentOverlay, {
-	index: 0,
+	currentIndex: 0,
 
 	_keyHandler: null,
 
@@ -342,16 +342,16 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		instance.hideMask();
 	},
 
-	getLink: function(index) {
+	getLink: function(currentIndex) {
 		var instance = this;
 
-		return instance.get(LINKS).item(index);
+		return instance.get(LINKS).item(currentIndex);
 	},
 
 	getCurrentLink: function() {
 		var instance = this;
 
-		return instance.getLink(instance.index);
+		return instance.getLink(instance.currentIndex);
 	},
 
 	loadImage: function(src) {
@@ -376,17 +376,17 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		image.attr(SRC, src);
 	},
 
-	hasLink: function(index) {
+	hasLink: function(currentIndex) {
 		var instance = this;
 
-		return instance.getLink(index);
+		return instance.getLink(currentIndex);
 	},
 
 	hasNext: function() {
 		var instance = this;
 
 		return instance.hasLink(
-			instance.index + 1
+			instance.currentIndex + 1
 		);
 	},
 
@@ -394,16 +394,16 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		var instance = this;
 
 		return instance.hasLink(
-			instance.index - 1
+			instance.currentIndex - 1
 		);
 	},
 
 	next: function() {
 		var instance = this;
-		var index = instance.index;
+		var currentIndex = instance.currentIndex;
 
 		if (instance.hasNext()) {
-			instance.index = index + 1;
+			instance.currentIndex = currentIndex + 1;
 
 			instance.loadImage(
 				instance.getCurrentLink().attr(HREF)
@@ -411,10 +411,10 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		}
 	},
 
-	preloadImage: function(index) {
+	preloadImage: function(currentIndex) {
 		var instance = this;
 
-		var link = instance.getLink(index);
+		var link = instance.getLink(currentIndex);
 
 		if (link) {
 			var src = link.attr(HREF);
@@ -425,10 +425,10 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 
 	prev: function() {
 		var instance = this;
-		var index = instance.index;
+		var currentIndex = instance.currentIndex;
 
 		if (instance.hasPrev()) {
-			instance.index = index - 1;
+			instance.currentIndex = currentIndex - 1;
 
 			instance.loadImage(
 				instance.getCurrentLink().attr(HREF)
@@ -635,8 +635,8 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		var target = event.currentTarget;
 		var src = target.attr(HREF);
 
-		// set the current index of the clicked image
-		instance.index = instance.get(LINKS).indexOf(target);
+		// set the current currentIndex of the clicked image
+		instance.currentIndex = instance.get(LINKS).indexOf(target);
 
 		instance.showMask();
 
@@ -699,8 +699,8 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 
 		if (instance.get(PRELOAD_IMAGES)) {
 			// preload neighbor images
-			instance.preloadImage(instance.index + 1);
-			instance.preloadImage(instance.index - 1);
+			instance.preloadImage(instance.currentIndex + 1);
+			instance.preloadImage(instance.currentIndex - 1);
 		}
 	}
 });
