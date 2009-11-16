@@ -336,6 +336,18 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		instance.hideMask();
 	},
 
+	getLink: function(index) {
+		var instance = this;
+
+		return instance.get(LINKS).item(index);
+	},
+
+	getCurrentLink: function() {
+		var instance = this;
+
+		return instance.getLink(instance.index);
+	},
+
 	loadImage: function(src) {
 		var instance = this;
 		var bodyNode = instance.bodyNode;
@@ -361,7 +373,7 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 	hasLink: function(index) {
 		var instance = this;
 
-		return instance.get(LINKS).item(index);
+		return instance.getLink(index);
 	},
 
 	hasNext: function() {
@@ -383,13 +395,12 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 	next: function() {
 		var instance = this;
 		var index = instance.index;
-		var links = instance.get(LINKS);
 
 		if (instance.hasNext()) {
 			instance.index = index + 1;
 
 			instance.loadImage(
-				links.item(instance.index).attr(HREF)
+				instance.getCurrentLink().attr(HREF)
 			);
 		}
 	},
@@ -397,13 +408,12 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 	prev: function() {
 		var instance = this;
 		var index = instance.index;
-		var links = instance.get(LINKS);
 
 		if (instance.hasPrev()) {
 			instance.index = index - 1;
 
 			instance.loadImage(
-				links.item(instance.index).attr(HREF)
+				instance.getCurrentLink().attr(HREF)
 			);
 		}
 	},
@@ -487,8 +497,7 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		var captionFromTitle = instance.get(CAPTION_FROM_TITLE);
 
 		if (captionFromTitle) {
-			var index = instance.index;
-			var currentLink = instance.get(LINKS).item(index);
+			var currentLink = instance.getCurrentLink();
 
 			if (currentLink) {
 				var title = currentLink.attr(TITLE);
