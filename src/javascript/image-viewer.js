@@ -335,6 +335,7 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		instance.get(ARROW_LEFT_EL).remove();
 		instance.get(ARROW_RIGHT_EL).remove();
 		instance.get(CLOSE_EL).remove();
+		instance.get(LOADER).remove();
 
 		boundingBox.remove();
 	},
