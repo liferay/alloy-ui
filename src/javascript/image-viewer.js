@@ -169,13 +169,6 @@ A.mix(ImageViewer, {
 			validator: isString
 		},
 
-		infoEl: {
-			readyOnly: true,
-			valueFn: function() {
-				return A.Node.create(TPL_INFO);
-			}
-		},
-
 		links: {
 			setter: function(v) {
 				var instance = this;
@@ -259,6 +252,13 @@ A.mix(ImageViewer, {
 			}
 		},
 
+		infoEl: {
+			readyOnly: true,
+			valueFn: function() {
+				return A.Node.create(TPL_INFO);
+			}
+		},
+
 		loadingEl: {
 			valueFn: function() {
 				return A.Node.create(TPL_LOADING);
@@ -309,9 +309,7 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 	syncUI: function() {
 		var instance = this;
 
-		instance._syncControlsUI();
-		instance._syncCaptionUI();
-		instance._syncInfoUI();
+		instance._syncImageViewerUI();
 	},
 
 	destroy: function() {
@@ -545,6 +543,14 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		}
 	},
 
+	_syncImageViewerUI: function() {
+		var instance = this;
+
+		instance._syncControlsUI();
+		instance._syncCaptionUI();
+		instance._syncInfoUI();
+	},
+
 	_syncInfoUI: function() {
 		var instance = this;
 		var infoEl = instance.get(INFO_EL);
@@ -578,7 +584,7 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		// invoke A.Overlay _afterVisibleChange method
 		ImageViewer.superclass._afterVisibleChange.apply(this, arguments)
 
-		instance.syncUI();
+		instance._syncImageViewerUI();
 	},
 
 	_onClickCloseEl: function(event) {
@@ -665,7 +671,7 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 			height: offsetHeight
 		});
 
-		instance.syncUI();
+		instance._syncImageViewerUI();
 
 		instance.set(CENTERED, true);
 		instance.set(LOADING, false);
