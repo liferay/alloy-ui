@@ -362,10 +362,6 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 
 		// set the src of the image to be loaded on the placeholder image
 		image.attr(SRC, src);
-
-		if (instance.get(MODAL)) {
-			instance.showMask();
-		}
 	},
 
 	hasLink: function(index) {
@@ -438,7 +434,9 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 			});
 		}
 
-		A.ImageViewerMask.show();
+		if (modal) {
+			A.ImageViewerMask.show();
+		}
 	},
 
 	hideControls: function() {
@@ -619,9 +617,11 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		// set the current index of the clicked image
 		instance.index = instance.get(LINKS).indexOf(target);
 
-		instance.loadImage(src);
+		instance.showMask();
 
 		instance.show();
+
+		instance.loadImage(src);
 
 		event.preventDefault();
 	},
