@@ -428,6 +428,14 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		}
 	},
 
+	preloadAllImages: function() {
+		var instance = this;
+
+		instance.get(LINKS).each(function(link, index) {
+			instance.preloadImage(index);
+		});
+	},
+
 	preloadImage: function(currentIndex) {
 		var instance = this;
 
@@ -606,9 +614,7 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		bodyNode.addClass(CSS_IMAGE_VIEWER_BD);
 
 		if (instance.get(PRELOAD_ALL_IMAGES)) {
-			instance.get(LINKS).each(function(link, index) {
-				instance.preloadImage(index);
-			});
+			instance.preloadAllImages();
 		}
 	},
 
