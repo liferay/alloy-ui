@@ -700,7 +700,7 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		if (instance.get(PRELOAD_IMAGES)) {
 			// preload neighbor images
 			instance.preloadImage(instance.index + 1);
-			instance.preloadImage(instance.index - 1);	
+			instance.preloadImage(instance.index - 1);
 		}
 	}
 });
