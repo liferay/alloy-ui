@@ -186,13 +186,6 @@ A.mix(ImageViewer, {
 			}
 		},
 
-		loader: {
-			readyOnly: true,
-			valueFn: function() {
-				return A.Node.create(TPL_LOADER).appendTo(document.body);
-			}
-		},
-
 		loading: {
 			value: false,
 			validator: isBoolean
@@ -268,6 +261,13 @@ A.mix(ImageViewer, {
 			readyOnly: true,
 			valueFn: function() {
 				return A.Node.create(TPL_INFO);
+			}
+		},
+
+		loader: {
+			readyOnly: true,
+			valueFn: function() {
+				return A.Node.create(TPL_LOADER).appendTo(document.body);
 			}
 		},
 
