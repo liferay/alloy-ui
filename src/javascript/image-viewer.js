@@ -405,6 +405,18 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		}
 	},
 
+	preLoadImage: function(index) {
+		var instance = this;
+
+		var link = instance.getLink(index);
+
+		if (link) {
+			var src = link.attr(HREF);
+
+			instance.get(IMAGE).cloneNode(true).attr(SRC, src);
+		}
+	},
+
 	prev: function() {
 		var instance = this;
 		var index = instance.index;
@@ -678,6 +690,10 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 
 		instance.set(CENTERED, true);
 		instance.set(LOADING, false);
+
+		// preload neighbor images
+		instance.preLoadImage(instance.index + 1);
+		instance.preLoadImage(instance.index - 1);
 	}
 });
 
