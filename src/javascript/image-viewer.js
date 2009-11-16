@@ -443,6 +443,14 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		A.ImageViewerMask.show();
 	},
 
+	hideControls: function() {
+		var instance = this;
+
+		instance.get(ARROW_LEFT_EL).hide();
+		instance.get(ARROW_RIGHT_EL).hide();
+		instance.get(CLOSE_EL).hide();
+	},
+
 	hideMask: function() {
 		A.ImageViewerMask.hide();
 	},
@@ -513,24 +521,27 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 
 		if (instance.get(VISIBLE)) {
 			if (instance.get(SHOW_ARROWS)) {
+				// get the viewportRegion to centralize the arrows on the middle of the window viewport
 				var viewportRegion = boundingBox.get(VIEWPORT_REGION);
 				var heightRegion = Math.floor(viewportRegion.height/2) + viewportRegion.top;
 
+				// show or hide arrows based on the hasPrev/hasNext information
 				arrowLeftEl[ instance.hasPrev() ? SHOW : HIDE ]();
 				arrowRightEl[ instance.hasNext() ? SHOW : HIDE ]();
 
+				// set style top of the arrows in the middle of the window viewport
 				arrowLeftEl.setStyle(TOP, heightRegion - arrowLeftEl.get(OFFSET_HEIGHT) + PX);
 				arrowRightEl.setStyle(TOP, heightRegion - arrowRightEl.get(OFFSET_HEIGHT) + PX);
 			}
 
+			// if SHOW_CLOSE is enables, show close icon
 			if (instance.get(SHOW_CLOSE)) {
 				closeEl.show();
 			}
 		}
 		else {
-			arrowLeftEl.hide();
-			arrowRightEl.hide();
-			closeEl.hide();
+			// if the overlay is not visible hide all controls
+			instance.hideControls();
 		}
 	},
 
