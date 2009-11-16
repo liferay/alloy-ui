@@ -383,6 +383,8 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 
 		// set the src of the image to be loaded on the placeholder image
 		image.attr(SRC, src);
+
+		instance.fire('request', { image: image });
 	},
 
 	hasLink: function(currentIndex) {
@@ -690,6 +692,10 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 			// preparing node to the animation, pluging the NodeFX
 			image.unplug(NodeFx).plug(NodeFx);
 
+			image.fx.on('end', function(info) {
+				instance.fire('anim', { anim: info, image: image });
+			});
+
 			image.fx.setAttrs(imageAnim);
 			image.fx.stop().run();
 		}
@@ -705,6 +711,8 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 
 		instance.set(CENTERED, true);
 		instance.set(LOADING, false);
+
+		instance.fire('load', { image: image });
 
 		if (instance.get(PRELOAD_IMAGES)) {
 			// preload neighbor images
