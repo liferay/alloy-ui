@@ -67,24 +67,36 @@ AUI().ready('image-viewer', function(A) {
 		caption: 'Liferay Champion Soccer',
 		captionFromTitle: true,
 		preloadImages: true,
-		showInfo: true
+		showInfo: true,
 		// infoTemplate: 'Image {current} of {total}, modified.',
 
 		// showArrows: false,
 		// showClose: false,
 		// anim: false,
 
-		// imageAnim: {
-		// 	duration: 2,
-		// 	easing: 'bounceOut'
-		// },
+		imageAnim: {
+			// duration: 2,
+			// easing: 'bounceOut',
+		},
 
 		// modal: false,
 
 		// modal: {
 		// 	background: 'lightblue',
 		// 	opacity: .4
-		// }
+		// },
+		after: {
+			anim: function(event) {
+				// console.log('anim', event);
+				// event.image.setStyle('opacity', .5);
+			},
+			request: function(event) {
+				// console.log('request', event);
+			},
+			load: function(event) {
+				// console.log('load', event);
+			}
+		}
 	})
 	.render();
 
