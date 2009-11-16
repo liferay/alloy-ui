@@ -48,7 +48,7 @@ var L = A.Lang,
 	OFFSET_WIDTH = 'offsetWidth',
 	OPACITY = 'opacity',
 	OVERLAY = 'overlay',
-	PRELOAD_IMAGES = 'preloadImages',
+	PRELOAD_ALL_IMAGES = 'preloadAllImages',
 	PRELOAD_NEIGHBOR_IMAGES = 'preloadNeighborImages',
 	PX = 'px',
 	RIGHT = 'right',
@@ -205,7 +205,7 @@ A.mix(ImageViewer, {
 			}
 		},
 
-		preloadImages: {
+		preloadAllImages: {
 			value: false,
 			validator: isBoolean
 		},
@@ -604,6 +604,12 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		var bodyNode = instance.bodyNode;
 
 		bodyNode.addClass(CSS_IMAGE_VIEWER_BD);
+
+		if (instance.get(PRELOAD_ALL_IMAGES)) {
+			instance.get(LINKS).each(function(link, index) {
+				instance.preloadImage(index);
+			});
+		}
 	},
 
 	_afterLoadingChange: function(event) {
