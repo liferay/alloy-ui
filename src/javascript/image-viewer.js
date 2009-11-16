@@ -274,6 +274,7 @@ A.mix(ImageViewer, {
 });
 
 A.extend(ImageViewer, A.ComponentOverlay, {
+	activeImage: 0,
 	currentIndex: 0,
 
 	_keyHandler: null,
@@ -361,8 +362,16 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 
 		instance.set(LOADING, true);
 
+		// the user could navigate to the next/prev image before the current image onLoad trigger
+		// detach load event from the activeImage before create the new image placeholder
+		if (instance.activeImage) {
+			instance.activeImage.detach('load');
+		}
+
 		// creating the placeholder image
-		var image = instance.get(IMAGE).cloneNode(true);
+		instance.activeImage = instance.get(IMAGE).cloneNode(true);
+
+		var image = instance.activeImage;
 
 		// append the placeholder image to the loader div
 		loader.empty();
