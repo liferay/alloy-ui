@@ -339,6 +339,12 @@ A.extend(Paginator, A.Component, {
 		instance.changeRequest();
 	},
 
+	destroy: function() {
+		var instance = this;
+
+		instance.get(CONTAINERS).remove();
+	},
+
 	_syncPageLinksUI: function() {
 		var instance = this;
 		var containers = instance.get(CONTAINERS);
