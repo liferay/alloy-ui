@@ -133,6 +133,9 @@ AUI().ready('paginator', function(A) {
 		containers: '.paginatorB',
 		total: 100,
 		maxPageLinks: 8,
+		pageLinkContent: function(pageEl, pageNumber) {
+			pageEl.html('Page ' + pageNumber);
+		},
 		rowsPerPage: 2,
 		nextPageLinkLabel: 'NEXT',
 		prevPageLinkLabel: 'PREV',

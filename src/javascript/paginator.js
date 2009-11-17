@@ -3,6 +3,7 @@ AUI.add('paginator', function(A) {
 var L = A.Lang,
 	isArray = L.isArray,
 	isBoolean = L.isBoolean,
+	isFunction = L.isFunction,
 	isNumber = L.isNumber,
 	isObject = L.isObject,
 	isString = L.isString,
@@ -25,6 +26,7 @@ var L = A.Lang,
 	NEXT_PAGE_LINK = 'nextPageLink',
 	NEXT_PAGE_LINK_LABEL = 'nextPageLinkLabel',
 	PAGE = 'page',
+	PAGE_LINK_CONTENT = 'pageLinkContent',
 	PAGE_REPORT_EL = 'pageReportEl',
 	PAGE_REPORT_LABEL_TEMPLATE = 'pageReportLabelTemplate',
 	PAGINATOR = 'paginator',
@@ -182,6 +184,13 @@ A.mix(Paginator, {
 				return num(v);
 			},
 			value: 1
+		},
+
+		pageLinkContent: {
+			value: function(pageEl, pageNumber, index) {
+				pageEl.html(pageNumber);
+			},
+			validator: isFunction
 		},
 
 		pageReportEl: {
@@ -366,7 +375,10 @@ A.extend(Paginator, A.Component, {
 				// loop all pages from range.start to range.end
 				while (pageNumber <= range.end) {
 					// get the anchor pageEl and set the label to be the number of the current page
-					var pageEl = pageLinks.item(index).html(pageNumber);
+					var pageEl = pageLinks.item(index);
+
+					// invoke the handler to set the page link content
+					instance.get(PAGE_LINK_CONTENT).apply(instance, [pageEl, pageNumber, index]);
 
 					// uset an attribute page on the anchor to retrieve later when _onClickPageLinkEl fires
 					pageEl.setAttribute(PAGE, pageNumber);
