@@ -65,6 +65,7 @@ var L = A.Lang,
 	SRC = 'src',
 	TITLE = 'title',
 	TOP = 'top',
+	TOTAL_LINKS = 'totalLinks',
 	VIEWPORT_REGION = 'viewportRegion',
 	VISIBLE = 'visible',
     OWNER_DOCUMENT = 'ownerDocument',
@@ -171,7 +172,7 @@ A.mix(ImageViewer, {
 		infoTemplate: {
 			getter: function(v) {
 				var instance = this;
-				var total = instance.get(LINKS).size();
+				var total = instance.get(TOTAL_LINKS);
 				var current = instance.get(CURRENT_INDEX) + 1;
 
 				return A.substitute(v, {
@@ -233,6 +234,13 @@ A.mix(ImageViewer, {
 		showArrows: {
 			value: true,
 			validator: isBoolean
+		},
+
+		totalLinks: {
+			readOnly: true,
+			getter: function(v) {
+				return this.get(LINKS).size();
+			}
 		},
 
 		visible: {
