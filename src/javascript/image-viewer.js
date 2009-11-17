@@ -145,7 +145,7 @@ A.mix(ImageViewer, {
 		},
 
 		image: {
-			readyOnly: true,
+			readOnly: true,
 			valueFn: function() {
 				return A.Node.create(TPL_IMAGE);
 			}
@@ -247,42 +247,42 @@ A.mix(ImageViewer, {
 		* Static Attrs
 		*/
 		arrowLeftEl: {
-			readyOnly: true,
+			readOnly: true,
 			valueFn: function() {
 				return A.Node.create(TPL_ARROW_LEFT);
 			}
 		},
 
 		arrowRightEl: {
-			readyOnly: true,
+			readOnly: true,
 			valueFn: function() {
 				return A.Node.create(TPL_ARROW_RIGHT);
 			}
 		},
 
 		captionEl: {
-			readyOnly: true,
+			readOnly: true,
 			valueFn: function() {
 				return A.Node.create(TPL_CAPTION);
 			}
 		},
 
 		closeEl: {
-			readyOnly: true,
+			readOnly: true,
 			valueFn: function() {
 				return A.Node.create(TPL_CLOSE);
 			}
 		},
 
 		infoEl: {
-			readyOnly: true,
+			readOnly: true,
 			valueFn: function() {
 				return A.Node.create(TPL_INFO);
 			}
 		},
 
 		loader: {
-			readyOnly: true,
+			readOnly: true,
 			valueFn: function() {
 				return A.Node.create(TPL_LOADER).appendTo(document.body);
 			}
