@@ -118,6 +118,14 @@
    -khtml-user-select: none;
 }
 
+/* scroll lock */
+.aui-helper-scroll-lock {
+	height: 100%;
+	margin: 0;
+	overflow: hidden;
+	width: 100%;
+}
+
 /*
 The rules below set the base font size and background color. These are best overwritten inside of custom.css.
 */
