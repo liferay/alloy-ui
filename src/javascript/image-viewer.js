@@ -29,6 +29,7 @@ var L = A.Lang,
 	CURRENT_INDEX = 'currentIndex',
 	EASE_BOTH_STRONG = 'easeBothStrong',
 	FOOTER = 'footer',
+	HELPER = 'helper',
 	HIDDEN = 'hidden',
 	HIDE = 'hide',
 	HREF = 'href',
@@ -45,6 +46,8 @@ var L = A.Lang,
 	LOADER = 'loader',
 	LOADING = 'loading',
 	LOADING_EL = 'loadingEl',
+	LOCK = 'lock',
+	LOCK_SCROLL = 'lockScroll',
 	MODAL = 'modal',
 	OFFSET_HEIGHT = 'offsetHeight',
 	OFFSET_WIDTH = 'offsetWidth',
@@ -54,6 +57,7 @@ var L = A.Lang,
 	PRELOAD_NEIGHBOR_IMAGES = 'preloadNeighborImages',
 	PX = 'px',
 	RIGHT = 'right',
+	SCROLL = 'scroll',
 	SHOW = 'show',
 	SHOW_ARROWS = 'showArrows',
 	SHOW_CLOSE = 'showClose',
@@ -79,6 +83,7 @@ var L = A.Lang,
 
 	getCN = A.ClassNameManager.getClassName,
 
+	CSS_HELPER_SCROLL_LOCK = getCN(HELPER, SCROLL, LOCK),
 	CSS_ICON_LOADING = getCN(ICON, LOADING),
 	CSS_IMAGE_VIEWER_ARROW = getCN(IMAGE_VIEWER, ARROW),
 	CSS_IMAGE_VIEWER_ARROW_LEFT = getCN(IMAGE_VIEWER, ARROW, LEFT),
@@ -195,6 +200,11 @@ A.mix(ImageViewer, {
 
 		loading: {
 			value: false,
+			validator: isBoolean
+		},
+
+		lockScroll: {
+			value: true,
 			validator: isBoolean
 		},
 
@@ -424,6 +434,24 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		);
 	},
 
+	hideControls: function() {
+		var instance = this;
+
+		instance.get(ARROW_LEFT_EL).hide();
+		instance.get(ARROW_RIGHT_EL).hide();
+		instance.get(CLOSE_EL).hide();
+	},
+
+	hideMask: function() {
+		A.ImageViewerMask.hide();
+	},
+
+	lockScroll: function() {
+		var instance = this;
+
+		A.all('body,html').addClass(CSS_HELPER_SCROLL_LOCK);
+	},
+
 	next: function() {
 		var instance = this;
 		var currentIndex = instance.get(CURRENT_INDEX);
@@ -495,18 +523,6 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		}
 	},
 
-	hideControls: function() {
-		var instance = this;
-
-		instance.get(ARROW_LEFT_EL).hide();
-		instance.get(ARROW_RIGHT_EL).hide();
-		instance.get(CLOSE_EL).hide();
-	},
-
-	hideMask: function() {
-		A.ImageViewerMask.hide();
-	},
-
 	show: function() {
 		var instance = this;
 		var currentLink = instance.getCurrentLink();
@@ -520,6 +536,12 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 				currentLink.attr(HREF)
 			);
 		}
+	},
+
+	unlockScroll: function() {
+		var instance = this;
+
+		A.all('body,html').removeClass(CSS_HELPER_SCROLL_LOCK);
 	},
 
 	_renderControls: function() {
@@ -604,10 +626,16 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 			if (instance.get(SHOW_CLOSE)) {
 				closeEl.show();
 			}
+
+			if (instance.get(LOCK_SCROLL)) {
+				instance.lockScroll();
+			}
 		}
 		else {
 			// if the overlay is not visible hide all controls
 			instance.hideControls();
+
+			instance.unlockScroll();
 		}
 	},
 
