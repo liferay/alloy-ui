@@ -208,24 +208,26 @@ A.extend(ImageGallery, A.ImageViewer, {
 		var beforeState = newState.before;
 		var page = newState.page;
 
+		// only update the paginator UI when the Overlay is visible
+		if (!instance.get(VISIBLE)) {
+			return false; // NOTE: return
+		}
+
 		var currentIndex = instance.get(CURRENT_INDEX);
 		var paginatorIndex = page - 1;
 
 		// check if the beforeState page number is different from the newState page number.
 		if (!beforeState || beforeState && (beforeState.page != page)) {
-			// only update the paginator UI when the Overlay is visible
-			if (instance.get(VISIBLE)) {
-				// updating currentIndex
-				instance.set(CURRENT_INDEX, paginatorIndex);
+			// updating currentIndex
+			instance.set(CURRENT_INDEX, paginatorIndex);
 
-				// loading current index image
-				instance.loadImage(
-					instance.getCurrentLink().attr(HREF)
-				);
+			// loading current index image
+			instance.loadImage(
+				instance.getCurrentLink().attr(HREF)
+			);
 
-				// updating the UI of the paginator
-				paginatorInstance.setState(newState);
-			}
+			// updating the UI of the paginator
+			paginatorInstance.setState(newState);
 		}
 	},
 
