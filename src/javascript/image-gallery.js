@@ -68,7 +68,7 @@ A.mix(ImageGallery, {
 					{
 						containers: paginatorEl,
 						pageContainerTemplate: TPL_LINK_CONTAINER,
-						pageLinkContent: A.bind(instance._setLinkContent, instance),
+						pageLinkContent: A.bind(instance._setThumbContent, instance),
 						pageLinkTemplate: TPL_LINK,
 						template: TEMPLATE_PAGINATOR,
 						total: totalLinks,
@@ -229,7 +229,7 @@ A.extend(ImageGallery, A.ImageViewer, {
 		}
 	},
 
-	_setLinkContent: function(pageEl, pageNumber) {
+	_setThumbContent: function(pageEl, pageNumber) {
 		var instance = this;
 		var index = pageNumber - 1;
 		var link = instance.getLink(index);
