@@ -27,7 +27,7 @@
 
 .aui-image-viewer-arrow {
 	height: 54px;
-	outline: 0 none;
+	outline: 0;
 	position: absolute;
 	width: 30px;
 	z-index: 3000;
@@ -47,7 +47,7 @@
 	background-image: url(../images/image-viewer/close.png);
 	background-repeat: no-repeat;
 	height: 19px;
-	outline: none;
+	outline: 0;
 	position: absolute;
 	right: 20px;
 	top: 20px;
