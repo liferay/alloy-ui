@@ -9,6 +9,7 @@ var L = A.Lang,
 	isString = L.isString,
 
 	ALWAYS_VISIBLE = 'alwaysVisible',
+	BOUNDING_BOX = 'boundingBox',
 	CONTAINER = 'container',
 	CONTAINERS = 'containers',
 	CONTENT = 'content',
@@ -26,11 +27,11 @@ var L = A.Lang,
 	NEXT_PAGE_LINK = 'nextPageLink',
 	NEXT_PAGE_LINK_LABEL = 'nextPageLinkLabel',
 	PAGE = 'page',
+	PAGE_CONTAINER_TEMPLATE = 'pageContainerTemplate',
 	PAGE_LINK_CONTENT = 'pageLinkContent',
 	PAGE_LINK_TEMPLATE = 'pageLinkTemplate',
 	PAGE_REPORT_EL = 'pageReportEl',
 	PAGE_REPORT_LABEL_TEMPLATE = 'pageReportLabelTemplate',
-	PAGE_CONTAINER_TEMPLATE = 'pageContainerTemplate',
 	PAGINATOR = 'paginator',
 	PER = 'per',
 	PREV = 'prev',
@@ -373,6 +374,7 @@ A.extend(Paginator, A.Component, {
 	destroy: function() {
 		var instance = this;
 
+		instance.get(BOUNDING_BOX).remove();
 		instance.get(CONTAINERS).remove();
 	},
 
