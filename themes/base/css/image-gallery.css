@@ -1,0 +1,38 @@
+.aui-image-gallery-paginator {
+	bottom: 0;
+	position: fixed;
+/*	width: 100%;*/
+	z-index: 2000;
+}
+
+.ie6 .aui-image-gallery-paginator {
+	position: absolute;
+}
+
+.aui-image-gallery-paginator-content {
+	margin: 0 auto;
+/*	width: 700px;*/
+	padding:30px;
+}
+
+.aui-image-gallery-paginator .aui-paginator-link {
+	color: white;
+	font-size: larger;
+	font-weight: bold;
+}
+
+.aui-image-gallery-paginator .aui-paginator-page-link {
+	background: transparent url() no-repeat 50% 50%;
+	border: 0;
+	cursor: pointer;
+	float: left;
+	height: 60px;
+	overflow: hidden;
+	padding: 3px;
+	width: 60px;
+}
+
+.aui-image-gallery-paginator .aui-paginator-current-page {
+	border: 3px solid #fff;
+	padding: 0;
+}
