@@ -248,7 +248,7 @@ A.mix(ImageViewer, {
 		},
 
 		zIndex: {
-			value: 2000
+			value: 3000
 		},
 
 		/*
