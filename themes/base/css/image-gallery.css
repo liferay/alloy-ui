@@ -1,7 +1,7 @@
 .aui-image-gallery-paginator {
 	bottom: 0;
 	position: fixed;
-/*	width: 100%;*/
+	width: 100%;
 	z-index: 2000;
 }
 
@@ -9,9 +9,11 @@
 	position: absolute;
 }
 
+.aui-image-gallery-paginator-content table {
+	margin: auto;
+}
+
 .aui-image-gallery-paginator-content {
-	margin: 0 auto;
-/*	width: 700px;*/
 	padding:30px;
 }
 
@@ -19,9 +21,11 @@
 	color: white;
 	font-size: larger;
 	font-weight: bold;
+	border: 0;
+	padding: 0;
 }
 
-.aui-image-gallery-paginator .aui-paginator-page-link {
+.aui-image-gallery-paginator .aui-image-gallery-paginator-thumb {
 	background: transparent url() no-repeat 50% 50%;
 	border: 0;
 	cursor: pointer;
@@ -30,9 +34,10 @@
 	overflow: hidden;
 	padding: 3px;
 	width: 60px;
+	margin: 2px;
 }
 
-.aui-image-gallery-paginator .aui-paginator-current-page {
+.aui-image-gallery-paginator .aui-paginator-current-page .aui-image-gallery-paginator-thumb {
 	border: 3px solid #fff;
 	padding: 0;
 }

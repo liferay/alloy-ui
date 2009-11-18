@@ -9,10 +9,9 @@ var L = A.Lang,
 	isString = L.isString,
 
 	BODY = 'body',
-	CLEARFIX = 'clearfix',
 	CONTENT = 'content',
 	CURRENT_INDEX = 'currentIndex',
-	HELPER = 'helper',
+	DOT = '.',
 	HIDDEN = 'hidden',
 	HREF = 'href',
 	IMAGE_GALLERY = 'image-gallery',
@@ -27,6 +26,7 @@ var L = A.Lang,
 	PX = 'px',
 	SPACE = ' ',
 	SRC = 'src',
+	THUMB = 'thumb',
 	TOTAL_LINKS = 'totalLinks',
 	USE_ORIGINAL_IMAGE = 'useOriginalImage',
 	VIEWPORT_REGION = 'viewportRegion',
@@ -38,16 +38,18 @@ var L = A.Lang,
 
 	getCN = A.ClassNameManager.getClassName,
 
-	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
 	CSS_OVERLAY_HIDDEN = getCN(OVERLAY, HIDDEN),
 	CSS_IMAGE_GALLERY_PAGINATOR = getCN(IMAGE_GALLERY, PAGINATOR),
+	CSS_IMAGE_GALLERY_PAGINATOR_THUMB = getCN(IMAGE_GALLERY, PAGINATOR, THUMB),
 	CSS_IMAGE_GALLERY_PAGINATOR_CONTENT = getCN(IMAGE_GALLERY, PAGINATOR, CONTENT),
 
-	TEMPLATE_PAGINATOR = '<div class="' + CSS_IMAGE_GALLERY_PAGINATOR_CONTENT + '">{PageLinks}</div>'
+	TEMPLATE_PAGINATOR = '<div class="' + CSS_IMAGE_GALLERY_PAGINATOR_CONTENT + '">'+
+							'<table cellspacing="0" cellpadding="0">{PageLinks}</table>'+
+						 '</div>',
 
-	TPL_LINK = '<div></div>',
-	TPL_LINK_CONTAINER = '<div class="' + CSS_HELPER_CLEARFIX + '"></div>',
-	TPL_PAGINATOR_CONTAINER = '<div class="'+ concat(CSS_OVERLAY_HIDDEN, CSS_IMAGE_GALLERY_PAGINATOR) +'"></div>';
+	TPL_LINK = '<td><div class="'+CSS_IMAGE_GALLERY_PAGINATOR_THUMB+'"></div></td>',
+	TPL_LINK_CONTAINER = '<tr></tr>',
+	TPL_PAGINATOR_CONTAINER = '<div class="'+concat(CSS_OVERLAY_HIDDEN, CSS_IMAGE_GALLERY_PAGINATOR)+'"></div>';
 
 function ImageGallery(config) {
 	ImageGallery.superclass.constructor.apply(this, arguments);
@@ -162,21 +164,9 @@ A.extend(ImageGallery, A.ImageViewer, {
 
 	_syncPaginatorUI: function() {
 		var instance = this;
-		var paginatorInstance = instance.get(PAGINATOR_INSTANCE);
 
 		if (instance.get(VISIBLE)) {
 			instance.showPaginator();
-
-			// align the paginator on the viewport horizontally
-			paginatorInstance.eachContainer(
-				function(container) {
-					var offsetWidth = container.get(OFFSET_WIDTH);
-					var viewportRegion = container.get(VIEWPORT_REGION);
-					var width = Math.floor(viewportRegion.width/2) - Math.floor(offsetWidth/2) + viewportRegion.left;
-
-					container.setStyle(LEFT, width+PX);
-				}
-			);
 		}
 		else {
 			instance.hidePaginator();
@@ -235,6 +225,7 @@ A.extend(ImageGallery, A.ImageViewer, {
 		var instance = this;
 		var index = pageNumber - 1;
 		var link = instance.getLink(index);
+		var thumbEl = pageEl.one(DOT+CSS_IMAGE_GALLERY_PAGINATOR_THUMB);
 		var thumbSrc = null;
 
 		if (instance.get(USE_ORIGINAL_IMAGE)) {
@@ -250,7 +241,7 @@ A.extend(ImageGallery, A.ImageViewer, {
 		}
 
 		if (thumbSrc) {
-			pageEl.setStyles({
+			thumbEl.setStyles({
 				// use background to show the thumbnails to take advantage of the background-position: 50% 50%
 				backgroundImage: 'url(' + thumbSrc + ')'
 			});
