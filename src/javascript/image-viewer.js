@@ -47,7 +47,6 @@ var L = A.Lang,
 	LOADING = 'loading',
 	LOADING_EL = 'loadingEl',
 	LOCK = 'lock',
-	LOCK_SCROLL = 'lockScroll',
 	MODAL = 'modal',
 	OFFSET_HEIGHT = 'offsetHeight',
 	OFFSET_WIDTH = 'offsetWidth',
@@ -201,11 +200,6 @@ A.mix(ImageViewer, {
 
 		loading: {
 			value: false,
-			validator: isBoolean
-		},
-
-		lockScroll: {
-			value: true,
 			validator: isBoolean
 		},
 
@@ -454,12 +448,6 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		A.ImageViewerMask.hide();
 	},
 
-	lockScroll: function() {
-		var instance = this;
-
-		A.all('body,html').addClass(CSS_HELPER_SCROLL_LOCK);
-	},
-
 	next: function() {
 		var instance = this;
 		var currentIndex = instance.get(CURRENT_INDEX);
@@ -546,12 +534,6 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		}
 	},
 
-	unlockScroll: function() {
-		var instance = this;
-
-		A.all('body,html').removeClass(CSS_HELPER_SCROLL_LOCK);
-	},
-
 	_renderControls: function() {
 		var instance = this;
 		var body = A.one(BODY);
@@ -634,16 +616,10 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 			if (instance.get(SHOW_CLOSE)) {
 				closeEl.show();
 			}
-
-			if (instance.get(LOCK_SCROLL)) {
-				instance.lockScroll();
-			}
 		}
 		else {
 			// if the overlay is not visible hide all controls
 			instance.hideControls();
-
-			instance.unlockScroll();
 		}
 	},
 
