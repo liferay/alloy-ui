@@ -27,8 +27,10 @@ var L = A.Lang,
 	NEXT_PAGE_LINK_LABEL = 'nextPageLinkLabel',
 	PAGE = 'page',
 	PAGE_LINK_CONTENT = 'pageLinkContent',
+	PAGE_LINK_TEMPLATE = 'pageLinkTemplate',
 	PAGE_REPORT_EL = 'pageReportEl',
 	PAGE_REPORT_LABEL_TEMPLATE = 'pageReportLabelTemplate',
+	PAGE_CONTAINER_TEMPLATE = 'pageContainerTemplate',
 	PAGINATOR = 'paginator',
 	PER = 'per',
 	PREV = 'prev',
@@ -90,8 +92,8 @@ var L = A.Lang,
 	FIRST_LINK_TPL = '<a href="#" class="'+concat(CSS_PAGINATOR_LINK, CSS_PAGINATOR_FIRST_LINK)+'"></a>',
 	LAST_LINK_TPL = '<a href="#" class="'+concat(CSS_PAGINATOR_LINK, CSS_PAGINATOR_LAST_LINK)+'"></a>',
 	NEXT_LINK_TPL = '<a href="#" class="'+concat(CSS_PAGINATOR_LINK, CSS_PAGINATOR_NEXT_LINK)+'"></a>',
-	PAGE_CONTAINER_TPL = '<span class="'+concat(CSS_PAGINATOR_PAGE_CONTAINER)+'"></span>',
-	PAGE_LINK_TPL = '<a href="#" class="'+concat(CSS_PAGINATOR_LINK, CSS_PAGINATOR_PAGE_LINK)+'"></a>',
+	PAGE_CONTAINER_TPL = '<span></span>',
+	PAGE_LINK_TPL = '<a href="#"></a>',
 	PAGE_REPORT_TPL = '<span class="'+concat(CSS_PAGINATOR_PAGE_REPORT)+'"></span>',
 	PREV_LINK_TPL = '<a href="#" class="'+concat(CSS_PAGINATOR_LINK, CSS_PAGINATOR_PREV_LINK)+'"></a>',
 	ROWS_PER_PAGE_TPL = '<select class="'+CSS_PAGINATOR_ROWS_PER_PAGE+'"></select>',
@@ -186,11 +188,31 @@ A.mix(Paginator, {
 			value: 1
 		},
 
+		pageContainerTemplate: {
+			getter: function(v) {
+				return A.Node.create(v).addClass(CSS_PAGINATOR_PAGE_CONTAINER);
+			},
+			value: PAGE_CONTAINER_TPL,
+			validator: isString
+		},
+
 		pageLinkContent: {
 			value: function(pageEl, pageNumber, index) {
 				pageEl.html(pageNumber);
 			},
 			validator: isFunction
+		},
+
+		pageLinkTemplate: {
+			getter: function(v) {
+				var node = A.Node.create(v);
+
+				return node.addClass(
+					concat(CSS_PAGINATOR_LINK, CSS_PAGINATOR_PAGE_LINK)
+				);
+			},
+			value: PAGE_LINK_TPL,
+			validator: isString
 		},
 
 		pageReportEl: {
@@ -539,12 +561,12 @@ A.extend(Paginator, A.Component, {
 			var page = 0;
 			var totalPages = instance.get(TOTAL_PAGES);
 			var maxPageLinks = instance.get(MAX_PAGE_LINKS);
-			var pageContainer = A.Node.create(PAGE_CONTAINER_TPL);
+			var pageContainer = instance.get(PAGE_CONTAINER_TEMPLATE);
 
 			// crate the anchor to be the page links
 			while (page++ < maxPageLinks) {
 				pageContainer.append(
-					A.Node.create(PAGE_LINK_TPL)
+					instance.get(PAGE_LINK_TEMPLATE)
 				)
 			};
 
@@ -634,7 +656,7 @@ A.extend(Paginator, A.Component, {
 
 	_onClickPageLinkEl: function(event) {
 		var instance = this;
-		var pageNumber = event.target.attr(PAGE);
+		var pageNumber = event.currentTarget.attr(PAGE);
 
 		instance.set(PAGE, pageNumber);
 
