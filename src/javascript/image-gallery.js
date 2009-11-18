@@ -43,7 +43,7 @@ var L = A.Lang,
 	CSS_IMAGE_GALLERY_PAGINATOR_THUMB = getCN(IMAGE_GALLERY, PAGINATOR, THUMB),
 	CSS_IMAGE_GALLERY_PAGINATOR_CONTENT = getCN(IMAGE_GALLERY, PAGINATOR, CONTENT),
 
-	TEMPLATE_PAGINATOR = '<div class="' + CSS_IMAGE_GALLERY_PAGINATOR_CONTENT + '">'+
+	TEMPLATE_PAGINATOR = '<div class="'+CSS_IMAGE_GALLERY_PAGINATOR_CONTENT+'">'+
 							'<table cellspacing="0" cellpadding="0">{PageLinks}</table>'+
 						 '</div>',
 
@@ -158,14 +158,9 @@ A.extend(ImageGallery, A.ImageViewer, {
 
 		ImageGallery.superclass._syncControlsUI.apply(this, arguments);
 
-		instance._syncSelectedThumbUI();
-		instance._syncPaginatorUI();
-	},
-
-	_syncPaginatorUI: function() {
-		var instance = this;
-
 		if (instance.get(VISIBLE)) {
+			instance._syncSelectedThumbUI();
+
 			instance.showPaginator();
 		}
 		else {
