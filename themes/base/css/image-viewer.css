@@ -48,9 +48,13 @@
 	background-repeat: no-repeat;
 	height: 19px;
 	outline: 0;
-	position: absolute;
+	position: fixed;
 	right: 20px;
 	top: 20px;
 	width: 19px;
 	z-index: 3000;
+}
+
+.ie6 .aui-image-viewer-close {
+	position: absolute;
 }
