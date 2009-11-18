@@ -472,6 +472,16 @@ A.extend(Paginator, A.Component, {
 		instance.fire('changeRequest', { state: state });
 	},
 
+	eachContainer: function(fn) {
+		var instance = this;
+
+		instance.get(CONTAINERS).each(function(node) {
+			if (node) {
+				fn.apply(instance, arguments);
+			}
+		});
+	},
+
 	hasNextPage: function() {
 		var instance = this;
 
@@ -692,10 +702,9 @@ A.extend(Paginator, A.Component, {
 
 	_bindDOMEvents: function() {
 		var instance = this;
-		var containers = instance.get(CONTAINERS);
 
 		// loop all containers...
-		containers.each(function(node) {
+		instance.eachContainer(function(node) {
 			// search for selects rows per page elements
 			var rowsPerPageEl = node.one(DOT+CSS_PAGINATOR_ROWS_PER_PAGE);
 
@@ -732,9 +741,8 @@ A.extend(Paginator, A.Component, {
 
 	_delegateDOM: function() {
 		var instance = this;
-		var containers = instance.get(CONTAINERS);
 
-		containers.each(function(node, i) {
+		instance.eachContainer(function(node, i) {
 			node.delegate('click', A.bind(instance._onClickFirstLinkEl, instance), DOT+CSS_PAGINATOR_FIRST_LINK);
 			node.delegate('click', A.bind(instance._onClickPrevLinkEl, instance), DOT+CSS_PAGINATOR_PREV_LINK);
 			node.delegate('click', A.bind(instance._onClickPageLinkEl, instance), DOT+CSS_PAGINATOR_PAGE_LINK);
