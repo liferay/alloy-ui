@@ -452,6 +452,20 @@
 				},
 
 				/*
+				* ImageGallery
+				*/
+				'image-gallery': {
+					fullpath: PATH_JAVASCRIPT + 'image-gallery.js',
+					requires: [ 'image-viewer', 'paginator', 'image-gallery-css' ]
+				},
+
+				'image-gallery-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'image-gallery.css',
+					type: 'css'
+				},
+
+				/*
 				* State Interaction plugin
 				*/
 				'state-interaction': {
