@@ -36,7 +36,7 @@ shadow or rounded corners.
 .aui-datepicker-content,
 .aui-colorpicker-content,
 .aui-image-viewer-bd,
-.aui-image-gallery-paginator .aui-paginator-page-link {
+.aui-image-gallery-paginator .aui-image-gallery-paginator-thumb {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
