@@ -29,7 +29,7 @@
 	background: transparent url() no-repeat 50% 50%;
 	border: 0;
 	cursor: pointer;
-	float: left;
+	display: inline-block;
 	height: 60px;
 	overflow: hidden;
 	padding: 3px;
@@ -40,4 +40,8 @@
 .aui-image-gallery-paginator .aui-paginator-current-page .aui-image-gallery-paginator-thumb {
 	border: 3px solid #fff;
 	padding: 0;
+}
+
+.aui-image-gallery-paginator-links {
+	text-align: center;
 }
