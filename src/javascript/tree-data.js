@@ -522,7 +522,11 @@ A.extend(TreeData, A.Widget, {
 		var instance = this;
 		var treeNodeEl = child.ancestor(DOT+CSS_TREE_NODE);
 
-		return instance.getNodeById( treeNodeEl.attr(ID) );
+		if (treeNodeEl) {
+			return instance.getNodeById( treeNodeEl.attr(ID) );
+		}
+
+		return null;
 	},
 
 	/*
