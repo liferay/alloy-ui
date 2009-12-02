@@ -362,7 +362,10 @@ AUI().add(
 					var entryHolder = instance.entryHolder;
 					var item = event.item;
 					var index = event.index;
-					var key = event.attrName;
+
+					var matchKey = instance.get('matchKey');
+
+					var key = item[matchKey] || event.attrName;
 
 					if (key) {
 						if (eventType == 'dataset:add') {
