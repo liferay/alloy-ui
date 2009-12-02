@@ -11,7 +11,7 @@
  */
 
 ;(function() {
-	var PATH_BASE = YUI.config.base + '../../../';
+	var PATH_BASE = '../../../';
 	var PATH_JAVASCRIPT = PATH_BASE + 'src/javascript/';
 	var PATH_THEME_ROOT = PATH_BASE + 'themes/base/css/';
 	var PATH_THEME_IMAGES = PATH_THEME_ROOT + '../images/';
