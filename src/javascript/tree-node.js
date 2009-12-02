@@ -102,12 +102,7 @@ A.mix(TreeNode, {
 		},
 
 		id: {
-			validador: isString,
-			setter: function(v) {
-				this.get(BOUNDING_BOX).attr(ID, v);
-
-				return v;
-			}
+			validador: isString
 		},
 
 		leaf: {
@@ -201,6 +196,7 @@ A.extend(TreeNode, A.TreeData, {
 		instance.publish('expand', { defaultFn: instance._expand });
 
 		instance.after('childrenChange', A.bind(instance._afterSetChildren, instance));
+		instance.after('idChange', instance._afterSetId, instance);
 	},
 
 	// overloading private _renderUI, don't call this._renderBox method
@@ -523,6 +519,12 @@ A.extend(TreeNode, A.TreeData, {
 		var instance = this;
 
 		instance._syncHitArea(event.newVal);
+	},
+
+	_afterSetId: function(event) {
+		var instance = this;
+
+		instance.get(BOUNDING_BOX).attr(ID, event.newVal);
 	}
 });
 
