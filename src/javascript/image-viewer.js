@@ -96,6 +96,8 @@ var L = A.Lang,
 	CSS_IMAGE_VIEWER_LINK = getCN(IMAGE_VIEWER, LINK),
 	CSS_OVERLAY_HIDDEN = getCN(OVERLAY, HIDDEN),
 
+	NODE_BLANK_TEXT = document.createTextNode(''),
+
 	INFO_LABEL_TEMPLATE = 'Image {current} of {total}',
 
 	TPL_ARROW_LEFT = '<a href="#" class="'+concat(CSS_IMAGE_VIEWER_ARROW, CSS_IMAGE_VIEWER_ARROW_LEFT)+'"></a>',
@@ -121,7 +123,7 @@ A.mix(ImageViewer, {
 		},
 
 		bodyContent: {
-			value: SPACE
+			value: NODE_BLANK_TEXT
 		},
 
 		caption: {
@@ -242,7 +244,8 @@ A.mix(ImageViewer, {
 		},
 
 		zIndex: {
-			value: 3000
+			value: 3000,
+			validator: isNumber
 		},
 
 		/*
