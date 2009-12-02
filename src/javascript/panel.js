@@ -31,6 +31,8 @@ AUI().add(
 				header: 'hd'
 			},
 
+			NODE_BLANK_TEXT = document.createTextNode(''),
+
 			TPL_HEADER_TEXT = '<span class="' + CSS_PANEL_HD_TEXT + '"></span>';
 
 		var Panel = function() {};
@@ -67,11 +69,11 @@ AUI().add(
 				var instance = this;
 
 				if (!config.bodyContent) {
-					instance.set('bodyContent', ' ');
+					instance.set('bodyContent', NODE_BLANK_TEXT);
 				}
 
 				if (!config.headerContent) {
-					instance.set('headerContent', ' ');
+					instance.set('headerContent', NODE_BLANK_TEXT);
 				}
 
 				instance.after('collapsedChange', instance._afterCollapsedChange);

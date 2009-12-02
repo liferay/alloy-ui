@@ -26,7 +26,6 @@ var L = A.Lang,
 	IO = 'io',
 	LOADING = 'loading',
 	MODAL = 'modal',
-	SPACE = ' ',
 	STACK = 'stack',
 	TOOLS = 'tools',
 
@@ -38,6 +37,8 @@ var L = A.Lang,
 	CSS_DIALOG_HD = getCN(DIALOG, HD),
 	CSS_ICON_LOADING = getCN(ICON, LOADING),
 	CSS_PREFIX = getCN(DD),
+
+	NODE_BLANK_TEXT = document.createTextNode(''),
 
 	TPL_BUTTON = '<button class="' + CSS_DIALOG_BUTTON + '"></button>',
 	TPL_BUTTON_CONTAINER = '<div class="' + CSS_DIALOG_BUTTON_CONTAINER + '"></div>',
@@ -52,7 +53,7 @@ A.mix(
 
 		ATTRS: {
 			bodyContent: {
-				value: SPACE
+				value: NODE_BLANK_TEXT
 			},
 
 			buttons: {
@@ -130,7 +131,7 @@ Dialog.prototype = {
 		var buttons = instance.get(BUTTONS);
 
 		if (buttons && buttons.length && !instance.get(FOOTER_CONTENT)) {
-			instance.set(FOOTER_CONTENT, SPACE);
+			instance.set(FOOTER_CONTENT, NODE_BLANK_TEXT);
 		}
 
 		if (close) {
