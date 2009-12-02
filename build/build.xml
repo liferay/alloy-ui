@@ -28,7 +28,7 @@
 	<property name="alloy.version" value="0.1a"/>
 	<property name="alloy.core.files" value="defaults.js, core.js"/>
 
-	<property name="yui3.file" value="yui_3.0.0.zip" />
+	<property name="yui3.file" value="yui_3.1.zip" />
 	<property name="yui3.dir" value="${project.dir}/lib/yui/" />
 
 	<property name="release.name" value="alloy" />
@@ -226,36 +226,6 @@
 
 	<target name="apply-patches">
 		<echo>Applying needed patches.</echo>
-
-		<exec executable="patch">
-			<arg value="${project.dir}/lib/yui/build/io/io.js"/>
-			<arg value="${project.dir}/lib/patches/io.diff"/>
-		</exec>
-
-		<delete file="${project.dir}/lib/yui/build/io/io-min.js" />
-
-		<exec executable="java">
-			<arg value="-jar"/>
-			<arg value="${yui.compressor.path}"/>
-			<arg value="${project.dir}/lib/yui/build/io/io.js"/>
-			<arg line="-o" />
-			<arg value="${project.dir}/lib/yui/build/io/io-min.js"/>
-		</exec>
-
-		<exec executable="patch">
-			<arg value="${project.dir}/lib/yui/build/io/io-base.js"/>
-			<arg value="${project.dir}/lib/patches/io-base.diff"/>
-		</exec>
-
-		<delete file="${project.dir}/lib/yui/build/io/io-base-min.js" />
-
-		<exec executable="java">
-			<arg value="-jar"/>
-			<arg value="${yui.compressor.path}"/>
-			<arg value="${project.dir}/lib/yui/build/io/io-base.js"/>
-			<arg line="-o" />
-			<arg value="${project.dir}/lib/yui/build/io/io-base-min.js"/>
-		</exec>
 
 	</target>
 </project>
