@@ -203,10 +203,10 @@
 
 	ALLOY.use.apply(ALLOY, defaultModules);
 
+	ALLOY.config = ALLOY.merge(originalConfig, AUI.defaults);
+
 	AUI = function(o) {
 		var instance = this;
-
-		ALLOY.config = ALLOY.merge(originalConfig, AUI.defaults);
 
 		if (o || instance instanceof AUI) {
 			return YUI(ALLOY.merge(ALLOY.config, o));
@@ -223,7 +223,13 @@
 
 			apply: apply,
 
-			defaults: defaults
+			defaults: defaults,
+
+			setDefaults: function(defaults) {
+				var instance = this;
+
+				ALLOY.config = ALLOY.merge(AUI.defaults, defaults);
+			}
 		}
 	);
 
