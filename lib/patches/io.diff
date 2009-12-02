@@ -14,7 +14,7 @@
     		_ioStart(o.id, c);
  
 +		if (c.async === false) {
-+			_readyState();
++			_readyState(o, c);
 +		}
 +
     		// If config.timeout is defined, and the request is standard XHR,
