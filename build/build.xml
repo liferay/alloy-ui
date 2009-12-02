@@ -227,5 +227,35 @@
 	<target name="apply-patches">
 		<echo>Applying needed patches.</echo>
 
+		<exec executable="patch">
+			<arg value="${project.dir}/lib/yui/build/io/io.js"/>
+			<arg value="${project.dir}/lib/patches/io.diff"/>
+		</exec>
+
+		<delete file="${project.dir}/lib/yui/build/io/io-min.js" />
+
+		<exec executable="java">
+			<arg value="-jar"/>
+			<arg value="${yui.compressor.path}"/>
+			<arg value="${project.dir}/lib/yui/build/io/io.js"/>
+			<arg line="-o" />
+			<arg value="${project.dir}/lib/yui/build/io/io-min.js"/>
+		</exec>
+
+		<exec executable="patch">
+			<arg value="${project.dir}/lib/yui/build/io/io-base.js"/>
+			<arg value="${project.dir}/lib/patches/io-base.diff"/>
+		</exec>
+
+		<delete file="${project.dir}/lib/yui/build/io/io-base-min.js" />
+
+		<exec executable="java">
+			<arg value="-jar"/>
+			<arg value="${yui.compressor.path}"/>
+			<arg value="${project.dir}/lib/yui/build/io/io-base.js"/>
+			<arg line="-o" />
+			<arg value="${project.dir}/lib/yui/build/io/io-base-min.js"/>
+		</exec>
+
 	</target>
 </project>

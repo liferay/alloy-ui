@@ -439,7 +439,7 @@ AUI.add('aui-node', function(A) {
 		evalScript: function(elem) {
 			if (elem.src) {
 				A.io(elem.src, {
-					sync: true,
+					async: false,
 					on: {
 						complete: function(i, o) {
 							A.Node.globalEval(o.responseText);
