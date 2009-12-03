@@ -49,7 +49,7 @@
 				*/
 				'autocomplete': {
 					fullpath: PATH_JAVASCRIPT + 'autocomplete.js',
-					requires: [ 'aui-base', 'component-overlay', 'datasource', 'dataschema', 'autocomplete-css', 'combobox' ]
+					requires: [ 'aui-base', 'component-overlay', 'datasource', 'dataschema', 'combobox', 'autocomplete-css' ]
 				},
 				'autocomplete-css': {
 					ext: false,
@@ -62,7 +62,7 @@
 				*/
 				'editable': {
 					fullpath: PATH_JAVASCRIPT + 'editable.js',
-					requires: [ 'aui-base', 'editable-css', 'combobox', 'textarea' ]
+					requires: [ 'aui-base', 'combobox', 'textarea', 'editable-css' ]
 				},
 				'editable-css': {
 					ext: false,
@@ -174,7 +174,7 @@
 				*/
 				'color-picker': {
 					fullpath: PATH_JAVASCRIPT + 'color-picker.js',
-					requires: [ 'context-overlay', 'dd', 'slider', 'substitute', 'tool-item', 'color-picker-css', 'form', 'panel' ]
+					requires: [ 'context-overlay', 'dd', 'slider', 'substitute', 'tool-item', 'form', 'panel', 'color-picker-css' ]
 				},
 				'color-picker-css': {
 					ext: false,
@@ -348,7 +348,7 @@
 				*/
 				'panel': {
 					fullpath: PATH_JAVASCRIPT + 'panel.js',
-					requires: [ 'panel-css', 'component', 'widget-stdmod', 'tool-set' ]
+					requires: [ 'component', 'widget-stdmod', 'tool-set', 'panel-css' ]
 				},
 				'panel-css': {
 					ext: false,
@@ -406,7 +406,7 @@
 				*/
 				'combobox': {
 					fullpath: PATH_JAVASCRIPT + 'combobox.js',
-					requires: [ 'textarea', 'combobox-css', 'tool-set' ]
+					requires: [ 'textarea', 'tool-set', 'combobox-css' ]
 				},
 				'combobox-css': {
 					ext: false,
