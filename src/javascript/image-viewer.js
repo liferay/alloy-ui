@@ -669,7 +669,7 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		var instance = this;
 
 		// invoke A.Overlay _afterVisibleChange method
-		ImageViewer.superclass._afterVisibleChange.apply(this, arguments)
+		ImageViewer.superclass._afterVisibleChange.apply(this, arguments);
 
 		instance._syncControlsUI();
 	},
