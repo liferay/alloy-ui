@@ -107,6 +107,12 @@ AUI().add(
 					}
 				},
 
+				item: function(key) {
+					var instance = this;
+
+					return instance.tools.item(key);
+				},
+
 				remove: function(item) {
 					var instance = this;
 					var toolSet = instance.tools;
