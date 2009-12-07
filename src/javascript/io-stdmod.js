@@ -67,6 +67,17 @@ A.mix(StdModIOPlugin, {
 });
 
 A.extend(StdModIOPlugin, A.Plugin.Base, {
+	initializer: function() {
+		var instance = this;
+		var bodyNode = instance.get(HOST).bodyNode;
+
+		StdModIOPlugin.superclass.initializer.apply(this, arguments);
+
+		if (bodyNode) {
+			bodyNode.plug(A.Plugin.ParseContent);
+		}
+	},
+
 	destructor: function() {
 		if (this.isActive()) {
 			A.io.abort(this._activeIO);
@@ -143,4 +154,4 @@ A.extend(StdModIOPlugin, A.Plugin.Base, {
 A.namespace('Plugin');
 A.Plugin.StdModIOPlugin = StdModIOPlugin;
 
-}, '@VERSION', { requires: [ 'overlay', 'io', 'plugin' ] });
+}, '@VERSION', { requires: [ 'aui-base', 'component-overlay', 'parse-content', 'io', 'plugin' ] });
