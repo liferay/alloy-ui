@@ -24,7 +24,11 @@
 
 <script type="text/javascript" charset="utf-8">
 
-AUI().ready('aui-base', 'io', function(A) {
+var index = 0;
+
+AUI().ready('aui-base', 'io', 'parse-content', function(A) {
+
+	A.Node.get('#content').plug(A.Plugin.ParseContent);
 
 	var getContent = function() {
 		A.io('assets/content.html', {
@@ -32,7 +36,7 @@ AUI().ready('aui-base', 'io', function(A) {
 				success: function(i, o) {
 					var data = o.responseText;
 
-					A.Node.get('#content').html(data);
+					A.Node.get('#content').setContent(data);
 				}
 			}
 		});
