@@ -464,7 +464,7 @@
 				*/
 				'image-gallery': {
 					fullpath: PATH_JAVASCRIPT + 'image-gallery.js',
-					requires: [ 'image-viewer', 'paginator', 'image-gallery-css' ]
+					requires: [ 'image-viewer', 'paginator', 'tool-set', 'image-gallery-css' ]
 				},
 
 				'image-gallery-css': {
