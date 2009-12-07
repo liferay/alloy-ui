@@ -154,22 +154,17 @@ Dialog.prototype = {
 		instance.after('render', instance._afterRenderer);
 	},
 
+	bindUI: function() {
+		var instance = this;
+
+		instance.publish('close', { defaultFn: instance._close });
+	},
+
 	/*
 	* Methods
 	*/
 	close: function() {
 		var instance = this;
-
-		if (instance.get(DESTROY_ON_CLOSE)) {
-			instance.destroy();
-		}
-		else {
-			instance.hide();
-		}
-
-		if (instance.get(MODAL)) {
-			A.DialogMask.hide();
-		}
 
 		instance.fire('close');
 	},
@@ -183,6 +178,21 @@ Dialog.prototype = {
 		instance.get(STACK);
 		instance.get(DRAGGABLE);
 		instance.get(IO);
+	},
+
+	_close: function() {
+		var instance = this;
+
+		if (instance.get(DESTROY_ON_CLOSE)) {
+			instance.destroy();
+		}
+		else {
+			instance.hide();
+		}
+
+		if (instance.get(MODAL)) {
+			A.DialogMask.hide();
+		}
 	},
 
 	_initButtons: function() {
