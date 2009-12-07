@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+</head>
+
+<body>
+
+<h1>Alloy - Parse Content</h1>
+
+<div id="temp"></div>
+
+<script type="text/javascript">
+
+var index = 0;
+
+AUI().ready('parse-content', function(A) {
+	var node = A.one('#temp');
+
+	// after plug the ParseContent, it will parse the internal script/css content
+	node.plug(A.Plugin.ParseContent);
+
+	// var html = 'textNode<' + 'script src="assets/external.js"></' + 'script>anyNode<span>span</span>';
+	// var frag = document.createElement('div');
+	// frag.innerHTML = html;
+
+	// or using append...
+	// node.append(html);
+	// node.append(frag);
+
+	A.io('assets/content.html', {
+		on: {
+			success: function(id, o) {
+				// or using setContent
+ 				node.setContent(o.responseText);
+ 				// node.append(o.responseText);
+
+				var frag = document.createElement('div');
+				frag.innerHTML = o.responseText;
+			}
+		}
+	});
+});
+
+</script>
+
+</body>
+</html>

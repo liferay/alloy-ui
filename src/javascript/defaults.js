@@ -58,6 +58,14 @@
 				},
 
 				/*
+				* Parse Content
+				*/
+				'parse-content': {
+					fullpath: PATH_JAVASCRIPT + 'parse-content.js',
+					requires: [ 'async-queue', 'io', 'plugin' ]
+				},
+
+				/*
 				* Editable
 				*/
 				'editable': {
