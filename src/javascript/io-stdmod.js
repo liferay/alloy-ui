@@ -10,6 +10,7 @@ var L = A.Lang,
 	ICON = 'icon',
 	LOADING = 'loading',
 	POST = 'POST',
+	QUEUE = 'queue',
 	SECTION = 'section',
 	URI = 'uri',
 
@@ -69,12 +70,29 @@ A.mix(StdModIOPlugin, {
 A.extend(StdModIOPlugin, A.Plugin.Base, {
 	initializer: function() {
 		var instance = this;
-		var bodyNode = instance.get(HOST).bodyNode;
+		var host = instance.get(HOST);
+		var bodyNode = host.bodyNode;
 
 		StdModIOPlugin.superclass.initializer.apply(this, arguments);
 
 		if (bodyNode) {
 			bodyNode.plug(A.Plugin.ParseContent);
+		}
+
+		var queue = bodyNode.ParseContent.get(QUEUE);
+
+		if (queue) {
+			// dont close the overlay while queue is running
+			host.on('close', function(event) {
+				if (queue.isRunning()) {
+					event.halt();
+				}
+			});
+
+			// stop the queue after the dialog is closed, just in case.
+			host.after('close', function(event) {
+				queue.stop();
+			});
 		}
 	},
 
