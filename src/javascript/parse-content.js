@@ -33,11 +33,7 @@ function ParseContent(config) {
 A.mix(ParseContent, {
 	NAME: 'ParseContent',
 
-	NS: 'ParseContent',
-
-	ATTRS: {
-
-	}
+	NS: 'ParseContent'
 });
 
 A.extend(ParseContent, A.Plugin.Base, {
@@ -156,8 +152,7 @@ A.extend(ParseContent, A.Plugin.Base, {
 								queue.run();
 							}
 						});
-					},
-					timeout: 0
+					}
 				});
 			}
 			else {
@@ -168,8 +163,7 @@ A.extend(ParseContent, A.Plugin.Base, {
 						instance.globalEval(
 							dom.text || dom.textContent || dom.innerHTML || ''
 						);
-					},
-					timeout: 0
+					}
 				});
 			}
 		});
