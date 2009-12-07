@@ -23,6 +23,7 @@ var L = A.Lang,
 	HEAD = 'head',
 	HOST = 'host',
 	INNER_HTML = 'innerHTML',
+	QUEUE = 'queue',
 	SCRIPT = 'script',
 	SRC = 'src';
 
@@ -33,18 +34,25 @@ function ParseContent(config) {
 A.mix(ParseContent, {
 	NAME: 'ParseContent',
 
-	NS: 'ParseContent'
+	NS: 'ParseContent',
+
+	ATTRS: {
+		queue: {
+			value: null
+		}
+	}
 });
 
 A.extend(ParseContent, A.Plugin.Base, {
-	_queue: null,
-
 	initializer: function() {
 		var instance = this;
 
 		ParseContent.superclass.initializer.apply(this, arguments);
 
-		instance._queue = new A.AsyncQueue();
+		instance.set(
+			QUEUE,
+			new A.AsyncQueue()
+		);
 
 		instance._bindAOP();
 	},
@@ -137,7 +145,7 @@ A.extend(ParseContent, A.Plugin.Base, {
 
 	_dispatch: function(output) {
 		var instance = this;
-		var queue = instance._queue;
+		var queue = instance.get(QUEUE);
 
 		output.js.each(function(node, i) {
 			var src = node.get(SRC);
@@ -152,7 +160,8 @@ A.extend(ParseContent, A.Plugin.Base, {
 								queue.run();
 							}
 						});
-					}
+					},
+					timeout: 0
 				});
 			}
 			else {
@@ -163,7 +172,8 @@ A.extend(ParseContent, A.Plugin.Base, {
 						instance.globalEval(
 							dom.text || dom.textContent || dom.innerHTML || ''
 						);
-					}
+					},
+					timeout: 0
 				});
 			}
 		});
