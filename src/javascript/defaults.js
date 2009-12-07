@@ -435,7 +435,7 @@
 				*/
 				'io-stdmod': {
 					fullpath: PATH_JAVASCRIPT + 'io-stdmod.js',
-					requires: [ 'aui-base', 'component-overlay', 'io', 'plugin' ]
+					requires: [ 'aui-base', 'component-overlay', 'parse-content', 'io', 'plugin' ]
 				},
 
 				/*
