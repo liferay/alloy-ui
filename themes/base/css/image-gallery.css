@@ -9,12 +9,8 @@
 	position: absolute;
 }
 
-.aui-image-gallery-paginator-content table {
-	margin: auto;
-}
-
 .aui-image-gallery-paginator-content {
-	padding:30px;
+	padding:30px 30px 5px;
 }
 
 .aui-image-gallery-paginator .aui-paginator-link {
@@ -43,5 +39,10 @@
 }
 
 .aui-image-gallery-paginator-links {
+	text-align: center;
+}
+
+.aui-image-gallery-player {
+	padding-bottom: 10px;
 	text-align: center;
 }
