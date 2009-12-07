@@ -23,6 +23,7 @@ var L = A.Lang,
 	HEAD = 'head',
 	HOST = 'host',
 	INNER_HTML = 'innerHTML',
+	PARSE_CONTENT = 'ParseContent',
 	QUEUE = 'queue',
 	SCRIPT = 'script',
 	SRC = 'src';
@@ -32,9 +33,9 @@ function ParseContent(config) {
 }
 
 A.mix(ParseContent, {
-	NAME: 'ParseContent',
+	NAME: PARSE_CONTENT,
 
-	NS: 'ParseContent',
+	NS: PARSE_CONTENT,
 
 	ATTRS: {
 		queue: {
