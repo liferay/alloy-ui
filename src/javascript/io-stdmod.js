@@ -69,6 +69,7 @@ A.mix(StdModIOPlugin, {
 
 A.extend(StdModIOPlugin, A.Plugin.Base, {
 	initializer: function() {
+		var queue = null;
 		var instance = this;
 		var host = instance.get(HOST);
 		var bodyNode = host.bodyNode;
@@ -77,9 +78,9 @@ A.extend(StdModIOPlugin, A.Plugin.Base, {
 
 		if (bodyNode) {
 			bodyNode.plug(A.Plugin.ParseContent);
-		}
 
-		var queue = bodyNode.ParseContent.get(QUEUE);
+			queue = bodyNode.ParseContent.get(QUEUE);
+		}
 
 		if (queue) {
 			// dont close the overlay while queue is running
