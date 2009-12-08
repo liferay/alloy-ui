@@ -172,14 +172,7 @@ A.mix(ImageViewer, {
 
 		infoTemplate: {
 			getter: function(v) {
-				var instance = this;
-				var total = instance.get(TOTAL_LINKS);
-				var current = instance.get(CURRENT_INDEX) + 1;
-
-				return A.substitute(v, {
-					current: current,
-					total: total
-				});
+				return this._getInfoTemplate(v);
 			},
 			value: INFO_LABEL_TEMPLATE,
 			validator: isString
@@ -641,6 +634,20 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		infoEl.html(
 			instance.get(INFO_TEMPLATE)
 		);
+	},
+
+	/*
+	* Getters
+	*/
+	_getInfoTemplate: function(v) {
+		var instance = this;
+		var total = instance.get(TOTAL_LINKS);
+		var current = instance.get(CURRENT_INDEX) + 1;
+
+		return A.substitute(v, {
+			current: current,
+			total: total
+		});
 	},
 
 	/*

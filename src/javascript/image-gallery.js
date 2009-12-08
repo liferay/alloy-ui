@@ -31,9 +31,11 @@ var L = A.Lang,
 	PAGINATOR_INSTANCE = 'paginatorInstance',
 	PAUSE = 'pause',
 	PAUSED = 'paused',
+	PAUSED_LABEL = 'pausedLabel',
 	PLAY = 'play',
 	PLAYER = 'player',
 	PLAYING = 'playing',
+	PLAYING_LABEL = 'playingLabel',
 	PX = 'px',
 	REPEAT = 'repeat',
 	SHOW_PLAYER = 'showPlayer',
@@ -62,6 +64,7 @@ var L = A.Lang,
 	CSS_IMAGE_GALLERY_PLAYER_CONTENT = getCN(IMAGE_GALLERY, PLAYER, CONTENT),
 	CSS_OVERLAY_HIDDEN = getCN(OVERLAY, HIDDEN),
 
+	TEMPLATE_PLAYING_LABEL = '(playing)',
 	TEMPLATE_PAGINATOR = '<div class="'+CSS_IMAGE_GALLERY_PAGINATOR_CONTENT+'">{PageLinks}</div>',
 
 	TPL_LINK = '<span class="' + CSS_IMAGE_GALLERY_PAGINATOR_ENTRY + '"><span class="' + CSS_IMAGE_GALLERY_PAGINATOR_THUMB+'"></span></span>',
@@ -130,9 +133,19 @@ A.mix(ImageGallery, {
 			validator: isBoolean
 		},
 
+		pausedLabel: {
+			value: '',
+			validator: isString
+		},
+
 		playing: {
 			value: false,
 			validator: isBoolean
+		},
+
+		playingLabel: {
+			value: TEMPLATE_PLAYING_LABEL,
+			validator: isString
 		},
 
 		repeat: {
@@ -229,9 +242,10 @@ A.extend(ImageGallery, A.ImageViewer, {
 	pause: function() {
 		var instance = this;
 
-		if (instance.get(PLAYING)) {
-			instance.set(PAUSED, true);
-		}
+		instance.set(PAUSED, true);
+		instance.set(PLAYING, false);
+
+		instance._syncInfoUI();
 	},
 
 	play: function() {
@@ -239,6 +253,8 @@ A.extend(ImageGallery, A.ImageViewer, {
 
 		instance.set(PAUSED, false);
 		instance.set(PLAYING, true);
+
+		instance._syncInfoUI();
 	},
 
 	showPaginator: function() {
@@ -424,6 +440,28 @@ A.extend(ImageGallery, A.ImageViewer, {
 				backgroundImage: 'url(' + thumbSrc + ')'
 			});
 		}
+	},
+
+	/*
+	* Getters
+	*/
+	_getInfoTemplate: function(v) {
+		var label;
+		var instance = this;
+		var paused = instance.get(PAUSED);
+		var playing = instance.get(PLAYING);
+
+		if (playing) {
+			label = instance.get(PLAYING_LABEL);
+		}
+		else if (paused) {
+			label = instance.get(PAUSED_LABEL);
+		}
+
+		return concat(
+			ImageGallery.superclass._getInfoTemplate.apply(this, arguments),
+			label
+		);
 	},
 
 	/*
