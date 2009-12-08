@@ -290,22 +290,13 @@ A.extend(ImageGallery, A.ImageViewer, {
 		instance.set(TOOLSET_INSTANCE, toolSetInstance);
 	},
 
-	_restartTimer: function() {
-		var instance = this;
-		var playing = instance.get(PLAYING);
-
-		instance._cancelTimer();
-
-		if (playing) {
-			instance._startTimer();
-		}
-	},
-
 	_startTimer: function() {
 		var instance = this;
 		var delay = instance.get(DELAY);
 
-		instance._timer = A.later(delay, instance, instance._syncSlideShow, null, true);
+		instance._cancelTimer();
+
+		instance._timer = A.later(delay, instance, instance._syncSlideShow);
 	},
 
 	_syncControlsUI: function() {
@@ -320,6 +311,8 @@ A.extend(ImageGallery, A.ImageViewer, {
 		}
 		else {
 			instance.hidePaginator();
+
+			instance._cancelTimer();
 		}
 	},
 
@@ -384,11 +377,12 @@ A.extend(ImageGallery, A.ImageViewer, {
 			// updating the UI of the paginator
 			paginatorInstance.setState(newState);
 
-			// restart the timer if the user change the image
+			// restart the timer if the user change the image, respecting the paused state
+			var paused = instance.get(PAUSED);
 			var playing = instance.get(PLAYING);
 
-			if (playing) {
-				instance._restartTimer();
+			if (playing && !paused) {
+				instance._startTimer();
 			}
 		}
 	},
@@ -439,9 +433,8 @@ A.extend(ImageGallery, A.ImageViewer, {
 
 	_onPausedChange: function(event) {
 		var instance = this;
-		var paused = event.newVal;
 
-		if (paused) {
+		if (event.newVal) {
 			instance._cancelTimer();
 		}
 	},
