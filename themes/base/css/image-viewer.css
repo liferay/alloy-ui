@@ -15,8 +15,9 @@
 }
 
 .aui-image-viewer-content .aui-widget-ft {
-	padding: 10px;
-	color: white;
+	background: #fff;
+	color: #222;
+	padding: 0 10px 10px;
 	font-size: larger;
 	font-weight: bold;
 }

@@ -10,7 +10,7 @@
 }
 
 .aui-image-gallery-paginator-content {
-	padding:30px 30px 5px;
+	padding: 30px 30px 5px;
 }
 
 .aui-image-gallery-paginator .aui-paginator-link {
@@ -26,10 +26,10 @@
 	border: 0;
 	cursor: pointer;
 	display: inline-block;
-	height: 60px;
+	height: 55px;
 	overflow: hidden;
 	padding: 3px;
-	width: 60px;
+	width: 55px;
 	margin: 1px;
 }
 
