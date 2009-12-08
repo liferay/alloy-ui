@@ -48,6 +48,10 @@ AUI().add(
 				validator: isBoolean
 			},
 
+			fillHeight: {
+				value: ''
+			},
+
 			title: {
 				value: '',
 				validator: function(v) {
@@ -254,7 +258,7 @@ AUI().add(
 			}
 		}
 
-		A.Panel = A.Base.build(PANEL, A.Component, [A.WidgetStdMod, Panel]);
+		A.Panel = A.Base.build(PANEL, A.Component, [Panel, A.WidgetStdMod]);
 	},
 	'@VERSION',
 	{
