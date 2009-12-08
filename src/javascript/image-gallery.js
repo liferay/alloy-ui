@@ -108,7 +108,10 @@ A.mix(ImageGallery, {
 						template: TEMPLATE_PAGINATOR,
 						total: totalLinks,
 						on: {
-							changeRequest: A.bind(instance._changeRequest, instance)
+							changeRequest: function(event) {
+								// fire changeRequest from ImageGallery passing the "state" object from Paginator
+								instance.fire('changeRequest', { state: event.state })
+							}
 						}
 					},
 					value
@@ -220,6 +223,8 @@ A.extend(ImageGallery, A.ImageViewer, {
 
 		instance.on('playingChange', instance._onPlayingChange);
 		instance.on('pausedChange', instance._onPausedChange);
+
+		instance.publish('changeRequest', { defaultFn: this._changeRequest });
 	},
 
 	destroy: function() {
@@ -379,7 +384,7 @@ A.extend(ImageGallery, A.ImageViewer, {
 	*/
 	_changeRequest: function(event) {
 		var instance = this;
-		var paginatorInstance = event.target;
+		var paginatorInstance = event.state.paginator;
 		var newState = event.state;
 		var beforeState = newState.before;
 		var page = newState.page;
