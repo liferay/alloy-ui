@@ -36,6 +36,7 @@ var L = A.Lang,
 	PLAYING = 'playing',
 	PX = 'px',
 	REPEAT = 'repeat',
+	SHOW_PLAYER = 'showPlayer',
 	SPACE = ' ',
 	SRC = 'src',
 	THUMB = 'thumb',
@@ -84,7 +85,7 @@ A.mix(ImageGallery, {
 		},
 
 		delay: {
-			value: 10000,
+			value: 7000,
 			validator: isNumber
 		},
 
@@ -139,6 +140,11 @@ A.mix(ImageGallery, {
 			validator: isBoolean
 		},
 
+		showPlayer: {
+			value: true,
+			validator: isBoolean
+		},
+
 		toolSet: {
 			value: {},
 			setter: function(value) {
@@ -186,7 +192,10 @@ A.extend(ImageGallery, A.ImageViewer, {
 		ImageGallery.superclass.renderUI.apply(this, arguments);
 
 		instance._renderPaginator();
-		instance._renderPlayer();
+
+		if (instance.get(SHOW_PLAYER)) {
+			instance._renderPlayer();
+		}
 	},
 
 	bindUI: function() {
@@ -240,13 +249,16 @@ A.extend(ImageGallery, A.ImageViewer, {
 
 	_bindToolSetUI: function() {
 		var instance = this;
-		var toolSetInstance = instance.get(TOOLSET_INSTANCE);
 
-		var play = toolSetInstance.item(PLAY);
-		var pause = toolSetInstance.item(PAUSE);
+		if (instance.get(SHOW_PLAYER)) {
+			var toolSetInstance = instance.get(TOOLSET_INSTANCE);
 
-		play.set(HANDLER, A.bind(instance.play, instance));
-		pause.set(HANDLER, A.bind(instance.pause, instance));
+			var play = toolSetInstance.item(PLAY);
+			var pause = toolSetInstance.item(PAUSE);
+
+			play.set(HANDLER, A.bind(instance.play, instance));
+			pause.set(HANDLER, A.bind(instance.pause, instance));
+		}
 	},
 
 	_cancelTimer: function() {
