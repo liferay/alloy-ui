@@ -262,6 +262,32 @@ A.extend(ImageGallery, A.ImageViewer, {
 		instance._syncInfoUI();
 	},
 
+	// NOTE: overloading the ImageViewer show method to not loadImage, the changeRequest now is responsible to do that
+	// if we invoke the superclass show method its loading the image, and the changeRequest loads again, avoiding double request.
+	show: function() {
+		var instance = this;
+		var currentLink = instance.getCurrentLink();
+
+		if (currentLink) {
+			instance.showMask();
+
+			// invoke the Overlay show method
+			// NODE: A.ImageViewer is the parent of ImageGallery, the A.ImageViewer.superclass is the Overlay
+			A.ImageViewer.superclass.show.apply(this, arguments);
+
+			// changeRequest on paginatorInstance with the new page set
+			var paginatorInstance = instance.get(PAGINATOR_INSTANCE);
+
+			// page start on 1, index on 0, add +1 to the nextIndex to set the correct page on the paginator
+			paginatorInstance.set(
+				PAGE,
+				instance.get(CURRENT_INDEX) + 1
+			);
+
+			paginatorInstance.changeRequest();
+		}
+	},
+
 	showPaginator: function() {
 		var instance = this;
 
@@ -398,7 +424,7 @@ A.extend(ImageGallery, A.ImageViewer, {
 		var paginatorIndex = page - 1;
 
 		// check if the beforeState page number is different from the newState page number.
-		if (!beforeState || beforeState && (beforeState.page != page)) {
+		if (!beforeState || (beforeState && beforeState.page != page)) {
 			// updating currentIndex
 			instance.set(CURRENT_INDEX, paginatorIndex);
 
