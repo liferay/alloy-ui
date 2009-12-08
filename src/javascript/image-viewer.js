@@ -447,14 +447,14 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 
 	next: function() {
 		var instance = this;
-		var currentIndex = instance.get(CURRENT_INDEX);
 
 		if (instance.hasNext()) {
-			instance.set(CURRENT_INDEX, currentIndex + 1);
-
-			instance.loadImage(
-				instance.getCurrentLink().attr(HREF)
+			instance.set(
+				CURRENT_INDEX,
+				instance.get(CURRENT_INDEX) + 1
 			);
+
+			instance.show();
 		}
 	},
 
@@ -468,7 +468,6 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 
 	preloadImage: function(currentIndex) {
 		var instance = this;
-
 		var link = instance.getLink(currentIndex);
 
 		if (link) {
@@ -480,14 +479,14 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 
 	prev: function() {
 		var instance = this;
-		var currentIndex = instance.get(CURRENT_INDEX);
 
 		if (instance.hasPrev()) {
-			instance.set(CURRENT_INDEX, currentIndex - 1);
-
-			instance.loadImage(
-				instance.getCurrentLink().attr(HREF)
+			instance.set(
+				CURRENT_INDEX,
+				instance.get(CURRENT_INDEX) - 1
 			);
+
+			instance.show();
 		}
 	},
 
