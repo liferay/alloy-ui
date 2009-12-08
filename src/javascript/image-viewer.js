@@ -94,6 +94,7 @@ var L = A.Lang,
 	CSS_IMAGE_VIEWER_IMAGE = getCN(IMAGE_VIEWER, IMAGE),
 	CSS_IMAGE_VIEWER_INFO = getCN(IMAGE_VIEWER, INFO),
 	CSS_IMAGE_VIEWER_LINK = getCN(IMAGE_VIEWER, LINK),
+	CSS_IMAGE_VIEWER_LOADING = getCN(IMAGE_VIEWER, LOADING),
 	CSS_OVERLAY_HIDDEN = getCN(OVERLAY, HIDDEN),
 
 	NODE_BLANK_TEXT = document.createTextNode(''),
@@ -666,9 +667,15 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 
 	_afterLoadingChange: function(event) {
 		var instance = this;
+		var boundingBox = instance.get(BOUNDING_BOX);
 
 		if (event.newVal) {
+			boundingBox.addClass(CSS_IMAGE_VIEWER_LOADING);
+
 			instance.showLoading();
+		}
+		else{
+			boundingBox.removeClass(CSS_IMAGE_VIEWER_LOADING);
 		}
 	},
 
