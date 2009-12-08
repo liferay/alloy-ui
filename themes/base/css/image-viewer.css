@@ -1,4 +1,6 @@
-.aui-image-viewer {}
+.aui-image-viewer {
+	z-index: 3000;
+}
 
 .aui-image-viewer-link {
 	outline: 0 none;
