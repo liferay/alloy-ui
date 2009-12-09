@@ -61,13 +61,10 @@ A.mix(OverlayMask, {
 		},
 
 		opacity: {
-			lazyAdd: false,
 			value: .5,
 			validator: isNumber,
 			setter: function(v) {
-				this.get(BOUNDING_BOX).setStyle(OPACITY, v);
-
-				return v;
+				return this._setOpacity(v);
 			}
 		},
 
@@ -163,12 +160,35 @@ A.extend(OverlayMask, A.ComponentOverlay, {
 	},
 
 	/*
+	* Setters
+	*/
+	_setOpacity: function(v) {
+		var instance = this;
+
+		instance.get(BOUNDING_BOX).setStyle(OPACITY, v);
+
+		return v;
+	},
+
+	/*
 	* Listeners
 	*/
 	_afterTargetChange: function(event) {
 		var instance = this;
 
 		instance.refreshMask();
+	},
+
+	_afterVisibleChange: function(event) {
+		var instance = this;
+
+		OverlayMask.superclass._afterVisibleChange.apply(this, arguments);
+
+		if (event.newVal) {
+			instance._setOpacity(
+				instance.get(OPACITY)
+			);
+		}
 	}
 });
 
