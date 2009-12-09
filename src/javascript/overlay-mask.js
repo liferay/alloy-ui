@@ -6,6 +6,8 @@ var L = A.Lang,
 
 	UA = A.UA,
 
+	isDoc = false,
+	isWin = false,
 	ie6 = (UA.ie && UA.version.major <= 6),
 
 	ABSOLUTE = 'absolute',
@@ -20,7 +22,6 @@ var L = A.Lang,
 	OVERLAY_MASK = 'overlaymask',
 	POSITION = 'position',
 	TARGET = 'target',
-	TL = 'tl',
 	WIDTH = 'width';
 
 function OverlayMask(config) {
@@ -32,7 +33,7 @@ A.mix(OverlayMask, {
 
 	ATTRS: {
 		align: {
-            value: { node: null, points: [ TL, TL ] }
+            value: { node: null, points: [ 'tl', 'tl' ] }
         },
 
 		background: {
@@ -50,7 +51,12 @@ A.mix(OverlayMask, {
 			lazyAdd: false,
 			value: document,
 			setter: function(v) {
-				return A.get(v);
+				var target = A.get(v);
+
+				isDoc = target.compareTo(document);
+				isWin = target.compareTo(window);
+
+				return target;
 			}
 		},
 
@@ -91,7 +97,7 @@ A.extend(OverlayMask, A.ComponentOverlay, {
 		instance.after('targetChange', instance._afterTargetChange);
 
 		// window:resize YUI normalized event is not working, bug?
-		A.on('resize', A.bind(instance.refreshMask, instance));
+		A.on('windowresize', A.bind(instance.refreshMask, instance));
 	},
 
 	syncUI: function() {
@@ -106,12 +112,9 @@ A.extend(OverlayMask, A.ComponentOverlay, {
 	getTargetSize: function() {
 		var instance = this;
 		var target = instance.get(TARGET);
+
 		var height = target.get(OFFSET_HEIGHT);
 		var width = target.get(OFFSET_WIDTH);
-
-		var HUNDRED = '100%';
-		var isDoc = target.compareTo(document);
-		var isWin = target.compareTo(window);
 
 		if (ie6) {
 			// IE6 doesn't support height/width 100% on doc/win
@@ -126,8 +129,8 @@ A.extend(OverlayMask, A.ComponentOverlay, {
 		}
 		// good browsers...
 		else if (isDoc || isWin) {
-			height = HUNDRED;
-			width = HUNDRED;
+			height = '100%';
+			width = '100%';
 		}
 
 		return { height: height, width: width };
@@ -141,23 +144,22 @@ A.extend(OverlayMask, A.ComponentOverlay, {
 		var align = instance.get(ALIGN);
 		var target = instance.get(TARGET);
 		var boundingBox = instance.get(BOUNDING_BOX);
+		var targetSize = instance.getTargetSize();
 
-		var isDoc = target.compareTo(document);
-		var isWin = target.compareTo(window);
+		boundingBox.setStyles({
+			position: ie6 ? ABSOLUTE : FIXED,
+			left: 0,
+			top: 0
+		});
 
-		if (!ie6 && (isDoc || isWin)) {
-			boundingBox.setStyle(POSITION, FIXED);
+		instance.set(HEIGHT, targetSize.height);
+		instance.set(WIDTH, targetSize.width);
+
+		// if its not a full mask...
+		if ( !(isDoc || isWin) ) {
+			// if the target is not document|window align the overlay
+			instance.align(target, align.points);
 		}
-		else {
-			boundingBox.setStyle(POSITION, ABSOLUTE);
-		}
-
-		var size = instance.getTargetSize();
-
-		instance.set(HEIGHT, size.height);
-		instance.set(WIDTH, size.width);
-
-		instance.align(target, align.points);
 	},
 
 	/*
