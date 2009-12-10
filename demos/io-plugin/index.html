@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<style type="text/css">
+
+	</style>
+</head>
+
+<body>
+
+<h1>Alloy - IO</h1>
+
+<div id="content1"></div>
+
+<script type="text/javascript">
+
+AUI().ready('io-plugin', 'dialog', function(A) {
+
+	var content1 = A.one('#content1');
+
+	content1.plug(A.Plugin.IO, {
+		uri: 'assets/content.html',
+		cfg: {
+			method: 'GET',
+			blah: 'oi'
+		},
+		// showLoading: true,
+		// parseContent: true,
+		// failureMessage: 'Error!',
+		// section: 'body',
+		// where: 'REPLACE',
+		on: {
+			success: function(event) {
+				console.log('success user', arguments);
+				// event.halt();
+			},
+			complete: function(event) {
+				console.log('complete user', arguments);
+				// event.halt();
+			},
+			start: function(event) {
+				console.log('start user', arguments);
+				// event.halt();
+			},
+			failure: function(event) {
+				console.log('failure user', arguments);
+				// event.halt();
+			}
+		}
+	});
+
+	var dialog = new A.Dialog({
+		title: 'Testing IO',
+		centered: true,
+		width: 300,
+		bodyContent: 'Loading content via A.Plugin.IO...'
+	})
+	.render();
+
+	dialog.plug(A.Plugin.IO, {
+		uri: 'assets/content.html'
+		// on: {
+		// 	success: function(event) {
+		// 		console.log('success user', arguments);
+		// 		// event.halt();
+		// 	},
+		// 	complete: function(event) {
+		// 		console.log('complete user', arguments);
+		// 		// event.halt();
+		// 	},
+		// 	start: function(event) {
+		// 		console.log('start user', arguments);
+		// 		// event.halt();
+		// 	},
+		// 	failure: function(event) {
+		// 		console.log('failure user', arguments);
+		// 		// event.halt();
+		// 	}
+		// }
+	});
+
+});
+
+</script>
+
+</body>
+</html>
