@@ -55,12 +55,13 @@ A.mix(IOPlugin, {
 			value: {},
 			setter: function(value) {
 				var instance = this;
+				var data = value.data;
 
 				// ignoring user callbacks for io cfg, user should pass callbacks on IOPlugin instance instead
 				delete value.on;
 
-				if (isObject(value.data)) {
-					value.data = A.toQueryString(value.data);
+				if (isObject(data)) {
+					value.data = A.toQueryString(data);
 				}
 
 				return A.merge(
