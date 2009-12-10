@@ -29,7 +29,10 @@ AUI().ready('io-plugin', 'dialog', function(A) {
 		uri: 'assets/content.html',
 		cfg: {
 			method: 'GET',
-			blah: 'oi'
+			data: {
+				key1: 'value1',
+				key2: 'value2'
+			}
 		},
 		// showLoading: true,
 		// parseContent: true,
