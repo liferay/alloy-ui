@@ -41,8 +41,7 @@ var L = A.Lang,
 	NODE_BLANK_TEXT = document.createTextNode(''),
 
 	TPL_BUTTON = '<button class="' + CSS_DIALOG_BUTTON + '"></button>',
-	TPL_BUTTON_CONTAINER = '<div class="' + CSS_DIALOG_BUTTON_CONTAINER + '"></div>',
-	TPL_LOADING = '<div class="' + CSS_ICON_LOADING + '"></div>';
+	TPL_BUTTON_CONTAINER = '<div class="' + CSS_DIALOG_BUTTON_CONTAINER + '"></div>';
 
 var Dialog = function(config) {};
 
@@ -101,14 +100,6 @@ A.mix(
 				lazyAdd: false,
 				value: false,
 				validator: isBoolean
-			},
-
-			io: {
-				lazyAdd: true,
-				value: null,
-				setter: function(v) {
-					return this._setIO(v);
-				}
 			},
 
 			stack: {
@@ -280,40 +271,6 @@ Dialog.prototype = {
 		return value;
 	},
 
-	_setIO: function(value) {
-		var instance = this;
-
-		if (value && !instance.get(BODY_CONTENT)) {
-			instance.set(BODY_CONTENT, TPL_LOADING);
-		}
-
-		if (value) {
-			instance.unplug(A.Plugin.StdModIOPlugin);
-
-			value.uri = value.uri || value.url;
-			value.cfg = value.cfg || {};
-
-			var data = value.cfg.data;
-
-			if (isObject(data)) {
-				value.cfg.data = A.toQueryString(data);
-			}
-
-			instance.plug(A.Plugin.StdModIOPlugin, value);
-
-			var autoRefresh = ('autoRefresh' in value) ? value.autoRefresh : true;
-
-			if (instance.io && autoRefresh) {
-				instance.io.refresh();
-			}
-		}
-		else {
-			instance.unplug(A.Plugin.StdModIOPlugin);
-		}
-
-		return value;
-	},
-
 	_setModal: function(value) {
 		var instance = this;
 
@@ -380,12 +337,7 @@ A.mix(
 			var dialog = A.DialogManager.findByChild(child);
 
 			if (dialog && dialog.io) {
-				if (io) {
-					dialog.set(IO, io);
-				}
-				else {
-					dialog.io.refresh();
-				}
+				dialog.io.start();
 			}
 		}
 	}
@@ -393,4 +345,4 @@ A.mix(
 
 A.DialogMask = new A.OverlayMask().render();
 
-}, '@VERSION', { requires: [ 'aui-base', 'panel', 'overlay-manager', 'overlay-mask', 'dd-constrain', 'io-stdmod', 'dialog-css' ] });
+}, '@VERSION', { requires: [ 'aui-base', 'panel', 'overlay-manager', 'overlay-mask', 'dd-constrain', 'io-plugin', 'dialog-css' ] });

@@ -81,7 +81,7 @@ p a {
 
 <script type="text/javascript" charset="utf-8">
 
-AUI().ready('tooltip', 'io-stdmod', function(A) {
+AUI().ready('tooltip', 'io-plugin', function(A) {
 
 	var t1 = new A.Tooltip({
 		trigger: '.t1',
@@ -116,14 +116,15 @@ AUI().ready('tooltip', 'io-stdmod', function(A) {
 
 				// simulating a delay
 				A.later(1000, this, function() {
-					this.io.refresh();
+					this.io.start();
 				});
 			}
 		}
 	})
 	.render();
 
-	t4.plug(A.Plugin.StdModIOPlugin, {
+	t4.plug(A.Plugin.IO, {
+		autoLoad: false,
 		uri: 'assets/content.html'
 	});
 

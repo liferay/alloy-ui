@@ -25,7 +25,7 @@ body {
 
 <script type="text/javascript" charset="utf-8">
 
-AUI().ready('dialog', 'overlay-manager', 'io-stdmod', 'dd-constrain', function(A) {
+AUI().ready('dialog', 'overlay-manager', 'dd-constrain', function(A) {
 
 	var options = {
 		title: 'Dialog',
@@ -71,65 +71,54 @@ AUI().ready('dialog', 'overlay-manager', 'io-stdmod', 'dd-constrain', function(A
 	var dialog1 = new A.Dialog(
 		A.merge(options, {
 			title: 'Dialog 1',
-			xy: [200, 50],
-			io: {
-				url: 'assets/content.html',
-				formatter: function(v) {
-					return '<b>' + v + '</b>';
-				}
-			}
+			xy: [200, 50]
 		})
 	)
 	.render();
+
+	dialog1.plug(A.Plugin.IO, {
+		uri: 'assets/content.html'
+	});
 
 	var dialog2 = new A.Dialog(
 		A.merge(options, {
 			title: 'Dialog 2',
 			// title: false,
-			xy: [225, 100],
-			io: {
-				url: 'assets/content.html',
-				cfg: {
-					data: 'foo=bar&bar=foo',
-					on: {
-						success: function(id, o) {
-							// overloading the this._defSuccessHandler
-							this._defSuccessHandler.apply(this, arguments);
-						},
-						render: function() {
-							console.log('render');
-						}
-					}
-				}
-			}
+			xy: [225, 100]
 		})
 	)
 	.render();
+
+	dialog2.plug(A.Plugin.IO, {
+		uri: 'assets/content.html'
+	});
 
 	var dialog3 = new A.Dialog(
 		A.merge(options, {
 			title: 'Dialog 3 - no buttons',
 			xy: [250, 150],
-			buttons: null,
-			io: {
-				url: 'assets/content.html'
-			}
+			buttons: null
 		})
 	)
 	.render();
+
+	dialog3.plug(A.Plugin.IO, {
+		uri: 'assets/content.html'
+	});
 
 	var dialog4 = new A.Dialog(
 		A.merge(options, {
 			collapsible: true,
 			title: 'Dialog 4 - Collapsible',
 			xy: [275, 200],
-			buttons: null,
-			io: {
-				url: 'assets/content.html'
-			}
+			buttons: null
 		})
 	)
 	.render();
+
+	dialog4.plug(A.Plugin.IO, {
+		uri: 'assets/content.html'
+	});
 
 	var dialog5 = new A.Dialog(
 		A.merge(options, {
@@ -160,30 +149,32 @@ AUI().ready('dialog', 'overlay-manager', 'io-stdmod', 'dd-constrain', function(A
 			],
 			title: 'Dialog 5 - Pinnable (uses custom tools option)',
 			xy: [300, 250],
-			buttons: null,
-			io: {
-				url: 'assets/content.html'
-			}
+			buttons: null
 		})
 	)
 	.render();
+
+	dialog5.plug(A.Plugin.IO, {
+		uri: 'assets/content.html'
+	});
 
 	A.get('#createNew').on('click', function() {
 		var dialog = new A.Dialog(
 			A.merge(options, {
 				title: 'New Dialog',
 				xy: [150, 150],
-				modal: true,
-				io: {
-					autoRefresh: false,
-					url: 'assets/content.html'
-				}
+				modal: true
 			})
 		)
 		.render();
 
+		dialog.plug(A.Plugin.IO, {
+			autoLoad: false,
+			uri: 'assets/content.html'
+		});
+
 		// manually refresh
-		dialog.io.refresh();
+		dialog.io.start();
 	});
 
 	A.get('#showAll').on('click', function() {
