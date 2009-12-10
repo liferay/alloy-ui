@@ -117,13 +117,7 @@ A.extend(ParseContent, A.Plugin.Base, {
 
 		if (isString(content)) {
 			// create fragment from {String}
-			if (A.UA.ie) {
-				// TODO: use A.DOM.addHTML for all browsers after YUI fix the ticket http://yuilibrary.com/projects/yui3/ticket/2528452
-				fragment.getDOM().innerHTML += content;
-			}
-			else {
-				A.DOM.addHTML(fragment, content, APPEND);
-			}
+			A.DOM.addHTML(fragment, content, APPEND);
 		}
 		else {
 			// create fragment from {Y.Node | HTMLElement}
