@@ -6,6 +6,10 @@ var L = A.Lang,
 	isObject = L.isObject,
 	isString = L.isString,
 
+	isNode = function(v) {
+		return (v instanceof A.Node);
+	},
+
 	StdMod = A.WidgetStdMod,
 
 	TYPE_NODE = 'Node',
@@ -14,6 +18,7 @@ var L = A.Lang,
 	AUTO_LOAD = 'autoLoad',
 	CFG = 'cfg',
 	COMPLETE = 'complete',
+	CONTENT_NODE = 'contentNode',
 	FAILURE = 'failure',
 	FAILURE_MESSAGE = 'failureMessage',
 	HOST = 'host',
@@ -90,6 +95,32 @@ A.mix(IOPlugin, {
 			validator: isObject
 		},
 
+		// contentNode give us the possibility of plug IO in any object we want,
+		// the setContent will use the contentNode to set the content
+		contentNode: {
+			value: null,
+			setter: function(value) {
+				var instance = this;
+
+				if (!value) {
+					var host = instance.get(HOST);
+					var type = instance.get(TYPE);
+
+					if (type == TYPE_NODE) {
+						value = host;
+					}
+					else if (type == TYPE_WIDGET) {
+						value = host.getStdModNode(
+							instance.get(SECTION)
+						);
+					}
+				}
+
+				return A.one(value);
+			},
+			validator: isNode
+		},
+
 		failureMessage: {
 			value: 'Failed to retrieve content',
 			validator: isString
@@ -134,6 +165,7 @@ A.mix(IOPlugin, {
 			readOnly: true,
 			valueFn: function() {
 				var instance = this;
+				// NOTE: default type
 				var type = TYPE_NODE;
 
 				if (instance.get(HOST) instanceof A.Widget) {
@@ -199,7 +231,7 @@ A.extend(IOPlugin, A.Plugin.Base, {
 
 	_bindPlugins: function() {
 		var instance = this;
-		var contentNode = instance.getContentNode();
+		var contentNode = instance.get(CONTENT_NODE);
 
 		if (contentNode && instance.get(PARSE_CONTENT)) {
 			contentNode.plug(A.Plugin.ParseContent);
@@ -229,24 +261,6 @@ A.extend(IOPlugin, A.Plugin.Base, {
 	/*
 	* Methods
 	*/
-	getContentNode: function() {
-		var instance = this;
-		var contentNode = null;
-		var host = instance.get(HOST);
-		var type = instance.get(TYPE);
-
-		if (type == TYPE_NODE) {
-			contentNode = host;
-		}
-		else if (type == TYPE_WIDGET) {
-			contentNode = host.getStdModNode(
-				instance.get(SECTION)
-			);
-		}
-
-		return contentNode;
-	},
-
 	isActive: function() {
 		return this._io;
 	},
@@ -291,13 +305,16 @@ A.extend(IOPlugin, A.Plugin.Base, {
 		var instance = this;
 
 		var setters = {
+			// NOTE: default setter, see 'type' attribute definition
 			Node: function(content) {
 				var instance = this;
-				var host = instance.get(HOST);
+				// when this.get(HOST) is a Node instance the CONTENT_NODE is the host
+				var contentNode = instance.get(CONTENT_NODE);
 
-				host.setContent.apply(host, [content]);
+				contentNode.setContent.apply(contentNode, [content]);
 			},
 
+			// Widget forces set the content on the SECTION node using setStdModContent method
 			Widget: function(content) {
 				var instance = this;
 				var host = instance.get(HOST);
