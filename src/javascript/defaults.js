@@ -257,7 +257,7 @@
 				*/
 				'dialog': {
 					fullpath: PATH_JAVASCRIPT + 'dialog.js',
-					requires: [ 'plugin', 'panel', 'dd-constrain', 'aui-base', 'tool-item', 'overlay-manager', 'overlay-mask', 'io-stdmod', 'dialog-css' ]
+					requires: [ 'plugin', 'panel', 'dd-constrain', 'aui-base', 'tool-item', 'overlay-manager', 'overlay-mask', 'io-plugin', 'dialog-css' ]
 				},
 				'dialog-css': {
 					ext: false,
@@ -436,10 +436,10 @@
 				},
 
 				/*
-				* StdModIOPlugin
+				* IO Plugin
 				*/
-				'io-stdmod': {
-					fullpath: PATH_JAVASCRIPT + 'io-stdmod.js',
+				'io-plugin': {
+					fullpath: PATH_JAVASCRIPT + 'io-plugin.js',
 					requires: [ 'aui-base', 'component-overlay', 'parse-content', 'io', 'plugin' ]
 				},
 
