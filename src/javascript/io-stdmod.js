@@ -170,7 +170,6 @@ A.extend(StdModIOPlugin, A.Plugin.Base, {
 	}
 });
 
-A.namespace('Plugin');
-A.Plugin.StdModIOPlugin = StdModIOPlugin;
+A.namespace('Plugin').StdModIOPlugin = StdModIOPlugin;
 
 }, '@VERSION', { requires: [ 'aui-base', 'component-overlay', 'parse-content', 'io', 'plugin' ] });
