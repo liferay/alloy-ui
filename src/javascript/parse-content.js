@@ -183,8 +183,6 @@ A.extend(ParseContent, A.Plugin.Base, {
 	}
 });
 
-A.namespace('Plugin');
-A.Plugin.ParseContent = ParseContent;
-
+A.namespace('Plugin').ParseContent = ParseContent;
 
 }, '@VERSION' , { requires: [ 'async-queue', 'io', 'plugin' ] });
