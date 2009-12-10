@@ -17,16 +17,6 @@ AUI().add(
 			instance._originalConfig = config;
 
 			Component.superclass.constructor.apply(this, arguments);
-
-			var render = instance.get('render');
-
-			if (render) {
-				if (render === true) {
-					render = null;
-				}
-
-				instance.render(render);
-			}
 		};
 
 		Component.NAME = 'component';

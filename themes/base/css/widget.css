@@ -2,6 +2,7 @@
 }
 
 .aui-widget-content {
+	overflow: hidden;
 }
 
 .aui-widget-hd {
@@ -38,6 +39,40 @@
 	_height:0;
 }
 
+.aui-widget-content-expanded {
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+
+	height: 100%;
+}
+
 .aui-overlay {
 	position: absolute;
+}
+
+.aui-widget-tmp-forcesize {
+	overflow: hidden !important;
+}
+
+.aui-widget-stacked .aui-widget-shim {
+	border-width: 0;
+	height: 100%;
+	left: 0px;
+	margin: 0;
+	opacity: 0;
+	padding: 0;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	z-index: -1;
+
+	/* IE */
+	-ms-filter: alpha(opacity=0);
+	filter: alpha(opacity=0);
+
+	/* IE6 */
+	_width:0;
+	_height:0;
 }

@@ -48,10 +48,6 @@ AUI().add(
 				validator: isBoolean
 			},
 
-			fillHeight: {
-				value: ''
-			},
-
 			title: {
 				value: '',
 				validator: function(v) {
