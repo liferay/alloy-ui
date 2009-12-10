@@ -33,7 +33,12 @@
 				*/
 				'aui-base': {
 					fullpath: PATH_JAVASCRIPT + 'base.js',
-					requires: [ 'event', 'oop', 'component', 'aui-node', 'collection' ]
+					requires: [ 'event', 'oop', 'component', 'aui-node', 'collection', 'widget-css' ]
+				},
+				'widget-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'widget.css',
+					type: 'css'
 				},
 
 				/*
