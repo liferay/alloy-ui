@@ -1,5 +1,4 @@
 .aui-column-container {
-	overflow: hidden;
 	width: 100%;
 }
 
@@ -9,7 +8,6 @@
 
 .aui-column {
 	float: left;
-	overflow: hidden;
 }
 
 .aui-column-first {
@@ -22,6 +20,28 @@
 	float: right;
 	margin-left: -5px;
 }
+
+.aui-column-container:after {
+	clear: both;
+	content: " ";
+	display: block;
+	height: 0;
+	overflow: hidden;
+}
+
+.aui-column-container {
+	display: inline-block;
+}
+
+/* start commented backslash hack \*/
+* html .aui-column-container {
+	height: 1%;
+}
+
+.aui-column-container {
+	display: block;
+}
+/* close commented backslash hack */
 
 .aui-w10 {
 	width: 10%;
