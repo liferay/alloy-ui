@@ -172,11 +172,11 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 
 		instance.updateCurrentNode(event);
 
-		instance.refreshAlign();
-
 		instance.fire('show');
 
 		ContextOverlay.superclass.show.apply(instance, arguments);
+
+		instance.refreshAlign();
 	},
 
 	toggle: function(event) {
