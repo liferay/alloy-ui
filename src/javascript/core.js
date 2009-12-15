@@ -242,7 +242,7 @@
 
 	var checkScriptEvalSupport = function() {
 		var root = document.documentElement;
-		var script = document.createElement("script");
+		var script = document.createElement('script');
 
 		var TYPE = 'text/javascript',
 			TPL_EVAL_SCRIPT_TRUE = 'AUI.support.scriptEval = true;';
