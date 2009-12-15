@@ -18,10 +18,23 @@ AUI.add('aui-base', function(A) {
 		}
 	});
 
-	// Courtesy of: http://simonwillison.net/2006/Jan/20/escape/
-	A.Lang.escapeRegEx = function(str) {
-		return str.replace(/([.*+?^$(){}|[\]\/\\])/g, '\\$1');
-	};
+	A.mix(
+		A.Lang,
+		{
+			emptyFn: function() {},
+			emptyFnFalse: function() {
+				return false;
+			},
+			emptyFnTrue: function() {
+				return true;
+			},
+
+			// Courtesy of: http://simonwillison.net/2006/Jan/20/escape/
+			escapeRegEx: function(str) {
+				return str.replace(/([.*+?^$(){}|[\]\/\\])/g, '\\$1');
+			}
+		}
+	);
 
 }, '@VERSION', { requires: [ 'yui-base', 'base' ] });
 
