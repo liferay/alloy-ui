@@ -451,6 +451,14 @@
 				},
 
 				/*
+				* IO Ajax configuration
+				*/
+				'io-ajax': {
+					fullpath: PATH_JAVASCRIPT + 'io-ajax.js',
+					requires: [ 'base', 'io', 'json' ]
+				},
+
+				/*
 				* Image Viewer
 				*/
 				'image-viewer': {
@@ -491,6 +499,13 @@
 				images: PATH_THEME_IMAGES,
 				javascript: PATH_JAVASCRIPT,
 				theme: PATH_THEME_ROOT
+			},
+
+			io: {
+				uriFormatter: function(value){
+					return value;
+				},
+				method: 'GET'
 			}
 		}
 	}

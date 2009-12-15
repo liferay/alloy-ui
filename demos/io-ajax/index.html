@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="../../themes/base/css/io-ajax.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+		#demo {
+			border-top: 1px solid #ccc;
+			padding: 3px;
+		}
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - io-ajax Demo</h1>
+
+	<p class="about">
+		io-ajax is a plugin for the IO utility which allows for a consistent interface to using the utility.<br />
+		Features include:<br />
+		<ul>
+			<li>Ability to subscribe to on/after events (and allowing for the prevention of default handlers for "initialize", "start", "success", "failure", "complete", and "end")</li>
+			<li>Preventing the caching of the URI</li>
+			<li>Automatically parsing response based on dataType (HTML, JSON, XML)</li>
+			<li>Pre-configuring a connection and starting it at a later time (with optional, custom overrides)</li>
+			<li>Specifying a default transaction method (GET or POST) for all connections</li>
+			<li>Specifying a custom URI formatter to globally format the URI before a connection is started (this is useful if custom parameters must be added to the URL such as the session ID)</li>
+		</ul>
+	</p>
+
+	dataType: <select id="dataType">
+		<option value="html">HTML</option>
+		<option value="php">HTML (5 second delay)</option>
+		<option value="json">JSON</option>
+		<option value="xml">XML</option>
+	</select>
+	<br />
+
+	method: <select id="method">
+		<option value="get">GET</option>
+		<option value="post">POST</option>
+	</select>
+	<br />
+
+	<input checked="checked" type="checkbox" value="true" id="cache" /> Cache
+
+	<div id="demo"></div>
+
+	<a href="javascript:;" id="startConnection">Start connection</a>
+	<a class="aui-helper-hidden" href="javascript:;" id="stopConnection">Stop connection</a>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+
+AUI().ready(
+	'io-ajax',
+	function(A) {
+		var uriDataMap = {
+			json: 'js'
+		};
+		var demoNode = A.one('#demo');
+
+		var startConnection = A.one('#startConnection');
+		var stopConnection = A.one('#stopConnection');
+		var form = A.one('#submitForm');
+
+		myConnection = A.io.ajax(
+			{
+				autoLoad: false,
+				data: {
+					x: 33,
+					y: 22,
+					z: ['a', 'b', 'c']
+				},
+				on: {
+					initialize: function(event) {
+						var instance = this;
+
+						var dataType = A.one('#dataType').val();
+
+						instance.set('uri', 'assets/content.' + (uriDataMap[dataType] || dataType))
+
+						demoNode.append('on:initialize<br />');
+
+						instance.set('cache', A.one('#cache').get('checked'));
+						instance.set('dataType', dataType);
+						instance.set('method', A.one('#method').val());
+					},
+
+					start: function(event, id, obj) {
+						var instance = this;
+
+						stopConnection.show();
+
+						demoNode.append('on:start<br />');
+					},
+
+					success: function(event, id, obj) {
+						var instance = this;
+
+						var dataType = A.one('#dataType').val();
+
+						var response = instance.get('responseData');
+
+						var value = response;
+
+						if (dataType == 'json') {
+							value = A.JSON.stringify(response);
+						}
+						else if (dataType == 'xml') {
+							value = response.documentElement.textContent.replace(/<|>|&/gi, function (match) {var str = "";if (match == "<") {str = "&lt;";} else if (match == ">") {str = "&gt;";} else if (match == "&") {str = "&amp;";} else if (match == "\"") {str = "&#034;";} else if (match == "'") {str = "&#039;";}return str;});
+						}
+
+						demoNode.append('on:success: ' + (!(/html|php/).test(dataType) ? response : '') + value + '<br />');
+					},
+
+					failure: function(event, id, obj) {
+						var instance = this;
+
+						demoNode.append('on:failure<br />');
+					},
+
+					complete: function(event, id, obj) {
+						var instance = this;
+
+						demoNode.append('on:complete<br />');
+						stopConnection.hide();
+					},
+
+					end: function(event, id, obj) {
+						var instance = this;
+
+						demoNode.append('on:end<br /><hr />');
+					}
+				}
+			}
+		);
+
+		startConnection.on('click',
+			function(event) {
+				myConnection.start();
+			}
+		);
+
+		stopConnection.on('click',
+			function(event) {
+				myConnection.stop();
+			}
+		);
+	}
+);
+
+</script>
+
+</body>
+</html>
