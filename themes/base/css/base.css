@@ -78,25 +78,15 @@
 
 .aui-helper-clearfix:after {
 	clear: both;
-	content: " ";
+	content: "";
 	display: block;
 	height: 0;
-	overflow: hidden;
 }
 
 .aui-helper-clearfix {
-	display: inline-block;
+	/* IE7/IE6 */
+	zoom: 1;
 }
-
-/* start commented backslash hack \*/
-* html .aui-helper-clearfix {
-	height: 1%;
-}
-
-.aui-helper-clearfix {
-	display: block;
-}
-/* close commented backslash hack */
 
 .aui-helper-zfix {
 	width: 100%;
