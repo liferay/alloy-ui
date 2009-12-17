@@ -23,25 +23,15 @@
 
 .aui-column-container:after {
 	clear: both;
-	content: " ";
+	content: "";
 	display: block;
 	height: 0;
-	overflow: hidden;
 }
 
 .aui-column-container {
-	display: inline-block;
+	/* IE7/IE6 */
+	zoom: 1;
 }
-
-/* start commented backslash hack \*/
-* html .aui-column-container {
-	height: 1%;
-}
-
-.aui-column-container {
-	display: block;
-}
-/* close commented backslash hack */
 
 .aui-w10 {
 	width: 10%;
@@ -166,35 +156,6 @@
 	position: static;
 }
 
-.clearfix:after {
-	content: ".";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;
-}
-
-.clearfix {
-	display: block;
-}
-
-
 .floatbox {
 	overflow: hidden;
-}
-
-#ie_clearing {
-	display: none;
-}
-
-.ie .clearfix {
-	display: inline-block;
-}
-
-.ie7 .clearfix {
-	display: block;
-}
-
-.ie5 .clearfix, .ie6 .clearfix, .ie7 .clearfix {
-	height: 1%;
 }

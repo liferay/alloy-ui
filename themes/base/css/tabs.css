@@ -7,20 +7,18 @@
 
 .aui-tabview-list:after {
 	clear: both;
-	content: ".";
+	content: "";
 	display: block;
 	height: 0;
-	visibility: hidden;
 }
 
 .aui-tabview-list {
-	display: block;
-	margin-bottom: 1em;
+	/* IE7/IE6 */
+	zoom: 1;
+}
 
-	/* IE7 & below */
-	*display: block;
-	/* IE6 */
-	_height: 1%;
+.aui-tabview-list {
+	margin-bottom: 1em;
 }
 
 .aui-tab {
