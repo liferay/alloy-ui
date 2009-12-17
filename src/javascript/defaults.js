@@ -502,7 +502,7 @@
 			},
 
 			io: {
-				uriFormatter: function(value){
+				uriFormatter: function(value) {
 					return value;
 				},
 				method: 'GET'
