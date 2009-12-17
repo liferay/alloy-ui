@@ -39,11 +39,15 @@ AUI().add(
 
 					return value;
 				},
-				setter: AUI.defaults.io.uriFormatter,
+				getter: function(value) {
+					return AUI.defaults.io.uriFormatter(value);
+				},
 				validator: Lang.isString
 			},
 			method: {
-				value: AUI.defaults.io.method,
+				valueFn: function() {
+					return AUI.defaults.io.method;
+				},
 				setter: function(value) {
 					var instance = this;
 
@@ -236,10 +240,10 @@ AUI().add(
 			}
 		);
 
-		A.namespace('Plugin').IOAjax = Ajax;
+		A.IOAjax = Ajax;
 
 		A.io.ajax = function(config) {
-			return new A.Plugin.IOAjax(config);
+			return new A.IOAjax(config);
 		};
 	},
 	'@VERSION',
