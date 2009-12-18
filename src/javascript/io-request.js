@@ -100,7 +100,6 @@ A.mix(IORequest, {
 		},
 
 		cfg: {
-			readOnly: true,
 			getter: function() {
 				var instance = this;
 
@@ -123,7 +122,8 @@ A.mix(IORequest, {
 					timeout: instance.get(TIMEOUT),
 					xdr: instance.get(XDR)
 				}
-			}
+			},
+			readOnly: true
 		},
 
 		transaction: {
