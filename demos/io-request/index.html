@@ -118,7 +118,7 @@ AUI().ready(
 						// console.log( this.get('responseData') );
 						// event.halt();
 						var data = this.get('responseData');
-						var out = (dataType.val() == 'json') ? JSON.stringify(data) : data;
+						var out = (dataType.val() == 'json') ? A.JSON.stringify(data) : data;
 
 						log('success: ' + out);
 					},
