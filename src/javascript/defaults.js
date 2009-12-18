@@ -453,9 +453,9 @@
 				/*
 				* IO Ajax configuration
 				*/
-				'io-ajax': {
-					fullpath: PATH_JAVASCRIPT + 'io-ajax.js',
-					requires: [ 'base', 'io', 'json' ]
+				'io-request': {
+					fullpath: PATH_JAVASCRIPT + 'io-request.js',
+					requires: [ 'aui-base', 'io', 'json' ]
 				},
 
 				/*
@@ -502,9 +502,6 @@
 			},
 
 			io: {
-				uriFormatter: function(value) {
-					return value;
-				},
 				method: 'GET'
 			}
 		}
