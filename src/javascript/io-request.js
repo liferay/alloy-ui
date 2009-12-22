@@ -199,10 +199,10 @@ A.extend(IORequest, A.Plugin.Base, {
 	initializer: function(config) {
 		var instance = this;
 
-		instance.after('init', instance.bindUI);
+		instance.after('init', instance._afterInit);
 	},
 
-	bindUI: function() {
+	_afterInit: function() {
 		var instance = this;
 
 		if (instance.get(AUTO_LOAD)) {

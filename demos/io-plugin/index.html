@@ -41,20 +41,21 @@ AUI().ready('io-plugin', 'dialog', function(A) {
 		// where: 'REPLACE',
 		on: {
 			success: function(event) {
-				// console.log('success user', arguments);
-				// event.halt();
+				console.log('success user', arguments);
+
+				// event.stopImmediatePropagation();
 			},
 			complete: function(event) {
 				// console.log('complete user', arguments);
-				// event.halt();
+				// event.stopImmediatePropagation();
 			},
 			start: function(event) {
 				// console.log('start user', arguments);
-				// event.halt();
+				// event.stopImmediatePropagation();
 			},
 			failure: function(event) {
 				// console.log('failure user', arguments);
-				// event.halt();
+				// event.stopImmediatePropagation();
 			}
 		}
 	});
