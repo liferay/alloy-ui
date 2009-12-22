@@ -199,13 +199,15 @@ A.extend(IORequest, A.Plugin.Base, {
 	initializer: function(config) {
 		var instance = this;
 
-		instance.bindUI();
+		instance.after('init', instance.bindUI);
 	},
 
 	bindUI: function() {
 		var instance = this;
 
-		instance.after('init', instance._afterInit);
+		if (instance.get(AUTO_LOAD)) {
+			instance.start();
+		}
 	},
 
 	destructor: function() {
@@ -214,14 +216,6 @@ A.extend(IORequest, A.Plugin.Base, {
 		instance.stop();
 
 		instance.set(TRANSACTION, null);
-	},
-
-	_afterInit: function() {
-		var instance = this;
-
-		if (instance.get(AUTO_LOAD)) {
-			instance.start();
-		}
 	},
 
 	/*
