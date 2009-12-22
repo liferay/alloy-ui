@@ -440,7 +440,7 @@
 				*/
 				'io-plugin': {
 					fullpath: PATH_JAVASCRIPT + 'io-plugin.js',
-					requires: [ 'aui-base', 'component-overlay', 'parse-content', 'io', 'plugin' ]
+					requires: [ 'aui-base', 'component-overlay', 'parse-content', 'io-request', 'plugin' ]
 				},
 
 				/*
@@ -455,7 +455,7 @@
 				*/
 				'io-request': {
 					fullpath: PATH_JAVASCRIPT + 'io-request.js',
-					requires: [ 'aui-base', 'io', 'json' ]
+					requires: [ 'aui-base', 'io', 'json', 'plugin' ]
 				},
 
 				/*
