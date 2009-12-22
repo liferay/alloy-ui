@@ -134,17 +134,29 @@ A.extend(IOPlugin, A.IORequest, {
 	/*
 	* Lifecycle
 	*/
+	initializer: function() {
+		var instance = this;
+
+		instance.bindUI();
+	},
+
 	bindUI: function() {
 		var instance = this;
 
 		instance.on('activeChange', instance._onActiveChange);
 
-		IOPlugin.superclass.bindUI.apply(this, arguments);
+		instance.on(SUCCESS, instance._successHandler);
+		instance.on(FAILURE, instance._failureHandler);
+	},
 
-		instance.after(SUCCESS, instance._successHandler);
-		instance.after(FAILURE, instance._failureHandler);
+	_afterInit: function() {
+		var instance = this;
 
+		// bind all child events before invoke the autoStart
 		instance._bindPlugins();
+
+		// autoStart invoked
+		IOPlugin.superclass._afterInit.apply(this, arguments);
 	},
 
 	_bindPlugins: function() {
@@ -188,7 +200,7 @@ A.extend(IOPlugin, A.IORequest, {
 
 	showLoading: function() {
 		var instance = this;
-console.log('showLoading');
+
 		instance.setContent(
 			instance.get(LOADING_EL)
 		);
@@ -228,10 +240,10 @@ console.log('showLoading');
 	*/
 	_successHandler: function(event, id, xhr) {
 		var instance = this;
-
-		// instance.setContent(
-		// 	xhr.responseText
-		// );
+console.log('_successHandler');
+		instance.setContent(
+			xhr.responseText
+		);
 	},
 
 	_failureHandler: function(event, id, xhr) {
