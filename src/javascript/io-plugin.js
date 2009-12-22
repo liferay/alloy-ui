@@ -137,12 +137,12 @@ A.extend(IOPlugin, A.IORequest, {
 	bindUI: function() {
 		var instance = this;
 
+		instance.on('activeChange', instance._onActiveChange);
+
 		IOPlugin.superclass.bindUI.apply(this, arguments);
 
 		instance.after(SUCCESS, instance._successHandler);
 		instance.after(FAILURE, instance._failureHandler);
-
-		instance.on('activeChange', instance._onActiveChange);
 
 		instance._bindPlugins();
 	},
@@ -188,7 +188,7 @@ A.extend(IOPlugin, A.IORequest, {
 
 	showLoading: function() {
 		var instance = this;
-
+console.log('showLoading');
 		instance.setContent(
 			instance.get(LOADING_EL)
 		);
@@ -229,9 +229,9 @@ A.extend(IOPlugin, A.IORequest, {
 	_successHandler: function(event, id, xhr) {
 		var instance = this;
 
-		instance.setContent(
-			xhr.responseText
-		);
+		// instance.setContent(
+		// 	xhr.responseText
+		// );
 	},
 
 	_failureHandler: function(event, id, xhr) {
