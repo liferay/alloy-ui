@@ -192,16 +192,20 @@ A.mix(IORequest, {
 	}
 });
 
-A.extend(IORequest, A.Base, {
+A.extend(IORequest, A.Plugin.Base, {
 	/*
 	* Lifecycle
 	*/
 	initializer: function(config) {
 		var instance = this;
 
-		if (instance.get(AUTO_LOAD)) {
-			instance.start();
-		}
+		instance.bindUI();
+	},
+
+	bindUI: function() {
+		var instance = this;
+
+		instance.after('init', instance._afterInit);
 	},
 
 	destructor: function() {
@@ -212,13 +216,23 @@ A.extend(IORequest, A.Base, {
 		instance.set(TRANSACTION, null);
 	},
 
+	_afterInit: function() {
+		var instance = this;
+
+		if (instance.get(AUTO_LOAD)) {
+			instance.start();
+		}
+	},
+
 	/*
 	* Methods
 	*/
 	start: function() {
 		var instance = this;
 
-		instance.stop();
+		instance.destructor();
+
+		instance.set(ACTIVE, true);
 
 		var transaction = A.io(
 			instance.get(URI),
@@ -226,7 +240,6 @@ A.extend(IORequest, A.Base, {
 		);
 
 		instance.set(TRANSACTION, transaction);
-		instance.set(ACTIVE, true);
 	},
 
 	stop: function() {
@@ -336,4 +349,4 @@ A.io.request = function(uri, config) {
 	);
 };
 
-}, '@VERSION', { requires: [ 'aui-base', 'io', 'json' ] });
+}, '@VERSION', { requires: [ 'aui-base', 'io', 'json', 'plugin' ] });
