@@ -240,7 +240,7 @@ A.extend(IOPlugin, A.IORequest, {
 	*/
 	_successHandler: function(event, id, xhr) {
 		var instance = this;
-console.log('_successHandler');
+
 		instance.setContent(
 			xhr.responseText
 		);
