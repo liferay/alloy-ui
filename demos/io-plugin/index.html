@@ -28,12 +28,10 @@ AUI().ready('io-plugin', 'dialog', function(A) {
 
 	content1.plug(A.Plugin.IO, {
 		uri: 'assets/content.html',
-		cfg: {
-			method: 'GET',
-			data: {
-				key1: 'value1',
-				key2: 'value2'
-			}
+		method: 'GET',
+		data: {
+			key1: 'value1',
+			key2: 'value2'
 		},
 		// contentNode: A.one('#content2'), // dont need to pass this
 		// showLoading: true,

@@ -15,26 +15,21 @@ var L = A.Lang,
 	TYPE_NODE = 'Node',
 	TYPE_WIDGET = 'Widget',
 
-	AUTO_LOAD = 'autoLoad',
-	CFG = 'cfg',
-	COMPLETE = 'complete',
 	CONTENT_NODE = 'contentNode',
 	FAILURE = 'failure',
 	FAILURE_MESSAGE = 'failureMessage',
 	HOST = 'host',
 	ICON = 'icon',
 	IO = 'io',
+	IO_PLUGIN = 'IOPlugin',
 	LOADING = 'loading',
 	LOADING_EL = 'loadingEl',
 	PARSE_CONTENT = 'parseContent',
-	POST = 'post',
 	QUEUE = 'queue',
 	SECTION = 'section',
 	SHOW_LOADING = 'showLoading',
-	START = 'start',
 	SUCCESS = 'success',
 	TYPE = 'type',
-	URI = 'uri',
 	WHERE = 'where',
 
 	getCN = A.ClassNameManager.getClassName,
@@ -46,55 +41,11 @@ function IOPlugin(config) {
 }
 
 A.mix(IOPlugin, {
-	NAME: IO,
+	NAME: IO_PLUGIN,
 
 	NS: IO,
 
 	ATTRS: {
-		autoLoad: {
-			value: true,
-			validator: isBoolean
-		},
-
-		cfg: {
-			value: {},
-			setter: function(value) {
-				var instance = this;
-				var data = value.data;
-
-				// ignoring user callbacks for io cfg, user should pass callbacks on IOPlugin instance instead
-				delete value.on;
-
-				if (isObject(data)) {
-					value.data = A.toQueryString(data);
-				}
-
-				return A.merge(
-					// default cfg
-					{
-						method: POST,
-						on: {
-							complete: function(id, o) {
-								instance._fire(COMPLETE, id, o);
-							},
-							failure: function(id, o) {
-								instance._fire(FAILURE, id, o);
-							},
-							start: function(id, o) {
-								instance._fire(START, id, o);
-							},
-							success: function(id, o) {
-								instance._fire(SUCCESS, id, o);
-							}
-						}
-					},
-					// user cfg
-					value
-				);
-			},
-			validator: isObject
-		},
-
 		// contentNode give us the possibility of plug IO in any object we want,
 		// the setContent will use the contentNode to set the content
 		contentNode: {
@@ -124,11 +75,6 @@ A.mix(IOPlugin, {
 		failureMessage: {
 			value: 'Failed to retrieve content',
 			validator: isString
-		},
-
-		loading: {
-			value: false,
-			validator: isBoolean
 		},
 
 		loadingEl: {
@@ -177,10 +123,6 @@ A.mix(IOPlugin, {
 			validator: isString
 		},
 
-		uri: {
-			validator: isString
-		},
-
 		where: {
 			value: StdMod.REPLACE,
 			validator: function(val) {
@@ -190,43 +132,21 @@ A.mix(IOPlugin, {
 	}
 });
 
-A.extend(IOPlugin, A.Plugin.Base, {
-	_io: null,
-
+A.extend(IOPlugin, A.IORequest, {
 	/*
 	* Lifecycle
 	*/
-	initializer: function() {
-		var instance = this;
-
-		IOPlugin.superclass.initializer.apply(this, arguments);
-
-		instance.bindUI();
-
-		if (instance.get(AUTO_LOAD)) {
-			instance.start();
-		}
-	},
-
 	bindUI: function() {
 		var instance = this;
 
-		instance.publish(COMPLETE, { defaultFn: instance._complete });
-		instance.publish(SUCCESS, { defaultFn: instance._success });
-		instance.publish(FAILURE, { defaultFn: instance._failure });
-		instance.publish(START, { defaultFn: instance._start });
+		IOPlugin.superclass.bindUI.apply(this, arguments);
 
-		instance.on('loadingChange', instance._onLoadingChange);
+		instance.after(SUCCESS, instance._successHandler);
+		instance.after(FAILURE, instance._failureHandler);
+
+		instance.on('activeChange', instance._onActiveChange);
 
 		instance._bindPlugins();
-	},
-
-	destructor: function() {
-		var instance = this;
-
-		instance.stop();
-
-		instance._io = null;
 	},
 
 	_bindPlugins: function() {
@@ -261,9 +181,6 @@ A.extend(IOPlugin, A.Plugin.Base, {
 	/*
 	* Methods
 	*/
-	isActive: function() {
-		return this._io;
-	},
 
 	setContent: function(content) {
 		var instance = this;
@@ -277,28 +194,6 @@ A.extend(IOPlugin, A.Plugin.Base, {
 		instance.setContent(
 			instance.get(LOADING_EL)
 		);
-	},
-
-	start: function() {
-		var instance = this;
-		var cfg = instance.get(CFG);
-		var uri = instance.get(URI);
-
-		instance.stop();
-
-		instance._io = A.io(uri, cfg);
-
-		return instance;
-	},
-
-	stop: function() {
-		var instance = this;
-
-		if (instance._io) {
-			instance._io.abort();
-		}
-
-		return instance;
 	},
 
 	_getContentSetterByType: function() {
@@ -330,41 +225,18 @@ A.extend(IOPlugin, A.Plugin.Base, {
 		return setters[this.get(TYPE)];
 	},
 
-	_fire: function(eventType, id, o) {
-		var instance = this;
-
-		instance.fire(eventType, {
-			io: {
-				id: id,
-				xhr: o
-			}
-		});
-	},
-
 	/*
 	* IO callbacks
 	*/
-	_start: function(event) {
-		this.set(LOADING, true);
-	},
-
-	_success: function(event) {
+	_successHandler: function(event, id, xhr) {
 		var instance = this;
 
 		instance.setContent(
-			event.io.xhr.responseText
+			xhr.responseText
 		);
 	},
 
-	_complete: function(event) {
-		var instance = this;
-
-		instance.set(LOADING, false);
-
-		instance._io = null;
-	},
-
-	_failure: function(event) {
+	_failureHandler: function(event, id, xhr) {
 		var instance = this;
 
 		instance.setContent(
@@ -375,7 +247,7 @@ A.extend(IOPlugin, A.Plugin.Base, {
 	/*
 	* Listeners
 	*/
-	_onLoadingChange: function(event) {
+	_onActiveChange: function(event) {
 		var instance = this;
 
 		if (event.newVal) {
@@ -388,4 +260,4 @@ A.extend(IOPlugin, A.Plugin.Base, {
 
 A.namespace('Plugin').IO = IOPlugin;
 
-}, '@VERSION' , { requires: [ 'aui-base', 'component-overlay', 'parse-content', 'io', 'plugin' ] });
+}, '@VERSION' , { requires: [ 'aui-base', 'component-overlay', 'parse-content', 'io-request', 'plugin' ] });
