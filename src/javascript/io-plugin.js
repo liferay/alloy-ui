@@ -2,8 +2,6 @@ AUI.add('io-plugin', function(A) {
 
 var L = A.Lang,
 	isBoolean = L.isBoolean,
-	isFunction = L.isFunction,
-	isObject = L.isObject,
 	isString = L.isString,
 
 	isNode = function(v) {
