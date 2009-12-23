@@ -13,7 +13,6 @@ var L = A.Lang,
 	TYPE_NODE = 'Node',
 	TYPE_WIDGET = 'Widget',
 
-	CONTENT_NODE = 'contentNode',
 	FAILURE = 'failure',
 	FAILURE_MESSAGE = 'failureMessage',
 	HOST = 'host',
@@ -22,6 +21,7 @@ var L = A.Lang,
 	IO_PLUGIN = 'IOPlugin',
 	LOADING = 'loading',
 	LOADING_EL = 'loadingEl',
+	NODE = 'node',
 	PARSE_CONTENT = 'parseContent',
 	QUEUE = 'queue',
 	SECTION = 'section',
@@ -46,7 +46,7 @@ A.mix(IOPlugin, {
 	ATTRS: {
 		// contentNode give us the possibility of plug IO in any object we want,
 		// the setContent will use the contentNode to set the content
-		contentNode: {
+		node: {
 			value: null,
 			setter: function(value) {
 				var instance = this;
@@ -161,15 +161,15 @@ A.extend(IOPlugin, A.IORequest, {
 
 	_bindPlugins: function() {
 		var instance = this;
-		var contentNode = instance.get(CONTENT_NODE);
+		var node = instance.get(NODE);
 
-		if (contentNode && instance.get(PARSE_CONTENT)) {
-			contentNode.plug(A.Plugin.ParseContent);
+		if (node && instance.get(PARSE_CONTENT)) {
+			node.plug(A.Plugin.ParseContent);
 
 			// if its on a Widget dont allow close before the ParseContent finish the queue
 			if (instance.get(TYPE) == TYPE_WIDGET) {
 				var host = instance.get(HOST);
-				var queue = contentNode.ParseContent.get(QUEUE);
+				var queue = node.ParseContent.get(QUEUE);
 
 				if (queue) {
 					// dont close the overlay while queue is running
@@ -213,10 +213,10 @@ A.extend(IOPlugin, A.IORequest, {
 			// NOTE: default setter, see 'type' attribute definition
 			Node: function(content) {
 				var instance = this;
-				// when this.get(HOST) is a Node instance the CONTENT_NODE is the host
-				var contentNode = instance.get(CONTENT_NODE);
+				// when this.get(HOST) is a Node instance the NODE is the host
+				var node = instance.get(NODE);
 
-				contentNode.setContent.apply(contentNode, [content]);
+				node.setContent.apply(node, [content]);
 			},
 
 			// Widget forces set the content on the SECTION node using setStdModContent method
