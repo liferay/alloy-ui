@@ -492,6 +492,14 @@
 				'state-interaction': {
 					fullpath: PATH_JAVASCRIPT + 'state-interaction.js',
 					requires: [ 'aui-base', 'plugin' ]
+				},
+
+				/*
+				* SWF Utility
+				*/
+				'swf': {
+					fullpath: PATH_JAVASCRIPT + 'swf.js',
+					requires: [ 'aui-base' ]
 				}
 			},
 
