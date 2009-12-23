@@ -495,6 +495,14 @@
 				},
 
 				/*
+				* Chart Widgets
+				*/
+				'chart': {
+					fullpath: PATH_JAVASCRIPT + 'chart.js',
+					requires: [ 'datasource', 'swf', 'json' ]
+				},
+
+				/*
 				* SWF Utility
 				*/
 				'swf': {
@@ -511,6 +519,10 @@
 
 			io: {
 				method: 'GET'
+			},
+
+			chart: {
+				swfURL: 'assets/chart.swf'
 			}
 		}
 	}
