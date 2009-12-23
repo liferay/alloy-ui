@@ -35,6 +35,7 @@ var L = A.Lang,
 	RESPONSE_DATA = 'responseData',
 	START = 'start',
 	SUCCESS = 'success',
+	SYNC = 'sync',
 	TIMEOUT = 'timeout',
 	TRANSACTION = 'transaction',
 	URI = 'uri',
@@ -119,6 +120,7 @@ A.mix(IORequest, {
 						start: A.bind(instance.fire, instance, START),
 						success: A.bind(instance._success, instance)
 					},
+					sync: instance.get(SYNC),
 					timeout: instance.get(TIMEOUT),
 					xdr: instance.get(XDR)
 				}
@@ -180,6 +182,10 @@ A.mix(IORequest, {
 
 		method: {
 			valueFn: getDefault(METHOD)
+		},
+
+		sync: {
+			valueFn: getDefault(SYNC)
 		},
 
 		timeout: {
