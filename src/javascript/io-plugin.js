@@ -44,8 +44,8 @@ A.mix(IOPlugin, {
 	NS: IO,
 
 	ATTRS: {
-		// contentNode give us the possibility of plug IO in any object we want,
-		// the setContent will use the contentNode to set the content
+		// node give us the possibility of plug IO in any object we want,
+		// the setContent will use the node to set the content
 		node: {
 			value: null,
 			setter: function(value) {
