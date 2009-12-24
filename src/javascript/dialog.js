@@ -149,6 +149,8 @@ Dialog.prototype = {
 		var instance = this;
 
 		instance.publish('close', { defaultFn: instance._close });
+
+		instance.on('visibleChange', instance._afterSetVisible);
 	},
 
 	destructor: function() {
