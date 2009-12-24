@@ -151,6 +151,13 @@ Dialog.prototype = {
 		instance.publish('close', { defaultFn: instance._close });
 	},
 
+	destructor: function() {
+		var instance = this;
+		var boundingBox = instance.get(BOUNDING_BOX);
+
+		A.Event.purgeElement(boundingBox);
+	},
+
 	/*
 	* Methods
 	*/
