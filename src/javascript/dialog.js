@@ -155,7 +155,7 @@ Dialog.prototype = {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
 
-		A.Event.purgeElement(boundingBox);
+		A.Event.purgeElement(boundingBox, true);
 	},
 
 	/*
