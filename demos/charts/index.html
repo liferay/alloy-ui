@@ -61,7 +61,22 @@
 
 	</form>
 
-	<div id="demo"></div>
+	<div id="demo">
+		<h2>Pie Chart (with data connected to Loan Calculator)</h2>
+	</div>
+
+	<div id="demoLineChart">
+		<h2>Line Chart</h2>
+	</div>
+
+	<div id="demoStackedBarChart">
+		<h2>Stacked Bar Chart</h2>
+	</div>
+
+	<div id="demoSeriesCustomizations">
+		<h2>Custom Series Chart</h2>
+	</div>
+
 </div>
 
 <script type="text/javascript" charset="utf-8">
@@ -518,7 +533,7 @@ AUI().ready(
 				height: 300,
 				dataTipFunction: Examples.LineChart.getDataTipText
 			}
-		).render('#wrapper');
+		).render('#demoLineChart');
 
 		/*
 			Stacked Bar Chart
@@ -582,7 +597,7 @@ AUI().ready(
 				width: 400,
 				height: 300
 			}
-		).render('#wrapper');
+		).render('#demoStackedBarChart');
 
 		/*
 			Series Customizations...
@@ -805,7 +820,7 @@ AUI().ready(
 				width: 400,
 				height: 300
 			}
-		).render('#wrapper');
+		).render('#demoSeriesCustomizations');
 	}
 );
 
