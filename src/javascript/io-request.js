@@ -324,6 +324,11 @@ A.extend(IORequest, A.Plugin.Base, {
 				data = xhr.responseText;
 			}
 
+			// empty string is not a valid JSON, convert it to null
+			if (data === EMPTY_STRING) {
+				data = null;
+			}
+
 			// trying to parse to JSON if dataType is a valid json
 			if (dataType == JSON) {
 				try {
