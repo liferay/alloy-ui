@@ -92,6 +92,7 @@ A.extend(OverlayMask, A.ComponentOverlay, {
 		OverlayMask.superclass.bindUI.apply(this, arguments);
 
 		instance.after('targetChange', instance._afterTargetChange);
+		instance.after('visibleChange', instance._afterVisibleChange);
 
 		// window:resize YUI normalized event is not working, bug?
 		A.on('windowresize', A.bind(instance.refreshMask, instance));
@@ -170,6 +171,18 @@ A.extend(OverlayMask, A.ComponentOverlay, {
 		return v;
 	},
 
+	_uiSetVisible: function(val) {
+		var instance = this;
+
+		OverlayMask.superclass._uiSetVisible.apply(this, arguments);
+
+		if (val) {
+			instance._setOpacity(
+				instance.get(OPACITY)
+			);
+		}
+	},
+
 	/*
 	* Listeners
 	*/
@@ -182,13 +195,7 @@ A.extend(OverlayMask, A.ComponentOverlay, {
 	_afterVisibleChange: function(event) {
 		var instance = this;
 
-		OverlayMask.superclass._afterVisibleChange.apply(this, arguments);
-
-		if (event.newVal) {
-			instance._setOpacity(
-				instance.get(OPACITY)
-			);
-		}
+		instance._uiSetVisible(event.newVal);
 	}
 });
 
