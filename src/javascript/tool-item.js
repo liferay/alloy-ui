@@ -103,6 +103,7 @@ AUI().add(
 			ToolItem,
 			A.Component,
 			{
+				UI_EVENTS: {},
 				BOUNDING_TEMPLATE: TPL_GENERIC,
 				CONTENT_TEMPLATE: TPL_GENERIC,
 
