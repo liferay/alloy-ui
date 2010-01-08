@@ -219,8 +219,8 @@ AUI().ready(
 					instance.after('yearsChange', instance._calculateLoan);
 
 					instance.after('monthlyPaymentChange', instance._afterMonthlyPaymentChange);
-					instance.after('interestPaidChange', instance._afterMonthlyPaymentChange);
-					instance.after('totalPaidChange', instance._afterMonthlyPaymentChange);
+					instance.after('interestPaidChange', instance._afterInterestPaidChange);
+					instance.after('totalPaidChange', instance._afterTotalPaidChange);
 				},
 
 				syncUI: function() {
@@ -399,6 +399,11 @@ AUI().ready(
 				Examples.PieChart.theData[1].count = loanCalc.get('interestPaid');
 
 				Examples.PieChart.chart.refreshData();
+			},
+			getLegendLabelText: function(value) {
+				var instance = this;
+
+				return 'yay?' + value;
 			}
 		};
 
@@ -426,6 +431,7 @@ AUI().ready(
 		        categoryField: 'response',
 				width: 400,
 				height: 300,
+				legendLabelFunction: Examples.PieChart.getLegendLabelText,
 				dataTipFunction: function(item, index, series) {
 					var instance = this;
 
