@@ -234,33 +234,6 @@
 	);
 
 	/*
-	* AUI support constants
-	*/
-	AUI.support = {
-		scriptEval: false
-	};
-
-	var checkScriptEvalSupport = function() {
-		var root = document.documentElement;
-		var script = document.createElement('script');
-
-		var TYPE = 'text/javascript',
-			TPL_EVAL_SCRIPT_TRUE = 'AUI.support.scriptEval = true;';
-
-		script.type = TYPE;
-
-		try {
-			script.appendChild(document.createTextNode(TPL_EVAL_SCRIPT_TRUE));
-			root.insertBefore(script, root.firstChild);
-			root.removeChild(script);
-		}
-		catch(e) {
-		}
-	};
-
-	checkScriptEvalSupport();
-
-	/*
 		UA extensions
 	*/
 
