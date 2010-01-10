@@ -299,22 +299,6 @@ AUI.add('aui-node', function(A) {
 			return instance;
 		},
 
-		siblings: function() {
-			var instance = this;
-
-			var all = instance.get('parentNode.children');
-			var currentNode = instance._node;
-
-			var siblings = A.Array.filter(
-				all._nodes,
-				function(item, index, collection) {
-					return item != currentNode;
-				}
-			);
-
-			return A.all(siblings);
-		},
-
 		swallowEvent: function(eventName, preventDefault) {
 			var instance = this;
 
