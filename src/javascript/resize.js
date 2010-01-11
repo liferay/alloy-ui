@@ -21,6 +21,7 @@ var L = A.Lang,
 	ACTIVE_HANDLE_EL = 'activeHandleEl',
 	ALL = 'all',
 	AUTO = 'auto',
+	AUTO_HIDE = 'autoHide',
 	CONSTRAIN2NODE = 'constrain2node',
 	CONSTRAIN2REGION = 'constrain2region',
 	CONSTRAIN2VIEW = 'constrain2view',
@@ -34,6 +35,7 @@ var L = A.Lang,
 	HANDLE = 'handle',
 	HANDLES = 'handles',
 	HEIGHT = 'height',
+	HIDDEN = 'hidden',
 	HORIZONTAL = 'horizontal',
 	ICON = 'icon',
 	INNER = 'inner',
@@ -41,8 +43,10 @@ var L = A.Lang,
 	NODE = 'node',
 	NODE_NAME = 'nodeName',
 	NONE = 'none',
+	OFFSET_HEIGHT = 'offsetHeight',
 	OFFSET_LEFT = 'offsetLeft',
 	OFFSET_TOP = 'offsetTop',
+	OFFSET_WIDTH = 'offsetWidth',
 	POSITION = 'position',
 	PX = 'px',
 	RELATIVE = 'relative',
@@ -57,8 +61,6 @@ var L = A.Lang,
 	WRAP = 'wrap',
 	WRAPPER = 'wrapper',
 	WRAP_TYPES = 'wrapTypes',
-	OFFSET_HEIGHT = 'offsetHeight',
-	OFFSET_WIDTH = 'offsetWidth',
 
 	EV_RESIZE = 'resize:resize'
 	EV_RESIZE_END = 'resize:end'
@@ -101,6 +103,7 @@ var L = A.Lang,
 	CSS_RESIZE_HANDLE_INNER = getCN(RESIZE, HANDLE, INNER),
 	CSS_RESIZE_HANDLE_INNER_PLACEHOLDER = getCN(RESIZE, HANDLE, INNER, '{handle}'),
 	CSS_RESIZE_HANDLE_PLACEHOLDER = getCN(RESIZE, HANDLE, '{handle}'),
+	CSS_RESIZE_HIDDEN_HANDLES = getCN(RESIZE, HIDDEN, HANDLES),
 	CSS_RESIZE_WRAPPER = getCN(RESIZE, WRAPPER),
 
 	CSS_ICON_DIAGONAL = concat(CSS_ICON, CSS_ICON_GRIPSMALL_DIAGONAL_BR),
@@ -131,6 +134,11 @@ A.mix(Resize, {
 		activeHandleEl: {
 			value: null,
 			validator: isNode
+		},
+
+		autoHide: {
+			value: false,
+			validator: isBoolean
 		},
 
 		constrain2node: {
@@ -307,6 +315,9 @@ A.extend(Resize, A.Base, {
 	syncUI: function() {
 		var instance = this;
 
+		instance._setHandlesUI(
+			instance.get(AUTO_HIDE)
+		);
 	},
 
     renderer: function() {
@@ -333,6 +344,8 @@ A.extend(Resize, A.Base, {
 		var instance = this;
 		var wrapper = instance.get(WRAPPER);
 
+		wrapper.on('mouseenter', A.bind(instance._onWrapperMouseEnter, instance));
+		wrapper.on('mouseleave', A.bind(instance._onWrapperMouseLeave, instance));
 		wrapper.delegate('mouseenter', A.bind(instance._onHandleMouseOver, instance), DOT+CSS_RESIZE_HANDLE);
 		wrapper.delegate('mouseleave', A.bind(instance._onHandleMouseOut, instance), DOT+CSS_RESIZE_HANDLE);
 	},
@@ -607,6 +620,23 @@ A.extend(Resize, A.Base, {
 	},
 
 	/*
+	* Setters
+	*/
+	_setHandlesUI: function(val) {
+		var instance = this;
+		var wrapper = instance.get(WRAPPER);
+
+		if (!instance.get(RESIZING)) {
+			if (val) {
+				wrapper.addClass(CSS_RESIZE_HIDDEN_HANDLES);
+			}
+			else {
+				wrapper.removeClass(CSS_RESIZE_HIDDEN_HANDLES);
+			}
+		}
+	},
+
+	/*
 	* Events
 	*/
 	_defResizeFn: function(event) {
@@ -653,6 +683,22 @@ A.extend(Resize, A.Base, {
 
 	_handleResizeStartEvent: function(event) {
 		this.fire(EV_RESIZE_START, { dragEvent: event, info: this.info });
+	},
+
+	_onWrapperMouseEnter: function(event) {
+		var instance = this;
+
+		if (instance.get(AUTO_HIDE)) {
+			instance._setHandlesUI(false);
+		}
+	},
+
+	_onWrapperMouseLeave: function(event) {
+		var instance = this;
+
+		if (instance.get(AUTO_HIDE)) {
+			instance._setHandlesUI(true);
+		}
 	},
 
 	_onHandleMouseOver: function(event) {
