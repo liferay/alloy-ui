@@ -57,8 +57,8 @@ var L = A.Lang,
 	WRAP = 'wrap',
 	WRAPPER = 'wrapper',
 	WRAP_TYPES = 'wrapTypes',
-    OFFSET_HEIGHT = 'offsetHeight',
-    OFFSET_WIDTH = 'offsetWidth',
+	OFFSET_HEIGHT = 'offsetHeight',
+	OFFSET_WIDTH = 'offsetWidth',
 
 	EV_RESIZE = 'resize:resize'
 	EV_RESIZE_END = 'resize:end'
