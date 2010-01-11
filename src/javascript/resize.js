@@ -418,12 +418,8 @@ A.extend(Resize, A.Base, {
 		var instance = this;
 		var wrapper = instance.get(WRAPPER);
 
-		instance.eachHandle(function(handle) {
-			var handleEl = handleAttrName(handle);
-
-			wrapper.append(
-				instance.get(handleEl)
-			);
+		instance.eachHandle(function(handleEl) {
+			wrapper.append(handleEl);
 		});
 	},
 
@@ -435,8 +431,12 @@ A.extend(Resize, A.Base, {
 
 		A.each(
 			instance.get(HANDLES),
-			function(node, i) {
-				fn.apply(instance, arguments);
+			function(handle, i) {
+				var handleEl = instance.get(
+					handleAttrName(handle)
+				);
+
+				fn.apply(instance, [handleEl, handle, i]);
 			}
 		);
 	},
@@ -827,6 +827,10 @@ A.extend(Resize, A.Base, {
 		if (!instance.get(RESIZING)) {
 			instance.set(ACTIVE_HANDLE, data.handle);
 			instance.set(ACTIVE_HANDLE_EL, data.node);
+
+			instance.eachHandle(function(handleEl) {
+				handleEl.removeClass(CSS_RESIZE_HANDLE_ACTIVE);
+			});
 
 			data.node.addClass(CSS_RESIZE_HANDLE_ACTIVE);
 		}
