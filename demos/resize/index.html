@@ -12,90 +12,129 @@
 	<style type="text/css" media="screen">
 		body {
 			font-size: 12px;
-		}
-
-		#wrapper {
-			margin: 0 auto;
-			padding: 10px;
-			width: 800px;
-		}
-
-		.aui-resize {
-			margin-bottom: 1em;
-			padding: 5px;
-		}
-
-		.aui-resize .data {
-			width: 100%;
-			height: 100%;
-			overflow: auto;
-		}
-
-		.aui-resize-handle {
-			background: #eee;
+			padding: 30px;
 		}
 
 		.aui-resize-handle-active {
-			background: #036;
+			background: #ccc;
 		}
 
+		#resize1 {
+			width: 300px;
+			padding: 10px;
+			margin: 10px;
+			background: lightblue;
+		}
+
+		#resize3 {
+			top: 700px;
+			width: 300px;
+			background: lightblue;
+			position: absolute;
+		}
+
+		#resize4 {
+			top: 100px;
+			left: 500px;
+			width: 300px;
+			background: lightblue;
+			position: fixed;
+		}
+		
+		#parent {
+			position: relative;
+			width: 500px;
+			height: 200px;
+			border: 1px solid #ccc;
+		}
 	</style>
 </head>
 
 <body>
 
-<div id="wrapper">
-	<h1>Alloy - resize Demo</h1>
+<h1>Alloy - Resize Demo</h1>
 
+<textarea id="resize6" cols="30" rows="10">Resizable textarea
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</textarea>
 
-	<div id="demo">
-		<div class="data">
-			Demo without proxy<br />
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br />
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		</div>
-	</div>
+<br /><br />
 
-	<div id="demo2">
-		<div class="data">
-			Demo with proxy<br />
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br />
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		</div>
-	</div>
+<div id="parent">
+	<img src="../tooltip/assets/cream.jpg" id="resize5" />
+</div>
 
-	<div id="demo3">
-		<div class="data">
-			Resize plugin<br />
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br />
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		</div>
-	</div>
+<div id="resize1" class="aui-resize">
+	<strong>Simple element</strong><br />
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</div>
+
+<br />
+
+<button id="resize2">Button</button>
+
+<div id="resize3" class="aui-resize">
+	<strong>Absolute positioned element</strong><br />
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</div>
+
+<div id="resize4" class="aui-resize">
+	<strong>Fixed positioned element</strong><br />
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</div>
 
 <script type="text/javascript" charset="utf-8">
 AUI().ready(
-	'resize', 'resize-plugin',
+	'resize',
 	function(A) {
-		new A.Resize(
-			{
-				node: '#demo',
-				handles: ['t', 'b', 'r', 'l', 'bl', 'br', 'tl', 'tr']
-			}
-		);
 
-		new A.Resize(
-			{
-				node: '#demo2',
-				proxy: true
-			}
-		);
+		var resize1 = new A.Resize({
+			node: '#resize1',
+			// wrap: true,
+			// handles: 'all',
+			on: {
+				resize: function(event) {
+					// event.halt();
+				}
+			},
+			handles: 't, tr, r, br, b, bl, l, tl'
+		});
 
-		A.get('#demo3').plug(
-			A.Plugin.ResizePlugin,
-			{
-				proxy: true
-			}
-		);
+		var resize2 = new A.Resize({
+			node: '#resize2',
+			// wrap: true,
+			// handles: 'all',
+			// handles: 't, tr, r, br, b, bl, l, tl'
+			handles: 'br'
+		});
+
+		var resize3 = new A.Resize({
+			node: '#resize3',
+			// wrap: true,
+			// handles: 'all',
+			on: {
+				resize: function(event) {
+					// event.halt();
+				}
+			},
+			handles: 't, tr, r, br, b, bl, l, tl'
+		});
+
+		var resize4 = new A.Resize({
+			node: '#resize4',
+			tickX: 30,
+			tickY: 30
+		});
+
+		var resize5 = new A.Resize({
+			node: '#resize5',
+			constrain2node: '#parent'
+		});
+
+		var resize6 = new A.Resize({
+			node: '#resize6'
+		});
+
 	}
 );
 

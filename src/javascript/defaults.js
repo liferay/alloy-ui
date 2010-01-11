@@ -291,16 +291,12 @@
 				*/
 				'resize': {
 					fullpath: PATH_JAVASCRIPT + 'resize.js',
-					requires: [ 'aui-base', 'dd', 'resize-css' ]
+					requires: [ 'aui-base', 'dd', 'substitute', 'resize-css' ]
 				},
 				'resize-css': {
 					ext: false,
 					fullpath: PATH_THEME_ROOT + 'resize.css',
 					type: 'css'
-				},
-				'resize-plugin': {
-					fullpath: PATH_JAVASCRIPT + 'resize.js',
-					requires: [ 'resize' ]
 				},
 
 				/*
