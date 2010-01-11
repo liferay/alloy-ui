@@ -507,25 +507,29 @@ A.extend(Resize, A.Base, {
 		rules[activeHandle](dx, dy);
 	},
 
-	_calculateMinMaxSize: function() {
+	_checkHeight: function() {
 		var instance = this;
 		var info = instance.info;
-
 		var maxHeight = instance.get(MAX_HEIGHT);
-		var maxWidth = instance.get(MAX_WIDTH);
 		var minHeight = instance.get(MIN_HEIGHT);
-		var minWidth = instance.get(MIN_WIDTH);
 
 		if (isNumber(maxHeight) && (info.height > maxHeight)) {
 			info.height = maxHeight;
 		}
 
-		if (isNumber(maxWidth) && (info.width > maxWidth)) {
-			info.width = maxWidth;
-		}
-
 		if (isNumber(minHeight) && (info.height < minHeight)) {
 			info.height = minHeight;
+		}
+	},
+
+	_checkWidth: function() {
+		var instance = this;
+		var info = instance.info;
+		var maxWidth = instance.get(MAX_WIDTH);
+		var minWidth = instance.get(MIN_WIDTH);
+
+		if (isNumber(maxWidth) && (info.width > maxWidth)) {
+			info.width = maxWidth;
 		}
 
 		if (isNumber(minWidth) && (info.width < minWidth)) {
@@ -709,7 +713,9 @@ A.extend(Resize, A.Base, {
 
 		instance._calculateInfo();
 
-		instance._calculateMinMaxSize();
+		instance._checkHeight();
+
+		instance._checkWidth();
 	},
 
 	_defResizeEndFn: function(event) {
