@@ -671,7 +671,8 @@ A.extend(Resize, A.Base, {
 		wrapper.setStyles(size);
 		wrapper.setStyles(dimension);
 
-		if (wrapper != node) {
+		// if wrapper is different from node
+		if (!wrapper.compareTo(node)) {
 			node.setStyles(size);
 		}
 
