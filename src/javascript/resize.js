@@ -542,6 +542,14 @@ A.extend(Resize, A.Base, {
 		}
 	},
 
+	_checkRatio: function() {
+		var instance = this;
+		var instance = this;
+		var info = instance.info;
+
+
+	},
+
 	_checkWidth: function() {
 		var instance = this;
 		var info = instance.info;
@@ -735,6 +743,7 @@ A.extend(Resize, A.Base, {
 
 		if (activeHandleEl) {
 			if (val) {
+				// remove CSS_RESIZE_HANDLE_ACTIVE from all handles before addClass on the active
 				instance.eachHandle(
 					function(handleEl) {
 						handleEl.removeClass(CSS_RESIZE_HANDLE_ACTIVE);
@@ -776,6 +785,8 @@ A.extend(Resize, A.Base, {
 		instance._checkHeight();
 
 		instance._checkWidth();
+
+		instance._checkRatio();
 	},
 
 	_defResizeEndFn: function(event) {
