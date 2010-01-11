@@ -4,8 +4,9 @@ AUI.add('resize', function(A) {
 * Resize
 */
 var L = A.Lang,
-	isBoolean = L.isBoolean,
 	isArray = L.isArray,
+	isBoolean = L.isBoolean,
+	isNumber = L.isNumber,
 	isString = L.isString,
 
 	trim = L.trim,
@@ -40,6 +41,10 @@ var L = A.Lang,
 	ICON = 'icon',
 	INNER = 'inner',
 	LEFT = 'left',
+	MAX_HEIGHT = 'maxHeight',
+	MAX_WIDTH = 'maxWidth',
+	MIN_HEIGHT = 'minHeight',
+	MIN_WIDTH = 'minWidth',
 	NODE = 'node',
 	NODE_NAME = 'nodeName',
 	NONE = 'none',
@@ -189,6 +194,26 @@ A.mix(Resize, {
 			value: ALL
 		},
 
+		minHeight: {
+			value: 15,
+			validator: isNumber
+		},
+
+		minWidth: {
+			value: 15,
+			validator: isNumber
+		},
+
+		maxHeight: {
+			value: Infinity,
+			validator: isNumber
+		},
+
+		maxWidth: {
+			value: Infinity,
+			validator: isNumber
+		},
+
 		node: {
 			setter: function(val) {
 				return A.one(val);
@@ -316,6 +341,7 @@ A.extend(Resize, A.Base, {
 	syncUI: function() {
 		var instance = this;
 
+		// hide handles if AUTO_HIDE is true
 		instance._setHandlesUI(
 			instance.get(AUTO_HIDE)
 		);
@@ -479,6 +505,32 @@ A.extend(Resize, A.Base, {
 		};
 
 		rules[activeHandle](dx, dy);
+	},
+
+	_calculateMinMaxSize: function() {
+		var instance = this;
+		var info = instance.info;
+
+		var maxHeight = instance.get(MAX_HEIGHT);
+		var maxWidth = instance.get(MAX_WIDTH);
+		var minHeight = instance.get(MIN_HEIGHT);
+		var minWidth = instance.get(MIN_WIDTH);
+
+		if (info.height > maxHeight) {
+			info.height = maxHeight;
+		}
+
+		if (info.width > maxWidth) {
+			info.width = maxWidth;
+		}
+
+		if (info.height < minHeight) {
+			info.height = minHeight;
+		}
+
+		if (info.width < minWidth) {
+			info.width = minWidth;
+		}
 	},
 
 	_copyStyles: function(nodeFrom, nodeTo) {
@@ -655,6 +707,8 @@ A.extend(Resize, A.Base, {
 		instance._updateInfo(event);
 
 		instance._calculateInfo();
+
+		instance._calculateMinMaxSize();
 	},
 
 	_defResizeEndFn: function(event) {
