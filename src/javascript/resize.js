@@ -516,19 +516,19 @@ A.extend(Resize, A.Base, {
 		var minHeight = instance.get(MIN_HEIGHT);
 		var minWidth = instance.get(MIN_WIDTH);
 
-		if (info.height > maxHeight) {
+		if (isNumber(maxHeight) && (info.height > maxHeight)) {
 			info.height = maxHeight;
 		}
 
-		if (info.width > maxWidth) {
+		if (isNumber(maxWidth) && (info.width > maxWidth)) {
 			info.width = maxWidth;
 		}
 
-		if (info.height < minHeight) {
+		if (isNumber(minHeight) && (info.height < minHeight)) {
 			info.height = minHeight;
 		}
 
-		if (info.width < minWidth) {
+		if (isNumber(minWidth) && (info.width < minWidth)) {
 			info.width = minWidth;
 		}
 	},
