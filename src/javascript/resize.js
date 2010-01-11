@@ -510,30 +510,70 @@ A.extend(Resize, A.Base, {
 	_checkHeight: function() {
 		var instance = this;
 		var info = instance.info;
+		var originalInfo = instance.originalInfo;
+		var activeHandle = instance.get(ACTIVE_HANDLE);
 		var maxHeight = instance.get(MAX_HEIGHT);
 		var minHeight = instance.get(MIN_HEIGHT);
 
-		if (isNumber(maxHeight) && (info.height > maxHeight)) {
+		// if the handles being dragged could change the top info
+		var topChangeable = /tl|t|tr/i.test(activeHandle);
+
+		var isMaxHeight = isNumber(maxHeight) && (info.height > maxHeight);
+		var isMinHeight = isNumber(minHeight) && (info.height < minHeight);
+
+		if (isMaxHeight) {
 			info.height = maxHeight;
+
+			if (topChangeable) {
+				// predicting, based on the original information, the last top valid in case of reach the min/max dimension
+				// this calculation avoid browser event leaks when user interact very fast with their mouse
+				info.top = originalInfo.top + originalInfo.height - maxHeight;
+			}
 		}
 
-		if (isNumber(minHeight) && (info.height < minHeight)) {
+		if (isMinHeight) {
 			info.height = minHeight;
+
+			if (topChangeable) {
+				// predicting, based on the original information, the last top valid in case of reach the min/max dimension
+				// this calculation avoid browser event leaks when user interact very fast with their mouse
+				info.top = originalInfo.top + originalInfo.height - minHeight;
+			}
 		}
 	},
 
 	_checkWidth: function() {
 		var instance = this;
 		var info = instance.info;
+		var originalInfo = instance.originalInfo;
+		var activeHandle = instance.get(ACTIVE_HANDLE);
 		var maxWidth = instance.get(MAX_WIDTH);
 		var minWidth = instance.get(MIN_WIDTH);
 
-		if (isNumber(maxWidth) && (info.width > maxWidth)) {
+		// if the handles being dragged could change the left info
+		var leftChangeable = /tl|l|bl/i.test(activeHandle);
+
+		var isMaxWidth = isNumber(maxWidth) && (info.width > maxWidth);
+		var isMinWidth = isNumber(minWidth) && (info.width < minWidth);
+
+		if (isMaxWidth) {
 			info.width = maxWidth;
+
+			if (leftChangeable) {
+				// predicting, based on the original information, the last left valid in case of reach the min/max dimension
+				// this calculation avoid browser event leaks when user interact very fast with their mouse
+				info.left = originalInfo.left + originalInfo.width - maxWidth;
+			}
 		}
 
-		if (isNumber(minWidth) && (info.width < minWidth)) {
+		if (isMinWidth) {
 			info.width = minWidth;
+
+			if (leftChangeable) {
+				// predicting, based on the original information, the last left valid in case of reach the min/max dimension
+				// this calculation avoid browser event leaks when user interact very fast with their mouse
+				info.left = originalInfo.left + originalInfo.width - minWidth;
+			}
 		}
 	},
 
