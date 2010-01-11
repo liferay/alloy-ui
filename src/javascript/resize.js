@@ -64,6 +64,7 @@ var L = A.Lang,
 
 	EV_RESIZE = 'resize:resize'
 	EV_RESIZE_END = 'resize:end'
+	EV_MOUSE_DOWN = 'resize:mouseDown'
 	EV_RESIZE_START = 'resize:start'
 
 	T = 't',
@@ -331,6 +332,7 @@ A.extend(Resize, A.Base, {
 
 		instance.on('drag:drag', instance._handleResizeEvent);
 		instance.on('drag:end', instance._handleResizeEndEvent);
+		instance.on('drag:mouseDown', instance._handleMouseDownEvent);
 		instance.on('drag:start', instance._handleResizeStartEvent);
 	},
 
@@ -371,6 +373,14 @@ A.extend(Resize, A.Base, {
 
 		instance.publish(EV_RESIZE_END, {
             defaultFn: this._defResizeEndFn,
+            queuable: false,
+            emitFacade: true,
+            bubbles: true,
+            prefix: RESIZE
+        });
+
+		instance.publish(EV_MOUSE_DOWN, {
+            defaultFn: this._defMouseDownFn,
             queuable: false,
             emitFacade: true,
             bubbles: true,
@@ -655,13 +665,17 @@ A.extend(Resize, A.Base, {
 		instance.set(ACTIVE_HANDLE_EL, null);
 	},
 
+	_defMouseDownFn: function(event) {
+		var instance = this;
+
+		instance.set(RESIZING, true);
+	},
+
 	_defResizeStartFn: function(event) {
 		var instance = this;
 
 		instance._updateOriginalInfo(event);
 		instance._updateInfo(event);
-
-		instance.set(RESIZING, true);
 	},
 
 	/*
@@ -679,6 +693,10 @@ A.extend(Resize, A.Base, {
 
 	_handleResizeEndEvent: function(event) {
 		this.fire(EV_RESIZE_END, { dragEvent: event, info: this.info });
+	},
+
+	_handleMouseDownEvent: function(event) {
+		this.fire(EV_MOUSE_DOWN, { dragEvent: event, info: this.info });
 	},
 
 	_handleResizeStartEvent: function(event) {
