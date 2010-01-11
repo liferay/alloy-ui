@@ -516,7 +516,7 @@ A.extend(Resize, A.Base, {
 		var minHeight = instance.get(MIN_HEIGHT);
 
 		// if the handles being dragged could change the top info
-		var topChangeable = /tl|t|tr/i.test(activeHandle);
+		var topChangeable = /^(tl|t|tr)$/i.test(activeHandle);
 
 		var isMaxHeight = isNumber(maxHeight) && (info.height > maxHeight);
 		var isMinHeight = isNumber(minHeight) && (info.height < minHeight);
@@ -551,7 +551,7 @@ A.extend(Resize, A.Base, {
 		var minWidth = instance.get(MIN_WIDTH);
 
 		// if the handles being dragged could change the left info
-		var leftChangeable = /tl|l|bl/i.test(activeHandle);
+		var leftChangeable = /^(tl|l|bl)$/i.test(activeHandle);
 
 		var isMaxWidth = isNumber(maxWidth) && (info.width > maxWidth);
 		var isMinWidth = isNumber(minWidth) && (info.width < minWidth);
