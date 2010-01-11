@@ -342,7 +342,7 @@ A.extend(Resize, A.Base, {
 		var instance = this;
 
 		// hide handles if AUTO_HIDE is true
-		instance._setHandlesUI(
+		instance._setHideHandlesUI(
 			instance.get(AUTO_HIDE)
 		);
 	},
@@ -729,7 +729,27 @@ A.extend(Resize, A.Base, {
 	/*
 	* Setters
 	*/
-	_setHandlesUI: function(val) {
+	_setActiveHandlesUI: function(val) {
+		var instance = this;
+		var activeHandleEl = instance.get(ACTIVE_HANDLE_EL);
+
+		if (activeHandleEl) {
+			if (val) {
+				instance.eachHandle(
+					function(handleEl) {
+						handleEl.removeClass(CSS_RESIZE_HANDLE_ACTIVE);
+					}
+				);
+
+				activeHandleEl.addClass(CSS_RESIZE_HANDLE_ACTIVE);
+			}
+			else {
+				activeHandleEl.removeClass(CSS_RESIZE_HANDLE_ACTIVE);
+			}
+		}
+	},
+
+	_setHideHandlesUI: function(val) {
 		var instance = this;
 		var wrapper = instance.get(WRAPPER);
 
@@ -808,7 +828,7 @@ A.extend(Resize, A.Base, {
 		var instance = this;
 
 		if (instance.get(AUTO_HIDE)) {
-			instance._setHandlesUI(false);
+			instance._setHideHandlesUI(false);
 		}
 	},
 
@@ -816,7 +836,7 @@ A.extend(Resize, A.Base, {
 		var instance = this;
 
 		if (instance.get(AUTO_HIDE)) {
-			instance._setHandlesUI(true);
+			instance._setHideHandlesUI(true);
 		}
 	},
 
@@ -828,11 +848,7 @@ A.extend(Resize, A.Base, {
 			instance.set(ACTIVE_HANDLE, data.handle);
 			instance.set(ACTIVE_HANDLE_EL, data.node);
 
-			instance.eachHandle(function(handleEl) {
-				handleEl.removeClass(CSS_RESIZE_HANDLE_ACTIVE);
-			});
-
-			data.node.addClass(CSS_RESIZE_HANDLE_ACTIVE);
+			instance._setActiveHandlesUI(true);
 		}
 	},
 
@@ -840,7 +856,7 @@ A.extend(Resize, A.Base, {
 		var instance = this;
 
 		if (!instance.get(RESIZING)) {
-			event.currentTarget.removeClass(CSS_RESIZE_HANDLE_ACTIVE);
+			instance._setActiveHandlesUI(false);
 		}
 	}
 });
