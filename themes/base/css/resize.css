@@ -12,6 +12,10 @@
 	zoom: 1;
 }
 
+.aui-resize-hidden-handles .aui-resize-handle {
+	display: none;
+}
+
 .aui-resize-handle-t, .aui-resize-handle-b {
 	width: 100%;
 	left: 0;
