@@ -94,6 +94,7 @@ AUI().ready(
 
 		var resize1 = new A.Resize({
 			node: '#resize1',
+			proxy: true,
 			preserveRatio: true,
 			// wrap: true,
 			// handles: 'all',
@@ -109,6 +110,7 @@ AUI().ready(
 
 		var resize2 = new A.Resize({
 			node: '#resize2',
+			proxy: true,
 			// wrap: true,
 			// handles: 'all',
 			// handles: 't, tr, r, br, b, bl, l, tl'
@@ -118,6 +120,7 @@ AUI().ready(
 		var resize3 = new A.Resize({
 			node: '#resize3',
 			autoHide: true,
+			proxy: true,
 			preserveRatio: true,
 			// wrap: true,
 			// handles: 'all',
@@ -132,20 +135,23 @@ AUI().ready(
 
 		var resize4 = new A.Resize({
 			node: '#resize4',
-			preserveRatio: true,
+			proxy: true,
+			// preserveRatio: true,
 			tickX: 30,
 			tickY: 30
 		});
 
 		var resize5 = new A.Resize({
 			node: '#resize5',
+			proxy: true,
 			preserveRatio: true,
 			autoHide: true,
 			constrain2node: '#parent'
 		});
 
 		var resize6 = new A.Resize({
-			node: '#resize6'
+			node: '#resize6',
+			proxy: true
 		});
 
 	}
