@@ -29,6 +29,7 @@ var L = A.Lang,
 	CONSTRAIN2NODE = 'constrain2node',
 	CONSTRAIN2REGION = 'constrain2region',
 	CONSTRAIN2VIEW = 'constrain2view',
+	CURSOR = 'cursor',
 	DATA = 'data',
 	DIAGONAL = 'diagonal',
 	DOTTED = 'dotted',
@@ -779,6 +780,7 @@ A.extend(Resize, A.Base, {
 		var dd = new A.DD.Drag(
 			{
 				bubbles: instance,
+				clickPixelThresh: 0,
 				clickTimeThresh: 0,
 				data: {
 					handle: handle,
@@ -837,9 +839,11 @@ A.extend(Resize, A.Base, {
 	_syncProxyUI: function() {
 		var instance = this;
 		var info = instance.info;
+		var activeHandleEl = instance.get(ACTIVE_HANDLE_EL);
 		var proxyEl = instance.get(PROXY_EL);
 
 		proxyEl.show().setStyles({
+			cursor: activeHandleEl.getStyle(CURSOR),
 			height: info.height + PX,
 			width: info.width + PX
 		});
