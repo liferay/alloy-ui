@@ -843,15 +843,15 @@ A.extend(Resize, A.Base, {
 		var activeHandleEl = instance.get(ACTIVE_HANDLE_EL);
 		var proxyEl = instance.get(PROXY_EL);
 
+		var cursor = activeHandleEl.getStyle(CURSOR);
+
 		proxyEl.show().setStyles({
+			cursor: cursor,
 			height: info.height + PX,
 			width: info.width + PX
 		});
 
-		activeHandleEl.dd.set(
-			DRAG_CURSOR,
-			activeHandleEl.getStyle(CURSOR)
-		);
+		activeHandleEl.dd.set(DRAG_CURSOR, cursor);
 
 		proxyEl.setXY([ info.nodeX, info.nodeY ]);
 	},
@@ -1022,7 +1022,7 @@ A.extend(Resize, A.Base, {
 		var instance = this;
 		var node = event.currentTarget;
 		var handle = instance._extractHandleName(node)
-console.log(handle);
+
 		if (!instance.get(RESIZING)) {
 			instance.set(ACTIVE_HANDLE, handle);
 			instance.set(ACTIVE_HANDLE_EL, node);
