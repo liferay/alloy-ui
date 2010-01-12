@@ -477,52 +477,6 @@ A.extend(Resize, A.Base, {
 		return node;
 	},
 
-	_resize: function() {
-		var instance = this;
-		var handle = instance.get(ACTIVE_HANDLE);
-
-		var info = instance.info;
-		var originalInfo = instance.originalInfo;
-
-		var dx = info.lastXY[0] - originalInfo.lastXY[0];
-		var dy = info.lastXY[1] - originalInfo.lastXY[1];
-
-		var rules = {
-			t: function() {
-				info.top = originalInfo.top + dy;
-				info.height = originalInfo.height - dy;
-			},
-			r: function() {
-				info.width = originalInfo.width + dx;
-			},
-			l: function() {
-				info.left = originalInfo.left + dx;
-				info.width = originalInfo.width - dx;
-			},
-			b: function() {
-				info.height = originalInfo.height + dy;
-			},
-			tr: function() {
-				this.t();
-				this.r();
-			},
-			br: function() {
-				this.b();
-				this.r();
-			},
-			tl: function() {
-				this.t();
-				this.l();
-			},
-			bl: function() {
-				this.b();
-				this.l();
-			}
-		};
-
-		rules[handle](dx, dy);
-	},
-
 	_checkHeight: function() {
 		var instance = this;
 		var info = instance.info;
@@ -674,15 +628,6 @@ A.extend(Resize, A.Base, {
 		);
 	},
 
-	_updateInfo: function(event) {
-		var instance = this;
-
-		instance.info = instance._getInfo(
-			instance.get(WRAPPER),
-			event
-		);
-	},
-
 	_getInfo: function(node, event) {
 		var instance = this;
 		var wrapper = instance.get(WRAPPER);
@@ -731,6 +676,52 @@ A.extend(Resize, A.Base, {
 			offsetWidth: node.get(OFFSET_WIDTH),
 			lastXY: lastXY
 		};
+	},
+
+	_resize: function() {
+		var instance = this;
+		var handle = instance.get(ACTIVE_HANDLE);
+
+		var info = instance.info;
+		var originalInfo = instance.originalInfo;
+
+		var dx = info.lastXY[0] - originalInfo.lastXY[0];
+		var dy = info.lastXY[1] - originalInfo.lastXY[1];
+
+		var rules = {
+			t: function() {
+				info.top = originalInfo.top + dy;
+				info.height = originalInfo.height - dy;
+			},
+			r: function() {
+				info.width = originalInfo.width + dx;
+			},
+			l: function() {
+				info.left = originalInfo.left + dx;
+				info.width = originalInfo.width - dx;
+			},
+			b: function() {
+				info.height = originalInfo.height + dy;
+			},
+			tr: function() {
+				this.t();
+				this.r();
+			},
+			br: function() {
+				this.b();
+				this.r();
+			},
+			tl: function() {
+				this.t();
+				this.l();
+			},
+			bl: function() {
+				this.b();
+				this.l();
+			}
+		};
+
+		rules[handle](dx, dy);
 	},
 
 	_setupHandleDD: function(handle, node) {
@@ -791,6 +782,15 @@ A.extend(Resize, A.Base, {
 		if (A.UA.webkit) {
 			node.setStyle(RESIZE, NONE);
 		}
+	},
+
+	_updateInfo: function(event) {
+		var instance = this;
+
+		instance.info = instance._getInfo(
+			instance.get(WRAPPER),
+			event
+		);
 	},
 
 	/*
