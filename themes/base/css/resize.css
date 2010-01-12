@@ -13,7 +13,9 @@
 }
 
 .aui-resize-hidden-handles .aui-resize-handle {
-	display: none;
+	opacity: 0;
+
+    filter: alpha(opacity=0);
 }
 
 .aui-resize-handle-t, .aui-resize-handle-b {
