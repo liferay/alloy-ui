@@ -477,7 +477,7 @@ A.extend(Resize, A.Base, {
 		return node;
 	},
 
-	_calculateInfo: function() {
+	_resize: function() {
 		var instance = this;
 		var handle = instance.get(ACTIVE_HANDLE);
 
@@ -851,7 +851,7 @@ A.extend(Resize, A.Base, {
 
 		instance._updateInfo(event);
 
-		instance._calculateInfo();
+		instance._resize();
 
 		instance._checkHeight();
 
