@@ -20,7 +20,7 @@
 		}
 
 		.aui-resize-handle-active {
-			background: #ccc;
+			background: #bbb;
 		}
 
 		#resize1 {
@@ -116,8 +116,10 @@ AUI().ready(
 
 		var resize3 = new A.Resize({
 			node: '#resize3',
+			autoHide: true,
 			// wrap: true,
 			// handles: 'all',
+			// aspectRatio: 1,
 			on: {
 				resize: function(event) {
 					// event.halt();
