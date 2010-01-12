@@ -18,13 +18,19 @@
 
 	window.AUI = {
 		defaults: {
-			classNamePrefix: 'aui',
+			chart: {
+				swfURL: 'assets/chart.swf'
+			},
 
-			//base: '',
+			classNamePrefix: 'aui',
 
 			defaultModules: [ 'aui-base' ],
 
 			filter: 'raw',
+
+			io: {
+				method: 'GET'
+			},
 
 			modules: {
 
@@ -35,22 +41,9 @@
 					fullpath: PATH_JAVASCRIPT + 'base.js',
 					requires: [ 'event', 'oop', 'component', 'aui-node', 'collection', 'widget-css' ]
 				},
-				'widget-css': {
-					ext: false,
-					fullpath: PATH_THEME_ROOT + 'widget.css',
-					type: 'css'
-				},
 
 				/*
-				* Data Set
-				*/
-				'data-set': {
-					fullpath: PATH_JAVASCRIPT + 'data-set.js',
-					requires: [ 'oop', 'collection', 'base' ]
-				},
-
-				/*
-				* AutoComplete
+				* Autocomplete
 				*/
 				'autocomplete': {
 					fullpath: PATH_JAVASCRIPT + 'autocomplete.js',
@@ -59,79 +52,6 @@
 				'autocomplete-css': {
 					ext: false,
 					fullpath: PATH_THEME_ROOT + 'autocomplete.css',
-					type: 'css'
-				},
-
-				/*
-				* Parse Content
-				*/
-				'parse-content': {
-					fullpath: PATH_JAVASCRIPT + 'parse-content.js',
-					requires: [ 'async-queue', 'io', 'plugin' ]
-				},
-
-				/*
-				* Editable
-				*/
-				'editable': {
-					fullpath: PATH_JAVASCRIPT + 'editable.js',
-					requires: [ 'aui-base', 'combobox', 'textarea', 'editable-css' ]
-				},
-				'editable-css': {
-					ext: false,
-					fullpath: PATH_THEME_ROOT + 'editable.css',
-					type: 'css'
-				},
-
-				/*
-				* Paginator
-				*/
-				'paginator': {
-					fullpath: PATH_JAVASCRIPT + 'paginator.js',
-					requires: [ 'aui-base', 'substitute', 'paginator-css' ]
-				},
-				'paginator-css': {
-					ext: false,
-					fullpath: PATH_THEME_ROOT + 'paginator.css',
-					type: 'css'
-				},
-
-				/*
-				* Rating
-				*/
-				'rating': {
-					fullpath: PATH_JAVASCRIPT + 'rating.js',
-					requires: [ 'aui-base', 'rating-css' ]
-				},
-				'rating-css': {
-					ext: false,
-					fullpath: PATH_THEME_ROOT + 'rating.css',
-					type: 'css'
-				},
-
-				/*
-				* Tool Item
-				*/
-				'tool-item': {
-					fullpath: PATH_JAVASCRIPT + 'tool-item.js',
-					requires: [ 'aui-base', 'state-interaction', 'tool-item-css' ]
-				},
-				'tool-item-css': {
-					ext: false,
-					fullpath: PATH_THEME_ROOT + 'tool-item.css',
-					type: 'css'
-				},
-
-				/*
-				* Tool Set
-				*/
-				'tool-set': {
-					fullpath: PATH_JAVASCRIPT + 'tool-set.js',
-					requires: [ 'data-set', 'tool-item', 'tool-set-css' ]
-				},
-				'tool-set-css': {
-					ext: false,
-					fullpath: PATH_THEME_ROOT + 'tool-set.css',
 					type: 'css'
 				},
 
@@ -149,7 +69,7 @@
 				},
 
 				/*
-				* Calendar
+				* Char Counter
 				*/
 				'char-counter': {
 					fullpath: PATH_JAVASCRIPT + 'char-counter.js',
@@ -157,33 +77,15 @@
 				},
 
 				/*
-				* DatePickerSelect
+				* Chart
 				*/
-				'date-picker-select': {
-					fullpath: PATH_JAVASCRIPT + 'date-picker-select.js',
-					requires: [ 'calendar', 'tool-item', 'date-picker-select-css' ]
-				},
-				'date-picker-select-css': {
-					ext: false,
-					fullpath: PATH_THEME_ROOT + 'date-picker-select.css',
-					type: 'css'
+				'chart': {
+					fullpath: PATH_JAVASCRIPT + 'chart.js',
+					requires: [ 'datasource', 'swf', 'json' ]
 				},
 
 				/*
-				* ContextPanel
-				*/
-				'context-panel': {
-					fullpath: PATH_JAVASCRIPT + 'context-panel.js',
-					requires: [ 'context-overlay', 'anim', 'context-panel-css' ]
-				},
-				'context-panel-css': {
-					ext: false,
-					fullpath: PATH_THEME_ROOT + 'context-panel.css',
-					type: 'css'
-				},
-
-				/*
-				* ColorPicker
+				* Color Picker
 				*/
 				'color-picker': {
 					fullpath: PATH_JAVASCRIPT + 'color-picker.js',
@@ -196,59 +98,73 @@
 				},
 
 				/*
-				* Tooltip
+				* Combobox
 				*/
-				'tooltip': {
-					fullpath: PATH_JAVASCRIPT + 'tooltip.js',
-					requires: [ 'context-panel', 'tooltip-css' ]
+				'combobox': {
+					fullpath: PATH_JAVASCRIPT + 'combobox.js',
+					requires: [ 'textarea', 'tool-set', 'combobox-css' ]
 				},
-				'tooltip-css': {
+				'combobox-css': {
 					ext: false,
-					fullpath: PATH_THEME_ROOT + 'tooltip.css',
+					fullpath: PATH_THEME_ROOT + 'combobox.css',
 					type: 'css'
 				},
 
 				/*
-				* TreeData
+				* Component
 				*/
-				'tree-data': {
-					fullpath: PATH_JAVASCRIPT + 'tree-data.js',
-					requires: [ 'aui-base' ]
+				'component': {
+					fullpath: PATH_JAVASCRIPT + 'component.js',
+					requires: [ 'widget' ]
 				},
 
 				/*
-				* TreeNode
+				* Component Overlay
 				*/
-				'tree-node': {
-					fullpath: PATH_JAVASCRIPT + 'tree-node.js',
-					requires: [ 'tree-data', 'io', 'json', 'tree-css' ]
+				'component-overlay': {
+					fullpath: PATH_JAVASCRIPT + 'component-overlay.js',
+					requires: [ 'component', 'widget-position', 'widget-stack', 'widget-position-ext', 'widget-stdmod' ]
 				},
 
 				/*
-				* TreeView
+				* ContextOverlay
 				*/
-				'tree-view': {
-					fullpath: PATH_JAVASCRIPT + 'tree-view.js',
-					requires: [ 'tree-node', 'dd', 'tree-css' ]
+				'context-overlay': {
+					fullpath: PATH_JAVASCRIPT + 'context-overlay.js',
+					requires: [ 'aui-base', 'component-overlay', 'overlay-manager', 'delayed-task' ]
 				},
 
-				'tree-css': {
+				/*
+				* Context Panel
+				*/
+				'context-panel': {
+					fullpath: PATH_JAVASCRIPT + 'context-panel.js',
+					requires: [ 'context-overlay', 'anim', 'context-panel-css' ]
+				},
+				'context-panel-css': {
 					ext: false,
-					fullpath: PATH_THEME_ROOT + 'tree.css',
+					fullpath: PATH_THEME_ROOT + 'context-panel.css',
 					type: 'css'
 				},
 
 				/*
-				* TextboxList
+				* Data Set
 				*/
-				'textboxlist': {
-					fullpath: PATH_JAVASCRIPT + 'textboxlist.js',
-					requires: [ 'anim-node-plugin', 'aui-base', 'autocomplete', 'node-focusmanager', 'textboxlist-css' ]
+				'data-set': {
+					fullpath: PATH_JAVASCRIPT + 'data-set.js',
+					requires: [ 'oop', 'collection', 'base' ]
 				},
 
-				'textboxlist-css': {
+				/*
+				* Date Picker Select
+				*/
+				'date-picker-select': {
+					fullpath: PATH_JAVASCRIPT + 'date-picker-select.js',
+					requires: [ 'calendar', 'tool-item', 'date-picker-select-css' ]
+				},
+				'date-picker-select-css': {
 					ext: false,
-					fullpath: PATH_THEME_ROOT + 'textboxlist.css',
+					fullpath: PATH_THEME_ROOT + 'date-picker-select.css',
 					type: 'css'
 				},
 
@@ -266,23 +182,169 @@
 				},
 
 				/*
-				* Component Overlay
+				* Editable
 				*/
-				'component-overlay': {
-					fullpath: PATH_JAVASCRIPT + 'component-overlay.js',
-					requires: [ 'component', 'widget-position', 'widget-stack', 'widget-position-ext', 'widget-stdmod' ]
+				'editable': {
+					fullpath: PATH_JAVASCRIPT + 'editable.js',
+					requires: [ 'aui-base', 'combobox', 'textarea', 'editable-css' ]
+				},
+				'editable-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'editable.css',
+					type: 'css'
 				},
 
 				/*
-				* Tabs
+				* Field
 				*/
-				'tabs': {
-					fullpath: PATH_JAVASCRIPT + 'tabs.js',
-					requires: ['component', 'state-interaction', 'tabs-css']
+				'field': {
+					fullpath: PATH_JAVASCRIPT + 'field.js',
+					requires: [ 'substitute' ]
 				},
-				'tabs-css': {
+
+				/*
+				* Fieldset
+				*/
+				'fieldset': {
+					fullpath: PATH_JAVASCRIPT + 'fieldset.js',
+					requires: [ 'panel' ]
+				},
+
+				/*
+				* Form
+				*/
+				'form': {
+					fullpath: PATH_JAVASCRIPT + 'form.js',
+					requires: [ 'aui-base', 'data-set', 'io-form', 'field' ]
+				},
+
+				/*
+				* Image Gallery
+				*/
+				'image-gallery': {
+					fullpath: PATH_JAVASCRIPT + 'image-gallery.js',
+					requires: [ 'image-viewer', 'paginator', 'tool-set', 'image-gallery-css' ]
+				},
+
+				'image-gallery-css': {
 					ext: false,
-					fullpath: PATH_THEME_ROOT + 'tabs.css',
+					fullpath: PATH_THEME_ROOT + 'image-gallery.css',
+					type: 'css'
+				},
+
+				/*
+				* Image Viewer
+				*/
+				'image-viewer': {
+					fullpath: PATH_JAVASCRIPT + 'image-viewer.js',
+					requires: [ 'aui-base', 'anim', 'overlay-mask', 'substitute', 'image-viewer-css' ]
+				},
+
+				'image-viewer-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'image-viewer.css',
+					type: 'css'
+				},
+
+				/*
+				* Input Event Handler
+				*/
+				'input-handler': {
+					fullpath: PATH_JAVASCRIPT + 'input-handler.js'
+				},
+
+				/*
+				* IO Plugin
+				*/
+				'io-plugin': {
+					fullpath: PATH_JAVASCRIPT + 'io-plugin.js',
+					requires: [ 'aui-base', 'component-overlay', 'parse-content', 'io-request', 'plugin' ]
+				},
+
+				/*
+				* IO Request
+				*/
+				'io-request': {
+					fullpath: PATH_JAVASCRIPT + 'io-request.js',
+					requires: [ 'aui-base', 'io', 'json', 'plugin' ]
+				},
+
+				/*
+				* Live Search
+				*/
+				'live-search': {
+					fullpath: PATH_JAVASCRIPT + 'live-search.js',
+					requires: [ 'aui-base' ]
+				},
+
+				/*
+				* Nested List
+				*/
+				'nested-list': {
+					fullpath: PATH_JAVASCRIPT + 'nested-list.js',
+					requires: [ 'aui-base', 'dd' ]
+				},
+
+				/*
+				* Overlay Manager
+				*/
+				'overlay-manager': {
+					fullpath: PATH_JAVASCRIPT + 'overlay-manager.js',
+					requires: [ 'aui-base', 'component', 'component-overlay', 'overlay', 'plugin' ]
+				},
+
+				/*
+				* Overlay Mask
+				*/
+				'overlay-mask': {
+					fullpath: PATH_JAVASCRIPT + 'overlay-mask.js',
+					requires: [ 'aui-base', 'component-overlay', 'event-resize' ]
+				},
+
+				/*
+				* Paginator
+				*/
+				'paginator': {
+					fullpath: PATH_JAVASCRIPT + 'paginator.js',
+					requires: [ 'aui-base', 'substitute', 'paginator-css' ]
+				},
+				'paginator-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'paginator.css',
+					type: 'css'
+				},
+
+				/*
+				* Panel
+				*/
+				'panel': {
+					fullpath: PATH_JAVASCRIPT + 'panel.js',
+					requires: [ 'component', 'widget-stdmod', 'tool-set', 'panel-css' ]
+				},
+				'panel-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'panel.css',
+					type: 'css'
+				},
+
+				/*
+				* Parse Content
+				*/
+				'parse-content': {
+					fullpath: PATH_JAVASCRIPT + 'parse-content.js',
+					requires: [ 'async-queue', 'io', 'plugin' ]
+				},
+
+				/*
+				* Rating
+				*/
+				'rating': {
+					fullpath: PATH_JAVASCRIPT + 'rating.js',
+					requires: [ 'aui-base', 'rating-css' ]
+				},
+				'rating-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'rating.css',
 					type: 'css'
 				},
 
@@ -313,88 +375,32 @@
 				},
 
 				/*
-				* LiveSearch
+				* State Interaction
 				*/
-				'live-search': {
-					fullpath: PATH_JAVASCRIPT + 'live-search.js',
+				'state-interaction': {
+					fullpath: PATH_JAVASCRIPT + 'state-interaction.js',
+					requires: [ 'aui-base', 'plugin' ]
+				},
+
+				/*
+				* SWF
+				*/
+				'swf': {
+					fullpath: PATH_JAVASCRIPT + 'swf.js',
 					requires: [ 'aui-base' ]
 				},
 
 				/*
-				* Nested list
+				* Tabs
 				*/
-				'nested-list': {
-					fullpath: PATH_JAVASCRIPT + 'nested-list.js',
-					requires: [ 'aui-base', 'dd' ]
+				'tabs': {
+					fullpath: PATH_JAVASCRIPT + 'tabs.js',
+					requires: ['component', 'state-interaction', 'tabs-css']
 				},
-
-				/*
-				* ContextOverlay
-				*/
-				'context-overlay': {
-					fullpath: PATH_JAVASCRIPT + 'context-overlay.js',
-					requires: [ 'aui-base', 'component-overlay', 'overlay-manager', 'delayed-task' ]
-				},
-
-				/*
-				* OverlayManager
-				*/
-				'overlay-manager': {
-					fullpath: PATH_JAVASCRIPT + 'overlay-manager.js',
-					requires: [ 'aui-base', 'component', 'component-overlay', 'overlay', 'plugin' ]
-				},
-
-				/*
-				* OverlayMask
-				*/
-				'overlay-mask': {
-					fullpath: PATH_JAVASCRIPT + 'overlay-mask.js',
-					requires: [ 'aui-base', 'component-overlay', 'event-resize' ]
-				},
-
-				/*
-				* Module
-				*/
-				'panel': {
-					fullpath: PATH_JAVASCRIPT + 'panel.js',
-					requires: [ 'component', 'widget-stdmod', 'tool-set', 'panel-css' ]
-				},
-				'panel-css': {
+				'tabs-css': {
 					ext: false,
-					fullpath: PATH_THEME_ROOT + 'panel.css',
+					fullpath: PATH_THEME_ROOT + 'tabs.css',
 					type: 'css'
-				},
-
-				/*
-				* Form
-				*/
-				'form': {
-					fullpath: PATH_JAVASCRIPT + 'form.js',
-					requires: [ 'aui-base', 'data-set', 'io-form', 'field' ]
-				},
-
-				/*
-				* Fieldset
-				*/
-				'fieldset': {
-					fullpath: PATH_JAVASCRIPT + 'fieldset.js',
-					requires: [ 'panel' ]
-				},
-
-				/*
-				* Field
-				*/
-				'field': {
-					fullpath: PATH_JAVASCRIPT + 'field.js',
-					requires: [ 'substitute' ]
-				},
-
-				/*
-				* Textfield
-				*/
-				'textfield': {
-					fullpath: PATH_JAVASCRIPT + 'textfield.js',
-					requires: [ 'field' ]
 				},
 
 				/*
@@ -411,99 +417,91 @@
 				},
 
 				/*
-				* Combobox
+				* Textbox List
 				*/
-				'combobox': {
-					fullpath: PATH_JAVASCRIPT + 'combobox.js',
-					requires: [ 'textarea', 'tool-set', 'combobox-css' ]
+				'textboxlist': {
+					fullpath: PATH_JAVASCRIPT + 'textboxlist.js',
+					requires: [ 'anim-node-plugin', 'aui-base', 'autocomplete', 'node-focusmanager', 'textboxlist-css' ]
 				},
-				'combobox-css': {
+
+				'textboxlist-css': {
 					ext: false,
-					fullpath: PATH_THEME_ROOT + 'combobox.css',
+					fullpath: PATH_THEME_ROOT + 'textboxlist.css',
 					type: 'css'
 				},
 
 				/*
-				* Component
+				* Textfield
 				*/
-				'component': {
-					fullpath: PATH_JAVASCRIPT + 'component.js',
-					requires: [ 'widget' ]
+				'textfield': {
+					fullpath: PATH_JAVASCRIPT + 'textfield.js',
+					requires: [ 'field' ]
 				},
 
 				/*
-				* IO Plugin
+				* Tool Item
 				*/
-				'io-plugin': {
-					fullpath: PATH_JAVASCRIPT + 'io-plugin.js',
-					requires: [ 'aui-base', 'component-overlay', 'parse-content', 'io-request', 'plugin' ]
+				'tool-item': {
+					fullpath: PATH_JAVASCRIPT + 'tool-item.js',
+					requires: [ 'aui-base', 'state-interaction', 'tool-item-css' ]
 				},
-
-				/*
-				* Input Event Handler
-				*/
-				'input-handler': {
-					fullpath: PATH_JAVASCRIPT + 'input-handler.js'
-				},
-
-				/*
-				* IO Ajax configuration
-				*/
-				'io-request': {
-					fullpath: PATH_JAVASCRIPT + 'io-request.js',
-					requires: [ 'aui-base', 'io', 'json', 'plugin' ]
-				},
-
-				/*
-				* Image Viewer
-				*/
-				'image-viewer': {
-					fullpath: PATH_JAVASCRIPT + 'image-viewer.js',
-					requires: [ 'aui-base', 'anim', 'overlay-mask', 'substitute', 'image-viewer-css' ]
-				},
-
-				'image-viewer-css': {
+				'tool-item-css': {
 					ext: false,
-					fullpath: PATH_THEME_ROOT + 'image-viewer.css',
+					fullpath: PATH_THEME_ROOT + 'tool-item.css',
 					type: 'css'
 				},
 
 				/*
-				* ImageGallery
+				* Tool Set
 				*/
-				'image-gallery': {
-					fullpath: PATH_JAVASCRIPT + 'image-gallery.js',
-					requires: [ 'image-viewer', 'paginator', 'tool-set', 'image-gallery-css' ]
+				'tool-set': {
+					fullpath: PATH_JAVASCRIPT + 'tool-set.js',
+					requires: [ 'data-set', 'tool-item', 'tool-set-css' ]
 				},
-
-				'image-gallery-css': {
+				'tool-set-css': {
 					ext: false,
-					fullpath: PATH_THEME_ROOT + 'image-gallery.css',
+					fullpath: PATH_THEME_ROOT + 'tool-set.css',
 					type: 'css'
 				},
 
 				/*
-				* State Interaction plugin
+				* Tooltip
 				*/
-				'state-interaction': {
-					fullpath: PATH_JAVASCRIPT + 'state-interaction.js',
-					requires: [ 'aui-base', 'plugin' ]
+				'tooltip': {
+					fullpath: PATH_JAVASCRIPT + 'tooltip.js',
+					requires: [ 'context-panel', 'tooltip-css' ]
+				},
+				'tooltip-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'tooltip.css',
+					type: 'css'
 				},
 
 				/*
-				* Chart Widgets
+				* Tree
 				*/
-				'chart': {
-					fullpath: PATH_JAVASCRIPT + 'chart.js',
-					requires: [ 'datasource', 'swf', 'json' ]
+				'tree-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'tree.css',
+					type: 'css'
 				},
-
-				/*
-				* SWF Utility
-				*/
-				'swf': {
-					fullpath: PATH_JAVASCRIPT + 'swf.js',
+				'tree-data': {
+					fullpath: PATH_JAVASCRIPT + 'tree-data.js',
 					requires: [ 'aui-base' ]
+				},
+				'tree-node': {
+					fullpath: PATH_JAVASCRIPT + 'tree-node.js',
+					requires: [ 'tree-data', 'io', 'json', 'tree-css' ]
+				},
+				'tree-view': {
+					fullpath: PATH_JAVASCRIPT + 'tree-view.js',
+					requires: [ 'tree-node', 'dd', 'tree-css' ]
+				},
+
+				'widget-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'widget.css',
+					type: 'css'
 				}
 			},
 
@@ -511,14 +509,6 @@
 				images: PATH_THEME_IMAGES,
 				javascript: PATH_JAVASCRIPT,
 				theme: PATH_THEME_ROOT
-			},
-
-			io: {
-				method: 'GET'
-			},
-
-			chart: {
-				swfURL: 'assets/chart.swf'
 			}
 		}
 	}
