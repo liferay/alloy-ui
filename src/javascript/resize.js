@@ -23,6 +23,7 @@ var L = A.Lang,
 	ALL = 'all',
 	AUTO = 'auto',
 	AUTO_HIDE = 'autoHide',
+	CLASS_NAME = 'className',
 	CONSTRAIN2NODE = 'constrain2node',
 	CONSTRAIN2REGION = 'constrain2region',
 	CONSTRAIN2VIEW = 'constrain2view',
@@ -625,6 +626,22 @@ A.extend(Resize, A.Base, {
 		);
 	},
 
+	// extract handle name from a string
+	// using A.cached to memoize the function for performance
+	_extractHandleName: A.cached(
+		function(node) {
+			var className = node.get(CLASS_NAME);
+
+			var match = className.match(
+				new RegExp(
+					getCN(RESIZE, HANDLE, '(\\w{1,2})')
+				)
+			);
+
+			return match ? match[1] : null;
+		}
+	),
+
 	_getInfo: function(node, event) {
 		var instance = this;
 		var wrapper = instance.get(WRAPPER);
@@ -927,11 +944,12 @@ A.extend(Resize, A.Base, {
 
 	_onHandleMouseOver: function(event) {
 		var instance = this;
-		var data = event.currentTarget.dd.get(DATA);
+		var node = event.currentTarget;
+		var handle = instance._extractHandleName(node)
 
 		if (!instance.get(RESIZING)) {
-			instance.set(ACTIVE_HANDLE, data.handle);
-			instance.set(ACTIVE_HANDLE_EL, data.node);
+			instance.set(ACTIVE_HANDLE, handle);
+			instance.set(ACTIVE_HANDLE_EL, node);
 
 			instance._setActiveHandlesUI(true);
 		}
