@@ -485,8 +485,8 @@ A.extend(Resize, A.Base, {
 		// if the handles being dragged could change the top info
 		var changeTopHandles = /^(tl|t|tr)$/i.test(handle);
 
-		var isMaxHeight = isNumber(maxHeight) && (info.height > maxHeight);
-		var isMinHeight = isNumber(minHeight) && (info.height < minHeight);
+		var isMaxHeight = (info.height > maxHeight);
+		var isMinHeight = (info.height < minHeight);
 
 		if (isMaxHeight) {
 			info.height = maxHeight;
@@ -577,8 +577,8 @@ A.extend(Resize, A.Base, {
 		// if the handles being dragged could change the left info
 		var changeLeftHandles = /^(tl|l|bl)$/i.test(handle);
 
-		var isMaxWidth = isNumber(maxWidth) && (info.width > maxWidth);
-		var isMinWidth = isNumber(minWidth) && (info.width < minWidth);
+		var isMaxWidth = (info.width > maxWidth);
+		var isMinWidth = (info.width < minWidth);
 
 		if (isMaxWidth) {
 			info.width = maxWidth;
