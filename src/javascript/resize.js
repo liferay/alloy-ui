@@ -74,7 +74,6 @@ var L = A.Lang,
 	WRAPPER = 'wrapper',
 	WRAP_TYPES = 'wrapTypes',
 
-	EV_MOUSE_DOWN = 'resize:mouseDown'
 	EV_MOUSE_UP = 'resize:mouseUp'
 	EV_RESIZE = 'resize:resize'
 	EV_RESIZE_END = 'resize:end'
@@ -390,7 +389,6 @@ A.extend(Resize, A.Base, {
 		instance.on('drag:drag', instance._handleResizeEvent);
 		instance.on('drag:dropmiss', instance._handleMouseUpEvent);
 		instance.on('drag:end', instance._handleResizeEndEvent);
-		instance.on('drag:mouseDown', instance._handleMouseDownEvent);
 		instance.on('drag:start', instance._handleResizeStartEvent);
 	},
 
@@ -438,11 +436,6 @@ A.extend(Resize, A.Base, {
 		publish(
 			EV_RESIZE_END,
 			this._defResizeEndFn
-		);
-
-		publish(
-			EV_MOUSE_DOWN,
-			this._defMouseDownFn
 		);
 
 		publish(
@@ -786,6 +779,8 @@ A.extend(Resize, A.Base, {
 		var dd = new A.DD.Drag(
 			{
 				bubbles: instance,
+				clickPixelThresh: 0,
+				clickTimeThresh: 0,
 				data: {
 					handle: handle,
 					node: node
@@ -903,12 +898,6 @@ A.extend(Resize, A.Base, {
 	/*
 	* Events
 	*/
-	_defMouseDownFn: function(event) {
-		var instance = this;
-
-		instance.set(RESIZING, true);
-	},
-
 	_defMouseUpFn: function(event) {
 		var instance = this;
 
@@ -962,6 +951,8 @@ A.extend(Resize, A.Base, {
 	_defResizeStartFn: function(event) {
 		var instance = this;
 
+		instance.set(RESIZING, true);
+
 		// create an originalInfo information for reference
 		instance.originalInfo = instance._getInfo(
 			instance.get(WRAPPER),
@@ -997,10 +988,6 @@ A.extend(Resize, A.Base, {
 
 	_handleResizeEndEvent: function(event) {
 		this.fire(EV_RESIZE_END, { dragEvent: event, info: this.info });
-	},
-
-	_handleMouseDownEvent: function(event) {
-		this.fire(EV_MOUSE_DOWN, { dragEvent: event, info: this.info });
 	},
 
 	_handleResizeStartEvent: function(event) {
