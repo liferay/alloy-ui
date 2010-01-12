@@ -389,45 +389,42 @@ A.extend(Resize, A.Base, {
 	_createEvents: function() {
 		var instance = this;
 
-		instance.publish(EV_RESIZE_START, {
-            defaultFn: this._defResizeStartFn,
-            queuable: false,
-            emitFacade: true,
-            bubbles: true,
-            prefix: RESIZE
-        });
+		// create publish function for kweight optimization
+		var publish = function(name, fn) {
+			instance.publish(name, {
+	            defaultFn: fn,
+	            queuable: false,
+	            emitFacade: true,
+	            bubbles: true,
+	            prefix: RESIZE
+	        });
+		};
 
-		instance.publish(EV_RESIZE, {
-            defaultFn: this._defResizeFn,
-            queuable: false,
-            emitFacade: true,
-            bubbles: true,
-            prefix: RESIZE
-        });
+		// publishing events
+		publish(
+			EV_RESIZE_START,
+			this._defResizeStartFn
+		);
 
-		instance.publish(EV_RESIZE_END, {
-            defaultFn: this._defResizeEndFn,
-            queuable: false,
-            emitFacade: true,
-            bubbles: true,
-            prefix: RESIZE
-        });
+		publish(
+			EV_RESIZE,
+			this._defResizeFn
+		);
 
-		instance.publish(EV_MOUSE_DOWN, {
-            defaultFn: this._defMouseDownFn,
-            queuable: false,
-            emitFacade: true,
-            bubbles: true,
-            prefix: RESIZE
-        });
+		publish(
+			EV_RESIZE_END,
+			this._defResizeEndFn
+		);
 
-		instance.publish(EV_MOUSE_UP, {
-            defaultFn: this._defMouseUpFn,
-            queuable: false,
-            emitFacade: true,
-            bubbles: true,
-            prefix: RESIZE
-        });
+		publish(
+			EV_MOUSE_DOWN,
+			this._defMouseDownFn
+		);
+
+		publish(
+			EV_MOUSE_UP,
+			this._defMouseUpFn
+		);
 	},
 
 	_renderHandles: function() {
