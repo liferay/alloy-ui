@@ -394,12 +394,6 @@ A.extend(Resize, A.Base, {
 		instance.on('drag:start', instance._handleResizeStartEvent);
 	},
 
-	_bindResize: function() {
-		var instance = this;
-
-		instance.after(EV_RESIZE, instance._afterResize);
-	},
-
 	_bindHandle: function() {
 		var instance = this;
 		var wrapper = instance.get(WRAPPER);
@@ -408,6 +402,12 @@ A.extend(Resize, A.Base, {
 		wrapper.on('mouseleave', A.bind(instance._onWrapperMouseLeave, instance));
 		wrapper.delegate('mouseenter', A.bind(instance._onHandleMouseOver, instance), DOT+CSS_RESIZE_HANDLE);
 		wrapper.delegate('mouseleave', A.bind(instance._onHandleMouseOut, instance), DOT+CSS_RESIZE_HANDLE);
+	},
+
+	_bindResize: function() {
+		var instance = this;
+
+		instance.after(EV_RESIZE, instance._afterResize);
 	},
 
 	_createEvents: function() {
@@ -661,7 +661,7 @@ A.extend(Resize, A.Base, {
 
 			var match = className.match(
 				new RegExp(
-					getCN(RESIZE, HANDLE, '(\\w{1,2})')
+					getCN(RESIZE, HANDLE, '(\\w{1,2})\\b')
 				)
 			);
 
@@ -1022,7 +1022,7 @@ A.extend(Resize, A.Base, {
 		var instance = this;
 		var node = event.currentTarget;
 		var handle = instance._extractHandleName(node)
-
+console.log(handle);
 		if (!instance.get(RESIZING)) {
 			instance.set(ACTIVE_HANDLE, handle);
 			instance.set(ACTIVE_HANDLE_EL, node);
