@@ -479,7 +479,7 @@ A.extend(Resize, A.Base, {
 
 	_calculateInfo: function() {
 		var instance = this;
-		var activeHandle = instance.get(ACTIVE_HANDLE);
+		var handle = instance.get(ACTIVE_HANDLE);
 
 		var info = instance.info;
 		var originalInfo = instance.originalInfo;
@@ -520,19 +520,19 @@ A.extend(Resize, A.Base, {
 			}
 		};
 
-		rules[activeHandle](dx, dy);
+		rules[handle](dx, dy);
 	},
 
 	_checkHeight: function() {
 		var instance = this;
 		var info = instance.info;
 		var originalInfo = instance.originalInfo;
-		var activeHandle = instance.get(ACTIVE_HANDLE);
+		var handle = instance.get(ACTIVE_HANDLE);
 		var maxHeight = instance.get(MAX_HEIGHT);
 		var minHeight = instance.get(MIN_HEIGHT);
 
 		// if the handles being dragged could change the top info
-		var topChangeable = /^(tl|t|tr)$/i.test(activeHandle);
+		var changeTopHandles = /^(tl|t|tr)$/i.test(handle);
 
 		var isMaxHeight = isNumber(maxHeight) && (info.height > maxHeight);
 		var isMinHeight = isNumber(minHeight) && (info.height < minHeight);
@@ -540,7 +540,7 @@ A.extend(Resize, A.Base, {
 		if (isMaxHeight) {
 			info.height = maxHeight;
 
-			if (topChangeable) {
+			if (changeTopHandles) {
 				// predicting, based on the original information, the last top valid in case of reach the min/max dimension
 				// this calculation avoid browser event leaks when user interact very fast with their mouse
 				info.top = originalInfo.top + originalInfo.height - maxHeight;
@@ -550,7 +550,7 @@ A.extend(Resize, A.Base, {
 		if (isMinHeight) {
 			info.height = minHeight;
 
-			if (topChangeable) {
+			if (changeTopHandles) {
 				// predicting, based on the original information, the last top valid in case of reach the min/max dimension
 				// this calculation avoid browser event leaks when user interact very fast with their mouse
 				info.top = originalInfo.top + originalInfo.height - minHeight;
@@ -619,12 +619,12 @@ A.extend(Resize, A.Base, {
 		var instance = this;
 		var info = instance.info;
 		var originalInfo = instance.originalInfo;
-		var activeHandle = instance.get(ACTIVE_HANDLE);
+		var handle = instance.get(ACTIVE_HANDLE);
 		var maxWidth = instance.get(MAX_WIDTH);
 		var minWidth = instance.get(MIN_WIDTH);
 
 		// if the handles being dragged could change the left info
-		var leftChangeable = /^(tl|l|bl)$/i.test(activeHandle);
+		var changeLeftHandles = /^(tl|l|bl)$/i.test(handle);
 
 		var isMaxWidth = isNumber(maxWidth) && (info.width > maxWidth);
 		var isMinWidth = isNumber(minWidth) && (info.width < minWidth);
@@ -632,7 +632,7 @@ A.extend(Resize, A.Base, {
 		if (isMaxWidth) {
 			info.width = maxWidth;
 
-			if (leftChangeable) {
+			if (changeLeftHandles) {
 				// predicting, based on the original information, the last left valid in case of reach the min/max dimension
 				// this calculation avoid browser event leaks when user interact very fast with their mouse
 				info.left = originalInfo.left + originalInfo.width - maxWidth;
@@ -642,7 +642,7 @@ A.extend(Resize, A.Base, {
 		if (isMinWidth) {
 			info.width = minWidth;
 
-			if (leftChangeable) {
+			if (changeLeftHandles) {
 				// predicting, based on the original information, the last left valid in case of reach the min/max dimension
 				// this calculation avoid browser event leaks when user interact very fast with their mouse
 				info.left = originalInfo.left + originalInfo.width - minWidth;
