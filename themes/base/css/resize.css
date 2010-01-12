@@ -16,7 +16,7 @@
 	position: absolute;
 	border: 1px dashed #000;
     position: absolute;
-    z-index: 1000;
+    z-index: 10000;
 }
 
 .aui-resize-hidden-handles .aui-resize-handle {
