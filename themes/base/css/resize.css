@@ -12,6 +12,13 @@
 	zoom: 1;
 }
 
+.aui-resize-proxy {
+	position: absolute;
+	border: 1px dashed #000;
+    position: absolute;
+    z-index: 1000;
+}
+
 .aui-resize-hidden-handles .aui-resize-handle {
 	opacity: 0;
 

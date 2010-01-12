@@ -2,6 +2,8 @@ AUI.add('resize', function(A) {
 
 /*
 * Resize
+* TODO: Containment with proxy enabled and fix containment handles locking.
+*		To fix the Containment #2528540 need to be fixed.
 */
 var L = A.Lang,
 	isArray = L.isArray,
@@ -53,8 +55,11 @@ var L = A.Lang,
 	OFFSET_LEFT = 'offsetLeft',
 	OFFSET_TOP = 'offsetTop',
 	OFFSET_WIDTH = 'offsetWidth',
+	PARENT_NODE = 'parentNode',
 	POSITION = 'position',
 	PRESEVE_RATIO = 'preserveRatio',
+	PROXY = 'proxy',
+	PROXY_EL = 'proxyEl',
 	PX = 'px',
 	RELATIVE = 'relative',
 	RESIZE = 'resize',
@@ -100,6 +105,10 @@ var L = A.Lang,
 		return Array.prototype.slice.call(arguments).join(SPACE);
 	},
 
+	nodeSetter = function(val) {
+		return A.one(val);
+	},
+
 	getCN = A.ClassNameManager.getClassName,
 
 	CSS_ICON = getCN(ICON),
@@ -113,6 +122,7 @@ var L = A.Lang,
 	CSS_RESIZE_HANDLE_INNER_PLACEHOLDER = getCN(RESIZE, HANDLE, INNER, '{handle}'),
 	CSS_RESIZE_HANDLE_PLACEHOLDER = getCN(RESIZE, HANDLE, '{handle}'),
 	CSS_RESIZE_HIDDEN_HANDLES = getCN(RESIZE, HIDDEN, HANDLES),
+	CSS_RESIZE_PROXY = getCN(RESIZE, PROXY),
 	CSS_RESIZE_WRAPPER = getCN(RESIZE, WRAPPER),
 
 	CSS_ICON_DIAGONAL = concat(CSS_ICON, CSS_ICON_GRIPSMALL_DIAGONAL_BR),
@@ -122,6 +132,8 @@ var L = A.Lang,
 	TPL_HANDLE = '<div class="'+concat(CSS_RESIZE_HANDLE, CSS_RESIZE_HANDLE_PLACEHOLDER)+'">' +
 					'<div class="'+concat(CSS_RESIZE_HANDLE_INNER, CSS_RESIZE_HANDLE_INNER_PLACEHOLDER)+'"></div>' +
 				 '</div>',
+
+	TPL_PROXY_EL = '<div class="' + CSS_RESIZE_PROXY + '"></div>',
 
 	TPL_WRAP_EL = '<div class="' + CSS_RESIZE_WRAPPER + '"></div>',
 
@@ -218,14 +230,24 @@ A.mix(Resize, {
 		},
 
 		node: {
-			setter: function(val) {
-				return A.one(val);
-			}
+			setter: nodeSetter
 		},
 
 		preserveRatio: {
 			value: false,
 			validator: isBoolean
+		},
+
+		proxy: {
+			value: false,
+			validator: isBoolean
+		},
+
+		proxyEl: {
+			setter: nodeSetter,
+			valueFn: function() {
+				return A.Node.create(TPL_PROXY_EL);
+			}
 		},
 
 		resizing: {
@@ -335,6 +357,7 @@ A.extend(Resize, A.Base, {
 		var instance = this;
 
 		instance._renderHandles();
+		instance._renderProxy();
 	},
 
 	bindUI: function() {
@@ -435,6 +458,15 @@ A.extend(Resize, A.Base, {
 		instance.eachHandle(function(handleEl) {
 			wrapper.append(handleEl);
 		});
+	},
+
+	_renderProxy: function() {
+		var instance = this;
+		var proxyEl = instance.get(PROXY_EL);
+
+		instance.get(WRAPPER).get(PARENT_NODE).append(
+			proxyEl.hide()
+		);
 	},
 
 	/*
@@ -650,6 +682,7 @@ A.extend(Resize, A.Base, {
 			var lastXY = event.dragEvent.target.lastXY;
 		}
 
+		var nodeXY = node.getXY();
 		var top = num( node.getStyle(TOP) );
 		var left = num( node.getStyle(LEFT) );
 		var offsetTop = node.get(OFFSET_TOP);
@@ -684,12 +717,21 @@ A.extend(Resize, A.Base, {
 			top: top,
 			offsetLeft: offsetLeft,
 			offsetTop: offsetTop,
-			height: num( node.getStyle(HEIGHT) ),
-			width: num( node.getStyle(WIDTH) ),
-			offsetHeight: node.get(OFFSET_HEIGHT),
-			offsetWidth: node.get(OFFSET_WIDTH),
-			lastXY: lastXY
+			height: node.get(OFFSET_HEIGHT),
+			width: node.get(OFFSET_WIDTH),
+			lastXY: lastXY,
+			nodeX: nodeXY[0],
+			nodeY: nodeXY[1]
 		};
+	},
+
+	_recalculateXY: function() {
+		var instance = this;
+		var info = instance.info;
+		var originalInfo = instance.originalInfo;
+
+		info.nodeX = originalInfo.nodeX + (info.left - originalInfo.left);
+		info.nodeY = originalInfo.nodeY + (info.top - originalInfo.top);
 	},
 
 	_resize: function() {
@@ -798,6 +840,19 @@ A.extend(Resize, A.Base, {
 		}
 	},
 
+	_syncProxyUI: function() {
+		var instance = this;
+		var info = instance.info;
+		var proxyEl = instance.get(PROXY_EL);
+
+		proxyEl.show().setStyles({
+			height: info.height + PX,
+			width: info.width + PX
+		});
+
+		proxyEl.setXY([ info.nodeX, info.nodeY ]);
+	},
+
 	_updateInfo: function(event) {
 		var instance = this;
 
@@ -863,21 +918,40 @@ A.extend(Resize, A.Base, {
 	_defResizeFn: function(event) {
 		var instance = this;
 
+		// update the instance.info values (top, left, offsetTop, offsetTop, height, width, nodeX, nodeY, lastXY)
 		instance._updateInfo(event);
 
+		// basic resize calculations
 		instance._resize();
 
+		// check the max/min height and locking top when these values are reach
 		instance._checkHeight();
 
+		// check the max/min width and locking left when these values are reach
 		instance._checkWidth();
 
+		// calculating the ratio, for proportionally resizing
 		if (instance.get(PRESEVE_RATIO)) {
 			instance._checkRatio();
 		}
+
+		// nodeX and nodeY information need to be updated based on the new top/left
+		// nodeY/nodeY is used to position the proxyEl
+		instance._recalculateXY();
 	},
 
 	_defResizeEndFn: function(event) {
 		var instance = this;
+
+		// if proxy is true, hide it on resize end
+		if (instance.get(PROXY)) {
+			instance._syncProxyUI();
+
+			instance.get(PROXY_EL).hide();
+		}
+
+		// syncUI when resize end
+		instance._syncUI();
 
 		instance.set(ACTIVE_HANDLE, null);
 		instance.set(ACTIVE_HANDLE_EL, null);
@@ -903,7 +977,14 @@ A.extend(Resize, A.Base, {
 	_afterResize: function(event) {
 		var instance = this;
 
-		instance._syncUI();
+		// if proxy is true _syncProxyUI instead of _syncUI
+		if (instance.get(PROXY)) {
+			instance._syncProxyUI();
+		}
+		else {
+			// _syncUI of the wrapper, not using proxy
+			instance._syncUI();
+		}
 	},
 
 	_handleMouseUpEvent: function(event) {
