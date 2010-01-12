@@ -20,7 +20,7 @@
 		}
 
 		.aui-resize-handle-active {
-			background: #bbb;
+/*			background: #bbb;*/
 		}
 
 		#resize1 {
@@ -69,7 +69,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 </div>
 
 <div id="resize1" class="aui-resize">
-	<strong>Simple element</strong><br />
+	<strong>Simple element - Preserving Ratio</strong><br />
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 </div>
 
@@ -78,12 +78,12 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 <button id="resize2">Button</button>
 
 <div id="resize3" class="aui-resize">
-	<strong>Absolute positioned element</strong><br />
+	<strong>Absolute positioned element - Preserving Ratio</strong><br />
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 </div>
 
 <div id="resize4" class="aui-resize">
-	<strong>Fixed positioned element</strong><br />
+	<strong>Fixed positioned element - Preserving Ratio</strong><br />
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 </div>
 
@@ -94,6 +94,7 @@ AUI().ready(
 
 		var resize1 = new A.Resize({
 			node: '#resize1',
+			preserveRatio: true,
 			// wrap: true,
 			// handles: 'all',
 			maxHeight: 170,
@@ -117,6 +118,7 @@ AUI().ready(
 		var resize3 = new A.Resize({
 			node: '#resize3',
 			autoHide: true,
+			preserveRatio: true,
 			// wrap: true,
 			// handles: 'all',
 			// aspectRatio: 1,
@@ -130,6 +132,7 @@ AUI().ready(
 
 		var resize4 = new A.Resize({
 			node: '#resize4',
+			preserveRatio: true,
 			tickX: 30,
 			tickY: 30
 		});

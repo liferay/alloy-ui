@@ -53,6 +53,7 @@ var L = A.Lang,
 	OFFSET_TOP = 'offsetTop',
 	OFFSET_WIDTH = 'offsetWidth',
 	POSITION = 'position',
+	PRESEVE_RATIO = 'preserveRatio',
 	PX = 'px',
 	RELATIVE = 'relative',
 	RESIZE = 'resize',
@@ -67,9 +68,10 @@ var L = A.Lang,
 	WRAPPER = 'wrapper',
 	WRAP_TYPES = 'wrapTypes',
 
+	EV_MOUSE_DOWN = 'resize:mouseDown'
+	EV_MOUSE_UP = 'resize:mouseUp'
 	EV_RESIZE = 'resize:resize'
 	EV_RESIZE_END = 'resize:end'
-	EV_MOUSE_DOWN = 'resize:mouseDown'
 	EV_RESIZE_START = 'resize:start'
 
 	T = 't',
@@ -220,6 +222,11 @@ A.mix(Resize, {
 			}
 		},
 
+		preserveRatio: {
+			value: false,
+			validator: isBoolean
+		},
+
 		resizing: {
 			value: false,
 			validator: isBoolean
@@ -357,6 +364,7 @@ A.extend(Resize, A.Base, {
 		var instance = this;
 
 		instance.on('drag:drag', instance._handleResizeEvent);
+		instance.on('drag:dropmiss', instance._handleMouseUpEvent);
 		instance.on('drag:end', instance._handleResizeEndEvent);
 		instance.on('drag:mouseDown', instance._handleMouseDownEvent);
 		instance.on('drag:start', instance._handleResizeStartEvent);
@@ -407,6 +415,14 @@ A.extend(Resize, A.Base, {
 
 		instance.publish(EV_MOUSE_DOWN, {
             defaultFn: this._defMouseDownFn,
+            queuable: false,
+            emitFacade: true,
+            bubbles: true,
+            prefix: RESIZE
+        });
+
+		instance.publish(EV_MOUSE_UP, {
+            defaultFn: this._defMouseUpFn,
             queuable: false,
             emitFacade: true,
             bubbles: true,
@@ -544,10 +560,59 @@ A.extend(Resize, A.Base, {
 
 	_checkRatio: function() {
 		var instance = this;
-		var instance = this;
+
 		var info = instance.info;
+		var originalInfo = instance.originalInfo;
+		var handle = instance.get(ACTIVE_HANDLE);
+		var oWidth = originalInfo.width;
+		var oHeight = originalInfo.height;
+		var oTop = originalInfo.top;
+		var oLeft = originalInfo.left;
 
+		// wRatio/hRatio functions keep the ratio information always synced with the current info information
+		// RETURN: percentage how much width/height has changed from the original width/height
+		var wRatio = function() {
+			return (info.width/oWidth);
+		};
 
+		var hRatio = function() {
+			return (info.height/oHeight);
+		};
+
+		// regex to detect the handles
+		var changeHeightHandles = /^(t|b)$/i;
+		var changeWidthHandles = /^(bl|br|l|r|tl|tr)$/i;
+
+		// handles which only change the height, need to vary the width first
+		// and then check width to constrain to max/min dimensions
+		if (changeHeightHandles.test(handle)) {
+			info.width = oWidth*hRatio()
+			instance._checkWidth();
+			info.height = oHeight*wRatio();
+		}
+		// handles which are able to change the width need to vary the height first
+		// and then check height to constrain to max/min dimensions
+		else if (changeWidthHandles.test(handle)) {
+			info.height = oHeight*wRatio();
+			instance._checkHeight();
+			info.width = oWidth*hRatio();
+		}
+
+		// regex to detect the handles
+		var changeTopHandles = /^(tl|t|tr)$/i;
+		var changeLeftHandles = /^(tl|l|bl)$/i;
+
+		// fixing the top on handles which are able to change top
+		// the idea here is change the top based on how much the height has changed instead of follow the dy
+		if (changeTopHandles.test(handle)) {
+			info.top = oTop + (oHeight - info.height);
+		}
+
+		// fixing the left on handles which are able to change left
+		// the idea here is change the left based on how much the width has changed instead of follow the dx
+		if (changeLeftHandles.test(handle)) {
+			info.left = oLeft + (oWidth - info.width);
+		}
 	},
 
 	_checkWidth: function() {
@@ -618,19 +683,13 @@ A.extend(Resize, A.Base, {
 		);
 	},
 
-	_updateOriginalInfo: function(event) {
-		var instance = this;
-
-		instance.originalInfo = instance._getInfo(
-			instance.get(WRAPPER),
-			event
-		);
-	},
-
 	_getInfo: function(node, event) {
 		var instance = this;
 		var wrapper = instance.get(WRAPPER);
-		var drag = event.dragEvent.target;
+
+		if (event) {
+			var lastXY = event.dragEvent.target.lastXY;
+		}
 
 		var top = num( node.getStyle(TOP) );
 		var left = num( node.getStyle(LEFT) );
@@ -670,7 +729,7 @@ A.extend(Resize, A.Base, {
 			width: num( node.getStyle(WIDTH) ),
 			offsetHeight: node.get(OFFSET_HEIGHT),
 			offsetWidth: node.get(OFFSET_WIDTH),
-			lastXY: drag.lastXY
+			lastXY: lastXY
 		};
 	},
 
@@ -775,6 +834,18 @@ A.extend(Resize, A.Base, {
 	/*
 	* Events
 	*/
+	_defMouseDownFn: function(event) {
+		var instance = this;
+
+		instance.set(RESIZING, true);
+	},
+
+	_defMouseUpFn: function(event) {
+		var instance = this;
+
+		instance.set(RESIZING, false);
+	},
+
 	_defResizeFn: function(event) {
 		var instance = this;
 
@@ -786,27 +857,29 @@ A.extend(Resize, A.Base, {
 
 		instance._checkWidth();
 
-		instance._checkRatio();
+		if (instance.get(PRESEVE_RATIO)) {
+			instance._checkRatio();
+		}
 	},
 
 	_defResizeEndFn: function(event) {
 		var instance = this;
 
-		instance.set(RESIZING, false);
 		instance.set(ACTIVE_HANDLE, null);
 		instance.set(ACTIVE_HANDLE_EL, null);
-	},
 
-	_defMouseDownFn: function(event) {
-		var instance = this;
-
-		instance.set(RESIZING, true);
+		instance._setActiveHandlesUI(false);
 	},
 
 	_defResizeStartFn: function(event) {
 		var instance = this;
 
-		instance._updateOriginalInfo(event);
+		// create an originalInfo information for reference
+		instance.originalInfo = instance._getInfo(
+			instance.get(WRAPPER),
+			event
+		);
+
 		instance._updateInfo(event);
 	},
 
@@ -817,6 +890,10 @@ A.extend(Resize, A.Base, {
 		var instance = this;
 
 		instance._syncUI();
+	},
+
+	_handleMouseUpEvent: function(event) {
+		this.fire(EV_MOUSE_UP, { dragEvent: event, info: this.info });
 	},
 
 	_handleResizeEvent: function(event) {
