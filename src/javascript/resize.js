@@ -34,6 +34,7 @@ var L = A.Lang,
 	DIAGONAL = 'diagonal',
 	DOTTED = 'dotted',
 	DRAGGING = 'dragging',
+	DRAG_CURSOR = 'dragCursor',
 	FIXED = 'fixed',
 	GRIP = 'grip',
 	GRIPSMALL = 'gripsmall',
@@ -787,7 +788,7 @@ A.extend(Resize, A.Base, {
 					node: node
 				},
 				node: node,
-				useShim: A.UA.ie,
+				useShim: true,
 				move: false
 			}
 		);
@@ -843,10 +844,14 @@ A.extend(Resize, A.Base, {
 		var proxyEl = instance.get(PROXY_EL);
 
 		proxyEl.show().setStyles({
-			cursor: activeHandleEl.getStyle(CURSOR),
 			height: info.height + PX,
 			width: info.width + PX
 		});
+
+		activeHandleEl.dd.set(
+			DRAG_CURSOR,
+			activeHandleEl.getStyle(CURSOR)
+		);
 
 		proxyEl.setXY([ info.nodeX, info.nodeY ]);
 	},
