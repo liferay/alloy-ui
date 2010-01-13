@@ -20,7 +20,9 @@
 
 .aui-field-labels-inline .aui-field-label,
 .aui-field-labels-inline .aui-field-input,
-.aui-field-labels-inline .aui-field-hint {
+.aui-field-labels-inline .aui-field-hint,
+.aui-field-choice .aui-choice-label,
+.aui-field-choice .aui-field-input-choice {
 	float: left;
 }
 
