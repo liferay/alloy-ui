@@ -46,7 +46,7 @@
 			background: lightblue;
 			position: fixed;
 		}
-		
+
 		#parent {
 			position: relative;
 			width: 500px;
@@ -70,23 +70,26 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 	<img src="../tooltip/assets/cream.jpg" id="resize5" />
 </div>
 
-<div id="resize1" class="aui-resize">
+<div id="resize1">
 	<strong>Simple element - Preserving Ratio</strong><br />
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	<br/><button class="destroy">Destroy-me!</button>
 </div>
 
 <br />
 
 <button id="resize2">Button</button>
 
-<div id="resize3" class="aui-resize">
+<div id="resize3">
 	<strong>Absolute positioned element - Preserving Ratio</strong><br />
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	<br/><button class="destroy">Destroy-me!</button>
 </div>
 
-<div id="resize4" class="aui-resize">
+<div id="resize4">
 	<strong>Fixed positioned element - Preserving Ratio</strong><br />
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	<br/><button class="destroy">Destroy-me!</button>
 </div>
 
 <script type="text/javascript" charset="utf-8">
@@ -98,7 +101,7 @@ AUI().ready(
 			node: '#resize1',
 			proxy: true,
 			preserveRatio: true,
-			// wrap: true,
+			wrap: true,
 			// handles: 'all',
 			maxHeight: 170,
 			maxWidth: 400,
@@ -109,6 +112,8 @@ AUI().ready(
 			},
 			handles: 't, tr, r, br, b, bl, l, tl'
 		});
+
+		// resize1.destroy();
 
 		var resize2 = new A.Resize({
 			node: '#resize2',
@@ -135,6 +140,8 @@ AUI().ready(
 			handles: 't, tr, r, br, b, bl, l, tl'
 		});
 
+		// resize3.destroy();
+
 		var resize4 = new A.Resize({
 			node: '#resize4',
 			proxy: true,
@@ -156,6 +163,19 @@ AUI().ready(
 			proxy: true
 		});
 
+		// Extras
+
+		A.all('#resize1 .destroy').on('click', function() {
+			resize1.destroy();
+		});
+
+		A.all('#resize3 .destroy').on('click', function() {
+			resize3.destroy();
+		});
+
+		A.all('#resize4 .destroy').on('click', function() {
+			resize4.destroy();
+		});
 	}
 );
 
