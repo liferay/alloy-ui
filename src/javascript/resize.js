@@ -360,6 +360,8 @@ A.extend(Resize, A.Base, {
 	initializer: function() {
 		var instance = this;
 
+		instance.get(NODE).addClass(CSS_RESIZE);
+
 		instance.renderer();
 	},
 
@@ -386,6 +388,42 @@ A.extend(Resize, A.Base, {
 		instance._setHideHandlesUI(
 			instance.get(AUTO_HIDE)
 		);
+	},
+
+	destructor: function() {
+		var instance = this;
+		var node = instance.get(NODE);
+		var wrapper = instance.get(WRAPPER);
+
+		// purgeElements on boundingBox
+		A.Event.purgeElement(wrapper, true);
+
+		// destroy handles dd and remove them from the dom
+		instance.eachHandle(function(handleEl) {
+			var dd = handleEl.dd;
+
+			if (dd) {
+				dd.destroy();
+			}
+
+			// remove handle
+			handleEl.remove();
+		});
+
+		// unwrap node
+		if (instance.get(WRAP)) {
+			node.setStyles({
+				margin: wrapper.getStyle(MARGIN),
+				position: wrapper.getStyle(POSITION)
+			});
+
+			wrapper.placeBefore(node);
+
+			wrapper.remove();
+		}
+
+		node.removeClass(CSS_RESIZE);
+		node.removeClass(CSS_RESIZE_HIDDEN_HANDLES);
 	},
 
     renderer: function() {
