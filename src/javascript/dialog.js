@@ -167,6 +167,8 @@ Dialog.prototype = {
 	bindUI: function() {
 		var instance = this;
 
+		instance._bindLazyComponents();
+
 		instance.publish('close', { defaultFn: instance._close });
 
 		instance.on('visibleChange', instance._afterSetVisible);
@@ -177,6 +179,13 @@ Dialog.prototype = {
 		var boundingBox = instance.get(BOUNDING_BOX);
 
 		A.Event.purgeElement(boundingBox, true);
+	},
+
+	_bindLazyComponents: function() {
+		var instance = this;
+		var boundingBox = instance.get(BOUNDING_BOX);
+
+		boundingBox.on('mouseenter', A.bind(instance._initLazyComponents, instance));
 	},
 
 	/*
@@ -195,8 +204,6 @@ Dialog.prototype = {
 
 		// forcing lazyAdd:true attrs call the setter
 		instance.get(STACK);
-		instance.get(DRAGGABLE);
-		instance.get(RESIZABLE);
 		instance.get(IO);
 	},
 
@@ -243,6 +250,19 @@ Dialog.prototype = {
 
 		if (buttons.length) {
 			instance.set(FOOTER_CONTENT, container);
+		}
+	},
+
+	_initLazyComponents: function() {
+		var instance = this;
+
+		// forcing lazyAdd:true attrs call the setter
+		if (!instance.get(DRAG_INSTANCE) && instance.get(DRAGGABLE)) {
+			instance.get(DRAGGABLE);
+		}
+
+		if (!instance.get(RESIZABLE_INSTANCE) && instance.get(RESIZABLE)) {
+			instance.get(RESIZABLE);
 		}
 	},
 
