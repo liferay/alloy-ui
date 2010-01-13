@@ -25,6 +25,7 @@ var L = A.Lang,
 	ALL = 'all',
 	AUTO = 'auto',
 	AUTO_HIDE = 'autoHide',
+	BOTTOM = 'bottom',
 	CLASS_NAME = 'className',
 	CONSTRAIN2NODE = 'constrain2node',
 	CONSTRAIN2REGION = 'constrain2region',
@@ -46,6 +47,7 @@ var L = A.Lang,
 	ICON = 'icon',
 	INNER = 'inner',
 	LEFT = 'left',
+	MARGIN = 'margin',
 	MAX_HEIGHT = 'maxHeight',
 	MAX_WIDTH = 'maxWidth',
 	MIN_HEIGHT = 'minHeight',
@@ -66,6 +68,7 @@ var L = A.Lang,
 	RELATIVE = 'relative',
 	RESIZE = 'resize',
 	RESIZING = 'resizing',
+	RIGHT = 'right',
 	STATIC = 'static',
 	TICK_X = 'tickX',
 	TICK_Y = 'tickY',
@@ -109,6 +112,12 @@ var L = A.Lang,
 	nodeSetter = function(val) {
 		return A.one(val);
 	},
+
+    toInitialCap = A.cached(
+		function(str) {
+        	return str.substring(0, 1).toUpperCase() + str.substring(1);
+    	}
+	),
 
 	getCN = A.ClassNameManager.getClassName,
 
@@ -629,27 +638,45 @@ A.extend(Resize, A.Base, {
 		}
 	},
 
-	_copyStyles: function(nodeFrom, nodeTo) {
+	_copyStyles: function(node, wrapper) {
 		var instance = this;
-		var position = nodeFrom.getStyle(POSITION).toLowerCase();
+		var position = node.getStyle(POSITION).toLowerCase();
 
 		// resizable wrapper should be positioned
 		if (position == STATIC) {
 			position = RELATIVE;
 		}
 
-		nodeTo.setStyle(
-			POSITION, position
-		);
+		// copy margin, padding, position styles from the node to wrapper
+		var wrapperStyle = {
+			position: position
+		};
 
-		nodeTo.set(
+		var nodeStyle = {};
+
+		// store margin(Top,Right,Bottom,Left) from the nodes involved
+		// apply margin from node to the wrapper
+		A.each([ TOP, RIGHT, BOTTOM, LEFT ], function(dir) {
+			var name = MARGIN + toInitialCap(dir);
+
+			nodeStyle[name] = wrapper.getStyle(name);
+			wrapperStyle[name] = node.getStyle(name);
+		});
+
+		wrapper.setStyles(wrapperStyle);
+		node.setStyles(nodeStyle);
+
+		// force remove margin from the internal node
+		node.setStyles({ margin: 0 });
+
+		wrapper.set(
 			OFFSET_HEIGHT,
-			nodeFrom.get(OFFSET_HEIGHT)
+			node.get(OFFSET_HEIGHT)
 		);
 
-		nodeTo.set(
+		wrapper.set(
 			OFFSET_WIDTH,
-			nodeFrom.get(OFFSET_WIDTH)
+			node.get(OFFSET_WIDTH)
 		);
 	},
 
