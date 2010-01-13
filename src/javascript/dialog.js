@@ -22,12 +22,20 @@ var L = A.Lang,
 	DRAG_INSTANCE = 'dragInstance',
 	FOOTER_CONTENT = 'footerContent',
 	HD = 'hd',
+	HEIGHT = 'height',
 	ICON = 'icon',
 	IO = 'io',
 	LOADING = 'loading',
 	MODAL = 'modal',
+	PROXY = 'proxy',
+	RESIZABLE = 'resizable',
+	RESIZABLE_INSTANCE = 'resizableInstance',
 	STACK = 'stack',
 	TOOLS = 'tools',
+	WIDTH = 'width',
+
+	EV_RESIZE = 'resize:resize',
+	EV_RESIZE_END = 'resize:end',
 
 	getCN = A.ClassNameManager.getClassName,
 
@@ -100,6 +108,17 @@ A.mix(
 				lazyAdd: false,
 				value: false,
 				validator: isBoolean
+			},
+
+			resizable: {
+				setter: function(v) {
+					return this._setResizable(v);
+				},
+				value: true
+			},
+
+			resizableInstance: {
+				value: null
 			},
 
 			stack: {
@@ -177,6 +196,7 @@ Dialog.prototype = {
 		// forcing lazyAdd:true attrs call the setter
 		instance.get(STACK);
 		instance.get(DRAGGABLE);
+		instance.get(RESIZABLE);
 		instance.get(IO);
 	},
 
@@ -230,7 +250,7 @@ Dialog.prototype = {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
 
-		var destroyDraggable = function() {
+		var destroy = function() {
 			var dragInstance = instance.get(DRAG_INSTANCE);
 
 			if (dragInstance) {
@@ -248,7 +268,7 @@ Dialog.prototype = {
 				handles: [ DOT + CSS_DIALOG_HD ]
 			};
 
-			var dragOptions = A.merge(defaults, instance.get(DRAGGABLE) || {});
+			var dragOptions = A.merge(defaults, value || {});
 
 			// change the drag scope callback to execute using the dialog scope
 			if (dragOptions.on) {
@@ -260,7 +280,7 @@ Dialog.prototype = {
 				);
 			}
 
-			destroyDraggable();
+			destroy();
 
 			var dragInstance = new A.DD.Drag(dragOptions);
 
@@ -274,7 +294,7 @@ Dialog.prototype = {
 			instance.set(DRAG_INSTANCE, dragInstance);
 		}
 		else {
-			destroyDraggable();
+			destroy();
 		}
 
 		return value;
@@ -291,6 +311,58 @@ Dialog.prototype = {
 		}
 
 		return value;
+	},
+
+	_setResizable: function(value) {
+		var instance = this;
+		var resizableInstance = instance.get(RESIZABLE_INSTANCE);
+
+		var destroy = function() {
+			if (resizableInstance) {
+				resizableInstance.destroy();
+			}
+		};
+
+		if (value) {
+			var setDimensions = function(event) {
+				var type = event.type;
+				var info = event.info;
+				var resizeProxy = event.currentTarget.get(PROXY);
+
+				if ((type == EV_RESIZE_END) ||
+					((type == EV_RESIZE) && !resizeProxy)) {
+						instance.set(HEIGHT, info.height);
+						instance.set(WIDTH, info.width);
+				}
+			};
+
+			destroy();
+
+			var resize = new A.Resize(
+				A.merge(
+					{
+						after: {
+							end: setDimensions,
+							resize: setDimensions
+						},
+						handles: 'r,br,b',
+						minHeight: 100,
+						minWidth: 200,
+						constrain2view: true,
+						node: instance.get(BOUNDING_BOX),
+						proxy: true
+					},
+					value || {}
+				)
+			);
+
+			instance.set(RESIZABLE_INSTANCE, resize);
+
+			return value;
+		}
+		else {
+			destroy();
+		}
 	},
 
 	_setStack: function(value) {
@@ -354,4 +426,4 @@ A.mix(
 
 A.DialogMask = new A.OverlayMask().render();
 
-}, '@VERSION', { requires: [ 'aui-base', 'panel', 'overlay-manager', 'overlay-mask', 'dd-constrain', 'io-plugin', 'dialog-css' ] });
+}, '@VERSION', { requires: [ 'aui-base', 'panel', 'overlay-manager', 'overlay-mask', 'dd-constrain', 'io-plugin', 'resize', 'resize-plugin', 'dialog-css' ] });
