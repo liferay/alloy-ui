@@ -347,10 +347,9 @@ Dialog.prototype = {
 			var setDimensions = function(event) {
 				var type = event.type;
 				var info = event.info;
-				var resizeProxy = event.currentTarget.get(PROXY);
 
 				if ((type == EV_RESIZE_END) ||
-					((type == EV_RESIZE) && !resizeProxy)) {
+					((type == EV_RESIZE) && !event.currentTarget.get(PROXY))) {
 						instance.set(HEIGHT, info.height);
 						instance.set(WIDTH, info.width);
 				}
