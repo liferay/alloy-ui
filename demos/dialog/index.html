@@ -33,6 +33,10 @@ AUI().ready('dialog', 'overlay-manager', 'dd-constrain', function(A) {
 		// centered: true,
 		constrain2view: true,
 		draggable: true,
+		// resizable: false,
+		resizable: {
+			// proxy: false
+		},
 		// destroyOnClose: true,
 		group: 'default',
 		height: 250,
@@ -90,33 +94,6 @@ AUI().ready('dialog', 'overlay-manager', 'dd-constrain', function(A) {
 	.render();
 
 	dialog2.plug(A.Plugin.IO, {
-		uri: 'assets/content.html'
-	});
-
-	var dialog3 = new A.Dialog(
-		A.merge(options, {
-			title: 'Dialog 3 - no buttons',
-			xy: [250, 150],
-			buttons: null
-		})
-	)
-	.render();
-
-	dialog3.plug(A.Plugin.IO, {
-		uri: 'assets/content.html'
-	});
-
-	var dialog4 = new A.Dialog(
-		A.merge(options, {
-			collapsible: true,
-			title: 'Dialog 4 - Collapsible',
-			xy: [275, 200],
-			buttons: null
-		})
-	)
-	.render();
-
-	dialog4.plug(A.Plugin.IO, {
 		uri: 'assets/content.html'
 	});
 
