@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../lib/yui/build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/defaults.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<script type="text/javascript">
+		CACHED_Y = YUI(AUI.defaults);
+		window.tests = {
+			smallSet: function(iterations) {
+
+				try {
+					var timeStart = getTimestamp();
+						while (iterations--) {
+							AUI().use('context-panel', 'tooltip', 'calendar', 'paginator');
+						}
+					var timeEnd = getTimestamp();
+
+					outputResult('smallSet', (timeEnd - timeStart) + 'ms');
+				}
+				catch (e) {
+					console.log(e);
+				}
+			},
+			largeSet: function(iterations) {
+
+				var timeStart = getTimestamp();
+					while (iterations--) {
+						AUI().use('context-panel', 'tooltip', 'calendar', 'paginator');
+					}
+				var timeEnd = getTimestamp();
+
+				outputResult('largeSet', (timeEnd - timeStart) + 'ms');
+			},
+			timedSet: function(iterations) {
+
+					outputResult('timedSet', '<hr />');
+
+					while (iterations--) {
+						var timeStart = getTimestamp();
+						AUI().use('context-panel', 'tooltip', 'calendar', 'paginator');
+						var timeEnd = getTimestamp();
+
+						outputResult('timedSet', (timeEnd - timeStart) + 'ms');
+					}
+			},
+			yuiSmallSet: function(iterations) {
+
+				try {
+					var timeStart = getTimestamp();
+						while (iterations--) {
+							YUI(AUI.defaults).use('context-panel', 'tooltip', 'calendar', 'paginator');
+						}
+					var timeEnd = getTimestamp();
+
+					outputResult('yuiSmallSet', (timeEnd - timeStart) + 'ms');
+				}
+				catch (e) {
+					console.log(e);
+				}
+			},
+			yuiLargeSet: function(iterations) {
+
+				var timeStart = getTimestamp();
+					while (iterations--) {
+						YUI(AUI.defaults).use('context-panel', 'tooltip', 'calendar', 'paginator');
+					}
+				var timeEnd = getTimestamp();
+
+				outputResult('yuiLargeSet', (timeEnd - timeStart) + 'ms');
+			},
+			yuiTimedSet: function(iterations) {
+
+					outputResult('timedSet', '<hr />');
+
+					while (iterations--) {
+						var timeStart = getTimestamp();
+						YUI(AUI.defaults).use('context-panel', 'tooltip', 'calendar', 'paginator');
+						var timeEnd = getTimestamp();
+
+						outputResult('yuiTimedSet', (timeEnd - timeStart) + 'ms');
+					}
+			},
+			yuiCachedSmallSet: function(iterations) {
+
+				try {
+					var timeStart = getTimestamp();
+						while (iterations--) {
+							CACHED_Y.use('context-panel', 'tooltip', 'calendar', 'paginator');
+						}
+					var timeEnd = getTimestamp();
+
+					outputResult('yuiCachedSmallSet', (timeEnd - timeStart) + 'ms');
+				}
+				catch (e) {
+					console.log(e);
+				}
+			},
+			yuiCachedLargeSet: function(iterations) {
+
+				var timeStart = getTimestamp();
+					while (iterations--) {
+						CACHED_Y.use('context-panel', 'tooltip', 'calendar', 'paginator');
+					}
+				var timeEnd = getTimestamp();
+
+				outputResult('yuiCachedLargeSet', (timeEnd - timeStart) + 'ms');
+			},
+			yuiCachedTimedSet: function(iterations) {
+
+					outputResult('timedSet', '<hr />');
+
+					while (iterations--) {
+						var timeStart = getTimestamp();
+						CACHED_Y.use('context-panel', 'tooltip', 'calendar', 'paginator');
+						var timeEnd = getTimestamp();
+
+						outputResult('yuiCachedTimedSet', (timeEnd - timeStart) + 'ms');
+					}
+			},
+
+		};
+
+		function runTest(el) {
+			var test = el && tests[el.id];
+
+			var iterations = el.getAttribute('data-iterations');
+
+			iterations = Number(iterations);
+
+			if (test) {
+				test(iterations);
+			}
+		}
+
+		function outputResult(elId, result) {
+			var el = document.getElementById(elId + 'Result');
+
+			if (el) {
+				el.innerHTML += result + '<br />';
+			}
+		}
+		function getTimestamp() {
+			return (+ new Date);
+		}
+	</script>
+
+</head>
+
+<style type="text/css" media="screen">
+	.test-set {
+		border: 1px solid #ccc;
+		padding: 10px;
+	}
+</style>
+
+<body>
+
+<h1>Alloy - Performance Test</h1>
+
+<div class="test-set">
+	<h2>Running on Alloy</h2>
+	<input data-iterations="10" id="smallSet" onclick="runTest(this);" type="button" value="Run a small set of iterations (10)" />
+	<div id="smallSetResult"></div>
+
+	<input data-iterations="50" id="largeSet" onclick="runTest(this);" type="button" value="Run a large set of iterations (50)" />
+	<div id="largeSetResult"></div>
+
+	<input data-iterations="20" id="timedSet" onclick="runTest(this);" type="button" value="Time each iteration (20)" />
+	<div id="timedSetResult"></div>
+</div>
+
+<div class="test-set">
+	<h2>Running on YUI</h2>
+	<input data-iterations="10" id="yuiSmallSet" onclick="runTest(this);" type="button" value="Run a small set of iterations (10)" />
+	<div id="yuiSmallSetResult"></div>
+
+	<input data-iterations="50" id="yuiLargeSet" onclick="runTest(this);" type="button" value="Run a large set of iterations (50)" />
+	<div id="yuiLargeSetResult"></div>
+
+	<input data-iterations="20" id="yuiTimedSet" onclick="runTest(this);" type="button" value="Time each iteration (20)" />
+	<div id="yuiTimedSetResult"></div>
+</div>
+
+<div class="test-set">
+	<h2>Running on Cached YUI Instance</h2>
+	<input data-iterations="10" id="yuiCachedSmallSet" onclick="runTest(this);" type="button" value="Run a small set of iterations (10)" />
+	<div id="yuiCachedSmallSetResult"></div>
+
+	<input data-iterations="50" id="yuiCachedLargeSet" onclick="runTest(this);" type="button" value="Run a large set of iterations (50)" />
+	<div id="yuiCachedLargeSetResult"></div>
+
+	<input data-iterations="20" id="yuiCachedTimedSet" onclick="runTest(this);" type="button" value="Time each iteration (20)" />
+	<div id="yuiCachedTimedSetResult"></div>
+</div>
+
+</body>
+</html>
