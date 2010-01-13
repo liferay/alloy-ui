@@ -21,8 +21,8 @@
 .aui-field-labels-inline .aui-field-label,
 .aui-field-labels-inline .aui-field-input,
 .aui-field-labels-inline .aui-field-hint,
-.aui-field-choice .aui-choice-label,
-.aui-field-choice .aui-field-input-choice {
+.aui-choice-label,
+.aui-field-input-choice {
 	float: left;
 }
 
@@ -74,6 +74,21 @@
 	float: left;
 }
 
+.aui-field-inline {
+	display: inline-block;
+	float: none;
+}
+
+.aui-field-label-inline {
+	display: inline-block;
+	margin: 0.4em 0.4em 0 0
+}
+
+.aui-field-inline .aui-field-content,
+.aui-field-inline .aui-field-label {
+	display: inline-block;
+}
+
 .aui-field-group {
 	float: left;
 	width: 53%;
@@ -86,6 +101,7 @@
 }
 
 .aui-field-input-choice {
+	display: inline-block;
 	margin: 0 0.4em 0 0;
 	vertical-align: middle;
 }
@@ -123,6 +139,7 @@
 
 .aui-field-content,
 .aui-button-row {
+	clear: both;
 	display: inline-block;
 }
 
@@ -154,4 +171,8 @@
 .aui-choice-label,
 .aui-field-hint {
 	line-height: 1.2;
+}
+
+.aui-field-element-left {
+	display: inline-block;
 }
