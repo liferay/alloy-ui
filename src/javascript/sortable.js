@@ -341,7 +341,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['base', 'dd'],
+		requires: [ 'aui-base', 'dd', 'sortable-css' ],
 		use: []
 	}
 );

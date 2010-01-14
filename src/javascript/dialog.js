@@ -444,4 +444,4 @@ A.mix(
 
 A.DialogMask = new A.OverlayMask().render();
 
-}, '0.1a', { requires: [ 'aui-base', 'panel', 'overlay-manager', 'overlay-mask', 'dd-constrain', 'io-plugin', 'resize', 'resize-plugin', 'dialog-css' ] });
+}, '0.1a', { requires: [ 'panel', 'dd-constrain', 'tool-item', 'overlay-manager', 'overlay-mask', 'io-plugin', 'resize', 'dialog-css' ] });

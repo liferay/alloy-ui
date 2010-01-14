@@ -642,7 +642,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['oop', 'collection', 'base'],
+		requires: [ 'oop', 'collection', 'base' ],
 		use: []
 	}
 );

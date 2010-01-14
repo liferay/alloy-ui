@@ -793,4 +793,4 @@ A.ImageViewer = ImageViewer;
 
 A.ImageViewerMask = new A.OverlayMask().render();
 
-}, '@VERSION', { requires: [ 'aui-base', 'anim', 'overlay-mask', 'substitute', 'image-viewer-css' ] });
+}, '@VERSION', { requires: [ 'anim', 'overlay-mask', 'substitute', 'image-viewer-css' ] });

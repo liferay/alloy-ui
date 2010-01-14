@@ -1107,4 +1107,4 @@ A.extend(Resize, A.Base, {
 
 A.Resize = Resize;
 
-}, '@VERSION', { requires: [ 'aui-base', 'substitute' ] });
+}, '@VERSION', { requires: [ 'aui-base', 'dd', 'substitute', 'resize-css' ] });

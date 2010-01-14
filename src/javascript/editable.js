@@ -465,7 +465,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['widget', 'tool'],
+		requires: [ 'aui-base', 'combobox', 'editable-css' ],
 		use: []
 	}
 );

@@ -5,7 +5,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['component', 'widget-position', 'widget-stack', 'widget-position-ext', 'widget-stdmod'],
+		requires: [ 'component', 'widget-position', 'widget-stack', 'widget-position-ext', 'widget-stdmod' ],
 		use: []
 	}
 );

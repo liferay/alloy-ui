@@ -127,7 +127,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['field'],
+		requires: [ 'field' ],
 		use: []
 	}
 );

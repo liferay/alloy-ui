@@ -403,4 +403,4 @@ A.Rating = Rating;
 A.StarRating = Rating;
 A.ThumbRating = ThumbRating;
 
-}, '@VERSION' , { requires: [ 'widget' ] });
+}, '@VERSION' , { requires: [ 'aui-base', 'rating-css' ] });

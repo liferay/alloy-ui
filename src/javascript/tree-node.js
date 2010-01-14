@@ -1017,4 +1017,4 @@ A.TreeNode.nodeTypes = {
 	io: A.TreeNodeIO
 };
 
-}, '@VERSION', { requires: [ 'tree-data', 'io', 'json' ] });
+}, '@VERSION', { requires: [ 'tree-data', 'io', 'json', 'tree-css' ] });

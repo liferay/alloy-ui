@@ -88,7 +88,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['textfield', 'tool-set'],
+		requires: [ 'textarea', 'tool-set', 'combobox-css' ],
 		use: []
 	}
 );

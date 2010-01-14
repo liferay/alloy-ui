@@ -454,7 +454,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['aui-base', 'autocomplete', 'anim-node-plugin', 'node-focusmanager'],
+		requires: [ 'anim-node-plugin', 'autocomplete', 'node-focusmanager', 'textboxlist-css' ],
 		use: []
 	}
 );

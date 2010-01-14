@@ -201,4 +201,4 @@ A.extend(OverlayMask, A.ComponentOverlay, {
 
 A.OverlayMask = OverlayMask;
 
-}, '@VERSION', { requires: [ 'overlay', 'event-resize' ] });
+}, '@VERSION', { requires: [ 'aui-base', 'component-overlay', 'event-resize' ] });

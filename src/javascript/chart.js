@@ -1121,7 +1121,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['datasource', 'swf', 'json'],
+		requires: [ 'datasource', 'swf', 'json' ],
 		use: []
 	}
 );

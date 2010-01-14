@@ -196,7 +196,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['data-set', 'tool-item'],
+		requires: [ 'data-set', 'tool-item', 'tool-set-css' ],
 		use: []
 	}
 );

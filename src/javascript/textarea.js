@@ -234,7 +234,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['textfield'],
+		requires: [ 'textfield', 'textarea-css' ],
 		use: []
 	}
 );

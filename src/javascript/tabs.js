@@ -624,7 +624,7 @@ AUI().add(
 	},
 	'0.1a',
 	{
-		requires: ['widget', 'state-interaction'],
+		requires: ['component', 'state-interaction', 'tabs-css'],
 		use: []
 	}
 );

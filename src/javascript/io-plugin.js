@@ -270,4 +270,4 @@ A.extend(IOPlugin, A.IORequest, {
 
 A.namespace('Plugin').IO = IOPlugin;
 
-}, '@VERSION' , { requires: [ 'aui-base', 'component-overlay', 'parse-content', 'io-request', 'plugin' ] });
+}, '@VERSION' , { requires: [ 'component-overlay', 'parse-content', 'io-request' ] });

@@ -36,7 +36,7 @@ AUI.add('aui-base', function(A) {
 		}
 	);
 
-}, '@VERSION', { requires: [ 'yui-base', 'base' ] });
+}, '@VERSION', { requires: [ 'event', 'oop', 'component', 'aui-node', 'collection', 'widget-css' ] });
 
 /*
 * AUI Delayed Task

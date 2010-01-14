@@ -756,4 +756,4 @@ A.extend(Paginator, A.Component, {
 
 A.Paginator = Paginator;
 
-}, '@VERSION', { requires: [ 'aui-base', 'substitute' ] });
+}, '@VERSION', { requires: [ 'aui-base', 'substitute', 'paginator-css' ] });

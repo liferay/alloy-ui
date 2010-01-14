@@ -336,4 +336,4 @@ A.ContextPanelManager = new A.OverlayManager({
 	zIndexBase: 1000
 });
 
-}, '@VERSION', { requires: [ 'context-overlay', 'context-panel-css' ] });
+}, '@VERSION', { requires: [ 'context-overlay', 'anim', 'context-panel-css' ] });

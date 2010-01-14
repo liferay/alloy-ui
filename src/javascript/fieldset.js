@@ -5,7 +5,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['panel'],
+		requires: [ 'panel' ],
 		use: []
 	}
 );

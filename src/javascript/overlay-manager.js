@@ -187,4 +187,4 @@ var Lang = A.Lang,
 
 	A.OverlayManager = OverlayManager;
 
-}, '@VERSION', { requires: [ 'overlay', 'plugin' ] });
+}, '@VERSION', { requires: [ 'aui-base', 'component-overlay', 'overlay', 'plugin' ] });

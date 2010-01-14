@@ -111,4 +111,4 @@ A.extend(Tooltip, A.ContextPanel, {
 
 A.Tooltip = Tooltip;
 
-}, '@VERSION', { requires: [ 'context-panel' ] });
+}, '@VERSION', { requires: [ 'context-panel', 'tooltip-css' ] });
