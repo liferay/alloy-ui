@@ -75,6 +75,7 @@
 .aui-field-inline {
 	display: inline-block;
 	float: none;
+	vertical-align: middle;
 }
 
 .aui-field-label-inline {
@@ -110,6 +111,11 @@
 .aui-choice-label,
 .aui-field-input-choice {
 	float: left;
+}
+
+.aui-field-row {
+	display: block;
+	clear: both;
 }
 
 .aui-button-row {
