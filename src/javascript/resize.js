@@ -113,10 +113,10 @@ var L = A.Lang,
 		return A.one(val);
 	},
 
-    toInitialCap = A.cached(
+	toInitialCap = A.cached(
 		function(str) {
-        	return str.substring(0, 1).toUpperCase() + str.substring(1);
-    	}
+			return str.substring(0, 1).toUpperCase() + str.substring(1);
+		}
 	),
 
 	getCN = A.ClassNameManager.getClassName,
