@@ -360,10 +360,6 @@ Dialog.prototype = {
 			var resize = new A.Resize(
 				A.merge(
 					{
-						after: {
-							end: setDimensions,
-							resize: setDimensions
-						},
 						handles: 'r,br,b',
 						minHeight: 100,
 						minWidth: 200,
@@ -374,6 +370,9 @@ Dialog.prototype = {
 					value || {}
 				)
 			);
+
+			resize.after('end', setDimensions);
+			resize.after('resize', setDimensions);
 
 			instance.set(RESIZABLE_INSTANCE, resize);
 
@@ -445,4 +444,4 @@ A.mix(
 
 A.DialogMask = new A.OverlayMask().render();
 
-}, '@VERSION', { requires: [ 'aui-base', 'panel', 'overlay-manager', 'overlay-mask', 'dd-constrain', 'io-plugin', 'resize', 'resize-plugin', 'dialog-css' ] });
+}, '0.1a', { requires: [ 'aui-base', 'panel', 'overlay-manager', 'overlay-mask', 'dd-constrain', 'io-plugin', 'resize', 'resize-plugin', 'dialog-css' ] });
