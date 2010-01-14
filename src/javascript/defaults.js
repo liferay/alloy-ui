@@ -60,7 +60,7 @@
 				*/
 				'calendar': {
 					fullpath: PATH_JAVASCRIPT + 'calendar.js',
-					requires: [ 'aui-base', 'context-overlay', 'overlay-manager', 'datatype-date', 'widget-i18n', 'calendar-css' ]
+					requires: [ 'context-overlay', 'datatype-date', 'widget-i18n', 'calendar-css' ]
 				},
 				'calendar-css': {
 					ext: false,
@@ -131,7 +131,7 @@
 				*/
 				'context-overlay': {
 					fullpath: PATH_JAVASCRIPT + 'context-overlay.js',
-					requires: [ 'aui-base', 'component-overlay', 'overlay-manager', 'delayed-task' ]
+					requires: [ 'overlay-manager', 'delayed-task' ]
 				},
 
 				/*
@@ -173,7 +173,7 @@
 				*/
 				'dialog': {
 					fullpath: PATH_JAVASCRIPT + 'dialog.js',
-					requires: [ 'plugin', 'panel', 'dd-constrain', 'aui-base', 'tool-item', 'overlay-manager', 'overlay-mask', 'io-plugin', 'resize', 'dialog-css' ]
+					requires: [ 'panel', 'dd-constrain', 'tool-item', 'overlay-manager', 'overlay-mask', 'io-plugin', 'resize', 'dialog-css' ]
 				},
 				'dialog-css': {
 					ext: false,
@@ -186,7 +186,7 @@
 				*/
 				'editable': {
 					fullpath: PATH_JAVASCRIPT + 'editable.js',
-					requires: [ 'aui-base', 'combobox', 'textarea', 'editable-css' ]
+					requires: [ 'aui-base', 'combobox', 'editable-css' ]
 				},
 				'editable-css': {
 					ext: false,
@@ -237,7 +237,7 @@
 				*/
 				'image-viewer': {
 					fullpath: PATH_JAVASCRIPT + 'image-viewer.js',
-					requires: [ 'aui-base', 'anim', 'overlay-mask', 'substitute', 'image-viewer-css' ]
+					requires: [ 'anim', 'overlay-mask', 'substitute', 'image-viewer-css' ]
 				},
 
 				'image-viewer-css': {
@@ -258,7 +258,7 @@
 				*/
 				'io-plugin': {
 					fullpath: PATH_JAVASCRIPT + 'io-plugin.js',
-					requires: [ 'aui-base', 'component-overlay', 'parse-content', 'io-request', 'plugin' ]
+					requires: [ 'component-overlay', 'parse-content', 'io-request' ]
 				},
 
 				/*
@@ -290,7 +290,7 @@
 				*/
 				'overlay-manager': {
 					fullpath: PATH_JAVASCRIPT + 'overlay-manager.js',
-					requires: [ 'aui-base', 'component', 'component-overlay', 'overlay', 'plugin' ]
+					requires: [ 'aui-base', 'component-overlay', 'overlay', 'plugin' ]
 				},
 
 				/*
@@ -421,7 +421,7 @@
 				*/
 				'textboxlist': {
 					fullpath: PATH_JAVASCRIPT + 'textboxlist.js',
-					requires: [ 'anim-node-plugin', 'aui-base', 'autocomplete', 'node-focusmanager', 'textboxlist-css' ]
+					requires: [ 'anim-node-plugin', 'autocomplete', 'node-focusmanager', 'textboxlist-css' ]
 				},
 
 				'textboxlist-css': {
@@ -495,7 +495,7 @@
 				},
 				'tree-view': {
 					fullpath: PATH_JAVASCRIPT + 'tree-view.js',
-					requires: [ 'tree-node', 'dd', 'tree-css' ]
+					requires: [ 'tree-node', 'dd' ]
 				},
 
 				'widget-css': {
