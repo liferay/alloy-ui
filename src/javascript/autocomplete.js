@@ -1465,4 +1465,4 @@ var Lang = A.Lang,
 
 	A.AutoComplete = AutoComplete;
 
-}, '@VERSION' , { requires: [ 'datasource', 'dataschema', 'overlay', 'tool' ] });
+}, '@VERSION' , { requires: [ 'aui-base', 'component-overlay', 'datasource', 'dataschema', 'combobox', 'autocomplete-css' ] });

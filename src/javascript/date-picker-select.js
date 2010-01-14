@@ -412,4 +412,4 @@ A.extend(DatePickerSelect, A.Calendar, {
 
 A.DatePickerSelect = DatePickerSelect;
 
-}, '0.1a', { requires: [ 'calendar', 'tool-item' ] });
+}, '0.1a', { requires: [ 'calendar', 'tool-item', 'date-picker-select-css' ] });

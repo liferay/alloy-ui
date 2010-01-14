@@ -196,7 +196,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['widget'],
+		requires: [ 'widget' ],
 		use: []
 	}
 );

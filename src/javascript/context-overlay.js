@@ -411,4 +411,4 @@ A.ContextOverlayManager = new A.OverlayManager({});
 
 A.on(MOUSEDOWN, function() { A.ContextOverlayManager.hideAll(); }, A.getDoc());
 
-}, '0.1a', { requires: [ 'aui-base', 'overlay', 'overlay-manager', 'delayed-task' ] });
+}, '0.1a', { requires: [ 'overlay-manager', 'delayed-task' ] });

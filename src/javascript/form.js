@@ -527,7 +527,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['aui-base', 'data-set', 'io-form', 'field'],
+		requires: [ 'aui-base', 'data-set', 'io-form', 'field' ],
 		use: []
 	}
 );

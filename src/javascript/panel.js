@@ -258,7 +258,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['widget', 'widget-stdmod', 'tool-set'],
+		requires: [ 'component', 'widget-stdmod', 'tool-set', 'panel-css' ],
 		use: []
 	}
 );

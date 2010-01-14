@@ -252,7 +252,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: [],
+		requires: [ 'aui-base' ],
 		use: []
 	}
 );

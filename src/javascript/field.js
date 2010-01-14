@@ -561,7 +561,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['substitute'],
+		requires: [ 'substitute' ],
 		use: []
 	}
 );

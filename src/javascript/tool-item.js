@@ -180,7 +180,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['aui-base', 'state-interaction'],
+		requires: [ 'aui-base', 'state-interaction', 'tool-item-css' ],
 		use: []
 	}
 );

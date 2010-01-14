@@ -531,4 +531,4 @@ A.extend(ImageGallery, A.ImageViewer, {
 
 A.ImageGallery = ImageGallery;
 
-}, '@VERSION', { requires: [ 'image-viewer', 'paginator', 'tool-set' ] });
+}, '@VERSION', { requires: [ 'image-viewer', 'paginator', 'tool-set', 'image-gallery-css' ] });

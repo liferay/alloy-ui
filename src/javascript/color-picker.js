@@ -972,7 +972,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['context-overlay','dd', 'panel', 'slider', 'substitute', 'tool-item'],
+		requires: [ 'context-overlay', 'dd', 'slider', 'substitute', 'tool-item', 'form', 'panel', 'color-picker-css' ],
 		use: []
 	}
 );

@@ -199,6 +199,6 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: ['aui-base', 'plugin']
+		requires: [ 'aui-base', 'plugin' ]
 	}
 );
