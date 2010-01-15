@@ -229,7 +229,9 @@ AUI().add(
 						action = 'removeClass';
 					}
 
-					contentNode[action](CSS_HIDDEN);
+					if (!instance.get('active')) {
+						contentNode[action](CSS_HIDDEN);
+					}
 
 					return value;
 				}
@@ -567,8 +569,10 @@ AUI().add(
 						newTab.set('active', true);
 					}
 
-					if (oldTab) {
-						oldTab.set('active', false);
+					if (newTab != oldTab) {
+						if (oldTab) {
+							oldTab.set('active', false);
+						}
 					}
 				},
 
