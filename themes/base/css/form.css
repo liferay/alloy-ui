@@ -118,15 +118,13 @@
 	clear: both;
 }
 
-.aui-button-row {
+.aui-button-holder {
 	overflow: hidden;
 	display: block;
 	clear: both;
 }
 
 .aui-button-input {
-	display: block;
-	float: left;
 	margin: 0 7px 0 0;
 	line-height: 1.3;
 	text-decoration: none;
@@ -141,7 +139,7 @@
 }
 
 .aui-field-content:after,
-.aui-button-row:after, {
+.aui-button-holder:after, {
 	clear: both;
 	content: " ";
 	display: block;
@@ -150,19 +148,19 @@
 }
 
 .aui-field-content,
-.aui-button-row {
+.aui-button-holder {
 	clear: both;
 	display: inline-block;
 }
 
 /* start commented backslash hack \*/
 * html .aui-field-content,
-* html .aui-button-row {
+* html .aui-button-holder {
 	height: 1%;
 }
 
 .aui-field-content,
-.aui-button-row {
+.aui-button-holder {
 	display: block;
 }
 /* close commented backslash hack */
