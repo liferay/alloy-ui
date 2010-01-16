@@ -79,10 +79,10 @@ var L = A.Lang,
 	WRAPPER = 'wrapper',
 	WRAP_TYPES = 'wrapTypes',
 
-	EV_MOUSE_UP = 'resize:mouseUp'
-	EV_RESIZE = 'resize:resize'
-	EV_RESIZE_END = 'resize:end'
-	EV_RESIZE_START = 'resize:start'
+	EV_MOUSE_UP = 'resize:mouseUp',
+	EV_RESIZE = 'resize:resize',
+	EV_RESIZE_END = 'resize:end',
+	EV_RESIZE_START = 'resize:start',
 
 	T = 't',
 	TR = 'tr',
