@@ -26,7 +26,6 @@ var L = A.Lang,
 	PX = 'px',
 	RIGHT = 'right',
 	SORT_CONDITION = 'sortCondition',
-	UL = 'ul',
 	UP = 'up',
 	VISIBILITY = 'visibility',
 	VISIBLE = 'visible',
@@ -60,7 +59,6 @@ A.mix(NestedList, {
 		},
 
 		dropOn: {
-			value: UL,
 			validator: isString
 		},
 
@@ -175,7 +173,11 @@ A.extend(NestedList, A.Base, {
 		var drop = event.drop;
 		var dragNode = drag.get(NODE);
 		var dropNode = drop.get(NODE);
-		var container = dropNode.one('>' + instance.get(DROP_ON));
+		var dropOn = instance.get(DROP_ON);
+
+		if (dropOn) {
+			var container = dropNode.one(dropOn);
+		}
 
 		var floating = false;
 		var xDirection = instance.XDirection;
