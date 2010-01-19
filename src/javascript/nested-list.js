@@ -8,6 +8,7 @@ var L = A.Lang,
 	BODY = 'body',
 	DD = 'dd',
 	DISPLAY = 'display',
+	DOT = '.',
 	DOWN = 'down',
 	DRAG_NODE = 'dragNode',
 	DROP_CONDITION = 'dropCondition',
@@ -29,6 +30,8 @@ var L = A.Lang,
 	UP = 'up',
 	VISIBILITY = 'visibility',
 	VISIBLE = 'visible',
+
+	CSS_YUI_DD_DROP_OVER = 'yui-dd-drop-over',
 
 	DDM = A.DD.DDM,
 
@@ -177,6 +180,15 @@ A.extend(NestedList, A.Base, {
 
 		if (dropOn) {
 			var container = dropNode.one(dropOn);
+
+			if (container) {
+				// use the drop where the drag is over at the moment
+				var dropActive = dropNode.one(DOT+CSS_YUI_DD_DROP_OVER);
+
+				if (dropActive) {
+					container = dropActive.one(dropOn);
+				}
+			}
 		}
 
 		var floating = false;
