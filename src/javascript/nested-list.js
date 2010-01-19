@@ -8,10 +8,10 @@ var L = A.Lang,
 	BODY = 'body',
 	DD = 'dd',
 	DISPLAY = 'display',
-	DOT = '.',
 	DOWN = 'down',
 	DRAG_NODE = 'dragNode',
 	DROP_CONDITION = 'dropCondition',
+	DROP_CONTAINER = 'dropContainer',
 	DROP_ON = 'dropOn',
 	FLOAT = 'float',
 	HEIGHT = 'height',
@@ -30,8 +30,6 @@ var L = A.Lang,
 	UP = 'up',
 	VISIBILITY = 'visibility',
 	VISIBLE = 'visible',
-
-	CSS_YUI_DD_DROP_OVER = 'yui-dd-drop-over',
 
 	DDM = A.DD.DDM,
 
@@ -57,6 +55,18 @@ A.mix(NestedList, {
 			},
 			setter: function(v) {
 				return A.bind(v, this);
+			},
+			validator: isFunction
+		},
+
+		dropContainer: {
+			value: function(event) {
+				var instance = this;
+				var drop = event.drop;
+				var dropNode = drop.get(NODE);
+				var dropOn = instance.get(DROP_ON);
+
+				return dropNode.one(dropOn);
 			},
 			validator: isFunction
 		},
@@ -178,17 +188,10 @@ A.extend(NestedList, A.Base, {
 		var dropNode = drop.get(NODE);
 		var dropOn = instance.get(DROP_ON);
 
-		if (dropOn) {
-			var container = dropNode.one(dropOn);
+		var dropContainer = instance.get(DROP_CONTAINER);
 
-			if (container) {
-				// use the drop where the drag is over at the moment
-				var dropActive = dropNode.one(DOT+CSS_YUI_DD_DROP_OVER);
-
-				if (dropActive) {
-					container = dropActive.one(dropOn);
-				}
-			}
+		if (dropContainer) {
+			var container = dropContainer.apply(instance, arguments);
 		}
 
 		var floating = false;
