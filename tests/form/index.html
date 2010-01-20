@@ -7,7 +7,6 @@
 	<script src="../../src/javascript/core.js" type="text/javascript" charset="utf-8"></script>
 
 	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
-	<link rel="stylesheet" href="../../themes/base/css/form.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 
 	<style type="text/css" media="screen">
 		body {
@@ -47,7 +46,7 @@
 			padding-bottom: 1em;
 		}
 
-		#demo .aui-button-row {
+		#demo .aui-button-holder {
 			padding: 5px;
 			background: #eee;
 			border-top: 1px solid #ccc;
@@ -115,6 +114,11 @@
 	<form class="aui-form">
 		<div class="aui-fieldset">
 			<!-- Unit tests -->
+
+				<h2>Template selector</h2>
+				<div id="templateSelector">
+					<div class="journal-form-presentation-label"> Template: <table cellspacing="0" cellpadding="0" border="0"> <tbody><tr> <td valign="middle"> <input type="hidden" value="%24main-text.getName%28%29" id="_15_template11408_xsl"> <span class="aui-field aui-field-choice aui-field-inline"> <span class="aui-field-content"> <span class="aui-field-element aui-field-label-right"> <input type="radio" value="11408" name="_15_templateId" id="_15_kjij" class="aui-field-input aui-field-input-choice" checked=""> </span> <label for="_15_kjij" class="aui-field-label"> <a href="http://localhost:8080/group/control_panel/manage?p_p_id=15&amp;p_p_lifecycle=0&amp;p_p_state=maximized&amp;p_p_mode=view&amp;doAsGroupId=10144&amp;refererPlid=10147&amp;_15_struts_action=%2Fjournal%2Fedit_template&amp;_15_redirect=%2Fgroup%2Fcontrol_panel%2Fmanage%3Fp_p_id%3D15%26p_p_lifecycle%3D1%26p_p_state%3Dmaximized%26p_p_mode%3Dview%26doAsGroupId%3D10144%26refererPlid%3D10147%26_15_struts_action%3D%252Fjournal%252Fedit_article&amp;_15_groupId=10144&amp;_15_templateId=11408"> testte </a> </label> </span> </span> </td> <td></td> <td></td> </tr> </tbody></table> </div>
+				</div>
 
 				<h2>Daily table</h2>
 				<div id="_8_dailyTable"> 
@@ -994,7 +998,7 @@
 				</div>
 			</div>
 
-			<span class="aui-button-row aui-helper-clearfix">
+			<span class="aui-button-holder aui-helper-clearfix">
 				<span class="aui-button aui-button-submit aui-state-positive aui-priority-primary">
 					<span class="aui-button-content">
 						<input class="aui-button-input aui-button-input-submit" type="submit" value="Submit" />
