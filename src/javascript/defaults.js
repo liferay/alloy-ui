@@ -22,7 +22,7 @@
 				swfURL: 'assets/chart.swf'
 			},
 
-			combine: true,
+			combine: false,
 
 			classNamePrefix: 'aui',
 
