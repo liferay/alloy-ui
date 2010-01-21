@@ -22,13 +22,9 @@
 				swfURL: 'assets/chart.swf'
 			},
 
-			combine: false,
-
 			classNamePrefix: 'aui',
 
 			defaultModules: [ 'aui-base' ],
-
-			fetchCSS: true,
 
 			filter: 'raw',
 
