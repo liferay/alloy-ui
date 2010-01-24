@@ -330,7 +330,12 @@ AUI().add(
 
 						instance.plug(A.Plugin.DDProxy, proxy);
 
-						instance.get('dragNode').addClass(CSS_PROXY);
+						A.on(
+							'domready',
+							function(A) {
+								instance.get('dragNode').addClass(CSS_PROXY);
+							}
+						);
 					}
 				}
 			}
