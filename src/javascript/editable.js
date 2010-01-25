@@ -132,6 +132,10 @@ AUI().add(
 
 					return value;
 				}
+			},
+
+			visible: {
+				value: false
 			}
 		};
 
