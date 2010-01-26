@@ -24,6 +24,7 @@ var L = A.Lang,
 	NONE = 'none',
 	OFFSET_HEIGHT = 'offsetHeight',
 	PLACEHOLDER = 'placeholder',
+	PROXY = 'proxy',
 	PX = 'px',
 	RIGHT = 'right',
 	SORT_CONDITION = 'sortCondition',
@@ -89,6 +90,19 @@ A.mix(NestedList, {
 			value: null
 		},
 
+		proxy: {
+			value: null,
+			setter: function(val) {
+				return A.merge(
+					{
+						moveOnEnd: false,
+						positionProxy: false
+					},
+					val || {}
+				);
+			}
+		},
+
 		sortCondition: {
 			value: function() {
 				return true;
@@ -151,10 +165,7 @@ A.extend(NestedList, A.Base, {
 				target: true
 			};
 
-			var proxyOptions = {
-				moveOnEnd: false,
-				positionProxy: false
-			};
+			var proxyOptions = instance.get(PROXY);
 
 			if (helper) {
 				proxyOptions.borderStyle = null;
@@ -274,8 +285,11 @@ A.extend(NestedList, A.Base, {
 		if (placeholder) {
 			dragNode.show();
 			placeholder.hide();
-			// position dragNode after the placeholder
-			placeholder.placeAfter(dragNode);
+
+			if (!dragNode.contains(placeholder)) {
+				// position dragNode after the placeholder
+				placeholder.placeAfter(dragNode);
+			}
 		}
 	},
 
