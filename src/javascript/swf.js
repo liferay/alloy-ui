@@ -167,7 +167,7 @@ AUI().add(
 						}
 					);
 
-					var flashVarString = A.toQueryString(flashVars);
+					var flashVarString = A.QueryString.stringify(flashVars);
 
 					var tplObj = '<object ';
 
@@ -252,7 +252,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: [ 'aui-base' ],
+		requires: [ 'aui-base', 'querystring-stringify-simple' ],
 		use: []
 	}
 );

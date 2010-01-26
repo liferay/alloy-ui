@@ -50,7 +50,7 @@ AUI().add(
 
 					var values = A.io._serialize(instance.get('contentBox').getDOM());
 
-					return A.fromQueryString(values);
+					return A.QueryString.parse(values);
 				},
 
 				setter: function(value) {
@@ -527,7 +527,7 @@ AUI().add(
 	},
 	'@VERSION',
 	{
-		requires: [ 'aui-base', 'data-set', 'io-form', 'field' ],
+		requires: [ 'aui-base', 'data-set', 'io-form', 'field', 'querystring-parse' ],
 		use: []
 	}
 );
