@@ -39,7 +39,15 @@
 				*/
 				'aui-base': {
 					fullpath: PATH_JAVASCRIPT + 'base.js',
-					requires: [ 'event', 'oop', 'component', 'aui-node', 'collection', 'widget-css' ]
+					requires: [ 'aui-node', 'component', 'delayed-task', 'event', 'oop', 'widget-css' ]
+				},
+
+				/*
+				* AUI Node extensions
+				*/
+				'aui-node': {
+					fullpath: PATH_JAVASCRIPT + 'node.js',
+					requires: [ 'collection', 'node' ]
 				},
 
 				/*
@@ -166,6 +174,13 @@
 					ext: false,
 					fullpath: PATH_THEME_ROOT + 'date-picker-select.css',
 					type: 'css'
+				},
+
+				/*
+				* Delayed Task
+				*/
+				'delayed-task': {
+					fullpath: PATH_JAVASCRIPT + 'delayed_task.js'
 				},
 
 				/*
