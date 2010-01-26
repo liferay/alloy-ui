@@ -76,7 +76,6 @@
 	window.AUI = window.AUI || {};
 
 	var defaults = AUI.defaults || {};
-	var defaultModules = defaults.defaultModules || [];
 
 	apply(
 		YUI.prototype,
@@ -192,16 +191,6 @@
 	ALLOY.Env._guidp = ['aui', ALLOY.version, ALLOY.Env._yidx, new Date().getTime()].join('-').replace(/\./g, '-');
 
 	var originalConfig = ALLOY.config;
-
-	defaultModules.push(
-		function(A, result) {
-			if (!result.success) {
-				throw result.msg;
-			}
-		}
-	);
-
-	ALLOY.use.apply(ALLOY, defaultModules);
 
 	ALLOY.config = ALLOY.merge(originalConfig, AUI.defaults);
 

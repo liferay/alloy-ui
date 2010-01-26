@@ -179,4 +179,4 @@ A.extend(ParseContent, A.Plugin.Base, {
 
 A.namespace('Plugin').ParseContent = ParseContent;
 
-}, '@VERSION' , { requires: [ 'async-queue', 'io', 'plugin' ] });
+}, '@VERSION' , { requires: [ 'async-queue', 'aui-base', 'io', 'plugin' ] });
