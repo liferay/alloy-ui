@@ -230,7 +230,7 @@
 				*/
 				'form': {
 					fullpath: PATH_JAVASCRIPT + 'form.js',
-					requires: [ 'aui-base', 'data-set', 'io-form', 'field' ]
+					requires: [ 'aui-base', 'data-set', 'io-form', 'field', 'querystring-parse' ]
 				},
 
 				/*
@@ -402,7 +402,7 @@
 				*/
 				'swf': {
 					fullpath: PATH_JAVASCRIPT + 'swf.js',
-					requires: [ 'aui-base' ]
+					requires: [ 'aui-base', 'querystring-stringify-simple' ]
 				},
 
 				/*
