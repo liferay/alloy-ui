@@ -199,7 +199,7 @@
 				*/
 				'field': {
 					fullpath: PATH_JAVASCRIPT + 'field.js',
-					requires: [ 'substitute' ]
+					requires: [ 'aui-base', 'component', 'substitute' ]
 				},
 
 				/*
@@ -332,7 +332,7 @@
 				*/
 				'parse-content': {
 					fullpath: PATH_JAVASCRIPT + 'parse-content.js',
-					requires: [ 'async-queue', 'io', 'plugin' ]
+					requires: [ 'async-queue', 'aui-base', 'io', 'plugin' ]
 				},
 
 				/*
