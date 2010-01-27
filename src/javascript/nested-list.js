@@ -309,12 +309,6 @@ A.extend(NestedList, A.Base, {
 		var helper = instance.get(HELPER);
 
 		if (helper) {
-			// show helper, we need display block here, yui dd hide it with display none
-			helper.setStyles({
-				display: BLOCK,
-				visibility: VISIBLE
-			}).show();
-
 			// update the DRAG_NODE with the new helper
 			drag.set(DRAG_NODE, helper);
 		}
@@ -324,6 +318,7 @@ A.extend(NestedList, A.Base, {
  		var instance = this;
 		var drag = event.target;
 		var node = drag.get(NODE);
+		var helper = instance.get(HELPER);
 		var placeholder = instance.get(PLACEHOLDER);
 
 		if (placeholder) {
@@ -337,6 +332,14 @@ A.extend(NestedList, A.Base, {
 			placeholder.show();
 			// position placeholder after the node
 			node.placeAfter(placeholder);
+
+			if (helper) {
+				// show helper, we need display block here, yui dd hide it with display none
+				helper.setStyles({
+					display: BLOCK,
+					visibility: VISIBLE
+				}).show();
+			}
 		}
  	},
 
