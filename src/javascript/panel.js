@@ -232,7 +232,7 @@ AUI().add(
 				instance._syncCollapsedUI();
 			},
 
-			_afterPanelRender: function() {
+			_afterPanelRender: function(event) {
 				var instance = this;
 
 				instance.headerNode.addClass(CSS_CLEARFIX);
