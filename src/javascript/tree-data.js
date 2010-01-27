@@ -109,7 +109,6 @@ A.extend(TreeData, A.Widget, {
 		var moved = oldParent && (oldParent != parentNode);
 
 		if (oldParent) {
-
 			if (moved) {
 				// when moved update the oldParent children
 				var children = oldParent.get(CHILDREN);
