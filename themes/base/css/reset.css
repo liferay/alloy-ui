@@ -20,10 +20,6 @@ address, caption, cite, code, dfn, em, strong, th, var {
 	font-weight: normal;
 }
 
-ol, ul {
-	list-style: none;
-}
-
 caption, th {
 	text-align: left;
 }
@@ -46,19 +42,19 @@ ol, ul, dl {
 	margin-left: 2em;
 }
 
-ol li, ul ol li {
+ol {
 	list-style: decimal outside;
 }
 
-ul li, ol ul li {
+ul {
 	list-style: disc outside;
 }
 
-ul ul li {
+ul ul {
 	list-style-type: circle;
 }
 
-ol ol li {
+ol ol {
 	list-style-type: upper-roman;
 }
 
