@@ -125,10 +125,11 @@ A.extend(NestedList, A.Base, {
 
 		// drag & drop listeners
 		instance.on('drag:align', instance._onDragAlign);
+		instance.on('drag:end', instance._onDragEnd);
 		instance.on('drag:exit', instance._onDragExit);
+		instance.on('drag:mouseDown', instance._onDragMouseDown);
 		instance.on('drag:over', instance._onDragOver);
 		instance.on('drag:start', instance._onDragStart);
-		instance.on('drag:end', instance._onDragEnd);
 
 		instance._createHelper();
 
@@ -302,34 +303,10 @@ A.extend(NestedList, A.Base, {
 		}
 	},
 
-	_onDragOver: function(event) {
+	_onDragMouseDown: function(event) {
 		var instance = this;
-		var sortCondition = instance.get(SORT_CONDITION);
-
-		if (sortCondition(event)) {
-			instance._updatePlaceholder(event);
-		}
-	},
-
-	_onDragStart: function(event) {
- 		var instance = this;
 		var drag = event.target;
-		var dragNode = drag.get(NODE);
 		var helper = instance.get(HELPER);
-		var placeholder = instance.get(PLACEHOLDER);
-
-		if (placeholder) {
-			// update placeholder height
-			placeholder.setStyle(
-				HEIGHT,
-				dragNode.get(OFFSET_HEIGHT) + PX
-			);
-
-			dragNode.hide();
-			placeholder.show();
-			// position placeholder after the dragNode
-			dragNode.placeAfter(placeholder);
-		}
 
 		if (helper) {
 			// show helper, we need display block here, yui dd hide it with display none
@@ -341,7 +318,36 @@ A.extend(NestedList, A.Base, {
 			// update the DRAG_NODE with the new helper
 			drag.set(DRAG_NODE, helper);
 		}
+	},
+
+	_onDragStart: function(event) {
+ 		var instance = this;
+		var drag = event.target;
+		var node = drag.get(NODE);
+		var placeholder = instance.get(PLACEHOLDER);
+
+		if (placeholder) {
+			// update placeholder height
+			placeholder.setStyle(
+				HEIGHT,
+				node.get(OFFSET_HEIGHT) + PX
+			);
+
+			node.hide();
+			placeholder.show();
+			// position placeholder after the node
+			node.placeAfter(placeholder);
+		}
  	},
+
+	_onDragOver: function(event) {
+		var instance = this;
+		var sortCondition = instance.get(SORT_CONDITION);
+
+		if (sortCondition(event)) {
+			instance._updatePlaceholder(event);
+		}
+	},
 
 	/*
 	* Setters
@@ -362,4 +368,4 @@ A.extend(NestedList, A.Base, {
 
 A.NestedList = NestedList;
 
-}, '@VERSION', { requires: [ 'aui-base', 'dd' ] });
+}, '0.1a', { requires: [ 'aui-base', 'dd' ] });
