@@ -51,7 +51,7 @@ A.mix(ContextOverlay, {
 
 		cancellableHide: {
 			value: true,
-			validador: isBoolean
+			validator: isBoolean
 		},
 
 		currentNode: {
@@ -81,7 +81,7 @@ A.mix(ContextOverlay, {
 				return this._setHideOnDocumentClick(v);
 			},
 			value: true,
-			validador: isBoolean
+			validator: isBoolean
 		},
 
 		hideDelay: {

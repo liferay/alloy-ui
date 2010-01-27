@@ -58,7 +58,7 @@ A.mix(TreeData, {
 		// childNodes
 		children: {
 			value: [],
-			validador: isArray,
+			validator: isArray,
 			setter: function(v) {
 				return this._setChildren(v);
 			}
