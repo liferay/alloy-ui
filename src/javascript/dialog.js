@@ -94,13 +94,6 @@ A.mix(
 				value: null
 			},
 
-			headerContent: {
-				writeOnce: true,
-				getter: function() {
-					return this.titleContainter;
-				}
-			},
-
 			modal: {
 				setter: function(v) {
 					return this._setModal(v);
