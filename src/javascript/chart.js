@@ -97,6 +97,8 @@ AUI().add(
 						},
 						backgroundColor: contentBox.getComputedStyle('backgroundColor'),
 						url: instance.get('swfURL'),
+						height: instance.get('height'),
+						width: instance.get('width'),
 						version: 9.045
 					};
 
