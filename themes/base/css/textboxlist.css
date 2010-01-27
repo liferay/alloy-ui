@@ -11,13 +11,13 @@
 }
 
 .aui-textboxlistentry-holder {
+	list-style: none;
 	margin: 0;
 }
 
 .aui-textboxlistentry-holder li {
 	float: left;
 	line-height: 1;
-	list-style: none;
 	margin: 0 5px 4px 0;
 }
 
