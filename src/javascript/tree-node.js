@@ -84,7 +84,7 @@ A.mix(TreeNode, {
 	ATTRS: {
 		draggable: {
 			value: true,
-			validador: isBoolean
+			validator: isBoolean
 		},
 
 		ownerTree: {
@@ -93,16 +93,16 @@ A.mix(TreeNode, {
 
 		label: {
 			value: BLANK,
-			validador: isString
+			validator: isString
 		},
 
 		expanded: {
 			value: false,
-			validador: isBoolean
+			validator: isBoolean
 		},
 
 		id: {
-			validador: isString
+			validator: isString
 		},
 
 		leaf: {
@@ -115,22 +115,22 @@ A.mix(TreeNode, {
 
 				return v;
 			},
-			validador: isBoolean
+			validator: isBoolean
 		},
 
 		nextSibling: {
 			value: null,
-			validador: isTreeNode
+			validator: isTreeNode
 		},
 
 		prevSibling: {
 			value: null,
-			validador: isTreeNode
+			validator: isTreeNode
 		},
 
 		parentNode: {
 			value: null,
-			validador: isTreeNode
+			validator: isTreeNode
 		},
 
 		labelEl: {
@@ -151,7 +151,7 @@ A.mix(TreeNode, {
 
 		alwaysShowHitArea: {
 			value: true,
-			validador: isBoolean
+			validator: isBoolean
 		},
 
 		iconEl: {
@@ -563,22 +563,22 @@ A.mix(TreeNodeIO, {
 
 		loading: {
 			value: false,
-			validador: isBoolean
+			validator: isBoolean
 		},
 
 		loaded: {
 			value: false,
-			validador: isBoolean
+			validator: isBoolean
 		},
 
 		cache: {
 			value: true,
-			validador: isBoolean
+			validator: isBoolean
 		},
 
 		leaf: {
 			value: false,
-			validador: isBoolean
+			validator: isBoolean
 		}
 	}
 });
@@ -779,12 +779,12 @@ A.mix(TreeNodeCheck, {
 	ATTRS: {
 		checked: {
 			value: false,
-			validador: isBoolean
+			validator: isBoolean
 		},
 
 		checkName: {
 			value: TREE_NODE_CHECK,
-			validador: isString
+			validator: isString
 		},
 
 		checkContainerEl: {

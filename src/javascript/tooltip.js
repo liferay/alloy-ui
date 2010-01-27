@@ -48,7 +48,7 @@ A.mix(Tooltip, {
 
 		title: {
 			value: false,
-			validador: isBoolean
+			validator: isBoolean
 		}
 	}
 });
