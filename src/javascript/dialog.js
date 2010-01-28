@@ -425,7 +425,7 @@ A.mix(
 			return A.DialogManager.findByChild(child).close();
 		},
 
-		refreshByChild: function(child, io) {
+		refreshByChild: function(child) {
 			var dialog = A.DialogManager.findByChild(child);
 
 			if (dialog && dialog.io) {
