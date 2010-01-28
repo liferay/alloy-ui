@@ -3,13 +3,20 @@
 	padding: 3px;
 }
 
-.aui-datepicker-select-wrapper {
+.aui-datepicker-display, .aui-datepicker-select-wrapper, .aui-field-date .aui-datepicker-display, .aui-field-date .aui-datepicker-select-wrapper {
 	float: left;
-	line-height: 28px;
 }
 
 .ie .aui-datepicker-select-wrapper {
 	padding-top: 3px;
+}
+
+.aui-datepicker-button-wrapper .aui-tool {
+	margin: 0;
+}
+
+.aui-datepicker-button-wrapper {
+	margin: 0 5px 0 2px;
 }
 
 .aui-datepicker-select-wrapper select {
