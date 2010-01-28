@@ -43,6 +43,14 @@
 				},
 
 				/*
+				* AUI Datatype
+				*/
+				'aui-datatype': {
+					fullpath: PATH_JAVASCRIPT + 'datatype.js',
+					requires: [ 'aui-base' ]
+				},
+
+				/*
 				* AUI Node extensions
 				*/
 				'aui-node': {
@@ -395,14 +403,6 @@
 				'state-interaction': {
 					fullpath: PATH_JAVASCRIPT + 'state-interaction.js',
 					requires: [ 'aui-base', 'plugin' ]
-				},
-
-				/*
-				* String Evaluation
-				*/
-				'string-evaluation': {
-					fullpath: PATH_JAVASCRIPT + 'string-evaluation.js',
-					requires: [ 'aui-base' ]
 				},
 
 				/*
