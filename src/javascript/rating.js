@@ -31,7 +31,6 @@ var L = A.Lang,
 	INPUT_NAME = 'inputName',
 	LABEL = 'label',
 	LABEL_ELEMENT = 'labelElement',
-	MESSAGES = 'messages',
 	NAME = 'name',
 	OFF = 'off',
 	ON = 'on',
@@ -39,9 +38,7 @@ var L = A.Lang,
 	SELECTED_INDEX = 'selectedIndex',
 	SHOW_TITLE = 'showTitle',
 	SIZE = 'size',
-	SPAN = 'span'
 	TITLE = 'title',
-	THUMBS = 'thumbs',
 	VALUE = 'value',
 
 	getCN = A.ClassNameManager.getClassName,
@@ -61,10 +58,6 @@ A.mix(Rating, {
 	NAME: 'Rating',
 
 	ATTRS: {
-		disabled: {
-			value: false,
-			validator: isBoolean
-		},
 		canReset: {
 			value: true,
 			validator: isBoolean
@@ -100,37 +93,6 @@ A.mix(Rating, {
 			validator: isString
 		},
 
-		messages: {
-			averageRatingElementText: {
-				value: 'The average rating is {0} stars out of {1}',
-				validator: isString
-			},
-			ratedElementText: {
-				value: 'You have rated this {0} stars out of {1}',
-				validator: isString
-			},
-			ratingElementText: {
-				value: 'Rate this {0} stars out of {1}',
-				validator: isString
-			},
-			thumbsUpText: {
-				value: 'Rate this as good',
-				validator: isString
-			},
-			thumbedUpText: {
-				value: 'You have rated this as good',
-				validator: isString
-			},
-			thumbsDownText: {
-				value: 'Rate this as bad',
-				validator: isString
-			},
-			thumbedDownText: {
-				value: 'You have rated this as bad',
-				validator: isString
-			}
-		},
-
 		render: {
 			value: true
 		},
@@ -150,11 +112,6 @@ A.mix(Rating, {
 			validator: function(v) {
 				return isNumber(v) && (v > 0);
 			}
-		},
-
-		thumbs: {
-			value: false,
-			validator: isBoolean
 		},
 
 		title: null,
@@ -184,6 +141,7 @@ A.extend(Rating, A.Component, {
 
 	bindUI: function () {
 		var instance = this;
+
 		instance._delegateElements();
 	},
 
@@ -206,6 +164,7 @@ A.extend(Rating, A.Component, {
 	*/
 	clearSelection: function() {
 		var instance = this;
+
 		instance.get(ELEMENTS).each(function(node) {
 			node.removeClass(CSS_RATING_EL_ON);
 			node.removeClass(CSS_RATING_EL_HOVER);
@@ -216,6 +175,7 @@ A.extend(Rating, A.Component, {
 		var instance = this;
 		var oldIndex = instance.get(SELECTED_INDEX);
 		var canReset = instance.get(CAN_RESET);
+
 		// clear selection when the selected element is clicked
 		if (canReset && (oldIndex == index)) {
 			index = -1;
@@ -228,7 +188,9 @@ A.extend(Rating, A.Component, {
 
 		var title = (TITLE in data) ? data.title : BLANK;
 		var value = (VALUE in data) ? data.value : selectedIndex;
+
 		instance.fillTo(selectedIndex);
+
 		instance.set(TITLE, title);
 		instance.set(VALUE, value);
 
@@ -242,11 +204,13 @@ A.extend(Rating, A.Component, {
 
 	fillTo: function(index, className) {
 		var instance = this;
+
 		instance.clearSelection();
 
 		if (index >= 0) {
 			instance.get(ELEMENTS).some(function(node, i) {
 				node.addClass(className || CSS_RATING_EL_ON);
+
 				return (index == i);
 			});
 		}
@@ -284,19 +248,9 @@ A.extend(Rating, A.Component, {
 
 	_renderElements: function() {
 		var instance = this;
-		var disabled = instance.get(DISABLED);
 		var contentBox = instance.get(CONTENT_BOX);
-		var defaultSelected = instance.get(DEFAULT_SELECTED);
-		var thumbs = instance.get(THUMBS);
+		var ratingElement = A.Node.create('<a href="javascript:void(0);"></a>');
 		var labelElement = A.Node.create('<div></div>');
-		var ratingElement = null;
-
-		if (!disabled) {
-			ratingElement = A.Node.create('<a href="javascript:void(0);"></a>');
-		}
-		else {
-			ratingElement = A.Node.create('<span></span>');
-		}
 
 		contentBox.addClass(CSS_CLEAR_FIX);
 		ratingElement.addClass(CSS_RATING_EL);
@@ -319,46 +273,11 @@ A.extend(Rating, A.Component, {
 				element.setAttribute(TITLE, title);
 			}
 
-			if (!disabled) {
-				if (!thumbs){
-					if (defaultSelected != 0 && ((defaultSelected - 1) == i)) {
-						element.html(A.substitute(instance.get(MESSAGES).ratedElementText, [defaultSelected, instance.get(SIZE)]));
-					}
-					else {
-						element.html(A.substitute(instance.get(MESSAGES).ratingElementText, [i + 1, instance.get(SIZE)]));
-					}
-				}
-				else {
-					if (i == 0) {
-						element.html(instance.get(MESSAGES).thumbsUpText);
-					}
-					else if (i == 1) {
-						element.html(instance.get(MESSAGES).thumbsDownText);
-					}
-
-					if (defaultSelected == 1) {
-						if (i == 0) {
-							element.html(instance.get(MESSAGES).thumbedUpText);
-						}
-					}
-					else if (defaultSelected == -1) {
-						if (i==1){
-							element.html(instance.get(MESSAGES).thumbedDownText);
-						}
-					}
-				}
-			}
-			else {
-				if (i == 0) {
-					element.html(A.substitute(instance.get(MESSAGES).averageRatingElementText, [defaultSelected, instance.get(SIZE)]));
-				}
-			}
-
 			contentBox.appendChild(element);
 		}
 
 		instance.set(LABEL_ELEMENT, labelElement);
-		instance.set(ELEMENTS, contentBox.queryAll(ANCHOR + ',' + SPAN));
+		instance.set(ELEMENTS, contentBox.queryAll(ANCHOR));
 	},
 
 	_syncElements: function(){
@@ -394,31 +313,14 @@ A.extend(Rating, A.Component, {
 	_delegateMethod: function(event){
 		var instance = this;
 		var type = event.type;
-		var defaultSelected = instance.get(DEFAULT_SELECTED);
 		var disabled = instance.get(DISABLED);
 		var	elements = instance.get(ELEMENTS);
 		var selectedIndex = instance.get(SELECTED_INDEX);
 		var index = elements.indexOf(event.target);
-		var thumbs = instance.get(THUMBS);
-		var disabled = instance.get(DISABLED);
 
 		var on = {
 			click: function() {
 				instance.select(index);
-				if (!disabled) {
-					if (!thumbs){
-						elements.item(index).html(A.substitute(instance.get(MESSAGES).ratedElementText, [index + 1, instance.get(SIZE)]));
-					}
-					else {
-						if (index == 0) {
-							elements.item(index).html(instance.get(MESSAGES).thumbedUpText);
-
-						}
-						else if (index == 1) {
-							elements.item(index).html(instance.get(MESSAGES).thumbedDownText);
-						}
-					}
-				}
 			},
 			mouseover: function() {
 				instance.fillTo(index, CSS_RATING_EL_HOVER);
@@ -468,10 +370,6 @@ A.mix(ThumbRating, {
 		size: {
 			value: 2,
 			readOnly: true
-		},
-		thumbs: {
-			value: true,
-			validator: isBoolean
 		}
 	}
 });
@@ -505,5 +403,4 @@ A.Rating = Rating;
 A.StarRating = Rating;
 A.ThumbRating = ThumbRating;
 
-}, '0.1a' , { requires: [ 'aui-base', 'rating-css' ] });
-
+}, '@VERSION' , { requires: [ 'aui-base', 'rating-css' ] });
