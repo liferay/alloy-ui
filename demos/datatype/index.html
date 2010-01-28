@@ -20,7 +20,7 @@
 
 <script type="text/javascript">
 
-AUI().ready('string-evaluation', function(A) {
+AUI().ready('aui-datatype', function(A) {
 
 	var L = A.Lang;
 
@@ -33,21 +33,28 @@ AUI().ready('string-evaluation', function(A) {
 	}
 
 	function assertBoolean(str, value) {
-		var status = L.parseBoolean(str) === value ? 'ok' : 'fail';
+		var status = A.DataType.Boolean.parse(str) === value ? 'ok' : 'fail';
 
 		str = stringify(str);
 		value = stringify(value);
 
-		A.getBody().append('<p class="'+status+'">'+status.toUpperCase() +' - L.parseBoolean('+ str+') === '+value+'</p>');
+		A.getBody().append('<p class="'+status+'">'+status.toUpperCase() +' - A.DataType.Boolean.parse('+ str+') === '+value+'</p>');
 	}
 
 	function assertString(str, value) {
-		var status = L.parseString(str) === value ? 'ok' : 'fail';
 
-		str = stringify(str);
-		value = stringify(value);
+try {
+	var status = A.DataType.String.evaluate(str) === value ? 'ok' : 'fail';
 
-		A.getBody().append('<p class="'+status+'">'+status.toUpperCase() +' - L.parseString('+ str+') === '+value+'</p>');
+	str = stringify(str);
+	value = stringify(value);
+
+	A.getBody().append('<p class="'+status+'">'+status.toUpperCase() +' - A.DataType.String.evaluate('+ str+') === '+value+'</p>');
+}
+catch(e) {
+	console.log(e);
+}
+
 	}
 
 	A.getBody().append('<h2>Parsing logical values to Boolean:</h2>');
