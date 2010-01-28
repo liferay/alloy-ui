@@ -188,7 +188,7 @@
 				* Delayed Task
 				*/
 				'delayed-task': {
-					fullpath: PATH_JAVASCRIPT + 'delayed_task.js'
+					fullpath: PATH_JAVASCRIPT + 'delayed-task.js'
 				},
 
 				/*
