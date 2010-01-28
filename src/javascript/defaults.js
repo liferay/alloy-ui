@@ -398,6 +398,14 @@
 				},
 
 				/*
+				* String Evaluation
+				*/
+				'string-evaluation': {
+					fullpath: PATH_JAVASCRIPT + 'string-evaluation.js',
+					requires: [ 'aui-base' ]
+				},
+
+				/*
 				* SWF
 				*/
 				'swf': {
