@@ -120,6 +120,13 @@ A.mix(Rating, {
 			}
 		},
 
+		strings: {
+			value: {
+				rating: 'Votacao'
+			},
+			validator: isString
+		},
+
 		title: null,
 
 		value: null
@@ -364,6 +371,7 @@ A.extend(Rating, A.Component, {
 
 			if (instance.get(SHOW_TITLE) && title) {
 				element.setAttribute(TITLE, title);
+				element.html(title);
 			}
 
 			contentBox.appendChild(element);
