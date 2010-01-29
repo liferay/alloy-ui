@@ -74,7 +74,7 @@
 
 .aui-field-inline {
 	display: inline-block;
-	float: none;
+	float: left;
 	vertical-align: middle;
 }
 
@@ -118,6 +118,18 @@
 	clear: both;
 }
 
+.aui-field-row:after {
+	clear: both;
+	content: "";
+	display: block;
+	height: 0;
+}
+
+.aui-field-row {
+	/* IE7/IE6 */
+	zoom: 1;
+}
+
 .aui-button-holder {
 	overflow: hidden;
 	display: block;
@@ -149,7 +161,6 @@
 
 .aui-field-content,
 .aui-button-holder {
-	clear: both;
 	display: inline-block;
 }
 
