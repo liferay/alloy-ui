@@ -219,7 +219,8 @@ A.extend(Rating, A.Component, {
 			instance.get(ELEMENTS).some(function(node, i) {
 				node.addClass(className || CSS_RATING_EL_ON);
 
-				return (index == i);
+				// stop loop when return true
+				return (i == index);
 			});
 		}
 	},
@@ -347,7 +348,6 @@ A.extend(Rating, A.Component, {
 
 		contentBox.addClass(CSS_CLEAR_FIX);
 		ratingElement.addClass(CSS_RATING_EL);
-		ratingElement.addClass(CSS_RATING_EL_OFF);
 		labelElement.addClass(CSS_RATING_LABEL_EL);
 
 		contentBox.append(labelElement);
@@ -465,9 +465,13 @@ A.mix(ThumbRating, {
 
 A.extend(ThumbRating, Rating, {
 	renderUI: function() {
+		var instance = this;
+
 		ThumbRating.superclass.renderUI.apply(this, arguments);
 
-		var elements = this.get(ELEMENTS);
+		var elements = instance.get(ELEMENTS);
+
+		elements.addClass(CSS_RATING_EL_OFF);
 		elements.item(0).addClass(CSS_RATING_THUMB_UP);
 		elements.item(1).addClass(CSS_RATING_THUMB_DOWN);
 	},
