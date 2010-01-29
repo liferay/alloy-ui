@@ -32,6 +32,7 @@ var L = A.Lang,
 	LABEL = 'label',
 	LABEL_ELEMENT = 'labelElement',
 	NAME = 'name',
+	NODE_NAME = 'nodeName',
 	OFF = 'off',
 	ON = 'on',
 	RATING = 'rating',
@@ -40,6 +41,11 @@ var L = A.Lang,
 	SIZE = 'size',
 	TITLE = 'title',
 	VALUE = 'value',
+
+	EV_RATING_ITEM_CLICK = 'itemClick',
+	EV_RATING_ITEM_SELECT = 'itemSelect',
+	EV_RATING_ITEM_OUT = 'itemOut',
+	EV_RATING_ITEM_OVER = 'itemOver',
 
 	getCN = A.ClassNameManager.getClassName,
 
@@ -55,7 +61,7 @@ function Rating() {
 }
 
 A.mix(Rating, {
-	NAME: 'Rating',
+	NAME: 'rating',
 
 	ATTRS: {
 		canReset: {
@@ -142,7 +148,11 @@ A.extend(Rating, A.Component, {
 	bindUI: function () {
 		var instance = this;
 
-		instance._delegateElements();
+		instance._createEvents();
+
+		instance.on('click', instance._handleClickEvent);
+		instance.on('mouseover', instance._handleMouseOverEvent);
+		instance.on('mouseout', instance._handleMouseOutEvent);
 	},
 
 	syncUI: function(){
@@ -198,8 +208,6 @@ A.extend(Rating, A.Component, {
 
 		hiddenInput.setAttribute(TITLE, title);
 		hiddenInput.setAttribute(VALUE, value);
-
-		instance.fire('select');
 	},
 
 	fillTo: function(index, className) {
@@ -214,6 +222,91 @@ A.extend(Rating, A.Component, {
 				return (index == i);
 			});
 		}
+	},
+
+	indexOf: function(elem) {
+		var instance = this;
+
+		return instance.get(ELEMENTS).indexOf(elem);
+	},
+
+	_canFireCustomEvent: function(event) {
+		var instance = this;
+		var domTarget = event.domEvent.target;
+
+		// checks if the widget is not disabled and if the dom event is firing with a item as target
+		// do not fire custom events for other elements into the boundingBox
+		return !instance.get(DISABLED) && domTarget.hasClass(CSS_RATING_EL);
+	},
+
+	_createEvents: function() {
+		var instance = this;
+
+		// create publish function for kweight optimization
+		var publish = function(name, fn) {
+			instance.publish(name, {
+	            defaultFn: fn,
+	            queuable: false,
+	            emitFacade: true,
+	            bubbles: true
+	        });
+		};
+
+		// publishing events
+		publish(
+			EV_RATING_ITEM_CLICK,
+			this._defRatingItemClickFn
+		);
+
+		publish(
+			EV_RATING_ITEM_SELECT,
+			this._defRatingItemSelectFn
+		);
+
+		publish(
+			EV_RATING_ITEM_OVER,
+			this._defRatingItemOverFn
+		);
+
+		publish(
+			EV_RATING_ITEM_OUT,
+			this._defRatingItemOutFn
+		);
+	},
+
+	_defRatingItemClickFn: function(event) {
+		var instance = this;
+		var domEvent = event.domEvent;
+
+		instance.fire(EV_RATING_ITEM_SELECT, {
+			delegateEvent: event,
+			domEvent: domEvent,
+			ratingItem: domEvent.target
+		});
+	},
+
+	_defRatingItemSelectFn: function(event) {
+		var instance = this;
+		var domTarget = event.domEvent.target;
+
+		instance.select(
+			instance.indexOf(domTarget)
+		);
+	},
+
+	_defRatingItemOutFn: function(event) {
+		var instance = this;
+
+		instance.fillTo(
+			instance.get(SELECTED_INDEX)
+		);
+	},
+
+	_defRatingItemOverFn: function(event) {
+		var instance = this;
+		var index = instance.indexOf(event.domEvent.target);
+
+		instance.fillTo(index, CSS_RATING_EL_HOVER);
 	},
 
 	_parseInputElements: function() {
@@ -292,15 +385,6 @@ A.extend(Rating, A.Component, {
 		instance.select();
 	},
 
-	_delegateElements: function() {
-		var instance = this;
-		var boundingBox = instance.get(BOUNDING_BOX);
-
-		boundingBox.delegate('click', A.bind(instance._delegateMethod, this), ANCHOR);
-		boundingBox.delegate('mouseover', A.bind(instance._delegateMethod, this), ANCHOR);
-		boundingBox.delegate('mouseout', A.bind(instance._delegateMethod, this), ANCHOR);
-	},
-
 	_getInputData: function(index) {
 		var instance = this;
 
@@ -310,32 +394,37 @@ A.extend(Rating, A.Component, {
 	/*
 	* Delegated events
 	*/
-	_delegateMethod: function(event){
+	_handleClickEvent: function(event) {
 		var instance = this;
-		var type = event.type;
-		var disabled = instance.get(DISABLED);
-		var	elements = instance.get(ELEMENTS);
-		var selectedIndex = instance.get(SELECTED_INDEX);
-		var index = elements.indexOf(event.target);
+		var domTarget = event.domEvent.target;
 
-		var on = {
-			click: function() {
-				instance.select(index);
-			},
-			mouseover: function() {
-				instance.fillTo(index, CSS_RATING_EL_HOVER);
-			},
-			mouseout: function() {
-				instance.fillTo(selectedIndex);
-			}
-		};
+		if (instance._canFireCustomEvent(event)) {
+			instance.fire(EV_RATING_ITEM_CLICK, {
+				delegateEvent: event,
+				domEvent: event.domEvent
+			});
+		}
+	},
 
-		if (type) {
-			if (!disabled) {
-				on[type]();
-			}
-			// trigger user callback even when disabled
-			instance.fire(type);
+	_handleMouseOutEvent: function(event) {
+		var instance = this;
+
+		if (instance._canFireCustomEvent(event)) {
+			instance.fire(EV_RATING_ITEM_OUT, {
+				delegateEvent: event,
+				domEvent: event.domEvent
+			});
+		}
+	},
+
+	_handleMouseOverEvent: function(event) {
+		var instance = this;
+
+		if (instance._canFireCustomEvent(event)) {
+			instance.fire(EV_RATING_ITEM_OVER, {
+				delegateEvent: event,
+				domEvent: event.domEvent
+			});
 		}
 	},
 

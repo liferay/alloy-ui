@@ -52,19 +52,19 @@ AUI().ready('rating', function(A) {
 		//showTitle: false,
 		//inputName: 'name',
 		on: {
-			mouseover: function() {
-				console.log('mouseover', arguments);
+			itemOver: function() {
+				console.log('itemOver 1', arguments);
 			},
-			mouseout: function() {
-				//console.log('mouseout', arguments);
+			itemOut: function() {
+				console.log('itemOut 1', arguments);
 			},
-			click: function() {
-				//console.log('click', arguments);
+			itemClick: function(event) {
+				console.log('itemClick 1', arguments);
 			},
-			select: function(event) {
+			itemSelect: function(event) {
 				var instance = event.target;
 
-				//console.log('select', arguments);
+				console.log('itemSelect 1', arguments);
 			}
 		}
 	});
@@ -77,32 +77,43 @@ AUI().ready('rating', function(A) {
 		defaultSelected: 3,
 		canReset: false,
 		on: {
-			mouseover: function() {
-				console.log('mouseover', arguments);
+			itemOver: function() {
+				console.log('itemOver 2', arguments);
+			},
+			itemOut: function() {
+				console.log('itemOut 2', arguments);
+			},
+			itemClick: function() {
+				console.log('itemClick 2', arguments);
+			},
+			itemSelect: function(event) {
+				var instance = event.target;
+
+				console.log('itemSelect 2', arguments);
 			}
 		}
 	});
-
-	//rating2.enable();
-	rating2.set('label', 'New Label')
-	rating2.set('disabled', false)
-	// rating2.set('disabled', true)
-
-	var rating3 = new A.StarRating({
-		boundingBox: '#rating3',
-		defaultSelected: 4
-	});
-
-	var ratingThumb1 = new A.ThumbRating({
-		boundingBox: '#ratingThumbs1',
-		label: 'Thumb Rating',
-		on: {
-			click: function(event) {
-				console.log( this.get('value') );
-				this.set('label', 'test' + (new Date()).getTime())
-			}
-		}
-	});
+	//
+	// //rating2.enable();
+	// rating2.set('label', 'New Label')
+	// rating2.set('disabled', false)
+	// // rating2.set('disabled', true)
+	//
+	// var rating3 = new A.StarRating({
+	// 	boundingBox: '#rating3',
+	// 	defaultSelected: 4
+	// });
+	//
+	// var ratingThumb1 = new A.ThumbRating({
+	// 	boundingBox: '#ratingThumbs1',
+	// 	label: 'Thumb Rating',
+	// 	on: {
+	// 		click: function(event) {
+	// 			console.log( this.get('value') );
+	// 			this.set('label', 'test' + (new Date()).getTime())
+	// 		}
+	// 	}
+	// });
 
 	// public methods
 	// rating1.select(index);
