@@ -11,6 +11,7 @@
 	display: block;
 	float: left;
 	font-size: 0;
+	text-indent: -9999;
 }
 
 .aui-rating-element-off {}
