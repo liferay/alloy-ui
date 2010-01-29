@@ -13,7 +13,6 @@ var L = A.Lang,
 		return (v instanceof A.Node);
 	},
 
-	ANCHOR = 'a',
 	BLANK = '',
 	BOUNDING_BOX = 'boundingBox',
 	CAN_RESET = 'canReset',
@@ -22,6 +21,7 @@ var L = A.Lang,
 	DEFAULT_SELECTED = 'defaultSelected',
 	DESTROY = 'destroy',
 	DISABLED = 'disabled',
+	DOT = '.',
 	ELEMENT = 'element',
 	ELEMENTS = 'elements',
 	HELPER = 'helper',
@@ -342,7 +342,7 @@ A.extend(Rating, A.Component, {
 	_renderElements: function() {
 		var instance = this;
 		var contentBox = instance.get(CONTENT_BOX);
-		var ratingElement = A.Node.create('<a href="javascript:void(0);"></a>');
+		var ratingElement = A.Node.create('<a href="javascript:;"></a>');
 		var labelElement = A.Node.create('<div></div>');
 
 		contentBox.addClass(CSS_CLEAR_FIX);
@@ -370,7 +370,7 @@ A.extend(Rating, A.Component, {
 		}
 
 		instance.set(LABEL_ELEMENT, labelElement);
-		instance.set(ELEMENTS, contentBox.queryAll(ANCHOR));
+		instance.set(ELEMENTS, contentBox.queryAll(DOT+CSS_RATING_EL));
 	},
 
 	_syncElements: function(){
