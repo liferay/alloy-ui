@@ -35,6 +35,15 @@
 	<input type="radio" name="rating1" value="v2" title="Very bad" />
 </div>
 
+<div id="ratingLabeled1">
+	<label for="ratingLabeled1">Rate this as 1</label>
+	<input type="radio" id="ratingLabeled1" name="ratingLabeled1" title="Rate this as 1 using title dom attr" value="1" />
+	<label for="ratingLabeled2">Rate this as 2</label>
+	<input type="radio" id="ratingLabeled2" name="ratingLabeled2" value="2" />
+	<label for="ratingLabeled3">Rate this as 3</label>
+	<input type="radio" id="ratingLabeled3" name="ratingLabeled3" value="3" />
+</div>
+
 <br/>
 
 <script type="text/javascript" charset="utf-8">
@@ -113,6 +122,10 @@ AUI().ready('rating', function(A) {
 				this.set('label', 'test' + (new Date()).getTime())
 			}
 		}
+	});
+
+	var rating3 = new A.StarRating({
+		boundingBox: '#ratingLabeled1'
 	});
 
 	// public methods

@@ -24,8 +24,10 @@ var L = A.Lang,
 	DOT = '.',
 	ELEMENT = 'element',
 	ELEMENTS = 'elements',
+	EMPTY_STR = '',
 	HELPER = 'helper',
 	HOVER = 'hover',
+	ID = 'id',
 	INNER_HTML = 'innerHTML',
 	INPUT = 'input',
 	INPUT_NAME = 'inputName',
@@ -324,7 +326,24 @@ A.extend(Rating, A.Component, {
 			instance.set(SIZE, size);
 
 			inputs.each(function(node, index) {
+				var id = node.get(ID);
+				var label = EMPTY_STR;
+
+				if (id) {
+					// for a11y parse the <label> elments information
+					// checking if the node has a <label>
+					var labelEl = boundingBox.one('label[for="'+id+'"]');
+
+					if (labelEl) {
+						// if there is, extract the content of the label to use as content of the anchors...
+						label = labelEl.html();
+						// and remove the label from the container.
+						labelEl.remove();
+					}
+				}
+
 				instance.inputElementsData[index] = {
+					content: label,
 					value: node.getAttribute(VALUE) || index,
 					title: node.getAttribute(TITLE)
 				};
@@ -355,15 +374,26 @@ A.extend(Rating, A.Component, {
 		// creating rating elements
 		for (var i = 0, size = this.get(SIZE); i < size; i++) {
 			var	data = instance._getInputData(i);
-			var title = data.title;
 			var element = ratingElement.cloneNode();
 
+			// try to use the pulled title data from the dom, otherwise use the TITLE attr
+			var title = data.title || instance.get(TITLE);
+
+			// if there is no content use the title as content
+			var content = data.content || title;
+
 			if (!title) {
-				title = instance.get(TITLE);
+				// if there is no title on the dom attr or the TITLE attr use the content as title
+				title = content;
 			}
 
-			if (instance.get(SHOW_TITLE) && title) {
-				element.html(title);
+			// setting the content
+			if (content) {
+				element.html(content);
+			}
+
+			// setting the title
+			if (title && instance.get(SHOW_TITLE)) {
 				element.setAttribute(TITLE, title);
 			}
 
