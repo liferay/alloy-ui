@@ -325,6 +325,8 @@ A.extend(Rating, A.Component, {
 
 			instance.set(SIZE, size);
 
+			var labels = boundingBox.all('label');
+
 			inputs.each(function(node, index) {
 				var id = node.get(ID);
 				var label = EMPTY_STR;
@@ -332,13 +334,11 @@ A.extend(Rating, A.Component, {
 				if (id) {
 					// for a11y parse the <label> elments information
 					// checking if the node has a <label>
-					var labelEl = boundingBox.one('label[for="'+id+'"]');
+					var labelEl = labels.filter('[for="'+id+'"]');
 
-					if (labelEl) {
+					if (labelEl.size()) {
 						// if there is, extract the content of the label to use as content of the anchors...
-						label = labelEl.html();
-						// and remove the label from the container.
-						labelEl.remove();
+						label = labelEl.item(0).html();
 					}
 				}
 
@@ -349,6 +349,7 @@ A.extend(Rating, A.Component, {
 				};
 			});
 
+			labels.remove();
 			inputs.remove();
 		}
 
@@ -376,20 +377,15 @@ A.extend(Rating, A.Component, {
 			var	data = instance._getInputData(i);
 			var element = ratingElement.cloneNode();
 
-			// try to use the pulled title data from the dom, otherwise use the TITLE attr
-			var title = data.title || instance.get(TITLE);
+			var content = data.content;
 
-			// if there is no content use the title as content
-			var content = data.content || title;
-
-			if (!title) {
-				// if there is no title on the dom attr or the TITLE attr use the content as title
-				title = content;
-			}
+			// try to use the pulled title data from the dom, otherwise use the TITLE attr, in the last case use the content
+			var title = data.title || instance.get(TITLE) || content;
 
 			// setting the content
 			if (content) {
-				element.html(content);
+				// if there is no content use the title as content
+				element.html(content || title);
 			}
 
 			// setting the title
