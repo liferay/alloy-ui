@@ -383,7 +383,7 @@ A.extend(Rating, A.Component, {
 			var title = data.title || instance.get(TITLE) || content;
 
 			// setting the content
-			if (content) {
+			if (content || title) {
 				// if there is no content use the title as content
 				element.html(content || title);
 			}
