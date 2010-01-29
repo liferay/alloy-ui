@@ -93,27 +93,27 @@ AUI().ready('rating', function(A) {
 			}
 		}
 	});
-	//
-	// //rating2.enable();
-	// rating2.set('label', 'New Label')
-	// rating2.set('disabled', false)
-	// // rating2.set('disabled', true)
-	//
-	// var rating3 = new A.StarRating({
-	// 	boundingBox: '#rating3',
-	// 	defaultSelected: 4
-	// });
-	//
-	// var ratingThumb1 = new A.ThumbRating({
-	// 	boundingBox: '#ratingThumbs1',
-	// 	label: 'Thumb Rating',
-	// 	on: {
-	// 		click: function(event) {
-	// 			console.log( this.get('value') );
-	// 			this.set('label', 'test' + (new Date()).getTime())
-	// 		}
-	// 	}
-	// });
+
+	//rating2.enable();
+	rating2.set('label', 'New Label')
+	rating2.set('disabled', false)
+	// rating2.set('disabled', true)
+
+	var rating3 = new A.StarRating({
+		boundingBox: '#rating3',
+		defaultSelected: 4
+	});
+
+	var ratingThumb1 = new A.ThumbRating({
+		boundingBox: '#ratingThumbs1',
+		label: 'Thumb Rating',
+		on: {
+			itemClick: function(event) {
+				console.log( event.target.get('value') );
+				this.set('label', 'test' + (new Date()).getTime())
+			}
+		}
+	});
 
 	// public methods
 	// rating1.select(index);
