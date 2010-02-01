@@ -47,6 +47,10 @@ var L = A.Lang,
 		return ( v instanceof A.TreeNode );
 	},
 
+	isTreeView = function(v) {
+		return ( v instanceof A.TreeView );
+	},
+
 	getCN = A.ClassNameManager.getClassName,
 
 	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
@@ -130,7 +134,9 @@ A.mix(TreeNode, {
 
 		parentNode: {
 			value: null,
-			validator: isTreeNode
+			validator: function(val) {
+				return isTreeNode(val) || isTreeView(val)
+			}
 		},
 
 		labelEl: {
