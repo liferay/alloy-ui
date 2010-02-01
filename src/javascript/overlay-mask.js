@@ -1,6 +1,7 @@
 AUI.add('overlay-mask', function(A) {
 
 var L = A.Lang,
+	isArray = L.isArray,
 	isString = L.isString,
 	isNumber = L.isNumber,
 
@@ -11,7 +12,7 @@ var L = A.Lang,
 	ie6 = (UA.ie && UA.version.major <= 6),
 
 	ABSOLUTE = 'absolute',
-	ALIGN = 'align',
+	ALIGN_POINTS = 'alignPoints',
 	BACKGROUND = 'background',
 	BOUNDING_BOX = 'boundingBox',
 	FIXED = 'fixed',
@@ -32,8 +33,9 @@ A.mix(OverlayMask, {
 	NAME: OVERLAY_MASK,
 
 	ATTRS: {
-		align: {
-            value: { node: null, points: [ 'tl', 'tl' ] }
+		alignPoints: {
+			value: [ 'tl', 'tl' ],
+			validator: isArray
         },
 
 		background: {
@@ -139,7 +141,7 @@ A.extend(OverlayMask, A.ComponentOverlay, {
 	*/
 	refreshMask: function() {
 		var instance = this;
-		var align = instance.get(ALIGN);
+		var alignPoints = instance.get(ALIGN_POINTS);
 		var target = instance.get(TARGET);
 		var boundingBox = instance.get(BOUNDING_BOX);
 		var targetSize = instance.getTargetSize();
@@ -156,7 +158,7 @@ A.extend(OverlayMask, A.ComponentOverlay, {
 		// if its not a full mask...
 		if ( !(isDoc || isWin) ) {
 			// if the target is not document|window align the overlay
-			instance.align(target, align.points);
+			instance.align(target, alignPoints);
 		}
 	},
 
