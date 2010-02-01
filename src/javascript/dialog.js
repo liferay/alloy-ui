@@ -51,7 +51,11 @@ var L = A.Lang,
 	TPL_BUTTON = '<button class="' + CSS_DIALOG_BUTTON + '"></button>',
 	TPL_BUTTON_CONTAINER = '<div class="' + CSS_DIALOG_BUTTON_CONTAINER + '"></div>';
 
-var Dialog = function(config) {};
+var Dialog = function(config) {
+	if (!A.DialogMask) {
+		A.DialogMask = new A.OverlayMask().render();
+	}
+};
 
 A.mix(
 	Dialog,
@@ -435,6 +439,4 @@ A.mix(
 	}
 );
 
-A.DialogMask = new A.OverlayMask().render();
-
-}, '0.1a', { requires: [ 'panel', 'dd-constrain', 'tool-item', 'overlay-manager', 'overlay-mask', 'io-plugin', 'resize', 'dialog-css' ] });
+}, '@VERSION', { requires: [ 'panel', 'dd-constrain', 'tool-item', 'overlay-manager', 'overlay-mask', 'io-plugin', 'resize', 'dialog-css' ] });
