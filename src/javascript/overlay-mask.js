@@ -15,6 +15,7 @@ var L = A.Lang,
 	ALIGN_POINTS = 'alignPoints',
 	BACKGROUND = 'background',
 	BOUNDING_BOX = 'boundingBox',
+	CONTENT_BOX = 'contentBox',
 	FIXED = 'fixed',
 	HEIGHT = 'height',
 	OFFSET_HEIGHT = 'offsetHeight',
@@ -43,7 +44,7 @@ A.mix(OverlayMask, {
 			value: '#000',
 			validator: isString,
 			setter: function(v) {
-				this.get(BOUNDING_BOX).setStyle(BACKGROUND, v);
+				this.get(CONTENT_BOX).setStyle(BACKGROUND, v);
 
 				return v;
 			}
@@ -146,8 +147,10 @@ A.extend(OverlayMask, A.ComponentOverlay, {
 		var boundingBox = instance.get(BOUNDING_BOX);
 		var targetSize = instance.getTargetSize();
 
+		var fullPage = (isDoc || isWin);
+
 		boundingBox.setStyles({
-			position: ie6 ? ABSOLUTE : FIXED,
+			position: (ie6 || !fullPage) ? ABSOLUTE : FIXED,
 			left: 0,
 			top: 0
 		});
@@ -156,7 +159,7 @@ A.extend(OverlayMask, A.ComponentOverlay, {
 		instance.set(WIDTH, targetSize.width);
 
 		// if its not a full mask...
-		if ( !(isDoc || isWin) ) {
+		if ( !fullPage ) {
 			// if the target is not document|window align the overlay
 			instance.align(target, alignPoints);
 		}
@@ -168,7 +171,7 @@ A.extend(OverlayMask, A.ComponentOverlay, {
 	_setOpacity: function(v) {
 		var instance = this;
 
-		instance.get(BOUNDING_BOX).setStyle(OPACITY, v);
+		instance.get(CONTENT_BOX).setStyle(OPACITY, v);
 
 		return v;
 	},
