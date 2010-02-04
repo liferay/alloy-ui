@@ -6,6 +6,7 @@ AUI.add('portal-layout', function(A) {
 var L = A.Lang,
 	isString = L.isString,
 	isObject = L.isObject,
+	isValue = L.isValue,
 
 	DDM = A.DD.DDM,
 
@@ -350,6 +351,35 @@ A.extend(PortalLayout, A.Base, {
 		instance.lastYDirection = instance.YDirection;
 	},
 
+	_positionNode: function(event) {
+		var instance = this;
+		var activeDrag = DDM.activeDrag;
+		var activeDrop = instance.activeDrop;
+		var dragNode = activeDrag.get(NODE);
+		var dropNode = activeDrop.get(NODE);
+
+		// detects if the activeDrop is a dd target (portlet) or a drop area only (column)
+		var isTarget = isValue(dropNode.dd);
+
+		if (!dragNode.contains(dropNode)) {
+			if (isTarget) {
+				// top quadrants...
+				if (instance.quadrant < 3) {
+					dropNode.placeBefore(dragNode);
+				}
+				// bottom quadrants
+				else {
+					dropNode.placeAfter(dragNode);
+				}
+			}
+			// interacting with the columns (drop areas only)
+			else {
+				dropNode.append(dragNode);
+			}
+		}
+		// console.log(instance.activeDrop, instance.activeDrop.get(NODE).getDOM());
+	},
+
 	_syncPlaceholderUI: function(event) {
 		var instance = this;
 
@@ -419,6 +449,8 @@ A.extend(PortalLayout, A.Base, {
 		if (placeholder) {
 			placeholder.hide();
 		}
+
+		instance._positionNode(event);
 
 		// reset the last information
 		instance.lastQuadrant = null;
