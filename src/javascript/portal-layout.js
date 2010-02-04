@@ -4,8 +4,9 @@ AUI.add('portal-layout', function(A) {
 * PortalLayout
 */
 var L = A.Lang,
-	isString = L.isString,
+	isFunction = L.isFunction,
 	isObject = L.isObject,
+	isString = L.isString,
 	isValue = L.isValue,
 
 	DDM = A.DD.DDM,
@@ -16,6 +17,7 @@ var L = A.Lang,
 	DOWN = 'down',
 	DRAG_NODE = 'dragNode',
 	DRAG_NODES = 'dragNodes',
+	DROP_CONTAINER = 'dropContainer',
 	DROP_NODES = 'dropNodes',
 	GROUPS = 'groups',
 	LEFT = 'left',
@@ -78,6 +80,13 @@ A.mix(PortalLayout, {
 		dragNodes: {
 			value: false,
 			setter: nodeListSetter
+		},
+
+		dropContainer: {
+			value: function(dropNode) {
+				return dropNode;
+			},
+			validator: isFunction
 		},
 
 		dropNodes: {
@@ -384,7 +393,11 @@ A.extend(PortalLayout, A.Base, {
 			}
 			// interacting with the columns (drop areas only)
 			else {
-				dropNode.append(dragNode);
+				// find the dropContainer of the dropNode, the default DROP_CONTAINER function returns the dropNode
+				var dropContainer = instance.get(DROP_CONTAINER).apply(instance, [dropNode]);
+
+				// appendding the dragNode on the dropContainer
+				dropContainer.append(dragNode);
 			}
 		}
 	},
