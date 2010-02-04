@@ -8,6 +8,8 @@ AUI().add(
 			NAME = 'loadingmask',
 
 			CSS_LOADINGMASK = getClassName(NAME),
+			CSS_MASKED = getClassName(NAME, 'masked'),
+			CSS_MASKED_RELATIVE = getClassName(NAME, 'masked', 'relative'),
 			CSS_MESSAGE_LOADING = getClassName(NAME, 'message'),
 			CSS_MESSAGE_LOADING_CONTENT = getClassName(NAME, 'message', 'content'),
 
@@ -19,13 +21,16 @@ AUI().add(
 			var host = config.host;
 			var node = host;
 
+			var zIndex;
+
 			if (A.Widget && host instanceof A.Widget) {
 				node = host.get('contentBox');
 			}
 
 			config.target = node;
+			config.cssClass = config.cssClass || CSS_LOADINGMASK;
 
-			instance._mask = new A.OverlayMask(config).render();
+			instance._mask = new A.OverlayMask(config).render(node);
 
 			LoadingMask.superclass.constructor.apply(this, arguments);
 		};
@@ -76,6 +81,11 @@ AUI().add(
 
 				_afterVisibleChange: function(event) {
 					var instance = this;
+
+					var target = instance.get('target');
+
+					target.toggleClass(CSS_MASKED, (event.newVal));
+					target.toggleClass(CSS_MASKED_RELATIVE, (event.newVal && (target.getStyle('position') == 'static')));
 
 					if (event.newVal) {
 						instance.refreshMask();

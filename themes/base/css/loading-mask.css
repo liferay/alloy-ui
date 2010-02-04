@@ -1,5 +1,15 @@
-.aui-loadingmask, .aui-loadingmask-content {
-	z-index: 99999 !important;
+.aui-loadingmask-masked {
+	overflow: hidden !important;
+}
+
+.aui-loadingmask-masked-relative {
+	position: relative !important;
+}
+
+.aui-loadingmask {
+    height: 100%;
+	width: 100%;
+    zoom: 1;
 }
 
 .aui-loadingmask-message {
