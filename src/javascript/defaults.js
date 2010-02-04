@@ -359,6 +359,18 @@
 				},
 
 				/*
+				* Portal Layout
+				*/
+				'portal-layout': {
+					fullpath: PATH_JAVASCRIPT + 'portal-layout.js',
+					requires: [ 'aui-base', 'dd', 'portal-layout-css' ]
+				},
+				'portal-layout-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'portal-layout.css',
+					type: 'css'
+				},
+				/*
 				* Rating
 				*/
 				'rating': {
