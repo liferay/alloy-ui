@@ -4,6 +4,7 @@ AUI.add('portal-layout', function(A) {
 * PortalLayout
 */
 var L = A.Lang,
+	isBoolean = L.isBoolean,
 	isFunction = L.isFunction,
 	isObject = L.isObject,
 	isString = L.isString,
@@ -20,6 +21,7 @@ var L = A.Lang,
 	DROP_CONTAINER = 'dropContainer',
 	DROP_NODES = 'dropNodes',
 	GROUPS = 'groups',
+	LAZY_START = 'lazyStart',
 	LEFT = 'left',
 	NODE = 'node',
 	OFFSET_HEIGHT = 'offsetHeight',
@@ -96,6 +98,11 @@ A.mix(PortalLayout, {
 
 		groups: {
 			value: [PORTAL_LAYOUT]
+		},
+
+		lazyStart: {
+			value: false,
+			validator: isBoolean
 		},
 
 		placeholder: {
@@ -255,10 +262,15 @@ A.extend(PortalLayout, A.Base, {
 		var instance = this;
 		var activeDrag = DDM.activeDrag;
 		var activeDrop = instance.activeDrop;
-		var dragNode = activeDrag.get(NODE);
-		var dropNode = activeDrop.get(NODE);
 
-		return !dragNode.contains(dropNode);
+		if (activeDrag && activeDrop) {
+			var dragNode = activeDrag.get(NODE);
+			var dropNode = activeDrop.get(NODE);
+
+			return !dragNode.contains(dropNode);
+		}
+
+		return true;
 	},
 
 	_bindDDEvents: function() {
@@ -374,30 +386,33 @@ A.extend(PortalLayout, A.Base, {
 		var instance = this;
 		var activeDrag = DDM.activeDrag;
 		var activeDrop = instance.activeDrop;
-		var dragNode = activeDrag.get(NODE);
-		var dropNode = activeDrop.get(NODE);
 
-		// detects if the activeDrop is a dd target (portlet) or a drop area only (column)
-		var isTarget = isValue(dropNode.dd);
+		if (activeDrag && activeDrop) {
+			var dragNode = activeDrag.get(NODE);
+			var dropNode = activeDrop.get(NODE);
 
-		if (instance._alignCondition()) {
-			if (isTarget) {
-				// top quadrants...
-				if (instance.quadrant < 3) {
-					dropNode.placeBefore(dragNode);
+			// detects if the activeDrop is a dd target (portlet) or a drop area only (column)
+			var isTarget = isValue(dropNode.dd);
+
+			if (instance._alignCondition()) {
+				if (isTarget) {
+					// top quadrants...
+					if (instance.quadrant < 3) {
+						dropNode.placeBefore(dragNode);
+					}
+					// bottom quadrants
+					else {
+						dropNode.placeAfter(dragNode);
+					}
 				}
-				// bottom quadrants
+				// interacting with the columns (drop areas only)
 				else {
-					dropNode.placeAfter(dragNode);
-				}
-			}
-			// interacting with the columns (drop areas only)
-			else {
-				// find the dropContainer of the dropNode, the default DROP_CONTAINER function returns the dropNode
-				var dropContainer = instance.get(DROP_CONTAINER).apply(instance, [dropNode]);
+					// find the dropContainer of the dropNode, the default DROP_CONTAINER function returns the dropNode
+					var dropContainer = instance.get(DROP_CONTAINER).apply(instance, [dropNode]);
 
-				// appendding the dragNode on the dropContainer
-				dropContainer.append(dragNode);
+					// appendding the dragNode on the dropContainer
+					dropContainer.append(dragNode);
+				}
 			}
 		}
 	},
@@ -482,13 +497,32 @@ A.extend(PortalLayout, A.Base, {
 		instance.lastYDirection = null;
 	},
 
+	// fires after drag:start
 	_onDragEnter: function(event) {
 		var instance = this;
 		var drop = event.drop;
+		var placeholder = instance.get(PLACEHOLDER);
 
-		instance.activeDrop = DDM.activeDrop;
+		// instance.lazyEvents is property which relies to the LAZY_START option
+		// when LAZY_START is true we prevent the first drag:event fires
+		// and the dragNode only find an activeDrop after intersects with a dropZone.
+		if (instance.lazyEvents) {
+			// set the first activeDrop to null, avoid the drag:enter align the placeholder on the parent dropZone (column)
+			instance.activeDrop = null;
+		}
+		// firing the drag:event...
+		else {
+			// if LAZY_START is true the placeholder was not showed on drag:start, showing the placeholder here..
+			if (placeholder) {
+				placeholder.show();
+			}
 
-		instance._syncPlaceholderUI(event);
+			instance.activeDrop = DDM.activeDrop;
+
+			instance._syncPlaceholderUI(event);
+		}
+
+		instance.lazyEvents = false;
 	},
 
 	_onDragExit: function(event) {
@@ -497,6 +531,7 @@ A.extend(PortalLayout, A.Base, {
 		instance._syncPlaceholderUI(event);
 
 		instance.activeDrop = DDM.activeDrop;
+
 		instance.lastActiveDrop = DDM.activeDrop;
 	},
 
@@ -514,6 +549,7 @@ A.extend(PortalLayout, A.Base, {
 		}
 	},
 
+	// fires before drag:enter
 	_onDragStart: function(event) {
 		var instance = this;
 		var placeholder = instance.get(PLACEHOLDER);
@@ -522,8 +558,17 @@ A.extend(PortalLayout, A.Base, {
 			instance._syncProxyNodeUI(event);
 		}
 
-		if (placeholder) {
-			placeholder.show();
+		// preventing the init drag:enter event to bubble
+		if (instance.get(LAZY_START)) {
+			instance.lazyEvents = true;
+		}
+		// in normal mode, just show the placeholder on drag:start...
+		else {
+			// if the activeDrop is not over a dropZone, the drag:start won't be fired at start
+			// so, we need to show the placeholder here, just in case.
+			if (placeholder) {
+				placeholder.show();
+			}
 		}
 
 		instance.activeDrop = DDM.activeDrop;
