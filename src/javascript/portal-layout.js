@@ -303,7 +303,7 @@ A.extend(PortalLayout, A.Base, {
 
 		return {
 			drag: DDM.activeDrag,
-			drop: DDM.activeDrop,
+			drop: instance.activeDrop,
 			quadrant: instance.quadrant,
 			XDirection: instance.XDirection,
 			YDirection: instance.YDirection
@@ -344,7 +344,7 @@ A.extend(PortalLayout, A.Base, {
 
 		// updating "last" information
 		instance.lastDrag = DDM.activeDrag;
-		instance.lastDrop = DDM.activeDrop;
+		instance.lastDrop = instance.activeDrop;
 		instance.lastQuadrant = quadrant;
 		instance.lastXDirection = instance.XDirection;
 		instance.lastYDirection = instance.YDirection;
@@ -355,14 +355,14 @@ A.extend(PortalLayout, A.Base, {
 
 		// firing placeholderAlign event
 		instance.fire(EV_PLACEHOLDER_ALIGN, {
-			drop: DDM.activeDrop,
+			drop: instance.activeDrop,
 			originalEvent: event
 		});
 	},
 
 	_syncPlaceholderSize: function() {
 		var instance = this;
-		var node = DDM.activeDrop.get(NODE);
+		var node = instance.activeDrop.get(NODE);
 
 		var placeholder = instance.get(PLACEHOLDER);
 
@@ -430,9 +430,9 @@ A.extend(PortalLayout, A.Base, {
 		var instance = this;
 		var drop = event.drop;
 
-		instance._syncPlaceholderUI(event);
-
 		instance.activeDrop = DDM.activeDrop;
+
+		instance._syncPlaceholderUI(event);
 	},
 
 	_onDragExit: function(event) {
@@ -452,7 +452,7 @@ A.extend(PortalLayout, A.Base, {
 		if (instance.activeDrop == DDM.activeDrop) {
 			instance.calculateDirections(drag);
 
-			instance.calculateQuadrant(drag, DDM.activeDrop);
+			instance.calculateQuadrant(drag, instance.activeDrop);
 
 			instance._fireQuadrantEvents();
 		}
@@ -469,6 +469,8 @@ A.extend(PortalLayout, A.Base, {
 		if (placeholder) {
 			placeholder.show();
 		}
+
+		instance.activeDrop = DDM.activeDrop;
 	}
 });
 
