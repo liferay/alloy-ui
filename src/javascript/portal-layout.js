@@ -293,7 +293,7 @@ A.extend(PortalLayout, A.Base, {
 			// align placeholder vertically
 			placeholder.setY(
 				(instance.quadrant < 3) ?
-					(region.top - placeholder.get(OFFSET_HEIGHT)) : (region.bottom)
+					(region.top) : (region.bottom - placeholder.get(OFFSET_HEIGHT))
 			);
 		}
 	},
@@ -448,6 +448,7 @@ A.extend(PortalLayout, A.Base, {
 		var instance = this;
 		var drag = event.drag;
 
+		// prevent drag over bubbling, filtering the top most element
 		if (instance.activeDrop == DDM.activeDrop) {
 			instance.calculateDirections(drag);
 
@@ -467,7 +468,8 @@ A.extend(PortalLayout, A.Base, {
 
 		if (placeholder) {
 			placeholder.show();
-			// instance._syncPlaceholderUI(event);
+
+			instance._syncPlaceholderUI(event);
 		}
 	}
 });
