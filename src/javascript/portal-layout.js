@@ -29,6 +29,8 @@ var L = A.Lang,
 	L = 'l',
 	LAZY_START = 'lazyStart',
 	LEFT = 'left',
+	MARGIN_BOTTOM = 'marginBottom',
+	MARGIN_TOP = 'marginTop',
 	NODE = 'node',
 	OFFSET_HEIGHT = 'offsetHeight',
 	OFFSET_WIDTH = 'offsetWidth',
@@ -50,12 +52,20 @@ var L = A.Lang,
 	EV_QUADRANT_EXIT = 'quadrantExit',
 	EV_QUADRANT_OVER = 'quadrantOver',
 
+	// caching these values for performance
+	PLACEHOLDER_MARGIN_BOTTOM = 0,
+	PLACEHOLDER_MARGIN_TOP = 0,
+
 	concat = function() {
 		return Array.prototype.slice.call(arguments).join(SPACE);
 	},
 
 	nodeListSetter = function(val) {
 		return A.all(val);
+	},
+
+	getNumStyle = function(elem, styleName) {
+		return parseInt(elem.getStyle(styleName), 10) || 0;
 	},
 
 	getCN = A.ClassNameManager.getClassName,
@@ -140,6 +150,9 @@ A.mix(PortalLayout, {
 						placeholder.hide()
 					);
 				}
+
+				PLACEHOLDER_MARGIN_BOTTOM = getNumStyle(placeholder, MARGIN_BOTTOM);
+				PLACEHOLDER_MARGIN_TOP = getNumStyle(placeholder, MARGIN_TOP);
 
 				return placeholder;
 			}
@@ -350,7 +363,7 @@ A.extend(PortalLayout, A.Base, {
 			placeholder.setY(
 				// 1 and 2 quadrants are the top quadrants, so align to the region.top when quadrant < 3
 				(instance.quadrant < 3) ?
-					(region.top) : (region.bottom - placeholder.get(OFFSET_HEIGHT))
+					(region.top - (placeholder.get(OFFSET_HEIGHT) + PLACEHOLDER_MARGIN_BOTTOM)) : (region.bottom + PLACEHOLDER_MARGIN_TOP)
 			);
 		}
 	},
