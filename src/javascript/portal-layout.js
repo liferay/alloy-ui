@@ -377,7 +377,6 @@ A.extend(PortalLayout, A.Base, {
 				dropNode.append(dragNode);
 			}
 		}
-		// console.log(instance.activeDrop, instance.activeDrop.get(NODE).getDOM());
 	},
 
 	_syncPlaceholderUI: function(event) {
