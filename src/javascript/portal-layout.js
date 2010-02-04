@@ -13,6 +13,7 @@ var L = A.Lang,
 	DDM = A.DD.DDM,
 
 	BORDER_STYLE = 'borderStyle',
+	CIRCLE = 'circle',
 	CONTAINER = 'container',
 	DD = 'dd',
 	DOWN = 'down',
@@ -24,19 +25,20 @@ var L = A.Lang,
 	GROUPS = 'groups',
 	ICON = 'icon',
 	INDICATOR = 'indicator',
+	L = 'l',
 	LAZY_START = 'lazyStart',
 	LEFT = 'left',
 	NODE = 'node',
 	OFFSET_HEIGHT = 'offsetHeight',
 	OFFSET_WIDTH = 'offsetWidth',
-	ON = 'on',
 	PLACEHOLDER = 'placeholder',
 	PORTAL_LAYOUT = 'portal-layout',
 	PROXY = 'proxy',
 	PROXY_NODE = 'proxyNode',
-	RADIO = 'radio',
+	R = 'r',
 	RIGHT = 'right',
 	SPACE = ' ',
+	TRIANGLE = 'triangle',
 	UP = 'up',
 
 	EV_PLACEHOLDER_ALIGN = 'placeholderAlign',
@@ -59,11 +61,12 @@ var L = A.Lang,
 	CSS_DRAG_INDICATOR_ICON_LEFT = getCN(PORTAL_LAYOUT, DRAG, INDICATOR, ICON, LEFT),
 	CSS_DRAG_INDICATOR_ICON_RIGHT = getCN(PORTAL_LAYOUT, DRAG, INDICATOR, ICON, RIGHT),
 	CSS_ICON = getCN(ICON),
-	CSS_ICON_RADIO_ON = getCN(ICON, RADIO, ON),
+	CSS_ICON_CIRCLE_TRIANGLE_L = getCN(ICON, CIRCLE, TRIANGLE, L),
+	CSS_ICON_CIRCLE_TRIANGLE_R = getCN(ICON, CIRCLE, TRIANGLE, R),
 
 	TPL_PLACEHOLDER = '<div class="'+CSS_DRAG_INDICATOR+'">' +
-							'<div class="'+concat(CSS_DRAG_INDICATOR_ICON, CSS_DRAG_INDICATOR_ICON_LEFT, CSS_ICON, CSS_ICON_RADIO_ON)+'"></div>' +
-							'<div class="'+concat(CSS_DRAG_INDICATOR_ICON, CSS_DRAG_INDICATOR_ICON_RIGHT, CSS_ICON, CSS_ICON_RADIO_ON)+'"></div>' +
+							'<div class="'+concat(CSS_DRAG_INDICATOR_ICON, CSS_DRAG_INDICATOR_ICON_LEFT, CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_R)+'"></div>' +
+							'<div class="'+concat(CSS_DRAG_INDICATOR_ICON, CSS_DRAG_INDICATOR_ICON_RIGHT, CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_L)+'"></div>' +
 						'<div>';
 
 function PortalLayout(config) {
