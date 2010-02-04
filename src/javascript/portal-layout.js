@@ -12,6 +12,7 @@ var L = A.Lang,
 
 	DDM = A.DD.DDM,
 
+	APPEND = 'append',
 	BORDER_STYLE = 'borderStyle',
 	CIRCLE = 'circle',
 	CONTAINER = 'container',
@@ -32,7 +33,10 @@ var L = A.Lang,
 	OFFSET_HEIGHT = 'offsetHeight',
 	OFFSET_WIDTH = 'offsetWidth',
 	PLACEHOLDER = 'placeholder',
+	PLACE_AFTER = 'placeAfter',
+	PLACE_BEFORE = 'placeBefore',
 	PORTAL_LAYOUT = 'portal-layout',
+	PREPEND = 'prepend',
 	PROXY = 'proxy',
 	PROXY_NODE = 'proxyNode',
 	R = 'r',
@@ -414,25 +418,18 @@ A.extend(PortalLayout, A.Base, {
 
 			// detects if the activeDrop is a dd target (portlet) or a drop area only (column)
 			var isTarget = isValue(dropNode.dd);
+			var topQuadrants = (instance.quadrant < 3);
 
 			if (instance._alignCondition()) {
 				if (isTarget) {
-					// top quadrants...
-					if (instance.quadrant < 3) {
-						dropNode.placeBefore(dragNode);
-					}
-					// bottom quadrants
-					else {
-						dropNode.placeAfter(dragNode);
-					}
+					dropNode[ topQuadrants ? PLACE_BEFORE : PLACE_AFTER ](dragNode);
 				}
 				// interacting with the columns (drop areas only)
 				else {
 					// find the dropContainer of the dropNode, the default DROP_CONTAINER function returns the dropNode
 					var dropContainer = instance.get(DROP_CONTAINER).apply(instance, [dropNode]);
 
-					// appendding the dragNode on the dropContainer
-					dropContainer.append(dragNode);
+					dropContainer[ topQuadrants ? PREPEND : APPEND ](dragNode);
 				}
 			}
 		}
