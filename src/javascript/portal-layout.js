@@ -294,13 +294,12 @@ A.extend(PortalLayout, A.Base, {
 
 	_defPlaceholderAlign: function(event) {
 		var instance = this;
-		var drop = event.drop;
-		var node = drop.get('node');
-
+		var activeDrop = instance.activeDrop;
 		var placeholder = instance.get(PLACEHOLDER);
 
-		if (placeholder) {
-			var region = drop.region;
+		if (activeDrop && placeholder) {
+			var region = activeDrop.region;
+			var node = activeDrop.get('node');
 
 			// sync placeholder size
 			instance._syncPlaceholderSize();
@@ -312,6 +311,7 @@ A.extend(PortalLayout, A.Base, {
 
 			// align placeholder vertically
 			placeholder.setY(
+				// 1 and 2 quadrants are the top quadrants, so align to the region.top when quadrant < 3
 				(instance.quadrant < 3) ?
 					(region.top) : (region.bottom - placeholder.get(OFFSET_HEIGHT))
 			);
