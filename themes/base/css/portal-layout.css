@@ -1,5 +1,19 @@
-.aui-portal-layout-placeholder {
-	background: #bbb;
-	height: 5px;
+.aui-portal-layout-drag-indicator {
+	background: #727272;
+	height: 2px;
 	position: absolute;
+	width: 100px;
+}
+
+.aui-portal-layout-drag-indicator-icon {
+	position: absolute;
+	top: -7px;
+}
+
+.aui-portal-layout-drag-indicator-icon-left {
+	left: -12px;
+}
+
+.aui-portal-layout-drag-indicator-icon-right {
+	right: -12px;
 }

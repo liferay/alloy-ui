@@ -16,21 +16,27 @@ var L = A.Lang,
 	CONTAINER = 'container',
 	DD = 'dd',
 	DOWN = 'down',
+	DRAG = 'drag',
 	DRAG_NODE = 'dragNode',
 	DRAG_NODES = 'dragNodes',
 	DROP_CONTAINER = 'dropContainer',
 	DROP_NODES = 'dropNodes',
 	GROUPS = 'groups',
+	ICON = 'icon',
+	INDICATOR = 'indicator',
 	LAZY_START = 'lazyStart',
 	LEFT = 'left',
 	NODE = 'node',
 	OFFSET_HEIGHT = 'offsetHeight',
 	OFFSET_WIDTH = 'offsetWidth',
+	ON = 'on',
 	PLACEHOLDER = 'placeholder',
 	PORTAL_LAYOUT = 'portal-layout',
 	PROXY = 'proxy',
 	PROXY_NODE = 'proxyNode',
+	RADIO = 'radio',
 	RIGHT = 'right',
+	SPACE = ' ',
 	UP = 'up',
 
 	EV_PLACEHOLDER_ALIGN = 'placeholderAlign',
@@ -38,15 +44,27 @@ var L = A.Lang,
 	EV_QUADRANT_EXIT = 'quadrantExit',
 	EV_QUADRANT_OVER = 'quadrantOver',
 
+	concat = function() {
+		return Array.prototype.slice.call(arguments).join(SPACE);
+	},
+
 	nodeListSetter = function(val) {
 		return A.all(val);
 	},
 
 	getCN = A.ClassNameManager.getClassName,
 
-	CSS_PORTAL_LAYOUT_PLACEHOLDER = getCN(PORTAL_LAYOUT, PLACEHOLDER),
+	CSS_DRAG_INDICATOR = getCN(PORTAL_LAYOUT, DRAG, INDICATOR),
+	CSS_DRAG_INDICATOR_ICON = getCN(PORTAL_LAYOUT, DRAG, INDICATOR, ICON),
+	CSS_DRAG_INDICATOR_ICON_LEFT = getCN(PORTAL_LAYOUT, DRAG, INDICATOR, ICON, LEFT),
+	CSS_DRAG_INDICATOR_ICON_RIGHT = getCN(PORTAL_LAYOUT, DRAG, INDICATOR, ICON, RIGHT),
+	CSS_ICON = getCN(ICON),
+	CSS_ICON_RADIO_ON = getCN(ICON, RADIO, ON),
 
-	TPL_PLACEHOLDER = '<div></div>';
+	TPL_PLACEHOLDER = '<div class="'+CSS_DRAG_INDICATOR+'">' +
+							'<div class="'+concat(CSS_DRAG_INDICATOR_ICON, CSS_DRAG_INDICATOR_ICON_LEFT, CSS_ICON, CSS_ICON_RADIO_ON)+'"></div>' +
+							'<div class="'+concat(CSS_DRAG_INDICATOR_ICON, CSS_DRAG_INDICATOR_ICON_RIGHT, CSS_ICON, CSS_ICON_RADIO_ON)+'"></div>' +
+						'<div>';
 
 function PortalLayout(config) {
 	PortalLayout.superclass.constructor.apply(this, arguments);
@@ -112,7 +130,7 @@ A.mix(PortalLayout, {
 
 				if (!placeholder.inDoc()) {
 					A.getBody().append(
-						placeholder.hide().addClass(CSS_PORTAL_LAYOUT_PLACEHOLDER)
+						placeholder.hide()
 					);
 				}
 
