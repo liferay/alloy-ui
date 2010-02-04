@@ -242,6 +242,16 @@ A.extend(PortalLayout, A.Base, {
 		);
 	},
 
+	_alignCondition: function() {
+		var instance = this;
+		var activeDrag = DDM.activeDrag;
+		var activeDrop = instance.activeDrop;
+		var dragNode = activeDrag.get(NODE);
+		var dropNode = activeDrop.get(NODE);
+
+		return !dragNode.contains(dropNode);
+	},
+
 	_bindDDEvents: function() {
 		var instance = this;
 		var dd = instance.get(DD);
@@ -361,7 +371,7 @@ A.extend(PortalLayout, A.Base, {
 		// detects if the activeDrop is a dd target (portlet) or a drop area only (column)
 		var isTarget = isValue(dropNode.dd);
 
-		if (!dragNode.contains(dropNode)) {
+		if (instance._alignCondition()) {
 			if (isTarget) {
 				// top quadrants...
 				if (instance.quadrant < 3) {
@@ -382,11 +392,13 @@ A.extend(PortalLayout, A.Base, {
 	_syncPlaceholderUI: function(event) {
 		var instance = this;
 
-		// firing placeholderAlign event
-		instance.fire(EV_PLACEHOLDER_ALIGN, {
-			drop: instance.activeDrop,
-			originalEvent: event
-		});
+		if (instance._alignCondition()) {
+			// firing placeholderAlign event
+			instance.fire(EV_PLACEHOLDER_ALIGN, {
+				drop: instance.activeDrop,
+				originalEvent: event
+			});
+		}
 	},
 
 	_syncPlaceholderSize: function() {
