@@ -468,8 +468,6 @@ A.extend(PortalLayout, A.Base, {
 
 		if (placeholder) {
 			placeholder.show();
-
-			instance._syncPlaceholderUI(event);
 		}
 	}
 });
