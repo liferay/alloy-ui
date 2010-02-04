@@ -281,7 +281,7 @@
 				*/
 				'io-plugin': {
 					fullpath: PATH_JAVASCRIPT + 'io-plugin.js',
-					requires: [ 'component-overlay', 'parse-content', 'io-request' ]
+					requires: [ 'component-overlay', 'parse-content', 'io-request', 'loading-mask' ]
 				},
 
 				/*
