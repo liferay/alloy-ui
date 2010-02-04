@@ -20,7 +20,6 @@ var L = A.Lang,
 	IO = 'io',
 	IO_PLUGIN = 'IOPlugin',
 	LOADING = 'loading',
-	LOADING_EL = 'loadingEl',
 	NODE = 'node',
 	PARSE_CONTENT = 'parseContent',
 	QUEUE = 'queue',
@@ -73,19 +72,6 @@ A.mix(IOPlugin, {
 		failureMessage: {
 			value: 'Failed to retrieve content',
 			validator: isString
-		},
-
-		loadingEl: {
-			value: '<div class="' + CSS_ICON_LOADING + '"></div>',
-			setter: function(v) {
-				var node = v;
-
-				if (isString(v)) {
-					node = A.Node.create(v);
-				}
-
-				return A.one(node);
-			}
 		},
 
 		parseContent: {
@@ -192,8 +178,24 @@ A.extend(IOPlugin, A.IORequest, {
 	* Methods
 	*/
 
+	hideLoading: function() {
+		var instance = this;
+
+		var node = instance.get(NODE);
+
+		if (node.loadingmask) {
+			node.loadingmask.hide();
+		}
+	},
+
 	setContent: function(content) {
 		var instance = this;
+
+		var node = instance.get(NODE);
+
+		if (instance._maskNode) {
+			instance._maskNode.remove();
+		}
 
 		instance._getContentSetterByType().apply(instance, [content]);
 	},
@@ -201,9 +203,18 @@ A.extend(IOPlugin, A.IORequest, {
 	showLoading: function() {
 		var instance = this;
 
-		instance.setContent(
-			instance.get(LOADING_EL)
-		);
+		var node = instance.get(NODE);
+
+		if (!node.loadingmask) {
+			node.plug(A.LoadingMask);
+
+			instance._maskNode = node.loadingmask._mask.get('boundingBox');
+		}
+		else if (instance._maskNode) {
+			node.appendChild(instance._maskNode);
+		}
+
+		node.loadingmask.show();
 	},
 
 	_getContentSetterByType: function() {
@@ -260,9 +271,16 @@ A.extend(IOPlugin, A.IORequest, {
 	_onActiveChange: function(event) {
 		var instance = this;
 
+		var showLoading = instance.get(SHOW_LOADING);
+
 		if (event.newVal) {
-			if (instance.get(SHOW_LOADING)) {
+			if (showLoading) {
 				instance.showLoading();
+			}
+		}
+		else {
+			if (showLoading) {
+				instance.hideLoading();
 			}
 		}
 	}
@@ -270,4 +288,4 @@ A.extend(IOPlugin, A.IORequest, {
 
 A.namespace('Plugin').IO = IOPlugin;
 
-}, '@VERSION' , { requires: [ 'component-overlay', 'parse-content', 'io-request' ] });
+}, '@VERSION' , { requires: [ 'component-overlay', 'parse-content', 'io-request', 'loading-mask' ] });
