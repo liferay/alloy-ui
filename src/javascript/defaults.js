@@ -301,6 +301,19 @@
 				},
 
 				/*
+				* Loading Mask
+				*/
+				'loading-mask': {
+					fullpath: PATH_JAVASCRIPT + 'loading-mask.js',
+					requires: [ 'overlay-mask', 'plugin', 'substitute', 'loading-mask-css' ]
+				},
+				'loading-mask-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'loading-mask.css',
+					type: 'css'
+				},
+
+				/*
 				* Nested List
 				*/
 				'nested-list': {
