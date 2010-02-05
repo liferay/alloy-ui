@@ -20,6 +20,7 @@ var L = A.Lang,
 	IO = 'io',
 	IO_PLUGIN = 'IOPlugin',
 	LOADING = 'loading',
+	LOADING_MASK = 'loadingMask',
 	NODE = 'node',
 	PARSE_CONTENT = 'parseContent',
 	QUEUE = 'queue',
@@ -72,6 +73,10 @@ A.mix(IOPlugin, {
 		failureMessage: {
 			value: 'Failed to retrieve content',
 			validator: isString
+		},
+
+		loadingMask: {
+			value: {}
 		},
 
 		parseContent: {
@@ -213,7 +218,7 @@ A.extend(IOPlugin, A.IORequest, {
 		var node = instance.get(NODE);
 
 		if (!node.loadingmask) {
-			node.plug(A.LoadingMask);
+			node.plug(A.LoadingMask, instance.get(LOADING_MASK));
 
 			instance._maskNode = node.loadingmask._mask.get('boundingBox');
 		}
