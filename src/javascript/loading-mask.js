@@ -89,8 +89,6 @@ AUI().add(
 
 					if (event.newVal) {
 						instance.refreshMask();
-
-						instance._centerMessage();
 					}
 				},
 
@@ -106,21 +104,10 @@ AUI().add(
 					return instance._mask.set(key, value);
 				},
 
-				_centerMessage: function() {
+				centerMessage: function() {
 					var instance = this;
 
-					var maskRegion = instance._mask.get('contentBox').get('region');
-
-					var messageNode = instance._message;
-					var messageRegion = messageNode.get('region');
-
-					var maskXCenter = maskRegion.left + (maskRegion.width / 2);
-					var maskYCenter = maskRegion.top + (maskRegion.height / 2);
-
-					var messageXCenter = messageRegion.left + (messageRegion.width / 2);
-					var messageYCenter = messageRegion.top + (messageRegion.height / 2);
-
-					messageNode.setXY([maskXCenter - (messageRegion.width / 2), maskYCenter - (messageRegion.height / 2)]);
+					instance._message.center(instance._mask.get('contentBox'));
 				},
 
 				hide: function() {
@@ -145,6 +132,8 @@ AUI().add(
 					var instance = this;
 
 					instance._mask.refreshMask();
+
+					instance.centerMessage();
 				}
 			}
 		);
