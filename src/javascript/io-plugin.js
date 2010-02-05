@@ -133,6 +133,13 @@ A.extend(IOPlugin, A.IORequest, {
 
 		instance.on(SUCCESS, instance._successHandler);
 		instance.on(FAILURE, instance._failureHandler);
+
+		if (instance.get(TYPE) == TYPE_WIDGET && instance.get(SHOW_LOADING)) {
+			var host = instance.get(HOST);
+
+			host.after('heightChange', instance._syncLoadingMaskUI, instance);
+			host.after('widthChange', instance._syncLoadingMaskUI, instance);
+		}
 	},
 
 	_afterInit: function() {
@@ -244,6 +251,12 @@ A.extend(IOPlugin, A.IORequest, {
 		};
 
 		return setters[this.get(TYPE)];
+	},
+
+	_syncLoadingMaskUI: function() {
+		var instance = this;
+
+		instance.get(NODE).loadingmask.refreshMask();
 	},
 
 	/*
