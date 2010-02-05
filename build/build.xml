@@ -70,7 +70,7 @@
 	</target>
 
 
-	<target name="release" depends="init-release, minify, zip" />
+	<target name="release" depends="init-release, zip" />
 
 
 	<target name="init-release" depends="clean, whitespace">
@@ -156,7 +156,7 @@
 	</target>
 
 
-	<target name="zip" depends="minify">
+	<target name="zip">
 		<echo>Creating Zip file ${release.name}.zip</echo>
 
 		<zip basedir="${release.dir}" destfile="${build.dir}/${release.name}-${alloy.version}.zip" />
