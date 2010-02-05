@@ -208,6 +208,21 @@ A.extend(PortalLayout, A.Base, {
 	* Methods
 	*/
 
+	addDragTarget: function(node) {
+		var instance = this;
+
+		if (!DDM.getDrag(node)) {
+			var dd = instance.get(DD);
+			var proxy = instance.get(PROXY);
+
+			// updating node reference on the default dd config
+			dd.node = node;
+
+			// creating DD.Drag instance and plugging the DDProxy
+			new A.DD.Drag(dd).plug(A.Plugin.DDProxy, proxy);
+		}
+	},
+
 	addDropNode: function(node, config) {
 		var instance = this;
 
@@ -313,14 +328,10 @@ A.extend(PortalLayout, A.Base, {
 
 	_bindDDEvents: function() {
 		var instance = this;
-		var dd = instance.get(DD);
-		var proxy = instance.get(PROXY);
 
 		instance.get(DRAG_NODES).each(
 			function(node, i) {
-				dd.node = node;
-				// creating DD.Drag instance and plugging the DDProxy
-				new A.DD.Drag(dd).plug(A.Plugin.DDProxy, proxy);
+				instance.addDragTarget(node);
 			}
 		);
 
