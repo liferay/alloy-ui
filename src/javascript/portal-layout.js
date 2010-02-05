@@ -430,13 +430,16 @@ A.extend(PortalLayout, A.Base, {
 		instance.lastYDirection = instance.YDirection;
 	},
 
+	_getAppendNode: function() {
+		return DDM.activeDrag.get(NODE);
+	},
+
 	_positionNode: function(event) {
 		var instance = this;
-		var activeDrag = DDM.activeDrag;
 		var activeDrop = instance.activeDrop;
 
-		if (activeDrag && activeDrop) {
-			var dragNode = activeDrag.get(NODE);
+		if (activeDrop) {
+			var dragNode = instance._getAppendNode();
 			var dropNode = activeDrop.get(NODE);
 
 			// detects if the activeDrop is a dd target (portlet) or a drop area only (column)
