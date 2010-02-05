@@ -41,10 +41,12 @@ A.mix(OverlayMask, {
 
 		background: {
 			lazyAdd: false,
-			value: '#000',
+			value: null,
 			validator: isString,
 			setter: function(v) {
-				this.get(CONTENT_BOX).setStyle(BACKGROUND, v);
+				if (v) {
+					this.get(CONTENT_BOX).setStyle(BACKGROUND, v);
+				}
 
 				return v;
 			}

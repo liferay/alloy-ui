@@ -12,6 +12,10 @@
     zoom: 1;
 }
 
+.aui-loadingmask-content {
+	background: #ccc;
+}
+
 .aui-loadingmask-message {
 	background: #eee;
 	border: 1px solid;
