@@ -207,7 +207,6 @@ A.extend(PortalLayout, A.Base, {
 	/*
 	* Methods
 	*/
-
 	addDragTarget: function(node) {
 		var instance = this;
 
