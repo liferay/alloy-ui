@@ -32,6 +32,21 @@
 		opacity: .7;
 	    filter: alpha(opacity=70);
 	}
+
+	.portlet-list {
+		border: 1px solid;
+		left: 960px;
+		position: absolute;
+		top: 51px;
+		width: 114px;
+	}
+
+	.portlet-list .portlet-item {
+		background: lightblue;
+		margin: 2px;
+		padding: 5px;
+		width: 100px;
+	}
 	</style>
 </head>
 
@@ -119,16 +134,30 @@
 	</table>
 </div>
 
+<div class="portlet-list">
+	<div class="portlet-item">Portlet Item</div>
+	<div class="portlet-item">Portlet Item</div>
+	<div class="portlet-item">Portlet Item</div>
+	<div class="portlet-item">Portlet Item</div>
+	<div class="portlet-item">Portlet Item</div>
+	<div class="portlet-item">Portlet Item</div>
+	<div class="portlet-item">Portlet Item</div>
+</div>
+
 <div class="invalid">Invalid drop</div>
 
 <script type="text/javascript">
 
 AUI().ready('portal-layout', function(A) {
 
+	var DDM = A.DD.DDM;
+
+	var proxyNode = A.Node.create('<div class="aui-portal-layout-proxy"></div>');
+
 	var portalLayout = new A.PortalLayout({
 		dragNodes: '.portlet',
 		dropNodes: '.column',
-		proxyNode: '<div class="aui-portal-layout-proxy"></div>',
+		proxyNode: proxyNode,
 		lazyStart: true,
 		// placeholder: '<div class="aui-portal-layout-placeholder"></div>',
 		on: {
@@ -152,6 +181,76 @@ AUI().ready('portal-layout', function(A) {
 		// dd: {
 		//
 		// }
+	});
+
+
+	var PortletItem = function() {
+		PortletItem.superclass.constructor.apply(this, arguments);
+	};
+
+	PortletItem.NAME = 'PortletItem';
+
+	PortletItem.ATTRS = {
+		lazyStart: {
+			value: true
+		},
+
+		proxyNode: {
+			value: proxyNode
+		},
+
+		itemContainer: {
+			value: A.one('.portlet-list')
+		}
+	};
+
+	A.extend(PortletItem, A.PortalLayout, {
+		_alignCondition: function() {
+			var instance = this;
+			var activeDrop = instance.activeDrop;
+			var itemContainer = instance.get('itemContainer');
+
+			if (activeDrop) {
+				var dropNode = activeDrop.get('node');
+			}
+
+			return PortletItem.superclass._alignCondition.apply(this, arguments) &&
+					!itemContainer.contains(dropNode);
+		},
+
+		_getAppendNode: function() {
+			var instance = this;
+
+			instance.appendNode = DDM.activeDrag.get('node').cloneNode(true);
+
+			return instance.appendNode;
+		}
+	});
+
+	var portletList = new PortletItem({
+		dragNodes: '.portlet-item'
+	});
+
+	portletList.on('drag:end', function(event) {
+		var newPorlet = A.Node.create('<div class="portlet">New Portlet</div>');
+
+		portletList.appendNode.replace(
+			newPorlet
+		);
+
+		portalLayout.addDragTarget(newPorlet);
+	});
+
+
+
+
+
+
+
+	// Extras
+
+	A.all('.portlet').each(function(node, i) {
+		node.prepend('<div>'+node.get('id')+'</div>')
 	});
 
 	// var invalidDrop = new A.DD.Drop({
