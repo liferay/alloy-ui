@@ -66,6 +66,10 @@ A.mix(Rating, {
 	NAME: 'rating',
 
 	ATTRS: {
+		disabled: {
+			value: false,
+			validator: isBoolean
+		},
 		canReset: {
 			value: true,
 			validator: isBoolean
@@ -363,7 +367,17 @@ A.extend(Rating, A.Component, {
 	_renderElements: function() {
 		var instance = this;
 		var contentBox = instance.get(CONTENT_BOX);
-		var ratingElement = A.Node.create('<a href="javascript:;"></a>');
+		var disabled = instance.get(DISABLED);
+
+		var ratingElement = null;
+		if (disabled){
+			ratingElement = A.Node.create('<span></span>');
+		}
+		else {
+			ratingElement = A.Node.create('<a href="javascript:;"></a>');
+
+		}
+
 		var labelElement = A.Node.create('<div></div>');
 
 		contentBox.addClass(CSS_CLEAR_FIX);
