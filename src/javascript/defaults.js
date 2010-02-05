@@ -334,7 +334,12 @@
 				*/
 				'overlay-mask': {
 					fullpath: PATH_JAVASCRIPT + 'overlay-mask.js',
-					requires: [ 'aui-base', 'component-overlay', 'event-resize' ]
+					requires: [ 'aui-base', 'component-overlay', 'event-resize', 'overlay-mask-css' ]
+				},
+				'overlay-mask-css': {
+					ext: false,
+					fullpath: PATH_THEME_ROOT + 'overlay-mask.css',
+					type: 'css'
 				},
 
 				/*

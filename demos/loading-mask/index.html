@@ -51,7 +51,12 @@ AUI().ready(
 				}
 			}
 		)
-		.plug(A.LoadingMask)
+		.plug(
+			A.LoadingMask,
+			{
+				background: '#000'
+			}
+		)
 		.render();
 
 		A.one('#toggleMask').on('click', overlay.loadingmask.toggle, overlay.loadingmask);
