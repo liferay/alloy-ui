@@ -32,6 +32,20 @@ AUI.add('aui-node', function(A) {
 			}
 		},
 
+		center: function(centerWith) {
+			var instance = this;
+
+			centerWith = (centerWith && A.one(centerWith)) || A.getBody();
+
+			var centerWithRegion = centerWith.get('region');
+			var nodeRegion = instance.get('region');
+
+			var xCenterWith = centerWithRegion.left + (centerWithRegion.width / 2);
+			var yCenterWith = centerWithRegion.top + (centerWithRegion.height / 2);
+
+			instance.setXY([xCenterWith - (nodeRegion.width / 2), yCenterWith - (nodeRegion.height / 2)]);
+		},
+
 		empty: function() {
 			var instance = this;
 
