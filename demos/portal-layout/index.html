@@ -231,7 +231,7 @@ AUI().ready('portal-layout', function(A) {
 		dragNodes: '.portlet-item'
 	});
 
-	portletList.on('drag:end', function(event) {
+	portletList.after('drag:end', function(event) {
 		var newPorlet = A.Node.create('<div class="portlet">New Portlet</div>');
 
 		portletList.appendNode.replace(
