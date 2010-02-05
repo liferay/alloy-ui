@@ -231,14 +231,16 @@ AUI().ready('portal-layout', function(A) {
 		dragNodes: '.portlet-item'
 	});
 
-	portletList.after('drag:end', function(event) {
+	portletList.on('drag:end', function(event) {
 		var newPorlet = A.Node.create('<div class="portlet">New Portlet</div>');
 
-		portletList.appendNode.replace(
-			newPorlet
-		);
+		if (portletList.appendNode.inDoc()) {
+			portletList.appendNode.replace(
+				newPorlet
+			);
 
-		portalLayout.addDragTarget(newPorlet);
+			portalLayout.addDragTarget(newPorlet);
+		}
 	});
 
 
