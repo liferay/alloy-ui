@@ -529,6 +529,8 @@ A.extend(PortalLayout, A.Base, {
 		var placeholder = instance.get(PLACEHOLDER);
 		var proxyNode = instance.get(PROXY_NODE);
 
+		instance._positionNode(event);
+
 		if (proxyNode) {
 			proxyNode.remove();
 		}
@@ -536,8 +538,6 @@ A.extend(PortalLayout, A.Base, {
 		if (placeholder) {
 			placeholder.hide();
 		}
-
-		instance._positionNode(event);
 
 		// reset the last information
 		instance.lastQuadrant = null;
