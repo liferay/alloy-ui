@@ -56,12 +56,16 @@ var L = A.Lang,
 	PLACEHOLDER_MARGIN_BOTTOM = 0,
 	PLACEHOLDER_MARGIN_TOP = 0,
 
+	isNodeList = function(v) {
+		return (v instanceof A.NodeList);
+	},
+
 	concat = function() {
 		return Array.prototype.slice.call(arguments).join(SPACE);
 	},
 
 	nodeListSetter = function(val) {
-		return A.all(val);
+		return isNodeList(val) ? val : A.all(val);
 	},
 
 	getNumStyle = function(elem, styleName) {
