@@ -44,6 +44,7 @@ var L = A.Lang,
 	R = 'r',
 	RIGHT = 'right',
 	SPACE = ' ',
+	TARGET = 'target',
 	TRIANGLE = 'triangle',
 	UP = 'up',
 
@@ -55,6 +56,8 @@ var L = A.Lang,
 	// caching these values for performance
 	PLACEHOLDER_MARGIN_BOTTOM = 0,
 	PLACEHOLDER_MARGIN_TOP = 0,
+	PLACEHOLDER_TARGET_MARGIN_BOTTOM = 0,
+	PLACEHOLDER_TARGET_MARGIN_TOP = 0,
 
 	isNodeList = function(v) {
 		return (v instanceof A.NodeList);
@@ -78,6 +81,7 @@ var L = A.Lang,
 	CSS_DRAG_INDICATOR_ICON = getCN(PORTAL_LAYOUT, DRAG, INDICATOR, ICON),
 	CSS_DRAG_INDICATOR_ICON_LEFT = getCN(PORTAL_LAYOUT, DRAG, INDICATOR, ICON, LEFT),
 	CSS_DRAG_INDICATOR_ICON_RIGHT = getCN(PORTAL_LAYOUT, DRAG, INDICATOR, ICON, RIGHT),
+	CSS_DRAG_TARGET_INDICATOR = getCN(PORTAL_LAYOUT, DRAG, TARGET, INDICATOR),
 	CSS_ICON = getCN(ICON),
 	CSS_ICON_CIRCLE_TRIANGLE_L = getCN(ICON, CIRCLE, TRIANGLE, L),
 	CSS_ICON_CIRCLE_TRIANGLE_R = getCN(ICON, CIRCLE, TRIANGLE, R),
@@ -157,6 +161,11 @@ A.mix(PortalLayout, {
 
 				PLACEHOLDER_MARGIN_BOTTOM = getNumStyle(placeholder, MARGIN_BOTTOM);
 				PLACEHOLDER_MARGIN_TOP = getNumStyle(placeholder, MARGIN_TOP);
+
+				placeholder.addClass(CSS_DRAG_TARGET_INDICATOR);
+
+				PLACEHOLDER_TARGET_MARGIN_BOTTOM = getNumStyle(placeholder, MARGIN_BOTTOM);
+				PLACEHOLDER_TARGET_MARGIN_TOP = getNumStyle(placeholder, MARGIN_TOP);
 
 				return placeholder;
 			}
@@ -364,6 +373,19 @@ A.extend(PortalLayout, A.Base, {
 		if (activeDrop && placeholder) {
 			var region = activeDrop.region;
 			var node = activeDrop.get('node');
+			var isTarget = !!node.dd;
+
+			var marginBottom = PLACEHOLDER_MARGIN_BOTTOM;
+			var marginTop = PLACEHOLDER_MARGIN_TOP;
+
+			if (isTarget) {
+				// update the margin values in case of the target placeholder has a different margin
+				marginBottom = PLACEHOLDER_TARGET_MARGIN_BOTTOM;
+				marginTop = PLACEHOLDER_TARGET_MARGIN_TOP;
+			}
+
+			// update the className of the placeholder when interact with target (drag/drop) elements
+			placeholder.toggleClass(CSS_DRAG_TARGET_INDICATOR, isTarget);
 
 			// sync placeholder size
 			instance._syncPlaceholderSize();
@@ -377,7 +399,7 @@ A.extend(PortalLayout, A.Base, {
 			placeholder.setY(
 				// 1 and 2 quadrants are the top quadrants, so align to the region.top when quadrant < 3
 				(instance.quadrant < 3) ?
-					(region.top - (placeholder.get(OFFSET_HEIGHT) + PLACEHOLDER_MARGIN_BOTTOM)) : (region.bottom + PLACEHOLDER_MARGIN_TOP)
+					(region.top - (placeholder.get(OFFSET_HEIGHT) + marginBottom)) : (region.bottom + marginTop)
 			);
 		}
 	},

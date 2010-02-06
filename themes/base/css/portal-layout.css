@@ -5,6 +5,10 @@
 	width: 100px;
 }
 
+.aui-portal-layout-drag-target-indicator {
+
+}
+
 .aui-portal-layout-drag-indicator-icon {
 	position: absolute;
 	top: -6px;
