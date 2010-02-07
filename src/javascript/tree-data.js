@@ -6,9 +6,6 @@ var L = A.Lang,
 	isString = L.isString,
 	isUndefined = L.isUndefined,
 
-	AFTER = 'after',
-	APPEND = 'append',
-	BEFORE = 'before',
 	BOUNDING_BOX = 'boundingBox',
 	CHILDREN = 'children',
 	CONTAINER = 'container',
@@ -294,7 +291,7 @@ A.extend(TreeData, A.Widget, {
 
 			while(parentNode) {
 				parentNode.fire(eventType, args);
-				parentNode = parentNode.get(PARENT_NODE)
+				parentNode = parentNode.get(PARENT_NODE);
 			}
 		}
 	},
