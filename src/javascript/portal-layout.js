@@ -3,19 +3,17 @@ AUI.add('portal-layout', function(A) {
 /*
 * PortalLayout
 */
-var L = A.Lang,
-	isBoolean = L.isBoolean,
-	isFunction = L.isFunction,
-	isObject = L.isObject,
-	isString = L.isString,
-	isValue = L.isValue,
+var Lang = A.Lang,
+	isBoolean = Lang.isBoolean,
+	isFunction = Lang.isFunction,
+	isObject = Lang.isObject,
+	isString = Lang.isString,
+	isValue = Lang.isValue,
 
 	DDM = A.DD.DDM,
 
 	APPEND = 'append',
-	BORDER_STYLE = 'borderStyle',
 	CIRCLE = 'circle',
-	CONTAINER = 'container',
 	DD = 'dd',
 	DOWN = 'down',
 	DRAG = 'drag',
@@ -231,7 +229,7 @@ A.extend(PortalLayout, A.Base, {
 			dd.node = node;
 
 			// creating DD.Drag instance and plugging the DDProxy
-			new A.DD.Drag(dd).plug(A.Plugin.DDProxy, proxy);
+			var drag = new A.DD.Drag(dd).plug(A.Plugin.DDProxy, proxy);
 		}
 	},
 
@@ -352,6 +350,7 @@ A.extend(PortalLayout, A.Base, {
 		instance.on('drag:exit', A.bind(instance._onDragExit, instance));
 		instance.on('drag:over', A.bind(instance._onDragOver, instance));
 		instance.on('drag:start', A.bind(instance._onDragStart, instance));
+		instance.after('drag:start', A.bind(instance._afterDragStart, instance));
 
 		instance.on(EV_QUADRANT_ENTER, instance._syncPlaceholderUI);
 		instance.on(EV_QUADRANT_EXIT, instance._syncPlaceholderUI);
@@ -546,6 +545,14 @@ A.extend(PortalLayout, A.Base, {
 	/*
 	* Listeners
 	*/
+	_afterDragStart: function(event) {
+		var instance = this;
+
+		if (instance.get(PROXY)) {
+			instance._syncProxyNodeUI(event);
+		}
+	},
+
 	_onDragEnd: function(event) {
 		var instance = this;
 		var placeholder = instance.get(PLACEHOLDER);
@@ -570,7 +577,6 @@ A.extend(PortalLayout, A.Base, {
 	// fires after drag:start
 	_onDragEnter: function(event) {
 		var instance = this;
-		var drop = event.drop;
 		var placeholder = instance.get(PLACEHOLDER);
 
 		// instance.lazyEvents is property which relies to the LAZY_START option
@@ -623,10 +629,6 @@ A.extend(PortalLayout, A.Base, {
 	_onDragStart: function(event) {
 		var instance = this;
 		var placeholder = instance.get(PLACEHOLDER);
-
-		if (instance.get(PROXY)) {
-			instance._syncProxyNodeUI(event);
-		}
 
 		// preventing the init drag:enter event to bubble
 		if (instance.get(LAZY_START)) {
