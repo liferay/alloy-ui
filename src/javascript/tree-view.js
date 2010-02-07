@@ -3,14 +3,12 @@ AUI.add('tree-view', function(A) {
 var L = A.Lang,
 	isString = L.isString,
 
-	BLANK = '',
 	BOUNDING_BOX = 'boundingBox',
 	CHILDREN = 'children',
 	CONTAINER = 'container',
 	CONTENT = 'content',
 	CONTENT_BOX = 'contentBox',
 	DOT = '.',
-	EL = 'el',
 	FILE = 'file',
 	HITAREA = 'hitarea',
 	ICON = 'icon',
@@ -20,7 +18,6 @@ var L = A.Lang,
 	NODE = 'node',
 	OWNER_TREE = 'ownerTree',
 	ROOT = 'root',
-	SELECTED = 'selected',
 	SPACE = ' ',
 	TREE = 'tree',
 	TREE_VIEW = 'tree-view',
@@ -41,7 +38,6 @@ var L = A.Lang,
 	CSS_TREE_ICON = getCN(TREE, ICON),
 	CSS_TREE_LABEL = getCN(TREE, LABEL),
 	CSS_TREE_NODE_CONTENT = getCN(TREE, NODE, CONTENT),
-	CSS_TREE_NODE_SELECTED = getCN(TREE, NODE, SELECTED),
 	CSS_TREE_ROOT_CONTAINER = getCN(TREE, ROOT, CONTAINER),
 	CSS_TREE_VIEW_CONTENT = getCN(TREE, VIEW, CONTENT);
 
@@ -50,6 +46,8 @@ var L = A.Lang,
 */
 
 function TreeView(config) {
+	// A.DD.DDM.set('throttleTime', -1);
+
 	TreeView.superclass.constructor.apply(this, arguments);
 }
 
@@ -262,10 +260,8 @@ var isNumber = L.isNumber,
 	DRAG_NODE = 'dragNode',
 	EXPANDED = 'expanded',
 	HELPER = 'helper',
-	ID = 'id',
 	INSERT = 'insert',
 	OFFSET_HEIGHT = 'offsetHeight',
-	OFFSET_TOP = 'offsetTop',
 	PARENT_NODE = 'parentNode',
 	SCROLL_DELAY = 'scrollDelay',
 	STATE = 'state',
@@ -372,9 +368,9 @@ A.extend(TreeViewDD, A.TreeView, {
 				function() {
 					if (!DDM.getDrag(node)) {
 						// creating delayed drag instance
-						new A.DD.Drag({
+						var drag = new A.DD.Drag({
 							node: node,
-							bubbles: instance,
+							bubbleTargets: instance,
 							target: true
 						})
 						.plug(A.Plugin.DDProxy, {

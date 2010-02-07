@@ -13,7 +13,6 @@ var L = A.Lang,
 	CONTAINER = 'container',
 	CONTENT = 'content',
 	CONTENT_BOX = 'contentBox',
-	EL = 'el',
 	EXPANDED = 'expanded',
 	HELPER = 'helper',
 	HIDDEN = 'hidden',
@@ -135,7 +134,7 @@ A.mix(TreeNode, {
 		parentNode: {
 			value: null,
 			validator: function(val) {
-				return isTreeNode(val) || isTreeView(val)
+				return isTreeNode(val) || isTreeView(val);
 			}
 		},
 
@@ -183,7 +182,6 @@ A.extend(TreeNode, A.TreeData, {
 	*/
 	initializer: function() {
 		var instance = this;
-		var boundingBox = instance.get(BOUNDING_BOX);
 
 		if (!instance.get(ID)) {
 			// add a default unique id for the index
@@ -248,12 +246,14 @@ A.extend(TreeNode, A.TreeData, {
 		var boundingBox = instance.get(BOUNDING_BOX);
 		var contentBox = instance.get(CONTENT_BOX);
 
+		var nodeContainer = null;
+
 		if (!instance.isLeaf()) {
 			// append hitarea element
 			contentBox.append( instance.get(HIT_AREA_EL) );
 
 			// if has children append them to this model
-			var nodeContainer = instance._createNodeContainer();
+			nodeContainer = instance._createNodeContainer();
 		}
 
 		contentBox.append( instance.get(ICON_EL) );
@@ -543,7 +543,6 @@ A.TreeNode = TreeNode;
 var isFunction = L.isFunction,
 
 	CACHE = 'cache',
-	FORMATTER = 'formatter',
 	IO = 'io',
 	LOADED = 'loaded',
 	LOADING = 'loading',
@@ -680,7 +679,7 @@ A.extend(TreeNodeIO, A.TreeNode, {
 
 		// if using (id, o) yui callback syntax
 		if (length >= 2) {
-			var id = args[0], o = args[1];
+			var o = args[1];
 			// try to convert responseText to JSON
 			try {
 				nodes = A.JSON.parse(o.responseText);
