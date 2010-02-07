@@ -370,7 +370,7 @@ A.extend(TreeViewDD, A.TreeView, {
 						// creating delayed drag instance
 						var drag = new A.DD.Drag({
 							node: node,
-							bubbleTargets: instance,
+							bubbles: instance,
 							target: true
 						})
 						.plug(A.Plugin.DDProxy, {
@@ -549,8 +549,8 @@ A.extend(TreeViewDD, A.TreeView, {
 		instance.lastY = y;
 	},
 
- 	_onDragStart: function(event) {
- 		var instance = this;
+	_onDragStart: function(event) {
+		var instance = this;
 		var drag = event.target;
 		var dragNode = drag.get(NODE).get(PARENT_NODE);
 		var dragTreeNode = A.Widget.getByNode(dragNode);
@@ -561,7 +561,7 @@ A.extend(TreeViewDD, A.TreeView, {
 			lastSelected.unselect();
 		}
 
- 		dragTreeNode.select();
+		dragTreeNode.select();
 
 		// initialize drag helper
 		var helper = instance.get(HELPER);
@@ -575,7 +575,7 @@ A.extend(TreeViewDD, A.TreeView, {
 
 		// update the DRAG_NODE with the new helper
 		drag.set(DRAG_NODE, helper);
- 	},
+	},
 
 	_onDropOver: function(event) {
 		var instance = this;
