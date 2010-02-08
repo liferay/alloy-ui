@@ -13,9 +13,7 @@ AUI().add(
 			CSS_HANDLE = getClassName(NAME, 'handle'),
 			CSS_ITEM = getClassName(NAME, 'item'),
 			CSS_NO_HANDLES = getClassName(NAME, 'no-handles'),
-			CSS_PLACEHOLDER = getClassName(NAME, 'placeholder'),
-			CSS_PROXY = getClassName(NAME, 'proxy'),
-			CSS_SORTABLE = getClassName(NAME);
+			CSS_PROXY = getClassName(NAME, 'proxy');
 
 		var Sortable = function() {
 			Sortable.superclass.constructor.apply(this, arguments);
@@ -190,10 +188,7 @@ AUI().add(
 				_onDragOver: function(event) {
 					var instance = this;
 
-					var sortDirection = 0;
 					var midpoint = 0;
-					var lastX = instance._lastX;
-					var lastY = instance._lastY;
 
 					var DDM = A.DD.DDM;
 					var drag = event.drag;
@@ -218,10 +213,6 @@ AUI().add(
 					var drag = event.target;
 
 					var node = drag.get('node');
-
-					if (instance._useProxy) {
-						drag.get('dragNode').addClass(CSS_PROXY);
-					}
 
 					node.addClass(CSS_DRAGGING);
 				},
@@ -279,9 +270,20 @@ AUI().add(
 
 					node.addClass(CSS_ITEM);
 
+					instance._useProxy = instance.get('proxy');
+
+					instance.bindUI();
+
 					instance._initHandles();
 					instance._initConstrain();
 					instance._initProxy();
+				},
+
+				bindUI: function() {
+					var instance = this;
+
+					instance.on('drag:end', instance._onDragEnd);
+					instance.on('drag:start', instance._onDragStart);
 				},
 
 				_initHandles: function() {
@@ -329,13 +331,25 @@ AUI().add(
 						}
 
 						instance.plug(A.Plugin.DDProxy, proxy);
+					}
 
-						A.on(
-							'domready',
-							function(A) {
-								instance.get('dragNode').addClass(CSS_PROXY);
-							}
-						);
+				},
+
+				_onDragEnd: function(event) {
+					var instance = this;
+					var drag = event.target;
+
+					if (instance._useProxy) {
+						drag.get('dragNode').removeClass(CSS_PROXY);
+					}
+				},
+
+				_onDragStart: function(event) {
+					var instance = this;
+					var drag = event.target;
+
+					if (instance._useProxy) {
+						drag.get('dragNode').addClass(CSS_PROXY);
 					}
 				}
 			}
