@@ -70,6 +70,9 @@ AUI().add(
 			},
 			delimChar: {
 				value: ''
+			},
+			tabIndex: {
+				value: 0
 			}
 		};
 
