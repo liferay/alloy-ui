@@ -845,7 +845,7 @@ A.extend(Resize, A.Base, {
 
 		var dd = new A.DD.Drag(
 			{
-				bubbles: instance,
+				bubbleTargets: instance,
 				clickPixelThresh: 0,
 				clickTimeThresh: 0,
 				data: {

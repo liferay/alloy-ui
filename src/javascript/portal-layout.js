@@ -104,7 +104,7 @@ A.mix(PortalLayout, {
 
 				return A.merge(
 					{
-						bubbles: instance,
+						bubbleTargets: instance,
 						groups: instance.get(GROUPS),
 						target: true
 					},
@@ -243,7 +243,7 @@ A.extend(PortalLayout, A.Base, {
 				new A.DD.Drop(
 					A.merge(
 						{
-							bubbles: instance,
+							bubbleTargets: instance,
 							node: node
 						},
 						config
