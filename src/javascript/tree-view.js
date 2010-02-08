@@ -369,8 +369,8 @@ A.extend(TreeViewDD, A.TreeView, {
 					if (!DDM.getDrag(node)) {
 						// creating delayed drag instance
 						var drag = new A.DD.Drag({
+							bubbleTargets: instance,
 							node: node,
-							bubbles: instance,
 							target: true
 						})
 						.plug(A.Plugin.DDProxy, {

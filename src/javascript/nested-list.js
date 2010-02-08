@@ -161,8 +161,8 @@ A.extend(NestedList, A.Base, {
 
 		if (!DDM.getDrag(node)) {
 			var dragOptions = {
+				bubbleTargets: instance,
 				node: node,
-				bubbles: instance,
 				target: true
 			};
 

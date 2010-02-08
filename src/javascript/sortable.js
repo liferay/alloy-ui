@@ -108,7 +108,7 @@ AUI().add(
 					instance._ddConfig = A.mix(
 						instance._ddConfig,
 						{
-							bubbles: instance,
+							bubbleTargets: instance,
 							groups: instance.get('groups'),
 							placeholder: instance.get('placeholder'),
 							constrain: instance.get('constrain'),
