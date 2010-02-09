@@ -10,6 +10,8 @@ var Lang = A.Lang,
 	isString = Lang.isString,
 	isValue = Lang.isValue,
 
+	ceil = Math.ceil,
+
 	DDM = A.DD.DDM,
 
 	APPEND = 'append',
@@ -389,16 +391,20 @@ A.extend(PortalLayout, A.Base, {
 			// sync placeholder size
 			instance._syncPlaceholderSize();
 
+			var regionBottom = ceil(region.bottom);
+			var regionLeft = ceil(region.left);
+			var regionTop = ceil(region.top);
+
 			// align placeholder horizontally
 			placeholder.setX(
-				region.left
+				regionLeft
 			);
 
 			// align placeholder vertically
 			placeholder.setY(
 				// 1 and 2 quadrants are the top quadrants, so align to the region.top when quadrant < 3
 				(instance.quadrant < 3) ?
-					(region.top - (placeholder.get(OFFSET_HEIGHT) + marginBottom)) : (region.bottom + marginTop)
+					(regionTop - (placeholder.get(OFFSET_HEIGHT) + marginBottom)) : (regionBottom + marginTop)
 			);
 		}
 	},
