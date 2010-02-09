@@ -185,7 +185,7 @@ AUI.add('aui-node', function(A) {
 		show: function(cssClass) {
 			var instance = this;
 
-			instance.removeClass(cssClass || instance._hideClass || 'aui-helper-hidden')
+			instance.removeClass(cssClass || instance._hideClass || 'aui-helper-hidden');
 
 			return instance;
 		},
