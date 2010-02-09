@@ -14,10 +14,6 @@
 	visibility: hidden;
 }
 
-.aui-editable-hidden {
-	display: none;
-}
-
 .aui-editable-form-triggers {
 	background-color: transparent;
 	border-width: 0;
