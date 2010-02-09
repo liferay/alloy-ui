@@ -165,6 +165,7 @@ A.extend(Rating, A.Component, {
 		var instance = this;
 
 		instance._syncElements();
+		instance._syncLabelUI();
 	},
 
 	destructor: function(){
@@ -414,16 +415,20 @@ A.extend(Rating, A.Component, {
 		instance.set(ELEMENTS, contentBox.queryAll(DOT+CSS_RATING_EL));
 	},
 
-	_syncElements: function(){
+	_syncElements: function() {
 		var instance = this;
-		var labelText = instance.get(LABEL);
 		var selectedIndex = instance.get(DEFAULT_SELECTED) - 1;
 
 		instance.set(SELECTED_INDEX, selectedIndex);
 
-		instance.get(LABEL_ELEMENT).html(labelText);
-
 		instance.select();
+	},
+
+	_syncLabelUI: function() {
+		var instance = this;
+		var labelText = instance.get(LABEL);
+
+		instance.get(LABEL_ELEMENT).html(labelText);
 	},
 
 	_getInputData: function(index) {
@@ -473,7 +478,7 @@ A.extend(Rating, A.Component, {
 	* Attribute Listeners
 	*/
 	_afterSetLabel: function(event) {
-		this.syncUI();
+		this._syncLabelUI();
 	}
 });
 
