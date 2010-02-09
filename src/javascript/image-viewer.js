@@ -774,7 +774,9 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 
 		instance._syncImageViewerUI();
 
-		instance.set(CENTERED, true);
+		// invoke WidgetPosition _setAlignCenter to force center alignment
+		instance._setAlignCenter(true);
+
 		instance.set(LOADING, false);
 
 		instance.fire('load', { image: image });
