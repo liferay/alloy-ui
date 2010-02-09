@@ -38,12 +38,12 @@
 		left: 960px;
 		position: absolute;
 		top: 51px;
-		width: 114px;
+		width: 119px;
 	}
 
 	.portlet-list .portlet-item {
 		background: lightblue;
-		margin: 2px;
+		margin: 5px;
 		padding: 5px;
 		width: 100px;
 	}
@@ -184,6 +184,26 @@ AUI().ready('portal-layout', function(A) {
 	});
 
 
+
+	// var ddDelegate = new A.DD.Delegate({
+	// 	container: '.portlet-list',
+	// 	nodes: '.portlet-item',
+	// 	groups: ['portal-layout']
+	// });
+
+
+	// A.all('.portlet-item').each(function(node, i) {
+	// 	new A.DD.Drag({
+	// 		node: node,
+	// 		bubbles: portalLayout,
+	// 		groups: portalLayout.get('groups')
+	// 	})
+	// 	.plug(A.Plugin.DDProxy, {
+	// 		// moveOnEnd: false
+	// 	});
+	// });
+
+
 	var PortletItem = function() {
 		PortletItem.superclass.constructor.apply(this, arguments);
 	};
@@ -191,6 +211,12 @@ AUI().ready('portal-layout', function(A) {
 	PortletItem.NAME = 'PortletItem';
 
 	PortletItem.ATTRS = {
+		dd: {
+			value: {
+				target: false
+			}
+		},
+
 		lazyStart: {
 			value: true
 		},
@@ -205,19 +231,6 @@ AUI().ready('portal-layout', function(A) {
 	};
 
 	A.extend(PortletItem, A.PortalLayout, {
-		_alignCondition: function() {
-			var instance = this;
-			var activeDrop = instance.activeDrop;
-			var itemContainer = instance.get('itemContainer');
-
-			if (activeDrop) {
-				var dropNode = activeDrop.get('node');
-			}
-
-			return PortletItem.superclass._alignCondition.apply(this, arguments) &&
-					!itemContainer.contains(dropNode);
-		},
-
 		_getAppendNode: function() {
 			var instance = this;
 
@@ -234,7 +247,7 @@ AUI().ready('portal-layout', function(A) {
 	portletList.on('drag:end', function(event) {
 		var newPorlet = A.Node.create('<div class="portlet">New Portlet</div>');
 
-		if (portletList.appendNode.inDoc()) {
+		if (portletList.appendNode && portletList.appendNode.inDoc()) {
 			portletList.appendNode.replace(
 				newPorlet
 			);
