@@ -1,6 +1,6 @@
 .aui-portal-layout-drag-indicator {
 	background: #3C56B5;
-	height: 5px;
+	height: 6px;
 	position: absolute;
 	width: 100px;
 }
@@ -11,7 +11,7 @@
 
 .aui-portal-layout-drag-indicator-icon {
 	position: absolute;
-	top: -6px;
+	top: -5px;
 }
 
 .aui-portal-layout-drag-indicator-icon-left {
