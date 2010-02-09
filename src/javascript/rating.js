@@ -530,12 +530,7 @@ A.extend(ThumbRating, Rating, {
 		}
 	},
 
-	_syncElements: function(){
-		var instance = this;
-		var labelText = instance.get(LABEL);
-
-		instance.get(LABEL_ELEMENT).html(labelText);
-	}
+	_syncElements: function() {}
 });
 
 A.Rating = Rating;
