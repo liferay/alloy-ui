@@ -187,9 +187,6 @@ A.extend(LiveSearch, A.Base, {
 		// trim the user query and lowercase it
 		query = L.trim( query.toLowerCase() );
 
-		// match with the matchRegex to be only alphanumeric (default regex)
-		query = query.match(matchRegex).join(BLANK);
-
 		// replace on the query '*' to '', on a regex empty match with everything like *
 		query = query.replace(STAR, BLANK);
 
