@@ -64,7 +64,7 @@ A.mix(LiveSearch, {
 			validator: function(v) {
 				return (v instanceof RegExp);
 			},
-			value: /(\w|\s|[*])*/g
+			value: /(.)*/g
 		},
 
 		nodes: {
@@ -186,6 +186,9 @@ A.extend(LiveSearch, A.Base, {
 
 		// trim the user query and lowercase it
 		query = L.trim( query.toLowerCase() );
+
+		// match with the matchRegex
+		query = query.match(matchRegex).join(BLANK);
 
 		// replace on the query '*' to '', on a regex empty match with everything like *
 		query = query.replace(STAR, BLANK);
