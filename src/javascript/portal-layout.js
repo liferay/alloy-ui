@@ -108,6 +108,7 @@ A.mix(PortalLayout, {
 					{
 						bubbleTargets: instance,
 						groups: instance.get(GROUPS),
+						startCentered: true,
 						target: true
 					},
 					val
