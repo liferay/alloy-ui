@@ -264,6 +264,45 @@ A.extend(PortalLayout, A.Base, {
 		);
 	},
 
+	alignPlaceholder: function(region, isTarget) {
+		var instance = this;
+		var placeholder = instance.get(PLACEHOLDER);
+		var marginBottom = PLACEHOLDER_MARGIN_BOTTOM;
+		var marginTop = PLACEHOLDER_MARGIN_TOP;
+
+		if (!instance.lazyEvents) {
+			placeholder.show();
+		}
+
+		if (isTarget) {
+			// update the margin values in case of the target placeholder has a different margin
+			marginBottom = PLACEHOLDER_TARGET_MARGIN_BOTTOM;
+			marginTop = PLACEHOLDER_TARGET_MARGIN_TOP;
+		}
+
+		// update the className of the placeholder when interact with target (drag/drop) elements
+		placeholder.toggleClass(CSS_DRAG_TARGET_INDICATOR, isTarget);
+
+		// sync placeholder size
+		instance._syncPlaceholderSize();
+
+		var regionBottom = ceil(region.bottom);
+		var regionLeft = ceil(region.left);
+		var regionTop = ceil(region.top);
+
+		// align placeholder horizontally
+		placeholder.setX(
+			regionLeft
+		);
+
+		// align placeholder vertically
+		placeholder.setY(
+			// 1 and 2 quadrants are the top quadrants, so align to the region.top when quadrant < 3
+			(instance.quadrant < 3) ?
+				(regionTop - (placeholder.get(OFFSET_HEIGHT) + marginBottom)) : (regionBottom + marginTop)
+		);
+	},
+
 	calculateDirections: function(drag) {
 		var instance = this;
 		var lastY = instance.lastY;
@@ -373,40 +412,12 @@ A.extend(PortalLayout, A.Base, {
 		var placeholder = instance.get(PLACEHOLDER);
 
 		if (activeDrop && placeholder) {
-			var region = activeDrop.region;
 			var node = activeDrop.get('node');
 			var isTarget = !!node.dd;
 
-			var marginBottom = PLACEHOLDER_MARGIN_BOTTOM;
-			var marginTop = PLACEHOLDER_MARGIN_TOP;
+			instance.lastAlignDrop = activeDrop;
 
-			if (isTarget) {
-				// update the margin values in case of the target placeholder has a different margin
-				marginBottom = PLACEHOLDER_TARGET_MARGIN_BOTTOM;
-				marginTop = PLACEHOLDER_TARGET_MARGIN_TOP;
-			}
-
-			// update the className of the placeholder when interact with target (drag/drop) elements
-			placeholder.toggleClass(CSS_DRAG_TARGET_INDICATOR, isTarget);
-
-			// sync placeholder size
-			instance._syncPlaceholderSize();
-
-			var regionBottom = ceil(region.bottom);
-			var regionLeft = ceil(region.left);
-			var regionTop = ceil(region.top);
-
-			// align placeholder horizontally
-			placeholder.setX(
-				regionLeft
-			);
-
-			// align placeholder vertically
-			placeholder.setY(
-				// 1 and 2 quadrants are the top quadrants, so align to the region.top when quadrant < 3
-				(instance.quadrant < 3) ?
-					(regionTop - (placeholder.get(OFFSET_HEIGHT) + marginBottom)) : (regionBottom + marginTop)
-			);
+			instance.alignPlaceholder(activeDrop.region, isTarget);
 		}
 	},
 
@@ -468,7 +479,7 @@ A.extend(PortalLayout, A.Base, {
 
 	_positionNode: function(event) {
 		var instance = this;
-		var activeDrop = instance.activeDrop;
+		var activeDrop = instance.lastAlignDrop || instance.activeDrop;
 
 		if (activeDrop) {
 			var dragNode = instance._getAppendNode();
@@ -565,7 +576,9 @@ A.extend(PortalLayout, A.Base, {
 		var placeholder = instance.get(PLACEHOLDER);
 		var proxyNode = instance.get(PROXY_NODE);
 
-		instance._positionNode(event);
+		if (!instance.lazyEvents) {
+			instance._positionNode(event);
+		}
 
 		if (proxyNode) {
 			proxyNode.remove();
@@ -584,28 +597,22 @@ A.extend(PortalLayout, A.Base, {
 	// fires after drag:start
 	_onDragEnter: function(event) {
 		var instance = this;
-		var placeholder = instance.get(PLACEHOLDER);
 
-		// instance.lazyEvents is property which relies to the LAZY_START option
-		// when LAZY_START is true we prevent the first drag:event fires
-		// and the dragNode only find an activeDrop after intersects with a dropZone.
-		if (instance.lazyEvents) {
-			// set the first activeDrop to null, avoid the drag:enter align the placeholder on the parent dropZone (column)
-			instance.activeDrop = null;
-		}
-		// firing the drag:event...
-		else {
-			// if LAZY_START is true the placeholder was not showed on drag:start, showing the placeholder here..
-			if (placeholder) {
-				placeholder.show();
-			}
+		instance.activeDrop = DDM.activeDrop;
 
-			instance.activeDrop = DDM.activeDrop;
+		// check if lazyEvents is true and if there is a lastActiveDrop
+		// the checking for lastActiveDrop prevents fire the _syncPlaceholderUI when quadrant* events fires
+		if (instance.lazyEvents && instance.lastActiveDrop) {
+			instance.lazyEvents = false;
 
 			instance._syncPlaceholderUI(event);
 		}
 
-		instance.lazyEvents = false;
+		// lastActiveDrop is always updated by the drag exit,
+		// but if there is no lastActiveDrop update it on drag enter update it
+		if (!instance.lastActiveDrop) {
+			instance.lastActiveDrop = DDM.activeDrop;
+		}
 	},
 
 	_onDragExit: function(event) {
@@ -635,20 +642,12 @@ A.extend(PortalLayout, A.Base, {
 	// fires before drag:enter
 	_onDragStart: function(event) {
 		var instance = this;
-		var placeholder = instance.get(PLACEHOLDER);
 
-		// preventing the init drag:enter event to bubble
 		if (instance.get(LAZY_START)) {
 			instance.lazyEvents = true;
 		}
-		// in normal mode, just show the placeholder on drag:start...
-		else {
-			// if the activeDrop is not over a dropZone, the drag:start won't be fired at start
-			// so, we need to show the placeholder here, just in case.
-			if (placeholder) {
-				placeholder.show();
-			}
-		}
+
+		instance.lastActiveDrop = null;
 
 		instance.activeDrop = DDM.activeDrop;
 	}
