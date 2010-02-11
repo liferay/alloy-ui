@@ -267,39 +267,16 @@ A.extend(PortalLayout, A.Base, {
 	alignPlaceholder: function(region, isTarget) {
 		var instance = this;
 		var placeholder = instance.get(PLACEHOLDER);
-		var marginBottom = PLACEHOLDER_MARGIN_BOTTOM;
-		var marginTop = PLACEHOLDER_MARGIN_TOP;
 
 		if (!instance.lazyEvents) {
 			placeholder.show();
 		}
 
-		if (isTarget) {
-			// update the margin values in case of the target placeholder has a different margin
-			marginBottom = PLACEHOLDER_TARGET_MARGIN_BOTTOM;
-			marginTop = PLACEHOLDER_TARGET_MARGIN_TOP;
-		}
-
-		// update the className of the placeholder when interact with target (drag/drop) elements
-		placeholder.toggleClass(CSS_DRAG_TARGET_INDICATOR, isTarget);
-
 		// sync placeholder size
 		instance._syncPlaceholderSize();
 
-		var regionBottom = ceil(region.bottom);
-		var regionLeft = ceil(region.left);
-		var regionTop = ceil(region.top);
-
-		// align placeholder horizontally
-		placeholder.setX(
-			regionLeft
-		);
-
-		// align placeholder vertically
-		placeholder.setY(
-			// 1 and 2 quadrants are the top quadrants, so align to the region.top when quadrant < 3
-			(instance.quadrant < 3) ?
-				(regionTop - (placeholder.get(OFFSET_HEIGHT) + marginBottom)) : (regionBottom + marginTop)
+		placeholder.setXY(
+			instance.getPlaceholderXY(region, isTarget)
 		);
 	},
 
@@ -353,6 +330,34 @@ A.extend(PortalLayout, A.Base, {
 		instance.quadrant = quadrant;
 
 		return quadrant;
+	},
+
+	getPlaceholderXY: function(region, isTarget) {
+		var instance = this;
+		var placeholder = instance.get(PLACEHOLDER);
+		var marginBottom = PLACEHOLDER_MARGIN_BOTTOM;
+		var marginTop = PLACEHOLDER_MARGIN_TOP;
+
+		if (isTarget) {
+			// update the margin values in case of the target placeholder has a different margin
+			marginBottom = PLACEHOLDER_TARGET_MARGIN_BOTTOM;
+			marginTop = PLACEHOLDER_TARGET_MARGIN_TOP;
+		}
+
+		// update the className of the placeholder when interact with target (drag/drop) elements
+		placeholder.toggleClass(CSS_DRAG_TARGET_INDICATOR, isTarget);
+
+		var regionBottom = ceil(region.bottom);
+		var regionLeft = ceil(region.left);
+		var regionTop = ceil(region.top);
+
+		var x = regionLeft;
+
+		// 1 and 2 quadrants are the top quadrants, so align to the region.top when quadrant < 3
+		var y = (instance.quadrant < 3) ?
+					(regionTop - (placeholder.get(OFFSET_HEIGHT) + marginBottom)) : (regionBottom + marginTop);
+
+		return [ x, y ];
 	},
 
 	removeDropTarget: function(drop) {
