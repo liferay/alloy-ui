@@ -139,7 +139,7 @@
 				*/
 				'component-overlay': {
 					fullpath: PATH_JAVASCRIPT + 'component-overlay.js',
-					requires: [ 'component', 'widget-position', 'widget-stack', 'widget-position-ext', 'widget-stdmod' ]
+					requires: [ 'component', 'widget-position', 'widget-stack', 'widget-position-align', 'widget-stdmod' ]
 				},
 
 				/*
@@ -334,7 +334,7 @@
 				*/
 				'overlay-mask': {
 					fullpath: PATH_JAVASCRIPT + 'overlay-mask.js',
-					requires: [ 'aui-base', 'component-overlay', 'event-resize', 'overlay-mask-css' ]
+					requires: [ 'aui-base', 'component-overlay', 'event-resize', 'overlay-mask-css', 'overlay' ]
 				},
 				'overlay-mask-css': {
 					ext: false,
