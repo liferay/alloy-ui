@@ -9,7 +9,6 @@ var Lang = A.Lang,
 	getClassName = A.ClassNameManager.getClassName,
 
 	ALERT = 'alert',
-	CIRCLE = 'circle',
 	CONTENT = 'content',
 	HELPER = 'helper',
 	ICON = 'icon',
@@ -17,10 +16,8 @@ var Lang = A.Lang,
 	LIST = 'list',
 	LOADING = 'loading',
 	NAME = 'autocomplete',
-	NO = 'no',
 	RESET = 'reset',
 	RESULTS = 'results',
-	S = 's',
 	SELECTED = 'selected',
 
 	ICON_DEFAULT = 'circle-triangle-b',
@@ -29,7 +26,6 @@ var Lang = A.Lang,
 
 	CSS_HIGLIGHT = getClassName(NAME, SELECTED),
 	CSS_LIST_ITEM = getClassName(NAME, LIST, ITEM),
-	CSS_NO_RESULTS = getClassName(NAME, NO, RESULTS),
 	CSS_RESULTS_LIST = getClassName(HELPER, RESET),
 	CSS_RESULTS_OVERLAY = getClassName(NAME, RESULTS),
 	CSS_RESULTS_OVERLAY_CONTENT = getClassName(NAME, RESULTS, CONTENT),
@@ -141,8 +137,6 @@ var Lang = A.Lang,
 		queryInterval: {
 			value: 0.5,
 			getter: function(value) {
-				var instance = this;
-
 				return value * 1000;
 			}
 		},
@@ -344,7 +338,9 @@ var Lang = A.Lang,
 			},
 
 			generateRequest: function(query) {
-				return query;
+				return {
+					request: query
+				};
 			},
 
 			handleResponse: function(event) {
@@ -417,10 +413,10 @@ var Lang = A.Lang,
 						dataSourceType = 'Local';
 
 						if (isFunction(data)) {
-							dataSourceType = 'Function'
+							dataSourceType = 'Function';
 						}
 						else if (isString(data)) {
-							dataSourceType = 'IO'
+							dataSourceType = 'IO';
 						}
 					}
 
@@ -1072,7 +1068,7 @@ var Lang = A.Lang,
 											resultMatch = result;
 										}
 										else if (isArray(result)) {
-											resultMatch = result[0]
+											resultMatch = result[0];
 										}
 										else {
 											resultMatch = result[matchKey];
