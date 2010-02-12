@@ -425,6 +425,9 @@ AUI().add(
 		TextboxListEntry.ATTRS = {
 			labelText: {
 				value: ''
+			},
+			tabIndex: {
+				value: 0
 			}
 		};
 
