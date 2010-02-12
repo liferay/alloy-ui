@@ -12,8 +12,6 @@ AUI().add(
 			CSS_EDITING = getClassName(NAME, 'editing'),
 			CSS_HOVER = getClassName(NAME, HOVER),
 
-			CSS_HIDDEN_ACCESSIBLE = getClassName('helper', 'hidden', 'accessible'),
-
 			CONTENT_BOX = 'contentBox';
 
 		var Editable = function() {
@@ -121,10 +119,6 @@ AUI().add(
 
 			tools: {
 				value: []
-			},
-
-			hideClass: {
-				value: CSS_HIDDEN_ACCESSIBLE
 			},
 
 			inputType: {
