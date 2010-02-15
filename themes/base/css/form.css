@@ -198,3 +198,23 @@
 	display: inline-block;
 	vertical-align: middle;
 }
+
+.aui-field.aui-has-error .aui-field-content {
+	border-bottom: 1px solid #EF4A4A;
+	background-color: #FF9F9F;
+}
+
+.aui-field.aui-has-warn .aui-field-content {
+	border-bottom: 1px solid #FFC45F;
+	background-color: #FFFABF;
+}
+
+.aui-field .aui-message-holder {
+	font-weight: bold;
+	color: #FF0000;
+	display: block;
+}
+
+.aui-status-failure {
+	border:  1px solid #EF4A4A;
+}

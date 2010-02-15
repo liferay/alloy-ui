@@ -242,6 +242,14 @@
 				},
 
 				/*
+				* Form Manager
+				*/
+				'form-manager': {
+					fullpath: PATH_JAVASCRIPT + 'form-manager.js',
+					requires: [ 'node-base','substitute' ]
+				},
+
+				/*
 				* Image Gallery
 				*/
 				'image-gallery': {
