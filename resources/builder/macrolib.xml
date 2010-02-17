@@ -60,6 +60,7 @@
 	<macrodef name="create-module-details">
 		<sequential>
 			<var name="submodule.module.name" value="${component}"/>
+			<var name="submodule.module.details.hash" value="${component.details.hash}"/>
 
 			<loadfile
 				srcFile="${project.dir}/resources/builder/templates/moduledeftemplate.txt"
@@ -82,7 +83,7 @@
 
 					<propertyregex
 						casesensitive="false"
-						input="${component.details.hash}"
+						input="${submodule.module.details.hash}"
 						override="true"
 						property="component.details.hash"
 						regexp="^\{"
