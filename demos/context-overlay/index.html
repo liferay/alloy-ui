@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/yui/yui.js" type="text/javascript"></script>
+	<script src="../../build/aui-base/aui-base.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skins/core/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+</head>
+
+<style type="text/css" media="screen">
+
+#contextOverlay1 {
+	width: 300px;
+	border: 3px solid #000;
+	background: #fff;
+	padding: 3px;
+	position: absolute;
+}
+
+.menu {
+	position: absolute;
+	width: 150px;
+	background: #FFFFFF;
+	border-color: #DEDEDE #BFBFBF #BFBFBF #DEDEDE;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.menu ul, .menu li {
+	margin: 0;
+}
+
+.menu li {
+	border-bottom: 1px solid #DEDEDE;
+	display: block;
+	padding: 2px;
+}
+
+.menu li a {
+	display: block;
+	padding: 2px 5px;
+	text-decoration: none;
+	color: #336699;
+}
+
+.menu li a:hover {
+	background: #ccc;
+}
+
+.menu-list span {
+	background: #CCCCCC;
+	float: left;
+	font-size: 14px;
+	list-style: none;
+	margin-left: 5px;
+	padding: 4px;
+}
+
+.menu-list a {
+	text-decoration: none;
+	color: #336699;
+}
+
+.extended-menus {
+	clear: both;
+	padding: 1em 0;
+}
+
+.extended-menus input {
+	float: left;
+}
+
+.disabled-trigger {
+	opacity: 0.5;
+	color: #333;
+}
+
+</style>
+
+<body>
+<h1>Alloy - ContextOverlay</h1>
+
+<p><button id="simpleOverlay">Open simple ContextOverlay</button></p>
+
+<p><button id="simpleOverlay2">Open simple ContextOverlay - another trigger</button></p>
+
+<div id="menuList" class="menu-list">
+	<span class="menu-item-1">
+		<a href="javascript:;">Menu item 1</a>
+	</span>
+	<span class="menu-item-1">
+		<a href="javascript:;">Menu item 1 - multiple triggers</a>
+	</span>
+	<span class="menu-item-1">
+		<a href="javascript:;">Menu item 1 - multiple triggers</a>
+	</span>
+
+	<div class="extended-menus aui-helper-clearfix">
+
+		<input id="changeTrigger" name="change1" type="button" value="Change Trigger for Menu to Menu Trigger 2" />
+
+		<span id="menuItem2">
+			<a href="javascript:;">Menu Trigger 1</a>
+		</span>
+		<span id="menuItem2-new" class="disabled-trigger">
+			<a href="javascript:;">Menu Trigger 2</a>
+		</span>
+	</div>
+</div>
+
+<div id="contextOverlay1" class="aui-contextoverlay-hidden">
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+
+<div id="menu1" class="menu aui-contextoverlay-hidden">
+	<ul>
+		<li>
+			<a href="javascript:;">Page</a>
+		</li>
+		<li>
+			<a href="javascript:;">Application</a>
+		</li>
+		<li>
+			<a href="javascript:;">Web Content Display</a>
+		</li>
+		<li>
+			<a href="javascript:;">Breadcrumb</a>
+		</li>
+		<li>
+			<a href="javascript:;">Navigation</a>
+		</li>
+		<li>
+			<a href="javascript:;">Site Map</a>
+		</li>
+	</ul>
+</div>
+
+<div id="menu2" class="menu aui-contextoverlay-hidden">
+	<ul>
+		<li>
+			<a href="javascript:;">Control Panel</a>
+		</li>
+		<li>
+			<a href="javascript:;">Public Pages</a>
+		</li>
+		<li>
+			<a href="javascript:;">Private Pages</a>
+		</li>
+	</ul>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('aui-context-overlay', 'aui-overlay-manager', function(A) {
+
+	/*
+	* Simple Menu example
+	*/
+	var options = {
+		showOn: 'mouseenter',
+		hideOn: 'mouseleave',
+		hideDelay: 1500,
+		showDelay: 0,
+
+		on: {
+			show: function(event) {
+				// console.log('on show', event);
+				overlayManager.hideAll();
+			},
+			hide: function(event) {
+				// console.log('on hide', event);
+			}
+		},
+
+		after: {
+			show: function(event) {
+				// console.log('after show', event);
+			},
+			hide: function(event) {
+				// console.log('after hide', event);
+			}
+		}
+	};
+
+	var menuOverlay1 = new A.ContextOverlay(
+		A.merge(options, {
+			trigger: '.menu-item-1',
+			boundingBox: '#menu1',
+			hideDelay: 1000,
+			cancellableHide: false,
+			showDelay: 0
+		})
+	)
+	.render();
+
+
+	var menuOverlay2 = new A.ContextOverlay(
+		A.merge(options, {
+			trigger: '#menuItem2',
+			hideDelay: 1000,
+			cancellableHide: true,
+			boundingBox: '#menu2'
+		})
+	)
+	.render();
+
+	A.on('click',
+		function(event) {
+			// changing the original trigger
+
+
+			var menuItem2 = A.get('#menuItem2');
+			var menuItem2New = A.get('#menuItem2-new');
+
+			var currentValue = this.get('value');
+
+			if (menuItem2.hasClass('disabled-trigger')) {
+				currentValue = currentValue.replace(/Trigger 1/, 'Trigger 2');
+				menuOverlay2.set('trigger', '#menuItem2');
+			}
+			else {
+				currentValue = currentValue.replace(/Trigger 2/, 'Trigger 1');
+				menuOverlay2.set('trigger', '#menuItem2-new');
+			}
+
+			this.set('value', currentValue);
+
+			menuItem2.toggleClass('disabled-trigger');
+			menuItem2New.toggleClass('disabled-trigger');
+		},
+		'#changeTrigger'
+	);
+
+	// creating OverlayManager group
+	var overlayManager = new A.OverlayManager();
+
+	overlayManager.register([ menuOverlay1, menuOverlay2 ]);
+
+	/*
+	* Simple ContextOverlay
+	*/
+	var contextOverlay1 = new A.ContextOverlay({
+		trigger: 'button',
+		boundingBox: '#contextOverlay1',
+		showOn: 'mouseover',
+		cancellableHide: false,
+		// hideOnDocumentClick: false,
+		hideOn: 'mouseout',
+		hideDelay: 1000,
+		showDelay: 0
+		// align: { node: '#simpleOverlay', points: [ 'tl', 'tr' ] }
+	})
+	.render();
+
+	// you can change the showOn/hideOn events on the fly
+	contextOverlay1.set('showOn', 'click');
+	contextOverlay1.set('hideOn', 'click');
+});
+
+</script>
+
+</body>
+</html>

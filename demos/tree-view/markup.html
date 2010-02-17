@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/yui/yui.js" type="text/javascript"></script>
+	<script src="../../build/aui-base/aui-base.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skins/core/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+</head>
+
+<style type="text/css" media="screen">
+
+</style>
+
+<body>
+<h1>A.TreeView from HTML markup</h1>
+
+<div id="markupBoundingBox">
+	<ul id="markupContentBox">
+	    <li>
+	        <span>folder</span>
+			<ul>
+				<li>
+			        <a href="#">child child 1</a>
+				</li>
+				<li>
+			        <a href="#">folder folder 2</a>
+					<ul>
+						<li>
+					        <a href="#">child child child 1</a>
+						</li>
+						<li>
+					        <a href="#">folder folder folder 2</a>
+							<ul>
+								<li>
+							        <a href="#">child child child child 1</a>
+								</li>
+								<li>
+							        <a href="#">child child child child 2</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>
+	        <a href="#">child 1</a>
+		</li>
+		<li>
+	        <a href="#">child 2</a>
+		</li>
+		<li>
+	        <a href="#">child 3</a>
+		</li>
+	</ul>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('aui-tree-view', function(A) {
+
+	var treeView = new A.TreeView({
+		boundingBox: '#markupBoundingBox',
+		contentBox: '#markupContentBox'
+	})
+	.render();
+
+});
+
+</script>
+
+</body>
+</html>

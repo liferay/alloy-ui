@@ -1,0 +1,1 @@
+A.ComponentOverlay = A.Base.build('overlay', A.Component, [A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign, A.WidgetStdMod]);

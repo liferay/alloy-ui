@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/yui/yui.js" type="text/javascript"></script>
+	<script src="../../build/aui-base/aui-base.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skins/core/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - colorpicker Demo</h1>
+
+
+	<div id="demo"></div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready(
+	'aui-color-picker',
+	function(A) {
+		window.ColorPicker = new A.ColorPicker().render('#demo');
+	}
+);
+
+</script>
+
+</body>
+</html>
