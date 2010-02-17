@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<project name="@module.name@" basedir="." default="local">
-	<property file="build.properties" />
-	<import file="../build-common-component.xml" />
-</project>

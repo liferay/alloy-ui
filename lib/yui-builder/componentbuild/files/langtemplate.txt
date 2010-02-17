@@ -1,9 +1,0 @@
-YUI.add('@LANG_MODULE@', function(@YUIVAR@) {
-
-Y.Intl.add(
-'@MODULE@',
-'@LANG@',
-@STRINGS@
-);
-
-}, '@VERSION@' @LANG_DETAILS@);

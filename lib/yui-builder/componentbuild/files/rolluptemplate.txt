@@ -1,4 +1,0 @@
-@CODE@
-
-YUI.add('@MODULE@', function(@YUIVAR@){}, '@VERSION@' @DETAILS@);
-
