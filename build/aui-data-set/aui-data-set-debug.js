@@ -638,4 +638,4 @@ A.extend(
 
 A.DataSet = DataSet;
 
-}, '@VERSION@' ,{requires:['oop','collection','base'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['oop','collection','base']});

@@ -123,4 +123,4 @@ A.extend(
 
 A.Textfield = Textfield;
 
-}, '@VERSION@' ,{requires:['aui-field'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-field']});

@@ -248,4 +248,4 @@ A.extend(
 
 A.SWF = SWF;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base','querystring-stringify-simple']});
+}, '@VERSION@' ,{requires:['aui-base','querystring-stringify-simple'], skinnable:false});

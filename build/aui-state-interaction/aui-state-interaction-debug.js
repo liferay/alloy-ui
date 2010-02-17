@@ -195,4 +195,4 @@ A.extend(
 
 A.StateInteractionPlugin = StateInteractionPlugin;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base','plugin']});
+}, '@VERSION@' ,{requires:['aui-base','plugin'], skinnable:false});

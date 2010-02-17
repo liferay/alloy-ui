@@ -410,4 +410,4 @@ A.ContextOverlayManager = new A.OverlayManager({});
 
 A.on(MOUSEDOWN, function() { A.ContextOverlayManager.hideAll(); }, A.getDoc());
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-overlay-manager','aui-delayed-task']});
+}, '@VERSION@' ,{requires:['aui-overlay-manager','aui-delayed-task'], skinnable:false});

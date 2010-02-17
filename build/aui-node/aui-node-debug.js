@@ -429,4 +429,4 @@ A.mix(
 	}
 );
 
-}, '@VERSION@' ,{skinnable:false, requires:['collection','node']});
+}, '@VERSION@' ,{requires:['collection','node'], skinnable:false});

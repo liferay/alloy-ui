@@ -556,4 +556,4 @@ A.extend(TreeData, A.Widget, {
 
 A.TreeData = TreeData;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
+}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});

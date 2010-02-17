@@ -150,4 +150,4 @@ A.extend(CharCounter, A.Base, {
 
 A.CharCounter = CharCounter;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-input-handler'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base','aui-input-handler']});

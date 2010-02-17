@@ -370,4 +370,4 @@ A.extend(NestedList, A.Base, {
 
 A.NestedList = NestedList;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base','dd']});
+}, '@VERSION@' ,{requires:['aui-base','dd'], skinnable:false});

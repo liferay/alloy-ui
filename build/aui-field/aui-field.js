@@ -557,4 +557,4 @@ Field.getField = function(field) {
 
 A.Field = Field;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-component','substitute'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base','aui-component','substitute']});

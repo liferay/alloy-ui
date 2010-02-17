@@ -239,4 +239,4 @@ A.extend(LiveSearch, A.Base, {
 
 A.LiveSearch = LiveSearch;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
+}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});

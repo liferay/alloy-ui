@@ -305,4 +305,4 @@ A.extend(IOPlugin, A.IORequest, {
 
 A.namespace('Plugin').IO = IOPlugin;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-component-overlay','aui-parse-content','aui-io-request','aui-loading-mask']});
+}, '@VERSION@' ,{requires:['aui-component-overlay','aui-parse-content','aui-io-request','aui-loading-mask'], skinnable:false});
