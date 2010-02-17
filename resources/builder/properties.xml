@@ -3,6 +3,7 @@
 	<property name="project.dir" value="../.."/>
 
 	<property name="yui.variable" value="A"/>
+	<property name="lint.skip" value="true"/>
 	<property name="yuicompressor.js.verbose" value="false"/>
 	<property name="yuicompressor.css.verbose" value="false"/>
 
