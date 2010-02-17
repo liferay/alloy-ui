@@ -2,10 +2,10 @@
 <project name="AlloyDefaultProperties">
 	<property name="project.dir" value="../.."/>
 
-	<property name="yui.variable" value="A"/>
 	<property name="lint.skip" value="true"/>
-	<property name="yuicompressor.js.verbose" value="false"/>
+	<property name="yui.variable" value="A"/>
 	<property name="yuicompressor.css.verbose" value="false"/>
+	<property name="yuicompressor.js.verbose" value="false"/>
 
 	<property name="builddir" value="${basedir}/${project.dir}/lib/yui-builder/componentbuild"/>
 	<property name="srcdir" value="${basedir}/${project.dir}"/>
