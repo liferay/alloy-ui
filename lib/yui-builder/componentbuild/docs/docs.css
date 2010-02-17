@@ -1,0 +1,55 @@
+html, body {
+    background-color:#F8F5EA;
+    font-family:arial;
+}
+
+table.desc {
+    margin:1em;
+    border-collapse:collapse;
+}
+
+table.desc caption {
+    color:#472210;
+    text-align:left;
+    font-weight:bold;
+    font-size:116%;
+}
+
+table.desc caption p {
+    margin:2px;
+}
+
+table.desc caption .filepath {
+    margin-top:0;
+    font-family:monospace;
+    color:#006600;
+}
+
+table.desc th, table.desc td {
+    border:1px solid #000;
+    padding:0.5em;
+}
+
+table.desc th {
+    background-color:#CDC8AA;
+}
+
+table.desc td.term {
+    font-family:monospace;
+    background-color:#DFDBC3;
+}
+
+table.desc td.default {
+    white-space:nowrap;
+    font-size:93%;
+    font-family:monospace;
+}
+
+table.desc td.default p {
+    margin-top:2px;
+    margin-bottom:2px;
+}
+
+table.desc td.breakable {
+    white-space:normal;
+}

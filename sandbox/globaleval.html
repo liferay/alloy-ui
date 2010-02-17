@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../build/yui/yui.js" type="text/javascript"></script>
+	<script src="../build/aui-base/aui-base.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" media="screen" />
+</head>
+
+<style type="text/css" media="screen">
+
+</style>
+
+<body>
+<h1>Alloy - Global Eval</h1>
+
+<p><button id="get">Get Document</button></p>
+
+<div id="content"></div>
+
+<div id="log"></div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('aui-base', 'io', function(A) {
+
+	var getContent = function() {
+		A.io('assets/content.html', {
+			on: {
+				success: function(i, o) {
+					var data = o.responseText;
+
+					A.Node.get('#content').html(data);
+				}
+			}
+		});
+	};
+
+	A.on('click', getContent, '#get');
+});
+
+</script>
+
+</body>
+</html>

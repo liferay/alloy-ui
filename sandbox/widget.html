@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../build/yui/yui.js" type="text/javascript"></script>
+	<script src="../build/aui-base/aui-base.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" media="screen" />
+	
+</head>
+<style type="text/css" media="screen">
+	body {
+		font-size: 12px;
+	}
+
+	#wrapper {
+		padding: 10px;
+	}
+
+	/* ---------- All rounded corners ---------- */
+
+	.aui-widget-content-box,
+	.aui-widget-tabs,
+	.aui-widget-box-2,
+	.aui-widget-box-2 {
+		-moz-border-radius: 8px;
+	}
+
+	/* ---------- These elements get a shadow ---------- */
+
+
+	.aui-combobox-content {
+		float: left;
+	}
+
+	.aui-combobox-input {
+	}
+
+	.aui-combobox-input, .aui-combobox-trigger {
+		vertical-align: middle;
+	}
+
+	.aui-combobox-trigger {
+		cursor: pointer;
+		float: right;
+		margin: 0;
+		border-width: 0;
+	}
+
+	.aui-combobox-results {
+		
+	}
+
+	.aui-combobox-results ul {
+		list-style: none;
+		margin: 0;
+	}
+
+	.aui-combobox-list-item {
+		margin: 0;
+		list-style: none;
+		padding: 0 3px;
+		border: 1px solid #fff;
+	}
+
+	.aui-combobox-results-content {
+		border: 1px solid #98c0f4;
+		overflow-y: auto;
+		height: 100%;
+	}
+
+	.aui-overlay-hidden {
+		visibility: hidden;
+	}
+
+	.aui-combobox-selected {
+		background: #dfe8f6;
+		border-color: #a3bae9;
+	}
+
+	.aui-combobox-icon-loading {
+		background-image: url(../themes/base/images/loading_indicator.gif);
+		background-position: 0 0;
+	}
+</style>
+<body>
+<!--
+<input id="myTestWidget" type="text" value="" />
+<input class="aui-combobox-input" id="comboBox" type="text" value="" />-->
+
+<div id="wrapper">
+	<h1>Alloy Base File</h1>
+	<div id="hello"></div>
+	<div id="myAutoComplete"></div>
+</div>
+<script type="text/javascript" charset="utf-8">
+AUI().use('overlay', 'datasource', 'dataschema-array', 'node-event-simulate', function(A) {
+
+	var states = [
+	        ['AL', 'Alabama', 'The Heart of Dixie'],
+	        ['AK', 'Alaska', 'The Land of the Midnight Sun'],
+	        ['AZ', 'Arizona', 'The Grand Canyon State'],
+	        ['AR', 'Arkansas', 'The Natural State'],
+	        ['CA', 'California', 'The Golden State'],
+	        ['CO', 'Colorado', 'The Mountain State'],
+	        ['CT', 'Connecticut', 'The Constitution State'],
+	        ['DE', 'Delaware', 'The First State'],
+	        ['DC', 'District of Columbia', "The Nation's Capital"],
+	        ['FL', 'Florida', 'The Sunshine State'],
+	        ['GA', 'Georgia', 'The Peach State'],
+	        ['HI', 'Hawaii', 'The Aloha State'],
+	        ['ID', 'Idaho', 'Famous Potatoes'],
+	        ['IL', 'Illinois', 'The Prairie State'],
+	        ['IN', 'Indiana', 'The Hospitality State'],
+	        ['IA', 'Iowa', 'The Corn State'],
+	        ['KS', 'Kansas', 'The Sunflower State'],
+			['KY', 'Kentucky', 'The Bluegrass State'],
+	        ['LA', 'Louisiana', 'The Bayou State'],
+	        ['ME', 'Maine', 'The Pine Tree State'],
+	        ['MD', 'Maryland', 'Chesapeake State'],
+	        ['MA', 'Massachusetts', 'The Spirit of America'],
+	        ['MI', 'Michigan', 'Great Lakes State'],
+	        ['MN', 'Minnesota', 'North Star State'],
+	        ['MS', 'Mississippi', 'Magnolia State'],
+	        ['MO', 'Missouri', 'Show Me State'],
+	        ['MT', 'Montana', 'Big Sky Country'],
+	        ['NE', 'Nebraska', 'Beef State'],
+	        ['NV', 'Nevada', 'Silver State'],
+	        ['NH', 'New Hampshire', 'Granite State'],
+	        ['NJ', 'New Jersey', 'Garden State'],
+	        ['NM', 'New Mexico', 'Land of Enchantment'],
+	        ['NY', 'New York', 'Empire State'],
+	        ['NC', 'North Carolina', 'First in Freedom'],
+	        ['ND', 'North Dakota', 'Peace Garden State'],
+	        ['OH', 'Ohio', 'The Heart of it All'],
+	        ['OK', 'Oklahoma', 'Oklahoma is OK'],
+	        ['OR', 'Oregon', 'Pacific Wonderland'],
+	        ['PA', 'Pennsylvania', 'Keystone State'],
+	        ['RI', 'Rhode Island', 'Ocean State'],
+	        ['SC', 'South Carolina', 'Nothing Could be Finer'],
+	        ['SD', 'South Dakota', 'Great Faces, Great Places'],
+	        ['TN', 'Tennessee', 'Volunteer State'],
+	        ['TX', 'Texas', 'Lone Star State'],
+	        ['UT', 'Utah', 'Salt Lake State'],
+	        ['VT', 'Vermont', 'Green Mountain State'],
+	        ['VA', 'Virginia', 'Mother of States'],
+	        ['WA', 'Washington', 'Green Tree State'],
+	        ['WV', 'West Virginia', 'Mountain State'],
+	        ['WI', 'Wisconsin', "America's Dairyland"],
+	        ['WY', 'Wyoming', 'Like No Place on Earth']
+	    ];
+
+	var ComboBox = function() {
+		ComboBox.superclass.constructor.apply(this, arguments);
+	};
+
+	ComboBox.NAME = 'combobox';
+
+	ComboBox.ATTRS = {
+		data: {
+			value: []
+		},
+		schema: {
+			value: null
+		},
+		dataSourceType: {
+			value: null
+		},
+		schemaType: {
+			value: '',
+			validator: A.Lang.isString
+		},
+		matchKey: {
+			value: ''
+		}
+	};
+
+	ComboBox.INPUT_CLASS = A.ClassNameManager.getClassName(ComboBox.NAME, 'input');
+	ComboBox.LIST_ITEM_CLASS = A.ClassNameManager.getClassName(ComboBox.NAME, 'list-item');
+	ComboBox.NO_RESULTS_CLASS = A.ClassNameManager.getClassName(ComboBox.NAME, 'no-results');
+	ComboBox.HOVER_CLASS = A.ClassNameManager.getClassName(ComboBox.NAME, 'selected');
+	ComboBox.LOADING_CLASS = A.ClassNameManager.getClassName(ComboBox.NAME, 'icon-loading');
+
+	ComboBox.INPUT_TEMPLATE = '<input class="' + ComboBox.INPUT_CLASS + '" type="text" />';
+	ComboBox.BTN_TEMPLATE = '<span class="aui-state-default aui-tool"><span class="aui-icon aui-icon-trigger"></span></span>';
+
+	A.extend(
+		ComboBox,
+		A.Widget,
+		{
+			initializer: function(config) {
+				var instance = this;
+
+				var data = instance.get('data');
+				var dataSource = data;
+
+				if (!(dataSource instanceof A.DataSource.Local)) {
+					var dataSourceType = instance.get('dataSourceType');
+
+					if (!dataSourceType) {
+						dataSourceType = 'Local';
+
+						if (A.Lang.isFunction(data)) {
+							dataSourceType = 'Function'
+						}
+						else if (A.Lang.isString(data)) {
+							dataSourceType = 'IO'
+						}
+					}
+
+					dataSource = new A.DataSource[dataSourceType](
+						{
+							source: data
+						}
+					);
+				}
+
+				instance.dataSource = dataSource;
+
+				var schema = instance.get('schema');
+
+				if (schema) {
+					if (schema.fn) {
+						instance.dataSource.plug(schema);
+					}
+					else {
+						var schemaType = instance.get('schemaType');
+
+						var schemaTypes = {
+							array: A.Plugin.DataSourceArraySchema,
+							json: A.Plugin.DataSourceJSONSchema,
+							text: A.Plugin.DataSourceTextSchema,
+							xml: A.Plugin.DataSourceXMLSchema
+						};
+
+						schemaType = schemaType.toLowerCase() || 'array';
+
+						instance.dataSource.plug(
+							{
+								fn: schemaTypes[schemaType],
+								cfg: {
+									schema: schema
+								}
+							}
+						);
+					}
+				}
+
+				instance.set('schema', schema);
+
+				if (0) {
+					instance.dataSource = new A.DataSource.Function(
+						{
+							source: instance.get('data')
+						}
+					);
+
+					instance.dataSource.plug(
+						{
+							fn: A.Plugin.DataSourceArraySchema,
+							cfg: {
+								schema: {
+									resultFields: ['key', 'name', 'description']
+								}
+							}
+						}
+					);
+				}
+
+				instance.dataSource.on('request', instance._onDataSourceRequest, instance);
+				instance.dataSource.on('response', instance._onDataSourceResponse, instance);
+			},
+
+			renderUI: function() {
+				var instance = this;
+
+				instance._renderInput();
+				instance._renderButton();
+
+				instance._renderOverlay();
+			},
+
+			bindUI: function() {
+				var instance = this;
+
+				instance.buttonNode.on('click', instance._generateRequest, instance);
+				instance.inputNode.on('keyup', instance._generateRequest, instance);
+
+				instance.inputNode.on('blur', instance._onBlurCombo, instance);
+				instance.overlay.on('blur', instance._onBlurCombo, instance);
+
+				instance.resultList.delegate('mouseover', instance._resultListMouse, 'li', instance);
+				instance.resultList.delegate('mouseout', instance._resultListMouse, 'li', instance);
+
+				instance._selectedIndex = -1;
+
+				A.on(
+					'key',
+					function(event) {
+						var keyCode = event.keyCode;
+
+						if (keyCode == 27) {
+							instance.overlay.hide();
+							instance.focus();
+						}
+						else {
+							var results = instance.resultList.query('li');
+
+							var handleNav = function() {
+								var results = instance.resultList.queryAll('li');
+
+								instance.overlay.show();
+
+								var selectedIndex = instance._selectedIndex;
+
+								var selectedItem;
+								var lastItem = instance._lastItem;
+
+								var length = results.size();
+
+								if (keyCode == 40) { // down
+									if (selectedIndex == (length - 1)) {
+										selectedIndex = -1;
+									}
+
+									selectedItem = results.item(++selectedIndex);
+								}
+								else if (keyCode == 38) { // up
+									selectedIndex -= 1;
+
+									if (selectedIndex < 0) {
+										selectedIndex = length - 1;
+									}
+
+									selectedItem = results.item(selectedIndex);
+								}
+
+								instance._unselectItem(lastItem);
+								instance._selectItem(selectedItem);
+
+								instance._selectedIndex = selectedIndex;
+								instance._lastItem = selectedItem;
+							};
+
+							if (!results) {
+								instance.dataSource.sendRequest('', handleNav);
+							}
+							else {
+								handleNav();
+							}
+
+						}
+					},
+					[instance.inputNode, instance.overlay.get('boundingBox')],
+					'press:27,40,38'
+				);
+
+				var boundingBox = instance.overlay.get('boundingBox');
+
+				boundingBox.on('mousedown',
+					function(event) {
+						event.stopPropagation();
+					}
+				);
+
+				instance.inputNode.on('mousedown',
+					function(event) {
+						event.stopPropagation();
+					}
+				);
+
+				instance.buttonNode.on('mousedown',
+					function(event) {
+						event.stopPropagation();
+					}
+				);
+
+				boundingBox.get('ownerDocument').on(
+					'mousedown',
+					function(event) {
+						var target = event.target;
+
+						instance.overlay.hide();
+					}
+				);
+			},
+
+			syncUI: function() {
+			},
+
+			formatResult: function(request, response) {
+				var instance = this;
+
+				var re = new RegExp('(' + request + ')', 'gim');
+
+				response = response.replace(re, '<strong>$1</strong>');
+
+				return response;
+			},
+
+			generateRequest: function() {
+				var instance = this;
+
+				
+			},
+			
+
+			_generateRequest: function(event) {
+				var instance = this;
+
+				var currentValue = instance.inputNode.get('value');
+				var lastValue = instance._lastValue;
+
+				if (event.type == 'click' || lastValue == undefined || lastValue != currentValue) {
+					instance.dataSource.sendRequest(currentValue);
+
+					instance._selectedIndex = -1;
+
+					instance._lastValue = currentValue;
+				}
+			},
+
+			_isIgnoreKey: function(keyCode) {
+				var instance = this;
+
+				if (
+					(keyCode == 9) || // tab
+					(keyCode == 13) || // enter
+					(keyCode == 16) || // shift
+					(keyCode == 17) || // ctrl
+					(keyCode >= 18 && keyCode <= 20) || // alt, pause/break, caps lock
+					(keyCode == 27) || // esc
+					(keyCode >= 33 && keyCode <= 35) || // page up, page down, end
+					(keyCode >= 36 && keyCode <= 40) || // home, left, up, right, down
+					(keyCode >= 40 && keyCode <= 45) || // print screen, insert
+					(keyCode == 229) // Korean XP fires 2 key events, the key, and 229
+				) {
+					return true;
+				}
+
+				return false;
+			},
+
+			_onBlurCombo: function() {
+				var instance = this;
+
+				instance.overlay.hide();
+			},
+
+			_onDataSourceResponse: function(event) {
+				var instance = this;
+
+				var request = event.request;
+
+				var results = event.response.results;
+				var filteredResults = [];
+
+				var listItemClass = ComboBox.LIST_ITEM_CLASS;
+				var noResultsClass = ComboBox.NO_RESULTS_CLASS;
+
+				var fields = instance.get('schema.resultFields');
+				var matchKey = instance.get('matchKey') || 0;
+
+				var i = results.length;
+				var formattedResult = '';
+
+				while (--i) {
+					var result = results[i];
+
+					var strResult = null;
+
+					if (A.Lang.isString(result)) {
+						strResult = result;
+					}
+					else if (A.Lang.isArray(result)) {
+						strResult = result[0];
+					}
+					else if (fields) {
+						strResult = result[matchKey || fields[0]];
+					}
+
+					if (strResult) {
+						var hasMatch = strResult.toLowerCase().indexOf(request.toLowerCase()) > -1;
+
+						if (hasMatch) {
+							formattedResult = instance.formatResult(request, strResult);
+
+							filteredResults.unshift('<li class="' + listItemClass + '">' + formattedResult + '</li>');
+						}
+					}
+				}
+
+				if (!filteredResults.length) {
+					filteredResults.push('<li class="' + noResultsClass + '">No results.</li>');
+				}
+
+				instance.resultList.set('innerHTML', filteredResults.join(''));
+				instance.overlay.show();
+
+				instance.buttonNode.get('firstChild').removeClass(ComboBox.LOADING_CLASS);
+			},
+
+			_onDataSourceRequest: function(event) {
+				var instance = this;
+
+				instance.buttonNode.get('firstChild').addClass(ComboBox.LOADING_CLASS);
+			},
+
+			_renderButton: function() {
+				var instance = this;
+
+				var contentBox = instance.get('contentBox');
+
+				var button = A.Node.create(ComboBox.BTN_TEMPLATE);
+
+				button.addClass(instance.getClassName('trigger'));
+
+				var icon = button.get('firstChild');
+
+				icon.addClass(instance.getClassName('trigger', 'icon'));
+				icon.addClass('aui-icon-circle-triangle-s');
+
+				contentBox.appendChild(button);
+
+				instance.buttonNode = button;
+			},
+
+			_renderInput: function() {
+				var instance = this;
+
+				var contentBox = instance.get('contentBox');
+				var input = contentBox.query('.' + ComboBox.INPUT_CLASS);
+
+				if (!input) {
+					input = A.Node.create(ComboBox.INPUT_TEMPLATE);
+					contentBox.appendChild(input);
+				}
+
+				instance.inputNode = input;
+			},
+
+			_renderOverlay: function() {
+				var instance = this;
+
+				var overlay = new A.Overlay(
+					{
+						width: instance.inputNode.get('offsetWidth') + instance.buttonNode.get('offsetWidth'),
+						height: '300px',
+						align: {
+							node: instance.inputNode,
+							points: ['tl', 'bl']
+						},
+						visible: false,
+						bodyContent: '<ul></ul>'
+					}
+				);
+
+				overlay.getClassName('combobox-results');
+
+				overlay.get('boundingBox').addClass(instance.getClassName('results'));
+				overlay.get('contentBox').addClass(instance.getClassName('results', 'content'));
+
+				overlay.render(document.body);
+
+				overlay.addTarget(instance);
+
+				instance.overlay = overlay;
+				instance.resultList = overlay.get('contentBox').query('ul');
+			},
+
+			_unselectItem: function(item) {
+				var instance = this;
+
+				if (item) {
+					item.removeClass(ComboBox.HOVER_CLASS);
+				}
+			},
+
+			_selectItem: function(item) {
+				var instance = this;
+
+				if (item) {
+					item.addClass(ComboBox.HOVER_CLASS);
+				}
+			},
+
+			_resultListMouse: function(event) {
+				var instance = this;
+
+				var targetNode = event.currentTarget;
+
+				instance._unselectItem(instance._lastItem);
+
+				instance._selectItem(targetNode);
+
+				instance._selectedIndex = instance.resultList.queryAll('li').indexOf(targetNode);
+				instance._lastItem = targetNode;
+			}
+		}
+	);
+
+	var states2 = [
+	        ['AL', 'yaaayo'],
+	        ['AK', 'yaaayo'],
+	        ['AZ', 'yaaayo'],
+	        ['AR', 'yaaayo'],
+	        ['CA', 'yaaayo'],
+	        ['CO', 'yaaayo'],
+	        ['CT', 'yaaayo'],
+	        ['DE', 'yaaayo'],
+	        ['DC', 'yaaayo'],
+	        ['FL', 'yaaayo'],
+	        ['GA', 'yaaayo'],
+	        ['HI', 'yaaayo'],
+	        ['ID', 'yaaayo'],
+	        ['IL', 'yaaayo'],
+	        ['IN', 'yaaayo'],
+	        ['IA', 'yaaayo'],
+	        ['KS', 'yaaayo'],
+
+	        ['LA', 'yaaayo'],
+	        ['ME', 'yaaayo'],
+	        ['MD', 'yaaayo'],
+	        ['MA', 'yaaayo'],
+	        ['MI', 'yaaayo'],
+	        ['MN', 'yaaayo'],
+	        ['MS', 'yaaayo'],
+	        ['MO', 'yaaayo'],
+	        ['MT', 'yaaayo'],
+	        ['NE', 'yaaayo'],
+	        ['NV', 'yaaayo'],
+	        ['NH', 'yaaayo'],
+	        ['NJ', 'yaaayo'],
+	        ['NM', 'yaaayo'],
+	        ['NY', 'yaaayo'],
+	        ['NC', 'yaaayo'],
+	        ['ND', 'yaaayo'],
+	        ['OH', 'yaaayo'],
+	        ['OK', 'yaaayo'],
+	        ['OR', 'yaaayo'],
+	        ['PA', 'yaaayo'],
+	        ['RI', 'yaaayo'],
+	        ['SC', 'yaaayo'],
+	        ['SD', 'yaaayo'],
+	        ['TN', 'yaaayo'],
+	        ['TX', 'yaaayo'],
+	        ['UT', 'yaaayo'],
+	        ['VT', 'yaaayo'],
+	        ['VA', 'yaaayo'],
+	        ['WA', 'yaaayo'],
+	        ['WV', 'yaaayo'],
+	        ['WI', 'yaaayo'],
+	        ['WY', 'yaaayo'],
+	    ];
+
+	var states3 = [
+	        'AL',
+	        'AK',
+	        'AZ',
+	        'AR',
+	        'CA',
+	        'CO',
+	        'CT',
+	        'DE',
+	        'DC',
+	        'FL',
+	        'GA',
+	        'HI',
+	        'ID',
+	        'IL',
+	        'IN',
+	        'IA',
+	        'KS',
+			     
+	        'LA',
+	        'ME',
+	        'MD',
+	        'MA',
+	        'MI',
+	        'MN',
+	        'MS',
+	        'MO',
+	        'MT',
+	        'NE',
+	        'NV',
+	        'NH',
+	        'NJ',
+	        'NM',
+	        'NY',
+	        'NC',
+	        'ND',
+	        'OH',
+	        'OK',
+	        'OR',
+	        'PA',
+	        'RI',
+	        'SC',
+	        'SD',
+	        'TN',
+	        'TX',
+	        'UT',
+	        'VT',
+	        'VA',
+	        'WA',
+	        'WV',
+	        'WI',
+	        'WY'
+	    ];
+
+	window.CB = new ComboBox(
+		{
+			data: states,
+			schema: {
+				resultFields: ['key', 'name', 'description']
+			},
+			matchKey: 'name',
+			contentBox: '#hello',
+			on: {
+				visibleChange: function() {
+					var instance = this;
+
+					console.log('callback', this, arguments);
+				}
+			}
+		}
+	);
+
+	CB.render();
+
+
+
+	YAHOO = {widget: {}, util: {DataSourceBase: {}}};
+
+
+	var AutoComplete = function() {
+		AutoComplete.superclass.constructor.apply(this, arguments);
+	};
+
+	AutoComplete.NAME = 'combobox';
+
+	AutoComplete.ATTRS = {
+		dataSource: {
+			value: null
+		},
+
+		applyLocalFilter: {
+			value: null
+		},
+
+		queryMatchCase: {
+			value: false
+		},
+
+		queryMatchContains: {
+			value: false
+		},
+
+		minQueryLength: {
+			value: 1
+		},
+
+		maxResultsDisplayed: {
+			value: 10
+		},
+
+		queryDelay: {
+			value: 0.2,
+			getter: function(value) {
+				return value * 1000;
+			}
+		},
+
+		typeAheadDelay: {
+			value: 0.2,
+			getter: function(value) {
+				return value * 1000;
+			},
+		},
+
+		queryInterval: {
+			value: 500
+		},
+
+		delimChar: {
+			value: null,
+			setter: function(value) {
+				var instance = this;
+
+				if (A.Lang.isString(value) && (value.length > 0)) {
+					value = [value];
+				}
+				else if (!A.Lang.isArray(value)) {
+					value = A.Attribute.INVALID_VALUE;
+				}
+
+				return value;
+			}
+		},
+
+		autoHighlight: {
+			value: true
+		},
+
+		typeAhead: {
+			value: false
+		},
+
+		forceSelection: {
+			value: false
+		},
+
+		allowBrowserAutocomplete: {
+			value: true
+		},
+
+		alwaysShowContainer: {
+			value: false
+		},
+
+		suppressInputUpdate: {
+			value: false
+		},
+
+		resultTypeList: {
+			value: true
+		},
+
+		queryQuestionMark: {
+			value: true
+		},
+
+		input: {
+			value: null
+		},
+
+		uniqueName: {
+			value: null
+		},
+
+		schema: {
+			value: null
+		},
+		dataSourceType: {
+			value: null
+		},
+		schemaType: {
+			value: '',
+			validator: A.Lang.isString
+		},
+		matchKey: {
+			value: ''
+		}
+	};
+
+	AutoComplete.HIGHLIGHT_CLASS = A.ClassNameManager.getClassName(ComboBox.NAME, 'selected');
+
+	AutoComplete.AC_GUID = 0;
+
+	A.extend(
+		AutoComplete,
+		A.Widget,
+		{
+			initializer: function(config) {
+				var instance = this;
+
+				instance._createDataSource();
+
+				AutoComplete.AC_GUID++;
+			},
+
+			renderUI: function() {
+				var instance = this;
+
+				instance._renderInput();
+				instance._renderButton();
+
+				instance._renderOverlay();
+			},
+
+			bindUI: function() {
+				var instance = this;
+
+				var button = instance.buttonNode;
+				var inputNode = instance.inputNode;
+
+				button.on('mousedown', instance._onButtonMouseDown, instance);
+
+				inputNode.on('blur', instance._onTextboxBlur, instance);
+				inputNode.on('focus', instance._onTextboxFocus, instance);
+				inputNode.on('keydown', instance._onTextboxKeyDown, instance);
+				inputNode.on('keypress', instance._onTextboxKeyPress, instance);
+				inputNode.on('keyup', instance._onTextboxKeyUp, instance);
+
+				var overlayBoundingBox = instance.overlay.get('boundingBox');
+
+				overlayBoundingBox.on('click', instance._onContainerClick, instance);
+				overlayBoundingBox.on('mouseout', instance._onContainerMouseout, instance);
+				overlayBoundingBox.on('mouseover', instance._onContainerMouseover, instance);
+				overlayBoundingBox.on('scroll', instance._onContainerScroll, instance);
+
+				instance.publish('containerCollapse');
+				instance.publish('containerExpand');
+				instance.publish('containerPopulate');
+
+				instance.publish('dataError');
+				instance.publish('dataRequest');
+				instance.publish('dataReturn');
+
+				instance.publish('itemArrowFrom');
+				instance.publish('itemArrowTo');
+				instance.publish('itemMouseOut');
+				instance.publish('itemMouseOver');
+				instance.publish('itemSelect');
+
+				instance.publish('selectionEnforce');
+
+				instance.publish('textboxBlur');
+				instance.publish('textboxChange');
+				instance.publish('textboxFocus');
+				instance.publish('textboxKey');
+
+				instance.publish('typeAhead');
+
+				instance.publish('unmatchedItemSelect');
+			},
+
+			syncUI: function() {
+				var instance = this;
+
+				instance.inputNode.setAttribute('autocomplete', 'off');
+			},
+
+			formatResult: function(result, request, resultMatch) {
+				return resultMatch || '';
+			},
+
+			_createDataSource: function() {
+				var instance = this;
+
+				var dataSource = instance.get('dataSource');
+				var data = dataSource;
+
+				var dataSourceType = instance.get('dataSourceType');
+
+				if (!(dataSource instanceof A.DataSource.Local)) {
+					if (!dataSourceType) {
+						dataSourceType = 'Local';
+
+						if (A.Lang.isFunction(data)) {
+							dataSourceType = 'Function'
+						}
+						else if (A.Lang.isString(data)) {
+							dataSourceType = 'IO'
+						}
+					}
+
+					dataSource = new A.DataSource[dataSourceType](
+						{
+							source: data
+						}
+					);
+				}
+
+				dataSource.on('error', instance.handleResponse, instance);
+				dataSource.after('response', instance.handleResponse, instance);
+
+				dataSourceType = dataSource.name;
+
+				if (dataSourceType == 'dataSourceLocal') {
+					instance.set('applyLocalFilter', true);
+				}
+
+				instance.set('dataSource', dataSource);
+				instance.set('dataSource', dataSourceType);
+
+				instance.dataSource = dataSource;
+
+				var schema = instance.get('schema');
+
+				if (schema) {
+					if (schema.fn) {
+						instance.dataSource.plug(schema);
+					}
+					else {
+						var schemaType = instance.get('schemaType');
+
+						var schemaTypes = {
+							array: A.Plugin.DataSourceArraySchema,
+							json: A.Plugin.DataSourceJSONSchema,
+							text: A.Plugin.DataSourceTextSchema,
+							xml: A.Plugin.DataSourceXMLSchema
+						};
+
+						schemaType = schemaType.toLowerCase() || 'array';
+
+						instance.dataSource.plug(
+							{
+								fn: schemaTypes[schemaType],
+								cfg: {
+									schema: schema
+								}
+							}
+						);
+					}
+				}
+
+				instance.set('schema', schema);
+			},
+
+			_toggleContainer: function(show) {
+				var instance = this;
+
+				var overlay = instance.overlay;
+
+				if (instance.get('alwaysShowContainer') && overlay.get('visible')) {
+					return;
+				}
+
+				if (!show) {
+					instance._toggleHighlight(instance._elCurListItem, 'from');
+
+					instance._displayedItems = 0;
+					instance._currentQuery = null;
+				}
+
+				if (show) {
+					overlay.show();
+					instance.fire('containerExpand');
+				}
+				else {
+					overlay.hide();
+					instance.fire('containerCollapse');
+				}
+			},
+
+			_onButtonMouseDown: function(event) {
+				var instance = this;
+
+				event.halt();
+
+				instance._sendQuery('');
+
+				instance._focus();
+			},
+
+			_textMatchesOption: function() {
+				var instance = this;
+
+				var elMatch = null;
+				var displayedItems = instance._displayedItems;
+				var listItems = instance.resultList.get('childNodes');
+
+				for (var i=0; i < displayedItems.length; i++) {
+					var elListItem = listItems.item(i);
+
+					var match = ('' + elListItem._resultMatch).toLowerCase();
+
+					if (match == instance._currentQuery.toLowerCase()) {
+						elMatch = elListItem;
+
+						break;
+					}
+				};
+
+				return elMatch;
+			},
+
+			_onContainerClick: function(event) {
+				var instance = this;
+
+				var target = event.target;
+				var tagName = target.get('nodeName').toLowerCase();
+
+				event.halt();
+
+				while (target && (tagName != 'table')) {
+					switch (tagName) {
+						case 'body':
+						return;
+
+						case 'li':
+							instance._toggleHighlight(target, 'to');
+							instance._selectItem(target);
+						return;
+
+						default:
+						break;
+					}
+
+					target = target.get('parentNode');
+
+					if (target) {
+						tagName.get('nodeName').toLowerCase();
+					}
+				}
+			},
+
+			_onContainerMouseout: function(event) {
+				var instance = this;
+
+				var target = event.target;
+				var tagName = target.get('nodeName').toLowerCase();
+
+				var containerClassName = instance.overlay.getClassName('combobox-results');
+
+				while (target && (tagName != 'table')) {
+					switch (tagName) {
+						case 'body':
+						return;
+
+						case 'li':
+							instance._toggleHighlight(target, 'from');
+							instance.fire('itemMouseOut', target);
+						return;
+
+						case 'ul':
+							instance._toggleHighlight(instance._elCurListItem, 'to');
+						return;
+
+						case 'div':
+							if (target.hasClass(containerClassName)) {
+								instance._overContainer = false;
+
+								return;
+							}
+						break;
+
+						default:
+						break;
+					}
+
+					target = target.get('parentNode');
+
+					if (target) {
+						tagName = target.get('nodeName').toLowerCase();
+					}
+				}
+			},
+
+			_typeAhead: function(elListItem, query) {
+				var instance = this;
+
+				if (!instance.get('typeAhead') || instance._keyCode == 8) {
+					return;
+				}
+
+				var inputEl = A.Node.getDOMNode(instance.inputNode);
+
+				if (inputEl.setSelectionRange || inputEl.createTextRange) {
+					instance._typeAheadDelayId = setTimeout(
+						function() {
+							var value = inputEl.value;
+
+							var start = value.length;
+
+							instance._updateValue(elListItem);
+
+							var end = inputEl.value.length;
+
+							instance._selectText(instance.inputNode, start, end);
+
+							var prefill = inputEl.value.substr(start, end);
+
+							instance.fire('typeAhead', query, prefill);
+						},
+						instance.get('typeAheadDelay')
+					);
+				}
+			},
+
+			_onContainerMouseover: function(event) {
+				var instance = this;
+
+				var target = event.target;
+				var tagName = target.get('nodeName').toLowerCase();
+
+				var containerClassName = instance.getClassName('results');
+
+				while (target && (tagName != 'table')) {
+					switch (tagName) {
+						case 'body':
+						return;
+
+						case 'li':
+							instance._toggleHighlight(target, 'to');
+							instance.fire('itemMouseOut', target);
+						break;
+
+						case 'div':
+							if (target.hasClass(containerClassName)) {
+								instance._overContainer = true;
+								return;
+							}
+						break;
+
+						default:
+						break;
+					}
+
+					target = target.get('parentNode');
+
+					if (target) {
+						tagName = target.get('nodeName').toLowerCase();
+					}
+				}
+			},
+
+			_onContainerScroll: function(event) {
+				var instance = this;
+
+				instance._focus();
+			},
+
+			_clearInterval: function() {
+				var instance = this;
+
+				if (instance._queryIntervalId) {
+					clearInterval(instance._queryIntervalId);
+
+					instance._queryIntervalId = null;
+				}
+			},
+
+			_clearSelection: function() {
+				var instance = this;
+
+				var delimChar = instance.get('delimChar');
+				var extraction = {
+					previous: '',
+					query: instance.inputNode.get('value')
+				};
+
+				if (delimChar) {
+					extraction = instance._extractQuery(instance.inputNode.get('value'));
+				}
+
+				instance.fire('selectionEnforce', extraction.query);
+			},
+
+			_extractQuery: function(query) {
+				var instance = this;
+
+				var delimChar = instance.get('delimChar');
+				var delimIndex = -1;
+				var i = delimChar.length - 1;
+
+				var newIndex, queryStart, previous;
+
+				for (; i >= 0; i--) {
+					newIndex = query.lastIndexOf(delimChar[i]);
+
+					if (newIndex > delimIndex) {
+						delimIndex = newIndex;
+					}
+				}
+
+				if (delimChar[i] == ' ') {
+					for (var j = delimChar.length - 1; j >= 0; j--){
+						if (query[delimIndex - 1] == delimChar[j]) {
+							delimIndex--;
+
+							break;
+						}
+					}
+				}
+
+				if (delimIndex > -1) {
+					queryStart = delimIndex + 1;
+
+					while (query.charAt(queryStart) == ' ') {
+						queryStart += 1;
+					}
+
+					previous = query.substring(0, queryStart);
+
+					query = query.substring(queryStart);
+				}
+				else {
+					previous = '';
+				}
+
+				return {
+					previous: previous,
+					query: query
+				};
+			},
+
+			_selectItem: function(elListItem) {
+				var instance = this;
+
+				instance._itemSelected = true;
+
+				instance._updateValue(elListItem);
+
+				instance._pastSelections = instance.inputNode.get('value');
+
+				instance._clearInterval();
+
+				instance.fire('itemSelect', elListItem, elListItem._resultData);
+
+				instance._toggleContainer(false);
+			},
+
+			_updateValue: function(elListItem) {
+				var instance = this;
+
+				if (!instance.get('suppressInputUpdate')) {
+					var input = instance.inputNode;
+					var resultMatch = elListItem._resultMatch;
+
+					var delimChar = instance.get('delimChar');
+
+					delimChar = (delimChar && delimChar[0]) || delimChar;
+
+					var newValue = '';
+
+					if (delimChar) {
+						newValue = instance._pastSelections;
+
+						newValue += resultMatch + delimChar;
+
+						if (delimChar != ' ') {
+							newValue += ' ';
+						}
+					}
+					else {
+						newValue = resultMatch;
+					}
+
+					input.set('value', newValue);
+
+					if (input.get('type') == 'textarea') {
+						input.set('scrollTop', input.get('scrollHeight'));
+					}
+
+					var end = newValue.length;
+
+					instance._selectText(input, end, end);
+
+					instance._elCurListItem = elListItem;
+				}
+			},
+
+			_selectText: function(el, start, end) {
+				var instance = this;
+
+				var rawEl = A.Node.getDOMNode(el);
+				var value = el.get('value');
+
+				if (rawEl.setSelectionRange) {
+					rawEl.setSelectionRange(start, end);
+				}
+				else if (rawEl.createTextRange) {
+					var range = rawEl.createTextRange();
+
+					range.moveStart('character', start);
+					range.moveEnd('character', end - value.length);
+
+					range.select();
+				}
+				else {
+					rawEl.select();
+				}
+			},
+
+			_onTextboxBlur: function(event) {
+				var instance = this;
+
+				if (!instance._overContainer || (instance._keyCode == 9)) {
+					if (!instance._itemSelected) {
+						var elMatchListItem = instance._textMatchesOption();
+
+						var overlayVisible = instance.overlay.get('visible');
+
+						if (!overlayVisible || (overlayVisible && A.Lang.isNull(elMatchListItem))) {
+							if (instance.get('forceSelection')) {
+								instance._clearSelection();
+							}
+							else {
+								instance.fire('unmatchedItemSelect', instance._currentQuery);
+							}
+						}
+						else {
+							if (instance.get('forceSelection')) {
+								instance._selectItem(elMatchListItem);
+							}
+						}
+					}
+
+					instance._clearInterval();
+
+					instance._focused = false;
+
+					if (instance._initInputValue !== instance.inputNode.get('value')) {
+						instance.fire('textboxChange');
+					}
+
+					instance.fire('textboxBlur');
+
+					instance._toggleContainer(false);
+				}
+				else {
+					instance._focus();
+				}
+			},
+
+			_focus: function() {
+				var instance = this;
+
+				setTimeout(
+					function() {
+						instance.inputNode.focus();
+					},
+					0
+				);
+			},
+
+			_onTextboxFocus: function(event) {
+				var instance = this;
+
+				if (!instance._focused) {
+					instance.inputNode.setAttribute('autocomplete', 'off');
+					instance._focused = true;
+					instance._initInputValue = instance.inputNode.get('value');
+
+					instance.fire('textboxFocus');
+				}
+			},
+
+			_moveSelection: function(keyCode) {
+				var instance = this;
+
+				if (instance.overlay.get('visible')) {
+					var elCurListItem = instance._elCurListItem;
+					var curItemIndex = -1;
+
+					if (elCurListItem) {
+						curItemIndex = Number(elCurListItem.getAttribute('data-listItemIndex'));
+					}
+
+					var newItemIndex = curItemIndex - 1;
+
+					if (keyCode == 40) {
+						newItemIndex = curItemIndex + 1;
+					}
+
+					if (newItemIndex == -1) {
+						newItemIndex = instance._displayedItems - 1;
+					}
+
+					if (newItemIndex >= instance._displayedItems) {
+						newItemIndex = 0;
+					}
+
+					if (newItemIndex < -2) {
+						return;
+					}
+
+					if (elCurListItem) {
+						instance._toggleHighlight(elCurListItem, 'from');
+
+						instance.fire('itemArrowFrom', elCurListItem);
+					}
+
+					if (newItemIndex == -1) {
+						if (instance.get('delimChar')) {
+							instance.inputNode.set('value', instance._pastSelections + instance._currentQuery);
+						}
+						else {
+							instance.inputNode.set('value', instance._currentQuery);
+						}
+
+						return;
+					}
+
+					if (newItemIndex == -2) {
+						instance._toggleContainer(false);
+
+						return;
+					}
+
+					var elNewListItem = instance.resultList.get('childNodes').item(newItemIndex);
+
+					var elContent = instance.overlay.get('contentBox');
+
+					var contentOverflow = elContent.getStyle('overflow');
+					var contentOverflowY = elContent.getStyle('overflowY');
+
+					var scrollOn = (contentOverflow == 'auto') || (contentOverflow == 'scroll') || (contentOverflowY == 'auto') || (contentOverflowY == 'scroll');
+
+					if (scrollOn &&
+						(newItemIndex > -1) &&
+						(newItemIndex < instance._displayedItems)) {
+
+						var newScrollTop = -1;
+						var liTop = elNewListItem.get('offsetTop');
+						var liBottom = liTop + elNewListItem.get('offsetHeight');
+
+						var contentHeight = elContent.get('offsetHeight');
+						var contentScrollTop = elContent.get('scrollTop');
+						var contentBottom = contentHeight + contentScrollTop;
+
+						if (keyCode == 40) {
+							if (liBottom > contentBottom) {
+								newScrollTop = (liBottom - contentHeight);
+							}
+							else if (liBottom < contentScrollTop) {
+								newScrollTop = liTop;
+							}
+						}
+						else {
+							if (liTop < contentHeight) {
+								newScrollTop = liTop;
+							}
+							else if (liTop > contentBottom) {
+								newScrollTop = (liBottom - contentHeight);
+							}
+						}
+
+						if (newScrollTop > -1) {
+							elContent.set('scrollTop', newScrollTop);
+						}
+					}
+
+					instance._toggleHighlight(elNewListItem, 'to');
+
+					instance.fire('itemArrowTo', elNewListItem);
+
+					if (instance.get('typeAhead')) {
+						instance._updateValue(elNewListItem);
+					}
+				}
+			},
+
+			_jumpSelection: function() {
+				var instance = this;
+
+				if (instance._elCurListItem) {
+					instance._selectItem(instance._elCurListItem);
+				}
+				else {
+					instance._toggleContainer(false);
+				}
+			},
+
+			_toggleHighlight: function(elNewListItem, action) {
+				var instance = this;
+
+				if (elNewListItem) {
+					var highlightClass = AutoComplete.HIGHLIGHT_CLASS;
+
+					if (instance._elCurListItem) {
+						instance._elCurListItem.removeClass(highlightClass);
+						instance._elCurListItem = null;
+					}
+
+					if (action == 'to' && highlightClass) {
+						elNewListItem.addClass(highlightClass);
+
+						instance._elCurListItem = elNewListItem;
+					}
+				}
+			},
+
+			_enableIntervalDetection: function() {
+				var instance = this;
+
+				var queryInterval = instance.get('queryInterval');
+
+				if (!instance._queryIntervalId && queryInterval) {
+					instance._queryInterval = setInterval(A.bind(instance._onInterval, instance), queryInterval);
+				}
+			},
+
+			_onInterval: function() {
+				var instance = this;
+
+				var curValue = instance.inputNode.get('value');
+				var lastValue = instance._lastValue;
+
+				if (curValue != lastValue) {
+					instance._lastValue = curValue;
+
+					instance._sendQuery(curValue);
+				}
+			},
+
+			preparseRawResponse: function(event) {
+			},
+
+			_sendQuery: function(query) {
+				var instance = this;
+
+				if (instance.get('disabled')) {
+					instance._toggleContainer(false);
+
+					return;
+				}
+
+				var delimChar = instance.get('delimChar');
+				var minQueryLength = instance.get('minQueryLength');
+
+				if (delimChar) {
+					var extraction = instance._extractQuery(query);
+
+					query = extraction.query;
+
+					instance._pastSelections = extraction.previous;
+				}
+
+				if ((query && (query.length < minQueryLength)) && (!query && minQueryLength > 0)) {
+					if (instance._delayId != -1) {
+						clearTimeout(instance._delayId);
+					}
+
+					instance._toggleContainer(false);
+
+					return;
+				}
+
+				query = encodeURIComponent(query);
+
+				instance._delayId = -1;
+
+				if (instance.get('applyLocalFilter')) {
+					instance.dataSource.on('response', instance.filterResults, instance);
+				}
+
+				var request = instance.generateRequest(query);
+
+				instance.fire('dataRequest', query, request);
+
+				instance.dataSource.sendRequest(request);
+			},
+
+			generateRequest: function(query) {
+				return query;
+			},
+
+			handleResponse: function(event) {
+				var instance = this;
+
+				instance._populateList(event);
+			},
+
+			filterResults: function(event) {
+				var instance = this;
+
+				var callback = event.callback;
+				var query = event.request;
+				var response = event.response;
+
+				if (callback && callback.argument && callback.argument.query) {
+					query = callback.argument.query;
+				}
+
+				if (query) {
+					// response = A.clone(response);
+
+					var dataSource = instance.dataSource;
+					var allResults = response.results;
+					var filteredResults = [];
+					var matchFound = false;
+					var matchKey = instance.get('matchKey') || 0;
+					var matchCase = instance.get('queryMatchCase');
+					var matchContains = instance.get('queryMatchContains');
+
+					var fields = instance.get('schema.resultFields');
+
+					for (var i = allResults.length - 1; i >= 0; i--){
+						var result = allResults[i];
+
+						var strResult = null;
+
+						if (A.Lang.isString(result)) {
+							strResult = result;
+						}
+						else if (A.Lang.isArray(result)) {
+							strResult = result[0];
+						}
+						else if (fields) {
+							strResult = result[matchKey || fields[0]];
+						}
+
+						if (A.Lang.isString(strResult)) {
+							var keyIndex = -1;
+
+							if (matchCase) {
+								keyIndex = strResult.indexOf(decodeURIComponent(query));
+							}
+							else {
+								keyIndex = strResult.toLowerCase().indexOf(decodeURIComponent(query).toLowerCase());
+							}
+
+							if ((!matchContains && (keyIndex === 0)) ||
+								(matchContains && (keyIndex > -1))
+							) {
+								filteredResults.unshift(result);
+							}
+						}
+					}
+
+					response.results = filteredResults;
+				}
+
+				return response;
+			},
+
+			doBeforeLoadData: function(event) {
+				return true;
+			},
+
+			_populateList: function(event) {
+				var instance = this;
+
+				if (instance._typeAheadDelayId != -1) {
+					clearTimeout(instance._typeAheadDelayId);
+				}
+
+				var query = event.request;
+				var response = event.response;
+				var callback = event.callback;
+
+				if (callback && callback.argument && callback.argument.query) {
+					event.request = query = callback.argument.query;
+				}
+
+				var ok = instance.doBeforeLoadData(event);
+
+				if (ok && !event.error) {
+					instance.fire('dataReturn', event);
+
+					if (instance._focused || instance._focused === null) {
+						var currentQuery = decodeURIComponent(query);
+
+						instance._currentQuery = currentQuery;
+						instance._itemSelected = false;
+
+						var allResults = event.response.results;
+						var itemsToShow = Math.min(allResults.length, instance.get('maxResultsDisplayed'));
+						var fields = instance.get('schema.resultFields');
+						var matchKey = instance.get('matchKey');
+
+						if (!matchKey && fields) {
+							matchKey = fields[0];
+						}
+						else {
+							matchKey = matchKey || 0;
+						}
+
+						if (itemsToShow > 0) {
+							var allListItemEls = instance.resultList.get('childNodes');
+
+							allListItemEls.each(
+								function(node, i, nodeList) {
+									if (i < itemsToShow) {
+										var result = allResults[i];
+
+										var resultMatch = '';
+
+										if (A.Lang.isString(result)) {
+											resultMatch = result;
+										}
+										else if (A.Lang.isArray(result)) {
+											resultMatch = result[0]
+										}
+										else {
+											resultMatch = result[matchKey];
+										}
+
+										node._resultMatch = resultMatch;
+
+										node._resultData = result;
+										node.set('innerHTML', instance.formatResult(result, currentQuery, resultMatch));
+
+										node.removeClass('aui-helper-hidden');
+									}
+									else {
+										node.addClass('aui-helper-hidden');
+									}
+								}
+							);
+
+							instance._displayedItems = itemsToShow;
+
+							instance.fire('containerPopulate', query, allResults);
+
+							if (instance.get('autoHighlight')) {
+								var elFirstListItem = instance.resultList.get('firstChild');
+
+								instance._toggleHighlight(elFirstListItem, 'to');
+								instance.fire('itemArrowTo', elFirstListItem);
+
+								instance._typeAhead(elFirstListItem, query);
+							}
+							else {
+								instance._toggleHighlight(instance._elCurListItem, 'from');
+							}
+
+							ok = instance.doBeforeExpandContainer(query, allResults);
+
+							instance._toggleContainer(ok);
+						}
+						else {
+							instance._toggleContainer(false);
+						}
+
+						return;
+					}
+
+				}
+				else {
+					instance.fire('dataError', query);
+				}
+			},
+
+			doBeforeExpandContainer: function() {
+				return true;
+			},
+
+			sendQuery: function(query) {
+				var instance = this;
+
+				instance._focused = null;
+
+				var newQuery = query;
+
+				if (instance.get('delimChar')) {
+					query = instance.inputNode.get('value') + query;
+				}
+
+				instance._sendQuery(newQuery);
+			},
+
+			_onTextboxKeyDown: function(event) {
+				var instance = this;
+
+				var keyCode = event.keyCode;
+
+				if (instance._typeAheadDelayId != -1) {
+					clearTimeout(instance._typeAheadDelayId);
+				}
+
+				switch (keyCode) {
+					case 9:
+						if (instance._elCurListItem) {
+							if (instance.get('delimChar') && instance._keyCode != keyCode) {
+								if (instance.overlay.get('visible')) {
+									event.halt();
+								}
+							}
+
+							instance._selectItem(instance._elCurListItem);
+						}
+						else {
+							instance._toggleContainer(false);
+						}
+					break;
+
+					case 13:
+						if (instance._elCurListItem) {
+							if (instance._keyCode != keyCode) {
+								if (instance.overlay.get('visible')) {
+									event.halt();
+								}
+							}
+
+							instance._selectItem(instance._elCurListItem);
+						}
+						else {
+							instance._toggleContainer(false);
+						}
+					break;
+
+					case 27:
+						instance._toggleContainer(false);
+					return;
+
+					case 38:
+						if (instance.overlay.get('visible')) {
+							event.halt();
+
+							instance._moveSelection(keyCode);
+						}
+					break;
+
+					case 39:
+						instance._jumpSelection();
+					break;
+
+					case 40:
+						if (instance.overlay.get('visible')) {
+							event.halt();
+
+							instance._moveSelection(keyCode);
+						}
+					break;
+
+					default:
+						instance._itemSelected = false;
+						instance._toggleHighlight(instance._elCurListItem, 'from');
+
+						instance.fire('textboxKey', keyCode);
+					break;
+				}
+
+				if (keyCode == 18) {
+					instance._enableIntervalDetection();
+				}
+
+				instance._keyCode = keyCode;
+			},
+
+			_onTextboxKeyPress: function(event) {
+				var instance = this;
+
+				var keyCode = event.keyCode;
+
+				switch (keyCode) {
+					case 9:
+						if (instance.overlay.get('visible')) {
+							if (instance.get('delimChar')) {
+								event.halt();
+							}
+
+							if (instance._elCurListItem) {
+								instance._selectItem(instance._elCurListItem);
+							}
+							else {
+								instance._toggleContainer(false);
+							}
+						}
+					break;
+
+					case 13:
+						if (instance.overlay.get('visible')) {
+							event.halt();
+
+							if (instance._elCurListItem) {
+								instance._selectItem(instance._elCurListItem);
+							}
+							else {
+								instance._toggleContainer(false);
+							}
+						}
+					break;
+
+					default:
+					break;
+				}
+
+				if (keyCode == 229) {
+					instance._enableIntervalDetection();
+				}
+			},
+
+			_onTextboxKeyUp: function(event) {
+				var instance = this;
+
+				var input = instance.inputNode;
+
+				var value = input.get('value');
+				var keyCode = event.keyCode;
+
+				if (instance._isIgnoreKey(keyCode)) {
+					return;
+				}
+
+				if (instance._delayId != -1) {
+					clearTimeout(instance._delayId);
+				}
+
+				instance._delayId = setTimeout(
+					function() {
+						instance._sendQuery(value);
+					},
+					instance.get('queryDelay')
+				);
+			},
+
+			_isIgnoreKey: function(keyCode) {
+				var instance = this;
+
+				if (
+					(keyCode == 9) || // tab
+					(keyCode == 13) || // enter
+					(keyCode == 16) || // shift
+					(keyCode == 17) || // ctrl
+					(keyCode >= 18 && keyCode <= 20) || // alt, pause/break, caps lock
+					(keyCode == 27) || // esc
+					(keyCode >= 33 && keyCode <= 35) || // page up, page down, end
+					(keyCode >= 36 && keyCode <= 40) || // home, left, up, right, down
+					(keyCode >= 40 && keyCode <= 45) || // print screen, insert
+					(keyCode == 229) // Korean XP fires 2 key events, the key, and 229
+				) {
+					return true;
+				}
+
+				return false;
+			},
+
+			_renderButton: function() {
+				var instance = this;
+
+				var contentBox = instance.get('contentBox');
+
+				var button = A.Node.create(ComboBox.BTN_TEMPLATE);
+
+				button.addClass(instance.getClassName('trigger'));
+
+				var icon = button.get('firstChild');
+
+				icon.addClass(instance.getClassName('trigger', 'icon'));
+				icon.addClass('aui-icon-circle-triangle-s');
+
+				contentBox.appendChild(button);
+
+				instance.buttonNode = button;
+			},
+
+			_renderInput: function() {
+				var instance = this;
+
+				var contentBox = instance.get('contentBox');
+				var input = instance.get('input');
+
+				if (input) {
+					input = A.get(input);
+				}
+				else {
+					input = A.Node.create(ComboBox.INPUT_TEMPLATE);
+
+					contentBox.appendChild(input);
+				}
+
+				instance.set('uniqueName', A.stamp(input));
+
+				instance.inputNode = input;
+			},
+
+			_renderListElements: function() {
+				var instance = this;
+
+				var maxResultsDisplayed = instance.get('maxResultsDisplayed');
+
+				var resultList = instance.resultList;
+
+				var listItems = [];
+				var listClassName = ComboBox.LIST_ITEM_CLASS;
+
+				while (maxResultsDisplayed--) {
+					listItems[maxResultsDisplayed] = '<li class="aui-helper-hidden ' + listClassName + '" data-listItemIndex="' + maxResultsDisplayed + '"></li>';
+				}
+
+				resultList.set('innerHTML', listItems.join(''));
+			},
+
+			_renderOverlay: function() {
+				var instance = this;
+
+				var overlay = new A.Overlay(
+					{
+						align: {
+							node: instance.inputNode,
+							points: ['tl', 'bl']
+						},
+						bodyContent: '<ul></ul>',
+						visible: false,
+						width: instance.inputNode.get('offsetWidth') + instance.buttonNode.get('offsetWidth')
+					}
+				);
+
+				overlay.getClassName('combobox-results');
+
+				overlay.get('boundingBox').addClass(instance.getClassName('results'));
+				overlay.get('contentBox').addClass(instance.getClassName('results', 'content'));
+
+				overlay.render(document.body);
+
+				overlay.addTarget(instance);
+
+				instance.overlay = overlay;
+				instance.resultList = overlay.get('contentBox').query('ul');
+
+				instance._renderListElements();
+			},
+
+			_focused: null,
+			_overContainer: false,
+			_displayedItems: 0,
+			_currentQuery: null,
+			_pastSelections: '',
+			_initInputValue: null,
+			_elCurListItem: null,
+			_itemSelected: false,
+			_keyCode: null,
+			_delayId: -1,
+			_typeAheadDelayId: -1,
+			_queryInterval: null,
+			_lastValue: null
+		}
+	);
+
+	window.AC = new AutoComplete(
+		{
+			dataSource: states,
+			schema: {
+				resultFields: ['key', 'name', 'description']
+			},
+			matchKey: 'name',
+			delimChar: ',',
+			typeAhead: true,
+			contentBox: '#myAutoComplete'
+		}
+	);
+
+	AC.render();
+	
+});
+</script>
+
+</body>
+</html>

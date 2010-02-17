@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="YuiDefaultProperties">
+    <property name="yui.version" value="2"/>
+
+    <import file="${builddir}/shared/properties.xml" description="Properties common to yui2/yui3" />
+    <import file="${targets}" description="Build Targets" />
+
+</project>

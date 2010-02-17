@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="YuiDefaultProperties">
+
+    <!-- Default Library Version Build -->
+    <property name="yui.version" value="3"/>
+    <property name="yui.variable" value="Y"/>
+    <property name="component.logger.regex" value="^.*?(?:logger|Y.log).*?(?:;|\).*;|(?:\r?\n.*?)*?\).*;).*;?.*?\r?\n" />
+
+    <import file="${builddir}/shared/properties.xml" description="Properties common to yui2/yui3" />
+
+    <import file="${targets}" description="Build Targets" />
+</project>

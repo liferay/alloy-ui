@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="YuiRollupTargets">
+
+    <import file="${builddir}/shared/targets.xml" description="Targets common to Rollup/Module" />
+
+    <target name="build" depends="buildmodules" description="Create component.js"></target>
+
+    <target name="buildmodules" depends="-buildmodules, -registerall, -prependall, -appendall, -rollupjs, -rolluplangs">
+        <fixcrlf srcdir="${component.builddir}" eol="${buildfiles.eol}" />
+    </target>
+
+    <target name="-buildmodules">
+        <subant target="${component.rollup.target}" inheritall="false" >
+            <filelist dir="${buildfile.dir}" files="${component.rollup.modules.buildfiles}" />
+            <property name="rollup" value="true" />
+            <property name="rollup.builddir" value="${component.builddir}" />
+            <property name="rollup.component" value="${component}" />
+            <property name="rollup.component.basefilename" value="${component.basefilename}" />
+        </subant>
+    </target>
+
+    <target name="-rollupjs" if="rollup">
+        <echo level="info">Rolling up ${component.basefilename}-debug.js into ${rollup.component.basefilename}-debug.js</echo>
+        <concat destfile="${rollup.builddir}/${rollup.component.basefilename}.js" append="true" fixlastline="true" >
+            <filelist dir="${component.builddir}" files="${component.basefilename}.js" />
+        </concat>
+        <concat destfile="${rollup.builddir}/${rollup.component.basefilename}-debug.js" append="true" fixlastline="true">
+            <filelist dir="${component.builddir}" files="${component.basefilename}-debug.js" />
+        </concat>
+    </target>
+
+    <target name="-rolluplangs" if="rolluplangs">
+    	<echo>${component}</echo>
+    	<echo>${component.lang}</echo>
+    	<echo>${component.langs.exist}</echo>
+        <for list="${component.lang}" param="lang" trim="true">
+            <sequential>
+                <concat destfile="${rollup.builddir}/lang/${rollup.component}_@{lang}.js" append="true" fixlastline="true">
+                    <fileset dir="${component.builddir}/lang" includes="*_@{lang}.js" />
+                </concat>
+                <concat destfile="${rollup.builddir}/lang/${rollup.component}_@{lang}-min.js" append="true" fixlastline="true">
+                    <fileset dir="${component.builddir}/lang" includes="*_@{lang}-min.js" />
+                </concat>
+            </sequential>
+        </for>
+        <concat destfile="${rollup.builddir}/lang/${rollup.component}.js" append="true" fixlastline="true">
+            <filelist dir="${component.builddir}/lang" files="${component}.js" />
+        </concat>
+        <concat destfile="${rollup.builddir}/lang/${rollup.component}-min.js" append="true" fixlastline="true">
+            <filelist dir="${component.builddir}/lang" files="${component}-min.js" />
+        </concat>
+    </target>
+
+    <target name="-prependall" depends="-prependdebug, -prepend" if="component.prependfiles" />
+    <target name="-appendall" depends="-appenddebug, -append" if="component.appendfiles" />
+
+    <target name="-registerall" unless="register.skip">
+        <addrollup module="${component.module}" file="${component.builddir}/${component.basefilename}-debug.js" details="${component.details.hash}" />
+        <addrollup module="${component.module}" file="${component.builddir}/${component.basefilename}.js" details="${component.details.hash}" />
+    </target>
+</project>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="YuiModuleTargets">
+
+    <import file="${builddir}/shared/targets.xml" description="Targets common to Rollup/Module" />
+
+    <target name="build" depends="buildcore, -rollupjs, buildskins, buildlangs" />
+    <target name="buildskins" depends="-buildskins, -rollupcss" />
+    <target name="buildlangs" depends="-buildlangs, -rolluplangs" />
+
+    <!-- CORE -->
+    <target name="buildcore" depends="builddebug, -createcore, -loggerregex" description="Create component.js">
+        <fixcrlf srcdir="${component.builddir}" includes="${component.basefilename}.js" eol="${buildfiles.eol}" />
+    </target>
+
+    <target name="-createcore">
+        <copy file="${component.builddir}/${component.basefilename}-debug.js" tofile="${component.builddir}/${component.basefilename}.js" />
+    </target>
+
+    <target name="-loggerregex" description="Replace logger statements" unless="component.logger.regex.skip">
+        <echo level="info">Replacing Logger Statements in ${component.builddir}/${component.basefilename}.js</echo>
+        <replaceregexp file="${component.builddir}/${component.basefilename}.js"
+                            byline="${component.logger.regex.byline}"
+                            match="${component.logger.regex}"
+                            replace="${component.logger.regex.replace}"
+                            flags="${component.logger.regex.flags}" />
+    </target>
+
+    <!-- DEBUG -->
+    <target name="builddebug" depends="-concatdebug, -registerdebug, -prependdebug, -appenddebug" description="Create component-debug.js">
+        <fixcrlf srcdir="${component.builddir}" includes="${component.basefilename}-debug.js" eol="${buildfiles.eol}" />
+    </target>
+
+    <target name="-concatdebug">
+        <concatsource destfile="${component.builddir}/${component.basefilename}-debug.js" sourcedir="${component.jsfiles.base}" sourcefiles="${component.jsfiles}" />
+    </target>
+
+    <target name="-registerdebug" unless="register.skip">
+        <addmodule module="${component.module}" file="${component.builddir}/${component.basefilename}-debug.js" details="${component.details.hash}" />
+    </target>
+
+    <target name="-rollupjs" if="rollup">
+        <echo level="info">Rolling up ${component.basefilename}-debug.js into ${rollup.component.basefilename}-debug.js</echo>
+        <concat destfile="${rollup.builddir}/${rollup.component.basefilename}.js" append="true" fixlastline="true">
+            <filelist dir="${component.builddir}" files="${component.basefilename}.js" />
+        </concat>
+        <concat destfile="${rollup.builddir}/${rollup.component.basefilename}-debug.js" append="true" fixlastline="true">
+            <filelist dir="${component.builddir}" files="${component.basefilename}-debug.js" />
+        </concat>
+    </target>
+
+    <!-- SKINS -->
+    <target name="-buildskins" depends="-concatskins" description="Create skin rollup in local component build directory" if="component.skins.exist">
+        <fixcrlf srcdir="${component.builddir}/assets/skins/sam" includes="${component}.css" eol="${buildfiles.eol}" />
+    </target>
+
+    <target name="-buildlangs" description="Create language packs in the local component build directory" if="component.langs.exist">
+    	<mkdir dir="${component.builddir}/lang" />
+
+    	<!-- TODO: Break compress/concat out into separate pieces -->
+        <for list="${component.lang}" param="lang" trim="true">
+            <sequential>
+            	<addlang dir="${component.lang.base}" module="${component}" lang="@{lang}" dest="${component.builddir}/lang" />
+                <yuicompress src="${component.builddir}/lang/${component}_@{lang}.js" dest="${component.builddir}/lang/${component}_@{lang}-min.js" args="${yuicompressor.js.args.internal}" />
+            </sequential>
+        </for>
+
+    	<addlang dir="${component.lang.base}" module="${component}" lang="" dest="${component.builddir}/lang/" />
+        <yuicompress src="${component.builddir}/lang/${component}.js" dest="${component.builddir}/lang/${component}-min.js" args="${yuicompressor.js.args.internal}" />
+
+    </target>
+
+    <target name="-rolluplangs" if="rolluplangs">
+        <for list="${component.lang}" param="lang" trim="true">
+            <sequential>
+                <concat destfile="${rollup.builddir}/lang/${rollup.component}_@{lang}.js" append="true" fixlastline="true">
+                    <fileset dir="${component.builddir}/lang" includes="*_@{lang}.js" />
+                </concat>
+                <concat destfile="${rollup.builddir}/lang/${rollup.component}_@{lang}-min.js" append="true" fixlastline="true">
+                    <fileset dir="${component.builddir}/lang" includes="*_@{lang}-min.js" />
+                </concat>
+            </sequential>
+        </for>
+    	<concat destfile="${rollup.builddir}/lang/${rollup.component}.js" append="true" fixlastline="true">
+            <filelist dir="${component.builddir}/lang" files="${component}.js" />
+        </concat>
+        <concat destfile="${rollup.builddir}/lang/${rollup.component}-min.js" append="true" fixlastline="true">
+            <filelist dir="${component.builddir}/lang" files="${component}-min.js" />
+        </concat>
+	</target>
+
+    <target name="-concatskins" if="component.skins.exist">
+        <concatsource destfile="${component.builddir}/assets/skins/sam/${component}.css" sourcedir="${component.assets.base}" sourcefiles="${component}-core.css, skins/sam/${component}-skin.css" />
+        <yuicompress src="${component.builddir}/assets/skins/sam/${component}.css" dest="${component.builddir}/assets/skins/sam/${component}.css" args="${yuicompressor.css.args.internal}" />
+    </target>
+
+    <target name="-rollupcss" if="rollupskins">
+        <echo level="info">Rolling up ${component}.css into ${rollup.component}.css</echo>
+        <concat destfile="${rollup.builddir}/assets/skins/sam/${rollup.component}.css" append="true" fixlastline="true">
+            <filelist dir="${component.builddir}/assets/skins/sam" files="${component}.css" />
+        </concat>
+    </target>
+
+</project>

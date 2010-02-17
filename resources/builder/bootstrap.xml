@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<project name="AlloyBootstrap">
+	<import file="properties.xml" description="Alloy Default Build Properties"/>
+	<import file="${builddir}/3.x/bootstrap.xml" description="Default Build Properties and Targets"/>
+	<import file="macrolib.xml" description="Alloy Macrodef Utilities"/>
+</project>

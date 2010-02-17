@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+        <title>YUI ANT Target Definitions</title>
+        <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset/reset-min.css">
+        <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/fonts/fonts-min.css">
+        <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/base/base-min.css">
+        <link rel="stylesheet" type="text/css" href="docs.css">
+    </head>
+    <body>
+        <table class="desc">
+            <caption>
+                <p>CORE TARGET DEFINITIONS</p><p class="filepath">(componentbuild/shared/targets.xml)</p>
+            </caption>
+            <thead>
+                <tr>
+                    <th>Target</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="term">all</td>
+                    <td>Invokes <code>local</code> and then <code>deploy</code>. This is
+                    what you would normally call when you're ready
+                    to check in your code to the build
+                    directory.</td>
+                </tr>
+                <tr>
+                    <td class="term">local</td>
+                    <td>Invokes <code>clean</code>, <code>init</code>, <code>build</code>, <code>minify</code> and
+                    <code>lint</code>. This is what you would normally call,
+                    when going through a development build, test, build, test cycle.</td>
+                </tr>
+                <tr>
+                    <td class="term">clean</td>
+                    <td>Deletes the local build dir.</td>
+                </tr>
+                <tr>
+                    <td class="term">init</td>
+                    <td>Creates the component's local build dir
+                    (e.g. yui2/src/autocomplete/build_tmp).</td>
+                </tr>
+                <tr>
+                    <td class="term">build</td>
+                    <td>Builds the component files in the local build dir. 
+                    The work actually performed in the build step varies 
+                    for the type of component and is defined by the type of
+                    build file pulled in:
+                    <ul>
+                        <li>componentbuild/2.x/module.xml (2.x module targets)</li>
+                        <li>componentbuild/3.x/module.xml (3.x standalone module targets)</li>
+                        <li>componentbuild/3.x/rollup.xml (3.x rollup module targets)</li>
+                        <li>componentbuild/shared/cssmodule.xml (2.x, 3.x CSS module targets)</li>
+                    </ul>
+                    The build targets introduced for
+                    the above component types are discussed in
+                    detail below.</td>
+                </tr>
+                <tr>
+                    <td class="term">minify</td>
+                    <td>Compresses the built files in the local
+                    build directory, to create
+                    &lt;component&gt;-min.js (or
+                    &lt;component&gt;-min.css for CSS modules)</td>
+                </tr>
+                <tr>
+                    <td class="term">lint</td>
+                    <td>Runs jslint on the built files in the local build directory.</td>
+                </tr>
+                <tr>
+                    <td class="term">deploy</td>
+                    <td>Copies the built files from the local build
+                    directory, along with any assets, to the top
+                    level build directory. It invokes <code>deploybuild</code>,
+                    <code>deployassets</code>, <code>deployskins</code> and <code>deploydocs</code>.</td>
+                </tr>
+                <tr>
+                    <td class="term">deploybuild</td>
+                    <td>Copies built files to global build location.</td>
+                </tr>
+                <tr>
+                    <td class="term">deployskins</td>
+                    <td>Copies built skin CSS and related assets to the global build directory.</td>
+                </tr>
+                <tr>
+                    <td class="term">deployassets</td>
+                    <td>Copies non-skin related assets to the global build directory, if they exist.</td>
+                </tr>
+                <tr>
+                    <td class="term">deploydocs</td>
+                    <td>This target is currently a no-op.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="desc">
+            <caption>
+                <p>YUI 2, YUI 3 MODULE BUILD</p>
+                <p class="filepath">(componentbuild/2.x/module.xml, componentbuild/3.x/module.xml)</p>
+            </caption>
+            <thead>
+                <tr>
+                    <th>Target</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="term">build</td>
+                    <td>Invokes the <code>buildcore</code> and <code>buildskins</code> targets</td>
+                </tr>
+                <tr>
+                    <td class="term">buildcore</td>
+                    <td>Invokes <code>builddebug</code>. The results of
+                    <code>builddebug</code> are then stripped of log statements to create the core (&lt;component&gt;.js) file.</td>
+                </tr>
+                <tr>
+                    <td class="term">builddebug</td>
+                    <td>Concatenates the raw source files (with log
+                    statements), to create &lt;component&gt;-debug.js, and adds the boilerplate registration code.</td>
+                </tr>
+                <tr>
+                    <td class="term">buildskins</td>
+                    <td>Builds the component's Sam Skin file, by
+                    concatenating and &lt;component&gt;-core.css
+                    and &lt;component&gt;-skin.css. It also
+                    compresses the file using yuicompressor.</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="desc">
+            <caption>
+                <p>YUI 3 ROLLUP BUILD</p><p class="filepath">(componentbuild/3.x/rollup.xml)</p>
+            </caption>
+            <thead>
+                <tr>
+                    <th>Target</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="term">build</td>
+                    <td>Invokes <code>buildmodules</code></td>
+                </tr>
+                <tr>
+                    <td class="term">buildmodules</td>
+                    <td>Invokes the specified build xml file for each
+                    of the sub modules, which build out the
+                    modules, as normal, but also roll the results
+                    back up into the rollup. The resulting rollup
+                    files, then have the boilerplate registration
+                    code added.</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="desc">
+            <caption>
+                <p>CSS MODULE BUILD</p><p class="filepath">(componentbuild/shared/cssmodule.xml)</p>
+            </caption>
+            <thead>
+                <tr>
+                    <th>Target</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="term">build</td>
+                    <td>Invokes the <code>buildcore</code> target. Note that for
+                    CSS modules, we don't need a <code>buildskins</code>, or
+                    <code>builddebug</code> step.</td>
+                </tr>
+                <tr>
+                    <td class="term">buildcore</td>
+                    <td>Concatenates the raw CSS files.</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

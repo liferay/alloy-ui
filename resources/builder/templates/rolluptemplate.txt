@@ -1,0 +1,4 @@
+@CODE@
+
+@YUIVAR@UI.add('@MODULE@', function(@YUIVAR@){}, '@VERSION@' @DETAILS@);
+
