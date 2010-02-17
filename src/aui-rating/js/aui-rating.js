@@ -225,7 +225,7 @@ A.extend(Rating, A.Component, {
 				node.addClass(className || CSS_RATING_EL_ON);
 
 				// stop loop when return true
-				return (i == index);
+				return (i == Math.floor(index));
 			});
 		}
 	},
