@@ -73,7 +73,8 @@
 		<delete dir="${yui3.dir}" />
 		<unzip src="${project.dir}/lib/${yui3.file}" dest="${project.dir}/lib/" />
 
-		<copy todir="${project.dir}/build" preservelastmodified="true">
+		<echo>Copying files from [${project.dir}/lib/yui3/build] to [${project.dir}/build].</echo>
+		<copy todir="${project.dir}/build" overwrite="true">
 			<fileset dir="${project.dir}/lib/yui3/build">
 				<include name="**/*"/>
 			</fileset>
