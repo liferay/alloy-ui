@@ -22,6 +22,8 @@
 				includes="**/build.xml"
 			/>
 		</subant>
+		
+		<antcall target="clean" />
 	</target>
 
 	<target name="build-modules">
@@ -42,6 +44,15 @@
 			/>
 		</subant>
 		<subant target="init-yui"/>
+	</target>
+
+	<target name="clean">
+		<delete includeemptydirs="true">
+			<fileset dir="${project.dir}/src/" defaultexcludes="false">
+				<include name="**/*build_tmp*/**" />
+				<include name="**/*build_rollup_tmp*/**" />
+			</fileset>
+		</delete>
 	</target>
 
 	<target name="clean-release">
