@@ -1,0 +1,1 @@
+AUI().getBody().append(index++ + 'external file<br/>');

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/yui/yui.js" type="text/javascript"></script>
+	<script src="../../build/aui-base/aui-base.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skins/core/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<style type="text/css">
+	p {
+		margin: 10px;
+	}
+
+	textarea {
+		width: 300px;
+		height: 100px;
+	}
+	</style>
+</head>
+
+<body>
+
+<h1>Alloy - CharCounter</h1>
+
+<p>
+	<input type="text" id="input1"/>
+	<span id="counter1"></span> character(s) remaining
+</p>
+
+<p>
+	<input type="text" id="input2">
+	<span id="counter2"></span> character(s) remaining
+
+	<button id="button2-1">set maxLength to 10</button>
+	<button id="button2-2">set maxLength to 20 </button>
+</p>
+
+<p>
+	<textarea id="input3"></textarea>
+	<span id="counter3"></span> character(s) remaining
+</p>
+
+<script type="text/javascript">
+
+AUI().ready('aui-char-counter', function(A) {
+
+	var cc1 = new A.CharCounter({
+		input: '#input1',
+		counter: '#counter1',
+		maxLength: 10,
+		on: {
+			maxLength: function(event) {
+				alert('The max length was reach');
+			}
+		}
+	});
+
+	var cc2 = new A.CharCounter({
+		input: '#input2',
+		counter: '#counter2',
+		maxLength: 20
+	});
+
+	var cc3 = new A.CharCounter({
+		input: '#input3',
+		counter: '#counter3',
+		maxLength: 255
+	});
+
+	//cc3.destroy();
+
+	// Extras
+
+	A.on('click', function() { cc2.set('maxLength', 10); }, '#button2-1');
+	A.on('click', function() { cc2.set('maxLength', 20); }, '#button2-2');
+});
+
+</script>
+
+</body>
+</html>

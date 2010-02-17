@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/yui/yui.js" type="text/javascript"></script>
+	<script src="../../build/aui-base/aui-base.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skins/core/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<style type="text/css">
+	.ok { color:green; }
+	.fail { color:red; }
+	</style>
+</head>
+
+<body>
+
+<h1>Alloy - String Evaluation</h1>
+
+<script type="text/javascript">
+
+AUI().ready('aui-datatype', function(A) {
+
+	var L = A.Lang;
+
+	function stringify(val) {
+		if (L.isString(val)) {
+			val = '"'+val+'"';
+		}
+
+		return val;
+	}
+
+	function assertBoolean(str, value) {
+		var status = A.DataType.Boolean.parse(str) === value ? 'ok' : 'fail';
+
+		str = stringify(str);
+		value = stringify(value);
+
+		A.getBody().append('<p class="'+status+'">'+status.toUpperCase() +' - A.DataType.Boolean.parse('+ str+') === '+value+'</p>');
+	}
+
+	function assertString(str, value) {
+
+try {
+	var status = A.DataType.String.evaluate(str) === value ? 'ok' : 'fail';
+
+	str = stringify(str);
+	value = stringify(value);
+
+	A.getBody().append('<p class="'+status+'">'+status.toUpperCase() +' - A.DataType.String.evaluate('+ str+') === '+value+'</p>');
+}
+catch(e) {
+	console.log(e);
+}
+
+	}
+
+	A.getBody().append('<h2>Parsing logical values to Boolean:</h2>');
+
+	assertBoolean(false, false);
+	assertBoolean(true, true);
+	assertBoolean('false', false);
+	assertBoolean('true', true);
+	assertBoolean(0, false);
+	assertBoolean(1, true);
+	assertBoolean(null, false);
+	assertBoolean(undefined, false);
+	assertBoolean(NaN, false);
+	assertBoolean('abc', true);
+
+	A.getBody().append('<h2>Evaluating Strings:</h2>');
+
+	// Numbers
+	assertString('1', 1);
+	assertString('1.5', 1.5);
+	assertString('1.0', 1.0);
+	assertString('-1', -1);
+	assertString('-1.5', -1.5);
+	assertString('0xFF', 255);
+	assertString('0xff', 255);
+	assertString('-0xFF', -255);
+	assertString('1e3', 1000);
+	assertString('-1e3', -1000);
+
+	// Octal notation isn't supported
+	assertString('010', 10);
+
+	// Nearly numbers
+	assertString('-1.5a', '-1.5a');
+	assertString('1.5a', '1.5a');
+	assertString('a1.5', 'a1.5');
+	assertString('0xAG', '0xAG');
+
+	// Booleans
+	assertString('true', true);
+	assertString('false', false);
+
+	// Unrecognized strings
+	assertString('null', 'null');
+	assertString(null, null);
+
+	assertString('undefined', 'undefined');
+	assertString(undefined, undefined);
+
+	assertString('foo', 'foo');
+	assertString('', '');
+
+});
+
+</script>
+
+</body>
+</html>

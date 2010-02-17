@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/yui/yui.js" type="text/javascript"></script>
+	<script src="../../build/aui-base/aui-base.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skins/core/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="../../build/aui-skins/core/css/tool-item.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+			width: 800px;
+			margin: 0 auto;
+		}
+
+		#withLabel .aui-button, #iconOnly .aui-button {
+			display: block;
+			clear: both;
+		}
+
+		.aui-button-content {
+			font-size: 1em;
+			padding: 2px 4px;
+			margin: 2px;
+		}
+
+		.aui-button-icon {
+			vertical-align: middle;
+			display: inline-block;
+		}
+
+		.aui-button-text {
+			line-height: 1em;
+			margin-left: 3px;
+		}
+	</style>
+</head>
+
+<body>
+<script type="text/javascript">
+	AUI().add(
+		'aui-button',
+		function(A) {
+			var Lang = A.Lang,
+
+				getClassName = A.ClassNameManager.getClassName,
+
+				NAME = 'button',
+
+				ICON = 'icon',
+				STATE = 'state',
+
+				CSS_BUTTON = getClassName(NAME),
+				CSS_BUTTON_ICON = getClassName(NAME, 'icon'),
+				CSS_BUTTON_TEXT = getClassName(NAME, 'text'),
+
+				CSS_ICON = getClassName(ICON),
+
+				TPL_BUTTON = '<button></button>',
+				TPL_ICON = '<span class="' + [CSS_BUTTON_ICON, CSS_ICON].join(' ') + '"></span>',
+				TPL_TEXT = '<span class="' + CSS_BUTTON_TEXT + '"></span>';
+
+			var Button = function() {
+				Button.superclass.constructor.apply(this, arguments);
+			};
+
+			Button.NAME = NAME;
+
+			Button.ATTRS = {
+				activeState: {
+					value: false
+				},
+
+				classNames: {},
+
+				defaultState: {},
+
+				handler: {
+					lazyAdd: false,
+					value: null,
+					setter: function(value) {
+						var instance = this;
+
+						var fn = value;
+						var context = instance;
+						var args = instance;
+						var type = 'click';
+
+						if (Lang.isObject(fn)) {
+							var handlerConfig = fn;
+
+							fn = handlerConfig.fn || fn;
+							context = handlerConfig.context || context;
+							type = handlerConfig.type || type;
+						}
+
+						if (Lang.isFunction(fn)) {
+							instance.on(type, A.rbind(fn, context, args, handlerConfig.args));
+						}
+
+						return value;
+					}
+				},
+
+				hoverState: {},
+
+				icon: {
+					value: ''
+				},
+
+				id: {
+					valueFn: function() {
+						return A.guid();
+					}
+				},
+
+				text: {
+					value: ''
+				}
+			};
+
+			A.extend(
+				Button,
+				A.Component,
+				{
+					BOUNDING_TEMPLATE: TPL_BUTTON,
+					CONTENT_TEMPLATE: null,
+					renderUI: function() {
+						var instance = this;
+
+						instance.plug(
+							A.StateInteractionPlugin,
+							{
+								activeState: instance.get('activeState'),
+								classNames: instance.get('classNames'),
+								defaultState: instance.get('defaultState'),
+								hoverState: instance.get('hoverState')
+							}
+						);
+					},
+
+					bindUI: function() {
+						var instance = this;
+
+						instance.after('iconChange', instance._afterIconChange);
+						instance.after('textChange', instance._afterTextChange);
+					},
+
+					syncUI: function() {
+						var instance = this;
+
+						var icon = instance.get('icon');
+						var text = instance.get('text');
+
+						if (icon) {
+							instance._uiSetIcon(icon)
+						}
+
+						if (text) {
+							instance._uiSetText(text);
+						}
+
+					},
+
+					_afterIconChange: function(event) {
+						var instance = this;
+
+						if (event.newVal) {
+							if (!instance._iconNode) {
+								instance._createIconNode();
+							}
+						}
+						else {
+							if (instance._iconNode) {
+								instance._iconNode.hide();
+							}
+						}
+
+						instance._uiSetIcon(event.newVal, event.prevVal);
+					},
+
+					_afterTextChange: function(event) {
+						var instance = this;
+
+						instance._uiSetText(event.newVal);
+					},
+
+					_getIconNode: function() {
+						var instance = this;
+
+						return instance._iconNode || instance._renderIcon();
+					},
+
+					_getTextNode: function() {
+						var instance = this;
+
+						return instance._textNode || instance._renderText();
+					},
+
+					_renderIcon: function() {
+						var instance = this;
+
+						var iconNode = A.Node.create(TPL_ICON);
+
+						instance._iconNode = iconNode;
+
+						instance.get('boundingBox').appendChild(iconNode);
+
+						return iconNode;
+					},
+
+					_renderText: function() {
+						var instance = this;
+
+						var textNode = A.Node.create(TPL_TEXT);
+
+						instance._textNode = textNode;
+
+						instance.get('boundingBox').appendChild(textNode);
+
+						return textNode;
+					},
+
+					_uiSetIcon: function(newVal, prevVal) {
+						var instance = this;
+
+						var iconNode = instance._getIconNode();
+
+						newVal = getClassName(ICON, newVal);
+
+						if (prevVal) {
+							prevVal = getClassName(ICON, prevVal);
+						}
+
+						iconNode.replaceClass(prevVal, newVal);
+
+						var action = 'show';
+
+						if (!newVal) {
+							action = 'hide';
+						}
+
+						iconNode[action]();
+					},
+
+					_uiSetText: function(newVal) {
+						var instance = this;
+
+						var textNode = instance._getTextNode();
+
+						textNode.text(newVal);
+
+						var action = 'show';
+
+						if (!newVal) {
+							action = 'hide';
+						}
+
+						textNode[action]();
+					}
+				}
+			);
+
+			A.Button = Button;
+		},
+		'0.1a',
+		{
+			requires: ['aui-base', 'component', 'state-interaction'],
+			use: []
+		}
+	);
+</script>
+
+<div id="wrapper">
+	<h1>Alloy - ToolItem Demo</h1>
+
+
+
+	<div id="demo">
+		<div class="aui-layout">
+			<div class="aui-column aui-w25 aui-column-first">
+				<div class="aui-column-content" id="withLabel"></div>
+			</div>
+
+			<div class="aui-column aui-w75 aui-column-last">
+				<div class="aui-column-content" id="iconOnly"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+AUI().ready(
+	'aui-button',
+	'aui-tool-item',
+	function(A) {
+		var allIcons = [
+			'carat-1-t',
+			'carat-1-tr',
+			'carat-1-r',
+			'carat-1-br',
+			'carat-1-b',
+			'carat-1-bl',
+			'carat-1-l',
+			'carat-1-tl',
+			'carat-2-t-b',
+			'carat-2-r-l',
+			'triangle-1-t',
+			'triangle-1-tr',
+			'triangle-1-r',
+			'triangle-1-br',
+			'triangle-1-b',
+			'triangle-1-bl',
+			'triangle-1-l',
+			'triangle-1-tl',
+			'triangle-2-t-b',
+			'triangle-2-r-l',
+			'arrow-1-t',
+			'arrow-1-tr',
+			'arrow-1-r',
+			'arrow-1-br',
+			'arrow-1-b',
+			'arrow-1-bl',
+			'arrow-1-l',
+			'arrow-1-tl',
+			'arrow-2-t-b',
+			'arrow-2-tr-bl',
+			'arrow-2-r-l',
+			'arrow-2-br-tl',
+			'arrowstop-1-t',
+			'arrowstop-1-r',
+			'arrowstop-1-b',
+			'arrowstop-1-l',
+			'arrowthick-1-t',
+			'arrowthick-1-tr',
+			'arrowthick-1-r',
+			'arrowthick-1-br',
+			'arrowthick-1-b',
+			'arrowthick-1-bl',
+			'arrowthick-1-l',
+			'arrowthick-1-tl',
+			'arrowthick-2-t-b',
+			'arrowthick-2-tr-bl',
+			'arrowthick-2-r-l',
+			'arrowthick-2-br-tl',
+			'arrowthickstop-1-t',
+			'arrowthickstop-1-r',
+			'arrowthickstop-1-b',
+			'arrowthickstop-1-l',
+			'arrowreturnthick-1-l',
+			'arrowreturnthick-1-t',
+			'arrowreturnthick-1-r',
+			'arrowreturnthick-1-b',
+			'arrowreturn-1-l',
+			'arrowreturn-1-t',
+			'arrowreturn-1-r',
+			'arrowreturn-1-b',
+			'arrowrefresh-1-l',
+			'arrowrefresh-1-t',
+			'arrowrefresh-1-r',
+			'arrowrefresh-1-b',
+			'arrow-4',
+			'arrow-4-diag',
+			'extlink',
+			'newwin',
+			'refresh',
+			'shuffle',
+			'transfer-r-l',
+			'transferthick-r-l',
+			'folder-collapsed',
+			'folder-open',
+			'document',
+			'document-b',
+			'note',
+			'mail-closed',
+			'mail-open',
+			'suitcase',
+			'comment',
+			'person',
+			'print',
+			'trash',
+			'locked',
+			'unlocked',
+			'bookmark',
+			'tag',
+			'home',
+			'flag',
+			'calendar',
+			'cart',
+			'pencil',
+			'clock',
+			'disk',
+			'calculator',
+			'zoomin',
+			'zoomout',
+			'search',
+			'wrench',
+			'gear',
+			'heart',
+			'star',
+			'link',
+			'cancel',
+			'plus',
+			'plusthick',
+			'minus',
+			'minusthick',
+			'close',
+			'closethick',
+			'key',
+			'lightbulb',
+			'scissors',
+			'clipboard',
+			'copy',
+			'contact',
+			'image',
+			'video',
+			'script',
+			'alert',
+			'info',
+			'notice',
+			'help',
+			'check',
+			'bullet',
+			'radio-off',
+			'radio-on',
+			'pin-l',
+			'pin-b',
+			'play',
+			'pause',
+			'seek-next',
+			'seek-prev',
+			'seek-end',
+			'seek-first',
+			'stop',
+			'eject',
+			'volume-off',
+			'volume-on',
+			'power',
+			'signal-diag',
+			'signal',
+			'battery-0',
+			'battery-1',
+			'battery-2',
+			'battery-3',
+			'circle-plus',
+			'circle-minus',
+			'circle-close',
+			'circle-triangle-r',
+			'circle-triangle-b',
+			'circle-triangle-l',
+			'circle-triangle-t',
+			'circle-arrow-r',
+			'circle-arrow-b',
+			'circle-arrow-l',
+			'circle-arrow-t',
+			'circle-zoomin',
+			'circle-zoomout',
+			'circle-check',
+			'circlesmall-plus',
+			'circlesmall-minus',
+			'circlesmall-close',
+			'squaresmall-plus',
+			'squaresmall-minus',
+			'squaresmall-close',
+			'grip-dotted-vertical',
+			'grip-dotted-horizontal',
+			'grip-solid-vertical',
+			'grip-solid-horizontal',
+			'gripsmall-diagonal-br',
+			'grip-diagonal-br',
+			'loading'
+		];
+
+		var toolItemConfig = {
+			render: '#demo',
+			activeState: null
+		};
+
+/*
+		setTimeout(
+			function(event) {
+				for (var i = 0; i < allIcons.length; i++) {
+					toolItemConfig.icon = allIcons[i];
+
+					new A.ToolItem(toolItemConfig);
+				}
+			}, 0
+		);
+*/
+
+		toolItemConfig.render = '#withLabel';
+
+		for (var i = 0; i < (allIcons.length); i++) {
+			toolItemConfig.icon = allIcons[i];
+			toolItemConfig.text = allIcons[i];
+
+			new A.Button(toolItemConfig);
+		}
+
+		toolItemConfig.render = '#iconOnly';
+		toolItemConfig.text = '';
+
+		for (var i = 0; i < (allIcons.length); i++) {
+			toolItemConfig.icon = allIcons[i];
+
+			new A.Button(toolItemConfig);
+		}
+	}
+);
+
+</script>
+
+</body>
+</html>

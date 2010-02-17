@@ -1,0 +1,257 @@
+.aui-layout {
+	margin: 0 auto;
+}
+
+.aui-col {
+	overflow: hidden;
+	word-wrap: break-word;
+}
+
+* html .aui-col {
+	margin-right: -1px;
+}
+
+*+html .aui-col {
+	margin-right: -1px;
+}
+
+.aui-mod {
+	overflow: hidden;
+	zoom: 1;
+}
+
+.aui-layout:after,
+.aui-row:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+* html .aui-layout,
+* html .aui-row {
+	height: 1%;
+}
+
+*+html .aui-layout,
+*+html .aui-row {
+	height: 1%;
+}
+
+.aui-col,
+.aui-100 {
+	float: left;
+	width: 100%;
+}
+
+.aui-1-16 {
+	width: 6.25%;
+}
+
+.aui-1-12 {
+	width: 8.334%;
+}
+
+.aui-1-10,
+.aui-10 {
+	width: 10%;
+}
+
+.aui-1-8 {
+	width: 12.5%;
+}
+
+.aui-15 {
+	width: 15%;
+}
+
+.aui-1-6 {
+	width: 16.667%;
+}
+
+.aui-3-16 {
+	width: 18.75%;
+}
+
+.aui-1-5,
+.aui-20 {
+	width: 20%;
+}
+
+.aui-1-4,
+.aui-25 {
+	width: 25%;
+}
+
+.aui-3-10,
+.aui-30 {
+	width: 30%;
+}
+
+.aui-5-16 {
+	width: 31.25%;
+}
+
+.aui-1-3,
+.aui-33 {
+	width: 33.334%;
+}
+
+.aui-35 {
+	width: 35%;
+}
+
+.aui-3-8 {
+	width: 37.5%;
+}
+
+.aui-38 {
+	width: 38.2%;
+}
+
+.aui-2-5,
+.aui-40 {
+	width: 40%;
+}
+
+.aui-5-12 {
+	width: 41.667%;
+}
+
+.aui-7-16 {
+	width: 43.75%;
+}
+
+.aui-45 {
+	width: 45%;
+}
+
+.aui-1-2,
+.aui-50 {
+	width: 50%;
+}
+
+.aui-55 {
+	width: 55%;
+}
+
+.aui-9-16 {
+	width: 56.25%;
+}
+
+.aui-7-12 {
+	width: 58.334%;
+}
+
+.aui-3-5,
+.aui-60 {
+	width: 60%;
+}
+
+.aui-5-8 {
+	width: 62.5%;
+}
+
+.aui-62 {
+	width: 61.8%;
+}
+
+.aui-65 {
+	width: 65%;
+}
+
+.aui-2-3,
+.aui-66 {
+	width: 66.667%;
+}
+
+.aui-11-16 {
+	width: 68.75%;
+}
+
+.aui-7-10,
+.aui-70 {
+	width: 70%;
+}
+
+.aui-3-4,
+.aui-75 {
+	width: 75%;
+}
+
+.aui-4-5,
+.aui-80 {
+	width: 80%;
+}
+
+.aui-13-16 {
+	width: 81.25%;
+}
+
+.aui-5-6 {
+	width: 83.334%;
+}
+
+.aui-85 {
+	width: 85%;
+}
+
+.aui-7-8 {
+	width: 87.5%;
+}
+
+.aui-9-10,
+.aui-90 {
+	width: 90%;
+}
+
+.aui-11-12 {
+	width: 91.667%;
+}
+
+.aui-15-16 {
+	width: 93.75%;
+}
+
+.aui-95 {
+	width: 95%;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.aui-1-12 {
+		width: 8.345%;
+	}
+	.aui-11-12 {
+		width: 91.675%;
+	}
+	.aui-1-6 {
+		width: 16.675%;
+	}
+	.aui-5-6 {
+		width: 83.345%;
+	}
+	.aui-5-12 {
+		width: 41.675%;
+	}
+	.aui-7-12 {
+		width: 58.345%;
+	}
+	.aui-1-3,
+	.aui-33 {
+		width: 33.345%;
+	}
+	.aui-2-3,
+	.aui-66 {
+		width: 66.675%;
+	}
+}
+
+.aui-left {
+	float: left;
+}
+
+.aui-right {
+	float: right;
+}

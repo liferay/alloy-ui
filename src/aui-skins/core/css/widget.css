@@ -1,0 +1,82 @@
+.aui-widget {
+}
+
+/*.aui-widget-hidden {
+	display: none;
+}*/
+
+.aui-widget-content {
+	overflow: hidden;
+}
+
+.aui-widget-hd {
+}
+
+.aui-widget-bd {
+}
+
+.aui-widget-ft {
+}
+
+.aui-widget-close {
+	float: right;
+}
+
+.aui-widget-stacked .aui-widget-shim {
+	border: 0;
+	height: 100%;
+	left: 0;
+	margin: 0;
+	opacity: 0;
+	padding: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: -1;
+
+	/* IE8 */
+	-ms-filter: alpha(opacity=0);
+	/* IE7/IE8(quirks) and below */
+	filter: alpha(opacity=0);
+	/* IE6 */
+	_width:0;
+	_height:0;
+}
+
+.aui-widget-content-expanded {
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+
+	height: 100%;
+}
+
+.aui-overlay {
+	position: absolute;
+}
+
+.aui-widget-tmp-forcesize {
+	overflow: hidden !important;
+}
+
+.aui-widget-stacked .aui-widget-shim {
+	border-width: 0;
+	height: 100%;
+	left: 0px;
+	margin: 0;
+	opacity: 0;
+	padding: 0;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	z-index: -1;
+
+	/* IE */
+	-ms-filter: alpha(opacity=0);
+	filter: alpha(opacity=0);
+
+	/* IE6 */
+	_width:0;
+	_height:0;
+}

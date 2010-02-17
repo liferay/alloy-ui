@@ -1,0 +1,9 @@
+@YUIVAR@UI.add('@LANG_MODULE@', function(@YUIVAR@) {
+
+@YUIVAR@.Intl.add(
+'@MODULE@',
+'@LANG@',
+@STRINGS@
+);
+
+}, '@VERSION@' @LANG_DETAILS@);
