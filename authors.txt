@@ -1,4 +1,0 @@
-eduardo.lundgren = Eduardo Lundgren <eduardo.lundgren@liferay.com>
-jonathan.neal = Jonathan Neal <jonathan.neal@liferay.com>
-julio.camarero = Julio Camarero <julio.camarero@liferay.com>
-nathan.cavanaugh = Nathan Cavanaugh <nathan.cavanaugh@liferay.com>
