@@ -147,10 +147,6 @@
 			/>
 
 			<delete dir="${aui.temp.dir}"/>
-
-			<copy todir="${project.dir}/build/aui-skins" preservelastmodified="true" verbose="true">
-				<fileset dir="${project.dir}/src/aui-skins"/>
-			</copy>
 		</sequential>
 	</macrodef>
 

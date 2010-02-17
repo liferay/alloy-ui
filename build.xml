@@ -22,7 +22,8 @@
 				includes="**/build.xml"
 			/>
 		</subant>
-		
+
+		<antcall target="build-skins" />
 		<antcall target="clean" />
 	</target>
 
@@ -33,6 +34,12 @@
 				includes="build.xml"
 			/>
 		</subant>
+	</target>
+
+	<target name="build-skins">
+		<copy todir="${project.dir}/build/aui-skins" overwrite="true">
+			<fileset dir="${project.dir}/src/aui-skins"/>
+		</copy>
 	</target>
 
 	<target name="build-yui">
