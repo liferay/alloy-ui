@@ -107,7 +107,11 @@
 		<sequential>
 			<clean-variables regex="${regex.clean.vars}"/>
 
-			<create-module-list-file/>
+			<copy
+				file="${project.dir}/resources/builder/templates/moduledefaults.txt"
+				tofile="${project.dir}/resources/temp/defaults.js"
+				overwrite="true"
+			/>
 
 			<for param="file">
 				<path>
@@ -148,16 +152,6 @@
 			/>
 
 			<delete dir="${aui.temp.dir}"/>
-		</sequential>
-	</macrodef>
-
-	<macrodef name="create-module-list-file">
-		<sequential>
-			<copy
-				file="${project.dir}/resources/builder/templates/moduledefaults.txt"
-				tofile="${project.dir}/resources/temp/defaults.js"
-				overwrite="true"
-			/>
 		</sequential>
 	</macrodef>
 
