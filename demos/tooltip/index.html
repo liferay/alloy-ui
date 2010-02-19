@@ -95,7 +95,6 @@ AUI().ready('aui-tooltip', 'aui-io-plugin', function(A) {
 		// cancelHideOnInteraction: false,
 		bodyContent: '<img src="assets/cream.jpg" /><br/><div style="text-align: center;">Ice cream sandwich taste test winner</div>',
 		// align: { points: [ 'bl', 'tr' ] }
-		title: true
 	})
 	.render();
 
@@ -109,14 +108,18 @@ AUI().ready('aui-tooltip', 'aui-io-plugin', function(A) {
 
 	var t4 = new A.Tooltip({
 		trigger: '#t4',
+		bodyContent: 'Loading...',
+		width: 400,
+		height: 300,
 		after: {
-			show: function() {
-				this.set('bodyContent', 'Loading...');
+			show: function(event) {
+				var instance = this;
 
-				// simulating a delay
-				A.later(1000, this, function() {
-					this.io.start();
-				});
+				setTimeout(
+					function() {
+						instance.io.start();
+					},
+				100);
 			}
 		}
 	})
@@ -132,8 +135,7 @@ AUI().ready('aui-tooltip', 'aui-io-plugin', function(A) {
 		trigger: '#t5',
 		// cancelHideOnInteraction: false,
 		bodyContent: '<object width="560" height="340"><param name="movie" value="http://www.youtube.com/v/PiSxJwB29R8&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/PiSxJwB29R8&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="560" height="340"></embed></object>',
-		// align: { points: [ 'bl', 'tr' ] },
-		title: true
+		// align: { points: [ 'bl', 'tr' ] }
 	})
 	.render();
 
