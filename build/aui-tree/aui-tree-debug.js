@@ -2222,5 +2222,5 @@ A.TreeViewDD = TreeViewDD;
 }, '@VERSION@' ,{requires:['aui-tree-node','dd'], skinnable:true});
 
 
-AUI.add('aui-tree', function(A){}, '@VERSION@' ,{use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view']});
+AUI.add('aui-tree', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view']});
 
