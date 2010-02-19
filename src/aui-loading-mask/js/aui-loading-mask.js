@@ -1,8 +1,19 @@
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
-
+	BOUNDING_BOX = 'boundingBox',
+	CONTENT_BOX = 'contentBox',
+	HIDE = 'hide',
+	HOST = 'host',
+	MESSAGE_EL = 'messageEl',
 	NAME = 'loadingmask',
+	POSITION = 'position',
+	SHOW = 'show',
+	STATIC = 'static',
+	STRINGS = 'strings',
+	TARGET = 'target',
+	TOGGLE = 'toggle',
+
+	getClassName = A.ClassNameManager.getClassName,
 
 	CSS_LOADINGMASK = getClassName(NAME),
 	CSS_MASKED = getClassName(NAME, 'masked'),
@@ -13,22 +24,6 @@ var Lang = A.Lang,
 	TPL_MESSAGE_LOADING = '<div class="' + CSS_MESSAGE_LOADING + '"><div class="' + CSS_MESSAGE_LOADING_CONTENT + '">{0}</div></div>';
 
 var LoadingMask = function(config) {
-	var instance = this;
-
-	var host = config.host;
-	var node = host;
-
-	var zIndex;
-
-	if (A.Widget && host instanceof A.Widget) {
-		node = host.get('contentBox');
-	}
-
-	config.target = node;
-	config.cssClass = config.cssClass || CSS_LOADINGMASK;
-
-	instance._mask = new A.OverlayMask(config).render(node);
-
 	LoadingMask.superclass.constructor.apply(this, arguments);
 };
 
@@ -36,103 +31,158 @@ LoadingMask.NAME = NAME;
 LoadingMask.NS = NAME;
 
 LoadingMask.ATTRS = {
+	messageEl: {
+		valueFn: function(val) {
+			var instance = this;
+			var strings = instance.get(STRINGS);
+
+			return A.Node.create(
+				A.substitute(TPL_MESSAGE_LOADING, [strings.loading])
+			);
+		}
+	},
+
 	strings: {
 		value: {
 			loading: 'Loading&hellip;'
 		}
+	},
+
+	target: {
+		setter: function() {
+			var instance = this;
+			var target = instance.get(HOST);
+
+			if (target instanceof A.Widget) {
+				target = target.get(CONTENT_BOX);
+			}
+
+			return target;
+		},
+		value: null
 	}
 };
-
-var ATTRS = LoadingMask.ATTRS;
-
-A.each(
-	A.OverlayMask.ATTRS,
-	function(item, index, collection) {
-		var attr = ATTRS[index];
-
-		if (!attr) {
-			attr = ATTRS[index] = A.mix(
-				{
-					getter: '_getHostAttribute',
-					setter: '_setHostAttribute'
-				}, item);
-		}
-	}
-);
 
 A.extend(
 	LoadingMask,
 	A.Plugin.Base,
 	{
-		initializer: function() {
+		/*
+		* Lifecycle
+		*/
+		initializer: function(config) {
 			var instance = this;
 
-			var messageHTML = A.substitute(TPL_MESSAGE_LOADING, [instance.get('strings.loading')]);
+			instance.IGNORED_ATTRS = A.merge(
+				{
+					host: true
+				},
+				LoadingMask.ATTRS
+			);
 
-			instance._message = A.Node.create(messageHTML);
+			instance.renderUI();
+			instance.bindUI();
 
-			instance._mask.get('boundingBox').appendChild(instance._message);
+			instance._createDynamicAttrs(config);
+		},
 
-			instance._mask.after('visibleChange', instance._afterVisibleChange, instance);
+		renderUI: function() {
+			var instance = this;
+			var strings = instance.get(STRINGS);
+
+			instance._renderOverlayMask();
+
+			instance.overlayMask.get(BOUNDING_BOX).append(
+				instance.get(MESSAGE_EL)
+			);
+		},
+
+		bindUI: function() {
+			var instance = this;
+
+			instance._bindOverlayMaskUI();
+		},
+
+		_bindOverlayMaskUI: function() {
+			var instance = this;
+
+			instance.overlayMask.after('visibleChange', instance._afterVisibleChange, instance);
+		},
+
+		/*
+		* Methods
+		*/
+		centerMessage: function() {
+			var instance = this;
+
+			instance.get(MESSAGE_EL).center(
+				instance.overlayMask.get(BOUNDING_BOX)
+			);
+		},
+
+		refreshMask: function() {
+			var instance = this;
+
+			instance.overlayMask.refreshMask();
+
+			instance.centerMessage();
 		},
 
 		_afterVisibleChange: function(event) {
 			var instance = this;
-
-			var target = instance.get('target');
+			var target = instance.get(TARGET);
+			var isStaticPositioned = (target.getStyle(POSITION) == STATIC);
 
 			target.toggleClass(CSS_MASKED, (event.newVal));
-			target.toggleClass(CSS_MASKED_RELATIVE, (event.newVal && (target.getStyle('position') == 'static')));
+			target.toggleClass(CSS_MASKED_RELATIVE, (event.newVal && isStaticPositioned));
 
 			if (event.newVal) {
 				instance.refreshMask();
 			}
 		},
 
-		_getHostAttribute: function(value, key) {
+		_renderOverlayMask: function() {
 			var instance = this;
+			var target = instance.get(TARGET);
 
-			return instance._mask.get(key);
+			instance.overlayMask = new A.OverlayMask(
+				{
+					target: target,
+					cssClass: CSS_LOADINGMASK
+				}
+			)
+			// node is the node container where the OverlayMask will be rendered
+			.render(target);
 		},
 
-		_setHostAttribute: function(value, key) {
+		_createDynamicAttrs: function(config) {
 			var instance = this;
 
-			return instance._mask.set(key, value);
-		},
+			A.each(config, function(value, key) {
+				// do not create listeners for ATTRS already mapped on LoadingMask.ATTRS
+				var ignoredAttr = instance.IGNORED_ATTRS[key];
 
-		centerMessage: function() {
-			var instance = this;
+				if (!ignoredAttr) {
+					// add the ATTR to LoadingMask and create a listener to bypass it to the overlayMask
+					instance.addAttr(key, {
+						setter: function(val) {
+							this.overlayMask.set(key, val);
 
-			instance._message.center(instance._mask.get('contentBox'));
-		},
-
-		hide: function() {
-			var instance = this;
-
-			instance._mask.hide();
-		},
-
-		show: function() {
-			var instance = this;
-
-			instance._mask.show();
-		},
-
-		toggle: function() {
-			var instance = this;
-
-			instance._mask.toggle();
-		},
-
-		refreshMask: function() {
-			var instance = this;
-
-			instance._mask.refreshMask();
-
-			instance.centerMessage();
+							return val;
+						},
+						value: value
+					});
+				}
+			});
 		}
 	}
 );
+
+// NOTE: Mapping hide, show and toggle methods on LoadingMask to invoke the overlayMask respective methods
+A.each([HIDE, SHOW, TOGGLE], function(method) {
+	LoadingMask.prototype[method] = function() {
+		this.overlayMask[method]();
+	};
+});
 
 A.LoadingMask = LoadingMask;
