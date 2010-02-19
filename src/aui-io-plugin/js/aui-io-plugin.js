@@ -11,6 +11,7 @@ var L = A.Lang,
 	TYPE_NODE = 'Node',
 	TYPE_WIDGET = 'Widget',
 
+	EMPTY = '',
 	FAILURE = 'failure',
 	FAILURE_MESSAGE = 'failureMessage',
 	HOST = 'host',
@@ -57,9 +58,14 @@ A.mix(IOPlugin, {
 						value = host;
 					}
 					else if (type == TYPE_WIDGET) {
-						value = host.getStdModNode(
-							instance.get(SECTION)
-						);
+						var section = instance.get(SECTION);
+
+						// if there is no node for the SECTION, forces creation
+						if (!host.getStdModNode(section)) {
+							host.setStdModContent(section, EMPTY);
+						}
+
+						value = host.getStdModNode(section);
 					}
 				}
 
@@ -137,7 +143,7 @@ A.extend(IOPlugin, A.IORequest, {
 		instance.on(SUCCESS, instance._successHandler);
 		instance.on(FAILURE, instance._failureHandler);
 
-		if (instance.get(TYPE) == TYPE_WIDGET && instance.get(SHOW_LOADING)) {
+		if ((instance.get(TYPE) == TYPE_WIDGET) && instance.get(SHOW_LOADING)) {
 			var host = instance.get(HOST);
 
 			host.after('heightChange', instance._syncLoadingMaskUI, instance);
@@ -200,11 +206,10 @@ A.extend(IOPlugin, A.IORequest, {
 
 	setContent: function(content) {
 		var instance = this;
-
 		var node = instance.get(NODE);
 
-		if (instance._maskNode) {
-			instance._maskNode.remove();
+		if (instance.overlayMaskBoundingBox) {
+			instance.overlayMaskBoundingBox.remove();
 		}
 
 		instance._getContentSetterByType().apply(instance, [content]);
@@ -212,16 +217,20 @@ A.extend(IOPlugin, A.IORequest, {
 
 	showLoading: function() {
 		var instance = this;
-
 		var node = instance.get(NODE);
 
-		if (!node.loadingmask) {
-			node.plug(A.LoadingMask, instance.get(LOADING_MASK));
-
-			instance._maskNode = node.loadingmask._mask.get('boundingBox');
+		if (node.loadingmask) {
+			if (instance.overlayMaskBoundingBox) {
+				node.append(instance.overlayMaskBoundingBox);
+			}
 		}
-		else if (instance._maskNode) {
-			node.appendChild(instance._maskNode);
+		else {
+			node.plug(
+				A.LoadingMask,
+				instance.get(LOADING_MASK)
+			);
+
+			instance.overlayMaskBoundingBox = node.loadingmask.overlayMask.get('boundingBox');
 		}
 
 		node.loadingmask.show();
