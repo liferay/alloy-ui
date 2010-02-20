@@ -107,4 +107,33 @@
 			</else>
 		</if>
 	</target>
+	
+	<target name="delete-module">
+		<propertyregex
+			property="module.base.name"
+			input="${module.name}"
+			regexp="aui-"
+			replace=""
+			global="false"
+			defaultValue="${module.name}"
+		/>
+
+		<property name="module.demo.dir" value="${demo.dir}/${module.base.name}" />
+		<property name="module.src.dir" value="${javascript.src.dir}/${module.name}" />
+		<property name="module.js.dir" value="${module.src.dir}/js" />
+		<property name="module.css.dir" value="${module.src.dir}/assets" />
+
+		<if>
+			<available file="${module.demo.dir}" />
+			<then>
+				<delete dir="${module.demo.dir}" />
+				<delete dir="${module.src.dir}" />
+				<delete dir="${module.js.dir}" />
+				<delete dir="${module.css.dir}" />
+			</then>
+			<else>
+				<echo message="${module.demo.dir} doesn't exists." />
+			</else>
+		</if>
+	</target>
 </project>
