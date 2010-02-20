@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="Alloy" default="release" basedir="." xmlns:a="antlib:ise.antelope.tasks">
+<project name="Alloy" default="release" xmlns:a="antlib:ise.antelope.tasks">
 	<property name="project.dir" value="../.."/>
 
 	<import file="build-common.xml" />
