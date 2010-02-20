@@ -132,7 +132,7 @@
 				<delete dir="${module.css.dir}" />
 			</then>
 			<else>
-				<echo message="${module.demo.dir} doesn't exists." />
+				<echo message="Module ${module.name} doesn't exists." />
 			</else>
 		</if>
 	</target>
