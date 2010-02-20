@@ -19,7 +19,7 @@
 			},
 
 			modules: {
-				'aui-autocomplete': {skinnable:true, requires:['aui-base','aui-component-overlay','datasource','dataschema','aui-combobox']},
+				'aui-autocomplete': {requires:['aui-base','aui-component-overlay','datasource','dataschema','aui-combobox'], skinnable:true},
 				'aui-base': {requires:['aui-node','aui-component','aui-delayed-task','event','oop','widget-css'], skinnable:false},
 				'aui-calendar': {requires:['aui-context-overlay','datatype-date','widget-i18n'], skinnable:true},
 				'aui-char-counter': {requires:['aui-base','aui-input-handler'], skinnable:false},
