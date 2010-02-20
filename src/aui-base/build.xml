@@ -4,8 +4,4 @@
 	<property file="build.properties" />
 
 	<import file="../../resources/builder/bootstrap.xml" />
-
-	<target name="local" depends="clean, init, build, minify, lint" description="Build and Deploy to Local Build Directory">
-		<create-module-list/>
-	</target>
 </project>

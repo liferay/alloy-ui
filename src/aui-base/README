@@ -1,0 +1,3 @@
+If you build aui-base from src/aui-base/build.xml you need to manually call "ant build-modules" from the project dir build.xml.
+
+The "build-modules" target is automatically invoked when "ant all" is called from the project dir build.xml.

@@ -23,6 +23,7 @@
 			/>
 		</subant>
 
+		<antcall target="build-modules" />
 		<antcall target="build-skins" />
 		<antcall target="clean" />
 	</target>
@@ -31,9 +32,11 @@
 		<subant target="all">
 			<fileset
 				dir="${project.dir}/src/aui-base/"
-				includes="build.xml"
+				includes="**/build.xml"
 			/>
 		</subant>
+
+		<create-module-list/>
 	</target>
 
 	<target name="build-skins">
@@ -101,7 +104,7 @@
 		<echo>Creating Zip file ${release.name}.zip</echo>
 
 		<zip basedir="${release.temp.dir}" destfile="${project.dir}/${release.name}-${release.version}.zip" />
-		
+
 		<delete dir="${release.temp.dir}" />
 	</target>
 
