@@ -67,6 +67,8 @@ A.mix(TreeData, {
 });
 
 A.extend(TreeData, A.Widget, {
+	UI_EVENTS: {},
+
 	/*
 	* Lifecycle
 	*/
