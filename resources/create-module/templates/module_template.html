@@ -5,7 +5,7 @@
 	<script src="../../build/yui/yui.js" type="text/javascript"></script>
 	<script src="../../build/aui-base/aui-base.js" type="text/javascript"></script>
 
-	<link rel="stylesheet" href="../../themes/base/css/main.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../build/aui-skins/core/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 
 	<style type="text/css" media="screen">
 		body {
@@ -21,7 +21,7 @@
 <body>
 
 <div id="wrapper">
-	<h1>Alloy - @module.base.name@ Demo</h1>
+	<h1>Alloy - @module.base.name.camelcase@ Demo</h1>
 
 
 	<div id="demo"></div>
@@ -29,24 +29,9 @@
 
 <script type="text/javascript" charset="utf-8">
 
-AUI().add(
-	'@module.name@',
-	function(A) {
-		
-	},
-	'@VERSION',
-	{
-		requires: [],
-		use: []
-	}
-);
+AUI().ready('@module.name@', function(A) {
 
-AUI().ready(
-	'@module.name@',
-	function(A) {
-		
-	}
-);
+});
 
 </script>
 
