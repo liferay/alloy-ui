@@ -1,3 +1,3 @@
-If you build aui-base from src/aui-base/build.xml you need to manually call "ant build-modules" from the project dir build.xml.
+If you build aui-base from src/aui-base/build.xml you need to manually call "ant build-modules" from the project dir build.xml to regenerate the modules mapping and prepend to the aui-base.js.
 
-The "build-modules" target is automatically invoked when "ant all" is called from the project dir build.xml.
+Although, the project dir build.xml "ant all" automatically invokes the "build-modules" target after all component are built.
