@@ -27,7 +27,7 @@
 }
 
 .aui-loadingmask-message-content {
-	background: #fff url(../../../../../src/aui-skins/core/images/loading_indicator.gif) no-repeat 5px 50%;
+	background: #fff url(../../../../../build/aui-skins/core/images/loading_indicator.gif) no-repeat 5px 50%;
 	border: 1px solid #ccc;
 	color: #111;
 	line-height: 1;
