@@ -50,7 +50,7 @@ A.extend(
 		initializer: function(config) {
 			var instance = this;
 
-			if (config) {
+			if (config && config.cssClass) {
 				instance._uiSetCssClass(config.cssClass);
 			}
 
@@ -149,7 +149,7 @@ A.extend(
 			var buffer = [];
 
 			for (var i = classes.length - 4; i >= 0; i--) {
-				var name = classes[i].NAME.toLowerCase();
+				name = classes[i].NAME.toLowerCase();
 
 				buffer.push(getClassName(name, 'content'));
 			}
