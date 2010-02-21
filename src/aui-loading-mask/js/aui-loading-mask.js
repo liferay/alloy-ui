@@ -150,20 +150,16 @@ A.extend(
 					target: target,
 					cssClass: CSS_LOADINGMASK
 				}
-			)
-			// node is the node container where the OverlayMask will be rendered
-			.render(target);
+			).render(target);
 		},
 
 		_createDynamicAttrs: function(config) {
 			var instance = this;
 
 			A.each(config, function(value, key) {
-				// do not create listeners for ATTRS already mapped on LoadingMask.ATTRS
 				var ignoredAttr = instance.IGNORED_ATTRS[key];
 
 				if (!ignoredAttr) {
-					// add the ATTR to LoadingMask and create a listener to bypass it to the overlayMask
 					instance.addAttr(key, {
 						setter: function(val) {
 							this.overlayMask.set(key, val);
@@ -178,7 +174,6 @@ A.extend(
 	}
 );
 
-// NOTE: Mapping hide, show and toggle methods on LoadingMask to invoke the overlayMask respective methods
 A.each([HIDE, SHOW, TOGGLE], function(method) {
 	LoadingMask.prototype[method] = function() {
 		this.overlayMask[method]();
