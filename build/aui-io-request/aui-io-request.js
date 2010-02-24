@@ -353,4 +353,4 @@ A.io.request = function(uri, config) {
 	);
 };
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base','io','json','plugin']});
+}, '@VERSION@' ,{requires:['aui-base','io','json','plugin'], skinnable:false});
