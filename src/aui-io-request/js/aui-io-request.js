@@ -333,7 +333,7 @@ A.extend(IORequest, A.Plugin.Base, {
 					data = A.JSON.parse(data);
 				}
 				catch(e) {
-					throw PARSE_ERROR;
+					// throw PARSE_ERROR;
 				}
 			}
 		}
