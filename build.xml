@@ -9,23 +9,18 @@
 
 	<import file="resources/builder/bootstrap.xml"/>
 
-	<target name="all">
-		<antcall target="init-yui"/>
-		<antcall target="build-aui"/>
-	</target>
+	<target name="all" depends="build-aui, init-yui"/>
 
-	<target name="build-aui" depends="remove-whitespace">
+	<target name="build-aui" depends="build-components, build-modules, build-skins, clean"/>
+
+	<target name="build-components" depends="remove-whitespace">
 		<subant target="all">
 			<fileset
-				dir="${project.dir}/src"
+				dir="${project.dir}/src/"
 				excludes="build.xml"
 				includes="**/build.xml"
 			/>
 		</subant>
-
-		<antcall target="build-modules" />
-		<antcall target="build-skins" />
-		<antcall target="clean" />
 	</target>
 
 	<target name="build-modules">
