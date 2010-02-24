@@ -48,7 +48,7 @@
 				'aui-live-search': {requires:['aui-base'], skinnable:false},
 				'aui-loading-mask': {requires:['aui-overlay-mask','plugin','substitute'], skinnable:true},
 				'aui-nested-list': {requires:['aui-base','dd'], skinnable:false},
-				'aui-node-fx': {requires:['aui-base'], skinnable:true},
+				'aui-node-fx': {requires:['aui-base','anim','anim-node-plugin'], skinnable:false},
 				'aui-node': {requires:['collection','node'], skinnable:false},
 				'aui-overlay-manager': {requires:['aui-base','aui-component-overlay','overlay','plugin'], skinnable:false},
 				'aui-overlay-mask': {requires:['aui-base','aui-component-overlay','event-resize'], skinnable:true},
