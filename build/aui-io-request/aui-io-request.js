@@ -334,7 +334,7 @@ A.extend(IORequest, A.Plugin.Base, {
 					data = A.JSON.parse(data);
 				}
 				catch(e) {
-					throw PARSE_ERROR;
+					// throw PARSE_ERROR;
 				}
 			}
 		}
@@ -353,4 +353,4 @@ A.io.request = function(uri, config) {
 	);
 };
 
-}, '@VERSION@' ,{requires:['aui-base','io','json','plugin'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base','io','json','plugin']});
