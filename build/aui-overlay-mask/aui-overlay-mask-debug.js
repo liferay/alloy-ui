@@ -3,6 +3,7 @@ var L = A.Lang,
 	isArray = L.isArray,
 	isString = L.isString,
 	isNumber = L.isNumber,
+	isValue = L.isValue,
 
 	UA = A.UA,
 
@@ -156,8 +157,16 @@ A.extend(OverlayMask, A.ComponentOverlay, {
 			top: 0
 		});
 
-		instance.set(HEIGHT, targetSize.height);
-		instance.set(WIDTH, targetSize.width);
+		var height = targetSize.height;
+		var width = targetSize.width;
+
+		if (isValue(height)) {
+			instance.set(HEIGHT, height);
+		}
+
+		if (isValue(width)) {
+			instance.set(WIDTH, width);
+		}
 
 		// if its not a full mask...
 		if ( !fullPage ) {
