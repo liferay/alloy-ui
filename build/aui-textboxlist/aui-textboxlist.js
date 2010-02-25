@@ -174,8 +174,13 @@ A.extend(
 					instance._lastSelectedEntry = instance.entryHolder.all('li').indexOf(entryBoundingBox);
 				}
 			}
-			else if (event.newVal && instance._lastSelectedEntry == -1) {
-				instance.inputNode.focus();
+			else if (event.newVal && event.src == A.Widget.UI_SRC && instance._lastSelectedEntry == -1) {
+				setTimeout(
+					function() {
+						instance.inputNode.focus();
+					},
+					0
+				);
 			}
 		},
 
