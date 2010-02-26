@@ -458,4 +458,4 @@ A.extend(
 A.TextboxList = TextboxList;
 A.TextboxListEntry = TextboxListEntry;
 
-}, '0.1a' ,{requires:['anim-node-plugin','aui-autocomplete','node-focusmanager'], skinnable:true});
+}, '@VERSION@' ,{requires:['anim-node-plugin','aui-autocomplete','node-focusmanager'], skinnable:true});
