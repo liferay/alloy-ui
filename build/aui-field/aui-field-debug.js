@@ -517,7 +517,6 @@ A.extend(
 			'readOnly',
 			'name',
 			'size',
-			'tabIndex',
 			'type',
 			'value'
 		]
