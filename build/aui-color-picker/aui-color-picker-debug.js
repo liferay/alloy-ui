@@ -29,8 +29,8 @@ var Lang = A.Lang,
 	TPL_SWATCH_CONTAINER = '<div class="' + CSS_SWATCH_CONTAINER + '"></div>',
 	TPL_SWATCH_CURRENT = '<div class="' + CSS_SWATCH_CURRENT + '"></div>',
 	TPL_SWATCH_ORIGINAL = '<div class="' + CSS_SWATCH_ORIGINAL + '"></div>',
-	TPL_THUMB_CANVAS = '<div class="' + CSS_THUMB_CANVAS + '"><img class="' + CSS_THUMB_CANVAS_IMAGE + '" src="{thumbImage}" /></div>',
-	TPL_THUMB_HUE = '<div class="' + CSS_HUE_THUMB + '"><img class="' + CSS_HUE_THUMB_IMAGE + '" src="{thumbImage}" /></div>';
+	TPL_THUMB_CANVAS = '<div class="' + CSS_THUMB_CANVAS + '"><div class="' + CSS_THUMB_CANVAS_IMAGE + '"></div></div>',
+	TPL_THUMB_HUE = '<div class="' + CSS_HUE_THUMB + '"><div class="' + CSS_HUE_THUMB_IMAGE + '"></div></div>';
 
 var Color = {
 	real2dec: function(number) {
@@ -318,8 +318,8 @@ ColorPicker.ATTRS = {
 
 	images: {
 		value: {
-			HUE_THUMB: AUI.defaults.paths.images + 'color_picker/color_indic.png',
-			PICKER_THUMB: AUI.defaults.paths.images + 'color_picker/select.png'
+			HUE_THUMB: AUI.defaults.paths.images + 'color_indic.png',
+			PICKER_THUMB: AUI.defaults.paths.images + 'select.png'
 		}
 	},
 
@@ -747,27 +747,11 @@ A.extend(
 		_renderSliders: function() {
 			var instance = this;
 
-			var thumbCanvas = A.substitute(
-				TPL_THUMB_CANVAS,
-				{
-					thumbImage: instance.get('images.PICKER_THUMB')
-				}
-			);
-
-			var thumbHue = A.substitute(
-				TPL_THUMB_HUE,
-				{
-					thumbImage: instance.get('images.HUE_THUMB')
-				}
-			);
-
 			instance._colorCanvas = A.Node.create(TPL_CANVAS);
-			instance._pickerThumb = A.Node.create(thumbCanvas);
+			instance._pickerThumb = A.Node.create(TPL_THUMB_CANVAS);
 
 			instance._hueCanvas = A.Node.create(TPL_HUE_CANVAS);
-			instance._hueThumb = A.Node.create(thumbHue);
-
-			var hueThumbImage = instance._hueThumb.get('firstChild');
+			instance._hueThumb = A.Node.create(TPL_THUMB_HUE);
 
 			instance._colorCanvas.appendChild(instance._pickerThumb);
 			instance._hueCanvas.appendChild(instance._hueThumb);
@@ -795,8 +779,7 @@ A.extend(
 					rail: instance._hueCanvas,
 					min: 0,
 					max: size,
-					thumb: instance._hueThumb,
-					thumbImage: hueThumbImage
+					thumb: instance._hueThumb
 				}
 			);
 

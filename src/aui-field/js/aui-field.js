@@ -204,10 +204,25 @@ Field.HTML_PARSER = {
 
 Field.getTypeClassName = getTypeClassName;
 
+var UI_ATTRS = A.Component.prototype._BIND_UI_ATTRS;
+
+UI_ATTRS = UI_ATTRS.concat(
+	[
+		'id',
+		'readOnly',
+		'name',
+		'size',
+		'tabIndex',
+		'type',
+		'value'
+	]
+);
+
 A.extend(
 	Field,
 	A.Component,
 	{
+		_BIND_UI_ATTRS: UI_ATTRS,
 		BOUNDING_TEMPLATE: TPL_BOUNDING_BOX,
 		CONTENT_TEMPLATE: TPL_CONTENT_BOX,
 		FIELD_TEMPLATE: TPL_INPUT,
@@ -240,8 +255,6 @@ A.extend(
 			var instance = this;
 
 			instance.set('prevVal', instance.get('value'));
-
-			instance._updateNodeAttrs();
 		},
 
 		fieldValidator: function(value) {
@@ -315,51 +328,6 @@ A.extend(
 			instance._uiSetLabelAlign(event.newVal, event.prevVal);
 		},
 
-		_afterNodeAttrChange: function(event) {
-			var instance = this;
-
-			instance._attrNodeSetter(
-				event.attrName,
-				event.newVal,
-				event.prevVal
-			);
-		},
-
-		_attrNodeGetter: function(key, storedValue) {
-			var instance = this;
-
-			var node = instance.get('node');
-			var value;
-
-			if (key != 'value') {
-				value = node.attr(key);
-			}
-			else {
-				value = node.val();
-			}
-
-			if (String(storedValue) != String(value)) {
-				instance._setStateVal(key, value);
-			}
-
-			return value;
-		},
-
-		_attrNodeSetter: function(key, newVal, prevVal) {
-			var instance = this;
-
-			var node = instance.get('node');
-
-			if (key != 'value') {
-				node.attr(key, newVal);
-			}
-			else {
-				node.val(newVal);
-			}
-
-			return newVal;
-		},
-
 		_createFieldHint: function() {
 			var instance = this;
 
@@ -386,12 +354,6 @@ A.extend(
 			);
 
 			return A.Node.create(instance.FIELD_TEMPLATE);
-		},
-
-		_rawAttrGetter: function(value, key) {
-			var instance = this;
-
-			return instance._attrNodeGetter(key, value);
 		},
 
 		_renderField: function() {
@@ -442,7 +404,8 @@ A.extend(
 				var node = instance.get('node');
 				var id = node.guid();
 
-				var labelText = instance.get('labelText');
+				labelText = instance.get('labelText');
+
 				var labelNode = instance.get('labelNode');
 
 				labelNode.addClass(getClassName(instance.name, 'label'));
@@ -455,6 +418,18 @@ A.extend(
 
 				contentBox.prepend(labelNode);
 			}
+		},
+
+		_uiSetFieldHint: function(newVal, prevVal) {
+			var instance = this;
+
+			instance.get('fieldHintNode').set('innerHTML', newVal);
+		},
+
+		_uiSetId: function(newVal, src) {
+			var instance = this;
+
+			instance.get('node').set('id', newVal);
 		},
 
 		_uiSetLabelAlign: function(newVal, prevVal) {
@@ -473,52 +448,37 @@ A.extend(
 			boundingBox[action](CSS_LABELS_INLINE);
 		},
 
-		_uiSetFieldHint: function(newVal, prevVal) {
+		_uiSetName: function(newVal, src) {
 			var instance = this;
 
-			instance.get('fieldHintNode').set('innerHTML', newVal);
+			instance.get('node').setAttribute('name', newVal);
 		},
 
-		_updateNodeAttrs: function() {
+		_uiSetReadOnly: function(newVal, src) {
 			var instance = this;
 
-			var syncedProperties = instance._syncedProperties;
-			var length = syncedProperties.length;
-
-			var modifiedAttr = {};
-			var action = 'addAttr';
-			var attrConfig = {
-				getter: instance._rawAttrGetter
-			};
-
-			for (var i = length - 1; i >= 0; i--) {
-				var property = syncedProperties[i];
-
-				instance.after(property + 'Change', instance._afterNodeAttrChange);
-
-				if (instance.attrAdded(property)) {
-					action = 'modifyAttr';
-				}
-
-				var value = instance.get(property);
-
-				instance._attrNodeSetter(property, value);
-
-				instance[action](property, attrConfig);
-			}
+			instance.get('node').setAttribute('readOnly', newVal);
 		},
 
-		_requireAddAttr: false,
+		_uiSetSize: function(newVal, src) {
+			var instance = this;
 
-		_syncedProperties: [
-			'disabled',
-			'id',
-			'readOnly',
-			'name',
-			'size',
-			'type',
-			'value'
-		]
+			instance.get('node').setAttribute('size', newVal);
+		},
+
+		_uiSetTabIndex: function(newVal, src) {
+			var instance = this;
+
+			instance.get('node').setAttribute('tabIndex', newVal);
+		},
+
+		_uiSetValue: function(newVal, src) {
+			var instance = this;
+
+			instance.get('node').val(newVal);
+		},
+
+		_requireAddAttr: false
 	}
 );
 
