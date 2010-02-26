@@ -181,10 +181,8 @@ A.extend(TreeNode, A.TreeData, {
 	initializer: function() {
 		var instance = this;
 
-		if (!instance.get(ID)) {
-			// add a default unique id for the index
-			instance.set( ID, A.guid(TREE_NODE) );
-		}
+		// Sync the Widget TreeNode id with the BOUNDING_BOX id
+		instance._syncTreeNodeBBId();
 
 		// invoking TreeData initializer
 		TreeNode.superclass.initializer.apply(this, arguments);
@@ -516,6 +514,15 @@ A.extend(TreeNode, A.TreeData, {
 		hitAreaEl.addClass(CSS_TREE_NODE_HIDDEN_HITAREA);
 	},
 
+	_syncTreeNodeBBId: function(id) {
+		var instance = this;
+
+		instance.get(BOUNDING_BOX).attr(
+			ID,
+			instance.get(ID)
+		);
+	},
+
 	/*
 	* Listeners
 	*/
@@ -523,12 +530,6 @@ A.extend(TreeNode, A.TreeData, {
 		var instance = this;
 
 		instance._syncHitArea(event.newVal);
-	},
-
-	_afterSetId: function(event) {
-		var instance = this;
-
-		instance.get(BOUNDING_BOX).attr(ID, event.newVal);
 	}
 });
 
