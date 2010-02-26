@@ -52,7 +52,7 @@ var Lang = A.Lang,
 	TPL_ENTRY_TEXT = '<span class="' + CSS_ENTRY_TEXT + '"></span>',
 	TPL_ENTRY_HOLDER = '<ul class="' + [CSS_CLEARFIX, CSS_ENTRY_HOLDER].join(' ') + '"></ul>',
 
-	TPL_INPUT_CONTAINER = '<li tabindex="0" class="' + CSS_INPUT_CONTAINER + '"></li>';
+	TPL_INPUT_CONTAINER = '<li class="' + CSS_INPUT_CONTAINER + '"></li>';
 
 var TextboxList = function() {
 	TextboxList.superclass.constructor.apply(this, arguments);
@@ -109,7 +109,7 @@ A.extend(
 
 			instance.after('itemSelect', instance._afterItemSelect);
 			instance.after('focusedChange', instance._afterTBLFocusedChange);
-			instance.after('textboxlistentry:focusedChange', instance._afterTBLFocusedChange);
+			instance.on('click', instance._onBoundingBoxClick);
 
 			var entries = instance.entries;
 			var entryHolder = instance.entryHolder;
@@ -173,14 +173,12 @@ A.extend(
 					instance._lastSelectedEntry = instance.entryHolder.all('li').indexOf(entryBoundingBox);
 				}
 			}
-			else if (event.newVal && event.src == A.Widget.UI_SRC && instance._lastSelectedEntry == -1) {
-				setTimeout(
-					function() {
-						instance.inputNode.focus();
-					},
-					0
-				);
-			}
+		},
+
+		_onBoundingBoxClick: function(event) {
+			var instance = this;
+
+			instance.inputNode.focus();
 		},
 
 		_onCloseIconMouseOut: function(event) {
