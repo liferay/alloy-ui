@@ -193,6 +193,8 @@ Field.ATTRS = {
 	},
 
 	value: {
+		getter: '_getNodeValue',
+		setter: '_setNodeValue',
 		validator: Field.prototype.fieldValidator
 	}
 };
@@ -356,6 +358,12 @@ A.extend(
 			return A.Node.create(instance.FIELD_TEMPLATE);
 		},
 
+		_getNodeValue: function() {
+			var instance = this;
+
+			return instance.get('node').val();
+		},
+
 		_renderField: function() {
 			var instance = this;
 
@@ -418,6 +426,14 @@ A.extend(
 
 				contentBox.prepend(labelNode);
 			}
+		},
+
+		_setNodeValue: function(value) {
+			var instance = this;
+
+			instance._uiSetValue(value);
+
+			return value;
 		},
 
 		_uiSetFieldHint: function(newVal, prevVal) {
