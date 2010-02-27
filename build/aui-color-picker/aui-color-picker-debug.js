@@ -378,6 +378,10 @@ ColorPicker.ATTRS = {
 		}
 	},
 
+	triggerParent: {
+		value: null
+	},
+
 	trigger: {
 		lazyAdd: true,
 		getter: function(value) {
@@ -410,7 +414,13 @@ A.extend(
 			var toolTrigger = instance._toolItemTrigger;
 
 			if (toolTrigger && !toolTrigger.get('rendered')) {
-				toolTrigger.render(instance.get('boundingBox').get('parentNode'));
+				var triggerParent = instance.get('triggerParent');
+
+				if (!triggerParent) {
+					triggerParent = instance.get('boundingBox').get('parentNode');
+				}
+
+				toolTrigger.render(triggerParent);
 			}
 
 			instance._renderContainer();
