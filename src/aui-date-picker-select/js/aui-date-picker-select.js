@@ -82,19 +82,18 @@ var L = A.Lang,
  * Quick Example:<br/>
  *
  * <pre><code>var instance = new A.DatePickerSelect({
-	displayBoundingBox: '#displayBoundingBoxId',
-	// locale: 'pt-br',
-	dateFormat: '%m/%d/%y',
-	yearRange: [ 1970, 2009 ]
-}).render();
+ *  displayBoundingBox: '#displayBoundingBoxId',
+ *  // locale: 'pt-br',
+ *  dateFormat: '%m/%d/%y',
+ *  yearRange: [ 1970, 2009 ]
+ * }).render();
  * </code></pre>
  *
  * Check the list of <a href="DatePickerSelect.html#configattributes">Configuration Attributes</a> available for
  * DatePickerSelect.
  *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class DatePickerSelect
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  * @extends Calendar
  */
@@ -122,8 +121,8 @@ A.mix(DatePickerSelect, {
 	 */
 	ATTRS: {
 		/**
-		 * The order the selects elements are appended to the <a
-         * href="DatePickerSelect.html#config_displayBoundingBox">displayBoundingBox</a>.
+		 * The order the selects elements are appended to the
+         * <a href="DatePickerSelect.html#config_displayBoundingBox">displayBoundingBox</a>.
 		 *
 		 * @attribute appendOrder
 		 * @default [ 'm', 'd', 'y' ]
@@ -147,10 +146,10 @@ A.mix(DatePickerSelect, {
 		},
 
 		/**
-		 * The container <a
-         * href="Widget.html#config_boundingBox">boundingBox</a> to house the
-         * selects and button. The <a
-         * href="Widget.html#config_boundingBox">boundingBox</a> attribute is
+		 * The container
+         * <a href="Widget.html#config_boundingBox">boundingBox</a> to house the
+         * selects and button. The
+         * <a href="Widget.html#config_boundingBox">boundingBox</a> attribute is
          * used on the Calendar Overlay.
 		 *
 		 * @attribute displayBoundingBox
@@ -199,8 +198,8 @@ A.mix(DatePickerSelect, {
 		},
 
 		/**
-		 * Name attribute used on the <a
-         * href="DatePickerSelect.html#config_dayField">dayField</a>.
+		 * Name attribute used on the
+         * <a href="DatePickerSelect.html#config_dayField">dayField</a>.
 		 *
 		 * @attribute dayFieldName
 		 * @default day
@@ -211,8 +210,8 @@ A.mix(DatePickerSelect, {
 		},
 
 		/**
-		 * Name attribute used on the <a
-         * href="DatePickerSelect.html#config_monthField">monthField</a>.
+		 * Name attribute used on the
+         * <a href="DatePickerSelect.html#config_monthField">monthField</a>.
 		 *
 		 * @attribute monthFieldName
 		 * @default month
@@ -223,8 +222,8 @@ A.mix(DatePickerSelect, {
 		},
 
 		/**
-		 * Name attribute used on the <a
-         * href="DatePickerSelect.html#config_yearField">yearField</a>.
+		 * Name attribute used on the
+         * <a href="DatePickerSelect.html#config_yearField">yearField</a>.
 		 *
 		 * @attribute yearFieldName
 		 * @default year
@@ -235,8 +234,8 @@ A.mix(DatePickerSelect, {
 		},
 
 		/**
-		 * Trigger element to open the calendar. Inherited from <a
-         * href="ContextOverlay.html#config_trigger">ContextOverlay</a>.
+		 * Trigger element to open the calendar. Inherited from
+         * <a href="ContextOverlay.html#config_trigger">ContextOverlay</a>.
 		 *
 		 * @attribute trigger
 		 * @default Generated HTLM div element
@@ -250,8 +249,8 @@ A.mix(DatePickerSelect, {
 
 		/**
 		 * If true the Calendar is visible by default after the render phase.
-         * Inherited from <a
-         * href="ContextOverlay.html#config_trigger">ContextOverlay</a>.
+         * Inherited from
+         * <a href="ContextOverlay.html#config_trigger">ContextOverlay</a>.
 		 *
 		 * @attribute visible
 		 * @default false
@@ -279,8 +278,8 @@ A.mix(DatePickerSelect, {
 		},
 
 		/**
-		 * Inherited from <a
-         * href="Calendar.html#config_setValue">Calendar</a>.
+		 * Inherited from
+         * <a href="Calendar.html#config_setValue">Calendar</a>.
 		 *
 		 * @attribute setValue
 		 * @default false
@@ -681,8 +680,8 @@ A.extend(DatePickerSelect, A.Calendar, {
 	},
 
 	/**
-	 * Fired after <a
-     * href="DatePickerSelect.html#config_currentMonth">currentMonth</a> is set.
+	 * Fired after
+     * <a href="DatePickerSelect.html#config_currentMonth">currentMonth</a> is set.
 	 *
 	 * @method _onSelectChange
 	 * @param {EventFacade} event

@@ -170,22 +170,21 @@ var L = A.Lang,
  * Quick Example:
  *
  * <pre><code>var instance = new A.Resize({
-    node: '#resize1',
-    proxy: true,
-    preserveRatio: true,
-    wrap: true,
-    maxHeight: 170,
-    maxWidth: 400,
-    handles: 't, tr, r, br, b, bl, l, tl'
-});
+ *  node: '#resize1',
+ *  proxy: true,
+ *  preserveRatio: true,
+ *  wrap: true,
+ *  maxHeight: 170,
+ *  maxWidth: 400,
+ *  handles: 't, tr, r, br, b, bl, l, tl'
+ * });
  * </code></pre>
  *
  * Check the list of <a href="Resize.html#configattributes">Configuration Attributes</a> available for
  * Resize.
  *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class Resize
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  * @extends Base
  */
