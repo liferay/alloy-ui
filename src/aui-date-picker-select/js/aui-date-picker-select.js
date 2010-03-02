@@ -1,3 +1,9 @@
+/**
+ * The DatePickerSelect Utility
+ *
+ * @module aui-date-picker-select
+ */
+
 var L = A.Lang,
 	isArray = L.isArray,
 
@@ -64,67 +70,205 @@ var L = A.Lang,
 	WRAPPER_BUTTON_TPL = '<div class="'+ CSS_DATEPICKER_BUTTON_WRAPPER +'"></div>',
 	WRAPPER_SELECT_TPL = '<div class='+ CSS_DATEPICKER_SELECT_WRAPPER +'></div>';
 
+/**
+ * <p><img src="assets/images/aui-date-picker-select/main.png"/></p>
+ *
+ * A base class for DatePickerSelect, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>Select a date from Calendar to select elements</li>
+ * </ul>
+ *
+ * Quick Example:<br/>
+ *
+ * <pre><code>var instance = new A.DatePickerSelect({
+	displayBoundingBox: '#displayBoundingBoxId',
+	// locale: 'pt-br',
+	dateFormat: '%m/%d/%y',
+	yearRange: [ 1970, 2009 ]
+}).render();
+ * </code></pre>
+ *
+ * Check the list of <a href="DatePickerSelect.html#configattributes">Configuration Attributes</a> available for
+ * DatePickerSelect.
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class DatePickerSelect
+ * @constructor
+ * @extends Calendar
+ */
 function DatePickerSelect(config) {
 	DatePickerSelect.superclass.constructor.apply(this, arguments);
 }
 
 A.mix(DatePickerSelect, {
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property DatePickerSelect.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: DATEPICKER,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the DatePickerSelect.
+	 *
+	 * @property DatePickerSelect.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+		/**
+		 * The order the selects elements are appended to the <a
+         * href="DatePickerSelect.html#config_displayBoundingBox">displayBoundingBox</a>.
+		 *
+		 * @attribute appendOrder
+		 * @default [ 'm', 'd', 'y' ]
+		 * @type Array
+		 */
 		appendOrder: {
 			value: [ 'm', 'd', 'y' ],
 			validator: isArray
 		},
 
+		/**
+		 * A basename to identify the select elements from this
+         * DatePickerSelect.
+		 *
+		 * @attribute baseName
+		 * @default datepicker
+		 * @type String
+		 */
 		baseName: {
 			value: DATEPICKER
 		},
 
-		// displayBoundingBox is the boundingBox to the selects/button
-		// the default boundingBox attribute refer to the Calendar Overlay
+		/**
+		 * The container <a
+         * href="Widget.html#config_boundingBox">boundingBox</a> to house the
+         * selects and button. The <a
+         * href="Widget.html#config_boundingBox">boundingBox</a> attribute is
+         * used on the Calendar Overlay.
+		 *
+		 * @attribute displayBoundingBox
+		 * @default null
+		 * @type Node | String
+		 */
 		displayBoundingBox: {
 			value: null,
 			setter: nodeSetter
 		},
 
+		/**
+		 * HTML element to receive the day value when a date is selected.
+		 *
+		 * @attribute dayField
+		 * @default Generated HTML select element
+		 * @type Node | String
+		 */
 		dayField: {
 			setter: nodeSetter,
 			valueFn: createSelect
 		},
 
+		/**
+		 * HTML element to receive the month value when a date is selected.
+		 *
+		 * @attribute monthField
+		 * @default Generated HTML select element
+		 * @type Node | String
+		 */
 		monthField: {
 			setter: nodeSetter,
 			valueFn: createSelect
 		},
 
+		/**
+		 * HTML element to receive the year value when a date is selected.
+		 *
+		 * @attribute yearField
+		 * @default Generated HTML select element
+		 * @type Node | String
+		 */
 		yearField: {
 			setter: nodeSetter,
 			valueFn: createSelect
 		},
 
+		/**
+		 * Name attribute used on the <a
+         * href="DatePickerSelect.html#config_dayField">dayField</a>.
+		 *
+		 * @attribute dayFieldName
+		 * @default day
+		 * @type String
+		 */
 		dayFieldName: {
 			value: DAY
 		},
 
+		/**
+		 * Name attribute used on the <a
+         * href="DatePickerSelect.html#config_monthField">monthField</a>.
+		 *
+		 * @attribute monthFieldName
+		 * @default month
+		 * @type String
+		 */
 		monthFieldName: {
 			value: MONTH
 		},
 
+		/**
+		 * Name attribute used on the <a
+         * href="DatePickerSelect.html#config_yearField">yearField</a>.
+		 *
+		 * @attribute yearFieldName
+		 * @default year
+		 * @type String
+		 */
 		yearFieldName: {
 			value: YEAR
 		},
 
+		/**
+		 * Trigger element to open the calendar. Inherited from <a
+         * href="ContextOverlay.html#config_trigger">ContextOverlay</a>.
+		 *
+		 * @attribute trigger
+		 * @default Generated HTLM div element
+		 * @type Node | String
+		 */
 		trigger: {
 			valueFn: function() {
 				return A.Node.create(WRAPPER_BUTTON_TPL).cloneNode();
 			}
 		},
 
+		/**
+		 * If true the Calendar is visible by default after the render phase.
+         * Inherited from <a
+         * href="ContextOverlay.html#config_trigger">ContextOverlay</a>.
+		 *
+		 * @attribute visible
+		 * @default false
+		 * @type boolean
+		 */
 		visible: {
 			value: false
 		},
 
+		/**
+		 * Year range to be displayed on the year select element. By default
+         * it displays from -10 to +10 years from the current year.
+		 *
+		 * @attribute yearRange
+		 * @default [ year - 10, year + 10 ]
+		 * @type Array
+		 */
 		yearRange: {
 			valueFn: function() {
 				var year = new Date().getFullYear();
@@ -134,18 +278,50 @@ A.mix(DatePickerSelect, {
 			validator: isArray
 		},
 
+		/**
+		 * Inherited from <a
+         * href="Calendar.html#config_setValue">Calendar</a>.
+		 *
+		 * @attribute setValue
+		 * @default false
+		 * @type boolean
+		 */
 		setValue: {
 			value: false
 		},
 
+		/**
+		 * If true the select element for the days will be automatic
+         * populated.
+		 *
+		 * @attribute populateDay
+		 * @default true
+		 * @type boolean
+		 */
 		populateDay: {
 			value: true
 		},
 
+		/**
+		 * If true the select element for the month will be automatic
+         * populated.
+		 *
+		 * @attribute populateMonth
+		 * @default true
+		 * @type boolean
+		 */
 		populateMonth: {
 			value: true
 		},
 
+		/**
+		 * If true the select element for the year will be automatic
+         * populated.
+		 *
+		 * @attribute populateYear
+		 * @default true
+		 * @type boolean
+		 */
 		populateYear: {
 			value: true
 		}
@@ -153,9 +329,12 @@ A.mix(DatePickerSelect, {
 });
 
 A.extend(DatePickerSelect, A.Calendar, {
-	/*
-	* Lifecycle
-	*/
+	/**
+	 * Create the DOM structure for the DatePickerSelect. Lifecycle.
+	 *
+	 * @method renderUI
+	 * @protected
+	 */
 	renderUI: function() {
 		var instance = this;
 
@@ -165,6 +344,12 @@ A.extend(DatePickerSelect, A.Calendar, {
 		instance._renderTriggerButton();
 	},
 
+	/**
+	 * Bind the events on the DatePickerSelect UI. Lifecycle.
+	 *
+	 * @method bindUI
+	 * @protected
+	 */
 	bindUI: function() {
 		var instance = this;
 
@@ -176,6 +361,12 @@ A.extend(DatePickerSelect, A.Calendar, {
 		instance._bindSelectEvents();
 	},
 
+	/**
+	 * Sync the DatePickerSelect UI. Lifecycle.
+	 *
+	 * @method syncUI
+	 * @protected
+	 */
 	syncUI: function() {
 		var instance = this;
 
@@ -185,9 +376,14 @@ A.extend(DatePickerSelect, A.Calendar, {
 		instance._selectCurrentValues();
 	},
 
-	/*
-	* Methods
-	*/
+	/**
+	 * Gets an Array with the field elements in the correct order defined
+     * on <a href="DatePickerSelect.html#config_appendOrder">appendOrder</a>.
+	 *
+	 * @method _getAppendOrder
+	 * @protected
+	 * @return Array
+	 */
 	_getAppendOrder: function() {
 		var instance = this;
 		var appendOrder = instance.get(APPEND_ORDER);
@@ -205,6 +401,12 @@ A.extend(DatePickerSelect, A.Calendar, {
 		return [ firstField, secondField, thirdField ]
 	},
 
+	/**
+	 * Render DOM elements for the DatePickerSelect.
+	 *
+	 * @method _renderElements
+	 * @protected
+	 */
 	_renderElements: function() {
 		var instance = this;
 		var displayBoundingBox = instance.get(DISPLAY_BOUNDING_BOX);
@@ -246,6 +448,12 @@ A.extend(DatePickerSelect, A.Calendar, {
 		displayBoundingBox.append( instance._selectWrapper );
 	},
 
+	/**
+	 * Render DOM element for the trigger button of the DatePickerSelect.
+	 *
+	 * @method _renderTriggerButton
+	 * @protected
+	 */
 	_renderTriggerButton: function() {
 		var instance = this;
 		var trigger = instance.get(TRIGGER).item(0);
@@ -261,6 +469,12 @@ A.extend(DatePickerSelect, A.Calendar, {
 		}
 	},
 
+	/**
+	 * Bind events on each select element (change, keypress, etc).
+	 *
+	 * @method _bindSelectEvents
+	 * @protected
+	 */
 	_bindSelectEvents: function() {
 		var instance = this;
 		var selects = instance._selectWrapper.all(SELECT);
@@ -269,6 +483,13 @@ A.extend(DatePickerSelect, A.Calendar, {
 		selects.on('keypress', A.bind(instance._onSelectChange, instance));
 	},
 
+	/**
+	 * Select the current values for the day, month and year to the respective
+     * input field.
+	 *
+	 * @method _selectCurrentValues
+	 * @protected
+	 */
 	_selectCurrentValues: function() {
 		var instance = this;
 
@@ -277,6 +498,12 @@ A.extend(DatePickerSelect, A.Calendar, {
 		instance._selectCurrentYear();
 	},
 
+	/**
+	 * Select the current day on the respective input field.
+	 *
+	 * @method _selectCurrentDay
+	 * @protected
+	 */
 	_selectCurrentDay: function() {
 		var instance = this;
 		var currentDate = instance.getCurrentDate();
@@ -284,6 +511,12 @@ A.extend(DatePickerSelect, A.Calendar, {
 		instance.get(DAY_FIELD).val( currentDate.getDate() );
 	},
 
+	/**
+	 * Select the current month on the respective input field.
+	 *
+	 * @method _selectCurrentMonth
+	 * @protected
+	 */
 	_selectCurrentMonth: function() {
 		var instance = this;
 		var currentDate = instance.getCurrentDate();
@@ -291,6 +524,12 @@ A.extend(DatePickerSelect, A.Calendar, {
 		instance.get(MONTH_FIELD).val( currentDate.getMonth() );
 	},
 
+	/**
+	 * Select the current year on the respective input field.
+	 *
+	 * @method _selectCurrentYear
+	 * @protected
+	 */
 	_selectCurrentYear: function() {
 		var instance = this;
 		var currentDate = instance.getCurrentDate();
@@ -298,6 +537,13 @@ A.extend(DatePickerSelect, A.Calendar, {
 		instance.get(YEAR_FIELD).val( currentDate.getFullYear() );
 	},
 
+	/**
+	 * Populate each select element with the correct data for the day, month
+     * and year.
+	 *
+	 * @method _pupulateSelects
+	 * @protected
+	 */
 	_pupulateSelects: function() {
 		var instance = this;
 
@@ -326,6 +572,12 @@ A.extend(DatePickerSelect, A.Calendar, {
 		instance.set(MIN_DATE, minDate);
 	},
 
+	/**
+	 * Populate the year select element with the correct data.
+	 *
+	 * @method _populateYears
+	 * @protected
+	 */
 	_populateYears: function() {
 		var instance = this;
 		var yearRange = instance.get(YEAR_RANGE);
@@ -336,6 +588,12 @@ A.extend(DatePickerSelect, A.Calendar, {
 		}
 	},
 
+	/**
+	 * Populate the month select element with the correct data.
+	 *
+	 * @method _populateMonths
+	 * @protected
+	 */
 	_populateMonths: function() {
 		var instance = this;
 		var monthField = instance.get(MONTH_FIELD);
@@ -347,6 +605,12 @@ A.extend(DatePickerSelect, A.Calendar, {
 		}
 	},
 
+	/**
+	 * Populate the day select element with the correct data.
+	 *
+	 * @method _populateDays
+	 * @protected
+	 */
 	_populateDays: function() {
 		var instance = this;
 		var dayField = instance.get(DAY_FIELD);
@@ -357,6 +621,18 @@ A.extend(DatePickerSelect, A.Calendar, {
 		}
 	},
 
+	/**
+	 * Populate a select element with the data passed on the params.
+	 *
+	 * @method _populateSelect
+	 * @param {HTMLSelectElement} select Select to be populated
+	 * @param {Number} fromIndex Index to start
+	 * @param {Number} toIndex Index to end
+	 * @param {Object} values Object with labels to be used as content of each
+     * option. Optional.
+	 * @protected
+	 * @return String
+	 */
 	_populateSelect: function(select, fromIndex, toIndex, labels, values) {
 		var i = 0;
 		var index = fromIndex;
@@ -377,9 +653,13 @@ A.extend(DatePickerSelect, A.Calendar, {
 		}
 	},
 
-	/*
-	* Listeners
-	*/
+	/**
+	 * Fired on any select change.
+	 *
+	 * @method _onSelectChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_onSelectChange: function(event) {
 		var instance = this;
 		var target = event.currentTarget || event.target;
@@ -400,6 +680,14 @@ A.extend(DatePickerSelect, A.Calendar, {
 		instance._selectDate();
 	},
 
+	/**
+	 * Fired after <a
+     * href="DatePickerSelect.html#config_currentMonth">currentMonth</a> is set.
+	 *
+	 * @method _onSelectChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_afterSetCurrentMonth: function(event) {
 		var instance = this;
 
