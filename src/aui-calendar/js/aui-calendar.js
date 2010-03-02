@@ -109,20 +109,19 @@ var L = A.Lang,
  * Quick Example:
  * 
  * <pre><code>var instance = new A.Calendar({
-    trigger: '#input1',
-    dates: ['09/14/2009', '09/15/2009'],
-    dateFormat: '%d/%m/%y %A',
-    setValue: true,
-    selectMultipleDates: true
-}).render();
+ *  trigger: '#input1',
+ *  dates: ['09/14/2009', '09/15/2009'],
+ *  dateFormat: '%d/%m/%y %A',
+ *  setValue: true,
+ *  selectMultipleDates: true
+ * }).render();
  * </code></pre>
  *
  * Check the list of <a href="Calendar.html#configattributes">Configuration Attributes</a> available for
  * Calendar.
  * 
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class Calendar
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  * @extends ContextOverlay
  */
@@ -224,8 +223,8 @@ A.mix(Calendar, {
 		},
 
 		/**
-		 * Minimum allowable date. Accepts String in the same format of <a
-         * href="Calendar.html#config_dateFormat">dateFormat</a> or a Date
+		 * Minimum allowable date. Accepts String in the same format of
+         * <a href="Calendar.html#config_dateFormat">dateFormat</a> or a Date
          * object.
 		 *
 		 * @attribute minDate
@@ -715,8 +714,8 @@ A.extend(Calendar, A.ContextOverlay, {
 	},
 
 	 /**
-	  * Get the locale map containing the respective values for the <a
-      * href="Widget.html#config_locale">locale</a> used.
+	  * Get the locale map containing the respective values for the
+      * <a href="Widget.html#config_locale">locale</a> used.
 	  *
 	  * <code><pre>A.DataType.Date.Locale['pt-br'] = A.merge(
 	  *	A.DataType.Date.Locale['en'], {
@@ -744,9 +743,9 @@ A.extend(Calendar, A.ContextOverlay, {
 	},
 
 	/**
-	 * Util method to disable day nodes between <a
-     * href="Calendar.html#config_minDate">minDate</a> and <a
-     * href="Calendar.html#config_maxDate">maxDate</a>.
+	 * Util method to disable day nodes between
+     * <a href="Calendar.html#config_minDate">minDate</a> and
+     * <a href="Calendar.html#config_maxDate">maxDate</a>.
 	 *
 	 * @method _restrictDate
 	 * @param {Date} currentDate Current date showed on the Calendar.
@@ -770,8 +769,8 @@ A.extend(Calendar, A.ContextOverlay, {
 	},
 
 	/**
-	 * Select the current date returned by <a
-     * href="Calendar.html#method_getCurrentDate">getCurrentDate</a>.
+	 * Select the current date returned by
+     * <a href="Calendar.html#method_getCurrentDate">getCurrentDate</a>.
 	 *
 	 * @method _selectDate
 	 * @protected
@@ -793,8 +792,8 @@ A.extend(Calendar, A.ContextOverlay, {
 	},
 
 	/**
-	 * Remove the passed date from <a
-     * href="Calendar.html#config_dates">dates</a>.
+	 * Remove the passed date from
+     * <a href="Calendar.html#config_dates">dates</a>.
 	 *
 	 * @method _removeDate
 	 * @param {Date} date Date to remove
@@ -1257,8 +1256,8 @@ A.extend(Calendar, A.ContextOverlay, {
 	},
 
 	/**
-	 * Format a date with the passed mask. Used on <a
-     * href="Calendar.html#config_dateFormat">dateFormat</a>.
+	 * Format a date with the passed mask. Used on
+     * <a href="Calendar.html#config_dateFormat">dateFormat</a>.
 	 *
 	 * @method formatDate
 	 * @param {Date} date
@@ -1287,9 +1286,9 @@ A.Calendar = Calendar;
  */
 A.CalendarManager = new A.OverlayManager({
 	/**
-	 * ZIndex default value passed to the <a
-     * href="OverlayManager.html#config_zIndexBase">zIndexBase</a> of <a
-     * href="OverlayManager.html">OverlayManager</a>.
+	 * ZIndex default value passed to the
+     * <a href="OverlayManager.html#config_zIndexBase">zIndexBase</a> of
+     * <a href="OverlayManager.html">OverlayManager</a>.
 	 *
 	 * @attribute zIndexBase
 	 * @default 1000

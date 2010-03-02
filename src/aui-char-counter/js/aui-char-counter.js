@@ -26,18 +26,17 @@ var L = A.Lang,
  * Quick Example:<br/>
  *
  * <pre><code>var instance = new A.CharCounter({
-	input: '#elementId',
-	counter: '#counterDisplayId',
-	maxLength: 10
-});
+ *  input: '#elementId',
+ *  counter: '#counterDisplayId',
+ *  maxLength: 10
+ * });
  * </code></pre>
  *
  * Check the list of <a href="CharCounter.html#configattributes">Configuration Attributes</a> available for
  * CharCounter.
  *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class CharCounter
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  * @extends Base
  */
