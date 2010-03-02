@@ -1,6 +1,9 @@
-/*
-* CharCounter
-*/
+/**
+ * The CharCounter Utility
+ *
+ * @module aui-char-counter
+ */
+
 var L = A.Lang,
 	isNumber = L.isNumber,
 
@@ -11,20 +14,77 @@ var L = A.Lang,
 	SCROLL_LEFT = 'scrollLeft',
 	SCROLL_TOP = 'scrollTop';
 
+/**
+ * <p><img src="assets/images/aui-char-counter/main.png"/></p>
+ *
+ * A base class for CharCounter, providing:
+ * <ul>
+ *    <li>Limit the number of characters allowed in an input box</li>
+ *    <li>Display the number of characters left</li>
+ * </ul>
+ *
+ * Quick Example:<br/>
+ *
+ * <pre><code>var instance = new A.CharCounter({
+	input: '#elementId',
+	counter: '#counterDisplayId',
+	maxLength: 10
+});
+ * </code></pre>
+ *
+ * Check the list of <a href="CharCounter.html#configattributes">Configuration Attributes</a> available for
+ * CharCounter.
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class CharCounter
+ * @constructor
+ * @extends Base
+ */
 function CharCounter(config) {
 	CharCounter.superclass.constructor.apply(this, arguments);
 }
 
 A.mix(CharCounter, {
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property CharCounter.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: CHAR_COUNTER,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the CharCounter.
+	 *
+	 * @property CharCounter.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+		/**
+		 * Node or Selector to display the information of the counter.
+		 *
+		 * @attribute counter
+		 * @default null
+		 * @type Node | String
+		 */
 		counter: {
 			setter: function(v) {
 				return A.one(v);
 			}
 		},
 
+		/**
+		 * Max number of characters the <a
+         * href="CharCounter.html#config_input">input</a> can have.
+		 *
+		 * @attribute maxLength
+		 * @default Infinity
+		 * @type Number
+		 */
 		maxLength: {
 			lazyAdd: false,
 			setter: function(v) {
@@ -34,6 +94,13 @@ A.mix(CharCounter, {
 			validator: isNumber
 		},
 
+		/**
+		 * Node or Selector for the input field. Required.
+		 *
+		 * @attribute input
+		 * @default null
+		 * @type Node | String
+		 */
 		input: {
 			setter: function(v) {
 				return A.one(v);
@@ -43,11 +110,22 @@ A.mix(CharCounter, {
 });
 
 A.extend(CharCounter, A.Base, {
+	/**
+	 * Event handler for the input <a
+     * href="module_aui-input-handler.html">aui-input-handler</a> event.
+	 *
+	 * @property handler
+	 * @type EventHandle
+	 * @protected
+	 */
 	handler: null,
 
-	/*
-	* Lifecycle
-	*/
+	/**
+	 * Construction logic executed during CharCounter instantiation. Lifecycle.
+	 *
+	 * @method initializer
+	 * @protected
+	 */
 	initializer: function() {
 		var instance = this;
 
@@ -56,9 +134,12 @@ A.extend(CharCounter, A.Base, {
 		instance.checkLength();
 	},
 
-	/*
-	* Methods
-	*/
+	/**
+	 * Bind the events on the CharCounter UI. Lifecycle.
+	 *
+	 * @method bindUI
+	 * @protected
+	 */
 	bindUI: function() {
 		var instance = this;
 		var input = instance.get(INPUT);
@@ -73,6 +154,12 @@ A.extend(CharCounter, A.Base, {
 		}
 	},
 
+	/**
+	 * Sync the CharCounter UI. Lifecycle.
+	 *
+	 * @method syncUI
+	 * @protected
+	 */
 	syncUI: function() {
 		var instance = this;
 		var counter = instance.get(COUNTER);
@@ -86,6 +173,13 @@ A.extend(CharCounter, A.Base, {
 		}
 	},
 
+	/**
+	 * Descructor lifecycle implementation for the CharCounter class.
+	 * Purges events attached to the node (and all child nodes).
+	 *
+	 * @method destroy
+	 * @protected
+	 */
 	destroy: function() {
 		var instance = this;
 
@@ -94,6 +188,14 @@ A.extend(CharCounter, A.Base, {
 		}
 	},
 
+	/**
+	 * Check the current value of the <a
+     * href="CharCounter.html#config_input">input</a>, truncate the data if
+     * needed, and re-sync the UI. Fired from <a
+     *  href="CharCounter.html#method__onInputChange">_onInputChange</a>.
+	 *
+	 * @method checkLength
+	 */
 	checkLength: function() {
 		var instance = this;
 		var input = instance.get(INPUT);
@@ -123,18 +225,28 @@ A.extend(CharCounter, A.Base, {
 		instance.syncUI();
 	},
 
-	/*
-	* Listeners
-	*/
+	/**
+	 * Fired on input value change.
+	 *
+	 * @method _onInputChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_onInputChange: function(event) {
 		var instance = this;
 
 		instance.checkLength();
 	},
 
-	/*
-	* Setters
-	*/
+	/**
+	 * Setter for <a href="CharCounter.html#config_maxLength">maxLength</a>.
+	 *
+	 * @method _setMaxLength
+	 * @param {Number} v Value of the new <a
+     * href="CharCounter.html#config_maxLenght">maxLenght</a>.
+	 * @protected
+	 * @return Number
+	 */
 	_setMaxLength: function(v) {
 		var instance = this;
 		var input = instance.get(INPUT);
