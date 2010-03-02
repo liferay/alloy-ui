@@ -1,0 +1,26 @@
+**************************************************************************
+Mapping Files to Modules:
+
+Because a single @module is supported for a set of files, the parser expects that all files in 
+the input directory belong to the same module.  If multiple modules exist either in the source
+directory or in any subdirectory, files may get mapped to modules incorrectly.
+
+For example:
+
+sourcedir/
+    module1.js
+    module2.js
+
+sourcedir/
+    module1/
+        foo.js
+    module2/
+        bar.js
+
+$ yuidoc.py sourcedir
+
+The workaround is to use the second pattern and pass the source directory for each module to yuidoc
+
+$ yuidoc.py module1 module2
+
+**************************************************************************
