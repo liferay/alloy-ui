@@ -192,6 +192,8 @@ A.extend(LiveSearch, A.Base, {
 		// replace on the query '*' to '', on a regex empty match with everything like *
 		query = query.replace(STAR, BLANK);
 
+		query = L.escapeRegEx(query);
+
 		return query;
 	},
 
@@ -239,4 +241,4 @@ A.extend(LiveSearch, A.Base, {
 
 A.LiveSearch = LiveSearch;
 
-}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
