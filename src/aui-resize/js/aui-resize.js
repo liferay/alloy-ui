@@ -1,8 +1,11 @@
-/*
-* Resize
-* TODO: Containment with proxy enabled and fix containment handles locking.
-*		To fix the Containment #2528540 need to be fixed.
-*/
+/**
+ * The Resize Utility allows you to make an HTML element resizable.
+ *
+ * @module aui-resize
+ */
+
+// TODO: Containment with proxy enabled and fix containment handles locking.
+// To fix the Containment #2528540 need to be fixed.
 var L = A.Lang,
 	isArray = L.isArray,
 	isBoolean = L.isBoolean,
@@ -147,41 +150,151 @@ var L = A.Lang,
 
 	ALL_HANDLES = [ T, TR, R, BR, B, BL, L, TL ];
 
+/**
+ * <p><img src="assets/images/aui-resize/main.png"/></p>
+ *
+ * A base class for Resize, providing:
+ * <ul>
+ *    <li>Basic Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>Applies drag handles to an element to make it resizable</li>
+ *    <li>Here is the list of valid resize handles:
+ *        <code>[ 't', 'tr', 'r', 'br', 'b', 'bl', 'l', 'tl' ]</code>. You can
+ *        read this list as top, top-right, right, bottom-right, bottom,
+ *        bottom-left, left, top-left.</li>
+ *    <li>The drag handles are inserted into the element and positioned
+ *        absolute. Some elements, such as a textarea or image, don't support
+ *        children. To overcome that, set wrap:true in your config and the
+ *        element willbe wrapped for you automatically.</li>
+ * </ul>
+ *
+ * Quick Example:
+ *
+ * <pre><code>var instance = new A.Resize({
+    node: '#resize1',
+    proxy: true,
+    preserveRatio: true,
+    wrap: true,
+    maxHeight: 170,
+    maxWidth: 400,
+    handles: 't, tr, r, br, b, bl, l, tl'
+});
+ * </code></pre>
+ *
+ * Check the list of <a href="Resize.html#configattributes">Configuration Attributes</a> available for
+ * Resize.
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class Resize
+ * @constructor
+ * @extends Base
+ */
 function Resize(config) {
 	Resize.superclass.constructor.apply(this, arguments);
 }
 
 A.mix(Resize, {
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property Resize.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: RESIZE,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the Resize.
+	 *
+	 * @property Resize.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+		/**
+		 * Stores the active handle during the resize.
+		 *
+		 * @attribute activeHandle
+		 * @default null
+		 * @private
+		 * @type String
+		 */
 		activeHandle: {
 			value: null,
 			validator: isString
 		},
 
+		/**
+		 * Stores the active handle element during the resize.
+		 *
+		 * @attribute activeHandleEl
+		 * @default null
+		 * @private
+		 * @type Node
+		 */
 		activeHandleEl: {
 			value: null,
 			validator: isNode
 		},
 
+		/**
+         * False to ensure that the resize handles are always visible, true to
+         * display them only when the user mouses over the resizable borders.
+		 *
+		 * @attribute autoHide
+		 * @default false
+		 * @type boolean
+		 */
 		autoHide: {
 			value: false,
 			validator: isBoolean
 		},
 
+		/**
+		 * Constrain the resize to a particular node. Will attempt to
+         * constrain the drag node to the boundaries of this node.
+		 *
+		 * @attribute constrain2node
+		 * @default null
+		 * @type String | Node
+		 */
 		constrain2node: {
 			value: null
 		},
 
+		/**
+		 * Constrain the resize to a particular region. An Object Literal
+         * containing a valid region (top, right, bottom, left) of page
+         * positions to constrain the drag node to.
+		 *
+		 * @attribute constrain2region
+		 * @default null
+		 * @type Object
+		 */
 		constrain2region: {
 			value: null
 		},
 
+        /**
+         * Will attempt to constrain the drag node to the boundaries of the
+         * viewport region.
+         *
+         * @attribute constrain2view
+         * @type Object
+         */
 		constrain2view: {
 			value: false
 		},
 
+        /**
+         * The handles to use (any combination of): 't', 'b', 'r', 'l', 'bl',
+         * 'br', 'tl', 'tr'. Can use a shortcut of All.
+         *
+         * @attribute handles
+         * @default all
+         * @type Array | String
+         */
 		handles: {
 			setter: function(val) {
 				var instance = this;
@@ -217,40 +330,95 @@ A.mix(Resize, {
 			value: ALL
 		},
 
+        /**
+         * The minimum height of the element
+         *
+         * @attribute minHeight
+         * @default 15
+         * @type Number
+         */
 		minHeight: {
 			value: 15,
 			validator: isNumber
 		},
 
+        /**
+         * The minimum width of the element
+         *
+         * @attribute minWidth
+         * @default 15
+         * @type Number
+         */
 		minWidth: {
 			value: 15,
 			validator: isNumber
 		},
 
+        /**
+         * The maximum height of the element
+         *
+         * @attribute maxHeight
+         * @default Infinity
+         * @type Number
+         */
 		maxHeight: {
 			value: Infinity,
 			validator: isNumber
 		},
 
+        /**
+         * The maximum width of the element
+         *
+         * @attribute maxWidth
+         * @default Infinity
+         * @type Number
+         */
 		maxWidth: {
 			value: Infinity,
 			validator: isNumber
 		},
 
+		/**
+         * The selector or element to resize. Required.
+         *
+         * @attribute node
+         * @type Node
+         */
 		node: {
 			setter: nodeSetter
 		},
 
+		/**
+         * Maintain the element's ratio when resizing.
+         *
+         * @attribute preserveRatio
+         * @default false
+         * @type boolean
+         */
 		preserveRatio: {
 			value: false,
 			validator: isBoolean
 		},
 
+		/**
+         * Resize a proxy element instead of the real element.
+         *
+         * @attribute proxy
+         * @default false
+         * @type boolean
+         */
 		proxy: {
 			value: false,
 			validator: isBoolean
 		},
 
+		/**
+         * The Resize proxy element.
+         *
+         * @attribute proxyEl
+         * @default Generated using an internal HTML markup
+         * @type String | Node
+         */
 		proxyEl: {
 			setter: nodeSetter,
 			valueFn: function() {
@@ -258,19 +426,50 @@ A.mix(Resize, {
 			}
 		},
 
+		/**
+         * True when the element is being Resized.
+         *
+         * @attribute resizing
+         * @default false
+         * @type boolean
+         */
 		resizing: {
 			value: false,
 			validator: isBoolean
 		},
 
+        /**
+         * The number of x ticks to span the resize to.
+         *
+         * @attribute tickX
+         * @default false
+         * @type Number | false
+         */
 		tickX: {
 			value: false
 		},
 
+        /**
+         * The number of y ticks to span the resize to.
+         *
+         * @attribute tickY
+         * @default false
+         * @type Number | false
+         */
 		tickY: {
 			value: false
 		},
 
+		/**
+		 * True to wrap an element with a div if needed (required for textareas
+         * and images, defaults to false) in favor of the handles config option.
+         * The wrapper element type (default div) could be over-riden passing the
+         * <code>wrapper</code> attribute.
+		 *
+		 * @attribute wrap
+		 * @default false
+		 * @type boolean
+		 */
 		wrap: {
 			setter: function(val) {
 				var instance = this;
@@ -289,11 +488,29 @@ A.mix(Resize, {
 			validator: isBoolean
 		},
 
+		/**
+		 * Elements that requires a wrapper by default. Normally are elements
+         * which cannot have children elements.
+		 *
+		 * @attribute wrapTypes
+		 * @default /canvas|textarea|input|select|button|img/i
+		 * @readOnly
+		 * @type Regex
+		 */
 		wrapTypes: {
 			readOnly: true,
 			value: /canvas|textarea|input|select|button|img/i
 		},
 
+		/**
+		 * Element to wrap the <code>wrapTypes</code>. This element will house
+         * the handles elements.
+		 *
+		 * @attribute wrapper
+		 * @default div
+		 * @type String | Node
+		 * @writeOnce
+		 */
 		wrapper: {
 			setter: function() {
 				var instance = this;
@@ -348,13 +565,33 @@ A.extend(Resize, A.Base, {
 		br: CSS_ICON_DIAGONAL
 	},
 
+    /**
+     * Stores the current values for the height, width, top and left. You are
+     * able to manipulate these values on resize in order to change the resize
+     * behavior.
+     *
+     * @property info
+     * @type Object
+     * @protected
+     */
 	info: {},
 
+    /**
+     * Stores the original values for the height, width, top and left, stored
+     * on resize start.
+     *
+     * @property originalInfo
+     * @type Object
+     * @protected
+     */
 	originalInfo: {},
 
-	/*
-	* Lifecycle
-	*/
+    /**
+     * Construction logic executed during Resize instantiation. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
 	initializer: function() {
 		var instance = this;
 
@@ -363,6 +600,12 @@ A.extend(Resize, A.Base, {
 		instance.renderer();
 	},
 
+    /**
+     * Create the DOM structure for the Resize. Lifecycle.
+     *
+     * @method renderUI
+     * @protected
+     */
 	renderUI: function() {
 		var instance = this;
 
@@ -370,6 +613,12 @@ A.extend(Resize, A.Base, {
 		instance._renderProxy();
 	},
 
+    /**
+     * Bind the events on the Resize UI. Lifecycle.
+     *
+     * @method bindUI
+     * @protected
+     */
 	bindUI: function() {
 		var instance = this;
 
@@ -379,6 +628,12 @@ A.extend(Resize, A.Base, {
 		instance._bindHandle();
 	},
 
+    /**
+     * Sync the Resize UI.
+     *
+     * @method syncUI
+     * @protected
+     */
 	syncUI: function() {
 		var instance = this;
 
@@ -388,6 +643,13 @@ A.extend(Resize, A.Base, {
 		);
 	},
 
+    /**
+     * Descructor lifecycle implementation for the Resize class. Purges events attached
+     * to the node (and all child nodes) and removes the Resize handles.
+     *
+     * @method destructor
+     * @protected
+     */
 	destructor: function() {
 		var instance = this;
 		var node = instance.get(NODE);
@@ -424,12 +686,26 @@ A.extend(Resize, A.Base, {
 		node.removeClass(CSS_RESIZE_HIDDEN_HANDLES);
 	},
 
+    /**
+     * Creates DOM (or manipulates DOM for progressive enhancement)
+     * This method is invoked by initializer(). It's chained automatically for
+     * subclasses if required.
+     *
+     * @method renderer
+     * @protected
+     */
     renderer: function() {
         this.renderUI();
         this.bindUI();
         this.syncUI();
     },
 
+    /**
+     * Bind the handles DragDrop events to the Resize instance.
+     *
+     * @method _bindDD
+     * @private
+     */
 	_bindDD: function() {
 		var instance = this;
 
@@ -439,6 +715,12 @@ A.extend(Resize, A.Base, {
 		instance.on('drag:start', instance._handleResizeStartEvent);
 	},
 
+    /**
+     * Bind the events related to the handles (_onHandleMouseOver, _onHandleMouseOut).
+     *
+     * @method _bindHandle
+     * @private
+     */
 	_bindHandle: function() {
 		var instance = this;
 		var wrapper = instance.get(WRAPPER);
@@ -449,12 +731,24 @@ A.extend(Resize, A.Base, {
 		wrapper.delegate('mouseleave', A.bind(instance._onHandleMouseOut, instance), DOT+CSS_RESIZE_HANDLE);
 	},
 
+    /**
+     * Bind the resize events to the Resize.
+     *
+     * @method _bindDD
+     * @private
+     */
 	_bindResize: function() {
 		var instance = this;
 
 		instance.after(EV_RESIZE, instance._afterResize);
 	},
 
+    /**
+     * Create the custom events used on the Resize.
+     *
+     * @method _createEvents
+     * @private
+     */
 	_createEvents: function() {
 		var instance = this;
 
@@ -469,28 +763,73 @@ A.extend(Resize, A.Base, {
 	        });
 		};
 
-		// publishing events
+		/**
+		 * Handles the resize start event. Fired when a handle starts to be
+         * dragged.
+		 *
+         * @event resize:start
+         * @preventable _defResizeStartFn
+         * @param {Event.Facade} event The resize start event.
+         * @bubbles Resize
+         * @type {Event.Custom}
+         */
 		publish(
 			EV_RESIZE_START,
 			this._defResizeStartFn
 		);
 
+		/**
+		 * Handles the resize event. Fired on each pixel when the handle is
+         * being dragged.
+		 *
+         * @event resize:resize
+         * @preventable _defResizeFn
+         * @param {Event.Facade} event The resize event.
+         * @bubbles Resize
+         * @type {Event.Custom}
+         */
 		publish(
 			EV_RESIZE,
 			this._defResizeFn
 		);
 
+		/**
+		 * Handles the resize end event. Fired when a handle stop to be
+         * dragged.
+		 *
+         * @event resize:end
+         * @preventable _defResizeEndFn
+         * @param {Event.Facade} event The resize end event.
+         * @bubbles Resize
+         * @type {Event.Custom}
+         */
 		publish(
 			EV_RESIZE_END,
 			this._defResizeEndFn
 		);
 
+		/**
+		 * Handles the resize mouseUp event. Fired when a mouseUp event happens on a
+         * handle.
+		 *
+         * @event resize:mouseUp
+         * @preventable _defMouseUpFn
+         * @param {Event.Facade} event The resize mouseUp event.
+         * @bubbles Resize
+         * @type {Event.Custom}
+         */
 		publish(
 			EV_MOUSE_UP,
 			this._defMouseUpFn
 		);
 	},
 
+    /**
+      * Responsible for loop each handle element and append to the wrapper.
+      *
+      * @method _renderHandles
+      * @protected
+      */
 	_renderHandles: function() {
 		var instance = this;
 		var wrapper = instance.get(WRAPPER);
@@ -500,6 +839,13 @@ A.extend(Resize, A.Base, {
 		});
 	},
 
+    /**
+      * Render the <a href="Resize.html#config_proxyEl">proxyEl</a> element and
+      * make it sibling of the <a href="Resize.html#config_node">node</a>.
+      *
+      * @method _renderProxy
+      * @protected
+      */
 	_renderProxy: function() {
 		var instance = this;
 		var proxyEl = instance.get(PROXY_EL);
@@ -509,9 +855,16 @@ A.extend(Resize, A.Base, {
 		);
 	},
 
-	/*
-	* Methods
-	*/
+    /**
+     * <p>Loop through each handle which is being used and executes a callback.</p>
+     * <p>Example:</p>
+     * <pre><code>instance.eachHandle(
+	 *      function(handleName, index) { ... }
+	 *  );</code></pre>
+     *
+     * @method eachHandle
+     * @param {function} fn Callback function to be executed for each handle.
+     */
 	eachHandle: function(fn) {
 		var instance = this;
 
@@ -527,6 +880,14 @@ A.extend(Resize, A.Base, {
 		);
 	},
 
+    /**
+     * Creates the handle element based on the handle name and initialize the
+     * DragDrop on it.
+     *
+     * @method _buildHandle
+     * @param {String} handle Handle name ('t', 'tr', 'b', ...).
+     * @protected
+     */
 	_buildHandle: function(handle) {
 		var instance = this;
 
@@ -547,6 +908,13 @@ A.extend(Resize, A.Base, {
 		return node;
 	},
 
+    /**
+     * Update the current values on <a href="Resize.html#property_info">info</a>
+     * to respect the maxHeight and minHeight.
+     *
+     * @method _checkHeight
+     * @protected
+     */
 	_checkHeight: function() {
 		var instance = this;
 		var info = instance.info;
@@ -582,6 +950,13 @@ A.extend(Resize, A.Base, {
 		}
 	},
 
+    /**
+     * Update the current values on <a href="Resize.html#property_info">info</a>
+     * calculating the correct ratio for the other values.
+     *
+     * @method _checkRatio
+     * @protected
+     */
 	_checkRatio: function() {
 		var instance = this;
 
@@ -639,6 +1014,13 @@ A.extend(Resize, A.Base, {
 		}
 	},
 
+    /**
+     * Update the current values on <a href="Resize.html#property_info">info</a>
+     * to respect the maxWidth and minWidth.
+     *
+     * @method _checkWidth
+     * @protected
+     */
 	_checkWidth: function() {
 		var instance = this;
 		var info = instance.info;
@@ -674,6 +1056,15 @@ A.extend(Resize, A.Base, {
 		}
 	},
 
+    /**
+     * Copy relevant styles of the <a href="Resize.html#config_node">node</a>
+     * to the <a href="Resize.html#config_wrapper">wrapper</a>.
+     *
+     * @method _copyStyles
+     * @param {Node} node Node from.
+     * @param {Node} wrapper Node to.
+     * @protected
+     */
 	_copyStyles: function(node, wrapper) {
 		var instance = this;
 		var position = node.getStyle(POSITION).toLowerCase();
@@ -732,6 +1123,16 @@ A.extend(Resize, A.Base, {
 		}
 	),
 
+    /**
+     * <p>Generates metadata to the <a href="Resize.html#property_info">info</a>
+     * and <a href="Resize.html#property_originalInfo">originalInfo</a></p>
+     * <pre><code>left, top, offsetLeft, offsetTop, height, width, lastXY, nodeX, nodeY</code></pre>
+     *
+     * @method _getInfo
+     * @param {Node} node
+     * @param {EventFacade} event
+     * @private
+     */
 	_getInfo: function(node, event) {
 		var instance = this;
 		var wrapper = instance.get(WRAPPER);
@@ -783,6 +1184,13 @@ A.extend(Resize, A.Base, {
 		};
 	},
 
+    /**
+     * Update nodeX and nodeY information on
+     * <a href="Resize.html#property_info">info</a> based on the new top and left.
+     *
+     * @method _recalculateXY
+     * @private
+     */
 	_recalculateXY: function() {
 		var instance = this;
 		var info = instance.info;
@@ -792,6 +1200,12 @@ A.extend(Resize, A.Base, {
 		info.nodeY = originalInfo.nodeY + (info.top - originalInfo.top);
 	},
 
+    /**
+     * Basic resize calculations.
+     *
+     * @method _resize
+     * @protected
+     */
 	_resize: function() {
 		var instance = this;
 		var handle = instance.get(ACTIVE_HANDLE);
@@ -838,6 +1252,14 @@ A.extend(Resize, A.Base, {
 		rules[handle](dx, dy);
 	},
 
+    /**
+     * Initialize the DragDrop on the handle.
+     *
+     * @method _setupHandleDD
+     * @param {String} handle Handle name.
+     * @param {Node} node Node reference which the DragDrop will be created.
+     * @private
+     */
 	_setupHandleDD: function(handle, node) {
 		var instance = this;
 
@@ -870,6 +1292,13 @@ A.extend(Resize, A.Base, {
 		);
 	},
 
+	/**
+     * Sync the Resize UI with internal values from
+     * <a href="Resize.html#property_info">info</a>.
+     *
+     * @method _syncUI
+     * @protected
+     */
 	_syncUI: function() {
 		var instance = this;
 		var info = instance.info;
@@ -900,6 +1329,13 @@ A.extend(Resize, A.Base, {
 		}
 	},
 
+	/**
+     * Sync the proxy UI with internal values from
+     * <a href="Resize.html#property_info">info</a>.
+     *
+     * @method _syncProxyUI
+     * @protected
+     */
 	_syncProxyUI: function() {
 		var instance = this;
 		var info = instance.info;
@@ -919,6 +1355,12 @@ A.extend(Resize, A.Base, {
 		proxyEl.setXY([ info.nodeX, info.nodeY ]);
 	},
 
+	/**
+     * Update <a href="Resize.html#property_info">info</a> values (top, left, offsetTop, offsetTop, height, width, nodeX, nodeY, lastXY).
+     *
+     * @method _updateInfo
+     * @private
+     */
 	_updateInfo: function(event) {
 		var instance = this;
 
@@ -928,9 +1370,13 @@ A.extend(Resize, A.Base, {
 		);
 	},
 
-	/*
-	* Setters
-	*/
+    /**
+     * Set the active state of the handles.
+     *
+     * @method _setActiveHandlesUI
+     * @param {boolean} val True to activate the handles, false to deactivate.
+     * @protected
+     */
 	_setActiveHandlesUI: function(val) {
 		var instance = this;
 		var activeHandleEl = instance.get(ACTIVE_HANDLE_EL);
@@ -952,6 +1398,13 @@ A.extend(Resize, A.Base, {
 		}
 	},
 
+    /**
+     * Set the visibility of the handles.
+     *
+     * @method _setHideHandlesUI
+     * @param {boolean} val True to hide the handles, false to show.
+     * @protected
+     */
 	_setHideHandlesUI: function(val) {
 		var instance = this;
 		var wrapper = instance.get(WRAPPER);
@@ -966,15 +1419,26 @@ A.extend(Resize, A.Base, {
 		}
 	},
 
-	/*
-	* Events
-	*/
+    /**
+     * Default resize:mouseUp handler
+     *
+     * @method _defMouseUpFn
+     * @param {EventFacade} event The Event object
+     * @protected
+     */
 	_defMouseUpFn: function(event) {
 		var instance = this;
 
 		instance.set(RESIZING, false);
 	},
 
+    /**
+     * Default resize:resize handler
+     *
+     * @method _defResizeFn
+     * @param {EventFacade} event The Event object
+     * @protected
+     */
 	_defResizeFn: function(event) {
 		var instance = this;
 
@@ -1000,6 +1464,13 @@ A.extend(Resize, A.Base, {
 		instance._recalculateXY();
 	},
 
+    /**
+     * Default resize:end handler
+     *
+     * @method _defResizeEndFn
+     * @param {EventFacade} event The Event object
+     * @protected
+     */
 	_defResizeEndFn: function(event) {
 		var instance = this;
 
@@ -1019,6 +1490,13 @@ A.extend(Resize, A.Base, {
 		instance._setActiveHandlesUI(false);
 	},
 
+    /**
+     * Default resize:start handler
+     *
+     * @method _defResizeStartFn
+     * @param {EventFacade} event The Event object
+     * @protected
+     */
 	_defResizeStartFn: function(event) {
 		var instance = this;
 
@@ -1033,9 +1511,13 @@ A.extend(Resize, A.Base, {
 		instance._updateInfo(event);
 	},
 
-	/*
-	* Listeners
-	*/
+    /**
+     * Fires after resize:resize event.
+     *
+     * @method _afterResize
+     * @param {EventFacade} event resize:resize custom event
+     * @protected
+     */
 	_afterResize: function(event) {
 		var instance = this;
 
@@ -1049,22 +1531,57 @@ A.extend(Resize, A.Base, {
 		}
 	},
 
+    /**
+     * Fires the resize:mouseUp event.
+     *
+     * @method _handleMouseUpEvent
+     * @param {EventFacade} event resize:mouseUp event facade
+     * @protected
+     */
 	_handleMouseUpEvent: function(event) {
 		this.fire(EV_MOUSE_UP, { dragEvent: event, info: this.info });
 	},
 
+    /**
+     * Fires the resize:resize event.
+     *
+     * @method _handleResizeEvent
+     * @param {EventFacade} event resize:resize event facade
+     * @protected
+     */
 	_handleResizeEvent: function(event) {
 		this.fire(EV_RESIZE, { dragEvent: event, info: this.info });
 	},
 
+    /**
+     * Fires the resize:end event.
+     *
+     * @method _handleResizeEndEvent
+     * @param {EventFacade} event resize:end event facade
+     * @protected
+     */
 	_handleResizeEndEvent: function(event) {
 		this.fire(EV_RESIZE_END, { dragEvent: event, info: this.info });
 	},
 
+    /**
+     * Fires the resize:start event.
+     *
+     * @method _handleResizeStartEvent
+     * @param {EventFacade} event resize:start event facade
+     * @protected
+     */
 	_handleResizeStartEvent: function(event) {
 		this.fire(EV_RESIZE_START, { dragEvent: event, info: this.info });
 	},
 
+	/**
+	 * Mouseenter event handler for the <a href="Resize.html#config_wrapper">wrapper</a>.
+	 *
+	 * @method _onWrapperMouseEnter
+     * @param {EventFacade} event
+	 * @protected
+	 */
 	_onWrapperMouseEnter: function(event) {
 		var instance = this;
 
@@ -1073,6 +1590,13 @@ A.extend(Resize, A.Base, {
 		}
 	},
 
+	/**
+	 * Mouseleave event handler for the <a href="Resize.html#config_wrapper">wrapper</a>.
+	 *
+	 * @method _onWrapperMouseLeave
+     * @param {EventFacade} event
+	 * @protected
+	 */
 	_onWrapperMouseLeave: function(event) {
 		var instance = this;
 
@@ -1081,6 +1605,13 @@ A.extend(Resize, A.Base, {
 		}
 	},
 
+	/**
+	 * Mouseover event handler for the handles.
+	 *
+	 * @method _onHandleMouseOver
+     * @param {EventFacade} event
+	 * @protected
+	 */
 	_onHandleMouseOver: function(event) {
 		var instance = this;
 		var node = event.currentTarget;
@@ -1094,6 +1625,13 @@ A.extend(Resize, A.Base, {
 		}
 	},
 
+	/**
+	 * Mouseout event handler for the handles.
+	 *
+	 * @method _onHandleMouseOut
+     * @param {EventFacade} event
+	 * @protected
+	 */
 	_onHandleMouseOut: function(event) {
 		var instance = this;
 
