@@ -154,7 +154,7 @@ A.mix(DatePickerSelect, {
 		 *
 		 * @attribute displayBoundingBox
 		 * @default null
-		 * @type Node | String
+		 * @type {Node | String}
 		 */
 		displayBoundingBox: {
 			value: null,
@@ -166,7 +166,7 @@ A.mix(DatePickerSelect, {
 		 *
 		 * @attribute dayField
 		 * @default Generated HTML select element
-		 * @type Node | String
+		 * @type {Node | String}
 		 */
 		dayField: {
 			setter: nodeSetter,
@@ -178,7 +178,7 @@ A.mix(DatePickerSelect, {
 		 *
 		 * @attribute monthField
 		 * @default Generated HTML select element
-		 * @type Node | String
+		 * @type {Node | String}
 		 */
 		monthField: {
 			setter: nodeSetter,
@@ -190,7 +190,7 @@ A.mix(DatePickerSelect, {
 		 *
 		 * @attribute yearField
 		 * @default Generated HTML select element
-		 * @type Node | String
+		 * @type {Node | String}
 		 */
 		yearField: {
 			setter: nodeSetter,
@@ -239,7 +239,7 @@ A.mix(DatePickerSelect, {
 		 *
 		 * @attribute trigger
 		 * @default Generated HTLM div element
-		 * @type Node | String
+		 * @type {Node | String}
 		 */
 		trigger: {
 			valueFn: function() {

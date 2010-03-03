@@ -68,7 +68,7 @@ A.mix(CharCounter, {
 		 *
 		 * @attribute counter
 		 * @default null
-		 * @type Node | String
+		 * @type {Node | String}
 		 */
 		counter: {
 			setter: function(v) {
@@ -98,7 +98,7 @@ A.mix(CharCounter, {
 		 *
 		 * @attribute input
 		 * @default null
-		 * @type Node | String
+		 * @type {Node | String}
 		 */
 		input: {
 			setter: function(v) {
