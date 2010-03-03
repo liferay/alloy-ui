@@ -689,11 +689,11 @@ A.extend(Calendar, A.ContextOverlay, {
 
 	/**
 	 * Get an Array with selected dates with detailed information (day, month, year).
-	 *<code><pre>[{
+	 *<pre><code>[{
 	 *    year: date.getFullYear(),
 	 *    month: date.getMonth(),
 	 *    day: date.getDate()
-	 * }]</pre></code>
+	 * }]</code></pre>
 	 *
 	 * @method getDetailedSelectedDates
 	 * @return Array
@@ -717,7 +717,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	  * Get the locale map containing the respective values for the
       * <a href="Widget.html#config_locale">locale</a> used.
 	  *
-	  * <code><pre>A.DataType.Date.Locale['pt-br'] = A.merge(
+	  * <pre><code>A.DataType.Date.Locale['pt-br'] = A.merge(
 	  *	A.DataType.Date.Locale['en'], {
 	  *		a: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Fri', 'Sat'],
 	  *		A: ['Domingo','Segunda-feira','Ter&ccedil;a-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sabado'],
@@ -730,7 +730,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	  *		x: '%d/%m/%y',
 	  *		X: '%T'
 	  *	}
-	  *);</pre></code>
+	  *);</code></pre>
 	  *
 	  * @method _getLocaleMap
 	  * @protected
