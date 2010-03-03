@@ -582,7 +582,7 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 	 * @method _setHideOn
 	 * @param {String} eventType Event type
 	 * @protected
-	 * @return String
+	 * @return {String}
 	 */
 	_setHideOn: function(eventType) {
 		var instance = this;
@@ -618,7 +618,7 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 	 * @method _setHideOn
 	 * @param {boolean} value
 	 * @protected
-	 * @return boolean
+	 * @return {boolean}
 	 */
 	_setHideOnDocumentClick: function(value) {
 		var instance = this;
@@ -640,7 +640,7 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 	 * @method _setShowOn
 	 * @param {String} eventType Event type
 	 * @protected
-	 * @return String
+	 * @return {String}
 	 */
 	_setShowOn: function(eventType) {
 		var instance = this;

@@ -642,7 +642,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 *
 	 * @method alreadySelected
 	 * @param {Date} date Date to be checked.
-	 * @return boolean
+	 * @return {boolean}
 	 */
 	alreadySelected: function(date) {
 		var instance = this;
@@ -661,7 +661,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 * Get the selected dates.
 	 *
 	 * @method getSelectedDates
-	 * @return Array
+	 * @return {Array}
 	 */
 	getSelectedDates: function() {
 		var instance = this;
@@ -674,7 +674,7 @@ A.extend(Calendar, A.ContextOverlay, {
      * <a href="Calendar.html#config_dateFormat">dateFormat</a>.
 	 *
 	 * @method getFormattedSelectedDates
-	 * @return Array
+	 * @return {Array}
 	 */
 	getFormattedSelectedDates: function() {
 		var instance = this;
@@ -696,7 +696,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 * }]</code></pre>
 	 *
 	 * @method getDetailedSelectedDates
-	 * @return Array
+	 * @return {Array}
 	 */
 	getDetailedSelectedDates: function() {
 		var instance = this;
@@ -734,7 +734,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	  *
 	  * @method _getLocaleMap
 	  * @protected
-	  * @return Object
+	  * @return {Object}
 	  */
 	_getLocaleMap: function() {
 		var instance = this;
@@ -841,7 +841,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 * @param {Date} d1
 	 * @param {Date} d2
 	 * @protected
-	 * @return boolean
+	 * @return {boolean}
 	 */
 	_compareDates: function(d1, d2) {
 		return ( d1.getTime() == d2.getTime() );
@@ -998,7 +998,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 * @method _setDates
 	 * @param {Array} value
 	 * @protected
-	 * @return Array
+	 * @return {Array}
 	 */
 	_setDates: function(value) {
 		var instance = this;
@@ -1030,7 +1030,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 * @method _setMinMaxDate
 	 * @param {Date} value
 	 * @protected
-	 * @return Date
+	 * @return {Date}
 	 */
 	_setMinMaxDate: function(value) {
 		var instance = this;
@@ -1048,7 +1048,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 * @method _setStack
 	 * @param {boolean} value
 	 * @protected
-	 * @return boolean
+	 * @return {boolean}
 	 */
 	_setStack: function(value) {
 		var instance = this;
@@ -1067,7 +1067,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 * Get current date.
 	 *
 	 * @method getCurrentDate
-	 * @return Date
+	 * @return {Date}
 	 */
 	getCurrentDate: function() {
 		var instance = this;
@@ -1082,7 +1082,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 * @method getDaysInMonth
 	 * @param {Number} year Year in the format YYYY.
 	 * @param {Number} month 0 for January 11 for December.
-	 * @return Number
+	 * @return {Number}
 	 */
 	getDaysInMonth: function(year, month) {
 		var instance = this;
@@ -1097,7 +1097,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 * @method getFirstDate
 	 * @param {Number} year Year in the format YYYY.
 	 * @param {Number} month 0 for January 11 for December.
-	 * @return Date
+	 * @return {Date}
 	 */
 	getFirstDate: function(year, month) {
 		var instance = this;
@@ -1112,7 +1112,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 * @method getLastDate
 	 * @param {Number} year Year in the format YYYY.
 	 * @param {Number} month 0 for January 11 for December.
-	 * @return Date
+	 * @return {Date}
 	 */
 	getLastDate: function(year, month) {
 		var instance = this;
@@ -1128,7 +1128,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 * @method getFirstDayOfWeek
 	 * @param {Number} year Year in the format YYYY.
 	 * @param {Number} month 0 for January 11 for December.
-	 * @return Number
+	 * @return {Number}
 	 */
 	getFirstDayOfWeek: function(year, month) {
 		var instance = this;
@@ -1144,7 +1144,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 * @param {Number} month 0 for January 11 for December.
 	 * @param {Number} day
 	 * @protected
-	 * @return Object
+	 * @return {Object}
 	 */
 	_normalizeYearMonth: function(year, month, day) {
 		var instance = this;
@@ -1173,7 +1173,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 * @method _getDayName
 	 * @param {Number} weekDay
 	 * @protected
-	 * @return String
+	 * @return {String}
 	 */
 	_getDayName: function(weekDay) {
 		var instance = this;
@@ -1188,7 +1188,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 * @method _getDayNameShort
 	 * @param {Number} weekDay
 	 * @protected
-	 * @return String
+	 * @return {String}
 	 */
 	_getDayNameShort: function(weekDay) {
 		var instance = this;
@@ -1203,7 +1203,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 * @method _getDayNameMin
 	 * @param {Number} weekDay
 	 * @protected
-	 * @return String
+	 * @return {String}
 	 */
 	_getDayNameMin: function(weekDay) {
 		var instance = this;
@@ -1218,7 +1218,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 * @method _getMonthName
 	 * @param {Number} month
 	 * @protected
-	 * @return String
+	 * @return {String}
 	 */
 	_getMonthName: function(month) {
 		var instance = this;
@@ -1233,7 +1233,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 * @method _getMonthNameShort
 	 * @param {Number} month
 	 * @protected
-	 * @return String
+	 * @return {String}
 	 */
 	_getMonthNameShort: function(month) {
 		var instance = this;
@@ -1247,7 +1247,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 *
 	 * @method parseDate
 	 * @param {String} dateString
-	 * @return Date
+	 * @return {Date}
 	 */
 	parseDate: function(dateString) {
 		var instance = this;
@@ -1262,7 +1262,7 @@ A.extend(Calendar, A.ContextOverlay, {
 	 * @method formatDate
 	 * @param {Date} date
 	 * @param {String} mask See <a href="Calendar.html#config_dateFormat">dateFormat</a>.
-	 * @return String
+	 * @return {String}
 	 */
 	formatDate: function (date, mask) {
 		var instance = this;

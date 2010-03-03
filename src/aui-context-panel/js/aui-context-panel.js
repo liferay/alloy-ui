@@ -322,7 +322,7 @@ A.extend(ContextPanel, A.ContextOverlay, {
      * position for the arrow and then it's normalized to the 'bc' point.
 	 *
 	 * @method getAlignPoint
-	 * @return String
+	 * @return {String}
 	 */
 	getAlignPoint: function() {
 		var instance = this;
@@ -411,12 +411,12 @@ A.extend(ContextPanel, A.ContextOverlay, {
 
 	/**
 	 * Setter for the
-     * <a href="ContextPanelManager.html#config_stack">stack</a> attribute.
+     * <a href="ContextPanel.html#config_stack">stack</a> attribute.
 	 *
 	 * @method _setStack
 	 * @param {boolean} value
 	 * @protected
-	 * @return boolean
+	 * @return {boolean}
 	 */
 	_setStack: function(value) {
 		var instance = this;
@@ -433,12 +433,12 @@ A.extend(ContextPanel, A.ContextOverlay, {
 
 	/**
 	 * Setter for the
-     * <a href="ContextPanelManager.html#config_anim">anim</a> attribute.
+     * <a href="ContextPanel.html#config_anim">anim</a> attribute.
 	 *
 	 * @method _setAnim
 	 * @param {Object} value
 	 * @protected
-	 * @return Object
+	 * @return {Object}
 	 */
 	_setAnim: function(value) {
 		var instance = this;
