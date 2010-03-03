@@ -1,3 +1,9 @@
+/**
+ * The ContextPanel Utility
+ *
+ * @module aui-context-panel
+ */
+
 var L = A.Lang,
 	isBoolean = L.isBoolean,
 	isString = L.isString,
@@ -47,14 +53,78 @@ var L = A.Lang,
 	TPL_POINTER = '<div class="' + [ CSS_STATE_DEFAULT, CSS_CONTEXTPANEL_POINTER ].join(' ') + '"></div>',
 	TPL_POINTER_INNER = '<div class="' + CSS_CONTEXTPANEL_POINTER_INNER + '"></div>';
 
+/**
+ * <p><img src="assets/images/aui-context-panel/main.png"/></p>
+ *
+ * A base class for ContextPanel, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li></li>
+ * </ul>
+ *
+ * Quick Example:<br/>
+ * 
+ * <pre><code>var instance = new A.ContextPanel({
+ *  bodyContent: 'Here s a sample ContextPanel.',
+ *  boundingBox: '#contextpanel',
+ *  trigger: '#triggerButton',
+ *  cancellableHide: true,
+ *  hideDelay: 200,
+ *  hideOnDocumentClick: false,
+ *  anim: true
+ * }).render();
+ * </code></pre>
+ *
+ * Check the list of <a href="ContextPanel.html#configattributes">Configuration Attributes</a> available for
+ * ContextPanel.
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class ContextPanel
+ * @constructor
+ * @extends ContextOverlay
+ */
 function ContextPanel(config) {
  	ContextPanel.superclass.constructor.apply(this, arguments);
 }
 
 A.mix(ContextPanel, {
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property ContextPanel.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: CONTEXTPANEL,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the ContextPanel.
+	 *
+	 * @property ContextPanel.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+		/**
+		 * Enable or disable the animation for hide and show. Used as the
+         * <a href="Anim.html">Anim</a> configuration attributes.
+		 *
+		 * <pre><code>anim: {
+		 *  show: {
+		 *  	duration: .9
+		 *  },
+		 *  hide: {
+		 *  	duration: .2
+		 *  }
+		 * }
+		 * </code></pre>
+		 * 
+		 * @attribute anim
+		 * @default { show: false }
+		 * @type Object
+		 */
 		anim: {
 			lazyAdd: false,
 			value: {
@@ -65,25 +135,66 @@ A.mix(ContextPanel, {
 			}
 		},
 
+		/**
+		 * Position where the arrow will be placed. See
+         * <a href="ContextPanel.html#config_showArrow">showArrow</a>. If it's
+         * not set, it will get the value set on the
+         * <a href="ContextOverlay.html#config_align">align</a> point. Here is a
+         * list of valid arrows 'bc', 'bl', 'br', 'cc', 'lb', 'lc', 'lt', 'rb',
+         * 'rc', 'rl'.
+		 *
+		 * @attribute arrow
+		 * @default null
+		 * @type String
+		 */
 		arrow: {
 			value: null,
 			validator: isString
 		},
 
+		/**
+		 * See <a href="ContextOverlay.html#config_hideOn">hideOn</a>.
+		 *
+		 * @attribute hideOn
+		 * @default click
+		 * @type String
+		 */
 		hideOn: {
 			value: CLICK
 		},
 
+		/**
+		 * See <a href="ContextOverlay.html#config_showOn">showOn</a>.
+		 *
+		 * @attribute showOn
+		 * @default click
+		 * @type String
+		 */
 		showOn: {
 			value: CLICK
 		},
 
+		/**
+		 * If true the ContextPanel will show an arrow positioned on the
+         * href="ContextPanel.html#config_arrow">arrow</a> point.
+		 *
+		 * @attribute showArrow
+		 * @default true
+		 * @type boolean
+		 */
 		showArrow: {
 			lazyAdd: false,
 			value: true,
 			validator: isBoolean
 		},
 
+		/**
+		 * Gives stacking habilities to the ContextPanel.
+		 *
+		 * @attribute stack
+		 * @default true
+		 * @type boolean
+		 */
 		stack: {
 			lazyAdd: false,
 			value: true,
@@ -96,9 +207,12 @@ A.mix(ContextPanel, {
 });
 
 A.extend(ContextPanel, A.ContextOverlay, {
-	/*
-	* Lifecycle
-	*/
+	/**
+	 * Bind the events on the ContextPanel UI. Lifecycle.
+	 *
+	 * @method bindUI
+	 * @protected
+	 */
 	bindUI: function() {
 		var instance = this;
 
@@ -109,21 +223,41 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		ContextPanel.superclass.bindUI.apply(instance, arguments);
 	},
 
+	/**
+	 * Create the DOM structure for the ContextPanel. Lifecycle.
+	 *
+	 * @method renderUI
+	 * @protected
+	 */
 	renderUI: function() {
 		var instance = this;
 
 		instance._renderElements();
 	},
 
+	/**
+	 * Sync the ContextPanel UI. Lifecycle.
+	 *
+	 * @method syncUI
+	 * @protected
+	 */
 	syncUI: function() {
 		var instance = this;
 
 		instance._syncElements();
 	},
 
-	/*
-	* Methods
-	*/
+	/**
+	 * Aligns the ContextPanel to the provided node (or viewport) using the
+     * provided points. Inherited from
+     * <a href="Overlay.html#method_align">Overlay</a>.
+	 *
+	 * @method align
+	 * @param {Node | String | null} node A reference (or selector string) for
+     * the Node which with the ContextPanel is to be aligned.
+	 * @param {Array[2]} points A two element array, specifying the points on
+     * the ContextPanel and node/viewport which need to be aligned.
+	 */
 	align: function (node, points) {
 		var instance = this;
 
@@ -132,6 +266,12 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		instance._syncElements();
 	},
 
+	/**
+	 * ContextPanel uses a imageless arrow, which involves some CSS technics.
+     * This method is meant to fix the color of the borders of the arrow.
+	 *
+	 * @method fixPointerColor
+	 */
 	fixPointerColor: function() {
 		var instance = this;
 		var contentBox = instance.get(CONTENT_BOX);
@@ -176,6 +316,13 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		pointer.setStyle(border, bColor);
 	},
 
+	/**
+	 * Normalize the align point value. The align point 'cc' is not a valid
+     * position for the arrow and then it's normalized to the 'bc' point.
+	 *
+	 * @method getAlignPoint
+	 * @return String
+	 */
 	getAlignPoint: function() {
 		var instance = this;
 		var overlayPoint = instance.get(ALIGN).points[0];
@@ -188,6 +335,12 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		return instance.get(ARROW) || overlayPoint;
 	},
 
+	/**
+	 * Hides the ContextPanel.
+	 *
+	 * @method hide
+	 * @param {EventFacade} event 
+	 */
 	hide: function(event) {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
@@ -208,6 +361,12 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		}
 	},
 
+	/**
+	 * Render DOM elements for the ContextPanel.
+	 *
+	 * @method _renderElements
+	 * @protected
+	 */
 	_renderElements: function() {
 		var instance = this;
 		var contentBox = instance.get(CONTENT_BOX);
@@ -223,6 +382,12 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		);
 	},
 
+	/**
+	 * Sync the UI of the ContextPanel elements.
+	 *
+	 * @method _syncElements
+	 * @protected
+	 */
 	_syncElements: function() {
 		var instance = this;
 		var contentBox = instance.get(CONTENT_BOX);
@@ -243,9 +408,15 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		instance._lastOverlayPoint = overlayPoint;
 	},
 
-	/*
-	* Setters
-	*/
+	/**
+	 * Setter for the
+     * <a href="ContextPanelManager.html#config_stack">stack</a> attribute.
+	 *
+	 * @method _setStack
+	 * @param {boolean} value
+	 * @protected
+	 * @return boolean
+	 */
 	_setStack: function(value) {
 		var instance = this;
 
@@ -259,6 +430,15 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		return value;
 	},
 
+	/**
+	 * Setter for the
+     * <a href="ContextPanelManager.html#config_anim">anim</a> attribute.
+	 *
+	 * @method _setAnim
+	 * @param {Object} value
+	 * @protected
+	 * @return Object
+	 */
 	_setAnim: function(value) {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
@@ -303,9 +483,13 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		return value;
 	},
 
-	/*
-	* Listeners
-	*/
+	/**
+	 * Fires before show the ContextPanel.
+	 *
+	 * @method _beforeShow
+	 * @param {EventFacade} event 
+	 * @protected
+	 */
 	_beforeShow: function(event) {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
@@ -321,6 +505,13 @@ A.extend(ContextPanel, A.ContextOverlay, {
 		}
 	},
 
+	/**
+	 * Fires after showArrow attribute changes.
+	 *
+	 * @method _afterShowArrowChange
+	 * @param {EventFacade} event 
+	 * @protected
+	 */
 	_afterShowArrowChange: function() {
 		var instance = this;
 
@@ -330,6 +521,16 @@ A.extend(ContextPanel, A.ContextOverlay, {
 
 A.ContextPanel = ContextPanel;
 
+/**
+ * A base class for ContextPanelManager:
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class ContextPanelManager
+ * @constructor
+ * @extends OverlayManager
+ * @static
+ */
 A.ContextPanelManager = new A.OverlayManager({
 	zIndexBase: 1000
 });
