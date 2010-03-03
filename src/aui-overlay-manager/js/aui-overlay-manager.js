@@ -1,3 +1,9 @@
+/**
+ * The OverlayManager Utility
+ *
+ * @module aui-overlay-manager
+ */
+
 var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isBoolean = Lang.isBoolean,
@@ -12,6 +18,32 @@ var Lang = A.Lang,
 	Z_INDEX = 'zIndex',
 	Z_INDEX_BASE = 'zIndexBase';
 
+	/**
+	 * <p><img src="assets/images/aui-overlay-manager/main.png"/></p>
+	 *
+	 * A base class for OverlayManager, providing:
+	 * <ul>
+	 *    <li>Grouping overlays</li>
+	 *    <li>Show or hide the entire group of registered overlays</li>
+	 *    <li>Basic Overlay Stackability (zIndex support)</li>
+	 * </ul>
+	 *
+	 * Quick Example:<br/>
+	 *
+	 * <pre><code>var groupOverlayManager = new A.OverlayManager();
+	 * groupOverlayManager.register([overlay1, overlay2, overlay3]);
+     * groupOverlayManager.hideAll();
+	 * </code></pre>
+	 *
+	 * Check the list of <a href="OverlayManager.html#configattributes">Configuration Attributes</a> available for
+	 * OverlayManager.
+	 *
+	 * @param config {Object} Object literal specifying widget configuration properties.
+	 *
+	 * @class OverlayManager
+	 * @constructor
+	 * @extends Base
+	 */
 	function OverlayManager(config) {
 	 	OverlayManager.superclass.constructor.apply(this, arguments);
 	}
@@ -19,9 +51,32 @@ var Lang = A.Lang,
 	A.mix(
 		OverlayManager,
 		{
+			/**
+			 * Static property provides a string to identify the class.
+			 *
+			 * @property OverlayManager.NAME
+			 * @type String
+			 * @static
+			 */
 			NAME: OVERLAY_MANAGER.toLowerCase(),
 
+			/**
+			 * Static property used to define the default attribute
+			 * configuration for the OverlayManager.
+			 *
+			 * @property OverlayManager.ATTRS
+			 * @type Object
+			 * @static
+			 */
 			ATTRS: {
+				/**
+				 * The zIndex base to be used on the stacking for all overlays
+                 * registered on the OverlayManager.
+				 *
+				 * @attribute zIndexBase
+				 * @default 1000
+				 * @type Number
+				 */
 				zIndexBase: {
 					value: 1000,
 					validator: isNumber,
@@ -34,12 +89,25 @@ var Lang = A.Lang,
 	);
 
 	A.extend(OverlayManager, A.Base, {
+		/**
+		 * Construction logic executed during OverlayManager instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function() {
 			var instance = this;
 
 			instance._overlays = [];
 		},
 
+		/**
+		 * Set the passed overlay zIndex to the highest value.
+		 *
+		 * @method bringToTop
+		 * @param {Overlay} overlay Instance of
+         * <a href="Overlay.html">Overlay</a>.
+		 */
 		bringToTop: function(overlay) {
 			var instance = this;
 
@@ -57,12 +125,27 @@ var Lang = A.Lang,
 			}
 		},
 
+		/**
+		 * Descructor lifecycle implementation for the OverlayManager class.
+		 * Purges events attached to the node (and all child nodes).
+		 *
+		 * @method destroy
+		 * @protected
+		 */
 		destroy: function() {
 			var instance = this;
 
 			instance.remove();
 		},
 
+		/**
+		 * Register the passed <a href="Overlay.html">Overlay</a> to this
+         * OverlayManager.
+		 *
+		 * @method register
+		 * @param {Overlay} overlay <a href="Overlay.html">Overlay</a> instance to be registered
+		 * @return Array Array of the registered overlays
+		 */
 		register: function (overlay) {
 			var instance = this;
 
@@ -99,6 +182,14 @@ var Lang = A.Lang,
 			return overlays;
 		},
 
+		/**
+		 * Remove the passed <a href="Overlay.html">Overlay</a> from this
+         * OverlayManager.
+		 *
+		 * @method remove
+		 * @param {Overlay} overlay <a href="Overlay.html">Overlay</a> instance to be removed
+		 * @return null
+		 */
 		remove: function (overlay) {
 			var instance = this;
 
@@ -111,6 +202,15 @@ var Lang = A.Lang,
 			return null;
 		},
 
+		/**
+		 * Loop through all registered <a href="Overlay.html">Overlay</a> and
+         * execute a callback.
+		 *
+		 * @method each
+		 * @param {function} fn Callback to be executed on the
+         * <a href="Array.html#method_each">Array.each</a>
+		 * @return null
+		 */
 		each: function(fn) {
 			var instance = this;
 
@@ -119,6 +219,12 @@ var Lang = A.Lang,
 			A.Array.each(overlays, fn);
 		},
 
+		/**
+		 * Invoke the <a href="Overlay.html#method_show">show</a> method from
+         * all registered Overlays.
+		 *
+		 * @method showAll
+		 */
 		showAll: function() {
 			this.each(
 				function(overlay) {
@@ -127,6 +233,12 @@ var Lang = A.Lang,
 			);
 		},
 
+		/**
+		 * Invoke the <a href="Overlay.html#method_hide">hide</a> method from
+         * all registered Overlays.
+		 *
+		 * @method hideAll
+		 */
 		hideAll: function() {
 			this.each(
 				function(overlay) {
@@ -135,6 +247,14 @@ var Lang = A.Lang,
 			);
 		},
 
+		/**
+		 * zIndex comparator. Used on Array.sort.
+		 *
+		 * @method sortByZIndexDesc
+		 * @param {Overlay} a Overlay
+		 * @param {Overlay} b Overlay
+		 * @return Number
+		 */
 		sortByZIndexDesc: function(a, b) {
 			if (!a || !b || !a.hasImpl(A.WidgetStack) || !b.hasImpl(A.WidgetStack)) {
 				return 0;
@@ -153,12 +273,28 @@ var Lang = A.Lang,
 			}
 		},
 
+		/**
+		 * Check if the overlay is registered.
+		 *
+		 * @method _registered
+		 * @param {Overlay} overlay Overlay
+		 * @protected
+		 * @return boolean
+		 */
 		_registered: function(overlay) {
 			var instance = this;
 
 			return A.Array.indexOf(instance._overlays, overlay) != -1;
 		},
 
+		/**
+		 * Mousedown event handler, used to invoke
+         * <a href="OverlayManager.html#method_bringToTop">bringToTop</a>.
+		 *
+		 * @method _onMouseDown
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_onMouseDown: function(event) {
 			var instance = this;
 			var overlay = A.Widget.getByNode(event.currentTarget || event.target);
@@ -169,6 +305,15 @@ var Lang = A.Lang,
 			}
 		},
 
+		/**
+		 * Fires when the <a href="Widget.html#config_focused">focused</a>
+         * attribute change. Used to invoke
+         * <a href="OverlayManager.html#method_bringToTop">bringToTop</a>.
+		 *
+		 * @method _onFocusedChange
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_onFocusedChange: function(event) {
 			var instance = this;
 
