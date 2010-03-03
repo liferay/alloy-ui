@@ -218,7 +218,7 @@ A.mix(ContextOverlay, {
 		 *
 		 * @attribute trigger
 		 * @default null
-		 * @type Node | NodeList | String
+		 * @type {Node | NodeList | String}
 		 */
 		trigger: {
 			lazyAdd: false,
