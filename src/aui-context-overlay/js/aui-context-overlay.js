@@ -1,3 +1,9 @@
+/**
+ * The ContextOverlay Utility
+ *
+ * @module aui-context-overlay
+ */
+
 var L = A.Lang,
 	isString = L.isString,
 	isNumber = L.isNumber,
@@ -27,6 +33,33 @@ var L = A.Lang,
 	TRIGGER = 'trigger',
 	VISIBLE = 'visible';
 
+/**
+ * <p><img src="assets/images/aui-context-overlay/main.png"/></p>
+ *
+ * A base class for ContextOverlay, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>Able to display an <a href="Overlay.html">Overlay</a> at a specified corner of an element <a href="ContextOverlay.html#config_trigger">trigger</a></li>
+ * </ul>
+ *
+ * Quick Example:<br/>
+ *
+ * <pre><code>var instance = new A.ContextOverlay({
+ *  boundingBox: '#OverlayBoundingBox',
+ *  hideOn: 'mouseleave',
+ *  showOn: 'mouseenter',
+ *	trigger: '.menu-trigger'
+ * }).render();
+ * </code></pre>
+ *
+ * Check the list of <a href="ContextOverlay.html#configattributes">Configuration Attributes</a> available for
+ * ContextOverlay.
+ *
+ * @class ContextOverlay
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ * @extends ComponentOverlay
+ */
 function ContextOverlay(config) {
 	var instance = this;
 
@@ -40,18 +73,58 @@ function ContextOverlay(config) {
 }
 
 A.mix(ContextOverlay, {
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property ContextOverlay.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: CONTEXT_OVERLAY,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the ContextOverlay.
+	 *
+	 * @property ContextOverlay.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+		/**
+		 * Inherited from <a href="Overlay.html#config_align">Overlay</a>.
+		 *
+		 * @attribute align
+		 * @default { node: null, points: [ TL, BL ] }
+		 * @type Object
+		 */
 		align: {
             value: { node: null, points: [ TL, BL ] }
         },
 
+		/**
+		 * Cancel auto hide delay if the user interact with the Overlay
+         * (focus, click, mouseover)
+		 *
+		 * @attribute cancellableHide
+		 * @default true
+		 * @type boolean
+		 */
 		cancellableHide: {
 			value: true,
 			validator: isBoolean
 		},
 
+		/**
+		 * ContextOverlay allow multiple elements to be the
+         * <a href="ContextOverlay.html#config_trigger">trigger</a>, the
+         * currentNode stores the current active one.
+		 *
+		 * @attribute currentNode
+		 * @default First item of the
+         * <a href="ContextOverlay.html#config_trigger">trigger</a> NodeList.
+		 * @type Node
+		 */
 		currentNode: {
 			valueFn: function() {
 				// define default currentNode as the first item from trigger
@@ -64,6 +137,13 @@ A.mix(ContextOverlay, {
 			validator: isObject
 		},
 
+		/**
+		 * The event which is responsible to hide the ContextOverlay.
+		 *
+		 * @attribute hideOn
+		 * @default mouseout
+		 * @type String
+		 */
 		hideOn: {
 			lazyAdd: false,
 			value: 'mouseout',
@@ -73,6 +153,15 @@ A.mix(ContextOverlay, {
 			}
 		},
 
+		/**
+		 * If true the instance is registered on the
+         * <a href="ContextOverlayManager.html">ContextOverlayManager</a> static
+         * class and will be hide when the user click on document.
+		 *
+		 * @attribute hideOnDocumentClick
+		 * @default true
+		 * @type boolean
+		 */
 		hideOnDocumentClick: {
 			lazyAdd: false,
 			setter: function(v) {
@@ -82,10 +171,25 @@ A.mix(ContextOverlay, {
 			validator: isBoolean
 		},
 
+		/**
+		 * Number of milliseconds after the hide method is invoked to hide the
+         * ContextOverlay.
+		 *
+		 * @attribute hideDelay
+		 * @default 0
+		 * @type Number
+		 */
 		hideDelay: {
 			value: 0
 		},
 
+		/**
+		 * The event which is responsible to show the ContextOverlay.
+		 *
+		 * @attribute showOn
+		 * @default mouseover
+		 * @type String
+		 */
 		showOn: {
 			lazyAdd: false,
 			value: 'mouseover',
@@ -95,11 +199,27 @@ A.mix(ContextOverlay, {
 			}
 		},
 
+		/**
+		 * Number of milliseconds after the show method is invoked to show the
+         * ContextOverlay.
+		 *
+		 * @attribute showDelay
+		 * @default 0
+		 * @type Number
+		 */
 		showDelay: {
 			value: 0,
 			validator: isNumber
 		},
 
+		/**
+		 * Node, NodeList or Selector which will be used as trigger elements
+         * to show or hide the ContextOverlay.
+		 *
+		 * @attribute trigger
+		 * @default null
+		 * @type Node | NodeList | String
+		 */
 		trigger: {
 			lazyAdd: false,
 			setter: function(v) {
@@ -114,6 +234,14 @@ A.mix(ContextOverlay, {
 			}
 		},
 
+		/**
+		 * If true the ContextOverlay is visible by default after the render phase.
+         * Inherited from <a href="Overlay.html#config_trigger">Overlay</a>.
+		 *
+		 * @attribute visible
+		 * @default false
+		 * @type boolean
+		 */
 		visible: {
 			value: false
 		}
@@ -121,9 +249,12 @@ A.mix(ContextOverlay, {
 });
 
 A.extend(ContextOverlay, A.ComponentOverlay, {
-	/*
-	* Lifecycle
-	*/
+	/**
+	 * Bind the events on the ContextOverlay UI. Lifecycle.
+	 *
+	 * @method bindUI
+	 * @protected
+	 */
 	bindUI: function(){
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
@@ -144,15 +275,24 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 		instance.after('focusedChange', A.bind(instance._invokeHideTaskOnInteraction, instance));
 	},
 
+	/**
+	 * Descructor lifecycle implementation for the ContextOverlay class.
+	 * Purges events attached to the node (and all child nodes).
+	 *
+	 * @method destructor
+	 * @protected
+	 */
 	destructor: function() {
 		var instance = this;
 
 		instance.get(BOUNDING_BOX).remove();
 	},
 
-	/*
-	* Methods
-	*/
+	/**
+	 * Hides the ContextOverlay.
+	 *
+	 * @method hide
+	 */
 	hide: function() {
 		var instance = this;
 
@@ -163,6 +303,11 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 		ContextOverlay.superclass.hide.apply(instance, arguments);
 	},
 
+	/**
+	 * Shows the ContextOverlay.
+	 *
+	 * @method hide
+	 */
 	show: function(event) {
 		var instance = this;
 
@@ -177,6 +322,12 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 		instance.refreshAlign();
 	},
 
+	/**
+	 * Toggles visibility of the ContextOverlay.
+	 *
+	 * @method toggle
+	 * @param {EventFacade} event
+	 */
 	toggle: function(event) {
 		var instance = this;
 
@@ -188,11 +339,25 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 		}
 	},
 
+	/**
+	 * Clear the intervals to show or hide the ContextOverlay. See
+     * <a href="ContextOverlay.html#config_hideDelay">hideDelay</a> and
+     * <a href="ContextOverlay.html#config_showDelay">showDelay</a>.
+	 *
+	 * @method clearIntervals
+	 */
 	clearIntervals: function() {
 		this._hideTask.cancel();
 		this._showTask.cancel();
 	},
 
+	/**
+	 * Refreshes the alignment of the ContextOverlay with the
+     * <a href="ContextOverlay.html#config_currentNode">currentNode</a>. See
+     * also <a href="ContextOverlay.html#config_align">align</a>.
+	 *
+	 * @method refreshAlign
+	 */
 	refreshAlign: function() {
 		var instance = this;
 		var align = instance.get(ALIGN);
@@ -203,6 +368,16 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 		}
 	},
 
+	/**
+	 * Update the
+     * <a href="ContextOverlay.html#config_currentNode">currentNode</a> with the
+     * <a href="ContextOverlay.html#config_align">align</a> node or the
+     * event.currentTarget and in last case with the first item of the
+     * <a href="ContextOverlay.html#config_trigger">trigger</a>.
+	 *
+	 * @method updateCurrentNode
+	 * @param {EventFacade} event
+	 */
 	updateCurrentNode: function(event) {
 		var instance = this;
 		var align = instance.get(ALIGN);
@@ -220,6 +395,14 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 		}
 	},
 
+	/**
+	 * Handles the logic for the
+     * <a href="ContextOverlay.html#method_toggle">toggle</a>.
+	 *
+	 * @method _toggle
+	 * @param {EventFacade} event 
+	 * @protected
+	 */
 	_toggle: function(event) {
 		var instance = this;
 		var currentTarget = event.currentTarget;
@@ -236,9 +419,14 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 		instance._lastTarget = currentTarget;
 	},
 
-	/*
-	* Attribute Listeners
-	*/
+	/**
+	 * Fires after the <a href="ContextOverlay.html#config_showOn">showOn</a>
+     * attribute change.
+	 *
+	 * @method _afterShowOnChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_afterShowOnChange: function(event) {
 		var instance = this;
 		var wasToggle = event.prevVal == instance.get(HIDE_ON);
@@ -253,6 +441,14 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 		}
 	},
 
+	/**
+	 * Fires after the <a href="ContextOverlay.html#config_hideOn">hideOn</a>
+     * attribute change.
+	 *
+	 * @method _afterHideOnChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_afterHideOnChange: function(event) {
 		var instance = this;
 		var wasToggle = event.prevVal == instance.get(SHOW_ON);
@@ -267,6 +463,14 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 		}
 	},
 
+	/**
+	 * Fires after the <a href="ContextOverlay.html#config_trigger">trigger</a>
+     * attribute change.
+	 *
+	 * @method _afterTriggerChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_afterTriggerChange: function(event) {
 		var instance = this;
 
@@ -274,6 +478,14 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 		instance._setHideOn( instance.get(HIDE_ON) );
 	},
 
+	/**
+	 * Fires before the <a href="ContextOverlay.html#config_showOn">showOn</a>
+     * attribute change.
+	 *
+	 * @method _beforeShowOnChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_beforeShowOnChange: function(event) {
 		var instance = this;
 		var trigger = instance.get(TRIGGER);
@@ -282,6 +494,14 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 		trigger.detach(event.prevVal, instance._showCallback);
 	},
 
+	/**
+	 * Fires before the <a href="ContextOverlay.html#config_hideOn">hideOn</a>
+     * attribute change.
+	 *
+	 * @method _beforeHideOnChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_beforeHideOnChange: function(event) {
 		var instance = this;
 		var trigger = instance.get(TRIGGER);
@@ -290,6 +510,14 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 		trigger.detach(event.prevVal, instance._hideCallback);
 	},
 
+	/**
+	 * Fires before the <a href="ContextOverlay.html#config_trigger">trigger</a>
+     * attribute change.
+	 *
+	 * @method _beforeTriggerChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_beforeTriggerChange: function(event) {
 		var instance = this;
 		var trigger = instance.get(TRIGGER);
@@ -301,8 +529,14 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 		trigger.detach(MOUSEDOWN, instance._stopTriggerEventPropagation);
 	},
 
-	// cancel hide if the user does some interaction with the tooltip
-	// interaction = focus, click, mouseover
+	/**
+	 * Cancel hide event if the user does some interaction with the
+     * ContextOverlay (focus, click or mouseover).
+	 * 
+	 * @method _cancelAutoHide
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_cancelAutoHide: function(event) {
 		var instance = this;
 
@@ -313,6 +547,13 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 		event.stopPropagation();
 	},
 
+	/**
+	 * Invoke the hide event when the ContextOverlay looses the focus.
+	 * 
+	 * @method _invokeHideTaskOnInteraction
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_invokeHideTaskOnInteraction: function(event) {
 		var instance = this;
 		var cancellableHide = instance.get(CANCELLABLE_HIDE);
@@ -323,13 +564,26 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 		}
 	},
 
+	/**
+	 * Helper method to invoke event.stopPropagation().
+	 * 
+	 * @method _stopTriggerEventPropagation
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_stopTriggerEventPropagation: function(event) {
 		event.stopPropagation();
 	},
 
-	/*
-	* Setters
-	*/
+	/**
+	 * Setter for the <a href="ContextOverlay.html#config_hideOn">hideOn</a>
+     * attribute.
+	 *
+	 * @method _setHideOn
+	 * @param {String} eventType Event type
+	 * @protected
+	 * @return String
+	 */
 	_setHideOn: function(eventType) {
 		var instance = this;
 		var trigger = instance.get(TRIGGER);
@@ -356,6 +610,16 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 		return eventType;
 	},
 
+	/**
+	 * Setter for the
+     * <a href="ContextOverlay.html#config_hideOnDocumentClick">hideOnDocumentClick</a>
+     * attribute.
+	 *
+	 * @method _setHideOn
+	 * @param {boolean} value
+	 * @protected
+	 * @return boolean
+	 */
 	_setHideOnDocumentClick: function(value) {
 		var instance = this;
 
@@ -369,6 +633,15 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 		return value;
 	},
 
+	/**
+	 * Setter for the <a href="ContextOverlay.html#config_showOn">showOn</a>
+     * attribute.
+	 *
+	 * @method _setShowOn
+	 * @param {String} eventType Event type
+	 * @protected
+	 * @return String
+	 */
 	_setShowOn: function(eventType) {
 		var instance = this;
 		var trigger = instance.get(TRIGGER);
@@ -405,6 +678,16 @@ A.extend(ContextOverlay, A.ComponentOverlay, {
 
 A.ContextOverlay = ContextOverlay;
 
+/**
+ * A base class for ContextOverlayManager:
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class ContextOverlayManager
+ * @constructor
+ * @extends OverlayManager
+ * @static
+ */
 A.ContextOverlayManager = new A.OverlayManager({});
 
 A.on(MOUSEDOWN, function() { A.ContextOverlayManager.hideAll(); }, A.getDoc());
