@@ -59,7 +59,8 @@ var L = A.Lang,
  * A base class for ContextPanel, providing:
  * <ul>
  *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li></li>
+ *    <li>Customizable arrow</li>
+ *    <li>Optional animation when show or hide</li>
  * </ul>
  *
  * Quick Example:<br/>
