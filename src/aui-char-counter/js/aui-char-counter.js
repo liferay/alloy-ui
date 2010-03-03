@@ -244,7 +244,7 @@ A.extend(CharCounter, A.Base, {
 	 * @param {Number} v Value of the new <a
      * href="CharCounter.html#config_maxLenght">maxLenght</a>.
 	 * @protected
-	 * @return Number
+	 * @return {Number}
 	 */
 	_setMaxLength: function(v) {
 		var instance = this;

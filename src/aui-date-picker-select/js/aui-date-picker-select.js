@@ -381,7 +381,7 @@ A.extend(DatePickerSelect, A.Calendar, {
 	 *
 	 * @method _getAppendOrder
 	 * @protected
-	 * @return Array
+	 * @return {Array}
 	 */
 	_getAppendOrder: function() {
 		var instance = this;
@@ -630,7 +630,7 @@ A.extend(DatePickerSelect, A.Calendar, {
 	 * @param {Object} values Object with labels to be used as content of each
      * option. Optional.
 	 * @protected
-	 * @return String
+	 * @return {String}
 	 */
 	_populateSelect: function(select, fromIndex, toIndex, labels, values) {
 		var i = 0;

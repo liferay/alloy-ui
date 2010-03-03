@@ -144,7 +144,7 @@ var Lang = A.Lang,
 		 *
 		 * @method register
 		 * @param {Overlay} overlay <a href="Overlay.html">Overlay</a> instance to be registered
-		 * @return Array Array of the registered overlays
+		 * @return {Array} Registered overlays
 		 */
 		register: function (overlay) {
 			var instance = this;
@@ -188,7 +188,7 @@ var Lang = A.Lang,
 		 *
 		 * @method remove
 		 * @param {Overlay} overlay <a href="Overlay.html">Overlay</a> instance to be removed
-		 * @return null
+		 * @return {null}
 		 */
 		remove: function (overlay) {
 			var instance = this;
@@ -209,7 +209,7 @@ var Lang = A.Lang,
 		 * @method each
 		 * @param {function} fn Callback to be executed on the
          * <a href="Array.html#method_each">Array.each</a>
-		 * @return null
+		 * @return {null}
 		 */
 		each: function(fn) {
 			var instance = this;
@@ -253,7 +253,7 @@ var Lang = A.Lang,
 		 * @method sortByZIndexDesc
 		 * @param {Overlay} a Overlay
 		 * @param {Overlay} b Overlay
-		 * @return Number
+		 * @return {Number}
 		 */
 		sortByZIndexDesc: function(a, b) {
 			if (!a || !b || !a.hasImpl(A.WidgetStack) || !b.hasImpl(A.WidgetStack)) {
@@ -279,7 +279,7 @@ var Lang = A.Lang,
 		 * @method _registered
 		 * @param {Overlay} overlay Overlay
 		 * @protected
-		 * @return boolean
+		 * @return {boolean}
 		 */
 		_registered: function(overlay) {
 			var instance = this;
