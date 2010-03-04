@@ -2,8 +2,20 @@
 
 <html>
 <head>
-	<script src="../../build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../../build/aui-base/aui-base.js" type="text/javascript" charset="utf-8"></script>
+	<!-- <script src="../../build/yui/yui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../build/aui-base/aui-base.js" type="text/javascript" charset="utf-8"></script> -->
+
+	<script type="text/javascript">
+
+		/*@cc_on
+			'abbr article aside audio canvas details figcaption figure footer header hgroup mark menu meter nav output progress section summary time video'.replace(
+				/\w+/g,
+				function(el) {
+					document.createElement(el);
+				}
+			);
+		@*/
+	</script>
 
 	<link rel="stylesheet" href="../../build/aui-skins/core/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 
@@ -110,11 +122,17 @@
 			color: #fff;
 		}
 
-
+		menu li {
+			border: 1px solid #f00;
+			background: #ccc;
+		}
 	</style>
 </head>
 
 <body>
+	<menu>
+		<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+	</menu>
 <div id="wrapper">
 	<h1>Alloy - form Demo</h1>
 
@@ -1123,10 +1141,6 @@
 		</form>
 	</div>
 </div>
-
-<script type="text/javascript" charset="utf-8">
-	AUI().use('aui-base');
-</script>
 
 </body>
 </html>
