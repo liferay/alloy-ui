@@ -1,3 +1,14 @@
+/**
+ * The Panel Utility - Panel is a container that has specific functionality
+ * and structural components that make it the good for building block for
+ * application-oriented user interfaces. Panel also provides built-in
+ * expandable and collapsible behavior, along with a variety of prebuilt tool
+ * buttons that can be wired up to provide other customized behavior. Panels
+ * can be easily dropped into any Container or layout.
+ *
+ * @module aui-panel
+ */
+
 var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isBoolean = Lang.isBoolean,
@@ -32,19 +43,79 @@ var Lang = A.Lang,
 
 	TPL_HEADER_TEXT = '<span class="' + CSS_PANEL_HD_TEXT + '"></span>';
 
+/**
+ * <p><img src="assets/images/aui-panel/main.png"/></p>
+ *
+ * A base class for Panel, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>Built-in expandable and collapsible behavior</li>
+ *    <li>Prebuilt tool buttons that can be wired up to provide other customized behavior</li>
+ *    <li>Good for building block for application-oriented user interfaces</li>
+ *    <li>Can be easily dropped into any Container or layout</li>
+ * </ul>
+ *
+ * Quick Example:<br/>
+ *
+ * <pre><code>var instance = new A.Panel({
+ *	collapsible: true,
+ *  collapsed: true,
+ *	headerContent: 'Panel 1',
+ *	bodyContent: 'Content'
+ * }).render();
+ * </code></pre>
+ *
+ * Check the list of <a href="Panel.html#configattributes">Configuration Attributes</a> available for
+ * Panel.
+ *
+ * @class Panel
+ * @constructor
+ * @extends Component
+ * @uses WidgetStdMod
+ * @param config {Object} Object literal specifying widget configuration properties.
+ */
 var Panel = function() {};
 
+/**
+ * Static property used to define the default attribute
+ * configuration for the Panel.
+ *
+ * @property Panel.ATTRS
+ * @type Object
+ * @static
+ */
 Panel.ATTRS = {
+	/**
+	 * Whether the panel is displayed collapsed.
+	 *
+	 * @attribute collapsed
+	 * @default false
+	 * @type boolean
+	 */
 	collapsed: {
 		value: false,
 		validator: isBoolean
 	},
 
+	/**
+	 * Whether the panel is able to be collapsed.
+	 *
+	 * @attribute collapsible
+	 * @default false
+	 * @type boolean
+	 */
 	collapsible: {
 		value: false,
 		validator: isBoolean
 	},
 
+	/**
+	 * The title to be displayed on the Panel.
+	 *
+	 * @attribute title
+	 * @default ''
+	 * @type Boolean | String
+	 */
 	title: {
 		value: '',
 		validator: function(v) {
@@ -52,6 +123,21 @@ Panel.ATTRS = {
 		}
 	},
 
+	/**
+	 * <p>Array of <a href="ToolItem.html">ToolItem</a> to be displayed as icons
+     * on the Panel title.</p>
+	 *
+	 * Example:
+	 *
+	 * <pre><code>tools: [ { icon: 'close', id: 'close' } ]</code></pre>
+	 *
+	 * For more information how to use this option see
+     * <a href="ToolItem.html">ToolItem</a>.
+	 *
+	 * @attribute tools
+	 * @default []
+	 * @type Array
+	 */
 	tools: {
 		value: [],
 		validator: isArray
@@ -59,9 +145,12 @@ Panel.ATTRS = {
 };
 
 Panel.prototype = {
-	/*
-	* Lifecycle
-	*/
+	/**
+	 * Construction logic executed during Panel instantiation. Lifecycle.
+	 *
+	 * @method initializer
+	 * @protected
+	 */
 	initializer: function(config) {
 		var instance = this;
 
@@ -78,21 +167,38 @@ Panel.prototype = {
 		instance.after('titleChange', instance._afterTitleChange);
 	},
 
-	/*
-	* Methods
-	*/
+	/**
+	 * Collapse the panel setting the
+     * <a href="Panel.html#config_collapsed">collapsed</a> attribute to
+     * <code>true</code>.
+	 *
+	 * @method collapse
+	 */
 	collapse: function() {
 		var instance = this;
 
 		instance.set(COLLAPSED, true);
 	},
 
+	/**
+	 * Expand the panel setting the
+     * <a href="Panel.html#config_collapsed">collapsed</a> attribute to
+     * <code>false</code>.
+	 *
+	 * @method expand
+	 */
 	expand: function() {
 		var instance = this;
 
 		instance.set(COLLAPSED, false);
 	},
 
+	/**
+	 * Toggle the visibility of the Panel toggling the value of the
+     * <a href="Widget.html#config_visible">visible</a> attribute.
+	 *
+	 * @method toggle
+	 */
 	toggle: function() {
 		var instance = this;
 
@@ -102,6 +208,12 @@ Panel.prototype = {
 		);
 	},
 
+	/**
+	 * Toggle the <a href="Panel.html#config_collapsed">collapsed</a> value.
+     * Expanding and collapsing the Panel.
+	 *
+	 * @method toggleCollapse
+	 */
 	toggleCollapse: function() {
 		var instance = this;
 
@@ -113,6 +225,13 @@ Panel.prototype = {
 		}
 	},
 
+	/**
+	 * Add css classes neede for the Panel in the passed <code>section</code>.
+	 *
+	 * @method _addPanelClass
+	 * @param {String} section <a href="WidgetStdMod.html">WidgetStdMod</a> section (i.e., body, header, footer).
+	 * @protected
+	 */
 	_addPanelClass: function(section) {
 		var instance = this;
 
@@ -132,6 +251,12 @@ Panel.prototype = {
 		}
 	},
 
+	/**
+	 * Render the <a href="Panel.html#config_tools">tools</a>.
+	 *
+	 * @method _renderToolItems
+	 * @protected
+	 */
 	_renderToolItems: function() {
 		var instance = this;
 		var tools = instance.get(TOOLS);
@@ -161,6 +286,13 @@ Panel.prototype = {
 		instance.toolset.get(BOUNDING_BOX).addClass(CSS_PANEL_TOOLSET);
 	},
 
+	/**
+	 * Render the Panel header text with the value of
+     * <a href="Panel.html#config_title">title</a>.
+	 *
+	 * @method _renderHeaderText
+	 * @protected
+	 */
 	_renderHeaderText: function() {
 		var instance = this;
 		var headerNode = instance.headerNode;
@@ -173,6 +305,13 @@ Panel.prototype = {
 
 		headerNode.prepend(headerTextNode);
 
+		/**
+		 * Stores the created node for the header of the Panel.
+		 *
+		 * @property headerTextNode
+		 * @type Node
+		 * @protected
+		 */
 		instance.headerTextNode = headerTextNode;
 
 		if (!instance.get(TITLE)) {
@@ -182,6 +321,12 @@ Panel.prototype = {
 		instance._syncTitleUI();
 	},
 
+	/**
+	 * Sync the UI for the collapsed status (i.e., icons, height etc).
+	 *
+	 * @method _syncCollapsedUI
+	 * @protected
+	 */
 	_syncCollapsedUI: function() {
 		var instance = this;
 
@@ -213,6 +358,14 @@ Panel.prototype = {
 		}
 	},
 
+	/**
+	 * Sync the
+     * <a href="Panel.html#property_headerTextNode">headerTextNode</a> with the
+     * value of the <a href="Panel.html#config_title">title</a>.
+	 *
+	 * @method _syncTitleUI
+	 * @protected
+	 */
 	_syncTitleUI: function() {
 		var instance = this;
 		var title = instance.get(TITLE);
@@ -220,15 +373,27 @@ Panel.prototype = {
 		instance.headerTextNode.html(title);
 	},
 
-	/*
-	* Listeners
-	*/
+	/**
+	 * Fires after the value of
+     * <a href="Panel.html#config_collapsed">collapsed</a> change.
+	 *
+	 * @method _afterCollapsedChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_afterCollapsedChange: function(event) {
 		var instance = this;
 
 		instance._syncCollapsedUI();
 	},
 
+	/**
+	 * Fires after render phase.
+	 *
+	 * @method _afterPanelRender
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_afterPanelRender: function(event) {
 		var instance = this;
 
@@ -244,6 +409,14 @@ Panel.prototype = {
 		instance._syncCollapsedUI();
 	},
 
+	/**
+	 * Fires after the value of
+     * <a href="Panel.html#config_title">title</a> change.
+	 *
+	 * @method _afterTitleChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_afterTitleChange: function(event) {
 		var instance = this;
 
