@@ -129,11 +129,11 @@
 	padding: 0 0.5em;
 }
 
-.aui-column-first .aui-column-content, .aui-column .aui-column-content-first {
+.aui-column-content-first {
 	padding: 0 1em 0 0;
 }
 
-.aui-column-last .aui-column-content, .aui-column .aui-column-content-last {
+.aui-column-content-last {
 	padding: 0 0 0 1em;
 }
 
