@@ -1,9 +1,13 @@
-/*
-* This event fires when the value of the element changes, either as a result of
-* a keystroke, or from an input event.
-*
-* @event input
-*/
+/**
+ * An object that encapsulates text changed events for textareas and input
+ * element of type text and password. This event only occurs when the element
+ * is focused.
+ *
+ * @module aui-input-handle
+ *
+ * @class AUI~input~handle
+ */
+
 var	L = A.Lang,
 	isFunction = L.isFunction,
 
@@ -13,6 +17,19 @@ var	L = A.Lang,
 	UA = A.UA;
 
 var evt = {
+	/**
+	 * This event fires when the value of the element changes, either as a result of
+	 * a keystroke, or from an input event.
+	 *
+	 * @event input
+	 * @param type {String} 'input'
+	 * @param fn {Function} the callback function
+	 * @param el {String|Node|etc} the element to bind (typically document)
+	 * @param o {Object} optional context object
+	 * @param args 0..n additional arguments that should be provided
+	 * to the listener.
+	 * @return {Event.Handle} the detach handle
+	 */
 	on: function(type, fn, el) {
 		// priorize input event that supports copy & paste
 		var etype = 'input';
@@ -55,5 +72,16 @@ var evt = {
 A.Env.evt.plugins.input = evt;
 
 if (A.Node) {
+	/**
+	 * A.Node.DOM_EVENTS.input event.
+	 *
+	 * @property A.Node.DOM_EVENTS.input
+	 * @type Event.Handle
+	 * @static
+	 */
 	A.Node.DOM_EVENTS.input = evt;
 }
+
+/**
+ * @method
+ */

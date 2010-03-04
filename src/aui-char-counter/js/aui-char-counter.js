@@ -36,6 +36,7 @@ var L = A.Lang,
  * CharCounter.
  *
  * @class CharCounter
+ * @uses AUI~input~handle
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  * @extends Base
