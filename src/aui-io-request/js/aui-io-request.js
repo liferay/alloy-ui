@@ -197,6 +197,7 @@ A.mix(IORequest, {
 		 * @attribute cfg
 		 * @default Object containing all the
          * <a href="io.html#configattributes">IO Configuration Attributes</a>.
+         * @readOnly
 		 * @type String
 		 */
 		cfg: {
