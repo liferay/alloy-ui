@@ -1,3 +1,11 @@
+/**
+ * The IOPlugin Utility - When plugged to a Node or Widget loads the content
+ * of a URI and set as its content, parsing the <code>script</code> tags if
+ * present on the code.
+ *
+ * @module aui-io-plugin
+ */
+
 var L = A.Lang,
 	isBoolean = L.isBoolean,
 	isString = L.isString,
@@ -33,18 +41,66 @@ var L = A.Lang,
 
 	CSS_ICON_LOADING = getCN(ICON, LOADING);
 
+/**
+ * A base class for IOPlugin, providing:
+ * <ul>
+ *    <li>Loads the content of a URI as content of a Node or Widget</li>
+ *    <li>Use <a href="ParseContent.html">ParseContent</a> to parse the JavaScript tags and evaluate them</li>
+ * </ul>
+ *
+ * Quick Example:<br/>
+ * 
+ * <pre><code>A.one('#content').plug(A.Plugin.IO, { uri: 'assets/content.html', method: 'GET' });</code></pre>
+ *
+ * Check the list of <a href="IOPlugin.html#configattributes">Configuration Attributes</a> available for
+ * IOPlugin.
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class A.Plugin.IO
+ * @constructor
+ * @extends IORequest
+ */
 function IOPlugin(config) {
 	IOPlugin.superclass.constructor.apply(this, arguments);
 }
 
 A.mix(IOPlugin, {
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property A.Plugin.IO.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: IO_PLUGIN,
 
+	/**
+	 * Static property provides a string to identify the namespace.
+	 *
+	 * @property A.Plugin.IO.NS
+	 * @type String
+	 * @static
+	 */
 	NS: IO,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the A.Plugin.IO.
+	 *
+	 * @property A.Plugin.IO.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
-		// node give us the possibility of plug IO in any object we want,
-		// the setContent will use the node to set the content
+		/**
+		 * Plug IO in any object we want, the setContent will use the node to
+         * set the content.
+		 *
+		 * @attribute node
+		 * @default null
+		 * @type Node | String
+		 */
 		node: {
 			value: null,
 			setter: function(value) {
@@ -74,25 +130,63 @@ A.mix(IOPlugin, {
 			validator: isNode
 		},
 
+		/**
+		 * Message to be set on the content when the transaction fails.
+		 *
+		 * @attribute failureMessage
+		 * @default 'Failed to retrieve content'
+		 * @type String
+		 */
 		failureMessage: {
 			value: 'Failed to retrieve content',
 			validator: isString
 		},
 
+		/**
+		 * Options passed to the <a href="LoadingMask.html">LoadingMask</a>.
+		 *
+		 * @attribute loadingMask
+		 * @default {}
+		 * @type Object
+		 */
 		loadingMask: {
 			value: {}
 		},
 
+		/**
+		 * If true the <a href="ParseContent.html">ParseContent</a> plugin
+         * will be plugged to the <a href="A.Plugin.IO.html#config_node">node</a>.
+		 *
+		 * @attribute parseContent
+		 * @default true
+		 * @type boolean
+		 */
 		parseContent: {
 			value: true,
 			validator: isBoolean
 		},
 
+		/**
+		 * Show the <a href="LoadingMask.html">LoadingMask</a> covering the <a
+         * href="A.Plugin.IO.html#config_node">node</a> while loading.
+		 *
+		 * @attribute showLoading
+		 * @default true
+		 * @type boolean
+		 */
 		showLoading: {
 			value: true,
 			validator: isBoolean
 		},
 
+		/**
+		 * Section where the content will be set in case you are plugging it
+         * on a instace of <a href="WidgetStdMod.html">WidgetStdMod</a>.
+		 *
+		 * @attribute section
+		 * @default StdMod.BODY
+		 * @type String
+		 */
 		section: {
 			value: StdMod.BODY,
 			validator: function(val) {
@@ -100,6 +194,15 @@ A.mix(IOPlugin, {
 			}
 		},
 
+		/**
+		 * Type of the <code>instance</code> we are pluggin the A.Plugin.IO.
+         * Could be a Node, or a Widget.
+		 *
+		 * @attribute type
+		 * @default 'Node'
+		 * @readOnly
+		 * @type String
+		 */
 		type: {
 			readOnly: true,
 			valueFn: function() {
@@ -116,6 +219,13 @@ A.mix(IOPlugin, {
 			validator: isString
 		},
 
+		/**
+		 * Where to insert the content, AFTER, BEFORE or REPLACE.
+		 *
+		 * @attribute where
+		 * @default StdMod.REPLACE
+		 * @type String
+		 */
 		where: {
 			value: StdMod.REPLACE,
 			validator: function(val) {
@@ -126,15 +236,24 @@ A.mix(IOPlugin, {
 });
 
 A.extend(IOPlugin, A.IORequest, {
-	/*
-	* Lifecycle
-	*/
+	/**
+	 * Construction logic executed during A.Plugin.IO instantiation. Lifecycle.
+	 *
+	 * @method initializer
+	 * @protected
+	 */
 	initializer: function() {
 		var instance = this;
 
 		instance.bindUI();
 	},
 
+	/**
+	 * Bind the events on the A.Plugin.IO UI. Lifecycle.
+	 *
+	 * @method bindUI
+	 * @protected
+	 */
 	bindUI: function() {
 		var instance = this;
 
@@ -151,6 +270,13 @@ A.extend(IOPlugin, A.IORequest, {
 		}
 	},
 
+	/**
+	 * Fires after the init phase of the A.Plugin.IO.
+	 *
+	 * @method 
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_afterInit: function() {
 		var instance = this;
 
@@ -161,6 +287,12 @@ A.extend(IOPlugin, A.IORequest, {
 		IOPlugin.superclass._afterInit.apply(this, arguments);
 	},
 
+	/**
+	 * Bind the plugins on the <code>instance</code>.
+	 *
+	 * @method _bindPlugins
+	 * @protected
+	 */
 	_bindPlugins: function() {
 		var instance = this;
 		var node = instance.get(NODE);
@@ -190,10 +322,11 @@ A.extend(IOPlugin, A.IORequest, {
 		}
 	},
 
-	/*
-	* Methods
-	*/
-
+	/**
+	 * Invoke the <a href="OverlayMask.html#method_hide">OverlayMask hide</a> method.
+	 *
+	 * @method hideLoading
+	 */
 	hideLoading: function() {
 		var instance = this;
 
@@ -204,6 +337,11 @@ A.extend(IOPlugin, A.IORequest, {
 		}
 	},
 
+	/**
+	 * Set the content of the <a href="A.Plugin.IO.html#config_node">node</a>.
+	 *
+	 * @method setContent
+	 */
 	setContent: function(content) {
 		var instance = this;
 		var node = instance.get(NODE);
@@ -215,6 +353,11 @@ A.extend(IOPlugin, A.IORequest, {
 		instance._getContentSetterByType().apply(instance, [content]);
 	},
 
+	/**
+	 * Invoke the <a href="OverlayMask.html#method_show">OverlayMask show</a> method.
+	 *
+	 * @method showLoading
+	 */
 	showLoading: function() {
 		var instance = this;
 		var node = instance.get(NODE);
@@ -236,6 +379,15 @@ A.extend(IOPlugin, A.IORequest, {
 		node.loadingmask.show();
 	},
 
+	/**
+	 * Get the appropriated <a
+     * href="A.Plugin.IO.html#method_setContent">setContent</a> function
+     * implementation for each <a href="A.Plugin.IO.html#config_type">type</a>.
+	 *
+	 * @method _getContentSetterByType
+	 * @protected
+	 * @return {function}
+	 */
 	_getContentSetterByType: function() {
 		var instance = this;
 
@@ -265,15 +417,27 @@ A.extend(IOPlugin, A.IORequest, {
 		return setters[this.get(TYPE)];
 	},
 
+	/**
+	 * Sync the loading mask UI.
+	 *
+	 * @method _syncLoadingMaskUI
+	 * @protected
+	 */
 	_syncLoadingMaskUI: function() {
 		var instance = this;
 
 		instance.get(NODE).loadingmask.refreshMask();
 	},
 
-	/*
-	* IO callbacks
-	*/
+	/**
+	 * Internal success callback for the IO transaction.
+	 *
+	 * @method _successHandler
+	 * @param {EventFavade} event
+	 * @param {String} id Id of the IO transaction.
+	 * @param {Object} obj XHR transaction Object.
+	 * @protected
+	 */
 	_successHandler: function(event, id, xhr) {
 		var instance = this;
 
@@ -282,6 +446,15 @@ A.extend(IOPlugin, A.IORequest, {
 		);
 	},
 
+	/**
+	 * Internal failure callback for the IO transaction.
+	 *
+	 * @method _failureHandler
+	 * @param {EventFavade} event
+	 * @param {String} id Id of the IO transaction.
+	 * @param {Object} obj XHR transaction Object.
+	 * @protected
+	 */
 	_failureHandler: function(event, id, xhr) {
 		var instance = this;
 
@@ -290,9 +463,14 @@ A.extend(IOPlugin, A.IORequest, {
 		);
 	},
 
-	/*
-	* Listeners
-	*/
+	/**
+	 * Fires after the value of the
+	 * <a href="A.Plugin.IO.html#config_active">active</a> attribute change.
+	 *
+	 * @method _onActiveChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_onActiveChange: function(event) {
 		var instance = this;
 
