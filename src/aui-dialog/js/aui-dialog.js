@@ -91,7 +91,7 @@ var L = A.Lang,
  *
  * @class Dialog
  * @constructor
- * @extends Base
+ * @extends Panel
  */
 var Dialog = function(config) {
 	if (!A.DialogMask) {
