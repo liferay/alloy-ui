@@ -78,6 +78,7 @@ var L = A.Lang,
  * @class IORequest
  * @constructor
  * @extends Plugin.Base
+ * @uses io
  */
 function IORequest() {
 	IORequest.superclass.constructor.apply(this, arguments);
@@ -243,18 +244,50 @@ A.mix(IORequest, {
 		// To take advantages of the Attribute listeners of A.Base
 		// See: http://developer.yahoo.com/yui/3/io/
 
+		/**
+		 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+        * Configuration</a>.
+		 *
+		 * @attribute arguments
+		 * @default Value mapped on AUI.defaults.io.
+		 * @type Object
+		 */
 		arguments: {
 			valueFn: getDefault(ARGUMENTS)
 		},
 
+		/**
+		 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+        * Configuration</a>.
+		 *
+		 * @attribute context
+		 * @default Value mapped on AUI.defaults.io.
+		 * @type Object
+		 */
 		context: {
 			valueFn: getDefault(CONTEXT)
 		},
 
+		/**
+		 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+        * Configuration</a>.
+		 *
+		 * @attribute data
+		 * @default Value mapped on AUI.defaults.io.
+		 * @type Object
+		 */
 		data: {
 			valueFn: getDefault(DATA)
 		},
 
+		/**
+		 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+        * Configuration</a>.
+		 *
+		 * @attribute form
+		 * @default Value mapped on AUI.defaults.io.
+		 * @type Object
+		 */
 		form: {
 			valueFn: getDefault(FORM)
 		},
@@ -294,7 +327,8 @@ A.mix(IORequest, {
 		},
 
 		/**
-		 * See <a href="io.html#config_method">method</a>.
+		 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+        * Configuration</a>.
 		 *
 		 * @attribute method
 		 * @default Value mapped on AUI.defaults.io.
@@ -305,7 +339,8 @@ A.mix(IORequest, {
 		},
 
 		/**
-		 * See <a href="io.html#config_sync">sync</a>.
+		 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+        * Configuration</a>.
 		 *
 		 * @attribute sync
 		 * @default Value mapped on AUI.defaults.io.
@@ -316,7 +351,8 @@ A.mix(IORequest, {
 		},
 
 		/**
-		 * See <a href="io.html#config_timeout">timeout</a>.
+		 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+        * Configuration</a>.
 		 *
 		 * @attribute timeout
 		 * @default Value mapped on AUI.defaults.io.
@@ -327,7 +363,8 @@ A.mix(IORequest, {
 		},
 
 		/**
-		 * See <a href="io.html#config_xdr">xdr</a>.
+		 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+         * Configuration</a>.
 		 *
 		 * @attribute xdr
 		 * @default Value mapped on AUI.defaults.io.
