@@ -237,7 +237,7 @@ A.mix(ContextOverlay, {
 
 		/**
 		 * If true the ContextOverlay is visible by default after the render phase.
-         * Inherited from <a href="Overlay.html#config_trigger">Overlay</a>.
+         * Inherited from <a href="Overlay.html">Overlay</a>.
 		 *
 		 * @attribute visible
 		 * @default false
