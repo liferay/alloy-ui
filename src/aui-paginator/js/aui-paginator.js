@@ -924,6 +924,7 @@ A.extend(Paginator, A.Component, {
 	 *
 	 * @method _getState
 	 * @param {Object} v Current state object.
+	 * @protected
 	 * @return {Object} State object.
 	 */
 	_getState: function(v) {
@@ -944,6 +945,7 @@ A.extend(Paginator, A.Component, {
 	 *
 	 * @method _getTemplate
 	 * @param {String} v Current template.
+	 * @protected
 	 * @return {String} Current template.
 	 */
 	_getTemplate: function(v) {
@@ -990,6 +992,7 @@ A.extend(Paginator, A.Component, {
 	 *
 	 * @method _setState
 	 * @param {Object} v New state object.
+	 * @protected
 	 * @return {Object}
 	 */
 	_setState: function(v) {
@@ -1007,6 +1010,7 @@ A.extend(Paginator, A.Component, {
 	 *
 	 * @method _setTotal
 	 * @param {Number} v
+	 * @protected
 	 * @return {Number}
 	 */
 	_setTotal: function(v) {
