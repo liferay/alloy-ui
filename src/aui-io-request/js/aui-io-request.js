@@ -1,3 +1,9 @@
+/**
+ * The IORequest Utility
+ *
+ * @module aui-io-request
+ */
+
 var L = A.Lang,
 	isBoolean = L.isBoolean,
 	isFunction = L.isFunction,
@@ -50,24 +56,86 @@ var L = A.Lang,
 		xml: 'application/xml, text/xml'
 	};
 
+/**
+ * A base class for IORequest, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li></li>
+ * </ul>
+ *
+ * Quick Example:<br/>
+ *
+ * <pre><code>var instance = new A.IORequest({
+    boundingBox: ''
+}).render();
+ * </code></pre>
+ *
+ * Check the list of <a href="IORequest.html#configattributes">Configuration Attributes</a> available for
+ * IORequest.
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class IORequest
+ * @constructor
+ * @extends Plugin.Base
+ */
 function IORequest() {
 	IORequest.superclass.constructor.apply(this, arguments);
 }
 
 A.mix(IORequest, {
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property IORequest.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: IO_REQUEST,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the IORequest.
+	 *
+	 * @property IORequest.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+		/**
+		 * If <code>true</code> invoke the
+         * <a href="IORequest.html#method_start">start</a> method automatically,
+         * initializing the IO transaction.
+		 *
+		 * @attribute autoLoad
+		 * @default true
+		 * @type boolean
+		 */
 		autoLoad: {
 			value: true,
 			validator: isBoolean
 		},
 
+		/**
+		 * If <code>false</code> the current timestamp will be appended to the
+         * url, avoiding the url to be cached.
+		 *
+		 * @attribute cache
+		 * @default true
+		 * @type boolean
+		 */
 		cache: {
 			value: true,
 			validator: isBoolean
 		},
 
+		/**
+		 * The type of the request (i.e., could be xml, json, javascript, text).
+		 *
+		 * @attribute dataType
+		 * @default null
+		 * @type String
+		 */
 		dataType: {
 			setter: function(v) {
 				return (v || EMPTY_STRING).toLowerCase();
@@ -76,6 +144,16 @@ A.mix(IORequest, {
 			validator: isString
 		},
 
+		/**
+		 * This is a normalized attribute for the response data. It's useful
+         * to retrieve the correct type for the
+         * <a href="IORequest.html#config_dataType">dataType</a> (i.e., in json
+         * requests the <code>responseData</code>) is a JSONObject.
+		 *
+		 * @attribute responseData
+		 * @default null
+		 * @type String | JSONObject | XMLDocument
+		 */
 		responseData: {
 			setter: function(v) {
 				return this._setResponseData(v);
@@ -83,6 +161,13 @@ A.mix(IORequest, {
 			value: null
 		},
 
+		/**
+		 * URI to be requested using AJAX.
+		 *
+		 * @attribute uri
+		 * @default null
+		 * @type String
+		 */
 		uri: {
 			setter: function(v) {
 				return this._parseURL(v);
@@ -93,11 +178,28 @@ A.mix(IORequest, {
 
 		// User readOnly variables
 
+		/**
+		 * Whether the transaction is active or not.
+		 *
+		 * @attribute active
+		 * @default false
+		 * @type boolean
+		 */
 		active: {
 			value: false,
 			validator: isBoolean
 		},
 
+		/**
+		 * Object containing all the
+         * <a href="io.html#configattributes">IO Configuration Attributes</a>.
+         * This Object is passed to the <code>A.io</code> internally.
+		 *
+		 * @attribute cfg
+		 * @default Object containing all the
+         * <a href="io.html#configattributes">IO Configuration Attributes</a>.
+		 * @type String
+		 */
 		cfg: {
 			getter: function() {
 				var instance = this;
@@ -126,6 +228,13 @@ A.mix(IORequest, {
 			readOnly: true
 		},
 
+		/**
+		 * Stores the IO Object of the current transaction.
+		 *
+		 * @attribute transaction
+		 * @default null
+		 * @type Object
+		 */
 		transaction: {
 			value: null
 		},
@@ -150,7 +259,13 @@ A.mix(IORequest, {
 			valueFn: getDefault(FORM)
 		},
 
-		// set the correct ACCEPT header based on the dataType
+		/**
+		 * Set the correct ACCEPT header based on the dataType.
+		 *
+		 * @attribute headers
+		 * @default Object
+		 * @type Object
+		 */
 		headers: {
 			getter: function(value) {
 				var header = [];
@@ -178,18 +293,46 @@ A.mix(IORequest, {
 			valueFn: getDefault(HEADERS)
 		},
 
+		/**
+		 * See <a href="io.html#config_method">method</a>.
+		 *
+		 * @attribute method
+		 * @default Value mapped on AUI.defaults.io.
+		 * @type String
+		 */
 		method: {
 			valueFn: getDefault(METHOD)
 		},
 
+		/**
+		 * See <a href="io.html#config_sync">sync</a>.
+		 *
+		 * @attribute sync
+		 * @default Value mapped on AUI.defaults.io.
+		 * @type boolean
+		 */
 		sync: {
 			valueFn: getDefault(SYNC)
 		},
 
+		/**
+		 * See <a href="io.html#config_timeout">timeout</a>.
+		 *
+		 * @attribute timeout
+		 * @default Value mapped on AUI.defaults.io.
+		 * @type Number
+		 */
 		timeout: {
 			valueFn: getDefault(TIMEOUT)
 		},
 
+		/**
+		 * See <a href="io.html#config_xdr">xdr</a>.
+		 *
+		 * @attribute xdr
+		 * @default Value mapped on AUI.defaults.io.
+		 * @type Object
+		 */
 		xdr: {
 			valueFn: getDefault(XDR)
 		}
@@ -197,16 +340,26 @@ A.mix(IORequest, {
 });
 
 A.extend(IORequest, A.Plugin.Base, {
-	/*
-	* Lifecycle
-	*/
+	/**
+	 * Construction logic executed during IORequest instantiation. Lifecycle.
+	 *
+	 * @method initializer
+	 * @protected
+	 */
 	initializer: function(config) {
 		var instance = this;
 
 		instance.after('init', instance._afterInit);
 	},
 
-	_afterInit: function() {
+	/**
+	 * Fires after the init phase of the IORequest.
+	 *
+	 * @method 
+	 * @param {EventFacade} event
+	 * @protected
+	 */
+	_afterInit: function(event) {
 		var instance = this;
 
 		if (instance.get(AUTO_LOAD)) {
@@ -214,6 +367,13 @@ A.extend(IORequest, A.Plugin.Base, {
 		}
 	},
 
+	/**
+	 * Descructor lifecycle implementation for the IORequest class.
+	 * Purges events attached to the node (and all child nodes).
+	 *
+	 * @method destructor
+	 * @protected
+	 */
 	destructor: function() {
 		var instance = this;
 
@@ -222,9 +382,11 @@ A.extend(IORequest, A.Plugin.Base, {
 		instance.set(TRANSACTION, null);
 	},
 
-	/*
-	* Methods
-	*/
+	/**
+	 * Starts the IO transaction. Used to refresh the content also.
+	 *
+	 * @method start
+	 */
 	start: function() {
 		var instance = this;
 
@@ -240,6 +402,11 @@ A.extend(IORequest, A.Plugin.Base, {
 		instance.set(TRANSACTION, transaction);
 	},
 
+	/**
+	 * Stops the IO transaction.
+	 *
+	 * @method stop
+	 */
 	stop: function() {
 		var instance = this;
 		var transaction = instance.get(TRANSACTION);
@@ -249,6 +416,17 @@ A.extend(IORequest, A.Plugin.Base, {
 		}
 	},
 
+	/**
+	 * Parse the <a href="IORequest.html#config_uri">uri</a> to add a
+     * timestamp if <a href="IORequest.html#config_cache">cache</a> is
+     * <code>true</code>. Also applies the
+     * <code>AUI.defaults.io.uriFormatter</code>.
+	 *
+	 * @method _parseURL
+	 * @param {String} url
+	 * @protected
+	 * @return {String}
+	 */
 	_parseURL: function(url) {
 		var instance = this;
 		var cache = instance.get(CACHE);
@@ -273,9 +451,13 @@ A.extend(IORequest, A.Plugin.Base, {
 		return url;
 	},
 
-	/*
-	* IO callbacks
-	*/
+	/**
+	 * Internal end callback for the IO transaction.
+	 *
+	 * @method _end
+	 * @param {Number} id ID of the IO transaction.
+	 * @protected
+	 */
 	_end: function(id) {
 		var instance = this;
 
@@ -285,6 +467,14 @@ A.extend(IORequest, A.Plugin.Base, {
 		instance.fire(END, id);
 	},
 
+	/**
+	 * Internal success callback for the IO transaction.
+	 *
+	 * @method _success
+	 * @param {Number} id ID of the IO transaction.
+	 * @param {Object} obj IO transaction Object.
+	 * @protected
+	 */
 	_success: function(id, obj) {
 		var instance = this;
 
@@ -294,9 +484,14 @@ A.extend(IORequest, A.Plugin.Base, {
 		instance.fire(SUCCESS, id, obj);
 	},
 
-	/*
-	* Setters
-	*/
+	/**
+	 * Setter for <a href="IORequest.html#config_responseData">responseData</a>.
+	 *
+	 * @method _setResponseData
+	 * @protected
+	 * @param {Object} xhr XHR Object.
+	 * @return {Object}
+	 */
 	_setResponseData: function(xhr) {
 		var data = null;
 		var instance = this;
@@ -344,6 +539,22 @@ A.extend(IORequest, A.Plugin.Base, {
 
 A.IORequest = IORequest;
 
+/**
+ * Alloy IO extension
+ *
+ * @class A.io
+ * @static
+ */
+
+/**
+ * Static method to invoke the IORequest. Likewise <a href="io.html#method_io">io</a>.
+ *
+ * @method A.io.request
+ * @for A.io
+ * @param {String} uri URI to be requested.
+ * @param {Object} config Configuration Object for the <a href="io.html">IO</a>.
+ * @return {IORequest}
+ */
 A.io.request = function(uri, config) {
 	return new A.IORequest(
 		A.merge(config, {
