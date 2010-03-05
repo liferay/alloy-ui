@@ -68,7 +68,7 @@ LoadingMask.NAME = NAME;
 /**
  * Static property provides a string to identify the namespace.
  *
- * @property LoadingMask.NAME
+ * @property LoadingMask.NS
  * @type String
  * @static
  */
