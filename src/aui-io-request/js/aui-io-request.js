@@ -1,5 +1,6 @@
 /**
- * The IORequest Utility
+ * The IORequest Utility - Provides response data normalization for XML, JSON,
+ * JavaScript and cache option.
  *
  * @module aui-io-request
  */
@@ -59,16 +60,13 @@ var L = A.Lang,
 /**
  * A base class for IORequest, providing:
  * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li></li>
+ *    <li>Response data normalization for XML, JSON, JavaScript</li>
+ *    <li>Cache options</li>
  * </ul>
  *
  * Quick Example:<br/>
  *
- * <pre><code>var instance = new A.IORequest({
-    boundingBox: ''
-}).render();
- * </code></pre>
+ * <pre><code>A.io.request(uri, config);</code></pre>
  *
  * Check the list of <a href="IORequest.html#configattributes">Configuration Attributes</a> available for
  * IORequest.
