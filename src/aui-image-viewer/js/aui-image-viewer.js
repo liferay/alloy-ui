@@ -1,3 +1,9 @@
+/**
+ * The ImageViewer Utility
+ *
+ * @module aui-image-viewer
+ */
+
 var L = A.Lang,
 	isBoolean = L.isBoolean,
 	isNumber = L.isNumber,
@@ -105,14 +111,67 @@ var L = A.Lang,
 	TPL_LOADER = '<div class="' + CSS_OVERLAY_HIDDEN + '"></div>',
 	TPL_LOADING = '<div class="' + CSS_ICON_LOADING + '"></div>';
 
+/**
+ * <p><img src="assets/images/aui-image-viewer/main.png"/></p>
+ *
+ * A base class for ImageViewer, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>Displays an image in a Overlay</li>
+ *    <li>Keyboard navigation support</li>
+ * </ul>
+ *
+ * Quick Example:<br/>
+ *
+ * <pre><code>var instance = new A.ImageViewer({
+ *   links: '#gallery1 a',
+ *   caption: 'Liferay Champion Soccer',
+ *   captionFromTitle: true,
+ *   preloadNeighborImages: true,
+ *   preloadAllImages: true,
+ *   showInfo: true
+ * }).render();
+ * </code></pre>
+ *
+ * Check the list of <a href="ImageViewer.html#configattributes">Configuration Attributes</a> available for
+ * ImageViewer.
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class ImageViewer
+ * @constructor
+ * @extends ComponentOverlay
+ */
 function ImageViewer(config) {
 	ImageViewer.superclass.constructor.apply(this, arguments);
 }
 
 A.mix(ImageViewer, {
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property ImageViewer.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: IMAGE_VIEWER,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the ImageViewer.
+	 *
+	 * @property ImageViewer.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+		/**
+		 * If <code>true</code> the navigation is animated.
+		 *
+		 * @attribute anim
+		 * @default true
+		 * @type boolean
+		 */
 		anim: {
 			value: true,
 			validator: isBoolean
@@ -122,26 +181,64 @@ A.mix(ImageViewer, {
 			value: NODE_BLANK_TEXT
 		},
 
+		/**
+		 * The caption of the displayed image.
+		 *
+		 * @attribute caption
+		 * @default ''
+		 * @type String
+		 */
 		caption: {
 			value: BLANK,
 			validator: isString
 		},
 
-
+		/**
+		 * If <code>true</code> the <a
+         * href="ImageViewer.html#config_caption">caption</a> will be pulled
+         * from the title DOM attribute.
+		 *
+		 * @attribute captionFromTitle
+		 * @default true
+		 * @type boolean
+		 */
 		captionFromTitle: {
 			value: true,
 			validator: isBoolean
 		},
 
+		/**
+		 * If <code>true</code> the Overlay with the image will be positioned
+         * on the center of the viewport.
+		 *
+		 * @attribute centered
+		 * @default true
+		 * @type boolean
+		 */
 		centered: {
 			value: true
 		},
 
+		/**
+		 * Index of the current image.
+		 *
+		 * @attribute currentIndex
+		 * @default 0
+		 * @type Number
+		 */
 		currentIndex: {
 			value: 0,
 			validator: isNumber
 		},
 
+		/**
+		 * Image node element used to load the images.
+		 *
+		 * @attribute image
+		 * @default Generated img element.
+		 * @readOnly
+		 * @type Node
+		 */
 		image: {
 			readOnly: true,
 			valueFn: function() {
@@ -149,6 +246,14 @@ A.mix(ImageViewer, {
 			}
 		},
 
+		/**
+		 * Configuration attributes passed to the <a href="Anim.html">Anim</a>
+         * class.
+		 *
+		 * @attribute imageAnim
+		 * @default Predefined <a href="Anim.html">Anim</a> configuration.
+		 * @type Object
+		 */
 		imageAnim: {
 			value: {},
 			setter: function(value) {
@@ -166,6 +271,13 @@ A.mix(ImageViewer, {
 			validator: isObject
 		},
 
+		/**
+		 * String template used to display the information.
+		 *
+		 * @attribute infoTemplate
+		 * @default 'Image {current} of {total}'
+		 * @type String
+		 */
 		infoTemplate: {
 			getter: function(v) {
 				return this._getInfoTemplate(v);
@@ -174,6 +286,13 @@ A.mix(ImageViewer, {
 			validator: isString
 		},
 
+		/**
+		 * Selector or NodeList containing the links where the ImageViewer
+         * extracts the information to generate the thumbnails.
+		 *
+		 * @attribute links
+		 * @type String | NodeList
+		 */
 		links: {
 			setter: function(v) {
 				var instance = this;
@@ -189,11 +308,26 @@ A.mix(ImageViewer, {
 			}
 		},
 
+		/**
+		 * Whether the image is during a loading state.
+		 *
+		 * @attribute loading
+		 * @default false
+		 * @type boolean
+		 */
 		loading: {
 			value: false,
 			validator: isBoolean
 		},
 
+		/**
+		 * Displays the modal <a href="OverlayMask.html">OverlayMask</a> on
+         * the viewport. Set to <code>false</code> to disable.
+		 *
+		 * @attribute modal
+		 * @default { opacity: .8, background: '#000' }
+		 * @type boolean | Object
+		 */
 		modal: {
 			value: {
 				opacity: .8,
@@ -201,26 +335,65 @@ A.mix(ImageViewer, {
 			}
 		},
 
+		/**
+		 * Preload all images grabbed from the <a
+         * href="ImageViewer.html#config_links">links</a> attribute.
+		 *
+		 * @attribute preloadAllImages
+		 * @default false
+		 * @type boolean
+		 */
 		preloadAllImages: {
 			value: false,
 			validator: isBoolean
 		},
 
+		/**
+		 * Preload the neighbor image (i.e., the previous and next image based
+         * on the current load one).
+		 *
+		 * @attribute preloadAllImages
+		 * @default false
+		 * @type boolean
+		 */
 		preloadNeighborImages: {
 			value: true,
 			validator: isBoolean
 		},
 
+		/**
+		 * Show close icon control.
+		 *
+		 * @attribute showClose
+		 * @default true
+		 * @type boolean
+		 */
 		showClose: {
 			value: true,
 			validator: isBoolean
 		},
 
+		/**
+		 * Show the arrow controls.
+		 *
+		 * @attribute showArrows
+		 * @default true
+		 * @type boolean
+		 */
 		showArrows: {
 			value: true,
 			validator: isBoolean
 		},
 
+		/**
+		 * Helper attribute to get the <code>size</code> of the <a
+         * href="ImageViewer.html#config_links">links</a> NodeList.
+		 *
+		 * @attribute totalLinks
+		 * @default true
+		 * @readOnly
+		 * @type boolean
+		 */
 		totalLinks: {
 			readOnly: true,
 			getter: function(v) {
@@ -237,9 +410,14 @@ A.mix(ImageViewer, {
 			validator: isNumber
 		},
 
-		/*
-		* Static Attrs
-		*/
+		/**
+		 * The element to be used as arrow left.
+		 *
+		 * @attribute arrowLeftEl
+		 * @default Generated HTML div element.
+		 * @readOnly
+		 * @type Node
+		 */
 		arrowLeftEl: {
 			readOnly: true,
 			valueFn: function() {
@@ -247,6 +425,14 @@ A.mix(ImageViewer, {
 			}
 		},
 
+		/**
+		 * The element to be used as arrow right.
+		 *
+		 * @attribute arrowRightEl
+		 * @default Generated HTML div element.
+		 * @readOnly
+		 * @type Node
+		 */
 		arrowRightEl: {
 			readOnly: true,
 			valueFn: function() {
@@ -254,6 +440,14 @@ A.mix(ImageViewer, {
 			}
 		},
 
+		/**
+		 * The element to be used as caption.
+		 *
+		 * @attribute captionEl
+		 * @default Generated HTML div element.
+		 * @readOnly
+		 * @type Node
+		 */
 		captionEl: {
 			readOnly: true,
 			valueFn: function() {
@@ -261,6 +455,14 @@ A.mix(ImageViewer, {
 			}
 		},
 
+		/**
+		 * The element to be used as close.
+		 *
+		 * @attribute closeEl
+		 * @default Generated HTML div element.
+		 * @readOnly
+		 * @type Node
+		 */
 		closeEl: {
 			readOnly: true,
 			valueFn: function() {
@@ -268,6 +470,14 @@ A.mix(ImageViewer, {
 			}
 		},
 
+		/**
+		 * The element to be used as info.
+		 *
+		 * @attribute infoEl
+		 * @default Generated HTML div element.
+		 * @readOnly
+		 * @type Node
+		 */
 		infoEl: {
 			readOnly: true,
 			valueFn: function() {
@@ -275,6 +485,13 @@ A.mix(ImageViewer, {
 			}
 		},
 
+		/**
+		 * HTML element to house the <code>img</code> which is being loaded.
+		 *
+		 * @attribute loader
+		 * @default Generated HTML div element.
+		 * @type Node
+		 */
 		loader: {
 			readOnly: true,
 			valueFn: function() {
@@ -282,6 +499,13 @@ A.mix(ImageViewer, {
 			}
 		},
 
+		/**
+		 * The element to be used as loading.
+		 *
+		 * @attribute loadingEl
+		 * @default Generated HTML div element.
+		 * @type Node
+		 */
 		loadingEl: {
 			valueFn: function() {
 				return A.Node.create(TPL_LOADING);
@@ -291,13 +515,30 @@ A.mix(ImageViewer, {
 });
 
 A.extend(ImageViewer, A.ComponentOverlay, {
+	/**
+	 * The index of the active image.
+	 *
+	 * @property activeImage
+	 * @type Number
+	 * @protected
+	 */
 	activeImage: 0,
 
+	/**
+	 * Handler for the key events.
+	 *
+	 * @property _keyHandler
+	 * @type EventHandler
+	 * @protected
+	 */
 	_keyHandler: null,
 
-	/*
-	* Lifecycle
-	*/
+	/**
+	 * Create the DOM structure for the ImageViewer. Lifecycle.
+	 *
+	 * @method renderUI
+	 * @protected
+	 */
 	renderUI: function() {
 		var instance = this;
 
@@ -307,6 +548,12 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		instance.get(LINKS).addClass(CSS_IMAGE_VIEWER_LINK);
 	},
 
+	/**
+	 * Bind the events on the ImageViewer UI. Lifecycle.
+	 *
+	 * @method bindUI
+	 * @protected
+	 */
 	bindUI: function() {
 		var instance = this;
 		var links = instance.get(LINKS);
@@ -327,8 +574,42 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		instance.after('render', instance._afterRender);
 		instance.after('loadingChange', instance._afterLoadingChange);
 		instance.after('visibleChange', instance._afterVisibleChange);
+
+		/**
+		 * Handles the load event. Fired when a image is laoded.
+		 *
+		 * @event load
+		 * @param {Event.Facade} event The load event.
+		 * @bubbles
+		 * @type {Event.Custom}
+		 */
+
+		/**
+		 * Handles the request event. Fired when a image is requested.
+		 *
+		 * @event request
+		 * @param {Event.Facade} event The load event.
+		 * @bubbles
+		 * @type {Event.Custom}
+		 */
+
+		/**
+		 * Handles the anim event. Fired when the image anim ends.
+		 *
+		 * @event anim
+		 * @param {Event.Facade} event The load event.
+		 * @bubbles
+		 * @type {Event.Custom}
+		 */
 	},
 
+	/**
+	 * Descructor lifecycle implementation for the ImageViewer class.
+	 * Purges events attached to the node (and all child nodes).
+	 *
+	 * @method destroy
+	 * @protected
+	 */
 	destroy: function() {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
@@ -350,9 +631,11 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		boundingBox.remove();
 	},
 
-	/*
-	* Methods
-	*/
+	/**
+	 * Close the ImageViewer.
+	 *
+	 * @method close
+	 */
 	close: function() {
 		var instance = this;
 
@@ -360,12 +643,26 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		instance.hideMask();
 	},
 
+	/**
+	 * Get the Node reference to the <code>currentIndex</code> element from
+     * the <a href="ImageViewer.html#config_links">links</a>.
+	 *
+	 * @method getLink
+	 * @param {Number} currentIndex
+	 * @return {Node}
+	 */
 	getLink: function(currentIndex) {
 		var instance = this;
 
 		return instance.get(LINKS).item(currentIndex);
 	},
 
+	/**
+	 * Get the current loaded node link reference.
+	 *
+	 * @method getCurrentLink
+	 * @return {Node}
+	 */
 	getCurrentLink: function() {
 		var instance = this;
 
@@ -374,6 +671,12 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		);
 	},
 
+	/**
+	 * Load an image <code>src</code> on the ImageViewer.
+	 *
+	 * @method loadImage
+	 * @param {String} src Image src.
+	 */
 	loadImage: function(src) {
 		var instance = this;
 		var bodyNode = instance.bodyNode;
@@ -406,12 +709,25 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		instance.fire('request', { image: image });
 	},
 
+	/**
+	 * Check if there is a node reference for the <code>currentIndex</code>.
+	 *
+	 * @method hasLink
+	 * @param {Number} currentIndex
+	 * @return {boolean}
+	 */
 	hasLink: function(currentIndex) {
 		var instance = this;
 
 		return instance.getLink(currentIndex);
 	},
 
+	/**
+	 * Check if there is a next element to navigate.
+	 *
+	 * @method hasNext
+	 * @return {boolean}
+	 */
 	hasNext: function() {
 		var instance = this;
 
@@ -420,6 +736,12 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		);
 	},
 
+	/**
+	 * Check if there is a previous element to navigate.
+	 *
+	 * @method hasPrev
+	 * @return {boolean}
+	 */
 	hasPrev: function() {
 		var instance = this;
 
@@ -428,6 +750,11 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		);
 	},
 
+	/**
+	 * Hide all UI controls (i.e., arrows, close icon etc).
+	 *
+	 * @method hideControls
+	 */
 	hideControls: function() {
 		var instance = this;
 
@@ -436,10 +763,21 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		instance.get(CLOSE_EL).hide();
 	},
 
+	/**
+	 * Hide the <a href="OverlayMask.html">OverlayMask</a> used when <a
+     * href="ImageViewer.html#config_modal">modal</a> is <code>true</code>.
+	 *
+	 * @method hideMask
+	 */
 	hideMask: function() {
 		A.ImageViewerMask.hide();
 	},
 
+	/**
+	 * Load the next image.
+	 *
+	 * @method next
+	 */
 	next: function() {
 		var instance = this;
 
@@ -453,6 +791,11 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		}
 	},
 
+	/**
+	 * Preload all images.
+	 *
+	 * @method preloadAllImages
+	 */
 	preloadAllImages: function() {
 		var instance = this;
 
@@ -461,6 +804,12 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		});
 	},
 
+	/**
+	 * Preload an image based on its <code>index</code>.
+	 *
+	 * @method preloadImage
+	 * @param {Number} currentIndex
+	 */
 	preloadImage: function(currentIndex) {
 		var instance = this;
 		var link = instance.getLink(currentIndex);
@@ -472,6 +821,11 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		}
 	},
 
+	/**
+	 * Load the previous image.
+	 *
+	 * @method next
+	 */
 	prev: function() {
 		var instance = this;
 
@@ -485,6 +839,11 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		}
 	},
 
+	/**
+	 * Show the loading icon.
+	 *
+	 * @method showLoading
+	 */
 	showLoading: function() {
 		var instance = this;
 		var bodyNode = instance.bodyNode;
@@ -495,6 +854,12 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		);
 	},
 
+	/**
+	 * Show the the OverlayMask used on the <a
+     * href="ImageViewer.html#config_modal">modal</a>.
+	 *
+	 * @method showMask
+	 */
 	showMask: function() {
 		var instance = this;
 		var modal = instance.get(MODAL);
@@ -510,6 +875,11 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		}
 	},
 
+	/**
+	 * Show the ImageViewer UI.
+	 *
+	 * @method show
+	 */
 	show: function() {
 		var instance = this;
 		var currentLink = instance.getCurrentLink();
@@ -525,6 +895,12 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		}
 	},
 
+	/**
+	 * Render the controls UI.
+	 *
+	 * @method _renderControls
+	 * @protected
+	 */
 	_renderControls: function() {
 		var instance = this;
 		var body = A.one(BODY);
@@ -542,6 +918,12 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		);
 	},
 
+	/**
+	 * Render the footer UI.
+	 *
+	 * @method _renderFooter
+	 * @protected
+	 */
 	_renderFooter: function() {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
@@ -560,6 +942,12 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		);
 	},
 
+	/**
+	 * Sync the caption UI.
+	 *
+	 * @method _syncCaptionUI
+	 * @protected
+	 */
 	_syncCaptionUI: function() {
 		var instance = this;
 		var caption = instance.get(CAPTION);
@@ -581,6 +969,12 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		captionEl.html(caption);
 	},
 
+	/**
+	 * Sync the controls UI.
+	 *
+	 * @method _syncControlsUI
+	 * @protected
+	 */
 	_syncControlsUI: function() {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
@@ -614,6 +1008,12 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		}
 	},
 
+	/**
+	 * Sync the ImageViewer UI.
+	 *
+	 * @method _syncImageViewerUI
+	 * @protected
+	 */
 	_syncImageViewerUI: function() {
 		var instance = this;
 
@@ -622,6 +1022,12 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		instance._syncInfoUI();
 	},
 
+	/**
+	 * Sync the info UI.
+	 *
+	 * @method _syncInfoUI
+	 * @protected
+	 */
 	_syncInfoUI: function() {
 		var instance = this;
 		var infoEl = instance.get(INFO_EL);
@@ -631,9 +1037,14 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		);
 	},
 
-	/*
-	* Getters
-	*/
+	/**
+	 * Get the <a href="ImageViewer.html#config_info">info</a> template.
+	 *
+	 * @method _getInfoTemplate
+	 * @param {String} v template
+	 * @protected
+	 * @return {String} Parsed string.
+	 */
 	_getInfoTemplate: function(v) {
 		var instance = this;
 		var total = instance.get(TOTAL_LINKS);
@@ -645,9 +1056,13 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		});
 	},
 
-	/*
-	* Listeners
-	*/
+	/**
+	 * Fires after the ImageViewer render phase.
+	 *
+	 * @method _afterRender
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_afterRender: function() {
 		var instance = this;
 		var bodyNode = instance.bodyNode;
@@ -659,6 +1074,14 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		}
 	},
 
+	/**
+	 * Fires after the value of the
+	 * <a href="ImageViewer.html#config_loading">loading</a> attribute change.
+	 *
+	 * @method _afterLoadingChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_afterLoadingChange: function(event) {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
@@ -673,12 +1096,27 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		}
 	},
 
+	/**
+	 * Fires after the value of the
+	 * <a href="ImageViewer.html#config_visible">visible</a> attribute change.
+	 *
+	 * @method
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_afterVisibleChange: function(event) {
 		var instance = this;
 
 		instance._syncControlsUI();
 	},
 
+	/**
+	 * Fires the click event on the close icon.
+	 *
+	 * @method _onClickCloseEl
+	 * @param {EventFacade} event click event facade
+	 * @protected
+	 */
 	_onClickCloseEl: function(event) {
 		var instance = this;
 
@@ -687,6 +1125,13 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		event.halt()
 	},
 
+	/**
+	 * Fires the click event on the left arrow icon.
+	 *
+	 * @method _onClickLeftArrow
+	 * @param {EventFacade} event click event facade
+	 * @protected
+	 */
 	_onClickLeftArrow: function(event) {
 		var instance = this;
 
@@ -695,6 +1140,13 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		event.halt()
 	},
 
+	/**
+	 * Fires the click event on the right arrow icon.
+	 *
+	 * @method _onClickRightArrow
+	 * @param {EventFacade} event click event facade
+	 * @protected
+	 */
 	_onClickRightArrow: function(event) {
 		var instance = this;
 
@@ -703,6 +1155,13 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		event.halt()
 	},
 
+	/**
+	 * Fires the click event on the links.
+	 *
+	 * @method _onClickLinks
+	 * @param {EventFacade} event click event facade
+	 * @protected
+	 */
 	_onClickLinks: function(event) {
 		var instance = this;
 		var target = event.currentTarget;
@@ -718,6 +1177,13 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		event.preventDefault();
 	},
 
+	/**
+	 * Handles the key interaction (i.e., next, prev etc).
+	 *
+	 * @method _onKeyInteraction
+	 * @param {EventFacade} event click event facade
+	 * @protected
+	 */
 	_onKeyInteraction: function(event) {
 		var instance = this;
 		var keyCode = event.keyCode;
@@ -737,6 +1203,13 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		}
 	},
 
+	/**
+	 * Fires on a image load.
+	 *
+	 * @method _onLoadImage
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_onLoadImage: function(event) {
 		var instance = this;
 		var bodyNode = instance.bodyNode;
@@ -788,4 +1261,13 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 
 A.ImageViewer = ImageViewer;
 
+/**
+ * A base class for ImageViewerMask - Controls the <a
+ * href="ImageViewer.html#config_modal">modal</a> attribute.
+ *
+ * @class ImageViewerMask
+ * @constructor
+ * @extends OverlayMask
+ * @static
+ */
 A.ImageViewerMask = new A.OverlayMask().render();
