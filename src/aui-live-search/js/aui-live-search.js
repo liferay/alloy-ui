@@ -157,7 +157,7 @@ A.mix(LiveSearch, {
          * could use /\d+/g).
 		 *
 		 * @attribute matchRegex
-		 * @default /(.)*/g
+		 * @default (.)*
 		 * @type RegExp
 		 */
 		matchRegex: {
