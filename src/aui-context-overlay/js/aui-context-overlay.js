@@ -59,7 +59,6 @@ var L = A.Lang,
  * @constructor
  * @extends ComponentOverlay
  * @param config {Object} Object literal specifying widget configuration properties.
- * @uses DelayedTask
  */
 function ContextOverlay(config) {
 	var instance = this;
