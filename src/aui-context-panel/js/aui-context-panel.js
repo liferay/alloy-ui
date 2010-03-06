@@ -177,7 +177,7 @@ A.mix(ContextPanel, {
 
 		/**
 		 * If true the ContextPanel will show an arrow positioned on the
-         * href="ContextPanel.html#config_arrow">arrow</a> point.
+         * <a href="ContextPanel.html#config_arrow">arrow</a> point.
 		 *
 		 * @attribute showArrow
 		 * @default true
