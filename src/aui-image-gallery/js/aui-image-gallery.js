@@ -197,7 +197,7 @@ A.mix(ImageGallery, {
 		 *
 		 * @attribute paginatorEl
 		 * @default Generated HTML div.
-		 * @readyOnly
+		 * @readOnly
 		 * @type Node
 		 */
 		paginatorEl: {
