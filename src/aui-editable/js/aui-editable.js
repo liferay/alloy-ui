@@ -432,7 +432,6 @@ A.extend(
 			 * @event startEditing
 			 * @preventable _defStartEditingFn
 			 * @param {Event.Facade} event The startEditing event.
-			 * @bubbles
 			 * @type {Event.Custom}
 			 */
 			instance.publish(
@@ -451,7 +450,6 @@ A.extend(
 			 * @event stopEditing
 			 * @preventable _defStopEditingFn
 			 * @param {Event.Facade} event The stopEditing event.
-			 * @bubbles
 			 * @type {Event.Custom}
 			 */
 			instance.publish(
@@ -470,7 +468,6 @@ A.extend(
 			 * @event save
 			 * @preventable _defSaveFn
 			 * @param {Event.Facade} event The save event.
-			 * @bubbles
 			 * @type {Event.Custom}
 			 */
 			instance.publish(
@@ -489,7 +486,6 @@ A.extend(
 			 * @event cancel
 			 * @preventable _defCancelFn
 			 * @param {Event.Facade} event The cancel event.
-			 * @bubbles
 			 * @type {Event.Custom}
 			 */
 			instance.publish(

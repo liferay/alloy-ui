@@ -273,7 +273,7 @@ A.extend(IOPlugin, A.IORequest, {
 	/**
 	 * Fires after the init phase of the A.Plugin.IO.
 	 *
-	 * @method 
+	 * @method _afterInit
 	 * @param {EventFacade} event
 	 * @protected
 	 */
