@@ -181,8 +181,8 @@ A.mix(Rating, {
 		},
 
 		/**
-		 * Reference for the element which will contain the <a
-         * href="Rating.html#config_label">label</a>.
+		 * Reference for the element which will contain the
+         * <a href="Rating.html#config_label">label</a>.
 		 *
 		 * @attribute labelElement
 		 * @type Node
@@ -482,7 +482,6 @@ A.extend(Rating, A.Component, {
 		 * @event itemClick
 		 * @preventable _defRatingItemClickFn
 		 * @param {Event.Facade} event The itemClick event.
-		 * @bubbles
 		 * @type {Event.Custom}
 		 */
 		publish(
@@ -496,7 +495,6 @@ A.extend(Rating, A.Component, {
 		 * @event itemSelect
 		 * @preventable _defRatingItemSelectFn
 		 * @param {Event.Facade} event The itemSelect event.
-		 * @bubbles
 		 * @type {Event.Custom}
 		 */
 		publish(
@@ -510,7 +508,6 @@ A.extend(Rating, A.Component, {
 		 * @event itemSelect
 		 * @preventable _defRatingItemOverFn
 		 * @param {Event.Facade} event The itemOver event.
-		 * @bubbles
 		 * @type {Event.Custom}
 		 */
 		publish(
@@ -524,7 +521,6 @@ A.extend(Rating, A.Component, {
 		 * @event itemOut
 		 * @preventable _defRatingItemOutFn
 		 * @param {Event.Facade} event The itemOut event.
-		 * @bubbles
 		 * @type {Event.Custom}
 		 */
 		publish(
@@ -806,7 +802,7 @@ A.extend(Rating, A.Component, {
 	 * Fires after the value of the
 	 * <a href="Rating.html#config_label">label</a> attribute change.
 	 *
-	 * @method 
+	 * @method _afterSetLabel
 	 * @param {EventFacade} event
 	 * @protected
 	 */

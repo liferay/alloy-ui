@@ -391,7 +391,7 @@ A.extend(IORequest, A.Plugin.Base, {
 	/**
 	 * Fires after the init phase of the IORequest.
 	 *
-	 * @method 
+	 * @method _afterInit
 	 * @param {EventFacade} event
 	 * @protected
 	 */
@@ -583,7 +583,7 @@ A.IORequest = IORequest;
  */
 
 /**
- * Static method to invoke the IORequest. Likewise <a href="io.html#method_io">io</a>.
+ * Static method to invoke the <a href="IORequest.html">IORequest</a>. Likewise <a href="io.html#method_io">io</a>.
  *
  * @method A.io.request
  * @for A.io

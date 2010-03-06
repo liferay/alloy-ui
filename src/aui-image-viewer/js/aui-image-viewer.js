@@ -580,7 +580,6 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		 *
 		 * @event load
 		 * @param {Event.Facade} event The load event.
-		 * @bubbles
 		 * @type {Event.Custom}
 		 */
 
@@ -589,7 +588,6 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		 *
 		 * @event request
 		 * @param {Event.Facade} event The load event.
-		 * @bubbles
 		 * @type {Event.Custom}
 		 */
 
@@ -598,7 +596,6 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 		 *
 		 * @event anim
 		 * @param {Event.Facade} event The load event.
-		 * @bubbles
 		 * @type {Event.Custom}
 		 */
 	},
@@ -1100,7 +1097,7 @@ A.extend(ImageViewer, A.ComponentOverlay, {
 	 * Fires after the value of the
 	 * <a href="ImageViewer.html#config_visible">visible</a> attribute change.
 	 *
-	 * @method
+	 * @method _afterVisibleChange
 	 * @param {EventFacade} event
 	 * @protected
 	 */

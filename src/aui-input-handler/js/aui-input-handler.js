@@ -83,5 +83,5 @@ if (A.Node) {
 }
 
 /**
- * @method
+ * @method void();
  */
