@@ -45,7 +45,7 @@ var L = A.Lang,
  * A base class for IOPlugin, providing:
  * <ul>
  *    <li>Loads the content of a URI as content of a Node or Widget</li>
- *    <li>Use <a href="ParseContent.html">ParseContent</a> to parse the JavaScript tags and evaluate them</li>
+ *    <li>Use <a href="ParseContent.html">ParseContent</a> to parse the JavaScript tags from the content and evaluate them</li>
  * </ul>
  *
  * Quick Example:<br/>
