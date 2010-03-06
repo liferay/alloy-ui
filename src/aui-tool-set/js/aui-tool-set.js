@@ -1,5 +1,6 @@
 /**
- * The ToolSet Utility
+ * The ToolSet Utility is a managed collection of <a
+ * href="ToolItem.html">ToolItems</a>.
  *
  * @module aui-tool-set
  */
@@ -31,7 +32,7 @@ var Lang = A.Lang,
  * A base class for ToolSet, providing:
  * <ul>
  *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li></li>
+ *    <li>Managed collection for <a href="ToolItems.html">ToolItems</a></li>
  * </ul>
  *
  * Quick Example:<br/>
