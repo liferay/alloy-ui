@@ -1,3 +1,9 @@
+/**
+ * The ToolSet Utility
+ *
+ * @module aui-tool-set
+ */
+
 var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isNumber = Lang.isNumber,
@@ -19,17 +25,95 @@ var Lang = A.Lang,
 
 	TPL_GENERIC = '<span></span>';
 
+/**
+ * <p><img src="assets/images/aui-tool-set/main.png"/></p>
+ *
+ * A base class for ToolSet, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li></li>
+ * </ul>
+ *
+ * Quick Example:<br/>
+ *
+ * <pre><code>var instance = new A.ToolSet({
+ *  tools: [
+ *  	{
+ *  		id: 'close',
+ *  		icon: 'close'
+ *  	},
+ *  	{
+ *  		id: 'expand',
+ *  		icon: 'plus'
+ *  	}
+ *  ]
+ * }).render();
+ * </code></pre>
+ *
+ * Check the list of <a href="ToolSet.html#configattributes">Configuration Attributes</a> available for
+ * ToolSet.
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class ToolSet
+ * @constructor
+ * @extends Component
+ */
 var ToolSet = function() {
 	ToolSet.superclass.constructor.apply(this, arguments);
 };
 
+/**
+ * Static property provides a string to identify the class.
+ *
+ * @property ToolSet.NAME
+ * @type String
+ * @static
+ */
 ToolSet.NAME = NAME;
 
+/**
+ * Static property used to define the default attribute
+ * configuration for the ToolSet.
+ *
+ * @property ToolSet.ATTRS
+ * @type Object
+ * @static
+ */
 ToolSet.ATTRS = {
+	/**
+	 * Receives an interaction state of active when the user clicks on it.
+	 *
+	 * @attribute activeState
+	 * @type boolean
+	 */
 	activeState: {},
+
+	/**
+	 * Receives a default interaction state.
+	 *
+	 * @attribute defaultState
+	 * @type boolean
+	 */
 	defaultState: {},
+
+	/**
+	 * Receives an interaction state of hover during the
+     * <code>mouseover</code> event.
+	 *
+	 * @attribute hoverState
+	 * @type boolean
+	 */
 	hoverState: {},
 
+	/**
+	 * Array of <a href="ToolItem.html">ToolItem</a> elements to render when
+     * the ToolSet renders.
+	 *
+	 * @attribute tools
+	 * @default []
+	 * @type Array
+	 */
 	tools: {
 		value: [],
 		validator: isArray
@@ -43,9 +127,12 @@ A.extend(
 		BOUNDING_TEMPLATE: TPL_GENERIC,
 		CONTENT_TEMPLATE: TPL_GENERIC,
 
-		/*
-		* Lifecycle
-		*/
+		/**
+		 * Construction logic executed during ToolSet instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function() {
 			var instance = this;
 
@@ -55,6 +142,12 @@ A.extend(
 			instance.tools.on('remove', instance._afterRemoveToolItem, instance);
 		},
 
+		/**
+		 * Create the DOM structure for the ToolSet. Lifecycle.
+		 *
+		 * @method renderUI
+		 * @protected
+		 */
 		renderUI: function() {
 			var instance = this;
 			var toolItems = instance.get('tools');
@@ -64,6 +157,12 @@ A.extend(
 			});
 		},
 
+		/**
+		 * Sync the ToolSet UI. Lifecycle.
+		 *
+		 * @method syncUI
+		 * @protected
+		 */
 		syncUI: function() {
 			var instance = this;
 			var toolItems = instance.get('tools');
@@ -88,9 +187,12 @@ A.extend(
 			});
 		},
 
-		/*
-		* Methods
-		*/
+		/**
+		 * Add a <a href="ToolItem.html">ToolItem</a> to this ToolSet.
+		 *
+		 * @method add
+		 * @param {Object} toolItem
+		 */
 		add: function(toolItem) {
 			var instance = this;
 			var toolSet = instance.tools;
@@ -104,12 +206,24 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Get a <a href="ToolItem.html">ToolItem</a> by its <code>key</code>.
+		 *
+		 * @method item
+		 * @param {String} key
+		 */
 		item: function(key) {
 			var instance = this;
 
 			return instance.tools.item(key);
 		},
 
+		/**
+		 * Remove a <a href="ToolItem.html">ToolItem</a> from this ToolSet.
+		 *
+		 * @method remove
+		 * @param {Object} item
+		 */
 		remove: function(item) {
 			var instance = this;
 			var toolSet = instance.tools;
@@ -125,6 +239,14 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Create a new <a href="ToolItem.html">ToolItem</a>.
+		 *
+		 * @method _createToolItem
+		 * @param {Object} toolItem
+		 * @protected
+		 * @return {ToolItem}
+		 */
 		_createToolItem: function(item) {
 			var instance = this;
 			var toolItem = null;
@@ -160,9 +282,13 @@ A.extend(
 			return toolItem;
 		},
 
-		/*
-		* Listeners
-		*/
+		/**
+		 * Fires after add a <a href="ToolItem.html">ToolItem</a>.
+		 *
+		 * @method _afterAddToolItem
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_afterAddToolItem: function(event) {
 			var instance = this;
 			var toolItem = event.item;
@@ -175,6 +301,13 @@ A.extend(
 			instance.syncUI();
 		},
 
+		/**
+		 * Fires after remove a <a href="ToolItem.html">ToolItem</a>.
+		 *
+		 * @method _afterRemoveToolItem
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_afterRemoveToolItem: function(event) {
 			var instance = this;
 			var toolItem = event.item;
