@@ -1,5 +1,6 @@
 /**
- * The ToolItem Utility
+ * The ToolItem Utility - ToolItems are iconic buttons that provide
+ * interaction states and event handling
  *
  * @module aui-tool-item
  */
@@ -28,7 +29,7 @@ var Lang = A.Lang,
  * A base class for ToolItem, providing:
  * <ul>
  *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li></li>
+ *    <li>Iconic buttons that provide interaction states and event handling</li>
  * </ul>
  *
  * Quick Example:<br/>
