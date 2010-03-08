@@ -229,10 +229,28 @@ body.show_protected .protected {
     display: block;
 }
 
-body.show_deprecated .inheritance .deprecated,
-body.show_private .inheritance .private,
-body.show_protected .inheritance .protected {
-    display: inline;
+.inheritance.methods .content a {
+	color: #D311D5;
+}
+
+.inheritance.properties .content a {
+	color: #222;
+}
+
+.inheritance.configuration .content a {
+	color: #114dd5;
+}
+
+.inheritance.events .content a {
+	color: #7bd511;
+}
+
+.inheritance .content div {
+	padding-top: 5px;
+}
+
+.inheritance .content a {
+	text-decoration: none;
 }
 
 .api-entry-row {
