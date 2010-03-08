@@ -95,15 +95,6 @@ var L = A.Lang,
  */
 var Dialog = function(config) {
 	if (!A.DialogMask) {
-		/**
-		 * A base class for DialogMask - Controls the <a
-         * href="Dialog.html#config_modal">modal</a> attribute.
-		 *
-		 * @class DialogMask
-		 * @constructor
-		 * @extends OverlayMask
-		 * @static
-		 */
 		A.DialogMask = new A.OverlayMask().render();
 	}
 };
@@ -746,3 +737,13 @@ A.mix(
 		}
 	}
 );
+
+/**
+ * A base class for DialogMask - Controls the <a
+ * href="Dialog.html#config_modal">modal</a> attribute.
+ *
+ * @class DialogMask
+ * @constructor
+ * @extends OverlayMask
+ * @static
+ */
