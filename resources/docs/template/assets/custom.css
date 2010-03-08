@@ -13,10 +13,11 @@ a {
 }
 
 pre {
-	border: 1px dashed #555555;
 	background: #eee;
-	padding: 10px;
+	border: 1px dashed #555555;
 	margin: 10px;
+	overflow: auto;
+	padding: 10px;
 }
 
 .separator {
@@ -154,7 +155,7 @@ pre {
 
 
 #wrapper {
-	width: 800px;
+	width: 900px;
 	margin: 0 auto;
 }
 
@@ -222,6 +223,18 @@ pre {
     display: none;
 }
 
+body.show_deprecated .deprecated,
+body.show_private .private,
+body.show_protected .protected {
+    display: block;
+}
+
+body.show_deprecated .inheritance .deprecated,
+body.show_private .inheritance .private,
+body.show_protected .inheritance .protected {
+    display: inline;
+}
+
 .api-entry-row {
 	margin-bottom: 0.5em;
 	padding-bottom: 0.5em;
@@ -243,7 +256,7 @@ pre {
 }
 
 .api-entry-row .detail .description {
-	padding-top: 0.2em;
+	padding: 10px 0 0 20px;
 }
 
 .property-row h4 a, .aui-list-properties a {
@@ -288,6 +301,7 @@ pre {
 .aui-list li a {
 	font-weight: normal;
 	font-size: 14px;
+	text-decoration: none;
 }
 
 .aui-list .content li {

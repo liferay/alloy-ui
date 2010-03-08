@@ -137,23 +137,17 @@
 							</div>
 						#end if
 
-						#if $filenames
-							<div class="aui-widget aui-list aui-list-files">
+						#if $configs
+							<div class="aui-widget aui-list aui-list-configuration">
 								<div class="aui-widget-content">
-									<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
-										<span class="aui-widget-hd-text">Files</span>
+									<div class="aui-widget-hd aui-list-hd aui-list-configuration-hd">
+										<span class="aui-widget-hd-text">Configuration Attributes</span>
 									</div>
 
 									<div class="aui-widget-bd aui-list-bd">
 										<ul class="content">
-				                            #for $filedef in $filenames
-				                                #set $css = ""
-
-				                                #if $filedef == $filename
-				                                    #set $css = "selected"
-				                                #end if
-
-				                                <li class="$css"><a href="${filedef}.html" title="$filedef">$filedef</a></li>
+				                            #for $config in $configs
+												<li class="${config.access}#if $config.deprecated# deprecated#end if#"><a href="#config_${config.name}" title="$config.name">$config.name</a></li>
 				                            #end for
 				                        </ul>
 									</div>
@@ -174,24 +168,6 @@
 
 				                                <li class="${prop.access}#if $prop.deprecated# deprecated#end if#"><a href="#property_${prop.name}" title="$prop.name">$prop.name</a></li>
 				                            #end for						                
-				                        </ul>
-									</div>
-								</div>
-							</div>
-						#end if
-
-						#if $configs
-							<div class="aui-widget aui-list aui-list-configuration">
-								<div class="aui-widget-content">
-									<div class="aui-widget-hd aui-list-hd aui-list-configuration-hd">
-										<span class="aui-widget-hd-text">Configuration Attributes</span>
-									</div>
-
-									<div class="aui-widget-bd aui-list-bd">
-										<ul class="content">
-				                            #for $config in $configs
-												<li class="${config.access}#if $config.deprecated# deprecated#end if#"><a href="#config_${config.name}" title="$config.name">$config.name</a></li>
-				                            #end for
 				                        </ul>
 									</div>
 								</div>
@@ -234,6 +210,30 @@
 							</div>
 						#end if
 					</div>
+					
+					#if $filenames
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+			                            #for $filedef in $filenames
+			                                #set $css = ""
+
+			                                #if $filedef == $filename
+			                                    #set $css = "selected"
+			                                #end if
+
+			                                <li class="$css"><a href="${filedef}.html" title="$filedef">$filedef</a></li>
+			                            #end for
+			                        </ul>
+								</div>
+							</div>
+						</div>
+					#end if
 				</div>
 				<div class="aui-column aui-w75 aui-column-last">
 					<div class="aui-column-content aui-column-content-last">
