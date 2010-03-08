@@ -148,6 +148,18 @@
 	);
 
 	/*
+		HTML5 Compatability for IE
+	*/
+
+	/*@cc_on
+		var HTML5_ELEMENTS = 'abbr,article,aside,audio,canvas,details,figcaption,figure,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,summary,time,video'.split(','), LENGTH = HTML5_ELEMENTS.length;
+
+		while(LENGTH--) {
+			document.createElement(HTML5_ELEMENTS[LENGTH]);
+		}
+	@*/
+
+	/*
 		UA extensions
 	*/
 
