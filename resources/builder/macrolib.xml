@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project name="AlloyMacrolib">
-	<property name="regex.clean.vars" value="^component\.details\..*|details\.list|details|component\.(use|supersedes|requires|optional|lang|skinnable)$"/>
+	<property name="regex.clean.vars" value="^component\.details\..*|details\.list|details|component\.(rollup|use|supersedes|requires|optional|lang|skinnable)$"/>
 
 	<!-- Overwriting default YUI tasks -->
 	<presetdef name="addlang">
