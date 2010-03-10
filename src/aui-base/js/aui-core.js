@@ -129,6 +129,8 @@
 		return ALLOY;
 	};
 
+	var UA = ALLOY.UA;
+
 	apply(
 		AUI,
 		YUI,
@@ -139,31 +141,40 @@
 
 			defaults: defaults,
 
+			html5shiv: function(frag) {
+				var instance = this;
+				var doc = frag || document;
+
+				if (UA.ie && doc && doc.createElement) {
+					var elements = AUI.HTML5_ELEMENTS, length = elements.length;
+
+					while (--length) {
+						doc.createElement(elements[length]);
+					}
+				}
+
+				return frag;
+			},
+
 			setDefaults: function(defaults) {
 				var instance = this;
 
 				ALLOY.config = ALLOY.merge(AUI.defaults, defaults);
-			}
+			},
+
+			HTML5_ELEMENTS: ',abbr,article,aside,audio,canvas,details,figcaption,figure,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,summary,time,video'.split(',')
 		}
 	);
 
 	/*
-		HTML5 Compatability for IE
+	* HTML5 Compatability for IE
 	*/
 
-	/*@cc_on
-		var HTML5_ELEMENTS = 'abbr,article,aside,audio,canvas,details,figcaption,figure,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,summary,time,video'.split(','), LENGTH = HTML5_ELEMENTS.length;
-
-		while(LENGTH--) {
-			document.createElement(HTML5_ELEMENTS[LENGTH]);
-		}
-	@*/
+	AUI.html5shiv();
 
 	/*
 		UA extensions
 	*/
-
-	var UA = ALLOY.UA;
 
 	var p = navigator.platform;
 	var u = navigator.userAgent;
@@ -243,7 +254,7 @@
 	}
 
 	/*
-		Browser selectors
+	* Browser selectors
 	*/
 
 	var selectors = [

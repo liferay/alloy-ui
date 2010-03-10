@@ -20,36 +20,36 @@
 
 			modules: {
 				'aui-autocomplete': {skinnable:true, requires:['aui-base','aui-component-overlay','datasource','dataschema','aui-combobox']},
-				'aui-base': {skinnable:false, requires:['aui-node','aui-component','aui-delayed-task','event','oop','widget-css']},
-				'aui-calendar': {skinnable:true, requires:['aui-context-overlay','datatype-date','widget-i18n']},
-				'aui-char-counter': {skinnable:false, requires:['aui-base','aui-input-handler']},
-				'aui-chart': {skinnable:false, requires:['datasource','aui-swf','json']},
-				'aui-color-picker': {skinnable:true, requires:['aui-context-overlay','dd','slider','substitute','aui-tool-item','aui-form','aui-panel']},
-				'aui-combobox': {skinnable:true, requires:['aui-textarea','aui-tool-set']},
-				'aui-component-overlay': {skinnable:false, requires:['aui-component','widget-position','widget-stack','widget-position-align','widget-stdmod']},
-				'aui-component': {skinnable:false, requires:['widget']},
-				'aui-context-overlay': {skinnable:false, requires:['aui-overlay-manager','aui-delayed-task']},
-				'aui-context-panel': {skinnable:true, requires:['aui-context-overlay','anim']},
-				'aui-data-set': {skinnable:false, requires:['oop','collection','base']},
-				'aui-datatype': {skinnable:false, requires:['aui-base']},
-				'aui-date-picker-select': {skinnable:true, requires:['aui-calendar','aui-tool-item']},
+				'aui-base': {requires:['aui-node','aui-component','aui-delayed-task','event','oop','widget-css'], skinnable:false},
+				'aui-calendar': {requires:['aui-context-overlay','datatype-date','widget-i18n'], skinnable:true},
+				'aui-char-counter': {requires:['aui-base','aui-input-handler'], skinnable:false},
+				'aui-chart': {requires:['datasource','aui-swf','json'], skinnable:false},
+				'aui-color-picker': {requires:['aui-context-overlay','dd','slider','substitute','aui-tool-item','aui-form','aui-panel'], skinnable:true},
+				'aui-combobox': {requires:['aui-textarea','aui-tool-set'], skinnable:true},
+				'aui-component-overlay': {requires:['aui-component','widget-position','widget-stack','widget-position-align','widget-stdmod'], skinnable:false},
+				'aui-component': {requires:['widget'], skinnable:false},
+				'aui-context-overlay': {requires:['aui-overlay-manager','aui-delayed-task'], skinnable:false},
+				'aui-context-panel': {requires:['aui-context-overlay','anim'], skinnable:true},
+				'aui-data-set': {requires:['oop','collection','base'], skinnable:false},
+				'aui-datatype': {requires:['aui-base'], skinnable:false},
+				'aui-date-picker-select': {requires:['aui-calendar','aui-tool-item'], skinnable:true},
 				'aui-delayed-task': {skinnable:false},
-				'aui-dialog': {skinnable:true, requires:['aui-panel','dd-constrain','aui-tool-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize']},
-				'aui-editable': {skinnable:true, requires:['aui-base','aui-combobox']},
-				'aui-field': {skinnable:false, requires:['aui-base','aui-component','substitute']},
-				'aui-fieldset': {skinnable:false, requires:['aui-panel']},
-				'aui-form-manager': {skinnable:false, requires:['aui-base','substitute']},
-				'aui-form': {skinnable:false, requires:['aui-base','aui-data-set','io-form','aui-field','querystring-parse']},
-				'aui-image-gallery': {skinnable:true, requires:['aui-image-viewer','aui-paginator','aui-tool-set']},
-				'aui-image-viewer': {skinnable:true, requires:['anim','aui-overlay-mask','substitute']},
+				'aui-dialog': {requires:['aui-panel','dd-constrain','aui-tool-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize'], skinnable:true},
+				'aui-editable': {requires:['aui-base','aui-combobox'], skinnable:true},
+				'aui-field': {requires:['aui-base','aui-component','substitute'], skinnable:false},
+				'aui-fieldset': {requires:['aui-panel'], skinnable:false},
+				'aui-form-manager': {requires:['aui-base','substitute'], skinnable:false},
+				'aui-form': {requires:['aui-base','aui-data-set','io-form','aui-field','querystring-parse'], skinnable:false},
+				'aui-image-gallery': {requires:['aui-image-viewer','aui-paginator','aui-tool-set'], skinnable:true},
+				'aui-image-viewer': {requires:['anim','aui-overlay-mask','substitute'], skinnable:true},
 				'aui-input-handler': {skinnable:false},
-				'aui-io-plugin': {skinnable:false, requires:['aui-component-overlay','aui-parse-content','aui-io-request','aui-loading-mask']},
-				'aui-io-request': {skinnable:false, requires:['aui-base','io','json','plugin']},
-				'aui-live-search': {skinnable:false, requires:['aui-base']},
-				'aui-loading-mask': {skinnable:true, requires:['aui-overlay-mask','plugin','substitute']},
-				'aui-nested-list': {skinnable:false, requires:['aui-base','dd']},
-				'aui-node-fx': {skinnable:false, requires:['aui-base','anim','anim-node-plugin']},
-				'aui-node': {skinnable:false, requires:['collection','node']},
+				'aui-io-plugin': {requires:['aui-component-overlay','aui-parse-content','aui-io-request','aui-loading-mask'], skinnable:false},
+				'aui-io-request': {requires:['aui-base','io','json','plugin'], skinnable:false},
+				'aui-live-search': {requires:['aui-base'], skinnable:false},
+				'aui-loading-mask': {requires:['aui-overlay-mask','plugin','substitute'], skinnable:true},
+				'aui-nested-list': {requires:['aui-base','dd'], skinnable:false},
+				'aui-node-fx': {requires:['aui-base','anim','anim-node-plugin'], skinnable:false},
+				'aui-node': {submodules: {'aui-node-html5': {requires:['collection','aui-base']}, 'aui-node-ext': {requires:['aui-base']} }, skinnable:false, use:['aui-node-ext','aui-node-html5']},
 				'aui-overlay-manager': {skinnable:false, requires:['aui-base','aui-component-overlay','overlay','plugin']},
 				'aui-overlay-mask': {skinnable:true, requires:['aui-base','aui-component-overlay','event-resize']},
 				'aui-paginator': {skinnable:true, requires:['aui-base','substitute']},
@@ -68,7 +68,7 @@
 				'aui-tool-item': {skinnable:true, requires:['aui-base','aui-state-interaction']},
 				'aui-tool-set': {skinnable:true, requires:['aui-data-set','aui-tool-item']},
 				'aui-tooltip': {skinnable:true, requires:['aui-context-panel']},
-				'aui-tree': {submodules: {'aui-tree-view': {skinnable:true, requires:['aui-tree-node','dd']}, 'aui-tree-node': {skinnable:false, requires:['aui-tree-data','io','json']}, 'aui-tree-data': {skinnable:false, requires:['aui-base']} }, skinnable:true, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view']}
+				'aui-tree': {submodules: {'aui-tree-view': {skinnable:true, requires:['aui-tree-node','dd']}, 'aui-tree-node': {skinnable:false, requires:['aui-tree-data','io','json']}, 'aui-tree-data': {skinnable:false, requires:['aui-base']} }, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true}
 			},
 
 			paths: {
@@ -208,6 +208,8 @@
 		return ALLOY;
 	};
 
+	var UA = ALLOY.UA;
+
 	apply(
 		AUI,
 		YUI,
@@ -218,31 +220,40 @@
 
 			defaults: defaults,
 
+			html5shiv: function(frag) {
+				var instance = this;
+				var doc = frag || document;
+
+				if (UA.ie && doc && doc.createElement) {
+					var elements = AUI.HTML5_ELEMENTS, length = elements.length;
+
+					while (--length) {
+						doc.createElement(elements[length]);
+					}
+				}
+
+				return frag;
+			},
+
 			setDefaults: function(defaults) {
 				var instance = this;
 
 				ALLOY.config = ALLOY.merge(AUI.defaults, defaults);
-			}
+			},
+
+			HTML5_ELEMENTS: ',abbr,article,aside,audio,canvas,details,figcaption,figure,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,summary,time,video'.split(',')
 		}
 	);
 
 	/*
-		HTML5 Compatability for IE
+	* HTML5 Compatability for IE
 	*/
 
-	/*@cc_on
-		var HTML5_ELEMENTS = 'abbr,article,aside,audio,canvas,details,figcaption,figure,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,summary,time,video'.split(','), LENGTH = HTML5_ELEMENTS.length;
-
-		while(LENGTH--) {
-			document.createElement(HTML5_ELEMENTS[LENGTH]);
-		}
-	@*/
+	AUI.html5shiv();
 
 	/*
 		UA extensions
 	*/
-
-	var UA = ALLOY.UA;
 
 	var p = navigator.platform;
 	var u = navigator.userAgent;
@@ -322,7 +333,7 @@
 	}
 
 	/*
-		Browser selectors
+	* Browser selectors
 	*/
 
 	var selectors = [
