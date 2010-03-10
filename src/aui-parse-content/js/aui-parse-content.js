@@ -14,6 +14,7 @@ var L = A.Lang,
 	isString = L.isString,
 
 	APPEND = 'append',
+	CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
 	DOCUMENT_ELEMENT = 'documentElement',
 	FIRST_CHILD = 'firstChild',
 	HEAD = 'head',
@@ -175,9 +176,7 @@ A.extend(ParseContent, A.Plugin.Base, {
 		this.doBefore('setContent', function(content) {
 			var output = instance.parseContent(content);
 
-			return new A.Do.AlterArgs(null, [
-				output.fragment.get(INNER_HTML)
-			]);
+			return new A.Do.AlterArgs(null, [output.fragment]);
 		});
 	},
 
@@ -193,7 +192,7 @@ A.extend(ParseContent, A.Plugin.Base, {
 	 */
 	_clean: function(content) {
 		var output = {};
-		var fragment = A.Node.create('<div></div>');
+		var fragment = A.getDoc().invoke(CREATE_DOCUMENT_FRAGMENT);
 
 		// instead of fix all tags to "XHTML"-style, make the firstChild be a valid non-empty tag
 		fragment.append('<div>_</div>');
