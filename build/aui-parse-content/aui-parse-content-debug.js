@@ -1,15 +1,12 @@
 AUI.add('aui-parse-content', function(A) {
+/**
+ * The ParseContent Utility - Parse a content in a way of all the javascripts
+ * within a content will be executed according to the order of apparition.
+ *
+ * @module aui-parse-content
+ */
+
 /*
-* Alloy UI ParseContent Plugin (YUI3)
-*
-* Copyright (c) 2009 Eduardo Lundgren (eduardo.lundgren@liferay.com)
-* and Nate Cavanaugh (nate.cavanaugh@liferay.com)
-*
-*	 Example: node.plug(A.Plugin.ParseContent);
-*
-*  - After plug ParseContent on a A.Node instance the javascript chunks will be executed (remote and inline scripts).
-*  - All the javascripts within a content will be executed according to the order of apparition.
-*
 * NOTE: The inspiration of ParseContent cames from the "Caridy Patino" Node Dispatcher Plugin
 * 		http://github.com/caridy/yui3-gallery/blob/master/src/gallery-dispatcher/
 */
@@ -18,6 +15,7 @@ var L = A.Lang,
 	isString = L.isString,
 
 	APPEND = 'append',
+	CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
 	DOCUMENT_ELEMENT = 'documentElement',
 	FIRST_CHILD = 'firstChild',
 	HEAD = 'head',
@@ -28,15 +26,63 @@ var L = A.Lang,
 	SCRIPT = 'script',
 	SRC = 'src';
 
+/**
+ * A base class for ParseContent, providing:
+ * <ul>
+ *    <li>After plug ParseContent on a A.Node instance the javascript chunks will be executed (remote and inline scripts)</li>
+ *    <li>All the javascripts within a content will be executed according to the order of apparition</li>
+ * </ul>
+ *
+ * <p><strong>NOTE:</strong> For performance reasons on DOM manipulation,
+ * ParseContent only parses the content passed to the
+ * <a href="Node.html#method_setContent">setContent</a>,
+ * <a href="Node.html#method_prepend">prepend</a> and
+ * <a href="Node.html#method_append">append</a> methods.</p>
+ * 
+ * Quick Example:<br/>
+ *
+ * <pre><code>node.plug(A.Plugin.ParseContent);</code></pre>
+ *
+ * Check the list of <a href="ParseContent.html#configattributes">Configuration Attributes</a> available for
+ * ParseContent.
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class ParseContent
+ * @constructor
+ * @extends Plugin.Base
+ */
 function ParseContent(config) {
 	ParseContent.superclass.constructor.apply(this, arguments);
 }
 
 A.mix(ParseContent, {
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property ParseContent.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: PARSE_CONTENT,
 
+	/**
+	 * Static property provides a string to identify the namespace.
+	 *
+	 * @property LoadingMask.NS
+	 * @type String
+	 * @static
+	 */
 	NS: PARSE_CONTENT,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the ParseContent.
+	 *
+	 * @property ParseContent.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
 		queue: {
 			value: null
@@ -45,6 +91,12 @@ A.mix(ParseContent, {
 });
 
 A.extend(ParseContent, A.Plugin.Base, {
+	/**
+	 * Construction logic executed during ParseContent instantiation. Lifecycle.
+	 *
+	 * @method initializer
+	 * @protected
+	 */
 	initializer: function() {
 		var instance = this;
 
@@ -58,6 +110,12 @@ A.extend(ParseContent, A.Plugin.Base, {
 		instance._bindAOP();
 	},
 
+	/**
+	 * Global eval the <data>data</data> passed.
+	 *
+	 * @method globalEval
+	 * @param {String} data JavaScript String.
+	 */
 	globalEval: function(data) {
 		var doc = A.getDoc();
 		var head = doc.one(HEAD) || doc.get(DOCUMENT_ELEMENT);
@@ -75,6 +133,14 @@ A.extend(ParseContent, A.Plugin.Base, {
 		head.appendChild(newScript).remove(); //removes the script node immediately after executing it
 	},
 
+	/**
+	 * Extract the <code>script</code> tags from the string content and
+	 * evaluate the chunks.
+	 *
+	 * @method parseContent
+	 * @param {String} content HTML string
+	 * @return {String}
+	 */
 	parseContent: function(content) {
 		var instance = this;
 		var output = instance._clean(content);
@@ -84,6 +150,15 @@ A.extend(ParseContent, A.Plugin.Base, {
 		return output;
 	},
 
+	/**
+	 * Bind listeners on the <code>insert</code> and <code>setContent</code>
+     * methods of the Node instance where you are plugging the ParseContent.
+     * These listeners are responsible for intercept the HTML passed and parse
+     * them.
+	 *
+	 * @method _bindAOP
+	 * @protected
+	 */
 	_bindAOP: function() {
 		var instance = this;
 
@@ -102,15 +177,23 @@ A.extend(ParseContent, A.Plugin.Base, {
 		this.doBefore('setContent', function(content) {
 			var output = instance.parseContent(content);
 
-			return new A.Do.AlterArgs(null, [
-				output.fragment.get(INNER_HTML)
-			]);
+			return new A.Do.AlterArgs(null, [output.fragment]);
 		});
 	},
 
+	/**
+	 * Create an HTML fragment with the String passed, extract all the script
+     * tags and return an Object with a reference for the extracted scripts and
+     * the fragment.
+	 *
+	 * @method clean
+	 * @param {String} content HTML content.
+	 * @protected
+	 * @return {Object}
+	 */
 	_clean: function(content) {
 		var output = {};
-		var fragment = A.Node.create('<div></div>');
+		var fragment = A.getDoc().invoke(CREATE_DOCUMENT_FRAGMENT);
 
 		// instead of fix all tags to "XHTML"-style, make the firstChild be a valid non-empty tag
 		fragment.append('<div>_</div>');
@@ -138,6 +221,14 @@ A.extend(ParseContent, A.Plugin.Base, {
 		return output;
 	},
 
+	/**
+	 * Loop trough all extracted <code>script</code> tags and evaluate them.
+	 *
+	 * @method _dispatch
+	 * @param {Object} output Object containing the reference for the fragment and the extracted <code>script</code> tags.
+	 * @protected
+	 * @return {String}
+	 */
 	_dispatch: function(output) {
 		var instance = this;
 		var queue = instance.get(QUEUE);
@@ -179,4 +270,4 @@ A.extend(ParseContent, A.Plugin.Base, {
 
 A.namespace('Plugin').ParseContent = ParseContent;
 
-}, '@VERSION@' ,{skinnable:false, requires:['async-queue','aui-base','io','plugin']});
+}, '@VERSION@' ,{requires:['async-queue','aui-base','io','plugin'], skinnable:false});
