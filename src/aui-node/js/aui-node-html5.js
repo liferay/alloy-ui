@@ -3,7 +3,6 @@ if (A.UA.ie) {
 		DOM_create = A.DOM._create;
 
 	if (!HTML5._fragHTML5Shived) {
-		console.log('CREATING SHIV');
 		HTML5._fragHTML5Shived = AUI.html5shiv(
 			document.createDocumentFragment()
 		);
