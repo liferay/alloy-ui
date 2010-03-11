@@ -40,15 +40,15 @@
 
 AUI().ready('aui-base', function(A) {
 
-	var htmlString = '<section>HTML5 section node created from a fragment.</section><section>HTML5 section node created from a fragment.</section><article>HTML5 article node created from a fragment.</article>';
+	var htmlString = '<section>HTML5 section node created from a fragment.</section>';
 
 	var node = A.Node.create(htmlString);
 
-	// A.one('#demo').plug(A.Plugin.ParseContent).append(htmlString);
-	// A.one('#demo').plug(A.Plugin.ParseContent).setContent(htmlString);
-	A.one('#demo').plug(A.Plugin.ParseContent).setContent(htmlString);
-	A.one('#demo').plug(A.Plugin.ParseContent).append(node);
-	// A.one('#demo').plug(A.Plugin.ParseContent).setContent(node);
+	// A.one('#demo').append(htmlString);
+	// A.one('#demo').setContent(htmlString);
+	A.one('#demo').setContent(htmlString);
+	// A.one('#demo').append(node);
+	// A.one('#demo').setContent(node);
 
 });
 
