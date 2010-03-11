@@ -148,7 +148,7 @@
 				if (UA.ie && doc && doc.createElement) {
 					var elements = AUI.HTML5_ELEMENTS, length = elements.length;
 
-					while (--length) {
+					while (length--) {
 						doc.createElement(elements[length]);
 					}
 				}
@@ -162,7 +162,7 @@
 				ALLOY.config = ALLOY.merge(AUI.defaults, defaults);
 			},
 
-			HTML5_ELEMENTS: ',abbr,article,aside,audio,canvas,details,figcaption,figure,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,summary,time,video'.split(',')
+			HTML5_ELEMENTS: 'abbr,article,aside,audio,canvas,details,figcaption,figure,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,summary,time,video'.split(',')
 		}
 	);
 
