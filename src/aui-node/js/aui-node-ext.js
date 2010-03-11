@@ -1,6 +1,8 @@
 /**
- * aui-node provides an extension for the <a href="Node.html">YUI3 Node</a>.
+ * aui-node-ext A set of utility methods to the Node.
+ *
  * @module aui-node
+ * @submodule aui-node-ext
  */
 
 var Lang = A.Lang,
