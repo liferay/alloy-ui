@@ -648,6 +648,16 @@ Y.DOM = {
                 }
 
                 attr.value = val;
+            },
+
+            select: function(node, val) {
+                for (var i = 0, options = node.getElementsByTagName('option'), option;
+                        option = options[i++];) {
+                    if (Y.DOM.getValue(option) === val) {
+                        Y.DOM.setAttribute(option, 'selected', true);
+                        break;
+                    }
+                }
             }
         });
     }
@@ -697,7 +707,7 @@ Y.DOM = {
                 // TODO: implement multipe select
                 if (node.multiple) {
                 } else {
-                    val = Y.DOM.getValue(options[node.selectedIndex], 'value');
+                    val = Y.DOM.getValue(options[node.selectedIndex]);
                 }
             }
 
@@ -1421,7 +1431,9 @@ Y.mix(Y_DOM, {
      */
     docScrollX: function(node, doc) {
         doc = doc || (node) ? Y_DOM._getDoc(node) : Y.config.doc; // perf optimization
-        return Math.max(doc[DOCUMENT_ELEMENT].scrollLeft, doc.body.scrollLeft);
+        var dv = doc.defaultView,
+            pageOffset = (dv) ? dv.pageXOffset : 0;
+        return Math.max(doc[DOCUMENT_ELEMENT].scrollLeft, doc.body.scrollLeft, pageOffset);
     },
 
     /**
@@ -1431,7 +1443,9 @@ Y.mix(Y_DOM, {
      */
     docScrollY:  function(node, doc) {
         doc = doc || (node) ? Y_DOM._getDoc(node) : Y.config.doc; // perf optimization
-        return Math.max(doc[DOCUMENT_ELEMENT].scrollTop, doc.body.scrollTop);
+        var dv = doc.defaultView,
+            pageOffset = (dv) ? dv.pageYOffset : 0;
+        return Math.max(doc[DOCUMENT_ELEMENT].scrollTop, doc.body.scrollTop, pageOffset);
     },
 
     /**
@@ -2202,6 +2216,7 @@ var PARENT_NODE = 'parentNode',
     Selector = Y.Selector,
 
     SelectorCSS2 = {
+        _reRegExpTokens: /([\^\$\?\[\]\*\+\-\.\(\)\|\\])/, // TODO: move?
         SORT_RESULTS: true,
         _children: function(node, tag) {
             var ret = node.children,
@@ -2350,8 +2365,9 @@ var PARENT_NODE = 'parentNode',
                             }
 
                             if ((operator === '=' && value !== test[2]) ||  // fast path for equality
-                                (operator.test && !operator.test(value)) ||  // regex test
-                                (operator.call && !operator(tmpNode, test[0]))) { // function test
+                                (typeof operator !== 'string' && // protect against String.test monkey-patch (Moo)
+                                operator.test && !operator.test(value)) ||  // regex test
+                                (typeof operator === 'function' && !operator(tmpNode, test[0]))) { // function test
 
                                 // skip non element nodes or non-matching tags
                                 if ((tmpNode = tmpNode[path])) {
@@ -2434,6 +2450,7 @@ var PARENT_NODE = 'parentNode',
                     if (operator in operators) {
                         test = operators[operator];
                         if (typeof test === 'string') {
+                            match[3] = match[3].replace(Y.Selector._reRegExpTokens, '\\$1');
                             test = Y.DOM._getRegExp(test.replace('{val}', match[3]));
                         }
                         match[2] = test;
