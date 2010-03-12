@@ -21,7 +21,7 @@
 			modules: {
 				'aui-autocomplete': {skinnable:true, requires:['aui-base','aui-component-overlay','datasource','dataschema','aui-combobox']},
 				'aui-base': {requires:['aui-node','aui-component','aui-delayed-task','event','oop','widget-css'], skinnable:false},
-				'aui-calendar': {requires:['aui-context-overlay','datatype-date','widget-i18n'], skinnable:true},
+				'aui-calendar': {requires:['aui-context-overlay','datatype-date','widget-locale'], skinnable:true},
 				'aui-char-counter': {requires:['aui-base','aui-input-handler'], skinnable:false},
 				'aui-chart': {requires:['datasource','aui-swf','json'], skinnable:false},
 				'aui-color-picker': {requires:['aui-context-overlay','dd','slider','substitute','aui-tool-item','aui-form','aui-panel'], skinnable:true},
