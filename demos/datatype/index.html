@@ -42,17 +42,17 @@ AUI().ready('aui-datatype', function(A) {
 
 	function assertString(str, value) {
 
-try {
-	var status = A.DataType.String.evaluate(str) === value ? 'ok' : 'fail';
+		try {
+			var status = A.DataType.String.evaluate(str) === value ? 'ok' : 'fail';
 
-	str = stringify(str);
-	value = stringify(value);
+			str = stringify(str);
+			value = stringify(value);
 
-	A.getBody().append('<p class="'+status+'">'+status.toUpperCase() +' - A.DataType.String.evaluate('+ str+') === '+value+'</p>');
-}
-catch(e) {
-	console.log(e);
-}
+			A.getBody().append('<p class="'+status+'">'+status.toUpperCase() +' - A.DataType.String.evaluate('+ str+') === '+value+'</p>');
+		}
+		catch(e) {
+			console.log(e);
+		}
 
 	}
 
