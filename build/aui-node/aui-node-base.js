@@ -1,8 +1,9 @@
+AUI.add('aui-node-base', function(A) {
 /**
- * aui-node-ext A set of utility methods to the Node.
+ * aui-node-base A set of utility methods to the Node.
  *
  * @module aui-node
- * @submodule aui-node-ext
+ * @submodule aui-node-base
  */
 
 var Lang = A.Lang,
@@ -769,3 +770,5 @@ A.mix(
 		}
 	}
 );
+
+}, '@VERSION@' ,{requires:['aui-base']});

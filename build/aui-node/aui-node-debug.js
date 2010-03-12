@@ -1,9 +1,9 @@
-AUI.add('aui-node-ext', function(A) {
+AUI.add('aui-node-base', function(A) {
 /**
- * aui-node-ext A set of utility methods to the Node.
+ * aui-node-base A set of utility methods to the Node.
  *
  * @module aui-node
- * @submodule aui-node-ext
+ * @submodule aui-node-base
  */
 
 var Lang = A.Lang,
@@ -865,5 +865,5 @@ if (A.UA.ie) {
 }, '@VERSION@' ,{requires:['collection','aui-base']});
 
 
-AUI.add('aui-node', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-node-ext','aui-node-html5']});
+AUI.add('aui-node', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-node-base','aui-node-html5']});
 

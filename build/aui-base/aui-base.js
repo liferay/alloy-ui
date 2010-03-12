@@ -49,7 +49,7 @@
 				'aui-loading-mask': {requires:['aui-overlay-mask','plugin','substitute'], skinnable:true},
 				'aui-nested-list': {requires:['aui-base','dd'], skinnable:false},
 				'aui-node-fx': {requires:['aui-base','anim','anim-node-plugin'], skinnable:false},
-				'aui-node': {submodules: {'aui-node-html5': {requires:['collection','aui-base']}, 'aui-node-ext': {requires:['aui-base']} }, skinnable:false, use:['aui-node-ext','aui-node-html5']},
+				'aui-node': {submodules: {'aui-node-html5': {requires:['collection','aui-base']}, 'aui-node-base': {requires:['aui-base']} }, skinnable:false, use:['aui-node-base','aui-node-html5']},
 				'aui-overlay-manager': {skinnable:false, requires:['aui-base','aui-component-overlay','overlay','plugin']},
 				'aui-overlay-mask': {skinnable:true, requires:['aui-base','aui-component-overlay','event-resize']},
 				'aui-paginator': {skinnable:true, requires:['aui-base','substitute']},
