@@ -124,7 +124,7 @@ var L = A.Lang,
  * @class Calendar
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
- * @extends ContextOverlay
+ * @extends OverlayContext
  */
 function Calendar(config) {
 	Calendar.superclass.constructor.apply(this, arguments);
@@ -306,7 +306,7 @@ A.mix(Calendar, {
 	}
 });
 
-A.extend(Calendar, A.ContextOverlay, {
+A.extend(Calendar, A.OverlayContext, {
 	/**
 	 * Construction logic executed during Calendar instantiation. Lifecycle.
 	 *
