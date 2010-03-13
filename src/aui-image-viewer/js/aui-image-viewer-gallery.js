@@ -1,7 +1,8 @@
 /**
  * The ImageGallery Utility
  *
- * @module aui-image-gallery
+ * @module aui-image-viewer
+ * @submodule aui-image-viewer-gallery
  */
 
 var L = A.Lang,

@@ -2,6 +2,7 @@
  * The ImageViewer Utility
  *
  * @module aui-image-viewer
+ * @submodule aui-image-viewer-base
  */
 
 var L = A.Lang,
