@@ -62,8 +62,7 @@
 				'aui-textarea': {skinnable:true, requires:['aui-textfield']},
 				'aui-textboxlist': {skinnable:true, requires:['anim-node-plugin','aui-autocomplete','node-focusmanager']},
 				'aui-textfield': {skinnable:false, requires:['aui-field']},
-				'aui-tool-item': {skinnable:true, requires:['aui-base','aui-state-interaction']},
-				'aui-tool-set': {skinnable:true, requires:['aui-data-set','aui-tool-item']},
+				'aui-tool': {submodules: {'aui-tool-set': {skinnable:true, requires:['aui-data-set','aui-tool-item']}, 'aui-tool-item': {requires:['aui-base','aui-state-interaction']} }, use:['aui-tool-item','aui-tool-set'], skinnable:true},
 				'aui-tooltip': {skinnable:true, requires:['aui-context-panel']},
 				'aui-tree': {submodules: {'aui-tree-view': {skinnable:true, requires:['aui-tree-node','dd']}, 'aui-tree-node': {skinnable:false, requires:['aui-tree-data','io','json']}, 'aui-tree-data': {skinnable:false, requires:['aui-base']} }, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true}
 			},
