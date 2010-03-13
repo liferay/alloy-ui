@@ -1,7 +1,9 @@
+AUI.add('aui-calendar-datepicker-select', function(A) {
 /**
  * The DatePickerSelect Utility
  *
- * @module aui-date-picker-select
+ * @module aui-calendar
+ * @submodule aui-calendar-datepicker-select
  */
 
 var L = A.Lang,
@@ -71,7 +73,7 @@ var L = A.Lang,
 	WRAPPER_SELECT_TPL = '<div class='+ CSS_DATEPICKER_SELECT_WRAPPER +'></div>';
 
 /**
- * <p><img src="assets/images/aui-date-picker-select/main.png"/></p>
+ * <p><img src="assets/images/aui-calendar-datepicker-select/main.png"/></p>
  *
  * A base class for DatePickerSelect, providing:
  * <ul>
@@ -696,3 +698,5 @@ A.extend(DatePickerSelect, A.Calendar, {
 });
 
 A.DatePickerSelect = DatePickerSelect;
+
+}, '@VERSION@' ,{skinnable:true, requires:['aui-calendar-base','aui-tool-item']});

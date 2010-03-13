@@ -5,6 +5,7 @@
  * navigated without any page refreshes.
  *
  * @module aui-calendar
+ * @submodule aui-calendar-base
  */
 
 var L = A.Lang,
