@@ -76,7 +76,7 @@ var L = A.Lang,
 	TPL_PLAYER_CONTENT = '<span class="'+CSS_IMAGE_GALLERY_PLAYER_CONTENT+'"></span>';
 
 /**
- * <p><img src="assets/images/aui-image-gallery/main.png"/></p>
+ * <p><img src="assets/images/aui-image-viewer-gallery/main.png"/></p>
  *
  * A base class for ImageGallery, providing:
  * <ul>

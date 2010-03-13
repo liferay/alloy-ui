@@ -55,7 +55,7 @@ var L = A.Lang,
 	TPL_POINTER_INNER = '<div class="' + CSS_CONTEXTPANEL_POINTER_INNER + '"></div>';
 
 /**
- * <p><img src="assets/images/aui-context-panel/main.png"/></p>
+ * <p><img src="assets/images/aui-overlay-context-panel/main.png"/></p>
  *
  * A base class for OverlayContextPanel, providing:
  * <ul>
