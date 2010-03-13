@@ -1,7 +1,9 @@
+AUI.add('aui-image-viewer-base', function(A) {
 /**
  * The ImageViewer Utility
  *
  * @module aui-image-viewer
+ * @submodule aui-image-viewer-base
  */
 
 var L = A.Lang,
@@ -1268,3 +1270,5 @@ A.ImageViewer = ImageViewer;
  * @static
  */
 A.ImageViewerMask = new A.OverlayMask().render();
+
+}, '@VERSION@' ,{skinnable:true, requires:['anim','aui-overlay-mask','substitute']});

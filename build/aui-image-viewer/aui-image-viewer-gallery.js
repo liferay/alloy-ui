@@ -1,7 +1,9 @@
+AUI.add('aui-image-viewer-gallery', function(A) {
 /**
  * The ImageGallery Utility
  *
- * @module aui-image-gallery
+ * @module aui-image-viewer
+ * @submodule aui-image-viewer-gallery
  */
 
 var L = A.Lang,
@@ -817,3 +819,5 @@ A.extend(ImageGallery, A.ImageViewer, {
 });
 
 A.ImageGallery = ImageGallery;
+
+}, '@VERSION@' ,{skinnable:true, requires:['aui-image-viewer-base','aui-paginator','aui-tool-set']});

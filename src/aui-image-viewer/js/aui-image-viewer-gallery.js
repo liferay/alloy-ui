@@ -1,7 +1,10 @@
-AUI.add('aui-image-gallery', function(A) {
-/*
-* ImageGallery
-*/
+/**
+ * The ImageGallery Utility
+ *
+ * @module aui-image-viewer
+ * @submodule aui-image-viewer-gallery
+ */
+
 var L = A.Lang,
 	isBoolean = L.isBoolean,
 	isNumber = L.isNumber,
@@ -72,25 +75,95 @@ var L = A.Lang,
 	TPL_PLAYER_CONTAINER = '<div class="'+CSS_IMAGE_GALLERY_PLAYER+'"></div>',
 	TPL_PLAYER_CONTENT = '<span class="'+CSS_IMAGE_GALLERY_PLAYER_CONTENT+'"></span>';
 
-
+/**
+ * <p><img src="assets/images/aui-image-gallery/main.png"/></p>
+ *
+ * A base class for ImageGallery, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>Displays an image in a Overlay</li>
+ *    <li>Displays list of thumbnails of the images as a control</li>
+ *    <li>Slide show functionalities (i.e., play, pause etc)</li>
+ *    <li>Keyboard navigation support</li>
+ * </ul>
+ *
+ * Quick Example:<br/>
+ *
+ * <pre><code>var instance = new A.ImageGallery({
+ *   links: '#gallery1 a',
+ *   caption: 'Liferay Champion Soccer',
+ *   captionFromTitle: true,
+ *   preloadNeighborImages: true,
+ *   preloadAllImages: true,
+ *   showInfo: true
+ * }).render();
+ * </code></pre>
+ *
+ * Check the list of <a href="ImageGallery.html#configattributes">Configuration Attributes</a> available for
+ * ImageGallery.
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class ImageGallery
+ * @constructor
+ * @extends ImageViewer
+ */
 function ImageGallery(config) {
 	ImageGallery.superclass.constructor.apply(this, arguments);
 }
 
 A.mix(ImageGallery, {
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property ImageGallery.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: IMAGE_GALLERY,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the ImageGallery.
+	 *
+	 * @property ImageGallery.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+		/**
+		 * If <code>true</code> the slide show will be played when the
+         * ImageGallery is displayed.
+		 *
+		 * @attribute autoPlay
+		 * @default false
+		 * @type boolean
+		 */
 		autoPlay: {
 			value: false,
 			validator: isBoolean
 		},
 
+		/**
+		 * Delay in milliseconds to change to the next image.
+		 *
+		 * @attribute delay
+		 * @default 7000
+		 * @type Number
+		 */
 		delay: {
 			value: 7000,
 			validator: isNumber
 		},
 
+		/**
+		 * <a href="Paginator.html">Paginator</a> configuration Object. The
+         * <code>Paginator</code> handles the thumbnails control.
+		 *
+		 * @attribute paginator
+		 * @default <a href="Paginator.html">Paginator</a> configuration Object.
+		 * @type Object
+		 */
 		paginator: {
 			value: {},
 			setter: function(value) {
@@ -119,6 +192,15 @@ A.mix(ImageGallery, {
 			validator: isObject
 		},
 
+		/**
+		 * Element which contains the <a href="Paginator.html">Paginator</a>
+         * with the thumbnails.
+		 *
+		 * @attribute paginatorEl
+		 * @default Generated HTML div.
+		 * @readOnly
+		 * @type Node
+		 */
 		paginatorEl: {
 			readyOnly: true,
 			valueFn: function() {
@@ -126,40 +208,96 @@ A.mix(ImageGallery, {
 			}
 		},
 
+		/**
+		 * Stores the <a href="Paginator.html">Paginator</a> instance.
+		 *
+		 * @attribute paginatorInstance
+		 * @default null
+		 * @type Paginator
+		 */
 		paginatorInstance: {
 			value: null
 		},
 
+		/**
+		 * If <code>true</code> the slide show is paused.
+		 *
+		 * @attribute paused
+		 * @default false
+		 * @type boolean
+		 */
 		paused: {
 			value: false,
 			validator: isBoolean
 		},
 
+		/**
+		 * Label to display when the slide show is paused.
+		 *
+		 * @attribute pausedLabel
+		 * @default ''
+		 * @type String
+		 */
 		pausedLabel: {
 			value: '',
 			validator: isString
 		},
 
+		/**
+		 * If <code>true</code> the slide show is playing.
+		 *
+		 * @attribute playing
+		 * @default false
+		 * @type boolean
+		 */
 		playing: {
 			value: false,
 			validator: isBoolean
 		},
 
+		/**
+		 * Label to display when the slide show is playing.
+		 *
+		 * @attribute playingLabel
+		 * @default '(Playing)'
+		 * @type String
+		 */
 		playingLabel: {
 			value: TEMPLATE_PLAYING_LABEL,
 			validator: isString
 		},
 
+		/**
+		 * Restart the navigation when reach the last element.
+		 *
+		 * @attribute repeat
+		 * @default true
+		 * @type boolean
+		 */
 		repeat: {
 			value: true,
 			validator: isBoolean
 		},
 
+		/**
+		 * Show the player controls (i.e., pause and show buttons).
+		 *
+		 * @attribute showPlayer
+		 * @default true
+		 * @type boolean
+		 */
 		showPlayer: {
 			value: true,
 			validator: isBoolean
 		},
 
+		/**
+		 * <a href="ToolSet.html">ToolSet</a> with a play, and pause buttons.
+		 *
+		 * @attribute toolSet
+		 * @default Generated ToolSet with a play, and pause buttons.
+		 * @type ToolSet constructor.
+		 */
 		toolSet: {
 			value: {},
 			setter: function(value) {
@@ -184,10 +322,24 @@ A.mix(ImageGallery, {
 			validator: isObject
 		},
 
+		/**
+		 * Stores the <a href="ToolSet.html">ToolSet</a> instance.
+		 *
+		 * @attribute toolSetInstance
+		 * @default null
+		 * @type ToolSet
+		 */
 		toolSetInstance: {
 			value: null
 		},
 
+		/**
+		 * If <code>true</code> will use the original image as thumbnails.
+		 *
+		 * @attribute useOriginalImage
+		 * @default false
+		 * @type boolean
+		 */
 		useOriginalImage: {
 			value: false,
 			validator: isBoolean
@@ -196,11 +348,21 @@ A.mix(ImageGallery, {
 });
 
 A.extend(ImageGallery, A.ImageViewer, {
+	/**
+	 * Stores the <code>A.later</code> reference.
+	 *
+	 * @property _timer
+	 * @type Number
+	 * @protected
+	 */
 	_timer: null,
 
-	/*
-	* Lifecycle
-	*/
+	/**
+	 * Create the DOM structure for the ImageGallery. Lifecycle.
+	 *
+	 * @method renderUI
+	 * @protected
+	 */
 	renderUI: function() {
 		var instance = this;
 
@@ -213,6 +375,12 @@ A.extend(ImageGallery, A.ImageViewer, {
 		}
 	},
 
+	/**
+	 * Bind the events on the ImageGallery UI. Lifecycle.
+	 *
+	 * @method bindUI
+	 * @protected
+	 */
 	bindUI: function() {
 		var instance = this;
 
@@ -226,6 +394,13 @@ A.extend(ImageGallery, A.ImageViewer, {
 		instance.publish('changeRequest', { defaultFn: this._changeRequest });
 	},
 
+	/**
+	 * Descructor lifecycle implementation for the ImageGallery class.
+	 * Purges events attached to the node (and all child nodes).
+	 *
+	 * @method destroy
+	 * @protected
+	 */
 	destroy: function() {
 		var instance = this;
 
@@ -234,15 +409,23 @@ A.extend(ImageGallery, A.ImageViewer, {
 		instance.get(PAGINATOR_INSTANCE).destroy();
 	},
 
-	/*
-	* Methods
-	*/
+	/**
+	 * Hide the <a href="Paginator.html">Paginator</a> with the thumbnails
+     * list.
+	 *
+	 * @method hidePaginator
+	 */
 	hidePaginator: function() {
 		var instance = this;
 
 		instance.get(PAGINATOR_EL).addClass(CSS_OVERLAY_HIDDEN);
 	},
 
+	/**
+	 * Pause the slide show.
+	 *
+	 * @method pause
+	 */
 	pause: function() {
 		var instance = this;
 
@@ -252,6 +435,11 @@ A.extend(ImageGallery, A.ImageViewer, {
 		instance._syncInfoUI();
 	},
 
+	/**
+	 * Play the slide show.
+	 *
+	 * @method play
+	 */
 	play: function() {
 		var instance = this;
 
@@ -261,8 +449,17 @@ A.extend(ImageGallery, A.ImageViewer, {
 		instance._syncInfoUI();
 	},
 
-	// NOTE: overloading the ImageViewer show method to not loadImage, the changeRequest now is responsible to do that
-	// if we invoke the superclass show method its loading the image, and the changeRequest loads again, avoiding double request.
+	/**
+	 * <p>Show the ImageGallery.</p>
+	 *
+	 * <p><strong>NOTE:</strong>Overloads the <a
+     * href="ImageViewer.html">ImageViewer</a> show method to not loadImage, the
+     * changeRequest now is responsible to do that if we invoke the superclass
+     * show method its loading the image, and the changeRequest loads again,
+     * avoiding double request.</p>
+	 *
+	 * @method show
+	 */
 	show: function() {
 		var instance = this;
 		var currentLink = instance.getCurrentLink();
@@ -287,12 +484,24 @@ A.extend(ImageGallery, A.ImageViewer, {
 		}
 	},
 
+	/**
+	 * Show the <a href="Paginator.html">Paginator</a> with the thumbnails
+     * list.
+	 *
+	 * @method showPaginator
+	 */
 	showPaginator: function() {
 		var instance = this;
 
 		instance.get(PAGINATOR_EL).removeClass(CSS_OVERLAY_HIDDEN);
 	},
 
+	/**
+	 * Bind the ToolSet UI for the play and pause buttons.
+	 *
+	 * @method _bindToolSetUI
+	 * @protected
+	 */
 	_bindToolSetUI: function() {
 		var instance = this;
 
@@ -307,6 +516,12 @@ A.extend(ImageGallery, A.ImageViewer, {
 		}
 	},
 
+	/**
+	 * Cancel the timer between slides.
+	 *
+	 * @method _cancelTimer
+	 * @protected
+	 */
 	_cancelTimer: function() {
 		var instance = this;
 
@@ -315,6 +530,12 @@ A.extend(ImageGallery, A.ImageViewer, {
 		}
 	},
 
+	/**
+	 * Render the <a href="Paginator.html">Paginator</a> with the thumbnails.
+	 *
+	 * @method _renderPaginator
+	 * @protected
+	 */
 	_renderPaginator: function() {
 		var instance = this;
 		var paginatorEl = instance.get(PAGINATOR_EL);
@@ -331,6 +552,12 @@ A.extend(ImageGallery, A.ImageViewer, {
 		instance.set(PAGINATOR_INSTANCE, paginatorInstance);
 	},
 
+	/**
+	 * Render the player controls.
+	 *
+	 * @method _renderPlayer
+	 * @protected
+	 */
 	_renderPlayer: function() {
 		var instance = this;
 		var paginatorEl = instance.get(PAGINATOR_EL);
@@ -348,6 +575,12 @@ A.extend(ImageGallery, A.ImageViewer, {
 		instance.set(TOOLSET_INSTANCE, toolSetInstance);
 	},
 
+	/**
+	 * Start the timer between slides.
+	 *
+	 * @method _startTimer
+	 * @protected
+	 */
 	_startTimer: function() {
 		var instance = this;
 		var delay = instance.get(DELAY);
@@ -357,6 +590,12 @@ A.extend(ImageGallery, A.ImageViewer, {
 		instance._timer = A.later(delay, instance, instance._syncSlideShow);
 	},
 
+	/**
+	 * Sync the controls UI.
+	 *
+	 * @method _syncControlsUI
+	 * @protected
+	 */
 	_syncControlsUI: function() {
 		var instance = this;
 
@@ -374,6 +613,12 @@ A.extend(ImageGallery, A.ImageViewer, {
 		}
 	},
 
+	/**
+	 * Sync the selected thumb UI.
+	 *
+	 * @method _syncSelectedThumbUI
+	 * @protected
+	 */
 	_syncSelectedThumbUI: function() {
 		var instance = this;
 		var currentIndex = instance.get(CURRENT_INDEX);
@@ -389,6 +634,12 @@ A.extend(ImageGallery, A.ImageViewer, {
 		}
 	},
 
+	/**
+	 * Sync the slide show UI.
+	 *
+	 * @method _syncSlideShow
+	 * @protected
+	 */
 	_syncSlideShow: function() {
 		var instance = this;
 
@@ -404,9 +655,13 @@ A.extend(ImageGallery, A.ImageViewer, {
 		instance.next();
 	},
 
-	/*
-	* Paginator Methods
-	*/
+	/**
+	 * Change the UI when click on a thumbnail.
+	 *
+	 * @method _changeRequest
+	 * @param {EventFacade} event 
+	 * @protected
+	 */
 	_changeRequest: function(event) {
 		var instance = this;
 		var paginatorInstance = event.state.paginator;
@@ -445,6 +700,14 @@ A.extend(ImageGallery, A.ImageViewer, {
 		}
 	},
 
+	/**
+	 * See <a href="Paginator.html#method_pageLinkContent">pageLinkContent</a>.
+	 *
+	 * @method _setThumbContent
+	 * @param {Node} pageEl
+	 * @param {Number} pageNumber
+	 * @protected
+	 */
 	_setThumbContent: function(pageEl, pageNumber) {
 		var instance = this;
 		var index = pageNumber - 1;
@@ -472,9 +735,14 @@ A.extend(ImageGallery, A.ImageViewer, {
 		}
 	},
 
-	/*
-	* Getters
-	*/
+	/**
+	 * Get the <a href="ImageViewer.html#config_info">info</a> template.
+	 *
+	 * @method _getInfoTemplate
+	 * @param {String} v template
+	 * @protected
+	 * @return {String} Parsed string.
+	 */
 	_getInfoTemplate: function(v) {
 		var label;
 		var instance = this;
@@ -494,9 +762,14 @@ A.extend(ImageGallery, A.ImageViewer, {
 		);
 	},
 
-	/*
-	* Listeners
-	*/
+	/**
+	 * Fires after the value of the
+	 * <a href="ImageViewer.html#config_visible">visible</a> attribute change.
+	 *
+	 * @method _afterVisibleChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_afterVisibleChange: function(event) {
 		var instance = this;
 
@@ -511,6 +784,14 @@ A.extend(ImageGallery, A.ImageViewer, {
 		}
 	},
 
+	/**
+	 * Fires before the value of the
+	 * <a href="ImageGallery.html#config_paused">paused</a> attribute change.
+	 *
+	 * @method _onPausedChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_onPausedChange: function(event) {
 		var instance = this;
 
@@ -519,6 +800,14 @@ A.extend(ImageGallery, A.ImageViewer, {
 		}
 	},
 
+	/**
+	 * Fires before the value of the
+	 * <a href="ImageGallery.html#config_playing">playing</a> attribute change.
+	 *
+	 * @method _onPlayingChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_onPlayingChange: function(event) {
 		var instance = this;
 
@@ -529,5 +818,3 @@ A.extend(ImageGallery, A.ImageViewer, {
 });
 
 A.ImageGallery = ImageGallery;
-
-}, '@VERSION@' ,{requires:['aui-image-viewer','aui-paginator','aui-tool-set'], skinnable:true});
