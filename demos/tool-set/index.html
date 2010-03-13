@@ -52,7 +52,7 @@
 <script type="text/javascript" charset="utf-8">
 AUI().ready(
 	'aui-tool-set',
-	'aui-context-panel',
+	'aui-overlay-context-panel',
 	function(A) {
 		toolSet = new A.ToolSet(
 			{
@@ -65,7 +65,7 @@ AUI().ready(
 							var instance = this;
 
 							if (!instance._optionsMenu) {
-								instance._optionsMenu = new A.ContextPanel(
+								instance._optionsMenu = new A.OverlayContextPanel(
 									{
 										align: {
 											node: instance.get('contentBox'),
@@ -91,7 +91,7 @@ AUI().ready(
 							var instance = this;
 
 							if (!instance._addMenu) {
-								instance._addMenu = new A.ContextPanel(
+								instance._addMenu = new A.OverlayContextPanel(
 									{
 										align: {
 											node: instance.get('contentBox'),

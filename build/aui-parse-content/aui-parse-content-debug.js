@@ -38,7 +38,7 @@ var L = A.Lang,
  * <a href="Node.html#method_setContent">setContent</a>,
  * <a href="Node.html#method_prepend">prepend</a> and
  * <a href="Node.html#method_append">append</a> methods.</p>
- * 
+ *
  * Quick Example:<br/>
  *
  * <pre><code>node.plug(A.Plugin.ParseContent);</code></pre>
@@ -69,7 +69,7 @@ A.mix(ParseContent, {
 	/**
 	 * Static property provides a string to identify the namespace.
 	 *
-	 * @property LoadingMask.NS
+	 * @property OverlayLoading.NS
 	 * @type String
 	 * @static
 	 */

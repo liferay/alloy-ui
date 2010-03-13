@@ -1197,7 +1197,7 @@ A.extend(
 
 			overlayAlign.node = instance.inputNode;
 
-			var overlay = new A.ComponentOverlay(
+			var overlay = new A.OverlayBase(
 				{
 					align: overlayAlign,
 					bodyContent: '<ul></ul>',

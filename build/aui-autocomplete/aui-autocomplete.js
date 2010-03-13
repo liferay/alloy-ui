@@ -1198,7 +1198,7 @@ A.extend(
 
 			overlayAlign.node = instance.inputNode;
 
-			var overlay = new A.ComponentOverlay(
+			var overlay = new A.OverlayBase(
 				{
 					align: overlayAlign,
 					bodyContent: '<ul></ul>',
@@ -1460,4 +1460,4 @@ A.extend(
 
 A.AutoComplete = AutoComplete;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-component-overlay','datasource','dataschema','aui-combobox'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox'], skinnable:true});

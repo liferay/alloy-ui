@@ -45,7 +45,7 @@ var L = A.Lang,
  *
  * @class Tooltip
  * @constructor
- * @extends ContextPanel
+ * @extends OverlayContextPanel
  */
 function Tooltip(config) {
 	Tooltip.superclass.constructor.apply(this, arguments);
@@ -71,7 +71,7 @@ A.mix(Tooltip, {
 	 */
 	ATTRS: {
 		/**
-		 * See <a href="ContextPanel.html#config_anim">ContextPanel anim</a>.
+		 * See <a href="OverlayContextPanel.html#config_anim">OverlayContextPanel anim</a>.
 		 *
 		 * @attribute anim
 		 * @default { show: false }
@@ -84,7 +84,7 @@ A.mix(Tooltip, {
 		},
 
 		/**
-		 * See <a href="Overlay.html#config_align">ContextPanel align</a>.
+		 * See <a href="Overlay.html#config_align">OverlayContextPanel align</a>.
 		 *
 		 * @attribute align
 		 * @default { node: null, points: [ BL, TR ] }
@@ -95,7 +95,7 @@ A.mix(Tooltip, {
 		},
 
 		/**
-		 * See <a href="ContextOverlay.html#config_showOn">ContextOverlay showOn</a>.
+		 * See <a href="OverlayContext.html#config_showOn">OverlayContext showOn</a>.
 		 *
 		 * @attribute showOn
 		 * @default mouseover
@@ -106,7 +106,7 @@ A.mix(Tooltip, {
 		},
 
 		/**
-		 * See <a href="ContextOverlay.html#config_showOn">ContextOverlay showOn</a>.
+		 * See <a href="OverlayContext.html#config_showOn">OverlayContext showOn</a>.
 		 *
 		 * @attribute hideOn
 		 * @default mouseout
@@ -117,7 +117,7 @@ A.mix(Tooltip, {
 		},
 
 		/**
-		 * See <a href="ContextOverlay.html#config_hideDelay">ContextOverlay hideDelay</a>.
+		 * See <a href="OverlayContext.html#config_hideDelay">OverlayContext hideDelay</a>.
 		 *
 		 * @attribute hideDelay
 		 * @default 500
@@ -142,7 +142,7 @@ A.mix(Tooltip, {
 	}
 });
 
-A.extend(Tooltip, A.ContextPanel, {
+A.extend(Tooltip, A.OverlayContextPanel, {
 	/**
 	 * Bind the events on the Tooltip UI. Lifecycle.
 	 *
@@ -158,7 +158,7 @@ A.extend(Tooltip, A.ContextPanel, {
 	/**
 	 * Over-ride the <code>show</code> to invoke the
      * <a href="Tooltip.html#method__loadBodyContentFromTitle">_loadBodyContentFromTitle</a>.
-     * See <a href="ContextOverlay.html#config_show">ContextOverlay show</a>.
+     * See <a href="OverlayContext.html#config_show">OverlayContext show</a>.
 	 *
 	 * @method show
 	 */

@@ -1,4 +1,10 @@
 AUI.add('aui-tooltip', function(A) {
+/**
+ * The Tooltip Utility - A standard tooltip implementation for providing additional information when hovering over a target element.
+ *
+ * @module aui-tooltip
+ */
+
 var L = A.Lang,
 	isString = L.isString,
 	isUndefined = L.isUndefined,
@@ -15,36 +21,121 @@ var L = A.Lang,
 	BODY_CONTENT = 'bodyContent',
 	TOOLTIP = 'tooltip';
 
+/**
+ * <p><img src="assets/images/aui-tooltip/main.png"/></p>
+ *
+ * A base class for Tooltip, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>Additional information when hovering over a target element</li>
+ * </ul>
+ *
+ * Quick Example:<br/>
+ *
+ * <pre><code>var instance = new A.Tooltip({
+ *	trigger: '#element',
+ *	align: { points: [ 'lc', 'rc' ] },
+ *	bodyContent: 'Simple tooltip'
+ * }).render();
+ * </code></pre>
+ *
+ * Check the list of <a href="Tooltip.html#configattributes">Configuration Attributes</a> available for
+ * Tooltip.
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class Tooltip
+ * @constructor
+ * @extends OverlayContextPanel
+ */
 function Tooltip(config) {
 	Tooltip.superclass.constructor.apply(this, arguments);
 }
 
 A.mix(Tooltip, {
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property Tooltip.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: TOOLTIP,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the Tooltip.
+	 *
+	 * @property Tooltip.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+		/**
+		 * See <a href="OverlayContextPanel.html#config_anim">OverlayContextPanel anim</a>.
+		 *
+		 * @attribute anim
+		 * @default { show: false }
+		 * @type Object
+		 */
 		anim: {
 			value: {
 				show: false
 			}
 		},
 
+		/**
+		 * See <a href="Overlay.html#config_align">OverlayContextPanel align</a>.
+		 *
+		 * @attribute align
+		 * @default { node: null, points: [ BL, TR ] }
+		 * @type Object
+		 */
 		align: {
 			value: { node: null, points: [ BL, TR ] }
 		},
 
+		/**
+		 * See <a href="OverlayContext.html#config_showOn">OverlayContext showOn</a>.
+		 *
+		 * @attribute showOn
+		 * @default mouseover
+		 * @type String
+		 */
 		showOn: {
 			value: 'mouseover'
 		},
 
+		/**
+		 * See <a href="OverlayContext.html#config_showOn">OverlayContext showOn</a>.
+		 *
+		 * @attribute hideOn
+		 * @default mouseout
+		 * @type String
+		 */
 		hideOn: {
 			value: 'mouseout'
 		},
 
+		/**
+		 * See <a href="OverlayContext.html#config_hideDelay">OverlayContext hideDelay</a>.
+		 *
+		 * @attribute hideDelay
+		 * @default 500
+		 * @type Number
+		 */
 		hideDelay: {
 			value: 500
 		},
 
+		/**
+		 * Use the content of the <code>title</code> attribute as the Tooltip
+         * content.
+		 *
+		 * @attribute title
+		 * @default false
+		 * @type boolean
+		 */
 		title: {
 			value: false,
 			validator: isBoolean
@@ -52,19 +143,26 @@ A.mix(Tooltip, {
 	}
 });
 
-A.extend(Tooltip, A.ContextPanel, {
-	/*
-	* Lifecycle
-	*/
+A.extend(Tooltip, A.OverlayContextPanel, {
+	/**
+	 * Bind the events on the Tooltip UI. Lifecycle.
+	 *
+	 * @method bindUI
+	 * @protected
+	 */
 	bindUI: function() {
 		var instance = this;
 
 		Tooltip.superclass.bindUI.apply(instance, arguments);
 	},
 
-	/*
-	* Methods
-	*/
+	/**
+	 * Over-ride the <code>show</code> to invoke the
+     * <a href="Tooltip.html#method__loadBodyContentFromTitle">_loadBodyContentFromTitle</a>.
+     * See <a href="OverlayContext.html#config_show">OverlayContext show</a>.
+	 *
+	 * @method show
+	 */
 	show: function() {
 		var instance = this;
 		var bodyContent = instance.get(BODY_CONTENT);
@@ -76,6 +174,14 @@ A.extend(Tooltip, A.ContextPanel, {
 		}
 	},
 
+	/**
+	 * Use the <code>title</code> content of the <code>currentNode</code> as
+     * the content of the Tooltip.
+	 *
+	 * @method _loadBodyContentFromTitle
+	 * @param {Node} currentNode Current node being used by the Tooltip
+	 * @protected
+	 */
 	_loadBodyContentFromTitle: function(currentNode) {
 		var instance = this;
 		var trigger = instance.get(TRIGGER);
@@ -95,9 +201,13 @@ A.extend(Tooltip, A.ContextPanel, {
 		}
 	},
 
-	/*
-	* Listeners
-	*/
+	/**
+	 * Fires after the attribute <code>bodyContent</code> change.
+	 *
+	 * @method _afterBodyChange
+	 * @param {EventFacade} e
+	 * @protected
+	 */
 	_afterBodyChange: function(e) {
 		var instance = this;
 
@@ -110,4 +220,4 @@ A.extend(Tooltip, A.ContextPanel, {
 
 A.Tooltip = Tooltip;
 
-}, '@VERSION@' ,{requires:['aui-context-panel'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-overlay-context-panel'], skinnable:true});

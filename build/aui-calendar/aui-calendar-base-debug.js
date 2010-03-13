@@ -125,7 +125,7 @@ var L = A.Lang,
  * @class Calendar
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
- * @extends ContextOverlay
+ * @extends OverlayContext
  */
 function Calendar(config) {
 	Calendar.superclass.constructor.apply(this, arguments);
@@ -307,7 +307,7 @@ A.mix(Calendar, {
 	}
 });
 
-A.extend(Calendar, A.ContextOverlay, {
+A.extend(Calendar, A.OverlayContext, {
 	/**
 	 * Construction logic executed during Calendar instantiation. Lifecycle.
 	 *
@@ -1299,4 +1299,4 @@ A.CalendarManager = new A.OverlayManager({
 	zIndexBase: 1000
 });
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-context-overlay','datatype-date','widget-locale']});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-context','datatype-date','widget-locale']});

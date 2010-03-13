@@ -658,7 +658,7 @@ var L = A.Lang,
  * 
  * <pre><code>A.one('#content').plug(A.Plugin.IO, { uri: 'assets/content.html', method: 'GET' });</code></pre>
  *
- * Check the list of <a href="IOPlugin.html#configattributes">Configuration Attributes</a> available for
+ * Check the list of <a href="A.Plugin.IO.html#configattributes">Configuration Attributes</a> available for
  * IOPlugin.
  *
  * @param config {Object} Object literal specifying widget configuration properties.
@@ -749,7 +749,7 @@ A.mix(IOPlugin, {
 		},
 
 		/**
-		 * Options passed to the <a href="LoadingMask.html">LoadingMask</a>.
+		 * Options passed to the <a href="OverlayLoading.html">OverlayLoading</a>.
 		 *
 		 * @attribute loadingMask
 		 * @default {}
@@ -773,7 +773,7 @@ A.mix(IOPlugin, {
 		},
 
 		/**
-		 * Show the <a href="LoadingMask.html">LoadingMask</a> covering the <a
+		 * Show the <a href="OverlayLoading.html">OverlayLoading</a> covering the <a
          * href="A.Plugin.IO.html#config_node">node</a> while loading.
 		 *
 		 * @attribute showLoading
@@ -871,8 +871,8 @@ A.extend(IOPlugin, A.IORequest, {
 		if ((instance.get(TYPE) == TYPE_WIDGET) && instance.get(SHOW_LOADING)) {
 			var host = instance.get(HOST);
 
-			host.after('heightChange', instance._syncLoadingMaskUI, instance);
-			host.after('widthChange', instance._syncLoadingMaskUI, instance);
+			host.after('heightChange', instance._syncOverlayLoadingUI, instance);
+			host.after('widthChange', instance._syncOverlayLoadingUI, instance);
 		}
 	},
 
@@ -938,8 +938,8 @@ A.extend(IOPlugin, A.IORequest, {
 
 		var node = instance.get(NODE);
 
-		if (node.loadingmask) {
-			node.loadingmask.hide();
+		if (node.overlayloading) {
+			node.overlayloading.hide();
 		}
 	},
 
@@ -968,21 +968,21 @@ A.extend(IOPlugin, A.IORequest, {
 		var instance = this;
 		var node = instance.get(NODE);
 
-		if (node.loadingmask) {
+		if (node.overlayloading) {
 			if (instance.overlayMaskBoundingBox) {
 				node.append(instance.overlayMaskBoundingBox);
 			}
 		}
 		else {
 			node.plug(
-				A.LoadingMask,
+				A.OverlayLoading,
 				instance.get(LOADING_MASK)
 			);
 
-			instance.overlayMaskBoundingBox = node.loadingmask.overlayMask.get('boundingBox');
+			instance.overlayMaskBoundingBox = node.overlayloading.overlayMask.get('boundingBox');
 		}
 
-		node.loadingmask.show();
+		node.overlayloading.show();
 	},
 
 	/**
@@ -1026,13 +1026,13 @@ A.extend(IOPlugin, A.IORequest, {
 	/**
 	 * Sync the loading mask UI.
 	 *
-	 * @method _syncLoadingMaskUI
+	 * @method _syncOverlayLoadingUI
 	 * @protected
 	 */
-	_syncLoadingMaskUI: function() {
+	_syncOverlayLoadingUI: function() {
 		var instance = this;
 
-		instance.get(NODE).loadingmask.refreshMask();
+		instance.get(NODE).overlayloading.refreshMask();
 	},
 
 	/**
@@ -1097,8 +1097,8 @@ A.extend(IOPlugin, A.IORequest, {
 
 A.namespace('Plugin').IO = IOPlugin;
 
-}, '@VERSION@' ,{requires:['aui-component-overlay','aui-parse-content','aui-io-request','aui-loading-mask']});
+}, '@VERSION@' ,{requires:['aui-overlay-base','aui-parse-content','aui-io-request','aui-overlay-loading']});
 
 
-AUI.add('aui-io', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-io-request','aui-plugin']});
+AUI.add('aui-io', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-io-request','aui-io-plugin']});
 

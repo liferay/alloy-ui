@@ -1,0 +1,35 @@
+.aui-overlayloading-masked {
+	overflow: hidden !important;
+}
+
+.aui-overlayloading-masked-relative {
+	position: relative !important;
+}
+
+.aui-overlayloading {
+    height: 100%;
+	width: 100%;
+    zoom: 1;
+}
+
+.aui-overlayloading-content {
+	background: #ccc;
+}
+
+.aui-overlayloading-message {
+	background: #eee;
+	border: 1px solid;
+	border-color: #bbb #999 #999 #bbb;
+	left: 50%;
+	padding: 2px;
+	position: absolute;
+	top: 50%;
+}
+
+.aui-overlayloading-message-content {
+	background: #fff url(../../../../../build/aui-skins/core/images/loading_indicator.gif) no-repeat 5px 50%;
+	border: 1px solid #ccc;
+	color: #111;
+	line-height: 1;
+	padding: 5px 10px 5px 25px;
+}

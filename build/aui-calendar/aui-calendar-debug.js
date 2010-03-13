@@ -125,7 +125,7 @@ var L = A.Lang,
  * @class Calendar
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
- * @extends ContextOverlay
+ * @extends OverlayContext
  */
 function Calendar(config) {
 	Calendar.superclass.constructor.apply(this, arguments);
@@ -307,7 +307,7 @@ A.mix(Calendar, {
 	}
 });
 
-A.extend(Calendar, A.ContextOverlay, {
+A.extend(Calendar, A.OverlayContext, {
 	/**
 	 * Construction logic executed during Calendar instantiation. Lifecycle.
 	 *
@@ -1299,7 +1299,7 @@ A.CalendarManager = new A.OverlayManager({
 	zIndexBase: 1000
 });
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-context-overlay','datatype-date','widget-locale']});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-context','datatype-date','widget-locale']});
 AUI.add('aui-calendar-datepicker-select', function(A) {
 /**
  * The DatePickerSelect Utility
@@ -1539,7 +1539,7 @@ A.mix(DatePickerSelect, {
 
 		/**
 		 * Trigger element to open the calendar. Inherited from
-         * <a href="ContextOverlay.html#config_trigger">ContextOverlay</a>.
+         * <a href="OverlayContext.html#config_trigger">OverlayContext</a>.
 		 *
 		 * @attribute trigger
 		 * @default Generated HTLM div element
@@ -1554,7 +1554,7 @@ A.mix(DatePickerSelect, {
 		/**
 		 * If true the Calendar is visible by default after the render phase.
          * Inherited from
-         * <a href="ContextOverlay.html#config_trigger">ContextOverlay</a>.
+         * <a href="OverlayContext.html#config_trigger">OverlayContext</a>.
 		 *
 		 * @attribute visible
 		 * @default false

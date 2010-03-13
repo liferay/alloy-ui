@@ -237,7 +237,7 @@ A.mix(DatePickerSelect, {
 
 		/**
 		 * Trigger element to open the calendar. Inherited from
-         * <a href="ContextOverlay.html#config_trigger">ContextOverlay</a>.
+         * <a href="OverlayContext.html#config_trigger">OverlayContext</a>.
 		 *
 		 * @attribute trigger
 		 * @default Generated HTLM div element
@@ -252,7 +252,7 @@ A.mix(DatePickerSelect, {
 		/**
 		 * If true the Calendar is visible by default after the render phase.
          * Inherited from
-         * <a href="ContextOverlay.html#config_trigger">ContextOverlay</a>.
+         * <a href="OverlayContext.html#config_trigger">OverlayContext</a>.
 		 *
 		 * @attribute visible
 		 * @default false

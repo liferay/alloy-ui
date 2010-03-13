@@ -142,7 +142,7 @@ var L = A.Lang,
  *
  * @class ImageViewer
  * @constructor
- * @extends ComponentOverlay
+ * @extends OverlayBase
  */
 function ImageViewer(config) {
 	ImageViewer.superclass.constructor.apply(this, arguments);
@@ -516,7 +516,7 @@ A.mix(ImageViewer, {
 	}
 });
 
-A.extend(ImageViewer, A.ComponentOverlay, {
+A.extend(ImageViewer, A.OverlayBase, {
 	/**
 	 * The index of the active image.
 	 *
