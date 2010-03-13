@@ -800,8 +800,8 @@ A.extend(
 
 A.ToolSet = ToolSet;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-data-set','aui-tool-item']});
+}, '@VERSION@' ,{requires:['aui-data-set','aui-tool-item'], skinnable:true});
 
 
-AUI.add('aui-tool', function(A){}, '@VERSION@' ,{use:['aui-tool-item','aui-tool-set'], skinnable:true});
+AUI.add('aui-tool', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-tool-item','aui-tool-set']});
 

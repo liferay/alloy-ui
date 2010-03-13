@@ -523,4 +523,4 @@ A.extend(
 
 A.Form = Form;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-data-set','io-form','aui-field','querystring-parse']});
+}, '@VERSION@' ,{requires:['aui-base','aui-data-set','aui-form-field','querystring-parse']});

@@ -820,4 +820,4 @@ A.extend(ImageGallery, A.ImageViewer, {
 
 A.ImageGallery = ImageGallery;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-image-viewer-base','aui-paginator','aui-tool-set']});
+}, '@VERSION@' ,{requires:['aui-image-viewer-base','aui-paginator','aui-tool-set'], skinnable:true});

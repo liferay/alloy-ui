@@ -1263,7 +1263,7 @@ A.OverlayContextPanelManager = new A.OverlayManager({
 	zIndexBase: 1000
 });
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-context','anim']});
+}, '@VERSION@' ,{requires:['aui-overlay-context','anim'], skinnable:true});
 AUI.add('aui-overlay-loading', function(A) {
 /**
  * The OverlayLoading Utility
@@ -1613,7 +1613,7 @@ A.each([HIDE, SHOW, TOGGLE], function(method) {
 
 A.OverlayLoading = OverlayLoading;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-mask','plugin','substitute']});
+}, '@VERSION@' ,{requires:['aui-overlay-mask','plugin','substitute'], skinnable:true});
 AUI.add('aui-overlay-manager', function(A) {
 /**
  * The OverlayManager Utility
@@ -2308,8 +2308,8 @@ A.extend(OverlayMask, A.OverlayBase, {
 
 A.OverlayMask = OverlayMask;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-overlay-base','event-resize']});
+}, '@VERSION@' ,{requires:['aui-base','aui-overlay-base','event-resize'], skinnable:true});
 
 
-AUI.add('aui-overlay', function(A){}, '@VERSION@' ,{use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-loading','aui-overlay-manager','aui-overlay-mask'], skinnable:true});
+AUI.add('aui-overlay', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-loading','aui-overlay-manager','aui-overlay-mask']});
 

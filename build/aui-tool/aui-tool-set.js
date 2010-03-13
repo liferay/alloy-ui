@@ -327,4 +327,4 @@ A.extend(
 
 A.ToolSet = ToolSet;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-data-set','aui-tool-item']});
+}, '@VERSION@' ,{requires:['aui-data-set','aui-tool-item'], skinnable:true});

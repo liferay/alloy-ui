@@ -1271,7 +1271,7 @@ A.ImageViewer = ImageViewer;
  */
 A.ImageViewerMask = new A.OverlayMask().render();
 
-}, '@VERSION@' ,{skinnable:true, requires:['anim','aui-overlay-mask','substitute']});
+}, '@VERSION@' ,{requires:['anim','aui-overlay-mask','substitute'], skinnable:true});
 AUI.add('aui-image-viewer-gallery', function(A) {
 /**
  * The ImageGallery Utility
@@ -2094,8 +2094,8 @@ A.extend(ImageGallery, A.ImageViewer, {
 
 A.ImageGallery = ImageGallery;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-image-viewer-base','aui-paginator','aui-tool-set']});
+}, '@VERSION@' ,{requires:['aui-image-viewer-base','aui-paginator','aui-tool-set'], skinnable:true});
 
 
-AUI.add('aui-image-viewer', function(A){}, '@VERSION@' ,{use:['aui-image-viewer-base','aui-image-viewer-gallery'], skinnable:true});
+AUI.add('aui-image-viewer', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-image-viewer-base','aui-image-viewer-gallery']});
 

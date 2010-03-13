@@ -91,5 +91,5 @@ if (A.Node) {
 }, '@VERSION@' ,{requires:['aui-base']});
 
 
-AUI.add('aui-event', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-event-input']});
+AUI.add('aui-event', function(A){}, '@VERSION@' ,{use:['aui-event-input'], skinnable:false});
 

@@ -964,4 +964,4 @@ A.extend(
 
 A.ColorPicker = ColorPicker;
 
-}, '@VERSION@' ,{requires:['aui-context-overlay','dd','slider','substitute','aui-tool-item','aui-form','aui-panel'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-overlay-context','dd','slider','substitute','aui-tool-item','aui-form','aui-panel'], skinnable:true});

@@ -1,4 +1,10 @@
 AUI.add('aui-paginator', function(A) {
+/**
+ * The Paginator Utility - The Paginator widget provides a set of controls to navigate through paged data.
+ *
+ * @module aui-paginator
+ */
+
 var L = A.Lang,
 	isArray = L.isArray,
 	isBoolean = L.isBoolean,
@@ -99,19 +105,82 @@ var L = A.Lang,
 	ROWS_PER_PAGE_TPL = '<select class="'+CSS_PAGINATOR_ROWS_PER_PAGE+'"></select>',
 	TOTAL_TPL = '<span class="'+concat(CSS_PAGINATOR_TOTAL)+'"></span>';
 
+/**
+ * <p><img src="assets/images/aui-paginator/main.png"/></p>
+ *
+ * A base class for Paginator, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>Set of controls to navigate through paged data</li>
+ * </ul>
+ *
+ * Quick Example:<br/>
+ *
+ * <pre><code>var instance = new A.Paginator({
+ *	containers: '.paginatorA',
+ *	total: 10,
+ *	maxPageLinks: 10,
+ *	rowsPerPage: 1,
+ *	rowsPerPageOptions: [ 1, 3, 5, 7 ]
+ * }).render();
+ * </code></pre>
+ *
+ * Check the list of <a href="Paginator.html#configattributes">Configuration Attributes</a> available for
+ * Paginator.
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class Paginator
+ * @constructor
+ * @extends Base
+ */
 function Paginator(config) {
 	Paginator.superclass.constructor.apply(this, arguments);
 }
 
 A.mix(Paginator, {
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property Paginator.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: PAGINATOR,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the Paginator.
+	 *
+	 * @property Paginator.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+		/**
+		 * If true the Paginator will be always visible, even when the number
+         * of pages is 0. To hide the paginator controls automatically when
+         * there is no pages to display use <code>false</code>.
+		 *
+		 * @attribute alwaysVisible
+		 * @default true
+		 * @type boolean
+		 */
 		alwaysVisible: {
 			value: true,
 			validator: isBoolean
 		},
 
+		/**
+		 * The Paginator controls UI could be displayed in more than one
+         * container (i.e., in the header and footer of a list). Pass a
+         * <a href="NodeList.html">NodeList</a> or a selector to grab the
+         * containers.
+		 *
+		 * @attribute containers
+		 * @default null
+		 * @type Node | String
+		 */
 		containers: {
 			writeOnce: true,
 			setter: function(v) {
@@ -128,6 +197,14 @@ A.mix(Paginator, {
 			}
 		},
 
+		/**
+		 * The <a href="Node.html">Node</a> or template to be used as the
+         * first link element.
+		 *
+		 * @attribute firstPageLink
+		 * @default Generated anchor element.
+		 * @type Node | String
+		 */
 		firstPageLink: {
 			setter: nodeSetter,
 			valueFn: function() {
@@ -137,11 +214,27 @@ A.mix(Paginator, {
 			}
 		},
 
+		/**
+		 * The label used as content of the
+         * <a href="Paginator.html#config_firstPageLink">firstPageLink</a> element.
+		 *
+		 * @attribute firstPageLinkLabel
+		 * @default 'first'
+		 * @type String
+		 */
 		firstPageLinkLabel: {
 			value: FIRST,
 			validator: isString
 		},
 
+		/**
+		 * The <a href="Node.html">Node</a> or template to be used as the
+         * last link element.
+		 *
+		 * @attribute lastPageLink
+		 * @default Generated anchor element.
+		 * @type Node | String
+		 */
 		lastPageLink: {
 			setter: nodeSetter,
 			valueFn: function() {
@@ -151,11 +244,28 @@ A.mix(Paginator, {
 			}
 		},
 
+		/**
+		 * The label used as content of the
+         * <a href="Paginator.html#config_lastPageLink">lastPageLink</a> element.
+		 *
+		 * @attribute lastPageLinkLabel
+		 * @default 'last'
+		 * @type String
+		 */
 		lastPageLinkLabel: {
 			value: LAST,
 			validator: isString
 		},
 
+		/**
+		 * The max number of page links to be displayed. If lower than the
+         * total number of pages they are still navigable using next and prev
+         * links.
+		 *
+		 * @attribute maxPageLinks
+		 * @default 10
+		 * @type Number
+		 */
 		maxPageLinks: {
 			value: 10,
 			getter: function(v) {
@@ -167,6 +277,14 @@ A.mix(Paginator, {
 			validator: isNumber
 		},
 
+		/**
+		 * The <a href="Node.html">Node</a> or template to be used as the
+         * next link element.
+		 *
+		 * @attribute nextPageLink
+		 * @default Generated anchor element.
+		 * @type Node | String
+		 */
 		nextPageLink: {
 			setter: nodeSetter,
 			valueFn: function() {
@@ -176,11 +294,26 @@ A.mix(Paginator, {
 			}
 		},
 
+		/**
+		 * The label used as content of the
+         * <a href="Paginator.html#config_nextPageLink">nextPageLink</a> element.
+		 *
+		 * @attribute nextPageLinkLabel
+		 * @default 'next &gt;'
+		 * @type String
+		 */
 		nextPageLinkLabel: {
 			value: concat(NEXT, GT_TPL),
 			validator: isString
 		},
 
+		/**
+		 * Page to display on initial paint.
+		 *
+		 * @attribute page
+		 * @default 1
+		 * @type Number
+		 */
 		page: {
 			setter: function(v) {
 				return num(v);
@@ -188,6 +321,13 @@ A.mix(Paginator, {
 			value: 1
 		},
 
+		/**
+		 * HTML Template for the page links container.
+		 *
+		 * @attribute pageContainerTemplate
+		 * @default Generated span HTML element.
+		 * @type String
+		 */
 		pageContainerTemplate: {
 			getter: function(v) {
 				return A.Node.create(v).addClass(CSS_PAGINATOR_PAGE_CONTAINER);
@@ -196,6 +336,21 @@ A.mix(Paginator, {
 			validator: isString
 		},
 
+		/**
+		 * <p>Function which set the content of the each page element. The passed
+         * function receive as arguments the reference for the page element
+         * node, the page number and the index of the page element.</p>
+         *
+         * Example:
+         *
+         * <pre><code>function(pageEl, pageNumber, index) {
+		 *	 pageEl.html(pageNumber);
+		 *	}</code></pre>
+		 *
+		 * @attribute pageLinkContent
+		 * @default Basic function to set the html of the page element with the page number.
+		 * @type function
+		 */
 		pageLinkContent: {
 			value: function(pageEl, pageNumber, index) {
 				pageEl.html(pageNumber);
@@ -203,6 +358,13 @@ A.mix(Paginator, {
 			validator: isFunction
 		},
 
+		/**
+		 * HTML Template for the link elements.
+		 *
+		 * @attribute pageLinkTemplate
+		 * @default Generated anchor HTML element.
+		 * @type String
+		 */
 		pageLinkTemplate: {
 			getter: function(v) {
 				var node = A.Node.create(v);
@@ -215,6 +377,13 @@ A.mix(Paginator, {
 			validator: isString
 		},
 
+		/**
+		 * Node element to display the page report (i.e., (1 of 100)).
+		 *
+		 * @attribute pageReportEl
+		 * @default Generated span HTML element.
+		 * @type String
+		 */
 		pageReportEl: {
 			setter: nodeSetter,
 			valueFn: function() {
@@ -224,6 +393,16 @@ A.mix(Paginator, {
 			}
 		},
 
+		/**
+		 * Template for the
+         * <a href="Paginator.html#config_pageReportEl">pageReportEl</a> content.
+         * Note the placeholders for the page {page} and the total pages
+         * {totalPages}.
+		 *
+		 * @attribute pageReportLabelTemplate
+		 * @default '({page} of {totalPages})'
+		 * @type String
+		 */
 		pageReportLabelTemplate: {
 			getter: function() {
 				var instance = this;
@@ -236,6 +415,14 @@ A.mix(Paginator, {
 			validator: isString
 		},
 
+		/**
+		 * The <a href="Node.html">Node</a> or template to be used as the
+         * prev link element.
+		 *
+		 * @attribute prevPageLink
+		 * @default Generated anchor element.
+		 * @type Node | String
+		 */
 		prevPageLink: {
 			setter: nodeSetter,
 			valueFn: function() {
@@ -245,16 +432,41 @@ A.mix(Paginator, {
 			}
 		},
 
+		/**
+		 * The label used as content of the
+         * <a href="Paginator.html#config_prevPageLink">prevPageLink</a> element.
+		 *
+		 * @attribute prevPageLinkLabel
+		 * @default '&lt; prev'
+		 * @type String
+		 */
 		prevPageLinkLabel: {
 			value: concat(LT_TPL, PREV),
 			validator: isString
 		},
 
+		/**
+		 * Array to be displayed on the generated HTML Select element with the
+         * <a href="Paginator.html#config_rowsPerPage">rowsPerPage</a>
+         * information. (i.e., [1,3,5,7], will display these values on the
+         * select)
+		 *
+		 * @attribute rowsPerPageOptions
+		 * @default []
+		 * @type Array
+		 */
 		rowsPerPageOptions: {
 			value: {},
 			validator: isArray
 		},
 
+		/**
+		 * Number of records constituting a "page".
+		 *
+		 * @attribute rowsPerPage
+		 * @default 1
+		 * @type Number
+		 */
 		rowsPerPage: {
 			setter: function(v) {
 				return num(v);
@@ -262,6 +474,14 @@ A.mix(Paginator, {
 			value: 1
 		},
 
+		/**
+		 * Node element to display the
+         * <a href="Paginator.html#config_rowsPerPage">rowsPerPage</a>.
+		 *
+		 * @attribute rowsPerPageEl
+		 * @default Generated select HTML element.
+		 * @type Node | String
+		 */
 		rowsPerPageEl: {
 			setter: nodeSetter,
 			valueFn: function() {
@@ -269,6 +489,14 @@ A.mix(Paginator, {
 			}
 		},
 
+		/**
+		 * Generates information to the <code>changeRequest</code> event. See
+         * <a href="Paginator.html#method_changeRequest">changeRequest</a>.
+		 *
+		 * @attribute state
+		 * @default {}
+		 * @type Object
+		 */
 		state: {
 			setter: function(v) {
 				return this._setState(v);
@@ -280,6 +508,16 @@ A.mix(Paginator, {
 			validator: isObject
 		},
 
+		/**
+		 * Template used to render controls. The string will be used as
+         * innerHTML on all specified container nodes. Bracketed keys (e.g.
+         * {pageLinks}) in the string will be replaced with an instance of the
+         * so named ui component.
+		 *
+		 * @attribute template
+		 * @default '{FirstPageLink} {PrevPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport} {Total} {RowsPerPageSelect}'
+		 * @type String
+		 */
 		template: {
 			getter: function(v) {
 				return this._getTemplate(v);
@@ -289,6 +527,13 @@ A.mix(Paginator, {
 			validator: isString
 		},
 
+		/**
+		 * Total number of records to paginate through.
+		 *
+		 * @attribute total
+		 * @default 0
+		 * @type Number
+		 */
 		total: {
 			setter: function(v) {
 				return this._setTotal(v);
@@ -297,6 +542,13 @@ A.mix(Paginator, {
 			validator: isNumber
 		},
 
+		/**
+		 * Node element to display the total information.
+		 *
+		 * @attribute totalEl
+		 * @default Generated span HTML element.
+		 * @type String
+		 */
 		totalEl: {
 			setter: nodeSetter,
 			valueFn: function() {
@@ -306,6 +558,13 @@ A.mix(Paginator, {
 			}
 		},
 
+		/**
+		 * The label markup to the total information.
+		 *
+		 * @attribute totalLabel
+		 * @default '(Total {total})'
+		 * @type String
+		 */
 		totalLabel: {
 			getter: function() {
 				var instance = this;
@@ -317,6 +576,15 @@ A.mix(Paginator, {
 			validator: isString
 		},
 
+		/**
+		 * Number of pages. Calculated based on the
+         * <a href="Paginator.html#config_total">total</a> divided by the
+         * <a href="Paginator.html#config_rowsPerPage">rowsPerPage</a>.
+		 *
+		 * @attribute totalPages
+		 * @default 0
+		 * @type Number
+		 */
 		totalPages: {
 			readOnly: true,
 			getter: function(v) {
@@ -329,12 +597,31 @@ A.mix(Paginator, {
 });
 
 A.extend(Paginator, A.Component, {
+	/**
+	 * Store the last state object used on the <a href="Paginator.html#method_changeRequest">changeRequest</a> event.
+	 *
+	 * @property lastState
+	 * @type Object | null
+	 * @protected
+	 */
 	lastState: null,
+
+	/**
+	 * Cached template after <a href="YUI.html#method_substitute">YUI
+     * substitute</a> were applied.
+	 *
+	 * @property templatesCache
+	 * @type String
+	 * @protected
+	 */
 	templatesCache: null,
 
-	/*
-	* Lifecycle
-	*/
+	/**
+	 * Create the DOM structure for the Paginator. Lifecycle.
+	 *
+	 * @method renderUI
+	 * @protected
+	 */
 	renderUI: function() {
 		var instance = this;
 		var containers = instance.get(CONTAINERS);
@@ -348,6 +635,12 @@ A.extend(Paginator, A.Component, {
 		containers.addClass(CSS_PAGINATOR_CONTAINER);
 	},
 
+	/**
+	 * Bind the events on the Paginator UI. Lifecycle.
+	 *
+	 * @method bindUI
+	 * @protected
+	 */
 	bindUI: function() {
 		var instance = this;
 
@@ -363,6 +656,12 @@ A.extend(Paginator, A.Component, {
 		instance.after('totalChange', A.bind(instance._renderTemplateUI, instance));
 	},
 
+	/**
+	 * Sync the Paginator UI. Lifecycle.
+	 *
+	 * @method syncUI
+	 * @protected
+	 */
 	syncUI: function() {
 		var instance = this;
 
@@ -370,6 +669,13 @@ A.extend(Paginator, A.Component, {
 		instance.changeRequest();
 	},
 
+	/**
+	 * Descructor lifecycle implementation for the Paginator class.
+	 * Purges events attached to the node (and all child nodes).
+	 *
+	 * @method destroy
+	 * @protected
+	 */
 	destroy: function() {
 		var instance = this;
 
@@ -377,6 +683,12 @@ A.extend(Paginator, A.Component, {
 		instance.get(CONTAINERS).remove();
 	},
 
+	/**
+	 * Sync the Paginator links UI.
+	 *
+	 * @method _syncPageLinksUI
+	 * @protected
+	 */
 	_syncPageLinksUI: function() {
 		var instance = this;
 		var containers = instance.get(CONTAINERS);
@@ -418,6 +730,12 @@ A.extend(Paginator, A.Component, {
 		});
 	},
 
+	/**
+	 * Sync the Paginator page report UI.
+	 *
+	 * @method _syncPageLinksUI
+	 * @protected
+	 */
 	_syncPageReportUI: function(event) {
 		var instance = this;
 		var containers = instance.get(CONTAINERS);
@@ -435,9 +753,14 @@ A.extend(Paginator, A.Component, {
 		});
 	},
 
-	/*
-	* Methods
-	*/
+	/**
+	 * Create a range to display on the pageLinks, keep the current page on
+     * center.
+	 *
+	 * @method calculateRange
+	 * @param {Type} name description
+	 * @return {Object} Object containing the start and end information.
+	 */
 	calculateRange: function(page) {
 		var instance = this;
 		var totalPages = instance.get(TOTAL_PAGES);
@@ -464,15 +787,29 @@ A.extend(Paginator, A.Component, {
 		};
 	},
 
+	/**
+	 * Fires <a href="Paginator.html#event_changeRequest">changeRequest</a>
+     * event. This is the most important event because it's responsible to
+     * update the UI, invoked <code>.setState(newState)</code> to update the
+     * UI.
+	 *
+	 * @method changeRequest
+	 */
 	changeRequest: function() {
 		var instance = this;
 		var state = instance.get(STATE);
 
-		// fires changeRequest, this is the most important event to the user
-		// the user needs to invoke .setState(newState) to update the UI
 		instance.fire('changeRequest', { state: state });
 	},
 
+	/**
+	 * Loop through all
+     * <a href="Paginator.html#config_containers">containers</a> and execute the
+     * passed callback.
+	 *
+	 * @method eachContainer
+	 * @param {function} fn Callback
+	 */
 	eachContainer: function(fn) {
 		var instance = this;
 
@@ -483,6 +820,12 @@ A.extend(Paginator, A.Component, {
 		});
 	},
 
+	/**
+	 * Check if there is a next page.
+	 *
+	 * @method hasNextPage
+	 * @return {boolean}
+	 */
 	hasNextPage: function() {
 		var instance = this;
 
@@ -491,6 +834,13 @@ A.extend(Paginator, A.Component, {
 		);
 	},
 
+	/**
+	 * Check if the <code>page</code> exists.
+	 *
+	 * @method hasPage
+	 * @param {Number} page
+	 * @return {boolean}
+	 */
 	hasPage: function(page) {
 		var instance = this;
 		var totalPages = instance.get(TOTAL_PAGES);
@@ -498,6 +848,12 @@ A.extend(Paginator, A.Component, {
 		return ( (page > 0) && (page <= totalPages) );
 	},
 
+	/**
+	 * Check if there is a previous page.
+	 *
+	 * @method hasPrevPage
+	 * @return {boolean}
+	 */
 	hasPrevPage: function() {
 		var instance = this;
 
@@ -506,6 +862,12 @@ A.extend(Paginator, A.Component, {
 		);
 	},
 
+	/**
+	 * Render rows per page options.
+	 *
+	 * @method _renderRowsPerPageOptions
+	 * @protected
+	 */
 	_renderRowsPerPageOptions: function() {
 		var instance = this;
 		var i = 0;
@@ -517,6 +879,13 @@ A.extend(Paginator, A.Component, {
 		});
 	},
 
+	/**
+	 * Render the UI controls based on the
+     * <a href="Paginator.html#config_template">template</a>.
+	 *
+	 * @method _renderTemplateUI
+	 * @protected
+	 */
 	_renderTemplateUI: function() {
 		var instance = this;
 		var containers = instance.get(CONTAINERS);
@@ -538,15 +907,27 @@ A.extend(Paginator, A.Component, {
 		instance._bindDOMEvents();
 	},
 
-	/*
-	* Getters & Setters
-	*/
+	/**
+	 * Public setter for <a href="Paginator.html#config_state">state</a>.
+	 *
+	 * @method setState
+	 * @param {Object} v New state object.
+	 */
 	setState: function(v) {
 		var instance = this;
 
 		instance.set(STATE, v);
 	},
 
+
+	/**
+	 * Private getter for <a href="Paginator.html#config_state">state</a>.
+	 *
+	 * @method _getState
+	 * @param {Object} v Current state object.
+	 * @protected
+	 * @return {Object} State object.
+	 */
 	_getState: function(v) {
 		var instance = this;
 
@@ -560,6 +941,14 @@ A.extend(Paginator, A.Component, {
 		};
 	},
 
+	/**
+	 * Getter for <a href="Paginator.html#config_template">template</a>.
+	 *
+	 * @method _getTemplate
+	 * @param {String} v Current template.
+	 * @protected
+	 * @return {String} Current template.
+	 */
 	_getTemplate: function(v) {
 		var instance = this;
 
@@ -599,6 +988,14 @@ A.extend(Paginator, A.Component, {
 		return instance.templatesCache;
 	},
 
+	/**
+	 * Private setter for <a href="Paginator.html#config_state">state</a>.
+	 *
+	 * @method _setState
+	 * @param {Object} v New state object.
+	 * @protected
+	 * @return {Object}
+	 */
 	_setState: function(v) {
 		var instance = this;
 
@@ -609,6 +1006,14 @@ A.extend(Paginator, A.Component, {
 		return v;
 	},
 
+	/**
+	 * Setter for <a href="Paginator.html#config_total">total</a>.
+	 *
+	 * @method _setTotal
+	 * @param {Number} v
+	 * @protected
+	 * @return {Number}
+	 */
 	_setTotal: function(v) {
 		var instance = this;
 		var alwaysVisible = instance.get(ALWAYS_VISIBLE);
@@ -625,9 +1030,14 @@ A.extend(Paginator, A.Component, {
 		return v;
 	},
 
-	/*
-	* Listeners
-	*/
+	/**
+	 * Fires after the value of the
+     * <a href="Paginator.html#config_state">state</a> attribute change.
+	 *
+	 * @method _afterSetState
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_afterSetState: function(event) {
 		var instance = this;
 
@@ -635,12 +1045,28 @@ A.extend(Paginator, A.Component, {
 		instance._syncPageReportUI();
 	},
 
+	/**
+	 * Fires before the value of the
+	 * <a href="Paginator.html#config_state">state</a> attribute change.
+	 *
+	 * @method _beforeSetState
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_beforeSetState: function(event) {
 		var instance = this;
 
 		instance.lastState = event.prevVal;
 	},
 
+	/**
+	 * Click event handler for the
+     * <a href="Paginator.html#config_firstLinkEl">firstLinkEl</a>.
+	 *
+	 * @method _onClickFirstLinkEl
+     * @param {EventFacade} event
+	 * @protected
+	 */
 	_onClickFirstLinkEl: function(event) {
 		var instance = this;
 
@@ -651,6 +1077,14 @@ A.extend(Paginator, A.Component, {
 		event.halt();
 	},
 
+	/**
+	 * Click event handler for the
+     * <a href="Paginator.html#config_prevLinkEl">prevLinkEl</a>.
+	 *
+	 * @method _onClickPrevLinkEl
+     * @param {EventFacade} event
+	 * @protected
+	 */
 	_onClickPrevLinkEl: function(event) {
 		var instance = this;
 
@@ -665,6 +1099,14 @@ A.extend(Paginator, A.Component, {
 		event.halt();
 	},
 
+	/**
+	 * Click event handler for the
+     * <a href="Paginator.html#config_pageLinkEl">pageLinkEl</a>.
+	 *
+	 * @method _onClickPageLinkEl
+     * @param {EventFacade} event
+	 * @protected
+	 */
 	_onClickPageLinkEl: function(event) {
 		var instance = this;
 		var pageNumber = event.currentTarget.attr(PAGE);
@@ -676,6 +1118,14 @@ A.extend(Paginator, A.Component, {
 		event.halt();
 	},
 
+	/**
+	 * Click event handler for the
+     * <a href="Paginator.html#config_nextLinkEl">nextLinkEl</a>.
+	 *
+	 * @method _onClickNextLinkEl
+     * @param {EventFacade} event
+	 * @protected
+	 */
 	_onClickNextLinkEl: function(event) {
 		var instance = this;
 
@@ -690,6 +1140,14 @@ A.extend(Paginator, A.Component, {
 		event.halt();
 	},
 
+	/**
+	 * Click event handler for the
+     * <a href="Paginator.html#config_lastLinkEl">lastLinkEl</a>.
+	 *
+	 * @method _onClickLastLinkEl
+     * @param {EventFacade} event
+	 * @protected
+	 */
 	_onClickLastLinkEl: function(event) {
 		var instance = this;
 		var totalPages = instance.get(TOTAL_PAGES);
@@ -701,6 +1159,12 @@ A.extend(Paginator, A.Component, {
 		event.halt();
 	},
 
+	/**
+	 * Bind DOM events on the Paginator UI.
+	 *
+	 * @method _bindDOMEvents
+	 * @protected
+	 */
 	_bindDOMEvents: function() {
 		var instance = this;
 
@@ -740,6 +1204,12 @@ A.extend(Paginator, A.Component, {
 		});
 	},
 
+	/**
+	 * Delegate DOM events on the Paginator UI.
+	 *
+	 * @method _delegateDOM
+	 * @protected
+	 */
 	_delegateDOM: function() {
 		var instance = this;
 

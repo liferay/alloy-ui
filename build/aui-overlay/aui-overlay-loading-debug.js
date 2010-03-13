@@ -347,4 +347,4 @@ A.each([HIDE, SHOW, TOGGLE], function(method) {
 
 A.OverlayLoading = OverlayLoading;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-mask','plugin','substitute']});
+}, '@VERSION@' ,{requires:['aui-overlay-mask','plugin','substitute'], skinnable:true});

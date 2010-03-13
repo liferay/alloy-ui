@@ -538,4 +538,4 @@ A.OverlayContextPanelManager = new A.OverlayManager({
 	zIndexBase: 1000
 });
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-context','anim']});
+}, '@VERSION@' ,{requires:['aui-overlay-context','anim'], skinnable:true});

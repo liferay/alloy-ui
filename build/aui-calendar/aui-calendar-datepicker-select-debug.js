@@ -699,4 +699,4 @@ A.extend(DatePickerSelect, A.Calendar, {
 
 A.DatePickerSelect = DatePickerSelect;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-calendar-base','aui-tool-item']});
+}, '@VERSION@' ,{requires:['aui-calendar-base','aui-tool-item'], skinnable:true});

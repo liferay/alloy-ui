@@ -1,4 +1,10 @@
 AUI.add('aui-component', function(A) {
+/**
+ * The Component Utility
+ *
+ * @module aui-component
+ */
+
 var Lang = A.Lang,
 
 	getClassName = A.ClassNameManager.getClassName,
@@ -9,6 +15,22 @@ var Lang = A.Lang,
 
 	CSS_HELPER_HIDDEN = getClassName('helper', 'hidden');
 
+/**
+ * A base class for Component, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li></li>
+ * </ul>
+ *
+ * Check the list of <a href="Component.html#configattributes">Configuration Attributes</a> available for
+ * Component.
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class Component
+ * @constructor
+ * @extends Widget
+ */
 var Component = function(config) {
 	var instance = this;
 
@@ -17,16 +39,56 @@ var Component = function(config) {
 	Component.superclass.constructor.apply(this, arguments);
 };
 
+/**
+ * Static property provides a string to identify the class.
+ *
+ * @property Component.NAME
+ * @type String
+ * @static
+ */
 Component.NAME = 'component';
 
+/**
+ * Static property used to define the default attribute
+ * configuration for the Component.
+ *
+ * @property Component.ATTRS
+ * @type Object
+ * @static
+ */
 Component.ATTRS = {
+	/**
+	 * CSS class to be automatically added to the <code>boundingBox</code>.
+	 *
+	 * @attribute cssClass
+	 * @default null
+	 * @type String
+	 */
 	cssClass: {
 		lazyAdd: false,
 		value: null
 	},
+
+	/**
+	 * css class added to hide the <code>boundingBox</code> when
+     * <a href="Component.html#config_visible">visible</a> is set to
+     * <code>false</code>.
+	 *
+	 * @attribute hideClass
+	 * @default 'aui-helper-hidden'
+	 * @type String
+	 */
 	hideClass: {
 		value: CSS_HELPER_HIDDEN
 	},
+
+	/**
+	 * A Component that will fire the same events as the current Component.
+	 *
+	 * @attribute owner
+	 * @deprecated See <a href="WidgetParent.html">WidgetParent</a>.
+	 * @type Widget
+	 */
 	owner: {
 		validator: function(value) {
 			var instance = this;
@@ -34,9 +96,27 @@ Component.ATTRS = {
 			return value instanceof A.Widget || value === null;
 		}
 	},
+
+	/**
+	 * When set to <code>true</code> the events on this Component are also
+     * fired on the <a href="Component.html#config_owner">owner</a> Component.
+	 *
+	 * @attribute relayEvents
+	 * @default true
+	 * @type boolean
+	 */
 	relayEvents: {
 		value: true
 	},
+
+	/**
+	 * If <code>true</code> the render phase will be autimatically invoked
+     * preventing the <code>.render()</code> manual call.
+	 *
+	 * @attribute render
+	 * @default false
+	 * @type boolean
+	 */
 	render: {
 		value: false,
 		writeOnce: true
@@ -47,6 +127,12 @@ A.extend(
 	Component,
 	A.Widget,
 	{
+		/**
+		 * Construction logic executed during Component instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function(config) {
 			var instance = this;
 
@@ -66,6 +152,13 @@ A.extend(
 			instance.after('visibleChange', instance._afterComponentVisibleChange);
 		},
 
+		/**
+		 * Clone the current Component.
+		 *
+		 * @method clone
+		 * @param {Object} config
+		 * @return {Widget} Cloned instance.
+		 */
 		clone: function(config) {
 			var instance = this;
 
@@ -78,12 +171,26 @@ A.extend(
 			return new instance.constructor(config);
 		},
 
+		/**
+		 * Toggle the visibility of the Panel toggling the value of the
+	     * <a href="Widget.html#config_visible">visible</a> attribute.
+		 *
+		 * @method toggle
+		 */
 		toggle: function() {
 			var instance = this;
 
 			return instance.set('visible', !instance.get('visible'));
 		},
 
+		/**
+		 * Invoked after the destroy phase. Removes the
+         * <code>boundingBox</code> from the DOM.
+		 *
+		 * @method _afterComponentDestroy
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_afterComponentDestroy: function(event) {
 			var instance = this;
 
@@ -93,18 +200,42 @@ A.extend(
 			catch (e) {}
 		},
 
+		/**
+		 * Fires after the value of the
+		 * <a href="Component.html#config_owner">owner</a> attribute change.
+		 *
+		 * @method _afterComponentOwnerChange
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_afterComponentOwnerChange: function(event) {
 			var instance = this;
 
 			instance._setOwnerComponent(event.newVal);
 		},
 
+		/**
+		 * Fires after the value of the
+		 * <a href="Component.html#config_relayEvents">relayEvents</a> attribute change.
+		 *
+		 * @method _afterComponentRelayEventsChange
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_afterComponentRelayEventsChange: function(event) {
 			var instance = this;
 
 			instance._setRelayEvents(event.newVal);
 		},
 
+		/**
+		 * Fires after the value of the
+		 * <a href="Component.html#config_visible">visible</a> attribute change.
+		 *
+		 * @method _afterComponentVisibleChange
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_afterComponentVisibleChange: function(event) {
 			var instance = this;
 
@@ -123,12 +254,27 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Fires after the value of the
+		 * <a href="Component.html#config_cssClass">cssClass</a> attribute change.
+		 *
+		 * @method _afterCssClassChange
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_afterCssClassChange: function(event) {
 			var instance = this;
 
 			instance._uiSetCssClass(event.newVal, event.prevVal);
 		},
 
+		/**
+		 * Fires the events onthe
+         * <a href="Component.html#config_owner">owner</a>.
+		 *
+		 * @method _relayEvents
+		 * @protected
+		 */
 		_relayEvents: function() {
 			var instance = this;
 
@@ -141,6 +287,12 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Set the class names on the Component <code>contentBox</code>.
+		 *
+		 * @method _setComponentClassNames
+		 * @protected
+		 */
 		_setComponentClassNames: function() {
 			var instance = this;
 
@@ -157,6 +309,13 @@ A.extend(
 			instance.get('contentBox').addClass(buffer.join(' '));
 		},
 
+		/**
+		 * Setter for <a href="Component.html#config_relayEvents">relayEvents</a>.
+		 *
+		 * @method _setRelayEvents
+		 * @protected
+		 * @param {boolean} relayEvents
+		 */
 		_setRelayEvents: function(relayEvents) {
 			var instance = this;
 
@@ -168,12 +327,30 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Setter for
+         * <a href="Component.html#property__ownerComponent">_ownerComponent</a>
+         * property.
+		 *
+		 * @method _setOwnerComponent
+		 * @private
+		 * @param {Widget} ownerComponent
+		 */
 		_setOwnerComponent: function(ownerComponent) {
 			var instance = this;
 
 			instance._ownerComponent = ownerComponent;
 		},
 
+		/**
+		 * Applies the CSS classes to the <code>boundingBox</code> and
+         * <code>contentBox</code>.
+		 *
+		 * @method _uiSetCssClass
+		 * @protected
+		 * @param {String} newVal
+		 * @param {String} prevVal
+		 */
 		_uiSetCssClass: function(newVal, prevVal) {
 			var instance = this;
 

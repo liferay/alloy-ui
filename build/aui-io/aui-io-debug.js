@@ -1100,5 +1100,5 @@ A.namespace('Plugin').IO = IOPlugin;
 }, '@VERSION@' ,{requires:['aui-overlay-base','aui-parse-content','aui-io-request','aui-overlay-loading']});
 
 
-AUI.add('aui-io', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-io-request','aui-io-plugin']});
+AUI.add('aui-io', function(A){}, '@VERSION@' ,{use:['aui-io-request','aui-io-plugin'], skinnable:false});
 
