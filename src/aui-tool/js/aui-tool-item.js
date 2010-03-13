@@ -2,7 +2,8 @@
  * The ToolItem Utility - ToolItems are iconic buttons that provide
  * interaction states and event handling
  *
- * @module aui-tool-item
+ * @module aui-tool
+ * @submodule aui-tool-item
  */
 
 var Lang = A.Lang,

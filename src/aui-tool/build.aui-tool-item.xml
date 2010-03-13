@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project name="AlloyComponent" default="local">
-	<property file="build.properties" />
+	<property file="build.aui-tool-item.properties" />
 
 	<import file="../../resources/builder/bootstrap.xml" />
 </project>

@@ -2,7 +2,8 @@
  * The ToolSet Utility is a managed collection of <a
  * href="ToolItem.html">ToolItems</a>.
  *
- * @module aui-tool-set
+ * @module aui-tool
+ * @submodule aui-tool-set
  */
 
 var Lang = A.Lang,
