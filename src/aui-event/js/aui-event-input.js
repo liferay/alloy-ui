@@ -3,9 +3,10 @@
  * element of type text and password. This event only occurs when the element
  * is focused.
  *
- * @module aui-input-handle
+ * @module aui-event
+ * @submodule aui-event-input
  *
- * @class AUI~input~handle
+ * @class AUI~event~input
  */
 
 var	L = A.Lang,

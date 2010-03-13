@@ -112,7 +112,7 @@ A.mix(CharCounter, {
 A.extend(CharCounter, A.Base, {
 	/**
 	 * Event handler for the input <a
-     * href="module_aui-input-handler.html">aui-input-handler</a> event.
+     * href="module_aui-event.html">aui-event</a> event.
 	 *
 	 * @property handler
 	 * @type EventHandle
