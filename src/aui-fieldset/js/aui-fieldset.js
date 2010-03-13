@@ -1,1 +1,0 @@
-A.Fieldset = A.Base.build('fieldset', A.Panel, []);

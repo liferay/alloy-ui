@@ -1,1 +1,0 @@
-AUI.add("aui-fieldset",function(B){B.Fieldset=B.Base.build("fieldset",B.Panel,[]);},"@VERSION@",{skinnable:false,requires:["aui-panel"]});
