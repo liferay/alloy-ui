@@ -1,0 +1,2221 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: gallery-formmgr  FormManager   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			gallery-formmgr&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a>
+
+	                 <span class="separator">&gt;</span> <span class="classname">FormManager</span> 
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+
+			                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                <li class="selected"><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class="selected"><a href="FormManager.html" title="FormManager">FormManager</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-configuration">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-configuration-hd">
+										<span class="aui-widget-hd-text">Configuration Attributes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#config_A.FormManager.decimal_value_re" title="A.FormManager.decimal_value_re">A.FormManager.decimal_value_re</a></li>
+												<li class=""><a href="#config_A.FormManager.integer_value_re" title="A.FormManager.integer_value_re">A.FormManager.integer_value_re</a></li>
+												<li class=""><a href="#config_A.FormManager.status_order" title="A.FormManager.status_order">A.FormManager.status_order</a></li>
+												<li class=""><a href="#config_A.FormManager.Strings" title="A.FormManager.Strings">A.FormManager.Strings</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-properties">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-properties-hd">
+										<span class="aui-widget-hd-text">Properties</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+				                                <li class=""><a href="#property_A.FormManager.row_marker_class" title="A.FormManager.row_marker_class">A.FormManager.row_marker_class</a></li>
+
+				                                <li class=""><a href="#property_A.FormManager.row_status_prefix" title="A.FormManager.row_status_prefix">A.FormManager.row_status_prefix</a></li>
+
+				                                <li class=""><a href="#property_A.FormManager.status_failure_class" title="A.FormManager.status_failure_class">A.FormManager.status_failure_class</a></li>
+
+				                                <li class=""><a href="#property_A.FormManager.status_marker_class" title="A.FormManager.status_marker_class">A.FormManager.status_marker_class</a></li>
+
+				                                <li class=""><a href="#property_A.FormManager.status_none_class" title="A.FormManager.status_none_class">A.FormManager.status_none_class</a></li>
+
+				                                <li class=""><a href="#property_A.FormManager.status_success_class" title="A.FormManager.status_success_class">A.FormManager.status_success_class</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-methods">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-methods-hd">
+										<span class="aui-widget-hd-text">Methods</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+				                               <li class=""><a href="#method_A.FormManager.getElementStatus" title="A.FormManager.getElementStatus">A.FormManager.getElementStatus</a></li>
+				                               <li class=""><a href="#method_A.FormManager.getStatusPrecedence" title="A.FormManager.getStatusPrecedence">A.FormManager.getStatusPrecedence</a></li>
+				                               <li class=""><a href="#method_A.FormManager.statusTakesPrecendence" title="A.FormManager.statusTakesPrecendence">A.FormManager.statusTakesPrecendence</a></li>
+				                               <li class=""><a href="#method_addErrorMessage" title="addErrorMessage">addErrorMessage</a></li>
+				                               <li class=""><a href="#method_clearForm" title="clearForm">clearForm</a></li>
+				                               <li class=""><a href="#method_clearMessages" title="clearMessages">clearMessages</a></li>
+				                               <li class=""><a href="#method_disableForm" title="disableForm">disableForm</a></li>
+				                               <li class=""><a href="#method_displayFormMessage" title="displayFormMessage">displayFormMessage</a></li>
+				                               <li class=""><a href="#method_displayMessage" title="displayMessage">displayMessage</a></li>
+				                               <li class=""><a href="#method_enableForm" title="enableForm">enableForm</a></li>
+				                               <li class=""><a href="#method_getForm" title="getForm">getForm</a></li>
+				                               <li class=""><a href="#method_getRowStatus" title="getRowStatus">getRowStatus</a></li>
+				                               <li class=""><a href="#method_hasErrors" title="hasErrors">hasErrors</a></li>
+				                               <li class=""><a href="#method_hasFileInputs" title="hasFileInputs">hasFileInputs</a></li>
+				                               <li class=""><a href="#method_hasMessages" title="hasMessages">hasMessages</a></li>
+				                               <li class=""><a href="#method_initFocus" title="initFocus">initFocus</a></li>
+				                               <li class=""><a href="#method_isChanged" title="isChanged">isChanged</a></li>
+				                               <li class=""><a href="#method_notifyErrors" title="notifyErrors">notifyErrors</a></li>
+				                               <li class=""><a href="#method_populateForm" title="populateForm">populateForm</a></li>
+				                               <li class=""><a href="#method_postPopulateForm" title="postPopulateForm">postPopulateForm</a></li>
+				                               <li class=""><a href="#method_postPrepareForm" title="postPrepareForm">postPrepareForm</a></li>
+				                               <li class=""><a href="#method_postValidateForm" title="postValidateForm">postValidateForm</a></li>
+				                               <li class=""><a href="#method_prepareForm" title="prepareForm">prepareForm</a></li>
+				                               <li class=""><a href="#method_prePrepareForm" title="prePrepareForm">prePrepareForm</a></li>
+				                               <li class=""><a href="#method_registerButton" title="registerButton">registerButton</a></li>
+				                               <li class=""><a href="#method_saveCurrentValuesAsDefault" title="saveCurrentValuesAsDefault">saveCurrentValuesAsDefault</a></li>
+				                               <li class=""><a href="#method_setDefaultValue" title="setDefaultValue">setDefaultValue</a></li>
+				                               <li class=""><a href="#method_setDefaultValues" title="setDefaultValues">setDefaultValues</a></li>
+				                               <li class=""><a href="#method_setErrorMessages" title="setErrorMessages">setErrorMessages</a></li>
+				                               <li class=""><a href="#method_setFormEnabled" title="setFormEnabled">setFormEnabled</a></li>
+				                               <li class=""><a href="#method_setFunction" title="setFunction">setFunction</a></li>
+				                               <li class=""><a href="#method_setRegex" title="setRegex">setRegex</a></li>
+				                               <li class=""><a href="#method_validateForm" title="validateForm">validateForm</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="aui-form-textarea.js.html" title="aui-form-textarea.js">aui-form-textarea.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-textfield.js.html" title="aui-form-textfield.js">aui-form-textfield.js</a></li>
+
+
+			                                <li class=""><a href="aui-image-viewer-base.js.html" title="aui-image-viewer-base.js">aui-image-viewer-base.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<h2>
+								
+
+								
+
+								
+
+								Class <b property="yui:name">FormManager</b>
+
+
+							</h2>
+
+							<!-- class tree goes here -->
+
+
+
+							<div class="summary description" property="yui:description">
+								<p>FormManager provides support for initializing a form, pre-validating
+user input, and displaying messages returned by the server.</p>
+<p><strong>Required Markup Structure</strong></p>
+<p>Each element (or tighly coupled set of elements) must be contained by
+an element that has the CSS class <code>formmgr-row</code>.  Within each
+row, validation messages are displayed inside the container with CSS
+class <code>formmgr-message-text</code>.
+<p>When a message is displayed inside a row, the CSS class
+<code>formmgr-has{type}</code> is placed on the row container and the
+containing fieldset (if any), where <code>{type}</code> is the message
+type passed to <code>displayMessage()</code>.</p>
+<p><strong>Initializing the Form</strong></p>
+<p>Default values can be either encoded in the markup or passed to the
+FormManager constructor via <code>config.default_value_map</code>.  (The
+former method is obviously better for progressive enhancement.)  The
+values passed to the constructor override the values encoded in the
+markup.</p>
+<p><code>prepareForm()</code> must be called before the form is
+displayed.  To initialize focus to the first element in a form, call
+<code>initFocus()</code>.  If the form is in an overlay, you can delay
+these calls until just before showing the overlay.</p>
+<p>The default values passed to the constructor are inserted by
+<code>populateForm()</code>.  (This is automatically called by
+<code>prepareForm()</code>.)</p>
+<p><strong>Displaying Messages</strong></p>
+<p>To display a message for a single form row, call
+<code>displayMessage()</code>.  To display a message for the form in
+general, call <code>displayFormMessage()</code>.  These functions can be
+used for initializing the error display when the page loads, for
+displaying the results of pre-validation, and for displaying the results
+of submitting a form via XHR.</p>
+<p><strong>Specifying Validations</strong></p>
+<p>The following classes can be applied to a form element for
+pre-validation:</p>
+<dl>
+<dt><code>aui-required</code></dt>
+<dd>Value must not be empty.</dd>
+<dt><code>aui-length:[x,y]</code></dt>
+<dd>String must be at least x characters and at most y characters.
+At least one of x and y must be specified.</dd>
+<dt><code>aui-integer:[x,y]</code></dt>
+<dd>The integer value must be at least x and at most y.
+x and y are both optional.</dd>
+<dt><code>aui-decimal:[x,y]</code></dt>
+<dd>The decimal value must be at least x and at most y.  Exponents are
+not allowed.  x and y are both optional.</dd>
+</dl>
+<p>If we ever need to allow exponents, we can use aui-float.</p>
+<p>The following functions allow additional pre-validation to be
+attached to individual form elements:</p>
+<dl>
+<dt><code>setRegex()</code></dt>
+<dd>Sets the regular expression that must match in order for the value
+to be acceptable.</dd>
+<dt><code>setFunction()</code></dt>
+<dd>Sets the function that must return true in order for the value to
+be acceptable.  The function is called in the scope of the Form
+object with the arguments:  the form and the element.</dd>
+</dl>
+<p><code>setErrorMessages()</code> specifies the error message to be
+displayed when a pre-validation check fails.</p>
+<p>Functions are expected to call <code>displayMessage()</code>
+directly.</p>
+<p>More complex pre-validations can be added by overriding
+<code>postValidateForm()</code>, described below.</p>
+<p>Derived classes may also override the following functions:</p>
+<dl>
+<dt><code>prePrepareForm</code>(arguments passed to prepareForm)</dt>
+<dd>Called before filling in default values for the form elements.
+Return false to cancel dialog.</dd>
+<dt><code>postPrepareForm</code>(arguments passed to prepareForm)</dt>
+<dd>Called after filling in default values for the form elements.</dd>
+<dt><code>postValidateForm</code>(form)</dt>
+<dd>Called after performing the basic pre-validations.  Returns
+true if the form contents are acceptable.  Reports error if there
+is a problem.</dd>
+</dl>
+							</div>
+
+								<div class="section constructor details" rel="yui:constructor" resource="#constructor">
+									<h3 id="constructor">Constructor</h3>
+
+									<div class="content">
+										<div class="detail">
+											<strong property="yui:name">FormManager</strong>
+
+											<code>
+												(
+
+													
+															
+															form_name
+
+															, 
+															config
+												)
+											</code>
+
+											<div class="description">
+													<dl rel="yui:parameters">
+														<dt>Parameters:</dt>
+															<dd rel="yui:parameter">
+																<code><span property="yui:name">form_name</span>
+																&lt;<span property="yui:type">String</span>&gt;
+																</code>
+
+																<span property="yui:description">  The name attribute of the HTML form.</span>
+															</dd>
+															<dd rel="yui:parameter">
+																<code><span property="yui:name">config</span>
+																&lt;<span property="yui:type">Object</span>&gt;
+																</code>
+
+																<span property="yui:description">  Configuration.
+<code>status_node</code> is an optional element in which to display
+overall status.  <code>default_value_map</code> is an optional
+mapping of form element names to default values.  Default values
+encoded in the markup will be merged into this map, but values
+passed to the constructor will take precedence.</span>
+															</dd>
+													</dl>
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+							<div rel="yui:properties" resource="#properties">
+
+								<div class="section field details">
+
+									<h3 id="properties">Properties</h3>
+
+									<div class="content">
+
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_A.FormManager.row_marker_class">
+
+											<h4>
+												<a name="property_A.FormManager.row_marker_class" property="yui:name">A.FormManager.row_marker_class</a>
+												- <code><span property="yui:type">{String}</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													The CSS class which marks each row of the form.  Typically, each element
+(or a very tightly coupled set of elements) is placed in a separate row.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_A.FormManager.row_status_prefix">
+
+											<h4>
+												<a name="property_A.FormManager.row_status_prefix" property="yui:name">A.FormManager.row_status_prefix</a>
+												- <code><span property="yui:type">{String}</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													The prefix for all CSS classes placed on a form row when pre-validation
+fails.  The full CSS class is formed by appending the value from
+<code>A.FormManager.status_order</code>.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_A.FormManager.status_failure_class">
+
+											<h4>
+												<a name="property_A.FormManager.status_failure_class" property="yui:name">A.FormManager.status_failure_class</a>
+												- <code><span property="yui:type">{String}</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													The CSS class placed on <code>status_node</code> when
+<code>displayFormMessage()</code> is called with
+<code>error=true</code>.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_A.FormManager.status_marker_class">
+
+											<h4>
+												<a name="property_A.FormManager.status_marker_class" property="yui:name">A.FormManager.status_marker_class</a>
+												- <code><span property="yui:type">{String}</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													The CSS class which marks the container for the status message within a
+row of the form.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_A.FormManager.status_none_class">
+
+											<h4>
+												<a name="property_A.FormManager.status_none_class" property="yui:name">A.FormManager.status_none_class</a>
+												- <code><span property="yui:type">{String}</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													The CSS class placed on <code>status_node</code> when it is empty.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_A.FormManager.status_success_class">
+
+											<h4>
+												<a name="property_A.FormManager.status_success_class" property="yui:name">A.FormManager.status_success_class</a>
+												- <code><span property="yui:type">{String}</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													The CSS class placed on <code>status_node</code> when
+<code>displayFormMessage()</code> is called with
+<code>error=false</code>.
+												</div>
+											</div>
+
+
+
+
+											</div>
+									</div>
+								</div>
+
+							</div>
+
+							<div rel="yui:attributes" resource="#configattributes">
+
+									<div class="section field details">
+
+										<h3 id="configattributes">Configuration Attributes</h3>
+
+										<div class="content">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_A.FormManager.decimal_value_re">
+
+													<h4>
+														<a name="config_A.FormManager.decimal_value_re">A.FormManager.decimal_value_re</a>
+														<code>- static <span property="yui:type">{RegExp}</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Regular expression used to determine if a value is a decimal number.
+This can be localized, e.g., use the correct decimal separator.
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_A.FormManager.integer_value_re">
+
+													<h4>
+														<a name="config_A.FormManager.integer_value_re">A.FormManager.integer_value_re</a>
+														<code>- static <span property="yui:type">{RegExp}</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Regular expression used to determine if a value is an integer.
+This can be localized, e.g., allow for thousands separator.
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_A.FormManager.status_order">
+
+													<h4>
+														<a name="config_A.FormManager.status_order">A.FormManager.status_order</a>
+														<code>- static <span property="yui:type">{Array}</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															<p>Names of supported status values, highest precedence first.  Default:
+<code>[ 'error', 'warn', 'success', 'info' ]</code></p>
+<p>This is static because it links to CSS rules that define the
+appearance of each status type:  .formmgr-has{status}</p>
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_A.FormManager.Strings">
+
+													<h4>
+														<a name="config_A.FormManager.Strings">A.FormManager.Strings</a>
+														<code>- static <span property="yui:type">{Object}</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															<p>Map of localizable strings used by pre-validation.</p>
+<dl>
+<dt><code>validation_error</code></dt>
+<dd>Displayed in <code>status_node</code> by <code>notifyErrors()</code> when pre-validation fails.</dd>
+<dt><code>required_string</code></dt>
+<dd>Displayed when <code>aui-required</code> fails on an input field.</dd>
+<dt><code>required_menu</code></dt>
+<dd>Displayed when <code>aui-required</code> fails on a select element.</dd>
+<dt><code>length_too_short</code>, <code>length_too_long</code>, <code>length_out_of_range</code></dt>
+<dd>Displayed when <code>aui-length</code> fails on an input field.</dd>
+<dt><code>integer</code>, <code>integer_too_small</code>, <code>integer_too_large</code>, <code>integer_out_of_range</code></dt>
+<dd>Displayed when <code>aui-integer</code> fails on an input field.</dd>
+<dt><code>decimal</code>, <code>decimal_too_small</code>, <code>decimal_too_large</code>, <code>decimal_out_of_range</code></dt>
+<dd>Displayed when <code>aui-decimal</code> fails on an input field.</dd>
+</dl>
+														</div>
+													</div>
+
+
+
+												</div>
+
+										</div>
+									</div>
+
+
+							</div>
+
+							<div rel="yui:methods" resource="#methods">
+									<div class="section method details">
+
+										<h3 id="methods">Methods</h3>
+
+										<div class="content">
+
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_A.FormManager.getElementStatus">
+
+													<h4>
+														<a name="method_A.FormManager.getElementStatus">A.FormManager.getElementStatus</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														 static 
+														
+														mixed
+															<strong property="yui:name">A.FormManager.getElementStatus</strong>
+														   (
+																
+																		
+																		 e
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Get the status of the given fieldset or form row.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">e</span>
+																		&lt;<span property="yui:type">String|Object</span>&gt;
+																		</code>
+																		<span property="yui:description">  The descriptor or DOM element.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			mixed
+																	</code></dt>
+																	<dd property="yui:returnInfo">The status (String) or <code>false</code>.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_A.FormManager.getStatusPrecedence">
+
+													<h4>
+														<a name="method_A.FormManager.getStatusPrecedence">A.FormManager.getStatusPrecedence</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														 static 
+														
+														int
+															<strong property="yui:name">A.FormManager.getStatusPrecedence</strong>
+														   (
+																
+																		
+																		 status
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Get the precedence of the given status name.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">status</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description">  The name of the status value.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			int
+																	</code></dt>
+																	<dd property="yui:returnInfo">The position in the <code>status_order</code> array.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_A.FormManager.statusTakesPrecendence">
+
+													<h4>
+														<a name="method_A.FormManager.statusTakesPrecendence">A.FormManager.statusTakesPrecendence</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														 static 
+														
+														boolean
+															<strong property="yui:name">A.FormManager.statusTakesPrecendence</strong>
+														   (
+																
+																		
+																		 orig_status
+																	
+																
+																		, 
+																		 new_status
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Compare two status values.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">orig_status</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description">  The name of the original status value.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">new_status</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description">  The name of the new status value.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo"><code>true</code> if <code>new_status</code> takes precedence over <code>orig_status</code></dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_addErrorMessage">
+
+													<h4>
+														<a name="method_addErrorMessage">addErrorMessage</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">addErrorMessage</strong>
+														   (
+																
+																		
+																		 id
+																	
+																
+																		, 
+																		 error_type
+																	
+																
+																		, 
+																		 msg
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Set one particular error message for a form element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">id</span>
+																		&lt;<span property="yui:type">String|Object</span>&gt;
+																		</code>
+																		<span property="yui:description">  The selector for the element or the element itself</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">error_type</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description">  The error message type.  Refer to setErrorMessages() for details.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">msg</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description">  The error message</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_clearForm">
+
+													<h4>
+														<a name="method_clearForm">clearForm</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">clearForm</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Reset all values in the form to the defaults specified in the markup.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_clearMessages">
+
+													<h4>
+														<a name="method_clearMessages">clearMessages</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">clearMessages</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Clear all messages in <code>status_node</code> and the form rows.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_disableForm">
+
+													<h4>
+														<a name="method_disableForm">disableForm</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">disableForm</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Disable all the registered buttons.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_displayFormMessage">
+
+													<h4>
+														<a name="method_displayFormMessage">displayFormMessage</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">displayFormMessage</strong>
+														   (
+																
+																		
+																		 msg
+																	
+																
+																		, 
+																		 error
+																	
+																
+																		, 
+																		 scroll
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Display a message in <code>status_node</code>.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">msg</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description">  The message</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">error</span>
+																		&lt;<span property="yui:type">boolean</span>&gt;
+																		</code>
+																		<span property="yui:description">  <code>true</code> if the message is an error</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">scroll</span>
+																		&lt;<span property="yui:type">boolean</span>&gt;
+																		</code>
+																		<span property="yui:description">  <code>true</code> if <code>status_node</code> should be scrolled into view</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_displayMessage">
+
+													<h4>
+														<a name="method_displayMessage">displayMessage</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">displayMessage</strong>
+														   (
+																
+																		
+																		 e
+																	
+																
+																		, 
+																		 msg
+																	
+																
+																		, 
+																		 type
+																	
+																
+																		, 
+																		 scroll
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Display a message for the form row containing the specified element.
+The message will only be displayed if no message with a higher
+precedence is already visible. (see A.FormManager.status_order)
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">e</span>
+																		&lt;<span property="yui:type">String|Object</span>&gt;
+																		</code>
+																		<span property="yui:description">  The selector for the element or the element itself</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">msg</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description">  The message</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">type</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description">  The message type (see A.FormManager.status_order)</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">scroll</span>
+																		&lt;<span property="yui:type">boolean</span>&gt;
+																		</code>
+																		<span property="yui:description">  <code>true</code> if the form row should be scrolled into view</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_enableForm">
+
+													<h4>
+														<a name="method_enableForm">enableForm</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">enableForm</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Enable all the registered buttons.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getForm">
+
+													<h4>
+														<a name="method_getForm">getForm</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														DOM
+															<strong property="yui:name">getForm</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			DOM
+																	</code></dt>
+																	<dd property="yui:returnInfo">The form DOM element.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getRowStatus">
+
+													<h4>
+														<a name="method_getRowStatus">getRowStatus</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														mixed
+															<strong property="yui:name">getRowStatus</strong>
+														   (
+																
+																		
+																		 e
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Get the message type displayed for the row containing the specified element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">e</span>
+																		&lt;<span property="yui:type">String|Object</span>&gt;
+																		</code>
+																		<span property="yui:description">  The selector for the element or the element itself</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			mixed
+																	</code></dt>
+																	<dd property="yui:returnInfo">The status (String) or <code>false</code>.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_hasErrors">
+
+													<h4>
+														<a name="method_hasErrors">hasErrors</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														boolean
+															<strong property="yui:name">hasErrors</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo"><code>true</code> if there are any error messages displayed</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_hasFileInputs">
+
+													<h4>
+														<a name="method_hasFileInputs">hasFileInputs</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														boolean
+															<strong property="yui:name">hasFileInputs</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo"><code>true</code> if the form contains file inputs.  These require special treatment when submitting via XHR.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_hasMessages">
+
+													<h4>
+														<a name="method_hasMessages">hasMessages</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														boolean
+															<strong property="yui:name">hasMessages</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo"><code>true</code> if there are any messages displayed, of any type</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_initFocus">
+
+													<h4>
+														<a name="method_initFocus">initFocus</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">initFocus</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Set focus to first input field.  If a page contains multiple forms,
+only call this for one of them.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_isChanged">
+
+													<h4>
+														<a name="method_isChanged">isChanged</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														boolean
+															<strong property="yui:name">isChanged</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Check if form values have been modified.
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo"><code>false</code> if all form elements have the default values passed to the constructor</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_notifyErrors">
+
+													<h4>
+														<a name="method_notifyErrors">notifyErrors</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">notifyErrors</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Displays a generic message in <code>status_node</code> stating that
+the form data failed to validate.  Override this if you want to get
+fancy.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_populateForm">
+
+													<h4>
+														<a name="method_populateForm">populateForm</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">populateForm</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Reset all values in the form to the defaults passed to the constructor.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_postPopulateForm">
+
+													<h4>
+														<a name="method_postPopulateForm">postPopulateForm</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">postPopulateForm</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Hook for performing additional actions after
+<code>populateForm()</code> completes.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_postPrepareForm">
+
+													<h4>
+														<a name="method_postPrepareForm">postPrepareForm</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														boolean
+															<strong property="yui:name">postPrepareForm</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Hook called after <code>prepareForm()</code> executes.
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo">Return value from this function is returned by <code>prepareForm()</code>.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_postValidateForm">
+
+													<h4>
+														<a name="method_postValidateForm">postValidateForm</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														boolean
+															<strong property="yui:name">postValidateForm</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Hook called at the end of <code>validateForm()</code>.  This is the
+best place to put holistic validations that touch multiple form
+elements.
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo"><code>false</code> if validation fails</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_prepareForm">
+
+													<h4>
+														<a name="method_prepareForm">prepareForm</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														boolean
+															<strong property="yui:name">prepareForm</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Prepare the form for display.
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo"><code>true</code> if both pre & post hooks are happy</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_prePrepareForm">
+
+													<h4>
+														<a name="method_prePrepareForm">prePrepareForm</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														boolean
+															<strong property="yui:name">prePrepareForm</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Hook called before <code>prepareForm()</code> executes.
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo"><code>false</code> cancels <code>prepareForm()</code>.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_registerButton">
+
+													<h4>
+														<a name="method_registerButton">registerButton</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">registerButton</strong>
+														   (
+																
+																		
+																		 el
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Register a button that can be disabled.  Buttons contained within
+the form DOM element are automatically registered.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">el</span>
+																		&lt;<span property="yui:type">String|Object</span>&gt;
+																		</code>
+																		<span property="yui:description">  The selector for the element or the element itself</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_saveCurrentValuesAsDefault">
+
+													<h4>
+														<a name="method_saveCurrentValuesAsDefault">saveCurrentValuesAsDefault</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">saveCurrentValuesAsDefault</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Store the current form values in <code>default_value_map</code>.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setDefaultValue">
+
+													<h4>
+														<a name="method_setDefaultValue">setDefaultValue</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">setDefaultValue</strong>
+														   (
+																
+																		
+																		 field_name
+																	
+																
+																		, 
+																		 default_value
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Set the default values for a single form element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">field_name</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description">  The form element name.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">default_value</span>
+																		&lt;<span property="yui:type">String|Int|Float</span>&gt;
+																		</code>
+																		<span property="yui:description">  The default value.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setDefaultValues">
+
+													<h4>
+														<a name="method_setDefaultValues">setDefaultValues</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">setDefaultValues</strong>
+														   (
+																
+																		
+																		 default_value_map
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Set the default values for all form elements.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">default_value_map</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description">  Mapping of form element names to values.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setErrorMessages">
+
+													<h4>
+														<a name="method_setErrorMessages">setErrorMessages</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">setErrorMessages</strong>
+														   (
+																
+																		
+																		 id
+																	
+																
+																		, 
+																		 map
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															<p>Set the error messages for a form element.  This can be used to
+override the default messages for individual elements</p>
+<p>The valid error types are:</p>
+<dl>
+<dt><code>required</code></dt>
+<dt><code>min_length</code></dt>
+<dd><code>{min}</code> and <code>{max}</code> are replaced</dd>
+<dt><code>max_length</code></dt>
+<dd><code>{min}</code> and <code>{max}</code> are replaced</dd>
+<dt><code>integer</code></dt>
+<dd><code>{min}</code> and <code>{max}</code> are replaced</dd>
+<dt><code>decimal</code></dt>
+<dd><code>{min}</code> and <code>{max}</code> are replaced</dd>
+<dt><code>regex</code></dt>
+<dd>This <string>must</strong> be set for elements which validate with regular expressions.</dd>
+</dl>
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">id</span>
+																		&lt;<span property="yui:type">String|Object</span>&gt;
+																		</code>
+																		<span property="yui:description">  The selector for the element or the element itself</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">map</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description">  Map of error types to error messages.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setFormEnabled">
+
+													<h4>
+														<a name="method_setFormEnabled">setFormEnabled</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">setFormEnabled</strong>
+														   (
+																
+																		
+																		 enabled
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Set the enabled state all the registered buttons.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">enabled</span>
+																		&lt;<span property="yui:type">boolean</span>&gt;
+																		</code>
+																		<span property="yui:description">  <code>true</code> to enable the form, <code>false</code> to disable the form</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setFunction">
+
+													<h4>
+														<a name="method_setFunction">setFunction</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">setFunction</strong>
+														   (
+																
+																		
+																		 id
+																	
+																
+																		, 
+																		 f
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Set the validation function for a form element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">id</span>
+																		&lt;<span property="yui:type">String|Object</span>&gt;
+																		</code>
+																		<span property="yui:description">  The selector for the element or the element itself</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">f</span>
+																		&lt;<span property="yui:type">Function|String|Object}
+The function to call after basic validations succeed.  If this
+is a String, it is resolved in the scope of the FormManager
+object.  If this is an object, it must be <code>{fn:,
+scope:</span>&gt;
+																		</code>
+																		<span property="yui:description"> </code>.  The function will then be invoked in the
+specified scope.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setRegex">
+
+													<h4>
+														<a name="method_setRegex">setRegex</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">setRegex</strong>
+														   (
+																
+																		
+																		 id
+																	
+																
+																		, 
+																		 regex
+																	
+																
+																		, 
+																		 flags
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															<p>Set the regular expression used to validate the field value.</p>
+<p><strong>Since there is no default message for failed regular
+expression validation, this function will complain if you have not
+already called <code>setErrorMessages()</code> or
+<code>addErrorMessage</code> to specify an error message.</strong></p>
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">id</span>
+																		&lt;<span property="yui:type">String|Object</span>&gt;
+																		</code>
+																		<span property="yui:description">  The selector for the element or the element itself</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">regex</span>
+																		&lt;<span property="yui:type">String|RegExp</span>&gt;
+																		</code>
+																		<span property="yui:description">  The regular expression to use</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">flags</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description">  If regex is a String, these are the flags used to construct a RegExp.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_validateForm">
+
+													<h4>
+														<a name="method_validateForm">validateForm</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">validateForm</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Validate the form.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+							</div>
+
+							<div rel="yui:events" resource="#events">
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "FormManager.html#method_addErrorMessage", "access": "", "host": "FormManager", "type": "method", "name": "addErrorMessage"}, {"url": "FormManager.html#config_A.FormManager.decimal_value_re", "access": "", "host": "FormManager", "type": "config", "name": "A.FormManager.decimal_value_re"}, {"url": "FormManager.html#method_A.FormManager.getElementStatus", "access": "", "host": "FormManager", "type": "method", "name": "A.FormManager.getElementStatus"}, {"url": "FormManager.html#method_A.FormManager.getStatusPrecedence", "access": "", "host": "FormManager", "type": "method", "name": "A.FormManager.getStatusPrecedence"}, {"url": "FormManager.html#config_A.FormManager.integer_value_re", "access": "", "host": "FormManager", "type": "config", "name": "A.FormManager.integer_value_re"}, {"url": "FormManager.html#property_A.FormManager.row_marker_class", "access": "", "host": "FormManager", "type": "property", "name": "A.FormManager.row_marker_class"}, {"url": "FormManager.html#property_A.FormManager.row_status_prefix", "access": "", "host": "FormManager", "type": "property", "name": "A.FormManager.row_status_prefix"}, {"url": "FormManager.html#property_A.FormManager.status_failure_class", "access": "", "host": "FormManager", "type": "property", "name": "A.FormManager.status_failure_class"}, {"url": "FormManager.html#property_A.FormManager.status_marker_class", "access": "", "host": "FormManager", "type": "property", "name": "A.FormManager.status_marker_class"}, {"url": "FormManager.html#property_A.FormManager.status_none_class", "access": "", "host": "FormManager", "type": "property", "name": "A.FormManager.status_none_class"}, {"url": "FormManager.html#config_A.FormManager.status_order", "access": "", "host": "FormManager", "type": "config", "name": "A.FormManager.status_order"}, {"url": "FormManager.html#property_A.FormManager.status_success_class", "access": "", "host": "FormManager", "type": "property", "name": "A.FormManager.status_success_class"}, {"url": "FormManager.html#method_A.FormManager.statusTakesPrecendence", "access": "", "host": "FormManager", "type": "method", "name": "A.FormManager.statusTakesPrecendence"}, {"url": "FormManager.html#config_A.FormManager.Strings", "access": "", "host": "FormManager", "type": "config", "name": "A.FormManager.Strings"}, {"url": "FormManager.html#method_clearForm", "access": "", "host": "FormManager", "type": "method", "name": "clearForm"}, {"url": "FormManager.html#method_clearMessages", "access": "", "host": "FormManager", "type": "method", "name": "clearMessages"}, {"url": "FormManager.html#method_disableForm", "access": "", "host": "FormManager", "type": "method", "name": "disableForm"}, {"url": "FormManager.html#method_displayFormMessage", "access": "", "host": "FormManager", "type": "method", "name": "displayFormMessage"}, {"url": "FormManager.html#method_displayMessage", "access": "", "host": "FormManager", "type": "method", "name": "displayMessage"}, {"url": "FormManager.html#method_enableForm", "access": "", "host": "FormManager", "type": "method", "name": "enableForm"}, {"url": "FormManager.html#method_getForm", "access": "", "host": "FormManager", "type": "method", "name": "getForm"}, {"url": "FormManager.html#method_getRowStatus", "access": "", "host": "FormManager", "type": "method", "name": "getRowStatus"}, {"url": "FormManager.html#method_hasErrors", "access": "", "host": "FormManager", "type": "method", "name": "hasErrors"}, {"url": "FormManager.html#method_hasFileInputs", "access": "", "host": "FormManager", "type": "method", "name": "hasFileInputs"}, {"url": "FormManager.html#method_hasMessages", "access": "", "host": "FormManager", "type": "method", "name": "hasMessages"}, {"url": "FormManager.html#method_initFocus", "access": "", "host": "FormManager", "type": "method", "name": "initFocus"}, {"url": "FormManager.html#method_isChanged", "access": "", "host": "FormManager", "type": "method", "name": "isChanged"}, {"url": "FormManager.html#method_notifyErrors", "access": "", "host": "FormManager", "type": "method", "name": "notifyErrors"}, {"url": "FormManager.html#method_populateForm", "access": "", "host": "FormManager", "type": "method", "name": "populateForm"}, {"url": "FormManager.html#method_postPopulateForm", "access": "", "host": "FormManager", "type": "method", "name": "postPopulateForm"}, {"url": "FormManager.html#method_postPrepareForm", "access": "", "host": "FormManager", "type": "method", "name": "postPrepareForm"}, {"url": "FormManager.html#method_postValidateForm", "access": "", "host": "FormManager", "type": "method", "name": "postValidateForm"}, {"url": "FormManager.html#method_prepareForm", "access": "", "host": "FormManager", "type": "method", "name": "prepareForm"}, {"url": "FormManager.html#method_prePrepareForm", "access": "", "host": "FormManager", "type": "method", "name": "prePrepareForm"}, {"url": "FormManager.html#method_registerButton", "access": "", "host": "FormManager", "type": "method", "name": "registerButton"}, {"url": "FormManager.html#method_saveCurrentValuesAsDefault", "access": "", "host": "FormManager", "type": "method", "name": "saveCurrentValuesAsDefault"}, {"url": "FormManager.html#method_setDefaultValue", "access": "", "host": "FormManager", "type": "method", "name": "setDefaultValue"}, {"url": "FormManager.html#method_setDefaultValues", "access": "", "host": "FormManager", "type": "method", "name": "setDefaultValues"}, {"url": "FormManager.html#method_setErrorMessages", "access": "", "host": "FormManager", "type": "method", "name": "setErrorMessages"}, {"url": "FormManager.html#method_setFormEnabled", "access": "", "host": "FormManager", "type": "method", "name": "setFormEnabled"}, {"url": "FormManager.html#method_setFunction", "access": "", "host": "FormManager", "type": "method", "name": "setFunction"}, {"url": "FormManager.html#method_setRegex", "access": "", "host": "FormManager", "type": "method", "name": "setRegex"}, {"url": "FormManager.html#method_validateForm", "access": "", "host": "FormManager", "type": "method", "name": "validateForm"}];
+</script>
+</body>
+</html>

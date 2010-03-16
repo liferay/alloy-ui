@@ -1,0 +1,1025 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-live-search   aui-node-base.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-live-search&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-live-search.html" title="aui-live-search">aui-live-search</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">aui-node-base.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+
+			                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                <li class="selected"><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                <li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="LiveSearch.html" title="LiveSearch">LiveSearch</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="aui-nested-list.js.html" title="aui-nested-list.js">aui-nested-list.js</a></li>
+
+
+			                                <li class="selected"><a href="aui-node-base.js.html" title="aui-node-base.js">aui-node-base.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * aui-node-base A set of utility methods to the Node.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module aui-node</span>
+<span class="cm"> * @submodule aui-node-base</span>
+<span class="cm"> */</span>
+
+<span class="kd">var</span> <span class="nx">Lang</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+	<span class="nx">isArray</span> <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">,</span>
+	<span class="nx">isString</span> <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">,</span>
+	<span class="nx">isUndefined</span> <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">,</span>
+
+	<span class="nx">INNER_HTML</span> <span class="o">=</span> <span class="s1">&#39;innerHTML&#39;</span><span class="p">,</span>
+	<span class="nx">NEXT_SIBLING</span> <span class="o">=</span> <span class="s1">&#39;nextSibling&#39;</span><span class="p">,</span>
+	<span class="nx">NONE</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">,</span>
+	<span class="nx">PARENT_NODE</span> <span class="o">=</span> <span class="s1">&#39;parentNode&#39;</span><span class="p">,</span>
+	<span class="nx">SCRIPT</span> <span class="o">=</span> <span class="s1">&#39;script&#39;</span><span class="p">,</span>
+	<span class="nx">VALUE</span> <span class="o">=</span> <span class="s1">&#39;value&#39;</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Augment the &lt;a href=&quot;Node.html&quot;&gt;YUI3 Node&lt;/a&gt; with more util methods.</span>
+<span class="cm"> *</span>
+<span class="cm"> * Check the list of &lt;a href=&quot;Node.html#methods&quot;&gt;Methods&lt;/a&gt; available for</span>
+<span class="cm"> * AUI Node.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class A.Node</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @uses Node</span>
+<span class="cm"> */</span>
+<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="p">{</span>
+	<span class="cm">/**</span>
+<span class="cm">	 * &lt;p&gt;Insert the node instance to the end of the &lt;code&gt;selector&lt;/code&gt;</span>
+<span class="cm">     * element.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * Example:</span>
+<span class="cm">     *</span>
+<span class="cm">	 * &lt;pre&gt;&lt;code&gt;var node = A.one(&#39;#nodeId&#39;);</span>
+<span class="cm">	 * // using another Node instance</span>
+<span class="cm">	 * var body = A.one(&#39;body&#39;);</span>
+<span class="cm">	 * node.appendTo(body);</span>
+<span class="cm">	 * // using a CSS selector</span>
+<span class="cm">	 * node.appendTo(&#39;#container&#39;);</span>
+<span class="cm">	 * &lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method appendTo</span>
+<span class="cm">	 * @chainable</span>
+<span class="cm">	 * @param {Node | String} selector A selector, element, HTML string, Node</span>
+<span class="cm">	 * @return {String}</span>
+<span class="cm">	 */</span>
+	<span class="nx">appendTo</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">selector</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">selector</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
+
+		<span class="k">return</span> <span class="nx">instance</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * &lt;p&gt;Get or Set the value of an attribute for the first element in the</span>
+<span class="cm">     * set of matched elements. If only the &lt;code&gt;name&lt;/code&gt; is passed it</span>
+<span class="cm">     * works as a getter.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * Example:</span>
+<span class="cm">     *</span>
+<span class="cm">	 * &lt;pre&gt;&lt;code&gt;var node = A.one(&#39;#nodeId&#39;);</span>
+<span class="cm">	 * node.attr(&#39;title&#39;, &#39;Setting a new title attribute&#39;);</span>
+<span class="cm">	 * // Alert the value of the title attribute: &#39;Setting a new title attribute&#39;</span>
+<span class="cm">	 * alert( node.attr(&#39;title&#39;) );</span>
+<span class="cm">	 * &lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method attr</span>
+<span class="cm">	 * @param {String} name The name of the attribute</span>
+<span class="cm">	 * @param {String} value The value of the attribute to be set. Optional.</span>
+<span class="cm">	 * @return {String}</span>
+<span class="cm">	 */</span>
+	<span class="nx">attr</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * &lt;p&gt;Centralize the current Node instance with the passed</span>
+<span class="cm">     * &lt;code&gt;centerWith&lt;/code&gt; Node, if not specified, the body will be</span>
+<span class="cm">     * used.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * Example:</span>
+<span class="cm">     *</span>
+<span class="cm">	 * &lt;pre&gt;&lt;code&gt;var node = A.one(&#39;#nodeId&#39;);</span>
+<span class="cm">	 * // Center the &lt;code&gt;node&lt;/code&gt; with the &lt;code&gt;#container&lt;/code&gt;.</span>
+<span class="cm">	 * node.center(&#39;#container&#39;);</span>
+<span class="cm">	 * &lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method center</span>
+<span class="cm">	 * @chainable</span>
+<span class="cm">	 * @param {Node | String} centerWith Node to center with</span>
+<span class="cm">	 */</span>
+	<span class="nx">center</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">centerWith</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">centerWith</span> <span class="o">=</span> <span class="p">(</span><span class="nx">centerWith</span> <span class="o">&amp;&amp;</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">centerWith</span><span class="p">))</span> <span class="o">||</span> <span class="nx">A</span><span class="p">.</span><span class="nx">getBody</span><span class="p">();</span>
+
+		<span class="kd">var</span> <span class="nx">centerWithRegion</span> <span class="o">=</span> <span class="nx">centerWith</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">);</span>
+		<span class="kd">var</span> <span class="nx">nodeRegion</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">);</span>
+
+		<span class="kd">var</span> <span class="nx">xCenterWith</span> <span class="o">=</span> <span class="nx">centerWithRegion</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="p">(</span><span class="nx">centerWithRegion</span><span class="p">.</span><span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+		<span class="kd">var</span> <span class="nx">yCenterWith</span> <span class="o">=</span> <span class="nx">centerWithRegion</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="p">(</span><span class="nx">centerWithRegion</span><span class="p">.</span><span class="nx">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">setXY</span><span class="p">([</span><span class="nx">xCenterWith</span> <span class="o">-</span> <span class="p">(</span><span class="nx">nodeRegion</span><span class="p">.</span><span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="nx">yCenterWith</span> <span class="o">-</span> <span class="p">(</span><span class="nx">nodeRegion</span><span class="p">.</span><span class="nx">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)]);</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * &lt;p&gt;This method removes not only child (and other descendant) elements,</span>
+<span class="cm">     * but also any text within the set of matched elements. This is because,</span>
+<span class="cm">     * according to the DOM specification, any string of text within an element</span>
+<span class="cm">     * is considered a child node of that element.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * Example:</span>
+<span class="cm">     *</span>
+<span class="cm">	 * &lt;pre&gt;&lt;code&gt;var node = A.one(&#39;#nodeId&#39;);</span>
+<span class="cm">	 * node.empty();</span>
+<span class="cm">	 * &lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method empty</span>
+<span class="cm">	 * @chainable</span>
+<span class="cm">	 */</span>
+	<span class="nx">empty</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">queryAll</span><span class="p">(</span><span class="s1">&#39;&gt;*&#39;</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+
+		<span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">getDOMNode</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
+
+		<span class="k">while</span> <span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">el</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="k">return</span> <span class="nx">instance</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Retrieves the DOM node bound to a Node instance. See</span>
+<span class="cm">     * &lt;a href=&quot;Node.html#method_getDOMNode&quot;&gt;getDOMNode&lt;/a&gt;.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method getDOM</span>
+<span class="cm">	 * @return {HTMLNode} The DOM node bound to the Node instance.</span>
+<span class="cm">	 */</span>
+	<span class="nx">getDOM</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">getDOMNode</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
+	<span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Set the id of the Node instance if the object does not have one. The</span>
+<span class="cm">     * generated id is based on a guid created by the</span>
+<span class="cm">     * &lt;a href=&quot;YUI.html#method_stamp&quot;&gt;stamp&lt;/a&gt; method.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method guid</span>
+<span class="cm">     * @param {string} prefix optional guid prefix</span>
+<span class="cm">     * @return {String} The current id of the node</span>
+<span class="cm">     */</span>
+	<span class="nx">guid</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">prefix</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">currentId</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">currentId</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">currentId</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">stamp</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nx">currentId</span><span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="k">return</span> <span class="nx">currentId</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">     * &lt;p&gt;Hide the node adding a css class on it. If &lt;code&gt;cssClass&lt;/code&gt; is not</span>
+<span class="cm">     * passed as argument, the className &#39;aui-helper-hidden&#39; will be used by</span>
+<span class="cm">     * default.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * &lt;p&gt;&lt;string&gt;NOTE:&lt;/string&gt; This method assume that your node were visible</span>
+<span class="cm">     * because the absence of &#39;aui-helper-hidden&#39; css class. This won&#39;t</span>
+<span class="cm">     * manipulate the inline &lt;code&gt;style.display&lt;/code&gt; property.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method hide</span>
+<span class="cm">     * @chainable</span>
+<span class="cm">     * @param {string} cssClass Class name to hide the element. Optional.</span>
+<span class="cm">     */</span>
+	<span class="nx">hide</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cssClass</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">cssClass</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_hideClass</span> <span class="o">||</span> <span class="s1">&#39;aui-helper-hidden&#39;</span><span class="p">);</span>
+
+		<span class="k">return</span> <span class="nx">instance</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">     * &lt;p&gt;Get or Set the HTML contents of the node. If the &lt;code&gt;value&lt;/code&gt;</span>
+<span class="cm">     * is passed it&#39;s set the content of the element, otherwise it works as a</span>
+<span class="cm">     * getter for the current content.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * Example:</span>
+<span class="cm">     *</span>
+<span class="cm">	 * &lt;pre&gt;&lt;code&gt;var node = A.one(&#39;#nodeId&#39;);</span>
+<span class="cm">	 * node.html(&#39;Setting new HTML&#39;);</span>
+<span class="cm">	 * // Alert the value of the current content</span>
+<span class="cm">	 * alert( node.html() );</span>
+<span class="cm">	 * &lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method html</span>
+<span class="cm">     * @param {string} value A string of html to set as the content of the node instance.</span>
+<span class="cm">     */</span>
+	<span class="nx">html</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">,</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">INNER_HTML</span><span class="p">,</span> <span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">INNER_HTML</span><span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Gets the outerHTML of a node, which islike innerHTML, except that it</span>
+<span class="cm">	 * actually contains the HTML of the node itself.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @return {string} The outerHTML of the given element.</span>
+<span class="cm">	 */</span>
+	<span class="nx">outerHTML</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">domEl</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getDOM</span><span class="p">();</span>
+
+		<span class="c1">// IE, Opera and WebKit all have outerHTML.</span>
+		<span class="k">if</span> <span class="p">(</span><span class="s1">&#39;outerHTML&#39;</span> <span class="k">in</span> <span class="nx">domEl</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">domEl</span><span class="p">.</span><span class="nx">outerHTML</span><span class="p">;</span>
+		<span class="p">}</span>
+
+		<span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;&lt;div&gt;&lt;/div&gt;&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+		<span class="p">);</span>
+
+		<span class="k">try</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">temp</span><span class="p">.</span><span class="nx">html</span><span class="p">();</span>
+		<span class="p">}</span>
+		<span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{}</span>
+		<span class="k">finally</span> <span class="p">{</span>
+			<span class="nx">temp</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * &lt;p&gt;Inserts a &lt;code&gt;newNode&lt;/code&gt; after the node instance (i.e., as the next</span>
+<span class="cm">	 * sibling). If the reference node has no parent, then does nothing.&lt;/p&gt;</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * Example:</span>
+<span class="cm">     *</span>
+<span class="cm">	 * &lt;pre&gt;&lt;code&gt;var titleNode = A.one(&#39;#titleNode&#39;);</span>
+<span class="cm">	 * var descriptionNode = A.one(&#39;#descriptionNode&#39;);</span>
+<span class="cm">	 * // the description is usually shown after the title</span>
+<span class="cm">	 * titleNode.placeAfter(descriptionNode);</span>
+<span class="cm">	 * &lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method placeAfter</span>
+<span class="cm">	 * @chainable</span>
+<span class="cm">	 * @param {Node} newNode Node to insert.</span>
+<span class="cm">	 */</span>
+	<span class="nx">placeAfter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newNode</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">parent</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">newNode</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NEXT_SIBLING</span><span class="p">));</span>
+		<span class="p">}</span>
+
+		<span class="k">return</span> <span class="nx">instance</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * &lt;p&gt;Inserts a &lt;code&gt;newNode&lt;/code&gt; before the node instance (i.e., as the previous</span>
+<span class="cm">	 * sibling). If the reference node has no parent, then does nothing.&lt;/p&gt;</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * Example:</span>
+<span class="cm">     *</span>
+<span class="cm">	 * &lt;pre&gt;&lt;code&gt;var descriptionNode = A.one(&#39;#descriptionNode&#39;);</span>
+<span class="cm">	 * var titleNode = A.one(&#39;#titleNode&#39;);</span>
+<span class="cm">	 * // the title is usually shown before the description</span>
+<span class="cm">	 * descriptionNode.placeBefore(titleNode);</span>
+<span class="cm">	 * &lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method placeBefore</span>
+<span class="cm">	 * @chainable</span>
+<span class="cm">	 * @param {Node} newNode Node to insert.</span>
+<span class="cm">	 */</span>
+	<span class="nx">placeBefore</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newNode</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">parent</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">newNode</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="k">return</span> <span class="nx">instance</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * &lt;p&gt;Inserts the node instance to the begining of the &lt;code&gt;selector&lt;/code&gt;</span>
+<span class="cm">     * node (i.e., insert before the &lt;code&gt;firstChild&lt;/code&gt; of the</span>
+<span class="cm">     * &lt;code&gt;selector&lt;/code&gt;).&lt;/p&gt;</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * Example:</span>
+<span class="cm">     *</span>
+<span class="cm">	 * &lt;pre&gt;&lt;code&gt;var node = A.one(&#39;#nodeId&#39;);</span>
+<span class="cm">	 * node.prependTo(&#39;body&#39;);</span>
+<span class="cm">	 * &lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method prependTo</span>
+<span class="cm">	 * @chainable</span>
+<span class="cm">	 * @param {Node | String} selector A selector, element, HTML string, Node</span>
+<span class="cm">	 */</span>
+	<span class="nx">prependTo</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">selector</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">selector</span><span class="p">).</span><span class="nx">prepend</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
+
+		<span class="k">return</span> <span class="nx">instance</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Add one or more CSS classes to an element and remove the class(es)</span>
+<span class="cm">     * from the siblings of the element.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method radioClass</span>
+<span class="cm">	 * @chainable</span>
+<span class="cm">	 * @param {String} cssClass</span>
+<span class="cm">	 */</span>
+	<span class="nx">radioClass</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cssClass</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">siblings</span><span class="p">().</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">cssClass</span><span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">cssClass</span><span class="p">);</span>
+
+		<span class="k">return</span> <span class="nx">instance</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Generate an unique identifier and reset the id attribute of the node</span>
+<span class="cm">     * instance using the new value. Invokes the</span>
+<span class="cm">     * &lt;a href=&quot;A.Node.html#method_guid&quot;&gt;guid&lt;/a&gt;.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method resetId</span>
+<span class="cm">	 * @chainable</span>
+<span class="cm">	 * @param {String} prefix Optional prefix for the guid.</span>
+<span class="cm">	 */</span>
+	<span class="nx">resetId</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">prefix</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">guid</span><span class="p">(</span><span class="nx">prefix</span><span class="p">));</span>
+
+		<span class="k">return</span> <span class="nx">instance</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Enables text selection for this element (normalized across browsers).</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method selectable</span>
+<span class="cm">	 * @chainable</span>
+<span class="cm">	 */</span>
+	<span class="nx">selectable</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">getDOM</span><span class="p">().</span><span class="nx">unselectable</span> <span class="o">=</span> <span class="s1">&#39;off&#39;</span><span class="p">;</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">detach</span><span class="p">(</span><span class="s1">&#39;selectstart&#39;</span><span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">(</span>
+			<span class="p">{</span>
+				<span class="s1">&#39;MozUserSelect&#39;</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+				<span class="s1">&#39;KhtmlUserSelect&#39;</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
+			<span class="p">}</span>
+		<span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;aui-helper-unselectable&#39;</span><span class="p">);</span>
+
+		<span class="k">return</span> <span class="nx">instance</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">     * &lt;p&gt;Show the node removing a css class used to hide it. Use the same</span>
+<span class="cm">     * className added using the &lt;a href=&quot;A.Node.html#method_hide&quot;&gt;hide&lt;/a&gt;</span>
+<span class="cm">     * method. If &lt;code&gt;cssClass&lt;/code&gt; is not passed as argument, the</span>
+<span class="cm">     * className &#39;aui-helper-hidden&#39; will be used by default.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * &lt;p&gt;&lt;string&gt;NOTE:&lt;/string&gt; This method assume that your node were hidden</span>
+<span class="cm">     * because of the &#39;aui-helper-hidden&#39; css class were being used. This won&#39;t</span>
+<span class="cm">     * manipulate the inline &lt;code&gt;style.display&lt;/code&gt; property.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method show</span>
+<span class="cm">     * @chainable</span>
+<span class="cm">     * @param {string} cssClass Class name to hide the element. Optional.</span>
+<span class="cm">     */</span>
+	<span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cssClass</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">cssClass</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_hideClass</span> <span class="o">||</span> <span class="s1">&#39;aui-helper-hidden&#39;</span><span class="p">);</span>
+
+		<span class="k">return</span> <span class="nx">instance</span><span class="p">;</span>
+	<span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * &lt;p&gt;Stops the specified event(s) from bubbling and optionally prevents the</span>
+<span class="cm">     * default action.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * Example:</span>
+<span class="cm">     *</span>
+<span class="cm">     * &lt;pre&gt;&lt;code&gt;var anchor = A.one(&#39;a#anchorId&#39;);</span>
+<span class="cm">     * anchor.swallowEvent(&#39;click&#39;);</span>
+<span class="cm">     * &lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method swallowEvent</span>
+<span class="cm">     * @chainable</span>
+<span class="cm">     * @param {String/Array} eventName an event or array of events to stop from bubbling</span>
+<span class="cm">     * @param {Boolean} preventDefault (optional) true to prevent the default action too</span>
+<span class="cm">     */</span>
+	<span class="nx">swallowEvent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">eventName</span><span class="p">,</span> <span class="nx">preventDefault</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="kd">var</span> <span class="nx">fn</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">event</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">preventDefault</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+
+				<span class="nx">event</span><span class="p">.</span><span class="nx">halt</span><span class="p">();</span>
+			<span class="p">}</span>
+
+			<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+		<span class="p">};</span>
+
+		<span class="k">if</span><span class="p">(</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">eventName</span><span class="p">))</span> <span class="p">{</span>
+			<span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span>
+				<span class="nx">eventName</span><span class="p">,</span>
+				<span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">fn</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+
+			<span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="p">{</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">eventName</span><span class="p">,</span> <span class="nx">fn</span><span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="k">return</span> <span class="nx">instance</span><span class="p">;</span>
+	<span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * &lt;p&gt;Get or Set the combined text contents of the node instance,</span>
+<span class="cm">     * including it&#39;s descendants. If the &lt;code&gt;text&lt;/code&gt;</span>
+<span class="cm">     * is passed it&#39;s set the content of the element, otherwise it works as a</span>
+<span class="cm">     * getter for the current content.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * Example:</span>
+<span class="cm">     *</span>
+<span class="cm">	 * &lt;pre&gt;&lt;code&gt;var node = A.one(&#39;#nodeId&#39;);</span>
+<span class="cm">	 * node.text(&#39;Setting new text content&#39;);</span>
+<span class="cm">	 * // Alert the value of the current content</span>
+<span class="cm">	 * alert( node.text() );</span>
+<span class="cm">	 * &lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm">	 *</span>
+<span class="cm">     * @method text</span>
+<span class="cm">     * @param {String} text A string of text to set as the content of the node instance.</span>
+<span class="cm">     */</span>
+	<span class="nx">text</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getDOM</span><span class="p">();</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">text</span><span class="p">))</span> <span class="p">{</span>
+			<span class="nx">text</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">_getDoc</span><span class="p">(</span><span class="nx">el</span><span class="p">).</span><span class="nx">createTextNode</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+
+			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">empty</span><span class="p">().</span><span class="nx">append</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getText</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">);</span>
+	<span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * &lt;p&gt;Displays or hide the node instance.&lt;/p&gt;</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * &lt;p&gt;&lt;string&gt;NOTE:&lt;/string&gt; This method assume that your node were hidden</span>
+<span class="cm">     * because of the &#39;aui-helper-hidden&#39; css class were being used. This won&#39;t</span>
+<span class="cm">     * manipulate the inline &lt;code&gt;style.display&lt;/code&gt; property.&lt;/p&gt;</span>
+<span class="cm">	 *</span>
+<span class="cm">     * @method toggle</span>
+<span class="cm">     * @chainable</span>
+<span class="cm">     * @param {String} cssClass Class name to hide or show the element. Optional.</span>
+<span class="cm">     */</span>
+	<span class="nx">toggle</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cssClass</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;hide&#39;</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">hideClass</span> <span class="o">=</span> <span class="nx">cssClass</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_hideClass</span> <span class="o">||</span> <span class="s1">&#39;aui-helper-hidden&#39;</span><span class="p">;</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">hideClass</span><span class="p">))</span> <span class="p">{</span>
+			<span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;show&#39;</span><span class="p">;</span>
+		<span class="p">}</span>
+
+		<span class="nx">instance</span><span class="p">[</span><span class="nx">action</span><span class="p">](</span><span class="nx">hideClass</span><span class="p">);</span>
+
+		<span class="k">return</span> <span class="nx">instance</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Disables text selection for this element (normalized across browsers).</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method unselectable</span>
+<span class="cm">	 * @chainable</span>
+<span class="cm">	 */</span>
+	<span class="nx">unselectable</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">getDOM</span><span class="p">().</span><span class="nx">unselectable</span> <span class="o">=</span> <span class="s1">&#39;on&#39;</span><span class="p">;</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">swallowEvent</span><span class="p">(</span><span class="s1">&#39;selectstart&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">(</span>
+			<span class="p">{</span>
+				<span class="s1">&#39;MozUserSelect&#39;</span><span class="o">:</span> <span class="nx">NONE</span><span class="p">,</span>
+				<span class="s1">&#39;KhtmlUserSelect&#39;</span><span class="o">:</span> <span class="nx">NONE</span>
+			<span class="p">}</span>
+		<span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;aui-helper-unselectable&#39;</span><span class="p">);</span>
+
+		<span class="k">return</span> <span class="nx">instance</span><span class="p">;</span>
+	<span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * &lt;p&gt;Get or Set the value attribute of the node instance. If the</span>
+<span class="cm">     * &lt;code&gt;value&lt;/code&gt; is passed it&#39;s set the value of the element,</span>
+<span class="cm">     * otherwise it works as a getter for the current value.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * Example:</span>
+<span class="cm">     *</span>
+<span class="cm">	 * &lt;pre&gt;&lt;code&gt;var input = A.one(&#39;#inputId&#39;);</span>
+<span class="cm">	 * input.val(&#39;Setting new input value&#39;);</span>
+<span class="cm">	 * // Alert the value of the input</span>
+<span class="cm">	 * alert( input.val() );</span>
+<span class="cm">	 * &lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm">	 *</span>
+<span class="cm">     * @method val</span>
+<span class="cm">     * @param {string} value Value to be set. Optional.</span>
+<span class="cm">     */</span>
+	<span class="nx">val</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">VALUE</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">VALUE</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Extract text content from the passed nodes.</span>
+<span class="cm">	 *</span>
+<span class="cm">     * @method _getText</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param {Native NodeList} childNodes</span>
+<span class="cm">     */</span>
+	<span class="nx">_getText</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">childNodes</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="kd">var</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">childNodes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">childNode</span><span class="p">;</span>
+
+		<span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="p">[];</span>
+
+		<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">childNode</span> <span class="o">=</span> <span class="nx">childNodes</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">childNode</span> <span class="o">&amp;&amp;</span> <span class="nx">childNode</span><span class="p">.</span><span class="nx">nodeType</span> <span class="o">!=</span> <span class="mi">8</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">childNode</span><span class="p">.</span><span class="nx">nodeType</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">str</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">childNode</span><span class="p">.</span><span class="nx">nodeValue</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">childNode</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">str</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_getText</span><span class="p">(</span><span class="nx">childNode</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">));</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+
+		<span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">},</span> <span class="kc">true</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Augment the &lt;a href=&quot;NodeList.html&quot;&gt;YUI3 NodeList&lt;/a&gt; with more util methods.</span>
+<span class="cm"> *</span>
+<span class="cm"> * Check the list of &lt;a href=&quot;NodeList.html#methods&quot;&gt;Methods&lt;/a&gt; available for</span>
+<span class="cm"> * AUI NodeList.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class A.NodeList</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @uses A.Node</span>
+<span class="cm"> */</span>
+<span class="nx">A</span><span class="p">.</span><span class="nx">NodeList</span><span class="p">.</span><span class="nx">importMethod</span><span class="p">(</span>
+	<span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span>
+	<span class="p">[</span>
+		<span class="s1">&#39;after&#39;</span><span class="p">,</span>
+
+		<span class="s1">&#39;appendTo&#39;</span><span class="p">,</span>
+
+		<span class="s1">&#39;attr&#39;</span><span class="p">,</span>
+
+		<span class="s1">&#39;before&#39;</span><span class="p">,</span>
+
+		<span class="s1">&#39;empty&#39;</span><span class="p">,</span>
+
+		<span class="s1">&#39;hide&#39;</span><span class="p">,</span>
+
+		<span class="s1">&#39;html&#39;</span><span class="p">,</span>
+
+		<span class="s1">&#39;outerHTML&#39;</span><span class="p">,</span>
+
+		<span class="s1">&#39;prepend&#39;</span><span class="p">,</span>
+
+		<span class="s1">&#39;prependTo&#39;</span><span class="p">,</span>
+
+		<span class="s1">&#39;selectable&#39;</span><span class="p">,</span>
+
+		<span class="s1">&#39;show&#39;</span><span class="p">,</span>
+
+		<span class="s1">&#39;text&#39;</span><span class="p">,</span>
+
+		<span class="s1">&#39;toggle&#39;</span><span class="p">,</span>
+
+		<span class="s1">&#39;unselectable&#39;</span><span class="p">,</span>
+
+		<span class="s1">&#39;val&#39;</span>
+	<span class="p">]</span>
+<span class="p">);</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span>
+	<span class="nx">A</span><span class="p">.</span><span class="nx">NodeList</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span>
+	<span class="p">{</span>
+		<span class="cm">/**</span>
+<span class="cm">	     * See &lt;a href=&quot;Node.html#method_all&quot;&gt;Node all&lt;/a&gt;.</span>
+<span class="cm">	     *</span>
+<span class="cm">	     * @method all</span>
+<span class="cm">	     */</span>
+		<span class="nx">all</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">selector</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">newNodeList</span> <span class="o">=</span> <span class="p">[];</span>
+			<span class="kd">var</span> <span class="nx">nodes</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_nodes</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">nodes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">subList</span><span class="p">;</span>
+
+			<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">subList</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Selector</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">selector</span><span class="p">,</span> <span class="nx">nodes</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">subList</span> <span class="o">&amp;&amp;</span> <span class="nx">subList</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">newNodeList</span><span class="p">.</span><span class="nx">push</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">newNodeList</span><span class="p">,</span> <span class="nx">subList</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+
+			<span class="nx">newNodeList</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">unique</span><span class="p">(</span><span class="nx">newNodeList</span><span class="p">);</span>
+
+			<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">newNodeList</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">	     * See &lt;a href=&quot;Node.html#method_getDOM&quot;&gt;Node getDOM&lt;/a&gt;.</span>
+<span class="cm">	     *</span>
+<span class="cm">	     * @method getDOM</span>
+<span class="cm">	     */</span>
+		<span class="nx">getDOM</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">NodeList</span><span class="p">.</span><span class="nx">getDOMNodes</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">	     * See &lt;a href=&quot;Node.html#method_one&quot;&gt;Node one&lt;/a&gt;.</span>
+<span class="cm">	     *</span>
+<span class="cm">	     * @method one</span>
+<span class="cm">	     */</span>
+		<span class="nx">one</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">selector</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">newNode</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">nodes</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_nodes</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">nodes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+
+			<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">newNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Selector</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">selector</span><span class="p">,</span> <span class="nx">nodes</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="kc">true</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">newNode</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">newNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">newNode</span><span class="p">);</span>
+
+					<span class="k">break</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+
+			<span class="k">return</span> <span class="nx">newNode</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">);</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span>
+	<span class="nx">A</span><span class="p">,</span>
+	<span class="p">{</span>
+		<span class="cm">/**</span>
+<span class="cm">	     * Get the body node. Shortcut to &lt;code&gt;A.one(&#39;body&#39;)&lt;/code&gt;.</span>
+<span class="cm">		 *</span>
+<span class="cm">	     * @method getBody</span>
+<span class="cm">	     */</span>
+		<span class="nx">getBody</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_bodyNode</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_bodyNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_bodyNode</span><span class="p">;</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">	     * Get the document node. Shortcut to &lt;code&gt;A.one(document)&lt;/code&gt;.</span>
+<span class="cm">		 *</span>
+<span class="cm">	     * @method getDoc</span>
+<span class="cm">	     */</span>
+		<span class="nx">getDoc</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_documentNode</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_documentNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_documentNode</span><span class="p">;</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">	     * Get the window node. Shortcut to &lt;code&gt;A.one(window)&lt;/code&gt;.</span>
+<span class="cm">		 *</span>
+<span class="cm">	     * @method getWin</span>
+<span class="cm">	     */</span>
+		<span class="nx">getWin</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_windowNode</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_windowNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nb">window</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_windowNode</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">);</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "LiveSearch.html#method_bindUI", "access": "protected", "host": "LiveSearch", "type": "method", "name": "bindUI"}, {"url": "LiveSearch.html#config_data", "access": "", "host": "LiveSearch", "type": "config", "name": "data"}, {"url": "LiveSearch.html#event_dataChange", "access": "", "host": "LiveSearch", "type": "event", "name": "dataChange"}, {"url": "LiveSearch.html#config_delay", "access": "", "host": "LiveSearch", "type": "config", "name": "delay"}, {"url": "LiveSearch.html#event_delayChange", "access": "", "host": "LiveSearch", "type": "event", "name": "delayChange"}, {"url": "LiveSearch.html#method_destroy", "access": "protected", "host": "LiveSearch", "type": "method", "name": "destroy"}, {"url": "LiveSearch.html#method_filter", "access": "", "host": "LiveSearch", "type": "method", "name": "filter"}, {"url": "LiveSearch.html#config_hide", "access": "", "host": "LiveSearch", "type": "config", "name": "hide"}, {"url": "LiveSearch.html#event_hideChange", "access": "", "host": "LiveSearch", "type": "event", "name": "hideChange"}, {"url": "LiveSearch.html#config_index", "access": "", "host": "LiveSearch", "type": "config", "name": "index"}, {"url": "LiveSearch.html#event_indexChange", "access": "", "host": "LiveSearch", "type": "event", "name": "indexChange"}, {"url": "LiveSearch.html#method_initializer", "access": "protected", "host": "LiveSearch", "type": "method", "name": "initializer"}, {"url": "LiveSearch.html#config_input", "access": "", "host": "LiveSearch", "type": "config", "name": "input"}, {"url": "LiveSearch.html#event_inputChange", "access": "", "host": "LiveSearch", "type": "event", "name": "inputChange"}, {"url": "LiveSearch.html#method__inputKeyUp", "access": "protected", "host": "LiveSearch", "type": "method", "name": "_inputKeyUp"}, {"url": "LiveSearch.html#property_LiveSearch.ATTRS", "access": "", "host": "LiveSearch", "type": "property", "name": "LiveSearch.ATTRS"}, {"url": "LiveSearch.html#property_LiveSearch.NAME", "access": "", "host": "LiveSearch", "type": "property", "name": "LiveSearch.NAME"}, {"url": "LiveSearch.html#config_matchRegex", "access": "", "host": "LiveSearch", "type": "config", "name": "matchRegex"}, {"url": "LiveSearch.html#event_matchRegexChange", "access": "", "host": "LiveSearch", "type": "event", "name": "matchRegexChange"}, {"url": "LiveSearch.html#config_nodes", "access": "", "host": "LiveSearch", "type": "config", "name": "nodes"}, {"url": "LiveSearch.html#event_nodesChange", "access": "", "host": "LiveSearch", "type": "event", "name": "nodesChange"}, {"url": "LiveSearch.html#property_normalizedQuery", "access": "protected", "host": "LiveSearch", "type": "property", "name": "normalizedQuery"}, {"url": "LiveSearch.html#method__normalizeQuery", "access": "protected", "host": "LiveSearch", "type": "method", "name": "_normalizeQuery"}, {"url": "LiveSearch.html#property_query", "access": "protected", "host": "LiveSearch", "type": "property", "name": "query"}, {"url": "LiveSearch.html#method_refreshIndex", "access": "", "host": "LiveSearch", "type": "method", "name": "refreshIndex"}, {"url": "LiveSearch.html#method_search", "access": "protected", "host": "LiveSearch", "type": "method", "name": "search"}, {"url": "LiveSearch.html#method__setNodes", "access": "protected", "host": "LiveSearch", "type": "method", "name": "_setNodes"}, {"url": "LiveSearch.html#config_show", "access": "", "host": "LiveSearch", "type": "config", "name": "show"}, {"url": "LiveSearch.html#event_showChange", "access": "", "host": "LiveSearch", "type": "event", "name": "showChange"}, {"url": "LiveSearch.html#property_timer", "access": "protected", "host": "LiveSearch", "type": "property", "name": "timer"}];
+</script>
+</body>
+</html>

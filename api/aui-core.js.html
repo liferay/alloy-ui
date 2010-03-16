@@ -1,0 +1,567 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-calendar   aui-core.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-calendar&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-calendar.html" title="aui-calendar">aui-calendar</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">aui-core.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+
+			                                <li class="selected"><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                <li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="Calendar.html" title="Calendar">Calendar</a></li>
+
+
+				                                <li class=""><a href="CalendarManager.html" title="CalendarManager">CalendarManager</a></li>
+
+
+				                                <li class=""><a href="DatePickerSelect.html" title="DatePickerSelect">DatePickerSelect</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="aui-autocomplete.js.html" title="aui-autocomplete.js">aui-autocomplete.js</a></li>
+
+
+			                                <li class=""><a href="aui-base-debug.js.html" title="aui-base-debug.js">aui-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-base-min.js.html" title="aui-base-min.js">aui-base-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-base.js.html" title="aui-base.js">aui-base.js</a></li>
+
+
+			                                <li class=""><a href="aui-calendar-base.js.html" title="aui-calendar-base.js">aui-calendar-base.js</a></li>
+
+
+			                                <li class=""><a href="aui-calendar-datepicker-select.js.html" title="aui-calendar-datepicker-select.js">aui-calendar-datepicker-select.js</a></li>
+
+
+			                                <li class=""><a href="aui-char-counter.js.html" title="aui-char-counter.js">aui-char-counter.js</a></li>
+
+
+			                                <li class="selected"><a href="aui-core.js.html" title="aui-core.js">aui-core.js</a></li>
+
+
+			                                <li class=""><a href="calendar-pt-br.js.html" title="calendar-pt-br.js">calendar-pt-br.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="p">;(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+	<span class="kd">var</span> <span class="nx">toString</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">;</span>
+
+	<span class="kd">var</span> <span class="nx">isFunction</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="o">===</span> <span class="s2">&quot;[object Function]&quot;</span><span class="p">;</span>
+	<span class="p">};</span>
+
+	<span class="c1">// Based on jQuery.extend</span>
+	<span class="kd">var</span> <span class="nx">apply</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{},</span>
+			<span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+			<span class="nx">length</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+			<span class="nx">deep</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+			<span class="nx">options</span><span class="p">;</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">target</span> <span class="o">===</span> <span class="s1">&#39;boolean&#39;</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">deep</span> <span class="o">=</span> <span class="nx">target</span><span class="p">;</span>
+			<span class="nx">target</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">||</span> <span class="p">{};</span>
+			<span class="nx">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+		<span class="p">}</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">target</span> <span class="o">!==</span> <span class="s1">&#39;object&#39;</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">target</span><span class="p">))</span> <span class="p">{</span>
+			<span class="nx">target</span> <span class="o">=</span> <span class="p">{};</span>
+		<span class="p">}</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">length</span> <span class="o">==</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">target</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="o">--</span><span class="nx">i</span><span class="p">;</span>
+		<span class="p">}</span>
+
+		<span class="k">for</span> <span class="p">(;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">((</span><span class="nx">options</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">name</span> <span class="k">in</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">src</span> <span class="o">=</span> <span class="nx">target</span><span class="p">[</span><span class="nx">name</span><span class="p">],</span>
+						<span class="nx">copy</span> <span class="o">=</span> <span class="nx">options</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">target</span> <span class="o">===</span> <span class="nx">copy</span><span class="p">)</span> <span class="p">{</span>
+						<span class="k">continue</span><span class="p">;</span>
+					<span class="p">}</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">deep</span> <span class="o">&amp;&amp;</span> <span class="nx">copy</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">copy</span> <span class="o">===</span> <span class="s1">&#39;object&#39;</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">copy</span><span class="p">.</span><span class="nx">nodeType</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">target</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">apply</span><span class="p">(</span>
+							<span class="nx">deep</span><span class="p">,</span>
+							<span class="nx">src</span> <span class="o">||</span> <span class="p">(</span><span class="nx">copy</span><span class="p">.</span><span class="nx">length</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="p">[]</span> <span class="o">:</span> <span class="p">{}),</span>
+							<span class="nx">copy</span>
+						<span class="p">);</span>
+					<span class="p">}</span>
+
+					<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">copy</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">target</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">copy</span><span class="p">;</span>
+					<span class="p">}</span>
+
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+
+		<span class="k">return</span> <span class="nx">target</span><span class="p">;</span>
+	<span class="p">};</span>
+
+	<span class="cm">/*</span>
+<span class="cm">	 * Alloy JavaScript Library v@VERSION@</span>
+<span class="cm">	 * http://alloyui.com/</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * Copyright (c) 2009 Liferay Inc.</span>
+<span class="cm">	 * Licensed under the MIT license.</span>
+<span class="cm">	 * http://alloyui.com/License</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * Eduardo Lundgren (eduardo.lundgren@liferay.com)</span>
+<span class="cm">	 * Nate Cavanaugh (nate.cavanaugh@liferay.com)</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * Date: @DATE@</span>
+<span class="cm">	 * Revision: @REVISION@</span>
+<span class="cm">	 */</span>
+
+	<span class="nb">window</span><span class="p">.</span><span class="nx">AUI</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">AUI</span> <span class="o">||</span> <span class="p">{};</span>
+
+	<span class="kd">var</span> <span class="nx">defaults</span> <span class="o">=</span> <span class="nx">AUI</span><span class="p">.</span><span class="nx">defaults</span> <span class="o">||</span> <span class="p">{};</span>
+
+	<span class="nx">apply</span><span class="p">(</span>
+		<span class="nx">YUI</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span>
+		<span class="p">{</span>
+			<span class="nx">apply</span><span class="o">:</span> <span class="nx">apply</span><span class="p">,</span>
+			<span class="nx">ready</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">slice</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">fn</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
+
+				<span class="kd">var</span> <span class="nx">modules</span> <span class="o">=</span> <span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
+
+				<span class="nx">modules</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;event&#39;</span><span class="p">);</span>
+
+				<span class="nx">modules</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span>
+					<span class="kd">function</span><span class="p">(</span><span class="nx">instance</span><span class="p">)</span> <span class="p">{</span>
+						<span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">;</span>
+
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span>
+							<span class="s1">&#39;domready&#39;</span><span class="p">,</span>
+							<span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+								<span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+							<span class="p">}</span>
+						<span class="p">);</span>
+					<span class="p">}</span>
+				<span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">use</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">modules</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">);</span>
+
+	<span class="kd">var</span> <span class="nx">ALLOY</span> <span class="o">=</span> <span class="nx">YUI</span><span class="p">(</span><span class="nx">apply</span><span class="p">({},</span> <span class="nx">defaults</span><span class="p">));</span>
+
+	<span class="nx">ALLOY</span><span class="p">.</span><span class="nx">Env</span><span class="p">.</span><span class="nx">_guidp</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;aui&#39;</span><span class="p">,</span> <span class="nx">ALLOY</span><span class="p">.</span><span class="nx">version</span><span class="p">,</span> <span class="nx">ALLOY</span><span class="p">.</span><span class="nx">Env</span><span class="p">.</span><span class="nx">_yidx</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">()].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\./g</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">);</span>
+
+	<span class="kd">var</span> <span class="nx">originalConfig</span> <span class="o">=</span> <span class="nx">ALLOY</span><span class="p">.</span><span class="nx">config</span><span class="p">;</span>
+
+	<span class="nx">ALLOY</span><span class="p">.</span><span class="nx">config</span> <span class="o">=</span> <span class="nx">ALLOY</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span><span class="nx">originalConfig</span><span class="p">,</span> <span class="nx">AUI</span><span class="p">.</span><span class="nx">defaults</span><span class="p">);</span>
+
+	<span class="nx">AUI</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">o</span> <span class="o">||</span> <span class="nx">instance</span> <span class="k">instanceof</span> <span class="nx">AUI</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">YUI</span><span class="p">(</span><span class="nx">ALLOY</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span><span class="nx">ALLOY</span><span class="p">.</span><span class="nx">config</span><span class="p">,</span> <span class="nx">o</span><span class="p">));</span>
+		<span class="p">}</span>
+
+		<span class="k">return</span> <span class="nx">ALLOY</span><span class="p">;</span>
+	<span class="p">};</span>
+
+	<span class="kd">var</span> <span class="nx">UA</span> <span class="o">=</span> <span class="nx">ALLOY</span><span class="p">.</span><span class="nx">UA</span><span class="p">;</span>
+
+	<span class="nx">apply</span><span class="p">(</span>
+		<span class="nx">AUI</span><span class="p">,</span>
+		<span class="nx">YUI</span><span class="p">,</span>
+		<span class="p">{</span>
+			<span class="nx">__version</span><span class="o">:</span> <span class="s1">&#39;@VERSION&#39;</span><span class="p">,</span>
+
+			<span class="nx">apply</span><span class="o">:</span> <span class="nx">apply</span><span class="p">,</span>
+
+			<span class="nx">defaults</span><span class="o">:</span> <span class="nx">defaults</span><span class="p">,</span>
+
+			<span class="nx">html5shiv</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">frag</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">doc</span> <span class="o">=</span> <span class="nx">frag</span> <span class="o">||</span> <span class="nb">document</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span> <span class="o">&amp;&amp;</span> <span class="nx">doc</span> <span class="o">&amp;&amp;</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">createElement</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">elements</span> <span class="o">=</span> <span class="nx">AUI</span><span class="p">.</span><span class="nx">HTML5_ELEMENTS</span><span class="p">,</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">elements</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+
+					<span class="k">while</span> <span class="p">(</span><span class="nx">length</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">doc</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">elements</span><span class="p">[</span><span class="nx">length</span><span class="p">]);</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+
+				<span class="k">return</span> <span class="nx">frag</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="nx">setDefaults</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">defaults</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">ALLOY</span><span class="p">.</span><span class="nx">config</span> <span class="o">=</span> <span class="nx">ALLOY</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span><span class="nx">AUI</span><span class="p">.</span><span class="nx">defaults</span><span class="p">,</span> <span class="nx">defaults</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">HTML5_ELEMENTS</span><span class="o">:</span> <span class="s1">&#39;abbr,article,aside,audio,canvas,details,figcaption,figure,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,summary,time,video&#39;</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+		<span class="p">}</span>
+	<span class="p">);</span>
+
+	<span class="cm">/*</span>
+<span class="cm">	* HTML5 Compatability for IE</span>
+<span class="cm">	*/</span>
+
+	<span class="nx">AUI</span><span class="p">.</span><span class="nx">html5shiv</span><span class="p">();</span>
+
+	<span class="cm">/*</span>
+<span class="cm">		UA extensions</span>
+<span class="cm">	*/</span>
+
+	<span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">platform</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="sr">/(Firefox|Opera|Safari|KDE|iCab|Flock|IE)/</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">u</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">os</span> <span class="o">=</span> <span class="sr">/(Win|Mac|Linux|iPhone|Sun|Solaris)/</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">versionDefaults</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+
+	<span class="nx">b</span> <span class="o">=</span> <span class="p">(</span><span class="o">!</span><span class="nx">b</span> <span class="o">||</span> <span class="o">!</span><span class="nx">b</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="o">?</span> <span class="p">(</span><span class="sr">/(Mozilla)/</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">u</span><span class="p">)</span> <span class="o">||</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">])</span> <span class="o">:</span> <span class="nx">b</span><span class="p">;</span>
+	<span class="nx">os</span> <span class="o">=</span> <span class="p">(</span><span class="o">!</span><span class="nx">os</span> <span class="o">||</span> <span class="o">!</span><span class="nx">os</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="o">?</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="nx">os</span><span class="p">;</span>
+
+	<span class="nx">apply</span><span class="p">(</span>
+		<span class="nx">UA</span><span class="p">,</span>
+		<span class="p">{</span>
+			<span class="nx">gecko</span><span class="o">:</span> <span class="sr">/Gecko/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">u</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="sr">/like Gecko/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">u</span><span class="p">),</span>
+			<span class="nx">webkit</span><span class="o">:</span> <span class="sr">/WebKit/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">u</span><span class="p">),</span>
+
+			<span class="nx">aol</span><span class="o">:</span> <span class="sr">/America Online Browser/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">u</span><span class="p">),</span>
+			<span class="nx">camino</span><span class="o">:</span> <span class="sr">/Camino/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">u</span><span class="p">),</span>
+			<span class="nx">firefox</span><span class="o">:</span> <span class="sr">/Firefox/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">u</span><span class="p">),</span>
+			<span class="nx">flock</span><span class="o">:</span> <span class="sr">/Flock/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">u</span><span class="p">),</span>
+			<span class="nx">icab</span><span class="o">:</span> <span class="sr">/iCab/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">u</span><span class="p">),</span>
+			<span class="nx">konqueror</span><span class="o">:</span> <span class="sr">/KDE/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">u</span><span class="p">),</span>
+			<span class="nx">mozilla</span><span class="o">:</span> <span class="sr">/mozilla/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">u</span><span class="p">),</span>
+			<span class="nx">ie</span><span class="o">:</span> <span class="sr">/MSIE/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">u</span><span class="p">),</span>
+			<span class="nb">netscape</span><span class="o">:</span> <span class="sr">/Netscape/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">u</span><span class="p">),</span>
+			<span class="nx">opera</span><span class="o">:</span> <span class="sr">/Opera/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">u</span><span class="p">),</span>
+			<span class="nx">safari</span><span class="o">:</span> <span class="sr">/Safari/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">u</span><span class="p">),</span>
+			<span class="nx">browser</span><span class="o">:</span> <span class="nx">b</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">toLowerCase</span><span class="p">(),</span>
+
+			<span class="nx">win</span><span class="o">:</span> <span class="sr">/Win/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">p</span><span class="p">),</span>
+			<span class="nx">mac</span><span class="o">:</span> <span class="sr">/Mac/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">p</span><span class="p">),</span>
+			<span class="nx">linux</span><span class="o">:</span> <span class="sr">/Linux/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">p</span><span class="p">),</span>
+			<span class="nx">iphone</span><span class="o">:</span> <span class="sr">/iPhone/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">p</span><span class="p">),</span>
+			<span class="nb">sun</span><span class="o">:</span> <span class="sr">/Solaris|SunOS/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">p</span><span class="p">),</span>
+			<span class="nx">os</span><span class="o">:</span> <span class="nx">os</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">toLowerCase</span><span class="p">(),</span>
+
+			<span class="nx">platform</span><span class="o">:</span> <span class="nx">p</span><span class="p">,</span>
+			<span class="nx">agent</span><span class="o">:</span> <span class="nx">u</span>
+		<span class="p">}</span>
+	<span class="p">);</span>
+
+	<span class="nx">UA</span><span class="p">.</span><span class="nx">version</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="nx">string</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
+	<span class="p">};</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">UA</span><span class="p">.</span><span class="nx">version</span><span class="p">.</span><span class="nx">string</span> <span class="o">=</span> <span class="p">(</span><span class="sr">/MSIE ([^;]+)/</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">u</span><span class="p">)</span> <span class="o">||</span> <span class="nx">versionDefaults</span><span class="p">)[</span><span class="mi">1</span><span class="p">];</span>
+	<span class="p">}</span>
+	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">firefox</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">UA</span><span class="p">.</span><span class="nx">version</span><span class="p">.</span><span class="nx">string</span> <span class="o">=</span> <span class="p">(</span><span class="sr">/Firefox\/(.+)/</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">u</span><span class="p">)</span> <span class="o">||</span> <span class="nx">versionDefaults</span><span class="p">)[</span><span class="mi">1</span><span class="p">];</span>
+	<span class="p">}</span>
+	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">safari</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">UA</span><span class="p">.</span><span class="nx">version</span><span class="p">.</span><span class="nx">string</span> <span class="o">=</span> <span class="p">(</span><span class="sr">/Version\/([^\s]+)/</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">u</span><span class="p">)</span> <span class="o">||</span> <span class="nx">versionDefaults</span><span class="p">)[</span><span class="mi">1</span><span class="p">];</span>
+	<span class="p">}</span>
+	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">opera</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">UA</span><span class="p">.</span><span class="nx">version</span><span class="p">.</span><span class="nx">string</span> <span class="o">=</span> <span class="p">(</span><span class="sr">/Opera\/([^\s]+)/</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">u</span><span class="p">)</span> <span class="o">||</span> <span class="nx">versionDefaults</span><span class="p">)[</span><span class="mi">1</span><span class="p">];</span>
+	<span class="p">}</span>
+
+	<span class="nx">UA</span><span class="p">.</span><span class="nx">version</span><span class="p">.</span><span class="nx">number</span> <span class="o">=</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">version</span><span class="p">.</span><span class="nx">string</span><span class="p">)</span> <span class="o">||</span> <span class="nx">versionDefaults</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+	<span class="nx">UA</span><span class="p">.</span><span class="nx">version</span><span class="p">.</span><span class="nx">major</span> <span class="o">=</span> <span class="p">(</span><span class="sr">/([^\.]+)/</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">version</span><span class="p">.</span><span class="nx">string</span><span class="p">)</span> <span class="o">||</span> <span class="nx">versionDefaults</span><span class="p">)[</span><span class="mi">1</span><span class="p">];</span>
+
+	<span class="nx">UA</span><span class="p">[</span><span class="nx">UA</span><span class="p">.</span><span class="nx">browser</span> <span class="o">+</span> <span class="nx">UA</span><span class="p">.</span><span class="nx">version</span><span class="p">.</span><span class="nx">major</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+	<span class="nx">UA</span><span class="p">.</span><span class="nx">renderer</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">UA</span><span class="p">.</span><span class="nx">renderer</span> <span class="o">=</span> <span class="s1">&#39;trident&#39;</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">gecko</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">UA</span><span class="p">.</span><span class="nx">renderer</span> <span class="o">=</span> <span class="s1">&#39;gecko&#39;</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">webkit</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">UA</span><span class="p">.</span><span class="nx">renderer</span> <span class="o">=</span> <span class="s1">&#39;webkit&#39;</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">opera</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">UA</span><span class="p">.</span><span class="nx">renderer</span> <span class="o">=</span> <span class="s1">&#39;presto&#39;</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="cm">/*</span>
+<span class="cm">	* Browser selectors</span>
+<span class="cm">	*/</span>
+
+	<span class="kd">var</span> <span class="nx">selectors</span> <span class="o">=</span> <span class="p">[</span>
+		<span class="nx">UA</span><span class="p">.</span><span class="nx">renderer</span><span class="p">,</span>
+		<span class="nx">UA</span><span class="p">.</span><span class="nx">browser</span><span class="p">,</span>
+		<span class="nx">UA</span><span class="p">.</span><span class="nx">browser</span> <span class="o">+</span> <span class="nx">UA</span><span class="p">.</span><span class="nx">version</span><span class="p">.</span><span class="nx">major</span><span class="p">,</span>
+		<span class="nx">UA</span><span class="p">.</span><span class="nx">os</span><span class="p">,</span>
+		<span class="s1">&#39;js&#39;</span>
+	<span class="p">];</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">os</span> <span class="o">==</span> <span class="s1">&#39;macintosh&#39;</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">selectors</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;mac&#39;</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">os</span> <span class="o">==</span> <span class="s1">&#39;windows&#39;</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">selectors</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;win&#39;</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">mobile</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">selectors</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;mobile&#39;</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">secure</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">selectors</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;secure&#39;</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="nx">UA</span><span class="p">.</span><span class="nx">selectors</span> <span class="o">=</span> <span class="nx">selectors</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
+
+	<span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;html&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">className</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">UA</span><span class="p">.</span><span class="nx">selectors</span><span class="p">;</span>
+<span class="p">})();</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Calendar.html#method__afterSetDates", "access": "protected", "host": "Calendar", "type": "method", "name": "_afterSetDates"}, {"url": "Calendar.html#method_alreadySelected", "access": "", "host": "Calendar", "type": "method", "name": "alreadySelected"}, {"url": "DatePickerSelect.html#config_appendOrder", "access": "", "host": "DatePickerSelect", "type": "config", "name": "appendOrder"}, {"url": "DatePickerSelect.html#event_appendOrderChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "appendOrderChange"}, {"url": "DatePickerSelect.html#config_baseName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "baseName"}, {"url": "DatePickerSelect.html#event_baseNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "baseNameChange"}, {"url": "DatePickerSelect.html#method__bindSelectEvents", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_bindSelectEvents"}, {"url": "Calendar.html#method_bindUI", "access": "protected", "host": "Calendar", "type": "method", "name": "bindUI"}, {"url": "DatePickerSelect.html#method_bindUI", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "bindUI"}, {"url": "Calendar.html#property_Calendar.ATTRS", "access": "", "host": "Calendar", "type": "property", "name": "Calendar.ATTRS"}, {"url": "Calendar.html#property_Calendar.NAME", "access": "", "host": "Calendar", "type": "property", "name": "Calendar.NAME"}, {"url": "Calendar.html#method__compareDates", "access": "protected", "host": "Calendar", "type": "method", "name": "_compareDates"}, {"url": "Calendar.html#config_currentDay", "access": "", "host": "Calendar", "type": "config", "name": "currentDay"}, {"url": "Calendar.html#event_currentDayChange", "access": "", "host": "Calendar", "type": "event", "name": "currentDayChange"}, {"url": "Calendar.html#config_currentMonth", "access": "", "host": "Calendar", "type": "config", "name": "currentMonth"}, {"url": "Calendar.html#event_currentMonthChange", "access": "", "host": "Calendar", "type": "event", "name": "currentMonthChange"}, {"url": "Calendar.html#config_currentYear", "access": "", "host": "Calendar", "type": "config", "name": "currentYear"}, {"url": "Calendar.html#event_currentYearChange", "access": "", "host": "Calendar", "type": "event", "name": "currentYearChange"}, {"url": "Calendar.html#config_dateFormat", "access": "", "host": "Calendar", "type": "config", "name": "dateFormat"}, {"url": "Calendar.html#event_dateFormatChange", "access": "", "host": "Calendar", "type": "event", "name": "dateFormatChange"}, {"url": "DatePickerSelect.html#property_DatePickerSelect.ATTRS", "access": "", "host": "DatePickerSelect", "type": "property", "name": "DatePickerSelect.ATTRS"}, {"url": "DatePickerSelect.html#property_DatePickerSelect.NAME", "access": "", "host": "DatePickerSelect", "type": "property", "name": "DatePickerSelect.NAME"}, {"url": "Calendar.html#config_dates", "access": "", "host": "Calendar", "type": "config", "name": "dates"}, {"url": "Calendar.html#event_datesChange", "access": "", "host": "Calendar", "type": "event", "name": "datesChange"}, {"url": "DatePickerSelect.html#config_dayField", "access": "", "host": "DatePickerSelect", "type": "config", "name": "dayField"}, {"url": "DatePickerSelect.html#event_dayFieldChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "dayFieldChange"}, {"url": "DatePickerSelect.html#config_dayFieldName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "dayFieldName"}, {"url": "DatePickerSelect.html#event_dayFieldNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "dayFieldNameChange"}, {"url": "DatePickerSelect.html#config_displayBoundingBox", "access": "", "host": "DatePickerSelect", "type": "config", "name": "displayBoundingBox"}, {"url": "DatePickerSelect.html#event_displayBoundingBoxChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "displayBoundingBoxChange"}, {"url": "Calendar.html#method__eachSelectedDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_eachSelectedDate"}, {"url": "Calendar.html#config_firstDayOfWeek", "access": "", "host": "Calendar", "type": "config", "name": "firstDayOfWeek"}, {"url": "Calendar.html#event_firstDayOfWeekChange", "access": "", "host": "Calendar", "type": "event", "name": "firstDayOfWeekChange"}, {"url": "Calendar.html#method_formatDate", "access": "", "host": "Calendar", "type": "method", "name": "formatDate"}, {"url": "DatePickerSelect.html#method__getAppendOrder", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_getAppendOrder"}, {"url": "Calendar.html#method_getCurrentDate", "access": "", "host": "Calendar", "type": "method", "name": "getCurrentDate"}, {"url": "Calendar.html#method__getDayName", "access": "protected", "host": "Calendar", "type": "method", "name": "_getDayName"}, {"url": "Calendar.html#method__getDayNameMin", "access": "protected", "host": "Calendar", "type": "method", "name": "_getDayNameMin"}, {"url": "Calendar.html#method__getDayNameShort", "access": "protected", "host": "Calendar", "type": "method", "name": "_getDayNameShort"}, {"url": "Calendar.html#method_getDaysInMonth", "access": "", "host": "Calendar", "type": "method", "name": "getDaysInMonth"}, {"url": "Calendar.html#method_getDetailedSelectedDates", "access": "", "host": "Calendar", "type": "method", "name": "getDetailedSelectedDates"}, {"url": "Calendar.html#method_getFirstDate", "access": "", "host": "Calendar", "type": "method", "name": "getFirstDate"}, {"url": "Calendar.html#method_getFirstDayOfWeek", "access": "", "host": "Calendar", "type": "method", "name": "getFirstDayOfWeek"}, {"url": "Calendar.html#method_getFormattedSelectedDates", "access": "", "host": "Calendar", "type": "method", "name": "getFormattedSelectedDates"}, {"url": "Calendar.html#method_getLastDate", "access": "", "host": "Calendar", "type": "method", "name": "getLastDate"}, {"url": "Calendar.html#method__getLocaleMap", "access": "protected", "host": "Calendar", "type": "method", "name": "_getLocaleMap"}, {"url": "Calendar.html#method__getMonthName", "access": "protected", "host": "Calendar", "type": "method", "name": "_getMonthName"}, {"url": "Calendar.html#method__getMonthNameShort", "access": "protected", "host": "Calendar", "type": "method", "name": "_getMonthNameShort"}, {"url": "Calendar.html#method_getSelectedDates", "access": "", "host": "Calendar", "type": "method", "name": "getSelectedDates"}, {"url": "Calendar.html#property_headerContentNode", "access": "protected", "host": "Calendar", "type": "property", "name": "headerContentNode"}, {"url": "Calendar.html#property_headerTitleNode", "access": "protected", "host": "Calendar", "type": "property", "name": "headerTitleNode"}, {"url": "Calendar.html#method_initializer", "access": "protected", "host": "Calendar", "type": "method", "name": "initializer"}, {"url": "Calendar.html#config_maxDate", "access": "", "host": "Calendar", "type": "config", "name": "maxDate"}, {"url": "Calendar.html#event_maxDateChange", "access": "", "host": "Calendar", "type": "event", "name": "maxDateChange"}, {"url": "Calendar.html#config_minDate", "access": "", "host": "Calendar", "type": "config", "name": "minDate"}, {"url": "Calendar.html#event_minDateChange", "access": "", "host": "Calendar", "type": "event", "name": "minDateChange"}, {"url": "Calendar.html#property_monthDaysNode", "access": "protected", "host": "Calendar", "type": "property", "name": "monthDaysNode"}, {"url": "DatePickerSelect.html#config_monthField", "access": "", "host": "DatePickerSelect", "type": "config", "name": "monthField"}, {"url": "DatePickerSelect.html#event_monthFieldChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "monthFieldChange"}, {"url": "DatePickerSelect.html#config_monthFieldName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "monthFieldName"}, {"url": "DatePickerSelect.html#event_monthFieldNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "monthFieldNameChange"}, {"url": "Calendar.html#method__navigateMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_navigateMonth"}, {"url": "Calendar.html#method__normalizeYearMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_normalizeYearMonth"}, {"url": "Calendar.html#method__onClickDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_onClickDays"}, {"url": "Calendar.html#method__onMouseEnterDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_onMouseEnterDays"}, {"url": "Calendar.html#method__onMouseLeaveDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_onMouseLeaveDays"}, {"url": "DatePickerSelect.html#method__onSelectChange", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_onSelectChange"}, {"url": "Calendar.html#method_parseDate", "access": "", "host": "Calendar", "type": "method", "name": "parseDate"}, {"url": "DatePickerSelect.html#config_populateDay", "access": "", "host": "DatePickerSelect", "type": "config", "name": "populateDay"}, {"url": "DatePickerSelect.html#event_populateDayChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "populateDayChange"}, {"url": "DatePickerSelect.html#method__populateDays", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateDays"}, {"url": "DatePickerSelect.html#config_populateMonth", "access": "", "host": "DatePickerSelect", "type": "config", "name": "populateMonth"}, {"url": "DatePickerSelect.html#event_populateMonthChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "populateMonthChange"}, {"url": "DatePickerSelect.html#method__populateMonths", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateMonths"}, {"url": "DatePickerSelect.html#method__populateSelect", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateSelect"}, {"url": "DatePickerSelect.html#config_populateYear", "access": "", "host": "DatePickerSelect", "type": "config", "name": "populateYear"}, {"url": "DatePickerSelect.html#event_populateYearChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "populateYearChange"}, {"url": "DatePickerSelect.html#method__populateYears", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateYears"}, {"url": "DatePickerSelect.html#method__pupulateSelects", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_pupulateSelects"}, {"url": "Calendar.html#method__removeDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_removeDate"}, {"url": "Calendar.html#method__renderBlankDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderBlankDays"}, {"url": "Calendar.html#method__renderCalendar", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderCalendar"}, {"url": "DatePickerSelect.html#method__renderElements", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_renderElements"}, {"url": "Calendar.html#method__renderMonthDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderMonthDays"}, {"url": "DatePickerSelect.html#method__renderTriggerButton", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_renderTriggerButton"}, {"url": "Calendar.html#method_renderUI", "access": "protected", "host": "Calendar", "type": "method", "name": "renderUI"}, {"url": "DatePickerSelect.html#method_renderUI", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "renderUI"}, {"url": "Calendar.html#method__renderWeekDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderWeekDays"}, {"url": "Calendar.html#method__restrictDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_restrictDate"}, {"url": "DatePickerSelect.html#method__selectCurrentDay", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentDay"}, {"url": "DatePickerSelect.html#method__selectCurrentMonth", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentMonth"}, {"url": "DatePickerSelect.html#method__selectCurrentValues", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentValues"}, {"url": "DatePickerSelect.html#method__selectCurrentYear", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentYear"}, {"url": "Calendar.html#method__selectDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_selectDate"}, {"url": "Calendar.html#config_selectMultipleDates", "access": "", "host": "Calendar", "type": "config", "name": "selectMultipleDates"}, {"url": "Calendar.html#event_selectMultipleDatesChange", "access": "", "host": "Calendar", "type": "event", "name": "selectMultipleDatesChange"}, {"url": "Calendar.html#method__selectNextMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_selectNextMonth"}, {"url": "Calendar.html#method__selectPrevMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_selectPrevMonth"}, {"url": "Calendar.html#method__setDates", "access": "protected", "host": "Calendar", "type": "method", "name": "_setDates"}, {"url": "Calendar.html#method__setMinMaxDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_setMinMaxDate"}, {"url": "Calendar.html#method__setStack", "access": "protected", "host": "Calendar", "type": "method", "name": "_setStack"}, {"url": "Calendar.html#config_setValue", "access": "", "host": "Calendar", "type": "config", "name": "setValue"}, {"url": "DatePickerSelect.html#config_setValue", "access": "", "host": "DatePickerSelect", "type": "config", "name": "setValue"}, {"url": "Calendar.html#event_setValueChange", "access": "", "host": "Calendar", "type": "event", "name": "setValueChange"}, {"url": "DatePickerSelect.html#event_setValueChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "setValueChange"}, {"url": "Calendar.html#config_stack", "access": "", "host": "Calendar", "type": "config", "name": "stack"}, {"url": "Calendar.html#event_stackChange", "access": "", "host": "Calendar", "type": "event", "name": "stackChange"}, {"url": "Calendar.html#method__syncDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncDays"}, {"url": "Calendar.html#method__syncHeader", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncHeader"}, {"url": "Calendar.html#method__syncSelectedDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncSelectedDays"}, {"url": "Calendar.html#method_syncUI", "access": "protected", "host": "Calendar", "type": "method", "name": "syncUI"}, {"url": "DatePickerSelect.html#method_syncUI", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "syncUI"}, {"url": "Calendar.html#method__syncView", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncView"}, {"url": "DatePickerSelect.html#config_trigger", "access": "", "host": "DatePickerSelect", "type": "config", "name": "trigger"}, {"url": "DatePickerSelect.html#event_triggerChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "triggerChange"}, {"url": "DatePickerSelect.html#config_visible", "access": "", "host": "DatePickerSelect", "type": "config", "name": "visible"}, {"url": "DatePickerSelect.html#event_visibleChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "visibleChange"}, {"url": "Calendar.html#property_weekDaysNode", "access": "protected", "host": "Calendar", "type": "property", "name": "weekDaysNode"}, {"url": "DatePickerSelect.html#config_yearField", "access": "", "host": "DatePickerSelect", "type": "config", "name": "yearField"}, {"url": "DatePickerSelect.html#event_yearFieldChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "yearFieldChange"}, {"url": "DatePickerSelect.html#config_yearFieldName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "yearFieldName"}, {"url": "DatePickerSelect.html#event_yearFieldNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "yearFieldNameChange"}, {"url": "DatePickerSelect.html#config_yearRange", "access": "", "host": "DatePickerSelect", "type": "config", "name": "yearRange"}, {"url": "DatePickerSelect.html#event_yearRangeChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "yearRangeChange"}, {"url": "CalendarManager.html#config_zIndexBase", "access": "", "host": "CalendarManager", "type": "config", "name": "zIndexBase"}, {"url": "CalendarManager.html#event_zIndexBaseChange", "access": "", "host": "CalendarManager", "type": "event", "name": "zIndexBaseChange"}];
+</script>
+</body>
+</html>

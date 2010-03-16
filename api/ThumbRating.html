@@ -1,0 +1,1195 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-rating  ThumbRating   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-rating&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-rating.html" title="aui-rating">aui-rating</a>
+
+	                 <span class="separator">&gt;</span> <span class="classname">ThumbRating</span> 
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+
+			                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                <li class="selected"><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                <li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="Rating.html" title="Rating">Rating</a></li>
+
+
+				                                <li class="selected"><a href="ThumbRating.html" title="ThumbRating">ThumbRating</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-configuration">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-configuration-hd">
+										<span class="aui-widget-hd-text">Configuration Attributes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#config_size" title="size">size</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-properties">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-properties-hd">
+										<span class="aui-widget-hd-text">Properties</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+				                                <li class=""><a href="#property_ThumbRating.ATTRS" title="ThumbRating.ATTRS">ThumbRating.ATTRS</a></li>
+
+				                                <li class=""><a href="#property_ThumbRating.NAME" title="ThumbRating.NAME">ThumbRating.NAME</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-methods">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-methods-hd">
+										<span class="aui-widget-hd-text">Methods</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+				                               <li class="protected"><a href="#method__syncElements" title="_syncElements">_syncElements</a></li>
+				                               <li class=""><a href="#method_fillTo" title="fillTo">fillTo</a></li>
+				                               <li class="protected"><a href="#method_renderUI" title="renderUI">renderUI</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-events">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-events-hd">
+										<span class="aui-widget-hd-text">Events</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#event_sizeChange" title="sizeChange">sizeChange</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="aui-resize.js.html" title="aui-resize.js">aui-resize.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<h2>
+								
+
+								
+
+								
+
+								Class <b property="yui:name">ThumbRating</b>
+
+									<span class="extends">- extends <a href="Rating.html" title="Rating">Rating</a></span>
+
+							</h2>
+
+							<!-- class tree goes here -->
+
+
+
+							<div class="summary description" property="yui:description">
+								<p><img src="assets/images/aui-rating/thumb-rating.png"/></p>
+A base class for ThumbRating, providing:
+<ul>
+<li>A non-obstrusive star rating control using Thumb up and Thumb down icons</li>
+<li>Could be based on a set of radio input boxes</li>
+</ul>
+Quick Example:<br/>
+<pre><code>var instance = new A.ThumbRating({
+boundingBox: '#rating',
+defaultSelected: 3,
+disabled: false,
+label: 'Label'
+}).render();
+</code></pre>
+Check the list of <a href="ThumbRating.html#configattributes">Configuration Attributes</a> available for
+ThumbRating.
+							</div>
+
+								<div class="section constructor details" rel="yui:constructor" resource="#constructor">
+									<h3 id="constructor">Constructor</h3>
+
+									<div class="content">
+										<div class="detail">
+											<strong property="yui:name">ThumbRating</strong>
+
+											<code>
+												(
+
+													
+															
+															config
+												)
+											</code>
+
+											<div class="description">
+													<dl rel="yui:parameters">
+														<dt>Parameters:</dt>
+															<dd rel="yui:parameter">
+																<code><span property="yui:name">config</span>
+																&lt;<span property="yui:type">Object</span>&gt;
+																</code>
+
+																<span property="yui:description">  Object literal specifying widget configuration properties.</span>
+															</dd>
+													</dl>
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+							<div rel="yui:properties" resource="#properties">
+
+								<div class="section field details">
+
+									<h3 id="properties">Properties</h3>
+
+									<div class="content">
+
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_ThumbRating.ATTRS">
+
+											<h4>
+												<a name="property_ThumbRating.ATTRS" property="yui:name">ThumbRating.ATTRS</a>
+												- <code>static <span property="yui:type">Object</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Static property used to define the default attribute
+configuration for the ThumbRating.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_ThumbRating.NAME">
+
+											<h4>
+												<a name="property_ThumbRating.NAME" property="yui:name">ThumbRating.NAME</a>
+												- <code>static <span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Static property provides a string to identify the class.
+												</div>
+											</div>
+
+
+
+
+											</div>
+									</div>
+								</div>
+
+								<div rel="yui:inheritance">
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Rating.html">
+
+										<h4>
+											Properties inherited from <a href="Rating.html" property="yui:name" title="Rating">Rating</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Component.html">
+
+										<h4>
+											Properties inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+											</code>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div rel="yui:attributes" resource="#configattributes">
+
+									<div class="section field details">
+
+										<h3 id="configattributes">Configuration Attributes</h3>
+
+										<div class="content">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_size">
+
+													<h4>
+														<a name="config_size">size</a>
+														<code>- <span property="yui:type">Number</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The size on ThumbRating is always 2 (i.e., thumb up and thumb down).
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>2</strong>
+													</div>
+
+												</div>
+
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="Rating.html">
+												<h4>Configuration attributes inherited from <a href="Rating.html" property="yui:name" title="Rating">Rating</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="Rating.html#config_canReset">
+															<a href="Rating.html#config_canReset" property="yui:name" title="canReset">canReset</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Rating.html#config_defaultSelected">
+															<a href="Rating.html#config_defaultSelected" property="yui:name" title="defaultSelected">defaultSelected</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Rating.html#config_disabled">
+															<a href="Rating.html#config_disabled" property="yui:name" title="disabled">disabled</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Rating.html#config_elements">
+															<a href="Rating.html#config_elements" property="yui:name" title="elements">elements</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Rating.html#config_hiddenInput">
+															<a href="Rating.html#config_hiddenInput" property="yui:name" title="hiddenInput">hiddenInput</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Rating.html#config_inputName">
+															<a href="Rating.html#config_inputName" property="yui:name" title="inputName">inputName</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Rating.html#config_label">
+															<a href="Rating.html#config_label" property="yui:name" title="label">label</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Rating.html#config_labelElement">
+															<a href="Rating.html#config_labelElement" property="yui:name" title="labelElement">labelElement</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Rating.html#config_selectedIndex">
+															<a href="Rating.html#config_selectedIndex" property="yui:name" title="selectedIndex">selectedIndex</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Rating.html#config_showTitle">
+															<a href="Rating.html#config_showTitle" property="yui:name" title="showTitle">showTitle</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Rating.html#config_size">
+															<a href="Rating.html#config_size" property="yui:name" title="size">size</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Rating.html#config_title">
+															<a href="Rating.html#config_title" property="yui:name" title="title">title</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Rating.html#config_value">
+															<a href="Rating.html#config_value" property="yui:name" title="value">value</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="Component.html">
+												<h4>Configuration attributes inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_cssClass">
+															<a href="Component.html#config_cssClass" property="yui:name" title="cssClass">cssClass</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_hideClass">
+															<a href="Component.html#config_hideClass" property="yui:name" title="hideClass">hideClass</a><span>,</span>
+															</div>
+														
+															
+															
+
+															<div class="deprecated" rel="yui:attribute" resource="Component.html#config_owner">
+															<a href="Component.html#config_owner" property="yui:name" title="owner">owner</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_relayEvents">
+															<a href="Component.html#config_relayEvents" property="yui:name" title="relayEvents">relayEvents</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_render">
+															<a href="Component.html#config_render" property="yui:name" title="render">render</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+									</div>
+
+
+							</div>
+
+							<div rel="yui:methods" resource="#methods">
+									<div class="section method details">
+
+										<h3 id="methods">Methods</h3>
+
+										<div class="content">
+
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__syncElements">
+
+													<h4>
+														<a name="method__syncElements">_syncElements</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_syncElements</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Empty method, no logic needed on this method on ThumbRating.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_fillTo">
+
+													<h4>
+														<a name="method_fillTo">fillTo</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">fillTo</strong>
+														   (
+																
+																		
+																		 index
+																	
+																
+																		, 
+																		 className
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Add the <code>className</code> on the the <code>index</code> element
+and all the previous Rating elements.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">index</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> Index to be selected</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">className</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> Class name to be applied when fill the Rating elements</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_renderUI">
+
+													<h4>
+														<a name="method_renderUI">renderUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">renderUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Create the DOM structure for the ThumbRating. Lifecycle.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+
+									<div rel="yui:inheritance">
+
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Rating.html">
+
+											<h4>
+												Methods inherited from <a href="Rating.html" property="yui:name" title="Rating">Rating</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method__afterSetLabel">
+														<a href="Rating.html#method__afterSetLabel" property="yui:name" title="_afterSetLabel">_afterSetLabel</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method__canFireCustomEvent">
+														<a href="Rating.html#method__canFireCustomEvent" property="yui:name" title="_canFireCustomEvent">_canFireCustomEvent</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method__createEvents">
+														<a href="Rating.html#method__createEvents" property="yui:name" title="_createEvents">_createEvents</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method__defRatingItemClickFn">
+														<a href="Rating.html#method__defRatingItemClickFn" property="yui:name" title="_defRatingItemClickFn">_defRatingItemClickFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method__defRatingItemOutFn">
+														<a href="Rating.html#method__defRatingItemOutFn" property="yui:name" title="_defRatingItemOutFn">_defRatingItemOutFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method__defRatingItemOverFn">
+														<a href="Rating.html#method__defRatingItemOverFn" property="yui:name" title="_defRatingItemOverFn">_defRatingItemOverFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method__defRatingItemSelectFn">
+														<a href="Rating.html#method__defRatingItemSelectFn" property="yui:name" title="_defRatingItemSelectFn">_defRatingItemSelectFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method__getInputData">
+														<a href="Rating.html#method__getInputData" property="yui:name" title="_getInputData">_getInputData</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method__handleClickEvent">
+														<a href="Rating.html#method__handleClickEvent" property="yui:name" title="_handleClickEvent">_handleClickEvent</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method__handleMouseOutEvent">
+														<a href="Rating.html#method__handleMouseOutEvent" property="yui:name" title="_handleMouseOutEvent">_handleMouseOutEvent</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method__handleMouseOverEvent">
+														<a href="Rating.html#method__handleMouseOverEvent" property="yui:name" title="_handleMouseOverEvent">_handleMouseOverEvent</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method__parseInputElements">
+														<a href="Rating.html#method__parseInputElements" property="yui:name" title="_parseInputElements">_parseInputElements</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method__renderElements">
+														<a href="Rating.html#method__renderElements" property="yui:name" title="_renderElements">_renderElements</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method__syncElements">
+														<a href="Rating.html#method__syncElements" property="yui:name" title="_syncElements">_syncElements</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method__syncLabelUI">
+														<a href="Rating.html#method__syncLabelUI" property="yui:name" title="_syncLabelUI">_syncLabelUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method_bindUI">
+														<a href="Rating.html#method_bindUI" property="yui:name" title="bindUI">bindUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Rating.html#method_clearSelection">
+														<a href="Rating.html#method_clearSelection" property="yui:name" title="clearSelection">clearSelection</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method_destructor">
+														<a href="Rating.html#method_destructor" property="yui:name" title="destructor">destructor</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Rating.html#method_fillTo">
+														<a href="Rating.html#method_fillTo" property="yui:name" title="fillTo">fillTo</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Rating.html#method_indexOf">
+														<a href="Rating.html#method_indexOf" property="yui:name" title="indexOf">indexOf</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method_initializer">
+														<a href="Rating.html#method_initializer" property="yui:name" title="initializer">initializer</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method_renderUI">
+														<a href="Rating.html#method_renderUI" property="yui:name" title="renderUI">renderUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Rating.html#method_select">
+														<a href="Rating.html#method_select" property="yui:name" title="select">select</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Rating.html#method_syncUI">
+														<a href="Rating.html#method_syncUI" property="yui:name" title="syncUI">syncUI</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Component.html">
+
+											<h4>
+												Methods inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentDestroy">
+														<a href="Component.html#method__afterComponentDestroy" property="yui:name" title="_afterComponentDestroy">_afterComponentDestroy</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentOwnerChange">
+														<a href="Component.html#method__afterComponentOwnerChange" property="yui:name" title="_afterComponentOwnerChange">_afterComponentOwnerChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentRelayEventsChange">
+														<a href="Component.html#method__afterComponentRelayEventsChange" property="yui:name" title="_afterComponentRelayEventsChange">_afterComponentRelayEventsChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentVisibleChange">
+														<a href="Component.html#method__afterComponentVisibleChange" property="yui:name" title="_afterComponentVisibleChange">_afterComponentVisibleChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterCssClassChange">
+														<a href="Component.html#method__afterCssClassChange" property="yui:name" title="_afterCssClassChange">_afterCssClassChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__relayEvents">
+														<a href="Component.html#method__relayEvents" property="yui:name" title="_relayEvents">_relayEvents</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__setComponentClassNames">
+														<a href="Component.html#method__setComponentClassNames" property="yui:name" title="_setComponentClassNames">_setComponentClassNames</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__setRelayEvents">
+														<a href="Component.html#method__setRelayEvents" property="yui:name" title="_setRelayEvents">_setRelayEvents</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__uiSetCssClass">
+														<a href="Component.html#method__uiSetCssClass" property="yui:name" title="_uiSetCssClass">_uiSetCssClass</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Component.html#method_clone">
+														<a href="Component.html#method_clone" property="yui:name" title="clone">clone</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method_initializer">
+														<a href="Component.html#method_initializer" property="yui:name" title="initializer">initializer</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Component.html#method_toggle">
+														<a href="Component.html#method_toggle" property="yui:name" title="toggle">toggle</a>
+														</div>
+												</code>
+											</div>
+										</div>
+									</div>
+							</div>
+
+							<div rel="yui:events" resource="#events">
+									<div class="section method details">
+										<h3 id="events">Events</h3>
+
+										<div class="content">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_sizeChange">
+
+													<h4>
+														<a name="event_sizeChange">sizeChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">sizeChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'size' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+										<div class="section field inheritance events" rel="yui:superclass"  resource="Rating.html">
+											<h4>
+												Events inherited from <a href="Rating.html" property="yui:name" title="Rating">Rating</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="Rating.html#event_canResetChange">
+														<a href="Rating.html#event_canResetChange" property="yui:name" title="canResetChange">canResetChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Rating.html#event_defaultSelectedChange">
+														<a href="Rating.html#event_defaultSelectedChange" property="yui:name" title="defaultSelectedChange">defaultSelectedChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Rating.html#event_disabledChange">
+														<a href="Rating.html#event_disabledChange" property="yui:name" title="disabledChange">disabledChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Rating.html#event_elementsChange">
+														<a href="Rating.html#event_elementsChange" property="yui:name" title="elementsChange">elementsChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Rating.html#event_hiddenInputChange">
+														<a href="Rating.html#event_hiddenInputChange" property="yui:name" title="hiddenInputChange">hiddenInputChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Rating.html#event_inputNameChange">
+														<a href="Rating.html#event_inputNameChange" property="yui:name" title="inputNameChange">inputNameChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Rating.html#event_itemClick">
+														<a href="Rating.html#event_itemClick" property="yui:name" title="itemClick">itemClick</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Rating.html#event_itemOut">
+														<a href="Rating.html#event_itemOut" property="yui:name" title="itemOut">itemOut</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Rating.html#event_itemSelect">
+														<a href="Rating.html#event_itemSelect" property="yui:name" title="itemSelect">itemSelect</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Rating.html#event_labelChange">
+														<a href="Rating.html#event_labelChange" property="yui:name" title="labelChange">labelChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Rating.html#event_labelElementChange">
+														<a href="Rating.html#event_labelElementChange" property="yui:name" title="labelElementChange">labelElementChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Rating.html#event_selectedIndexChange">
+														<a href="Rating.html#event_selectedIndexChange" property="yui:name" title="selectedIndexChange">selectedIndexChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Rating.html#event_showTitleChange">
+														<a href="Rating.html#event_showTitleChange" property="yui:name" title="showTitleChange">showTitleChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Rating.html#event_sizeChange">
+														<a href="Rating.html#event_sizeChange" property="yui:name" title="sizeChange">sizeChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Rating.html#event_titleChange">
+														<a href="Rating.html#event_titleChange" property="yui:name" title="titleChange">titleChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Rating.html#event_valueChange">
+														<a href="Rating.html#event_valueChange" property="yui:name" title="valueChange">valueChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+										<div class="section field inheritance events" rel="yui:superclass"  resource="Component.html">
+											<h4>
+												Events inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_cssClassChange">
+														<a href="Component.html#event_cssClassChange" property="yui:name" title="cssClassChange">cssClassChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_hideClassChange">
+														<a href="Component.html#event_hideClassChange" property="yui:name" title="hideClassChange">hideClassChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_ownerChange">
+														<a href="Component.html#event_ownerChange" property="yui:name" title="ownerChange">ownerChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_relayEventsChange">
+														<a href="Component.html#event_relayEventsChange" property="yui:name" title="relayEventsChange">relayEventsChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_renderChange">
+														<a href="Component.html#event_renderChange" property="yui:name" title="renderChange">renderChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+
+									</div>
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Rating.html#method__afterSetLabel", "access": "protected", "host": "Rating", "type": "method", "name": "_afterSetLabel"}, {"url": "Rating.html#method_bindUI", "access": "protected", "host": "Rating", "type": "method", "name": "bindUI"}, {"url": "Rating.html#method__canFireCustomEvent", "access": "protected", "host": "Rating", "type": "method", "name": "_canFireCustomEvent"}, {"url": "Rating.html#config_canReset", "access": "", "host": "Rating", "type": "config", "name": "canReset"}, {"url": "Rating.html#event_canResetChange", "access": "", "host": "Rating", "type": "event", "name": "canResetChange"}, {"url": "Rating.html#method_clearSelection", "access": "", "host": "Rating", "type": "method", "name": "clearSelection"}, {"url": "Rating.html#method__createEvents", "access": "protected", "host": "Rating", "type": "method", "name": "_createEvents"}, {"url": "Rating.html#config_defaultSelected", "access": "", "host": "Rating", "type": "config", "name": "defaultSelected"}, {"url": "Rating.html#event_defaultSelectedChange", "access": "", "host": "Rating", "type": "event", "name": "defaultSelectedChange"}, {"url": "Rating.html#method__defRatingItemClickFn", "access": "protected", "host": "Rating", "type": "method", "name": "_defRatingItemClickFn"}, {"url": "Rating.html#method__defRatingItemOutFn", "access": "protected", "host": "Rating", "type": "method", "name": "_defRatingItemOutFn"}, {"url": "Rating.html#method__defRatingItemOverFn", "access": "protected", "host": "Rating", "type": "method", "name": "_defRatingItemOverFn"}, {"url": "Rating.html#method__defRatingItemSelectFn", "access": "protected", "host": "Rating", "type": "method", "name": "_defRatingItemSelectFn"}, {"url": "Rating.html#method_destructor", "access": "protected", "host": "Rating", "type": "method", "name": "destructor"}, {"url": "Rating.html#config_disabled", "access": "", "host": "Rating", "type": "config", "name": "disabled"}, {"url": "Rating.html#event_disabledChange", "access": "", "host": "Rating", "type": "event", "name": "disabledChange"}, {"url": "Rating.html#config_elements", "access": "", "host": "Rating", "type": "config", "name": "elements"}, {"url": "Rating.html#event_elementsChange", "access": "", "host": "Rating", "type": "event", "name": "elementsChange"}, {"url": "Rating.html#method_fillTo", "access": "", "host": "Rating", "type": "method", "name": "fillTo"}, {"url": "ThumbRating.html#method_fillTo", "access": "", "host": "ThumbRating", "type": "method", "name": "fillTo"}, {"url": "Rating.html#method__getInputData", "access": "protected", "host": "Rating", "type": "method", "name": "_getInputData"}, {"url": "Rating.html#method__handleClickEvent", "access": "protected", "host": "Rating", "type": "method", "name": "_handleClickEvent"}, {"url": "Rating.html#method__handleMouseOutEvent", "access": "protected", "host": "Rating", "type": "method", "name": "_handleMouseOutEvent"}, {"url": "Rating.html#method__handleMouseOverEvent", "access": "protected", "host": "Rating", "type": "method", "name": "_handleMouseOverEvent"}, {"url": "Rating.html#config_hiddenInput", "access": "", "host": "Rating", "type": "config", "name": "hiddenInput"}, {"url": "Rating.html#event_hiddenInputChange", "access": "", "host": "Rating", "type": "event", "name": "hiddenInputChange"}, {"url": "Rating.html#method_indexOf", "access": "", "host": "Rating", "type": "method", "name": "indexOf"}, {"url": "Rating.html#method_initializer", "access": "protected", "host": "Rating", "type": "method", "name": "initializer"}, {"url": "Rating.html#config_inputName", "access": "", "host": "Rating", "type": "config", "name": "inputName"}, {"url": "Rating.html#event_inputNameChange", "access": "", "host": "Rating", "type": "event", "name": "inputNameChange"}, {"url": "Rating.html#event_itemClick", "access": "", "host": "Rating", "type": "event", "name": "itemClick"}, {"url": "Rating.html#event_itemOut", "access": "", "host": "Rating", "type": "event", "name": "itemOut"}, {"url": "Rating.html#event_itemSelect", "access": "", "host": "Rating", "type": "event", "name": "itemSelect"}, {"url": "Rating.html#config_label", "access": "", "host": "Rating", "type": "config", "name": "label"}, {"url": "Rating.html#event_labelChange", "access": "", "host": "Rating", "type": "event", "name": "labelChange"}, {"url": "Rating.html#config_labelElement", "access": "", "host": "Rating", "type": "config", "name": "labelElement"}, {"url": "Rating.html#event_labelElementChange", "access": "", "host": "Rating", "type": "event", "name": "labelElementChange"}, {"url": "Rating.html#method__parseInputElements", "access": "protected", "host": "Rating", "type": "method", "name": "_parseInputElements"}, {"url": "Rating.html#property_Rating.ATTRS", "access": "", "host": "Rating", "type": "property", "name": "Rating.ATTRS"}, {"url": "Rating.html#property_Rating.NAME", "access": "", "host": "Rating", "type": "property", "name": "Rating.NAME"}, {"url": "Rating.html#method__renderElements", "access": "protected", "host": "Rating", "type": "method", "name": "_renderElements"}, {"url": "Rating.html#method_renderUI", "access": "protected", "host": "Rating", "type": "method", "name": "renderUI"}, {"url": "ThumbRating.html#method_renderUI", "access": "protected", "host": "ThumbRating", "type": "method", "name": "renderUI"}, {"url": "Rating.html#method_select", "access": "", "host": "Rating", "type": "method", "name": "select"}, {"url": "Rating.html#config_selectedIndex", "access": "", "host": "Rating", "type": "config", "name": "selectedIndex"}, {"url": "Rating.html#event_selectedIndexChange", "access": "", "host": "Rating", "type": "event", "name": "selectedIndexChange"}, {"url": "Rating.html#config_showTitle", "access": "", "host": "Rating", "type": "config", "name": "showTitle"}, {"url": "Rating.html#event_showTitleChange", "access": "", "host": "Rating", "type": "event", "name": "showTitleChange"}, {"url": "Rating.html#config_size", "access": "", "host": "Rating", "type": "config", "name": "size"}, {"url": "ThumbRating.html#config_size", "access": "", "host": "ThumbRating", "type": "config", "name": "size"}, {"url": "Rating.html#event_sizeChange", "access": "", "host": "Rating", "type": "event", "name": "sizeChange"}, {"url": "ThumbRating.html#event_sizeChange", "access": "", "host": "ThumbRating", "type": "event", "name": "sizeChange"}, {"url": "Rating.html#method__syncElements", "access": "protected", "host": "Rating", "type": "method", "name": "_syncElements"}, {"url": "ThumbRating.html#method__syncElements", "access": "protected", "host": "ThumbRating", "type": "method", "name": "_syncElements"}, {"url": "Rating.html#method__syncLabelUI", "access": "protected", "host": "Rating", "type": "method", "name": "_syncLabelUI"}, {"url": "Rating.html#method_syncUI", "access": "protected", "host": "Rating", "type": "method", "name": "syncUI"}, {"url": "ThumbRating.html#property_ThumbRating.ATTRS", "access": "", "host": "ThumbRating", "type": "property", "name": "ThumbRating.ATTRS"}, {"url": "ThumbRating.html#property_ThumbRating.NAME", "access": "", "host": "ThumbRating", "type": "property", "name": "ThumbRating.NAME"}, {"url": "Rating.html#config_title", "access": "", "host": "Rating", "type": "config", "name": "title"}, {"url": "Rating.html#event_titleChange", "access": "", "host": "Rating", "type": "event", "name": "titleChange"}, {"url": "Rating.html#config_value", "access": "", "host": "Rating", "type": "config", "name": "value"}, {"url": "Rating.html#event_valueChange", "access": "", "host": "Rating", "type": "event", "name": "valueChange"}];
+</script>
+</body>
+</html>

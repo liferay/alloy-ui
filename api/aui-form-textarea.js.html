@@ -1,0 +1,487 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: gallery-formmgr   aui-form-textarea.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			gallery-formmgr&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">aui-form-textarea.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+
+			                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                <li class="selected"><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="FormManager.html" title="FormManager">FormManager</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class="selected"><a href="aui-form-textarea.js.html" title="aui-form-textarea.js">aui-form-textarea.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-textfield.js.html" title="aui-form-textfield.js">aui-form-textfield.js</a></li>
+
+
+			                                <li class=""><a href="aui-image-viewer-base.js.html" title="aui-image-viewer-base.js">aui-image-viewer-base.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="kd">var</span> <span class="nx">Lang</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+
+	<span class="nx">getClassName</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">ClassNameManager</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">,</span>
+
+	<span class="nx">NAME</span> <span class="o">=</span> <span class="s1">&#39;textarea&#39;</span><span class="p">,</span>
+
+	<span class="nx">CSS_TEXTAREA</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">),</span>
+	<span class="nx">CSS_HEIGHT_MONITOR</span> <span class="o">=</span> <span class="p">[</span>
+		<span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;monitor&#39;</span><span class="p">),</span>
+		<span class="nx">getClassName</span><span class="p">(</span><span class="s1">&#39;field&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;input&#39;</span><span class="p">),</span>
+		<span class="nx">getClassName</span><span class="p">(</span><span class="s1">&#39;helper&#39;</span><span class="p">,</span> <span class="s1">&#39;hidden&#39;</span><span class="p">,</span> <span class="s1">&#39;accessible&#39;</span><span class="p">)</span>
+	<span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">),</span>
+
+	<span class="nx">DEFAULT_EMPTY_CONTENT</span> <span class="o">=</span> <span class="s1">&#39;&amp;nbsp;&amp;nbsp;&#39;</span><span class="p">,</span>
+	<span class="nx">DEFAULT_APPEND_CONTENT</span> <span class="o">=</span> <span class="s1">&#39;&amp;nbsp;\n&amp;nbsp;&#39;</span><span class="p">,</span>
+
+	<span class="nx">TPL_HEIGHT_MONITOR_OPEN</span> <span class="o">=</span> <span class="s1">&#39;&lt;pre class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">CSS_HEIGHT_MONITOR</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&#39;</span><span class="p">,</span>
+	<span class="nx">TPL_HEIGHT_MONITOR_CLOSE</span> <span class="o">=</span> <span class="s1">&#39;&lt;/pre&gt;&#39;</span><span class="p">,</span>
+	<span class="nx">TPL_INPUT</span> <span class="o">=</span> <span class="s1">&#39;&lt;textarea autocomplete=&quot;off&quot; class=&quot;{cssClass}&quot; name=&quot;{name}&quot;&gt;&lt;/textarea&gt;&#39;</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">Textarea</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">Textarea</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">Textarea</span><span class="p">.</span><span class="nx">NAME</span> <span class="o">=</span> <span class="nx">NAME</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">textareaPrototype</span> <span class="o">=</span> <span class="nx">Textarea</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+
+<span class="nx">Textarea</span><span class="p">.</span><span class="nx">ATTRS</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="nx">autoSize</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span>
+	<span class="p">},</span>
+
+	<span class="nx">height</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;auto&#39;</span>
+	<span class="p">},</span>
+
+	<span class="nx">maxHeight</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="mi">1000</span><span class="p">,</span>
+		<span class="nx">setter</span><span class="o">:</span> <span class="nx">textareaPrototype</span><span class="p">.</span><span class="nx">_setAutoDimension</span>
+	<span class="p">},</span>
+
+	<span class="nx">minHeight</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="mi">45</span><span class="p">,</span>
+		<span class="nx">setter</span><span class="o">:</span> <span class="nx">textareaPrototype</span><span class="p">.</span><span class="nx">_setAutoDimension</span>
+	<span class="p">},</span>
+
+	<span class="nx">width</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+		<span class="nx">setter</span><span class="o">:</span> <span class="nx">textareaPrototype</span><span class="p">.</span><span class="nx">_setAutoDimension</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">Textarea</span><span class="p">.</span><span class="nx">HTML_PARSER</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="nx">node</span><span class="o">:</span> <span class="s1">&#39;textarea&#39;</span>
+<span class="p">};</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
+	<span class="nx">Textarea</span><span class="p">,</span>
+	<span class="nx">A</span><span class="p">.</span><span class="nx">Textfield</span><span class="p">,</span>
+	<span class="p">{</span>
+		<span class="nx">FIELD_TEMPLATE</span><span class="o">:</span> <span class="nx">TPL_INPUT</span><span class="p">,</span>
+		<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">Textarea</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;autoSize&#39;</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderHeightMonitor</span><span class="p">();</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">Textarea</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;autoSize&#39;</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onKeyup</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;adjustSize&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_uiAutoSize</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;heightChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterHeightChange</span><span class="p">);</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;widthChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterWidthChange</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">Textarea</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">syncUI</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_setAutoDimension</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;minHeight&#39;</span><span class="p">),</span> <span class="s1">&#39;minHeight&#39;</span><span class="p">);</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_setAutoDimension</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;maxHeight&#39;</span><span class="p">),</span> <span class="s1">&#39;maxHeight&#39;</span><span class="p">);</span>
+
+			<span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;minHeight&#39;</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_setAutoDimension</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetDim</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetDim</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">width</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="nx">_afterHeightChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetDim</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="nx">_afterWidthChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetDim</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="nx">_onKeyup</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;adjustSize&#39;</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="nx">_renderHeightMonitor</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">heightMonitor</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_HEIGHT_MONITOR_OPEN</span> <span class="o">+</span> <span class="nx">TPL_HEIGHT_MONITOR_CLOSE</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
+
+			<span class="nx">A</span><span class="p">.</span><span class="nx">getBody</span><span class="p">().</span><span class="nx">append</span><span class="p">(</span><span class="nx">heightMonitor</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_heightMonitor</span> <span class="o">=</span> <span class="nx">heightMonitor</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">fontFamily</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="s1">&#39;fontFamily&#39;</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">fontSize</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="s1">&#39;fontSize&#39;</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">fontWeight</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="s1">&#39;fontWeight&#39;</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">lineHeight</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="s1">&#39;fontSize&#39;</span><span class="p">);</span>
+
+			<span class="nx">node</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;minHeight&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
+
+			<span class="nx">heightMonitor</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">(</span>
+				<span class="p">{</span>
+					<span class="nx">fontFamily</span><span class="o">:</span> <span class="nx">fontFamily</span><span class="p">,</span>
+					<span class="nx">fontSize</span><span class="o">:</span> <span class="nx">fontSize</span><span class="p">,</span>
+					<span class="nx">fontWeight</span><span class="o">:</span> <span class="nx">fontWeight</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="s1">&#39;outerHTML&#39;</span> <span class="k">in</span> <span class="nx">heightMonitor</span><span class="p">.</span><span class="nx">getDOM</span><span class="p">())</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_updateContent</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_updateOuterContent</span><span class="p">;</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_updateContent</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_updateInnerContent</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="nx">_setAutoDimension</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">[</span><span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+		<span class="p">},</span>
+
+		<span class="nx">_uiAutoSize</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">heightMonitor</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_heightMonitor</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">minHeight</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_minHeight</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">maxHeight</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_maxHeight</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">val</span><span class="p">();</span>
+			<span class="kd">var</span> <span class="nx">textNode</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
+
+			<span class="nx">heightMonitor</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+			<span class="nx">heightMonitor</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">textNode</span><span class="p">);</span>
+
+			<span class="nx">heightMonitor</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">node</span><span class="p">.</span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">));</span>
+
+			<span class="nx">content</span> <span class="o">=</span> <span class="nx">heightMonitor</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">content</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">content</span> <span class="o">=</span> <span class="nx">DEFAULT_EMPTY_CONTENT</span><span class="p">;</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="p">{</span>
+				<span class="nx">content</span> <span class="o">+=</span> <span class="nx">DEFAULT_APPEND_CONTENT</span><span class="p">;</span>
+			<span class="p">}</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_updateContent</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
+
+			<span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">heightMonitor</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetHeight&#39;</span><span class="p">),</span> <span class="nx">minHeight</span><span class="p">);</span>
+
+			<span class="nx">height</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">height</span><span class="p">,</span> <span class="nx">maxHeight</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">height</span> <span class="o">!=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_lastHeight</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_lastHeight</span> <span class="o">=</span> <span class="nx">height</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetDim</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="nx">_uiSetDim</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">newVal</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">newVal</span> <span class="o">+=</span> <span class="s1">&#39;px&#39;</span><span class="p">;</span>
+			<span class="p">}</span>
+
+			<span class="nx">node</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">newVal</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="nx">_updateInnerContent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_heightMonitor</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">,</span> <span class="nx">content</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="nx">_updateOuterContent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">content</span> <span class="o">=</span> <span class="nx">content</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\n/g</span><span class="p">,</span> <span class="s1">&#39;&lt;br /&gt;&#39;</span><span class="p">);</span>
+
+			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_updateInnerContent</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">);</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">Textarea</span> <span class="o">=</span> <span class="nx">Textarea</span><span class="p">;</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "FormManager.html#method_addErrorMessage", "access": "", "host": "FormManager", "type": "method", "name": "addErrorMessage"}, {"url": "FormManager.html#config_A.FormManager.decimal_value_re", "access": "", "host": "FormManager", "type": "config", "name": "A.FormManager.decimal_value_re"}, {"url": "FormManager.html#method_A.FormManager.getElementStatus", "access": "", "host": "FormManager", "type": "method", "name": "A.FormManager.getElementStatus"}, {"url": "FormManager.html#method_A.FormManager.getStatusPrecedence", "access": "", "host": "FormManager", "type": "method", "name": "A.FormManager.getStatusPrecedence"}, {"url": "FormManager.html#config_A.FormManager.integer_value_re", "access": "", "host": "FormManager", "type": "config", "name": "A.FormManager.integer_value_re"}, {"url": "FormManager.html#property_A.FormManager.row_marker_class", "access": "", "host": "FormManager", "type": "property", "name": "A.FormManager.row_marker_class"}, {"url": "FormManager.html#property_A.FormManager.row_status_prefix", "access": "", "host": "FormManager", "type": "property", "name": "A.FormManager.row_status_prefix"}, {"url": "FormManager.html#property_A.FormManager.status_failure_class", "access": "", "host": "FormManager", "type": "property", "name": "A.FormManager.status_failure_class"}, {"url": "FormManager.html#property_A.FormManager.status_marker_class", "access": "", "host": "FormManager", "type": "property", "name": "A.FormManager.status_marker_class"}, {"url": "FormManager.html#property_A.FormManager.status_none_class", "access": "", "host": "FormManager", "type": "property", "name": "A.FormManager.status_none_class"}, {"url": "FormManager.html#config_A.FormManager.status_order", "access": "", "host": "FormManager", "type": "config", "name": "A.FormManager.status_order"}, {"url": "FormManager.html#property_A.FormManager.status_success_class", "access": "", "host": "FormManager", "type": "property", "name": "A.FormManager.status_success_class"}, {"url": "FormManager.html#method_A.FormManager.statusTakesPrecendence", "access": "", "host": "FormManager", "type": "method", "name": "A.FormManager.statusTakesPrecendence"}, {"url": "FormManager.html#config_A.FormManager.Strings", "access": "", "host": "FormManager", "type": "config", "name": "A.FormManager.Strings"}, {"url": "FormManager.html#method_clearForm", "access": "", "host": "FormManager", "type": "method", "name": "clearForm"}, {"url": "FormManager.html#method_clearMessages", "access": "", "host": "FormManager", "type": "method", "name": "clearMessages"}, {"url": "FormManager.html#method_disableForm", "access": "", "host": "FormManager", "type": "method", "name": "disableForm"}, {"url": "FormManager.html#method_displayFormMessage", "access": "", "host": "FormManager", "type": "method", "name": "displayFormMessage"}, {"url": "FormManager.html#method_displayMessage", "access": "", "host": "FormManager", "type": "method", "name": "displayMessage"}, {"url": "FormManager.html#method_enableForm", "access": "", "host": "FormManager", "type": "method", "name": "enableForm"}, {"url": "FormManager.html#method_getForm", "access": "", "host": "FormManager", "type": "method", "name": "getForm"}, {"url": "FormManager.html#method_getRowStatus", "access": "", "host": "FormManager", "type": "method", "name": "getRowStatus"}, {"url": "FormManager.html#method_hasErrors", "access": "", "host": "FormManager", "type": "method", "name": "hasErrors"}, {"url": "FormManager.html#method_hasFileInputs", "access": "", "host": "FormManager", "type": "method", "name": "hasFileInputs"}, {"url": "FormManager.html#method_hasMessages", "access": "", "host": "FormManager", "type": "method", "name": "hasMessages"}, {"url": "FormManager.html#method_initFocus", "access": "", "host": "FormManager", "type": "method", "name": "initFocus"}, {"url": "FormManager.html#method_isChanged", "access": "", "host": "FormManager", "type": "method", "name": "isChanged"}, {"url": "FormManager.html#method_notifyErrors", "access": "", "host": "FormManager", "type": "method", "name": "notifyErrors"}, {"url": "FormManager.html#method_populateForm", "access": "", "host": "FormManager", "type": "method", "name": "populateForm"}, {"url": "FormManager.html#method_postPopulateForm", "access": "", "host": "FormManager", "type": "method", "name": "postPopulateForm"}, {"url": "FormManager.html#method_postPrepareForm", "access": "", "host": "FormManager", "type": "method", "name": "postPrepareForm"}, {"url": "FormManager.html#method_postValidateForm", "access": "", "host": "FormManager", "type": "method", "name": "postValidateForm"}, {"url": "FormManager.html#method_prepareForm", "access": "", "host": "FormManager", "type": "method", "name": "prepareForm"}, {"url": "FormManager.html#method_prePrepareForm", "access": "", "host": "FormManager", "type": "method", "name": "prePrepareForm"}, {"url": "FormManager.html#method_registerButton", "access": "", "host": "FormManager", "type": "method", "name": "registerButton"}, {"url": "FormManager.html#method_saveCurrentValuesAsDefault", "access": "", "host": "FormManager", "type": "method", "name": "saveCurrentValuesAsDefault"}, {"url": "FormManager.html#method_setDefaultValue", "access": "", "host": "FormManager", "type": "method", "name": "setDefaultValue"}, {"url": "FormManager.html#method_setDefaultValues", "access": "", "host": "FormManager", "type": "method", "name": "setDefaultValues"}, {"url": "FormManager.html#method_setErrorMessages", "access": "", "host": "FormManager", "type": "method", "name": "setErrorMessages"}, {"url": "FormManager.html#method_setFormEnabled", "access": "", "host": "FormManager", "type": "method", "name": "setFormEnabled"}, {"url": "FormManager.html#method_setFunction", "access": "", "host": "FormManager", "type": "method", "name": "setFunction"}, {"url": "FormManager.html#method_setRegex", "access": "", "host": "FormManager", "type": "method", "name": "setRegex"}, {"url": "FormManager.html#method_validateForm", "access": "", "host": "FormManager", "type": "method", "name": "validateForm"}];
+</script>
+</body>
+</html>

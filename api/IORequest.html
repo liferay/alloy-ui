@@ -1,0 +1,1938 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-io  IORequest   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-io&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-io.html" title="aui-io">aui-io</a>
+
+	                 <span class="separator">&gt;</span> <span class="classname">IORequest</span> 
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+
+			                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                <li class="selected"><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                <li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="A.io.html" title="A.io">A.io</a></li>
+
+
+				                                <li class=""><a href="A.Plugin.IO.html" title="A.Plugin.IO">A.Plugin.IO</a></li>
+
+
+				                                <li class="selected"><a href="IORequest.html" title="IORequest">IORequest</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-configuration">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-configuration-hd">
+										<span class="aui-widget-hd-text">Configuration Attributes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#config_active" title="active">active</a></li>
+												<li class=""><a href="#config_arguments" title="arguments">arguments</a></li>
+												<li class=""><a href="#config_autoLoad" title="autoLoad">autoLoad</a></li>
+												<li class=""><a href="#config_cache" title="cache">cache</a></li>
+												<li class=""><a href="#config_cfg" title="cfg">cfg</a></li>
+												<li class=""><a href="#config_context" title="context">context</a></li>
+												<li class=""><a href="#config_data" title="data">data</a></li>
+												<li class=""><a href="#config_dataType" title="dataType">dataType</a></li>
+												<li class=""><a href="#config_form" title="form">form</a></li>
+												<li class=""><a href="#config_headers" title="headers">headers</a></li>
+												<li class=""><a href="#config_method" title="method">method</a></li>
+												<li class=""><a href="#config_responseData" title="responseData">responseData</a></li>
+												<li class=""><a href="#config_sync" title="sync">sync</a></li>
+												<li class=""><a href="#config_timeout" title="timeout">timeout</a></li>
+												<li class=""><a href="#config_transaction" title="transaction">transaction</a></li>
+												<li class=""><a href="#config_uri" title="uri">uri</a></li>
+												<li class=""><a href="#config_xdr" title="xdr">xdr</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-properties">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-properties-hd">
+										<span class="aui-widget-hd-text">Properties</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+				                                <li class=""><a href="#property_IORequest.ATTRS" title="IORequest.ATTRS">IORequest.ATTRS</a></li>
+
+				                                <li class=""><a href="#property_IORequest.NAME" title="IORequest.NAME">IORequest.NAME</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-methods">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-methods-hd">
+										<span class="aui-widget-hd-text">Methods</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+				                               <li class="protected"><a href="#method__afterInit" title="_afterInit">_afterInit</a></li>
+				                               <li class="protected"><a href="#method__end" title="_end">_end</a></li>
+				                               <li class="protected"><a href="#method__parseURL" title="_parseURL">_parseURL</a></li>
+				                               <li class="protected"><a href="#method__setResponseData" title="_setResponseData">_setResponseData</a></li>
+				                               <li class="protected"><a href="#method__success" title="_success">_success</a></li>
+				                               <li class="protected"><a href="#method_destructor" title="destructor">destructor</a></li>
+				                               <li class="protected"><a href="#method_initializer" title="initializer">initializer</a></li>
+				                               <li class=""><a href="#method_start" title="start">start</a></li>
+				                               <li class=""><a href="#method_stop" title="stop">stop</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-events">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-events-hd">
+										<span class="aui-widget-hd-text">Events</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#event_activeChange" title="activeChange">activeChange</a></li>
+												<li class=""><a href="#event_argumentsChange" title="argumentsChange">argumentsChange</a></li>
+												<li class=""><a href="#event_autoLoadChange" title="autoLoadChange">autoLoadChange</a></li>
+												<li class=""><a href="#event_cacheChange" title="cacheChange">cacheChange</a></li>
+												<li class=""><a href="#event_cfgChange" title="cfgChange">cfgChange</a></li>
+												<li class=""><a href="#event_contextChange" title="contextChange">contextChange</a></li>
+												<li class=""><a href="#event_dataChange" title="dataChange">dataChange</a></li>
+												<li class=""><a href="#event_dataTypeChange" title="dataTypeChange">dataTypeChange</a></li>
+												<li class=""><a href="#event_formChange" title="formChange">formChange</a></li>
+												<li class=""><a href="#event_headersChange" title="headersChange">headersChange</a></li>
+												<li class=""><a href="#event_methodChange" title="methodChange">methodChange</a></li>
+												<li class=""><a href="#event_responseDataChange" title="responseDataChange">responseDataChange</a></li>
+												<li class=""><a href="#event_syncChange" title="syncChange">syncChange</a></li>
+												<li class=""><a href="#event_timeoutChange" title="timeoutChange">timeoutChange</a></li>
+												<li class=""><a href="#event_transactionChange" title="transactionChange">transactionChange</a></li>
+												<li class=""><a href="#event_uriChange" title="uriChange">uriChange</a></li>
+												<li class=""><a href="#event_xdrChange" title="xdrChange">xdrChange</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="aui-io-request.js.html" title="aui-io-request.js">aui-io-request.js</a></li>
+
+
+			                                <li class=""><a href="aui-live-search.js.html" title="aui-live-search.js">aui-live-search.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<h2>
+								
+
+								
+
+								
+
+								Class <b property="yui:name">IORequest</b>
+
+									<span class="extends">- extends <a href="Plugin.Base.html" title="Plugin.Base">Plugin.Base</a></span>
+
+									<span class="extends" rel="yui:extends">
+										- uses
+
+										
+											<span rel="extend" resource="io.html">
+												<a href="io.html" property="yui:name" title="io">io</a>
+												
+											</span>
+										
+									</span>
+							</h2>
+
+							<!-- class tree goes here -->
+								<dl class="subclasses" rel="yui:subclasses">
+									<dt>Known Subclasses:</dt>
+									<dd>
+											<span rel="yui:subclass" resource="A.Plugin.IO.html">
+												<a href="A.Plugin.IO.html" property="yui:name" title="A.Plugin.IO">A.Plugin.IO</a>
+											</span>
+									</dd>
+							   </dl>
+
+
+
+							<div class="summary description" property="yui:description">
+								A base class for IORequest, providing:
+<ul>
+<li>Response data normalization for XML, JSON, JavaScript</li>
+<li>Cache options</li>
+</ul>
+Quick Example:<br/>
+<pre><code>A.io.request(uri, config);</code></pre>
+Check the list of <a href="IORequest.html#configattributes">Configuration Attributes</a> available for
+IORequest.
+							</div>
+
+								<div class="section constructor details" rel="yui:constructor" resource="#constructor">
+									<h3 id="constructor">Constructor</h3>
+
+									<div class="content">
+										<div class="detail">
+											<strong property="yui:name">IORequest</strong>
+
+											<code>
+												(
+
+													
+															
+															config
+												)
+											</code>
+
+											<div class="description">
+													<dl rel="yui:parameters">
+														<dt>Parameters:</dt>
+															<dd rel="yui:parameter">
+																<code><span property="yui:name">config</span>
+																&lt;<span property="yui:type">Object</span>&gt;
+																</code>
+
+																<span property="yui:description">  Object literal specifying widget configuration properties.</span>
+															</dd>
+													</dl>
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+							<div rel="yui:properties" resource="#properties">
+
+								<div class="section field details">
+
+									<h3 id="properties">Properties</h3>
+
+									<div class="content">
+
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_IORequest.ATTRS">
+
+											<h4>
+												<a name="property_IORequest.ATTRS" property="yui:name">IORequest.ATTRS</a>
+												- <code>static <span property="yui:type">Object</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Static property used to define the default attribute
+configuration for the IORequest.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_IORequest.NAME">
+
+											<h4>
+												<a name="property_IORequest.NAME" property="yui:name">IORequest.NAME</a>
+												- <code>static <span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Static property provides a string to identify the class.
+												</div>
+											</div>
+
+
+
+
+											</div>
+									</div>
+								</div>
+
+							</div>
+
+							<div rel="yui:attributes" resource="#configattributes">
+
+									<div class="section field details">
+
+										<h3 id="configattributes">Configuration Attributes</h3>
+
+										<div class="content">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_active">
+
+													<h4>
+														<a name="config_active">active</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Whether the transaction is active or not.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_arguments">
+
+													<h4>
+														<a name="config_arguments">arguments</a>
+														<code>- <span property="yui:type">Object</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+Configuration</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Value mapped on AUI.defaults.io.</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_autoLoad">
+
+													<h4>
+														<a name="config_autoLoad">autoLoad</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															If <code>true</code> invoke the
+<a href="IORequest.html#method_start">start</a> method automatically,
+initializing the IO transaction.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>true</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_cache">
+
+													<h4>
+														<a name="config_cache">cache</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															If <code>false</code> the current timestamp will be appended to the
+url, avoiding the url to be cached.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>true</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_cfg">
+
+													<h4>
+														<a name="config_cfg">cfg</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Object containing all the
+<a href="io.html#configattributes">IO Configuration Attributes</a>.
+This Object is passed to the <code>A.io</code> internally.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Object containing all the
+<a href="io.html#configattributes">IO Configuration Attributes</a>.</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_context">
+
+													<h4>
+														<a name="config_context">context</a>
+														<code>- <span property="yui:type">Object</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+Configuration</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Value mapped on AUI.defaults.io.</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_data">
+
+													<h4>
+														<a name="config_data">data</a>
+														<code>- <span property="yui:type">Object</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+Configuration</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Value mapped on AUI.defaults.io.</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_dataType">
+
+													<h4>
+														<a name="config_dataType">dataType</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The type of the request (i.e., could be xml, json, javascript, text).
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>null</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_form">
+
+													<h4>
+														<a name="config_form">form</a>
+														<code>- <span property="yui:type">Object</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+Configuration</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Value mapped on AUI.defaults.io.</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_headers">
+
+													<h4>
+														<a name="config_headers">headers</a>
+														<code>- <span property="yui:type">Object</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Set the correct ACCEPT header based on the dataType.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Object</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_method">
+
+													<h4>
+														<a name="config_method">method</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+Configuration</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Value mapped on AUI.defaults.io.</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_responseData">
+
+													<h4>
+														<a name="config_responseData">responseData</a>
+														<code>- <span property="yui:type">String | JSONObject | XMLDocument</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															This is a normalized attribute for the response data. It's useful
+to retrieve the correct type for the
+<a href="IORequest.html#config_dataType">dataType</a> (i.e., in json
+requests the <code>responseData</code>) is a JSONObject.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>null</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_sync">
+
+													<h4>
+														<a name="config_sync">sync</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+Configuration</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Value mapped on AUI.defaults.io.</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_timeout">
+
+													<h4>
+														<a name="config_timeout">timeout</a>
+														<code>- <span property="yui:type">Number</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+Configuration</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Value mapped on AUI.defaults.io.</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_transaction">
+
+													<h4>
+														<a name="config_transaction">transaction</a>
+														<code>- <span property="yui:type">Object</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Stores the IO Object of the current transaction.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>null</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_uri">
+
+													<h4>
+														<a name="config_uri">uri</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															URI to be requested using AJAX.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>null</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_xdr">
+
+													<h4>
+														<a name="config_xdr">xdr</a>
+														<code>- <span property="yui:type">Object</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+Configuration</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Value mapped on AUI.defaults.io.</strong>
+													</div>
+
+												</div>
+
+										</div>
+									</div>
+
+
+							</div>
+
+							<div rel="yui:methods" resource="#methods">
+									<div class="section method details">
+
+										<h3 id="methods">Methods</h3>
+
+										<div class="content">
+
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterInit">
+
+													<h4>
+														<a name="method__afterInit">_afterInit</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_afterInit</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires after the init phase of the IORequest.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__end">
+
+													<h4>
+														<a name="method__end">_end</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_end</strong>
+														   (
+																
+																		
+																		 id
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Internal end callback for the IO transaction.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">id</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> ID of the IO transaction.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__parseURL">
+
+													<h4>
+														<a name="method__parseURL">_parseURL</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														String
+															<strong property="yui:name">_parseURL</strong>
+														   (
+																
+																		
+																		 url
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Parse the <a href="IORequest.html#config_uri">uri</a> to add a
+timestamp if <a href="IORequest.html#config_cache">cache</a> is
+<code>true</code>. Also applies the
+<code>AUI.defaults.io.uriFormatter</code>.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">url</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__setResponseData">
+
+													<h4>
+														<a name="method__setResponseData">_setResponseData</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														Object
+															<strong property="yui:name">_setResponseData</strong>
+														   (
+																
+																		
+																		 xhr
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Setter for <a href="IORequest.html#config_responseData">responseData</a>.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">xhr</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> XHR Object.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__success">
+
+													<h4>
+														<a name="method__success">_success</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_success</strong>
+														   (
+																
+																		
+																		 id
+																	
+																
+																		, 
+																		 obj
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Internal success callback for the IO transaction.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">id</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> ID of the IO transaction.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">obj</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> IO transaction Object.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_destructor">
+
+													<h4>
+														<a name="method_destructor">destructor</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">destructor</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Descructor lifecycle implementation for the IORequest class.
+Purges events attached to the node (and all child nodes).
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_initializer">
+
+													<h4>
+														<a name="method_initializer">initializer</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">initializer</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Construction logic executed during IORequest instantiation. Lifecycle.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_start">
+
+													<h4>
+														<a name="method_start">start</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">start</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Starts the IO transaction. Used to refresh the content also.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_stop">
+
+													<h4>
+														<a name="method_stop">stop</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">stop</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Stops the IO transaction.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+							</div>
+
+							<div rel="yui:events" resource="#events">
+									<div class="section method details">
+										<h3 id="events">Events</h3>
+
+										<div class="content">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_activeChange">
+
+													<h4>
+														<a name="event_activeChange">activeChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">activeChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'active' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_argumentsChange">
+
+													<h4>
+														<a name="event_argumentsChange">argumentsChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">argumentsChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'arguments' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_autoLoadChange">
+
+													<h4>
+														<a name="event_autoLoadChange">autoLoadChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">autoLoadChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'autoLoad' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_cacheChange">
+
+													<h4>
+														<a name="event_cacheChange">cacheChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">cacheChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'cache' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_cfgChange">
+
+													<h4>
+														<a name="event_cfgChange">cfgChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">cfgChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'cfg' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_contextChange">
+
+													<h4>
+														<a name="event_contextChange">contextChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">contextChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'context' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_dataChange">
+
+													<h4>
+														<a name="event_dataChange">dataChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">dataChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'data' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_dataTypeChange">
+
+													<h4>
+														<a name="event_dataTypeChange">dataTypeChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">dataTypeChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'dataType' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_formChange">
+
+													<h4>
+														<a name="event_formChange">formChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">formChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'form' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_headersChange">
+
+													<h4>
+														<a name="event_headersChange">headersChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">headersChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'headers' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_methodChange">
+
+													<h4>
+														<a name="event_methodChange">methodChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">methodChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'method' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_responseDataChange">
+
+													<h4>
+														<a name="event_responseDataChange">responseDataChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">responseDataChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'responseData' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_syncChange">
+
+													<h4>
+														<a name="event_syncChange">syncChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">syncChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'sync' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_timeoutChange">
+
+													<h4>
+														<a name="event_timeoutChange">timeoutChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">timeoutChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'timeout' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_transactionChange">
+
+													<h4>
+														<a name="event_transactionChange">transactionChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">transactionChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'transaction' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_uriChange">
+
+													<h4>
+														<a name="event_uriChange">uriChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">uriChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'uri' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_xdrChange">
+
+													<h4>
+														<a name="event_xdrChange">xdrChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">xdrChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'xdr' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "IORequest.html#config_active", "access": "", "host": "IORequest", "type": "config", "name": "active"}, {"url": "IORequest.html#event_activeChange", "access": "", "host": "IORequest", "type": "event", "name": "activeChange"}, {"url": "A.Plugin.IO.html#method__afterInit", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_afterInit"}, {"url": "IORequest.html#method__afterInit", "access": "protected", "host": "IORequest", "type": "method", "name": "_afterInit"}, {"url": "A.Plugin.IO.html#property_A.Plugin.IO.ATTRS", "access": "", "host": "A.Plugin.IO", "type": "property", "name": "A.Plugin.IO.ATTRS"}, {"url": "A.Plugin.IO.html#property_A.Plugin.IO.NAME", "access": "", "host": "A.Plugin.IO", "type": "property", "name": "A.Plugin.IO.NAME"}, {"url": "A.Plugin.IO.html#property_A.Plugin.IO.NS", "access": "", "host": "A.Plugin.IO", "type": "property", "name": "A.Plugin.IO.NS"}, {"url": "IORequest.html#config_arguments", "access": "", "host": "IORequest", "type": "config", "name": "arguments"}, {"url": "IORequest.html#event_argumentsChange", "access": "", "host": "IORequest", "type": "event", "name": "argumentsChange"}, {"url": "IORequest.html#config_autoLoad", "access": "", "host": "IORequest", "type": "config", "name": "autoLoad"}, {"url": "IORequest.html#event_autoLoadChange", "access": "", "host": "IORequest", "type": "event", "name": "autoLoadChange"}, {"url": "A.Plugin.IO.html#method__bindPlugins", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_bindPlugins"}, {"url": "A.Plugin.IO.html#method_bindUI", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "bindUI"}, {"url": "IORequest.html#config_cache", "access": "", "host": "IORequest", "type": "config", "name": "cache"}, {"url": "IORequest.html#event_cacheChange", "access": "", "host": "IORequest", "type": "event", "name": "cacheChange"}, {"url": "IORequest.html#config_cfg", "access": "", "host": "IORequest", "type": "config", "name": "cfg"}, {"url": "IORequest.html#event_cfgChange", "access": "", "host": "IORequest", "type": "event", "name": "cfgChange"}, {"url": "IORequest.html#config_context", "access": "", "host": "IORequest", "type": "config", "name": "context"}, {"url": "IORequest.html#event_contextChange", "access": "", "host": "IORequest", "type": "event", "name": "contextChange"}, {"url": "IORequest.html#config_data", "access": "", "host": "IORequest", "type": "config", "name": "data"}, {"url": "IORequest.html#event_dataChange", "access": "", "host": "IORequest", "type": "event", "name": "dataChange"}, {"url": "IORequest.html#config_dataType", "access": "", "host": "IORequest", "type": "config", "name": "dataType"}, {"url": "IORequest.html#event_dataTypeChange", "access": "", "host": "IORequest", "type": "event", "name": "dataTypeChange"}, {"url": "IORequest.html#method_destructor", "access": "protected", "host": "IORequest", "type": "method", "name": "destructor"}, {"url": "IORequest.html#method__end", "access": "protected", "host": "IORequest", "type": "method", "name": "_end"}, {"url": "A.Plugin.IO.html#method__failureHandler", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_failureHandler"}, {"url": "A.Plugin.IO.html#config_failureMessage", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "failureMessage"}, {"url": "A.Plugin.IO.html#event_failureMessageChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "failureMessageChange"}, {"url": "IORequest.html#config_form", "access": "", "host": "IORequest", "type": "config", "name": "form"}, {"url": "IORequest.html#event_formChange", "access": "", "host": "IORequest", "type": "event", "name": "formChange"}, {"url": "A.Plugin.IO.html#method__getContentSetterByType", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_getContentSetterByType"}, {"url": "IORequest.html#config_headers", "access": "", "host": "IORequest", "type": "config", "name": "headers"}, {"url": "IORequest.html#event_headersChange", "access": "", "host": "IORequest", "type": "event", "name": "headersChange"}, {"url": "A.Plugin.IO.html#method_hideLoading", "access": "", "host": "A.Plugin.IO", "type": "method", "name": "hideLoading"}, {"url": "A.Plugin.IO.html#method_initializer", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "initializer"}, {"url": "IORequest.html#method_initializer", "access": "protected", "host": "IORequest", "type": "method", "name": "initializer"}, {"url": "IORequest.html#property_IORequest.ATTRS", "access": "", "host": "IORequest", "type": "property", "name": "IORequest.ATTRS"}, {"url": "IORequest.html#property_IORequest.NAME", "access": "", "host": "IORequest", "type": "property", "name": "IORequest.NAME"}, {"url": "A.Plugin.IO.html#config_loadingMask", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "loadingMask"}, {"url": "A.Plugin.IO.html#event_loadingMaskChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "loadingMaskChange"}, {"url": "IORequest.html#config_method", "access": "", "host": "IORequest", "type": "config", "name": "method"}, {"url": "IORequest.html#event_methodChange", "access": "", "host": "IORequest", "type": "event", "name": "methodChange"}, {"url": "A.Plugin.IO.html#config_node", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "node"}, {"url": "A.Plugin.IO.html#event_nodeChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "nodeChange"}, {"url": "A.Plugin.IO.html#method__onActiveChange", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_onActiveChange"}, {"url": "A.Plugin.IO.html#config_parseContent", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "parseContent"}, {"url": "A.Plugin.IO.html#event_parseContentChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "parseContentChange"}, {"url": "IORequest.html#method__parseURL", "access": "protected", "host": "IORequest", "type": "method", "name": "_parseURL"}, {"url": "IORequest.html#config_responseData", "access": "", "host": "IORequest", "type": "config", "name": "responseData"}, {"url": "IORequest.html#event_responseDataChange", "access": "", "host": "IORequest", "type": "event", "name": "responseDataChange"}, {"url": "A.Plugin.IO.html#config_section", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "section"}, {"url": "A.Plugin.IO.html#event_sectionChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "sectionChange"}, {"url": "A.Plugin.IO.html#method_setContent", "access": "", "host": "A.Plugin.IO", "type": "method", "name": "setContent"}, {"url": "IORequest.html#method__setResponseData", "access": "protected", "host": "IORequest", "type": "method", "name": "_setResponseData"}, {"url": "A.Plugin.IO.html#method_showLoading", "access": "", "host": "A.Plugin.IO", "type": "method", "name": "showLoading"}, {"url": "A.Plugin.IO.html#config_showLoading", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "showLoading"}, {"url": "A.Plugin.IO.html#event_showLoadingChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "showLoadingChange"}, {"url": "IORequest.html#method_start", "access": "", "host": "IORequest", "type": "method", "name": "start"}, {"url": "IORequest.html#method_stop", "access": "", "host": "IORequest", "type": "method", "name": "stop"}, {"url": "IORequest.html#method__success", "access": "protected", "host": "IORequest", "type": "method", "name": "_success"}, {"url": "A.Plugin.IO.html#method__successHandler", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_successHandler"}, {"url": "IORequest.html#config_sync", "access": "", "host": "IORequest", "type": "config", "name": "sync"}, {"url": "IORequest.html#event_syncChange", "access": "", "host": "IORequest", "type": "event", "name": "syncChange"}, {"url": "A.Plugin.IO.html#method__syncOverlayLoadingUI", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_syncOverlayLoadingUI"}, {"url": "IORequest.html#config_timeout", "access": "", "host": "IORequest", "type": "config", "name": "timeout"}, {"url": "IORequest.html#event_timeoutChange", "access": "", "host": "IORequest", "type": "event", "name": "timeoutChange"}, {"url": "IORequest.html#config_transaction", "access": "", "host": "IORequest", "type": "config", "name": "transaction"}, {"url": "IORequest.html#event_transactionChange", "access": "", "host": "IORequest", "type": "event", "name": "transactionChange"}, {"url": "A.Plugin.IO.html#config_type", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "type"}, {"url": "A.Plugin.IO.html#event_typeChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "typeChange"}, {"url": "IORequest.html#config_uri", "access": "", "host": "IORequest", "type": "config", "name": "uri"}, {"url": "IORequest.html#event_uriChange", "access": "", "host": "IORequest", "type": "event", "name": "uriChange"}, {"url": "A.Plugin.IO.html#config_where", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "where"}, {"url": "A.Plugin.IO.html#event_whereChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "whereChange"}, {"url": "IORequest.html#config_xdr", "access": "", "host": "IORequest", "type": "config", "name": "xdr"}, {"url": "IORequest.html#event_xdrChange", "access": "", "host": "IORequest", "type": "event", "name": "xdrChange"}];
+</script>
+</body>
+</html>

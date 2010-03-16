@@ -1,0 +1,1020 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-dialog   aui-editable-debug.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-dialog&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-dialog.html" title="aui-dialog">aui-dialog</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">aui-editable-debug.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+
+			                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                <li class="selected"><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                <li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="Dialog.html" title="Dialog">Dialog</a></li>
+
+
+				                                <li class=""><a href="DialogManager.html" title="DialogManager">DialogManager</a></li>
+
+
+				                                <li class=""><a href="DialogMask.html" title="DialogMask">DialogMask</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class="selected"><a href="aui-editable-debug.js.html" title="aui-editable-debug.js">aui-editable-debug.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-editable&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span> <span class="p">{</span>
+<span class="cm">/**</span>
+<span class="cm"> * The Editable Utility</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module aui-editable</span>
+<span class="cm"> */</span>
+
+<span class="kd">var</span> <span class="nx">Lang</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+	<span class="nx">isFunction</span> <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">,</span>
+
+	<span class="nx">getClassName</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">ClassNameManager</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">,</span>
+
+	<span class="nx">HOVER</span> <span class="o">=</span> <span class="s1">&#39;hover&#39;</span><span class="p">,</span>
+	<span class="nx">NAME</span> <span class="o">=</span> <span class="s1">&#39;editable&#39;</span><span class="p">,</span>
+
+	<span class="nx">CSS_EDITING</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="s1">&#39;editing&#39;</span><span class="p">),</span>
+	<span class="nx">CSS_HOVER</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="nx">HOVER</span><span class="p">),</span>
+
+	<span class="nx">CONTENT_BOX</span> <span class="o">=</span> <span class="s1">&#39;contentBox&#39;</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * &lt;p&gt;&lt;img src=&quot;assets/images/aui-editable/main.png&quot;/&gt;&lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * A base class for Editable, providing:</span>
+<span class="cm"> * &lt;ul&gt;</span>
+<span class="cm"> *    &lt;li&gt;Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)&lt;/li&gt;</span>
+<span class="cm"> *    &lt;li&gt;Edit in place elements&lt;/li&gt;</span>
+<span class="cm"> * &lt;/ul&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * Quick Example:&lt;br/&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * &lt;pre&gt;&lt;code&gt;var instance = new A.Editable({</span>
+<span class="cm"> *   node: &#39;#editor&#39;</span>
+<span class="cm"> * }).render();</span>
+<span class="cm"> * &lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * Check the list of &lt;a href=&quot;Editable.html#configattributes&quot;&gt;Configuration Attributes&lt;/a&gt; available for</span>
+<span class="cm"> * Editable.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param config {Object} Object literal specifying widget configuration properties.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class Editable</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @extends Component</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">Editable</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">Editable</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Static property provides a string to identify the class.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @property Editable.NAME</span>
+<span class="cm"> * @type String</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+<span class="nx">Editable</span><span class="p">.</span><span class="nx">NAME</span> <span class="o">=</span> <span class="s1">&#39;editable&#39;</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Static property used to define the default attribute</span>
+<span class="cm"> * configuration for the Editable.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @property Editable.ATTRS</span>
+<span class="cm"> * @type Object</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+<span class="nx">Editable</span><span class="p">.</span><span class="nx">ATTRS</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="cm">/**</span>
+<span class="cm">	 * &lt;a href=&quot;ToolSet.html&quot;&gt;ToolSet&lt;/a&gt; constructor Object for the</span>
+<span class="cm">     * cancelButton.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @attribute cancelButton</span>
+<span class="cm">	 * @default ToolSet constructor Object.</span>
+<span class="cm">	 * @type String</span>
+<span class="cm">	 */</span>
+	<span class="nx">cancelButton</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="k">return</span> <span class="p">{</span>
+				<span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;cancel&#39;</span><span class="p">,</span>
+				<span class="nx">icon</span><span class="o">:</span> <span class="s1">&#39;circle-close&#39;</span><span class="p">,</span>
+				<span class="nx">handler</span><span class="o">:</span> <span class="p">{</span>
+					<span class="nx">context</span><span class="o">:</span> <span class="nx">instance</span><span class="p">,</span>
+					<span class="nx">fn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">cancel</span>
+				<span class="p">}</span>
+			<span class="p">};</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Content text.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @attribute contentText</span>
+<span class="cm">	 * @default &#39;&#39;</span>
+<span class="cm">	 * @type String</span>
+<span class="cm">	 */</span>
+	<span class="nx">contentText</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+		<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">value</span> <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_toText</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+
+			<span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Function to format the input text displayed on the input.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @attribute formatInput</span>
+<span class="cm">	 * @default null</span>
+<span class="cm">	 * @type function</span>
+<span class="cm">	 */</span>
+	<span class="nx">formatInput</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+		<span class="nx">validator</span><span class="o">:</span> <span class="nx">isFunction</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Function to format the output text displayed on the input.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @attribute formatOutput</span>
+<span class="cm">	 * @default null</span>
+<span class="cm">	 * @type function</span>
+<span class="cm">	 */</span>
+	<span class="nx">formatOutput</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+		<span class="nx">validator</span><span class="o">:</span> <span class="nx">isFunction</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Node to setup the editable.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @attribute node</span>
+<span class="cm">	 * @type Node</span>
+<span class="cm">	 */</span>
+	<span class="nx">node</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;AUI.Editable: Invalid Node Given: &#39;</span> <span class="o">+</span> <span class="nx">value</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="p">{</span>
+				<span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="k">return</span> <span class="nx">node</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Event type to initialize the editable.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @attribute eventType</span>
+<span class="cm">	 * @default &#39;click&#39;</span>
+<span class="cm">	 * @type String</span>
+<span class="cm">	 */</span>
+	<span class="nx">eventType</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;click&#39;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Node to render the editable.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @attribute renderTo</span>
+<span class="cm">	 * @type String | Node</span>
+<span class="cm">	 */</span>
+	<span class="nx">renderTo</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span>
+		<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">node</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">==</span> <span class="s1">&#39;node&#39;</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="p">{</span>
+				<span class="nx">node</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;AUI.Editable: Invalid renderTo Given: &#39;</span> <span class="o">+</span> <span class="nx">value</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="p">{</span>
+				<span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="k">return</span> <span class="nx">node</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * &lt;a href=&quot;ToolSet.html&quot;&gt;ToolSet&lt;/a&gt; constructor Object for the</span>
+<span class="cm">     * saveButton.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @attribute saveButton</span>
+<span class="cm">	 * @default ToolSet constructor Object.</span>
+<span class="cm">	 * @type String</span>
+<span class="cm">	 */</span>
+	<span class="nx">saveButton</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="k">return</span> <span class="p">{</span>
+				<span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;save&#39;</span><span class="p">,</span>
+				<span class="nx">icon</span><span class="o">:</span> <span class="s1">&#39;circle-check&#39;</span><span class="p">,</span>
+				<span class="nx">handler</span><span class="o">:</span> <span class="p">{</span>
+					<span class="nx">context</span><span class="o">:</span> <span class="nx">instance</span><span class="p">,</span>
+					<span class="nx">fn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">save</span>
+				<span class="p">}</span>
+			<span class="p">};</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Array with tools for the &lt;a href=&quot;ToolSet.html&quot;&gt;ToolSet&lt;/a&gt;.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @attribute tools</span>
+<span class="cm">	 * @default []</span>
+<span class="cm">	 * @type Array</span>
+<span class="cm">	 */</span>
+	<span class="nx">tools</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="p">[]</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Type of the input used to edit the &lt;a</span>
+<span class="cm">     * href=&quot;Editable.html#config_node&quot;&gt;node&lt;/a&gt;.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @attribute inputType</span>
+<span class="cm">	 * @default &#39;text&#39;</span>
+<span class="cm">	 * @type String</span>
+<span class="cm">	 */</span>
+	<span class="nx">inputType</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span>
+		<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">!=</span> <span class="s1">&#39;text&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span> <span class="o">!=</span> <span class="s1">&#39;textarea&#39;</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">value</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Attribute</span><span class="p">.</span><span class="nx">INVALID_VALUE</span><span class="p">;</span>
+			<span class="p">}</span>
+
+			<span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="nx">visible</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
+	<span class="nx">Editable</span><span class="p">,</span>
+	<span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">,</span>
+	<span class="p">{</span>
+		<span class="cm">/**</span>
+<span class="cm">		 * Construction logic executed during Editable instantiation. Lifecycle.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method initializer</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_scopedSave</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">save</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+
+			<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">eventType</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;eventType&#39;</span><span class="p">);</span>
+
+			<span class="nx">node</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onMouseEnterEditable</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+			<span class="nx">node</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseleave&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onMouseLeaveEditable</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+
+			<span class="nx">node</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">eventType</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_startEditing</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_createEvents</span><span class="p">();</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Create the DOM structure for the Editable. Lifecycle.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method renderUI</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">inputType</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;inputType&#39;</span><span class="p">);</span>
+
+			<span class="kd">var</span> <span class="nx">comboConfig</span> <span class="o">=</span> <span class="p">{};</span>
+
+			<span class="kd">var</span> <span class="nx">tools</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;tools&#39;</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">tools</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">cancelButton</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;cancelButton&#39;</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">saveButton</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;saveButton&#39;</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">cancelButton</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">tools</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">cancelButton</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">saveButton</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">tools</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">saveButton</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="nx">comboConfig</span><span class="p">.</span><span class="nx">tools</span> <span class="o">=</span> <span class="nx">tools</span><span class="p">;</span>
+			<span class="p">}</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">inputType</span> <span class="o">!=</span> <span class="s1">&#39;text&#39;</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span>
+					<span class="nx">comboConfig</span><span class="p">,</span>
+					<span class="p">{</span>
+						<span class="nx">field</span><span class="o">:</span> <span class="p">{</span>
+							<span class="nx">autoSize</span><span class="o">:</span> <span class="kc">true</span>
+						<span class="p">},</span>
+						<span class="nx">fieldWidget</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Textarea</span>
+					<span class="p">}</span>
+				<span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="kd">var</span> <span class="nx">comboBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Combobox</span><span class="p">(</span><span class="nx">comboConfig</span><span class="p">).</span><span class="nx">render</span><span class="p">(</span><span class="nx">contentBox</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_comboBox</span> <span class="o">=</span> <span class="nx">comboBox</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">inputNode</span> <span class="o">=</span> <span class="nx">comboBox</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Bind the events on the Editable UI. Lifecycle.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method bindUI</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
+
+			<span class="kd">var</span> <span class="nx">inputNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">inputNode</span><span class="p">;</span>
+
+			<span class="nx">inputNode</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;keypress&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onKeypressEditable</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;contentTextChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_syncContentText</span><span class="p">);</span>
+
+			<span class="nx">contentBox</span><span class="p">.</span><span class="nx">swallowEvent</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">);</span>
+
+			<span class="nx">A</span><span class="p">.</span><span class="nx">getDoc</span><span class="p">().</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterFocusedChangeEditable</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Sync the Editable UI. Lifecycle.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method syncUI</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">currentText</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">);</span>
+
+			<span class="nx">currentText</span> <span class="o">=</span> <span class="nx">currentText</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\n|\r/gim</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+			<span class="nx">currentText</span> <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="nx">currentText</span><span class="p">);</span>
+
+			<span class="nx">currentText</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_toText</span><span class="p">(</span><span class="nx">currentText</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_setInput</span><span class="p">(</span><span class="nx">currentText</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span>
+				<span class="s1">&#39;contentText&#39;</span><span class="p">,</span>
+				<span class="nx">currentText</span><span class="p">,</span>
+				<span class="p">{</span>
+					<span class="nx">initial</span><span class="o">:</span> <span class="kc">true</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Cancel the editable. Return to the original state.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method cancel</span>
+<span class="cm">		 */</span>
+		<span class="nx">cancel</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;cancel&#39;</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Save the editable. Fires the</span>
+<span class="cm">		 * &lt;a href=&quot;Editable.html#event_save&quot;&gt;save&lt;/a&gt; event.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method save</span>
+<span class="cm">		 */</span>
+		<span class="nx">save</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;save&#39;</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Fires the &lt;a href=&quot;Editable.html#event_stopEditing&quot;&gt;stopEditing&lt;/a&gt;</span>
+<span class="cm">         * event.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _afterFocusedChangeEditable</span>
+<span class="cm">		 * @param {EventFacade} event</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_afterFocusedChangeEditable</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;stopEditing&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;visible&#39;</span><span class="p">));</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Create the Events.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _createEvents</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_createEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Handles the startEditing event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @event startEditing</span>
+<span class="cm">			 * @preventable _defStartEditingFn</span>
+<span class="cm">			 * @param {Event.Facade} event The startEditing event.</span>
+<span class="cm">			 * @type {Event.Custom}</span>
+<span class="cm">			 */</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
+				<span class="s1">&#39;startEditing&#39;</span><span class="p">,</span>
+				<span class="p">{</span>
+					<span class="nx">bubbles</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+					<span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defStartEditingFn</span><span class="p">,</span>
+					<span class="nx">emitFacade</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+					<span class="nx">queable</span><span class="o">:</span> <span class="kc">false</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Handles the stopEditing event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @event stopEditing</span>
+<span class="cm">			 * @preventable _defStopEditingFn</span>
+<span class="cm">			 * @param {Event.Facade} event The stopEditing event.</span>
+<span class="cm">			 * @type {Event.Custom}</span>
+<span class="cm">			 */</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
+				<span class="s1">&#39;stopEditing&#39;</span><span class="p">,</span>
+				<span class="p">{</span>
+					<span class="nx">bubbles</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+					<span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defStopEditingFn</span><span class="p">,</span>
+					<span class="nx">emitFacade</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+					<span class="nx">queable</span><span class="o">:</span> <span class="kc">false</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Handles the save event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @event save</span>
+<span class="cm">			 * @preventable _defSaveFn</span>
+<span class="cm">			 * @param {Event.Facade} event The save event.</span>
+<span class="cm">			 * @type {Event.Custom}</span>
+<span class="cm">			 */</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
+				<span class="s1">&#39;save&#39;</span><span class="p">,</span>
+				<span class="p">{</span>
+					<span class="nx">bubbles</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+					<span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defSaveFn</span><span class="p">,</span>
+					<span class="nx">emitFacade</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+					<span class="nx">queable</span><span class="o">:</span> <span class="kc">false</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Handles the cancel event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @event cancel</span>
+<span class="cm">			 * @preventable _defCancelFn</span>
+<span class="cm">			 * @param {Event.Facade} event The cancel event.</span>
+<span class="cm">			 * @type {Event.Custom}</span>
+<span class="cm">			 */</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
+				<span class="s1">&#39;cancel&#39;</span><span class="p">,</span>
+				<span class="p">{</span>
+					<span class="nx">bubbles</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+					<span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defCancelFn</span><span class="p">,</span>
+					<span class="nx">emitFacade</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+					<span class="nx">queable</span><span class="o">:</span> <span class="kc">false</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Fires the cancel event.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _defCancelFn</span>
+<span class="cm">		 * @param {EventFacade} event cancel event facade</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_defCancelFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;stopEditing&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Fires the startEditing event.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _defStartEditingFn</span>
+<span class="cm">		 * @param {EventFacade} event startEditing event facade</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_defStartEditingFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
+
+			<span class="kd">var</span> <span class="nx">inputNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">inputNode</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">nodeHeight</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetHeight&#39;</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">nodeWidth</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetWidth&#39;</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+
+			<span class="nx">node</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_EDITING</span><span class="p">);</span>
+
+			<span class="kd">var</span> <span class="nx">xy</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">getXY</span><span class="p">();</span>
+
+			<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">(</span>
+				<span class="p">{</span>
+					<span class="nx">height</span><span class="o">:</span> <span class="nx">nodeHeight</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span>
+					<span class="nx">left</span><span class="o">:</span> <span class="nx">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span>
+					<span class="nx">top</span><span class="o">:</span> <span class="nx">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span>
+					<span class="nx">width</span><span class="o">:</span> <span class="nx">nodeWidth</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+
+			<span class="kd">var</span> <span class="nx">inputField</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_comboBox</span><span class="p">.</span><span class="nx">_field</span>
+
+			<span class="nx">inputField</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">nodeWidth</span><span class="p">);</span>
+			<span class="nx">inputField</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;adjustSize&#39;</span><span class="p">);</span>
+
+			<span class="nx">inputNode</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
+			<span class="nx">inputNode</span><span class="p">.</span><span class="nx">select</span><span class="p">();</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Fires the stopEditing event.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _defStopEditingFn</span>
+<span class="cm">		 * @param {EventFacade} event stopEditing event facade</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_defStopEditingFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">save</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_EDITING</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">save</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;contentText&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">inputNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">));</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_setInput</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentText&#39;</span><span class="p">));</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Fires the save event.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _defSaveFn</span>
+<span class="cm">		 * @param {EventFacade} event save event facade</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_defSaveFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;stopEditing&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Fires &lt;code&gt;onkeypress&lt;/code&gt; occurs on the editable element.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _onKeypressEditable</span>
+<span class="cm">		 * @param {EventFacade} event</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_onKeypressEditable</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">keyCode</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="mi">27</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">cancel</span><span class="p">();</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="mi">13</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;inputType&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;text&#39;</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Fires &lt;code&gt;onmouseenter&lt;/code&gt; occurs on the editable element.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _onMouseEnterEditable</span>
+<span class="cm">		 * @param {EventFacade} event</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_onMouseEnterEditable</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_HOVER</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Fires &lt;code&gt;onmouseleave&lt;/code&gt; occurs on the editable element.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _onMouseLeaveEditable</span>
+<span class="cm">		 * @param {EventFacade} event</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_onMouseLeaveEditable</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_HOVER</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Set the value of the &lt;a</span>
+<span class="cm">         * href=&quot;Editable.html#property_inputNode&quot;&gt;inputNode&lt;/a&gt;.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _setInput</span>
+<span class="cm">		 * @param {String} value Value of the input.</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_setInput</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">inputFormatter</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;formatInput&#39;</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">inputFormatter</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">value</span> <span class="o">=</span> <span class="nx">inputFormatter</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="p">{</span>
+				<span class="nx">value</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_toText</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">inputNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Set the &lt;code&gt;innerHTML&lt;/code&gt; of the &lt;a</span>
+<span class="cm">         * href=&quot;Editable.html#config_node&quot;&gt;node&lt;/a&gt;.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _setOutput</span>
+<span class="cm">		 * @param {String} value</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_setOutput</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">outputFormatter</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;formatOutput&#39;</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">outputFormatter</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">value</span> <span class="o">=</span> <span class="nx">outputFormatter</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="p">{</span>
+				<span class="nx">value</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_toHTML</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Fires when start editing.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _startEditing</span>
+<span class="cm">		 * @param {EventFacade} event</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_startEditing</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;rendered&#39;</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;renderTo&#39;</span><span class="p">));</span>
+			<span class="p">}</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;startEditing&#39;</span><span class="p">);</span>
+
+			<span class="nx">event</span><span class="p">.</span><span class="nx">halt</span><span class="p">();</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Sync the content text.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _syncContentText</span>
+<span class="cm">		 * @param {EventFacade} event</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_syncContentText</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">event</span><span class="p">.</span><span class="nx">initial</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">contentText</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_setInput</span><span class="p">(</span><span class="nx">contentText</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_setOutput</span><span class="p">(</span><span class="nx">contentText</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Converts the new lines &lt;code&gt;\n&lt;/code&gt; to &lt;code&gt;&lt;br/&gt;&lt;/code&gt; (i.e.,</span>
+<span class="cm">         * nl2br).</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _toHTML</span>
+<span class="cm">		 * @param {String} text Input text.</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 * @return {String}</span>
+<span class="cm">		 */</span>
+		<span class="nx">_toHTML</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="k">return</span> <span class="nb">String</span><span class="p">(</span><span class="nx">text</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\n/gim</span><span class="p">,</span> <span class="s1">&#39;&lt;br/&gt;&#39;</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Converts HTML to text.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _toText</span>
+<span class="cm">		 * @param {String} text HTML input.</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 * @return {String}</span>
+<span class="cm">		 */</span>
+		<span class="nx">_toText</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+
+			<span class="nx">text</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&lt;br\s*\/?&gt;/gim</span><span class="p">,</span> <span class="s1">&#39;\n&#39;</span><span class="p">);</span>
+
+			<span class="nx">text</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(&lt;\/?[^&gt;]+&gt;|\t)/gim</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+			<span class="k">return</span> <span class="nx">text</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">);</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">Editable</span> <span class="o">=</span> <span class="nx">Editable</span><span class="p">;</span>
+
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;aui-form-combobox&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Dialog.html#method__afterRenderer", "access": "protected", "host": "Dialog", "type": "method", "name": "_afterRenderer"}, {"url": "Dialog.html#method__afterSetVisible", "access": "protected", "host": "Dialog", "type": "method", "name": "_afterSetVisible"}, {"url": "Dialog.html#method_bindUI", "access": "protected", "host": "Dialog", "type": "method", "name": "bindUI"}, {"url": "Dialog.html#config_bodyContent", "access": "", "host": "Dialog", "type": "config", "name": "bodyContent"}, {"url": "Dialog.html#event_bodyContentChange", "access": "", "host": "Dialog", "type": "event", "name": "bodyContentChange"}, {"url": "Dialog.html#config_buttons", "access": "", "host": "Dialog", "type": "config", "name": "buttons"}, {"url": "Dialog.html#event_buttonsChange", "access": "", "host": "Dialog", "type": "event", "name": "buttonsChange"}, {"url": "Dialog.html#method_close", "access": "", "host": "Dialog", "type": "method", "name": "close"}, {"url": "Dialog.html#config_close", "access": "", "host": "Dialog", "type": "config", "name": "close"}, {"url": "DialogManager.html#method_closeByChild", "access": "", "host": "DialogManager", "type": "method", "name": "closeByChild"}, {"url": "Dialog.html#event_closeChange", "access": "", "host": "Dialog", "type": "event", "name": "closeChange"}, {"url": "Dialog.html#config_constrain2view", "access": "", "host": "Dialog", "type": "config", "name": "constrain2view"}, {"url": "Dialog.html#event_constrain2viewChange", "access": "", "host": "Dialog", "type": "event", "name": "constrain2viewChange"}, {"url": "Dialog.html#config_destroyOnClose", "access": "", "host": "Dialog", "type": "config", "name": "destroyOnClose"}, {"url": "Dialog.html#event_destroyOnCloseChange", "access": "", "host": "Dialog", "type": "event", "name": "destroyOnCloseChange"}, {"url": "Dialog.html#method_destructor", "access": "protected", "host": "Dialog", "type": "method", "name": "destructor"}, {"url": "Dialog.html#property_Dialog.ATTRS", "access": "", "host": "Dialog", "type": "property", "name": "Dialog.ATTRS"}, {"url": "Dialog.html#property_Dialog.NAME", "access": "", "host": "Dialog", "type": "property", "name": "Dialog.NAME"}, {"url": "Dialog.html#config_draggable", "access": "", "host": "Dialog", "type": "config", "name": "draggable"}, {"url": "Dialog.html#event_draggableChange", "access": "", "host": "Dialog", "type": "event", "name": "draggableChange"}, {"url": "Dialog.html#config_dragInstance", "access": "", "host": "Dialog", "type": "config", "name": "dragInstance"}, {"url": "Dialog.html#event_dragInstanceChange", "access": "", "host": "Dialog", "type": "event", "name": "dragInstanceChange"}, {"url": "DialogManager.html#method_findByChild", "access": "", "host": "DialogManager", "type": "method", "name": "findByChild"}, {"url": "Dialog.html#method__handleEvent", "access": "protected", "host": "Dialog", "type": "method", "name": "_handleEvent"}, {"url": "Dialog.html#method__initButtons", "access": "protected", "host": "Dialog", "type": "method", "name": "_initButtons"}, {"url": "Dialog.html#method_initializer", "access": "protected", "host": "Dialog", "type": "method", "name": "initializer"}, {"url": "Dialog.html#config_modal", "access": "", "host": "Dialog", "type": "config", "name": "modal"}, {"url": "Dialog.html#event_modalChange", "access": "", "host": "Dialog", "type": "event", "name": "modalChange"}, {"url": "DialogManager.html#method_refreshByChild", "access": "", "host": "DialogManager", "type": "method", "name": "refreshByChild"}, {"url": "Dialog.html#config_resizable", "access": "", "host": "Dialog", "type": "config", "name": "resizable"}, {"url": "Dialog.html#event_resizableChange", "access": "", "host": "Dialog", "type": "event", "name": "resizableChange"}, {"url": "Dialog.html#config_resizableInstance", "access": "", "host": "Dialog", "type": "config", "name": "resizableInstance"}, {"url": "Dialog.html#event_resizableInstanceChange", "access": "", "host": "Dialog", "type": "event", "name": "resizableInstanceChange"}, {"url": "Dialog.html#method__setDraggable", "access": "protected", "host": "Dialog", "type": "method", "name": "_setDraggable"}, {"url": "Dialog.html#method__setModal", "access": "protected", "host": "Dialog", "type": "method", "name": "_setModal"}, {"url": "Dialog.html#method__setResizable", "access": "protected", "host": "Dialog", "type": "method", "name": "_setResizable"}, {"url": "Dialog.html#method__setStack", "access": "protected", "host": "Dialog", "type": "method", "name": "_setStack"}, {"url": "Dialog.html#config_stack", "access": "", "host": "Dialog", "type": "config", "name": "stack"}, {"url": "Dialog.html#event_stackChange", "access": "", "host": "Dialog", "type": "event", "name": "stackChange"}];
+</script>
+</body>
+</html>

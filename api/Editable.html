@@ -1,0 +1,2354 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-editable  Editable   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-editable&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-editable.html" title="aui-editable">aui-editable</a>
+
+	                 <span class="separator">&gt;</span> <span class="classname">Editable</span> 
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+
+			                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                <li class="selected"><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                <li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class="selected"><a href="Editable.html" title="Editable">Editable</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-configuration">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-configuration-hd">
+										<span class="aui-widget-hd-text">Configuration Attributes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#config_cancelButton" title="cancelButton">cancelButton</a></li>
+												<li class=""><a href="#config_contentText" title="contentText">contentText</a></li>
+												<li class=""><a href="#config_eventType" title="eventType">eventType</a></li>
+												<li class=""><a href="#config_formatInput" title="formatInput">formatInput</a></li>
+												<li class=""><a href="#config_formatOutput" title="formatOutput">formatOutput</a></li>
+												<li class=""><a href="#config_inputType" title="inputType">inputType</a></li>
+												<li class=""><a href="#config_node" title="node">node</a></li>
+												<li class=""><a href="#config_renderTo" title="renderTo">renderTo</a></li>
+												<li class=""><a href="#config_saveButton" title="saveButton">saveButton</a></li>
+												<li class=""><a href="#config_tools" title="tools">tools</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-properties">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-properties-hd">
+										<span class="aui-widget-hd-text">Properties</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+				                                <li class=""><a href="#property_Editable.ATTRS" title="Editable.ATTRS">Editable.ATTRS</a></li>
+
+				                                <li class=""><a href="#property_Editable.NAME" title="Editable.NAME">Editable.NAME</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-methods">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-methods-hd">
+										<span class="aui-widget-hd-text">Methods</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+				                               <li class="protected"><a href="#method__afterFocusedChangeEditable" title="_afterFocusedChangeEditable">_afterFocusedChangeEditable</a></li>
+				                               <li class="protected"><a href="#method__createEvents" title="_createEvents">_createEvents</a></li>
+				                               <li class="protected"><a href="#method__defCancelFn" title="_defCancelFn">_defCancelFn</a></li>
+				                               <li class="protected"><a href="#method__defSaveFn" title="_defSaveFn">_defSaveFn</a></li>
+				                               <li class="protected"><a href="#method__defStartEditingFn" title="_defStartEditingFn">_defStartEditingFn</a></li>
+				                               <li class="protected"><a href="#method__defStopEditingFn" title="_defStopEditingFn">_defStopEditingFn</a></li>
+				                               <li class="protected"><a href="#method__onKeypressEditable" title="_onKeypressEditable">_onKeypressEditable</a></li>
+				                               <li class="protected"><a href="#method__onMouseEnterEditable" title="_onMouseEnterEditable">_onMouseEnterEditable</a></li>
+				                               <li class="protected"><a href="#method__onMouseLeaveEditable" title="_onMouseLeaveEditable">_onMouseLeaveEditable</a></li>
+				                               <li class="protected"><a href="#method__setInput" title="_setInput">_setInput</a></li>
+				                               <li class="protected"><a href="#method__setOutput" title="_setOutput">_setOutput</a></li>
+				                               <li class="protected"><a href="#method__startEditing" title="_startEditing">_startEditing</a></li>
+				                               <li class="protected"><a href="#method__syncContentText" title="_syncContentText">_syncContentText</a></li>
+				                               <li class="protected"><a href="#method__toHTML" title="_toHTML">_toHTML</a></li>
+				                               <li class="protected"><a href="#method__toText" title="_toText">_toText</a></li>
+				                               <li class="protected"><a href="#method_bindUI" title="bindUI">bindUI</a></li>
+				                               <li class=""><a href="#method_cancel" title="cancel">cancel</a></li>
+				                               <li class="protected"><a href="#method_initializer" title="initializer">initializer</a></li>
+				                               <li class="protected"><a href="#method_renderUI" title="renderUI">renderUI</a></li>
+				                               <li class=""><a href="#method_save" title="save">save</a></li>
+				                               <li class="protected"><a href="#method_syncUI" title="syncUI">syncUI</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-events">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-events-hd">
+										<span class="aui-widget-hd-text">Events</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#event_cancel" title="cancel">cancel</a></li>
+												<li class=""><a href="#event_cancelButtonChange" title="cancelButtonChange">cancelButtonChange</a></li>
+												<li class=""><a href="#event_contentTextChange" title="contentTextChange">contentTextChange</a></li>
+												<li class=""><a href="#event_eventTypeChange" title="eventTypeChange">eventTypeChange</a></li>
+												<li class=""><a href="#event_formatInputChange" title="formatInputChange">formatInputChange</a></li>
+												<li class=""><a href="#event_formatOutputChange" title="formatOutputChange">formatOutputChange</a></li>
+												<li class=""><a href="#event_inputTypeChange" title="inputTypeChange">inputTypeChange</a></li>
+												<li class=""><a href="#event_nodeChange" title="nodeChange">nodeChange</a></li>
+												<li class=""><a href="#event_renderToChange" title="renderToChange">renderToChange</a></li>
+												<li class=""><a href="#event_save" title="save">save</a></li>
+												<li class=""><a href="#event_saveButtonChange" title="saveButtonChange">saveButtonChange</a></li>
+												<li class=""><a href="#event_startEditing" title="startEditing">startEditing</a></li>
+												<li class=""><a href="#event_stopEditing" title="stopEditing">stopEditing</a></li>
+												<li class=""><a href="#event_toolsChange" title="toolsChange">toolsChange</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="aui-editable-min.js.html" title="aui-editable-min.js">aui-editable-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-editable.js.html" title="aui-editable.js">aui-editable.js</a></li>
+
+
+			                                <li class=""><a href="aui-event-input.js.html" title="aui-event-input.js">aui-event-input.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<h2>
+								
+
+								
+
+								
+
+								Class <b property="yui:name">Editable</b>
+
+									<span class="extends">- extends <a href="Component.html" title="Component">Component</a></span>
+
+							</h2>
+
+							<!-- class tree goes here -->
+
+
+
+							<div class="summary description" property="yui:description">
+								<p><img src="assets/images/aui-editable/main.png"/></p>
+A base class for Editable, providing:
+<ul>
+<li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+<li>Edit in place elements</li>
+</ul>
+Quick Example:<br/>
+<pre><code>var instance = new A.Editable({
+node: '#editor'
+}).render();
+</code></pre>
+Check the list of <a href="Editable.html#configattributes">Configuration Attributes</a> available for
+Editable.
+							</div>
+
+								<div class="section constructor details" rel="yui:constructor" resource="#constructor">
+									<h3 id="constructor">Constructor</h3>
+
+									<div class="content">
+										<div class="detail">
+											<strong property="yui:name">Editable</strong>
+
+											<code>
+												(
+
+													
+															
+															config
+												)
+											</code>
+
+											<div class="description">
+													<dl rel="yui:parameters">
+														<dt>Parameters:</dt>
+															<dd rel="yui:parameter">
+																<code><span property="yui:name">config</span>
+																&lt;<span property="yui:type">Object</span>&gt;
+																</code>
+
+																<span property="yui:description">  Object literal specifying widget configuration properties.</span>
+															</dd>
+													</dl>
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+							<div rel="yui:properties" resource="#properties">
+
+								<div class="section field details">
+
+									<h3 id="properties">Properties</h3>
+
+									<div class="content">
+
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_Editable.ATTRS">
+
+											<h4>
+												<a name="property_Editable.ATTRS" property="yui:name">Editable.ATTRS</a>
+												- <code>static <span property="yui:type">Object</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Static property used to define the default attribute
+configuration for the Editable.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_Editable.NAME">
+
+											<h4>
+												<a name="property_Editable.NAME" property="yui:name">Editable.NAME</a>
+												- <code>static <span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Static property provides a string to identify the class.
+												</div>
+											</div>
+
+
+
+
+											</div>
+									</div>
+								</div>
+
+								<div rel="yui:inheritance">
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Component.html">
+
+										<h4>
+											Properties inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+											</code>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div rel="yui:attributes" resource="#configattributes">
+
+									<div class="section field details">
+
+										<h3 id="configattributes">Configuration Attributes</h3>
+
+										<div class="content">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_cancelButton">
+
+													<h4>
+														<a name="config_cancelButton">cancelButton</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															<a href="ToolSet.html">ToolSet</a> constructor Object for the
+cancelButton.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>ToolSet constructor Object.</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_contentText">
+
+													<h4>
+														<a name="config_contentText">contentText</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Content text.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>''</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_eventType">
+
+													<h4>
+														<a name="config_eventType">eventType</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Event type to initialize the editable.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>'click'</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_formatInput">
+
+													<h4>
+														<a name="config_formatInput">formatInput</a>
+														<code>- <span property="yui:type">function</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Function to format the input text displayed on the input.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>null</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_formatOutput">
+
+													<h4>
+														<a name="config_formatOutput">formatOutput</a>
+														<code>- <span property="yui:type">function</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Function to format the output text displayed on the input.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>null</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_inputType">
+
+													<h4>
+														<a name="config_inputType">inputType</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Type of the input used to edit the <a
+href="Editable.html#config_node">node</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>'text'</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_node">
+
+													<h4>
+														<a name="config_node">node</a>
+														<code>- <span property="yui:type">Node</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Node to setup the editable.
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_renderTo">
+
+													<h4>
+														<a name="config_renderTo">renderTo</a>
+														<code>- <span property="yui:type">String | Node</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Node to render the editable.
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_saveButton">
+
+													<h4>
+														<a name="config_saveButton">saveButton</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															<a href="ToolSet.html">ToolSet</a> constructor Object for the
+saveButton.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>ToolSet constructor Object.</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_tools">
+
+													<h4>
+														<a name="config_tools">tools</a>
+														<code>- <span property="yui:type">Array</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Array with tools for the <a href="ToolSet.html">ToolSet</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>[]</strong>
+													</div>
+
+												</div>
+
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="Component.html">
+												<h4>Configuration attributes inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_cssClass">
+															<a href="Component.html#config_cssClass" property="yui:name" title="cssClass">cssClass</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_hideClass">
+															<a href="Component.html#config_hideClass" property="yui:name" title="hideClass">hideClass</a><span>,</span>
+															</div>
+														
+															
+															
+
+															<div class="deprecated" rel="yui:attribute" resource="Component.html#config_owner">
+															<a href="Component.html#config_owner" property="yui:name" title="owner">owner</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_relayEvents">
+															<a href="Component.html#config_relayEvents" property="yui:name" title="relayEvents">relayEvents</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_render">
+															<a href="Component.html#config_render" property="yui:name" title="render">render</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+									</div>
+
+
+							</div>
+
+							<div rel="yui:methods" resource="#methods">
+									<div class="section method details">
+
+										<h3 id="methods">Methods</h3>
+
+										<div class="content">
+
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterFocusedChangeEditable">
+
+													<h4>
+														<a name="method__afterFocusedChangeEditable">_afterFocusedChangeEditable</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_afterFocusedChangeEditable</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires the <a href="Editable.html#event_stopEditing">stopEditing</a>
+event.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__createEvents">
+
+													<h4>
+														<a name="method__createEvents">_createEvents</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_createEvents</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Create the Events.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__defCancelFn">
+
+													<h4>
+														<a name="method__defCancelFn">_defCancelFn</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_defCancelFn</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires the cancel event.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"> cancel event facade</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__defSaveFn">
+
+													<h4>
+														<a name="method__defSaveFn">_defSaveFn</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_defSaveFn</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires the save event.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"> save event facade</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__defStartEditingFn">
+
+													<h4>
+														<a name="method__defStartEditingFn">_defStartEditingFn</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_defStartEditingFn</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires the startEditing event.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"> startEditing event facade</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__defStopEditingFn">
+
+													<h4>
+														<a name="method__defStopEditingFn">_defStopEditingFn</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_defStopEditingFn</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires the stopEditing event.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"> stopEditing event facade</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onKeypressEditable">
+
+													<h4>
+														<a name="method__onKeypressEditable">_onKeypressEditable</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onKeypressEditable</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires <code>onkeypress</code> occurs on the editable element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onMouseEnterEditable">
+
+													<h4>
+														<a name="method__onMouseEnterEditable">_onMouseEnterEditable</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onMouseEnterEditable</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires <code>onmouseenter</code> occurs on the editable element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onMouseLeaveEditable">
+
+													<h4>
+														<a name="method__onMouseLeaveEditable">_onMouseLeaveEditable</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onMouseLeaveEditable</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires <code>onmouseleave</code> occurs on the editable element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__setInput">
+
+													<h4>
+														<a name="method__setInput">_setInput</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_setInput</strong>
+														   (
+																
+																		
+																		 value
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Set the value of the <a
+href="Editable.html#property_inputNode">inputNode</a>.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">value</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> Value of the input.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__setOutput">
+
+													<h4>
+														<a name="method__setOutput">_setOutput</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_setOutput</strong>
+														   (
+																
+																		
+																		 value
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Set the <code>innerHTML</code> of the <a
+href="Editable.html#config_node">node</a>.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">value</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__startEditing">
+
+													<h4>
+														<a name="method__startEditing">_startEditing</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_startEditing</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when start editing.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__syncContentText">
+
+													<h4>
+														<a name="method__syncContentText">_syncContentText</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_syncContentText</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sync the content text.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__toHTML">
+
+													<h4>
+														<a name="method__toHTML">_toHTML</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														String
+															<strong property="yui:name">_toHTML</strong>
+														   (
+																
+																		
+																		 text
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Converts the new lines <code>\n</code> to <code><br/></code> (i.e.,
+nl2br).
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">text</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> Input text.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__toText">
+
+													<h4>
+														<a name="method__toText">_toText</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														String
+															<strong property="yui:name">_toText</strong>
+														   (
+																
+																		
+																		 text
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Converts HTML to text.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">text</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> HTML input.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_bindUI">
+
+													<h4>
+														<a name="method_bindUI">bindUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">bindUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Bind the events on the Editable UI. Lifecycle.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_cancel">
+
+													<h4>
+														<a name="method_cancel">cancel</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">cancel</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Cancel the editable. Return to the original state.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_initializer">
+
+													<h4>
+														<a name="method_initializer">initializer</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">initializer</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Construction logic executed during Editable instantiation. Lifecycle.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_renderUI">
+
+													<h4>
+														<a name="method_renderUI">renderUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">renderUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Create the DOM structure for the Editable. Lifecycle.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_save">
+
+													<h4>
+														<a name="method_save">save</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">save</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Save the editable. Fires the
+<a href="Editable.html#event_save">save</a> event.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_syncUI">
+
+													<h4>
+														<a name="method_syncUI">syncUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">syncUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sync the Editable UI. Lifecycle.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+
+									<div rel="yui:inheritance">
+
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Component.html">
+
+											<h4>
+												Methods inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentDestroy">
+														<a href="Component.html#method__afterComponentDestroy" property="yui:name" title="_afterComponentDestroy">_afterComponentDestroy</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentOwnerChange">
+														<a href="Component.html#method__afterComponentOwnerChange" property="yui:name" title="_afterComponentOwnerChange">_afterComponentOwnerChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentRelayEventsChange">
+														<a href="Component.html#method__afterComponentRelayEventsChange" property="yui:name" title="_afterComponentRelayEventsChange">_afterComponentRelayEventsChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentVisibleChange">
+														<a href="Component.html#method__afterComponentVisibleChange" property="yui:name" title="_afterComponentVisibleChange">_afterComponentVisibleChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterCssClassChange">
+														<a href="Component.html#method__afterCssClassChange" property="yui:name" title="_afterCssClassChange">_afterCssClassChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__relayEvents">
+														<a href="Component.html#method__relayEvents" property="yui:name" title="_relayEvents">_relayEvents</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__setComponentClassNames">
+														<a href="Component.html#method__setComponentClassNames" property="yui:name" title="_setComponentClassNames">_setComponentClassNames</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__setRelayEvents">
+														<a href="Component.html#method__setRelayEvents" property="yui:name" title="_setRelayEvents">_setRelayEvents</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__uiSetCssClass">
+														<a href="Component.html#method__uiSetCssClass" property="yui:name" title="_uiSetCssClass">_uiSetCssClass</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Component.html#method_clone">
+														<a href="Component.html#method_clone" property="yui:name" title="clone">clone</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method_initializer">
+														<a href="Component.html#method_initializer" property="yui:name" title="initializer">initializer</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Component.html#method_toggle">
+														<a href="Component.html#method_toggle" property="yui:name" title="toggle">toggle</a>
+														</div>
+												</code>
+											</div>
+										</div>
+									</div>
+							</div>
+
+							<div rel="yui:events" resource="#events">
+									<div class="section method details">
+										<h3 id="events">Events</h3>
+
+										<div class="content">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_cancel">
+
+													<h4>
+														<a name="event_cancel">cancel</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">cancel</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the cancel event.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The cancel event.</span>
+																		</dd>
+
+																</dl>
+
+
+																<div class="preventable">
+																	<strong>Preventable:</strong>
+																	This event is preventable by method e.preventDefault().  The default function executed by this event is _defCancelFn.
+																</div>
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_cancelButtonChange">
+
+													<h4>
+														<a name="event_cancelButtonChange">cancelButtonChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">cancelButtonChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'cancelButton' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_contentTextChange">
+
+													<h4>
+														<a name="event_contentTextChange">contentTextChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">contentTextChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'contentText' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_eventTypeChange">
+
+													<h4>
+														<a name="event_eventTypeChange">eventTypeChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">eventTypeChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'eventType' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_formatInputChange">
+
+													<h4>
+														<a name="event_formatInputChange">formatInputChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">formatInputChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'formatInput' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_formatOutputChange">
+
+													<h4>
+														<a name="event_formatOutputChange">formatOutputChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">formatOutputChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'formatOutput' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_inputTypeChange">
+
+													<h4>
+														<a name="event_inputTypeChange">inputTypeChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">inputTypeChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'inputType' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_nodeChange">
+
+													<h4>
+														<a name="event_nodeChange">nodeChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">nodeChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'node' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_renderToChange">
+
+													<h4>
+														<a name="event_renderToChange">renderToChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">renderToChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'renderTo' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_save">
+
+													<h4>
+														<a name="event_save">save</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">save</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the save event.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The save event.</span>
+																		</dd>
+
+																</dl>
+
+
+																<div class="preventable">
+																	<strong>Preventable:</strong>
+																	This event is preventable by method e.preventDefault().  The default function executed by this event is _defSaveFn.
+																</div>
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_saveButtonChange">
+
+													<h4>
+														<a name="event_saveButtonChange">saveButtonChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">saveButtonChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'saveButton' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_startEditing">
+
+													<h4>
+														<a name="event_startEditing">startEditing</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">startEditing</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the startEditing event.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The startEditing event.</span>
+																		</dd>
+
+																</dl>
+
+
+																<div class="preventable">
+																	<strong>Preventable:</strong>
+																	This event is preventable by method e.preventDefault().  The default function executed by this event is _defStartEditingFn.
+																</div>
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_stopEditing">
+
+													<h4>
+														<a name="event_stopEditing">stopEditing</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">stopEditing</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the stopEditing event.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The stopEditing event.</span>
+																		</dd>
+
+																</dl>
+
+
+																<div class="preventable">
+																	<strong>Preventable:</strong>
+																	This event is preventable by method e.preventDefault().  The default function executed by this event is _defStopEditingFn.
+																</div>
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_toolsChange">
+
+													<h4>
+														<a name="event_toolsChange">toolsChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">toolsChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'tools' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+										<div class="section field inheritance events" rel="yui:superclass"  resource="Component.html">
+											<h4>
+												Events inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_cssClassChange">
+														<a href="Component.html#event_cssClassChange" property="yui:name" title="cssClassChange">cssClassChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_hideClassChange">
+														<a href="Component.html#event_hideClassChange" property="yui:name" title="hideClassChange">hideClassChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_ownerChange">
+														<a href="Component.html#event_ownerChange" property="yui:name" title="ownerChange">ownerChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_relayEventsChange">
+														<a href="Component.html#event_relayEventsChange" property="yui:name" title="relayEventsChange">relayEventsChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_renderChange">
+														<a href="Component.html#event_renderChange" property="yui:name" title="renderChange">renderChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+
+									</div>
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Editable.html#method__afterFocusedChangeEditable", "access": "protected", "host": "Editable", "type": "method", "name": "_afterFocusedChangeEditable"}, {"url": "Editable.html#method_bindUI", "access": "protected", "host": "Editable", "type": "method", "name": "bindUI"}, {"url": "Editable.html#method_cancel", "access": "", "host": "Editable", "type": "method", "name": "cancel"}, {"url": "Editable.html#event_cancel", "access": "", "host": "Editable", "type": "event", "name": "cancel"}, {"url": "Editable.html#config_cancelButton", "access": "", "host": "Editable", "type": "config", "name": "cancelButton"}, {"url": "Editable.html#event_cancelButtonChange", "access": "", "host": "Editable", "type": "event", "name": "cancelButtonChange"}, {"url": "Editable.html#config_contentText", "access": "", "host": "Editable", "type": "config", "name": "contentText"}, {"url": "Editable.html#event_contentTextChange", "access": "", "host": "Editable", "type": "event", "name": "contentTextChange"}, {"url": "Editable.html#method__createEvents", "access": "protected", "host": "Editable", "type": "method", "name": "_createEvents"}, {"url": "Editable.html#method__defCancelFn", "access": "protected", "host": "Editable", "type": "method", "name": "_defCancelFn"}, {"url": "Editable.html#method__defSaveFn", "access": "protected", "host": "Editable", "type": "method", "name": "_defSaveFn"}, {"url": "Editable.html#method__defStartEditingFn", "access": "protected", "host": "Editable", "type": "method", "name": "_defStartEditingFn"}, {"url": "Editable.html#method__defStopEditingFn", "access": "protected", "host": "Editable", "type": "method", "name": "_defStopEditingFn"}, {"url": "Editable.html#property_Editable.ATTRS", "access": "", "host": "Editable", "type": "property", "name": "Editable.ATTRS"}, {"url": "Editable.html#property_Editable.NAME", "access": "", "host": "Editable", "type": "property", "name": "Editable.NAME"}, {"url": "Editable.html#config_eventType", "access": "", "host": "Editable", "type": "config", "name": "eventType"}, {"url": "Editable.html#event_eventTypeChange", "access": "", "host": "Editable", "type": "event", "name": "eventTypeChange"}, {"url": "Editable.html#config_formatInput", "access": "", "host": "Editable", "type": "config", "name": "formatInput"}, {"url": "Editable.html#event_formatInputChange", "access": "", "host": "Editable", "type": "event", "name": "formatInputChange"}, {"url": "Editable.html#config_formatOutput", "access": "", "host": "Editable", "type": "config", "name": "formatOutput"}, {"url": "Editable.html#event_formatOutputChange", "access": "", "host": "Editable", "type": "event", "name": "formatOutputChange"}, {"url": "Editable.html#method_initializer", "access": "protected", "host": "Editable", "type": "method", "name": "initializer"}, {"url": "Editable.html#config_inputType", "access": "", "host": "Editable", "type": "config", "name": "inputType"}, {"url": "Editable.html#event_inputTypeChange", "access": "", "host": "Editable", "type": "event", "name": "inputTypeChange"}, {"url": "Editable.html#config_node", "access": "", "host": "Editable", "type": "config", "name": "node"}, {"url": "Editable.html#event_nodeChange", "access": "", "host": "Editable", "type": "event", "name": "nodeChange"}, {"url": "Editable.html#method__onKeypressEditable", "access": "protected", "host": "Editable", "type": "method", "name": "_onKeypressEditable"}, {"url": "Editable.html#method__onMouseEnterEditable", "access": "protected", "host": "Editable", "type": "method", "name": "_onMouseEnterEditable"}, {"url": "Editable.html#method__onMouseLeaveEditable", "access": "protected", "host": "Editable", "type": "method", "name": "_onMouseLeaveEditable"}, {"url": "Editable.html#config_renderTo", "access": "", "host": "Editable", "type": "config", "name": "renderTo"}, {"url": "Editable.html#event_renderToChange", "access": "", "host": "Editable", "type": "event", "name": "renderToChange"}, {"url": "Editable.html#method_renderUI", "access": "protected", "host": "Editable", "type": "method", "name": "renderUI"}, {"url": "Editable.html#method_save", "access": "", "host": "Editable", "type": "method", "name": "save"}, {"url": "Editable.html#event_save", "access": "", "host": "Editable", "type": "event", "name": "save"}, {"url": "Editable.html#config_saveButton", "access": "", "host": "Editable", "type": "config", "name": "saveButton"}, {"url": "Editable.html#event_saveButtonChange", "access": "", "host": "Editable", "type": "event", "name": "saveButtonChange"}, {"url": "Editable.html#method__setInput", "access": "protected", "host": "Editable", "type": "method", "name": "_setInput"}, {"url": "Editable.html#method__setOutput", "access": "protected", "host": "Editable", "type": "method", "name": "_setOutput"}, {"url": "Editable.html#method__startEditing", "access": "protected", "host": "Editable", "type": "method", "name": "_startEditing"}, {"url": "Editable.html#event_startEditing", "access": "", "host": "Editable", "type": "event", "name": "startEditing"}, {"url": "Editable.html#event_stopEditing", "access": "", "host": "Editable", "type": "event", "name": "stopEditing"}, {"url": "Editable.html#method__syncContentText", "access": "protected", "host": "Editable", "type": "method", "name": "_syncContentText"}, {"url": "Editable.html#method_syncUI", "access": "protected", "host": "Editable", "type": "method", "name": "syncUI"}, {"url": "Editable.html#method__toHTML", "access": "protected", "host": "Editable", "type": "method", "name": "_toHTML"}, {"url": "Editable.html#config_tools", "access": "", "host": "Editable", "type": "config", "name": "tools"}, {"url": "Editable.html#event_toolsChange", "access": "", "host": "Editable", "type": "event", "name": "toolsChange"}, {"url": "Editable.html#method__toText", "access": "protected", "host": "Editable", "type": "method", "name": "_toText"}];
+</script>
+</body>
+</html>
