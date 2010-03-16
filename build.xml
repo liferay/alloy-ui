@@ -4,8 +4,10 @@
 	<property name="release.name" value="alloy" />
 	<property name="release.temp.dir" value="${project.dir}/resources/temp/alloy/" />
 	<property name="release.version" value="0.1a"/>
+	<property name="yui3.build.version" value="nightly"/>
 	<property name="yui3.dir" value="${project.dir}/lib/yui3/" />
 	<property name="yui3.file" value="yui3.zip" />
+	<property name="yui3.version" value="3.1.0"/>
 
 	<import file="resources/builder/bootstrap.xml"/>
 
@@ -77,6 +79,23 @@
 				<include name="**/*"/>
 			</fileset>
 		</copy>
+		<echo>Adding YUI Copyright information</echo>
+		<copy todir="${project.dir}/build" includeEmptyDirs="false" overwrite="true" encoding="UTF-8">
+			<fileset dir="${project.dir}/lib/yui3/build">
+				<or>
+					<filename name="**/*.css"/>
+					<filename name="**/*.js"/>
+				</or>
+			</fileset>
+			<filterchain>
+				<concatfilter prepend="${project.dir}/resources/builder/templates/yui-copyright.txt"/>
+				<replacetokens>
+					<token key="VERSION" value="${yui3.version}"/>
+					<token key="BUILD" value="${yui3.build.version}"/>
+				</replacetokens>
+			</filterchain>
+		</copy>
+		
 	</target>
 
 	<target name="release" depends="clean-release">
