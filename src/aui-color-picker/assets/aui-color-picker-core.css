@@ -107,8 +107,8 @@
 }
 
 .aui-colorpicker-thumb-image {
-	display: block;
 	background: url(select.png) no-repeat 0 0;
-	width: 11px;
+	display: block;
 	height: 11px;
+	width: 11px;
 }

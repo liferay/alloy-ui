@@ -24,12 +24,12 @@ var Lang = A.Lang,
 	CSS_TRIGGER_IMAGE = getClassName(NAME, 'trigger-image'),
 
 	TPL_CANVAS = '<div class="' + CSS_CANVAS + '"></div>',
-	TPL_HUE_CANVAS = '<div class="' + CSS_HUE_CANVAS + '"></div>',
+	TPL_HUE_CANVAS = '<span class="' + CSS_HUE_CANVAS + '"></span>',
 	TPL_SWATCH_CONTAINER = '<div class="' + CSS_SWATCH_CONTAINER + '"></div>',
 	TPL_SWATCH_CURRENT = '<div class="' + CSS_SWATCH_CURRENT + '"></div>',
 	TPL_SWATCH_ORIGINAL = '<div class="' + CSS_SWATCH_ORIGINAL + '"></div>',
 	TPL_THUMB_CANVAS = '<div class="' + CSS_THUMB_CANVAS + '"><div class="' + CSS_THUMB_CANVAS_IMAGE + '"></div></div>',
-	TPL_THUMB_HUE = '<div class="' + CSS_HUE_THUMB + '"><div class="' + CSS_HUE_THUMB_IMAGE + '"></div></div>';
+	TPL_THUMB_HUE = '<span class="' + CSS_HUE_THUMB + '"><span class="' + CSS_HUE_THUMB_IMAGE + '"></span></span>';
 
 var Color = {
 	real2dec: function(number) {
@@ -405,7 +405,7 @@ ColorPicker.ATTRS = {
 
 A.extend(
 	ColorPicker,
-	A.ContextOverlay,
+	A.OverlayContext,
 	{
 		renderUI: function() {
 			var instance = this;
@@ -499,6 +499,7 @@ A.extend(
 			var instance = this;
 
 			if (event.newVal) {
+				instance.refreshAlign();
 				instance._hueSlider.syncUI();
 			}
 
@@ -759,11 +760,7 @@ A.extend(
 			instance._colorCanvas = A.Node.create(TPL_CANVAS);
 			instance._pickerThumb = A.Node.create(TPL_THUMB_CANVAS);
 
-			instance._hueCanvas = A.Node.create(TPL_HUE_CANVAS);
-			instance._hueThumb = A.Node.create(TPL_THUMB_HUE);
-
 			instance._colorCanvas.appendChild(instance._pickerThumb);
-			instance._hueCanvas.appendChild(instance._hueThumb);
 
 			instance._pickerContainer.appendChild(instance._colorCanvas);
 
@@ -783,14 +780,15 @@ A.extend(
 
 			instance._hueSlider = new A.Slider(
 				{
-					railSize: instance._hueCanvas.getComputedStyle('height'),
 					axis: 'y',
-					rail: instance._hueCanvas,
 					min: 0,
 					max: size,
-					thumb: instance._hueThumb
+					length: instance._colorCanvas.get('offsetHeight')
 				}
 			);
+
+			instance._hueSlider.RAIL_TEMPLATE = TPL_HUE_CANVAS;
+			instance._hueSlider.THUMB_TEMPLATE = TPL_THUMB_HUE;
 
 			instance._hueSlider.render(instance._pickerContainer);
 		},
