@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('history', function(Y) {
 
 /*global YUI */
@@ -661,4 +668,4 @@ YUI.add('history', function(Y) {
     Y.History = H;
 
 
-}, '@VERSION@' ,{skinnable:false, requires:['node-base']});
+}, '3.1.0' ,{skinnable:false, requires:['node-base']});

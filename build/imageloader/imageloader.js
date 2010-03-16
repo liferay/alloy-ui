@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('imageloader', function(Y) {
 
 /**
@@ -613,4 +620,4 @@ YUI.add('imageloader', function(Y) {
 
 
 
-}, '@VERSION@' ,{requires:['base-base', 'node-style', 'node-screen']});
+}, '3.1.0' ,{requires:['base-base', 'node-style', 'node-screen']});

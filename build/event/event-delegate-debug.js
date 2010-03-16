@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('event-delegate', function(Y) {
 
 /**
@@ -313,4 +320,4 @@ Event.delegate = function (type, fn, el, spec) {
 Y.delegate = Event.delegate;
 
 
-}, '@VERSION@' ,{requires:['node-base']});
+}, '3.1.0' ,{requires:['node-base']});

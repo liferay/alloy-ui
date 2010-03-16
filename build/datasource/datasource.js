@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('datasource-local', function(Y) {
 
 /**
@@ -333,7 +340,7 @@ Y.extend(DSLocal, Y.Base, {
 Y.namespace("DataSource").Local = DSLocal;
 
 
-}, '@VERSION@' ,{requires:['base']});
+}, '3.1.0' ,{requires:['base']});
 YUI.add('datasource-io', function(Y) {
 
 /**
@@ -479,7 +486,7 @@ Y.DataSource.IO = DSIO;
     
 
 
-}, '@VERSION@' ,{requires:['datasource-local', 'io']});
+}, '3.1.0' ,{requires:['datasource-local', 'io']});
 YUI.add('datasource-get', function(Y) {
 
 /**
@@ -673,7 +680,7 @@ Y.DataSource.Get = Y.extend(DSGet, Y.DataSource.Local, {
 YUI.namespace("Env.DataSource.callbacks");
 
 
-}, '@VERSION@' ,{requires:['datasource-local', 'get']});
+}, '3.1.0' ,{requires:['datasource-local', 'get']});
 YUI.add('datasource-function', function(Y) {
 
 /**
@@ -780,7 +787,7 @@ Y.DataSource.Function = DSFn;
     
 
 
-}, '@VERSION@' ,{requires:['datasource-local']});
+}, '3.1.0' ,{requires:['datasource-local']});
 YUI.add('datasource-cache', function(Y) {
 
 /**
@@ -908,7 +915,7 @@ Y.extend(DataSourceCache, Y.Cache, {
 Y.namespace('Plugin').DataSourceCache = DataSourceCache;
 
 
-}, '@VERSION@' ,{requires:['datasource-local', 'cache']});
+}, '3.1.0' ,{requires:['datasource-local', 'cache']});
 YUI.add('datasource-jsonschema', function(Y) {
 
 /**
@@ -1013,7 +1020,7 @@ Y.extend(DataSourceJSONSchema, Y.Plugin.Base, {
 Y.namespace('Plugin').DataSourceJSONSchema = DataSourceJSONSchema;
 
 
-}, '@VERSION@' ,{requires:['plugin', 'datasource-local', 'dataschema-json']});
+}, '3.1.0' ,{requires:['plugin', 'datasource-local', 'dataschema-json']});
 YUI.add('datasource-xmlschema', function(Y) {
 
 /**
@@ -1118,7 +1125,7 @@ Y.extend(DataSourceXMLSchema, Y.Plugin.Base, {
 Y.namespace('Plugin').DataSourceXMLSchema = DataSourceXMLSchema;
 
 
-}, '@VERSION@' ,{requires:['plugin', 'datasource-local', 'dataschema-xml']});
+}, '3.1.0' ,{requires:['plugin', 'datasource-local', 'dataschema-xml']});
 YUI.add('datasource-arrayschema', function(Y) {
 
 /**
@@ -1223,7 +1230,7 @@ Y.extend(DataSourceArraySchema, Y.Plugin.Base, {
 Y.namespace('Plugin').DataSourceArraySchema = DataSourceArraySchema;
 
 
-}, '@VERSION@' ,{requires:['plugin', 'datasource-local', 'dataschema-array']});
+}, '3.1.0' ,{requires:['plugin', 'datasource-local', 'dataschema-array']});
 YUI.add('datasource-textschema', function(Y) {
 
 /**
@@ -1328,7 +1335,7 @@ Y.extend(DataSourceTextSchema, Y.Plugin.Base, {
 Y.namespace('Plugin').DataSourceTextSchema = DataSourceTextSchema;
 
 
-}, '@VERSION@' ,{requires:['plugin', 'datasource-local', 'dataschema-text']});
+}, '3.1.0' ,{requires:['plugin', 'datasource-local', 'dataschema-text']});
 YUI.add('datasource-polling', function(Y) {
 
 /**
@@ -1419,8 +1426,8 @@ Pollable.prototype = {
 Y.augment(Y.DataSource.Local, Pollable);
 
 
-}, '@VERSION@' ,{requires:['datasource-local']});
+}, '3.1.0' ,{requires:['datasource-local']});
 
 
-YUI.add('datasource', function(Y){}, '@VERSION@' ,{use:['datasource-local','datasource-io','datasource-get','datasource-function','datasource-cache','datasource-jsonschema','datasource-xmlschema','datasource-arrayschema','datasource-textschema','datasource-polling']});
+YUI.add('datasource', function(Y){}, '3.1.0' ,{use:['datasource-local','datasource-io','datasource-get','datasource-function','datasource-cache','datasource-jsonschema','datasource-xmlschema','datasource-arrayschema','datasource-textschema','datasource-polling']});
 

@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('attribute-base', function(Y) {
 
     /**
@@ -1113,4 +1120,4 @@ YUI.add('attribute-base', function(Y) {
     Y.Attribute = Attribute;
 
 
-}, '@VERSION@' ,{requires:['event-custom']});
+}, '3.1.0' ,{requires:['event-custom']});

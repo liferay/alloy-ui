@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('array-extras', function(Y) {
 
 /**
@@ -290,4 +297,4 @@ A.zip = function (a, a2) {
 A.forEach = A.each;
 
 
-}, '@VERSION@' );
+}, '3.1.0' );

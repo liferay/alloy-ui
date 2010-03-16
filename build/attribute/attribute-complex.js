@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('attribute-complex', function(Y) {
 
     /**
@@ -120,4 +127,4 @@ YUI.add('attribute-complex', function(Y) {
     Y.mix(Y.Attribute, Y.Attribute.Complex, true, null, 1);
 
 
-}, '@VERSION@' ,{requires:['attribute-base']});
+}, '3.1.0' ,{requires:['attribute-base']});

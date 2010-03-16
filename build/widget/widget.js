@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('widget-base', function(Y) {
 
 /**
@@ -1322,7 +1329,7 @@ Y.extend(Widget, Y.Base, {
 Y.Widget = Widget;
 
 
-}, '@VERSION@' ,{requires:['attribute', 'event-focus', 'base', 'node', 'classnamemanager', 'intl']});
+}, '3.1.0' ,{requires:['attribute', 'event-focus', 'base', 'node', 'classnamemanager', 'intl']});
 YUI.add('widget-htmlparser', function(Y) {
 
 /**
@@ -1482,8 +1489,8 @@ Y.mix(Widget.prototype, {
 });
 
 
-}, '@VERSION@' ,{requires:['widget-base']});
+}, '3.1.0' ,{requires:['widget-base']});
 
 
-YUI.add('widget', function(Y){}, '@VERSION@' ,{use:['widget-base', 'widget-htmlparser' ]});
+YUI.add('widget', function(Y){}, '3.1.0' ,{use:['widget-base', 'widget-htmlparser' ]});
 

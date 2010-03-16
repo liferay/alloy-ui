@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('node-base', function(Y) {
 
 /**
@@ -1681,7 +1688,7 @@ Y.Node.ATTRS.type = {
 };
 
 
-}, '@VERSION@' ,{requires:['dom-base', 'selector-css2', 'event-base']});
+}, '3.1.0' ,{requires:['dom-base', 'selector-css2', 'event-base']});
 YUI.add('node-style', function(Y) {
 
 (function(Y) {
@@ -1803,7 +1810,7 @@ Y.mix(Y.Node.prototype, {
 });
 
 
-}, '@VERSION@' ,{requires:['dom-style', 'node-base']});
+}, '3.1.0' ,{requires:['dom-style', 'node-base']});
 YUI.add('node-screen', function(Y) {
 
 /**
@@ -2038,7 +2045,7 @@ Y.Node.prototype.inRegion = function(node2, all, altRegion) {
 };
 
 
-}, '@VERSION@' ,{requires:['dom-screen']});
+}, '3.1.0' ,{requires:['dom-screen']});
 YUI.add('node-pluginhost', function(Y) {
 
 /**
@@ -2092,7 +2099,7 @@ Y.NodeList.prototype.unplug = function() {
 };
 
 
-}, '@VERSION@' ,{requires:['node-base', 'pluginhost']});
+}, '3.1.0' ,{requires:['node-base', 'pluginhost']});
 YUI.add('node-event-delegate', function(Y) {
 
 /**
@@ -2120,8 +2127,8 @@ Y.Node.prototype.delegate = function(type, fn, selector) {
 };
 
 
-}, '@VERSION@' ,{requires:['node-base', 'event-delegate', 'pluginhost']});
+}, '3.1.0' ,{requires:['node-base', 'event-delegate', 'pluginhost']});
 
 
-YUI.add('node', function(Y){}, '@VERSION@' ,{requires:['dom', 'event-base', 'event-delegate', 'pluginhost'], skinnable:false, use:['node-base', 'node-style', 'node-screen', 'node-pluginhost', 'node-event-delegate']});
+YUI.add('node', function(Y){}, '3.1.0' ,{requires:['dom', 'event-base', 'event-delegate', 'pluginhost'], skinnable:false, use:['node-base', 'node-style', 'node-screen', 'node-pluginhost', 'node-event-delegate']});
 

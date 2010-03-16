@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('widget-position-constrain', function(Y) {
 
 /**
@@ -342,4 +349,4 @@ PositionConstrain.prototype = {
 Y.WidgetPositionConstrain = PositionConstrain;
 
 
-}, '@VERSION@' ,{requires:['widget', 'widget-position']});
+}, '3.1.0' ,{requires:['widget', 'widget-position']});

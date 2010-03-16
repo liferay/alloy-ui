@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 /**
  * The YUI module contains the components required for building the YUI seed file.
  * This includes the script loading mechanism, a simple queue, and the core utilities for the library.
@@ -50,7 +57,7 @@ if (typeof YUI === 'undefined') {
 
 (function() {
     var p, prop,
-        VERSION       = '@VERSION@', 
+        VERSION       = '3.1.0', 
         BASE          = 'http://yui.yahooapis.com/',
         DOC_LABEL     = 'yui3-js-enabled',
         NOOP          = function() {},
@@ -2244,7 +2251,7 @@ Y.UA = function() {
 }();
 
 
-}, '@VERSION@' );
+}, '3.1.0' );
 YUI.add('get', function(Y) {
 
 (function() {
@@ -2959,7 +2966,7 @@ Y.Get = function() {
 })();
 
 
-}, '@VERSION@' );
+}, '3.1.0' );
 YUI.add('intl-base', function(Y) {
 
 /** 
@@ -3042,7 +3049,7 @@ Y.mix(Y.namespace("Intl"), {
 });
 
 
-}, '@VERSION@' ,{requires:['yui-base']});
+}, '3.1.0' ,{requires:['yui-base']});
 YUI.add('yui-log', function(Y) {
 
 /**
@@ -3151,7 +3158,7 @@ INSTANCE.message = function() {
 })();
 
 
-}, '@VERSION@' ,{requires:['yui-base']});
+}, '3.1.0' ,{requires:['yui-base']});
 YUI.add('yui-later', function(Y) {
 
 /**
@@ -3220,7 +3227,7 @@ YUI.add('yui-later', function(Y) {
 })();
 
 
-}, '@VERSION@' ,{requires:['yui-base']});
+}, '3.1.0' ,{requires:['yui-base']});
 YUI.add('yui-throttle', function(Y) {
 
 /**
@@ -3269,8 +3276,8 @@ Y.throttle = throttle;
 
 
 
-}, '@VERSION@' ,{requires:['yui-base']});
+}, '3.1.0' ,{requires:['yui-base']});
 
 
-YUI.add('yui', function(Y){}, '@VERSION@' ,{use:['yui-base','get','intl-base','yui-log','yui-later','yui-throttle']});
+YUI.add('yui', function(Y){}, '3.1.0' ,{use:['yui-base','get','intl-base','yui-log','yui-later','yui-throttle']});
 

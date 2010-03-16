@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('dataschema-xml', function(Y) {
 
 /**
@@ -286,4 +293,4 @@ Y.DataSchema.XML = Y.mix(SchemaXML, Y.DataSchema.Base);
 
 
 
-}, '@VERSION@' ,{requires:['dataschema-base']});
+}, '3.1.0' ,{requires:['dataschema-base']});

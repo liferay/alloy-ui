@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('io-upload-iframe', function(Y) {
 
    /**
@@ -273,4 +280,4 @@ YUI.add('io-upload-iframe', function(Y) {
 
 
 
-}, '@VERSION@' ,{requires:['io-base','node-base']});
+}, '3.1.0' ,{requires:['io-base','node-base']});

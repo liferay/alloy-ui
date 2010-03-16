@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('loader-base', function(Y) {
 
 /**
@@ -1786,7 +1793,7 @@ Y.Loader.prototype = {
 
 
 
-}, '@VERSION@' ,{requires:['get']});
+}, '3.1.0' ,{requires:['get']});
 YUI.add('loader-rollup', function(Y) {
 
 /**
@@ -1886,7 +1893,7 @@ Y.Loader.prototype._rollup = function() {
 };
 
 
-}, '@VERSION@' ,{requires:['loader-base']});
+}, '3.1.0' ,{requires:['loader-base']});
 YUI.add('loader-yui3', function(Y) {
 
 /**
@@ -2875,8 +2882,8 @@ YUI.Env[Y.version].modules = {
 };
 
 
-}, '@VERSION@' ,{requires:['loader-base']});
+}, '3.1.0' ,{requires:['loader-base']});
 
 
-YUI.add('loader', function(Y){}, '@VERSION@' ,{use:['loader-base', 'loader-rollup', 'loader-yui3' ]});
+YUI.add('loader', function(Y){}, '3.1.0' ,{use:['loader-base', 'loader-rollup', 'loader-yui3' ]});
 

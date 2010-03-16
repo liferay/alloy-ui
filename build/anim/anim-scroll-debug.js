@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('anim-scroll', function(Y) {
 
 /**
@@ -35,4 +42,4 @@ Y.Anim.behaviors.scroll = {
 
 
 
-}, '@VERSION@' ,{requires:['anim-base']});
+}, '3.1.0' ,{requires:['anim-base']});

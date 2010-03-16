@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('tabview-base', function(Y) {
 
 var getClassName = Y.ClassNameManager.getClassName,
@@ -141,4 +148,4 @@ Y.mix(TabviewBase.prototype, {
 Y.TabviewBase = TabviewBase;
 
 
-}, '@VERSION@' ,{requires:['node-event-delegate', 'classnamemanager']});
+}, '3.1.0' ,{requires:['node-event-delegate', 'classnamemanager']});

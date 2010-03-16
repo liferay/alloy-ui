@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('widget-anim', function(Y) {
 
 /**
@@ -254,4 +261,4 @@ Y.extend(WidgetAnim, Y.Plugin.Base, {
 Y.namespace("Plugin").WidgetAnim = WidgetAnim;
 
 
-}, '@VERSION@' ,{requires:['plugin', 'anim-base']});
+}, '3.1.0' ,{requires:['plugin', 'anim-base']});

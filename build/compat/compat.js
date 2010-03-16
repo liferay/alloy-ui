@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('compat', function(Y) {
 
 
@@ -122,7 +129,7 @@ if ("undefined" != typeof YAHOO_config) {
 }
     
 // add old registration for yahoo
-Y.register("yahoo", Y, {version: "@VERSION@", build: "@BUILD@"});
+Y.register("yahoo", Y, {version: "3.1.0", build: "nightly"});
 
 if (Y.Event) {
 
@@ -573,7 +580,7 @@ if (Y.Event) {
 }
 
 
-Y.register("event", Y, {version: "@VERSION@", build: "@BUILD@"});
+Y.register("event", Y, {version: "3.1.0", build: "nightly"});
 
 
 var propertyCache = {};
@@ -901,5 +908,5 @@ YAHOO.util.Point.prototype = new YAHOO.util.Region();
 
 
 
-}, '@VERSION@' ,{requires:['dom','event-base','dump','substitute']});
+}, '3.1.0' ,{requires:['dom','event-base','dump','substitute']});
 YUI._setup(); YUI.use('compat');

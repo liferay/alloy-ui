@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('dd-ddm-base', function(Y) {
 
 
@@ -348,7 +355,7 @@ YUI.add('dd-ddm-base', function(Y) {
 
 
 
-}, '@VERSION@' ,{requires:['node', 'base', 'yui-throttle'], skinnable:false});
+}, '3.1.0' ,{requires:['node', 'base', 'yui-throttle'], skinnable:false});
 YUI.add('dd-ddm', function(Y) {
 
 
@@ -473,7 +480,7 @@ YUI.add('dd-ddm', function(Y) {
 
 
 
-}, '@VERSION@' ,{requires:['dd-ddm-base', 'event-resize'], skinnable:false});
+}, '3.1.0' ,{requires:['dd-ddm-base', 'event-resize'], skinnable:false});
 YUI.add('dd-ddm-drop', function(Y) {
 
 
@@ -884,7 +891,7 @@ YUI.add('dd-ddm-drop', function(Y) {
 
 
 
-}, '@VERSION@' ,{requires:['dd-ddm'], skinnable:false});
+}, '3.1.0' ,{requires:['dd-ddm'], skinnable:false});
 YUI.add('dd-drag', function(Y) {
 
 
@@ -2020,7 +2027,7 @@ YUI.add('dd-drag', function(Y) {
 
 
 
-}, '@VERSION@' ,{requires:['dd-ddm-base'], skinnable:false});
+}, '3.1.0' ,{requires:['dd-ddm-base'], skinnable:false});
 YUI.add('dd-proxy', function(Y) {
 
 
@@ -2262,7 +2269,7 @@ YUI.add('dd-proxy', function(Y) {
 
 
 
-}, '@VERSION@' ,{requires:['dd-ddm', 'dd-drag'], skinnable:false});
+}, '3.1.0' ,{requires:['dd-ddm', 'dd-drag'], skinnable:false});
 YUI.add('dd-constrain', function(Y) {
 
 
@@ -2716,7 +2723,7 @@ YUI.add('dd-constrain', function(Y) {
 
 
 
-}, '@VERSION@' ,{requires:['dd-drag'], skinnable:false});
+}, '3.1.0' ,{requires:['dd-drag'], skinnable:false});
 YUI.add('dd-scroll', function(Y) {
 
 
@@ -3143,7 +3150,7 @@ YUI.add('dd-scroll', function(Y) {
 
 
 
-}, '@VERSION@' ,{requires:['dd-drag'], optional:['dd-proxy'], skinnable:false});
+}, '3.1.0' ,{requires:['dd-drag'], optional:['dd-proxy'], skinnable:false});
 YUI.add('dd-plugin', function(Y) {
 
 
@@ -3189,7 +3196,7 @@ YUI.add('dd-plugin', function(Y) {
 
 
 
-}, '@VERSION@' ,{requires:['dd-drag'], optional:['dd-constrain', 'dd-proxy'], skinnable:false});
+}, '3.1.0' ,{requires:['dd-drag'], optional:['dd-constrain', 'dd-proxy'], skinnable:false});
 YUI.add('dd-drop', function(Y) {
 
 
@@ -3717,7 +3724,7 @@ YUI.add('dd-drop', function(Y) {
 
 
 
-}, '@VERSION@' ,{requires:['dd-ddm-drop', 'dd-drag'], skinnable:false});
+}, '3.1.0' ,{requires:['dd-ddm-drop', 'dd-drag'], skinnable:false});
 YUI.add('dd-drop-plugin', function(Y) {
 
 
@@ -3762,7 +3769,7 @@ YUI.add('dd-drop-plugin', function(Y) {
 
 
 
-}, '@VERSION@' ,{requires:['dd-drop'], skinnable:false});
+}, '3.1.0' ,{requires:['dd-drop'], skinnable:false});
 YUI.add('dd-delegate', function(Y) {
 
 
@@ -4084,8 +4091,8 @@ YUI.add('dd-delegate', function(Y) {
 
 
 
-}, '@VERSION@' ,{requires:['dd-drag', 'event-mouseenter'], optional:['dd-drop-plugin'], skinnable:false});
+}, '3.1.0' ,{requires:['dd-drag', 'event-mouseenter'], optional:['dd-drop-plugin'], skinnable:false});
 
 
-YUI.add('dd', function(Y){}, '@VERSION@' ,{skinnable:false, use:['dd-ddm-base', 'dd-ddm', 'dd-ddm-drop', 'dd-drag', 'dd-proxy', 'dd-constrain', 'dd-plugin', 'dd-drop', 'dd-drop-plugin', 'dd-scroll', 'dd-delegate']});
+YUI.add('dd', function(Y){}, '3.1.0' ,{skinnable:false, use:['dd-ddm-base', 'dd-ddm', 'dd-ddm-drop', 'dd-drag', 'dd-proxy', 'dd-constrain', 'dd-plugin', 'dd-drop', 'dd-drop-plugin', 'dd-scroll', 'dd-delegate']});
 

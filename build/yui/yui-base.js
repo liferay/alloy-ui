@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 /**
  * The YUI module contains the components required for building the YUI seed file.
  * This includes the script loading mechanism, a simple queue, and the core utilities for the library.
@@ -50,7 +57,7 @@ if (typeof YUI === 'undefined') {
 
 (function() {
     var p, prop,
-        VERSION       = '@VERSION@', 
+        VERSION       = '3.1.0', 
         BASE          = 'http://yui.yahooapis.com/',
         DOC_LABEL     = 'yui3-js-enabled',
         NOOP          = function() {},
@@ -2244,4 +2251,4 @@ Y.UA = function() {
 }();
 
 
-}, '@VERSION@' );
+}, '3.1.0' );

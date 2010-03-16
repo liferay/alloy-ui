@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('datatype-number-parse', function(Y) {
 
 /**
@@ -35,7 +42,7 @@ Y.mix(Y.namespace("DataType.Number"), {
 Y.namespace("Parsers").number = Y.DataType.Number.parse;
 
 
-}, '@VERSION@' );
+}, '3.1.0' );
 YUI.add('datatype-number-format', function(Y) {
 
 /**
@@ -140,10 +147,10 @@ Y.mix(Y.namespace("DataType.Number"), {
 });
 
 
-}, '@VERSION@' );
+}, '3.1.0' );
 
 
-YUI.add('datatype-number', function(Y){}, '@VERSION@' ,{use:['datatype-number-parse', 'datatype-number-format']});
+YUI.add('datatype-number', function(Y){}, '3.1.0' ,{use:['datatype-number-parse', 'datatype-number-format']});
 
 YUI.add('datatype-date-parse', function(Y) {
 
@@ -190,7 +197,7 @@ Y.mix(Y.namespace("DataType.Date"), {
 Y.namespace("Parsers").date = Y.DataType.Date.parse;
 
 
-}, '@VERSION@' );
+}, '3.1.0' );
 YUI.add('datatype-date-format', function(Y) {
 
 /**
@@ -624,10 +631,10 @@ Y.DataType.Date.Locale["en-AU"] = Y.merge(YDateEn);
 
 
 
-}, '@VERSION@' ,{lang:['ar','ar-JO','ca','ca-ES','da','da-DK','de','de-AT','de-DE','el','el-GR','en','en-AU','en-CA','en-GB','en-IE','en-IN','en-JO','en-MY','en-NZ','en-PH','en-SG','en-US','es','es-AR','es-BO','es-CL','es-CO','es-EC','es-ES','es-MX','es-PE','es-PY','es-US','es-UY','es-VE','fi','fi-FI','fr','fr-BE','fr-CA','fr-FR','hi','hi-IN','id','id-ID','it','it-IT','ja','ja-JP','ko','ko-KR','ms','ms-MY','nb','nb-NO','nl','nl-BE','nl-NL','pl','pl-PL','pt','pt-BR','ro','ro-RO','ru','ru-RU','sv','sv-SE','th','th-TH','tr','tr-TR','vi','vi-VN','zh-Hans','zh-Hans-CN','zh-Hant','zh-Hant-HK','zh-Hant-TW']});
+}, '3.1.0' ,{lang:['ar','ar-JO','ca','ca-ES','da','da-DK','de','de-AT','de-DE','el','el-GR','en','en-AU','en-CA','en-GB','en-IE','en-IN','en-JO','en-MY','en-NZ','en-PH','en-SG','en-US','es','es-AR','es-BO','es-CL','es-CO','es-EC','es-ES','es-MX','es-PE','es-PY','es-US','es-UY','es-VE','fi','fi-FI','fr','fr-BE','fr-CA','fr-FR','hi','hi-IN','id','id-ID','it','it-IT','ja','ja-JP','ko','ko-KR','ms','ms-MY','nb','nb-NO','nl','nl-BE','nl-NL','pl','pl-PL','pt','pt-BR','ro','ro-RO','ru','ru-RU','sv','sv-SE','th','th-TH','tr','tr-TR','vi','vi-VN','zh-Hans','zh-Hans-CN','zh-Hant','zh-Hant-HK','zh-Hant-TW']});
 
 
-YUI.add('datatype-date', function(Y){}, '@VERSION@' ,{use:['datatype-date-parse', 'datatype-date-format']});
+YUI.add('datatype-date', function(Y){}, '3.1.0' ,{use:['datatype-date-parse', 'datatype-date-format']});
 
 YUI.add('datatype-xml-parse', function(Y) {
 
@@ -684,7 +691,7 @@ Y.namespace("Parsers").xml = Y.DataType.XML.parse;
 
 
 
-}, '@VERSION@' );
+}, '3.1.0' );
 YUI.add('datatype-xml-format', function(Y) {
 
 /**
@@ -737,12 +744,12 @@ Y.mix(Y.namespace("DataType.XML"), {
 
 
 
-}, '@VERSION@' );
+}, '3.1.0' );
 
 
-YUI.add('datatype-xml', function(Y){}, '@VERSION@' ,{use:['datatype-xml-parse', 'datatype-xml-format']});
+YUI.add('datatype-xml', function(Y){}, '3.1.0' ,{use:['datatype-xml-parse', 'datatype-xml-format']});
 
 
 
-YUI.add('datatype', function(Y){}, '@VERSION@' ,{use:['datatype-number', 'datatype-date', 'datatype-xml']});
+YUI.add('datatype', function(Y){}, '3.1.0' ,{use:['datatype-number', 'datatype-date', 'datatype-xml']});
 

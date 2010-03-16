@@ -1,4 +1,11 @@
 /*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
+/*
  * DOM event listener abstraction layer
  * @module event
  * @submodule event-base
@@ -1387,4 +1394,4 @@ Y.Env.evt.plugins.contentready = {
 };
 
 
-}, '@VERSION@' ,{requires:['event-custom-base']});
+}, '3.1.0' ,{requires:['event-custom-base']});

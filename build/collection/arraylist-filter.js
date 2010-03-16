@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('arraylist-filter', function(Y) {
 
 /**
@@ -40,4 +47,4 @@ Y.mix( Y.ArrayList.prototype, {
 } );
 
 
-}, '@VERSION@' ,{requires:['arraylist']});
+}, '3.1.0' ,{requires:['arraylist']});

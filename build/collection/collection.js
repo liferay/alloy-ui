@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('array-extras', function(Y) {
 
 /**
@@ -290,7 +297,7 @@ A.zip = function (a, a2) {
 A.forEach = A.each;
 
 
-}, '@VERSION@' );
+}, '3.1.0' );
 YUI.add('arraylist', function(Y) {
 
 /**
@@ -487,7 +494,7 @@ Y.mix( ArrayList, {
 Y.ArrayList = ArrayList;
 
 
-}, '@VERSION@' );
+}, '3.1.0' );
 YUI.add('arraylist-add', function(Y) {
 
 /**
@@ -568,7 +575,7 @@ Y.mix( Y.ArrayList.prototype, {
 } );
 
 
-}, '@VERSION@' ,{requires:['arraylist']});
+}, '3.1.0' ,{requires:['arraylist']});
 YUI.add('arraylist-filter', function(Y) {
 
 /**
@@ -611,7 +618,7 @@ Y.mix( Y.ArrayList.prototype, {
 } );
 
 
-}, '@VERSION@' ,{requires:['arraylist']});
+}, '3.1.0' ,{requires:['arraylist']});
 YUI.add('array-invoke', function(Y) {
 
 /**
@@ -655,8 +662,8 @@ Y.Array.invoke = function ( items, name ) {
 };
 
 
-}, '@VERSION@' );
+}, '3.1.0' );
 
 
-YUI.add('collection', function(Y){}, '@VERSION@' ,{use:['array-extras', 'arraylist', 'arraylist-add', 'arraylist-filter', 'array-invoke']});
+YUI.add('collection', function(Y){}, '3.1.0' ,{use:['array-extras', 'arraylist', 'arraylist-add', 'arraylist-filter', 'array-invoke']});
 

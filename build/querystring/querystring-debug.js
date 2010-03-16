@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('querystring-parse', function(Y) {
 
 /**
@@ -130,7 +137,7 @@ function mergeObjects (params, addition) {
 };
 
 
-}, '@VERSION@' ,{requires:['collection']});
+}, '3.1.0' ,{requires:['collection']});
 YUI.add('querystring-stringify', function(Y) {
 
 /**
@@ -230,8 +237,8 @@ function is (type, obj) {
 }
 
 
-}, '@VERSION@' );
+}, '3.1.0' );
 
 
-YUI.add('querystring', function(Y){}, '@VERSION@' ,{use:['querystring-parse', 'querystring-stringify']});
+YUI.add('querystring', function(Y){}, '3.1.0' ,{use:['querystring-parse', 'querystring-stringify']});
 

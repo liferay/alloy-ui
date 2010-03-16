@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('datatype-number-parse', function(Y) {
 
 /**
@@ -34,7 +41,7 @@ Y.mix(Y.namespace("DataType.Number"), {
 Y.namespace("Parsers").number = Y.DataType.Number.parse;
 
 
-}, '@VERSION@' );
+}, '3.1.0' );
 YUI.add('datatype-number-format', function(Y) {
 
 /**
@@ -138,8 +145,8 @@ Y.mix(Y.namespace("DataType.Number"), {
 });
 
 
-}, '@VERSION@' );
+}, '3.1.0' );
 
 
-YUI.add('datatype-number', function(Y){}, '@VERSION@' ,{use:['datatype-number-parse', 'datatype-number-format']});
+YUI.add('datatype-number', function(Y){}, '3.1.0' ,{use:['datatype-number-parse', 'datatype-number-format']});
 

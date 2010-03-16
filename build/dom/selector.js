@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.0
+build: nightly
+*/
 YUI.add('selector-native', function(Y) {
 
 (function(Y) {
@@ -257,7 +264,7 @@ Y.mix(Y.Selector, Selector, true);
 })(Y);
 
 
-}, '@VERSION@' ,{requires:['dom-base']});
+}, '3.1.0' ,{requires:['dom-base']});
 YUI.add('selector-css2', function(Y) {
 
 /**
@@ -692,8 +699,8 @@ if (Y.Selector.useNative && document.querySelector) {
 
 
 
-}, '@VERSION@' ,{requires:['selector-native']});
+}, '3.1.0' ,{requires:['selector-native']});
 
 
-YUI.add('selector', function(Y){}, '@VERSION@' ,{use:['selector-native', 'selector-css2']});
+YUI.add('selector', function(Y){}, '3.1.0' ,{use:['selector-native', 'selector-css2']});
 
