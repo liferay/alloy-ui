@@ -1,8 +1,8 @@
+AUI.add('aui-loading-mask', function(A) {
 /**
- * The OverlayLoading Utility
+ * The LoadingMask Utility
  *
- * @module aui-overlay
- * @submodule aui-overlay-loading
+ * @module aui-loading-mask
  */
 
 var Lang = A.Lang,
@@ -12,7 +12,7 @@ var Lang = A.Lang,
 	HIDE = 'hide',
 	HOST = 'host',
 	MESSAGE_EL = 'messageEl',
-	NAME = 'overlayloading',
+	NAME = 'loadingmask',
 	POSITION = 'position',
 	SHOW = 'show',
 	STATIC = 'static',
@@ -31,9 +31,9 @@ var Lang = A.Lang,
 	TPL_MESSAGE_LOADING = '<div class="' + CSS_MESSAGE_LOADING + '"><div class="' + CSS_MESSAGE_LOADING_CONTENT + '">{0}</div></div>';
 
 /**
- * <p><img src="assets/images/aui-overlay-loading/main.png"/></p>
+ * <p><img src="assets/images/aui-loading-mask/main.png"/></p>
  *
- * A base class for OverlayLoading, providing:
+ * A base class for LoadingMask, providing:
  * <ul>
  *    <li>Cross browser mask functionality to cover an element or the entire page</li>
  *    <li>Customizable mask (i.e., background, opacity)</li>
@@ -42,48 +42,48 @@ var Lang = A.Lang,
  *
  * Quick Example:<br/>
  *
- * <pre><code>node.plug(A.OverlayLoading, { background: '#000' });</code></pre>
+ * <pre><code>node.plug(A.LoadingMask, { background: '#000' });</code></pre>
  *
- * Check the list of <a href="OverlayLoading.html#configattributes">Configuration Attributes</a> available for
- * OverlayLoading.
+ * Check the list of <a href="LoadingMask.html#configattributes">Configuration Attributes</a> available for
+ * LoadingMask.
  *
  * @param config {Object} Object literal specifying widget configuration properties.
  *
- * @class OverlayLoading
+ * @class LoadingMask
  * @constructor
  * @extends Plugin.Base
  */
-var OverlayLoading = function(config) {
-	OverlayLoading.superclass.constructor.apply(this, arguments);
+var LoadingMask = function(config) {
+	LoadingMask.superclass.constructor.apply(this, arguments);
 };
 
 /**
  * Static property provides a string to identify the class.
  *
- * @property OverlayLoading.NAME
+ * @property LoadingMask.NAME
  * @type String
  * @static
  */
-OverlayLoading.NAME = NAME;
+LoadingMask.NAME = NAME;
 
 /**
  * Static property provides a string to identify the namespace.
  *
- * @property OverlayLoading.NS
+ * @property LoadingMask.NS
  * @type String
  * @static
  */
-OverlayLoading.NS = NAME;
+LoadingMask.NS = NAME;
 
 /**
  * Static property used to define the default attribute
- * configuration for the OverlayLoading.
+ * configuration for the LoadingMask.
  *
- * @property OverlayLoading.ATTRS
+ * @property LoadingMask.ATTRS
  * @type Object
  * @static
  */
-OverlayLoading.ATTRS = {
+LoadingMask.ATTRS = {
 	/**
 	 * Node element to display the message.
 	 *
@@ -103,7 +103,7 @@ OverlayLoading.ATTRS = {
 	},
 
 	/**
-	 * Strings used on the OverlayLoading. See
+	 * Strings used on the LoadingMask. See
      * <a href="Widget.html#method_strings">strings</a>.
 	 *
 	 * @attribute strings
@@ -139,11 +139,11 @@ OverlayLoading.ATTRS = {
 };
 
 A.extend(
-	OverlayLoading,
+	LoadingMask,
 	A.Plugin.Base,
 	{
 		/**
-		 * Construction logic executed during OverlayLoading instantiation. Lifecycle.
+		 * Construction logic executed during LoadingMask instantiation. Lifecycle.
 		 *
 		 * @method initializer
 		 * @protected
@@ -155,7 +155,7 @@ A.extend(
 				{
 					host: true
 				},
-				OverlayLoading.ATTRS
+				LoadingMask.ATTRS
 			);
 
 			instance.renderUI();
@@ -165,7 +165,7 @@ A.extend(
 		},
 
 		/**
-		 * Create the DOM structure for the OverlayLoading. Lifecycle.
+		 * Create the DOM structure for the LoadingMask. Lifecycle.
 		 *
 		 * @method renderUI
 		 * @protected
@@ -182,7 +182,7 @@ A.extend(
 		},
 
 		/**
-		 * Bind the events on the OverlayLoading UI. Lifecycle.
+		 * Bind the events on the LoadingMask UI. Lifecycle.
 		 *
 		 * @method bindUI
 		 * @protected
@@ -195,7 +195,7 @@ A.extend(
 
 		/**
 		 * Bind events to the
-         * <a href="OverlayLoading.html#property_overlayMask">overlayMask</a>.
+         * <a href="LoadingMask.html#property_overlayMask">overlayMask</a>.
 		 *
 		 * @method _bindOverlayMaskUI
 		 * @protected
@@ -208,8 +208,8 @@ A.extend(
 
 		/**
 		 * Center the
-         * <a href="OverlayLoading.html#config_messageEl">messageEl</a> with the
-         * <a href="OverlayLoading.html#config_target">target</a> node.
+         * <a href="LoadingMask.html#config_messageEl">messageEl</a> with the
+         * <a href="LoadingMask.html#config_target">target</a> node.
 		 *
 		 * @method centerMessage
 		 */
@@ -223,7 +223,7 @@ A.extend(
 
 		/**
 		 * Invoke the
-         * <a href="OverlayLoading.html#property_overlayMask">overlayMask</a>
+         * <a href="LoadingMask.html#property_overlayMask">overlayMask</a>
          * <code>refreshMask</code> method.
 		 *
 		 * @method refreshMask
@@ -238,7 +238,7 @@ A.extend(
 
 		/**
 		 * Fires after the value of the
-		 * <a href="OverlayLoading.html#config_visible">visible</a> attribute change.
+		 * <a href="LoadingMask.html#config_visible">visible</a> attribute change.
 		 *
 		 * @method _afterVisibleChange
 		 * @param {EventFacade} event
@@ -259,7 +259,7 @@ A.extend(
 
 		/**
 		 * Render
-         * <a href="OverlayLoading.html#property_overlayMask">overlayMask</a>
+         * <a href="LoadingMask.html#property_overlayMask">overlayMask</a>
          * instance.
 		 *
 		 * @method _renderOverlayMask
@@ -287,8 +287,8 @@ A.extend(
 
 		/**
 		 * Create dynamic attributes listeners to invoke the setter on
-         * <a href="OverlayLoading.html#property_overlayMask">overlayMask</a> after
-         * the attribute is set on the OverlayLoading instance.
+         * <a href="LoadingMask.html#property_overlayMask">overlayMask</a> after
+         * the attribute is set on the LoadingMask instance.
 		 *
 		 * @method _createDynamicAttrs
 		 * @param {Object} config Object literal specifying widget configuration properties.
@@ -318,7 +318,7 @@ A.extend(
 A.each([HIDE, SHOW, TOGGLE], function(method) {
 	/**
 	 * Invoke the
-     * <a href="OverlayLoading.html#property_overlayMask">overlayMask</a>
+     * <a href="LoadingMask.html#property_overlayMask">overlayMask</a>
      * <code>hide</code> method.
 	 *
 	 * @method hide
@@ -326,7 +326,7 @@ A.each([HIDE, SHOW, TOGGLE], function(method) {
 
 	/**
 	 * Invoke the
-     * <a href="OverlayLoading.html#property_overlayMask">overlayMask</a>
+     * <a href="LoadingMask.html#property_overlayMask">overlayMask</a>
      * <code>show</code> method.
 	 *
 	 * @method show
@@ -334,14 +334,16 @@ A.each([HIDE, SHOW, TOGGLE], function(method) {
 
 	/**
 	 * Invoke the
-     * <a href="OverlayLoading.html#property_overlayMask">overlayMask</a>
+     * <a href="LoadingMask.html#property_overlayMask">overlayMask</a>
      * <code>toggle</code> method.
 	 *
 	 * @method toggle
 	 */
-	OverlayLoading.prototype[method] = function() {
+	LoadingMask.prototype[method] = function() {
 		this.overlayMask[method]();
 	};
 });
 
-A.OverlayLoading = OverlayLoading;
+A.LoadingMask = LoadingMask;
+
+}, '@VERSION@' ,{requires:['aui-overlay-mask','plugin','substitute'], skinnable:true});
