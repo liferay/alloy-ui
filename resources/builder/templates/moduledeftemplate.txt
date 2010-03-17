@@ -1,1 +1,1 @@
-				'@MODULE@': @DETAILS@,
+						'@MODULE@': @DETAILS@,

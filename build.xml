@@ -103,6 +103,7 @@
 			<fileset dir="${project.dir}">
 				<include name="build/**" />
 				<include name="demos/**" />
+				<include name="lib/yui-combo/**" />
 				<include name="sandbox/**" />
 				<include name="*.txt" />
 			</fileset>
@@ -113,6 +114,14 @@
 		<replaceregexp match="@VERSION@" replace="${release.version}" flags="g" byline="true">
 			<fileset dir="${release.temp.dir}/" includes="version.txt"/>
 			<fileset dir="${release.temp.dir}/build/" includes="**/aui-*.js"/>
+        </replaceregexp>
+
+		<replaceregexp match="combine: false," replace="combine: true," flags="g" byline="true">
+			<fileset dir="${release.temp.dir}/build/aui-base/" includes="*.js"/>
+        </replaceregexp>
+
+		<replaceregexp match="filter: 'raw'," replace="filter: 'min'," flags="g" byline="true">
+			<fileset dir="${release.temp.dir}/build/aui-base/" includes="*.js"/>
         </replaceregexp>
 
 		<echo>Creating Zip file ${release.name}.zip</echo>
