@@ -1,0 +1,4834 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-autocomplete  AutoComplete   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-autocomplete&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a>
+
+	                 <span class="separator">&gt;</span> <span class="classname">AutoComplete</span> 
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+
+			                                <li class="selected"><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                <li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class="selected"><a href="AutoComplete.html" title="AutoComplete">AutoComplete</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-configuration">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-configuration-hd">
+										<span class="aui-widget-hd-text">Configuration Attributes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#config_alwaysShowContainer" title="alwaysShowContainer">alwaysShowContainer</a></li>
+												<li class=""><a href="#config_applyLocalFilter" title="applyLocalFilter">applyLocalFilter</a></li>
+												<li class=""><a href="#config_autoHighlight" title="autoHighlight">autoHighlight</a></li>
+												<li class=" deprecated"><a href="#config_button" title="button">button</a></li>
+												<li class=""><a href="#config_dataSource" title="dataSource">dataSource</a></li>
+												<li class=""><a href="#config_dataSourceType" title="dataSourceType">dataSourceType</a></li>
+												<li class=""><a href="#config_delimChar" title="delimChar">delimChar</a></li>
+												<li class=""><a href="#config_forceSelection" title="forceSelection">forceSelection</a></li>
+												<li class=""><a href="#config_input" title="input">input</a></li>
+												<li class=""><a href="#config_matchKey" title="matchKey">matchKey</a></li>
+												<li class=""><a href="#config_maxResultsDisplayed" title="maxResultsDisplayed">maxResultsDisplayed</a></li>
+												<li class=""><a href="#config_minQueryLength" title="minQueryLength">minQueryLength</a></li>
+												<li class=""><a href="#config_queryDelay" title="queryDelay">queryDelay</a></li>
+												<li class=""><a href="#config_queryInterval" title="queryInterval">queryInterval</a></li>
+												<li class=""><a href="#config_queryMatchCase" title="queryMatchCase">queryMatchCase</a></li>
+												<li class=""><a href="#config_queryMatchContains" title="queryMatchContains">queryMatchContains</a></li>
+												<li class=""><a href="#config_queryQuestionMark" title="queryQuestionMark">queryQuestionMark</a></li>
+												<li class=""><a href="#config_schema" title="schema">schema</a></li>
+												<li class=""><a href="#config_schemaType" title="schemaType">schemaType</a></li>
+												<li class=""><a href="#config_suppressInputUpdate" title="suppressInputUpdate">suppressInputUpdate</a></li>
+												<li class=""><a href="#config_typeAhead" title="typeAhead">typeAhead</a></li>
+												<li class=""><a href="#config_typeAheadDelay" title="typeAheadDelay">typeAheadDelay</a></li>
+												<li class=""><a href="#config_uniqueName" title="uniqueName">uniqueName</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-properties">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-properties-hd">
+										<span class="aui-widget-hd-text">Properties</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+				                                <li class=""><a href="#property_AutoComplete.ATTRS" title="AutoComplete.ATTRS">AutoComplete.ATTRS</a></li>
+
+				                                <li class=""><a href="#property_AutoComplete.NAME" title="AutoComplete.NAME">AutoComplete.NAME</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-methods">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-methods-hd">
+										<span class="aui-widget-hd-text">Methods</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+				                               <li class="protected"><a href="#method__clearSelection" title="_clearSelection">_clearSelection</a></li>
+				                               <li class="protected"><a href="#method__createDataSource" title="_createDataSource">_createDataSource</a></li>
+				                               <li class="protected"><a href="#method__enableIntervalDetection" title="_enableIntervalDetection">_enableIntervalDetection</a></li>
+				                               <li class="protected"><a href="#method__extractQuery" title="_extractQuery">_extractQuery</a></li>
+				                               <li class="protected"><a href="#method__focus" title="_focus">_focus</a></li>
+				                               <li class="protected"><a href="#method__isIgnoreKey" title="_isIgnoreKey">_isIgnoreKey</a></li>
+				                               <li class="protected"><a href="#method__jumpSelection" title="_jumpSelection">_jumpSelection</a></li>
+				                               <li class="protected"><a href="#method__moveSelection" title="_moveSelection">_moveSelection</a></li>
+				                               <li class="protected"><a href="#method__onButtonMouseDown" title="_onButtonMouseDown">_onButtonMouseDown</a></li>
+				                               <li class="protected"><a href="#method__onContainerClick" title="_onContainerClick">_onContainerClick</a></li>
+				                               <li class="protected"><a href="#method__onContainerMouseout" title="_onContainerMouseout">_onContainerMouseout</a></li>
+				                               <li class="protected"><a href="#method__onContainerMouseover" title="_onContainerMouseover">_onContainerMouseover</a></li>
+				                               <li class="protected"><a href="#method__onContainerScroll" title="_onContainerScroll">_onContainerScroll</a></li>
+				                               <li class="protected"><a href="#method__onInterval" title="_onInterval">_onInterval</a></li>
+				                               <li class="protected"><a href="#method__onTextboxBlur" title="_onTextboxBlur">_onTextboxBlur</a></li>
+				                               <li class="protected"><a href="#method__onTextboxFocus" title="_onTextboxFocus">_onTextboxFocus</a></li>
+				                               <li class="protected"><a href="#method__onTextboxKeyDown" title="_onTextboxKeyDown">_onTextboxKeyDown</a></li>
+				                               <li class="protected"><a href="#method__onTextboxKeyPress" title="_onTextboxKeyPress">_onTextboxKeyPress</a></li>
+				                               <li class="protected"><a href="#method__onTextboxKeyUp" title="_onTextboxKeyUp">_onTextboxKeyUp</a></li>
+				                               <li class="protected"><a href="#method__populateList" title="_populateList">_populateList</a></li>
+				                               <li class="protected"><a href="#method__realignContainer" title="_realignContainer">_realignContainer</a></li>
+				                               <li class="protected"><a href="#method__renderInput" title="_renderInput">_renderInput</a></li>
+				                               <li class="protected"><a href="#method__renderListElements" title="_renderListElements">_renderListElements</a></li>
+				                               <li class="protected"><a href="#method__renderOverlay" title="_renderOverlay">_renderOverlay</a></li>
+				                               <li class="protected"><a href="#method__selectItem" title="_selectItem">_selectItem</a></li>
+				                               <li class="protected"><a href="#method__selectText" title="_selectText">_selectText</a></li>
+				                               <li class="protected"><a href="#method__sendQuery" title="_sendQuery">_sendQuery</a></li>
+				                               <li class="protected"><a href="#method__textMatchesOption" title="_textMatchesOption">_textMatchesOption</a></li>
+				                               <li class="protected"><a href="#method__toggleContainer" title="_toggleContainer">_toggleContainer</a></li>
+				                               <li class="protected"><a href="#method__toggleHighlight" title="_toggleHighlight">_toggleHighlight</a></li>
+				                               <li class="protected"><a href="#method__typeAhead" title="_typeAhead">_typeAhead</a></li>
+				                               <li class="protected"><a href="#method__updateValue" title="_updateValue">_updateValue</a></li>
+				                               <li class="protected"><a href="#method_bindUI" title="bindUI">bindUI</a></li>
+				                               <li class=""><a href="#method_doBeforeExpandContainer" title="doBeforeExpandContainer">doBeforeExpandContainer</a></li>
+				                               <li class=""><a href="#method_doBeforeLoadData" title="doBeforeLoadData">doBeforeLoadData</a></li>
+				                               <li class=""><a href="#method_filterResults" title="filterResults">filterResults</a></li>
+				                               <li class=""><a href="#method_formatResult" title="formatResult">formatResult</a></li>
+				                               <li class=""><a href="#method_generateRequest" title="generateRequest">generateRequest</a></li>
+				                               <li class=""><a href="#method_handleResponse" title="handleResponse">handleResponse</a></li>
+				                               <li class="protected"><a href="#method_initializer" title="initializer">initializer</a></li>
+				                               <li class="protected"><a href="#method_renderUI" title="renderUI">renderUI</a></li>
+				                               <li class=""><a href="#method_sendQuery" title="sendQuery">sendQuery</a></li>
+				                               <li class="protected"><a href="#method_syncUI" title="syncUI">syncUI</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-events">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-events-hd">
+										<span class="aui-widget-hd-text">Events</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#event_alwaysShowContainerChange" title="alwaysShowContainerChange">alwaysShowContainerChange</a></li>
+												<li class=""><a href="#event_applyLocalFilterChange" title="applyLocalFilterChange">applyLocalFilterChange</a></li>
+												<li class=""><a href="#event_autoHighlightChange" title="autoHighlightChange">autoHighlightChange</a></li>
+												<li class=""><a href="#event_buttonChange" title="buttonChange">buttonChange</a></li>
+												<li class=""><a href="#event_containerCollapse" title="containerCollapse">containerCollapse</a></li>
+												<li class=""><a href="#event_containerExpand" title="containerExpand">containerExpand</a></li>
+												<li class=""><a href="#event_containerPopulate" title="containerPopulate">containerPopulate</a></li>
+												<li class=""><a href="#event_dataError" title="dataError">dataError</a></li>
+												<li class=""><a href="#event_dataRequest" title="dataRequest">dataRequest</a></li>
+												<li class=""><a href="#event_dataReturn" title="dataReturn">dataReturn</a></li>
+												<li class=""><a href="#event_dataSourceChange" title="dataSourceChange">dataSourceChange</a></li>
+												<li class=""><a href="#event_dataSourceTypeChange" title="dataSourceTypeChange">dataSourceTypeChange</a></li>
+												<li class=""><a href="#event_delimCharChange" title="delimCharChange">delimCharChange</a></li>
+												<li class=""><a href="#event_forceSelectionChange" title="forceSelectionChange">forceSelectionChange</a></li>
+												<li class=""><a href="#event_inputChange" title="inputChange">inputChange</a></li>
+												<li class=""><a href="#event_itemArrowFrom" title="itemArrowFrom">itemArrowFrom</a></li>
+												<li class=""><a href="#event_itemArrowTo" title="itemArrowTo">itemArrowTo</a></li>
+												<li class=""><a href="#event_itemMouseOut" title="itemMouseOut">itemMouseOut</a></li>
+												<li class=""><a href="#event_itemMouseOver" title="itemMouseOver">itemMouseOver</a></li>
+												<li class=""><a href="#event_itemSelect" title="itemSelect">itemSelect</a></li>
+												<li class=""><a href="#event_matchKeyChange" title="matchKeyChange">matchKeyChange</a></li>
+												<li class=""><a href="#event_maxResultsDisplayedChange" title="maxResultsDisplayedChange">maxResultsDisplayedChange</a></li>
+												<li class=""><a href="#event_minQueryLengthChange" title="minQueryLengthChange">minQueryLengthChange</a></li>
+												<li class=""><a href="#event_queryDelayChange" title="queryDelayChange">queryDelayChange</a></li>
+												<li class=""><a href="#event_queryIntervalChange" title="queryIntervalChange">queryIntervalChange</a></li>
+												<li class=""><a href="#event_queryMatchCaseChange" title="queryMatchCaseChange">queryMatchCaseChange</a></li>
+												<li class=""><a href="#event_queryMatchContainsChange" title="queryMatchContainsChange">queryMatchContainsChange</a></li>
+												<li class=""><a href="#event_queryQuestionMarkChange" title="queryQuestionMarkChange">queryQuestionMarkChange</a></li>
+												<li class=""><a href="#event_schemaChange" title="schemaChange">schemaChange</a></li>
+												<li class=""><a href="#event_schemaTypeChange" title="schemaTypeChange">schemaTypeChange</a></li>
+												<li class=""><a href="#event_selectionEnforce" title="selectionEnforce">selectionEnforce</a></li>
+												<li class=""><a href="#event_suppressInputUpdateChange" title="suppressInputUpdateChange">suppressInputUpdateChange</a></li>
+												<li class=""><a href="#event_textboxBlur" title="textboxBlur">textboxBlur</a></li>
+												<li class=""><a href="#event_textboxChange" title="textboxChange">textboxChange</a></li>
+												<li class=""><a href="#event_textboxFocus" title="textboxFocus">textboxFocus</a></li>
+												<li class=""><a href="#event_textboxKey" title="textboxKey">textboxKey</a></li>
+												<li class=""><a href="#event_typeAhead" title="typeAhead">typeAhead</a></li>
+												<li class=""><a href="#event_typeAheadChange" title="typeAheadChange">typeAheadChange</a></li>
+												<li class=""><a href="#event_typeAheadDelayChange" title="typeAheadDelayChange">typeAheadDelayChange</a></li>
+												<li class=""><a href="#event_uniqueNameChange" title="uniqueNameChange">uniqueNameChange</a></li>
+												<li class=""><a href="#event_unmatchedItemSelect" title="unmatchedItemSelect">unmatchedItemSelect</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="aui-autocomplete.js.html" title="aui-autocomplete.js">aui-autocomplete.js</a></li>
+
+
+			                                <li class=""><a href="aui-base.js.html" title="aui-base.js">aui-base.js</a></li>
+
+
+			                                <li class=""><a href="aui-calendar-base.js.html" title="aui-calendar-base.js">aui-calendar-base.js</a></li>
+
+
+			                                <li class=""><a href="aui-core.js.html" title="aui-core.js">aui-core.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<h2>
+								
+
+								
+
+								
+
+								Class <b property="yui:name">AutoComplete</b>
+
+									<span class="extends">- extends <a href="Component.html" title="Component">Component</a></span>
+
+							</h2>
+
+							<!-- class tree goes here -->
+
+
+
+							<div class="summary description" property="yui:description">
+								<p><img src="assets/images/aui-autocomplete/main.png"/></p>
+A base class for AutoComplete, providing:
+<ul>
+<li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+<li>Presenting users choices based on their input</li>
+<li>Separating selected items</li>
+<li>Keyboard interaction for selecting items</li>
+</ul>
+Quick Example:<br/>
+<pre><code>var instance = new A.AutoComplete({
+dataSource: [['AL', 'Alabama', 'The Heart of Dixie'],
+['AK', 'Alaska', 'The Land of the Midnight Sun'],
+['AZ', 'Arizona', 'The Grand Canyon State']],
+schema: {
+resultFields: ['key', 'name', 'description']
+},
+matchKey: 'name',
+delimChar: ',',
+typeAhead: true,
+contentBox: '#myAutoComplete'
+}).render();
+</code></pre>
+Check the list of <a href="AutoComplete.html#configattributes">Configuration Attributes</a> available for
+AutoComplete.
+							</div>
+
+								<div class="section constructor details" rel="yui:constructor" resource="#constructor">
+									<h3 id="constructor">Constructor</h3>
+
+									<div class="content">
+										<div class="detail">
+											<strong property="yui:name">AutoComplete</strong>
+
+											<code>
+												(
+
+													
+															
+															config
+												)
+											</code>
+
+											<div class="description">
+													<dl rel="yui:parameters">
+														<dt>Parameters:</dt>
+															<dd rel="yui:parameter">
+																<code><span property="yui:name">config</span>
+																&lt;<span property="yui:type">Object</span>&gt;
+																</code>
+
+																<span property="yui:description">  Object literal specifying widget configuration properties.</span>
+															</dd>
+													</dl>
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+							<div rel="yui:properties" resource="#properties">
+
+								<div class="section field details">
+
+									<h3 id="properties">Properties</h3>
+
+									<div class="content">
+
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_AutoComplete.ATTRS">
+
+											<h4>
+												<a name="property_AutoComplete.ATTRS" property="yui:name">AutoComplete.ATTRS</a>
+												- <code>static <span property="yui:type">Object</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Static property used to define the default attribute
+configuration for the AutoComplete.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_AutoComplete.NAME">
+
+											<h4>
+												<a name="property_AutoComplete.NAME" property="yui:name">AutoComplete.NAME</a>
+												- <code>static <span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Static property provides a string to identify the class.
+												</div>
+											</div>
+
+
+
+
+											</div>
+									</div>
+								</div>
+
+								<div rel="yui:inheritance">
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Component.html">
+
+										<h4>
+											Properties inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+											</code>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div rel="yui:attributes" resource="#configattributes">
+
+									<div class="section field details">
+
+										<h3 id="configattributes">Configuration Attributes</h3>
+
+										<div class="content">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_alwaysShowContainer">
+
+													<h4>
+														<a name="config_alwaysShowContainer">alwaysShowContainer</a>
+														<code>- <span property="yui:type">Boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Always show the results container, instead of only showing when the 
+user is requesting them.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_applyLocalFilter">
+
+													<h4>
+														<a name="config_applyLocalFilter">applyLocalFilter</a>
+														<code>- <span property="yui:type">Boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															If set to true, the <a href="AutoComplete.html#method_filterResults">filterResults</a> 
+method will be run on the response from the data source.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>true</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_autoHighlight">
+
+													<h4>
+														<a name="config_autoHighlight">autoHighlight</a>
+														<code>- <span property="yui:type">Boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Automatically highlight the first item in the list when the results are
+made visible.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>true</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row  deprecated" rel="yui:attribute" resource="#config_button">
+
+													<h4>
+														<a name="config_button">button</a>
+														<code>- <span property="yui:type">Boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															To use a button
+														</div>
+													</div>
+
+													<div class="deprecated">
+														<strong>Deprecated</strong> &#160;
+													</div>
+
+													<div class="default">
+														Default Value: <strong>true</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_dataSource">
+
+													<h4>
+														<a name="config_dataSource">dataSource</a>
+														<code>- <span property="yui:type">Object | String | Function | Array</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The data source that results will be read from. This can either be
+an existing <a href="DataSource.html">DataSource</a> object, or it can be a
+value that would be passed to <a href="DataSource.html">DataSource</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>null</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_dataSourceType">
+
+													<h4>
+														<a name="config_dataSourceType">dataSourceType</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The type of the data source passed into <a href="AutoComplete.html#config_dataSource">dataSource</a>.
+This can be used to explicitly declare what kind of <a href="DataSource.html">DataSource</a> object will
+be created.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>null</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_delimChar">
+
+													<h4>
+														<a name="config_delimChar">delimChar</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The character used to indicate the beginning or ending of a new value. Most commonly used
+is a ",".
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>null</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_forceSelection">
+
+													<h4>
+														<a name="config_forceSelection">forceSelection</a>
+														<code>- <span property="yui:type">Boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, this
+will clear a selection when the overlay closes unless a user explicitly selects an item.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_input">
+
+													<h4>
+														<a name="config_input">input</a>
+														<code>- <span property="yui:type">String | Node</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The input field which will recieve the users input.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>null</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_matchKey">
+
+													<h4>
+														<a name="config_matchKey">matchKey</a>
+														<code>- <span property="yui:type">String | Number</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The key or numeric index in the schema to match the result against.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>0</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_maxResultsDisplayed">
+
+													<h4>
+														<a name="config_maxResultsDisplayed">maxResultsDisplayed</a>
+														<code>- <span property="yui:type">Number</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The maximum number of results to display.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>10</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_minQueryLength">
+
+													<h4>
+														<a name="config_minQueryLength">minQueryLength</a>
+														<code>- <span property="yui:type">Number</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The minimum number of characters required to query the data source.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>1</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_queryDelay">
+
+													<h4>
+														<a name="config_queryDelay">queryDelay</a>
+														<code>- <span property="yui:type">Number</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The amount of time in seconds to delay before submitting the query.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>0.2</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_queryInterval">
+
+													<h4>
+														<a name="config_queryInterval">queryInterval</a>
+														<code>- <span property="yui:type">Number</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															When IME usage is detected or interval detection is explicitly enabled,
+AutoComplete will detect the input value at the given interval and send a
+query if the value has changed.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>0.5</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_queryMatchCase">
+
+													<h4>
+														<a name="config_queryMatchCase">queryMatchCase</a>
+														<code>- <span property="yui:type">Boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															When <a href="AutoComplete.html#config_applyLocalFilter">applyLocalFilter</a> is true,
+setting this to true will match only results with the same case.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_queryMatchContains">
+
+													<h4>
+														<a name="config_queryMatchContains">queryMatchContains</a>
+														<code>- <span property="yui:type">Boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															When <a href="AutoComplete.html#config_applyLocalFilter">applyLocalFilter</a> is true,
+setting this to true will match results which contain the query anywhere in the text,
+instead of just matching just items that start with the query.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_queryQuestionMark">
+
+													<h4>
+														<a name="config_queryQuestionMark">queryQuestionMark</a>
+														<code>- <span property="yui:type">Boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and 
+the encoded query string. To prevent this behavior, you can
+set this value to false. If you need to customize this even further, you
+can override the <a href="AutoComplete.html#method_generateRequest">generateRequest</a> method.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>true</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_schema">
+
+													<h4>
+														<a name="config_schema">schema</a>
+														<code>- <span property="yui:type">Object</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															A valid configuration object for any of <a href="module_datasource.html">DataSource</a> schema plugins.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>null</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_schemaType">
+
+													<h4>
+														<a name="config_schemaType">schemaType</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															A valid type of <a href="module_datasource.html">DataSource</a> schema plugin, such as array, json, xml, etc.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>array</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_suppressInputUpdate">
+
+													<h4>
+														<a name="config_suppressInputUpdate">suppressInputUpdate</a>
+														<code>- <span property="yui:type">Boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Whether or not the input field should be updated with selections.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_typeAhead">
+
+													<h4>
+														<a name="config_typeAhead">typeAhead</a>
+														<code>- <span property="yui:type">Boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															If <a href="AutoComplete.html#config_autoHighlight">autoHighlight</a> is enabled, whether or not the 
+input field should be automatically updated with the first result as the user types, 
+automatically selecting the portion of the text the user has not typed yet.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_typeAheadDelay">
+
+													<h4>
+														<a name="config_typeAheadDelay">typeAheadDelay</a>
+														<code>- <span property="yui:type">Number</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, number of seconds 
+to delay before updating the input. In order to prevent certain race conditions, this value must
+always be greater than the <a href="AutoComplete.html#config_queryDelay">queryDelay</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>0.2</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_uniqueName">
+
+													<h4>
+														<a name="config_uniqueName">uniqueName</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The unique ID of the input element.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>null</strong>
+													</div>
+
+												</div>
+
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="Component.html">
+												<h4>Configuration attributes inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_cssClass">
+															<a href="Component.html#config_cssClass" property="yui:name" title="cssClass">cssClass</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_hideClass">
+															<a href="Component.html#config_hideClass" property="yui:name" title="hideClass">hideClass</a><span>,</span>
+															</div>
+														
+															
+															
+
+															<div class="deprecated" rel="yui:attribute" resource="Component.html#config_owner">
+															<a href="Component.html#config_owner" property="yui:name" title="owner">owner</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_relayEvents">
+															<a href="Component.html#config_relayEvents" property="yui:name" title="relayEvents">relayEvents</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_render">
+															<a href="Component.html#config_render" property="yui:name" title="render">render</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+									</div>
+
+
+							</div>
+
+							<div rel="yui:methods" resource="#methods">
+									<div class="section method details">
+
+										<h3 id="methods">Methods</h3>
+
+										<div class="content">
+
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__clearSelection">
+
+													<h4>
+														<a name="method__clearSelection">_clearSelection</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_clearSelection</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															When <a href="Autocomplete.html#config_forceSelection">forceSelection</a> is true and
+the user tries to leave the input element without selecting an item from the results,
+the user selection is cleared.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__createDataSource">
+
+													<h4>
+														<a name="method__createDataSource">_createDataSource</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														String
+															<strong property="yui:name">_createDataSource</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates the data source object using the passed in <a href="Autocomplete.html#config_dataSource">dataSource</a>,
+and if it is a string, will use the <a href="Autocomplete.html#config_dataSourceType">dataSourceType</a> to
+create a new <a href="module_datasource.html">DataSource</a> object.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__enableIntervalDetection">
+
+													<h4>
+														<a name="method__enableIntervalDetection">_enableIntervalDetection</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_enableIntervalDetection</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Enables query interval detection for IME support.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__extractQuery">
+
+													<h4>
+														<a name="method__extractQuery">_extractQuery</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														String
+															<strong property="yui:name">_extractQuery</strong>
+														   (
+																
+																		
+																		 query
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Extracts the right most query from the delimited string in the input.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">query</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> String to parse</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__focus">
+
+													<h4>
+														<a name="method__focus">_focus</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_focus</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Focuses the input element.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__isIgnoreKey">
+
+													<h4>
+														<a name="method__isIgnoreKey">_isIgnoreKey</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														String
+															<strong property="yui:name">_isIgnoreKey</strong>
+														   (
+																
+																		
+																		 Number
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Whether or not the pressed key triggers some functionality or if it should
+be ignored.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">Number</span>
+																		&lt;<span property="yui:type">keyCode</span>&gt;
+																		</code>
+																		<span property="yui:description"> The numeric code of the key pressed</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__jumpSelection">
+
+													<h4>
+														<a name="method__jumpSelection">_jumpSelection</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_jumpSelection</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															If there is a currently selected item, the right arrow key will select
+that item and jump to the end of the input element, otherwise the container is closed.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__moveSelection">
+
+													<h4>
+														<a name="method__moveSelection">_moveSelection</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_moveSelection</strong>
+														   (
+																
+																		
+																		 keyCode
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Triggered by the up and down arrow keys, changes the currently selected list element item, and scrolls the
+container if necessary.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">keyCode</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> The numeric code of the key pressed</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onButtonMouseDown">
+
+													<h4>
+														<a name="method__onButtonMouseDown">_onButtonMouseDown</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onButtonMouseDown</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Called when the user mouses down on the button element in the combobox.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onContainerClick">
+
+													<h4>
+														<a name="method__onContainerClick">_onContainerClick</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onContainerClick</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles when a user clicks on the container.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onContainerMouseout">
+
+													<h4>
+														<a name="method__onContainerMouseout">_onContainerMouseout</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onContainerMouseout</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles when a user mouses out of the container.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onContainerMouseover">
+
+													<h4>
+														<a name="method__onContainerMouseover">_onContainerMouseover</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onContainerMouseover</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles when a user mouses over the container.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onContainerScroll">
+
+													<h4>
+														<a name="method__onContainerScroll">_onContainerScroll</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onContainerScroll</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the container scroll events.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onInterval">
+
+													<h4>
+														<a name="method__onInterval">_onInterval</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onInterval</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Enables the query to be triggered based on detecting text input via intervals instead of via
+key events.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onTextboxBlur">
+
+													<h4>
+														<a name="method__onTextboxBlur">_onTextboxBlur</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onTextboxBlur</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the input element losing focus.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onTextboxFocus">
+
+													<h4>
+														<a name="method__onTextboxFocus">_onTextboxFocus</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onTextboxFocus</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the input element gaining focus.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onTextboxKeyDown">
+
+													<h4>
+														<a name="method__onTextboxKeyDown">_onTextboxKeyDown</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onTextboxKeyDown</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the keydown events on the input element for functional keys.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onTextboxKeyPress">
+
+													<h4>
+														<a name="method__onTextboxKeyPress">_onTextboxKeyPress</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onTextboxKeyPress</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the key press events of the input element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onTextboxKeyUp">
+
+													<h4>
+														<a name="method__onTextboxKeyUp">_onTextboxKeyUp</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onTextboxKeyUp</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the keyup events of the input element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__populateList">
+
+													<h4>
+														<a name="method__populateList">_populateList</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_populateList</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Populates the container with list items of the query results.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__realignContainer">
+
+													<h4>
+														<a name="method__realignContainer">_realignContainer</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_realignContainer</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Realigns the container to the input element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__renderInput">
+
+													<h4>
+														<a name="method__renderInput">_renderInput</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_renderInput</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the rendering of the input element.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__renderListElements">
+
+													<h4>
+														<a name="method__renderListElements">_renderListElements</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_renderListElements</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Pre-populates the container with the 
+<a href="Autocomplete.html#config_maxResultsDisplayed">maxResultsDisplayed</a>
+number of list items.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__renderOverlay">
+
+													<h4>
+														<a name="method__renderOverlay">_renderOverlay</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_renderOverlay</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the creation of the overlay where the result list will be displayed.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__selectItem">
+
+													<h4>
+														<a name="method__selectItem">_selectItem</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_selectItem</strong>
+														   (
+																
+																		
+																		 elListItem
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Selects a list item from the query results.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">elListItem</span>
+																		&lt;<span property="yui:type">Node</span>&gt;
+																		</code>
+																		<span property="yui:description"> The list item to select</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__selectText">
+
+													<h4>
+														<a name="method__selectText">_selectText</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_selectText</strong>
+														   (
+																
+																		
+																		 el
+																	
+																
+																		, 
+																		 start
+																	
+																
+																		, 
+																		 end
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Selects a substring of text inside of the input element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">el</span>
+																		&lt;<span property="yui:type">Node</span>&gt;
+																		</code>
+																		<span property="yui:description"> The input element to read the value from</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">start</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> The index to start the selection range from</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">end</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> The index to end the selection range at</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__sendQuery">
+
+													<h4>
+														<a name="method__sendQuery">_sendQuery</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_sendQuery</strong>
+														   (
+																
+																		
+																		 query
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Makes a query request to the data source.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">query</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The query string</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__textMatchesOption">
+
+													<h4>
+														<a name="method__textMatchesOption">_textMatchesOption</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_textMatchesOption</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Checks to see if the value typed by the user matches any of the
+query results.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__toggleContainer">
+
+													<h4>
+														<a name="method__toggleContainer">_toggleContainer</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_toggleContainer</strong>
+														   (
+																
+																		
+																		 show
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Toggles the display of the results container.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">show</span>
+																		&lt;<span property="yui:type">Boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"> Flag to force the showing or hiding of the container</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__toggleHighlight">
+
+													<h4>
+														<a name="method__toggleHighlight">_toggleHighlight</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_toggleHighlight</strong>
+														   (
+																
+																		
+																		 elNewListItem
+																	
+																
+																		, 
+																		 action
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Toggles the highlighting of a list item, and removes the highlighting from the previous item
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">elNewListItem</span>
+																		&lt;<span property="yui:type">Node</span>&gt;
+																		</code>
+																		<span property="yui:description"> The item to be highlighted</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">action</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> Whether we are moving to or from an item. Valid values are "to" or "from".</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__typeAhead">
+
+													<h4>
+														<a name="method__typeAhead">_typeAhead</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_typeAhead</strong>
+														   (
+																
+																		
+																		 elListItem
+																	
+																
+																		, 
+																		 query
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Updates in the input element with the first result as the user types,
+selecting the text the user has not typed yet.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">elListItem</span>
+																		&lt;<span property="yui:type">Node</span>&gt;
+																		</code>
+																		<span property="yui:description"> The selected list item</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">query</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The query string</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__updateValue">
+
+													<h4>
+														<a name="method__updateValue">_updateValue</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_updateValue</strong>
+														   (
+																
+																		
+																		 elListItem
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Updates the input element with the selected query result. If
+<a href="Autocomplete.html#config_delimChar">delimChar</a> has been set,
+then the value gets appended with the delimiter.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">elListItem</span>
+																		&lt;<span property="yui:type">Node</span>&gt;
+																		</code>
+																		<span property="yui:description"> The selected list item</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_bindUI">
+
+													<h4>
+														<a name="method_bindUI">bindUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">bindUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Bind the events on the AutoComplete UI. Lifecycle.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_doBeforeExpandContainer">
+
+													<h4>
+														<a name="method_doBeforeExpandContainer">doBeforeExpandContainer</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Boolean
+															<strong property="yui:name">doBeforeExpandContainer</strong>
+														   (
+																
+																		
+																		 query
+																	
+																
+																		, 
+																		 allResults
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															An overridable method that is executed before the result container is shown.
+The method can return false to prevent the container from being shown.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">query</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The query that was submitted to the data source</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">allResults</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> The parsed results</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_doBeforeLoadData">
+
+													<h4>
+														<a name="method_doBeforeLoadData">doBeforeLoadData</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Boolean
+															<strong property="yui:name">doBeforeLoadData</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															An overridable method that is executed before the result overlay is loaded with results.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_filterResults">
+
+													<h4>
+														<a name="method_filterResults">filterResults</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Object
+															<strong property="yui:name">filterResults</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Executed by the data source as a mechanism to do simple client-side
+filtering of the results.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Object
+																	</code></dt>
+																	<dd property="yui:returnInfo">Filtered response object</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_formatResult">
+
+													<h4>
+														<a name="method_formatResult">formatResult</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														String
+															<strong property="yui:name">formatResult</strong>
+														   (
+																
+																		
+																		 result
+																	
+																
+																		, 
+																		 request
+																	
+																
+																		, 
+																		 resultMatch
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															An overridable method for formatting the result of the query before it's displayed in the overlay.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">result</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> The result data object</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">request</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The current query string</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">resultMatch</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The string from the results that matches the query</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_generateRequest">
+
+													<h4>
+														<a name="method_generateRequest">generateRequest</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Object
+															<strong property="yui:name">generateRequest</strong>
+														   (
+																
+																		
+																		 query
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															An overridable method that creates an object to be passed to the sendRequest
+method of the data source object. Useful to overwrite if you wish to create
+a custom request object before it's sent.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">query</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The string currently being entered</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_handleResponse">
+
+													<h4>
+														<a name="method_handleResponse">handleResponse</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">handleResponse</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the response for the display of the results. This is a callback method
+that is fired by the sendRequest method so that results are ready to be accessed.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_initializer">
+
+													<h4>
+														<a name="method_initializer">initializer</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">initializer</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Construction logic executed during AutoComplete instantiation. Lifecycle.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_renderUI">
+
+													<h4>
+														<a name="method_renderUI">renderUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">renderUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Create the DOM structure for the AutoComplete. Lifecycle.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_sendQuery">
+
+													<h4>
+														<a name="method_sendQuery">sendQuery</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">sendQuery</strong>
+														   (
+																
+																		
+																		 query
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sends a query request to the data source object.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">query</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> Query string</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_syncUI">
+
+													<h4>
+														<a name="method_syncUI">syncUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">syncUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sync the AutoComplete UI. Lifecycle.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+
+									<div rel="yui:inheritance">
+
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Component.html">
+
+											<h4>
+												Methods inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentDestroy">
+														<a href="Component.html#method__afterComponentDestroy" property="yui:name" title="_afterComponentDestroy">_afterComponentDestroy</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentOwnerChange">
+														<a href="Component.html#method__afterComponentOwnerChange" property="yui:name" title="_afterComponentOwnerChange">_afterComponentOwnerChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentRelayEventsChange">
+														<a href="Component.html#method__afterComponentRelayEventsChange" property="yui:name" title="_afterComponentRelayEventsChange">_afterComponentRelayEventsChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentVisibleChange">
+														<a href="Component.html#method__afterComponentVisibleChange" property="yui:name" title="_afterComponentVisibleChange">_afterComponentVisibleChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterCssClassChange">
+														<a href="Component.html#method__afterCssClassChange" property="yui:name" title="_afterCssClassChange">_afterCssClassChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__relayEvents">
+														<a href="Component.html#method__relayEvents" property="yui:name" title="_relayEvents">_relayEvents</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__setComponentClassNames">
+														<a href="Component.html#method__setComponentClassNames" property="yui:name" title="_setComponentClassNames">_setComponentClassNames</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__setRelayEvents">
+														<a href="Component.html#method__setRelayEvents" property="yui:name" title="_setRelayEvents">_setRelayEvents</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__uiSetCssClass">
+														<a href="Component.html#method__uiSetCssClass" property="yui:name" title="_uiSetCssClass">_uiSetCssClass</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Component.html#method_clone">
+														<a href="Component.html#method_clone" property="yui:name" title="clone">clone</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method_initializer">
+														<a href="Component.html#method_initializer" property="yui:name" title="initializer">initializer</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Component.html#method_toggle">
+														<a href="Component.html#method_toggle" property="yui:name" title="toggle">toggle</a>
+														</div>
+												</code>
+											</div>
+										</div>
+									</div>
+							</div>
+
+							<div rel="yui:events" resource="#events">
+									<div class="section method details">
+										<h3 id="events">Events</h3>
+
+										<div class="content">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_alwaysShowContainerChange">
+
+													<h4>
+														<a name="event_alwaysShowContainerChange">alwaysShowContainerChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">alwaysShowContainerChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'alwaysShowContainer' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_applyLocalFilterChange">
+
+													<h4>
+														<a name="event_applyLocalFilterChange">applyLocalFilterChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">applyLocalFilterChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'applyLocalFilter' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_autoHighlightChange">
+
+													<h4>
+														<a name="event_autoHighlightChange">autoHighlightChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">autoHighlightChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'autoHighlight' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_buttonChange">
+
+													<h4>
+														<a name="event_buttonChange">buttonChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">buttonChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'button' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_containerCollapse">
+
+													<h4>
+														<a name="event_containerCollapse">containerCollapse</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">containerCollapse</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the containerCollapse event. Fired when the container is hidden.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The containerCollapse event.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_containerExpand">
+
+													<h4>
+														<a name="event_containerExpand">containerExpand</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">containerExpand</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the containerExpand event. Fired when the container is shown.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The containerExpand event.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_containerPopulate">
+
+													<h4>
+														<a name="event_containerPopulate">containerPopulate</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">containerPopulate</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the containerPopulate event. Fired when the container is populated.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The containerPopulate event.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_dataError">
+
+													<h4>
+														<a name="event_dataError">dataError</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">dataError</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the dataError event. Fired when there is an error accessing the data.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The dataError event.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_dataRequest">
+
+													<h4>
+														<a name="event_dataRequest">dataRequest</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">dataRequest</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the dataRequest event. Fired when ever a query is sent to the data source.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The dataRequest event.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_dataReturn">
+
+													<h4>
+														<a name="event_dataReturn">dataReturn</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">dataReturn</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the dataReturn event. Fired when data successfully comes back from the data request.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The dataReturn event.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_dataSourceChange">
+
+													<h4>
+														<a name="event_dataSourceChange">dataSourceChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">dataSourceChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'dataSource' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_dataSourceTypeChange">
+
+													<h4>
+														<a name="event_dataSourceTypeChange">dataSourceTypeChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">dataSourceTypeChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'dataSourceType' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_delimCharChange">
+
+													<h4>
+														<a name="event_delimCharChange">delimCharChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">delimCharChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'delimChar' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_forceSelectionChange">
+
+													<h4>
+														<a name="event_forceSelectionChange">forceSelectionChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">forceSelectionChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'forceSelection' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_inputChange">
+
+													<h4>
+														<a name="event_inputChange">inputChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">inputChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'input' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_itemArrowFrom">
+
+													<h4>
+														<a name="event_itemArrowFrom">itemArrowFrom</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">itemArrowFrom</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the itemArrowFrom event. Fired when the user navigates via the keyboard away from
+a selected item.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The itemArrowFrom event.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_itemArrowTo">
+
+													<h4>
+														<a name="event_itemArrowTo">itemArrowTo</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">itemArrowTo</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the itemArrowTo event. Fired when the user navigates via the keyboard to a selected item.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The itemArrowTo event.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_itemMouseOut">
+
+													<h4>
+														<a name="event_itemMouseOut">itemMouseOut</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">itemMouseOut</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the itemMouseOut event. Fired when the user mouses away from an item.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The itemMouseOut event.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_itemMouseOver">
+
+													<h4>
+														<a name="event_itemMouseOver">itemMouseOver</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">itemMouseOver</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the itemMouseOver event. Fired when the user mouses over an item.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The itemMouseOver event.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_itemSelect">
+
+													<h4>
+														<a name="event_itemSelect">itemSelect</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">itemSelect</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the itemSelect event. Fired when an item in the list is selected.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The itemSelect event.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_matchKeyChange">
+
+													<h4>
+														<a name="event_matchKeyChange">matchKeyChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">matchKeyChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'matchKey' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_maxResultsDisplayedChange">
+
+													<h4>
+														<a name="event_maxResultsDisplayedChange">maxResultsDisplayedChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">maxResultsDisplayedChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'maxResultsDisplayed' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_minQueryLengthChange">
+
+													<h4>
+														<a name="event_minQueryLengthChange">minQueryLengthChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">minQueryLengthChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'minQueryLength' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_queryDelayChange">
+
+													<h4>
+														<a name="event_queryDelayChange">queryDelayChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">queryDelayChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'queryDelay' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_queryIntervalChange">
+
+													<h4>
+														<a name="event_queryIntervalChange">queryIntervalChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">queryIntervalChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'queryInterval' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_queryMatchCaseChange">
+
+													<h4>
+														<a name="event_queryMatchCaseChange">queryMatchCaseChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">queryMatchCaseChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'queryMatchCase' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_queryMatchContainsChange">
+
+													<h4>
+														<a name="event_queryMatchContainsChange">queryMatchContainsChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">queryMatchContainsChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'queryMatchContains' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_queryQuestionMarkChange">
+
+													<h4>
+														<a name="event_queryQuestionMarkChange">queryQuestionMarkChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">queryQuestionMarkChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'queryQuestionMark' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_schemaChange">
+
+													<h4>
+														<a name="event_schemaChange">schemaChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">schemaChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'schema' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_schemaTypeChange">
+
+													<h4>
+														<a name="event_schemaTypeChange">schemaTypeChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">schemaTypeChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'schemaType' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_selectionEnforce">
+
+													<h4>
+														<a name="event_selectionEnforce">selectionEnforce</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">selectionEnforce</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the selectionEnforce event. Fired if <a href="Autocomplete.html#config_forceSelection">forceSelection</a>
+is enabled and the users input element has been cleared because it did not match one of the results.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The selectionEnforce event.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_suppressInputUpdateChange">
+
+													<h4>
+														<a name="event_suppressInputUpdateChange">suppressInputUpdateChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">suppressInputUpdateChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'suppressInputUpdate' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_textboxBlur">
+
+													<h4>
+														<a name="event_textboxBlur">textboxBlur</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">textboxBlur</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the textboxBlur event. Fired when the user leaves the input element.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The textboxBlur event.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_textboxChange">
+
+													<h4>
+														<a name="event_textboxChange">textboxChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">textboxChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the textboxChange event. Fired when the value in the input element is changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The textboxChange event.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_textboxFocus">
+
+													<h4>
+														<a name="event_textboxFocus">textboxFocus</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">textboxFocus</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the textboxFocus event. Fired when user moves focus to the input element.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The textboxFocus event.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_textboxKey">
+
+													<h4>
+														<a name="event_textboxKey">textboxKey</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">textboxKey</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the textboxKey event. Fired when the input element receives key input.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The textboxKey event.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_typeAhead">
+
+													<h4>
+														<a name="event_typeAhead">typeAhead</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">typeAhead</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the typeAhead event. Fired when the input element has been pre-filled by the type-ahead feature.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The typeAhead event.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_typeAheadChange">
+
+													<h4>
+														<a name="event_typeAheadChange">typeAheadChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">typeAheadChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'typeAhead' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_typeAheadDelayChange">
+
+													<h4>
+														<a name="event_typeAheadDelayChange">typeAheadDelayChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">typeAheadDelayChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'typeAheadDelay' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_uniqueNameChange">
+
+													<h4>
+														<a name="event_uniqueNameChange">uniqueNameChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">uniqueNameChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'uniqueName' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_unmatchedItemSelect">
+
+													<h4>
+														<a name="event_unmatchedItemSelect">unmatchedItemSelect</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">unmatchedItemSelect</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the unmatchedItemSelect event. Fired when a user selects something that does
+not match any of the displayed results.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The unmatchedItemSelect event.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+										<div class="section field inheritance events" rel="yui:superclass"  resource="Component.html">
+											<h4>
+												Events inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_cssClassChange">
+														<a href="Component.html#event_cssClassChange" property="yui:name" title="cssClassChange">cssClassChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_hideClassChange">
+														<a href="Component.html#event_hideClassChange" property="yui:name" title="hideClassChange">hideClassChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_ownerChange">
+														<a href="Component.html#event_ownerChange" property="yui:name" title="ownerChange">ownerChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_relayEventsChange">
+														<a href="Component.html#event_relayEventsChange" property="yui:name" title="relayEventsChange">relayEventsChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_renderChange">
+														<a href="Component.html#event_renderChange" property="yui:name" title="renderChange">renderChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+
+									</div>
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "AutoComplete.html#config_alwaysShowContainer", "access": "", "host": "AutoComplete", "type": "config", "name": "alwaysShowContainer"}, {"url": "AutoComplete.html#event_alwaysShowContainerChange", "access": "", "host": "AutoComplete", "type": "event", "name": "alwaysShowContainerChange"}, {"url": "AutoComplete.html#config_applyLocalFilter", "access": "", "host": "AutoComplete", "type": "config", "name": "applyLocalFilter"}, {"url": "AutoComplete.html#event_applyLocalFilterChange", "access": "", "host": "AutoComplete", "type": "event", "name": "applyLocalFilterChange"}, {"url": "AutoComplete.html#property_AutoComplete.ATTRS", "access": "", "host": "AutoComplete", "type": "property", "name": "AutoComplete.ATTRS"}, {"url": "AutoComplete.html#property_AutoComplete.NAME", "access": "", "host": "AutoComplete", "type": "property", "name": "AutoComplete.NAME"}, {"url": "AutoComplete.html#config_autoHighlight", "access": "", "host": "AutoComplete", "type": "config", "name": "autoHighlight"}, {"url": "AutoComplete.html#event_autoHighlightChange", "access": "", "host": "AutoComplete", "type": "event", "name": "autoHighlightChange"}, {"url": "AutoComplete.html#method_bindUI", "access": "protected", "host": "AutoComplete", "type": "method", "name": "bindUI"}, {"url": "AutoComplete.html#config_button", "access": "", "host": "AutoComplete", "type": "config", "name": "button"}, {"url": "AutoComplete.html#event_buttonChange", "access": "", "host": "AutoComplete", "type": "event", "name": "buttonChange"}, {"url": "AutoComplete.html#method__clearSelection", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_clearSelection"}, {"url": "AutoComplete.html#event_containerCollapse", "access": "", "host": "AutoComplete", "type": "event", "name": "containerCollapse"}, {"url": "AutoComplete.html#event_containerExpand", "access": "", "host": "AutoComplete", "type": "event", "name": "containerExpand"}, {"url": "AutoComplete.html#event_containerPopulate", "access": "", "host": "AutoComplete", "type": "event", "name": "containerPopulate"}, {"url": "AutoComplete.html#method__createDataSource", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_createDataSource"}, {"url": "AutoComplete.html#event_dataError", "access": "", "host": "AutoComplete", "type": "event", "name": "dataError"}, {"url": "AutoComplete.html#event_dataRequest", "access": "", "host": "AutoComplete", "type": "event", "name": "dataRequest"}, {"url": "AutoComplete.html#event_dataReturn", "access": "", "host": "AutoComplete", "type": "event", "name": "dataReturn"}, {"url": "AutoComplete.html#config_dataSource", "access": "", "host": "AutoComplete", "type": "config", "name": "dataSource"}, {"url": "AutoComplete.html#event_dataSourceChange", "access": "", "host": "AutoComplete", "type": "event", "name": "dataSourceChange"}, {"url": "AutoComplete.html#config_dataSourceType", "access": "", "host": "AutoComplete", "type": "config", "name": "dataSourceType"}, {"url": "AutoComplete.html#event_dataSourceTypeChange", "access": "", "host": "AutoComplete", "type": "event", "name": "dataSourceTypeChange"}, {"url": "AutoComplete.html#config_delimChar", "access": "", "host": "AutoComplete", "type": "config", "name": "delimChar"}, {"url": "AutoComplete.html#event_delimCharChange", "access": "", "host": "AutoComplete", "type": "event", "name": "delimCharChange"}, {"url": "AutoComplete.html#method_doBeforeExpandContainer", "access": "", "host": "AutoComplete", "type": "method", "name": "doBeforeExpandContainer"}, {"url": "AutoComplete.html#method_doBeforeLoadData", "access": "", "host": "AutoComplete", "type": "method", "name": "doBeforeLoadData"}, {"url": "AutoComplete.html#method__enableIntervalDetection", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_enableIntervalDetection"}, {"url": "AutoComplete.html#method__extractQuery", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_extractQuery"}, {"url": "AutoComplete.html#method_filterResults", "access": "", "host": "AutoComplete", "type": "method", "name": "filterResults"}, {"url": "AutoComplete.html#method__focus", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_focus"}, {"url": "AutoComplete.html#config_forceSelection", "access": "", "host": "AutoComplete", "type": "config", "name": "forceSelection"}, {"url": "AutoComplete.html#event_forceSelectionChange", "access": "", "host": "AutoComplete", "type": "event", "name": "forceSelectionChange"}, {"url": "AutoComplete.html#method_formatResult", "access": "", "host": "AutoComplete", "type": "method", "name": "formatResult"}, {"url": "AutoComplete.html#method_generateRequest", "access": "", "host": "AutoComplete", "type": "method", "name": "generateRequest"}, {"url": "AutoComplete.html#method_handleResponse", "access": "", "host": "AutoComplete", "type": "method", "name": "handleResponse"}, {"url": "AutoComplete.html#method_initializer", "access": "protected", "host": "AutoComplete", "type": "method", "name": "initializer"}, {"url": "AutoComplete.html#config_input", "access": "", "host": "AutoComplete", "type": "config", "name": "input"}, {"url": "AutoComplete.html#event_inputChange", "access": "", "host": "AutoComplete", "type": "event", "name": "inputChange"}, {"url": "AutoComplete.html#method__isIgnoreKey", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_isIgnoreKey"}, {"url": "AutoComplete.html#event_itemArrowFrom", "access": "", "host": "AutoComplete", "type": "event", "name": "itemArrowFrom"}, {"url": "AutoComplete.html#event_itemArrowTo", "access": "", "host": "AutoComplete", "type": "event", "name": "itemArrowTo"}, {"url": "AutoComplete.html#event_itemMouseOut", "access": "", "host": "AutoComplete", "type": "event", "name": "itemMouseOut"}, {"url": "AutoComplete.html#event_itemMouseOver", "access": "", "host": "AutoComplete", "type": "event", "name": "itemMouseOver"}, {"url": "AutoComplete.html#event_itemSelect", "access": "", "host": "AutoComplete", "type": "event", "name": "itemSelect"}, {"url": "AutoComplete.html#method__jumpSelection", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_jumpSelection"}, {"url": "AutoComplete.html#config_matchKey", "access": "", "host": "AutoComplete", "type": "config", "name": "matchKey"}, {"url": "AutoComplete.html#event_matchKeyChange", "access": "", "host": "AutoComplete", "type": "event", "name": "matchKeyChange"}, {"url": "AutoComplete.html#config_maxResultsDisplayed", "access": "", "host": "AutoComplete", "type": "config", "name": "maxResultsDisplayed"}, {"url": "AutoComplete.html#event_maxResultsDisplayedChange", "access": "", "host": "AutoComplete", "type": "event", "name": "maxResultsDisplayedChange"}, {"url": "AutoComplete.html#config_minQueryLength", "access": "", "host": "AutoComplete", "type": "config", "name": "minQueryLength"}, {"url": "AutoComplete.html#event_minQueryLengthChange", "access": "", "host": "AutoComplete", "type": "event", "name": "minQueryLengthChange"}, {"url": "AutoComplete.html#method__moveSelection", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_moveSelection"}, {"url": "AutoComplete.html#method__onButtonMouseDown", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onButtonMouseDown"}, {"url": "AutoComplete.html#method__onContainerClick", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onContainerClick"}, {"url": "AutoComplete.html#method__onContainerMouseout", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onContainerMouseout"}, {"url": "AutoComplete.html#method__onContainerMouseover", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onContainerMouseover"}, {"url": "AutoComplete.html#method__onContainerScroll", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onContainerScroll"}, {"url": "AutoComplete.html#method__onInterval", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onInterval"}, {"url": "AutoComplete.html#method__onTextboxBlur", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onTextboxBlur"}, {"url": "AutoComplete.html#method__onTextboxFocus", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onTextboxFocus"}, {"url": "AutoComplete.html#method__onTextboxKeyDown", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onTextboxKeyDown"}, {"url": "AutoComplete.html#method__onTextboxKeyPress", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onTextboxKeyPress"}, {"url": "AutoComplete.html#method__onTextboxKeyUp", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onTextboxKeyUp"}, {"url": "AutoComplete.html#method__populateList", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_populateList"}, {"url": "AutoComplete.html#config_queryDelay", "access": "", "host": "AutoComplete", "type": "config", "name": "queryDelay"}, {"url": "AutoComplete.html#event_queryDelayChange", "access": "", "host": "AutoComplete", "type": "event", "name": "queryDelayChange"}, {"url": "AutoComplete.html#config_queryInterval", "access": "", "host": "AutoComplete", "type": "config", "name": "queryInterval"}, {"url": "AutoComplete.html#event_queryIntervalChange", "access": "", "host": "AutoComplete", "type": "event", "name": "queryIntervalChange"}, {"url": "AutoComplete.html#config_queryMatchCase", "access": "", "host": "AutoComplete", "type": "config", "name": "queryMatchCase"}, {"url": "AutoComplete.html#event_queryMatchCaseChange", "access": "", "host": "AutoComplete", "type": "event", "name": "queryMatchCaseChange"}, {"url": "AutoComplete.html#config_queryMatchContains", "access": "", "host": "AutoComplete", "type": "config", "name": "queryMatchContains"}, {"url": "AutoComplete.html#event_queryMatchContainsChange", "access": "", "host": "AutoComplete", "type": "event", "name": "queryMatchContainsChange"}, {"url": "AutoComplete.html#config_queryQuestionMark", "access": "", "host": "AutoComplete", "type": "config", "name": "queryQuestionMark"}, {"url": "AutoComplete.html#event_queryQuestionMarkChange", "access": "", "host": "AutoComplete", "type": "event", "name": "queryQuestionMarkChange"}, {"url": "AutoComplete.html#method__realignContainer", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_realignContainer"}, {"url": "AutoComplete.html#method__renderInput", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_renderInput"}, {"url": "AutoComplete.html#method__renderListElements", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_renderListElements"}, {"url": "AutoComplete.html#method__renderOverlay", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_renderOverlay"}, {"url": "AutoComplete.html#method_renderUI", "access": "protected", "host": "AutoComplete", "type": "method", "name": "renderUI"}, {"url": "AutoComplete.html#config_schema", "access": "", "host": "AutoComplete", "type": "config", "name": "schema"}, {"url": "AutoComplete.html#event_schemaChange", "access": "", "host": "AutoComplete", "type": "event", "name": "schemaChange"}, {"url": "AutoComplete.html#config_schemaType", "access": "", "host": "AutoComplete", "type": "config", "name": "schemaType"}, {"url": "AutoComplete.html#event_schemaTypeChange", "access": "", "host": "AutoComplete", "type": "event", "name": "schemaTypeChange"}, {"url": "AutoComplete.html#event_selectionEnforce", "access": "", "host": "AutoComplete", "type": "event", "name": "selectionEnforce"}, {"url": "AutoComplete.html#method__selectItem", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_selectItem"}, {"url": "AutoComplete.html#method__selectText", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_selectText"}, {"url": "AutoComplete.html#method__sendQuery", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_sendQuery"}, {"url": "AutoComplete.html#method_sendQuery", "access": "", "host": "AutoComplete", "type": "method", "name": "sendQuery"}, {"url": "AutoComplete.html#config_suppressInputUpdate", "access": "", "host": "AutoComplete", "type": "config", "name": "suppressInputUpdate"}, {"url": "AutoComplete.html#event_suppressInputUpdateChange", "access": "", "host": "AutoComplete", "type": "event", "name": "suppressInputUpdateChange"}, {"url": "AutoComplete.html#method_syncUI", "access": "protected", "host": "AutoComplete", "type": "method", "name": "syncUI"}, {"url": "AutoComplete.html#event_textboxBlur", "access": "", "host": "AutoComplete", "type": "event", "name": "textboxBlur"}, {"url": "AutoComplete.html#event_textboxChange", "access": "", "host": "AutoComplete", "type": "event", "name": "textboxChange"}, {"url": "AutoComplete.html#event_textboxFocus", "access": "", "host": "AutoComplete", "type": "event", "name": "textboxFocus"}, {"url": "AutoComplete.html#event_textboxKey", "access": "", "host": "AutoComplete", "type": "event", "name": "textboxKey"}, {"url": "AutoComplete.html#method__textMatchesOption", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_textMatchesOption"}, {"url": "AutoComplete.html#method__toggleContainer", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_toggleContainer"}, {"url": "AutoComplete.html#method__toggleHighlight", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_toggleHighlight"}, {"url": "AutoComplete.html#method__typeAhead", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_typeAhead"}, {"url": "AutoComplete.html#event_typeAhead", "access": "", "host": "AutoComplete", "type": "event", "name": "typeAhead"}, {"url": "AutoComplete.html#config_typeAhead", "access": "", "host": "AutoComplete", "type": "config", "name": "typeAhead"}, {"url": "AutoComplete.html#event_typeAheadChange", "access": "", "host": "AutoComplete", "type": "event", "name": "typeAheadChange"}, {"url": "AutoComplete.html#config_typeAheadDelay", "access": "", "host": "AutoComplete", "type": "config", "name": "typeAheadDelay"}, {"url": "AutoComplete.html#event_typeAheadDelayChange", "access": "", "host": "AutoComplete", "type": "event", "name": "typeAheadDelayChange"}, {"url": "AutoComplete.html#config_uniqueName", "access": "", "host": "AutoComplete", "type": "config", "name": "uniqueName"}, {"url": "AutoComplete.html#event_uniqueNameChange", "access": "", "host": "AutoComplete", "type": "event", "name": "uniqueNameChange"}, {"url": "AutoComplete.html#event_unmatchedItemSelect", "access": "", "host": "AutoComplete", "type": "event", "name": "unmatchedItemSelect"}, {"url": "AutoComplete.html#method__updateValue", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_updateValue"}];
+</script>
+</body>
+</html>

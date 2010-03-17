@@ -60,6 +60,18 @@ pre {
 	margin-top: 0;
 }
 
+.aui-header h3 {
+	margin: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: #333;
+}
+
+.aui-header h3 .subtitle {
+	font-size: 0.8em;
+}
+
 #wrapper .aui-header-text {
 	display: block;
 	background: url(images/logo_small.png) no-repeat;
@@ -72,7 +84,17 @@ pre {
     width: 400px;
     position: absolute;
     right: 0;
-	bottom: 4px;
+	top: 1.5em;
+}
+
+#propertysearch .aui-field-content {
+	text-align: right;
+}
+
+#propertysearch .aui-field-labels-right .aui-field-label,
+#propertysearch .aui-field-labels-right .aui-field-input {
+	float: none;
+	display: inline-block;
 }
 
 #searchresults {
@@ -100,9 +122,10 @@ pre {
 }
 
 #searchresults li em {
-    width:44%;
+    width: 44%;
     overflow: hidden;
     color: #98AAB1;
+	font-size: 0.8em;
 }
 
 
@@ -209,6 +232,9 @@ pre {
 #classOptions {
 	font-size: 12px;
 	float: right;
+	background: #eee;
+	border: 1px solid #ccc;
+	padding: 3px;
 }
 
 #classOptions legend {

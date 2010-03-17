@@ -2,7 +2,7 @@
 <html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<title>API: aui-autocomplete   aui-base.js  (YUI Library)</title>
+	<title>API: aui-autocomplete   (YUI Library)</title>
 
 	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
@@ -32,7 +32,7 @@
 
 	                
 
-	                 <span class="separator">&gt;</span> <span class="filename">aui-base.js (source view)</span> 
+	                
 		</p>
 
 		<form onsubmit="return false;">
@@ -221,7 +221,7 @@
 			                                <li class=""><a href="aui-autocomplete.js.html" title="aui-autocomplete.js">aui-autocomplete.js</a></li>
 
 
-			                                <li class="selected"><a href="aui-base.js.html" title="aui-base.js">aui-base.js</a></li>
+			                                <li class=""><a href="aui-base.js.html" title="aui-base.js">aui-base.js</a></li>
 
 
 			                                <li class=""><a href="aui-calendar-base.js.html" title="aui-calendar-base.js">aui-calendar-base.js</a></li>
@@ -237,46 +237,43 @@
 					<div class="aui-column-content aui-column-content-last">
 
 
-							<div id="srcout">
-								<style>
-									#doc3 .classopts { display:none; }
-								</style>
-								<div class="highlight"><pre><span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">,</span> <span class="p">{</span>
-	<span class="nx">remove</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">from</span><span class="p">,</span> <span class="nx">to</span><span class="p">)</span> <span class="p">{</span>
-	  <span class="kd">var</span> <span class="nx">rest</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">slice</span><span class="p">((</span><span class="nx">to</span> <span class="o">||</span> <span class="nx">from</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">||</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
-	  <span class="nx">a</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="p">(</span><span class="nx">from</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="nx">from</span><span class="p">)</span> <span class="o">:</span> <span class="nx">from</span><span class="p">;</span>
 
-	  <span class="k">return</span> <span class="nx">a</span><span class="p">.</span><span class="nx">push</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">rest</span><span class="p">);</span>
-	<span class="p">},</span>
+							<h3>
+								Module: aui-autocomplete
 
-	<span class="nx">removeItem</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">item</span><span class="p">);</span>
 
-		<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
-	<span class="p">}</span>
-<span class="p">});</span>
 
-<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span>
-	<span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
-	<span class="p">{</span>
-		<span class="nx">emptyFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{},</span>
-		<span class="nx">emptyFnFalse</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-		<span class="p">},</span>
-		<span class="nx">emptyFnTrue</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-		<span class="p">},</span>
+							</h3>
 
-		<span class="c1">// Courtesy of: http://simonwillison.net/2006/Jan/20/escape/</span>
-		<span class="nx">escapeRegEx</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
-			<span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/([.*+?^$(){}|[\]\/\\])/g</span><span class="p">,</span> <span class="s1">&#39;\\$1&#39;</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-<span class="p">);</span>
-</pre></div>
-
+							<div class="description summary">
+								The AutoComplete Utility
 							</div>
-						<!-- /End/Start -->
+
+
+
+
+							<div class="yui-gc">
+								<div class="yui-u first">
+										<p>This module contains the following classes:</p>
+
+										<div id="splash_classList">
+											<ul>
+
+													<li>
+														<a href="AutoComplete.html" title="AutoComplete" id="class_0">AutoComplete</a>
+													</li>
+
+
+											</ul>
+										</div>
+								</div>
+
+								<div class="yui-u">
+
+
+								</div>
+							</div>
+
 					</div>
 				</div>
 			</div>
