@@ -1,0 +1,42 @@
+h1. YUI3 Combo
+
+<p>Inspired on the YUI Development Combo Server (http://github.com/davglass/yui-dev-combo).</p>
+<p>Designed to be used to generate the combo file for the request made from loader.js using YUI3. In summary, read the parameters keys (combo files), concatenate them, gzip, cache, set the HTTP headers, print out the combo file.</p>
+
+h2. Example
+
+<p>Testing with YUI3 Loader metadata:</p>
+
+<pre class="console">
+var PATH_BASE = YUI.config.base;
+
+var YUI_metadata = {
+	combine: true,
+    root: './../../build/',
+	comboBase: PATH_BASE + '../lib/yui-combo/combo.php?'
+};
+
+// testing the request
+YUI(YUI_metadata).use('io');
+</pre>
+
+<p>The combo.php invoke the YUICombo class to manage the request of the YUI3 loader.js for your and for the YUI3 modules.</p>
+
+<pre class="console">
+<?php
+	include_once("settings.php");
+	include_once("lib/YUIFileUtil.php");
+	include_once("lib/YUIHeaderUtil.php");
+	include_once("lib/YUICombo.php");
+
+	$config = array(
+		// "cache" => false, // cache the request
+		// "cacheCombo" => false, // cache the gzipped combo file in the server (for performance)
+		// "gzip" => false // gzip the request
+	);
+
+	$combo = new YUICombo($_GET, $config);
+
+	$combo->loadModules();
+?>
+</pre>
