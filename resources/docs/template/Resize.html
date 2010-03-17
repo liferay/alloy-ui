@@ -1,0 +1,3349 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-resize  Resize   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-resize&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-resize.html" title="aui-resize">aui-resize</a>
+
+	                 <span class="separator">&gt;</span> <span class="classname">Resize</span> 
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+
+			                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                <li class="selected"><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                <li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class="selected"><a href="Resize.html" title="Resize">Resize</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-configuration">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-configuration-hd">
+										<span class="aui-widget-hd-text">Configuration Attributes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#config_autoHide" title="autoHide">autoHide</a></li>
+												<li class=""><a href="#config_constrain2node" title="constrain2node">constrain2node</a></li>
+												<li class=""><a href="#config_constrain2region" title="constrain2region">constrain2region</a></li>
+												<li class=""><a href="#config_constrain2view" title="constrain2view">constrain2view</a></li>
+												<li class=""><a href="#config_handles" title="handles">handles</a></li>
+												<li class=""><a href="#config_maxHeight" title="maxHeight">maxHeight</a></li>
+												<li class=""><a href="#config_maxWidth" title="maxWidth">maxWidth</a></li>
+												<li class=""><a href="#config_minHeight" title="minHeight">minHeight</a></li>
+												<li class=""><a href="#config_minWidth" title="minWidth">minWidth</a></li>
+												<li class=""><a href="#config_node" title="node">node</a></li>
+												<li class=""><a href="#config_preserveRatio" title="preserveRatio">preserveRatio</a></li>
+												<li class=""><a href="#config_proxy" title="proxy">proxy</a></li>
+												<li class=""><a href="#config_proxyEl" title="proxyEl">proxyEl</a></li>
+												<li class=""><a href="#config_resizing" title="resizing">resizing</a></li>
+												<li class=""><a href="#config_tickX" title="tickX">tickX</a></li>
+												<li class=""><a href="#config_tickY" title="tickY">tickY</a></li>
+												<li class=""><a href="#config_wrap" title="wrap">wrap</a></li>
+												<li class=""><a href="#config_wrapper" title="wrapper">wrapper</a></li>
+												<li class=""><a href="#config_wrapTypes" title="wrapTypes">wrapTypes</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-properties">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-properties-hd">
+										<span class="aui-widget-hd-text">Properties</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+				                                <li class="protected"><a href="#property_info" title="info">info</a></li>
+
+				                                <li class="protected"><a href="#property_originalInfo" title="originalInfo">originalInfo</a></li>
+
+				                                <li class=""><a href="#property_Resize.ATTRS" title="Resize.ATTRS">Resize.ATTRS</a></li>
+
+				                                <li class=""><a href="#property_Resize.NAME" title="Resize.NAME">Resize.NAME</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-methods">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-methods-hd">
+										<span class="aui-widget-hd-text">Methods</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+				                               <li class="protected"><a href="#method__afterResize" title="_afterResize">_afterResize</a></li>
+				                               <li class="protected"><a href="#method__buildHandle" title="_buildHandle">_buildHandle</a></li>
+				                               <li class="protected"><a href="#method__checkHeight" title="_checkHeight">_checkHeight</a></li>
+				                               <li class="protected"><a href="#method__checkRatio" title="_checkRatio">_checkRatio</a></li>
+				                               <li class="protected"><a href="#method__checkWidth" title="_checkWidth">_checkWidth</a></li>
+				                               <li class="protected"><a href="#method__copyStyles" title="_copyStyles">_copyStyles</a></li>
+				                               <li class="protected"><a href="#method__defMouseUpFn" title="_defMouseUpFn">_defMouseUpFn</a></li>
+				                               <li class="protected"><a href="#method__defResizeEndFn" title="_defResizeEndFn">_defResizeEndFn</a></li>
+				                               <li class="protected"><a href="#method__defResizeFn" title="_defResizeFn">_defResizeFn</a></li>
+				                               <li class="protected"><a href="#method__defResizeStartFn" title="_defResizeStartFn">_defResizeStartFn</a></li>
+				                               <li class="protected"><a href="#method__handleMouseUpEvent" title="_handleMouseUpEvent">_handleMouseUpEvent</a></li>
+				                               <li class="protected"><a href="#method__handleResizeEndEvent" title="_handleResizeEndEvent">_handleResizeEndEvent</a></li>
+				                               <li class="protected"><a href="#method__handleResizeEvent" title="_handleResizeEvent">_handleResizeEvent</a></li>
+				                               <li class="protected"><a href="#method__handleResizeStartEvent" title="_handleResizeStartEvent">_handleResizeStartEvent</a></li>
+				                               <li class="protected"><a href="#method__onHandleMouseOut" title="_onHandleMouseOut">_onHandleMouseOut</a></li>
+				                               <li class="protected"><a href="#method__onHandleMouseOver" title="_onHandleMouseOver">_onHandleMouseOver</a></li>
+				                               <li class="protected"><a href="#method__onWrapperMouseEnter" title="_onWrapperMouseEnter">_onWrapperMouseEnter</a></li>
+				                               <li class="protected"><a href="#method__onWrapperMouseLeave" title="_onWrapperMouseLeave">_onWrapperMouseLeave</a></li>
+				                               <li class="protected"><a href="#method__renderHandles" title="_renderHandles">_renderHandles</a></li>
+				                               <li class="protected"><a href="#method__renderProxy" title="_renderProxy">_renderProxy</a></li>
+				                               <li class="protected"><a href="#method__resize" title="_resize">_resize</a></li>
+				                               <li class="protected"><a href="#method__setActiveHandlesUI" title="_setActiveHandlesUI">_setActiveHandlesUI</a></li>
+				                               <li class="protected"><a href="#method__setHideHandlesUI" title="_setHideHandlesUI">_setHideHandlesUI</a></li>
+				                               <li class="protected"><a href="#method__syncProxyUI" title="_syncProxyUI">_syncProxyUI</a></li>
+				                               <li class="protected"><a href="#method__syncUI" title="_syncUI">_syncUI</a></li>
+				                               <li class="protected"><a href="#method_bindUI" title="bindUI">bindUI</a></li>
+				                               <li class="protected"><a href="#method_destructor" title="destructor">destructor</a></li>
+				                               <li class=""><a href="#method_eachHandle" title="eachHandle">eachHandle</a></li>
+				                               <li class="protected"><a href="#method_initializer" title="initializer">initializer</a></li>
+				                               <li class="protected"><a href="#method_renderer" title="renderer">renderer</a></li>
+				                               <li class="protected"><a href="#method_renderUI" title="renderUI">renderUI</a></li>
+				                               <li class="protected"><a href="#method_syncUI" title="syncUI">syncUI</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-events">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-events-hd">
+										<span class="aui-widget-hd-text">Events</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#event_activeHandleChange" title="activeHandleChange">activeHandleChange</a></li>
+												<li class=""><a href="#event_activeHandleElChange" title="activeHandleElChange">activeHandleElChange</a></li>
+												<li class=""><a href="#event_autoHideChange" title="autoHideChange">autoHideChange</a></li>
+												<li class=""><a href="#event_constrain2nodeChange" title="constrain2nodeChange">constrain2nodeChange</a></li>
+												<li class=""><a href="#event_constrain2regionChange" title="constrain2regionChange">constrain2regionChange</a></li>
+												<li class=""><a href="#event_constrain2viewChange" title="constrain2viewChange">constrain2viewChange</a></li>
+												<li class=""><a href="#event_handlesChange" title="handlesChange">handlesChange</a></li>
+												<li class=""><a href="#event_maxHeightChange" title="maxHeightChange">maxHeightChange</a></li>
+												<li class=""><a href="#event_maxWidthChange" title="maxWidthChange">maxWidthChange</a></li>
+												<li class=""><a href="#event_minHeightChange" title="minHeightChange">minHeightChange</a></li>
+												<li class=""><a href="#event_minWidthChange" title="minWidthChange">minWidthChange</a></li>
+												<li class=""><a href="#event_nodeChange" title="nodeChange">nodeChange</a></li>
+												<li class=""><a href="#event_preserveRatioChange" title="preserveRatioChange">preserveRatioChange</a></li>
+												<li class=""><a href="#event_proxyChange" title="proxyChange">proxyChange</a></li>
+												<li class=""><a href="#event_proxyElChange" title="proxyElChange">proxyElChange</a></li>
+												<li class=""><a href="#event_resize:end" title="resize:end">resize:end</a></li>
+												<li class=""><a href="#event_resize:mouseUp" title="resize:mouseUp">resize:mouseUp</a></li>
+												<li class=""><a href="#event_resize:resize" title="resize:resize">resize:resize</a></li>
+												<li class=""><a href="#event_resize:start" title="resize:start">resize:start</a></li>
+												<li class=""><a href="#event_resizingChange" title="resizingChange">resizingChange</a></li>
+												<li class=""><a href="#event_tickXChange" title="tickXChange">tickXChange</a></li>
+												<li class=""><a href="#event_tickYChange" title="tickYChange">tickYChange</a></li>
+												<li class=""><a href="#event_wrapChange" title="wrapChange">wrapChange</a></li>
+												<li class=""><a href="#event_wrapperChange" title="wrapperChange">wrapperChange</a></li>
+												<li class=""><a href="#event_wrapTypesChange" title="wrapTypesChange">wrapTypesChange</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="aui-sortable.js.html" title="aui-sortable.js">aui-sortable.js</a></li>
+
+
+			                                <li class=""><a href="aui-state-interaction.js.html" title="aui-state-interaction.js">aui-state-interaction.js</a></li>
+
+
+			                                <li class=""><a href="aui-swf.js.html" title="aui-swf.js">aui-swf.js</a></li>
+
+
+			                                <li class=""><a href="aui-tabs.js.html" title="aui-tabs.js">aui-tabs.js</a></li>
+
+
+			                                <li class=""><a href="aui-textboxlist.js.html" title="aui-textboxlist.js">aui-textboxlist.js</a></li>
+
+
+			                                <li class=""><a href="aui-tool-item.js.html" title="aui-tool-item.js">aui-tool-item.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<h2>
+								
+
+								
+
+								
+
+								Class <b property="yui:name">Resize</b>
+
+									<span class="extends">- extends <a href="Base.html" title="Base">Base</a></span>
+
+							</h2>
+
+							<!-- class tree goes here -->
+
+
+
+							<div class="summary description" property="yui:description">
+								<p><img src="assets/images/aui-resize/main.png"/></p>
+A base class for Resize, providing:
+<ul>
+<li>Basic Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+<li>Applies drag handles to an element to make it resizable</li>
+<li>Here is the list of valid resize handles:
+<code>[ 't', 'tr', 'r', 'br', 'b', 'bl', 'l', 'tl' ]</code>. You can
+read this list as top, top-right, right, bottom-right, bottom,
+bottom-left, left, top-left.</li>
+<li>The drag handles are inserted into the element and positioned
+absolute. Some elements, such as a textarea or image, don't support
+children. To overcome that, set wrap:true in your config and the
+element willbe wrapped for you automatically.</li>
+</ul>
+Quick Example:
+<pre><code>var instance = new A.Resize({
+node: '#resize1',
+proxy: true,
+preserveRatio: true,
+wrap: true,
+maxHeight: 170,
+maxWidth: 400,
+handles: 't, tr, r, br, b, bl, l, tl'
+});
+</code></pre>
+Check the list of <a href="Resize.html#configattributes">Configuration Attributes</a> available for
+Resize.
+							</div>
+
+								<div class="section constructor details" rel="yui:constructor" resource="#constructor">
+									<h3 id="constructor">Constructor</h3>
+
+									<div class="content">
+										<div class="detail">
+											<strong property="yui:name">Resize</strong>
+
+											<code>
+												(
+
+													
+															
+															config
+												)
+											</code>
+
+											<div class="description">
+													<dl rel="yui:parameters">
+														<dt>Parameters:</dt>
+															<dd rel="yui:parameter">
+																<code><span property="yui:name">config</span>
+																&lt;<span property="yui:type">Object</span>&gt;
+																</code>
+
+																<span property="yui:description">  Object literal specifying widget configuration properties.</span>
+															</dd>
+													</dl>
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+							<div rel="yui:properties" resource="#properties">
+
+								<div class="section field details">
+
+									<h3 id="properties">Properties</h3>
+
+									<div class="content">
+
+											<div class="api-entry-row property-row protected" rel="yui:property" resource="#property_info">
+
+											<h4>
+												<a name="property_info" property="yui:name">info</a>
+												- <code>protected <span property="yui:type">Object</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Stores the current values for the height, width, top and left. You are
+able to manipulate these values on resize in order to change the resize
+behavior.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row protected" rel="yui:property" resource="#property_originalInfo">
+
+											<h4>
+												<a name="property_originalInfo" property="yui:name">originalInfo</a>
+												- <code>protected <span property="yui:type">Object</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Stores the original values for the height, width, top and left, stored
+on resize start.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_Resize.ATTRS">
+
+											<h4>
+												<a name="property_Resize.ATTRS" property="yui:name">Resize.ATTRS</a>
+												- <code>static <span property="yui:type">Object</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Static property used to define the default attribute
+configuration for the Resize.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_Resize.NAME">
+
+											<h4>
+												<a name="property_Resize.NAME" property="yui:name">Resize.NAME</a>
+												- <code>static <span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Static property provides a string to identify the class.
+												</div>
+											</div>
+
+
+
+
+											</div>
+									</div>
+								</div>
+
+							</div>
+
+							<div rel="yui:attributes" resource="#configattributes">
+
+									<div class="section field details">
+
+										<h3 id="configattributes">Configuration Attributes</h3>
+
+										<div class="content">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_autoHide">
+
+													<h4>
+														<a name="config_autoHide">autoHide</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															False to ensure that the resize handles are always visible, true to
+display them only when the user mouses over the resizable borders.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_constrain2node">
+
+													<h4>
+														<a name="config_constrain2node">constrain2node</a>
+														<code>- <span property="yui:type">String | Node</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Constrain the resize to a particular node. Will attempt to
+constrain the drag node to the boundaries of this node.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>null</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_constrain2region">
+
+													<h4>
+														<a name="config_constrain2region">constrain2region</a>
+														<code>- <span property="yui:type">Object</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Constrain the resize to a particular region. An Object Literal
+containing a valid region (top, right, bottom, left) of page
+positions to constrain the drag node to.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>null</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_constrain2view">
+
+													<h4>
+														<a name="config_constrain2view">constrain2view</a>
+														<code>- <span property="yui:type">Object</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Will attempt to constrain the drag node to the boundaries of the
+viewport region.
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_handles">
+
+													<h4>
+														<a name="config_handles">handles</a>
+														<code>- <span property="yui:type">Array | String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The handles to use (any combination of): 't', 'b', 'r', 'l', 'bl',
+'br', 'tl', 'tr'. Can use a shortcut of All.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>all</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_maxHeight">
+
+													<h4>
+														<a name="config_maxHeight">maxHeight</a>
+														<code>- <span property="yui:type">Number</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The maximum height of the element
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Infinity</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_maxWidth">
+
+													<h4>
+														<a name="config_maxWidth">maxWidth</a>
+														<code>- <span property="yui:type">Number</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The maximum width of the element
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Infinity</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_minHeight">
+
+													<h4>
+														<a name="config_minHeight">minHeight</a>
+														<code>- <span property="yui:type">Number</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The minimum height of the element
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>15</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_minWidth">
+
+													<h4>
+														<a name="config_minWidth">minWidth</a>
+														<code>- <span property="yui:type">Number</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The minimum width of the element
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>15</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_node">
+
+													<h4>
+														<a name="config_node">node</a>
+														<code>- <span property="yui:type">Node</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The selector or element to resize. Required.
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_preserveRatio">
+
+													<h4>
+														<a name="config_preserveRatio">preserveRatio</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Maintain the element's ratio when resizing.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_proxy">
+
+													<h4>
+														<a name="config_proxy">proxy</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Resize a proxy element instead of the real element.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_proxyEl">
+
+													<h4>
+														<a name="config_proxyEl">proxyEl</a>
+														<code>- <span property="yui:type">String | Node</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The Resize proxy element.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Generated using an internal HTML markup</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_resizing">
+
+													<h4>
+														<a name="config_resizing">resizing</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															True when the element is being Resized.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_tickX">
+
+													<h4>
+														<a name="config_tickX">tickX</a>
+														<code>- <span property="yui:type">Number | false</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The number of x ticks to span the resize to.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_tickY">
+
+													<h4>
+														<a name="config_tickY">tickY</a>
+														<code>- <span property="yui:type">Number | false</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The number of y ticks to span the resize to.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_wrap">
+
+													<h4>
+														<a name="config_wrap">wrap</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															True to wrap an element with a div if needed (required for textareas
+and images, defaults to false) in favor of the handles config option.
+The wrapper element type (default div) could be over-riden passing the
+<code>wrapper</code> attribute.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_wrapper">
+
+													<h4>
+														<a name="config_wrapper">wrapper</a>
+														<code>- writeonce <span property="yui:type">String | Node</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Element to wrap the <code>wrapTypes</code>. This element will house
+the handles elements.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>div</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_wrapTypes">
+
+													<h4>
+														<a name="config_wrapTypes">wrapTypes</a>
+														<code>- <span property="yui:type">Regex</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Elements that requires a wrapper by default. Normally are elements
+which cannot have children elements.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>/canvas|textarea|input|select|button|img/i</strong>
+													</div>
+
+												</div>
+
+										</div>
+									</div>
+
+
+							</div>
+
+							<div rel="yui:methods" resource="#methods">
+									<div class="section method details">
+
+										<h3 id="methods">Methods</h3>
+
+										<div class="content">
+
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterResize">
+
+													<h4>
+														<a name="method__afterResize">_afterResize</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_afterResize</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires after resize:resize event.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"> resize:resize custom event</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__buildHandle">
+
+													<h4>
+														<a name="method__buildHandle">_buildHandle</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_buildHandle</strong>
+														   (
+																
+																		
+																		 handle
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates the handle element based on the handle name and initialize the
+DragDrop on it.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">handle</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> Handle name ('t', 'tr', 'b', ...).</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__checkHeight">
+
+													<h4>
+														<a name="method__checkHeight">_checkHeight</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_checkHeight</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Update the current values on <a href="Resize.html#property_info">info</a>
+to respect the maxHeight and minHeight.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__checkRatio">
+
+													<h4>
+														<a name="method__checkRatio">_checkRatio</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_checkRatio</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Update the current values on <a href="Resize.html#property_info">info</a>
+calculating the correct ratio for the other values.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__checkWidth">
+
+													<h4>
+														<a name="method__checkWidth">_checkWidth</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_checkWidth</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Update the current values on <a href="Resize.html#property_info">info</a>
+to respect the maxWidth and minWidth.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__copyStyles">
+
+													<h4>
+														<a name="method__copyStyles">_copyStyles</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_copyStyles</strong>
+														   (
+																
+																		
+																		 node
+																	
+																
+																		, 
+																		 wrapper
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Copy relevant styles of the <a href="Resize.html#config_node">node</a>
+to the <a href="Resize.html#config_wrapper">wrapper</a>.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">node</span>
+																		&lt;<span property="yui:type">Node</span>&gt;
+																		</code>
+																		<span property="yui:description"> Node from.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">wrapper</span>
+																		&lt;<span property="yui:type">Node</span>&gt;
+																		</code>
+																		<span property="yui:description"> Node to.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__defMouseUpFn">
+
+													<h4>
+														<a name="method__defMouseUpFn">_defMouseUpFn</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_defMouseUpFn</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Default resize:mouseUp handler
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"> The Event object</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__defResizeEndFn">
+
+													<h4>
+														<a name="method__defResizeEndFn">_defResizeEndFn</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_defResizeEndFn</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Default resize:end handler
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"> The Event object</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__defResizeFn">
+
+													<h4>
+														<a name="method__defResizeFn">_defResizeFn</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_defResizeFn</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Default resize:resize handler
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"> The Event object</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__defResizeStartFn">
+
+													<h4>
+														<a name="method__defResizeStartFn">_defResizeStartFn</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_defResizeStartFn</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Default resize:start handler
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"> The Event object</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__handleMouseUpEvent">
+
+													<h4>
+														<a name="method__handleMouseUpEvent">_handleMouseUpEvent</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_handleMouseUpEvent</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires the resize:mouseUp event.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"> resize:mouseUp event facade</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__handleResizeEndEvent">
+
+													<h4>
+														<a name="method__handleResizeEndEvent">_handleResizeEndEvent</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_handleResizeEndEvent</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires the resize:end event.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"> resize:end event facade</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__handleResizeEvent">
+
+													<h4>
+														<a name="method__handleResizeEvent">_handleResizeEvent</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_handleResizeEvent</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires the resize:resize event.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"> resize:resize event facade</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__handleResizeStartEvent">
+
+													<h4>
+														<a name="method__handleResizeStartEvent">_handleResizeStartEvent</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_handleResizeStartEvent</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires the resize:start event.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"> resize:start event facade</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onHandleMouseOut">
+
+													<h4>
+														<a name="method__onHandleMouseOut">_onHandleMouseOut</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onHandleMouseOut</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Mouseout event handler for the handles.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onHandleMouseOver">
+
+													<h4>
+														<a name="method__onHandleMouseOver">_onHandleMouseOver</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onHandleMouseOver</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Mouseover event handler for the handles.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onWrapperMouseEnter">
+
+													<h4>
+														<a name="method__onWrapperMouseEnter">_onWrapperMouseEnter</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onWrapperMouseEnter</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Mouseenter event handler for the <a href="Resize.html#config_wrapper">wrapper</a>.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onWrapperMouseLeave">
+
+													<h4>
+														<a name="method__onWrapperMouseLeave">_onWrapperMouseLeave</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onWrapperMouseLeave</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Mouseleave event handler for the <a href="Resize.html#config_wrapper">wrapper</a>.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__renderHandles">
+
+													<h4>
+														<a name="method__renderHandles">_renderHandles</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_renderHandles</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Responsible for loop each handle element and append to the wrapper.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__renderProxy">
+
+													<h4>
+														<a name="method__renderProxy">_renderProxy</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_renderProxy</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Render the <a href="Resize.html#config_proxyEl">proxyEl</a> element and
+make it sibling of the <a href="Resize.html#config_node">node</a>.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__resize">
+
+													<h4>
+														<a name="method__resize">_resize</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_resize</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Basic resize calculations.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__setActiveHandlesUI">
+
+													<h4>
+														<a name="method__setActiveHandlesUI">_setActiveHandlesUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_setActiveHandlesUI</strong>
+														   (
+																
+																		
+																		 val
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Set the active state of the handles.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">val</span>
+																		&lt;<span property="yui:type">boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"> True to activate the handles, false to deactivate.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__setHideHandlesUI">
+
+													<h4>
+														<a name="method__setHideHandlesUI">_setHideHandlesUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_setHideHandlesUI</strong>
+														   (
+																
+																		
+																		 val
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Set the visibility of the handles.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">val</span>
+																		&lt;<span property="yui:type">boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"> True to hide the handles, false to show.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__syncProxyUI">
+
+													<h4>
+														<a name="method__syncProxyUI">_syncProxyUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_syncProxyUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sync the proxy UI with internal values from
+<a href="Resize.html#property_info">info</a>.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__syncUI">
+
+													<h4>
+														<a name="method__syncUI">_syncUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_syncUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sync the Resize UI with internal values from
+<a href="Resize.html#property_info">info</a>.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_bindUI">
+
+													<h4>
+														<a name="method_bindUI">bindUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">bindUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Bind the events on the Resize UI. Lifecycle.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_destructor">
+
+													<h4>
+														<a name="method_destructor">destructor</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">destructor</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Descructor lifecycle implementation for the Resize class. Purges events attached
+to the node (and all child nodes) and removes the Resize handles.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_eachHandle">
+
+													<h4>
+														<a name="method_eachHandle">eachHandle</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">eachHandle</strong>
+														   (
+																
+																		
+																		 fn
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															<p>Loop through each handle which is being used and executes a callback.</p>
+<p>Example:</p>
+<pre><code>instance.eachHandle(
+function(handleName, index) { ... }
+);</code></pre>
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">fn</span>
+																		&lt;<span property="yui:type">function</span>&gt;
+																		</code>
+																		<span property="yui:description"> Callback function to be executed for each handle.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_initializer">
+
+													<h4>
+														<a name="method_initializer">initializer</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">initializer</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Construction logic executed during Resize instantiation. Lifecycle.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_renderer">
+
+													<h4>
+														<a name="method_renderer">renderer</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">renderer</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates DOM (or manipulates DOM for progressive enhancement)
+This method is invoked by initializer(). It's chained automatically for
+subclasses if required.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_renderUI">
+
+													<h4>
+														<a name="method_renderUI">renderUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">renderUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Create the DOM structure for the Resize. Lifecycle.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_syncUI">
+
+													<h4>
+														<a name="method_syncUI">syncUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">syncUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sync the Resize UI.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+							</div>
+
+							<div rel="yui:events" resource="#events">
+									<div class="section method details">
+										<h3 id="events">Events</h3>
+
+										<div class="content">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_activeHandleChange">
+
+													<h4>
+														<a name="event_activeHandleChange">activeHandleChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">activeHandleChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'activeHandle' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_activeHandleElChange">
+
+													<h4>
+														<a name="event_activeHandleElChange">activeHandleElChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">activeHandleElChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'activeHandleEl' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_autoHideChange">
+
+													<h4>
+														<a name="event_autoHideChange">autoHideChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">autoHideChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'autoHide' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_constrain2nodeChange">
+
+													<h4>
+														<a name="event_constrain2nodeChange">constrain2nodeChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">constrain2nodeChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'constrain2node' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_constrain2regionChange">
+
+													<h4>
+														<a name="event_constrain2regionChange">constrain2regionChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">constrain2regionChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'constrain2region' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_constrain2viewChange">
+
+													<h4>
+														<a name="event_constrain2viewChange">constrain2viewChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">constrain2viewChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'constrain2view' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_handlesChange">
+
+													<h4>
+														<a name="event_handlesChange">handlesChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">handlesChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'handles' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_maxHeightChange">
+
+													<h4>
+														<a name="event_maxHeightChange">maxHeightChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">maxHeightChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'maxHeight' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_maxWidthChange">
+
+													<h4>
+														<a name="event_maxWidthChange">maxWidthChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">maxWidthChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'maxWidth' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_minHeightChange">
+
+													<h4>
+														<a name="event_minHeightChange">minHeightChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">minHeightChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'minHeight' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_minWidthChange">
+
+													<h4>
+														<a name="event_minWidthChange">minWidthChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">minWidthChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'minWidth' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_nodeChange">
+
+													<h4>
+														<a name="event_nodeChange">nodeChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">nodeChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'node' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_preserveRatioChange">
+
+													<h4>
+														<a name="event_preserveRatioChange">preserveRatioChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">preserveRatioChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'preserveRatio' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_proxyChange">
+
+													<h4>
+														<a name="event_proxyChange">proxyChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">proxyChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'proxy' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_proxyElChange">
+
+													<h4>
+														<a name="event_proxyElChange">proxyElChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">proxyElChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'proxyEl' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_resize:end">
+
+													<h4>
+														<a name="event_resize:end">resize:end</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">resize:end</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the resize end event. Fired when a handle stop to be
+dragged.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The resize end event.</span>
+																		</dd>
+
+																</dl>
+
+																<div class="bubbles">
+																	<strong>Bubbles:</strong>
+																	This event bubbles to <a href="Resize.html" title="Resize">Resize</a>.
+																</div>
+
+																<div class="preventable">
+																	<strong>Preventable:</strong>
+																	This event is preventable by method e.preventDefault().  The default function executed by this event is _defResizeEndFn.
+																</div>
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_resize:mouseUp">
+
+													<h4>
+														<a name="event_resize:mouseUp">resize:mouseUp</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">resize:mouseUp</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the resize mouseUp event. Fired when a mouseUp event happens on a
+handle.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The resize mouseUp event.</span>
+																		</dd>
+
+																</dl>
+
+																<div class="bubbles">
+																	<strong>Bubbles:</strong>
+																	This event bubbles to <a href="Resize.html" title="Resize">Resize</a>.
+																</div>
+
+																<div class="preventable">
+																	<strong>Preventable:</strong>
+																	This event is preventable by method e.preventDefault().  The default function executed by this event is _defMouseUpFn.
+																</div>
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_resize:resize">
+
+													<h4>
+														<a name="event_resize:resize">resize:resize</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">resize:resize</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the resize event. Fired on each pixel when the handle is
+being dragged.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The resize event.</span>
+																		</dd>
+
+																</dl>
+
+																<div class="bubbles">
+																	<strong>Bubbles:</strong>
+																	This event bubbles to <a href="Resize.html" title="Resize">Resize</a>.
+																</div>
+
+																<div class="preventable">
+																	<strong>Preventable:</strong>
+																	This event is preventable by method e.preventDefault().  The default function executed by this event is _defResizeFn.
+																</div>
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_resize:start">
+
+													<h4>
+														<a name="event_resize:start">resize:start</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">resize:start</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the resize start event. Fired when a handle starts to be
+dragged.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description"> The resize start event.</span>
+																		</dd>
+
+																</dl>
+
+																<div class="bubbles">
+																	<strong>Bubbles:</strong>
+																	This event bubbles to <a href="Resize.html" title="Resize">Resize</a>.
+																</div>
+
+																<div class="preventable">
+																	<strong>Preventable:</strong>
+																	This event is preventable by method e.preventDefault().  The default function executed by this event is _defResizeStartFn.
+																</div>
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_resizingChange">
+
+													<h4>
+														<a name="event_resizingChange">resizingChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">resizingChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'resizing' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_tickXChange">
+
+													<h4>
+														<a name="event_tickXChange">tickXChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">tickXChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'tickX' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_tickYChange">
+
+													<h4>
+														<a name="event_tickYChange">tickYChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">tickYChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'tickY' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_wrapChange">
+
+													<h4>
+														<a name="event_wrapChange">wrapChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">wrapChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'wrap' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_wrapperChange">
+
+													<h4>
+														<a name="event_wrapperChange">wrapperChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">wrapperChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'wrapper' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_wrapTypesChange">
+
+													<h4>
+														<a name="event_wrapTypesChange">wrapTypesChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">wrapTypesChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'wrapTypes' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Resize.html#event_activeHandleChange", "access": "", "host": "Resize", "type": "event", "name": "activeHandleChange"}, {"url": "Resize.html#event_activeHandleElChange", "access": "", "host": "Resize", "type": "event", "name": "activeHandleElChange"}, {"url": "Resize.html#method__afterResize", "access": "protected", "host": "Resize", "type": "method", "name": "_afterResize"}, {"url": "Resize.html#config_autoHide", "access": "", "host": "Resize", "type": "config", "name": "autoHide"}, {"url": "Resize.html#event_autoHideChange", "access": "", "host": "Resize", "type": "event", "name": "autoHideChange"}, {"url": "Resize.html#method_bindUI", "access": "protected", "host": "Resize", "type": "method", "name": "bindUI"}, {"url": "Resize.html#method__buildHandle", "access": "protected", "host": "Resize", "type": "method", "name": "_buildHandle"}, {"url": "Resize.html#method__checkHeight", "access": "protected", "host": "Resize", "type": "method", "name": "_checkHeight"}, {"url": "Resize.html#method__checkRatio", "access": "protected", "host": "Resize", "type": "method", "name": "_checkRatio"}, {"url": "Resize.html#method__checkWidth", "access": "protected", "host": "Resize", "type": "method", "name": "_checkWidth"}, {"url": "Resize.html#config_constrain2node", "access": "", "host": "Resize", "type": "config", "name": "constrain2node"}, {"url": "Resize.html#event_constrain2nodeChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2nodeChange"}, {"url": "Resize.html#config_constrain2region", "access": "", "host": "Resize", "type": "config", "name": "constrain2region"}, {"url": "Resize.html#event_constrain2regionChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2regionChange"}, {"url": "Resize.html#config_constrain2view", "access": "", "host": "Resize", "type": "config", "name": "constrain2view"}, {"url": "Resize.html#event_constrain2viewChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2viewChange"}, {"url": "Resize.html#method__copyStyles", "access": "protected", "host": "Resize", "type": "method", "name": "_copyStyles"}, {"url": "Resize.html#method__defMouseUpFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defMouseUpFn"}, {"url": "Resize.html#method__defResizeEndFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeEndFn"}, {"url": "Resize.html#method__defResizeFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeFn"}, {"url": "Resize.html#method__defResizeStartFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeStartFn"}, {"url": "Resize.html#method_destructor", "access": "protected", "host": "Resize", "type": "method", "name": "destructor"}, {"url": "Resize.html#method_eachHandle", "access": "", "host": "Resize", "type": "method", "name": "eachHandle"}, {"url": "Resize.html#method__handleMouseUpEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleMouseUpEvent"}, {"url": "Resize.html#method__handleResizeEndEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeEndEvent"}, {"url": "Resize.html#method__handleResizeEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeEvent"}, {"url": "Resize.html#method__handleResizeStartEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeStartEvent"}, {"url": "Resize.html#config_handles", "access": "", "host": "Resize", "type": "config", "name": "handles"}, {"url": "Resize.html#event_handlesChange", "access": "", "host": "Resize", "type": "event", "name": "handlesChange"}, {"url": "Resize.html#property_info", "access": "protected", "host": "Resize", "type": "property", "name": "info"}, {"url": "Resize.html#method_initializer", "access": "protected", "host": "Resize", "type": "method", "name": "initializer"}, {"url": "Resize.html#config_maxHeight", "access": "", "host": "Resize", "type": "config", "name": "maxHeight"}, {"url": "Resize.html#event_maxHeightChange", "access": "", "host": "Resize", "type": "event", "name": "maxHeightChange"}, {"url": "Resize.html#config_maxWidth", "access": "", "host": "Resize", "type": "config", "name": "maxWidth"}, {"url": "Resize.html#event_maxWidthChange", "access": "", "host": "Resize", "type": "event", "name": "maxWidthChange"}, {"url": "Resize.html#config_minHeight", "access": "", "host": "Resize", "type": "config", "name": "minHeight"}, {"url": "Resize.html#event_minHeightChange", "access": "", "host": "Resize", "type": "event", "name": "minHeightChange"}, {"url": "Resize.html#config_minWidth", "access": "", "host": "Resize", "type": "config", "name": "minWidth"}, {"url": "Resize.html#event_minWidthChange", "access": "", "host": "Resize", "type": "event", "name": "minWidthChange"}, {"url": "Resize.html#config_node", "access": "", "host": "Resize", "type": "config", "name": "node"}, {"url": "Resize.html#event_nodeChange", "access": "", "host": "Resize", "type": "event", "name": "nodeChange"}, {"url": "Resize.html#method__onHandleMouseOut", "access": "protected", "host": "Resize", "type": "method", "name": "_onHandleMouseOut"}, {"url": "Resize.html#method__onHandleMouseOver", "access": "protected", "host": "Resize", "type": "method", "name": "_onHandleMouseOver"}, {"url": "Resize.html#method__onWrapperMouseEnter", "access": "protected", "host": "Resize", "type": "method", "name": "_onWrapperMouseEnter"}, {"url": "Resize.html#method__onWrapperMouseLeave", "access": "protected", "host": "Resize", "type": "method", "name": "_onWrapperMouseLeave"}, {"url": "Resize.html#property_originalInfo", "access": "protected", "host": "Resize", "type": "property", "name": "originalInfo"}, {"url": "Resize.html#config_preserveRatio", "access": "", "host": "Resize", "type": "config", "name": "preserveRatio"}, {"url": "Resize.html#event_preserveRatioChange", "access": "", "host": "Resize", "type": "event", "name": "preserveRatioChange"}, {"url": "Resize.html#config_proxy", "access": "", "host": "Resize", "type": "config", "name": "proxy"}, {"url": "Resize.html#event_proxyChange", "access": "", "host": "Resize", "type": "event", "name": "proxyChange"}, {"url": "Resize.html#config_proxyEl", "access": "", "host": "Resize", "type": "config", "name": "proxyEl"}, {"url": "Resize.html#event_proxyElChange", "access": "", "host": "Resize", "type": "event", "name": "proxyElChange"}, {"url": "Resize.html#method_renderer", "access": "protected", "host": "Resize", "type": "method", "name": "renderer"}, {"url": "Resize.html#method__renderHandles", "access": "protected", "host": "Resize", "type": "method", "name": "_renderHandles"}, {"url": "Resize.html#method__renderProxy", "access": "protected", "host": "Resize", "type": "method", "name": "_renderProxy"}, {"url": "Resize.html#method_renderUI", "access": "protected", "host": "Resize", "type": "method", "name": "renderUI"}, {"url": "Resize.html#method__resize", "access": "protected", "host": "Resize", "type": "method", "name": "_resize"}, {"url": "Resize.html#event_resize:end", "access": "", "host": "Resize", "type": "event", "name": "resize:end"}, {"url": "Resize.html#event_resize:mouseUp", "access": "", "host": "Resize", "type": "event", "name": "resize:mouseUp"}, {"url": "Resize.html#event_resize:resize", "access": "", "host": "Resize", "type": "event", "name": "resize:resize"}, {"url": "Resize.html#event_resize:start", "access": "", "host": "Resize", "type": "event", "name": "resize:start"}, {"url": "Resize.html#property_Resize.ATTRS", "access": "", "host": "Resize", "type": "property", "name": "Resize.ATTRS"}, {"url": "Resize.html#property_Resize.NAME", "access": "", "host": "Resize", "type": "property", "name": "Resize.NAME"}, {"url": "Resize.html#config_resizing", "access": "", "host": "Resize", "type": "config", "name": "resizing"}, {"url": "Resize.html#event_resizingChange", "access": "", "host": "Resize", "type": "event", "name": "resizingChange"}, {"url": "Resize.html#method__setActiveHandlesUI", "access": "protected", "host": "Resize", "type": "method", "name": "_setActiveHandlesUI"}, {"url": "Resize.html#method__setHideHandlesUI", "access": "protected", "host": "Resize", "type": "method", "name": "_setHideHandlesUI"}, {"url": "Resize.html#method__syncProxyUI", "access": "protected", "host": "Resize", "type": "method", "name": "_syncProxyUI"}, {"url": "Resize.html#method__syncUI", "access": "protected", "host": "Resize", "type": "method", "name": "_syncUI"}, {"url": "Resize.html#method_syncUI", "access": "protected", "host": "Resize", "type": "method", "name": "syncUI"}, {"url": "Resize.html#config_tickX", "access": "", "host": "Resize", "type": "config", "name": "tickX"}, {"url": "Resize.html#event_tickXChange", "access": "", "host": "Resize", "type": "event", "name": "tickXChange"}, {"url": "Resize.html#config_tickY", "access": "", "host": "Resize", "type": "config", "name": "tickY"}, {"url": "Resize.html#event_tickYChange", "access": "", "host": "Resize", "type": "event", "name": "tickYChange"}, {"url": "Resize.html#config_wrap", "access": "", "host": "Resize", "type": "config", "name": "wrap"}, {"url": "Resize.html#event_wrapChange", "access": "", "host": "Resize", "type": "event", "name": "wrapChange"}, {"url": "Resize.html#config_wrapper", "access": "", "host": "Resize", "type": "config", "name": "wrapper"}, {"url": "Resize.html#event_wrapperChange", "access": "", "host": "Resize", "type": "event", "name": "wrapperChange"}, {"url": "Resize.html#config_wrapTypes", "access": "", "host": "Resize", "type": "config", "name": "wrapTypes"}, {"url": "Resize.html#event_wrapTypesChange", "access": "", "host": "Resize", "type": "event", "name": "wrapTypesChange"}];
+</script>
+</body>
+</html>

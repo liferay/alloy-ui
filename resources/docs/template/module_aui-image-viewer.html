@@ -1,0 +1,321 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-image-viewer   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-image-viewer&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a>
+
+	                
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+
+			                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                <li class="selected"><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                <li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="ImageGallery.html" title="ImageGallery">ImageGallery</a></li>
+
+
+				                                <li class=""><a href="ImageViewer.html" title="ImageViewer">ImageViewer</a></li>
+
+
+				                                <li class=""><a href="ImageViewerMask.html" title="ImageViewerMask">ImageViewerMask</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="aui-image-viewer-gallery.js.html" title="aui-image-viewer-gallery.js">aui-image-viewer-gallery.js</a></li>
+
+
+			                                <li class=""><a href="aui-io-plugin.js.html" title="aui-io-plugin.js">aui-io-plugin.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+
+							<h3>
+								Module: aui-image-viewer
+
+
+
+							</h3>
+
+							<div class="description summary">
+								The ImageViewer Utility
+							</div>
+
+
+
+
+							<div class="yui-gc">
+								<div class="yui-u first">
+										<p>This module contains the following classes:</p>
+
+										<div id="splash_classList">
+											<ul>
+
+													<li>
+														<a href="ImageGallery.html" title="ImageGallery" id="class_0">ImageGallery</a>
+													</li>
+
+													<li>
+														<a href="ImageViewer.html" title="ImageViewer" id="class_1">ImageViewer</a>
+													</li>
+
+													<li>
+														<a href="ImageViewerMask.html" title="ImageViewerMask" id="class_2">ImageViewerMask</a>
+													</li>
+
+
+											</ul>
+										</div>
+								</div>
+
+								<div class="yui-u">
+
+
+										<div class="submodules">
+											<h4>Submodules:</h4>
+
+											<dl>
+
+													<dt>
+														<code>aui-image-viewer-base</code>
+													</dt>
+													<dd>
+														The ImageViewer Utility
+													</dd>
+													<dt>
+														<code>aui-image-viewer-gallery</code>
+													</dt>
+													<dd>
+														The ImageGallery Utility
+													</dd>
+
+											</dl>
+										</div>
+								</div>
+							</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "ImageViewer.html#property_activeImage", "access": "protected", "host": "ImageViewer", "type": "property", "name": "activeImage"}, {"url": "ImageViewer.html#method__afterLoadingChange", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_afterLoadingChange"}, {"url": "ImageViewer.html#method__afterRender", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_afterRender"}, {"url": "ImageViewer.html#method__afterVisibleChange", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_afterVisibleChange"}, {"url": "ImageGallery.html#method__afterVisibleChange", "access": "protected", "host": "ImageGallery", "type": "method", "name": "_afterVisibleChange"}, {"url": "ImageViewer.html#event_anim", "access": "", "host": "ImageViewer", "type": "event", "name": "anim"}, {"url": "ImageViewer.html#config_anim", "access": "", "host": "ImageViewer", "type": "config", "name": "anim"}, {"url": "ImageViewer.html#event_animChange", "access": "", "host": "ImageViewer", "type": "event", "name": "animChange"}, {"url": "ImageViewer.html#config_arrowLeftEl", "access": "", "host": "ImageViewer", "type": "config", "name": "arrowLeftEl"}, {"url": "ImageViewer.html#event_arrowLeftElChange", "access": "", "host": "ImageViewer", "type": "event", "name": "arrowLeftElChange"}, {"url": "ImageViewer.html#config_arrowRightEl", "access": "", "host": "ImageViewer", "type": "config", "name": "arrowRightEl"}, {"url": "ImageViewer.html#event_arrowRightElChange", "access": "", "host": "ImageViewer", "type": "event", "name": "arrowRightElChange"}, {"url": "ImageGallery.html#config_autoPlay", "access": "", "host": "ImageGallery", "type": "config", "name": "autoPlay"}, {"url": "ImageGallery.html#event_autoPlayChange", "access": "", "host": "ImageGallery", "type": "event", "name": "autoPlayChange"}, {"url": "ImageGallery.html#method__bindToolSetUI", "access": "protected", "host": "ImageGallery", "type": "method", "name": "_bindToolSetUI"}, {"url": "ImageViewer.html#method_bindUI", "access": "protected", "host": "ImageViewer", "type": "method", "name": "bindUI"}, {"url": "ImageGallery.html#method_bindUI", "access": "protected", "host": "ImageGallery", "type": "method", "name": "bindUI"}, {"url": "ImageGallery.html#method__cancelTimer", "access": "protected", "host": "ImageGallery", "type": "method", "name": "_cancelTimer"}, {"url": "ImageViewer.html#config_caption", "access": "", "host": "ImageViewer", "type": "config", "name": "caption"}, {"url": "ImageViewer.html#event_captionChange", "access": "", "host": "ImageViewer", "type": "event", "name": "captionChange"}, {"url": "ImageViewer.html#config_captionEl", "access": "", "host": "ImageViewer", "type": "config", "name": "captionEl"}, {"url": "ImageViewer.html#event_captionElChange", "access": "", "host": "ImageViewer", "type": "event", "name": "captionElChange"}, {"url": "ImageViewer.html#config_captionFromTitle", "access": "", "host": "ImageViewer", "type": "config", "name": "captionFromTitle"}, {"url": "ImageViewer.html#event_captionFromTitleChange", "access": "", "host": "ImageViewer", "type": "event", "name": "captionFromTitleChange"}, {"url": "ImageViewer.html#config_centered", "access": "", "host": "ImageViewer", "type": "config", "name": "centered"}, {"url": "ImageViewer.html#event_centeredChange", "access": "", "host": "ImageViewer", "type": "event", "name": "centeredChange"}, {"url": "ImageGallery.html#method__changeRequest", "access": "protected", "host": "ImageGallery", "type": "method", "name": "_changeRequest"}, {"url": "ImageViewer.html#method_close", "access": "", "host": "ImageViewer", "type": "method", "name": "close"}, {"url": "ImageViewer.html#config_closeEl", "access": "", "host": "ImageViewer", "type": "config", "name": "closeEl"}, {"url": "ImageViewer.html#event_closeElChange", "access": "", "host": "ImageViewer", "type": "event", "name": "closeElChange"}, {"url": "ImageViewer.html#config_currentIndex", "access": "", "host": "ImageViewer", "type": "config", "name": "currentIndex"}, {"url": "ImageViewer.html#event_currentIndexChange", "access": "", "host": "ImageViewer", "type": "event", "name": "currentIndexChange"}, {"url": "ImageGallery.html#config_delay", "access": "", "host": "ImageGallery", "type": "config", "name": "delay"}, {"url": "ImageGallery.html#event_delayChange", "access": "", "host": "ImageGallery", "type": "event", "name": "delayChange"}, {"url": "ImageViewer.html#method_destroy", "access": "protected", "host": "ImageViewer", "type": "method", "name": "destroy"}, {"url": "ImageGallery.html#method_destroy", "access": "protected", "host": "ImageGallery", "type": "method", "name": "destroy"}, {"url": "ImageViewer.html#method_getCurrentLink", "access": "", "host": "ImageViewer", "type": "method", "name": "getCurrentLink"}, {"url": "ImageViewer.html#method__getInfoTemplate", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_getInfoTemplate"}, {"url": "ImageGallery.html#method__getInfoTemplate", "access": "protected", "host": "ImageGallery", "type": "method", "name": "_getInfoTemplate"}, {"url": "ImageViewer.html#method_getLink", "access": "", "host": "ImageViewer", "type": "method", "name": "getLink"}, {"url": "ImageViewer.html#method_hasLink", "access": "", "host": "ImageViewer", "type": "method", "name": "hasLink"}, {"url": "ImageViewer.html#method_hasNext", "access": "", "host": "ImageViewer", "type": "method", "name": "hasNext"}, {"url": "ImageViewer.html#method_hasPrev", "access": "", "host": "ImageViewer", "type": "method", "name": "hasPrev"}, {"url": "ImageViewer.html#method_hideControls", "access": "", "host": "ImageViewer", "type": "method", "name": "hideControls"}, {"url": "ImageViewer.html#method_hideMask", "access": "", "host": "ImageViewer", "type": "method", "name": "hideMask"}, {"url": "ImageGallery.html#method_hidePaginator", "access": "", "host": "ImageGallery", "type": "method", "name": "hidePaginator"}, {"url": "ImageViewer.html#config_image", "access": "", "host": "ImageViewer", "type": "config", "name": "image"}, {"url": "ImageViewer.html#config_imageAnim", "access": "", "host": "ImageViewer", "type": "config", "name": "imageAnim"}, {"url": "ImageViewer.html#event_imageAnimChange", "access": "", "host": "ImageViewer", "type": "event", "name": "imageAnimChange"}, {"url": "ImageViewer.html#event_imageChange", "access": "", "host": "ImageViewer", "type": "event", "name": "imageChange"}, {"url": "ImageGallery.html#property_ImageGallery.ATTRS", "access": "", "host": "ImageGallery", "type": "property", "name": "ImageGallery.ATTRS"}, {"url": "ImageGallery.html#property_ImageGallery.NAME", "access": "", "host": "ImageGallery", "type": "property", "name": "ImageGallery.NAME"}, {"url": "ImageViewer.html#property_ImageViewer.ATTRS", "access": "", "host": "ImageViewer", "type": "property", "name": "ImageViewer.ATTRS"}, {"url": "ImageViewer.html#property_ImageViewer.NAME", "access": "", "host": "ImageViewer", "type": "property", "name": "ImageViewer.NAME"}, {"url": "ImageViewer.html#config_infoEl", "access": "", "host": "ImageViewer", "type": "config", "name": "infoEl"}, {"url": "ImageViewer.html#event_infoElChange", "access": "", "host": "ImageViewer", "type": "event", "name": "infoElChange"}, {"url": "ImageViewer.html#config_infoTemplate", "access": "", "host": "ImageViewer", "type": "config", "name": "infoTemplate"}, {"url": "ImageViewer.html#event_infoTemplateChange", "access": "", "host": "ImageViewer", "type": "event", "name": "infoTemplateChange"}, {"url": "ImageViewer.html#property__keyHandler", "access": "protected", "host": "ImageViewer", "type": "property", "name": "_keyHandler"}, {"url": "ImageViewer.html#config_links", "access": "", "host": "ImageViewer", "type": "config", "name": "links"}, {"url": "ImageViewer.html#event_linksChange", "access": "", "host": "ImageViewer", "type": "event", "name": "linksChange"}, {"url": "ImageViewer.html#event_load", "access": "", "host": "ImageViewer", "type": "event", "name": "load"}, {"url": "ImageViewer.html#config_loader", "access": "", "host": "ImageViewer", "type": "config", "name": "loader"}, {"url": "ImageViewer.html#event_loaderChange", "access": "", "host": "ImageViewer", "type": "event", "name": "loaderChange"}, {"url": "ImageViewer.html#method_loadImage", "access": "", "host": "ImageViewer", "type": "method", "name": "loadImage"}, {"url": "ImageViewer.html#config_loading", "access": "", "host": "ImageViewer", "type": "config", "name": "loading"}, {"url": "ImageViewer.html#event_loadingChange", "access": "", "host": "ImageViewer", "type": "event", "name": "loadingChange"}, {"url": "ImageViewer.html#config_loadingEl", "access": "", "host": "ImageViewer", "type": "config", "name": "loadingEl"}, {"url": "ImageViewer.html#event_loadingElChange", "access": "", "host": "ImageViewer", "type": "event", "name": "loadingElChange"}, {"url": "ImageViewer.html#config_modal", "access": "", "host": "ImageViewer", "type": "config", "name": "modal"}, {"url": "ImageViewer.html#event_modalChange", "access": "", "host": "ImageViewer", "type": "event", "name": "modalChange"}, {"url": "ImageViewer.html#method_next", "access": "", "host": "ImageViewer", "type": "method", "name": "next"}, {"url": "ImageViewer.html#method__onClickCloseEl", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_onClickCloseEl"}, {"url": "ImageViewer.html#method__onClickLeftArrow", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_onClickLeftArrow"}, {"url": "ImageViewer.html#method__onClickLinks", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_onClickLinks"}, {"url": "ImageViewer.html#method__onClickRightArrow", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_onClickRightArrow"}, {"url": "ImageViewer.html#method__onKeyInteraction", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_onKeyInteraction"}, {"url": "ImageViewer.html#method__onLoadImage", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_onLoadImage"}, {"url": "ImageGallery.html#method__onPausedChange", "access": "protected", "host": "ImageGallery", "type": "method", "name": "_onPausedChange"}, {"url": "ImageGallery.html#method__onPlayingChange", "access": "protected", "host": "ImageGallery", "type": "method", "name": "_onPlayingChange"}, {"url": "ImageGallery.html#config_paginator", "access": "", "host": "ImageGallery", "type": "config", "name": "paginator"}, {"url": "ImageGallery.html#event_paginatorChange", "access": "", "host": "ImageGallery", "type": "event", "name": "paginatorChange"}, {"url": "ImageGallery.html#config_paginatorEl", "access": "", "host": "ImageGallery", "type": "config", "name": "paginatorEl"}, {"url": "ImageGallery.html#event_paginatorElChange", "access": "", "host": "ImageGallery", "type": "event", "name": "paginatorElChange"}, {"url": "ImageGallery.html#config_paginatorInstance", "access": "", "host": "ImageGallery", "type": "config", "name": "paginatorInstance"}, {"url": "ImageGallery.html#event_paginatorInstanceChange", "access": "", "host": "ImageGallery", "type": "event", "name": "paginatorInstanceChange"}, {"url": "ImageGallery.html#method_pause", "access": "", "host": "ImageGallery", "type": "method", "name": "pause"}, {"url": "ImageGallery.html#config_paused", "access": "", "host": "ImageGallery", "type": "config", "name": "paused"}, {"url": "ImageGallery.html#event_pausedChange", "access": "", "host": "ImageGallery", "type": "event", "name": "pausedChange"}, {"url": "ImageGallery.html#config_pausedLabel", "access": "", "host": "ImageGallery", "type": "config", "name": "pausedLabel"}, {"url": "ImageGallery.html#event_pausedLabelChange", "access": "", "host": "ImageGallery", "type": "event", "name": "pausedLabelChange"}, {"url": "ImageGallery.html#method_play", "access": "", "host": "ImageGallery", "type": "method", "name": "play"}, {"url": "ImageGallery.html#config_playing", "access": "", "host": "ImageGallery", "type": "config", "name": "playing"}, {"url": "ImageGallery.html#event_playingChange", "access": "", "host": "ImageGallery", "type": "event", "name": "playingChange"}, {"url": "ImageGallery.html#config_playingLabel", "access": "", "host": "ImageGallery", "type": "config", "name": "playingLabel"}, {"url": "ImageGallery.html#event_playingLabelChange", "access": "", "host": "ImageGallery", "type": "event", "name": "playingLabelChange"}, {"url": "ImageViewer.html#method_preloadAllImages", "access": "", "host": "ImageViewer", "type": "method", "name": "preloadAllImages"}, {"url": "ImageViewer.html#config_preloadAllImages", "access": "", "host": "ImageViewer", "type": "config", "name": "preloadAllImages"}, {"url": "ImageViewer.html#event_preloadAllImagesChange", "access": "", "host": "ImageViewer", "type": "event", "name": "preloadAllImagesChange"}, {"url": "ImageViewer.html#method_preloadImage", "access": "", "host": "ImageViewer", "type": "method", "name": "preloadImage"}, {"url": "ImageViewer.html#method__renderControls", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_renderControls"}, {"url": "ImageViewer.html#method__renderFooter", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_renderFooter"}, {"url": "ImageGallery.html#method__renderPaginator", "access": "protected", "host": "ImageGallery", "type": "method", "name": "_renderPaginator"}, {"url": "ImageGallery.html#method__renderPlayer", "access": "protected", "host": "ImageGallery", "type": "method", "name": "_renderPlayer"}, {"url": "ImageViewer.html#method_renderUI", "access": "protected", "host": "ImageViewer", "type": "method", "name": "renderUI"}, {"url": "ImageGallery.html#method_renderUI", "access": "protected", "host": "ImageGallery", "type": "method", "name": "renderUI"}, {"url": "ImageGallery.html#config_repeat", "access": "", "host": "ImageGallery", "type": "config", "name": "repeat"}, {"url": "ImageGallery.html#event_repeatChange", "access": "", "host": "ImageGallery", "type": "event", "name": "repeatChange"}, {"url": "ImageViewer.html#event_request", "access": "", "host": "ImageViewer", "type": "event", "name": "request"}, {"url": "ImageGallery.html#method__setThumbContent", "access": "protected", "host": "ImageGallery", "type": "method", "name": "_setThumbContent"}, {"url": "ImageViewer.html#method_show", "access": "", "host": "ImageViewer", "type": "method", "name": "show"}, {"url": "ImageGallery.html#method_show", "access": "", "host": "ImageGallery", "type": "method", "name": "show"}, {"url": "ImageViewer.html#config_showArrows", "access": "", "host": "ImageViewer", "type": "config", "name": "showArrows"}, {"url": "ImageViewer.html#event_showArrowsChange", "access": "", "host": "ImageViewer", "type": "event", "name": "showArrowsChange"}, {"url": "ImageViewer.html#config_showClose", "access": "", "host": "ImageViewer", "type": "config", "name": "showClose"}, {"url": "ImageViewer.html#event_showCloseChange", "access": "", "host": "ImageViewer", "type": "event", "name": "showCloseChange"}, {"url": "ImageViewer.html#method_showLoading", "access": "", "host": "ImageViewer", "type": "method", "name": "showLoading"}, {"url": "ImageViewer.html#method_showMask", "access": "", "host": "ImageViewer", "type": "method", "name": "showMask"}, {"url": "ImageGallery.html#method_showPaginator", "access": "", "host": "ImageGallery", "type": "method", "name": "showPaginator"}, {"url": "ImageGallery.html#config_showPlayer", "access": "", "host": "ImageGallery", "type": "config", "name": "showPlayer"}, {"url": "ImageGallery.html#event_showPlayerChange", "access": "", "host": "ImageGallery", "type": "event", "name": "showPlayerChange"}, {"url": "ImageGallery.html#method__startTimer", "access": "protected", "host": "ImageGallery", "type": "method", "name": "_startTimer"}, {"url": "ImageViewer.html#method__syncCaptionUI", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_syncCaptionUI"}, {"url": "ImageViewer.html#method__syncControlsUI", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_syncControlsUI"}, {"url": "ImageGallery.html#method__syncControlsUI", "access": "protected", "host": "ImageGallery", "type": "method", "name": "_syncControlsUI"}, {"url": "ImageViewer.html#method__syncImageViewerUI", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_syncImageViewerUI"}, {"url": "ImageViewer.html#method__syncInfoUI", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_syncInfoUI"}, {"url": "ImageGallery.html#method__syncSelectedThumbUI", "access": "protected", "host": "ImageGallery", "type": "method", "name": "_syncSelectedThumbUI"}, {"url": "ImageGallery.html#method__syncSlideShow", "access": "protected", "host": "ImageGallery", "type": "method", "name": "_syncSlideShow"}, {"url": "ImageGallery.html#property__timer", "access": "protected", "host": "ImageGallery", "type": "property", "name": "_timer"}, {"url": "ImageGallery.html#config_toolSet", "access": "", "host": "ImageGallery", "type": "config", "name": "toolSet"}, {"url": "ImageGallery.html#event_toolSetChange", "access": "", "host": "ImageGallery", "type": "event", "name": "toolSetChange"}, {"url": "ImageGallery.html#config_toolSetInstance", "access": "", "host": "ImageGallery", "type": "config", "name": "toolSetInstance"}, {"url": "ImageGallery.html#event_toolSetInstanceChange", "access": "", "host": "ImageGallery", "type": "event", "name": "toolSetInstanceChange"}, {"url": "ImageViewer.html#config_totalLinks", "access": "", "host": "ImageViewer", "type": "config", "name": "totalLinks"}, {"url": "ImageViewer.html#event_totalLinksChange", "access": "", "host": "ImageViewer", "type": "event", "name": "totalLinksChange"}, {"url": "ImageGallery.html#config_useOriginalImage", "access": "", "host": "ImageGallery", "type": "config", "name": "useOriginalImage"}, {"url": "ImageGallery.html#event_useOriginalImageChange", "access": "", "host": "ImageGallery", "type": "event", "name": "useOriginalImageChange"}];
+</script>
+</body>
+</html>

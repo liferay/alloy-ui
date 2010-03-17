@@ -1,0 +1,2051 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-dialog  Dialog   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-dialog&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-dialog.html" title="aui-dialog">aui-dialog</a>
+
+	                 <span class="separator">&gt;</span> <span class="classname">Dialog</span> 
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+
+			                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                <li class="selected"><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                <li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class="selected"><a href="Dialog.html" title="Dialog">Dialog</a></li>
+
+
+				                                <li class=""><a href="DialogManager.html" title="DialogManager">DialogManager</a></li>
+
+
+				                                <li class=""><a href="DialogMask.html" title="DialogMask">DialogMask</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-configuration">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-configuration-hd">
+										<span class="aui-widget-hd-text">Configuration Attributes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#config_bodyContent" title="bodyContent">bodyContent</a></li>
+												<li class=""><a href="#config_buttons" title="buttons">buttons</a></li>
+												<li class=""><a href="#config_close" title="close">close</a></li>
+												<li class=""><a href="#config_constrain2view" title="constrain2view">constrain2view</a></li>
+												<li class=""><a href="#config_destroyOnClose" title="destroyOnClose">destroyOnClose</a></li>
+												<li class=""><a href="#config_draggable" title="draggable">draggable</a></li>
+												<li class=""><a href="#config_dragInstance" title="dragInstance">dragInstance</a></li>
+												<li class=""><a href="#config_modal" title="modal">modal</a></li>
+												<li class=""><a href="#config_resizable" title="resizable">resizable</a></li>
+												<li class=""><a href="#config_resizableInstance" title="resizableInstance">resizableInstance</a></li>
+												<li class=""><a href="#config_stack" title="stack">stack</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-properties">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-properties-hd">
+										<span class="aui-widget-hd-text">Properties</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+				                                <li class=""><a href="#property_Dialog.ATTRS" title="Dialog.ATTRS">Dialog.ATTRS</a></li>
+
+				                                <li class=""><a href="#property_Dialog.NAME" title="Dialog.NAME">Dialog.NAME</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-methods">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-methods-hd">
+										<span class="aui-widget-hd-text">Methods</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+				                               <li class="protected"><a href="#method__afterRenderer" title="_afterRenderer">_afterRenderer</a></li>
+				                               <li class="protected"><a href="#method__afterSetVisible" title="_afterSetVisible">_afterSetVisible</a></li>
+				                               <li class="protected"><a href="#method__handleEvent" title="_handleEvent">_handleEvent</a></li>
+				                               <li class="protected"><a href="#method__initButtons" title="_initButtons">_initButtons</a></li>
+				                               <li class="protected"><a href="#method__setDraggable" title="_setDraggable">_setDraggable</a></li>
+				                               <li class="protected"><a href="#method__setModal" title="_setModal">_setModal</a></li>
+				                               <li class="protected"><a href="#method__setResizable" title="_setResizable">_setResizable</a></li>
+				                               <li class="protected"><a href="#method__setStack" title="_setStack">_setStack</a></li>
+				                               <li class="protected"><a href="#method_bindUI" title="bindUI">bindUI</a></li>
+				                               <li class=""><a href="#method_close" title="close">close</a></li>
+				                               <li class="protected"><a href="#method_destructor" title="destructor">destructor</a></li>
+				                               <li class="protected"><a href="#method_initializer" title="initializer">initializer</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-events">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-events-hd">
+										<span class="aui-widget-hd-text">Events</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#event_bodyContentChange" title="bodyContentChange">bodyContentChange</a></li>
+												<li class=""><a href="#event_buttonsChange" title="buttonsChange">buttonsChange</a></li>
+												<li class=""><a href="#event_closeChange" title="closeChange">closeChange</a></li>
+												<li class=""><a href="#event_constrain2viewChange" title="constrain2viewChange">constrain2viewChange</a></li>
+												<li class=""><a href="#event_destroyOnCloseChange" title="destroyOnCloseChange">destroyOnCloseChange</a></li>
+												<li class=""><a href="#event_draggableChange" title="draggableChange">draggableChange</a></li>
+												<li class=""><a href="#event_dragInstanceChange" title="dragInstanceChange">dragInstanceChange</a></li>
+												<li class=""><a href="#event_modalChange" title="modalChange">modalChange</a></li>
+												<li class=""><a href="#event_resizableChange" title="resizableChange">resizableChange</a></li>
+												<li class=""><a href="#event_resizableInstanceChange" title="resizableInstanceChange">resizableInstanceChange</a></li>
+												<li class=""><a href="#event_stackChange" title="stackChange">stackChange</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="aui-editable-debug.js.html" title="aui-editable-debug.js">aui-editable-debug.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<h2>
+								
+
+								
+
+								
+
+								Class <b property="yui:name">Dialog</b>
+
+									<span class="extends">- extends <a href="Panel.html" title="Panel">Panel</a></span>
+
+							</h2>
+
+							<!-- class tree goes here -->
+
+
+
+							<div class="summary description" property="yui:description">
+								<p><img src="assets/images/aui-dialog/main.png"/></p>
+A base class for Dialog, providing:
+<ul>
+<li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+<li>Emulate the behavior of an dialog window using a floating, draggable HTML element</li>
+<li>Interface for easily gathering information from the user without leaving the underlying page context</li>
+<li>Using the <a href="IOPlugin.html">IOPlugin</a>, supports the submission of form data either through an XMLHttpRequest, through a normal form submission, or through a fully script-based response</li>
+</ul>
+Quick Example:<br/>
+<pre><code>var instance = new A.Dialog({
+bodyContent: 'Dialog body',
+centered: true,
+constrain2view: true,
+destroyOnClose: true,
+draggable: true,
+height: 250,
+resizable: false,
+stack: true,
+title: 'Dialog title',
+width: 500
+}).render();
+</code></pre>
+Check the list of <a href="Dialog.html#configattributes">Configuration Attributes</a> available for
+Dialog.
+							</div>
+
+								<div class="section constructor details" rel="yui:constructor" resource="#constructor">
+									<h3 id="constructor">Constructor</h3>
+
+									<div class="content">
+										<div class="detail">
+											<strong property="yui:name">Dialog</strong>
+
+											<code>
+												(
+
+													
+															
+															config
+												)
+											</code>
+
+											<div class="description">
+													<dl rel="yui:parameters">
+														<dt>Parameters:</dt>
+															<dd rel="yui:parameter">
+																<code><span property="yui:name">config</span>
+																&lt;<span property="yui:type">Object</span>&gt;
+																</code>
+
+																<span property="yui:description">  Object literal specifying widget configuration properties.</span>
+															</dd>
+													</dl>
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+							<div rel="yui:properties" resource="#properties">
+
+								<div class="section field details">
+
+									<h3 id="properties">Properties</h3>
+
+									<div class="content">
+
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_Dialog.ATTRS">
+
+											<h4>
+												<a name="property_Dialog.ATTRS" property="yui:name">Dialog.ATTRS</a>
+												- <code>static <span property="yui:type">Object</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Static property used to define the default attribute
+configuration for the Dialog.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_Dialog.NAME">
+
+											<h4>
+												<a name="property_Dialog.NAME" property="yui:name">Dialog.NAME</a>
+												- <code>static <span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Static property provides a string to identify the class.
+												</div>
+											</div>
+
+
+
+
+											</div>
+									</div>
+								</div>
+
+								<div rel="yui:inheritance">
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Component.html">
+
+										<h4>
+											Properties inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Panel.html">
+
+										<h4>
+											Properties inherited from <a href="Panel.html" property="yui:name" title="Panel">Panel</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+
+													
+
+													<div class="protected" rel="yui:property" resource="Panel.html#property_headerTextNode">
+													<a href="Panel.html#property_headerTextNode" property="yui:name" title="headerTextNode">headerTextNode</a>
+													</div>
+												
+											</code>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div rel="yui:attributes" resource="#configattributes">
+
+									<div class="section field details">
+
+										<h3 id="configattributes">Configuration Attributes</h3>
+
+										<div class="content">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_bodyContent">
+
+													<h4>
+														<a name="config_bodyContent">bodyContent</a>
+														<code>- <span property="yui:type">Node | String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															See <a href="WidgetStdMod.html#config_bodyContent">WidgetStdMod bodyContent</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>HTMLTextNode</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_buttons">
+
+													<h4>
+														<a name="config_buttons">buttons</a>
+														<code>- <span property="yui:type">Array</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															<p>Array of object literals, each containing a set of properties
+defining a button to be appended into the Dialog's footer. Each
+button object in the buttons array can have two properties:</p>
+<dl>
+<dt>text:</dt>
+<dd>
+The text that will display on the face of the button. The text can include
+HTML, as long as it is compliant with HTML Button specifications.
+</dd>
+<dt>handler:</dt>
+<dd>
+A reference to a function that should fire when the button is clicked.
+(In this case scope of this function is always its Dialog instance.)
+</dd>
+</dl>
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>[]</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_close">
+
+													<h4>
+														<a name="config_close">close</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															If <code>true</code> the close icon will be displayed on the
+Dialog header.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>true</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_constrain2view">
+
+													<h4>
+														<a name="config_constrain2view">constrain2view</a>
+														<code>- <span property="yui:type">Object</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Will attempt to constrain the dialog to the boundaries of the
+viewport region.
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_destroyOnClose">
+
+													<h4>
+														<a name="config_destroyOnClose">destroyOnClose</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Invoke the <a href="Dialog.html#method_destroy">destroy</a>
+method when the dialog is closed (i.e., remove the Dialog
+<code>boundingBox</code> from the body, purge events etc).
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_draggable">
+
+													<h4>
+														<a name="config_draggable">draggable</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Boolean specifying if the Panel should be draggable.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>true</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_dragInstance">
+
+													<h4>
+														<a name="config_dragInstance">dragInstance</a>
+														<code>- <span property="yui:type">A.DD.Drag</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Stores the Drag instance for the <code>A.DD.Drag</code> used by
+this Dialog.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>null</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_modal">
+
+													<h4>
+														<a name="config_modal">modal</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															True if the Panel should be displayed in a modal fashion,
+automatically creating a transparent mask over the document that
+will not be removed until the Dialog is dismissed. Uses
+<a href="OverlayMask.html">OverlayMask</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_resizable">
+
+													<h4>
+														<a name="config_resizable">resizable</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Boolean specifying if the Panel should be resizable.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>true</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_resizableInstance">
+
+													<h4>
+														<a name="config_resizableInstance">resizableInstance</a>
+														<code>- <span property="yui:type">Resize</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Stores the Drag instance for the
+<a href="Resize.html">Resize</a> used by this Dialog.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>null</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_stack">
+
+													<h4>
+														<a name="config_stack">stack</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															If <code>true</code> give stacking habilities to the Dialog.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>true</strong>
+													</div>
+
+												</div>
+
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="Component.html">
+												<h4>Configuration attributes inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_cssClass">
+															<a href="Component.html#config_cssClass" property="yui:name" title="cssClass">cssClass</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_hideClass">
+															<a href="Component.html#config_hideClass" property="yui:name" title="hideClass">hideClass</a><span>,</span>
+															</div>
+														
+															
+															
+
+															<div class="deprecated" rel="yui:attribute" resource="Component.html#config_owner">
+															<a href="Component.html#config_owner" property="yui:name" title="owner">owner</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_relayEvents">
+															<a href="Component.html#config_relayEvents" property="yui:name" title="relayEvents">relayEvents</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_render">
+															<a href="Component.html#config_render" property="yui:name" title="render">render</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="Panel.html">
+												<h4>Configuration attributes inherited from <a href="Panel.html" property="yui:name" title="Panel">Panel</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="Panel.html#config_collapsed">
+															<a href="Panel.html#config_collapsed" property="yui:name" title="collapsed">collapsed</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Panel.html#config_collapsible">
+															<a href="Panel.html#config_collapsible" property="yui:name" title="collapsible">collapsible</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Panel.html#config_title">
+															<a href="Panel.html#config_title" property="yui:name" title="title">title</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Panel.html#config_tools">
+															<a href="Panel.html#config_tools" property="yui:name" title="tools">tools</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+									</div>
+
+
+							</div>
+
+							<div rel="yui:methods" resource="#methods">
+									<div class="section method details">
+
+										<h3 id="methods">Methods</h3>
+
+										<div class="content">
+
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterRenderer">
+
+													<h4>
+														<a name="method__afterRenderer">_afterRenderer</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_afterRenderer</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires after the render phase. Invoke
+<a href="Dialog.html#method__initButtons">_initButtons</a>.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterSetVisible">
+
+													<h4>
+														<a name="method__afterSetVisible">_afterSetVisible</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_afterSetVisible</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires after the value of the
+<a href="Overlay.html#config_visible">visible</a> attribute change.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__handleEvent">
+
+													<h4>
+														<a name="method__handleEvent">_handleEvent</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_handleEvent</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles the close event logic.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"> close event facade</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__initButtons">
+
+													<h4>
+														<a name="method__initButtons">_initButtons</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_initButtons</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Render the buttons on the footer of the Dialog.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__setDraggable">
+
+													<h4>
+														<a name="method__setDraggable">_setDraggable</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														Object
+															<strong property="yui:name">_setDraggable</strong>
+														   (
+																
+																		
+																		 value
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Setter for the <a href="Dialog.html#config_draggable">draggable</a>
+attributte. Initialize the A.DD.Drag on the Dialog.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">value</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> Object to be passed to the A.DD.Drag constructor.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__setModal">
+
+													<h4>
+														<a name="method__setModal">_setModal</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														boolean
+															<strong property="yui:name">_setModal</strong>
+														   (
+																
+																		
+																		 value
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Setter for the <a href="Dialog.html#config_modal">modal</a> attribute.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">value</span>
+																		&lt;<span property="yui:type">boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__setResizable">
+
+													<h4>
+														<a name="method__setResizable">_setResizable</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														boolean
+															<strong property="yui:name">_setResizable</strong>
+														   (
+																
+																		
+																		 value
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Setter for the <a href="Dialog.html#config_resizable">resizable</a>
+attribute.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">value</span>
+																		&lt;<span property="yui:type">boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__setStack">
+
+													<h4>
+														<a name="method__setStack">_setStack</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														boolean
+															<strong property="yui:name">_setStack</strong>
+														   (
+																
+																		
+																		 value
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Setter for the <a href="Dialog.html#config_stack">stack</a>
+attribute.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">value</span>
+																		&lt;<span property="yui:type">boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_bindUI">
+
+													<h4>
+														<a name="method_bindUI">bindUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">bindUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Bind the events on the Dialog UI. Lifecycle.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_close">
+
+													<h4>
+														<a name="method_close">close</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">close</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires the close event to close the Dialog.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_destructor">
+
+													<h4>
+														<a name="method_destructor">destructor</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">destructor</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Descructor lifecycle implementation for the Dialog class.
+Purges events attached to the node (and all child nodes).
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_initializer">
+
+													<h4>
+														<a name="method_initializer">initializer</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">initializer</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Construction logic executed during Dialog instantiation. Lifecycle.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+
+									<div rel="yui:inheritance">
+
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Component.html">
+
+											<h4>
+												Methods inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentDestroy">
+														<a href="Component.html#method__afterComponentDestroy" property="yui:name" title="_afterComponentDestroy">_afterComponentDestroy</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentOwnerChange">
+														<a href="Component.html#method__afterComponentOwnerChange" property="yui:name" title="_afterComponentOwnerChange">_afterComponentOwnerChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentRelayEventsChange">
+														<a href="Component.html#method__afterComponentRelayEventsChange" property="yui:name" title="_afterComponentRelayEventsChange">_afterComponentRelayEventsChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentVisibleChange">
+														<a href="Component.html#method__afterComponentVisibleChange" property="yui:name" title="_afterComponentVisibleChange">_afterComponentVisibleChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterCssClassChange">
+														<a href="Component.html#method__afterCssClassChange" property="yui:name" title="_afterCssClassChange">_afterCssClassChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__relayEvents">
+														<a href="Component.html#method__relayEvents" property="yui:name" title="_relayEvents">_relayEvents</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__setComponentClassNames">
+														<a href="Component.html#method__setComponentClassNames" property="yui:name" title="_setComponentClassNames">_setComponentClassNames</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__setRelayEvents">
+														<a href="Component.html#method__setRelayEvents" property="yui:name" title="_setRelayEvents">_setRelayEvents</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__uiSetCssClass">
+														<a href="Component.html#method__uiSetCssClass" property="yui:name" title="_uiSetCssClass">_uiSetCssClass</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Component.html#method_clone">
+														<a href="Component.html#method_clone" property="yui:name" title="clone">clone</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method_initializer">
+														<a href="Component.html#method_initializer" property="yui:name" title="initializer">initializer</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Component.html#method_toggle">
+														<a href="Component.html#method_toggle" property="yui:name" title="toggle">toggle</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Panel.html">
+
+											<h4>
+												Methods inherited from <a href="Panel.html" property="yui:name" title="Panel">Panel</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Panel.html#method__addPanelClass">
+														<a href="Panel.html#method__addPanelClass" property="yui:name" title="_addPanelClass">_addPanelClass</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Panel.html#method__afterCollapsedChange">
+														<a href="Panel.html#method__afterCollapsedChange" property="yui:name" title="_afterCollapsedChange">_afterCollapsedChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Panel.html#method__afterPanelRender">
+														<a href="Panel.html#method__afterPanelRender" property="yui:name" title="_afterPanelRender">_afterPanelRender</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Panel.html#method__afterTitleChange">
+														<a href="Panel.html#method__afterTitleChange" property="yui:name" title="_afterTitleChange">_afterTitleChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Panel.html#method__renderHeaderText">
+														<a href="Panel.html#method__renderHeaderText" property="yui:name" title="_renderHeaderText">_renderHeaderText</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Panel.html#method__renderToolItems">
+														<a href="Panel.html#method__renderToolItems" property="yui:name" title="_renderToolItems">_renderToolItems</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Panel.html#method__syncCollapsedUI">
+														<a href="Panel.html#method__syncCollapsedUI" property="yui:name" title="_syncCollapsedUI">_syncCollapsedUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Panel.html#method__syncTitleUI">
+														<a href="Panel.html#method__syncTitleUI" property="yui:name" title="_syncTitleUI">_syncTitleUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Panel.html#method_collapse">
+														<a href="Panel.html#method_collapse" property="yui:name" title="collapse">collapse</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Panel.html#method_expand">
+														<a href="Panel.html#method_expand" property="yui:name" title="expand">expand</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Panel.html#method_initializer">
+														<a href="Panel.html#method_initializer" property="yui:name" title="initializer">initializer</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Panel.html#method_toggle">
+														<a href="Panel.html#method_toggle" property="yui:name" title="toggle">toggle</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Panel.html#method_toggleCollapse">
+														<a href="Panel.html#method_toggleCollapse" property="yui:name" title="toggleCollapse">toggleCollapse</a>
+														</div>
+												</code>
+											</div>
+										</div>
+									</div>
+							</div>
+
+							<div rel="yui:events" resource="#events">
+									<div class="section method details">
+										<h3 id="events">Events</h3>
+
+										<div class="content">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_bodyContentChange">
+
+													<h4>
+														<a name="event_bodyContentChange">bodyContentChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">bodyContentChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'bodyContent' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_buttonsChange">
+
+													<h4>
+														<a name="event_buttonsChange">buttonsChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">buttonsChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'buttons' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_closeChange">
+
+													<h4>
+														<a name="event_closeChange">closeChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">closeChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'close' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_constrain2viewChange">
+
+													<h4>
+														<a name="event_constrain2viewChange">constrain2viewChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">constrain2viewChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'constrain2view' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_destroyOnCloseChange">
+
+													<h4>
+														<a name="event_destroyOnCloseChange">destroyOnCloseChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">destroyOnCloseChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'destroyOnClose' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_draggableChange">
+
+													<h4>
+														<a name="event_draggableChange">draggableChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">draggableChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'draggable' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_dragInstanceChange">
+
+													<h4>
+														<a name="event_dragInstanceChange">dragInstanceChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">dragInstanceChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'dragInstance' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_modalChange">
+
+													<h4>
+														<a name="event_modalChange">modalChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">modalChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'modal' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_resizableChange">
+
+													<h4>
+														<a name="event_resizableChange">resizableChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">resizableChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'resizable' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_resizableInstanceChange">
+
+													<h4>
+														<a name="event_resizableInstanceChange">resizableInstanceChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">resizableInstanceChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'resizableInstance' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_stackChange">
+
+													<h4>
+														<a name="event_stackChange">stackChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">stackChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'stack' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+										<div class="section field inheritance events" rel="yui:superclass"  resource="Component.html">
+											<h4>
+												Events inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_cssClassChange">
+														<a href="Component.html#event_cssClassChange" property="yui:name" title="cssClassChange">cssClassChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_hideClassChange">
+														<a href="Component.html#event_hideClassChange" property="yui:name" title="hideClassChange">hideClassChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_ownerChange">
+														<a href="Component.html#event_ownerChange" property="yui:name" title="ownerChange">ownerChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_relayEventsChange">
+														<a href="Component.html#event_relayEventsChange" property="yui:name" title="relayEventsChange">relayEventsChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_renderChange">
+														<a href="Component.html#event_renderChange" property="yui:name" title="renderChange">renderChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+										<div class="section field inheritance events" rel="yui:superclass"  resource="Panel.html">
+											<h4>
+												Events inherited from <a href="Panel.html" property="yui:name" title="Panel">Panel</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="Panel.html#event_collapsedChange">
+														<a href="Panel.html#event_collapsedChange" property="yui:name" title="collapsedChange">collapsedChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Panel.html#event_collapsibleChange">
+														<a href="Panel.html#event_collapsibleChange" property="yui:name" title="collapsibleChange">collapsibleChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Panel.html#event_titleChange">
+														<a href="Panel.html#event_titleChange" property="yui:name" title="titleChange">titleChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Panel.html#event_toolsChange">
+														<a href="Panel.html#event_toolsChange" property="yui:name" title="toolsChange">toolsChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+
+									</div>
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Dialog.html#method__afterRenderer", "access": "protected", "host": "Dialog", "type": "method", "name": "_afterRenderer"}, {"url": "Dialog.html#method__afterSetVisible", "access": "protected", "host": "Dialog", "type": "method", "name": "_afterSetVisible"}, {"url": "Dialog.html#method_bindUI", "access": "protected", "host": "Dialog", "type": "method", "name": "bindUI"}, {"url": "Dialog.html#config_bodyContent", "access": "", "host": "Dialog", "type": "config", "name": "bodyContent"}, {"url": "Dialog.html#event_bodyContentChange", "access": "", "host": "Dialog", "type": "event", "name": "bodyContentChange"}, {"url": "Dialog.html#config_buttons", "access": "", "host": "Dialog", "type": "config", "name": "buttons"}, {"url": "Dialog.html#event_buttonsChange", "access": "", "host": "Dialog", "type": "event", "name": "buttonsChange"}, {"url": "Dialog.html#method_close", "access": "", "host": "Dialog", "type": "method", "name": "close"}, {"url": "Dialog.html#config_close", "access": "", "host": "Dialog", "type": "config", "name": "close"}, {"url": "Dialog.html#event_closeChange", "access": "", "host": "Dialog", "type": "event", "name": "closeChange"}, {"url": "Dialog.html#config_constrain2view", "access": "", "host": "Dialog", "type": "config", "name": "constrain2view"}, {"url": "Dialog.html#event_constrain2viewChange", "access": "", "host": "Dialog", "type": "event", "name": "constrain2viewChange"}, {"url": "Dialog.html#config_destroyOnClose", "access": "", "host": "Dialog", "type": "config", "name": "destroyOnClose"}, {"url": "Dialog.html#event_destroyOnCloseChange", "access": "", "host": "Dialog", "type": "event", "name": "destroyOnCloseChange"}, {"url": "Dialog.html#method_destructor", "access": "protected", "host": "Dialog", "type": "method", "name": "destructor"}, {"url": "Dialog.html#property_Dialog.ATTRS", "access": "", "host": "Dialog", "type": "property", "name": "Dialog.ATTRS"}, {"url": "Dialog.html#property_Dialog.NAME", "access": "", "host": "Dialog", "type": "property", "name": "Dialog.NAME"}, {"url": "Dialog.html#config_draggable", "access": "", "host": "Dialog", "type": "config", "name": "draggable"}, {"url": "Dialog.html#event_draggableChange", "access": "", "host": "Dialog", "type": "event", "name": "draggableChange"}, {"url": "Dialog.html#config_dragInstance", "access": "", "host": "Dialog", "type": "config", "name": "dragInstance"}, {"url": "Dialog.html#event_dragInstanceChange", "access": "", "host": "Dialog", "type": "event", "name": "dragInstanceChange"}, {"url": "Dialog.html#method__handleEvent", "access": "protected", "host": "Dialog", "type": "method", "name": "_handleEvent"}, {"url": "Dialog.html#method__initButtons", "access": "protected", "host": "Dialog", "type": "method", "name": "_initButtons"}, {"url": "Dialog.html#method_initializer", "access": "protected", "host": "Dialog", "type": "method", "name": "initializer"}, {"url": "Dialog.html#config_modal", "access": "", "host": "Dialog", "type": "config", "name": "modal"}, {"url": "Dialog.html#event_modalChange", "access": "", "host": "Dialog", "type": "event", "name": "modalChange"}, {"url": "Dialog.html#config_resizable", "access": "", "host": "Dialog", "type": "config", "name": "resizable"}, {"url": "Dialog.html#event_resizableChange", "access": "", "host": "Dialog", "type": "event", "name": "resizableChange"}, {"url": "Dialog.html#config_resizableInstance", "access": "", "host": "Dialog", "type": "config", "name": "resizableInstance"}, {"url": "Dialog.html#event_resizableInstanceChange", "access": "", "host": "Dialog", "type": "event", "name": "resizableInstanceChange"}, {"url": "Dialog.html#method__setDraggable", "access": "protected", "host": "Dialog", "type": "method", "name": "_setDraggable"}, {"url": "Dialog.html#method__setModal", "access": "protected", "host": "Dialog", "type": "method", "name": "_setModal"}, {"url": "Dialog.html#method__setResizable", "access": "protected", "host": "Dialog", "type": "method", "name": "_setResizable"}, {"url": "Dialog.html#method__setStack", "access": "protected", "host": "Dialog", "type": "method", "name": "_setStack"}, {"url": "Dialog.html#config_stack", "access": "", "host": "Dialog", "type": "config", "name": "stack"}, {"url": "Dialog.html#event_stackChange", "access": "", "host": "Dialog", "type": "event", "name": "stackChange"}];
+</script>
+</body>
+</html>

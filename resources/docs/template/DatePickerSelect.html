@@ -1,0 +1,3060 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-calendar  DatePickerSelect   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-calendar&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-calendar.html" title="aui-calendar">aui-calendar</a>
+
+	                 <span class="separator">&gt;</span> <span class="classname">DatePickerSelect</span> 
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+
+			                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+			                                <li class="selected"><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                <li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="Calendar.html" title="Calendar">Calendar</a></li>
+
+
+				                                <li class=""><a href="CalendarManager.html" title="CalendarManager">CalendarManager</a></li>
+
+
+				                                <li class="selected"><a href="DatePickerSelect.html" title="DatePickerSelect">DatePickerSelect</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-configuration">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-configuration-hd">
+										<span class="aui-widget-hd-text">Configuration Attributes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#config_appendOrder" title="appendOrder">appendOrder</a></li>
+												<li class=""><a href="#config_baseName" title="baseName">baseName</a></li>
+												<li class=""><a href="#config_dayField" title="dayField">dayField</a></li>
+												<li class=""><a href="#config_dayFieldName" title="dayFieldName">dayFieldName</a></li>
+												<li class=""><a href="#config_displayBoundingBox" title="displayBoundingBox">displayBoundingBox</a></li>
+												<li class=""><a href="#config_monthField" title="monthField">monthField</a></li>
+												<li class=""><a href="#config_monthFieldName" title="monthFieldName">monthFieldName</a></li>
+												<li class=""><a href="#config_populateDay" title="populateDay">populateDay</a></li>
+												<li class=""><a href="#config_populateMonth" title="populateMonth">populateMonth</a></li>
+												<li class=""><a href="#config_populateYear" title="populateYear">populateYear</a></li>
+												<li class=""><a href="#config_setValue" title="setValue">setValue</a></li>
+												<li class=""><a href="#config_trigger" title="trigger">trigger</a></li>
+												<li class=""><a href="#config_visible" title="visible">visible</a></li>
+												<li class=""><a href="#config_yearField" title="yearField">yearField</a></li>
+												<li class=""><a href="#config_yearFieldName" title="yearFieldName">yearFieldName</a></li>
+												<li class=""><a href="#config_yearRange" title="yearRange">yearRange</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-properties">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-properties-hd">
+										<span class="aui-widget-hd-text">Properties</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+				                                <li class=""><a href="#property_DatePickerSelect.ATTRS" title="DatePickerSelect.ATTRS">DatePickerSelect.ATTRS</a></li>
+
+				                                <li class=""><a href="#property_DatePickerSelect.NAME" title="DatePickerSelect.NAME">DatePickerSelect.NAME</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-methods">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-methods-hd">
+										<span class="aui-widget-hd-text">Methods</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+				                               <li class="protected"><a href="#method__bindSelectEvents" title="_bindSelectEvents">_bindSelectEvents</a></li>
+				                               <li class="protected"><a href="#method__getAppendOrder" title="_getAppendOrder">_getAppendOrder</a></li>
+				                               <li class="protected"><a href="#method__onSelectChange" title="_onSelectChange">_onSelectChange</a></li>
+				                               <li class="protected"><a href="#method__populateDays" title="_populateDays">_populateDays</a></li>
+				                               <li class="protected"><a href="#method__populateMonths" title="_populateMonths">_populateMonths</a></li>
+				                               <li class="protected"><a href="#method__populateSelect" title="_populateSelect">_populateSelect</a></li>
+				                               <li class="protected"><a href="#method__populateYears" title="_populateYears">_populateYears</a></li>
+				                               <li class="protected"><a href="#method__pupulateSelects" title="_pupulateSelects">_pupulateSelects</a></li>
+				                               <li class="protected"><a href="#method__renderElements" title="_renderElements">_renderElements</a></li>
+				                               <li class="protected"><a href="#method__renderTriggerButton" title="_renderTriggerButton">_renderTriggerButton</a></li>
+				                               <li class="protected"><a href="#method__selectCurrentDay" title="_selectCurrentDay">_selectCurrentDay</a></li>
+				                               <li class="protected"><a href="#method__selectCurrentMonth" title="_selectCurrentMonth">_selectCurrentMonth</a></li>
+				                               <li class="protected"><a href="#method__selectCurrentValues" title="_selectCurrentValues">_selectCurrentValues</a></li>
+				                               <li class="protected"><a href="#method__selectCurrentYear" title="_selectCurrentYear">_selectCurrentYear</a></li>
+				                               <li class="protected"><a href="#method_bindUI" title="bindUI">bindUI</a></li>
+				                               <li class="protected"><a href="#method_renderUI" title="renderUI">renderUI</a></li>
+				                               <li class="protected"><a href="#method_syncUI" title="syncUI">syncUI</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-events">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-events-hd">
+										<span class="aui-widget-hd-text">Events</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#event_appendOrderChange" title="appendOrderChange">appendOrderChange</a></li>
+												<li class=""><a href="#event_baseNameChange" title="baseNameChange">baseNameChange</a></li>
+												<li class=""><a href="#event_dayFieldChange" title="dayFieldChange">dayFieldChange</a></li>
+												<li class=""><a href="#event_dayFieldNameChange" title="dayFieldNameChange">dayFieldNameChange</a></li>
+												<li class=""><a href="#event_displayBoundingBoxChange" title="displayBoundingBoxChange">displayBoundingBoxChange</a></li>
+												<li class=""><a href="#event_monthFieldChange" title="monthFieldChange">monthFieldChange</a></li>
+												<li class=""><a href="#event_monthFieldNameChange" title="monthFieldNameChange">monthFieldNameChange</a></li>
+												<li class=""><a href="#event_populateDayChange" title="populateDayChange">populateDayChange</a></li>
+												<li class=""><a href="#event_populateMonthChange" title="populateMonthChange">populateMonthChange</a></li>
+												<li class=""><a href="#event_populateYearChange" title="populateYearChange">populateYearChange</a></li>
+												<li class=""><a href="#event_setValueChange" title="setValueChange">setValueChange</a></li>
+												<li class=""><a href="#event_triggerChange" title="triggerChange">triggerChange</a></li>
+												<li class=""><a href="#event_visibleChange" title="visibleChange">visibleChange</a></li>
+												<li class=""><a href="#event_yearFieldChange" title="yearFieldChange">yearFieldChange</a></li>
+												<li class=""><a href="#event_yearFieldNameChange" title="yearFieldNameChange">yearFieldNameChange</a></li>
+												<li class=""><a href="#event_yearRangeChange" title="yearRangeChange">yearRangeChange</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="aui-calendar-datepicker-select.js.html" title="aui-calendar-datepicker-select.js">aui-calendar-datepicker-select.js</a></li>
+
+
+			                                <li class=""><a href="aui-char-counter.js.html" title="aui-char-counter.js">aui-char-counter.js</a></li>
+
+
+			                                <li class=""><a href="calendar-pt-br.js.html" title="calendar-pt-br.js">calendar-pt-br.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<h2>
+								
+
+								
+
+								
+
+								Class <b property="yui:name">DatePickerSelect</b>
+
+									<span class="extends">- extends <a href="Calendar.html" title="Calendar">Calendar</a></span>
+
+							</h2>
+
+							<!-- class tree goes here -->
+
+
+
+							<div class="summary description" property="yui:description">
+								<p><img src="assets/images/aui-calendar-datepicker-select/main.png"/></p>
+A base class for DatePickerSelect, providing:
+<ul>
+<li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+<li>Select a date from Calendar to select elements</li>
+</ul>
+Quick Example:<br/>
+<pre><code>var instance = new A.DatePickerSelect({
+displayBoundingBox: '#displayBoundingBoxId',
+// locale: 'pt-br',
+dateFormat: '%m/%d/%y',
+yearRange: [ 1970, 2009 ]
+}).render();
+</code></pre>
+Check the list of <a href="DatePickerSelect.html#configattributes">Configuration Attributes</a> available for
+DatePickerSelect.
+							</div>
+
+								<div class="section constructor details" rel="yui:constructor" resource="#constructor">
+									<h3 id="constructor">Constructor</h3>
+
+									<div class="content">
+										<div class="detail">
+											<strong property="yui:name">DatePickerSelect</strong>
+
+											<code>
+												(
+
+													
+															
+															config
+												)
+											</code>
+
+											<div class="description">
+													<dl rel="yui:parameters">
+														<dt>Parameters:</dt>
+															<dd rel="yui:parameter">
+																<code><span property="yui:name">config</span>
+																&lt;<span property="yui:type">Object</span>&gt;
+																</code>
+
+																<span property="yui:description">  Object literal specifying widget configuration properties.</span>
+															</dd>
+													</dl>
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+							<div rel="yui:properties" resource="#properties">
+
+								<div class="section field details">
+
+									<h3 id="properties">Properties</h3>
+
+									<div class="content">
+
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_DatePickerSelect.ATTRS">
+
+											<h4>
+												<a name="property_DatePickerSelect.ATTRS" property="yui:name">DatePickerSelect.ATTRS</a>
+												- <code>static <span property="yui:type">Object</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Static property used to define the default attribute
+configuration for the DatePickerSelect.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_DatePickerSelect.NAME">
+
+											<h4>
+												<a name="property_DatePickerSelect.NAME" property="yui:name">DatePickerSelect.NAME</a>
+												- <code>static <span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Static property provides a string to identify the class.
+												</div>
+											</div>
+
+
+
+
+											</div>
+									</div>
+								</div>
+
+								<div rel="yui:inheritance">
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Calendar.html">
+
+										<h4>
+											Properties inherited from <a href="Calendar.html" property="yui:name" title="Calendar">Calendar</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+
+													
+
+													<div class="protected" rel="yui:property" resource="Calendar.html#property_headerContentNode">
+													<a href="Calendar.html#property_headerContentNode" property="yui:name" title="headerContentNode">headerContentNode</a><span>,</span>
+													</div>
+												
+
+													
+
+													<div class="protected" rel="yui:property" resource="Calendar.html#property_headerTitleNode">
+													<a href="Calendar.html#property_headerTitleNode" property="yui:name" title="headerTitleNode">headerTitleNode</a><span>,</span>
+													</div>
+												
+
+													
+
+													<div class="protected" rel="yui:property" resource="Calendar.html#property_monthDaysNode">
+													<a href="Calendar.html#property_monthDaysNode" property="yui:name" title="monthDaysNode">monthDaysNode</a><span>,</span>
+													</div>
+												
+
+													
+
+													<div class="protected" rel="yui:property" resource="Calendar.html#property_weekDaysNode">
+													<a href="Calendar.html#property_weekDaysNode" property="yui:name" title="weekDaysNode">weekDaysNode</a>
+													</div>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Component.html">
+
+										<h4>
+											Properties inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="OverlayContext.html">
+
+										<h4>
+											Properties inherited from <a href="OverlayContext.html" property="yui:name" title="OverlayContext">OverlayContext</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+											</code>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div rel="yui:attributes" resource="#configattributes">
+
+									<div class="section field details">
+
+										<h3 id="configattributes">Configuration Attributes</h3>
+
+										<div class="content">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_appendOrder">
+
+													<h4>
+														<a name="config_appendOrder">appendOrder</a>
+														<code>- <span property="yui:type">Array</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The order the selects elements are appended to the
+<a href="DatePickerSelect.html#config_displayBoundingBox">displayBoundingBox</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>[ 'm', 'd', 'y' ]</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_baseName">
+
+													<h4>
+														<a name="config_baseName">baseName</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															A basename to identify the select elements from this
+DatePickerSelect.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>datepicker</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_dayField">
+
+													<h4>
+														<a name="config_dayField">dayField</a>
+														<code>- <span property="yui:type">{Node | String}</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															HTML element to receive the day value when a date is selected.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Generated HTML select element</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_dayFieldName">
+
+													<h4>
+														<a name="config_dayFieldName">dayFieldName</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Name attribute used on the
+<a href="DatePickerSelect.html#config_dayField">dayField</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>day</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_displayBoundingBox">
+
+													<h4>
+														<a name="config_displayBoundingBox">displayBoundingBox</a>
+														<code>- <span property="yui:type">{Node | String}</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The container
+<a href="Widget.html#config_boundingBox">boundingBox</a> to house the
+selects and button. The
+<a href="Widget.html#config_boundingBox">boundingBox</a> attribute is
+used on the Calendar Overlay.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>null</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_monthField">
+
+													<h4>
+														<a name="config_monthField">monthField</a>
+														<code>- <span property="yui:type">{Node | String}</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															HTML element to receive the month value when a date is selected.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Generated HTML select element</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_monthFieldName">
+
+													<h4>
+														<a name="config_monthFieldName">monthFieldName</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Name attribute used on the
+<a href="DatePickerSelect.html#config_monthField">monthField</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>month</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_populateDay">
+
+													<h4>
+														<a name="config_populateDay">populateDay</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															If true the select element for the days will be automatic
+populated.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>true</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_populateMonth">
+
+													<h4>
+														<a name="config_populateMonth">populateMonth</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															If true the select element for the month will be automatic
+populated.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>true</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_populateYear">
+
+													<h4>
+														<a name="config_populateYear">populateYear</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															If true the select element for the year will be automatic
+populated.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>true</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_setValue">
+
+													<h4>
+														<a name="config_setValue">setValue</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Inherited from
+<a href="Calendar.html#config_setValue">Calendar</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_trigger">
+
+													<h4>
+														<a name="config_trigger">trigger</a>
+														<code>- <span property="yui:type">{Node | String}</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Trigger element to open the calendar. Inherited from
+<a href="OverlayContext.html#config_trigger">OverlayContext</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Generated HTLM div element</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_visible">
+
+													<h4>
+														<a name="config_visible">visible</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															If true the Calendar is visible by default after the render phase.
+Inherited from
+<a href="OverlayContext.html#config_trigger">OverlayContext</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_yearField">
+
+													<h4>
+														<a name="config_yearField">yearField</a>
+														<code>- <span property="yui:type">{Node | String}</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															HTML element to receive the year value when a date is selected.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Generated HTML select element</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_yearFieldName">
+
+													<h4>
+														<a name="config_yearFieldName">yearFieldName</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Name attribute used on the
+<a href="DatePickerSelect.html#config_yearField">yearField</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>year</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_yearRange">
+
+													<h4>
+														<a name="config_yearRange">yearRange</a>
+														<code>- <span property="yui:type">Array</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Year range to be displayed on the year select element. By default
+it displays from -10 to +10 years from the current year.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>[ year - 10, year + 10 ]</strong>
+													</div>
+
+												</div>
+
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="Calendar.html">
+												<h4>Configuration attributes inherited from <a href="Calendar.html" property="yui:name" title="Calendar">Calendar</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="Calendar.html#config_currentDay">
+															<a href="Calendar.html#config_currentDay" property="yui:name" title="currentDay">currentDay</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Calendar.html#config_currentMonth">
+															<a href="Calendar.html#config_currentMonth" property="yui:name" title="currentMonth">currentMonth</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Calendar.html#config_currentYear">
+															<a href="Calendar.html#config_currentYear" property="yui:name" title="currentYear">currentYear</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Calendar.html#config_dateFormat">
+															<a href="Calendar.html#config_dateFormat" property="yui:name" title="dateFormat">dateFormat</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Calendar.html#config_dates">
+															<a href="Calendar.html#config_dates" property="yui:name" title="dates">dates</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Calendar.html#config_firstDayOfWeek">
+															<a href="Calendar.html#config_firstDayOfWeek" property="yui:name" title="firstDayOfWeek">firstDayOfWeek</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Calendar.html#config_maxDate">
+															<a href="Calendar.html#config_maxDate" property="yui:name" title="maxDate">maxDate</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Calendar.html#config_minDate">
+															<a href="Calendar.html#config_minDate" property="yui:name" title="minDate">minDate</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Calendar.html#config_selectMultipleDates">
+															<a href="Calendar.html#config_selectMultipleDates" property="yui:name" title="selectMultipleDates">selectMultipleDates</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Calendar.html#config_setValue">
+															<a href="Calendar.html#config_setValue" property="yui:name" title="setValue">setValue</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Calendar.html#config_stack">
+															<a href="Calendar.html#config_stack" property="yui:name" title="stack">stack</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="Component.html">
+												<h4>Configuration attributes inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_cssClass">
+															<a href="Component.html#config_cssClass" property="yui:name" title="cssClass">cssClass</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_hideClass">
+															<a href="Component.html#config_hideClass" property="yui:name" title="hideClass">hideClass</a><span>,</span>
+															</div>
+														
+															
+															
+
+															<div class="deprecated" rel="yui:attribute" resource="Component.html#config_owner">
+															<a href="Component.html#config_owner" property="yui:name" title="owner">owner</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_relayEvents">
+															<a href="Component.html#config_relayEvents" property="yui:name" title="relayEvents">relayEvents</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Component.html#config_render">
+															<a href="Component.html#config_render" property="yui:name" title="render">render</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="OverlayContext.html">
+												<h4>Configuration attributes inherited from <a href="OverlayContext.html" property="yui:name" title="OverlayContext">OverlayContext</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="OverlayContext.html#config_align">
+															<a href="OverlayContext.html#config_align" property="yui:name" title="align">align</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="OverlayContext.html#config_cancellableHide">
+															<a href="OverlayContext.html#config_cancellableHide" property="yui:name" title="cancellableHide">cancellableHide</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="OverlayContext.html#config_currentNode">
+															<a href="OverlayContext.html#config_currentNode" property="yui:name" title="currentNode">currentNode</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="OverlayContext.html#config_hideDelay">
+															<a href="OverlayContext.html#config_hideDelay" property="yui:name" title="hideDelay">hideDelay</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="OverlayContext.html#config_hideOn">
+															<a href="OverlayContext.html#config_hideOn" property="yui:name" title="hideOn">hideOn</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="OverlayContext.html#config_hideOnDocumentClick">
+															<a href="OverlayContext.html#config_hideOnDocumentClick" property="yui:name" title="hideOnDocumentClick">hideOnDocumentClick</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="OverlayContext.html#config_showDelay">
+															<a href="OverlayContext.html#config_showDelay" property="yui:name" title="showDelay">showDelay</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="OverlayContext.html#config_showOn">
+															<a href="OverlayContext.html#config_showOn" property="yui:name" title="showOn">showOn</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="OverlayContext.html#config_trigger">
+															<a href="OverlayContext.html#config_trigger" property="yui:name" title="trigger">trigger</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="OverlayContext.html#config_visible">
+															<a href="OverlayContext.html#config_visible" property="yui:name" title="visible">visible</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+									</div>
+
+
+							</div>
+
+							<div rel="yui:methods" resource="#methods">
+									<div class="section method details">
+
+										<h3 id="methods">Methods</h3>
+
+										<div class="content">
+
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__bindSelectEvents">
+
+													<h4>
+														<a name="method__bindSelectEvents">_bindSelectEvents</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_bindSelectEvents</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Bind events on each select element (change, keypress, etc).
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__getAppendOrder">
+
+													<h4>
+														<a name="method__getAppendOrder">_getAppendOrder</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														Array
+															<strong property="yui:name">_getAppendOrder</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Gets an Array with the field elements in the correct order defined
+on <a href="DatePickerSelect.html#config_appendOrder">appendOrder</a>.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onSelectChange">
+
+													<h4>
+														<a name="method__onSelectChange">_onSelectChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onSelectChange</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fired on any select change.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__populateDays">
+
+													<h4>
+														<a name="method__populateDays">_populateDays</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_populateDays</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Populate the day select element with the correct data.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__populateMonths">
+
+													<h4>
+														<a name="method__populateMonths">_populateMonths</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_populateMonths</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Populate the month select element with the correct data.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__populateSelect">
+
+													<h4>
+														<a name="method__populateSelect">_populateSelect</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														String
+															<strong property="yui:name">_populateSelect</strong>
+														   (
+																
+																		
+																		 select
+																	
+																
+																		, 
+																		 fromIndex
+																	
+																
+																		, 
+																		 toIndex
+																	
+																
+																		, 
+																		 values
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Populate a select element with the data passed on the params.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">select</span>
+																		&lt;<span property="yui:type">HTMLSelectElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> Select to be populated</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">fromIndex</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> Index to start</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">toIndex</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> Index to end</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">values</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> Object with labels to be used as content of each
+option. Optional.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__populateYears">
+
+													<h4>
+														<a name="method__populateYears">_populateYears</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_populateYears</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Populate the year select element with the correct data.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__pupulateSelects">
+
+													<h4>
+														<a name="method__pupulateSelects">_pupulateSelects</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_pupulateSelects</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Populate each select element with the correct data for the day, month
+and year.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__renderElements">
+
+													<h4>
+														<a name="method__renderElements">_renderElements</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_renderElements</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Render DOM elements for the DatePickerSelect.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__renderTriggerButton">
+
+													<h4>
+														<a name="method__renderTriggerButton">_renderTriggerButton</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_renderTriggerButton</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Render DOM element for the trigger button of the DatePickerSelect.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__selectCurrentDay">
+
+													<h4>
+														<a name="method__selectCurrentDay">_selectCurrentDay</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_selectCurrentDay</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Select the current day on the respective input field.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__selectCurrentMonth">
+
+													<h4>
+														<a name="method__selectCurrentMonth">_selectCurrentMonth</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_selectCurrentMonth</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Select the current month on the respective input field.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__selectCurrentValues">
+
+													<h4>
+														<a name="method__selectCurrentValues">_selectCurrentValues</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_selectCurrentValues</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Select the current values for the day, month and year to the respective
+input field.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__selectCurrentYear">
+
+													<h4>
+														<a name="method__selectCurrentYear">_selectCurrentYear</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_selectCurrentYear</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Select the current year on the respective input field.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_bindUI">
+
+													<h4>
+														<a name="method_bindUI">bindUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">bindUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Bind the events on the DatePickerSelect UI. Lifecycle.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_renderUI">
+
+													<h4>
+														<a name="method_renderUI">renderUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">renderUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Create the DOM structure for the DatePickerSelect. Lifecycle.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_syncUI">
+
+													<h4>
+														<a name="method_syncUI">syncUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">syncUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sync the DatePickerSelect UI. Lifecycle.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+
+									<div rel="yui:inheritance">
+
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Calendar.html">
+
+											<h4>
+												Methods inherited from <a href="Calendar.html" property="yui:name" title="Calendar">Calendar</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__afterSetDates">
+														<a href="Calendar.html#method__afterSetDates" property="yui:name" title="_afterSetDates">_afterSetDates</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__compareDates">
+														<a href="Calendar.html#method__compareDates" property="yui:name" title="_compareDates">_compareDates</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__eachSelectedDate">
+														<a href="Calendar.html#method__eachSelectedDate" property="yui:name" title="_eachSelectedDate">_eachSelectedDate</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__getDayName">
+														<a href="Calendar.html#method__getDayName" property="yui:name" title="_getDayName">_getDayName</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__getDayNameMin">
+														<a href="Calendar.html#method__getDayNameMin" property="yui:name" title="_getDayNameMin">_getDayNameMin</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__getDayNameShort">
+														<a href="Calendar.html#method__getDayNameShort" property="yui:name" title="_getDayNameShort">_getDayNameShort</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__getLocaleMap">
+														<a href="Calendar.html#method__getLocaleMap" property="yui:name" title="_getLocaleMap">_getLocaleMap</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__getMonthName">
+														<a href="Calendar.html#method__getMonthName" property="yui:name" title="_getMonthName">_getMonthName</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__getMonthNameShort">
+														<a href="Calendar.html#method__getMonthNameShort" property="yui:name" title="_getMonthNameShort">_getMonthNameShort</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__navigateMonth">
+														<a href="Calendar.html#method__navigateMonth" property="yui:name" title="_navigateMonth">_navigateMonth</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__normalizeYearMonth">
+														<a href="Calendar.html#method__normalizeYearMonth" property="yui:name" title="_normalizeYearMonth">_normalizeYearMonth</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__onClickDays">
+														<a href="Calendar.html#method__onClickDays" property="yui:name" title="_onClickDays">_onClickDays</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__onMouseEnterDays">
+														<a href="Calendar.html#method__onMouseEnterDays" property="yui:name" title="_onMouseEnterDays">_onMouseEnterDays</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__onMouseLeaveDays">
+														<a href="Calendar.html#method__onMouseLeaveDays" property="yui:name" title="_onMouseLeaveDays">_onMouseLeaveDays</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__removeDate">
+														<a href="Calendar.html#method__removeDate" property="yui:name" title="_removeDate">_removeDate</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__renderBlankDays">
+														<a href="Calendar.html#method__renderBlankDays" property="yui:name" title="_renderBlankDays">_renderBlankDays</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__renderCalendar">
+														<a href="Calendar.html#method__renderCalendar" property="yui:name" title="_renderCalendar">_renderCalendar</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__renderMonthDays">
+														<a href="Calendar.html#method__renderMonthDays" property="yui:name" title="_renderMonthDays">_renderMonthDays</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__renderWeekDays">
+														<a href="Calendar.html#method__renderWeekDays" property="yui:name" title="_renderWeekDays">_renderWeekDays</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__restrictDate">
+														<a href="Calendar.html#method__restrictDate" property="yui:name" title="_restrictDate">_restrictDate</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__selectDate">
+														<a href="Calendar.html#method__selectDate" property="yui:name" title="_selectDate">_selectDate</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__selectNextMonth">
+														<a href="Calendar.html#method__selectNextMonth" property="yui:name" title="_selectNextMonth">_selectNextMonth</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__selectPrevMonth">
+														<a href="Calendar.html#method__selectPrevMonth" property="yui:name" title="_selectPrevMonth">_selectPrevMonth</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__setDates">
+														<a href="Calendar.html#method__setDates" property="yui:name" title="_setDates">_setDates</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__setMinMaxDate">
+														<a href="Calendar.html#method__setMinMaxDate" property="yui:name" title="_setMinMaxDate">_setMinMaxDate</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__setStack">
+														<a href="Calendar.html#method__setStack" property="yui:name" title="_setStack">_setStack</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__syncDays">
+														<a href="Calendar.html#method__syncDays" property="yui:name" title="_syncDays">_syncDays</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__syncHeader">
+														<a href="Calendar.html#method__syncHeader" property="yui:name" title="_syncHeader">_syncHeader</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__syncSelectedDays">
+														<a href="Calendar.html#method__syncSelectedDays" property="yui:name" title="_syncSelectedDays">_syncSelectedDays</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method__syncView">
+														<a href="Calendar.html#method__syncView" property="yui:name" title="_syncView">_syncView</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Calendar.html#method_alreadySelected">
+														<a href="Calendar.html#method_alreadySelected" property="yui:name" title="alreadySelected">alreadySelected</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method_bindUI">
+														<a href="Calendar.html#method_bindUI" property="yui:name" title="bindUI">bindUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Calendar.html#method_formatDate">
+														<a href="Calendar.html#method_formatDate" property="yui:name" title="formatDate">formatDate</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Calendar.html#method_getCurrentDate">
+														<a href="Calendar.html#method_getCurrentDate" property="yui:name" title="getCurrentDate">getCurrentDate</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Calendar.html#method_getDaysInMonth">
+														<a href="Calendar.html#method_getDaysInMonth" property="yui:name" title="getDaysInMonth">getDaysInMonth</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Calendar.html#method_getDetailedSelectedDates">
+														<a href="Calendar.html#method_getDetailedSelectedDates" property="yui:name" title="getDetailedSelectedDates">getDetailedSelectedDates</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Calendar.html#method_getFirstDate">
+														<a href="Calendar.html#method_getFirstDate" property="yui:name" title="getFirstDate">getFirstDate</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Calendar.html#method_getFirstDayOfWeek">
+														<a href="Calendar.html#method_getFirstDayOfWeek" property="yui:name" title="getFirstDayOfWeek">getFirstDayOfWeek</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Calendar.html#method_getFormattedSelectedDates">
+														<a href="Calendar.html#method_getFormattedSelectedDates" property="yui:name" title="getFormattedSelectedDates">getFormattedSelectedDates</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Calendar.html#method_getLastDate">
+														<a href="Calendar.html#method_getLastDate" property="yui:name" title="getLastDate">getLastDate</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Calendar.html#method_getSelectedDates">
+														<a href="Calendar.html#method_getSelectedDates" property="yui:name" title="getSelectedDates">getSelectedDates</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method_initializer">
+														<a href="Calendar.html#method_initializer" property="yui:name" title="initializer">initializer</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Calendar.html#method_parseDate">
+														<a href="Calendar.html#method_parseDate" property="yui:name" title="parseDate">parseDate</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method_renderUI">
+														<a href="Calendar.html#method_renderUI" property="yui:name" title="renderUI">renderUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Calendar.html#method_syncUI">
+														<a href="Calendar.html#method_syncUI" property="yui:name" title="syncUI">syncUI</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Component.html">
+
+											<h4>
+												Methods inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentDestroy">
+														<a href="Component.html#method__afterComponentDestroy" property="yui:name" title="_afterComponentDestroy">_afterComponentDestroy</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentOwnerChange">
+														<a href="Component.html#method__afterComponentOwnerChange" property="yui:name" title="_afterComponentOwnerChange">_afterComponentOwnerChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentRelayEventsChange">
+														<a href="Component.html#method__afterComponentRelayEventsChange" property="yui:name" title="_afterComponentRelayEventsChange">_afterComponentRelayEventsChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentVisibleChange">
+														<a href="Component.html#method__afterComponentVisibleChange" property="yui:name" title="_afterComponentVisibleChange">_afterComponentVisibleChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__afterCssClassChange">
+														<a href="Component.html#method__afterCssClassChange" property="yui:name" title="_afterCssClassChange">_afterCssClassChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__relayEvents">
+														<a href="Component.html#method__relayEvents" property="yui:name" title="_relayEvents">_relayEvents</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__setComponentClassNames">
+														<a href="Component.html#method__setComponentClassNames" property="yui:name" title="_setComponentClassNames">_setComponentClassNames</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__setRelayEvents">
+														<a href="Component.html#method__setRelayEvents" property="yui:name" title="_setRelayEvents">_setRelayEvents</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method__uiSetCssClass">
+														<a href="Component.html#method__uiSetCssClass" property="yui:name" title="_uiSetCssClass">_uiSetCssClass</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Component.html#method_clone">
+														<a href="Component.html#method_clone" property="yui:name" title="clone">clone</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Component.html#method_initializer">
+														<a href="Component.html#method_initializer" property="yui:name" title="initializer">initializer</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Component.html#method_toggle">
+														<a href="Component.html#method_toggle" property="yui:name" title="toggle">toggle</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="OverlayContext.html">
+
+											<h4>
+												Methods inherited from <a href="OverlayContext.html" property="yui:name" title="OverlayContext">OverlayContext</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="OverlayContext.html#method__afterHideOnChange">
+														<a href="OverlayContext.html#method__afterHideOnChange" property="yui:name" title="_afterHideOnChange">_afterHideOnChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="OverlayContext.html#method__afterShowOnChange">
+														<a href="OverlayContext.html#method__afterShowOnChange" property="yui:name" title="_afterShowOnChange">_afterShowOnChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="OverlayContext.html#method__afterTriggerChange">
+														<a href="OverlayContext.html#method__afterTriggerChange" property="yui:name" title="_afterTriggerChange">_afterTriggerChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="OverlayContext.html#method__beforeHideOnChange">
+														<a href="OverlayContext.html#method__beforeHideOnChange" property="yui:name" title="_beforeHideOnChange">_beforeHideOnChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="OverlayContext.html#method__beforeShowOnChange">
+														<a href="OverlayContext.html#method__beforeShowOnChange" property="yui:name" title="_beforeShowOnChange">_beforeShowOnChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="OverlayContext.html#method__beforeTriggerChange">
+														<a href="OverlayContext.html#method__beforeTriggerChange" property="yui:name" title="_beforeTriggerChange">_beforeTriggerChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="OverlayContext.html#method__cancelAutoHide">
+														<a href="OverlayContext.html#method__cancelAutoHide" property="yui:name" title="_cancelAutoHide">_cancelAutoHide</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="OverlayContext.html#method__invokeHideTaskOnInteraction">
+														<a href="OverlayContext.html#method__invokeHideTaskOnInteraction" property="yui:name" title="_invokeHideTaskOnInteraction">_invokeHideTaskOnInteraction</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="OverlayContext.html#method__setHideOn">
+														<a href="OverlayContext.html#method__setHideOn" property="yui:name" title="_setHideOn">_setHideOn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="OverlayContext.html#method__setShowOn">
+														<a href="OverlayContext.html#method__setShowOn" property="yui:name" title="_setShowOn">_setShowOn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="OverlayContext.html#method__stopTriggerEventPropagation">
+														<a href="OverlayContext.html#method__stopTriggerEventPropagation" property="yui:name" title="_stopTriggerEventPropagation">_stopTriggerEventPropagation</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="OverlayContext.html#method__toggle">
+														<a href="OverlayContext.html#method__toggle" property="yui:name" title="_toggle">_toggle</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="OverlayContext.html#method_bindUI">
+														<a href="OverlayContext.html#method_bindUI" property="yui:name" title="bindUI">bindUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="OverlayContext.html#method_clearIntervals">
+														<a href="OverlayContext.html#method_clearIntervals" property="yui:name" title="clearIntervals">clearIntervals</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="OverlayContext.html#method_destructor">
+														<a href="OverlayContext.html#method_destructor" property="yui:name" title="destructor">destructor</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="OverlayContext.html#method_hide">
+														<a href="OverlayContext.html#method_hide" property="yui:name" title="hide">hide</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="OverlayContext.html#method_refreshAlign">
+														<a href="OverlayContext.html#method_refreshAlign" property="yui:name" title="refreshAlign">refreshAlign</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="OverlayContext.html#method_toggle">
+														<a href="OverlayContext.html#method_toggle" property="yui:name" title="toggle">toggle</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="OverlayContext.html#method_updateCurrentNode">
+														<a href="OverlayContext.html#method_updateCurrentNode" property="yui:name" title="updateCurrentNode">updateCurrentNode</a>
+														</div>
+												</code>
+											</div>
+										</div>
+									</div>
+							</div>
+
+							<div rel="yui:events" resource="#events">
+									<div class="section method details">
+										<h3 id="events">Events</h3>
+
+										<div class="content">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_appendOrderChange">
+
+													<h4>
+														<a name="event_appendOrderChange">appendOrderChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">appendOrderChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'appendOrder' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_baseNameChange">
+
+													<h4>
+														<a name="event_baseNameChange">baseNameChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">baseNameChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'baseName' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_dayFieldChange">
+
+													<h4>
+														<a name="event_dayFieldChange">dayFieldChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">dayFieldChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'dayField' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_dayFieldNameChange">
+
+													<h4>
+														<a name="event_dayFieldNameChange">dayFieldNameChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">dayFieldNameChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'dayFieldName' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_displayBoundingBoxChange">
+
+													<h4>
+														<a name="event_displayBoundingBoxChange">displayBoundingBoxChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">displayBoundingBoxChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'displayBoundingBox' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_monthFieldChange">
+
+													<h4>
+														<a name="event_monthFieldChange">monthFieldChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">monthFieldChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'monthField' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_monthFieldNameChange">
+
+													<h4>
+														<a name="event_monthFieldNameChange">monthFieldNameChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">monthFieldNameChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'monthFieldName' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_populateDayChange">
+
+													<h4>
+														<a name="event_populateDayChange">populateDayChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">populateDayChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'populateDay' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_populateMonthChange">
+
+													<h4>
+														<a name="event_populateMonthChange">populateMonthChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">populateMonthChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'populateMonth' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_populateYearChange">
+
+													<h4>
+														<a name="event_populateYearChange">populateYearChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">populateYearChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'populateYear' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_setValueChange">
+
+													<h4>
+														<a name="event_setValueChange">setValueChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">setValueChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'setValue' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_triggerChange">
+
+													<h4>
+														<a name="event_triggerChange">triggerChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">triggerChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'trigger' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_visibleChange">
+
+													<h4>
+														<a name="event_visibleChange">visibleChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">visibleChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'visible' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_yearFieldChange">
+
+													<h4>
+														<a name="event_yearFieldChange">yearFieldChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">yearFieldChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'yearField' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_yearFieldNameChange">
+
+													<h4>
+														<a name="event_yearFieldNameChange">yearFieldNameChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">yearFieldNameChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'yearFieldName' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_yearRangeChange">
+
+													<h4>
+														<a name="event_yearRangeChange">yearRangeChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">yearRangeChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'yearRange' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+										<div class="section field inheritance events" rel="yui:superclass"  resource="Calendar.html">
+											<h4>
+												Events inherited from <a href="Calendar.html" property="yui:name" title="Calendar">Calendar</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="Calendar.html#event_currentDayChange">
+														<a href="Calendar.html#event_currentDayChange" property="yui:name" title="currentDayChange">currentDayChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Calendar.html#event_currentMonthChange">
+														<a href="Calendar.html#event_currentMonthChange" property="yui:name" title="currentMonthChange">currentMonthChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Calendar.html#event_currentYearChange">
+														<a href="Calendar.html#event_currentYearChange" property="yui:name" title="currentYearChange">currentYearChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Calendar.html#event_dateFormatChange">
+														<a href="Calendar.html#event_dateFormatChange" property="yui:name" title="dateFormatChange">dateFormatChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Calendar.html#event_datesChange">
+														<a href="Calendar.html#event_datesChange" property="yui:name" title="datesChange">datesChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Calendar.html#event_firstDayOfWeekChange">
+														<a href="Calendar.html#event_firstDayOfWeekChange" property="yui:name" title="firstDayOfWeekChange">firstDayOfWeekChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Calendar.html#event_maxDateChange">
+														<a href="Calendar.html#event_maxDateChange" property="yui:name" title="maxDateChange">maxDateChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Calendar.html#event_minDateChange">
+														<a href="Calendar.html#event_minDateChange" property="yui:name" title="minDateChange">minDateChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Calendar.html#event_selectMultipleDatesChange">
+														<a href="Calendar.html#event_selectMultipleDatesChange" property="yui:name" title="selectMultipleDatesChange">selectMultipleDatesChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Calendar.html#event_setValueChange">
+														<a href="Calendar.html#event_setValueChange" property="yui:name" title="setValueChange">setValueChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Calendar.html#event_stackChange">
+														<a href="Calendar.html#event_stackChange" property="yui:name" title="stackChange">stackChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+										<div class="section field inheritance events" rel="yui:superclass"  resource="Component.html">
+											<h4>
+												Events inherited from <a href="Component.html" property="yui:name" title="Component">Component</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_cssClassChange">
+														<a href="Component.html#event_cssClassChange" property="yui:name" title="cssClassChange">cssClassChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_hideClassChange">
+														<a href="Component.html#event_hideClassChange" property="yui:name" title="hideClassChange">hideClassChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_ownerChange">
+														<a href="Component.html#event_ownerChange" property="yui:name" title="ownerChange">ownerChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_relayEventsChange">
+														<a href="Component.html#event_relayEventsChange" property="yui:name" title="relayEventsChange">relayEventsChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Component.html#event_renderChange">
+														<a href="Component.html#event_renderChange" property="yui:name" title="renderChange">renderChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+										<div class="section field inheritance events" rel="yui:superclass"  resource="OverlayContext.html">
+											<h4>
+												Events inherited from <a href="OverlayContext.html" property="yui:name" title="OverlayContext">OverlayContext</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="OverlayContext.html#event_alignChange">
+														<a href="OverlayContext.html#event_alignChange" property="yui:name" title="alignChange">alignChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="OverlayContext.html#event_cancellableHideChange">
+														<a href="OverlayContext.html#event_cancellableHideChange" property="yui:name" title="cancellableHideChange">cancellableHideChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="OverlayContext.html#event_currentNodeChange">
+														<a href="OverlayContext.html#event_currentNodeChange" property="yui:name" title="currentNodeChange">currentNodeChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="OverlayContext.html#event_hideDelayChange">
+														<a href="OverlayContext.html#event_hideDelayChange" property="yui:name" title="hideDelayChange">hideDelayChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="OverlayContext.html#event_hideOnChange">
+														<a href="OverlayContext.html#event_hideOnChange" property="yui:name" title="hideOnChange">hideOnChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="OverlayContext.html#event_hideOnDocumentClickChange">
+														<a href="OverlayContext.html#event_hideOnDocumentClickChange" property="yui:name" title="hideOnDocumentClickChange">hideOnDocumentClickChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="OverlayContext.html#event_showDelayChange">
+														<a href="OverlayContext.html#event_showDelayChange" property="yui:name" title="showDelayChange">showDelayChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="OverlayContext.html#event_showOnChange">
+														<a href="OverlayContext.html#event_showOnChange" property="yui:name" title="showOnChange">showOnChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="OverlayContext.html#event_triggerChange">
+														<a href="OverlayContext.html#event_triggerChange" property="yui:name" title="triggerChange">triggerChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="OverlayContext.html#event_visibleChange">
+														<a href="OverlayContext.html#event_visibleChange" property="yui:name" title="visibleChange">visibleChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+
+									</div>
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Calendar.html#method__afterSetDates", "access": "protected", "host": "Calendar", "type": "method", "name": "_afterSetDates"}, {"url": "Calendar.html#method_alreadySelected", "access": "", "host": "Calendar", "type": "method", "name": "alreadySelected"}, {"url": "DatePickerSelect.html#config_appendOrder", "access": "", "host": "DatePickerSelect", "type": "config", "name": "appendOrder"}, {"url": "DatePickerSelect.html#event_appendOrderChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "appendOrderChange"}, {"url": "DatePickerSelect.html#config_baseName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "baseName"}, {"url": "DatePickerSelect.html#event_baseNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "baseNameChange"}, {"url": "DatePickerSelect.html#method__bindSelectEvents", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_bindSelectEvents"}, {"url": "Calendar.html#method_bindUI", "access": "protected", "host": "Calendar", "type": "method", "name": "bindUI"}, {"url": "DatePickerSelect.html#method_bindUI", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "bindUI"}, {"url": "Calendar.html#property_Calendar.ATTRS", "access": "", "host": "Calendar", "type": "property", "name": "Calendar.ATTRS"}, {"url": "Calendar.html#property_Calendar.NAME", "access": "", "host": "Calendar", "type": "property", "name": "Calendar.NAME"}, {"url": "Calendar.html#method__compareDates", "access": "protected", "host": "Calendar", "type": "method", "name": "_compareDates"}, {"url": "Calendar.html#config_currentDay", "access": "", "host": "Calendar", "type": "config", "name": "currentDay"}, {"url": "Calendar.html#event_currentDayChange", "access": "", "host": "Calendar", "type": "event", "name": "currentDayChange"}, {"url": "Calendar.html#config_currentMonth", "access": "", "host": "Calendar", "type": "config", "name": "currentMonth"}, {"url": "Calendar.html#event_currentMonthChange", "access": "", "host": "Calendar", "type": "event", "name": "currentMonthChange"}, {"url": "Calendar.html#config_currentYear", "access": "", "host": "Calendar", "type": "config", "name": "currentYear"}, {"url": "Calendar.html#event_currentYearChange", "access": "", "host": "Calendar", "type": "event", "name": "currentYearChange"}, {"url": "Calendar.html#config_dateFormat", "access": "", "host": "Calendar", "type": "config", "name": "dateFormat"}, {"url": "Calendar.html#event_dateFormatChange", "access": "", "host": "Calendar", "type": "event", "name": "dateFormatChange"}, {"url": "DatePickerSelect.html#property_DatePickerSelect.ATTRS", "access": "", "host": "DatePickerSelect", "type": "property", "name": "DatePickerSelect.ATTRS"}, {"url": "DatePickerSelect.html#property_DatePickerSelect.NAME", "access": "", "host": "DatePickerSelect", "type": "property", "name": "DatePickerSelect.NAME"}, {"url": "Calendar.html#config_dates", "access": "", "host": "Calendar", "type": "config", "name": "dates"}, {"url": "Calendar.html#event_datesChange", "access": "", "host": "Calendar", "type": "event", "name": "datesChange"}, {"url": "DatePickerSelect.html#config_dayField", "access": "", "host": "DatePickerSelect", "type": "config", "name": "dayField"}, {"url": "DatePickerSelect.html#event_dayFieldChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "dayFieldChange"}, {"url": "DatePickerSelect.html#config_dayFieldName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "dayFieldName"}, {"url": "DatePickerSelect.html#event_dayFieldNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "dayFieldNameChange"}, {"url": "DatePickerSelect.html#config_displayBoundingBox", "access": "", "host": "DatePickerSelect", "type": "config", "name": "displayBoundingBox"}, {"url": "DatePickerSelect.html#event_displayBoundingBoxChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "displayBoundingBoxChange"}, {"url": "Calendar.html#method__eachSelectedDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_eachSelectedDate"}, {"url": "Calendar.html#config_firstDayOfWeek", "access": "", "host": "Calendar", "type": "config", "name": "firstDayOfWeek"}, {"url": "Calendar.html#event_firstDayOfWeekChange", "access": "", "host": "Calendar", "type": "event", "name": "firstDayOfWeekChange"}, {"url": "Calendar.html#method_formatDate", "access": "", "host": "Calendar", "type": "method", "name": "formatDate"}, {"url": "DatePickerSelect.html#method__getAppendOrder", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_getAppendOrder"}, {"url": "Calendar.html#method_getCurrentDate", "access": "", "host": "Calendar", "type": "method", "name": "getCurrentDate"}, {"url": "Calendar.html#method__getDayName", "access": "protected", "host": "Calendar", "type": "method", "name": "_getDayName"}, {"url": "Calendar.html#method__getDayNameMin", "access": "protected", "host": "Calendar", "type": "method", "name": "_getDayNameMin"}, {"url": "Calendar.html#method__getDayNameShort", "access": "protected", "host": "Calendar", "type": "method", "name": "_getDayNameShort"}, {"url": "Calendar.html#method_getDaysInMonth", "access": "", "host": "Calendar", "type": "method", "name": "getDaysInMonth"}, {"url": "Calendar.html#method_getDetailedSelectedDates", "access": "", "host": "Calendar", "type": "method", "name": "getDetailedSelectedDates"}, {"url": "Calendar.html#method_getFirstDate", "access": "", "host": "Calendar", "type": "method", "name": "getFirstDate"}, {"url": "Calendar.html#method_getFirstDayOfWeek", "access": "", "host": "Calendar", "type": "method", "name": "getFirstDayOfWeek"}, {"url": "Calendar.html#method_getFormattedSelectedDates", "access": "", "host": "Calendar", "type": "method", "name": "getFormattedSelectedDates"}, {"url": "Calendar.html#method_getLastDate", "access": "", "host": "Calendar", "type": "method", "name": "getLastDate"}, {"url": "Calendar.html#method__getLocaleMap", "access": "protected", "host": "Calendar", "type": "method", "name": "_getLocaleMap"}, {"url": "Calendar.html#method__getMonthName", "access": "protected", "host": "Calendar", "type": "method", "name": "_getMonthName"}, {"url": "Calendar.html#method__getMonthNameShort", "access": "protected", "host": "Calendar", "type": "method", "name": "_getMonthNameShort"}, {"url": "Calendar.html#method_getSelectedDates", "access": "", "host": "Calendar", "type": "method", "name": "getSelectedDates"}, {"url": "Calendar.html#property_headerContentNode", "access": "protected", "host": "Calendar", "type": "property", "name": "headerContentNode"}, {"url": "Calendar.html#property_headerTitleNode", "access": "protected", "host": "Calendar", "type": "property", "name": "headerTitleNode"}, {"url": "Calendar.html#method_initializer", "access": "protected", "host": "Calendar", "type": "method", "name": "initializer"}, {"url": "Calendar.html#config_maxDate", "access": "", "host": "Calendar", "type": "config", "name": "maxDate"}, {"url": "Calendar.html#event_maxDateChange", "access": "", "host": "Calendar", "type": "event", "name": "maxDateChange"}, {"url": "Calendar.html#config_minDate", "access": "", "host": "Calendar", "type": "config", "name": "minDate"}, {"url": "Calendar.html#event_minDateChange", "access": "", "host": "Calendar", "type": "event", "name": "minDateChange"}, {"url": "Calendar.html#property_monthDaysNode", "access": "protected", "host": "Calendar", "type": "property", "name": "monthDaysNode"}, {"url": "DatePickerSelect.html#config_monthField", "access": "", "host": "DatePickerSelect", "type": "config", "name": "monthField"}, {"url": "DatePickerSelect.html#event_monthFieldChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "monthFieldChange"}, {"url": "DatePickerSelect.html#config_monthFieldName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "monthFieldName"}, {"url": "DatePickerSelect.html#event_monthFieldNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "monthFieldNameChange"}, {"url": "Calendar.html#method__navigateMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_navigateMonth"}, {"url": "Calendar.html#method__normalizeYearMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_normalizeYearMonth"}, {"url": "Calendar.html#method__onClickDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_onClickDays"}, {"url": "Calendar.html#method__onMouseEnterDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_onMouseEnterDays"}, {"url": "Calendar.html#method__onMouseLeaveDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_onMouseLeaveDays"}, {"url": "DatePickerSelect.html#method__onSelectChange", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_onSelectChange"}, {"url": "Calendar.html#method_parseDate", "access": "", "host": "Calendar", "type": "method", "name": "parseDate"}, {"url": "DatePickerSelect.html#config_populateDay", "access": "", "host": "DatePickerSelect", "type": "config", "name": "populateDay"}, {"url": "DatePickerSelect.html#event_populateDayChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "populateDayChange"}, {"url": "DatePickerSelect.html#method__populateDays", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateDays"}, {"url": "DatePickerSelect.html#config_populateMonth", "access": "", "host": "DatePickerSelect", "type": "config", "name": "populateMonth"}, {"url": "DatePickerSelect.html#event_populateMonthChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "populateMonthChange"}, {"url": "DatePickerSelect.html#method__populateMonths", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateMonths"}, {"url": "DatePickerSelect.html#method__populateSelect", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateSelect"}, {"url": "DatePickerSelect.html#config_populateYear", "access": "", "host": "DatePickerSelect", "type": "config", "name": "populateYear"}, {"url": "DatePickerSelect.html#event_populateYearChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "populateYearChange"}, {"url": "DatePickerSelect.html#method__populateYears", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateYears"}, {"url": "DatePickerSelect.html#method__pupulateSelects", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_pupulateSelects"}, {"url": "Calendar.html#method__removeDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_removeDate"}, {"url": "Calendar.html#method__renderBlankDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderBlankDays"}, {"url": "Calendar.html#method__renderCalendar", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderCalendar"}, {"url": "DatePickerSelect.html#method__renderElements", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_renderElements"}, {"url": "Calendar.html#method__renderMonthDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderMonthDays"}, {"url": "DatePickerSelect.html#method__renderTriggerButton", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_renderTriggerButton"}, {"url": "Calendar.html#method_renderUI", "access": "protected", "host": "Calendar", "type": "method", "name": "renderUI"}, {"url": "DatePickerSelect.html#method_renderUI", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "renderUI"}, {"url": "Calendar.html#method__renderWeekDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderWeekDays"}, {"url": "Calendar.html#method__restrictDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_restrictDate"}, {"url": "DatePickerSelect.html#method__selectCurrentDay", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentDay"}, {"url": "DatePickerSelect.html#method__selectCurrentMonth", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentMonth"}, {"url": "DatePickerSelect.html#method__selectCurrentValues", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentValues"}, {"url": "DatePickerSelect.html#method__selectCurrentYear", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentYear"}, {"url": "Calendar.html#method__selectDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_selectDate"}, {"url": "Calendar.html#config_selectMultipleDates", "access": "", "host": "Calendar", "type": "config", "name": "selectMultipleDates"}, {"url": "Calendar.html#event_selectMultipleDatesChange", "access": "", "host": "Calendar", "type": "event", "name": "selectMultipleDatesChange"}, {"url": "Calendar.html#method__selectNextMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_selectNextMonth"}, {"url": "Calendar.html#method__selectPrevMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_selectPrevMonth"}, {"url": "Calendar.html#method__setDates", "access": "protected", "host": "Calendar", "type": "method", "name": "_setDates"}, {"url": "Calendar.html#method__setMinMaxDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_setMinMaxDate"}, {"url": "Calendar.html#method__setStack", "access": "protected", "host": "Calendar", "type": "method", "name": "_setStack"}, {"url": "Calendar.html#config_setValue", "access": "", "host": "Calendar", "type": "config", "name": "setValue"}, {"url": "DatePickerSelect.html#config_setValue", "access": "", "host": "DatePickerSelect", "type": "config", "name": "setValue"}, {"url": "Calendar.html#event_setValueChange", "access": "", "host": "Calendar", "type": "event", "name": "setValueChange"}, {"url": "DatePickerSelect.html#event_setValueChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "setValueChange"}, {"url": "Calendar.html#config_stack", "access": "", "host": "Calendar", "type": "config", "name": "stack"}, {"url": "Calendar.html#event_stackChange", "access": "", "host": "Calendar", "type": "event", "name": "stackChange"}, {"url": "Calendar.html#method__syncDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncDays"}, {"url": "Calendar.html#method__syncHeader", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncHeader"}, {"url": "Calendar.html#method__syncSelectedDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncSelectedDays"}, {"url": "Calendar.html#method_syncUI", "access": "protected", "host": "Calendar", "type": "method", "name": "syncUI"}, {"url": "DatePickerSelect.html#method_syncUI", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "syncUI"}, {"url": "Calendar.html#method__syncView", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncView"}, {"url": "DatePickerSelect.html#config_trigger", "access": "", "host": "DatePickerSelect", "type": "config", "name": "trigger"}, {"url": "DatePickerSelect.html#event_triggerChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "triggerChange"}, {"url": "DatePickerSelect.html#config_visible", "access": "", "host": "DatePickerSelect", "type": "config", "name": "visible"}, {"url": "DatePickerSelect.html#event_visibleChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "visibleChange"}, {"url": "Calendar.html#property_weekDaysNode", "access": "protected", "host": "Calendar", "type": "property", "name": "weekDaysNode"}, {"url": "DatePickerSelect.html#config_yearField", "access": "", "host": "DatePickerSelect", "type": "config", "name": "yearField"}, {"url": "DatePickerSelect.html#event_yearFieldChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "yearFieldChange"}, {"url": "DatePickerSelect.html#config_yearFieldName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "yearFieldName"}, {"url": "DatePickerSelect.html#event_yearFieldNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "yearFieldNameChange"}, {"url": "DatePickerSelect.html#config_yearRange", "access": "", "host": "DatePickerSelect", "type": "config", "name": "yearRange"}, {"url": "DatePickerSelect.html#event_yearRangeChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "yearRangeChange"}, {"url": "CalendarManager.html#config_zIndexBase", "access": "", "host": "CalendarManager", "type": "config", "name": "zIndexBase"}, {"url": "CalendarManager.html#event_zIndexBaseChange", "access": "", "host": "CalendarManager", "type": "event", "name": "zIndexBaseChange"}];
+</script>
+</body>
+</html>

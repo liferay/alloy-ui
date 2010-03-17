@@ -1,0 +1,525 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-panel   aui-parse-content.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-panel&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-panel.html" title="aui-panel">aui-panel</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">aui-parse-content.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+
+			                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                <li class="selected"><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+			                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                <li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="Panel.html" title="Panel">Panel</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class="selected"><a href="aui-parse-content.js.html" title="aui-parse-content.js">aui-parse-content.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * The ParseContent Utility - Parse a content in a way of all the javascripts</span>
+<span class="cm"> * within a content will be executed according to the order of apparition.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module aui-parse-content</span>
+<span class="cm"> */</span>
+
+<span class="cm">/*</span>
+<span class="cm">* NOTE: The inspiration of ParseContent cames from the &quot;Caridy Patino&quot; Node Dispatcher Plugin</span>
+<span class="cm">* 		http://github.com/caridy/yui3-gallery/blob/master/src/gallery-dispatcher/</span>
+<span class="cm">*/</span>
+
+<span class="kd">var</span> <span class="nx">L</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+	<span class="nx">isString</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isString</span><span class="p">,</span>
+
+	<span class="nx">APPEND</span> <span class="o">=</span> <span class="s1">&#39;append&#39;</span><span class="p">,</span>
+	<span class="nx">CREATE_DOCUMENT_FRAGMENT</span> <span class="o">=</span> <span class="s1">&#39;createDocumentFragment&#39;</span><span class="p">,</span>
+	<span class="nx">DOCUMENT_ELEMENT</span> <span class="o">=</span> <span class="s1">&#39;documentElement&#39;</span><span class="p">,</span>
+	<span class="nx">FIRST_CHILD</span> <span class="o">=</span> <span class="s1">&#39;firstChild&#39;</span><span class="p">,</span>
+	<span class="nx">HEAD</span> <span class="o">=</span> <span class="s1">&#39;head&#39;</span><span class="p">,</span>
+	<span class="nx">HOST</span> <span class="o">=</span> <span class="s1">&#39;host&#39;</span><span class="p">,</span>
+	<span class="nx">INNER_HTML</span> <span class="o">=</span> <span class="s1">&#39;innerHTML&#39;</span><span class="p">,</span>
+	<span class="nx">PARSE_CONTENT</span> <span class="o">=</span> <span class="s1">&#39;ParseContent&#39;</span><span class="p">,</span>
+	<span class="nx">QUEUE</span> <span class="o">=</span> <span class="s1">&#39;queue&#39;</span><span class="p">,</span>
+	<span class="nx">SCRIPT</span> <span class="o">=</span> <span class="s1">&#39;script&#39;</span><span class="p">,</span>
+	<span class="nx">SRC</span> <span class="o">=</span> <span class="s1">&#39;src&#39;</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * A base class for ParseContent, providing:</span>
+<span class="cm"> * &lt;ul&gt;</span>
+<span class="cm"> *    &lt;li&gt;After plug ParseContent on a A.Node instance the javascript chunks will be executed (remote and inline scripts)&lt;/li&gt;</span>
+<span class="cm"> *    &lt;li&gt;All the javascripts within a content will be executed according to the order of apparition&lt;/li&gt;</span>
+<span class="cm"> * &lt;/ul&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * &lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; For performance reasons on DOM manipulation,</span>
+<span class="cm"> * ParseContent only parses the content passed to the</span>
+<span class="cm"> * &lt;a href=&quot;Node.html#method_setContent&quot;&gt;setContent&lt;/a&gt;,</span>
+<span class="cm"> * &lt;a href=&quot;Node.html#method_prepend&quot;&gt;prepend&lt;/a&gt; and</span>
+<span class="cm"> * &lt;a href=&quot;Node.html#method_append&quot;&gt;append&lt;/a&gt; methods.&lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * Quick Example:&lt;br/&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * &lt;pre&gt;&lt;code&gt;node.plug(A.Plugin.ParseContent);&lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * Check the list of &lt;a href=&quot;ParseContent.html#configattributes&quot;&gt;Configuration Attributes&lt;/a&gt; available for</span>
+<span class="cm"> * ParseContent.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param config {Object} Object literal specifying widget configuration properties.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class ParseContent</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @extends Plugin.Base</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">ParseContent</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">ParseContent</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">ParseContent</span><span class="p">,</span> <span class="p">{</span>
+	<span class="cm">/**</span>
+<span class="cm">	 * Static property provides a string to identify the class.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @property ParseContent.NAME</span>
+<span class="cm">	 * @type String</span>
+<span class="cm">	 * @static</span>
+<span class="cm">	 */</span>
+	<span class="nx">NAME</span><span class="o">:</span> <span class="nx">PARSE_CONTENT</span><span class="p">,</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Static property provides a string to identify the namespace.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @property OverlayLoading.NS</span>
+<span class="cm">	 * @type String</span>
+<span class="cm">	 * @static</span>
+<span class="cm">	 */</span>
+	<span class="nx">NS</span><span class="o">:</span> <span class="nx">PARSE_CONTENT</span><span class="p">,</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Static property used to define the default attribute</span>
+<span class="cm">	 * configuration for the ParseContent.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @property ParseContent.ATTRS</span>
+<span class="cm">	 * @type Object</span>
+<span class="cm">	 * @static</span>
+<span class="cm">	 */</span>
+	<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">queue</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">ParseContent</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">{</span>
+	<span class="cm">/**</span>
+<span class="cm">	 * Construction logic executed during ParseContent instantiation. Lifecycle.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method initializer</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">ParseContent</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">initializer</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span>
+			<span class="nx">QUEUE</span><span class="p">,</span>
+			<span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">AsyncQueue</span><span class="p">()</span>
+		<span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindAOP</span><span class="p">();</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Global eval the &lt;data&gt;data&lt;/data&gt; passed.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method globalEval</span>
+<span class="cm">	 * @param {String} data JavaScript String.</span>
+<span class="cm">	 */</span>
+	<span class="nx">globalEval</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">doc</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">getDoc</span><span class="p">();</span>
+		<span class="kd">var</span> <span class="nx">head</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">HEAD</span><span class="p">)</span> <span class="o">||</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DOCUMENT_ELEMENT</span><span class="p">);</span>
+
+		<span class="c1">// NOTE: A.Node.create(&#39;&lt;script&gt;&lt;/script&gt;&#39;) doesn&#39;t work correctly on Opera</span>
+		<span class="kd">var</span> <span class="nx">newScript</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">SCRIPT</span><span class="p">);</span>
+
+		<span class="nx">newScript</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+			<span class="c1">// NOTE: newScript.set(TEXT, data) breaks on IE, YUI BUG.</span>
+			<span class="nx">newScript</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">newScript</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span> <span class="c1">//removes the script node immediately after executing it</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Extract the &lt;code&gt;script&lt;/code&gt; tags from the string content and</span>
+<span class="cm">	 * evaluate the chunks.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method parseContent</span>
+<span class="cm">	 * @param {String} content HTML string</span>
+<span class="cm">	 * @return {String}</span>
+<span class="cm">	 */</span>
+	<span class="nx">parseContent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_clean</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_dispatch</span><span class="p">(</span><span class="nx">output</span><span class="p">);</span>
+
+		<span class="k">return</span> <span class="nx">output</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Bind listeners on the &lt;code&gt;insert&lt;/code&gt; and &lt;code&gt;setContent&lt;/code&gt;</span>
+<span class="cm">     * methods of the Node instance where you are plugging the ParseContent.</span>
+<span class="cm">     * These listeners are responsible for intercept the HTML passed and parse</span>
+<span class="cm">     * them.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _bindAOP</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">_bindAOP</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="c1">// overloading node.insert() arguments, affects append/prepend methods</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">doBefore</span><span class="p">(</span><span class="s1">&#39;insert&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">parseContent</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
+
+			<span class="c1">// replace the first argument with the clean fragment</span>
+			<span class="nx">args</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">output</span><span class="p">.</span><span class="nx">fragment</span><span class="p">);</span>
+
+			<span class="k">return</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Do</span><span class="p">.</span><span class="nx">AlterArgs</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+		<span class="p">});</span>
+
+		<span class="c1">// overloading node.setContent() arguments</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">doBefore</span><span class="p">(</span><span class="s1">&#39;setContent&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">parseContent</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
+
+			<span class="k">return</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Do</span><span class="p">.</span><span class="nx">AlterArgs</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">[</span><span class="nx">output</span><span class="p">.</span><span class="nx">fragment</span><span class="p">]);</span>
+		<span class="p">});</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Create an HTML fragment with the String passed, extract all the script</span>
+<span class="cm">     * tags and return an Object with a reference for the extracted scripts and</span>
+<span class="cm">     * the fragment.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method clean</span>
+<span class="cm">	 * @param {String} content HTML content.</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 * @return {Object}</span>
+<span class="cm">	 */</span>
+	<span class="nx">_clean</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="p">{};</span>
+		<span class="kd">var</span> <span class="nx">fragment</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">getDoc</span><span class="p">().</span><span class="nx">invoke</span><span class="p">(</span><span class="nx">CREATE_DOCUMENT_FRAGMENT</span><span class="p">);</span>
+
+		<span class="c1">// instead of fix all tags to &quot;XHTML&quot;-style, make the firstChild be a valid non-empty tag</span>
+		<span class="nx">fragment</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;div&gt;_&lt;/div&gt;&#39;</span><span class="p">);</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">isString</span><span class="p">(</span><span class="nx">content</span><span class="p">))</span> <span class="p">{</span>
+			<span class="c1">// create fragment from {String}</span>
+			<span class="nx">A</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">addHTML</span><span class="p">(</span><span class="nx">fragment</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">APPEND</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="p">{</span>
+			<span class="c1">// create fragment from {Y.Node | HTMLElement}</span>
+			<span class="nx">fragment</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="nx">output</span><span class="p">.</span><span class="nx">js</span> <span class="o">=</span> <span class="nx">fragment</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">SCRIPT</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span>
+			<span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">node</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+			<span class="p">}</span>
+		<span class="p">);</span>
+
+		<span class="c1">// remove padding node</span>
+		<span class="nx">fragment</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FIRST_CHILD</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+
+		<span class="nx">output</span><span class="p">.</span><span class="nx">fragment</span> <span class="o">=</span> <span class="nx">fragment</span><span class="p">;</span>
+
+		<span class="k">return</span> <span class="nx">output</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Loop trough all extracted &lt;code&gt;script&lt;/code&gt; tags and evaluate them.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _dispatch</span>
+<span class="cm">	 * @param {Object} output Object containing the reference for the fragment and the extracted &lt;code&gt;script&lt;/code&gt; tags.</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 * @return {String}</span>
+<span class="cm">	 */</span>
+	<span class="nx">_dispatch</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">output</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">queue</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">QUEUE</span><span class="p">);</span>
+
+		<span class="nx">output</span><span class="p">.</span><span class="nx">js</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">src</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SRC</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">queue</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span>
+					<span class="nx">autoContinue</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+					<span class="nx">fn</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+						<span class="nx">A</span><span class="p">.</span><span class="nx">Get</span><span class="p">.</span><span class="nx">script</span><span class="p">(</span><span class="nx">src</span><span class="p">,</span> <span class="p">{</span>
+							<span class="nx">onEnd</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+								<span class="nx">o</span><span class="p">.</span><span class="nx">purge</span><span class="p">();</span> <span class="c1">//removes the script node immediately after executing it</span>
+								<span class="nx">queue</span><span class="p">.</span><span class="nx">run</span><span class="p">();</span>
+							<span class="p">}</span>
+						<span class="p">});</span>
+					<span class="p">},</span>
+					<span class="nx">timeout</span><span class="o">:</span> <span class="mi">0</span>
+				<span class="p">});</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="p">{</span>
+				<span class="nx">queue</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span>
+					<span class="nx">fn</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+						<span class="kd">var</span> <span class="nx">dom</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">_node</span><span class="p">;</span>
+
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">globalEval</span><span class="p">(</span>
+							<span class="nx">dom</span><span class="p">.</span><span class="nx">text</span> <span class="o">||</span> <span class="nx">dom</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">||</span> <span class="nx">dom</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span>
+						<span class="p">);</span>
+					<span class="p">},</span>
+					<span class="nx">timeout</span><span class="o">:</span> <span class="mi">0</span>
+				<span class="p">});</span>
+			<span class="p">}</span>
+		<span class="p">});</span>
+
+		<span class="nx">queue</span><span class="p">.</span><span class="nx">run</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;Plugin&#39;</span><span class="p">).</span><span class="nx">ParseContent</span> <span class="o">=</span> <span class="nx">ParseContent</span><span class="p">;</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Panel.html#method__addPanelClass", "access": "protected", "host": "Panel", "type": "method", "name": "_addPanelClass"}, {"url": "Panel.html#method__afterCollapsedChange", "access": "protected", "host": "Panel", "type": "method", "name": "_afterCollapsedChange"}, {"url": "Panel.html#method__afterPanelRender", "access": "protected", "host": "Panel", "type": "method", "name": "_afterPanelRender"}, {"url": "Panel.html#method__afterTitleChange", "access": "protected", "host": "Panel", "type": "method", "name": "_afterTitleChange"}, {"url": "Panel.html#method_collapse", "access": "", "host": "Panel", "type": "method", "name": "collapse"}, {"url": "Panel.html#config_collapsed", "access": "", "host": "Panel", "type": "config", "name": "collapsed"}, {"url": "Panel.html#event_collapsedChange", "access": "", "host": "Panel", "type": "event", "name": "collapsedChange"}, {"url": "Panel.html#config_collapsible", "access": "", "host": "Panel", "type": "config", "name": "collapsible"}, {"url": "Panel.html#event_collapsibleChange", "access": "", "host": "Panel", "type": "event", "name": "collapsibleChange"}, {"url": "Panel.html#method_expand", "access": "", "host": "Panel", "type": "method", "name": "expand"}, {"url": "Panel.html#property_headerTextNode", "access": "protected", "host": "Panel", "type": "property", "name": "headerTextNode"}, {"url": "Panel.html#method_initializer", "access": "protected", "host": "Panel", "type": "method", "name": "initializer"}, {"url": "Panel.html#property_Panel.ATTRS", "access": "", "host": "Panel", "type": "property", "name": "Panel.ATTRS"}, {"url": "Panel.html#method__renderHeaderText", "access": "protected", "host": "Panel", "type": "method", "name": "_renderHeaderText"}, {"url": "Panel.html#method__renderToolItems", "access": "protected", "host": "Panel", "type": "method", "name": "_renderToolItems"}, {"url": "Panel.html#method__syncCollapsedUI", "access": "protected", "host": "Panel", "type": "method", "name": "_syncCollapsedUI"}, {"url": "Panel.html#method__syncTitleUI", "access": "protected", "host": "Panel", "type": "method", "name": "_syncTitleUI"}, {"url": "Panel.html#config_title", "access": "", "host": "Panel", "type": "config", "name": "title"}, {"url": "Panel.html#event_titleChange", "access": "", "host": "Panel", "type": "event", "name": "titleChange"}, {"url": "Panel.html#method_toggle", "access": "", "host": "Panel", "type": "method", "name": "toggle"}, {"url": "Panel.html#method_toggleCollapse", "access": "", "host": "Panel", "type": "method", "name": "toggleCollapse"}, {"url": "Panel.html#config_tools", "access": "", "host": "Panel", "type": "config", "name": "tools"}, {"url": "Panel.html#event_toolsChange", "access": "", "host": "Panel", "type": "event", "name": "toolsChange"}];
+</script>
+</body>
+</html>
