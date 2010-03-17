@@ -1,3 +1,9 @@
+/**
+ * The AutoComplete Utility
+ *
+ * @module aui-autocomplete
+ */
+
 var Lang = A.Lang,
 isArray = Lang.isArray,
 isString = Lang.isString,
@@ -55,42 +61,148 @@ OVERLAY_ALIGN = {
 BOUNDING_BOX = 'boundingBox',
 CONTENT_BOX = 'contentBox';
 
+/**
+ * <p><img src="assets/images/aui-autocomplete/main.png"/></p>
+ *
+ * A base class for AutoComplete, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>Presenting users choices based on their input</li>
+ *    <li>Separating selected items</li>
+ *    <li>Keyboard interaction for selecting items</li>
+ * </ul>
+ *
+ * Quick Example:<br/>
+ * 
+ * <pre><code>var instance = new A.AutoComplete({
+ *	dataSource: [['AL', 'Alabama', 'The Heart of Dixie'],
+ * 	['AK', 'Alaska', 'The Land of the Midnight Sun'],
+ *	['AZ', 'Arizona', 'The Grand Canyon State']],
+ *	schema: {
+ *		resultFields: ['key', 'name', 'description']
+ *	},
+ *	matchKey: 'name',
+ *	delimChar: ',',
+ *	typeAhead: true,
+ *	contentBox: '#myAutoComplete'
+ * }).render();
+ * </code></pre>
+ *
+ * Check the list of <a href="AutoComplete.html#configattributes">Configuration Attributes</a> available for
+ * AutoComplete.
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class AutoComplete
+ * @constructor
+ * @extends Component
+ */
 var AutoComplete = function() {
 	AutoComplete.superclass.constructor.apply(this, arguments);
 };
 
+/**
+ * Static property provides a string to identify the class.
+ *
+ * @property AutoComplete.NAME
+ * @type String
+ * @static
+ */
+
 AutoComplete.NAME = NAME;
 
+/**
+ * Static property used to define the default attribute
+ * configuration for the AutoComplete.
+ *
+ * @property AutoComplete.ATTRS
+ * @type Object
+ * @static
+ */
+
 AutoComplete.ATTRS = {
-
-	allowBrowserAutocomplete: {
-		value: true
-	},
-
+	/**
+	 * Always show the results container, instead of only showing when the 
+	 * user is requesting them.
+	 * 
+	 * @attribute alwaysShowContainer
+	 * @default false
+	 * @type Boolean
+	 */
 	alwaysShowContainer: {
 		value: false
 	},
 
+	/**
+	 * Automatically highlight the first item in the list when the results are
+	 * made visible.
+	 * 
+	 * @attribute autoHighlight
+	 * @default true
+	 * @type Boolean
+	 */
 	autoHighlight: {
 		value: true
 	},
 
+	/**
+	 * If set to true, the <a href="AutoComplete.html#method_filterResults">filterResults</a> 
+	 * method will be run on the response from the data source.
+	 *
+	 * @attribute applyLocalFilter
+	 * @default true
+	 * @type Boolean
+	 */
 	applyLocalFilter: {
 		value: null
 	},
 
+	/**
+	 * To use a button
+	 * 
+	 * @attribute button
+	 * @default true
+	 * @type Boolean
+	 * @deprecated
+	 */
 	button: {
 		value: true
 	},
 
+	/**
+	 * The data source that results will be read from. This can either be
+	 * an existing <a href="DataSource.html">DataSource</a> object, or it can be a
+	 * value that would be passed to <a href="DataSource.html">DataSource</a>.
+	 * 
+	 * @attribute dataSource
+	 * @default null
+	 * @type Object | String | Function | Array
+	 */
 	dataSource: {
 		value: null
 	},
 
+	/**
+	 * The type of the data source passed into <a href="AutoComplete.html#config_dataSource">dataSource</a>.
+	 * This can be used to explicitly declare what kind of <a href="DataSource.html">DataSource</a> object will
+	 * be created.
+	 * 
+	 * @attribute dataSourceType
+	 * @default null
+	 * @type String
+	 */
 	dataSourceType: {
 		value: null
 	},
 
+	/**
+	 * The character used to indicate the beginning or ending of a new value. Most commonly used
+	 * is a ",".
+	 * 
+	 * @attribute delimChar
+	 * @default null
+	 * @type String
+	 */
 	delimChar: {
 		value: null,
 		setter: function(value) {
@@ -105,26 +217,70 @@ AutoComplete.ATTRS = {
 		}
 	},
 
+	/**
+	 * If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, this
+	 * will clear a selection when the overlay closes unless a user explicitly selects an item.
+	 * 
+	 * @attribute forceSelection
+	 * @default false
+	 * @type Boolean
+	 */
 	forceSelection: {
 		value: false
 	},
 
+	/**
+	 * The input field which will recieve the users input.
+	 *
+	 * @attribute input
+	 * @default null
+	 * @type String | Node
+	 */
 	input: {
 		value: null
 	},
 
+	/**
+	 * The key or numeric index in the schema to match the result against.
+	 *
+	 * @attribute matchKey
+	 * @default 0
+	 * @type String | Number
+	 */
 	matchKey: {
 		value: 0
 	},
 
+	/**
+	 * The maximum number of results to display.
+	 *
+	 * 
+	 * @attribute maxResultsDisplayed
+	 * @default 10
+	 * @type Number
+	 */
 	maxResultsDisplayed: {
 		value: 10
 	},
 
+	/**
+	 * The minimum number of characters required to query the data source.
+	 *
+	 * @attribute minQueryLength
+	 * @default 1
+	 * @type Number
+	 */
 	minQueryLength: {
 		value: 1
 	},
 
+	/**
+	 * The amount of time in seconds to delay before submitting the query.
+	 *
+	 * @attribute queryDelay
+	 * @default 0.2
+	 * @type Number
+	 */
 	queryDelay: {
 		value: 0.2,
 		getter: function(value) {
@@ -132,6 +288,15 @@ AutoComplete.ATTRS = {
 		}
 	},
 
+	/**
+	 * When IME usage is detected or interval detection is explicitly enabled,
+	 * AutoComplete will detect the input value at the given interval and send a
+	 * query if the value has changed.
+	 *
+	 * @attribute queryInterval
+	 * @default 0.5
+	 * @type Number
+	 */
 	queryInterval: {
 		value: 0.5,
 		getter: function(value) {
@@ -139,39 +304,101 @@ AutoComplete.ATTRS = {
 		}
 	},
 
+	/**
+	 * When <a href="AutoComplete.html#config_applyLocalFilter">applyLocalFilter</a> is true,
+	 * setting this to true will match only results with the same case.
+	 * 
+	 * @attribute queryMatchCase
+	 * @default false
+	 * @type Boolean
+	 */
 	queryMatchCase: {
 		value: false
 	},
 
+	/**
+	 * When <a href="AutoComplete.html#config_applyLocalFilter">applyLocalFilter</a> is true,
+	 * setting this to true will match results which contain the query anywhere in the text,
+	 * instead of just matching just items that start with the query.
+	 * 
+	 * @attribute queryMatchContains
+	 * @default false
+	 * @type Boolean
+	 */
 	queryMatchContains: {
 		value: false
 	},
 
+	/**
+	 * For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and 
+	 * the encoded query string. To prevent this behavior, you can
+	 * set this value to false. If you need to customize this even further, you
+	 * can override the <a href="AutoComplete.html#method_generateRequest">generateRequest</a> method.
+	 *
+	 * @attribute queryQuestionMark
+	 * @default true
+	 * @type Boolean
+	 */
 	queryQuestionMark: {
 		value: true
 	},
 
-	resultTypeList: {
-		value: true
-	},
-
+	/**
+	 * A valid configuration object for any of <a href="module_datasource.html">DataSource</a> schema plugins.
+	 *
+	 * @attribute schema
+	 * @default null
+	 * @type Object
+	 */
 	schema: {
 		value: null
 	},
 
+	/**
+	 * A valid type of <a href="module_datasource.html">DataSource</a> schema plugin, such as array, json, xml, etc.
+	 *
+	 * @attribute schemaType
+	 * @default array
+	 * @type String
+	 */
 	schemaType: {
 		value: '',
 		validator: isString
 	},
 
+	/**
+	 * Whether or not the input field should be updated with selections.
+	 *
+	 * @attribute suppressInputUpdate
+	 * @default false
+	 * @type Boolean
+	 */
 	suppressInputUpdate: {
 		value: false
 	},
 
+	/**
+	 * If <a href="AutoComplete.html#config_autoHighlight">autoHighlight</a> is enabled, whether or not the 
+	 * input field should be automatically updated with the first result as the user types, 
+	 * automatically selecting the portion of the text the user has not typed yet.
+	 *
+	 * @attribute typeAhead
+	 * @default false
+	 * @type Boolean
+	 */
 	typeAhead: {
 		value: false
 	},
 
+	/**
+	 * If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, number of seconds 
+	 * to delay before updating the input. In order to prevent certain race conditions, this value must
+	 * always be greater than the <a href="AutoComplete.html#config_queryDelay">queryDelay</a>.
+	 *
+	 * @attribute typeAheadDelay
+	 * @default 0.2
+	 * @type Number
+	 */
 	typeAheadDelay: {
 		value: 0.2,
 		getter: function(value) {
@@ -179,6 +406,13 @@ AutoComplete.ATTRS = {
 		}
 	},
 
+	/**
+	 * The unique ID of the input element.
+	 *
+	 * @attribute uniqueName
+	 * @default null
+	 * @type String
+	 */
 	uniqueName: {
 		value: null
 	}
@@ -188,6 +422,12 @@ A.extend(
 	AutoComplete,
 	A.Component,
 	{
+		/**
+		 * Construction logic executed during AutoComplete instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function(config) {
 			var instance = this;
 
@@ -196,6 +436,12 @@ A.extend(
 			instance._createDataSource();
 		},
 
+		/**
+		 * Create the DOM structure for the AutoComplete. Lifecycle.
+		 *
+		 * @method renderUI
+		 * @protected
+		 */
 		renderUI: function() {
 			var instance = this;
 
@@ -203,6 +449,12 @@ A.extend(
 			instance._renderOverlay();
 		},
 
+		/**
+		 * Bind the events on the AutoComplete UI. Lifecycle.
+		 *
+		 * @method bindUI
+		 * @protected
+		 */
 		bindUI: function() {
 			var instance = this;
 
@@ -224,48 +476,200 @@ A.extend(
 			overlayBoundingBox.on('mouseover', instance._onContainerMouseover, instance);
 			overlayBoundingBox.on('scroll', instance._onContainerScroll, instance);
 
+			/**
+			 * Handles the containerCollapse event. Fired when the container is hidden.
+			 *
+			 * @event containerCollapse
+			 * @param {Event.Facade} event The containerCollapse event.
+			 */
 			instance.publish('containerCollapse');
+
+			/**
+			 * Handles the containerExpand event. Fired when the container is shown.
+			 *
+			 * @event containerExpand
+			 * @param {Event.Facade} event The containerExpand event.
+			 */
 			instance.publish('containerExpand');
+
+			/**
+			 * Handles the containerPopulate event. Fired when the container is populated.
+			 *
+			 * @event containerPopulate
+			 * @param {Event.Facade} event The containerPopulate event.
+			 */
 			instance.publish('containerPopulate');
 
+			/**
+			 * Handles the dataError event. Fired when there is an error accessing the data.
+			 *
+			 * @event dataError
+			 * @param {Event.Facade} event The dataError event.
+			 */
 			instance.publish('dataError');
+
+			/**
+			 * Handles the dataRequest event. Fired when ever a query is sent to the data source.
+			 *
+			 * @event dataRequest
+			 * @param {Event.Facade} event The dataRequest event.
+			 */
 			instance.publish('dataRequest');
+
+			/**
+			 * Handles the dataReturn event. Fired when data successfully comes back from the data request.
+			 *
+			 * @event dataReturn
+			 * @param {Event.Facade} event The dataReturn event.
+			 */
 			instance.publish('dataReturn');
 
+			/**
+			 * Handles the itemArrowFrom event. Fired when the user navigates via the keyboard away from
+			 * a selected item.
+			 *
+			 * @event itemArrowFrom
+			 * @param {Event.Facade} event The itemArrowFrom event.
+			 */
 			instance.publish('itemArrowFrom');
+
+			/**
+			 * Handles the itemArrowTo event. Fired when the user navigates via the keyboard to a selected item.
+			 *
+			 * @event itemArrowTo
+			 * @param {Event.Facade} event The itemArrowTo event.
+			 */
 			instance.publish('itemArrowTo');
+
+			/**
+			 * Handles the itemMouseOut event. Fired when the user mouses away from an item.
+			 *
+			 * @event itemMouseOut
+			 * @param {Event.Facade} event The itemMouseOut event.
+			 */
 			instance.publish('itemMouseOut');
+
+			/**
+			 * Handles the itemMouseOver event. Fired when the user mouses over an item.
+			 *
+			 * @event itemMouseOver
+			 * @param {Event.Facade} event The itemMouseOver event.
+			 */
 			instance.publish('itemMouseOver');
+
+			/**
+			 * Handles the itemSelect event. Fired when an item in the list is selected.
+			 *
+			 * @event itemSelect
+			 * @param {Event.Facade} event The itemSelect event.
+			 */
 			instance.publish('itemSelect');
 
+			/**
+			 * Handles the selectionEnforce event. Fired if <a href="Autocomplete.html#config_forceSelection">forceSelection</a>
+			 * is enabled and the users input element has been cleared because it did not match one of the results.
+			 *
+			 * @event selectionEnforce
+			 * @param {Event.Facade} event The selectionEnforce event.
+			 */
 			instance.publish('selectionEnforce');
 
+			/**
+			 * Handles the textboxBlur event. Fired when the user leaves the input element.
+			 *
+			 * @event textboxBlur
+			 * @param {Event.Facade} event The textboxBlur event.
+			 */
 			instance.publish('textboxBlur');
+
+			/**
+			 * Handles the textboxChange event. Fired when the value in the input element is changed.
+			 *
+			 * @event textboxChange
+			 * @param {Event.Facade} event The textboxChange event.
+			 */
 			instance.publish('textboxChange');
+
+			/**
+			 * Handles the textboxFocus event. Fired when user moves focus to the input element.
+			 *
+			 * @event textboxFocus
+			 * @param {Event.Facade} event The textboxFocus event.
+			 */
 			instance.publish('textboxFocus');
+
+			/**
+			 * Handles the textboxKey event. Fired when the input element receives key input.
+			 *
+			 * @event textboxKey
+			 * @param {Event.Facade} event The textboxKey event.
+			 */
 			instance.publish('textboxKey');
 
+			/**
+			 * Handles the typeAhead event. Fired when the input element has been pre-filled by the type-ahead feature.
+			 *
+			 * @event typeAhead
+			 * @param {Event.Facade} event The typeAhead event.
+			 */
 			instance.publish('typeAhead');
 
+			/**
+			 * Handles the unmatchedItemSelect event. Fired when a user selects something that does
+			 * not match any of the displayed results.
+			 *
+			 * @event unmatchedItemSelect
+			 * @param {Event.Facade} event The unmatchedItemSelect event.
+			 */
 			instance.publish('unmatchedItemSelect');
 
 			instance.overlay.on('visibleChange', instance._realignContainer, instance);
 		},
 
+		/**
+		 * Sync the AutoComplete UI. Lifecycle.
+		 *
+		 * @method syncUI
+		 * @protected
+		 */
 		syncUI: function() {
 			var instance = this;
 
 			instance.inputNode.setAttribute('autocomplete', 'off');
 		},
 
+		/**
+		 * An overridable method that is executed before the result container is shown.
+		 * The method can return false to prevent the container from being shown.
+		 *
+		 * @method doBeforeExpandContainer
+		 * @param {String} query The query that was submitted to the data source
+		 * @param {Object} allResults The parsed results
+		 * @return {Boolean}
+		 */
 		doBeforeExpandContainer: function() {
 			return true;
 		},
 
+		/**
+		 * An overridable method that is executed before the result overlay is loaded with results.
+		 *
+		 * @method doBeforeLoadData
+		 * @param {EventFacade} event
+		 * @return {Boolean}
+		 */
 		doBeforeLoadData: function(event) {
 			return true;
 		},
 
+		/**
+		 * Executed by the data source as a mechanism to do simple client-side
+		 * filtering of the results.
+		 *
+		 * @method filterResults
+		 * @param {EventFacade} event
+		 * @return {Object} Filtered response object
+		 */
 		filterResults: function(event) {
 			var instance = this;
 
@@ -331,16 +735,41 @@ A.extend(
 			return response;
 		},
 
+		/**
+		 * An overridable method for formatting the result of the query before it's displayed in the overlay.
+		 *
+		 * @method formatResult
+		 * @param {Object} result The result data object
+		 * @param {String} request The current query string
+		 * @param {String} resultMatch The string from the results that matches the query
+		 * @return {String}
+		 */
 		formatResult: function(result, request, resultMatch) {
 			return resultMatch || '';
 		},
 
+		/**
+		 * An overridable method that creates an object to be passed to the sendRequest
+		 * method of the data source object. Useful to overwrite if you wish to create
+		 * a custom request object before it's sent.
+		 *
+		 * @method generateRequest
+		 * @param {String} query The string currently being entered
+		 * @return {Object}
+		 */
 		generateRequest: function(query) {
 			return {
 				request: query
 			};
 		},
 
+		/**
+		 * Handles the response for the display of the results. This is a callback method
+		 * that is fired by the sendRequest method so that results are ready to be accessed.
+		 *
+		 * @method handleResponse
+		 * @param {EventFacade} event
+		 */
 		handleResponse: function(event) {
 			var instance = this;
 
@@ -355,9 +784,12 @@ A.extend(
 			instance.button.set(ICON, iconClass);
 		},
 
-		preparseRawResponse: function(event) {
-		},
-
+		/**
+		 * Sends a query request to the data source object.
+		 *
+		 * @method sendQuery
+		 * @param {String} query Query string
+		 */
 		sendQuery: function(query) {
 			var instance = this;
 
@@ -372,6 +804,12 @@ A.extend(
 			instance._sendQuery(newQuery);
 		},
 
+		/**
+		 * Clears the query interval
+		 *
+		 * @method _clearInterval
+		 * @private
+		 */
 		_clearInterval: function() {
 			var instance = this;
 
@@ -382,6 +820,14 @@ A.extend(
 			}
 		},
 
+		/**
+		 * When <a href="Autocomplete.html#config_forceSelection">forceSelection</a> is true and
+		 * the user tries to leave the input element without selecting an item from the results,
+		 * the user selection is cleared.
+		 *
+		 * @method _clearSelection
+		 * @protected
+		 */
 		_clearSelection: function() {
 			var instance = this;
 
@@ -398,6 +844,15 @@ A.extend(
 			instance.fire('selectionEnforce', extraction.query);
 		},
 
+		/**
+		 * Creates the data source object using the passed in <a href="Autocomplete.html#config_dataSource">dataSource</a>,
+		 * and if it is a string, will use the <a href="Autocomplete.html#config_dataSourceType">dataSourceType</a> to
+		 * create a new <a href="module_datasource.html">DataSource</a> object.
+		 *
+		 * @method _createDataSource
+		 * @protected
+		 * @return {String}
+		 */
 		_createDataSource: function() {
 			var instance = this;
 
@@ -471,6 +926,12 @@ A.extend(
 			instance.set('schema', schema);
 		},
 
+		/**
+		 * Enables query interval detection for IME support.
+		 *
+		 * @method _enableIntervalDetection
+		 * @protected
+		 */
 		_enableIntervalDetection: function() {
 			var instance = this;
 
@@ -481,6 +942,14 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Extracts the right most query from the delimited string in the input.
+		 *
+		 * @method _extractQuery
+		 * @param {String} query String to parse
+		 * @protected
+		 * @return {String}
+		 */
 		_extractQuery: function(query) {
 			var instance = this;
 
@@ -529,6 +998,12 @@ A.extend(
 			};
 		},
 
+		/**
+		 * Focuses the input element.
+		 *
+		 * @method _focus
+		 * @protected
+		 */
 		_focus: function() {
 			var instance = this;
 
@@ -540,6 +1015,15 @@ A.extend(
 			);
 		},
 
+		/**
+		 * Whether or not the pressed key triggers some functionality or if it should
+		 * be ignored.
+		 *
+		 * @method _isIgnoreKey
+		 * @param {keyCode} Number The numeric code of the key pressed
+		 * @protected
+		 * @return {String}
+		 */
 		_isIgnoreKey: function(keyCode) {
 			var instance = this;
 
@@ -561,6 +1045,13 @@ A.extend(
 			return false;
 		},
 
+		/**
+		 * If there is a currently selected item, the right arrow key will select
+		 * that item and jump to the end of the input element, otherwise the container is closed.
+		 *
+		 * @method _jumpSelection
+		 * @protected
+		 */
 		_jumpSelection: function() {
 			var instance = this;
 
@@ -572,6 +1063,14 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Triggered by the up and down arrow keys, changes the currently selected list element item, and scrolls the
+		 * container if necessary.
+		 *
+		 * @method _moveSelection
+		 * @param {Number} keyCode The numeric code of the key pressed
+		 * @protected
+		 */
 		_moveSelection: function(keyCode) {
 			var instance = this;
 
@@ -677,6 +1176,13 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Called when the user mouses down on the button element in the combobox.
+		 *
+		 * @method _onButtonMouseDown
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_onButtonMouseDown: function(event) {
 			var instance = this;
 
@@ -685,9 +1191,15 @@ A.extend(
 			instance._focus();
 
 			instance._sendQuery(instance.inputNode.get('value') + '*');
-
 		},
 
+		/**
+		 * Handles when a user clicks on the container.
+		 *
+		 * @method _onContainerClick
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_onContainerClick: function(event) {
 			var instance = this;
 
@@ -718,6 +1230,13 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Handles when a user mouses out of the container.
+		 *
+		 * @method _onContainerMouseout
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_onContainerMouseout: function(event) {
 			var instance = this;
 
@@ -758,6 +1277,13 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Handles when a user mouses over the container.
+		 *
+		 * @method _onContainerMouseover
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_onContainerMouseover: function(event) {
 			var instance = this;
 
@@ -793,12 +1319,26 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Handles the container scroll events.
+		 *
+		 * @method _onContainerScroll
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_onContainerScroll: function(event) {
 			var instance = this;
 
 			instance._focus();
 		},
 
+		/**
+		 * Enables the query to be triggered based on detecting text input via intervals instead of via
+		 * key events.
+		 *
+		 * @method _onInterval
+		 * @protected
+		 */
 		_onInterval: function() {
 			var instance = this;
 
@@ -812,6 +1352,13 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Handles the input element losing focus.
+		 *
+		 * @method _onTextboxBlur
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_onTextboxBlur: function(event) {
 			var instance = this;
 
@@ -853,6 +1400,13 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Handles the input element gaining focus.
+		 *
+		 * @method _onTextboxFocus
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_onTextboxFocus: function(event) {
 			var instance = this;
 
@@ -865,6 +1419,13 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Handles the keydown events on the input element for functional keys.
+		 *
+		 * @method _onTextboxKeyDown
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_onTextboxKeyDown: function(event) {
 			var instance = this;
 
@@ -944,6 +1505,13 @@ A.extend(
 			instance._keyCode = keyCode;
 		},
 
+		/**
+		 * Handles the key press events of the input element.
+		 *
+		 * @method _onTextboxKeyPress
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_onTextboxKeyPress: function(event) {
 			var instance = this;
 
@@ -987,6 +1555,13 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Handles the keyup events of the input element.
+		 *
+		 * @method _onTextboxKeyUp
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_onTextboxKeyUp: function(event) {
 			var instance = this;
 
@@ -1011,6 +1586,13 @@ A.extend(
 			);
 		},
 
+		/**
+		 * Populates the container with list items of the query results.
+		 *
+		 * @method _populateList
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_populateList: function(event) {
 			var instance = this;
 
@@ -1118,6 +1700,13 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Realigns the container to the input element.
+		 *
+		 * @method _realignContainer
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_realignContainer: function(event) {
 			var instance = this;
 
@@ -1126,6 +1715,12 @@ A.extend(
 			instance.overlay._uiSetAlign(overlayAlign.node, overlayAlign.points);
 		},
 
+		/**
+		 * Handles the rendering of the input element.
+		 *
+		 * @method _renderInput
+		 * @protected
+		 */
 		_renderInput: function() {
 			var instance = this;
 
@@ -1174,6 +1769,14 @@ A.extend(
 			instance.set('uniqueName', A.stamp(instance.inputNode));
 		},
 
+		/**
+		 * Pre-populates the container with the 
+		 * <a href="Autocomplete.html#config_maxResultsDisplayed">maxResultsDisplayed</a>
+		 * number of list items.
+		 *
+		 * @method _renderListElements
+		 * @protected
+		 */
 		_renderListElements: function() {
 			var instance = this;
 
@@ -1190,6 +1793,12 @@ A.extend(
 			resultList.html(listItems.join(''));
 		},
 
+		/**
+		 * Handles the creation of the overlay where the result list will be displayed.
+		 *
+		 * @method _renderOverlay
+		 * @protected
+		 */
 		_renderOverlay: function() {
 			var instance = this;
 
@@ -1224,6 +1833,13 @@ A.extend(
 			instance._renderListElements();
 		},
 
+		/**
+		 * Selects a list item from the query results.
+		 *
+		 * @method _selectItem
+		 * @param {Node} elListItem The list item to select
+		 * @protected
+		 */
 		_selectItem: function(elListItem) {
 			var instance = this;
 
@@ -1240,6 +1856,15 @@ A.extend(
 			instance._toggleContainer(false);
 		},
 
+		/**
+		 * Selects a substring of text inside of the input element.
+		 *
+		 * @method _selectText
+		 * @param {Node} el The input element to read the value from
+		 * @param {Number} start The index to start the selection range from
+		 * @param {Number} end The index to end the selection range at
+		 * @protected
+		 */
 		_selectText: function(el, start, end) {
 			var instance = this;
 
@@ -1262,6 +1887,13 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Makes a query request to the data source.
+		 *
+		 * @method _sendQuery
+		 * @param {String} query The query string
+		 * @protected
+		 */
 		_sendQuery: function(query) {
 			var instance = this;
 
@@ -1307,6 +1939,13 @@ A.extend(
 			instance.dataSource.sendRequest(request);
 		},
 
+		/**
+		 * Checks to see if the value typed by the user matches any of the
+		 * query results.
+		 *
+		 * @method _textMatchesOption
+		 * @protected
+		 */
 		_textMatchesOption: function() {
 			var instance = this;
 
@@ -1329,6 +1968,13 @@ A.extend(
 			return elMatch;
 		},
 
+		/**
+		 * Toggles the display of the results container.
+		 *
+		 * @method _toggleContainer
+		 * @param {Boolean} show Flag to force the showing or hiding of the container
+		 * @protected
+		 */
 		_toggleContainer: function(show) {
 			var instance = this;
 
@@ -1355,6 +2001,14 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Toggles the highlighting of a list item, and removes the highlighting from the previous item
+		 *
+		 * @method _toggleHighlight
+		 * @param {Node} elNewListItem The item to be highlighted
+		 * @param {String} action Whether we are moving to or from an item. Valid values are "to" or "from".
+		 * @protected
+		 */
 		_toggleHighlight: function(elNewListItem, action) {
 			var instance = this;
 
@@ -1372,6 +2026,15 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Updates in the input element with the first result as the user types,
+		 * selecting the text the user has not typed yet.
+		 *
+		 * @method _typeAhead
+		 * @param {Node} elListItem The selected list item
+		 * @param {String} query The query string
+		 * @protected
+		 */
 		_typeAhead: function(elListItem, query) {
 			var instance = this;
 
@@ -1403,6 +2066,15 @@ A.extend(
 			}
 		},
 
+		/**
+		 * Updates the input element with the selected query result. If
+		 * <a href="Autocomplete.html#config_delimChar">delimChar</a> has been set,
+		 * then the value gets appended with the delimiter.
+		 *
+		 * @method _updateValue
+		 * @param {Node} elListItem The selected list item
+		 * @protected
+		 */
 		_updateValue: function(elListItem) {
 			var instance = this;
 
