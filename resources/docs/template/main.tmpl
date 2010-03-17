@@ -96,17 +96,38 @@
 								</div>
 
 								<div class="aui-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
 									<ul class="content">
 			                            #for $moduledef in $modulenames
-			                                #set $css = ""
+											#if $moduledef.startswith("aui-")
+				                                #set $css = ""
 
-			                                #if $moduledef == $modulename
-			                                    #set $css = "selected"
-			                                #end if
+				                                #if $moduledef == $modulename
+				                                    #set $css = "selected"
+				                                #end if
 
-			                                #set $cleansedname = $cleansedmodulenames[$moduledef]
+				                                #set $cleansedname = $cleansedmodulenames[$moduledef]
 
-			                                <li class="$css"><a href="${cleansedname}.html" title="$moduledef">$moduledef</a></li>
+				                                <li class="$css"><a href="${cleansedname}.html" title="$moduledef">$moduledef</a></li>
+											#end if
+			                            #end for
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+			                            #for $moduledef in $modulenames
+											#unless $moduledef.startswith("aui-")
+				                                #set $css = ""
+
+				                                #if $moduledef == $modulename
+				                                    #set $css = "selected"
+				                                #end if
+
+				                                #set $cleansedname = $cleansedmodulenames[$moduledef]
+
+			                                
+													<li class="$css"><a href="${cleansedname}.html" title="$moduledef">$moduledef</a></li>
+											#end unless
 			                            #end for
 			                        </ul>
 								</div>
