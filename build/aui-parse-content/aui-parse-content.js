@@ -177,7 +177,6 @@ A.extend(ParseContent, A.Plugin.Base, {
 		this.doBefore('setContent', function(content) {
 			var output = instance.parseContent(content);
 
-			// return new A.Do.AlterArgs(null, [output.fragment.get(INNER_HTML)]);
 			return new A.Do.AlterArgs(null, [output.fragment]);
 		});
 	},
@@ -195,35 +194,27 @@ A.extend(ParseContent, A.Plugin.Base, {
 	_clean: function(content) {
 		var output = {};
 		var fragment = A.getDoc().invoke(CREATE_DOCUMENT_FRAGMENT);
-		// var fragment = A.one(document.createdDocumentFragment());
-		// var fragment = A.Node.create('<div></div>');
+
+		// instead of fix all tags to "XHTML"-style, make the firstChild be a valid non-empty tag
+		fragment.append('<div>_</div>');
 
 		if (isString(content)) {
 			// create fragment from {String}
-			// instead of fix all tags to "XHTML"-style, make the firstChild be a valid non-empty tag
-			content = '-' + content;
-
-			A.DOM.addHTML(fragment, content, 'replace');
+			A.DOM.addHTML(fragment, content, APPEND);
 		}
 		else {
 			// create fragment from {Y.Node | HTMLElement}
 			fragment.append(content);
 		}
 
-fragment.all('*').each(function(node, i) {
-	console.log(node.html(), i);
-});
-// console.log(fragment.innerHTML, fragment.all('*').size());
-
 		output.js = fragment.all(SCRIPT).each(
 			function(node, i) {
-				// console.log(node);
 				node.remove();
 			}
 		);
 
 		// remove padding node
-		// fragment.get(FIRST_CHILD).remove();
+		fragment.get(FIRST_CHILD).remove();
 
 		output.fragment = fragment;
 
@@ -279,4 +270,4 @@ fragment.all('*').each(function(node, i) {
 
 A.namespace('Plugin').ParseContent = ParseContent;
 
-}, '@VERSION@' ,{skinnable:false, requires:['async-queue','aui-base','io','plugin']});
+}, '@VERSION@' ,{requires:['async-queue','aui-base','io','plugin'], skinnable:false});
