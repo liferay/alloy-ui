@@ -3,7 +3,7 @@ a {
 }
 
 input[type="submit"], input[type="button"], input[type="reset"], button {
-	background: #d4d4d4 url(../images/state/default_bg.png) repeat-x 0 0;
+	background: #d4d4d4 url(../images/common/state_default_bg.png) repeat-x 0 0;
 	border: 1px solid;
 	border-color: #c8c9ca #9e9e9e #9e9e9e #c8c9ca;
 	color: #34404F;
@@ -12,29 +12,29 @@ input[type="submit"], input[type="button"], input[type="reset"], button {
 }
 
 input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover, button:hover {
-	background: #b9ced9 url(../images/state/hover_bg.png) repeat-x 0 0;
+	background: #b9ced9 url(../images/common/state_hover_bg.png) repeat-x 0 0;
 	border-color: #627782;
 	color: #369;
 }
 
 input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus, button:focus {
-	background: #ebebeb url(../images/state/active_bg.png) repeat-x 0 0;
+	background: #ebebeb url(../images/common/state_active_bg.png) repeat-x 0 0;
 	border-color: #555;
 }
 
 .aui-state-default {
-	background: #d4d4d4 url(../images/state/default_bg.png) repeat-x 0 0;
+	background: #d4d4d4 url(../images/common/state_default_bg.png) repeat-x 0 0;
 	border: 1px solid;
 	border-color: #c8c9ca #9e9e9e #9e9e9e #c8c9ca;
 }
 
 .aui-state-hover {
-	background: #b9ced9 url(../images/state/hover_bg.png) repeat-x 0 0;
+	background: #b9ced9 url(../images/common/state_hover_bg.png) repeat-x 0 0;
 	border-color: #627782;
 }
 
 .aui-state-active {
-	background: #ebebeb url(../images/state/active_bg.png) repeat-x 0 0;
+	background: #ebebeb url(../images/common/state_active_bg.png) repeat-x 0 0;
 	border-color: #555;
 }
 
