@@ -2,7 +2,7 @@
 <html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<title>API: aui-parse-content   aui-portal-layout-debug.js  (YUI Library)</title>
+	<title>API: aui-portal-layout   aui-portal-layout-debug.js  (YUI Library)</title>
 
 	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-parse-content&nbsp; <span class="subtitle">1.0pr</span>
+			aui-portal-layout&nbsp; <span class="subtitle">1.0pr</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -28,7 +28,7 @@
 
 	            <span class="separator">&gt;</span>
 
-				<a class="modulename" href="./module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a>
+				<a class="modulename" href="./module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a>
 
 	                
 
@@ -110,6 +110,10 @@
 
 
 
+				                                <li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
 				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
 
 
@@ -150,6 +154,10 @@
 
 
 
+				                                <li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
 				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
 
 
@@ -166,7 +174,11 @@
 
 
 
-				                                <li class="selected"><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class="selected"><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
 
 
 
@@ -175,6 +187,10 @@
 
 
 				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
 
 
 
@@ -481,7 +497,7 @@
 										<ul class="content">
 
 
-				                                <li class=""><a href="ParseContent.html" title="ParseContent">ParseContent</a></li>
+				                                <li class=""><a href="PortalLayout.html" title="PortalLayout">PortalLayout</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -500,15 +516,6 @@
 
 								<div class="aui-widget-bd aui-list-bd">
 									<ul class="content">
-
-
-			                                <li class=""><a href="aui-parse-content-debug.js.html" title="aui-parse-content-debug.js">aui-parse-content-debug.js</a></li>
-
-
-			                                <li class=""><a href="aui-parse-content-min.js.html" title="aui-parse-content-min.js">aui-parse-content-min.js</a></li>
-
-
-			                                <li class=""><a href="aui-parse-content.js.html" title="aui-parse-content.js">aui-parse-content.js</a></li>
 
 
 			                                <li class="selected"><a href="aui-portal-layout-debug.js.html" title="aui-portal-layout-debug.js">aui-portal-layout-debug.js</a></li>
@@ -532,6 +539,12 @@
 									#doc3 .classopts { display:none; }
 								</style>
 								<div class="highlight"><pre><span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-portal-layout&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span> <span class="p">{</span>
+<span class="cm">/**</span>
+<span class="cm"> * The PortalLayout Utility - Full documentation coming soon.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module aui-portal-layout</span>
+<span class="cm"> */</span>
+
 <span class="kd">var</span> <span class="nx">Lang</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
 	<span class="nx">isBoolean</span> <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isBoolean</span><span class="p">,</span>
 	<span class="nx">isFunction</span> <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">,</span>
@@ -620,13 +633,53 @@
 							<span class="s1">&#39;&lt;div class=&quot;&#39;</span><span class="o">+</span><span class="nx">concat</span><span class="p">(</span><span class="nx">CSS_DRAG_INDICATOR_ICON</span><span class="p">,</span> <span class="nx">CSS_DRAG_INDICATOR_ICON_RIGHT</span><span class="p">,</span> <span class="nx">CSS_ICON</span><span class="p">,</span> <span class="nx">CSS_ICON_CIRCLE_TRIANGLE_L</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span> <span class="o">+</span>
 						<span class="s1">&#39;&lt;div&gt;&#39;</span><span class="p">;</span>
 
+<span class="cm">/**</span>
+<span class="cm"> * A base class for PortalLayout, providing:</span>
+<span class="cm"> * &lt;ul&gt;</span>
+<span class="cm"> *    &lt;li&gt;Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)&lt;/li&gt;</span>
+<span class="cm"> *    &lt;li&gt;DragDrop utility for drag lists, portal layouts (portlets)&lt;/li&gt;</span>
+<span class="cm"> * &lt;/ul&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * Quick Example:&lt;br/&gt;</span>
+<span class="cm"> * </span>
+<span class="cm"> * &lt;pre&gt;&lt;code&gt;var portalLayout = new A.PortalLayout({</span>
+<span class="cm"> *  	dragNodes: &#39;.portlet&#39;,</span>
+<span class="cm"> *  	dropNodes: &#39;.column&#39;,</span>
+<span class="cm"> *  	proxyNode: A.Node.create(&#39;&lt;div class=&quot;aui-portal-layout-proxy&quot;&gt;&lt;/div&gt;&#39;),</span>
+<span class="cm"> *  	lazyStart: true</span>
+<span class="cm"> * &lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * Check the list of &lt;a href=&quot;PortalLayout.html#configattributes&quot;&gt;Configuration Attributes&lt;/a&gt; available for</span>
+<span class="cm"> * PortalLayout.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param config {Object} Object literal specifying widget configuration properties.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class PortalLayout</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @extends Base</span>
+<span class="cm"> */</span>
 <span class="kd">function</span> <span class="nx">PortalLayout</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">PortalLayout</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">PortalLayout</span><span class="p">,</span> <span class="p">{</span>
+	<span class="cm">/**</span>
+<span class="cm">	 * Static property provides a string to identify the class.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @property PortalLayout.NAME</span>
+<span class="cm">	 * @type String</span>
+<span class="cm">	 * @static</span>
+<span class="cm">	 */</span>
 	<span class="nx">NAME</span><span class="o">:</span> <span class="nx">PORTAL_LAYOUT</span><span class="p">,</span>
 
+	<span class="cm">/**</span>
+<span class="cm">	 * Static property used to define the default attribute</span>
+<span class="cm">	 * configuration for the PortalLayout.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @property PortalLayout.ATTRS</span>
+<span class="cm">	 * @type Object</span>
+<span class="cm">	 * @static</span>
+<span class="cm">	 */</span>
 	<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
 		<span class="nx">dd</span><span class="o">:</span> <span class="p">{</span>
 			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
@@ -723,9 +776,12 @@
 <span class="p">});</span>
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">PortalLayout</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/*</span>
-<span class="cm">	* Lifecycle</span>
-<span class="cm">	*/</span>
+	<span class="cm">/**</span>
+<span class="cm">	 * Construction logic executed during PortalLayout instantiation. Lifecycle.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method initializer</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
 	<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
@@ -1207,7 +1263,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "ParseContent.html#method__bindAOP", "access": "protected", "host": "ParseContent", "type": "method", "name": "_bindAOP"}, {"url": "ParseContent.html#method_clean", "access": "protected", "host": "ParseContent", "type": "method", "name": "clean"}, {"url": "ParseContent.html#method__dispatch", "access": "protected", "host": "ParseContent", "type": "method", "name": "_dispatch"}, {"url": "ParseContent.html#method_globalEval", "access": "", "host": "ParseContent", "type": "method", "name": "globalEval"}, {"url": "ParseContent.html#method_initializer", "access": "protected", "host": "ParseContent", "type": "method", "name": "initializer"}, {"url": "ParseContent.html#method_parseContent", "access": "", "host": "ParseContent", "type": "method", "name": "parseContent"}, {"url": "ParseContent.html#property_ParseContent.ATTRS", "access": "", "host": "ParseContent", "type": "property", "name": "ParseContent.ATTRS"}, {"url": "ParseContent.html#property_ParseContent.NAME", "access": "", "host": "ParseContent", "type": "property", "name": "ParseContent.NAME"}, {"url": "ParseContent.html#property_ParseContent.NS", "access": "", "host": "ParseContent", "type": "property", "name": "ParseContent.NS"}];
+    var ALL_YUI_PROPS = [{"url": "PortalLayout.html#method_initializer", "access": "protected", "host": "PortalLayout", "type": "method", "name": "initializer"}, {"url": "PortalLayout.html#property_PortalLayout.ATTRS", "access": "", "host": "PortalLayout", "type": "property", "name": "PortalLayout.ATTRS"}, {"url": "PortalLayout.html#property_PortalLayout.NAME", "access": "", "host": "PortalLayout", "type": "property", "name": "PortalLayout.NAME"}];
 </script>
 </body>
 </html>

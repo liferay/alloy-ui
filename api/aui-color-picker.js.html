@@ -2,7 +2,7 @@
 <html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<title>API: aui-char-counter   aui-color-picker.js  (YUI Library)</title>
+	<title>API: aui-color-picker   aui-color-picker.js  (YUI Library)</title>
 
 	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-char-counter&nbsp; <span class="subtitle">1.0pr</span>
+			aui-color-picker&nbsp; <span class="subtitle">1.0pr</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -28,7 +28,7 @@
 
 	            <span class="separator">&gt;</span>
 
-				<a class="modulename" href="./module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a>
+				<a class="modulename" href="./module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a>
 
 	                
 
@@ -106,7 +106,11 @@
 
 
 
-				                                <li class="selected"><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class="selected"><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
 
 
 
@@ -150,6 +154,10 @@
 
 
 
+				                                <li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
 				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
 
 
@@ -170,11 +178,19 @@
 
 
 
+				                                <li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
 				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
 
 
 
 				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
 
 
 
@@ -481,7 +497,7 @@
 										<ul class="content">
 
 
-				                                <li class=""><a href="CharCounter.html" title="CharCounter">CharCounter</a></li>
+				                                <li class=""><a href="ColorPicker.html" title="ColorPicker">ColorPicker</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -500,24 +516,6 @@
 
 								<div class="aui-widget-bd aui-list-bd">
 									<ul class="content">
-
-
-			                                <li class=""><a href="aui-char-counter-debug.js.html" title="aui-char-counter-debug.js">aui-char-counter-debug.js</a></li>
-
-
-			                                <li class=""><a href="aui-char-counter-min.js.html" title="aui-char-counter-min.js">aui-char-counter-min.js</a></li>
-
-
-			                                <li class=""><a href="aui-char-counter.js.html" title="aui-char-counter.js">aui-char-counter.js</a></li>
-
-
-			                                <li class=""><a href="aui-chart-debug.js.html" title="aui-chart-debug.js">aui-chart-debug.js</a></li>
-
-
-			                                <li class=""><a href="aui-chart-min.js.html" title="aui-chart-min.js">aui-chart-min.js</a></li>
-
-
-			                                <li class=""><a href="aui-chart.js.html" title="aui-chart.js">aui-chart.js</a></li>
 
 
 			                                <li class=""><a href="aui-color-picker-debug.js.html" title="aui-color-picker-debug.js">aui-color-picker-debug.js</a></li>
@@ -541,6 +539,12 @@
 									#doc3 .classopts { display:none; }
 								</style>
 								<div class="highlight"><pre><span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-color-picker&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span> <span class="p">{</span>
+<span class="cm">/**</span>
+<span class="cm"> * The ColorPicker Utility - Full documentation coming soon.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module aui-color-picker</span>
+<span class="cm"> */</span>
+
 <span class="kd">var</span> <span class="nx">Lang</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
 	<span class="nx">isArray</span> <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">,</span>
 	<span class="nx">isObject</span> <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">,</span>
@@ -756,12 +760,43 @@
 	<span class="p">}</span>
 <span class="p">};</span>
 
+<span class="cm">/**</span>
+<span class="cm"> * A base class for ColorPicker, providing:</span>
+<span class="cm"> * &lt;ul&gt;</span>
+<span class="cm"> *    &lt;li&gt;Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)&lt;/li&gt;</span>
+<span class="cm"> *    &lt;li&gt;ColorPicker utility&lt;/li&gt;</span>
+<span class="cm"> * &lt;/ul&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * Check the list of &lt;a href=&quot;ColorPicker.html#configattributes&quot;&gt;Configuration Attributes&lt;/a&gt; available for</span>
+<span class="cm"> * ColorPicker.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param config {Object} Object literal specifying widget configuration properties.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class ColorPicker</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @extends OverlayContext</span>
+<span class="cm"> */</span>
 <span class="kd">var</span> <span class="nx">ColorPicker</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">ColorPicker</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 <span class="p">};</span>
 
+<span class="cm">/**</span>
+<span class="cm"> * Static property provides a string to identify the class.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @property ColorPicker.NAME</span>
+<span class="cm"> * @type String</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
 <span class="nx">ColorPicker</span><span class="p">.</span><span class="nx">NAME</span> <span class="o">=</span> <span class="s1">&#39;colorpicker&#39;</span><span class="p">;</span>
 
+<span class="cm">/**</span>
+<span class="cm"> * Static property used to define the default attribute</span>
+<span class="cm"> * configuration for the ColorPicker.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @property ColorPicker.ATTRS</span>
+<span class="cm"> * @type Object</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
 <span class="nx">ColorPicker</span><span class="p">.</span><span class="nx">ATTRS</span> <span class="o">=</span> <span class="p">{</span>
 	<span class="nx">colors</span><span class="o">:</span> <span class="p">{</span>
 		<span class="nx">value</span><span class="o">:</span> <span class="p">{},</span>
@@ -950,6 +985,12 @@
 	<span class="nx">ColorPicker</span><span class="p">,</span>
 	<span class="nx">A</span><span class="p">.</span><span class="nx">OverlayContext</span><span class="p">,</span>
 	<span class="p">{</span>
+		<span class="cm">/**</span>
+<span class="cm">		 * Create the DOM structure for the ColorPicker. Lifecycle.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method renderUI</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
 		<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
@@ -970,6 +1011,12 @@
 			<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderControls</span><span class="p">();</span>
 		<span class="p">},</span>
 
+		<span class="cm">/**</span>
+<span class="cm">		 * Bind the events on the ColorPicker UI. Lifecycle.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method bindUI</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
 		<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
@@ -996,6 +1043,12 @@
 			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;visibleChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterVisibleChangeCP</span><span class="p">);</span>
 		<span class="p">},</span>
 
+		<span class="cm">/**</span>
+<span class="cm">		 * Sync the ColorPicker UI. Lifecycle.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method syncUI</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
 		<span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
@@ -1522,7 +1575,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "CharCounter.html#method_bindUI", "access": "protected", "host": "CharCounter", "type": "method", "name": "bindUI"}, {"url": "CharCounter.html#property_CharCounter.ATTRS", "access": "", "host": "CharCounter", "type": "property", "name": "CharCounter.ATTRS"}, {"url": "CharCounter.html#property_CharCounter.NAME", "access": "", "host": "CharCounter", "type": "property", "name": "CharCounter.NAME"}, {"url": "CharCounter.html#method_checkLength", "access": "", "host": "CharCounter", "type": "method", "name": "checkLength"}, {"url": "CharCounter.html#config_counter", "access": "", "host": "CharCounter", "type": "config", "name": "counter"}, {"url": "CharCounter.html#event_counterChange", "access": "", "host": "CharCounter", "type": "event", "name": "counterChange"}, {"url": "CharCounter.html#method_destroy", "access": "protected", "host": "CharCounter", "type": "method", "name": "destroy"}, {"url": "CharCounter.html#property_handler", "access": "protected", "host": "CharCounter", "type": "property", "name": "handler"}, {"url": "CharCounter.html#method_initializer", "access": "protected", "host": "CharCounter", "type": "method", "name": "initializer"}, {"url": "CharCounter.html#config_input", "access": "", "host": "CharCounter", "type": "config", "name": "input"}, {"url": "CharCounter.html#event_inputChange", "access": "", "host": "CharCounter", "type": "event", "name": "inputChange"}, {"url": "CharCounter.html#config_maxLength", "access": "", "host": "CharCounter", "type": "config", "name": "maxLength"}, {"url": "CharCounter.html#event_maxLengthChange", "access": "", "host": "CharCounter", "type": "event", "name": "maxLengthChange"}, {"url": "CharCounter.html#method__onInputChange", "access": "protected", "host": "CharCounter", "type": "method", "name": "_onInputChange"}, {"url": "CharCounter.html#method__setMaxLength", "access": "protected", "host": "CharCounter", "type": "method", "name": "_setMaxLength"}, {"url": "CharCounter.html#method_syncUI", "access": "protected", "host": "CharCounter", "type": "method", "name": "syncUI"}];
+    var ALL_YUI_PROPS = [{"url": "ColorPicker.html#method_bindUI", "access": "protected", "host": "ColorPicker", "type": "method", "name": "bindUI"}, {"url": "ColorPicker.html#property_ColorPicker.ATTRS", "access": "", "host": "ColorPicker", "type": "property", "name": "ColorPicker.ATTRS"}, {"url": "ColorPicker.html#property_ColorPicker.NAME", "access": "", "host": "ColorPicker", "type": "property", "name": "ColorPicker.NAME"}, {"url": "ColorPicker.html#method_renderUI", "access": "protected", "host": "ColorPicker", "type": "method", "name": "renderUI"}, {"url": "ColorPicker.html#method_syncUI", "access": "protected", "host": "ColorPicker", "type": "method", "name": "syncUI"}];
 </script>
 </body>
 </html>

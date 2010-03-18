@@ -2,7 +2,7 @@
 <html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<title>API: aui-loading-mask   aui-nested-list.js  (YUI Library)</title>
+	<title>API: aui-nested-list   aui-nested-list.js  (YUI Library)</title>
 
 	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-loading-mask&nbsp; <span class="subtitle">1.0pr</span>
+			aui-nested-list&nbsp; <span class="subtitle">1.0pr</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -28,7 +28,7 @@
 
 	            <span class="separator">&gt;</span>
 
-				<a class="modulename" href="./module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a>
+				<a class="modulename" href="./module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a>
 
 	                
 
@@ -110,6 +110,10 @@
 
 
 
+				                                <li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
 				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
 
 
@@ -146,7 +150,11 @@
 
 
 
-				                                <li class="selected"><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class="selected"><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
 
 
 
@@ -170,11 +178,19 @@
 
 
 
+				                                <li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
 				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
 
 
 
 				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
 
 
 
@@ -481,7 +497,7 @@
 										<ul class="content">
 
 
-				                                <li class=""><a href="LoadingMask.html" title="LoadingMask">LoadingMask</a></li>
+				                                <li class=""><a href="NestedList.html" title="NestedList">NestedList</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -500,15 +516,6 @@
 
 								<div class="aui-widget-bd aui-list-bd">
 									<ul class="content">
-
-
-			                                <li class=""><a href="aui-loading-mask-debug.js.html" title="aui-loading-mask-debug.js">aui-loading-mask-debug.js</a></li>
-
-
-			                                <li class=""><a href="aui-loading-mask-min.js.html" title="aui-loading-mask-min.js">aui-loading-mask-min.js</a></li>
-
-
-			                                <li class=""><a href="aui-loading-mask.js.html" title="aui-loading-mask.js">aui-loading-mask.js</a></li>
 
 
 			                                <li class=""><a href="aui-nested-list-debug.js.html" title="aui-nested-list-debug.js">aui-nested-list-debug.js</a></li>
@@ -532,6 +539,12 @@
 									#doc3 .classopts { display:none; }
 								</style>
 								<div class="highlight"><pre><span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-nested-list&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span> <span class="p">{</span>
+<span class="cm">/**</span>
+<span class="cm"> * The NestedList Utility - Full documentation coming soon.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module aui-nested-list</span>
+<span class="cm"> */</span>
+
 <span class="kd">var</span> <span class="nx">L</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
 	<span class="nx">isString</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isString</span><span class="p">,</span>
 	<span class="nx">isFunction</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">,</span>
@@ -570,13 +583,52 @@
 		<span class="k">return</span> <span class="p">(</span><span class="nx">v</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">NodeList</span><span class="p">);</span>
 	<span class="p">};</span>
 
+<span class="cm">/**</span>
+<span class="cm"> * A base class for NestedList, providing:</span>
+<span class="cm"> * &lt;ul&gt;</span>
+<span class="cm"> *    &lt;li&gt;Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)&lt;/li&gt;</span>
+<span class="cm"> *    &lt;li&gt;Nested sortable utility&lt;/li&gt;</span>
+<span class="cm"> * &lt;/ul&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * Quick Example:&lt;br/&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * &lt;pre&gt;&lt;code&gt;var nl = new A.NestedList({</span>
+<span class="cm"> *  	nodes: &#39;#demo li&#39;,</span>
+<span class="cm"> *  	dropContainer: &#39;ul.droppable&#39;</span>
+<span class="cm"> *  });</span>
+<span class="cm"> * &lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * Check the list of &lt;a href=&quot;NestedList.html#configattributes&quot;&gt;Configuration Attributes&lt;/a&gt; available for</span>
+<span class="cm"> * NestedList.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param config {Object} Object literal specifying widget configuration properties.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class NestedList</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @extends Base</span>
+<span class="cm"> */</span>
 <span class="kd">function</span> <span class="nx">NestedList</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">NestedList</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">NestedList</span><span class="p">,</span> <span class="p">{</span>
+	<span class="cm">/**</span>
+<span class="cm">	 * Static property provides a string to identify the class.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @property NestedList.NAME</span>
+<span class="cm">	 * @type String</span>
+<span class="cm">	 * @static</span>
+<span class="cm">	 */</span>
 	<span class="nx">NAME</span><span class="o">:</span> <span class="nx">NESTED_LIST</span><span class="p">,</span>
 
+	<span class="cm">/**</span>
+<span class="cm">	 * Static property used to define the default attribute</span>
+<span class="cm">	 * configuration for the NestedList.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @property NestedList.ATTRS</span>
+<span class="cm">	 * @type Object</span>
+<span class="cm">	 * @static</span>
+<span class="cm">	 */</span>
 	<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
 		<span class="nx">dd</span><span class="o">:</span> <span class="p">{</span>
 			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
@@ -648,9 +700,12 @@
 <span class="p">});</span>
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">NestedList</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/*</span>
-<span class="cm">	* Lifecycle</span>
-<span class="cm">	*/</span>
+	<span class="cm">/**</span>
+<span class="cm">	 * Construction logic executed during NestedList instantiation. Lifecycle.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method initializer</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
 	<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 		<span class="kd">var</span> <span class="nx">nodes</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODES</span><span class="p">);</span>
@@ -921,7 +976,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "LoadingMask.html#method__afterVisibleChange", "access": "protected", "host": "LoadingMask", "type": "method", "name": "_afterVisibleChange"}, {"url": "LoadingMask.html#method__bindOverlayMaskUI", "access": "protected", "host": "LoadingMask", "type": "method", "name": "_bindOverlayMaskUI"}, {"url": "LoadingMask.html#method_bindUI", "access": "protected", "host": "LoadingMask", "type": "method", "name": "bindUI"}, {"url": "LoadingMask.html#method_centerMessage", "access": "", "host": "LoadingMask", "type": "method", "name": "centerMessage"}, {"url": "LoadingMask.html#method__createDynamicAttrs", "access": "protected", "host": "LoadingMask", "type": "method", "name": "_createDynamicAttrs"}, {"url": "LoadingMask.html#method_hide", "access": "", "host": "LoadingMask", "type": "method", "name": "hide"}, {"url": "LoadingMask.html#method_initializer", "access": "protected", "host": "LoadingMask", "type": "method", "name": "initializer"}, {"url": "LoadingMask.html#property_LoadingMask.ATTRS", "access": "", "host": "LoadingMask", "type": "property", "name": "LoadingMask.ATTRS"}, {"url": "LoadingMask.html#property_LoadingMask.NAME", "access": "", "host": "LoadingMask", "type": "property", "name": "LoadingMask.NAME"}, {"url": "LoadingMask.html#property_LoadingMask.NS", "access": "", "host": "LoadingMask", "type": "property", "name": "LoadingMask.NS"}, {"url": "LoadingMask.html#config_messageEl", "access": "", "host": "LoadingMask", "type": "config", "name": "messageEl"}, {"url": "LoadingMask.html#event_messageElChange", "access": "", "host": "LoadingMask", "type": "event", "name": "messageElChange"}, {"url": "LoadingMask.html#property_overlayMask", "access": "protected", "host": "LoadingMask", "type": "property", "name": "overlayMask"}, {"url": "LoadingMask.html#method_refreshMask", "access": "", "host": "LoadingMask", "type": "method", "name": "refreshMask"}, {"url": "LoadingMask.html#method__renderOverlayMask", "access": "protected", "host": "LoadingMask", "type": "method", "name": "_renderOverlayMask"}, {"url": "LoadingMask.html#method_renderUI", "access": "protected", "host": "LoadingMask", "type": "method", "name": "renderUI"}, {"url": "LoadingMask.html#method_show", "access": "", "host": "LoadingMask", "type": "method", "name": "show"}, {"url": "LoadingMask.html#config_strings", "access": "", "host": "LoadingMask", "type": "config", "name": "strings"}, {"url": "LoadingMask.html#event_stringsChange", "access": "", "host": "LoadingMask", "type": "event", "name": "stringsChange"}, {"url": "LoadingMask.html#config_target", "access": "", "host": "LoadingMask", "type": "config", "name": "target"}, {"url": "LoadingMask.html#event_targetChange", "access": "", "host": "LoadingMask", "type": "event", "name": "targetChange"}, {"url": "LoadingMask.html#method_toggle", "access": "", "host": "LoadingMask", "type": "method", "name": "toggle"}];
+    var ALL_YUI_PROPS = [{"url": "NestedList.html#method_initializer", "access": "protected", "host": "NestedList", "type": "method", "name": "initializer"}, {"url": "NestedList.html#property_NestedList.ATTRS", "access": "", "host": "NestedList", "type": "property", "name": "NestedList.ATTRS"}, {"url": "NestedList.html#property_NestedList.NAME", "access": "", "host": "NestedList", "type": "property", "name": "NestedList.NAME"}];
 </script>
 </body>
 </html>
