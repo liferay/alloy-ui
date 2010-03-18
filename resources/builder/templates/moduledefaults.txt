@@ -18,13 +18,13 @@
 				method: 'GET'
 			},
 
-            combine: true,
+            combine: false,
 		    root: './../../build/',
 			comboBase: PATH_BASE + '../lib/yui-combo/combo.php?',
 
 			groups: {
                 alloy: {
-		            combine: true,
+		            combine: false,
                     modules: {
 @MODULES@
 					}
