@@ -1,9 +1,9 @@
 Welcome to Alloy Library Source @VERSION@
 
+* License: http://alloy.liferay.com/deploy/LICENSE.txt
 * Documentation: http://alloy.liferay.com/api/
-* License: http://alloy.liferay.com/deploy/license.txt
-* Latest Stable Release: http://alloy.liferay.com/downloads/
 * Discuss: http://alloy.liferay.com/forum/
+* Latest Stable Release: http://alloy.liferay.com/downloads/
 
 Folder description
 	api/				- Contains the generated API Documentation
