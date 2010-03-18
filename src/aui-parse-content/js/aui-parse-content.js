@@ -68,7 +68,7 @@ A.mix(ParseContent, {
 	/**
 	 * Static property provides a string to identify the namespace.
 	 *
-	 * @property OverlayLoading.NS
+	 * @property ParseContent.NS
 	 * @type String
 	 * @static
 	 */
