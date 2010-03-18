@@ -32,7 +32,7 @@ var Lang = A.Lang,
 	TPL_MESSAGE_LOADING = '<div class="' + CSS_MESSAGE_LOADING + '"><div class="' + CSS_MESSAGE_LOADING_CONTENT + '">{0}</div></div>';
 
 /**
- * <p><img src="assets/images/aui-loading-mask/main.png"/></p>
+ * <p><img src="assets/images/aui-overlay-loading/main.png"/></p>
  *
  * A base class for OverlayLoading, providing:
  * <ul>

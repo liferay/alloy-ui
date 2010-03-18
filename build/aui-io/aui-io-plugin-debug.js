@@ -493,4 +493,4 @@ A.extend(IOPlugin, A.IORequest, {
 
 A.namespace('Plugin').IO = IOPlugin;
 
-}, '@VERSION@' ,{requires:['aui-overlay-base','aui-parse-content','aui-io-request','aui-overlay-loading']});
+}, '@VERSION@' ,{requires:['aui-overlay-base','aui-parse-content','aui-io-request','aui-loading-mask']});
