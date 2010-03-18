@@ -1,3 +1,9 @@
+/**
+ * The ColorPicker Utility - Full documentation coming soon.
+ *
+ * @module aui-color-picker
+ */
+
 var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isObject = Lang.isObject,
@@ -213,12 +219,43 @@ var Color = {
 	}
 };
 
+/**
+ * A base class for ColorPicker, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>ColorPicker utility</li>
+ * </ul>
+ *
+ * Check the list of <a href="ColorPicker.html#configattributes">Configuration Attributes</a> available for
+ * ColorPicker.
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class ColorPicker
+ * @constructor
+ * @extends OverlayContext
+ */
 var ColorPicker = function(config) {
 	ColorPicker.superclass.constructor.apply(this, arguments);
 };
 
+/**
+ * Static property provides a string to identify the class.
+ *
+ * @property ColorPicker.NAME
+ * @type String
+ * @static
+ */
 ColorPicker.NAME = 'colorpicker';
 
+/**
+ * Static property used to define the default attribute
+ * configuration for the ColorPicker.
+ *
+ * @property ColorPicker.ATTRS
+ * @type Object
+ * @static
+ */
 ColorPicker.ATTRS = {
 	colors: {
 		value: {},
@@ -407,6 +444,12 @@ A.extend(
 	ColorPicker,
 	A.OverlayContext,
 	{
+		/**
+		 * Create the DOM structure for the ColorPicker. Lifecycle.
+		 *
+		 * @method renderUI
+		 * @protected
+		 */
 		renderUI: function() {
 			var instance = this;
 
@@ -427,6 +470,12 @@ A.extend(
 			instance._renderControls();
 		},
 
+		/**
+		 * Bind the events on the ColorPicker UI. Lifecycle.
+		 *
+		 * @method bindUI
+		 * @protected
+		 */
 		bindUI: function() {
 			var instance = this;
 
@@ -453,6 +502,12 @@ A.extend(
 			instance.after('visibleChange', instance._afterVisibleChangeCP);
 		},
 
+		/**
+		 * Sync the ColorPicker UI. Lifecycle.
+		 *
+		 * @method syncUI
+		 * @protected
+		 */
 		syncUI: function() {
 			var instance = this;
 

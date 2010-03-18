@@ -1,3 +1,9 @@
+/**
+ * The NestedList Utility - Full documentation coming soon.
+ *
+ * @module aui-nested-list
+ */
+
 var L = A.Lang,
 	isString = L.isString,
 	isFunction = L.isFunction,
@@ -36,13 +42,52 @@ var L = A.Lang,
 		return (v instanceof A.NodeList);
 	};
 
+/**
+ * A base class for NestedList, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>Nested sortable utility</li>
+ * </ul>
+ *
+ * Quick Example:<br/>
+ *
+ * <pre><code>var nl = new A.NestedList({
+ *  	nodes: '#demo li',
+ *  	dropContainer: 'ul.droppable'
+ *  });
+ * </code></pre>
+ *
+ * Check the list of <a href="NestedList.html#configattributes">Configuration Attributes</a> available for
+ * NestedList.
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class NestedList
+ * @constructor
+ * @extends Base
+ */
 function NestedList(config) {
 	NestedList.superclass.constructor.apply(this, arguments);
 }
 
 A.mix(NestedList, {
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property NestedList.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: NESTED_LIST,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the NestedList.
+	 *
+	 * @property NestedList.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
 		dd: {
 			value: null
@@ -114,9 +159,12 @@ A.mix(NestedList, {
 });
 
 A.extend(NestedList, A.Base, {
-	/*
-	* Lifecycle
-	*/
+	/**
+	 * Construction logic executed during NestedList instantiation. Lifecycle.
+	 *
+	 * @method initializer
+	 * @protected
+	 */
 	initializer: function() {
 		var instance = this;
 		var nodes = instance.get(NODES);
