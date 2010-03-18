@@ -95,7 +95,6 @@
 				</replacetokens>
 			</filterchain>
 		</copy>
-		
 	</target>
 
 	<target name="release" depends="clean-release">
@@ -148,21 +147,37 @@
 	<property name="project.docs.dir" value="${project.dir}/resources/docs" />
 	<property name="yui.version" location="3.0.0" />
 
-	<property name="yuidoc.output.dir" location="${project.dir}/api" />
+	<property name="yuidoc.output.dir" location="${project.dir}/_api" />
 	<property name="yuidoc.home" location="${project.dir}/lib/yui-yuidoc" />
 	<property name="yuidoc.exec" location="${yuidoc.home}/bin/yuidoc.py" />
 	<property name="yuidoc.tmpdir" location="${project.docs.dir}/temp" />
-	<property name="yuidoc.parsein.dir" location="${project.dir}/src" />
+	<property name="yuidoc.parsein.dir" location="${project.dir}/build" />
 	<property name="yuidoc.template.dir" location="${project.docs.dir}/template" />
 
 	<target name="build-doc" depends="clean-doc">
+		<echo>Deleting old API files</echo>
+		<delete>
+			<fileset dir="${project.dir}/api" includes="**/*" />
+		</delete>
+
 		<mkdir dir="${yuidoc.tmpdir}" />
 		<mkdir dir="${yuidoc.tmpdir}/parsertmp" />
 
 		<echo>Generating ${project.name} Documentation</echo>
-
+		<var name="yuidoc.modules.list" value=""/>
+		<for param="dir">
+			<path>
+				<dirset
+					dir="${project.dir}/build"
+					includes="*"
+				/>
+			</path>
+			<sequential>
+				<var name="yuidoc.modules.list" value="@{dir} ${yuidoc.modules.list}"/>
+			</sequential>
+		</for>
 		<exec executable="${yuidoc.exec}">
-			<arg value="${yuidoc.parsein.dir}"/>
+			<arg line="${yuidoc.modules.list}"/>
 			<arg value="-p"/>
 			<arg value="${yuidoc.tmpdir}/parsertmp"/>
 			<arg value="-o" />
@@ -179,13 +194,18 @@
 			<arg value="${project.url}" />
 		</exec>
 
+		<copy todir="${project.dir}/api" overwrite="true">
+			<fileset dir="${project.dir}/_api" includes="**/*" />
+		</copy>
+
 		<echo>Removing Temp Built Files from ${yuidoc.tmpdir}</echo>
 		<delete dir="${yuidoc.tmpdir}" />
+		<delete dir="${project.dir}/_api" />
 	</target>
 
 	<target name="clean-doc" description="Clean out build">
 		<echo>Removing Documentation Built Files</echo>
 		<delete dir="${yuidoc.tmpdir}" />
-		<delete dir="${yuidoc.output.dir}" />
+		<delete dir="${project.dir}/_api" />
 	</target>
 </project>
