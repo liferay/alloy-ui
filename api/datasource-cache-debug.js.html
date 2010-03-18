@@ -1,0 +1,793 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: datasource   datasource-cache-debug.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			datasource&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_datasource.html" title="datasource">datasource</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">datasource-cache-debug.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="DataSource.Function.html" title="DataSource.Function">DataSource.Function</a></li>
+
+
+				                                <li class=""><a href="DataSource.Get.html" title="DataSource.Get">DataSource.Get</a></li>
+
+
+				                                <li class=""><a href="DataSource.IO.html" title="DataSource.IO">DataSource.IO</a></li>
+
+
+				                                <li class=""><a href="DataSource.Local.html" title="DataSource.Local">DataSource.Local</a></li>
+
+
+				                                <li class=""><a href="DataSourceArraySchema.html" title="DataSourceArraySchema">DataSourceArraySchema</a></li>
+
+
+				                                <li class=""><a href="DataSourceCache.html" title="DataSourceCache">DataSourceCache</a></li>
+
+
+				                                <li class=""><a href="DataSourceJSONSchema.html" title="DataSourceJSONSchema">DataSourceJSONSchema</a></li>
+
+
+				                                <li class=""><a href="DataSourceTextSchema.html" title="DataSourceTextSchema">DataSourceTextSchema</a></li>
+
+
+				                                <li class=""><a href="DataSourceXMLSchema.html" title="DataSourceXMLSchema">DataSourceXMLSchema</a></li>
+
+
+				                                <li class=""><a href="Pollable.html" title="Pollable">Pollable</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="datasource-arrayschema-debug.js.html" title="datasource-arrayschema-debug.js">datasource-arrayschema-debug.js</a></li>
+
+
+			                                <li class=""><a href="datasource-arrayschema-min.js.html" title="datasource-arrayschema-min.js">datasource-arrayschema-min.js</a></li>
+
+
+			                                <li class=""><a href="datasource-arrayschema.js.html" title="datasource-arrayschema.js">datasource-arrayschema.js</a></li>
+
+
+			                                <li class="selected"><a href="datasource-cache-debug.js.html" title="datasource-cache-debug.js">datasource-cache-debug.js</a></li>
+
+
+			                                <li class=""><a href="datasource-cache-min.js.html" title="datasource-cache-min.js">datasource-cache-min.js</a></li>
+
+
+			                                <li class=""><a href="datasource-cache.js.html" title="datasource-cache.js">datasource-cache.js</a></li>
+
+
+			                                <li class=""><a href="datasource-debug.js.html" title="datasource-debug.js">datasource-debug.js</a></li>
+
+
+			                                <li class=""><a href="datasource-function-debug.js.html" title="datasource-function-debug.js">datasource-function-debug.js</a></li>
+
+
+			                                <li class=""><a href="datasource-function-min.js.html" title="datasource-function-min.js">datasource-function-min.js</a></li>
+
+
+			                                <li class=""><a href="datasource-function.js.html" title="datasource-function.js">datasource-function.js</a></li>
+
+
+			                                <li class=""><a href="datasource-get-debug.js.html" title="datasource-get-debug.js">datasource-get-debug.js</a></li>
+
+
+			                                <li class=""><a href="datasource-get-min.js.html" title="datasource-get-min.js">datasource-get-min.js</a></li>
+
+
+			                                <li class=""><a href="datasource-get.js.html" title="datasource-get.js">datasource-get.js</a></li>
+
+
+			                                <li class=""><a href="datasource-io-debug.js.html" title="datasource-io-debug.js">datasource-io-debug.js</a></li>
+
+
+			                                <li class=""><a href="datasource-io-min.js.html" title="datasource-io-min.js">datasource-io-min.js</a></li>
+
+
+			                                <li class=""><a href="datasource-io.js.html" title="datasource-io.js">datasource-io.js</a></li>
+
+
+			                                <li class=""><a href="datasource-jsonschema-debug.js.html" title="datasource-jsonschema-debug.js">datasource-jsonschema-debug.js</a></li>
+
+
+			                                <li class=""><a href="datasource-jsonschema-min.js.html" title="datasource-jsonschema-min.js">datasource-jsonschema-min.js</a></li>
+
+
+			                                <li class=""><a href="datasource-jsonschema.js.html" title="datasource-jsonschema.js">datasource-jsonschema.js</a></li>
+
+
+			                                <li class=""><a href="datasource-local-debug.js.html" title="datasource-local-debug.js">datasource-local-debug.js</a></li>
+
+
+			                                <li class=""><a href="datasource-local-min.js.html" title="datasource-local-min.js">datasource-local-min.js</a></li>
+
+
+			                                <li class=""><a href="datasource-local.js.html" title="datasource-local.js">datasource-local.js</a></li>
+
+
+			                                <li class=""><a href="datasource-min.js.html" title="datasource-min.js">datasource-min.js</a></li>
+
+
+			                                <li class=""><a href="datasource-polling-debug.js.html" title="datasource-polling-debug.js">datasource-polling-debug.js</a></li>
+
+
+			                                <li class=""><a href="datasource-polling-min.js.html" title="datasource-polling-min.js">datasource-polling-min.js</a></li>
+
+
+			                                <li class=""><a href="datasource-polling.js.html" title="datasource-polling.js">datasource-polling.js</a></li>
+
+
+			                                <li class=""><a href="datasource-textschema-debug.js.html" title="datasource-textschema-debug.js">datasource-textschema-debug.js</a></li>
+
+
+			                                <li class=""><a href="datasource-textschema-min.js.html" title="datasource-textschema-min.js">datasource-textschema-min.js</a></li>
+
+
+			                                <li class=""><a href="datasource-textschema.js.html" title="datasource-textschema.js">datasource-textschema.js</a></li>
+
+
+			                                <li class=""><a href="datasource-xmlschema-debug.js.html" title="datasource-xmlschema-debug.js">datasource-xmlschema-debug.js</a></li>
+
+
+			                                <li class=""><a href="datasource-xmlschema-min.js.html" title="datasource-xmlschema-min.js">datasource-xmlschema-min.js</a></li>
+
+
+			                                <li class=""><a href="datasource-xmlschema.js.html" title="datasource-xmlschema.js">datasource-xmlschema.js</a></li>
+
+
+			                                <li class=""><a href="datasource.js.html" title="datasource.js">datasource.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
+<span class="cm">Code licensed under the BSD License:</span>
+<span class="cm">http://developer.yahoo.com/yui/license.html</span>
+<span class="cm">version: 3.1.0</span>
+<span class="cm">build: nightly</span>
+<span class="cm">*/</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datasource-cache&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Extends DataSource with caching functionality.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module datasource</span>
+<span class="cm"> * @submodule datasource-cache</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Adds cacheability to the DataSource Utility.</span>
+<span class="cm"> * @class DataSourceCache</span>
+<span class="cm"> * @extends Cache</span>
+<span class="cm"> */</span>    
+<span class="kd">var</span> <span class="nx">DataSourceCache</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">DataSourceCache</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">DataSourceCache</span><span class="p">,</span> <span class="p">{</span>
+    <span class="cm">/**</span>
+<span class="cm">     * The namespace for the plugin. This will be the property on the host which</span>
+<span class="cm">     * references the plugin instance.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property NS</span>
+<span class="cm">     * @type String</span>
+<span class="cm">     * @static</span>
+<span class="cm">     * @final</span>
+<span class="cm">     * @value &quot;cache&quot;</span>
+<span class="cm">     */</span>
+    <span class="nx">NS</span><span class="o">:</span> <span class="s2">&quot;cache&quot;</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Class name.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property NAME</span>
+<span class="cm">     * @type String</span>
+<span class="cm">     * @static</span>
+<span class="cm">     * @final</span>
+<span class="cm">     * @value &quot;dataSourceCache&quot;</span>
+<span class="cm">     */</span>
+    <span class="nx">NAME</span><span class="o">:</span> <span class="s2">&quot;dataSourceCache&quot;</span><span class="p">,</span>
+
+    <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+    <span class="c1">//</span>
+    <span class="c1">// DataSourceCache Attributes</span>
+    <span class="c1">//</span>
+    <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+
+    <span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">DataSourceCache</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Cache</span><span class="p">,</span> <span class="p">{</span>
+    <span class="cm">/**</span>
+<span class="cm">    * Internal init() handler.</span>
+<span class="cm">    *</span>
+<span class="cm">    * @method initializer</span>
+<span class="cm">    * @param config {Object} Config object.</span>
+<span class="cm">    * @private</span>
+<span class="cm">    */</span>
+    <span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">doBefore</span><span class="p">(</span><span class="s2">&quot;_defRequestFn&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_beforeDefRequestFn</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">doBefore</span><span class="p">(</span><span class="s2">&quot;_defResponseFn&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_beforeDefResponseFn</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * First look for cached response, then send request to live data.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _beforeDefRequestFn</span>
+<span class="cm">     * @param e {Event.Facade} Event Facade with the following properties:</span>
+<span class="cm">     * &lt;dl&gt;</span>
+<span class="cm">     * &lt;dt&gt;tId (Number)&lt;/dt&gt; &lt;dd&gt;Unique transaction ID.&lt;/dd&gt;</span>
+<span class="cm">     * &lt;dt&gt;request (Object)&lt;/dt&gt; &lt;dd&gt;The request.&lt;/dd&gt;</span>
+<span class="cm">     * &lt;dt&gt;callback (Object)&lt;/dt&gt; &lt;dd&gt;The callback object.&lt;/dd&gt;</span>
+<span class="cm">     * &lt;dt&gt;cfg (Object)&lt;/dt&gt; &lt;dd&gt;Configuration object.&lt;/dd&gt;</span>
+<span class="cm">     * &lt;/dl&gt;</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_beforeDefRequestFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Is response already in the Cache?</span>
+        <span class="kd">var</span> <span class="nx">entry</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">retrieve</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">request</span><span class="p">))</span> <span class="o">||</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">entry</span> <span class="o">&amp;&amp;</span> <span class="nx">entry</span><span class="p">.</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;host&quot;</span><span class="p">).</span><span class="nx">fire</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">({</span><span class="nx">response</span><span class="o">:</span> <span class="nx">entry</span><span class="p">.</span><span class="nx">response</span><span class="p">},</span> <span class="nx">e</span><span class="p">));</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Do</span><span class="p">.</span><span class="nx">Halt</span><span class="p">(</span><span class="s2">&quot;DataSourceCache plugin halted _defRequestFn&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    
+    <span class="cm">/**</span>
+<span class="cm">     * Adds data to cache before returning data.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _beforeDefResponseFn</span>
+<span class="cm">     * @param e {Event.Facade} Event Facade with the following properties:</span>
+<span class="cm">     * &lt;dl&gt;</span>
+<span class="cm">     * &lt;dt&gt;tId (Number)&lt;/dt&gt; &lt;dd&gt;Unique transaction ID.&lt;/dd&gt;</span>
+<span class="cm">     * &lt;dt&gt;request (Object)&lt;/dt&gt; &lt;dd&gt;The request.&lt;/dd&gt;</span>
+<span class="cm">     * &lt;dt&gt;callback (Object)&lt;/dt&gt; &lt;dd&gt;The callback object with the following properties:</span>
+<span class="cm">     *     &lt;dl&gt;</span>
+<span class="cm">     *         &lt;dt&gt;success (Function)&lt;/dt&gt; &lt;dd&gt;Success handler.&lt;/dd&gt;</span>
+<span class="cm">     *         &lt;dt&gt;failure (Function)&lt;/dt&gt; &lt;dd&gt;Failure handler.&lt;/dd&gt;</span>
+<span class="cm">     *     &lt;/dl&gt;</span>
+<span class="cm">     * &lt;/dd&gt;</span>
+<span class="cm">     * &lt;dt&gt;data (Object)&lt;/dt&gt; &lt;dd&gt;Raw data.&lt;/dd&gt;</span>
+<span class="cm">     * &lt;dt&gt;response (Object)&lt;/dt&gt; &lt;dd&gt;Normalized response object with the following properties:</span>
+<span class="cm">     *     &lt;dl&gt;</span>
+<span class="cm">     *         &lt;dt&gt;cached (Object)&lt;/dt&gt; &lt;dd&gt;True when response is cached.&lt;/dd&gt;</span>
+<span class="cm">     *         &lt;dt&gt;results (Object)&lt;/dt&gt; &lt;dd&gt;Parsed results.&lt;/dd&gt;</span>
+<span class="cm">     *         &lt;dt&gt;meta (Object)&lt;/dt&gt; &lt;dd&gt;Parsed meta data.&lt;/dd&gt;</span>
+<span class="cm">     *         &lt;dt&gt;error (Object)&lt;/dt&gt; &lt;dd&gt;Error object.&lt;/dd&gt;</span>
+<span class="cm">     *     &lt;/dl&gt;</span>
+<span class="cm">     * &lt;/dd&gt;</span>
+<span class="cm">     * &lt;dt&gt;cfg (Object)&lt;/dt&gt; &lt;dd&gt;Configuration object.&lt;/dd&gt;</span>
+<span class="cm">     * &lt;/dl&gt;</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+     <span class="nx">_beforeDefResponseFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Add to Cache before returning</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">response</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">e</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">cached</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">e</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">cached</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">request</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">response</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">callback</span> <span class="o">&amp;&amp;</span> <span class="nx">e</span><span class="p">.</span><span class="nx">callback</span><span class="p">.</span><span class="nx">argument</span><span class="p">));</span>
+        <span class="p">}</span>
+     <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;Plugin&#39;</span><span class="p">).</span><span class="nx">DataSourceCache</span> <span class="o">=</span> <span class="nx">DataSourceCache</span><span class="p">;</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">,</span> <span class="s1">&#39;cache&#39;</span><span class="p">]});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "DataSource.Get.html#config_asyncMode", "access": "", "host": "DataSource.Get", "type": "config", "name": "asyncMode"}, {"url": "DataSource.Get.html#event_asyncModeChange", "access": "", "host": "DataSource.Get", "type": "event", "name": "asyncModeChange"}, {"url": "DataSourceArraySchema.html#method__beforeDefDataFn\n<dl>\n<dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>\n<dt>request (Object)</dt> <dd>The request.</dd>\n<dt>callback (Object)</dt> <dd>The callback object with the following properties:\n<dl>\n<dt>success (Function)</dt> <dd>Success handler.</dd>\n<dt>failure (Function)</dt> <dd>Failure handler.</dd>\n</dl>\n</dd>\n<dt>data (Object)</dt> <dd>Raw data.</dd>\n</dl>", "access": "protected", "host": "DataSourceArraySchema", "type": "method", "name": "_beforeDefDataFn\n<dl>\n<dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>\n<dt>request (Object)</dt> <dd>The request.</dd>\n<dt>callback (Object)</dt> <dd>The callback object with the following properties:\n<dl>\n<dt>success (Function)</dt> <dd>Success handler.</dd>\n<dt>failure (Function)</dt> <dd>Failure handler.</dd>\n</dl>\n</dd>\n<dt>data (Object)</dt> <dd>Raw data.</dd>\n</dl>"}, {"url": "DataSourceJSONSchema.html#method__beforeDefDataFn\n<dl>\n<dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>\n<dt>request (Object)</dt> <dd>The request.</dd>\n<dt>callback (Object)</dt> <dd>The callback object with the following properties:\n<dl>\n<dt>success (Function)</dt> <dd>Success handler.</dd>\n<dt>failure (Function)</dt> <dd>Failure handler.</dd>\n</dl>\n</dd>\n<dt>data (Object)</dt> <dd>Raw data.</dd>\n</dl>", "access": "protected", "host": "DataSourceJSONSchema", "type": "method", "name": "_beforeDefDataFn\n<dl>\n<dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>\n<dt>request (Object)</dt> <dd>The request.</dd>\n<dt>callback (Object)</dt> <dd>The callback object with the following properties:\n<dl>\n<dt>success (Function)</dt> <dd>Success handler.</dd>\n<dt>failure (Function)</dt> <dd>Failure handler.</dd>\n</dl>\n</dd>\n<dt>data (Object)</dt> <dd>Raw data.</dd>\n</dl>"}, {"url": "DataSourceXMLSchema.html#method__beforeDefDataFn\n<dl>\n<dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>\n<dt>request (Object)</dt> <dd>The request.</dd>\n<dt>callback (Object)</dt> <dd>The callback object with the following properties:\n<dl>\n<dt>success (Function)</dt> <dd>Success handler.</dd>\n<dt>failure (Function)</dt> <dd>Failure handler.</dd>\n</dl>\n</dd>\n<dt>data (Object)</dt> <dd>Raw data.</dd>\n</dl>", "access": "protected", "host": "DataSourceXMLSchema", "type": "method", "name": "_beforeDefDataFn\n<dl>\n<dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>\n<dt>request (Object)</dt> <dd>The request.</dd>\n<dt>callback (Object)</dt> <dd>The callback object with the following properties:\n<dl>\n<dt>success (Function)</dt> <dd>Success handler.</dd>\n<dt>failure (Function)</dt> <dd>Failure handler.</dd>\n</dl>\n</dd>\n<dt>data (Object)</dt> <dd>Raw data.</dd>\n</dl>"}, {"url": "DataSourceTextSchema.html#method__beforeDefDataFn\n<dl>\n<dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>\n<dt>request (Object)</dt> <dd>The request.</dd>\n<dt>callback (Object)</dt> <dd>The callback object with the following properties:\n<dl>\n<dt>success (Function)</dt> <dd>Success handler.</dd>\n<dt>failure (Function)</dt> <dd>Failure handler.</dd>\n</dl>\n</dd>\n<dt>data (Object)</dt> <dd>Raw data.</dd>\n</dl>", "access": "protected", "host": "DataSourceTextSchema", "type": "method", "name": "_beforeDefDataFn\n<dl>\n<dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>\n<dt>request (Object)</dt> <dd>The request.</dd>\n<dt>callback (Object)</dt> <dd>The callback object with the following properties:\n<dl>\n<dt>success (Function)</dt> <dd>Success handler.</dd>\n<dt>failure (Function)</dt> <dd>Failure handler.</dd>\n</dl>\n</dd>\n<dt>data (Object)</dt> <dd>Raw data.</dd>\n</dl>"}, {"url": "DataSourceCache.html#method__beforeDefRequestFn", "access": "protected", "host": "DataSourceCache", "type": "method", "name": "_beforeDefRequestFn"}, {"url": "DataSourceCache.html#method__beforeDefResponseFn", "access": "protected", "host": "DataSourceCache", "type": "method", "name": "_beforeDefResponseFn"}, {"url": "Pollable.html#method_clearAllIntervals", "access": "", "host": "Pollable", "type": "method", "name": "clearAllIntervals"}, {"url": "Pollable.html#method_clearInterval", "access": "", "host": "Pollable", "type": "method", "name": "clearInterval"}, {"url": "DataSource.Local.html#event_data", "access": "", "host": "DataSource.Local", "type": "event", "name": "data"}, {"url": "DataSource.Local.html#method_DataSource.issueCallback", "access": "", "host": "DataSource.Local", "type": "method", "name": "DataSource.issueCallback"}, {"url": "DataSource.Local.html#method__defDataFn", "access": "protected", "host": "DataSource.Local", "type": "method", "name": "_defDataFn"}, {"url": "DataSource.Local.html#method__defRequestFn", "access": "protected", "host": "DataSource.Local", "type": "method", "name": "_defRequestFn"}, {"url": "DataSource.IO.html#method__defRequestFn", "access": "protected", "host": "DataSource.IO", "type": "method", "name": "_defRequestFn"}, {"url": "DataSource.Get.html#method__defRequestFn", "access": "protected", "host": "DataSource.Get", "type": "method", "name": "_defRequestFn"}, {"url": "DataSource.Function.html#method__defRequestFn", "access": "protected", "host": "DataSource.Function", "type": "method", "name": "_defRequestFn"}, {"url": "DataSource.Local.html#method__defResponseFn", "access": "protected", "host": "DataSource.Local", "type": "method", "name": "_defResponseFn"}, {"url": "DataSource.Local.html#event_error", "access": "", "host": "DataSource.Local", "type": "event", "name": "error"}, {"url": "DataSource.Get.html#method__generateRequest", "access": "protected", "host": "DataSource.Get", "type": "method", "name": "_generateRequest"}, {"url": "DataSource.Get.html#config_generateRequestCallback", "access": "", "host": "DataSource.Get", "type": "config", "name": "generateRequestCallback"}, {"url": "DataSource.Get.html#event_generateRequestCallbackChange", "access": "", "host": "DataSource.Get", "type": "event", "name": "generateRequestCallbackChange"}, {"url": "DataSource.Get.html#config_get", "access": "", "host": "DataSource.Get", "type": "config", "name": "get"}, {"url": "DataSource.Get.html#event_getChange", "access": "", "host": "DataSource.Get", "type": "event", "name": "getChange"}, {"url": "DataSource.IO.html#config_io", "access": "", "host": "DataSource.IO", "type": "config", "name": "io"}, {"url": "DataSource.IO.html#event_ioChange", "access": "", "host": "DataSource.IO", "type": "event", "name": "ioChange"}, {"url": "DataSource.Get.html#property__last", "access": "protected", "host": "DataSource.Get", "type": "property", "name": "_last"}, {"url": "DataSourceArraySchema.html#property_NAME", "access": "", "host": "DataSourceArraySchema", "type": "property", "name": "NAME"}, {"url": "DataSourceCache.html#property_NAME", "access": "", "host": "DataSourceCache", "type": "property", "name": "NAME"}, {"url": "DataSource.Local.html#property_NAME", "access": "", "host": "DataSource.Local", "type": "property", "name": "NAME"}, {"url": "DataSource.IO.html#property_NAME", "access": "", "host": "DataSource.IO", "type": "property", "name": "NAME"}, {"url": "DataSource.Get.html#property_NAME", "access": "", "host": "DataSource.Get", "type": "property", "name": "NAME"}, {"url": "DataSource.Function.html#property_NAME", "access": "", "host": "DataSource.Function", "type": "property", "name": "NAME"}, {"url": "DataSourceJSONSchema.html#property_NAME", "access": "", "host": "DataSourceJSONSchema", "type": "property", "name": "NAME"}, {"url": "DataSourceXMLSchema.html#property_NAME", "access": "", "host": "DataSourceXMLSchema", "type": "property", "name": "NAME"}, {"url": "DataSourceTextSchema.html#property_NAME", "access": "", "host": "DataSourceTextSchema", "type": "property", "name": "NAME"}, {"url": "DataSourceArraySchema.html#property_NS", "access": "", "host": "DataSourceArraySchema", "type": "property", "name": "NS"}, {"url": "DataSourceCache.html#property_NS", "access": "", "host": "DataSourceCache", "type": "property", "name": "NS"}, {"url": "DataSourceJSONSchema.html#property_NS", "access": "", "host": "DataSourceJSONSchema", "type": "property", "name": "NS"}, {"url": "DataSourceXMLSchema.html#property_NS", "access": "", "host": "DataSourceXMLSchema", "type": "property", "name": "NS"}, {"url": "DataSourceTextSchema.html#property_NS", "access": "", "host": "DataSourceTextSchema", "type": "property", "name": "NS"}, {"url": "DataSource.Local.html#event_request", "access": "", "host": "DataSource.Local", "type": "event", "name": "request"}, {"url": "DataSource.Local.html#event_response", "access": "", "host": "DataSource.Local", "type": "event", "name": "response"}, {"url": "DataSource.Get.html#config_scriptCallbackParam", "access": "", "host": "DataSource.Get", "type": "config", "name": "scriptCallbackParam"}, {"url": "DataSource.Get.html#event_scriptCallbackParamChange", "access": "", "host": "DataSource.Get", "type": "event", "name": "scriptCallbackParamChange"}, {"url": "DataSource.Local.html#method_sendRequest", "access": "", "host": "DataSource.Local", "type": "method", "name": "sendRequest"}, {"url": "Pollable.html#method_setInterval", "access": "", "host": "Pollable", "type": "method", "name": "setInterval"}, {"url": "DataSource.Local.html#config_source", "access": "", "host": "DataSource.Local", "type": "config", "name": "source"}, {"url": "DataSource.Function.html#config_source", "access": "", "host": "DataSource.Function", "type": "config", "name": "source"}, {"url": "DataSource.Local.html#event_sourceChange", "access": "", "host": "DataSource.Local", "type": "event", "name": "sourceChange"}, {"url": "DataSource.Function.html#event_sourceChange", "access": "", "host": "DataSource.Function", "type": "event", "name": "sourceChange"}];
+</script>
+</body>
+</html>

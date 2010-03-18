@@ -1,0 +1,1813 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: slider  SliderValueRange   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			slider&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_slider.html" title="slider">slider</a>
+
+	                 <span class="separator">&gt;</span> <span class="classname">SliderValueRange</span> 
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="ClickableRail.html" title="ClickableRail">ClickableRail</a></li>
+
+
+				                                <li class=""><a href="Slider.html" title="Slider">Slider</a></li>
+
+
+				                                <li class=""><a href="SliderBase.html" title="SliderBase">SliderBase</a></li>
+
+
+				                                <li class="selected"><a href="SliderValueRange.html" title="SliderValueRange">SliderValueRange</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-configuration">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-configuration-hd">
+										<span class="aui-widget-hd-text">Configuration Attributes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#config_max" title="max">max</a></li>
+												<li class=""><a href="#config_min" title="min">min</a></li>
+												<li class=""><a href="#config_value" title="value">value</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-properties">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-properties-hd">
+										<span class="aui-widget-hd-text">Properties</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+				                                <li class="protected"><a href="#property__factor" title="_factor">_factor</a></li>
+
+				                                <li class="protected"><a href="#property__offsetXY" title="_offsetXY">_offsetXY</a></li>
+
+				                                <li class="protected"><a href="#property_ATTRS" title="ATTRS">ATTRS</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-methods">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-methods-hd">
+										<span class="aui-widget-hd-text">Methods</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+				                               <li class="protected"><a href="#method__afterMaxChange" title="_afterMaxChange">_afterMaxChange</a></li>
+				                               <li class="protected"><a href="#method__afterMinChange" title="_afterMinChange">_afterMinChange</a></li>
+				                               <li class="protected"><a href="#method__afterValueChange" title="_afterValueChange">_afterValueChange</a></li>
+				                               <li class="protected"><a href="#method__bindValueLogic" title="_bindValueLogic">_bindValueLogic</a></li>
+				                               <li class="protected"><a href="#method__cacheRailOffset" title="_cacheRailOffset">_cacheRailOffset</a></li>
+				                               <li class="protected"><a href="#method__calculateFactor" title="_calculateFactor">_calculateFactor</a></li>
+				                               <li class="protected"><a href="#method__defThumbMoveFn" title="_defThumbMoveFn">_defThumbMoveFn</a></li>
+				                               <li class="protected"><a href="#method__initSliderValueRange" title="_initSliderValueRange">_initSliderValueRange</a></li>
+				                               <li class="protected"><a href="#method__nearestValue" title="_nearestValue">_nearestValue</a></li>
+				                               <li class="protected"><a href="#method__offsetToValue" title="_offsetToValue">_offsetToValue</a></li>
+				                               <li class="protected"><a href="#method__setPosition" title="_setPosition">_setPosition</a></li>
+				                               <li class="protected"><a href="#method__syncThumbPosition" title="_syncThumbPosition">_syncThumbPosition</a></li>
+				                               <li class="protected"><a href="#method__validateNewMax" title="_validateNewMax">_validateNewMax</a></li>
+				                               <li class="protected"><a href="#method__validateNewMin" title="_validateNewMin">_validateNewMin</a></li>
+				                               <li class="protected"><a href="#method__validateNewValue" title="_validateNewValue">_validateNewValue</a></li>
+				                               <li class="protected"><a href="#method__valueToOffset" title="_valueToOffset">_valueToOffset</a></li>
+				                               <li class="protected"><a href="#method__verifyValue" title="_verifyValue">_verifyValue</a></li>
+				                               <li class=""><a href="#method_getValue" title="getValue">getValue</a></li>
+				                               <li class=""><a href="#method_setValue" title="setValue">setValue</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-events">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-events-hd">
+										<span class="aui-widget-hd-text">Events</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#event_maxChange" title="maxChange">maxChange</a></li>
+												<li class=""><a href="#event_minChange" title="minChange">minChange</a></li>
+												<li class=""><a href="#event_valueChange" title="valueChange">valueChange</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="clickable-rail-debug.js.html" title="clickable-rail-debug.js">clickable-rail-debug.js</a></li>
+
+
+			                                <li class=""><a href="clickable-rail-min.js.html" title="clickable-rail-min.js">clickable-rail-min.js</a></li>
+
+
+			                                <li class=""><a href="clickable-rail.js.html" title="clickable-rail.js">clickable-rail.js</a></li>
+
+
+			                                <li class=""><a href="range-slider-debug.js.html" title="range-slider-debug.js">range-slider-debug.js</a></li>
+
+
+			                                <li class=""><a href="range-slider-min.js.html" title="range-slider-min.js">range-slider-min.js</a></li>
+
+
+			                                <li class=""><a href="range-slider.js.html" title="range-slider.js">range-slider.js</a></li>
+
+
+			                                <li class=""><a href="slider-base-debug.js.html" title="slider-base-debug.js">slider-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="slider-base-min.js.html" title="slider-base-min.js">slider-base-min.js</a></li>
+
+
+			                                <li class=""><a href="slider-base.js.html" title="slider-base.js">slider-base.js</a></li>
+
+
+			                                <li class=""><a href="slider-debug.js.html" title="slider-debug.js">slider-debug.js</a></li>
+
+
+			                                <li class=""><a href="slider-min.js.html" title="slider-min.js">slider-min.js</a></li>
+
+
+			                                <li class=""><a href="slider-value-range-debug.js.html" title="slider-value-range-debug.js">slider-value-range-debug.js</a></li>
+
+
+			                                <li class=""><a href="slider-value-range-min.js.html" title="slider-value-range-min.js">slider-value-range-min.js</a></li>
+
+
+			                                <li class=""><a href="slider-value-range.js.html" title="slider-value-range.js">slider-value-range.js</a></li>
+
+
+			                                <li class=""><a href="slider.js.html" title="slider.js">slider.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<h2>
+								
+
+								
+
+								
+
+								Class <b property="yui:name">SliderValueRange</b>
+
+
+							</h2>
+
+							<!-- class tree goes here -->
+
+
+
+							<div class="summary description" property="yui:description">
+								One class of value algorithm that can be built onto SliderBase.  By default,
+values range between 0 and 100, but you can configure these on the
+built Slider class by setting the <code>min</code> and <code>max</code>
+configurations.  Set the initial value (will cause the thumb to move to the
+appropriate location on the rail) in configuration as well if appropriate.
+							</div>
+
+
+							<div rel="yui:properties" resource="#properties">
+
+								<div class="section field details">
+
+									<h3 id="properties">Properties</h3>
+
+									<div class="content">
+
+											<div class="api-entry-row property-row protected" rel="yui:property" resource="#property__factor">
+
+											<h4>
+												<a name="property__factor" property="yui:name">_factor</a>
+												- <code>protected <span property="yui:type">{Number}</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Factor used to translate value -&gt; position -&gt; value.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row protected" rel="yui:property" resource="#property__offsetXY">
+
+											<h4>
+												<a name="property__offsetXY" property="yui:name">_offsetXY</a>
+												- <code>protected <span property="yui:type">{Number}</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Cached X or Y offset for the rail to avoid extraneous
+<code>getXY()</code> calls during run time calculation.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row protected" rel="yui:property" resource="#property_ATTRS">
+
+											<h4>
+												<a name="property_ATTRS" property="yui:name">ATTRS</a>
+												- <code>protected static <span property="yui:type">{Object}</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Attributes that will be added onto host class.
+												</div>
+											</div>
+
+
+
+
+											</div>
+									</div>
+								</div>
+
+							</div>
+
+							<div rel="yui:attributes" resource="#configattributes">
+
+									<div class="section field details">
+
+										<h3 id="configattributes">Configuration Attributes</h3>
+
+										<div class="content">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_max">
+
+													<h4>
+														<a name="config_max">max</a>
+														<code>- <span property="yui:type">{ Number }</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The value associated with the farthest bottom, right position of
+the rail.  Can be less than the configured <code>min</code> if
+you want values to increase from right-to-left or bottom-to-top.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>100</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_min">
+
+													<h4>
+														<a name="config_min">min</a>
+														<code>- <span property="yui:type">{ Number }</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The value associated with the farthest top, left position of the
+rail.  Can be greater than the configured <code>max</code> if you
+want values to increase from right-to-left or bottom-to-top.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>0</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_value">
+
+													<h4>
+														<a name="config_value">value</a>
+														<code>- <span property="yui:type">{ Number }</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The value associated with the thumb's current position on the
+rail. Defaults to the value inferred from the thumb's current
+position. Specifying value in the constructor will move the
+thumb to the position that corresponds to the supplied value.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>(inferred from current thumb position)</strong>
+													</div>
+
+												</div>
+
+										</div>
+									</div>
+
+
+							</div>
+
+							<div rel="yui:methods" resource="#methods">
+									<div class="section method details">
+
+										<h3 id="methods">Methods</h3>
+
+										<div class="content">
+
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterMaxChange">
+
+													<h4>
+														<a name="method__afterMaxChange">_afterMaxChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_afterMaxChange</strong>
+														   (
+																
+																		
+																		 e
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Update position according to new max value.  If the new max results
+in the current value being out of range, the value is set to the
+closer of min or max.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">e</span>
+																		&lt;<span property="yui:type"> EventFacade </span>&gt;
+																		</code>
+																		<span property="yui:description">  The <code>max</code> attribute change event.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterMinChange">
+
+													<h4>
+														<a name="method__afterMinChange">_afterMinChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_afterMinChange</strong>
+														   (
+																
+																		
+																		 e
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Update position according to new min value.  If the new min results
+in the current value being out of range, the value is set to the
+closer of min or max.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">e</span>
+																		&lt;<span property="yui:type"> EventFacade </span>&gt;
+																		</code>
+																		<span property="yui:description">  The <code>min</code> attribute change event.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterValueChange">
+
+													<h4>
+														<a name="method__afterValueChange">_afterValueChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_afterValueChange</strong>
+														   (
+																
+																		
+																		 e
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Propagate change to the thumb position unless the change originated
+from the thumbMove event.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">e</span>
+																		&lt;<span property="yui:type"> EventFacade </span>&gt;
+																		</code>
+																		<span property="yui:description">  The <code>valueChange</code> event.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__bindValueLogic">
+
+													<h4>
+														<a name="method__bindValueLogic">_bindValueLogic</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_bindValueLogic</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Override of stub method in SliderBase that is called at the end of
+its bindUI stage of render().  Subscribes to internal events to
+trigger UI and related state updates.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__cacheRailOffset">
+
+													<h4>
+														<a name="method__cacheRailOffset">_cacheRailOffset</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_cacheRailOffset</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Captures the current top left of the rail to avoid excessive DOM
+lookups at run time.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__calculateFactor">
+
+													<h4>
+														<a name="method__calculateFactor">_calculateFactor</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_calculateFactor</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Calculates and caches
+(range between max and min) / (rail width or height)
+for fast runtime calculation of position -&gt; value.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__defThumbMoveFn">
+
+													<h4>
+														<a name="method__defThumbMoveFn">_defThumbMoveFn</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_defThumbMoveFn</strong>
+														   (
+																
+																		
+																		 e
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Dispatch the new position of the thumb into the value setting
+operations.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">e</span>
+																		&lt;<span property="yui:type"> EventFacade </span>&gt;
+																		</code>
+																		<span property="yui:description">  The host's thumbMove event</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__initSliderValueRange">
+
+													<h4>
+														<a name="method__initSliderValueRange">_initSliderValueRange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_initSliderValueRange</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Attach event listeners to keep the UI in sync with the min/max/value
+attributes and thumb position.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__nearestValue">
+
+													<h4>
+														<a name="method__nearestValue">_nearestValue</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														 Number 
+															<strong property="yui:name">_nearestValue</strong>
+														   (
+																
+																		
+																		 value
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns the nearest valid value to the value input.  If the provided
+value is outside the min - max range, accounting for min > max
+scenarios, the nearest of either min or max is returned.  Otherwise,
+the provided value is returned.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">value</span>
+																		&lt;<span property="yui:type"> mixed </span>&gt;
+																		</code>
+																		<span property="yui:description">  Value to test against current min - max range</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			 Number 
+																	</code></dt>
+																	<dd property="yui:returnInfo">Current min, max, or value if within range</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__offsetToValue">
+
+													<h4>
+														<a name="method__offsetToValue">_offsetToValue</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														 mixed 
+															<strong property="yui:name">_offsetToValue</strong>
+														   (
+																
+																		
+																		 X
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															<p>Converts a pixel position into a value.  Calculates current
+position minus xy offsets of the rail multiplied by the
+ratio of <code>(max - min) / (constraining dim)</code>.</p>
+<p>Override this if you want to use a different value mapping
+algorithm.</p>
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">X</span>
+																		&lt;<span property="yui:type"> Number </span>&gt;
+																		</code>
+																		<span property="yui:description"> or Y pixel position</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			 mixed 
+																	</code></dt>
+																	<dd property="yui:returnInfo">Value corresponding to the provided pixel position</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__setPosition">
+
+													<h4>
+														<a name="method__setPosition">_setPosition</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_setPosition</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Positions the thumb in accordance with the translated value.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__syncThumbPosition">
+
+													<h4>
+														<a name="method__syncThumbPosition">_syncThumbPosition</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_syncThumbPosition</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Move the thumb to appropriate position if necessary.  Also resets
+the cached offsets and recalculates the conversion factor to
+translate position to value.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__validateNewMax">
+
+													<h4>
+														<a name="method__validateNewMax">_validateNewMax</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														 Boolean 
+															<strong property="yui:name">_validateNewMax</strong>
+														   (
+																
+																		
+																		 value
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Validates new values assigned to <code>max</code> attribute.  Numbers
+are acceptable.  Override this to enforce different rules.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">value</span>
+																		&lt;<span property="yui:type"> mixed </span>&gt;
+																		</code>
+																		<span property="yui:description">  Value assigned to <code>max</code> attribute.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			 Boolean 
+																	</code></dt>
+																	<dd property="yui:returnInfo">True for numbers.  False otherwise.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__validateNewMin">
+
+													<h4>
+														<a name="method__validateNewMin">_validateNewMin</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														 Boolean 
+															<strong property="yui:name">_validateNewMin</strong>
+														   (
+																
+																		
+																		 value
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Validates new values assigned to <code>min</code> attribute.  Numbers
+are acceptable.  Override this to enforce different rules.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">value</span>
+																		&lt;<span property="yui:type"> mixed </span>&gt;
+																		</code>
+																		<span property="yui:description">  Value assigned to <code>min</code> attribute.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			 Boolean 
+																	</code></dt>
+																	<dd property="yui:returnInfo">True for numbers.  False otherwise.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__validateNewValue">
+
+													<h4>
+														<a name="method__validateNewValue">_validateNewValue</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														 Boolean 
+															<strong property="yui:name">_validateNewValue</strong>
+														   (
+																
+																		
+																		 value
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Validates new values assigned to <code>value</code> attribute.
+Numbers between the configured <code>min</code> and <code>max</code>
+are acceptable.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">value</span>
+																		&lt;<span property="yui:type"> mixed </span>&gt;
+																		</code>
+																		<span property="yui:description">  Value assigned to <code>value</code> attribute</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			 Boolean 
+																	</code></dt>
+																	<dd property="yui:returnInfo">True if value is a number between the configured
+<code>min</code> and <code>max</code>.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__valueToOffset">
+
+													<h4>
+														<a name="method__valueToOffset">_valueToOffset</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														 Array 
+															<strong property="yui:name">_valueToOffset</strong>
+														   (
+																
+																		
+																		 val
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Converts a value into a positional pixel value for use in positioning
+the thumb according to the reverse of the
+<code>_offsetToValue( xy )</code> operation.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">val</span>
+																		&lt;<span property="yui:type"> Number </span>&gt;
+																		</code>
+																		<span property="yui:description">  The value to map to pixel X or Y position</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			 Array 
+																	</code></dt>
+																	<dd property="yui:returnInfo"><code>[ <em>X</em>px, <em>Y</em>px ] positional values</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__verifyValue">
+
+													<h4>
+														<a name="method__verifyValue">_verifyValue</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_verifyValue</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Verifies that the current value is within the min - max range.  If
+not, value is set to either min or max, depending on which is
+closer.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getValue">
+
+													<h4>
+														<a name="method_getValue">getValue</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Number
+															<strong property="yui:name">getValue</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns the current value.  Override this if you want to introduce
+output formatting. Otherwise equivalent to slider.get( "value" );
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setValue">
+
+													<h4>
+														<a name="method_setValue">setValue</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Slider
+															<strong property="yui:name">setValue</strong>
+														   (
+																
+																		
+																		 val
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Updates the current value.  Override this if you want to introduce
+input value parsing or preprocessing.  Otherwise equivalent to
+slider.set( "value", v );
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">val</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description">  The new value</span>
+																		</dd>
+																</dl>
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+							</div>
+
+							<div rel="yui:events" resource="#events">
+									<div class="section method details">
+										<h3 id="events">Events</h3>
+
+										<div class="content">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_maxChange">
+
+													<h4>
+														<a name="event_maxChange">maxChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">maxChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'max' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_minChange">
+
+													<h4>
+														<a name="event_minChange">minChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">minChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'min' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_valueChange">
+
+													<h4>
+														<a name="event_valueChange">valueChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">valueChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'value' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "SliderBase.html#method__afterAlign", "access": "protected", "host": "SliderBase", "type": "method", "name": "_afterAlign"}, {"url": "SliderBase.html#method__afterDisabledChange", "access": "protected", "host": "SliderBase", "type": "method", "name": "_afterDisabledChange"}, {"url": "SliderBase.html#method__afterLengthChange", "access": "protected", "host": "SliderBase", "type": "method", "name": "_afterLengthChange"}, {"url": "SliderValueRange.html#method__afterMaxChange", "access": "protected", "host": "SliderValueRange", "type": "method", "name": "_afterMaxChange"}, {"url": "SliderValueRange.html#method__afterMinChange", "access": "protected", "host": "SliderValueRange", "type": "method", "name": "_afterMinChange"}, {"url": "SliderValueRange.html#method__afterValueChange", "access": "protected", "host": "SliderValueRange", "type": "method", "name": "_afterValueChange"}, {"url": "SliderValueRange.html#property_ATTRS", "access": "protected", "host": "SliderValueRange", "type": "property", "name": "ATTRS"}, {"url": "SliderBase.html#property_axis", "access": "protected", "host": "SliderBase", "type": "property", "name": "axis"}, {"url": "SliderBase.html#config_axis", "access": "", "host": "SliderBase", "type": "config", "name": "axis"}, {"url": "SliderBase.html#event_axisChange", "access": "", "host": "SliderBase", "type": "event", "name": "axisChange"}, {"url": "ClickableRail.html#method__bindClickableRail", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_bindClickableRail"}, {"url": "SliderBase.html#method__bindThumbDD", "access": "protected", "host": "SliderBase", "type": "method", "name": "_bindThumbDD"}, {"url": "SliderBase.html#method_bindUI", "access": "protected", "host": "SliderBase", "type": "method", "name": "bindUI"}, {"url": "SliderBase.html#method__bindValueLogic", "access": "protected", "host": "SliderBase", "type": "method", "name": "_bindValueLogic"}, {"url": "SliderValueRange.html#method__bindValueLogic", "access": "protected", "host": "SliderValueRange", "type": "method", "name": "_bindValueLogic"}, {"url": "SliderBase.html#property_BOUNDING_TEMPLATE", "access": "", "host": "SliderBase", "type": "property", "name": "BOUNDING_TEMPLATE"}, {"url": "SliderValueRange.html#method__cacheRailOffset", "access": "protected", "host": "SliderValueRange", "type": "method", "name": "_cacheRailOffset"}, {"url": "SliderValueRange.html#method__calculateFactor", "access": "protected", "host": "SliderValueRange", "type": "method", "name": "_calculateFactor"}, {"url": "ClickableRail.html#config_clickableRail", "access": "", "host": "ClickableRail", "type": "config", "name": "clickableRail"}, {"url": "ClickableRail.html#event_clickableRailChange", "access": "", "host": "ClickableRail", "type": "event", "name": "clickableRailChange"}, {"url": "SliderBase.html#property_CONTENT_TEMPLATE", "access": "", "host": "SliderBase", "type": "property", "name": "CONTENT_TEMPLATE"}, {"url": "SliderBase.html#property__dd", "access": "protected", "host": "SliderBase", "type": "property", "name": "_dd"}, {"url": "ClickableRail.html#method__defRailMouseDownFn", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_defRailMouseDownFn"}, {"url": "SliderValueRange.html#method__defThumbMoveFn", "access": "protected", "host": "SliderValueRange", "type": "method", "name": "_defThumbMoveFn"}, {"url": "SliderValueRange.html#property__factor", "access": "protected", "host": "SliderValueRange", "type": "property", "name": "_factor"}, {"url": "ClickableRail.html#method__getThumbDestination", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_getThumbDestination"}, {"url": "SliderValueRange.html#method_getValue", "access": "", "host": "SliderValueRange", "type": "method", "name": "getValue"}, {"url": "ClickableRail.html#method__initClickableRail", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_initClickableRail"}, {"url": "SliderBase.html#method_initializer", "access": "protected", "host": "SliderBase", "type": "method", "name": "initializer"}, {"url": "SliderValueRange.html#method__initSliderValueRange", "access": "protected", "host": "SliderValueRange", "type": "method", "name": "_initSliderValueRange"}, {"url": "SliderBase.html#method__initThumbUrl", "access": "protected", "host": "SliderBase", "type": "method", "name": "_initThumbUrl"}, {"url": "SliderBase.html#property__key", "access": "protected", "host": "SliderBase", "type": "property", "name": "_key"}, {"url": "SliderBase.html#config_length", "access": "", "host": "SliderBase", "type": "config", "name": "length"}, {"url": "SliderBase.html#event_lengthChange", "access": "", "host": "SliderBase", "type": "event", "name": "lengthChange"}, {"url": "SliderValueRange.html#config_max", "access": "", "host": "SliderValueRange", "type": "config", "name": "max"}, {"url": "SliderValueRange.html#event_maxChange", "access": "", "host": "SliderValueRange", "type": "event", "name": "maxChange"}, {"url": "SliderValueRange.html#config_min", "access": "", "host": "SliderValueRange", "type": "config", "name": "min"}, {"url": "SliderValueRange.html#event_minChange", "access": "", "host": "SliderValueRange", "type": "event", "name": "minChange"}, {"url": "SliderValueRange.html#method__nearestValue", "access": "protected", "host": "SliderValueRange", "type": "method", "name": "_nearestValue"}, {"url": "SliderValueRange.html#method__offsetToValue", "access": "protected", "host": "SliderValueRange", "type": "method", "name": "_offsetToValue"}, {"url": "SliderValueRange.html#property__offsetXY", "access": "protected", "host": "SliderValueRange", "type": "property", "name": "_offsetXY"}, {"url": "SliderBase.html#method__onDragEnd", "access": "protected", "host": "SliderBase", "type": "method", "name": "_onDragEnd"}, {"url": "SliderBase.html#method__onDragStart", "access": "protected", "host": "SliderBase", "type": "method", "name": "_onDragStart"}, {"url": "ClickableRail.html#method__onRailMouseDown", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_onRailMouseDown"}, {"url": "SliderBase.html#property_rail", "access": "", "host": "SliderBase", "type": "property", "name": "rail"}, {"url": "ClickableRail.html#event_railMouseDown", "access": "", "host": "ClickableRail", "type": "event", "name": "railMouseDown"}, {"url": "SliderBase.html#property_RAIL_TEMPLATE", "access": "", "host": "SliderBase", "type": "property", "name": "RAIL_TEMPLATE"}, {"url": "SliderBase.html#method_renderRail", "access": "", "host": "SliderBase", "type": "method", "name": "renderRail"}, {"url": "SliderBase.html#method_renderThumb", "access": "", "host": "SliderBase", "type": "method", "name": "renderThumb"}, {"url": "SliderBase.html#method_renderUI", "access": "protected", "host": "SliderBase", "type": "method", "name": "renderUI"}, {"url": "ClickableRail.html#method__resolveThumb", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_resolveThumb"}, {"url": "SliderBase.html#method__setAxis", "access": "protected", "host": "SliderBase", "type": "method", "name": "_setAxis"}, {"url": "SliderBase.html#method__setLength", "access": "protected", "host": "SliderBase", "type": "method", "name": "_setLength"}, {"url": "SliderValueRange.html#method__setPosition", "access": "protected", "host": "SliderValueRange", "type": "method", "name": "_setPosition"}, {"url": "SliderValueRange.html#method_setValue", "access": "", "host": "SliderValueRange", "type": "method", "name": "setValue"}, {"url": "SliderBase.html#property_SliderBase.ATTRS", "access": "protected", "host": "SliderBase", "type": "property", "name": "SliderBase.ATTRS"}, {"url": "SliderBase.html#property_SliderBase.NAME", "access": "protected", "host": "SliderBase", "type": "property", "name": "SliderBase.NAME"}, {"url": "SliderBase.html#event_slideStart", "access": "", "host": "SliderBase", "type": "event", "name": "slideStart"}, {"url": "SliderBase.html#method__syncThumbPosition", "access": "protected", "host": "SliderBase", "type": "method", "name": "_syncThumbPosition"}, {"url": "SliderValueRange.html#method__syncThumbPosition", "access": "protected", "host": "SliderValueRange", "type": "method", "name": "_syncThumbPosition"}, {"url": "SliderBase.html#method_syncUI", "access": "", "host": "SliderBase", "type": "method", "name": "syncUI"}, {"url": "SliderBase.html#property_thumb", "access": "", "host": "SliderBase", "type": "property", "name": "thumb"}, {"url": "SliderBase.html#event_thumbMove", "access": "", "host": "SliderBase", "type": "event", "name": "thumbMove"}, {"url": "SliderBase.html#property_THUMB_TEMPLATE", "access": "", "host": "SliderBase", "type": "property", "name": "THUMB_TEMPLATE"}, {"url": "SliderBase.html#config_thumbUrl", "access": "", "host": "SliderBase", "type": "config", "name": "thumbUrl"}, {"url": "SliderBase.html#event_thumbUrlChange", "access": "", "host": "SliderBase", "type": "event", "name": "thumbUrlChange"}, {"url": "SliderBase.html#method__uiSetRailLength", "access": "protected", "host": "SliderBase", "type": "method", "name": "_uiSetRailLength"}, {"url": "ClickableRail.html#method__unbindClickableRail", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_unbindClickableRail"}, {"url": "SliderValueRange.html#method__validateNewMax", "access": "protected", "host": "SliderValueRange", "type": "method", "name": "_validateNewMax"}, {"url": "SliderValueRange.html#method__validateNewMin", "access": "protected", "host": "SliderValueRange", "type": "method", "name": "_validateNewMin"}, {"url": "SliderValueRange.html#method__validateNewValue", "access": "protected", "host": "SliderValueRange", "type": "method", "name": "_validateNewValue"}, {"url": "SliderValueRange.html#config_value", "access": "", "host": "SliderValueRange", "type": "config", "name": "value"}, {"url": "SliderValueRange.html#event_valueChange", "access": "", "host": "SliderValueRange", "type": "event", "name": "valueChange"}, {"url": "SliderValueRange.html#method__valueToOffset", "access": "protected", "host": "SliderValueRange", "type": "method", "name": "_valueToOffset"}, {"url": "SliderValueRange.html#method__verifyValue", "access": "protected", "host": "SliderValueRange", "type": "method", "name": "_verifyValue"}];
+</script>
+</body>
+</html>

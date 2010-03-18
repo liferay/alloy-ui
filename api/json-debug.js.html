@@ -1,0 +1,1083 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: json   json-debug.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			json&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_json.html" title="json">json</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">json-debug.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="JSON.html" title="JSON">JSON</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class="selected"><a href="json-debug.js.html" title="json-debug.js">json-debug.js</a></li>
+
+
+			                                <li class=""><a href="json-min.js.html" title="json-min.js">json-min.js</a></li>
+
+
+			                                <li class=""><a href="json-parse-debug.js.html" title="json-parse-debug.js">json-parse-debug.js</a></li>
+
+
+			                                <li class=""><a href="json-parse-min.js.html" title="json-parse-min.js">json-parse-min.js</a></li>
+
+
+			                                <li class=""><a href="json-parse.js.html" title="json-parse.js">json-parse.js</a></li>
+
+
+			                                <li class=""><a href="json-stringify-debug.js.html" title="json-stringify-debug.js">json-stringify-debug.js</a></li>
+
+
+			                                <li class=""><a href="json-stringify-min.js.html" title="json-stringify-min.js">json-stringify-min.js</a></li>
+
+
+			                                <li class=""><a href="json-stringify.js.html" title="json-stringify.js">json-stringify.js</a></li>
+
+
+			                                <li class=""><a href="json.js.html" title="json.js">json.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
+<span class="cm">Code licensed under the BSD License:</span>
+<span class="cm">http://developer.yahoo.com/yui/license.html</span>
+<span class="cm">version: 3.1.0</span>
+<span class="cm">build: nightly</span>
+<span class="cm">*/</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;json-parse&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * &lt;p&gt;The JSON module adds support for serializing JavaScript objects into</span>
+<span class="cm"> * JSON strings and parsing JavaScript objects from strings in JSON format.&lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * &lt;p&gt;The JSON namespace is added to your YUI instance including static methods</span>
+<span class="cm"> * Y.JSON.parse(..) and Y.JSON.stringify(..).&lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * &lt;p&gt;The functionality and method signatures follow the ECMAScript 5</span>
+<span class="cm"> * specification.  In browsers with native JSON support, the native</span>
+<span class="cm"> * implementation is used.&lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * &lt;p&gt;The &lt;code&gt;json&lt;/code&gt; module is a rollup of &lt;code&gt;json-parse&lt;/code&gt; and</span>
+<span class="cm"> * &lt;code&gt;json-stringify&lt;/code&gt;.&lt;/p&gt;</span>
+<span class="cm"> * </span>
+<span class="cm"> * &lt;p&gt;As their names suggest, &lt;code&gt;json-parse&lt;/code&gt; adds support for parsing</span>
+<span class="cm"> * JSON data (Y.JSON.parse) and &lt;code&gt;json-stringify&lt;/code&gt; for serializing</span>
+<span class="cm"> * JavaScript data into JSON strings (Y.JSON.stringify).  You may choose to</span>
+<span class="cm"> * include either of the submodules individually if you don&#39;t need the</span>
+<span class="cm"> * complementary functionality, or include the rollup for both.&lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module json</span>
+<span class="cm"> * @class JSON</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Provides Y.JSON.parse method to accept JSON strings and return native</span>
+<span class="cm"> * JavaScript objects.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module json</span>
+<span class="cm"> * @submodule json-parse</span>
+<span class="cm"> * @for JSON</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+
+
+<span class="c1">// All internals kept private for security reasons</span>
+
+
+    <span class="cm">/**</span>
+<span class="cm">     * Alias to native browser implementation of the JSON object if available.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property Native</span>
+<span class="cm">     * @type {Object}</span>
+<span class="cm">     * @private</span>
+<span class="cm">     */</span>
+<span class="kd">var</span> <span class="nx">_JSON</span>  <span class="o">=</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">win</span> <span class="o">||</span> <span class="p">{}).</span><span class="nx">JSON</span><span class="p">,</span>
+    <span class="nx">Native</span> <span class="o">=</span> <span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">_JSON</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;[object JSON]&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">_JSON</span><span class="p">),</span>
+    <span class="nx">useNative</span> <span class="o">=</span> <span class="o">!!</span><span class="nx">Native</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Replace certain Unicode characters that JavaScript may handle incorrectly</span>
+<span class="cm">     * during eval--either by deleting them or treating them as line</span>
+<span class="cm">     * endings--with escape sequences.</span>
+<span class="cm">     * IMPORTANT NOTE: This regex will be used to modify the input if a match is</span>
+<span class="cm">     * found.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property _UNICODE_EXCEPTIONS</span>
+<span class="cm">     * @type {RegExp}</span>
+<span class="cm">     * @private</span>
+<span class="cm">     */</span>
+    <span class="nx">_UNICODE_EXCEPTIONS</span> <span class="o">=</span> <span class="sr">/[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g</span><span class="p">,</span>
+
+
+    <span class="cm">/**</span>
+<span class="cm">     * First step in the safety evaluation.  Regex used to replace all escape</span>
+<span class="cm">     * sequences (i.e. &quot;\\&quot;, etc) with &#39;@&#39; characters (a non-JSON character).</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property _ESCAPES</span>
+<span class="cm">     * @type {RegExp}</span>
+<span class="cm">     * @private</span>
+<span class="cm">     */</span>
+    <span class="nx">_ESCAPES</span> <span class="o">=</span> <span class="sr">/\\(?:[&quot;\\\/bfnrt]|u[0-9a-fA-F]{4})/g</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Second step in the safety evaluation.  Regex used to replace all simple</span>
+<span class="cm">     * values with &#39;]&#39; characters.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property _VALUES</span>
+<span class="cm">     * @type {RegExp}</span>
+<span class="cm">     * @private</span>
+<span class="cm">     */</span>
+    <span class="nx">_VALUES</span>  <span class="o">=</span> <span class="sr">/&quot;[^&quot;\\\n\r]*&quot;|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Third step in the safety evaluation.  Regex used to remove all open</span>
+<span class="cm">     * square brackets following a colon, comma, or at the beginning of the</span>
+<span class="cm">     * string.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property _BRACKETS</span>
+<span class="cm">     * @type {RegExp}</span>
+<span class="cm">     * @private</span>
+<span class="cm">     */</span>
+    <span class="nx">_BRACKETS</span> <span class="o">=</span> <span class="sr">/(?:^|:|,)(?:\s*\[)+/g</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Final step in the safety evaluation.  Regex used to test the string left</span>
+<span class="cm">     * after all previous replacements for invalid characters.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property _UNSAFE</span>
+<span class="cm">     * @type {RegExp}</span>
+<span class="cm">     * @private</span>
+<span class="cm">     */</span>
+    <span class="nx">_UNSAFE</span> <span class="o">=</span> <span class="sr">/[^\],:{}\s]/</span><span class="p">,</span>
+    
+    <span class="cm">/**</span>
+<span class="cm">     * Replaces specific unicode characters with their appropriate \unnnn</span>
+<span class="cm">     * format. Some browsers ignore certain characters during eval.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method escapeException</span>
+<span class="cm">     * @param c {String} Unicode character</span>
+<span class="cm">     * @return {String} the \unnnn escapement of the character</span>
+<span class="cm">     * @private</span>
+<span class="cm">     */</span>
+    <span class="nx">_escapeException</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;\\u&#39;</span><span class="o">+</span><span class="p">(</span><span class="s1">&#39;0000&#39;</span><span class="o">+</span><span class="p">(</span><span class="o">+</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">))).</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">)).</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Traverses nested objects, applying a reviver function to each (key,value)</span>
+<span class="cm">     * from the scope if the key:value&#39;s containing object.  The value returned</span>
+<span class="cm">     * from the function will replace the original value in the key:value pair.</span>
+<span class="cm">     * If the value returned is undefined, the key will be omitted from the</span>
+<span class="cm">     * returned object.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _revive</span>
+<span class="cm">     * @param data {MIXED} Any JavaScript data</span>
+<span class="cm">     * @param reviver {Function} filter or mutation function</span>
+<span class="cm">     * @return {MIXED} The results of the filtered data</span>
+<span class="cm">     * @private</span>
+<span class="cm">     */</span>
+    <span class="nx">_revive</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">reviver</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">walk</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">k</span><span class="p">,</span><span class="nx">v</span><span class="p">,</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">o</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">value</span> <span class="o">===</span> <span class="s1">&#39;object&#39;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">for</span> <span class="p">(</span><span class="nx">k</span> <span class="k">in</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">k</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="nx">v</span> <span class="o">=</span> <span class="nx">walk</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">k</span><span class="p">);</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="nx">v</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="k">delete</span> <span class="nx">value</span><span class="p">[</span><span class="nx">k</span><span class="p">];</span>
+                        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                            <span class="nx">value</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="o">=</span> <span class="nx">v</span><span class="p">;</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nx">reviver</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">key</span><span class="p">,</span><span class="nx">value</span><span class="p">);</span>
+        <span class="p">};</span>
+
+        <span class="k">return</span> <span class="k">typeof</span> <span class="nx">reviver</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span> <span class="o">?</span> <span class="nx">walk</span><span class="p">({</span><span class="s1">&#39;&#39;</span><span class="o">:</span><span class="nx">data</span><span class="p">},</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">:</span> <span class="nx">data</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Parse a JSON string, returning the native JavaScript representation.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param s {string} JSON string data</span>
+<span class="cm">     * @param reviver {function} (optional) function(k,v) passed each key value</span>
+<span class="cm">     *          pair of object literals, allowing pruning or altering values</span>
+<span class="cm">     * @return {MIXED} the native JavaScript representation of the JSON string</span>
+<span class="cm">     * @throws SyntaxError</span>
+<span class="cm">     * @method parse</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="c1">// JavaScript implementation in lieu of native browser support.  Based on</span>
+    <span class="c1">// the json2.js library from http://json.org</span>
+    <span class="nx">_parse</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">s</span><span class="p">,</span><span class="nx">reviver</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">s</span> <span class="o">===</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Replace certain Unicode characters that are otherwise handled</span>
+            <span class="c1">// incorrectly by some browser implementations.</span>
+            <span class="c1">// NOTE: This modifies the input if such characters are found!</span>
+            <span class="nx">s</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">_UNICODE_EXCEPTIONS</span><span class="p">,</span> <span class="nx">_escapeException</span><span class="p">);</span>
+            
+            <span class="c1">// Test for any remaining invalid characters</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">_UNSAFE</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">_ESCAPES</span><span class="p">,</span><span class="s1">&#39;@&#39;</span><span class="p">).</span>
+                                <span class="nx">replace</span><span class="p">(</span><span class="nx">_VALUES</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">).</span>
+                                <span class="nx">replace</span><span class="p">(</span><span class="nx">_BRACKETS</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)))</span> <span class="p">{</span>
+
+                <span class="c1">// Eval the text into a JavaScript data structure, apply any</span>
+                <span class="c1">// reviver function, and return</span>
+                <span class="k">return</span> <span class="nx">_revive</span><span class="p">(</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="nx">s</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">),</span> <span class="nx">reviver</span> <span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">throw</span> <span class="k">new</span> <span class="nx">SyntaxError</span><span class="p">(</span><span class="s1">&#39;JSON.parse&#39;</span><span class="p">);</span>
+    <span class="p">};</span>
+    
+<span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;JSON&#39;</span><span class="p">).</span><span class="nx">parse</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">s</span><span class="p">,</span><span class="nx">reviver</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">Native</span> <span class="o">&amp;&amp;</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">useNativeParse</span> <span class="o">?</span>
+        <span class="nx">Native</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span><span class="nx">reviver</span><span class="p">)</span> <span class="o">:</span> <span class="nx">_parse</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span><span class="nx">reviver</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">workingNative</span><span class="p">(</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">k</span> <span class="o">===</span> <span class="s2">&quot;ok&quot;</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="nx">v</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Double check basic functionality.  This is mainly to catch early broken</span>
+<span class="c1">// implementations of the JSON API in Firefox 3.1 beta1 and beta2</span>
+<span class="k">if</span> <span class="p">(</span> <span class="nx">Native</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="nx">useNative</span> <span class="o">=</span> <span class="p">(</span> <span class="nx">Native</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span> <span class="s1">&#39;{&quot;ok&quot;:false}&#39;</span><span class="p">,</span> <span class="nx">workingNative</span> <span class="p">)</span> <span class="p">).</span><span class="nx">ok</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="p">(</span> <span class="nx">e</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">useNative</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Leverage native JSON parse if the browser has a native implementation.</span>
+<span class="cm"> * In general, this is a good idea.  See the Known Issues section in the</span>
+<span class="cm"> * JSON user guide for caveats.  The default value is true for browsers with</span>
+<span class="cm"> * native JSON support.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @property useNativeParse</span>
+<span class="cm"> * @type Boolean</span>
+<span class="cm"> * @default true</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+<span class="nx">Y</span><span class="p">.</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">useNativeParse</span> <span class="o">=</span> <span class="nx">useNative</span><span class="p">;</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">);</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;json-stringify&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Provides Y.JSON.stringify method for converting objects to JSON strings.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module json</span>
+<span class="cm"> * @submodule json-stringify</span>
+<span class="cm"> * @for JSON</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">_JSON</span>     <span class="o">=</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">win</span> <span class="o">||</span> <span class="p">{}).</span><span class="nx">JSON</span><span class="p">,</span>
+    <span class="nx">Lang</span>      <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+    <span class="nx">isFunction</span><span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">,</span>
+    <span class="nx">isObject</span>  <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">,</span>
+    <span class="nx">isArray</span>   <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">,</span>
+    <span class="nx">_toStr</span>    <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">,</span>
+    <span class="nx">Native</span>    <span class="o">=</span> <span class="p">(</span><span class="nx">_toStr</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">_JSON</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;[object JSON]&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">_JSON</span><span class="p">),</span>
+    <span class="nx">useNative</span> <span class="o">=</span> <span class="o">!!</span><span class="nx">Native</span><span class="p">,</span>
+    <span class="nx">UNDEFINED</span> <span class="o">=</span> <span class="s1">&#39;undefined&#39;</span><span class="p">,</span>
+    <span class="nx">OBJECT</span>    <span class="o">=</span> <span class="s1">&#39;object&#39;</span><span class="p">,</span>
+    <span class="nx">NULL</span>      <span class="o">=</span> <span class="s1">&#39;null&#39;</span><span class="p">,</span>
+    <span class="nx">STRING</span>    <span class="o">=</span> <span class="s1">&#39;string&#39;</span><span class="p">,</span>
+    <span class="nx">NUMBER</span>    <span class="o">=</span> <span class="s1">&#39;number&#39;</span><span class="p">,</span>
+    <span class="nx">BOOLEAN</span>   <span class="o">=</span> <span class="s1">&#39;boolean&#39;</span><span class="p">,</span>
+    <span class="nx">DATE</span>      <span class="o">=</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span>
+    <span class="nx">_allowable</span><span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;undefined&#39;</span>        <span class="o">:</span> <span class="nx">UNDEFINED</span><span class="p">,</span>
+        <span class="s1">&#39;string&#39;</span>           <span class="o">:</span> <span class="nx">STRING</span><span class="p">,</span>
+        <span class="s1">&#39;[object String]&#39;</span>  <span class="o">:</span> <span class="nx">STRING</span><span class="p">,</span>
+        <span class="s1">&#39;number&#39;</span>           <span class="o">:</span> <span class="nx">NUMBER</span><span class="p">,</span>
+        <span class="s1">&#39;[object Number]&#39;</span>  <span class="o">:</span> <span class="nx">NUMBER</span><span class="p">,</span>
+        <span class="s1">&#39;boolean&#39;</span>          <span class="o">:</span> <span class="nx">BOOLEAN</span><span class="p">,</span>
+        <span class="s1">&#39;[object Boolean]&#39;</span> <span class="o">:</span> <span class="nx">BOOLEAN</span><span class="p">,</span>
+        <span class="s1">&#39;[object Date]&#39;</span>    <span class="o">:</span> <span class="nx">DATE</span><span class="p">,</span>
+        <span class="s1">&#39;[object RegExp]&#39;</span>  <span class="o">:</span> <span class="nx">OBJECT</span>
+    <span class="p">},</span>
+    <span class="nx">EMPTY</span>     <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="nx">OPEN_O</span>    <span class="o">=</span> <span class="s1">&#39;{&#39;</span><span class="p">,</span>
+    <span class="nx">CLOSE_O</span>   <span class="o">=</span> <span class="s1">&#39;}&#39;</span><span class="p">,</span>
+    <span class="nx">OPEN_A</span>    <span class="o">=</span> <span class="s1">&#39;[&#39;</span><span class="p">,</span>
+    <span class="nx">CLOSE_A</span>   <span class="o">=</span> <span class="s1">&#39;]&#39;</span><span class="p">,</span>
+    <span class="nx">COMMA</span>     <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span>
+    <span class="nx">COMMA_CR</span>  <span class="o">=</span> <span class="s2">&quot;,\n&quot;</span><span class="p">,</span>
+    <span class="nx">CR</span>        <span class="o">=</span> <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
+    <span class="nx">COLON</span>     <span class="o">=</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span>
+    <span class="nx">COLON_SP</span>  <span class="o">=</span> <span class="s1">&#39;: &#39;</span><span class="p">,</span>
+    <span class="nx">QUOTE</span>     <span class="o">=</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">,</span>
+
+    <span class="c1">// Regex used to capture characters that need escaping before enclosing</span>
+    <span class="c1">// their containing string in quotes.</span>
+    <span class="nx">_SPECIAL_CHARS</span> <span class="o">=</span> <span class="sr">/[\\\&quot;\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g</span><span class="p">,</span>
+
+    <span class="c1">// Character substitution map for common escapes and special characters.</span>
+    <span class="nx">_CHARS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;\b&#39;</span><span class="o">:</span> <span class="s1">&#39;\\b&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;\t&#39;</span><span class="o">:</span> <span class="s1">&#39;\\t&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;\n&#39;</span><span class="o">:</span> <span class="s1">&#39;\\n&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;\f&#39;</span><span class="o">:</span> <span class="s1">&#39;\\f&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;\r&#39;</span><span class="o">:</span> <span class="s1">&#39;\\r&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;&quot;&#39;</span> <span class="o">:</span> <span class="s1">&#39;\\&quot;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;\\&#39;</span><span class="o">:</span> <span class="s1">&#39;\\\\&#39;</span>
+    <span class="p">};</span>
+
+
+<span class="c1">// Utility function used to determine how to serialize a variable.</span>
+<span class="kd">function</span> <span class="nx">_type</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">o</span><span class="p">;</span>
+    <span class="k">return</span>  <span class="nx">_allowable</span><span class="p">[</span><span class="nx">t</span><span class="p">]</span> <span class="o">||</span>              <span class="c1">// number, string, boolean, undefined</span>
+            <span class="nx">_allowable</span><span class="p">[</span><span class="nx">_toStr</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">o</span><span class="p">)]</span> <span class="o">||</span> <span class="c1">// Number, String, Boolean, Date</span>
+            <span class="p">(</span><span class="nx">t</span> <span class="o">===</span> <span class="nx">OBJECT</span> <span class="o">?</span>
+                <span class="p">(</span><span class="nx">o</span> <span class="o">?</span> <span class="nx">OBJECT</span> <span class="o">:</span> <span class="nx">NULL</span><span class="p">)</span> <span class="o">:</span>     <span class="c1">// object, array, null, misc natives</span>
+                <span class="nx">UNDEFINED</span><span class="p">);</span>               <span class="c1">// function, unknown</span>
+<span class="p">}</span>
+
+<span class="c1">// Escapes a special character to a safe Unicode representation</span>
+<span class="kd">function</span> <span class="nx">_char</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">_CHARS</span><span class="p">[</span><span class="nx">c</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nx">_CHARS</span><span class="p">[</span><span class="nx">c</span><span class="p">]</span> <span class="o">=</span>  <span class="s1">&#39;\\u&#39;</span><span class="o">+</span><span class="p">(</span><span class="s1">&#39;0000&#39;</span><span class="o">+</span><span class="p">(</span><span class="o">+</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">))).</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">)).</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">_CHARS</span><span class="p">[</span><span class="nx">c</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="c1">// Enclose escaped strings in quotes</span>
+<span class="kd">function</span> <span class="nx">_string</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">QUOTE</span> <span class="o">+</span> <span class="nx">s</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">_SPECIAL_CHARS</span><span class="p">,</span> <span class="nx">_char</span><span class="p">)</span> <span class="o">+</span> <span class="nx">QUOTE</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Adds the provided space to the beginning of every line in the input string</span>
+<span class="kd">function</span> <span class="nx">_indent</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span><span class="nx">space</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">s</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^/gm</span><span class="p">,</span> <span class="nx">space</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// JavaScript implementation of stringify (see API declaration of stringify)</span>
+<span class="kd">function</span> <span class="nx">_stringify</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">w</span><span class="p">,</span><span class="nx">space</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">o</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">replacer</span> <span class="o">=</span> <span class="nx">isFunction</span><span class="p">(</span><span class="nx">w</span><span class="p">)</span> <span class="o">?</span> <span class="nx">w</span> <span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nx">format</span>   <span class="o">=</span> <span class="nx">_toStr</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">space</span><span class="p">).</span><span class="nx">match</span><span class="p">(</span><span class="sr">/String|Number/</span><span class="p">)</span> <span class="o">||</span> <span class="p">[],</span>
+        <span class="nx">_date</span>    <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">dateToString</span><span class="p">,</span>
+        <span class="nx">stack</span>    <span class="o">=</span> <span class="p">[],</span>
+        <span class="nx">tmp</span><span class="p">,</span><span class="nx">i</span><span class="p">,</span><span class="nx">len</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">replacer</span> <span class="o">||</span> <span class="o">!</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">w</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">w</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Ensure whitelist keys are unique (bug 2110391)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">w</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">tmp</span> <span class="o">=</span> <span class="p">{};</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">w</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">tmp</span><span class="p">[</span><span class="nx">w</span><span class="p">[</span><span class="nx">i</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nx">w</span> <span class="o">=</span> <span class="nx">tmp</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Per the spec, strings are truncated to 10 characters and numbers</span>
+    <span class="c1">// are converted to that number of spaces (max 10)</span>
+    <span class="nx">space</span> <span class="o">=</span> <span class="nx">format</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;Number&#39;</span> <span class="o">?</span>
+                <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nx">space</span><span class="p">),</span><span class="mi">10</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span> <span class="o">:</span>
+                <span class="p">(</span><span class="nx">space</span> <span class="o">||</span> <span class="nx">EMPTY</span><span class="p">).</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+
+    <span class="kd">function</span> <span class="nx">_serialize</span><span class="p">(</span><span class="nx">h</span><span class="p">,</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">h</span><span class="p">[</span><span class="nx">key</span><span class="p">],</span>
+            <span class="nx">t</span>     <span class="o">=</span> <span class="nx">_type</span><span class="p">(</span><span class="nx">value</span><span class="p">),</span>
+            <span class="nx">a</span>     <span class="o">=</span> <span class="p">[],</span>
+            <span class="nx">colon</span> <span class="o">=</span> <span class="nx">space</span> <span class="o">?</span> <span class="nx">COLON_SP</span> <span class="o">:</span> <span class="nx">COLON</span><span class="p">,</span>
+            <span class="nx">arr</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">keys</span><span class="p">,</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span><span class="p">;</span>
+
+        <span class="c1">// Per the ECMA 5 spec, toJSON is applied before the replacer is</span>
+        <span class="c1">// called.  Also per the spec, Date.prototype.toJSON has been added, so</span>
+        <span class="c1">// Date instances should be serialized prior to exposure to the</span>
+        <span class="c1">// replacer.  I disagree with this decision, but the spec is the spec.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">isFunction</span><span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">t</span> <span class="o">===</span> <span class="nx">DATE</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">value</span> <span class="o">=</span> <span class="nx">_date</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">replacer</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">value</span> <span class="o">=</span> <span class="nx">replacer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">h</span><span class="p">,</span><span class="nx">key</span><span class="p">,</span><span class="nx">value</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">!==</span> <span class="nx">h</span><span class="p">[</span><span class="nx">key</span><span class="p">])</span> <span class="p">{</span>
+            <span class="nx">t</span> <span class="o">=</span> <span class="nx">_type</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">switch</span> <span class="p">(</span><span class="nx">t</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="nx">DATE</span>    <span class="o">:</span> <span class="c1">// intentional fallthrough.  Pre-replacer Dates are</span>
+                           <span class="c1">// serialized in the toJSON stage.  Dates here would</span>
+                           <span class="c1">// have been produced by the replacer.</span>
+            <span class="k">case</span> <span class="nx">OBJECT</span>  <span class="o">:</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="nx">STRING</span>  <span class="o">:</span> <span class="k">return</span> <span class="nx">_string</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+            <span class="k">case</span> <span class="nx">NUMBER</span>  <span class="o">:</span> <span class="k">return</span> <span class="nb">isFinite</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">?</span> <span class="nx">value</span><span class="o">+</span><span class="nx">EMPTY</span> <span class="o">:</span> <span class="nx">NULL</span><span class="p">;</span>
+            <span class="k">case</span> <span class="nx">BOOLEAN</span> <span class="o">:</span> <span class="k">return</span> <span class="nx">value</span><span class="o">+</span><span class="nx">EMPTY</span><span class="p">;</span>
+            <span class="k">case</span> <span class="nx">NULL</span>    <span class="o">:</span> <span class="k">return</span> <span class="nx">NULL</span><span class="p">;</span>
+            <span class="k">default</span>      <span class="o">:</span> <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Check for cyclical references in nested objects</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="nx">stack</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">stack</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&quot;JSON.stringify. Cyclical reference&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="nx">arr</span> <span class="o">=</span> <span class="nx">isArray</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+
+        <span class="c1">// Add the object to the processing stack</span>
+        <span class="nx">stack</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Array</span>
+            <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">_serialize</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="o">||</span> <span class="nx">NULL</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>   <span class="c1">// Object</span>
+            <span class="c1">// If whitelist provided, take only those keys</span>
+            <span class="nx">keys</span> <span class="o">=</span> <span class="nx">w</span> <span class="o">||</span> <span class="nx">value</span><span class="p">;</span>
+            <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="nx">k</span> <span class="k">in</span> <span class="nx">keys</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">keys</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">k</span><span class="p">))</span> <span class="p">{</span>
+                    <span class="nx">v</span> <span class="o">=</span> <span class="nx">_serialize</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">k</span><span class="p">);</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="nx">_string</span><span class="p">(</span><span class="nx">k</span><span class="p">)</span> <span class="o">+</span> <span class="nx">colon</span> <span class="o">+</span> <span class="nx">v</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">// remove the array from the stack</span>
+        <span class="nx">stack</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">space</span> <span class="o">&amp;&amp;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">arr</span> <span class="o">?</span>
+                <span class="nx">OPEN_A</span> <span class="o">+</span> <span class="nx">CR</span> <span class="o">+</span> <span class="nx">_indent</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">COMMA_CR</span><span class="p">),</span> <span class="nx">space</span><span class="p">)</span> <span class="o">+</span> <span class="nx">CR</span> <span class="o">+</span> <span class="nx">CLOSE_A</span> <span class="o">:</span>
+                <span class="nx">OPEN_O</span> <span class="o">+</span> <span class="nx">CR</span> <span class="o">+</span> <span class="nx">_indent</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">COMMA_CR</span><span class="p">),</span> <span class="nx">space</span><span class="p">)</span> <span class="o">+</span> <span class="nx">CR</span> <span class="o">+</span> <span class="nx">CLOSE_O</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">arr</span> <span class="o">?</span>
+                <span class="nx">OPEN_A</span> <span class="o">+</span> <span class="nx">a</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">COMMA</span><span class="p">)</span> <span class="o">+</span> <span class="nx">CLOSE_A</span> <span class="o">:</span>
+                <span class="nx">OPEN_O</span> <span class="o">+</span> <span class="nx">a</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">COMMA</span><span class="p">)</span> <span class="o">+</span> <span class="nx">CLOSE_O</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// process the input</span>
+    <span class="k">return</span> <span class="nx">_serialize</span><span class="p">({</span><span class="s1">&#39;&#39;</span><span class="o">:</span><span class="nx">o</span><span class="p">},</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Double check basic native functionality.  This is primarily to catch broken</span>
+<span class="c1">// early JSON API implementations in Firefox 3.1 beta1 and beta2.</span>
+<span class="k">if</span> <span class="p">(</span> <span class="nx">Native</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="nx">useNative</span> <span class="o">=</span> <span class="p">(</span> <span class="s1">&#39;0&#39;</span> <span class="o">===</span> <span class="nx">Native</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span> <span class="nx">e</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">useNative</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;JSON&#39;</span><span class="p">),{</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Leverage native JSON stringify if the browser has a native</span>
+<span class="cm">     * implementation.  In general, this is a good idea.  See the Known Issues</span>
+<span class="cm">     * section in the JSON user guide for caveats.  The default value is true</span>
+<span class="cm">     * for browsers with native JSON support.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property JSON.useNativeStringify</span>
+<span class="cm">     * @type Boolean</span>
+<span class="cm">     * @default true</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">useNativeStringify</span> <span class="o">:</span> <span class="nx">useNative</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Serializes a Date instance as a UTC date string.  Used internally by</span>
+<span class="cm">     * stringify.  Override this method if you need Dates serialized in a</span>
+<span class="cm">     * different format.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method dateToString</span>
+<span class="cm">     * @param d {Date} The Date to serialize</span>
+<span class="cm">     * @return {String} stringified Date in UTC format YYYY-MM-DDTHH:mm:SSZ</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">dateToString</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">function</span> <span class="nx">_zeroPad</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">v</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="o">?</span> <span class="s1">&#39;0&#39;</span> <span class="o">+</span> <span class="nx">v</span> <span class="o">:</span> <span class="nx">v</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getUTCFullYear</span><span class="p">()</span>           <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span>
+              <span class="nx">_zeroPad</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">getUTCMonth</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span>
+              <span class="nx">_zeroPad</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">getUTCDate</span><span class="p">())</span>      <span class="o">+</span> <span class="s1">&#39;T&#39;</span> <span class="o">+</span>
+              <span class="nx">_zeroPad</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">getUTCHours</span><span class="p">())</span>     <span class="o">+</span> <span class="nx">COLON</span> <span class="o">+</span>
+              <span class="nx">_zeroPad</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">getUTCMinutes</span><span class="p">())</span>   <span class="o">+</span> <span class="nx">COLON</span> <span class="o">+</span>
+              <span class="nx">_zeroPad</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">getUTCSeconds</span><span class="p">())</span>   <span class="o">+</span> <span class="s1">&#39;Z&#39;</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * &lt;p&gt;Converts an arbitrary value to a JSON string representation.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * &lt;p&gt;Objects with cyclical references will trigger an exception.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * &lt;p&gt;If a whitelist is provided, only matching object keys will be</span>
+<span class="cm">     * included.  Alternately, a replacer function may be passed as the</span>
+<span class="cm">     * second parameter.  This function is executed on every value in the</span>
+<span class="cm">     * input, and its return value will be used in place of the original value.</span>
+<span class="cm">     * This is useful to serialize specialized objects or class instances.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * &lt;p&gt;If a positive integer or non-empty string is passed as the third</span>
+<span class="cm">     * parameter, the output will be formatted with carriage returns and</span>
+<span class="cm">     * indentation for readability.  If a String is passed (such as &quot;\t&quot;) it</span>
+<span class="cm">     * will be used once for each indentation level.  If a number is passed,</span>
+<span class="cm">     * that number of spaces will be used.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method stringify</span>
+<span class="cm">     * @param o {MIXED} any arbitrary value to convert to JSON string</span>
+<span class="cm">     * @param w {Array|Function} (optional) whitelist of acceptable object</span>
+<span class="cm">     *                  keys to include, or a replacer function to modify the</span>
+<span class="cm">     *                  raw value before serialization</span>
+<span class="cm">     * @param ind {Number|String} (optional) indentation character or depth of</span>
+<span class="cm">     *                  spaces to format the output.</span>
+<span class="cm">     * @return {string} JSON string representation of the input</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">stringify</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">w</span><span class="p">,</span><span class="nx">ind</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Native</span> <span class="o">&amp;&amp;</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">useNativeStringify</span> <span class="o">?</span>
+            <span class="nx">Native</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">w</span><span class="p">,</span><span class="nx">ind</span><span class="p">)</span> <span class="o">:</span> <span class="nx">_stringify</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">w</span><span class="p">,</span><span class="nx">ind</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">);</span>
+
+
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;json-parse&#39;</span><span class="p">,</span> <span class="s1">&#39;json-stringify&#39;</span><span class="p">]});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "JSON.html#method_dateToString", "access": "", "host": "JSON", "type": "method", "name": "dateToString"}, {"url": "JSON.html#property_JSON.useNativeStringify", "access": "", "host": "JSON", "type": "property", "name": "JSON.useNativeStringify"}, {"url": "JSON.html#method_parse", "access": "", "host": "JSON", "type": "method", "name": "parse"}, {"url": "JSON.html#method_stringify", "access": "", "host": "JSON", "type": "method", "name": "stringify"}, {"url": "JSON.html#property_useNativeParse", "access": "", "host": "JSON", "type": "property", "name": "useNativeParse"}];
+</script>
+</body>
+</html>

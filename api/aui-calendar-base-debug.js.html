@@ -1,0 +1,1867 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-calendar   aui-calendar-base-debug.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-calendar&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-calendar.html" title="aui-calendar">aui-calendar</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">aui-calendar-base-debug.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class="selected"><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="Calendar.html" title="Calendar">Calendar</a></li>
+
+
+				                                <li class=""><a href="CalendarManager.html" title="CalendarManager">CalendarManager</a></li>
+
+
+				                                <li class=""><a href="DatePickerSelect.html" title="DatePickerSelect">DatePickerSelect</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class="selected"><a href="aui-calendar-base-debug.js.html" title="aui-calendar-base-debug.js">aui-calendar-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-calendar-base-min.js.html" title="aui-calendar-base-min.js">aui-calendar-base-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-calendar-base.js.html" title="aui-calendar-base.js">aui-calendar-base.js</a></li>
+
+
+			                                <li class=""><a href="aui-calendar-datepicker-select-debug.js.html" title="aui-calendar-datepicker-select-debug.js">aui-calendar-datepicker-select-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-calendar-datepicker-select-min.js.html" title="aui-calendar-datepicker-select-min.js">aui-calendar-datepicker-select-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-calendar-datepicker-select.js.html" title="aui-calendar-datepicker-select.js">aui-calendar-datepicker-select.js</a></li>
+
+
+			                                <li class=""><a href="aui-calendar-debug.js.html" title="aui-calendar-debug.js">aui-calendar-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-calendar-min.js.html" title="aui-calendar-min.js">aui-calendar-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-calendar.js.html" title="aui-calendar.js">aui-calendar.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-calendar-base&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span> <span class="p">{</span>
+<span class="cm">/**</span>
+<span class="cm"> * The Calendar component is a UI control that enables users to choose one or</span>
+<span class="cm"> * more dates from a graphical calendar presented in a single month or multi</span>
+<span class="cm"> * month interface. Calendars are generated entirely via script and can be</span>
+<span class="cm"> * navigated without any page refreshes.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module aui-calendar</span>
+<span class="cm"> * @submodule aui-calendar-base</span>
+<span class="cm"> */</span>
+
+<span class="kd">var</span> <span class="nx">L</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+	<span class="nx">isString</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isString</span><span class="p">,</span>
+	<span class="nx">isArray</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isArray</span><span class="p">,</span>
+	<span class="nx">isBoolean</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isBoolean</span><span class="p">,</span>
+	<span class="nx">isUndefined</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">,</span>
+	<span class="nx">isNumber</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">,</span>
+
+	<span class="nx">WidgetStdMod</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">WidgetStdMod</span><span class="p">,</span>
+
+	<span class="nx">ACTIVE</span> <span class="o">=</span> <span class="s1">&#39;active&#39;</span><span class="p">,</span>
+	<span class="nx">BLANK</span> <span class="o">=</span> <span class="s1">&#39;blank&#39;</span><span class="p">,</span>
+	<span class="nx">BODY_CONTENT</span> <span class="o">=</span> <span class="s1">&#39;bodyContent&#39;</span><span class="p">,</span>
+	<span class="nx">BOUNDING_BOX</span> <span class="o">=</span> <span class="s1">&#39;boundingBox&#39;</span><span class="p">,</span>
+	<span class="nx">CALENDAR</span> <span class="o">=</span> <span class="s1">&#39;calendar&#39;</span><span class="p">,</span>
+	<span class="nx">CIRCLE</span> <span class="o">=</span> <span class="s1">&#39;circle&#39;</span><span class="p">,</span>
+	<span class="nx">CLEARFIX</span> <span class="o">=</span> <span class="s1">&#39;clearfix&#39;</span><span class="p">,</span>
+	<span class="nx">CURRENT_DAY</span> <span class="o">=</span> <span class="s1">&#39;currentDay&#39;</span><span class="p">,</span>
+	<span class="nx">CURRENT_MONTH</span> <span class="o">=</span> <span class="s1">&#39;currentMonth&#39;</span><span class="p">,</span>
+	<span class="nx">CURRENT_NODE</span> <span class="o">=</span> <span class="s1">&#39;currentNode&#39;</span><span class="p">,</span>
+	<span class="nx">CURRENT_YEAR</span> <span class="o">=</span> <span class="s1">&#39;currentYear&#39;</span><span class="p">,</span>
+	<span class="nx">DATES</span> <span class="o">=</span> <span class="s1">&#39;dates&#39;</span><span class="p">,</span>
+	<span class="nx">DATE_FORMAT</span> <span class="o">=</span> <span class="s1">&#39;dateFormat&#39;</span><span class="p">,</span>
+	<span class="nx">DAY</span> <span class="o">=</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span>
+	<span class="nx">DEFAULT</span> <span class="o">=</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span>
+	<span class="nx">DISABLED</span> <span class="o">=</span> <span class="s1">&#39;disabled&#39;</span><span class="p">,</span>
+	<span class="nx">DOT</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span>
+	<span class="nx">FIRST_DAY_OF_WEEK</span> <span class="o">=</span> <span class="s1">&#39;firstDayOfWeek&#39;</span><span class="p">,</span>
+	<span class="nx">HEADER</span> <span class="o">=</span> <span class="s1">&#39;hd&#39;</span><span class="p">,</span>
+	<span class="nx">HEADER_CONTENT</span> <span class="o">=</span> <span class="s1">&#39;headerContent&#39;</span><span class="p">,</span>
+	<span class="nx">HELPER</span> <span class="o">=</span> <span class="s1">&#39;helper&#39;</span><span class="p">,</span>
+	<span class="nx">HIDDEN</span> <span class="o">=</span> <span class="s1">&#39;hidden&#39;</span><span class="p">,</span>
+	<span class="nx">HOVER</span> <span class="o">=</span> <span class="s1">&#39;hover&#39;</span><span class="p">,</span>
+	<span class="nx">ICON</span> <span class="o">=</span> <span class="s1">&#39;icon&#39;</span><span class="p">,</span>
+	<span class="nx">LOCALE</span> <span class="o">=</span> <span class="s1">&#39;locale&#39;</span><span class="p">,</span>
+	<span class="nx">MAX_DATE</span> <span class="o">=</span> <span class="s1">&#39;maxDate&#39;</span><span class="p">,</span>
+	<span class="nx">MIN_DATE</span> <span class="o">=</span> <span class="s1">&#39;minDate&#39;</span><span class="p">,</span>
+	<span class="nx">MONTH</span> <span class="o">=</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span>
+	<span class="nx">MONTHDAYS</span> <span class="o">=</span> <span class="s1">&#39;monthdays&#39;</span><span class="p">,</span>
+	<span class="nx">NEXT</span> <span class="o">=</span> <span class="s1">&#39;next&#39;</span><span class="p">,</span>
+	<span class="nx">PREV</span> <span class="o">=</span> <span class="s1">&#39;prev&#39;</span><span class="p">,</span>
+	<span class="nx">SELECT_MULTIPLE_DATES</span> <span class="o">=</span> <span class="s1">&#39;selectMultipleDates&#39;</span><span class="p">,</span>
+	<span class="nx">SET_VALUE</span> <span class="o">=</span> <span class="s1">&#39;setValue&#39;</span><span class="p">,</span>
+	<span class="nx">STATE</span> <span class="o">=</span> <span class="s1">&#39;state&#39;</span><span class="p">,</span>
+	<span class="nx">TITLE</span> <span class="o">=</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span>
+	<span class="nx">TRIANGLE</span> <span class="o">=</span> <span class="s1">&#39;triangle&#39;</span><span class="p">,</span>
+	<span class="nx">WEEK</span> <span class="o">=</span> <span class="s1">&#39;week&#39;</span><span class="p">,</span>
+	<span class="nx">WEEKDAYS</span> <span class="o">=</span> <span class="s1">&#39;weekdays&#39;</span><span class="p">,</span>
+
+	<span class="nx">getCN</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">ClassNameManager</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">,</span>
+
+	<span class="nx">CSS_CALENDAR</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CALENDAR</span><span class="p">),</span>
+	<span class="nx">CSS_CALENDAR_DISABLED</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CALENDAR</span><span class="p">,</span> <span class="nx">DISABLED</span><span class="p">),</span>
+	<span class="nx">CSS_DAY</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CALENDAR</span><span class="p">,</span> <span class="nx">DAY</span><span class="p">),</span>
+	<span class="nx">CSS_DAY_BLANK</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CALENDAR</span><span class="p">,</span> <span class="nx">DAY</span><span class="p">,</span> <span class="nx">BLANK</span><span class="p">),</span>
+	<span class="nx">CSS_DAY_HIDDEN</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CALENDAR</span><span class="p">,</span> <span class="nx">DAY</span><span class="p">,</span> <span class="nx">HIDDEN</span><span class="p">),</span>
+	<span class="nx">CSS_HEADER</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CALENDAR</span><span class="p">,</span> <span class="nx">HEADER</span><span class="p">),</span>
+	<span class="nx">CSS_HELPER_CLEARFIX</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">,</span> <span class="nx">CLEARFIX</span><span class="p">),</span>
+	<span class="nx">CSS_ICON</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">ICON</span><span class="p">),</span>
+	<span class="nx">CSS_ICON_CIRCLE_TRIANGLE_L</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">ICON</span><span class="p">,</span> <span class="nx">CIRCLE</span><span class="p">,</span> <span class="nx">TRIANGLE</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">),</span>
+	<span class="nx">CSS_ICON_CIRCLE_TRIANGLE_R</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">ICON</span><span class="p">,</span> <span class="nx">CIRCLE</span><span class="p">,</span> <span class="nx">TRIANGLE</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">),</span>
+	<span class="nx">CSS_MONTHDAYS</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CALENDAR</span><span class="p">,</span> <span class="nx">MONTHDAYS</span><span class="p">),</span>
+	<span class="nx">CSS_NEXT</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CALENDAR</span><span class="p">,</span> <span class="nx">NEXT</span><span class="p">),</span>
+	<span class="nx">CSS_PREV</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CALENDAR</span><span class="p">,</span> <span class="nx">PREV</span><span class="p">),</span>
+	<span class="nx">CSS_STATE_ACTIVE</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">STATE</span><span class="p">,</span> <span class="nx">ACTIVE</span><span class="p">),</span>
+	<span class="nx">CSS_STATE_DEFAULT</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">STATE</span><span class="p">,</span> <span class="nx">DEFAULT</span><span class="p">),</span>
+	<span class="nx">CSS_STATE_HOVER</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">STATE</span><span class="p">,</span> <span class="nx">HOVER</span><span class="p">),</span>
+	<span class="nx">CSS_TITLE</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CALENDAR</span><span class="p">,</span> <span class="nx">TITLE</span><span class="p">),</span>
+	<span class="nx">CSS_WEEK</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CALENDAR</span><span class="p">,</span> <span class="nx">WEEK</span><span class="p">),</span>
+	<span class="nx">CSS_WEEKDAYS</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CALENDAR</span><span class="p">,</span> <span class="nx">WEEKDAYS</span><span class="p">),</span>
+
+	<span class="nx">TPL_CALENDAR_HEADER</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span><span class="o">+</span><span class="p">[</span> <span class="nx">CSS_HEADER</span><span class="p">,</span> <span class="nx">CSS_STATE_DEFAULT</span><span class="p">,</span> <span class="nx">CSS_HELPER_CLEARFIX</span> <span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&#39;</span> <span class="o">+</span>
+							<span class="s1">&#39;&lt;a href=&quot;&quot; class=&quot;&#39;</span><span class="o">+</span><span class="p">[</span> <span class="nx">CSS_ICON</span><span class="p">,</span> <span class="nx">CSS_ICON_CIRCLE_TRIANGLE_L</span><span class="p">,</span> <span class="nx">CSS_PREV</span> <span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;Back&lt;/a&gt;&#39;</span><span class="o">+</span>
+							<span class="s1">&#39;&lt;a href=&quot;&quot; class=&quot;&#39;</span><span class="o">+</span><span class="p">[</span> <span class="nx">CSS_ICON</span><span class="p">,</span> <span class="nx">CSS_ICON_CIRCLE_TRIANGLE_R</span><span class="p">,</span> <span class="nx">CSS_NEXT</span> <span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;Prev&lt;/a&gt;&#39;</span><span class="o">+</span>
+						<span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="p">,</span>
+
+	<span class="nx">TPL_CALENDAR_DAY_BLANK</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span><span class="o">+</span><span class="p">[</span> <span class="nx">CSS_DAY_BLANK</span><span class="p">,</span> <span class="nx">CSS_DAY_HIDDEN</span> <span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
+
+	<span class="nx">TPL_CALENDAR_DAY</span> <span class="o">=</span> <span class="s1">&#39;&lt;a href=&quot;#&quot; class=&quot;&#39;</span><span class="o">+</span><span class="p">[</span> <span class="nx">CSS_DAY</span><span class="p">,</span> <span class="nx">CSS_STATE_DEFAULT</span> <span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&lt;/a&gt;&#39;</span><span class="p">,</span>
+
+	<span class="nx">TPL_CALENDAR_HEADER_TITLE</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span><span class="o">+</span><span class="nx">CSS_TITLE</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
+
+	<span class="nx">TPL_CALENDAR_MONTHDAYS</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span><span class="o">+</span><span class="p">[</span> <span class="nx">CSS_MONTHDAYS</span><span class="p">,</span> <span class="nx">CSS_HELPER_CLEARFIX</span> <span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
+
+	<span class="nx">TPL_CALENDAR_WEEK</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span><span class="o">+</span><span class="nx">CSS_WEEK</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
+
+	<span class="nx">TPL_CALENDAR_WEEKDAYS</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span><span class="o">+</span><span class="p">[</span> <span class="nx">CSS_WEEKDAYS</span><span class="p">,</span> <span class="nx">CSS_HELPER_CLEARFIX</span> <span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * &lt;p&gt;&lt;img src=&quot;assets/images/aui-calendar/main.png&quot;/&gt;&lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * A base class for Calendar, providing:</span>
+<span class="cm"> * &lt;ul&gt;</span>
+<span class="cm"> *    &lt;li&gt;Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)&lt;/li&gt;</span>
+<span class="cm"> *    &lt;li&gt;Setting Configuration Options&lt;/li&gt;</span>
+<span class="cm"> *    &lt;li&gt;Obtaining Selected Dates&lt;/li&gt;</span>
+<span class="cm"> *    &lt;li&gt;Creating International Calendars&lt;/li&gt;</span>
+<span class="cm"> *    &lt;li&gt;Customizing the Calendar&lt;/li&gt;</span>
+<span class="cm"> * &lt;/ul&gt;</span>
+<span class="cm"> * </span>
+<span class="cm"> * Quick Example:</span>
+<span class="cm"> * </span>
+<span class="cm"> * &lt;pre&gt;&lt;code&gt;var instance = new A.Calendar({</span>
+<span class="cm"> *  trigger: &#39;#input1&#39;,</span>
+<span class="cm"> *  dates: [&#39;09/14/2009&#39;, &#39;09/15/2009&#39;],</span>
+<span class="cm"> *  dateFormat: &#39;%d/%m/%y %A&#39;,</span>
+<span class="cm"> *  setValue: true,</span>
+<span class="cm"> *  selectMultipleDates: true</span>
+<span class="cm"> * }).render();</span>
+<span class="cm"> * &lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * Check the list of &lt;a href=&quot;Calendar.html#configattributes&quot;&gt;Configuration Attributes&lt;/a&gt; available for</span>
+<span class="cm"> * Calendar.</span>
+<span class="cm"> * </span>
+<span class="cm"> * @class Calendar</span>
+<span class="cm"> * @param config {Object} Object literal specifying widget configuration properties.</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @extends OverlayContext</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">Calendar</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">Calendar</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Calendar</span><span class="p">,</span> <span class="p">{</span>
+	<span class="cm">/**</span>
+<span class="cm">	 * Static property provides a string to identify the class.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @property Calendar.NAME</span>
+<span class="cm">	 * @type String</span>
+<span class="cm">	 * @static</span>
+<span class="cm">	 */</span>
+	<span class="nx">NAME</span><span class="o">:</span> <span class="nx">CALENDAR</span><span class="p">,</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Static property used to define the default attribute</span>
+<span class="cm">	 * configuration for the Calendar.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @property Calendar.ATTRS</span>
+<span class="cm">	 * @type Object</span>
+<span class="cm">	 * @static</span>
+<span class="cm">	 */</span>
+	<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+		<span class="cm">/**</span>
+<span class="cm">		 * Current day number.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @attribute currentDay</span>
+<span class="cm">		 * @default Current day</span>
+<span class="cm">		 * @type Number</span>
+<span class="cm">		 */</span>
+		<span class="nx">currentDay</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()).</span><span class="nx">getDate</span><span class="p">()</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Current month number.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @attribute currentMonth</span>
+<span class="cm">		 * @default Current month</span>
+<span class="cm">		 * @type Number</span>
+<span class="cm">		 */</span>
+		<span class="nx">currentMonth</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()).</span><span class="nx">getMonth</span><span class="p">()</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Current year number.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @attribute currentYear</span>
+<span class="cm">		 * @default Current year</span>
+<span class="cm">		 * @type Number</span>
+<span class="cm">		 */</span>
+		<span class="nx">currentYear</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()).</span><span class="nx">getFullYear</span><span class="p">()</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Dates which the calendar will show as selected by default.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @attribute dates</span>
+<span class="cm">		 * @default Current date</span>
+<span class="cm">		 * @type Array</span>
+<span class="cm">		 */</span>
+		<span class="nx">dates</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="p">[</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="p">],</span>
+			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isArray</span><span class="p">,</span>
+			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setDates</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * The default date format string which can be overriden for</span>
+<span class="cm">         * localization support. The format must be valid according to</span>
+<span class="cm">         * &lt;a href=&quot;DataType.Date.html&quot;&gt;A.DataType.Date.format&lt;/a&gt;.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @attribute dateFormat</span>
+<span class="cm">		 * @default %m/%d/%Y</span>
+<span class="cm">		 * @type String</span>
+<span class="cm">		 */</span>
+		<span class="nx">dateFormat</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;%m/%d/%Y&#39;</span><span class="p">,</span>
+			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isString</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * First day of the week: Sunday is 0, Monday is 1.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @attribute firstDayOfWeek</span>
+<span class="cm">		 * @default 0</span>
+<span class="cm">		 * @type Number</span>
+<span class="cm">		 */</span>
+		<span class="nx">firstDayOfWeek</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNumber</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Minimum allowable date. Accepts String in the same format of</span>
+<span class="cm">         * &lt;a href=&quot;Calendar.html#config_dateFormat&quot;&gt;dateFormat&lt;/a&gt; or a Date</span>
+<span class="cm">         * object.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @attribute minDate</span>
+<span class="cm">		 * @default null</span>
+<span class="cm">		 * @type Date | String</span>
+<span class="cm">		 */</span>
+		<span class="nx">minDate</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setMinMaxDate</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Maximum allowable date. Accepts String in the same format of</span>
+<span class="cm">         * &lt;a href=&quot;Calendar.html#config_dateFormat&quot;&gt;dateFormat&lt;/a&gt; or a Date</span>
+<span class="cm">         * object.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @attribute maxDate</span>
+<span class="cm">		 * @default null</span>
+<span class="cm">		 * @type String | Date</span>
+<span class="cm">		 */</span>
+		<span class="nx">maxDate</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setMinMaxDate</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="nx">showOn</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;mousedown&#39;</span>
+		<span class="p">},</span>
+
+		<span class="nx">hideOn</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;mousedown&#39;</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Wether accepts to select multiple dates.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @attribute selectMultipleDates</span>
+<span class="cm">		 * @default false</span>
+<span class="cm">		 * @type boolean</span>
+<span class="cm">		 */</span>
+		<span class="nx">selectMultipleDates</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * If true set the selected date with the correct</span>
+<span class="cm">		 * &lt;a href=&quot;Calendar.html#config_dateFormat&quot;&gt;dateFormat&lt;/a&gt; to the</span>
+<span class="cm">		 * value of the input field which is hosting the Calendar.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @attribute setValue</span>
+<span class="cm">		 * @default true</span>
+<span class="cm">		 * @type boolean</span>
+<span class="cm">		 */</span>
+		<span class="nx">setValue</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * If true is able to do stacking with another overlays.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @attribute stack</span>
+<span class="cm">		 * @default true</span>
+<span class="cm">		 * @type boolean</span>
+<span class="cm">		 */</span>
+		<span class="nx">stack</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">lazyAdd</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setStack</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+			<span class="p">},</span>
+			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">Calendar</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">OverlayContext</span><span class="p">,</span> <span class="p">{</span>
+	<span class="cm">/**</span>
+<span class="cm">	 * Construction logic executed during Calendar instantiation. Lifecycle.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method initializer</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">selectedDates</span> <span class="o">=</span> <span class="p">[];</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Create the DOM structure for the Calendar. Lifecycle.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method renderUI</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">Calendar</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderCalendar</span><span class="p">();</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderWeekDays</span><span class="p">();</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderBlankDays</span><span class="p">();</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderMonthDays</span><span class="p">();</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Bind the events on the Calendar UI. Lifecycle.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method bindUI</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">Calendar</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindDOMEvents</span><span class="p">();</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindDelegateMonthDays</span><span class="p">();</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;datesChange&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_afterSetDates</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+		<span class="c1">// instance.after(&#39;currentDayChange&#39;, A.bind(instance._syncView, instance));</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;currentMonthChange&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_syncView</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;currentYearChange&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_syncView</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Sync the Calendar UI. Lifecycle.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method syncUI</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">Calendar</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">syncUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncView</span><span class="p">();</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Sync Calendar header, days and selected days UI.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _syncView</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">_syncView</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">currentDay</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_DAY</span><span class="p">);</span>
+		<span class="kd">var</span> <span class="nx">currentMonth</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_MONTH</span><span class="p">);</span>
+		<span class="kd">var</span> <span class="nx">currentYear</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_YEAR</span><span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncDays</span><span class="p">()</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncHeader</span><span class="p">();</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncSelectedDays</span><span class="p">();</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Sync Calendar header UI.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _syncHeader</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">_syncHeader</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">currentMonth</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_MONTH</span><span class="p">);</span>
+		<span class="kd">var</span> <span class="nx">currentYear</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_YEAR</span><span class="p">);</span>
+
+		<span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="p">[</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getMonthName</span><span class="p">(</span><span class="nx">currentMonth</span><span class="p">),</span> <span class="nx">currentYear</span> <span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">headerTitleNode</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">title</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Sync Calendar days UI.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _syncDays</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">_syncDays</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">daysInMonth</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getDaysInMonth</span><span class="p">();</span>
+		<span class="kd">var</span> <span class="nx">firstWeekDay</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getFirstDayOfWeek</span><span class="p">();</span>
+		<span class="kd">var</span> <span class="nx">currentDate</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getCurrentDate</span><span class="p">();</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">monthDays</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">monthDayNode</span><span class="p">,</span> <span class="nx">day</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">day</span> <span class="o">&gt;=</span> <span class="nx">daysInMonth</span><span class="p">)</span> <span class="p">{</span>
+				<span class="c1">// displaying the correct number of days in the current month</span>
+				<span class="nx">monthDayNode</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_DAY_HIDDEN</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="p">{</span>
+				<span class="nx">monthDayNode</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_DAY_HIDDEN</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="c1">// restricting date</span>
+			<span class="nx">currentDate</span><span class="p">.</span><span class="nx">setDate</span><span class="p">(</span><span class="nx">day</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_restrictDate</span><span class="p">(</span><span class="nx">currentDate</span><span class="p">,</span> <span class="nx">monthDayNode</span><span class="p">);</span>
+		<span class="p">});</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">blankDays</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">blankDayNode</span><span class="p">,</span> <span class="nx">day</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">blankDays</span> <span class="o">=</span> <span class="p">(</span><span class="nx">firstWeekDay</span> <span class="o">-</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FIRST_DAY_OF_WEEK</span><span class="p">)</span> <span class="o">+</span> <span class="mi">7</span><span class="p">)</span> <span class="o">%</span> <span class="mi">7</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">day</span> <span class="o">&lt;</span> <span class="nx">blankDays</span><span class="p">)</span> <span class="p">{</span>
+				<span class="c1">// show padding days to position the firstWeekDay correctly</span>
+				<span class="nx">blankDayNode</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_DAY_HIDDEN</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="p">{</span>
+				<span class="nx">blankDayNode</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_DAY_HIDDEN</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">});</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Sync Calendar selected days UI.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _syncSelectedDays</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">_syncSelectedDays</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dates</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">currentMonth</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_MONTH</span><span class="p">);</span>
+		<span class="kd">var</span> <span class="nx">currentYear</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_YEAR</span><span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">monthDays</span><span class="p">.</span><span class="nx">replaceClass</span><span class="p">(</span><span class="nx">CSS_STATE_ACTIVE</span><span class="p">,</span> <span class="nx">CSS_STATE_DEFAULT</span><span class="p">);</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">monthDays</span><span class="p">.</span><span class="nx">replaceClass</span><span class="p">(</span><span class="nx">CSS_STATE_HOVER</span><span class="p">,</span> <span class="nx">CSS_STATE_DEFAULT</span><span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_eachSelectedDate</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">date</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">canSelectDays</span> <span class="o">=</span> <span class="p">(</span><span class="nx">currentMonth</span> <span class="o">==</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">())</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">currentYear</span> <span class="o">==</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">());</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">canSelectDays</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">dayNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">monthDays</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">);</span>
+
+				<span class="nx">dayNode</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_STATE_ACTIVE</span><span class="p">);</span>
+
+				<span class="k">try</span> <span class="p">{</span>
+					<span class="c1">// focus the last selected date</span>
+					<span class="c1">// IE doesn&#39;t support focus on hidden elements</span>
+					<span class="nx">dayNode</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
+				<span class="p">}</span>
+				<span class="k">catch</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{}</span>
+			<span class="p">}</span>
+		<span class="p">},</span> <span class="nx">dates</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Render Calendar DOM elements.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _renderCalendar</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">_renderCalendar</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Container for house the week days elements.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property weekDaysNode</span>
+<span class="cm">		 * @type Node</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">weekDaysNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_CALENDAR_WEEKDAYS</span><span class="p">);</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Container for house the month days elements.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property monthDaysNode</span>
+<span class="cm">		 * @type Node</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">monthDaysNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_CALENDAR_MONTHDAYS</span><span class="p">);</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Header title Node.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property headerTitleNode</span>
+<span class="cm">		 * @type Node</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">headerTitleNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_CALENDAR_HEADER_TITLE</span><span class="p">);</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * This node is the WidgetStdMod.HEADER of the Calendar Overlay.</span>
+<span class="cm">         * Container to the</span>
+<span class="cm">         * &lt;a href=&quot;Calendar.html#property_headertitleNode&quot;&gt;headertitleNode&lt;/a&gt;.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property headerContentNode</span>
+<span class="cm">		 * @type Node</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">headerContentNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_CALENDAR_HEADER</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">headerTitleNode</span><span class="p">);</span>
+
+		<span class="kd">var</span> <span class="nx">bodyContent</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;&lt;div&gt;&lt;/div&gt;&#39;</span><span class="p">);</span>
+		<span class="nx">bodyContent</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">weekDaysNode</span><span class="p">);</span>
+		<span class="nx">bodyContent</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">monthDaysNode</span><span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">setStdModContent</span><span class="p">(</span><span class="nx">WidgetStdMod</span><span class="p">.</span><span class="nx">HEADER</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">headerContentNode</span><span class="p">);</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">setStdModContent</span><span class="p">(</span><span class="nx">WidgetStdMod</span><span class="p">.</span><span class="nx">BODY</span><span class="p">,</span> <span class="nx">bodyContent</span><span class="p">);</span>
+
+		<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_CALENDAR</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Render Calendar DOM week days elements.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _renderWeekDays</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">_renderWeekDays</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">day</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">weekDay</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_CALENDAR_WEEK</span><span class="p">);</span>
+		<span class="kd">var</span> <span class="nx">firstWeekDay</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FIRST_DAY_OF_WEEK</span><span class="p">);</span>
+
+		<span class="k">while</span><span class="p">(</span><span class="nx">day</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">fixedDay</span> <span class="o">=</span> <span class="p">(</span><span class="nx">day</span> <span class="o">+</span> <span class="nx">firstWeekDay</span><span class="p">)</span> <span class="o">%</span> <span class="mi">7</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">dayName</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getDayNameMin</span><span class="p">(</span><span class="nx">fixedDay</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">weekDaysNode</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span>
+				<span class="nx">weekDay</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">().</span><span class="nx">html</span><span class="p">(</span><span class="nx">dayName</span><span class="p">)</span>
+			<span class="p">);</span>
+
+			<span class="nx">day</span><span class="o">++</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Render Calendar DOM blank days elements. Blank days are used to align</span>
+<span class="cm">     * with the week day column.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _renderBlankDays</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">_renderBlankDays</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">day</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">blankDay</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_CALENDAR_DAY_BLANK</span><span class="p">);</span>
+
+		<span class="k">while</span> <span class="p">(</span><span class="nx">day</span><span class="o">++</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">monthDaysNode</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span>
+				<span class="nx">blankDay</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">()</span>
+			<span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">blankDays</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">monthDaysNode</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_DAY_BLANK</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Render Calendar DOM month days elements.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _renderMonthDays</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">_renderMonthDays</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">day</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">monthDay</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_CALENDAR_DAY</span><span class="p">);</span>
+
+		<span class="k">while</span> <span class="p">(</span><span class="nx">day</span><span class="o">++</span> <span class="o">&lt;</span> <span class="mi">31</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">monthDaysNode</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span>
+				<span class="nx">monthDay</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">().</span><span class="nx">html</span><span class="p">(</span><span class="nx">day</span><span class="p">)</span>
+			<span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">monthDays</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">monthDaysNode</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_DAY</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Bind DOM events to the UI.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _bindDOMEvents</span>
+<span class="cm">	 * @private</span>
+<span class="cm">	 */</span>
+	<span class="nx">_bindDOMEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">headerContentNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">headerContentNode</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
+
+		<span class="kd">var</span> <span class="nx">nextIcon</span> <span class="o">=</span> <span class="nx">headerContentNode</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_ICON_CIRCLE_TRIANGLE_R</span><span class="p">)</span>
+		<span class="kd">var</span> <span class="nx">prevIcon</span> <span class="o">=</span> <span class="nx">headerContentNode</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_ICON_CIRCLE_TRIANGLE_L</span><span class="p">)</span>
+
+		<span class="kd">var</span> <span class="nx">eventHalt</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">event</span><span class="p">.</span><span class="nx">halt</span><span class="p">();</span>
+		<span class="p">};</span>
+
+		<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">eventHalt</span><span class="p">);</span>
+		<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mousedown&#39;</span><span class="p">,</span> <span class="nx">eventHalt</span><span class="p">);</span>
+
+		<span class="nx">nextIcon</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mousedown&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_selectNextMonth</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+		<span class="nx">prevIcon</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mousedown&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_selectPrevMonth</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Delegate DOM events to the UI.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _bindDelegateMonthDays</span>
+<span class="cm">	 * @private</span>
+<span class="cm">	 */</span>
+	<span class="nx">_bindDelegateMonthDays</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
+
+		<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onClickDays</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_DAY</span><span class="p">);</span>
+		<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onMouseEnterDays</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_DAY</span><span class="p">);</span>
+		<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;mouseleave&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onMouseLeaveDays</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_DAY</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Check if a date is already selected.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method alreadySelected</span>
+<span class="cm">	 * @param {Date} date Date to be checked.</span>
+<span class="cm">	 * @return {boolean}</span>
+<span class="cm">	 */</span>
+	<span class="nx">alreadySelected</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">date</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">alreadySelected</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_eachSelectedDate</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_compareDates</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">date</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">alreadySelected</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">});</span>
+
+		<span class="k">return</span> <span class="nx">alreadySelected</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Get the selected dates.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method getSelectedDates</span>
+<span class="cm">	 * @return {Array}</span>
+<span class="cm">	 */</span>
+	<span class="nx">getSelectedDates</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DATES</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Get the selected dates formatted by the</span>
+<span class="cm">     * &lt;a href=&quot;Calendar.html#config_dateFormat&quot;&gt;dateFormat&lt;/a&gt;.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method getFormattedSelectedDates</span>
+<span class="cm">	 * @return {Array}</span>
+<span class="cm">	 */</span>
+	<span class="nx">getFormattedSelectedDates</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">dates</span> <span class="o">=</span> <span class="p">[];</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_eachSelectedDate</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">date</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">dates</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">formatDate</span><span class="p">(</span> <span class="nx">date</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DATE_FORMAT</span><span class="p">)</span> <span class="p">)</span> <span class="p">);</span>
+		<span class="p">});</span>
+
+		<span class="k">return</span> <span class="nx">dates</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Get an Array with selected dates with detailed information (day, month, year).</span>
+<span class="cm">	 *&lt;pre&gt;&lt;code&gt;[{</span>
+<span class="cm">	 *    year: date.getFullYear(),</span>
+<span class="cm">	 *    month: date.getMonth(),</span>
+<span class="cm">	 *    day: date.getDate()</span>
+<span class="cm">	 * }]&lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method getDetailedSelectedDates</span>
+<span class="cm">	 * @return {Array}</span>
+<span class="cm">	 */</span>
+	<span class="nx">getDetailedSelectedDates</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">dates</span> <span class="o">=</span> <span class="p">[];</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_eachSelectedDate</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">date</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">dates</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+				<span class="nx">year</span><span class="o">:</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">(),</span>
+				<span class="nx">month</span><span class="o">:</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">(),</span>
+				<span class="nx">day</span><span class="o">:</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getDate</span><span class="p">()</span>
+			<span class="p">});</span>
+		<span class="p">});</span>
+
+		<span class="k">return</span> <span class="nx">dates</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	 <span class="cm">/**</span>
+<span class="cm">	  * Get the locale map containing the respective values for the</span>
+<span class="cm">      * &lt;a href=&quot;Widget.html#config_locale&quot;&gt;locale&lt;/a&gt; used.</span>
+<span class="cm">	  *</span>
+<span class="cm">	  * &lt;pre&gt;&lt;code&gt;A.DataType.Date.Locale[&#39;pt-br&#39;] = A.merge(</span>
+<span class="cm">	  *	A.DataType.Date.Locale[&#39;en&#39;], {</span>
+<span class="cm">	  *		a: [&#39;Dom&#39;, &#39;Seg&#39;, &#39;Ter&#39;, &#39;Qua&#39;, &#39;Qui&#39;, &#39;Fri&#39;, &#39;Sat&#39;],</span>
+<span class="cm">	  *		A: [&#39;Domingo&#39;,&#39;Segunda-feira&#39;,&#39;Ter&amp;ccedil;a-feira&#39;,&#39;Quarta-feira&#39;,&#39;Quinta-feira&#39;,&#39;Sexta-feira&#39;,&#39;Sabado&#39;],</span>
+<span class="cm">	  *		b: [&#39;Jan&#39;,&#39;Fev&#39;,&#39;Mar&#39;,&#39;Abr&#39;,&#39;Mai&#39;,&#39;Jun&#39;, &#39;Jul&#39;,&#39;Ago&#39;,&#39;Set&#39;,&#39;Out&#39;,&#39;Nov&#39;,&#39;Dez&#39;],</span>
+<span class="cm">	  *		B: [&#39;Janeiro&#39;,&#39;Fevereiro&#39;,&#39;Mar&amp;ccedil;o&#39;,&#39;Abril&#39;,&#39;Maio&#39;,&#39;Junho&#39;, &#39;Julho&#39;,&#39;Agosto&#39;,&#39;Setembro&#39;,&#39;Outubro&#39;,&#39;Novembro&#39;,&#39;Dezembro&#39;],</span>
+<span class="cm">	  *		c: &#39;%a %d %b %Y %T %Z&#39;,</span>
+<span class="cm">	  *		p: [&#39;AM&#39;, &#39;PM&#39;],</span>
+<span class="cm">	  *		P: [&#39;am&#39;, &#39;pm&#39;],</span>
+<span class="cm">	  *		r: &#39;%I:%M:%S %p&#39;,</span>
+<span class="cm">	  *		x: &#39;%d/%m/%y&#39;,</span>
+<span class="cm">	  *		X: &#39;%T&#39;</span>
+<span class="cm">	  *	}</span>
+<span class="cm">	  *);&lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm">	  *</span>
+<span class="cm">	  * @method _getLocaleMap</span>
+<span class="cm">	  * @protected</span>
+<span class="cm">	  * @return {Object}</span>
+<span class="cm">	  */</span>
+	<span class="nx">_getLocaleMap</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DataType</span><span class="p">.</span><span class="nb">Date</span><span class="p">.</span><span class="nx">Locale</span><span class="p">[</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LOCALE</span><span class="p">)</span> <span class="p">];</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Util method to disable day nodes between</span>
+<span class="cm">     * &lt;a href=&quot;Calendar.html#config_minDate&quot;&gt;minDate&lt;/a&gt; and</span>
+<span class="cm">     * &lt;a href=&quot;Calendar.html#config_maxDate&quot;&gt;maxDate&lt;/a&gt;.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _restrictDate</span>
+<span class="cm">	 * @param {Date} currentDate Current date showed on the Calendar.</span>
+<span class="cm">	 * @param {Node} monthDayNode Day node to be disabled.</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">_restrictDate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">currentDate</span><span class="p">,</span> <span class="nx">monthDayNode</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">maxDate</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">MAX_DATE</span><span class="p">);</span>
+		<span class="kd">var</span> <span class="nx">minDate</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">MIN_DATE</span><span class="p">);</span>
+
+		<span class="kd">var</span> <span class="nx">disablePrev</span> <span class="o">=</span> <span class="nx">minDate</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">currentDate</span> <span class="o">&lt;</span> <span class="nx">minDate</span><span class="p">);</span>
+		<span class="kd">var</span> <span class="nx">disableNext</span> <span class="o">=</span> <span class="nx">maxDate</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">currentDate</span> <span class="o">&gt;</span> <span class="nx">maxDate</span><span class="p">);</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">disablePrev</span> <span class="o">||</span> <span class="nx">disableNext</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">monthDayNode</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_CALENDAR_DISABLED</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="p">{</span>
+			<span class="nx">monthDayNode</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_CALENDAR_DISABLED</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Select the current date returned by</span>
+<span class="cm">     * &lt;a href=&quot;Calendar.html#method_getCurrentDate&quot;&gt;getCurrentDate&lt;/a&gt;.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _selectDate</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">_selectDate</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">dates</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DATES</span><span class="p">);</span>
+		<span class="kd">var</span> <span class="nx">currentDate</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getCurrentDate</span><span class="p">();</span>
+
+		<span class="c1">// if is single selection reset the selected dates</span>
+		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SELECT_MULTIPLE_DATES</span><span class="p">))</span> <span class="p">{</span>
+			<span class="nx">dates</span> <span class="o">=</span> <span class="p">[];</span>
+		<span class="p">}</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">alreadySelected</span><span class="p">(</span><span class="nx">currentDate</span><span class="p">))</span> <span class="p">{</span>
+			<span class="nx">dates</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">currentDate</span><span class="p">);</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">DATES</span><span class="p">,</span> <span class="nx">dates</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Remove the passed date from</span>
+<span class="cm">     * &lt;a href=&quot;Calendar.html#config_dates&quot;&gt;dates&lt;/a&gt;.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _removeDate</span>
+<span class="cm">	 * @param {Date} date Date to remove</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">_removeDate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">date</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">dates</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DATES</span><span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_eachSelectedDate</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_compareDates</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">date</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">dates</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">});</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">DATES</span><span class="p">,</span> <span class="nx">dates</span><span class="p">);</span>
+	<span class="p">},</span>
+
+ 	<span class="cm">/**</span>
+<span class="cm"> 	 * Loop each date from &lt;a href=&quot;Calendar.html#config_dates&quot;&gt;dates&lt;/a&gt; and</span>
+<span class="cm">     * executes a callback.</span>
+<span class="cm"> 	 *</span>
+<span class="cm"> 	 * @method _eachSelectedDate</span>
+<span class="cm"> 	 * @param {function} fn Callback to be executed for each date.</span>
+<span class="cm"> 	 * @param {Dates} dates Optional dates Array to loop through. If not passed it will use</span>
+<span class="cm">     * the &lt;a href=&quot;Calendar.html#config_dates&quot;&gt;dates&lt;/a&gt;.</span>
+<span class="cm"> 	 * @protected</span>
+<span class="cm"> 	 */</span>
+	<span class="nx">_eachSelectedDate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">dates</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">dates</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">dates</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DATES</span><span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">dates</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+		<span class="p">});</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Compare two dates.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _compareDates</span>
+<span class="cm">	 * @param {Date} d1</span>
+<span class="cm">	 * @param {Date} d2</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 * @return {boolean}</span>
+<span class="cm">	 */</span>
+	<span class="nx">_compareDates</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d1</span><span class="p">,</span> <span class="nx">d2</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="p">(</span> <span class="nx">d1</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">==</span> <span class="nx">d2</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span> <span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Navigate to the next month. Fired from the next icon on the Calendar</span>
+<span class="cm">     * header.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _selectNextMonth</span>
+<span class="cm">	 * @param {EventFacade} event</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">_selectNextMonth</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_navigateMonth</span><span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+
+		<span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Navigate to the previous month. Fired from the previous icon on the</span>
+<span class="cm">	 * Calendar header.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _selectPrevMonth</span>
+<span class="cm">	 * @param {EventFacade} event</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">_selectPrevMonth</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_navigateMonth</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+
+		<span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Navigate through months and re-sync the UI.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _navigateMonth</span>
+<span class="cm">	 * @param {Number} offset Offset of the number of months to navigate.</span>
+<span class="cm">     * Could be a positive or a negative offset.</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">_navigateMonth</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">offset</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">currentMonth</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_MONTH</span><span class="p">);</span>
+		<span class="kd">var</span> <span class="nx">currentYear</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_YEAR</span><span class="p">);</span>
+
+		<span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">currentYear</span><span class="p">,</span> <span class="nx">currentMonth</span> <span class="o">+</span> <span class="nx">offset</span><span class="p">);</span>
+
+		<span class="c1">// when navigate by month update the year also</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CURRENT_MONTH</span><span class="p">,</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">());</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CURRENT_YEAR</span><span class="p">,</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">());</span>
+	<span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Fires after select event.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _afterSetDates</span>
+<span class="cm">     * @param {EventFacade} event select custom event</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+	<span class="nx">_afterSetDates</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">normal</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getSelectedDates</span><span class="p">();</span>
+		<span class="kd">var</span> <span class="nx">formatted</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getFormattedSelectedDates</span><span class="p">();</span>
+		<span class="kd">var</span> <span class="nx">detailed</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getDetailedSelectedDates</span><span class="p">();</span>
+		<span class="kd">var</span> <span class="nx">hasSelected</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncSelectedDays</span><span class="p">();</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">hasSelected</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;select&#39;</span><span class="p">,</span> <span class="p">{</span>
+				<span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
+					<span class="nx">detailed</span><span class="o">:</span> <span class="nx">detailed</span><span class="p">,</span>
+					<span class="nx">formatted</span><span class="o">:</span> <span class="nx">formatted</span><span class="p">,</span>
+					<span class="nx">normal</span><span class="o">:</span> <span class="nx">normal</span>
+				<span class="p">}</span>
+			<span class="p">});</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SELECT_MULTIPLE_DATES</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SET_VALUE</span><span class="p">))</span> <span class="p">{</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_NODE</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span> <span class="nx">formatted</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Fires on click days elements.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _onClickDays</span>
+<span class="cm">     * @param {EventFacade} event</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+	<span class="nx">_onClickDays</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">target</span>  <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span> <span class="o">||</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">day</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">monthDays</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">target</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">disabled</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_CALENDAR_DISABLED</span><span class="p">);</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">disabled</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CURRENT_DAY</span><span class="p">,</span> <span class="nx">day</span><span class="p">);</span>
+
+			<span class="kd">var</span> <span class="nx">currentDate</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getCurrentDate</span><span class="p">();</span>
+			<span class="kd">var</span> <span class="nx">alreadySelected</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">alreadySelected</span><span class="p">(</span><span class="nx">currentDate</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">alreadySelected</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_removeDate</span><span class="p">(</span><span class="nx">currentDate</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_selectDate</span><span class="p">();</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+
+		<span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+	<span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Fires on mouseenter days elements.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _onMouseEnterDays</span>
+<span class="cm">     * @param {EventFacade} event</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+	<span class="nx">_onMouseEnterDays</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">target</span>  <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span> <span class="o">||</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+
+		<span class="nx">target</span><span class="p">.</span><span class="nx">replaceClass</span><span class="p">(</span><span class="nx">CSS_STATE_DEFAULT</span><span class="p">,</span> <span class="nx">CSS_STATE_HOVER</span><span class="p">);</span>
+	<span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Fires on mouseleave days elements.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _onMouseLeaveDays</span>
+<span class="cm">     * @param {EventFacade} event</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+	<span class="nx">_onMouseLeaveDays</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">target</span>  <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span> <span class="o">||</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+
+		<span class="nx">target</span><span class="p">.</span><span class="nx">replaceClass</span><span class="p">(</span><span class="nx">CSS_STATE_HOVER</span><span class="p">,</span> <span class="nx">CSS_STATE_DEFAULT</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Setter for the &lt;a href=&quot;Calendar.html#config_dates&quot;&gt;dates&lt;/a&gt; attribute.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _setDates</span>
+<span class="cm">	 * @param {Array} value</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 * @return {Array}</span>
+<span class="cm">	 */</span>
+	<span class="nx">_setDates</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">date</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">isString</span><span class="p">(</span><span class="nx">date</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">parseDate</span><span class="p">(</span> <span class="nx">date</span> <span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">});</span>
+
+		<span class="kd">var</span> <span class="nx">lastSelectedDate</span> <span class="o">=</span> <span class="nx">value</span><span class="p">[</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">lastSelectedDate</span><span class="p">)</span> <span class="p">{</span>
+			<span class="c1">// update the current values to the last selected date</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CURRENT_DAY</span><span class="p">,</span> <span class="nx">lastSelectedDate</span><span class="p">.</span><span class="nx">getDate</span><span class="p">());</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CURRENT_MONTH</span><span class="p">,</span> <span class="nx">lastSelectedDate</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">());</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CURRENT_YEAR</span><span class="p">,</span> <span class="nx">lastSelectedDate</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">());</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncSelectedDays</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Setter for the &lt;a href=&quot;Calendar.html#config_maxDates&quot;&gt;maxDates&lt;/a&gt; or</span>
+<span class="cm">     * &lt;a href=&quot;Calendar.html#config_mainDates&quot;&gt;minDates&lt;/a&gt; attributes.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _setMinMaxDate</span>
+<span class="cm">	 * @param {Date} value</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 * @return {Date}</span>
+<span class="cm">	 */</span>
+	<span class="nx">_setMinMaxDate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">isString</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+			<span class="nx">value</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">parseDate</span><span class="p">(</span> <span class="nx">value</span> <span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Setter for the &lt;a href=&quot;Calendar.html#config_stack&quot;&gt;stack&lt;/a&gt; attribute.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _setStack</span>
+<span class="cm">	 * @param {boolean} value</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 * @return {boolean}</span>
+<span class="cm">	 */</span>
+	<span class="nx">_setStack</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">A</span><span class="p">.</span><span class="nx">CalendarManager</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="p">{</span>
+			<span class="nx">A</span><span class="p">.</span><span class="nx">CalendarManager</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Get current date.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method getCurrentDate</span>
+<span class="cm">	 * @return {Date}</span>
+<span class="cm">	 */</span>
+	<span class="nx">getCurrentDate</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_normalizeYearMonth</span><span class="p">();</span>
+
+		<span class="k">return</span> <span class="p">(</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">year</span><span class="p">,</span> <span class="nx">date</span><span class="p">.</span><span class="nx">month</span><span class="p">,</span> <span class="nx">date</span><span class="p">.</span><span class="nx">day</span><span class="p">)</span> <span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Get the number of days in the passed year and month.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method getDaysInMonth</span>
+<span class="cm">	 * @param {Number} year Year in the format YYYY.</span>
+<span class="cm">	 * @param {Number} month 0 for January 11 for December.</span>
+<span class="cm">	 * @return {Number}</span>
+<span class="cm">	 */</span>
+	<span class="nx">getDaysInMonth</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">year</span><span class="p">,</span> <span class="nx">month</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_normalizeYearMonth</span><span class="p">(</span><span class="nx">year</span><span class="p">,</span> <span class="nx">month</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="p">(</span> <span class="mi">32</span> <span class="o">-</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">year</span><span class="p">,</span> <span class="nx">date</span><span class="p">.</span><span class="nx">month</span><span class="p">,</span> <span class="mi">32</span><span class="p">).</span><span class="nx">getDate</span><span class="p">()</span> <span class="p">);</span>
+    <span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Get the Date for the first day of the passed year and month.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method getFirstDate</span>
+<span class="cm">	 * @param {Number} year Year in the format YYYY.</span>
+<span class="cm">	 * @param {Number} month 0 for January 11 for December.</span>
+<span class="cm">	 * @return {Date}</span>
+<span class="cm">	 */</span>
+	<span class="nx">getFirstDate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">year</span><span class="p">,</span> <span class="nx">month</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_normalizeYearMonth</span><span class="p">(</span><span class="nx">year</span><span class="p">,</span> <span class="nx">month</span><span class="p">);</span>
+
+		<span class="k">return</span> <span class="p">(</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">year</span><span class="p">,</span> <span class="nx">date</span><span class="p">.</span><span class="nx">month</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Get the Date for the last day of the passed year and month.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method getLastDate</span>
+<span class="cm">	 * @param {Number} year Year in the format YYYY.</span>
+<span class="cm">	 * @param {Number} month 0 for January 11 for December.</span>
+<span class="cm">	 * @return {Date}</span>
+<span class="cm">	 */</span>
+	<span class="nx">getLastDate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">year</span><span class="p">,</span> <span class="nx">month</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_normalizeYearMonth</span><span class="p">(</span><span class="nx">year</span><span class="p">,</span> <span class="nx">month</span><span class="p">);</span>
+		<span class="kd">var</span> <span class="nx">daysInMonth</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getDaysInMonth</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">month</span><span class="p">);</span>
+
+		<span class="k">return</span> <span class="p">(</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">year</span><span class="p">,</span> <span class="nx">date</span><span class="p">.</span><span class="nx">month</span><span class="p">,</span> <span class="nx">daysInMonth</span><span class="p">)</span> <span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Get the first day of week of the passed year and month.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method getFirstDayOfWeek</span>
+<span class="cm">	 * @param {Number} year Year in the format YYYY.</span>
+<span class="cm">	 * @param {Number} month 0 for January 11 for December.</span>
+<span class="cm">	 * @return {Number}</span>
+<span class="cm">	 */</span>
+	<span class="nx">getFirstDayOfWeek</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">year</span><span class="p">,</span> <span class="nx">month</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getFirstDate</span><span class="p">(</span><span class="nx">year</span><span class="p">,</span> <span class="nx">month</span><span class="p">).</span><span class="nx">getDay</span><span class="p">();</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Returns an Object with the current day, month and year.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _normalizeYearMonth</span>
+<span class="cm">	 * @param {Number} year Year in the format YYYY.</span>
+<span class="cm">	 * @param {Number} month 0 for January 11 for December.</span>
+<span class="cm">	 * @param {Number} day</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 * @return {Object}</span>
+<span class="cm">	 */</span>
+	<span class="nx">_normalizeYearMonth</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">year</span><span class="p">,</span> <span class="nx">month</span><span class="p">,</span> <span class="nx">day</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">currentDay</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_DAY</span><span class="p">);</span>
+		<span class="kd">var</span> <span class="nx">currentMonth</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_MONTH</span><span class="p">);</span>
+		<span class="kd">var</span> <span class="nx">currentYear</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_YEAR</span><span class="p">);</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">day</span><span class="p">))</span> <span class="p">{</span>
+			<span class="nx">day</span> <span class="o">=</span> <span class="nx">currentDay</span><span class="p">;</span>
+		<span class="p">}</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">month</span><span class="p">))</span> <span class="p">{</span>
+			<span class="nx">month</span> <span class="o">=</span> <span class="nx">currentMonth</span><span class="p">;</span>
+		<span class="p">}</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">year</span><span class="p">))</span> <span class="p">{</span>
+			<span class="nx">year</span> <span class="o">=</span> <span class="nx">currentYear</span><span class="p">;</span>
+		<span class="p">}</span>
+
+		<span class="k">return</span> <span class="p">{</span> <span class="nx">year</span><span class="o">:</span> <span class="nx">year</span><span class="p">,</span> <span class="nx">month</span><span class="o">:</span> <span class="nx">month</span><span class="p">,</span> <span class="nx">day</span><span class="o">:</span> <span class="nx">day</span> <span class="p">};</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Get the day name of the passed weekDay from the locale map.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _getDayName</span>
+<span class="cm">	 * @param {Number} weekDay</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 * @return {String}</span>
+<span class="cm">	 */</span>
+	<span class="nx">_getDayName</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">weekDay</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">localeMap</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getLocaleMap</span><span class="p">();</span>
+
+		<span class="k">return</span> <span class="nx">localeMap</span><span class="p">.</span><span class="nx">A</span><span class="p">[</span><span class="nx">weekDay</span><span class="p">];</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Get a short day name of the passed weekDay from the locale map.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _getDayNameShort</span>
+<span class="cm">	 * @param {Number} weekDay</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 * @return {String}</span>
+<span class="cm">	 */</span>
+	<span class="nx">_getDayNameShort</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">weekDay</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">localeMap</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getLocaleMap</span><span class="p">();</span>
+
+		<span class="k">return</span> <span class="nx">localeMap</span><span class="p">.</span><span class="nx">a</span><span class="p">[</span><span class="nx">weekDay</span><span class="p">];</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Get a very short day name of the passed weekDay from the locale map.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _getDayNameMin</span>
+<span class="cm">	 * @param {Number} weekDay</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 * @return {String}</span>
+<span class="cm">	 */</span>
+	<span class="nx">_getDayNameMin</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">weekDay</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getDayNameShort</span><span class="p">(</span><span class="nx">weekDay</span><span class="p">);</span>
+
+		<span class="k">return</span> <span class="nx">name</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">name</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Get a month name of the passed month from the locale map.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _getMonthName</span>
+<span class="cm">	 * @param {Number} month</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 * @return {String}</span>
+<span class="cm">	 */</span>
+	<span class="nx">_getMonthName</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">month</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">localeMap</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getLocaleMap</span><span class="p">();</span>
+
+		<span class="k">return</span> <span class="nx">localeMap</span><span class="p">.</span><span class="nx">B</span><span class="p">[</span><span class="nx">month</span><span class="p">];</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Get a short month name of the passed month from the locale map.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _getMonthNameShort</span>
+<span class="cm">	 * @param {Number} month</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 * @return {String}</span>
+<span class="cm">	 */</span>
+	<span class="nx">_getMonthNameShort</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">month</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">localeMap</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getLocaleMap</span><span class="p">();</span>
+
+		<span class="k">return</span> <span class="nx">localeMap</span><span class="p">.</span><span class="nx">b</span><span class="p">[</span><span class="nx">month</span><span class="p">];</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Parse a string to a Date object.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method parseDate</span>
+<span class="cm">	 * @param {String} dateString</span>
+<span class="cm">	 * @return {Date}</span>
+<span class="cm">	 */</span>
+	<span class="nx">parseDate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dateString</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="k">return</span> <span class="p">(</span> <span class="nx">dateString</span> <span class="o">?</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">dateString</span><span class="p">)</span> <span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span> <span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Format a date with the passed mask. Used on</span>
+<span class="cm">     * &lt;a href=&quot;Calendar.html#config_dateFormat&quot;&gt;dateFormat&lt;/a&gt;.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method formatDate</span>
+<span class="cm">	 * @param {Date} date</span>
+<span class="cm">	 * @param {String} mask See &lt;a href=&quot;Calendar.html#config_dateFormat&quot;&gt;dateFormat&lt;/a&gt;.</span>
+<span class="cm">	 * @return {String}</span>
+<span class="cm">	 */</span>
+	<span class="nx">formatDate</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">date</span><span class="p">,</span> <span class="nx">mask</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">locale</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LOCALE</span><span class="p">);</span>
+
+		<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DataType</span><span class="p">.</span><span class="nb">Date</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="nx">date</span><span class="p">,</span> <span class="p">{</span> <span class="nx">format</span><span class="o">:</span> <span class="nx">mask</span><span class="p">,</span> <span class="nx">locale</span><span class="o">:</span> <span class="nx">locale</span> <span class="p">});</span>
+	<span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">Calendar</span> <span class="o">=</span> <span class="nx">Calendar</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * A base class for CalendarManager:</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param config {Object} Object literal specifying widget configuration properties.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class CalendarManager</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @extends OverlayManager</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+<span class="nx">A</span><span class="p">.</span><span class="nx">CalendarManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">OverlayManager</span><span class="p">({</span>
+	<span class="cm">/**</span>
+<span class="cm">	 * ZIndex default value passed to the</span>
+<span class="cm">     * &lt;a href=&quot;OverlayManager.html#config_zIndexBase&quot;&gt;zIndexBase&lt;/a&gt; of</span>
+<span class="cm">     * &lt;a href=&quot;OverlayManager.html&quot;&gt;OverlayManager&lt;/a&gt;.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @attribute zIndexBase</span>
+<span class="cm">	 * @default 1000</span>
+<span class="cm">	 * @type Number</span>
+<span class="cm">	 */</span>
+	<span class="nx">zIndexBase</span><span class="o">:</span> <span class="mi">1000</span>
+<span class="p">});</span>
+
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-overlay-context&#39;</span><span class="p">,</span><span class="s1">&#39;datatype-date&#39;</span><span class="p">,</span><span class="s1">&#39;widget-locale&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Calendar.html#method__afterSetDates", "access": "protected", "host": "Calendar", "type": "method", "name": "_afterSetDates"}, {"url": "Calendar.html#method_alreadySelected", "access": "", "host": "Calendar", "type": "method", "name": "alreadySelected"}, {"url": "DatePickerSelect.html#config_appendOrder", "access": "", "host": "DatePickerSelect", "type": "config", "name": "appendOrder"}, {"url": "DatePickerSelect.html#event_appendOrderChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "appendOrderChange"}, {"url": "DatePickerSelect.html#config_baseName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "baseName"}, {"url": "DatePickerSelect.html#event_baseNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "baseNameChange"}, {"url": "DatePickerSelect.html#method__bindSelectEvents", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_bindSelectEvents"}, {"url": "Calendar.html#method_bindUI", "access": "protected", "host": "Calendar", "type": "method", "name": "bindUI"}, {"url": "DatePickerSelect.html#method_bindUI", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "bindUI"}, {"url": "Calendar.html#property_Calendar.ATTRS", "access": "", "host": "Calendar", "type": "property", "name": "Calendar.ATTRS"}, {"url": "Calendar.html#property_Calendar.NAME", "access": "", "host": "Calendar", "type": "property", "name": "Calendar.NAME"}, {"url": "Calendar.html#method__compareDates", "access": "protected", "host": "Calendar", "type": "method", "name": "_compareDates"}, {"url": "Calendar.html#config_currentDay", "access": "", "host": "Calendar", "type": "config", "name": "currentDay"}, {"url": "Calendar.html#event_currentDayChange", "access": "", "host": "Calendar", "type": "event", "name": "currentDayChange"}, {"url": "Calendar.html#config_currentMonth", "access": "", "host": "Calendar", "type": "config", "name": "currentMonth"}, {"url": "Calendar.html#event_currentMonthChange", "access": "", "host": "Calendar", "type": "event", "name": "currentMonthChange"}, {"url": "Calendar.html#config_currentYear", "access": "", "host": "Calendar", "type": "config", "name": "currentYear"}, {"url": "Calendar.html#event_currentYearChange", "access": "", "host": "Calendar", "type": "event", "name": "currentYearChange"}, {"url": "Calendar.html#config_dateFormat", "access": "", "host": "Calendar", "type": "config", "name": "dateFormat"}, {"url": "Calendar.html#event_dateFormatChange", "access": "", "host": "Calendar", "type": "event", "name": "dateFormatChange"}, {"url": "DatePickerSelect.html#property_DatePickerSelect.ATTRS", "access": "", "host": "DatePickerSelect", "type": "property", "name": "DatePickerSelect.ATTRS"}, {"url": "DatePickerSelect.html#property_DatePickerSelect.NAME", "access": "", "host": "DatePickerSelect", "type": "property", "name": "DatePickerSelect.NAME"}, {"url": "Calendar.html#config_dates", "access": "", "host": "Calendar", "type": "config", "name": "dates"}, {"url": "Calendar.html#event_datesChange", "access": "", "host": "Calendar", "type": "event", "name": "datesChange"}, {"url": "DatePickerSelect.html#config_dayField", "access": "", "host": "DatePickerSelect", "type": "config", "name": "dayField"}, {"url": "DatePickerSelect.html#event_dayFieldChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "dayFieldChange"}, {"url": "DatePickerSelect.html#config_dayFieldName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "dayFieldName"}, {"url": "DatePickerSelect.html#event_dayFieldNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "dayFieldNameChange"}, {"url": "DatePickerSelect.html#config_displayBoundingBox", "access": "", "host": "DatePickerSelect", "type": "config", "name": "displayBoundingBox"}, {"url": "DatePickerSelect.html#event_displayBoundingBoxChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "displayBoundingBoxChange"}, {"url": "Calendar.html#method__eachSelectedDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_eachSelectedDate"}, {"url": "Calendar.html#config_firstDayOfWeek", "access": "", "host": "Calendar", "type": "config", "name": "firstDayOfWeek"}, {"url": "Calendar.html#event_firstDayOfWeekChange", "access": "", "host": "Calendar", "type": "event", "name": "firstDayOfWeekChange"}, {"url": "Calendar.html#method_formatDate", "access": "", "host": "Calendar", "type": "method", "name": "formatDate"}, {"url": "DatePickerSelect.html#method__getAppendOrder", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_getAppendOrder"}, {"url": "Calendar.html#method_getCurrentDate", "access": "", "host": "Calendar", "type": "method", "name": "getCurrentDate"}, {"url": "Calendar.html#method__getDayName", "access": "protected", "host": "Calendar", "type": "method", "name": "_getDayName"}, {"url": "Calendar.html#method__getDayNameMin", "access": "protected", "host": "Calendar", "type": "method", "name": "_getDayNameMin"}, {"url": "Calendar.html#method__getDayNameShort", "access": "protected", "host": "Calendar", "type": "method", "name": "_getDayNameShort"}, {"url": "Calendar.html#method_getDaysInMonth", "access": "", "host": "Calendar", "type": "method", "name": "getDaysInMonth"}, {"url": "Calendar.html#method_getDetailedSelectedDates", "access": "", "host": "Calendar", "type": "method", "name": "getDetailedSelectedDates"}, {"url": "Calendar.html#method_getFirstDate", "access": "", "host": "Calendar", "type": "method", "name": "getFirstDate"}, {"url": "Calendar.html#method_getFirstDayOfWeek", "access": "", "host": "Calendar", "type": "method", "name": "getFirstDayOfWeek"}, {"url": "Calendar.html#method_getFormattedSelectedDates", "access": "", "host": "Calendar", "type": "method", "name": "getFormattedSelectedDates"}, {"url": "Calendar.html#method_getLastDate", "access": "", "host": "Calendar", "type": "method", "name": "getLastDate"}, {"url": "Calendar.html#method__getLocaleMap", "access": "protected", "host": "Calendar", "type": "method", "name": "_getLocaleMap"}, {"url": "Calendar.html#method__getMonthName", "access": "protected", "host": "Calendar", "type": "method", "name": "_getMonthName"}, {"url": "Calendar.html#method__getMonthNameShort", "access": "protected", "host": "Calendar", "type": "method", "name": "_getMonthNameShort"}, {"url": "Calendar.html#method_getSelectedDates", "access": "", "host": "Calendar", "type": "method", "name": "getSelectedDates"}, {"url": "Calendar.html#property_headerContentNode", "access": "protected", "host": "Calendar", "type": "property", "name": "headerContentNode"}, {"url": "Calendar.html#property_headerTitleNode", "access": "protected", "host": "Calendar", "type": "property", "name": "headerTitleNode"}, {"url": "Calendar.html#method_initializer", "access": "protected", "host": "Calendar", "type": "method", "name": "initializer"}, {"url": "Calendar.html#config_maxDate", "access": "", "host": "Calendar", "type": "config", "name": "maxDate"}, {"url": "Calendar.html#event_maxDateChange", "access": "", "host": "Calendar", "type": "event", "name": "maxDateChange"}, {"url": "Calendar.html#config_minDate", "access": "", "host": "Calendar", "type": "config", "name": "minDate"}, {"url": "Calendar.html#event_minDateChange", "access": "", "host": "Calendar", "type": "event", "name": "minDateChange"}, {"url": "Calendar.html#property_monthDaysNode", "access": "protected", "host": "Calendar", "type": "property", "name": "monthDaysNode"}, {"url": "DatePickerSelect.html#config_monthField", "access": "", "host": "DatePickerSelect", "type": "config", "name": "monthField"}, {"url": "DatePickerSelect.html#event_monthFieldChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "monthFieldChange"}, {"url": "DatePickerSelect.html#config_monthFieldName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "monthFieldName"}, {"url": "DatePickerSelect.html#event_monthFieldNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "monthFieldNameChange"}, {"url": "Calendar.html#method__navigateMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_navigateMonth"}, {"url": "Calendar.html#method__normalizeYearMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_normalizeYearMonth"}, {"url": "Calendar.html#method__onClickDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_onClickDays"}, {"url": "Calendar.html#method__onMouseEnterDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_onMouseEnterDays"}, {"url": "Calendar.html#method__onMouseLeaveDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_onMouseLeaveDays"}, {"url": "DatePickerSelect.html#method__onSelectChange", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_onSelectChange"}, {"url": "Calendar.html#method_parseDate", "access": "", "host": "Calendar", "type": "method", "name": "parseDate"}, {"url": "DatePickerSelect.html#config_populateDay", "access": "", "host": "DatePickerSelect", "type": "config", "name": "populateDay"}, {"url": "DatePickerSelect.html#event_populateDayChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "populateDayChange"}, {"url": "DatePickerSelect.html#method__populateDays", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateDays"}, {"url": "DatePickerSelect.html#config_populateMonth", "access": "", "host": "DatePickerSelect", "type": "config", "name": "populateMonth"}, {"url": "DatePickerSelect.html#event_populateMonthChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "populateMonthChange"}, {"url": "DatePickerSelect.html#method__populateMonths", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateMonths"}, {"url": "DatePickerSelect.html#method__populateSelect", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateSelect"}, {"url": "DatePickerSelect.html#config_populateYear", "access": "", "host": "DatePickerSelect", "type": "config", "name": "populateYear"}, {"url": "DatePickerSelect.html#event_populateYearChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "populateYearChange"}, {"url": "DatePickerSelect.html#method__populateYears", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateYears"}, {"url": "DatePickerSelect.html#method__pupulateSelects", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_pupulateSelects"}, {"url": "Calendar.html#method__removeDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_removeDate"}, {"url": "Calendar.html#method__renderBlankDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderBlankDays"}, {"url": "Calendar.html#method__renderCalendar", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderCalendar"}, {"url": "DatePickerSelect.html#method__renderElements", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_renderElements"}, {"url": "Calendar.html#method__renderMonthDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderMonthDays"}, {"url": "DatePickerSelect.html#method__renderTriggerButton", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_renderTriggerButton"}, {"url": "Calendar.html#method_renderUI", "access": "protected", "host": "Calendar", "type": "method", "name": "renderUI"}, {"url": "DatePickerSelect.html#method_renderUI", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "renderUI"}, {"url": "Calendar.html#method__renderWeekDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderWeekDays"}, {"url": "Calendar.html#method__restrictDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_restrictDate"}, {"url": "DatePickerSelect.html#method__selectCurrentDay", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentDay"}, {"url": "DatePickerSelect.html#method__selectCurrentMonth", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentMonth"}, {"url": "DatePickerSelect.html#method__selectCurrentValues", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentValues"}, {"url": "DatePickerSelect.html#method__selectCurrentYear", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentYear"}, {"url": "Calendar.html#method__selectDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_selectDate"}, {"url": "Calendar.html#config_selectMultipleDates", "access": "", "host": "Calendar", "type": "config", "name": "selectMultipleDates"}, {"url": "Calendar.html#event_selectMultipleDatesChange", "access": "", "host": "Calendar", "type": "event", "name": "selectMultipleDatesChange"}, {"url": "Calendar.html#method__selectNextMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_selectNextMonth"}, {"url": "Calendar.html#method__selectPrevMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_selectPrevMonth"}, {"url": "Calendar.html#method__setDates", "access": "protected", "host": "Calendar", "type": "method", "name": "_setDates"}, {"url": "Calendar.html#method__setMinMaxDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_setMinMaxDate"}, {"url": "Calendar.html#method__setStack", "access": "protected", "host": "Calendar", "type": "method", "name": "_setStack"}, {"url": "Calendar.html#config_setValue", "access": "", "host": "Calendar", "type": "config", "name": "setValue"}, {"url": "DatePickerSelect.html#config_setValue", "access": "", "host": "DatePickerSelect", "type": "config", "name": "setValue"}, {"url": "Calendar.html#event_setValueChange", "access": "", "host": "Calendar", "type": "event", "name": "setValueChange"}, {"url": "DatePickerSelect.html#event_setValueChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "setValueChange"}, {"url": "Calendar.html#config_stack", "access": "", "host": "Calendar", "type": "config", "name": "stack"}, {"url": "Calendar.html#event_stackChange", "access": "", "host": "Calendar", "type": "event", "name": "stackChange"}, {"url": "Calendar.html#method__syncDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncDays"}, {"url": "Calendar.html#method__syncHeader", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncHeader"}, {"url": "Calendar.html#method__syncSelectedDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncSelectedDays"}, {"url": "Calendar.html#method_syncUI", "access": "protected", "host": "Calendar", "type": "method", "name": "syncUI"}, {"url": "DatePickerSelect.html#method_syncUI", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "syncUI"}, {"url": "Calendar.html#method__syncView", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncView"}, {"url": "DatePickerSelect.html#config_trigger", "access": "", "host": "DatePickerSelect", "type": "config", "name": "trigger"}, {"url": "DatePickerSelect.html#event_triggerChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "triggerChange"}, {"url": "DatePickerSelect.html#config_visible", "access": "", "host": "DatePickerSelect", "type": "config", "name": "visible"}, {"url": "DatePickerSelect.html#event_visibleChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "visibleChange"}, {"url": "Calendar.html#property_weekDaysNode", "access": "protected", "host": "Calendar", "type": "property", "name": "weekDaysNode"}, {"url": "DatePickerSelect.html#config_yearField", "access": "", "host": "DatePickerSelect", "type": "config", "name": "yearField"}, {"url": "DatePickerSelect.html#event_yearFieldChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "yearFieldChange"}, {"url": "DatePickerSelect.html#config_yearFieldName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "yearFieldName"}, {"url": "DatePickerSelect.html#event_yearFieldNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "yearFieldNameChange"}, {"url": "DatePickerSelect.html#config_yearRange", "access": "", "host": "DatePickerSelect", "type": "config", "name": "yearRange"}, {"url": "DatePickerSelect.html#event_yearRangeChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "yearRangeChange"}, {"url": "CalendarManager.html#config_zIndexBase", "access": "", "host": "CalendarManager", "type": "config", "name": "zIndexBase"}, {"url": "CalendarManager.html#event_zIndexBaseChange", "access": "", "host": "CalendarManager", "type": "event", "name": "zIndexBaseChange"}];
+</script>
+</body>
+</html>

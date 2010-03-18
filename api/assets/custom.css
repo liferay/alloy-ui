@@ -74,6 +74,7 @@ pre {
 
 #wrapper .aui-header-text {
 	display: block;
+	font-size: 0;
 	background: url(images/logo_small.png) no-repeat;
 	width: 166px;
 	height: 54px;
@@ -317,6 +318,11 @@ body.show_protected .protected {
 
 .event-row h4 a, .aui-list-events a {
 	color: #7bd511;
+}
+
+.aui-module-section-heading {
+	font-size: 14px;
+	margin-bottom: 0.2em;
 }
 
 .aui-list {

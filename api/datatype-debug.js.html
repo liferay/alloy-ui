@@ -1,0 +1,2048 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: datatype   datatype-debug.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			datatype&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_datatype.html" title="datatype">datatype</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">datatype-debug.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="DataType.Date.html" title="DataType.Date">DataType.Date</a></li>
+
+
+				                                <li class=""><a href="DataType.Date.Locale.html" title="DataType.Date.Locale">DataType.Date.Locale</a></li>
+
+
+				                                <li class=""><a href="DataType.Number.html" title="DataType.Number">DataType.Number</a></li>
+
+
+				                                <li class=""><a href="DataType.XML.html" title="DataType.XML">DataType.XML</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="datatype-date-debug.js.html" title="datatype-date-debug.js">datatype-date-debug.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format-debug.js.html" title="datatype-date-format-debug.js">datatype-date-format-debug.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format-min.js.html" title="datatype-date-format-min.js">datatype-date-format-min.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format.js.html" title="datatype-date-format.js">datatype-date-format.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ar-JO.js.html" title="datatype-date-format_ar-JO.js">datatype-date-format_ar-JO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ar.js.html" title="datatype-date-format_ar.js">datatype-date-format_ar.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ca-ES.js.html" title="datatype-date-format_ca-ES.js">datatype-date-format_ca-ES.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ca.js.html" title="datatype-date-format_ca.js">datatype-date-format_ca.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_da-DK.js.html" title="datatype-date-format_da-DK.js">datatype-date-format_da-DK.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_da.js.html" title="datatype-date-format_da.js">datatype-date-format_da.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_de-AT.js.html" title="datatype-date-format_de-AT.js">datatype-date-format_de-AT.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_de-DE.js.html" title="datatype-date-format_de-DE.js">datatype-date-format_de-DE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_de.js.html" title="datatype-date-format_de.js">datatype-date-format_de.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_el-GR.js.html" title="datatype-date-format_el-GR.js">datatype-date-format_el-GR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_el.js.html" title="datatype-date-format_el.js">datatype-date-format_el.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-AU.js.html" title="datatype-date-format_en-AU.js">datatype-date-format_en-AU.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-CA.js.html" title="datatype-date-format_en-CA.js">datatype-date-format_en-CA.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-GB.js.html" title="datatype-date-format_en-GB.js">datatype-date-format_en-GB.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-IE.js.html" title="datatype-date-format_en-IE.js">datatype-date-format_en-IE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-IN.js.html" title="datatype-date-format_en-IN.js">datatype-date-format_en-IN.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-JO.js.html" title="datatype-date-format_en-JO.js">datatype-date-format_en-JO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-MY.js.html" title="datatype-date-format_en-MY.js">datatype-date-format_en-MY.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-NZ.js.html" title="datatype-date-format_en-NZ.js">datatype-date-format_en-NZ.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-PH.js.html" title="datatype-date-format_en-PH.js">datatype-date-format_en-PH.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-SG.js.html" title="datatype-date-format_en-SG.js">datatype-date-format_en-SG.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-US.js.html" title="datatype-date-format_en-US.js">datatype-date-format_en-US.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en.js.html" title="datatype-date-format_en.js">datatype-date-format_en.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-AR.js.html" title="datatype-date-format_es-AR.js">datatype-date-format_es-AR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-BO.js.html" title="datatype-date-format_es-BO.js">datatype-date-format_es-BO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-CL.js.html" title="datatype-date-format_es-CL.js">datatype-date-format_es-CL.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-CO.js.html" title="datatype-date-format_es-CO.js">datatype-date-format_es-CO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-EC.js.html" title="datatype-date-format_es-EC.js">datatype-date-format_es-EC.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-ES.js.html" title="datatype-date-format_es-ES.js">datatype-date-format_es-ES.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-MX.js.html" title="datatype-date-format_es-MX.js">datatype-date-format_es-MX.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-PE.js.html" title="datatype-date-format_es-PE.js">datatype-date-format_es-PE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-PY.js.html" title="datatype-date-format_es-PY.js">datatype-date-format_es-PY.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-US.js.html" title="datatype-date-format_es-US.js">datatype-date-format_es-US.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-UY.js.html" title="datatype-date-format_es-UY.js">datatype-date-format_es-UY.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-VE.js.html" title="datatype-date-format_es-VE.js">datatype-date-format_es-VE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es.js.html" title="datatype-date-format_es.js">datatype-date-format_es.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_fi-FI.js.html" title="datatype-date-format_fi-FI.js">datatype-date-format_fi-FI.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_fi.js.html" title="datatype-date-format_fi.js">datatype-date-format_fi.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_fr-BE.js.html" title="datatype-date-format_fr-BE.js">datatype-date-format_fr-BE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_fr-CA.js.html" title="datatype-date-format_fr-CA.js">datatype-date-format_fr-CA.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_fr-FR.js.html" title="datatype-date-format_fr-FR.js">datatype-date-format_fr-FR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_fr.js.html" title="datatype-date-format_fr.js">datatype-date-format_fr.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_hi-IN.js.html" title="datatype-date-format_hi-IN.js">datatype-date-format_hi-IN.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_hi.js.html" title="datatype-date-format_hi.js">datatype-date-format_hi.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_id-ID.js.html" title="datatype-date-format_id-ID.js">datatype-date-format_id-ID.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_id.js.html" title="datatype-date-format_id.js">datatype-date-format_id.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_it-IT.js.html" title="datatype-date-format_it-IT.js">datatype-date-format_it-IT.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_it.js.html" title="datatype-date-format_it.js">datatype-date-format_it.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ja-JP.js.html" title="datatype-date-format_ja-JP.js">datatype-date-format_ja-JP.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ja.js.html" title="datatype-date-format_ja.js">datatype-date-format_ja.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ko-KR.js.html" title="datatype-date-format_ko-KR.js">datatype-date-format_ko-KR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ko.js.html" title="datatype-date-format_ko.js">datatype-date-format_ko.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ms-MY.js.html" title="datatype-date-format_ms-MY.js">datatype-date-format_ms-MY.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ms.js.html" title="datatype-date-format_ms.js">datatype-date-format_ms.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_nb-NO.js.html" title="datatype-date-format_nb-NO.js">datatype-date-format_nb-NO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_nb.js.html" title="datatype-date-format_nb.js">datatype-date-format_nb.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_nl-BE.js.html" title="datatype-date-format_nl-BE.js">datatype-date-format_nl-BE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_nl-NL.js.html" title="datatype-date-format_nl-NL.js">datatype-date-format_nl-NL.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_nl.js.html" title="datatype-date-format_nl.js">datatype-date-format_nl.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_pl-PL.js.html" title="datatype-date-format_pl-PL.js">datatype-date-format_pl-PL.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_pl.js.html" title="datatype-date-format_pl.js">datatype-date-format_pl.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_pt-BR.js.html" title="datatype-date-format_pt-BR.js">datatype-date-format_pt-BR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_pt.js.html" title="datatype-date-format_pt.js">datatype-date-format_pt.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ro-RO.js.html" title="datatype-date-format_ro-RO.js">datatype-date-format_ro-RO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ro.js.html" title="datatype-date-format_ro.js">datatype-date-format_ro.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ru-RU.js.html" title="datatype-date-format_ru-RU.js">datatype-date-format_ru-RU.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ru.js.html" title="datatype-date-format_ru.js">datatype-date-format_ru.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_sv-SE.js.html" title="datatype-date-format_sv-SE.js">datatype-date-format_sv-SE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_sv.js.html" title="datatype-date-format_sv.js">datatype-date-format_sv.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_th-TH.js.html" title="datatype-date-format_th-TH.js">datatype-date-format_th-TH.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_th.js.html" title="datatype-date-format_th.js">datatype-date-format_th.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_tr-TR.js.html" title="datatype-date-format_tr-TR.js">datatype-date-format_tr-TR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_tr.js.html" title="datatype-date-format_tr.js">datatype-date-format_tr.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_vi-VN.js.html" title="datatype-date-format_vi-VN.js">datatype-date-format_vi-VN.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_vi.js.html" title="datatype-date-format_vi.js">datatype-date-format_vi.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_zh-Hans-CN.js.html" title="datatype-date-format_zh-Hans-CN.js">datatype-date-format_zh-Hans-CN.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_zh-Hans.js.html" title="datatype-date-format_zh-Hans.js">datatype-date-format_zh-Hans.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_zh-Hant-HK.js.html" title="datatype-date-format_zh-Hant-HK.js">datatype-date-format_zh-Hant-HK.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_zh-Hant-TW.js.html" title="datatype-date-format_zh-Hant-TW.js">datatype-date-format_zh-Hant-TW.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_zh-Hant.js.html" title="datatype-date-format_zh-Hant.js">datatype-date-format_zh-Hant.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-parse-debug.js.html" title="datatype-date-parse-debug.js">datatype-date-parse-debug.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-parse-min.js.html" title="datatype-date-parse-min.js">datatype-date-parse-min.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-parse.js.html" title="datatype-date-parse.js">datatype-date-parse.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date.js.html" title="datatype-date.js">datatype-date.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ar-JO.js.html" title="datatype-date_ar-JO.js">datatype-date_ar-JO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ar.js.html" title="datatype-date_ar.js">datatype-date_ar.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ca-ES.js.html" title="datatype-date_ca-ES.js">datatype-date_ca-ES.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ca.js.html" title="datatype-date_ca.js">datatype-date_ca.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_da-DK.js.html" title="datatype-date_da-DK.js">datatype-date_da-DK.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_da.js.html" title="datatype-date_da.js">datatype-date_da.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_de-AT.js.html" title="datatype-date_de-AT.js">datatype-date_de-AT.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_de-DE.js.html" title="datatype-date_de-DE.js">datatype-date_de-DE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_de.js.html" title="datatype-date_de.js">datatype-date_de.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_el-GR.js.html" title="datatype-date_el-GR.js">datatype-date_el-GR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_el.js.html" title="datatype-date_el.js">datatype-date_el.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-AU.js.html" title="datatype-date_en-AU.js">datatype-date_en-AU.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-CA.js.html" title="datatype-date_en-CA.js">datatype-date_en-CA.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-GB.js.html" title="datatype-date_en-GB.js">datatype-date_en-GB.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-IE.js.html" title="datatype-date_en-IE.js">datatype-date_en-IE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-IN.js.html" title="datatype-date_en-IN.js">datatype-date_en-IN.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-JO.js.html" title="datatype-date_en-JO.js">datatype-date_en-JO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-MY.js.html" title="datatype-date_en-MY.js">datatype-date_en-MY.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-NZ.js.html" title="datatype-date_en-NZ.js">datatype-date_en-NZ.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-PH.js.html" title="datatype-date_en-PH.js">datatype-date_en-PH.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-SG.js.html" title="datatype-date_en-SG.js">datatype-date_en-SG.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-US.js.html" title="datatype-date_en-US.js">datatype-date_en-US.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en.js.html" title="datatype-date_en.js">datatype-date_en.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-AR.js.html" title="datatype-date_es-AR.js">datatype-date_es-AR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-BO.js.html" title="datatype-date_es-BO.js">datatype-date_es-BO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-CL.js.html" title="datatype-date_es-CL.js">datatype-date_es-CL.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-CO.js.html" title="datatype-date_es-CO.js">datatype-date_es-CO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-EC.js.html" title="datatype-date_es-EC.js">datatype-date_es-EC.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-ES.js.html" title="datatype-date_es-ES.js">datatype-date_es-ES.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-MX.js.html" title="datatype-date_es-MX.js">datatype-date_es-MX.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-PE.js.html" title="datatype-date_es-PE.js">datatype-date_es-PE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-PY.js.html" title="datatype-date_es-PY.js">datatype-date_es-PY.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-US.js.html" title="datatype-date_es-US.js">datatype-date_es-US.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-UY.js.html" title="datatype-date_es-UY.js">datatype-date_es-UY.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-VE.js.html" title="datatype-date_es-VE.js">datatype-date_es-VE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es.js.html" title="datatype-date_es.js">datatype-date_es.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_fi-FI.js.html" title="datatype-date_fi-FI.js">datatype-date_fi-FI.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_fi.js.html" title="datatype-date_fi.js">datatype-date_fi.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_fr-BE.js.html" title="datatype-date_fr-BE.js">datatype-date_fr-BE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_fr-CA.js.html" title="datatype-date_fr-CA.js">datatype-date_fr-CA.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_fr-FR.js.html" title="datatype-date_fr-FR.js">datatype-date_fr-FR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_fr.js.html" title="datatype-date_fr.js">datatype-date_fr.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_hi-IN.js.html" title="datatype-date_hi-IN.js">datatype-date_hi-IN.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_hi.js.html" title="datatype-date_hi.js">datatype-date_hi.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_id-ID.js.html" title="datatype-date_id-ID.js">datatype-date_id-ID.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_id.js.html" title="datatype-date_id.js">datatype-date_id.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_it-IT.js.html" title="datatype-date_it-IT.js">datatype-date_it-IT.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_it.js.html" title="datatype-date_it.js">datatype-date_it.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ja-JP.js.html" title="datatype-date_ja-JP.js">datatype-date_ja-JP.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ja.js.html" title="datatype-date_ja.js">datatype-date_ja.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ko-KR.js.html" title="datatype-date_ko-KR.js">datatype-date_ko-KR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ko.js.html" title="datatype-date_ko.js">datatype-date_ko.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ms-MY.js.html" title="datatype-date_ms-MY.js">datatype-date_ms-MY.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ms.js.html" title="datatype-date_ms.js">datatype-date_ms.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_nb-NO.js.html" title="datatype-date_nb-NO.js">datatype-date_nb-NO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_nb.js.html" title="datatype-date_nb.js">datatype-date_nb.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_nl-BE.js.html" title="datatype-date_nl-BE.js">datatype-date_nl-BE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_nl-NL.js.html" title="datatype-date_nl-NL.js">datatype-date_nl-NL.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_nl.js.html" title="datatype-date_nl.js">datatype-date_nl.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_pl-PL.js.html" title="datatype-date_pl-PL.js">datatype-date_pl-PL.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_pl.js.html" title="datatype-date_pl.js">datatype-date_pl.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_pt-BR.js.html" title="datatype-date_pt-BR.js">datatype-date_pt-BR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_pt.js.html" title="datatype-date_pt.js">datatype-date_pt.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ro-RO.js.html" title="datatype-date_ro-RO.js">datatype-date_ro-RO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ro.js.html" title="datatype-date_ro.js">datatype-date_ro.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ru-RU.js.html" title="datatype-date_ru-RU.js">datatype-date_ru-RU.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ru.js.html" title="datatype-date_ru.js">datatype-date_ru.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_sv-SE.js.html" title="datatype-date_sv-SE.js">datatype-date_sv-SE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_sv.js.html" title="datatype-date_sv.js">datatype-date_sv.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_th-TH.js.html" title="datatype-date_th-TH.js">datatype-date_th-TH.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_th.js.html" title="datatype-date_th.js">datatype-date_th.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_tr-TR.js.html" title="datatype-date_tr-TR.js">datatype-date_tr-TR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_tr.js.html" title="datatype-date_tr.js">datatype-date_tr.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_vi-VN.js.html" title="datatype-date_vi-VN.js">datatype-date_vi-VN.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_vi.js.html" title="datatype-date_vi.js">datatype-date_vi.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_zh-Hans-CN.js.html" title="datatype-date_zh-Hans-CN.js">datatype-date_zh-Hans-CN.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_zh-Hans.js.html" title="datatype-date_zh-Hans.js">datatype-date_zh-Hans.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_zh-Hant-HK.js.html" title="datatype-date_zh-Hant-HK.js">datatype-date_zh-Hant-HK.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_zh-Hant-TW.js.html" title="datatype-date_zh-Hant-TW.js">datatype-date_zh-Hant-TW.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_zh-Hant.js.html" title="datatype-date_zh-Hant.js">datatype-date_zh-Hant.js</a></li>
+
+
+			                                <li class="selected"><a href="datatype-debug.js.html" title="datatype-debug.js">datatype-debug.js</a></li>
+
+
+			                                <li class=""><a href="datatype-min.js.html" title="datatype-min.js">datatype-min.js</a></li>
+
+
+			                                <li class=""><a href="datatype.js.html" title="datatype.js">datatype.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ar-JO.js.html" title="datatype_ar-JO.js">datatype_ar-JO.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ar.js.html" title="datatype_ar.js">datatype_ar.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ca-ES.js.html" title="datatype_ca-ES.js">datatype_ca-ES.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ca.js.html" title="datatype_ca.js">datatype_ca.js</a></li>
+
+
+			                                <li class=""><a href="datatype_da-DK.js.html" title="datatype_da-DK.js">datatype_da-DK.js</a></li>
+
+
+			                                <li class=""><a href="datatype_da.js.html" title="datatype_da.js">datatype_da.js</a></li>
+
+
+			                                <li class=""><a href="datatype_de-AT.js.html" title="datatype_de-AT.js">datatype_de-AT.js</a></li>
+
+
+			                                <li class=""><a href="datatype_de-DE.js.html" title="datatype_de-DE.js">datatype_de-DE.js</a></li>
+
+
+			                                <li class=""><a href="datatype_de.js.html" title="datatype_de.js">datatype_de.js</a></li>
+
+
+			                                <li class=""><a href="datatype_el-GR.js.html" title="datatype_el-GR.js">datatype_el-GR.js</a></li>
+
+
+			                                <li class=""><a href="datatype_el.js.html" title="datatype_el.js">datatype_el.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-AU.js.html" title="datatype_en-AU.js">datatype_en-AU.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-CA.js.html" title="datatype_en-CA.js">datatype_en-CA.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-GB.js.html" title="datatype_en-GB.js">datatype_en-GB.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-IE.js.html" title="datatype_en-IE.js">datatype_en-IE.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-IN.js.html" title="datatype_en-IN.js">datatype_en-IN.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-JO.js.html" title="datatype_en-JO.js">datatype_en-JO.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-MY.js.html" title="datatype_en-MY.js">datatype_en-MY.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-NZ.js.html" title="datatype_en-NZ.js">datatype_en-NZ.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-PH.js.html" title="datatype_en-PH.js">datatype_en-PH.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-SG.js.html" title="datatype_en-SG.js">datatype_en-SG.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-US.js.html" title="datatype_en-US.js">datatype_en-US.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en.js.html" title="datatype_en.js">datatype_en.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-AR.js.html" title="datatype_es-AR.js">datatype_es-AR.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-BO.js.html" title="datatype_es-BO.js">datatype_es-BO.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-CL.js.html" title="datatype_es-CL.js">datatype_es-CL.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-CO.js.html" title="datatype_es-CO.js">datatype_es-CO.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-EC.js.html" title="datatype_es-EC.js">datatype_es-EC.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-ES.js.html" title="datatype_es-ES.js">datatype_es-ES.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-MX.js.html" title="datatype_es-MX.js">datatype_es-MX.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-PE.js.html" title="datatype_es-PE.js">datatype_es-PE.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-PY.js.html" title="datatype_es-PY.js">datatype_es-PY.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-US.js.html" title="datatype_es-US.js">datatype_es-US.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-UY.js.html" title="datatype_es-UY.js">datatype_es-UY.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-VE.js.html" title="datatype_es-VE.js">datatype_es-VE.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es.js.html" title="datatype_es.js">datatype_es.js</a></li>
+
+
+			                                <li class=""><a href="datatype_fi-FI.js.html" title="datatype_fi-FI.js">datatype_fi-FI.js</a></li>
+
+
+			                                <li class=""><a href="datatype_fi.js.html" title="datatype_fi.js">datatype_fi.js</a></li>
+
+
+			                                <li class=""><a href="datatype_fr-BE.js.html" title="datatype_fr-BE.js">datatype_fr-BE.js</a></li>
+
+
+			                                <li class=""><a href="datatype_fr-CA.js.html" title="datatype_fr-CA.js">datatype_fr-CA.js</a></li>
+
+
+			                                <li class=""><a href="datatype_fr-FR.js.html" title="datatype_fr-FR.js">datatype_fr-FR.js</a></li>
+
+
+			                                <li class=""><a href="datatype_fr.js.html" title="datatype_fr.js">datatype_fr.js</a></li>
+
+
+			                                <li class=""><a href="datatype_hi-IN.js.html" title="datatype_hi-IN.js">datatype_hi-IN.js</a></li>
+
+
+			                                <li class=""><a href="datatype_hi.js.html" title="datatype_hi.js">datatype_hi.js</a></li>
+
+
+			                                <li class=""><a href="datatype_id-ID.js.html" title="datatype_id-ID.js">datatype_id-ID.js</a></li>
+
+
+			                                <li class=""><a href="datatype_id.js.html" title="datatype_id.js">datatype_id.js</a></li>
+
+
+			                                <li class=""><a href="datatype_it-IT.js.html" title="datatype_it-IT.js">datatype_it-IT.js</a></li>
+
+
+			                                <li class=""><a href="datatype_it.js.html" title="datatype_it.js">datatype_it.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ja-JP.js.html" title="datatype_ja-JP.js">datatype_ja-JP.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ja.js.html" title="datatype_ja.js">datatype_ja.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ko-KR.js.html" title="datatype_ko-KR.js">datatype_ko-KR.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ko.js.html" title="datatype_ko.js">datatype_ko.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ms-MY.js.html" title="datatype_ms-MY.js">datatype_ms-MY.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ms.js.html" title="datatype_ms.js">datatype_ms.js</a></li>
+
+
+			                                <li class=""><a href="datatype_nb-NO.js.html" title="datatype_nb-NO.js">datatype_nb-NO.js</a></li>
+
+
+			                                <li class=""><a href="datatype_nb.js.html" title="datatype_nb.js">datatype_nb.js</a></li>
+
+
+			                                <li class=""><a href="datatype_nl-BE.js.html" title="datatype_nl-BE.js">datatype_nl-BE.js</a></li>
+
+
+			                                <li class=""><a href="datatype_nl-NL.js.html" title="datatype_nl-NL.js">datatype_nl-NL.js</a></li>
+
+
+			                                <li class=""><a href="datatype_nl.js.html" title="datatype_nl.js">datatype_nl.js</a></li>
+
+
+			                                <li class=""><a href="datatype_pl-PL.js.html" title="datatype_pl-PL.js">datatype_pl-PL.js</a></li>
+
+
+			                                <li class=""><a href="datatype_pl.js.html" title="datatype_pl.js">datatype_pl.js</a></li>
+
+
+			                                <li class=""><a href="datatype_pt-BR.js.html" title="datatype_pt-BR.js">datatype_pt-BR.js</a></li>
+
+
+			                                <li class=""><a href="datatype_pt.js.html" title="datatype_pt.js">datatype_pt.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ro-RO.js.html" title="datatype_ro-RO.js">datatype_ro-RO.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ro.js.html" title="datatype_ro.js">datatype_ro.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ru-RU.js.html" title="datatype_ru-RU.js">datatype_ru-RU.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ru.js.html" title="datatype_ru.js">datatype_ru.js</a></li>
+
+
+			                                <li class=""><a href="datatype_sv-SE.js.html" title="datatype_sv-SE.js">datatype_sv-SE.js</a></li>
+
+
+			                                <li class=""><a href="datatype_sv.js.html" title="datatype_sv.js">datatype_sv.js</a></li>
+
+
+			                                <li class=""><a href="datatype_th-TH.js.html" title="datatype_th-TH.js">datatype_th-TH.js</a></li>
+
+
+			                                <li class=""><a href="datatype_th.js.html" title="datatype_th.js">datatype_th.js</a></li>
+
+
+			                                <li class=""><a href="datatype_tr-TR.js.html" title="datatype_tr-TR.js">datatype_tr-TR.js</a></li>
+
+
+			                                <li class=""><a href="datatype_tr.js.html" title="datatype_tr.js">datatype_tr.js</a></li>
+
+
+			                                <li class=""><a href="datatype_vi-VN.js.html" title="datatype_vi-VN.js">datatype_vi-VN.js</a></li>
+
+
+			                                <li class=""><a href="datatype_vi.js.html" title="datatype_vi.js">datatype_vi.js</a></li>
+
+
+			                                <li class=""><a href="datatype_zh-Hans-CN.js.html" title="datatype_zh-Hans-CN.js">datatype_zh-Hans-CN.js</a></li>
+
+
+			                                <li class=""><a href="datatype_zh-Hans.js.html" title="datatype_zh-Hans.js">datatype_zh-Hans.js</a></li>
+
+
+			                                <li class=""><a href="datatype_zh-Hant-HK.js.html" title="datatype_zh-Hant-HK.js">datatype_zh-Hant-HK.js</a></li>
+
+
+			                                <li class=""><a href="datatype_zh-Hant-TW.js.html" title="datatype_zh-Hant-TW.js">datatype_zh-Hant-TW.js</a></li>
+
+
+			                                <li class=""><a href="datatype_zh-Hant.js.html" title="datatype_zh-Hant.js">datatype_zh-Hant.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
+<span class="cm">Code licensed under the BSD License:</span>
+<span class="cm">http://developer.yahoo.com/yui/license.html</span>
+<span class="cm">version: 3.1.0</span>
+<span class="cm">build: nightly</span>
+<span class="cm">*/</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-number-parse&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Parse number submodule.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module datatype</span>
+<span class="cm"> * @submodule datatype-number-parse</span>
+<span class="cm"> * @for DataType.Number</span>
+<span class="cm"> */</span>
+
+<span class="kd">var</span> <span class="nx">LANG</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">;</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;DataType.Number&quot;</span><span class="p">),</span> <span class="p">{</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Converts data to type Number.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method parse</span>
+<span class="cm">     * @param data {String | Number | Boolean} Data to convert. The following</span>
+<span class="cm">     * values return as null: null, undefined, NaN, &quot;&quot;.</span>
+<span class="cm">     * @return {Number} A number, or null.</span>
+<span class="cm">     */</span>
+    <span class="nx">parse</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">number</span> <span class="o">=</span> <span class="p">(</span><span class="nx">data</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="o">?</span> <span class="nx">data</span> <span class="o">:</span> <span class="o">+</span><span class="nx">data</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">LANG</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">number</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">number</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Could not parse data &quot;</span> <span class="o">+</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">dump</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; to type Number&quot;</span><span class="p">,</span> <span class="s2">&quot;warn&quot;</span><span class="p">,</span> <span class="s2">&quot;datatype-number&quot;</span><span class="p">);</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// Add Parsers shortcut</span>
+<span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;Parsers&quot;</span><span class="p">).</span><span class="nx">number</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DataType</span><span class="p">.</span><span class="nb">Number</span><span class="p">.</span><span class="nx">parse</span><span class="p">;</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">);</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-number-format&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Number submodule.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module datatype</span>
+<span class="cm"> * @submodule datatype-number</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Format number submodule.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module datatype</span>
+<span class="cm"> * @submodule datatype-number-format</span>
+<span class="cm"> */</span>
+ 
+<span class="cm">/**</span>
+<span class="cm"> * DataType.Number provides a set of utility functions to operate against Number objects.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class DataType.Number</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">LANG</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">;</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;DataType.Number&quot;</span><span class="p">),</span> <span class="p">{</span>
+     <span class="cm">/**</span>
+<span class="cm">     * Takes a Number and formats to string for display to user.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method format</span>
+<span class="cm">     * @param data {Number} Number.</span>
+<span class="cm">     * @param config {Object} (Optional) Optional configuration values:</span>
+<span class="cm">     *  &lt;dl&gt;</span>
+<span class="cm">     *   &lt;dt&gt;prefix {String}&lt;/dd&gt;</span>
+<span class="cm">     *   &lt;dd&gt;String prepended before each number, like a currency designator &quot;$&quot;&lt;/dd&gt;</span>
+<span class="cm">     *   &lt;dt&gt;decimalPlaces {Number}&lt;/dd&gt;</span>
+<span class="cm">     *   &lt;dd&gt;Number of decimal places to round. Must be a number 0 to 20.&lt;/dd&gt;</span>
+<span class="cm">     *   &lt;dt&gt;decimalSeparator {String}&lt;/dd&gt;</span>
+<span class="cm">     *   &lt;dd&gt;Decimal separator&lt;/dd&gt;</span>
+<span class="cm">     *   &lt;dt&gt;thousandsSeparator {String}&lt;/dd&gt;</span>
+<span class="cm">     *   &lt;dd&gt;Thousands separator&lt;/dd&gt;</span>
+<span class="cm">     *   &lt;dt&gt;suffix {String}&lt;/dd&gt;</span>
+<span class="cm">     *   &lt;dd&gt;String appended after each number, like &quot; items&quot; (note the space)&lt;/dd&gt;</span>
+<span class="cm">     *  &lt;/dl&gt;</span>
+<span class="cm">     * @return {String} Formatted number for display. Note, the following values</span>
+<span class="cm">     * return as &quot;&quot;: null, undefined, NaN, &quot;&quot;.</span>
+<span class="cm">     */</span>
+    <span class="nx">format</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">LANG</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">config</span> <span class="o">=</span> <span class="nx">config</span> <span class="o">||</span> <span class="p">{};</span>
+
+            <span class="kd">var</span> <span class="nx">isNeg</span> <span class="o">=</span> <span class="p">(</span><span class="nx">data</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">),</span>
+                <span class="nx">output</span> <span class="o">=</span> <span class="nx">data</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nx">decPlaces</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">decimalPlaces</span><span class="p">,</span>
+                <span class="nx">decSep</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">decimalSeparator</span> <span class="o">||</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+                <span class="nx">thouSep</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">thousandsSeparator</span><span class="p">,</span>
+                <span class="nx">decIndex</span><span class="p">,</span>
+                <span class="nx">newOutput</span><span class="p">,</span> <span class="nx">count</span><span class="p">,</span> <span class="nx">i</span><span class="p">;</span>
+
+            <span class="c1">// Decimal precision</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">LANG</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">decPlaces</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">decPlaces</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">decPlaces</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="p">))</span> <span class="p">{</span>
+                <span class="c1">// Round to the correct decimal place</span>
+                <span class="nx">output</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="nx">decPlaces</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="c1">// Decimal separator</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">decSep</span> <span class="o">!==</span> <span class="s2">&quot;.&quot;</span><span class="p">){</span>
+                <span class="nx">output</span> <span class="o">=</span> <span class="nx">output</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="nx">decSep</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="c1">// Add the thousands separator</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">thouSep</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// Find the dot or where it would be</span>
+                <span class="nx">decIndex</span> <span class="o">=</span> <span class="nx">output</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="nx">decSep</span><span class="p">);</span>
+                <span class="nx">decIndex</span> <span class="o">=</span> <span class="p">(</span><span class="nx">decIndex</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">?</span> <span class="nx">decIndex</span> <span class="o">:</span> <span class="nx">output</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+                <span class="c1">// Start with the dot and everything to the right</span>
+                <span class="nx">newOutput</span> <span class="o">=</span> <span class="nx">output</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nx">decIndex</span><span class="p">);</span>
+                <span class="c1">// Working left, every third time add a separator, every time add a digit</span>
+                <span class="k">for</span> <span class="p">(</span><span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="o">=</span><span class="nx">decIndex</span><span class="p">;</span> <span class="nx">i</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">((</span><span class="nx">count</span><span class="o">%</span><span class="mi">3</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">i</span> <span class="o">!==</span> <span class="nx">decIndex</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="nx">isNeg</span> <span class="o">||</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)))</span> <span class="p">{</span>
+                        <span class="nx">newOutput</span> <span class="o">=</span> <span class="nx">thouSep</span> <span class="o">+</span> <span class="nx">newOutput</span><span class="p">;</span>
+                    <span class="p">}</span>
+                    <span class="nx">newOutput</span> <span class="o">=</span> <span class="nx">output</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nx">newOutput</span><span class="p">;</span>
+                    <span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="nx">output</span> <span class="o">=</span> <span class="nx">newOutput</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">// Prepend prefix</span>
+            <span class="nx">output</span> <span class="o">=</span> <span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">prefix</span><span class="p">)</span> <span class="o">?</span> <span class="nx">config</span><span class="p">.</span><span class="nx">prefix</span> <span class="o">+</span> <span class="nx">output</span> <span class="o">:</span> <span class="nx">output</span><span class="p">;</span>
+
+            <span class="c1">// Append suffix</span>
+            <span class="nx">output</span> <span class="o">=</span> <span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">suffix</span><span class="p">)</span> <span class="o">?</span> <span class="nx">output</span> <span class="o">+</span> <span class="nx">config</span><span class="p">.</span><span class="nx">suffix</span> <span class="o">:</span> <span class="nx">output</span><span class="p">;</span>
+
+            <span class="k">return</span> <span class="nx">output</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// Not a Number, just return as string</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Could not format data &quot;</span> <span class="o">+</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">dump</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; from type Number&quot;</span><span class="p">,</span> <span class="s2">&quot;warn&quot;</span><span class="p">,</span> <span class="s2">&quot;datatype-number&quot;</span><span class="p">);</span>
+            <span class="k">return</span> <span class="p">(</span><span class="nx">LANG</span><span class="p">.</span><span class="nx">isValue</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">data</span><span class="p">.</span><span class="nx">toString</span><span class="p">)</span> <span class="o">?</span> <span class="nx">data</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">);</span>
+
+
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-number&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datatype-number-parse&#39;</span><span class="p">,</span> <span class="s1">&#39;datatype-number-format&#39;</span><span class="p">]});</span>
+
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-date-parse&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Parse number submodule.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module datatype</span>
+<span class="cm"> * @submodule datatype-date-parse</span>
+<span class="cm"> * @for DataType.Date</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">LANG</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">;</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;DataType.Date&quot;</span><span class="p">),</span> <span class="p">{</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Converts data to type Date.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method parse</span>
+<span class="cm">     * @param data {String | Number} Data to convert. Values supported by the Date constructor are supported.</span>
+<span class="cm">     * @return {Date} A Date, or null.</span>
+<span class="cm">     */</span>
+    <span class="nx">parse</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+        <span class="c1">//Convert to date</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">LANG</span><span class="p">.</span><span class="nx">isDate</span><span class="p">(</span><span class="nx">data</span><span class="p">)))</span> <span class="p">{</span>
+            <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">date</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Validate</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">LANG</span><span class="p">.</span><span class="nx">isDate</span><span class="p">(</span><span class="nx">date</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">date</span> <span class="o">!=</span> <span class="s2">&quot;Invalid Date&quot;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">date</span><span class="p">))</span> <span class="p">{</span> <span class="c1">// Workaround for bug 2527965</span>
+            <span class="k">return</span> <span class="nx">date</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Could not convert data &quot;</span> <span class="o">+</span> <span class="nx">LANG</span><span class="p">.</span><span class="nx">dump</span><span class="p">(</span><span class="nx">date</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; to type Date&quot;</span><span class="p">,</span> <span class="s2">&quot;warn&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">);</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// Add Parsers shortcut</span>
+<span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;Parsers&quot;</span><span class="p">).</span><span class="nx">date</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DataType</span><span class="p">.</span><span class="nb">Date</span><span class="p">.</span><span class="nx">parse</span><span class="p">;</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">);</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-date-format&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * The DataType Utility provides type-conversion and string-formatting</span>
+<span class="cm"> * convenience methods for various JavaScript object types.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module datatype</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Date submodule.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module datatype</span>
+<span class="cm"> * @submodule datatype-date</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Format date submodule implements strftime formatters for javascript based on the</span>
+<span class="cm"> * Open Group specification defined at</span>
+<span class="cm"> * http://www.opengroup.org/onlinepubs/007908799/xsh/strftime.html</span>
+<span class="cm"> * This implementation does not include modified conversion specifiers (i.e., Ex and Ox)</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module datatype</span>
+<span class="cm"> * @submodule datatype-date-format</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * DataType.Date provides a set of utility functions to operate against Date objects.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class DataType.Date</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Pad a number with leading spaces, zeroes or something else</span>
+<span class="cm"> * @method xPad</span>
+<span class="cm"> * @param x {Number}	The number to be padded</span>
+<span class="cm"> * @param pad {String}  The character to pad the number with</span>
+<span class="cm"> * @param r {Number}	(optional) The base of the pad, eg, 10 implies to two digits, 100 implies to 3 digits.</span>
+<span class="cm"> * @private</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">xPad</span><span class="o">=</span><span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">pad</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">r</span> <span class="o">===</span> <span class="s2">&quot;undefined&quot;</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="nx">r</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="nx">pad</span> <span class="o">=</span> <span class="nx">pad</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
+	<span class="k">for</span><span class="p">(</span> <span class="p">;</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">&lt;</span><span class="nx">r</span> <span class="o">&amp;&amp;</span> <span class="nx">r</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">;</span> <span class="nx">r</span><span class="o">/=</span><span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">x</span> <span class="o">=</span> <span class="nx">pad</span> <span class="o">+</span> <span class="nx">x</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">x</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">Dt</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="nx">formats</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">a</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">l</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">l</span><span class="p">.</span><span class="nx">a</span><span class="p">[</span><span class="nx">d</span><span class="p">.</span><span class="nx">getDay</span><span class="p">()];</span> <span class="p">},</span>
+		<span class="nx">A</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">l</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">l</span><span class="p">.</span><span class="nx">A</span><span class="p">[</span><span class="nx">d</span><span class="p">.</span><span class="nx">getDay</span><span class="p">()];</span> <span class="p">},</span>
+		<span class="nx">b</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">l</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">l</span><span class="p">.</span><span class="nx">b</span><span class="p">[</span><span class="nx">d</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()];</span> <span class="p">},</span>
+		<span class="nx">B</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">l</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">l</span><span class="p">.</span><span class="nx">B</span><span class="p">[</span><span class="nx">d</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()];</span> <span class="p">},</span>
+		<span class="nx">C</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">xPad</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">()</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span> <span class="p">},</span>
+		<span class="nx">d</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;getDate&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+		<span class="nx">e</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;getDate&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">],</span>
+		<span class="nx">g</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">xPad</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">Dt</span><span class="p">.</span><span class="nx">formats</span><span class="p">.</span><span class="nx">G</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span><span class="o">%</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span> <span class="p">},</span>
+		<span class="nx">G</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">();</span>
+				<span class="kd">var</span> <span class="nx">V</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">Dt</span><span class="p">.</span><span class="nx">formats</span><span class="p">.</span><span class="nx">V</span><span class="p">(</span><span class="nx">d</span><span class="p">),</span> <span class="mi">10</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">W</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">Dt</span><span class="p">.</span><span class="nx">formats</span><span class="p">.</span><span class="nx">W</span><span class="p">(</span><span class="nx">d</span><span class="p">),</span> <span class="mi">10</span><span class="p">);</span>
+	
+				<span class="k">if</span><span class="p">(</span><span class="nx">W</span> <span class="o">&gt;</span> <span class="nx">V</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">y</span><span class="o">++</span><span class="p">;</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">W</span><span class="o">===</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">V</span><span class="o">&gt;=</span><span class="mi">52</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">y</span><span class="o">--</span><span class="p">;</span>
+				<span class="p">}</span>
+	
+				<span class="k">return</span> <span class="nx">y</span><span class="p">;</span>
+			<span class="p">},</span>
+		<span class="nx">H</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;getHours&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+		<span class="nx">I</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">I</span><span class="o">=</span><span class="nx">d</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span><span class="o">%</span><span class="mi">12</span><span class="p">;</span> <span class="k">return</span> <span class="nx">xPad</span><span class="p">(</span><span class="nx">I</span><span class="o">===</span><span class="mi">0</span><span class="o">?</span><span class="mi">12</span><span class="o">:</span><span class="nx">I</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">},</span>
+		<span class="nx">j</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">gmd_1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/1/1 GMT&quot;</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">gmdate</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; GMT&quot;</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">ms</span> <span class="o">=</span> <span class="nx">gmdate</span> <span class="o">-</span> <span class="nx">gmd_1</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">doy</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">ms</span><span class="o">/</span><span class="mi">60000</span><span class="o">/</span><span class="mi">60</span><span class="o">/</span><span class="mi">24</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+				<span class="k">return</span> <span class="nx">xPad</span><span class="p">(</span><span class="nx">doy</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+			<span class="p">},</span>
+		<span class="nx">k</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;getHours&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">],</span>
+		<span class="nx">l</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">I</span><span class="o">=</span><span class="nx">d</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span><span class="o">%</span><span class="mi">12</span><span class="p">;</span> <span class="k">return</span> <span class="nx">xPad</span><span class="p">(</span><span class="nx">I</span><span class="o">===</span><span class="mi">0</span><span class="o">?</span><span class="mi">12</span><span class="o">:</span><span class="nx">I</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">);</span> <span class="p">},</span>
+		<span class="nx">m</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">xPad</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">},</span>
+		<span class="nx">M</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;getMinutes&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+		<span class="nx">p</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">l</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">l</span><span class="p">.</span><span class="nx">p</span><span class="p">[</span><span class="nx">d</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">12</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span> <span class="p">];</span> <span class="p">},</span>
+		<span class="nx">P</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">l</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">l</span><span class="p">.</span><span class="nx">P</span><span class="p">[</span><span class="nx">d</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">12</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span> <span class="p">];</span> <span class="p">},</span>
+		<span class="nx">s</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">l</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span> <span class="p">},</span>
+		<span class="nx">S</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;getSeconds&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+		<span class="nx">u</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">dow</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getDay</span><span class="p">();</span> <span class="k">return</span> <span class="nx">dow</span><span class="o">===</span><span class="mi">0</span><span class="o">?</span><span class="mi">7</span><span class="o">:</span><span class="nx">dow</span><span class="p">;</span> <span class="p">},</span>
+		<span class="nx">U</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">doy</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">Dt</span><span class="p">.</span><span class="nx">formats</span><span class="p">.</span><span class="nx">j</span><span class="p">(</span><span class="nx">d</span><span class="p">),</span> <span class="mi">10</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">rdow</span> <span class="o">=</span> <span class="mi">6</span><span class="o">-</span><span class="nx">d</span><span class="p">.</span><span class="nx">getDay</span><span class="p">();</span>
+				<span class="kd">var</span> <span class="nx">woy</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">((</span><span class="nx">doy</span><span class="o">+</span><span class="nx">rdow</span><span class="p">)</span><span class="o">/</span><span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+				<span class="k">return</span> <span class="nx">xPad</span><span class="p">(</span><span class="nx">woy</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+			<span class="p">},</span>
+		<span class="nx">V</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">woy</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">Dt</span><span class="p">.</span><span class="nx">formats</span><span class="p">.</span><span class="nx">W</span><span class="p">(</span><span class="nx">d</span><span class="p">),</span> <span class="mi">10</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">dow1_1</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/1/1&quot;</span><span class="p">)).</span><span class="nx">getDay</span><span class="p">();</span>
+				<span class="c1">// First week is 01 and not 00 as in the case of %U and %W,</span>
+				<span class="c1">// so we add 1 to the final result except if day 1 of the year</span>
+				<span class="c1">// is a Monday (then %W returns 01).</span>
+				<span class="c1">// We also need to subtract 1 if the day 1 of the year is </span>
+				<span class="c1">// Friday-Sunday, so the resulting equation becomes:</span>
+				<span class="kd">var</span> <span class="nx">idow</span> <span class="o">=</span> <span class="nx">woy</span> <span class="o">+</span> <span class="p">(</span><span class="nx">dow1_1</span> <span class="o">&gt;</span> <span class="mi">4</span> <span class="o">||</span> <span class="nx">dow1_1</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">);</span>
+				<span class="k">if</span><span class="p">(</span><span class="nx">idow</span> <span class="o">===</span> <span class="mi">53</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/12/31&quot;</span><span class="p">)).</span><span class="nx">getDay</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span>
+				<span class="p">{</span>
+					<span class="nx">idow</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">idow</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span>
+				<span class="p">{</span>
+					<span class="nx">idow</span> <span class="o">=</span> <span class="nx">Dt</span><span class="p">.</span><span class="nx">formats</span><span class="p">.</span><span class="nx">V</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/12/31&quot;</span><span class="p">));</span>
+				<span class="p">}</span>
+	
+				<span class="k">return</span> <span class="nx">xPad</span><span class="p">(</span><span class="nx">idow</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+			<span class="p">},</span>
+		<span class="nx">w</span><span class="o">:</span> <span class="s2">&quot;getDay&quot;</span><span class="p">,</span>
+		<span class="nx">W</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">doy</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">Dt</span><span class="p">.</span><span class="nx">formats</span><span class="p">.</span><span class="nx">j</span><span class="p">(</span><span class="nx">d</span><span class="p">),</span> <span class="mi">10</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">rdow</span> <span class="o">=</span> <span class="mi">7</span><span class="o">-</span><span class="nx">Dt</span><span class="p">.</span><span class="nx">formats</span><span class="p">.</span><span class="nx">u</span><span class="p">(</span><span class="nx">d</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">woy</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">((</span><span class="nx">doy</span><span class="o">+</span><span class="nx">rdow</span><span class="p">)</span><span class="o">/</span><span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+				<span class="k">return</span> <span class="nx">xPad</span><span class="p">(</span><span class="nx">woy</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+			<span class="p">},</span>
+		<span class="nx">y</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">xPad</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">()</span><span class="o">%</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">},</span>
+		<span class="nx">Y</span><span class="o">:</span> <span class="s2">&quot;getFullYear&quot;</span><span class="p">,</span>
+		<span class="nx">z</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getTimezoneOffset</span><span class="p">();</span>
+				<span class="kd">var</span> <span class="nx">H</span> <span class="o">=</span> <span class="nx">xPad</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">o</span><span class="o">/</span><span class="mi">60</span><span class="p">),</span> <span class="mi">10</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">M</span> <span class="o">=</span> <span class="nx">xPad</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">o</span><span class="o">%</span><span class="mi">60</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+				<span class="k">return</span> <span class="p">(</span><span class="nx">o</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">?</span><span class="s2">&quot;-&quot;</span><span class="o">:</span><span class="s2">&quot;+&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="nx">H</span> <span class="o">+</span> <span class="nx">M</span><span class="p">;</span>
+			<span class="p">},</span>
+		<span class="nx">Z</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">tz</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">toString</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^.*:\d\d( GMT[+-]\d+)? \(?([A-Za-z ]+)\)?\d*$/</span><span class="p">,</span> <span class="s2">&quot;$2&quot;</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[a-z ]/g</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">);</span>
+			<span class="k">if</span><span class="p">(</span><span class="nx">tz</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">tz</span> <span class="o">=</span> <span class="nx">Dt</span><span class="p">.</span><span class="nx">formats</span><span class="p">.</span><span class="nx">z</span><span class="p">(</span><span class="nx">d</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="k">return</span> <span class="nx">tz</span><span class="p">;</span>
+		<span class="p">},</span>
+		<span class="s2">&quot;%&quot;</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">&quot;%&quot;</span><span class="p">;</span> <span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="nx">aggregates</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">c</span><span class="o">:</span> <span class="s2">&quot;locale&quot;</span><span class="p">,</span>
+		<span class="nx">D</span><span class="o">:</span> <span class="s2">&quot;%m/%d/%y&quot;</span><span class="p">,</span>
+		<span class="nx">F</span><span class="o">:</span> <span class="s2">&quot;%Y-%m-%d&quot;</span><span class="p">,</span>
+		<span class="nx">h</span><span class="o">:</span> <span class="s2">&quot;%b&quot;</span><span class="p">,</span>
+		<span class="nx">n</span><span class="o">:</span> <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
+		<span class="nx">r</span><span class="o">:</span> <span class="s2">&quot;%I:%M:%S %p&quot;</span><span class="p">,</span>
+		<span class="nx">R</span><span class="o">:</span> <span class="s2">&quot;%H:%M&quot;</span><span class="p">,</span>
+		<span class="nx">t</span><span class="o">:</span> <span class="s2">&quot;\t&quot;</span><span class="p">,</span>
+		<span class="nx">T</span><span class="o">:</span> <span class="s2">&quot;%H:%M:%S&quot;</span><span class="p">,</span>
+		<span class="nx">x</span><span class="o">:</span> <span class="s2">&quot;locale&quot;</span><span class="p">,</span>
+		<span class="nx">X</span><span class="o">:</span> <span class="s2">&quot;locale&quot;</span>
+		<span class="c1">//&quot;+&quot;: &quot;%a %b %e %T %Z %Y&quot;</span>
+	<span class="p">},</span>
+
+	 <span class="cm">/**</span>
+<span class="cm">	 * Takes a native JavaScript Date and formats it as a string for display to user.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @for DataType.Date</span>
+<span class="cm">	 * @method format</span>
+<span class="cm">	 * @param oDate {Date} Date.</span>
+<span class="cm">	 * @param oConfig {Object} (Optional) Object literal of configuration values:</span>
+<span class="cm">	 *  &lt;dl&gt;</span>
+<span class="cm">	 *   &lt;dt&gt;format {String} (Optional)&lt;/dt&gt;</span>
+<span class="cm">	 *   &lt;dd&gt;</span>
+<span class="cm">	 *   &lt;p&gt;</span>
+<span class="cm">	 *   Any strftime string is supported, such as &quot;%I:%M:%S %p&quot;. strftime has several format specifiers defined by the Open group at </span>
+<span class="cm">	 *   &lt;a href=&quot;http://www.opengroup.org/onlinepubs/007908799/xsh/strftime.html&quot;&gt;http://www.opengroup.org/onlinepubs/007908799/xsh/strftime.html&lt;/a&gt;</span>
+<span class="cm">	 *   PHP added a few of its own, defined at &lt;a href=&quot;http://www.php.net/strftime&quot;&gt;http://www.php.net/strftime&lt;/a&gt;</span>
+<span class="cm">	 *   &lt;/p&gt;</span>
+<span class="cm">	 *   &lt;p&gt;</span>
+<span class="cm">	 *   This javascript implementation supports all the PHP specifiers and a few more.  The full list is below.</span>
+<span class="cm">	 *   &lt;/p&gt;</span>
+<span class="cm">	 *   &lt;p&gt;</span>
+<span class="cm">	 *   If not specified, it defaults to the ISO 8601 standard date format: %Y-%m-%d.</span>
+<span class="cm">     *   This may be overridden by the deprecated Y.config.dateFormat property.</span>
+<span class="cm">	 *   &lt;/p&gt;</span>
+<span class="cm">	 *   &lt;dl&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%a&lt;/dt&gt; &lt;dd&gt;abbreviated weekday name according to the current locale&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%A&lt;/dt&gt; &lt;dd&gt;full weekday name according to the current locale&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%b&lt;/dt&gt; &lt;dd&gt;abbreviated month name according to the current locale&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%B&lt;/dt&gt; &lt;dd&gt;full month name according to the current locale&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%c&lt;/dt&gt; &lt;dd&gt;preferred date and time representation for the current locale&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%C&lt;/dt&gt; &lt;dd&gt;century number (the year divided by 100 and truncated to an integer, range 00 to 99)&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%d&lt;/dt&gt; &lt;dd&gt;day of the month as a decimal number (range 01 to 31)&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%D&lt;/dt&gt; &lt;dd&gt;same as %m/%d/%y&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%e&lt;/dt&gt; &lt;dd&gt;day of the month as a decimal number, a single digit is preceded by a space (range &quot; 1&quot; to &quot;31&quot;)&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%F&lt;/dt&gt; &lt;dd&gt;same as %Y-%m-%d (ISO 8601 date format)&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%g&lt;/dt&gt; &lt;dd&gt;like %G, but without the century&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%G&lt;/dt&gt; &lt;dd&gt;The 4-digit year corresponding to the ISO week number&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%h&lt;/dt&gt; &lt;dd&gt;same as %b&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%H&lt;/dt&gt; &lt;dd&gt;hour as a decimal number using a 24-hour clock (range 00 to 23)&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%I&lt;/dt&gt; &lt;dd&gt;hour as a decimal number using a 12-hour clock (range 01 to 12)&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%j&lt;/dt&gt; &lt;dd&gt;day of the year as a decimal number (range 001 to 366)&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%k&lt;/dt&gt; &lt;dd&gt;hour as a decimal number using a 24-hour clock (range 0 to 23); single digits are preceded by a blank. (See also %H.)&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%l&lt;/dt&gt; &lt;dd&gt;hour as a decimal number using a 12-hour clock (range 1 to 12); single digits are preceded by a blank. (See also %I.) &lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%m&lt;/dt&gt; &lt;dd&gt;month as a decimal number (range 01 to 12)&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%M&lt;/dt&gt; &lt;dd&gt;minute as a decimal number&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%n&lt;/dt&gt; &lt;dd&gt;newline character&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%p&lt;/dt&gt; &lt;dd&gt;either &quot;AM&quot; or &quot;PM&quot; according to the given time value, or the corresponding strings for the current locale&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%P&lt;/dt&gt; &lt;dd&gt;like %p, but lower case&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%r&lt;/dt&gt; &lt;dd&gt;time in a.m. and p.m. notation equal to %I:%M:%S %p&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%R&lt;/dt&gt; &lt;dd&gt;time in 24 hour notation equal to %H:%M&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%s&lt;/dt&gt; &lt;dd&gt;number of seconds since the Epoch, ie, since 1970-01-01 00:00:00 UTC&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%S&lt;/dt&gt; &lt;dd&gt;second as a decimal number&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%t&lt;/dt&gt; &lt;dd&gt;tab character&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%T&lt;/dt&gt; &lt;dd&gt;current time, equal to %H:%M:%S&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%u&lt;/dt&gt; &lt;dd&gt;weekday as a decimal number [1,7], with 1 representing Monday&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%U&lt;/dt&gt; &lt;dd&gt;week number of the current year as a decimal number, starting with the</span>
+<span class="cm">	 *			first Sunday as the first day of the first week&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%V&lt;/dt&gt; &lt;dd&gt;The ISO 8601:1988 week number of the current year as a decimal number,</span>
+<span class="cm">	 *			range 01 to 53, where week 1 is the first week that has at least 4 days</span>
+<span class="cm">	 *			in the current year, and with Monday as the first day of the week.&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%w&lt;/dt&gt; &lt;dd&gt;day of the week as a decimal, Sunday being 0&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%W&lt;/dt&gt; &lt;dd&gt;week number of the current year as a decimal number, starting with the</span>
+<span class="cm">	 *			first Monday as the first day of the first week&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%x&lt;/dt&gt; &lt;dd&gt;preferred date representation for the current locale without the time&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%X&lt;/dt&gt; &lt;dd&gt;preferred time representation for the current locale without the date&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%y&lt;/dt&gt; &lt;dd&gt;year as a decimal number without a century (range 00 to 99)&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%Y&lt;/dt&gt; &lt;dd&gt;year as a decimal number including the century&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%z&lt;/dt&gt; &lt;dd&gt;numerical time zone representation&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%Z&lt;/dt&gt; &lt;dd&gt;time zone name or abbreviation&lt;/dd&gt;</span>
+<span class="cm">	 *	&lt;dt&gt;%%&lt;/dt&gt; &lt;dd&gt;a literal &quot;%&quot; character&lt;/dd&gt;</span>
+<span class="cm">	 *   &lt;/dl&gt;</span>
+<span class="cm">	 *  &lt;/dd&gt;</span>
+<span class="cm">	 *  &lt;dt&gt;locale {String} (Deprecated, optional)&lt;/dt&gt;</span>
+<span class="cm">	 *  &lt;dd&gt;</span>
+<span class="cm">     *   &lt;b&gt;Deprecated - use Y.config.lang instead, which provides access to a much larger set of built-in languages.&lt;/b&gt;</span>
+<span class="cm">	 *   The locale to use when displaying days of week, months of the year, and other locale specific</span>
+<span class="cm">	 *   strings. If not specified, this defaults to &quot;en&quot; (though this may be overridden by the deprecated Y.config.locale).</span>
+<span class="cm">	 *   The following locales are built in:</span>
+<span class="cm">	 *   &lt;dl&gt;</span>
+<span class="cm">	 *    &lt;dt&gt;en&lt;/dt&gt;</span>
+<span class="cm">	 *    &lt;dd&gt;English&lt;/dd&gt;</span>
+<span class="cm">	 *    &lt;dt&gt;en-US&lt;/dt&gt;</span>
+<span class="cm">	 *    &lt;dd&gt;US English&lt;/dd&gt;</span>
+<span class="cm">	 *    &lt;dt&gt;en-GB&lt;/dt&gt;</span>
+<span class="cm">	 *    &lt;dd&gt;British English&lt;/dd&gt;</span>
+<span class="cm">	 *    &lt;dt&gt;en-AU&lt;/dt&gt;</span>
+<span class="cm">	 *    &lt;dd&gt;Australian English (identical to British English)&lt;/dd&gt;</span>
+<span class="cm">	 *   &lt;/dl&gt;</span>
+<span class="cm">	 *   More locales may be added by subclassing of the deprecated Y.DataType.Date.Locale[&quot;en&quot;].</span>
+<span class="cm">	 *   See Y.DataType.Date.Locale for more information.</span>
+<span class="cm">	 *  &lt;/dd&gt;</span>
+<span class="cm">	 * &lt;/dl&gt;</span>
+<span class="cm">	 * @return {String} Formatted date for display.</span>
+<span class="cm">	 */</span>
+	<span class="nx">format</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">oDate</span><span class="p">,</span> <span class="nx">oConfig</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">oConfig</span> <span class="o">=</span> <span class="nx">oConfig</span> <span class="o">||</span> <span class="p">{};</span>
+		
+		<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isDate</span><span class="p">(</span><span class="nx">oDate</span><span class="p">))</span> <span class="p">{</span>
+			<span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;format called without a date&quot;</span><span class="p">,</span> <span class="s2">&quot;WARN&quot;</span><span class="p">,</span> <span class="s2">&quot;datatype-date&quot;</span><span class="p">);</span>
+			<span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isValue</span><span class="p">(</span><span class="nx">oDate</span><span class="p">)</span> <span class="o">?</span> <span class="nx">oDate</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+		<span class="p">}</span>
+
+		<span class="kd">var</span> <span class="nx">format</span><span class="p">,</span> <span class="nx">resources</span><span class="p">,</span> <span class="nx">compatMode</span><span class="p">,</span> <span class="nx">sLocale</span><span class="p">,</span> <span class="nx">LOCALE</span><span class="p">;</span>
+
+        <span class="c1">// Y.config.dateFormat is deprecated - remove from YUI 3.2</span>
+        <span class="nx">format</span> <span class="o">=</span> <span class="nx">oConfig</span><span class="p">.</span><span class="nx">format</span> <span class="o">||</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">dateFormat</span>  <span class="o">||</span> <span class="s2">&quot;%Y-%m-%d&quot;</span><span class="p">;</span>
+        <span class="c1">// compatMode supports deprecated features - remove from YUI 3.2</span>
+        <span class="nx">compatMode</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">lang</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isValue</span><span class="p">(</span><span class="nx">oConfig</span><span class="p">.</span><span class="nx">locale</span><span class="p">)</span> <span class="o">||</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isValue</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">locale</span><span class="p">));</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">compatMode</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">sLocale</span> <span class="o">=</span> <span class="nx">oConfig</span><span class="p">.</span><span class="nx">locale</span> <span class="o">||</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">locale</span><span class="p">;</span>
+			<span class="nx">LOCALE</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DataType</span><span class="p">.</span><span class="nb">Date</span><span class="p">.</span><span class="nx">Locale</span><span class="p">;</span>
+            <span class="nx">sLocale</span> <span class="o">=</span> <span class="nx">sLocale</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/_/g</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">);</span>
+            
+            <span class="c1">// Make sure we have a definition for the requested locale, or default to en.</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">LOCALE</span><span class="p">[</span><span class="nx">sLocale</span><span class="p">])</span> <span class="p">{</span>
+                <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;selected locale &quot;</span> <span class="o">+</span> <span class="nx">sLocale</span> <span class="o">+</span> <span class="s2">&quot; not found, trying alternatives&quot;</span><span class="p">,</span> <span class="s2">&quot;WARN&quot;</span><span class="p">,</span> <span class="s2">&quot;datatype-date&quot;</span><span class="p">);</span>
+                <span class="kd">var</span> <span class="nx">tmpLocale</span> <span class="o">=</span> <span class="nx">sLocale</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/-[a-zA-Z]+$/</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">);</span>
+                <span class="k">if</span><span class="p">(</span><span class="nx">tmpLocale</span> <span class="k">in</span> <span class="nx">LOCALE</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">sLocale</span> <span class="o">=</span> <span class="nx">tmpLocale</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">locale</span> <span class="k">in</span> <span class="nx">LOCALE</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">sLocale</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">locale</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="nx">sLocale</span> <span class="o">=</span> <span class="s2">&quot;en&quot;</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;falling back to &quot;</span> <span class="o">+</span> <span class="nx">sLocale</span><span class="p">,</span> <span class="s2">&quot;INFO&quot;</span><span class="p">,</span> <span class="s2">&quot;datatype-date&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+    
+            <span class="nx">resources</span> <span class="o">=</span> <span class="nx">LOCALE</span><span class="p">[</span><span class="nx">sLocale</span><span class="p">];</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">resources</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Intl</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;datatype-date-format&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+		<span class="kd">var</span> <span class="nx">replace_aggs</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">m0</span><span class="p">,</span> <span class="nx">m1</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">compatMode</span> <span class="o">&amp;&amp;</span> <span class="nx">m1</span> <span class="o">===</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="p">{</span>
+			    <span class="k">return</span> <span class="nx">resources</span><span class="p">[</span><span class="nx">m1</span><span class="p">];</span>
+			<span class="p">}</span>
+			<span class="kd">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="nx">Dt</span><span class="p">.</span><span class="nx">aggregates</span><span class="p">[</span><span class="nx">m1</span><span class="p">];</span>
+			<span class="k">return</span> <span class="p">(</span><span class="nx">f</span> <span class="o">===</span> <span class="s2">&quot;locale&quot;</span> <span class="o">?</span> <span class="nx">resources</span><span class="p">[</span><span class="nx">m1</span><span class="p">]</span> <span class="o">:</span> <span class="nx">f</span><span class="p">);</span>
+		<span class="p">};</span>
+
+		<span class="kd">var</span> <span class="nx">replace_formats</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">m0</span><span class="p">,</span> <span class="nx">m1</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="nx">Dt</span><span class="p">.</span><span class="nx">formats</span><span class="p">[</span><span class="nx">m1</span><span class="p">];</span>
+			<span class="k">switch</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="nx">f</span><span class="p">))</span> <span class="p">{</span>
+				<span class="k">case</span> <span class="s2">&quot;string&quot;</span><span class="o">:</span>					<span class="c1">// string =&gt; built in date function</span>
+					<span class="k">return</span> <span class="nx">oDate</span><span class="p">[</span><span class="nx">f</span><span class="p">]();</span>
+				<span class="k">case</span> <span class="s2">&quot;function&quot;</span><span class="o">:</span>				<span class="c1">// function =&gt; our own function</span>
+					<span class="k">return</span> <span class="nx">f</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">oDate</span><span class="p">,</span> <span class="nx">oDate</span><span class="p">,</span> <span class="nx">resources</span><span class="p">);</span>
+				<span class="k">case</span> <span class="s2">&quot;array&quot;</span><span class="o">:</span>					<span class="c1">// built in function with padding</span>
+					<span class="k">if</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="nx">f</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">===</span> <span class="s2">&quot;string&quot;</span><span class="p">)</span> <span class="p">{</span>
+						<span class="k">return</span> <span class="nx">xPad</span><span class="p">(</span><span class="nx">oDate</span><span class="p">[</span><span class="nx">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]](),</span> <span class="nx">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+					<span class="p">}</span> <span class="c1">// no break; (fall through to default:)</span>
+				<span class="k">default</span><span class="o">:</span>
+                    <span class="c1">// Y.config.dateFormat is deprecated - remove from YUI 3.2</span>
+					<span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;unrecognised replacement type, please file a bug (format: &quot;</span> <span class="o">+</span> <span class="nx">oConfig</span><span class="p">.</span><span class="nx">format</span> <span class="o">||</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">dateFormat</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">,</span> <span class="s2">&quot;WARN&quot;</span><span class="p">,</span> <span class="s2">&quot;datatype-date&quot;</span><span class="p">);</span>
+					<span class="k">return</span> <span class="nx">m1</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">};</span>
+
+		<span class="c1">// First replace aggregates (run in a loop because an agg may be made up of other aggs)</span>
+		<span class="k">while</span><span class="p">(</span><span class="nx">format</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/%[cDFhnrRtTxX]/</span><span class="p">))</span> <span class="p">{</span>
+			<span class="nx">format</span> <span class="o">=</span> <span class="nx">format</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/%([cDFhnrRtTxX])/g</span><span class="p">,</span> <span class="nx">replace_aggs</span><span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="c1">// Now replace formats (do not run in a loop otherwise %%a will be replace with the value of %a)</span>
+		<span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="nx">format</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/%([aAbBCdegGHIjklmMpPsSuUVwWyYzZ%])/g</span><span class="p">,</span> <span class="nx">replace_formats</span><span class="p">);</span>
+
+		<span class="nx">replace_aggs</span> <span class="o">=</span> <span class="nx">replace_formats</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+
+		<span class="k">return</span> <span class="nx">str</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;DataType.Date&quot;</span><span class="p">),</span> <span class="nx">Dt</span><span class="p">);</span>
+<span class="cm">/**</span>
+<span class="cm"> * @module datatype</span>
+<span class="cm">*/</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * The Date.Locale class is a container for all localised date strings</span>
+<span class="cm"> * used by Y.DataType.Date. It is used internally, but may be extended</span>
+<span class="cm"> * to provide new date localisations.</span>
+<span class="cm"> *</span>
+<span class="cm"> * To create your own Locale, follow these steps:</span>
+<span class="cm"> * &lt;ol&gt;</span>
+<span class="cm"> *  &lt;li&gt;Find an existing locale that matches closely with your needs&lt;/li&gt;</span>
+<span class="cm"> *  &lt;li&gt;Use this as your base class.  Use Y.DataType.Date.Locale[&quot;en&quot;] if nothing</span>
+<span class="cm"> *   matches.&lt;/li&gt;</span>
+<span class="cm"> *  &lt;li&gt;Create your own class as an extension of the base class using</span>
+<span class="cm"> *   Y.merge, and add your own localisations where needed.&lt;/li&gt;</span>
+<span class="cm"> * &lt;/ol&gt;</span>
+<span class="cm"> * See the Y.DataType.Date.Locale[&quot;en-US&quot;] and Y.DataType.Date.Locale[&quot;en-GB&quot;]</span>
+<span class="cm"> * classes which extend Y.DataType.Date.Locale[&quot;en&quot;].</span>
+<span class="cm"> *</span>
+<span class="cm"> * For example, to implement locales for French french and Canadian french,</span>
+<span class="cm"> * we would do the following:</span>
+<span class="cm"> * &lt;ol&gt;</span>
+<span class="cm"> *  &lt;li&gt;For French french, we have no existing similar locale, so use</span>
+<span class="cm"> *   Y.DataType.Date.Locale[&quot;en&quot;] as the base, and extend it:</span>
+<span class="cm"> *   &lt;pre&gt;</span>
+<span class="cm"> *      Y.DataType.Date.Locale[&quot;fr&quot;] = Y.merge(Y.DataType.Date.Locale, {</span>
+<span class="cm"> *          a: [&quot;dim&quot;, &quot;lun&quot;, &quot;mar&quot;, &quot;mer&quot;, &quot;jeu&quot;, &quot;ven&quot;, &quot;sam&quot;],</span>
+<span class="cm"> *          A: [&quot;dimanche&quot;, &quot;lundi&quot;, &quot;mardi&quot;, &quot;mercredi&quot;, &quot;jeudi&quot;, &quot;vendredi&quot;, &quot;samedi&quot;],</span>
+<span class="cm"> *          b: [&quot;jan&quot;, &quot;f&amp;eacute;v&quot;, &quot;mar&quot;, &quot;avr&quot;, &quot;mai&quot;, &quot;jun&quot;, &quot;jui&quot;, &quot;ao&amp;ucirc;&quot;, &quot;sep&quot;, &quot;oct&quot;, &quot;nov&quot;, &quot;d&amp;eacute;c&quot;],</span>
+<span class="cm"> *          B: [&quot;janvier&quot;, &quot;f&amp;eacute;vrier&quot;, &quot;mars&quot;, &quot;avril&quot;, &quot;mai&quot;, &quot;juin&quot;, &quot;juillet&quot;, &quot;ao&amp;ucirc;t&quot;, &quot;septembre&quot;, &quot;octobre&quot;, &quot;novembre&quot;, &quot;d&amp;eacute;cembre&quot;],</span>
+<span class="cm"> *          c: &quot;%a %d %b %Y %T %Z&quot;,</span>
+<span class="cm"> *          p: [&quot;&quot;, &quot;&quot;],</span>
+<span class="cm"> *          P: [&quot;&quot;, &quot;&quot;],</span>
+<span class="cm"> *          x: &quot;%d.%m.%Y&quot;,</span>
+<span class="cm"> *          X: &quot;%T&quot;</span>
+<span class="cm"> *      });</span>
+<span class="cm"> *   &lt;/pre&gt;</span>
+<span class="cm"> *  &lt;/li&gt;</span>
+<span class="cm"> *  &lt;li&gt;For Canadian french, we start with French french and change the meaning of \%x:</span>
+<span class="cm"> *   &lt;pre&gt;</span>
+<span class="cm"> *      Y.DataType.Date.Locale[&quot;fr-CA&quot;] = Y.merge(Y.DataType.Date.Locale[&quot;fr&quot;], {</span>
+<span class="cm"> *          x: &quot;%Y-%m-%d&quot;</span>
+<span class="cm"> *      });</span>
+<span class="cm"> *   &lt;/pre&gt;</span>
+<span class="cm"> *  &lt;/li&gt;</span>
+<span class="cm"> * &lt;/ol&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * With that, you can use your new locales:</span>
+<span class="cm"> * &lt;pre&gt;</span>
+<span class="cm"> *    var d = new Date(&quot;2008/04/22&quot;);</span>
+<span class="cm"> *    Y.DataType.Date.format(d, { format: &quot;%A, %d %B == %x&quot;, locale: &quot;fr&quot; });</span>
+<span class="cm"> * &lt;/pre&gt;</span>
+<span class="cm"> * will return:</span>
+<span class="cm"> * &lt;pre&gt;</span>
+<span class="cm"> *    mardi, 22 avril == 22.04.2008</span>
+<span class="cm"> * &lt;/pre&gt;</span>
+<span class="cm"> * And</span>
+<span class="cm"> * &lt;pre&gt;</span>
+<span class="cm"> *    Y.DataType.Date.format(d, {format: &quot;%A, %d %B == %x&quot;, locale: &quot;fr-CA&quot; });</span>
+<span class="cm"> * &lt;/pre&gt;</span>
+<span class="cm"> * Will return:</span>
+<span class="cm"> * &lt;pre&gt;</span>
+<span class="cm"> *   mardi, 22 avril == 2008-04-22</span>
+<span class="cm"> * &lt;/pre&gt;</span>
+<span class="cm"> * @requires oop</span>
+<span class="cm"> * @class DataType.Date.Locale</span>
+<span class="cm"> * @static</span>
+<span class="cm"> * @deprecated - use Y.config.lang to request one of many built-in languages instead.</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">YDateEn</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="nx">a</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;Sun&quot;</span><span class="p">,</span> <span class="s2">&quot;Mon&quot;</span><span class="p">,</span> <span class="s2">&quot;Tue&quot;</span><span class="p">,</span> <span class="s2">&quot;Wed&quot;</span><span class="p">,</span> <span class="s2">&quot;Thu&quot;</span><span class="p">,</span> <span class="s2">&quot;Fri&quot;</span><span class="p">,</span> <span class="s2">&quot;Sat&quot;</span><span class="p">],</span>
+	<span class="nx">A</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;Sunday&quot;</span><span class="p">,</span> <span class="s2">&quot;Monday&quot;</span><span class="p">,</span> <span class="s2">&quot;Tuesday&quot;</span><span class="p">,</span> <span class="s2">&quot;Wednesday&quot;</span><span class="p">,</span> <span class="s2">&quot;Thursday&quot;</span><span class="p">,</span> <span class="s2">&quot;Friday&quot;</span><span class="p">,</span> <span class="s2">&quot;Saturday&quot;</span><span class="p">],</span>
+	<span class="nx">b</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;Jan&quot;</span><span class="p">,</span> <span class="s2">&quot;Feb&quot;</span><span class="p">,</span> <span class="s2">&quot;Mar&quot;</span><span class="p">,</span> <span class="s2">&quot;Apr&quot;</span><span class="p">,</span> <span class="s2">&quot;May&quot;</span><span class="p">,</span> <span class="s2">&quot;Jun&quot;</span><span class="p">,</span> <span class="s2">&quot;Jul&quot;</span><span class="p">,</span> <span class="s2">&quot;Aug&quot;</span><span class="p">,</span> <span class="s2">&quot;Sep&quot;</span><span class="p">,</span> <span class="s2">&quot;Oct&quot;</span><span class="p">,</span> <span class="s2">&quot;Nov&quot;</span><span class="p">,</span> <span class="s2">&quot;Dec&quot;</span><span class="p">],</span>
+	<span class="nx">B</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;January&quot;</span><span class="p">,</span> <span class="s2">&quot;February&quot;</span><span class="p">,</span> <span class="s2">&quot;March&quot;</span><span class="p">,</span> <span class="s2">&quot;April&quot;</span><span class="p">,</span> <span class="s2">&quot;May&quot;</span><span class="p">,</span> <span class="s2">&quot;June&quot;</span><span class="p">,</span> <span class="s2">&quot;July&quot;</span><span class="p">,</span> <span class="s2">&quot;August&quot;</span><span class="p">,</span> <span class="s2">&quot;September&quot;</span><span class="p">,</span> <span class="s2">&quot;October&quot;</span><span class="p">,</span> <span class="s2">&quot;November&quot;</span><span class="p">,</span> <span class="s2">&quot;December&quot;</span><span class="p">],</span>
+	<span class="nx">c</span><span class="o">:</span> <span class="s2">&quot;%a %d %b %Y %T %Z&quot;</span><span class="p">,</span>
+	<span class="nx">p</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;AM&quot;</span><span class="p">,</span> <span class="s2">&quot;PM&quot;</span><span class="p">],</span>
+	<span class="nx">P</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;am&quot;</span><span class="p">,</span> <span class="s2">&quot;pm&quot;</span><span class="p">],</span>
+	<span class="nx">r</span><span class="o">:</span> <span class="s2">&quot;%I:%M:%S %p&quot;</span><span class="p">,</span>
+	<span class="nx">x</span><span class="o">:</span> <span class="s2">&quot;%d/%m/%y&quot;</span><span class="p">,</span>
+	<span class="nx">X</span><span class="o">:</span> <span class="s2">&quot;%T&quot;</span>
+<span class="p">};</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;DataType.Date.Locale&quot;</span><span class="p">);</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">DataType</span><span class="p">.</span><span class="nb">Date</span><span class="p">.</span><span class="nx">Locale</span><span class="p">[</span><span class="s2">&quot;en&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">YDateEn</span><span class="p">;</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">DataType</span><span class="p">.</span><span class="nb">Date</span><span class="p">.</span><span class="nx">Locale</span><span class="p">[</span><span class="s2">&quot;en-US&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span><span class="nx">YDateEn</span><span class="p">,</span> <span class="p">{</span>
+	<span class="nx">c</span><span class="o">:</span> <span class="s2">&quot;%a %d %b %Y %I:%M:%S %p %Z&quot;</span><span class="p">,</span>
+	<span class="nx">x</span><span class="o">:</span> <span class="s2">&quot;%m/%d/%Y&quot;</span><span class="p">,</span>
+	<span class="nx">X</span><span class="o">:</span> <span class="s2">&quot;%I:%M:%S %p&quot;</span>
+<span class="p">});</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">DataType</span><span class="p">.</span><span class="nb">Date</span><span class="p">.</span><span class="nx">Locale</span><span class="p">[</span><span class="s2">&quot;en-GB&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span><span class="nx">YDateEn</span><span class="p">,</span> <span class="p">{</span>
+	<span class="nx">r</span><span class="o">:</span> <span class="s2">&quot;%l:%M:%S %P %Z&quot;</span>
+<span class="p">});</span>
+<span class="nx">Y</span><span class="p">.</span><span class="nx">DataType</span><span class="p">.</span><span class="nb">Date</span><span class="p">.</span><span class="nx">Locale</span><span class="p">[</span><span class="s2">&quot;en-AU&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span><span class="nx">YDateEn</span><span class="p">);</span>
+
+
+
+
+<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">lang</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;ar&#39;</span><span class="p">,</span><span class="s1">&#39;ar-JO&#39;</span><span class="p">,</span><span class="s1">&#39;ca&#39;</span><span class="p">,</span><span class="s1">&#39;ca-ES&#39;</span><span class="p">,</span><span class="s1">&#39;da&#39;</span><span class="p">,</span><span class="s1">&#39;da-DK&#39;</span><span class="p">,</span><span class="s1">&#39;de&#39;</span><span class="p">,</span><span class="s1">&#39;de-AT&#39;</span><span class="p">,</span><span class="s1">&#39;de-DE&#39;</span><span class="p">,</span><span class="s1">&#39;el&#39;</span><span class="p">,</span><span class="s1">&#39;el-GR&#39;</span><span class="p">,</span><span class="s1">&#39;en&#39;</span><span class="p">,</span><span class="s1">&#39;en-AU&#39;</span><span class="p">,</span><span class="s1">&#39;en-CA&#39;</span><span class="p">,</span><span class="s1">&#39;en-GB&#39;</span><span class="p">,</span><span class="s1">&#39;en-IE&#39;</span><span class="p">,</span><span class="s1">&#39;en-IN&#39;</span><span class="p">,</span><span class="s1">&#39;en-JO&#39;</span><span class="p">,</span><span class="s1">&#39;en-MY&#39;</span><span class="p">,</span><span class="s1">&#39;en-NZ&#39;</span><span class="p">,</span><span class="s1">&#39;en-PH&#39;</span><span class="p">,</span><span class="s1">&#39;en-SG&#39;</span><span class="p">,</span><span class="s1">&#39;en-US&#39;</span><span class="p">,</span><span class="s1">&#39;es&#39;</span><span class="p">,</span><span class="s1">&#39;es-AR&#39;</span><span class="p">,</span><span class="s1">&#39;es-BO&#39;</span><span class="p">,</span><span class="s1">&#39;es-CL&#39;</span><span class="p">,</span><span class="s1">&#39;es-CO&#39;</span><span class="p">,</span><span class="s1">&#39;es-EC&#39;</span><span class="p">,</span><span class="s1">&#39;es-ES&#39;</span><span class="p">,</span><span class="s1">&#39;es-MX&#39;</span><span class="p">,</span><span class="s1">&#39;es-PE&#39;</span><span class="p">,</span><span class="s1">&#39;es-PY&#39;</span><span class="p">,</span><span class="s1">&#39;es-US&#39;</span><span class="p">,</span><span class="s1">&#39;es-UY&#39;</span><span class="p">,</span><span class="s1">&#39;es-VE&#39;</span><span class="p">,</span><span class="s1">&#39;fi&#39;</span><span class="p">,</span><span class="s1">&#39;fi-FI&#39;</span><span class="p">,</span><span class="s1">&#39;fr&#39;</span><span class="p">,</span><span class="s1">&#39;fr-BE&#39;</span><span class="p">,</span><span class="s1">&#39;fr-CA&#39;</span><span class="p">,</span><span class="s1">&#39;fr-FR&#39;</span><span class="p">,</span><span class="s1">&#39;hi&#39;</span><span class="p">,</span><span class="s1">&#39;hi-IN&#39;</span><span class="p">,</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;id-ID&#39;</span><span class="p">,</span><span class="s1">&#39;it&#39;</span><span class="p">,</span><span class="s1">&#39;it-IT&#39;</span><span class="p">,</span><span class="s1">&#39;ja&#39;</span><span class="p">,</span><span class="s1">&#39;ja-JP&#39;</span><span class="p">,</span><span class="s1">&#39;ko&#39;</span><span class="p">,</span><span class="s1">&#39;ko-KR&#39;</span><span class="p">,</span><span class="s1">&#39;ms&#39;</span><span class="p">,</span><span class="s1">&#39;ms-MY&#39;</span><span class="p">,</span><span class="s1">&#39;nb&#39;</span><span class="p">,</span><span class="s1">&#39;nb-NO&#39;</span><span class="p">,</span><span class="s1">&#39;nl&#39;</span><span class="p">,</span><span class="s1">&#39;nl-BE&#39;</span><span class="p">,</span><span class="s1">&#39;nl-NL&#39;</span><span class="p">,</span><span class="s1">&#39;pl&#39;</span><span class="p">,</span><span class="s1">&#39;pl-PL&#39;</span><span class="p">,</span><span class="s1">&#39;pt&#39;</span><span class="p">,</span><span class="s1">&#39;pt-BR&#39;</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">,</span><span class="s1">&#39;ro-RO&#39;</span><span class="p">,</span><span class="s1">&#39;ru&#39;</span><span class="p">,</span><span class="s1">&#39;ru-RU&#39;</span><span class="p">,</span><span class="s1">&#39;sv&#39;</span><span class="p">,</span><span class="s1">&#39;sv-SE&#39;</span><span class="p">,</span><span class="s1">&#39;th&#39;</span><span class="p">,</span><span class="s1">&#39;th-TH&#39;</span><span class="p">,</span><span class="s1">&#39;tr&#39;</span><span class="p">,</span><span class="s1">&#39;tr-TR&#39;</span><span class="p">,</span><span class="s1">&#39;vi&#39;</span><span class="p">,</span><span class="s1">&#39;vi-VN&#39;</span><span class="p">,</span><span class="s1">&#39;zh-Hans&#39;</span><span class="p">,</span><span class="s1">&#39;zh-Hans-CN&#39;</span><span class="p">,</span><span class="s1">&#39;zh-Hant&#39;</span><span class="p">,</span><span class="s1">&#39;zh-Hant-HK&#39;</span><span class="p">,</span><span class="s1">&#39;zh-Hant-TW&#39;</span><span class="p">]});</span>
+
+
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-date&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datatype-date-parse&#39;</span><span class="p">,</span> <span class="s1">&#39;datatype-date-format&#39;</span><span class="p">]});</span>
+
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-xml-parse&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Parse XML submodule.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module datatype</span>
+<span class="cm"> * @submodule datatype-xml-parse</span>
+<span class="cm"> * @for DataType.XML</span>
+<span class="cm"> */</span>
+
+<span class="kd">var</span> <span class="nx">LANG</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">;</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;DataType.XML&quot;</span><span class="p">),</span> <span class="p">{</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Converts data to type XMLDocument.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method parse</span>
+<span class="cm">     * @param data {String} Data to convert.</span>
+<span class="cm">     * @return {XMLDoc} XML Document.</span>
+<span class="cm">     */</span>
+    <span class="nx">parse</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">xmlDoc</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">LANG</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">LANG</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">DOMParser</span><span class="p">))</span> <span class="p">{</span>
+                    <span class="nx">xmlDoc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DOMParser</span><span class="p">().</span><span class="nx">parseFromString</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="s2">&quot;text/xml&quot;</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">try</span> <span class="p">{</span>
+                    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">LANG</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">ActiveXObject</span><span class="p">))</span> <span class="p">{</span>
+                            <span class="nx">xmlDoc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s2">&quot;Microsoft.XMLDOM&quot;</span><span class="p">);</span>
+                            <span class="nx">xmlDoc</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+                            <span class="nx">xmlDoc</span><span class="p">.</span><span class="nx">loadXML</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="k">catch</span><span class="p">(</span><span class="nx">ee</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">message</span> <span class="o">+</span> <span class="s2">&quot; (Could not parse data &quot;</span> <span class="o">+</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">dump</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; to type XML Document)&quot;</span><span class="p">,</span> <span class="s2">&quot;warn&quot;</span><span class="p">,</span> <span class="s2">&quot;datatype-xml&quot;</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        
+        <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="nx">LANG</span><span class="p">.</span><span class="nx">isNull</span><span class="p">(</span><span class="nx">xmlDoc</span><span class="p">))</span> <span class="o">||</span> <span class="p">(</span><span class="nx">LANG</span><span class="p">.</span><span class="nx">isNull</span><span class="p">(</span><span class="nx">xmlDoc</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">))</span> <span class="o">||</span> <span class="p">(</span><span class="nx">xmlDoc</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">nodeName</span> <span class="o">===</span> <span class="s2">&quot;parsererror&quot;</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Could not parse data &quot;</span> <span class="o">+</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">dump</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; to type XML Document&quot;</span><span class="p">,</span> <span class="s2">&quot;warn&quot;</span><span class="p">,</span> <span class="s2">&quot;datatype-xml&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="nx">xmlDoc</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// Add Parsers shortcut</span>
+<span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;Parsers&quot;</span><span class="p">).</span><span class="nx">xml</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DataType</span><span class="p">.</span><span class="nx">XML</span><span class="p">.</span><span class="nx">parse</span><span class="p">;</span>
+
+
+
+<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">);</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-xml-format&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Format XML submodule.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module datatype</span>
+<span class="cm"> * @submodule datatype-xml-format</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * XML submodule.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module datatype</span>
+<span class="cm"> * @submodule datatype-xml</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * DataType.XML provides a set of utility functions to operate against XML documents.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class DataType.XML</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">LANG</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">;</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;DataType.XML&quot;</span><span class="p">),</span> <span class="p">{</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Converts data to type XMLDocument.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method format</span>
+<span class="cm">     * @param data {XMLDoc} Data to convert.</span>
+<span class="cm">     * @return {String} String.</span>
+<span class="cm">     */</span>
+    <span class="nx">format</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">LANG</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">XMLSerializer</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="p">(</span><span class="k">new</span> <span class="nx">XMLSerializer</span><span class="p">()).</span><span class="nx">serializeToString</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">data</span> <span class="o">&amp;&amp;</span> <span class="nx">data</span><span class="p">.</span><span class="nx">xml</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nx">data</span><span class="p">.</span><span class="nx">xml</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Could not format data &quot;</span> <span class="o">+</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">dump</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; from type XML&quot;</span><span class="p">,</span> <span class="s2">&quot;warn&quot;</span><span class="p">,</span> <span class="s2">&quot;datatype-xml&quot;</span><span class="p">);</span>
+                <span class="k">return</span> <span class="p">(</span><span class="nx">LANG</span><span class="p">.</span><span class="nx">isValue</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">data</span><span class="p">.</span><span class="nx">toString</span><span class="p">)</span> <span class="o">?</span> <span class="nx">data</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+
+
+<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">);</span>
+
+
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-xml&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datatype-xml-parse&#39;</span><span class="p">,</span> <span class="s1">&#39;datatype-xml-format&#39;</span><span class="p">]});</span>
+
+
+
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datatype-number&#39;</span><span class="p">,</span> <span class="s1">&#39;datatype-date&#39;</span><span class="p">,</span> <span class="s1">&#39;datatype-xml&#39;</span><span class="p">]});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "DataType.Date.html#method_format", "access": "", "host": "DataType.Date", "type": "method", "name": "format"}, {"url": "DataType.Number.html#method_format", "access": "", "host": "DataType.Number", "type": "method", "name": "format"}, {"url": "DataType.XML.html#method_format", "access": "", "host": "DataType.XML", "type": "method", "name": "format"}, {"url": "DataType.Date.html#method_parse", "access": "", "host": "DataType.Date", "type": "method", "name": "parse"}, {"url": "DataType.Number.html#method_parse", "access": "", "host": "DataType.Number", "type": "method", "name": "parse"}, {"url": "DataType.XML.html#method_parse", "access": "", "host": "DataType.XML", "type": "method", "name": "parse"}];
+</script>
+</body>
+</html>

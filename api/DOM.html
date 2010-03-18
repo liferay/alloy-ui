@@ -1,0 +1,2926 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: dom  DOM   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			dom&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_dom.html" title="dom">dom</a>
+
+	                 <span class="separator">&gt;</span> <span class="classname">DOM</span> 
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class="selected"><a href="DOM.html" title="DOM">DOM</a></li>
+
+
+				                                <li class=""><a href="Selector.html" title="Selector">Selector</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+							<div class="aui-widget aui-list aui-list-methods">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-methods-hd">
+										<span class="aui-widget-hd-text">Methods</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+				                               <li class=""><a href="#method_addClass" title="addClass">addClass</a></li>
+				                               <li class=""><a href="#method_addHTML" title="addHTML">addHTML</a></li>
+				                               <li class=""><a href="#method_byId" title="byId">byId</a></li>
+				                               <li class=""><a href="#method_contains" title="contains">contains</a></li>
+				                               <li class=""><a href="#method_create" title="create">create</a></li>
+				                               <li class=""><a href="#method_docHeight" title="docHeight">docHeight</a></li>
+				                               <li class=""><a href="#method_docScrollX" title="docScrollX">docScrollX</a></li>
+				                               <li class=""><a href="#method_docScrollY" title="docScrollY">docScrollY</a></li>
+				                               <li class=""><a href="#method_docWidth" title="docWidth">docWidth</a></li>
+				                               <li class=""><a href="#method_elementByAxis" title="elementByAxis">elementByAxis</a></li>
+				                               <li class=""><a href="#method_getAttibute" title="getAttibute">getAttibute</a></li>
+				                               <li class=""><a href="#method_getComputedStyle" title="getComputedStyle">getComputedStyle</a></li>
+				                               <li class=""><a href="#method_getStyle" title="getStyle">getStyle</a></li>
+				                               <li class=""><a href="#method_getText" title="getText">getText</a></li>
+				                               <li class=""><a href="#method_getX" title="getX">getX</a></li>
+				                               <li class=""><a href="#method_getXY" title="getXY">getXY</a></li>
+				                               <li class=""><a href="#method_getY" title="getY">getY</a></li>
+				                               <li class=""><a href="#method_hasClass" title="hasClass">hasClass</a></li>
+				                               <li class=""><a href="#method_inDoc" title="inDoc">inDoc</a></li>
+				                               <li class=""><a href="#method_inRegion" title="inRegion">inRegion</a></li>
+				                               <li class=""><a href="#method_intersect" title="intersect">intersect</a></li>
+				                               <li class=""><a href="#method_inViewportRegion" title="inViewportRegion">inViewportRegion</a></li>
+				                               <li class=""><a href="#method_region" title="region">region</a></li>
+				                               <li class=""><a href="#method_removeClass" title="removeClass">removeClass</a></li>
+				                               <li class=""><a href="#method_replaceClass" title="replaceClass">replaceClass</a></li>
+				                               <li class=""><a href="#method_setAttibute" title="setAttibute">setAttibute</a></li>
+				                               <li class=""><a href="#method_setHeight" title="setHeight">setHeight</a></li>
+				                               <li class=""><a href="#method_setStyle" title="setStyle">setStyle</a></li>
+				                               <li class=""><a href="#method_setStyles" title="setStyles">setStyles</a></li>
+				                               <li class=""><a href="#method_setText" title="setText">setText</a></li>
+				                               <li class=""><a href="#method_setWidth" title="setWidth">setWidth</a></li>
+				                               <li class=""><a href="#method_setX" title="setX">setX</a></li>
+				                               <li class=""><a href="#method_setXY" title="setXY">setXY</a></li>
+				                               <li class=""><a href="#method_setY" title="setY">setY</a></li>
+				                               <li class=""><a href="#method_swapXY" title="swapXY">swapXY</a></li>
+				                               <li class=""><a href="#method_toggleClass" title="toggleClass">toggleClass</a></li>
+				                               <li class=""><a href="#method_viewportRegion" title="viewportRegion">viewportRegion</a></li>
+				                               <li class=""><a href="#method_winHeight" title="winHeight">winHeight</a></li>
+				                               <li class=""><a href="#method_winWidth" title="winWidth">winWidth</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="dom-base-debug.js.html" title="dom-base-debug.js">dom-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="dom-base-min.js.html" title="dom-base-min.js">dom-base-min.js</a></li>
+
+
+			                                <li class=""><a href="dom-screen-debug.js.html" title="dom-screen-debug.js">dom-screen-debug.js</a></li>
+
+
+			                                <li class=""><a href="dom-screen-min.js.html" title="dom-screen-min.js">dom-screen-min.js</a></li>
+
+
+			                                <li class=""><a href="dom-screen.js.html" title="dom-screen.js">dom-screen.js</a></li>
+
+
+			                                <li class=""><a href="dom-style-debug.js.html" title="dom-style-debug.js">dom-style-debug.js</a></li>
+
+
+			                                <li class=""><a href="dom-style-min.js.html" title="dom-style-min.js">dom-style-min.js</a></li>
+
+
+			                                <li class=""><a href="dom-style.js.html" title="dom-style.js">dom-style.js</a></li>
+
+
+			                                <li class=""><a href="dom.js.html" title="dom.js">dom.js</a></li>
+
+
+			                                <li class=""><a href="selector-css2-debug.js.html" title="selector-css2-debug.js">selector-css2-debug.js</a></li>
+
+
+			                                <li class=""><a href="selector-css2-min.js.html" title="selector-css2-min.js">selector-css2-min.js</a></li>
+
+
+			                                <li class=""><a href="selector-css2.js.html" title="selector-css2.js">selector-css2.js</a></li>
+
+
+			                                <li class=""><a href="selector-css3-debug.js.html" title="selector-css3-debug.js">selector-css3-debug.js</a></li>
+
+
+			                                <li class=""><a href="selector-css3-min.js.html" title="selector-css3-min.js">selector-css3-min.js</a></li>
+
+
+			                                <li class=""><a href="selector-css3.js.html" title="selector-css3.js">selector-css3.js</a></li>
+
+
+			                                <li class=""><a href="selector-debug.js.html" title="selector-debug.js">selector-debug.js</a></li>
+
+
+			                                <li class=""><a href="selector-min.js.html" title="selector-min.js">selector-min.js</a></li>
+
+
+			                                <li class=""><a href="selector-native-debug.js.html" title="selector-native-debug.js">selector-native-debug.js</a></li>
+
+
+			                                <li class=""><a href="selector-native-min.js.html" title="selector-native-min.js">selector-native-min.js</a></li>
+
+
+			                                <li class=""><a href="selector-native.js.html" title="selector-native.js">selector-native.js</a></li>
+
+
+			                                <li class=""><a href="selector.js.html" title="selector.js">selector.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<h2>
+								
+
+								
+
+								
+
+								Class <b property="yui:name">DOM</b>
+
+
+							</h2>
+
+							<!-- class tree goes here -->
+
+
+
+							<div class="summary description" property="yui:description">
+								Provides DOM helper methods.
+							</div>
+
+
+							<div rel="yui:properties" resource="#properties">
+
+
+							</div>
+
+							<div rel="yui:attributes" resource="#configattributes">
+
+
+
+							</div>
+
+							<div rel="yui:methods" resource="#methods">
+									<div class="section method details">
+
+										<h3 id="methods">Methods</h3>
+
+										<div class="content">
+
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_addClass">
+
+													<h4>
+														<a name="method_addClass">addClass</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">addClass</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+																		, 
+																		 className
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Adds a class name to a given DOM element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> The DOM element.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">className</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> the class name to add to the class attribute</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_addHTML">
+
+													<h4>
+														<a name="method_addHTML">addHTML</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">addHTML</strong>
+														   (
+																
+																		
+																		 node
+																	
+																
+																		, 
+																		 content
+																	
+																
+																		, 
+																		 where
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Inserts content in a node at the given location
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">node</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> The node to insert into</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">content</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The content to be inserted</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">where</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> Where to insert the content; default is after lastChild</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_byId">
+
+													<h4>
+														<a name="method_byId">byId</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														HTMLElement | null
+															<strong property="yui:name">byId</strong>
+														   (
+																
+																		
+																		 id
+																	
+																
+																		, 
+																		 doc
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns the HTMLElement with the given ID (Wrapper for document.getElementById).
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">id</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> the id attribute</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">doc</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> optional The document to search. Defaults to current document</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			HTMLElement | null
+																	</code></dt>
+																	<dd property="yui:returnInfo">The HTMLElement with the id, or null if none found.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_contains">
+
+													<h4>
+														<a name="method_contains">contains</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Boolean
+															<strong property="yui:name">contains</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+																		, 
+																		 needle
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Determines whether or not one HTMLElement is or contains another HTMLElement.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> The containing html element.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">needle</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> The html element that may be contained.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo">Whether or not the element is or contains the needle.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_create">
+
+													<h4>
+														<a name="method_create">create</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">create</strong>
+														   (
+																
+																		
+																		 html
+																	
+																
+																		, 
+																		 doc
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates a new dom node using the provided markup string.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">html</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The markup used to create the element</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">doc</span>
+																		&lt;<span property="yui:type">HTMLDocument</span>&gt;
+																		</code>
+																		<span property="yui:description"> An optional document context</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_docHeight">
+
+													<h4>
+														<a name="method_docHeight">docHeight</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Number
+															<strong property="yui:name">docHeight</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Document height
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Number
+																	</code></dt>
+																	<dd property="yui:returnInfo">The current height of the document.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_docScrollX">
+
+													<h4>
+														<a name="method_docScrollX">docScrollX</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Number
+															<strong property="yui:name">docScrollX</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Amount page has been scroll horizontally
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Number
+																	</code></dt>
+																	<dd property="yui:returnInfo">The current amount the screen is scrolled horizontally.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_docScrollY">
+
+													<h4>
+														<a name="method_docScrollY">docScrollY</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Number
+															<strong property="yui:name">docScrollY</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Amount page has been scroll vertically
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Number
+																	</code></dt>
+																	<dd property="yui:returnInfo">The current amount the screen is scrolled vertically.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_docWidth">
+
+													<h4>
+														<a name="method_docWidth">docWidth</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Number
+															<strong property="yui:name">docWidth</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Document width
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Number
+																	</code></dt>
+																	<dd property="yui:returnInfo">The current width of the document.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_elementByAxis">
+
+													<h4>
+														<a name="method_elementByAxis">elementByAxis</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														HTMLElement | null
+															<strong property="yui:name">elementByAxis</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+																		, 
+																		 axis
+																	
+																
+																		, 
+																		 fn
+																	
+																
+																		, 
+																		 all
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Searches the element by the given axis for the first matching element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> The html element.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">axis</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The axis to search (parentNode, nextSibling, previousSibling).</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">fn</span>
+																		&lt;<span property="yui:type">Function</span>&gt;
+																		</code>
+																		<span property="yui:description"> optional An optional boolean test to apply.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">all</span>
+																		&lt;<span property="yui:type">Boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"> optional Whether all node types should be returned, or just element nodes.
+The optional function is passed the current HTMLElement being tested as its only argument.
+If no function is given, the first element is returned.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			HTMLElement | null
+																	</code></dt>
+																	<dd property="yui:returnInfo">The matching element or null if none found.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getAttibute">
+
+													<h4>
+														<a name="method_getAttibute">getAttibute</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														String
+															<strong property="yui:name">getAttibute</strong>
+														   (
+																
+																		
+																		 el
+																	
+																
+																		, 
+																		 attr
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Provides a normalized attribute interface.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">el</span>
+																		&lt;<span property="yui:type">String | HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> The target element for the attribute.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">attr</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The attribute to get.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			String
+																	</code></dt>
+																	<dd property="yui:returnInfo">The current value of the attribute.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getComputedStyle">
+
+													<h4>
+														<a name="method_getComputedStyle">getComputedStyle</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														String
+															<strong property="yui:name">getComputedStyle</strong>
+														   (
+																
+																		
+																		 An
+																	
+																
+																		, 
+																		 att
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns the computed style for the given node.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">An</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> HTMLElement to get the style from.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">att</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The style property to get.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			String
+																	</code></dt>
+																	<dd property="yui:returnInfo">The computed value of the style property.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getStyle">
+
+													<h4>
+														<a name="method_getStyle">getStyle</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">getStyle</strong>
+														   (
+																
+																		
+																		 An
+																	
+																
+																		, 
+																		 att
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns the current style value for the given property.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">An</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> HTMLElement to get the style from.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">att</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The style property to get.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getText">
+
+													<h4>
+														<a name="method_getText">getText</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														String
+															<strong property="yui:name">getText</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns the text content of the HTMLElement.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> The html element.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			String
+																	</code></dt>
+																	<dd property="yui:returnInfo">The text content of the element (includes text of any descending elements).</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getX">
+
+													<h4>
+														<a name="method_getX">getX</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Int
+															<strong property="yui:name">getX</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Gets the current X position of an element based on page coordinates. 
+Element must be part of the DOM tree to have page coordinates
+(display:none or elements not appended return false).
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">object</span>&gt;
+																		</code>
+																		<span property="yui:description"> The target element</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Int
+																	</code></dt>
+																	<dd property="yui:returnInfo">The X position of the element</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getXY">
+
+													<h4>
+														<a name="method_getXY">getXY</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Array
+															<strong property="yui:name">getXY</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Gets the current position of an element based on page coordinates. 
+Element must be part of the DOM tree to have page coordinates
+(display:none or elements not appended return false).
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">object</span>&gt;
+																		</code>
+																		<span property="yui:description"> The target element</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Array
+																	</code></dt>
+																	<dd property="yui:returnInfo">The XY position of the element
+TODO: test inDocument/display?</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getY">
+
+													<h4>
+														<a name="method_getY">getY</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Int
+															<strong property="yui:name">getY</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Gets the current Y position of an element based on page coordinates. 
+Element must be part of the DOM tree to have page coordinates
+(display:none or elements not appended return false).
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">object</span>&gt;
+																		</code>
+																		<span property="yui:description"> The target element</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Int
+																	</code></dt>
+																	<dd property="yui:returnInfo">The Y position of the element</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_hasClass">
+
+													<h4>
+														<a name="method_hasClass">hasClass</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Boolean
+															<strong property="yui:name">hasClass</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+																		, 
+																		 className
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Determines whether a DOM element has the given className.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> The DOM element.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">className</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> the class name to search for</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo">Whether or not the element has the given class.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_inDoc">
+
+													<h4>
+														<a name="method_inDoc">inDoc</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Boolean
+															<strong property="yui:name">inDoc</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+																		, 
+																		 doc
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Determines whether or not the HTMLElement is part of the document.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> The containing html element.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">doc</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> optional The document to check.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo">Whether or not the element is attached to the document.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_inRegion">
+
+													<h4>
+														<a name="method_inRegion">inRegion</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Boolean
+															<strong property="yui:name">inRegion</strong>
+														   (
+																
+																		
+																		 all
+																	
+																
+																		, 
+																		 altRegion
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Check if any part of this node is in the passed region
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">all</span>
+																		&lt;<span property="yui:type">Object} node2 The node to get the region from or an Object literal of the region
+$param {Boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"> Should all of the node be inside the region</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">altRegion</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> An object literal containing the region for this node if we already have the data (for performance i.e. DragDrop)</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo">True if in region, false if not.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_intersect">
+
+													<h4>
+														<a name="method_intersect">intersect</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Object
+															<strong property="yui:name">intersect</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+																		, 
+																		 element2
+																	
+																
+																		, 
+																		 altRegion
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Find the intersect information for the passes nodes.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> The first element</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element2</span>
+																		&lt;<span property="yui:type">HTMLElement | Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> The element or region to check the interect with</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">altRegion</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> An object literal containing the region for the first element if we already have the data (for performance i.e. DragDrop)</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Object
+																	</code></dt>
+																	<dd property="yui:returnInfo">Object literal containing the following intersection data: (top, right, bottom, left, area, yoff, xoff, inRegion)</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_inViewportRegion">
+
+													<h4>
+														<a name="method_inViewportRegion">inViewportRegion</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Boolean
+															<strong property="yui:name">inViewportRegion</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+																		, 
+																		 all
+																	
+																
+																		, 
+																		 altRegion
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Check if any part of this element is in the viewport
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> The DOM element.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">all</span>
+																		&lt;<span property="yui:type">Boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"> Should all of the node be inside the region</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">altRegion</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> An object literal containing the region for this node if we already have the data (for performance i.e. DragDrop)</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo">True if in region, false if not.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_region">
+
+													<h4>
+														<a name="method_region">region</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Object
+															<strong property="yui:name">region</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns an Object literal containing the following about this element: (top, right, bottom, left)
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> The DOM element.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Object
+																	</code></dt>
+																	<dd property="yui:returnInfo">Object literal containing the following about this element: (top, right, bottom, left)</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_removeClass">
+
+													<h4>
+														<a name="method_removeClass">removeClass</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">removeClass</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+																		, 
+																		 className
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Removes a class name from a given element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> The DOM element.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">className</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> the class name to remove from the class attribute</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_replaceClass">
+
+													<h4>
+														<a name="method_replaceClass">replaceClass</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">replaceClass</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+																		, 
+																		 oldClassName
+																	
+																
+																		, 
+																		 newClassName
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Replace a class with another class for a given element.
+If no oldClassName is present, the newClassName is simply added.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> The DOM element</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">oldClassName</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> the class name to be replaced</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">newClassName</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> the class name that will be replacing the old class name</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setAttibute">
+
+													<h4>
+														<a name="method_setAttibute">setAttibute</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">setAttibute</strong>
+														   (
+																
+																		
+																		 el
+																	
+																
+																		, 
+																		 attr
+																	
+																
+																		, 
+																		 val
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Provides a normalized attribute interface.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">el</span>
+																		&lt;<span property="yui:type">String | HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> The target element for the attribute.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">attr</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The attribute to set.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">val</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The value of the attribute.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setHeight">
+
+													<h4>
+														<a name="method_setHeight">setHeight</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">setHeight</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+																		, 
+																		 size
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sets the height of the element to the given size, regardless
+of box model, border, padding, etc.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> The DOM element.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">size</span>
+																		&lt;<span property="yui:type">String|Int</span>&gt;
+																		</code>
+																		<span property="yui:description"> The pixel height to size to</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setStyle">
+
+													<h4>
+														<a name="method_setStyle">setStyle</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">setStyle</strong>
+														   (
+																
+																		
+																		 An
+																	
+																
+																		, 
+																		 att
+																	
+																
+																		, 
+																		 val
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sets a style property for a given element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">An</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> HTMLElement to apply the style to.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">att</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The style property to set.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">val</span>
+																		&lt;<span property="yui:type">String|Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> The value.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setStyles">
+
+													<h4>
+														<a name="method_setStyles">setStyles</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">setStyles</strong>
+														   (
+																
+																		
+																		 node
+																	
+																
+																		, 
+																		 hash
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sets multiple style properties.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">node</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> An HTMLElement to apply the styles to.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">hash</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> An object literal of property:value pairs.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setText">
+
+													<h4>
+														<a name="method_setText">setText</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">setText</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+																		, 
+																		 content
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sets the text content of the HTMLElement.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> The html element.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">content</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The content to add.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setWidth">
+
+													<h4>
+														<a name="method_setWidth">setWidth</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">setWidth</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+																		, 
+																		 size
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sets the width of the element to the given size, regardless
+of box model, border, padding, etc.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> The DOM element.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">size</span>
+																		&lt;<span property="yui:type">String|Int</span>&gt;
+																		</code>
+																		<span property="yui:description"> The pixel height to size to</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setX">
+
+													<h4>
+														<a name="method_setX">setX</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">setX</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+																		, 
+																		 x
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Set the X position of an html element in page coordinates, regardless of how the element is positioned.
+The element(s) must be part of the DOM tree to have page coordinates (display:none or elements not appended return false).
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">object</span>&gt;
+																		</code>
+																		<span property="yui:description"> The target element</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">x</span>
+																		&lt;<span property="yui:type">Int</span>&gt;
+																		</code>
+																		<span property="yui:description"> The X values for new position (coordinates are page-based)</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setXY">
+
+													<h4>
+														<a name="method_setXY">setXY</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">setXY</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+																		, 
+																		 xy
+																	
+																
+																		, 
+																		 noRetry
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Set the position of an html element in page coordinates.
+The element must be part of the DOM tree to have page coordinates (display:none or elements not appended return false).
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">object</span>&gt;
+																		</code>
+																		<span property="yui:description"> The target element</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">xy</span>
+																		&lt;<span property="yui:type">Array</span>&gt;
+																		</code>
+																		<span property="yui:description"> Contains X & Y values for new position (coordinates are page-based)</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">noRetry</span>
+																		&lt;<span property="yui:type">Boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"> By default we try and set the position a second time if the first fails</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setY">
+
+													<h4>
+														<a name="method_setY">setY</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">setY</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+																		, 
+																		 y
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Set the Y position of an html element in page coordinates, regardless of how the element is positioned.
+The element(s) must be part of the DOM tree to have page coordinates (display:none or elements not appended return false).
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">object</span>&gt;
+																		</code>
+																		<span property="yui:description"> The target element</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">y</span>
+																		&lt;<span property="yui:type">Int</span>&gt;
+																		</code>
+																		<span property="yui:description"> The Y values for new position (coordinates are page-based)</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_swapXY">
+
+													<h4>
+														<a name="method_swapXY">swapXY</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Node
+															<strong property="yui:name">swapXY</strong>
+														   (
+																
+																		
+																		 node
+																	
+																
+																		, 
+																		 otherNode
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Swap the xy position with another node
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">node</span>
+																		&lt;<span property="yui:type">Node</span>&gt;
+																		</code>
+																		<span property="yui:description"> The node to swap with</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">otherNode</span>
+																		&lt;<span property="yui:type">Node</span>&gt;
+																		</code>
+																		<span property="yui:description"> The other node to swap with</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_toggleClass">
+
+													<h4>
+														<a name="method_toggleClass">toggleClass</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">toggleClass</strong>
+														   (
+																
+																		
+																		 element
+																	
+																
+																		, 
+																		 className
+																	
+																
+																		, 
+																		 addClass
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															If the className exists on the node it is removed, if it doesn't exist it is added.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">element</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> The DOM element</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">className</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> the class name to be toggled</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">addClass</span>
+																		&lt;<span property="yui:type">Boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"> optional boolean to indicate whether class
+should be added or removed regardless of current state</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_viewportRegion">
+
+													<h4>
+														<a name="method_viewportRegion">viewportRegion</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Object
+															<strong property="yui:name">viewportRegion</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns an Object literal containing the following about the visible region of viewport: (top, right, bottom, left)
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Object
+																	</code></dt>
+																	<dd property="yui:returnInfo">Object literal containing the following about the visible region of the viewport: (top, right, bottom, left)</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_winHeight">
+
+													<h4>
+														<a name="method_winHeight">winHeight</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Number
+															<strong property="yui:name">winHeight</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns the inner height of the viewport (exludes scrollbar).
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Number
+																	</code></dt>
+																	<dd property="yui:returnInfo">The current height of the viewport.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_winWidth">
+
+													<h4>
+														<a name="method_winWidth">winWidth</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Number
+															<strong property="yui:name">winWidth</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns the inner width of the viewport (exludes scrollbar).
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Number
+																	</code></dt>
+																	<dd property="yui:returnInfo">The current width of the viewport.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+							</div>
+
+							<div rel="yui:events" resource="#events">
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "DOM.html#method_addClass", "access": "", "host": "DOM", "type": "method", "name": "addClass"}, {"url": "DOM.html#method_addHTML", "access": "", "host": "DOM", "type": "method", "name": "addHTML"}, {"url": "DOM.html#method_byId", "access": "", "host": "DOM", "type": "method", "name": "byId"}, {"url": "DOM.html#method_contains", "access": "", "host": "DOM", "type": "method", "name": "contains"}, {"url": "DOM.html#method_create", "access": "", "host": "DOM", "type": "method", "name": "create"}, {"url": "DOM.html#method_docHeight", "access": "", "host": "DOM", "type": "method", "name": "docHeight"}, {"url": "DOM.html#method_docScrollX", "access": "", "host": "DOM", "type": "method", "name": "docScrollX"}, {"url": "DOM.html#method_docScrollY", "access": "", "host": "DOM", "type": "method", "name": "docScrollY"}, {"url": "DOM.html#method_docWidth", "access": "", "host": "DOM", "type": "method", "name": "docWidth"}, {"url": "DOM.html#method_elementByAxis", "access": "", "host": "DOM", "type": "method", "name": "elementByAxis"}, {"url": "DOM.html#method_getAttibute", "access": "", "host": "DOM", "type": "method", "name": "getAttibute"}, {"url": "DOM.html#method_getComputedStyle", "access": "", "host": "DOM", "type": "method", "name": "getComputedStyle"}, {"url": "DOM.html#method_getStyle", "access": "", "host": "DOM", "type": "method", "name": "getStyle"}, {"url": "DOM.html#method_getText", "access": "", "host": "DOM", "type": "method", "name": "getText"}, {"url": "DOM.html#method_getX", "access": "", "host": "DOM", "type": "method", "name": "getX"}, {"url": "DOM.html#method_getXY", "access": "", "host": "DOM", "type": "method", "name": "getXY"}, {"url": "DOM.html#method_getY", "access": "", "host": "DOM", "type": "method", "name": "getY"}, {"url": "DOM.html#method_hasClass", "access": "", "host": "DOM", "type": "method", "name": "hasClass"}, {"url": "DOM.html#method_inDoc", "access": "", "host": "DOM", "type": "method", "name": "inDoc"}, {"url": "DOM.html#method_inRegion", "access": "", "host": "DOM", "type": "method", "name": "inRegion"}, {"url": "DOM.html#method_intersect", "access": "", "host": "DOM", "type": "method", "name": "intersect"}, {"url": "DOM.html#method_inViewportRegion", "access": "", "host": "DOM", "type": "method", "name": "inViewportRegion"}, {"url": "DOM.html#method_region", "access": "", "host": "DOM", "type": "method", "name": "region"}, {"url": "DOM.html#method_removeClass", "access": "", "host": "DOM", "type": "method", "name": "removeClass"}, {"url": "DOM.html#method_replaceClass", "access": "", "host": "DOM", "type": "method", "name": "replaceClass"}, {"url": "DOM.html#method_setAttibute", "access": "", "host": "DOM", "type": "method", "name": "setAttibute"}, {"url": "DOM.html#method_setHeight", "access": "", "host": "DOM", "type": "method", "name": "setHeight"}, {"url": "DOM.html#method_setStyle", "access": "", "host": "DOM", "type": "method", "name": "setStyle"}, {"url": "DOM.html#method_setStyles", "access": "", "host": "DOM", "type": "method", "name": "setStyles"}, {"url": "DOM.html#method_setText", "access": "", "host": "DOM", "type": "method", "name": "setText"}, {"url": "DOM.html#method_setWidth", "access": "", "host": "DOM", "type": "method", "name": "setWidth"}, {"url": "DOM.html#method_setX", "access": "", "host": "DOM", "type": "method", "name": "setX"}, {"url": "DOM.html#method_setXY", "access": "", "host": "DOM", "type": "method", "name": "setXY"}, {"url": "DOM.html#method_setY", "access": "", "host": "DOM", "type": "method", "name": "setY"}, {"url": "DOM.html#method_swapXY", "access": "", "host": "DOM", "type": "method", "name": "swapXY"}, {"url": "DOM.html#method_toggleClass", "access": "", "host": "DOM", "type": "method", "name": "toggleClass"}, {"url": "DOM.html#method_viewportRegion", "access": "", "host": "DOM", "type": "method", "name": "viewportRegion"}, {"url": "DOM.html#method_winHeight", "access": "", "host": "DOM", "type": "method", "name": "winHeight"}, {"url": "DOM.html#method_winWidth", "access": "", "host": "DOM", "type": "method", "name": "winWidth"}];
+</script>
+</body>
+</html>

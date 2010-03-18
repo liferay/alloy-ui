@@ -1,0 +1,1161 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: dom   dom-style-debug.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			dom&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_dom.html" title="dom">dom</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">dom-style-debug.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="DOM.html" title="DOM">DOM</a></li>
+
+
+				                                <li class=""><a href="Selector.html" title="Selector">Selector</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="dom-base-debug.js.html" title="dom-base-debug.js">dom-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="dom-base-min.js.html" title="dom-base-min.js">dom-base-min.js</a></li>
+
+
+			                                <li class=""><a href="dom-screen-debug.js.html" title="dom-screen-debug.js">dom-screen-debug.js</a></li>
+
+
+			                                <li class=""><a href="dom-screen-min.js.html" title="dom-screen-min.js">dom-screen-min.js</a></li>
+
+
+			                                <li class=""><a href="dom-screen.js.html" title="dom-screen.js">dom-screen.js</a></li>
+
+
+			                                <li class="selected"><a href="dom-style-debug.js.html" title="dom-style-debug.js">dom-style-debug.js</a></li>
+
+
+			                                <li class=""><a href="dom-style-min.js.html" title="dom-style-min.js">dom-style-min.js</a></li>
+
+
+			                                <li class=""><a href="dom-style.js.html" title="dom-style.js">dom-style.js</a></li>
+
+
+			                                <li class=""><a href="dom.js.html" title="dom.js">dom.js</a></li>
+
+
+			                                <li class=""><a href="selector-css2-debug.js.html" title="selector-css2-debug.js">selector-css2-debug.js</a></li>
+
+
+			                                <li class=""><a href="selector-css2-min.js.html" title="selector-css2-min.js">selector-css2-min.js</a></li>
+
+
+			                                <li class=""><a href="selector-css2.js.html" title="selector-css2.js">selector-css2.js</a></li>
+
+
+			                                <li class=""><a href="selector-css3-debug.js.html" title="selector-css3-debug.js">selector-css3-debug.js</a></li>
+
+
+			                                <li class=""><a href="selector-css3-min.js.html" title="selector-css3-min.js">selector-css3-min.js</a></li>
+
+
+			                                <li class=""><a href="selector-css3.js.html" title="selector-css3.js">selector-css3.js</a></li>
+
+
+			                                <li class=""><a href="selector-debug.js.html" title="selector-debug.js">selector-debug.js</a></li>
+
+
+			                                <li class=""><a href="selector-min.js.html" title="selector-min.js">selector-min.js</a></li>
+
+
+			                                <li class=""><a href="selector-native-debug.js.html" title="selector-native-debug.js">selector-native-debug.js</a></li>
+
+
+			                                <li class=""><a href="selector-native-min.js.html" title="selector-native-min.js">selector-native-min.js</a></li>
+
+
+			                                <li class=""><a href="selector-native.js.html" title="selector-native.js">selector-native.js</a></li>
+
+
+			                                <li class=""><a href="selector.js.html" title="selector.js">selector.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
+<span class="cm">Code licensed under the BSD License:</span>
+<span class="cm">http://developer.yahoo.com/yui/license.html</span>
+<span class="cm">version: 3.1.0</span>
+<span class="cm">build: nightly</span>
+<span class="cm">*/</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;dom-style&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+<span class="cm">/** </span>
+<span class="cm"> * Add style management functionality to DOM.</span>
+<span class="cm"> * @module dom</span>
+<span class="cm"> * @submodule dom-style</span>
+<span class="cm"> * @for DOM</span>
+<span class="cm"> */</span>
+
+<span class="kd">var</span> <span class="nx">DOCUMENT_ELEMENT</span> <span class="o">=</span> <span class="s1">&#39;documentElement&#39;</span><span class="p">,</span>
+    <span class="nx">DEFAULT_VIEW</span> <span class="o">=</span> <span class="s1">&#39;defaultView&#39;</span><span class="p">,</span>
+    <span class="nx">OWNER_DOCUMENT</span> <span class="o">=</span> <span class="s1">&#39;ownerDocument&#39;</span><span class="p">,</span>
+    <span class="nx">STYLE</span> <span class="o">=</span> <span class="s1">&#39;style&#39;</span><span class="p">,</span>
+    <span class="nx">FLOAT</span> <span class="o">=</span> <span class="s1">&#39;float&#39;</span><span class="p">,</span>
+    <span class="nx">CSS_FLOAT</span> <span class="o">=</span> <span class="s1">&#39;cssFloat&#39;</span><span class="p">,</span>
+    <span class="nx">STYLE_FLOAT</span> <span class="o">=</span> <span class="s1">&#39;styleFloat&#39;</span><span class="p">,</span>
+    <span class="nx">TRANSPARENT</span> <span class="o">=</span> <span class="s1">&#39;transparent&#39;</span><span class="p">,</span>
+    <span class="nx">GET_COMPUTED_STYLE</span> <span class="o">=</span> <span class="s1">&#39;getComputedStyle&#39;</span><span class="p">,</span>
+
+    <span class="nx">DOCUMENT</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">,</span>
+    <span class="nx">UNDEFINED</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">,</span>
+
+    <span class="nx">Y_DOM</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM</span><span class="p">,</span>
+
+    <span class="nx">re_color</span> <span class="o">=</span> <span class="sr">/color$/i</span><span class="p">,</span>
+    <span class="nx">re_unit</span> <span class="o">=</span> <span class="sr">/width|height|top|left|right|bottom|margin|padding/i</span><span class="p">;</span>
+
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Y_DOM</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">DEFAULT_UNIT</span><span class="o">:</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span>
+
+    <span class="nx">CUSTOM_STYLES</span><span class="o">:</span> <span class="p">{</span>
+    <span class="p">},</span>
+
+
+    <span class="cm">/**</span>
+<span class="cm">     * Sets a style property for a given element.</span>
+<span class="cm">     * @method setStyle</span>
+<span class="cm">     * @param {HTMLElement} An HTMLElement to apply the style to.</span>
+<span class="cm">     * @param {String} att The style property to set. </span>
+<span class="cm">     * @param {String|Number} val The value. </span>
+<span class="cm">     */</span>
+    <span class="nx">setStyle</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">att</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">style</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">style</span> <span class="o">=</span> <span class="nx">style</span> <span class="o">||</span> <span class="nx">node</span><span class="p">.</span><span class="nx">style</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">CUSTOM_STYLES</span> <span class="o">=</span> <span class="nx">Y_DOM</span><span class="p">.</span><span class="nx">CUSTOM_STYLES</span><span class="p">,</span>
+            <span class="nx">current</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">style</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="o">===</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">val</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// normalize unsetting</span>
+                <span class="nx">val</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">isNaN</span><span class="p">(</span><span class="k">new</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">val</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="nx">re_unit</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">att</span><span class="p">))</span> <span class="p">{</span> <span class="c1">// number values may need a unit</span>
+                <span class="nx">val</span> <span class="o">+=</span> <span class="nx">Y_DOM</span><span class="p">.</span><span class="nx">DEFAULT_UNIT</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">att</span> <span class="k">in</span> <span class="nx">CUSTOM_STYLES</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">CUSTOM_STYLES</span><span class="p">[</span><span class="nx">att</span><span class="p">].</span><span class="nx">set</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">CUSTOM_STYLES</span><span class="p">[</span><span class="nx">att</span><span class="p">].</span><span class="nx">set</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">style</span><span class="p">);</span>
+                    <span class="k">return</span><span class="p">;</span> <span class="c1">// NOTE: return</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">CUSTOM_STYLES</span><span class="p">[</span><span class="nx">att</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">att</span> <span class="o">=</span> <span class="nx">CUSTOM_STYLES</span><span class="p">[</span><span class="nx">att</span><span class="p">];</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="nx">style</span><span class="p">[</span><span class="nx">att</span><span class="p">]</span> <span class="o">=</span> <span class="nx">val</span><span class="p">;</span> 
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Returns the current style value for the given property.</span>
+<span class="cm">     * @method getStyle</span>
+<span class="cm">     * @param {HTMLElement} An HTMLElement to get the style from.</span>
+<span class="cm">     * @param {String} att The style property to get. </span>
+<span class="cm">     */</span>
+    <span class="nx">getStyle</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">att</span><span class="p">,</span> <span class="nx">style</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">style</span> <span class="o">=</span> <span class="nx">style</span> <span class="o">||</span> <span class="nx">node</span><span class="p">.</span><span class="nx">style</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">CUSTOM_STYLES</span> <span class="o">=</span> <span class="nx">Y_DOM</span><span class="p">.</span><span class="nx">CUSTOM_STYLES</span><span class="p">,</span>
+            <span class="nx">val</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">style</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">att</span> <span class="k">in</span> <span class="nx">CUSTOM_STYLES</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">CUSTOM_STYLES</span><span class="p">[</span><span class="nx">att</span><span class="p">].</span><span class="nx">get</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="nx">CUSTOM_STYLES</span><span class="p">[</span><span class="nx">att</span><span class="p">].</span><span class="nx">get</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">att</span><span class="p">,</span> <span class="nx">style</span><span class="p">);</span> <span class="c1">// NOTE: return</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">CUSTOM_STYLES</span><span class="p">[</span><span class="nx">att</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">att</span> <span class="o">=</span> <span class="nx">CUSTOM_STYLES</span><span class="p">[</span><span class="nx">att</span><span class="p">];</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="nx">val</span> <span class="o">=</span> <span class="nx">style</span><span class="p">[</span><span class="nx">att</span><span class="p">];</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// TODO: is empty string sufficient?</span>
+                <span class="nx">val</span> <span class="o">=</span> <span class="nx">Y_DOM</span><span class="p">[</span><span class="nx">GET_COMPUTED_STYLE</span><span class="p">](</span><span class="nx">node</span><span class="p">,</span> <span class="nx">att</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Sets multiple style properties.</span>
+<span class="cm">     * @method setStyles</span>
+<span class="cm">     * @param {HTMLElement} node An HTMLElement to apply the styles to. </span>
+<span class="cm">     * @param {Object} hash An object literal of property:value pairs. </span>
+<span class="cm">     */</span>
+    <span class="nx">setStyles</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">hash</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">style</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">style</span><span class="p">;</span>
+        <span class="nx">Y</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">hash</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">Y_DOM</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">style</span><span class="p">);</span>
+        <span class="p">},</span> <span class="nx">Y_DOM</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Returns the computed style for the given node.</span>
+<span class="cm">     * @method getComputedStyle</span>
+<span class="cm">     * @param {HTMLElement} An HTMLElement to get the style from.</span>
+<span class="cm">     * @param {String} att The style property to get. </span>
+<span class="cm">     * @return {String} The computed value of the style property. </span>
+<span class="cm">     */</span>
+    <span class="nx">getComputedStyle</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">att</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="nx">doc</span> <span class="o">=</span> <span class="nx">node</span><span class="p">[</span><span class="nx">OWNER_DOCUMENT</span><span class="p">];</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">[</span><span class="nx">STYLE</span><span class="p">])</span> <span class="p">{</span>
+            <span class="nx">val</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">[</span><span class="nx">DEFAULT_VIEW</span><span class="p">][</span><span class="nx">GET_COMPUTED_STYLE</span><span class="p">](</span><span class="nx">node</span><span class="p">,</span> <span class="kc">null</span><span class="p">)[</span><span class="nx">att</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// normalize reserved word float alternatives (&quot;cssFloat&quot; or &quot;styleFloat&quot;)</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">DOCUMENT</span><span class="p">[</span><span class="nx">DOCUMENT_ELEMENT</span><span class="p">][</span><span class="nx">STYLE</span><span class="p">][</span><span class="nx">CSS_FLOAT</span><span class="p">]</span> <span class="o">!==</span> <span class="nx">UNDEFINED</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">Y_DOM</span><span class="p">.</span><span class="nx">CUSTOM_STYLES</span><span class="p">[</span><span class="nx">FLOAT</span><span class="p">]</span> <span class="o">=</span> <span class="nx">CSS_FLOAT</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">DOCUMENT</span><span class="p">[</span><span class="nx">DOCUMENT_ELEMENT</span><span class="p">][</span><span class="nx">STYLE</span><span class="p">][</span><span class="nx">STYLE_FLOAT</span><span class="p">]</span> <span class="o">!==</span> <span class="nx">UNDEFINED</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">Y_DOM</span><span class="p">.</span><span class="nx">CUSTOM_STYLES</span><span class="p">[</span><span class="nx">FLOAT</span><span class="p">]</span> <span class="o">=</span> <span class="nx">STYLE_FLOAT</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// fix opera computedStyle default color unit (convert to rgb)</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">opera</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">Y_DOM</span><span class="p">[</span><span class="nx">GET_COMPUTED_STYLE</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">att</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="nx">node</span><span class="p">[</span><span class="nx">OWNER_DOCUMENT</span><span class="p">][</span><span class="nx">DEFAULT_VIEW</span><span class="p">],</span>
+            <span class="nx">val</span> <span class="o">=</span> <span class="nx">view</span><span class="p">[</span><span class="nx">GET_COMPUTED_STYLE</span><span class="p">](</span><span class="nx">node</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)[</span><span class="nx">att</span><span class="p">];</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">re_color</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">att</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">val</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Color</span><span class="p">.</span><span class="nx">toRGB</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
+    <span class="p">};</span>
+
+<span class="p">}</span>
+
+<span class="c1">// safari converts transparent to rgba(), others use &quot;transparent&quot;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">webkit</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">Y_DOM</span><span class="p">[</span><span class="nx">GET_COMPUTED_STYLE</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">att</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="nx">node</span><span class="p">[</span><span class="nx">OWNER_DOCUMENT</span><span class="p">][</span><span class="nx">DEFAULT_VIEW</span><span class="p">],</span>
+            <span class="nx">val</span> <span class="o">=</span> <span class="nx">view</span><span class="p">[</span><span class="nx">GET_COMPUTED_STYLE</span><span class="p">](</span><span class="nx">node</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)[</span><span class="nx">att</span><span class="p">];</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="o">===</span> <span class="s1">&#39;rgba(0, 0, 0, 0)&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">val</span> <span class="o">=</span> <span class="nx">TRANSPARENT</span><span class="p">;</span> 
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
+    <span class="p">};</span>
+
+<span class="p">}</span>
+<span class="p">})(</span><span class="nx">Y</span><span class="p">);</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">PARSE_INT</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">,</span>
+    <span class="nx">RE</span> <span class="o">=</span> <span class="nb">RegExp</span><span class="p">;</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">Color</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">KEYWORDS</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">black</span><span class="o">:</span> <span class="s1">&#39;000&#39;</span><span class="p">,</span>
+        <span class="nx">silver</span><span class="o">:</span> <span class="s1">&#39;c0c0c0&#39;</span><span class="p">,</span>
+        <span class="nx">gray</span><span class="o">:</span> <span class="s1">&#39;808080&#39;</span><span class="p">,</span>
+        <span class="nx">white</span><span class="o">:</span> <span class="s1">&#39;fff&#39;</span><span class="p">,</span>
+        <span class="nx">maroon</span><span class="o">:</span> <span class="s1">&#39;800000&#39;</span><span class="p">,</span>
+        <span class="nx">red</span><span class="o">:</span> <span class="s1">&#39;f00&#39;</span><span class="p">,</span>
+        <span class="nx">purple</span><span class="o">:</span> <span class="s1">&#39;800080&#39;</span><span class="p">,</span>
+        <span class="nx">fuchsia</span><span class="o">:</span> <span class="s1">&#39;f0f&#39;</span><span class="p">,</span>
+        <span class="nx">green</span><span class="o">:</span> <span class="s1">&#39;008000&#39;</span><span class="p">,</span>
+        <span class="nx">lime</span><span class="o">:</span> <span class="s1">&#39;0f0&#39;</span><span class="p">,</span>
+        <span class="nx">olive</span><span class="o">:</span> <span class="s1">&#39;808000&#39;</span><span class="p">,</span>
+        <span class="nx">yellow</span><span class="o">:</span> <span class="s1">&#39;ff0&#39;</span><span class="p">,</span>
+        <span class="nx">navy</span><span class="o">:</span> <span class="s1">&#39;000080&#39;</span><span class="p">,</span>
+        <span class="nx">blue</span><span class="o">:</span> <span class="s1">&#39;00f&#39;</span><span class="p">,</span>
+        <span class="nx">teal</span><span class="o">:</span> <span class="s1">&#39;008080&#39;</span><span class="p">,</span>
+        <span class="nx">aqua</span><span class="o">:</span> <span class="s1">&#39;0ff&#39;</span>
+    <span class="p">},</span>
+
+    <span class="nx">re_RGB</span><span class="o">:</span> <span class="sr">/^rgb\(([0-9]+)\s*,\s*([0-9]+)\s*,\s*([0-9]+)\)$/i</span><span class="p">,</span>
+    <span class="nx">re_hex</span><span class="o">:</span> <span class="sr">/^#?([0-9A-F]{2})([0-9A-F]{2})([0-9A-F]{2})$/i</span><span class="p">,</span>
+    <span class="nx">re_hex3</span><span class="o">:</span> <span class="sr">/([0-9A-F])/gi</span><span class="p">,</span>
+
+    <span class="nx">toRGB</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Color</span><span class="p">.</span><span class="nx">re_RGB</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">val</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">val</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Color</span><span class="p">.</span><span class="nx">toHex</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Color</span><span class="p">.</span><span class="nx">re_hex</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">val</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">val</span> <span class="o">=</span> <span class="s1">&#39;rgb(&#39;</span> <span class="o">+</span> <span class="p">[</span>
+                <span class="nx">PARSE_INT</span><span class="p">(</span><span class="nx">RE</span><span class="p">.</span><span class="nx">$1</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>
+                <span class="nx">PARSE_INT</span><span class="p">(</span><span class="nx">RE</span><span class="p">.</span><span class="nx">$2</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>
+                <span class="nx">PARSE_INT</span><span class="p">(</span><span class="nx">RE</span><span class="p">.</span><span class="nx">$3</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+            <span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="nx">toHex</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">val</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Color</span><span class="p">.</span><span class="nx">KEYWORDS</span><span class="p">[</span><span class="nx">val</span><span class="p">]</span> <span class="o">||</span> <span class="nx">val</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Color</span><span class="p">.</span><span class="nx">re_RGB</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">val</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">val</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="nb">Number</span><span class="p">(</span><span class="nx">RE</span><span class="p">.</span><span class="nx">$1</span><span class="p">).</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span>
+                <span class="nb">Number</span><span class="p">(</span><span class="nx">RE</span><span class="p">.</span><span class="nx">$2</span><span class="p">).</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span>
+                <span class="nb">Number</span><span class="p">(</span><span class="nx">RE</span><span class="p">.</span><span class="nx">$3</span><span class="p">).</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+            <span class="p">];</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">val</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">val</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">val</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span> <span class="o">+</span> <span class="nx">val</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="nx">val</span> <span class="o">=</span> <span class="nx">val</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">val</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">val</span> <span class="o">=</span> <span class="nx">val</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Color</span><span class="p">.</span><span class="nx">re_hex3</span><span class="p">,</span> <span class="s1">&#39;$1$1&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="o">!==</span> <span class="s1">&#39;transparent&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">val</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">val</span> <span class="o">=</span> <span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">val</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">val</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="p">})(</span><span class="nx">Y</span><span class="p">);</span>
+
+<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">HAS_LAYOUT</span> <span class="o">=</span> <span class="s1">&#39;hasLayout&#39;</span><span class="p">,</span>
+    <span class="nx">PX</span> <span class="o">=</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span>
+    <span class="nx">FILTER</span> <span class="o">=</span> <span class="s1">&#39;filter&#39;</span><span class="p">,</span>
+    <span class="nx">FILTERS</span> <span class="o">=</span> <span class="s1">&#39;filters&#39;</span><span class="p">,</span>
+    <span class="nx">OPACITY</span> <span class="o">=</span> <span class="s1">&#39;opacity&#39;</span><span class="p">,</span>
+    <span class="nx">AUTO</span> <span class="o">=</span> <span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+
+    <span class="nx">BORDER_WIDTH</span> <span class="o">=</span> <span class="s1">&#39;borderWidth&#39;</span><span class="p">,</span>
+    <span class="nx">BORDER_TOP_WIDTH</span> <span class="o">=</span> <span class="s1">&#39;borderTopWidth&#39;</span><span class="p">,</span>
+    <span class="nx">BORDER_RIGHT_WIDTH</span> <span class="o">=</span> <span class="s1">&#39;borderRightWidth&#39;</span><span class="p">,</span>
+    <span class="nx">BORDER_BOTTOM_WIDTH</span> <span class="o">=</span> <span class="s1">&#39;borderBottomWidth&#39;</span><span class="p">,</span>
+    <span class="nx">BORDER_LEFT_WIDTH</span> <span class="o">=</span> <span class="s1">&#39;borderLeftWidth&#39;</span><span class="p">,</span>
+    <span class="nx">WIDTH</span> <span class="o">=</span> <span class="s1">&#39;width&#39;</span><span class="p">,</span>
+    <span class="nx">HEIGHT</span> <span class="o">=</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span>
+    <span class="nx">TRANSPARENT</span> <span class="o">=</span> <span class="s1">&#39;transparent&#39;</span><span class="p">,</span>
+    <span class="nx">VISIBLE</span> <span class="o">=</span> <span class="s1">&#39;visible&#39;</span><span class="p">,</span>
+    <span class="nx">GET_COMPUTED_STYLE</span> <span class="o">=</span> <span class="s1">&#39;getComputedStyle&#39;</span><span class="p">,</span>
+    <span class="nx">UNDEFINED</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">,</span>
+    <span class="nx">documentElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">,</span>
+
+    <span class="c1">// TODO: unit-less lineHeight (e.g. 1.22)</span>
+    <span class="nx">re_unit</span> <span class="o">=</span> <span class="sr">/^(\d[.\d]*)+(em|ex|px|gd|rem|vw|vh|vm|ch|mm|cm|in|pt|pc|deg|rad|ms|s|hz|khz|%){1}?/i</span><span class="p">,</span>
+
+    <span class="nx">_getStyleObj</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">node</span><span class="p">.</span><span class="nx">currentStyle</span> <span class="o">||</span> <span class="nx">node</span><span class="p">.</span><span class="nx">style</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="nx">ComputedStyle</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">CUSTOM_STYLES</span><span class="o">:</span> <span class="p">{},</span>
+
+        <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">property</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                <span class="nx">current</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">current</span> <span class="o">=</span> <span class="nx">_getStyleObj</span><span class="p">(</span><span class="nx">el</span><span class="p">)[</span><span class="nx">property</span><span class="p">];</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">property</span> <span class="o">===</span> <span class="nx">OPACITY</span> <span class="o">&amp;&amp;</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">CUSTOM_STYLES</span><span class="p">[</span><span class="nx">OPACITY</span><span class="p">])</span> <span class="p">{</span>
+                    <span class="nx">value</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">CUSTOM_STYLES</span><span class="p">[</span><span class="nx">OPACITY</span><span class="p">].</span><span class="nx">get</span><span class="p">(</span><span class="nx">el</span><span class="p">);</span>        
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">current</span> <span class="o">||</span> <span class="p">(</span><span class="nx">current</span><span class="p">.</span><span class="nx">indexOf</span> <span class="o">&amp;&amp;</span> <span class="nx">current</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">PX</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="p">{</span> <span class="c1">// no need to convert</span>
+                    <span class="nx">value</span> <span class="o">=</span> <span class="nx">current</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">IE</span><span class="p">.</span><span class="nx">COMPUTED</span><span class="p">[</span><span class="nx">property</span><span class="p">])</span> <span class="p">{</span> <span class="c1">// use compute function</span>
+                    <span class="nx">value</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">IE</span><span class="p">.</span><span class="nx">COMPUTED</span><span class="p">[</span><span class="nx">property</span><span class="p">](</span><span class="nx">el</span><span class="p">,</span> <span class="nx">property</span><span class="p">);</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">re_unit</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">current</span><span class="p">))</span> <span class="p">{</span> <span class="c1">// convert to pixel</span>
+                    <span class="nx">value</span> <span class="o">=</span> <span class="nx">ComputedStyle</span><span class="p">.</span><span class="nx">getPixel</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">property</span><span class="p">)</span> <span class="o">+</span> <span class="nx">PX</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="nx">value</span> <span class="o">=</span> <span class="nx">current</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
+        <span class="p">},</span>
+
+        <span class="nx">sizeOffsets</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">width</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Left&#39;</span><span class="p">,</span> <span class="s1">&#39;Right&#39;</span><span class="p">],</span>
+            <span class="nx">height</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Top&#39;</span><span class="p">,</span> <span class="s1">&#39;Bottom&#39;</span><span class="p">],</span>
+            <span class="nx">top</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Top&#39;</span><span class="p">],</span>
+            <span class="nx">bottom</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Bottom&#39;</span><span class="p">]</span>
+        <span class="p">},</span>
+
+        <span class="nx">getOffset</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">prop</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">current</span> <span class="o">=</span> <span class="nx">_getStyleObj</span><span class="p">(</span><span class="nx">el</span><span class="p">)[</span><span class="nx">prop</span><span class="p">],</span>                     <span class="c1">// value of &quot;width&quot;, &quot;top&quot;, etc.</span>
+                <span class="nx">capped</span> <span class="o">=</span> <span class="nx">prop</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">+</span> <span class="nx">prop</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="c1">// &quot;Width&quot;, &quot;Top&quot;, etc.</span>
+                <span class="nx">offset</span> <span class="o">=</span> <span class="s1">&#39;offset&#39;</span> <span class="o">+</span> <span class="nx">capped</span><span class="p">,</span>                             <span class="c1">// &quot;offsetWidth&quot;, &quot;offsetTop&quot;, etc.</span>
+                <span class="nx">pixel</span> <span class="o">=</span> <span class="s1">&#39;pixel&#39;</span> <span class="o">+</span> <span class="nx">capped</span><span class="p">,</span>                               <span class="c1">// &quot;pixelWidth&quot;, &quot;pixelTop&quot;, etc.</span>
+                <span class="nx">sizeOffsets</span> <span class="o">=</span> <span class="nx">ComputedStyle</span><span class="p">.</span><span class="nx">sizeOffsets</span><span class="p">[</span><span class="nx">prop</span><span class="p">],</span> 
+                <span class="nx">value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+            <span class="c1">// IE pixelWidth incorrect for percent</span>
+            <span class="c1">// manually compute by subtracting padding and border from offset size</span>
+            <span class="c1">// NOTE: clientWidth/Height (size minus border) is 0 when current === AUTO so offsetHeight is used</span>
+            <span class="c1">// reverting to auto from auto causes position stacking issues (old impl)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">current</span> <span class="o">===</span> <span class="nx">AUTO</span> <span class="o">||</span> <span class="nx">current</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;%&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">value</span> <span class="o">=</span> <span class="nx">el</span><span class="p">[</span><span class="s1">&#39;offset&#39;</span> <span class="o">+</span> <span class="nx">capped</span><span class="p">];</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">sizeOffsets</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">{</span>
+                    <span class="nx">value</span> <span class="o">-=</span> <span class="nx">ComputedStyle</span><span class="p">.</span><span class="nx">getPixel</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="s1">&#39;padding&#39;</span> <span class="o">+</span> <span class="nx">sizeOffsets</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+                    <span class="nx">value</span> <span class="o">-=</span> <span class="nx">ComputedStyle</span><span class="p">.</span><span class="nx">getBorderWidth</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="s1">&#39;border&#39;</span> <span class="o">+</span> <span class="nx">sizeOffsets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;Width&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+                <span class="p">}</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">sizeOffsets</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="p">{</span>
+                    <span class="nx">value</span> <span class="o">-=</span> <span class="nx">ComputedStyle</span><span class="p">.</span><span class="nx">getPixel</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="s1">&#39;padding&#39;</span> <span class="o">+</span> <span class="nx">sizeOffsets</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+                    <span class="nx">value</span> <span class="o">-=</span> <span class="nx">ComputedStyle</span><span class="p">.</span><span class="nx">getBorderWidth</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="s1">&#39;border&#39;</span> <span class="o">+</span> <span class="nx">sizeOffsets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;Width&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+                <span class="p">}</span>
+
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// use style.pixelWidth, etc. to convert to pixels</span>
+                <span class="c1">// need to map style.width to currentStyle (no currentStyle.pixelWidth)</span>
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">el</span><span class="p">.</span><span class="nx">style</span><span class="p">[</span><span class="nx">pixel</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">el</span><span class="p">.</span><span class="nx">style</span><span class="p">[</span><span class="nx">prop</span><span class="p">])</span> <span class="p">{</span>
+                    <span class="nx">el</span><span class="p">.</span><span class="nx">style</span><span class="p">[</span><span class="nx">prop</span><span class="p">]</span> <span class="o">=</span> <span class="nx">current</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="nx">value</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">style</span><span class="p">[</span><span class="nx">pixel</span><span class="p">];</span>
+                
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nx">value</span> <span class="o">+</span> <span class="nx">PX</span><span class="p">;</span>
+        <span class="p">},</span>
+
+        <span class="nx">borderMap</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">thin</span><span class="o">:</span> <span class="s1">&#39;2px&#39;</span><span class="p">,</span> 
+            <span class="nx">medium</span><span class="o">:</span> <span class="s1">&#39;4px&#39;</span><span class="p">,</span> 
+            <span class="nx">thick</span><span class="o">:</span> <span class="s1">&#39;6px&#39;</span>
+        <span class="p">},</span>
+
+        <span class="nx">getBorderWidth</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">property</span><span class="p">,</span> <span class="nx">omitUnit</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">unit</span> <span class="o">=</span> <span class="nx">omitUnit</span> <span class="o">?</span> <span class="s1">&#39;&#39;</span> <span class="o">:</span> <span class="nx">PX</span><span class="p">,</span>
+                <span class="nx">current</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">currentStyle</span><span class="p">[</span><span class="nx">property</span><span class="p">];</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">current</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">PX</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// look up keywords</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">ComputedStyle</span><span class="p">.</span><span class="nx">borderMap</span><span class="p">[</span><span class="nx">current</span><span class="p">])</span> <span class="p">{</span>
+                    <span class="nx">current</span> <span class="o">=</span> <span class="nx">ComputedStyle</span><span class="p">.</span><span class="nx">borderMap</span><span class="p">[</span><span class="nx">current</span><span class="p">];</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;borderWidth computing not implemented&#39;</span><span class="p">,</span> <span class="s1">&#39;warn&#39;</span><span class="p">,</span> <span class="s1">&#39;dom-ie-style&#39;</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="p">(</span><span class="nx">omitUnit</span><span class="p">)</span> <span class="o">?</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">current</span><span class="p">)</span> <span class="o">:</span> <span class="nx">current</span><span class="p">;</span>
+        <span class="p">},</span>
+
+        <span class="nx">getPixel</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">att</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// use pixelRight to convert to px</span>
+            <span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nx">style</span> <span class="o">=</span> <span class="nx">_getStyleObj</span><span class="p">(</span><span class="nx">node</span><span class="p">),</span>
+                <span class="nx">styleRight</span> <span class="o">=</span> <span class="nx">style</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span>
+                <span class="nx">current</span> <span class="o">=</span> <span class="nx">style</span><span class="p">[</span><span class="nx">att</span><span class="p">];</span>
+
+            <span class="nx">node</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">right</span> <span class="o">=</span> <span class="nx">current</span><span class="p">;</span>
+            <span class="nx">val</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">pixelRight</span><span class="p">;</span>
+            <span class="nx">node</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">right</span> <span class="o">=</span> <span class="nx">styleRight</span><span class="p">;</span> <span class="c1">// revert</span>
+
+            <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
+        <span class="p">},</span>
+
+        <span class="nx">getMargin</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">att</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">val</span><span class="p">,</span>
+                <span class="nx">style</span> <span class="o">=</span> <span class="nx">_getStyleObj</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">style</span><span class="p">[</span><span class="nx">att</span><span class="p">]</span> <span class="o">==</span> <span class="nx">AUTO</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">val</span> <span class="o">=</span> <span class="nx">ComputedStyle</span><span class="p">.</span><span class="nx">getPixel</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">att</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nx">val</span> <span class="o">+</span> <span class="nx">PX</span><span class="p">;</span>
+        <span class="p">},</span>
+
+        <span class="nx">getVisibility</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">att</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">current</span><span class="p">;</span>
+            <span class="k">while</span> <span class="p">(</span> <span class="p">(</span><span class="nx">current</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">currentStyle</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">current</span><span class="p">[</span><span class="nx">att</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;inherit&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// NOTE: assignment in test</span>
+                <span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="p">(</span><span class="nx">current</span><span class="p">)</span> <span class="o">?</span> <span class="nx">current</span><span class="p">[</span><span class="nx">att</span><span class="p">]</span> <span class="o">:</span> <span class="nx">VISIBLE</span><span class="p">;</span>
+        <span class="p">},</span>
+
+        <span class="nx">getColor</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">att</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">current</span> <span class="o">=</span> <span class="nx">_getStyleObj</span><span class="p">(</span><span class="nx">node</span><span class="p">)[</span><span class="nx">att</span><span class="p">];</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">current</span> <span class="o">||</span> <span class="nx">current</span> <span class="o">===</span> <span class="nx">TRANSPARENT</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">elementByAxis</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="s1">&#39;parentNode&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">current</span> <span class="o">=</span> <span class="nx">_getStyleObj</span><span class="p">(</span><span class="nx">parent</span><span class="p">)[</span><span class="nx">att</span><span class="p">];</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">current</span> <span class="o">&amp;&amp;</span> <span class="nx">current</span> <span class="o">!==</span> <span class="nx">TRANSPARENT</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">node</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">;</span>
+                        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">});</span>
+            <span class="p">}</span>
+
+            <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Color</span><span class="p">.</span><span class="nx">toRGB</span><span class="p">(</span><span class="nx">current</span><span class="p">);</span>
+        <span class="p">},</span>
+
+        <span class="nx">getBorderColor</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">att</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">current</span> <span class="o">=</span> <span class="nx">_getStyleObj</span><span class="p">(</span><span class="nx">node</span><span class="p">),</span>
+                <span class="nx">val</span> <span class="o">=</span> <span class="nx">current</span><span class="p">[</span><span class="nx">att</span><span class="p">]</span> <span class="o">||</span> <span class="nx">current</span><span class="p">.</span><span class="nx">color</span><span class="p">;</span>
+            <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Color</span><span class="p">.</span><span class="nx">toRGB</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Color</span><span class="p">.</span><span class="nx">toHex</span><span class="p">(</span><span class="nx">val</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="c1">//fontSize: getPixelFont,</span>
+    <span class="nx">IEComputed</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="c1">// use alpha filter for IE opacity</span>
+<span class="k">try</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">style</span><span class="p">[</span><span class="nx">OPACITY</span><span class="p">]</span> <span class="o">===</span> <span class="nx">UNDEFINED</span> <span class="o">&amp;&amp;</span>
+            <span class="nx">documentElement</span><span class="p">[</span><span class="nx">FILTERS</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">CUSTOM_STYLES</span><span class="p">[</span><span class="nx">OPACITY</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+                <span class="k">try</span> <span class="p">{</span> <span class="c1">// will error if no DXImageTransform</span>
+                    <span class="nx">val</span> <span class="o">=</span> <span class="nx">node</span><span class="p">[</span><span class="nx">FILTERS</span><span class="p">][</span><span class="s1">&#39;DXImageTransform.Microsoft.Alpha&#39;</span><span class="p">][</span><span class="nx">OPACITY</span><span class="p">];</span>
+
+                <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">try</span> <span class="p">{</span> <span class="c1">// make sure its in the document</span>
+                        <span class="nx">val</span> <span class="o">=</span> <span class="nx">node</span><span class="p">[</span><span class="nx">FILTERS</span><span class="p">](</span><span class="s1">&#39;alpha&#39;</span><span class="p">)[</span><span class="nx">OPACITY</span><span class="p">];</span>
+                    <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;getStyle: IE opacity filter not found; returning 1&#39;</span><span class="p">,</span> <span class="s1">&#39;warn&#39;</span><span class="p">,</span> <span class="s1">&#39;dom-style&#39;</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="k">return</span> <span class="nx">val</span> <span class="o">/</span> <span class="mi">100</span><span class="p">;</span>
+            <span class="p">},</span>
+
+            <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">style</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">current</span><span class="p">,</span>
+                    <span class="nx">styleObj</span><span class="p">;</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// normalize inline style behavior</span>
+                    <span class="nx">styleObj</span> <span class="o">=</span> <span class="nx">_getStyleObj</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+                    <span class="nx">current</span> <span class="o">=</span> <span class="p">(</span><span class="nx">OPACITY</span> <span class="k">in</span> <span class="nx">styleObj</span><span class="p">)</span> <span class="o">?</span> <span class="nx">styleObj</span><span class="p">[</span><span class="nx">OPACITY</span><span class="p">]</span> <span class="o">:</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// revert to original opacity</span>
+                    <span class="nx">val</span> <span class="o">=</span> <span class="nx">current</span><span class="p">;</span>
+                <span class="p">}</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">style</span><span class="p">[</span><span class="nx">FILTER</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// in case not appended</span>
+                    <span class="nx">style</span><span class="p">[</span><span class="nx">FILTER</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;alpha(&#39;</span> <span class="o">+</span> <span class="nx">OPACITY</span> <span class="o">+</span> <span class="s1">&#39;=&#39;</span> <span class="o">+</span> <span class="nx">val</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">;</span>
+                    
+                    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">node</span><span class="p">.</span><span class="nx">currentStyle</span> <span class="o">||</span> <span class="o">!</span><span class="nx">node</span><span class="p">.</span><span class="nx">currentStyle</span><span class="p">[</span><span class="nx">HAS_LAYOUT</span><span class="p">])</span> <span class="p">{</span>
+                        <span class="nx">style</span><span class="p">.</span><span class="nx">zoom</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// needs layout </span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;document.documentElement.filters error (activeX disabled)&#39;</span><span class="p">,</span> <span class="s1">&#39;warn&#39;</span><span class="p">,</span> <span class="s1">&#39;dom-style&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="s1">&#39;-1px&#39;</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// IE throws error on invalid style set; trap common cases</span>
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">CUSTOM_STYLES</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">style</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">floatVal</span> <span class="o">=</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">floatVal</span><span class="p">)</span> <span class="o">||</span> <span class="nx">floatVal</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">style</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">val</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;invalid style value for height: &#39;</span> <span class="o">+</span> <span class="nx">val</span><span class="p">,</span> <span class="s1">&#39;warn&#39;</span><span class="p">,</span> <span class="s1">&#39;dom-style&#39;</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">CUSTOM_STYLES</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">style</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">floatVal</span> <span class="o">=</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">floatVal</span><span class="p">)</span> <span class="o">||</span> <span class="nx">floatVal</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">style</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">val</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;invalid style value for width: &#39;</span> <span class="o">+</span> <span class="nx">val</span><span class="p">,</span> <span class="s1">&#39;warn&#39;</span><span class="p">,</span> <span class="s1">&#39;dom-style&#39;</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="c1">// TODO: top, right, bottom, left</span>
+<span class="nx">IEComputed</span><span class="p">[</span><span class="nx">WIDTH</span><span class="p">]</span> <span class="o">=</span> <span class="nx">IEComputed</span><span class="p">[</span><span class="nx">HEIGHT</span><span class="p">]</span> <span class="o">=</span> <span class="nx">ComputedStyle</span><span class="p">.</span><span class="nx">getOffset</span><span class="p">;</span>
+
+<span class="nx">IEComputed</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">IEComputed</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="nx">ComputedStyle</span><span class="p">.</span><span class="nx">getColor</span><span class="p">;</span>
+
+<span class="nx">IEComputed</span><span class="p">[</span><span class="nx">BORDER_WIDTH</span><span class="p">]</span> <span class="o">=</span> <span class="nx">IEComputed</span><span class="p">[</span><span class="nx">BORDER_TOP_WIDTH</span><span class="p">]</span> <span class="o">=</span> <span class="nx">IEComputed</span><span class="p">[</span><span class="nx">BORDER_RIGHT_WIDTH</span><span class="p">]</span> <span class="o">=</span>
+        <span class="nx">IEComputed</span><span class="p">[</span><span class="nx">BORDER_BOTTOM_WIDTH</span><span class="p">]</span> <span class="o">=</span> <span class="nx">IEComputed</span><span class="p">[</span><span class="nx">BORDER_LEFT_WIDTH</span><span class="p">]</span> <span class="o">=</span>
+        <span class="nx">ComputedStyle</span><span class="p">.</span><span class="nx">getBorderWidth</span><span class="p">;</span>
+
+<span class="nx">IEComputed</span><span class="p">.</span><span class="nx">marginTop</span> <span class="o">=</span> <span class="nx">IEComputed</span><span class="p">.</span><span class="nx">marginRight</span> <span class="o">=</span> <span class="nx">IEComputed</span><span class="p">.</span><span class="nx">marginBottom</span> <span class="o">=</span>
+        <span class="nx">IEComputed</span><span class="p">.</span><span class="nx">marginLeft</span> <span class="o">=</span> <span class="nx">ComputedStyle</span><span class="p">.</span><span class="nx">getMargin</span><span class="p">;</span>
+
+<span class="nx">IEComputed</span><span class="p">.</span><span class="nx">visibility</span> <span class="o">=</span> <span class="nx">ComputedStyle</span><span class="p">.</span><span class="nx">getVisibility</span><span class="p">;</span>
+<span class="nx">IEComputed</span><span class="p">.</span><span class="nx">borderColor</span> <span class="o">=</span> <span class="nx">IEComputed</span><span class="p">.</span><span class="nx">borderTopColor</span> <span class="o">=</span>
+        <span class="nx">IEComputed</span><span class="p">.</span><span class="nx">borderRightColor</span> <span class="o">=</span> <span class="nx">IEComputed</span><span class="p">.</span><span class="nx">borderBottomColor</span> <span class="o">=</span>
+        <span class="nx">IEComputed</span><span class="p">.</span><span class="nx">borderLeftColor</span> <span class="o">=</span> <span class="nx">ComputedStyle</span><span class="p">.</span><span class="nx">getBorderColor</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">win</span><span class="p">[</span><span class="nx">GET_COMPUTED_STYLE</span><span class="p">])</span> <span class="p">{</span>
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM</span><span class="p">[</span><span class="nx">GET_COMPUTED_STYLE</span><span class="p">]</span> <span class="o">=</span> <span class="nx">ComputedStyle</span><span class="p">.</span><span class="nx">get</span><span class="p">;</span> 
+<span class="p">}</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;DOM.IE&#39;</span><span class="p">);</span>
+<span class="nx">Y</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">IE</span><span class="p">.</span><span class="nx">COMPUTED</span> <span class="o">=</span> <span class="nx">IEComputed</span><span class="p">;</span>
+<span class="nx">Y</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">IE</span><span class="p">.</span><span class="nx">ComputedStyle</span> <span class="o">=</span> <span class="nx">ComputedStyle</span><span class="p">;</span>
+
+<span class="p">})(</span><span class="nx">Y</span><span class="p">);</span>
+<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">DOM</span><span class="p">,</span> <span class="p">{</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Sets the width of the element to the given size, regardless</span>
+<span class="cm">     * of box model, border, padding, etc.</span>
+<span class="cm">     * @method setWidth</span>
+<span class="cm">     * @param {HTMLElement} element The DOM element. </span>
+<span class="cm">     * @param {String|Int} size The pixel height to size to</span>
+<span class="cm">     */</span>
+
+    <span class="nx">setWidth</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">size</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">_setSize</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">size</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Sets the height of the element to the given size, regardless</span>
+<span class="cm">     * of box model, border, padding, etc.</span>
+<span class="cm">     * @method setHeight</span>
+<span class="cm">     * @param {HTMLElement} element The DOM element. </span>
+<span class="cm">     * @param {String|Int} size The pixel height to size to</span>
+<span class="cm">     */</span>
+
+    <span class="nx">setHeight</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">size</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">_setSize</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">size</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="nx">_getOffsetProp</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">prop</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;offset&#39;</span> <span class="o">+</span> <span class="nx">prop</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">+</span> <span class="nx">prop</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="nx">_setSize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">prop</span><span class="p">,</span> <span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">offset</span><span class="p">;</span>
+
+        <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">prop</span><span class="p">,</span> <span class="nx">val</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
+        <span class="nx">offset</span> <span class="o">=</span> <span class="nx">node</span><span class="p">[</span><span class="nx">Y</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">_getOffsetProp</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">prop</span><span class="p">)];</span>
+        <span class="nx">val</span> <span class="o">=</span> <span class="nx">val</span> <span class="o">-</span> <span class="p">(</span><span class="nx">offset</span> <span class="o">-</span> <span class="nx">val</span><span class="p">);</span>
+
+        <span class="c1">// TODO: handle size less than border/padding (add class?)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// no negative sizes</span>
+        <span class="p">}</span>
+        <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">prop</span><span class="p">,</span> <span class="nx">val</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dom-base&#39;</span><span class="p">]});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "DOM.html#method_addClass", "access": "", "host": "DOM", "type": "method", "name": "addClass"}, {"url": "DOM.html#method_addHTML", "access": "", "host": "DOM", "type": "method", "name": "addHTML"}, {"url": "Selector.html#method_ancestor", "access": "", "host": "Selector", "type": "method", "name": "ancestor"}, {"url": "DOM.html#method_byId", "access": "", "host": "DOM", "type": "method", "name": "byId"}, {"url": "DOM.html#method_contains", "access": "", "host": "DOM", "type": "method", "name": "contains"}, {"url": "DOM.html#method_create", "access": "", "host": "DOM", "type": "method", "name": "create"}, {"url": "DOM.html#method_docHeight", "access": "", "host": "DOM", "type": "method", "name": "docHeight"}, {"url": "DOM.html#method_docScrollX", "access": "", "host": "DOM", "type": "method", "name": "docScrollX"}, {"url": "DOM.html#method_docScrollY", "access": "", "host": "DOM", "type": "method", "name": "docScrollY"}, {"url": "DOM.html#method_docWidth", "access": "", "host": "DOM", "type": "method", "name": "docWidth"}, {"url": "DOM.html#method_elementByAxis", "access": "", "host": "DOM", "type": "method", "name": "elementByAxis"}, {"url": "DOM.html#method_getAttibute", "access": "", "host": "DOM", "type": "method", "name": "getAttibute"}, {"url": "DOM.html#method_getComputedStyle", "access": "", "host": "DOM", "type": "method", "name": "getComputedStyle"}, {"url": "DOM.html#method_getStyle", "access": "", "host": "DOM", "type": "method", "name": "getStyle"}, {"url": "DOM.html#method_getText", "access": "", "host": "DOM", "type": "method", "name": "getText"}, {"url": "DOM.html#method_getX", "access": "", "host": "DOM", "type": "method", "name": "getX"}, {"url": "DOM.html#method_getXY", "access": "", "host": "DOM", "type": "method", "name": "getXY"}, {"url": "DOM.html#method_getY", "access": "", "host": "DOM", "type": "method", "name": "getY"}, {"url": "DOM.html#method_hasClass", "access": "", "host": "DOM", "type": "method", "name": "hasClass"}, {"url": "DOM.html#method_inDoc", "access": "", "host": "DOM", "type": "method", "name": "inDoc"}, {"url": "DOM.html#method_inRegion", "access": "", "host": "DOM", "type": "method", "name": "inRegion"}, {"url": "DOM.html#method_intersect", "access": "", "host": "DOM", "type": "method", "name": "intersect"}, {"url": "DOM.html#method_inViewportRegion", "access": "", "host": "DOM", "type": "method", "name": "inViewportRegion"}, {"url": "Selector.html#property_operators", "access": "", "host": "Selector", "type": "property", "name": "operators"}, {"url": "Selector.html#property_PARENT_NODE", "access": "", "host": "Selector", "type": "property", "name": "PARENT_NODE"}, {"url": "Selector.html#method_query", "access": "", "host": "Selector", "type": "method", "name": "query"}, {"url": "DOM.html#method_region", "access": "", "host": "DOM", "type": "method", "name": "region"}, {"url": "DOM.html#method_removeClass", "access": "", "host": "DOM", "type": "method", "name": "removeClass"}, {"url": "DOM.html#method_replaceClass", "access": "", "host": "DOM", "type": "method", "name": "replaceClass"}, {"url": "DOM.html#method_setAttibute", "access": "", "host": "DOM", "type": "method", "name": "setAttibute"}, {"url": "DOM.html#method_setHeight", "access": "", "host": "DOM", "type": "method", "name": "setHeight"}, {"url": "DOM.html#method_setStyle", "access": "", "host": "DOM", "type": "method", "name": "setStyle"}, {"url": "DOM.html#method_setStyles", "access": "", "host": "DOM", "type": "method", "name": "setStyles"}, {"url": "DOM.html#method_setText", "access": "", "host": "DOM", "type": "method", "name": "setText"}, {"url": "DOM.html#method_setWidth", "access": "", "host": "DOM", "type": "method", "name": "setWidth"}, {"url": "DOM.html#method_setX", "access": "", "host": "DOM", "type": "method", "name": "setX"}, {"url": "DOM.html#method_setXY", "access": "", "host": "DOM", "type": "method", "name": "setXY"}, {"url": "DOM.html#method_setY", "access": "", "host": "DOM", "type": "method", "name": "setY"}, {"url": "Selector.html#property_shorthand", "access": "", "host": "Selector", "type": "property", "name": "shorthand"}, {"url": "DOM.html#method_swapXY", "access": "", "host": "DOM", "type": "method", "name": "swapXY"}, {"url": "DOM.html#method_toggleClass", "access": "", "host": "DOM", "type": "method", "name": "toggleClass"}, {"url": "Selector.html#method__tokenize", "access": "", "host": "Selector", "type": "method", "name": "_tokenize"}, {"url": "DOM.html#method_viewportRegion", "access": "", "host": "DOM", "type": "method", "name": "viewportRegion"}, {"url": "DOM.html#method_winHeight", "access": "", "host": "DOM", "type": "method", "name": "winHeight"}, {"url": "DOM.html#method_winWidth", "access": "", "host": "DOM", "type": "method", "name": "winWidth"}];
+</script>
+</body>
+</html>

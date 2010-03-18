@@ -1,0 +1,1242 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: dd   dd-value-debug.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			dd&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_dd.html" title="dd">dd</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">dd-value-debug.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="DD.DDM.html" title="DD.DDM">DD.DDM</a></li>
+
+
+				                                <li class=""><a href="DD.Delegate.html" title="DD.Delegate">DD.Delegate</a></li>
+
+
+				                                <li class=""><a href="DD.Drag.html" title="DD.Drag">DD.Drag</a></li>
+
+
+				                                <li class=""><a href="DD.Drop.html" title="DD.Drop">DD.Drop</a></li>
+
+
+				                                <li class=""><a href="DD.Scroll.html" title="DD.Scroll">DD.Scroll</a></li>
+
+
+				                                <li class=""><a href="Plugin.DDConstrained.html" title="Plugin.DDConstrained">Plugin.DDConstrained</a></li>
+
+
+				                                <li class=""><a href="Plugin.DDNodeScroll.html" title="Plugin.DDNodeScroll">Plugin.DDNodeScroll</a></li>
+
+
+				                                <li class=""><a href="Plugin.DDProxy.html" title="Plugin.DDProxy">Plugin.DDProxy</a></li>
+
+
+				                                <li class=""><a href="Plugin.DDWindowScroll.html" title="Plugin.DDWindowScroll">Plugin.DDWindowScroll</a></li>
+
+
+				                                <li class=""><a href="Plugin.Drag.html" title="Plugin.Drag">Plugin.Drag</a></li>
+
+
+				                                <li class=""><a href="Plugin.Drop.html" title="Plugin.Drop">Plugin.Drop</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="dd-constrain-debug.js.html" title="dd-constrain-debug.js">dd-constrain-debug.js</a></li>
+
+
+			                                <li class=""><a href="dd-constrain-min.js.html" title="dd-constrain-min.js">dd-constrain-min.js</a></li>
+
+
+			                                <li class=""><a href="dd-constrain.js.html" title="dd-constrain.js">dd-constrain.js</a></li>
+
+
+			                                <li class=""><a href="dd-ddm-base-debug.js.html" title="dd-ddm-base-debug.js">dd-ddm-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="dd-ddm-base-min.js.html" title="dd-ddm-base-min.js">dd-ddm-base-min.js</a></li>
+
+
+			                                <li class=""><a href="dd-ddm-base.js.html" title="dd-ddm-base.js">dd-ddm-base.js</a></li>
+
+
+			                                <li class=""><a href="dd-ddm-debug.js.html" title="dd-ddm-debug.js">dd-ddm-debug.js</a></li>
+
+
+			                                <li class=""><a href="dd-ddm-drop-debug.js.html" title="dd-ddm-drop-debug.js">dd-ddm-drop-debug.js</a></li>
+
+
+			                                <li class=""><a href="dd-ddm-drop-min.js.html" title="dd-ddm-drop-min.js">dd-ddm-drop-min.js</a></li>
+
+
+			                                <li class=""><a href="dd-ddm-drop.js.html" title="dd-ddm-drop.js">dd-ddm-drop.js</a></li>
+
+
+			                                <li class=""><a href="dd-ddm-min.js.html" title="dd-ddm-min.js">dd-ddm-min.js</a></li>
+
+
+			                                <li class=""><a href="dd-ddm.js.html" title="dd-ddm.js">dd-ddm.js</a></li>
+
+
+			                                <li class=""><a href="dd-debug.js.html" title="dd-debug.js">dd-debug.js</a></li>
+
+
+			                                <li class=""><a href="dd-delegate-debug.js.html" title="dd-delegate-debug.js">dd-delegate-debug.js</a></li>
+
+
+			                                <li class=""><a href="dd-delegate-min.js.html" title="dd-delegate-min.js">dd-delegate-min.js</a></li>
+
+
+			                                <li class=""><a href="dd-delegate.js.html" title="dd-delegate.js">dd-delegate.js</a></li>
+
+
+			                                <li class=""><a href="dd-drag-debug.js.html" title="dd-drag-debug.js">dd-drag-debug.js</a></li>
+
+
+			                                <li class=""><a href="dd-drag-min.js.html" title="dd-drag-min.js">dd-drag-min.js</a></li>
+
+
+			                                <li class=""><a href="dd-drag.js.html" title="dd-drag.js">dd-drag.js</a></li>
+
+
+			                                <li class=""><a href="dd-drop-debug.js.html" title="dd-drop-debug.js">dd-drop-debug.js</a></li>
+
+
+			                                <li class=""><a href="dd-drop-min.js.html" title="dd-drop-min.js">dd-drop-min.js</a></li>
+
+
+			                                <li class=""><a href="dd-drop-plugin-debug.js.html" title="dd-drop-plugin-debug.js">dd-drop-plugin-debug.js</a></li>
+
+
+			                                <li class=""><a href="dd-drop-plugin-min.js.html" title="dd-drop-plugin-min.js">dd-drop-plugin-min.js</a></li>
+
+
+			                                <li class=""><a href="dd-drop-plugin.js.html" title="dd-drop-plugin.js">dd-drop-plugin.js</a></li>
+
+
+			                                <li class=""><a href="dd-drop.js.html" title="dd-drop.js">dd-drop.js</a></li>
+
+
+			                                <li class=""><a href="dd-min.js.html" title="dd-min.js">dd-min.js</a></li>
+
+
+			                                <li class=""><a href="dd-plugin-debug.js.html" title="dd-plugin-debug.js">dd-plugin-debug.js</a></li>
+
+
+			                                <li class=""><a href="dd-plugin-min.js.html" title="dd-plugin-min.js">dd-plugin-min.js</a></li>
+
+
+			                                <li class=""><a href="dd-plugin.js.html" title="dd-plugin.js">dd-plugin.js</a></li>
+
+
+			                                <li class=""><a href="dd-proxy-debug.js.html" title="dd-proxy-debug.js">dd-proxy-debug.js</a></li>
+
+
+			                                <li class=""><a href="dd-proxy-min.js.html" title="dd-proxy-min.js">dd-proxy-min.js</a></li>
+
+
+			                                <li class=""><a href="dd-proxy.js.html" title="dd-proxy.js">dd-proxy.js</a></li>
+
+
+			                                <li class=""><a href="dd-scroll-debug.js.html" title="dd-scroll-debug.js">dd-scroll-debug.js</a></li>
+
+
+			                                <li class=""><a href="dd-scroll-min.js.html" title="dd-scroll-min.js">dd-scroll-min.js</a></li>
+
+
+			                                <li class=""><a href="dd-scroll.js.html" title="dd-scroll.js">dd-scroll.js</a></li>
+
+
+			                                <li class="selected"><a href="dd-value-debug.js.html" title="dd-value-debug.js">dd-value-debug.js</a></li>
+
+
+			                                <li class=""><a href="dd-value-min.js.html" title="dd-value-min.js">dd-value-min.js</a></li>
+
+
+			                                <li class=""><a href="dd-value.js.html" title="dd-value.js">dd-value.js</a></li>
+
+
+			                                <li class=""><a href="dd.js.html" title="dd.js">dd.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;dd-value&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="c1">// Constants for compression or performance</span>
+<span class="kd">var</span> <span class="nx">HOST</span>      <span class="o">=</span> <span class="s1">&#39;host&#39;</span><span class="p">,</span>
+    <span class="nx">DRAG_NODE</span> <span class="o">=</span> <span class="s1">&#39;dragNode&#39;</span><span class="p">,</span>
+
+    <span class="nx">MIN</span>       <span class="o">=</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span>
+    <span class="nx">MAX</span>       <span class="o">=</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span>
+    <span class="nx">VALUE</span>     <span class="o">=</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span>
+
+    <span class="nx">round</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * DD plugin to associate a value with the current draggable element&#39;s position.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module dd</span>
+<span class="cm"> * @submodule dd-value</span>
+<span class="cm"> */</span>
+
+<span class="kd">function</span> <span class="nx">DDValue</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">DDValue</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span> <span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDValue</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span> <span class="nx">DDValue</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">{</span>
+
+    <span class="c1">// DDValue prototype</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Map to property names based on &lt;code&gt;axis&lt;/code&gt; for use in</span>
+<span class="cm">     * calculation and accessing event info.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property _key</span>
+<span class="cm">     * @type { Object }</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_key</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Cached X or Y offset for the constraining element to avoid extraneous</span>
+<span class="cm">     * &lt;code&gt;getXY()&lt;/code&gt; calls during run time calculation.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property _offsetXY</span>
+<span class="cm">     * @type { Number }</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_offsetXY</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Factor used to translate value -&amp;gt; position -&amp;gt; value.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property _factor</span>
+<span class="cm">     * @type { Number }</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_factor</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Attach event listeners to keep the UI in sync with the min/max/value</span>
+<span class="cm">     * attributes and DD position, then call syncDragNode() to sync initial state.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method initializer</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">HOST</span> <span class="p">),</span>
+            <span class="c1">// DDConstrained must be plugged in</span>
+            <span class="nx">con</span>  <span class="o">=</span> <span class="nx">host</span><span class="p">.</span><span class="nx">con</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">_defaultConstrain</span><span class="p">(),</span>
+            <span class="nx">category</span><span class="p">;</span>
+
+        <span class="c1">// Because attribute setters aren&#39;t called on initialization</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_key</span> <span class="o">=</span> <span class="nx">DDValue</span><span class="p">.</span><span class="nx">_AXIS_KEYS</span><span class="p">[</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="s1">&#39;axis&#39;</span> <span class="p">)</span> <span class="p">];</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * Detach category for internal events to aid in cleanup.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @property _evtGuid</span>
+<span class="cm">         * @type { String }</span>
+<span class="cm">         * @protected</span>
+<span class="cm">         */</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_evtGuid</span> <span class="o">=</span> <span class="nx">category</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">guid</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;|&#39;</span><span class="p">;</span>
+
+        <span class="nx">host</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span> <span class="nx">category</span> <span class="o">+</span> <span class="s1">&#39;drag:align&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterAlign</span><span class="p">,</span> <span class="k">this</span> <span class="p">);</span>
+
+        <span class="nx">con</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span> <span class="nx">category</span> <span class="o">+</span> <span class="s1">&#39;constrainChange&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">syncDragNode</span><span class="p">,</span> <span class="k">this</span> <span class="p">);</span>
+        <span class="nx">con</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span> <span class="nx">category</span> <span class="o">+</span> <span class="s1">&#39;gutterChange&#39;</span><span class="p">,</span>    <span class="k">this</span><span class="p">.</span><span class="nx">syncDragNode</span><span class="p">,</span> <span class="k">this</span> <span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span> <span class="p">{</span>
+            <span class="nx">minChange</span>  <span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterMinChange</span><span class="p">,</span>
+            <span class="nx">maxChange</span>  <span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterMaxChange</span><span class="p">,</span>
+            <span class="nx">valueChange</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterValueChange</span>
+        <span class="p">}</span> <span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">syncDragNode</span><span class="p">();</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Plugs in Y.Plugin.DDConstrained onto the Drag instance.  Default</span>
+<span class="cm">     * configuration uses &lt;code&gt;constrain&lt;/code&gt; set to the</span>
+<span class="cm">     * &lt;code&gt;dragNode&lt;/code&gt;&#39;s &lt;code&gt;parentNode&lt;/code&gt;.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _defaultConstrain</span>
+<span class="cm">     * @return { Y.Plugin.DDConstrained } The plugin instance</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_defaultConstrain</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">HOST</span> <span class="p">);</span>
+
+        <span class="nx">host</span><span class="p">.</span><span class="nx">plug</span><span class="p">(</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDConstrain</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">constrain</span><span class="o">:</span> <span class="nx">host</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">DRAG_NODE</span> <span class="p">).</span><span class="nx">get</span><span class="p">(</span> <span class="s1">&#39;parentNode&#39;</span> <span class="p">)</span>
+        <span class="p">}</span> <span class="p">);</span>
+
+        <span class="k">return</span> <span class="nx">host</span><span class="p">.</span><span class="nx">con</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Cache constraining element offsets and dims for faster value translation</span>
+<span class="cm">     * and map current DD position to value.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method syncDragNode</span>
+<span class="cm">     */</span>
+    <span class="nx">syncDragNode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_cacheOffset</span><span class="p">();</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_calculateFactor</span><span class="p">();</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_setPosition</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">VALUE</span> <span class="p">)</span> <span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Detach event listeners.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method destructor</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">destructor</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">HOST</span> <span class="p">);</span>
+
+        <span class="nx">host</span><span class="p">.</span><span class="nx">detach</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">_evtGuid</span> <span class="o">+</span> <span class="s1">&#39;*&#39;</span> <span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span> <span class="nx">host</span><span class="p">.</span><span class="nx">con</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">host</span><span class="p">.</span><span class="nx">con</span><span class="p">.</span><span class="nx">detach</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">_evtGuid</span> <span class="o">+</span> <span class="s1">&#39;*&#39;</span> <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">detach</span><span class="p">();</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Captures the current top left of the DD&#39;s constraining node or region to</span>
+<span class="cm">     * avoid excessive DOM lookups at run time.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _cacheOffset</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_cacheOffset</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">HOST</span> <span class="p">).</span><span class="nx">con</span><span class="p">.</span><span class="nx">getRegion</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_offsetXY</span> <span class="o">=</span> <span class="nx">region</span><span class="p">[</span> <span class="k">this</span><span class="p">.</span><span class="nx">_key</span><span class="p">.</span><span class="nx">offsetEdge</span> <span class="p">];</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Calculates and caches (range between max and min) / (constraining node</span>
+<span class="cm">     * or region width or height) for fast runtime calculation of position</span>
+<span class="cm">     * -&amp;gt; value.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _calculateFactor</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_calculateFactor</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">HOST</span> <span class="p">).</span><span class="nx">con</span><span class="p">.</span><span class="nx">getRegion</span><span class="p">(</span> <span class="kc">true</span> <span class="p">);</span>
+
+        <span class="c1">// e.g. ( max - min ) / ( constrain.right - constrain.left )</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_factor</span> <span class="o">=</span>
+            <span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">MAX</span> <span class="p">)</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">MIN</span> <span class="p">)</span> <span class="p">)</span> <span class="o">/</span>
+            <span class="p">(</span> <span class="nx">region</span><span class="p">[</span> <span class="k">this</span><span class="p">.</span><span class="nx">_key</span><span class="p">.</span><span class="nx">farEdge</span> <span class="p">]</span> <span class="o">-</span> <span class="nx">region</span><span class="p">[</span> <span class="k">this</span><span class="p">.</span><span class="nx">_key</span><span class="p">.</span><span class="nx">offsetEdge</span> <span class="p">]</span> <span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Dispatch the new position of the DD into the value setting operations.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _afterAlign</span>
+<span class="cm">     * @param e { EventFacade } The drag:align event</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_afterAlign</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">e</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">host</span>  <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">HOST</span> <span class="p">),</span>
+            <span class="nx">value</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_offsetToValue</span><span class="p">(</span> <span class="nx">host</span><span class="p">.</span><span class="nx">actXY</span><span class="p">[</span> <span class="k">this</span><span class="p">.</span><span class="nx">_key</span><span class="p">.</span><span class="nx">xyIndex</span> <span class="p">]</span> <span class="p">);</span>
+
+        <span class="c1">// Can&#39;t just do this.set( VALUE, this._offsetToValue( value ) )</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="nx">e</span><span class="p">.</span><span class="nx">prevVal</span> <span class="o">!==</span> <span class="nx">value</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span> <span class="nx">VALUE</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="p">{</span> <span class="nx">ddEvent</span><span class="o">:</span> <span class="nx">e</span> <span class="p">}</span> <span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * &lt;p&gt;Converts a pixel position into a value.  Calculates current</span>
+<span class="cm">     * position minus xy offsets of the constraining element multiplied by the</span>
+<span class="cm">     * ratio of &lt;code&gt;(max - min) / (constraining dim)&lt;/code&gt;.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * &lt;p&gt;Override this if you want to use a different value mapping</span>
+<span class="cm">     * algorithm.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _offsetToValue</span>
+<span class="cm">     * @param { Number } X or Y pixel position</span>
+<span class="cm">     * @return { mixed } Value corresponding to the provided pixel position</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_offsetToValue</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">xy</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">xy</span> <span class="o">-=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_offsetXY</span><span class="p">;</span>
+
+        <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">round</span><span class="p">(</span> <span class="nx">xy</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">_factor</span> <span class="p">)</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">MIN</span> <span class="p">);</span>
+
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_nearestValue</span><span class="p">(</span> <span class="nx">value</span> <span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Converts a value into a positional pixel value for use in positioning</span>
+<span class="cm">     * the DD element according to the reverse of the</span>
+<span class="cm">     * &lt;code&gt;_offsetToValue( xy )&lt;/code&gt; operation.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _valueToOffset</span>
+<span class="cm">     * @param val { Number } The value to map to pixel X or Y position</span>
+<span class="cm">     * @return { Array } &lt;code&gt;[ &lt;em&gt;X&lt;/em&gt;px, &lt;em&gt;Y&lt;/em&gt;px ] positional values</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_valueToOffset</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">value</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">value</span> <span class="o">-=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">MIN</span> <span class="p">);</span>
+
+        <span class="k">return</span> <span class="nx">round</span><span class="p">(</span> <span class="nx">value</span> <span class="o">/</span> <span class="k">this</span><span class="p">.</span><span class="nx">_factor</span> <span class="p">)</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">_offsetXY</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Update position according to new min value.  If the new min results in</span>
+<span class="cm">     * the current value being out of range, the value is set to the closer of</span>
+<span class="cm">     * min or max.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _afterMinChange</span>
+<span class="cm">     * @param e { EventFacade } The &lt;code&gt;min&lt;/code&gt; attribute change event.</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_afterMinChange</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">e</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_verifyValue</span><span class="p">();</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">syncDragNode</span><span class="p">();</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Update position according to new max value.  If the new max results in</span>
+<span class="cm">     * the current value being out of range, the value is set to the closer of</span>
+<span class="cm">     * min or max.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _afterMaxChange</span>
+<span class="cm">     * @param e { EventFacade } The &lt;code&gt;max&lt;/code&gt; attribute change event.</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_afterMaxChange</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">e</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_verifyValue</span><span class="p">();</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">syncDragNode</span><span class="p">();</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Verifies that the current value is within the min - max range.  If not,</span>
+<span class="cm">     * value is set to either min or max, depending on which is closer.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _verifyValue</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_verifyValue</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">value</span>   <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">VALUE</span> <span class="p">),</span>
+            <span class="nx">nearest</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_nearestValue</span><span class="p">(</span> <span class="nx">value</span> <span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span> <span class="nx">value</span> <span class="o">!==</span> <span class="nx">nearest</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// @TODO Can/should valueChange, minChange, etc be queued events?</span>
+            <span class="c1">// To make dd.set( &#39;min&#39;, n ); execute after minChange subscribers</span>
+            <span class="c1">// before on/after valueChange subscribers.</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span> <span class="nx">VALUE</span><span class="p">,</span> <span class="nx">nearest</span> <span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Propagate change to the DD unless the change is coming from a DD event.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _afterValueChange</span>
+<span class="cm">     * @param e { EventFacade } The &lt;code&gt;value&lt;/code&gt; attribute change event.</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_afterValueChange</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">e</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">e</span><span class="p">.</span><span class="nx">ddEvent</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_setPosition</span><span class="p">(</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span> <span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Positions the Drag element in accordance with the translated value.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _setPosition</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_setPosition</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">value</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">HOST</span> <span class="p">);</span>
+
+        <span class="c1">// Drag element hasn&#39;t been setup yet</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">host</span><span class="p">.</span><span class="nx">deltaXY</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">host</span><span class="p">.</span><span class="nx">actXY</span> <span class="o">=</span> <span class="nx">host</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">DRAG_NODE</span> <span class="p">).</span><span class="nx">getXY</span><span class="p">();</span>
+            <span class="nx">host</span><span class="p">.</span><span class="nx">_setStartPosition</span><span class="p">(</span> <span class="nx">host</span><span class="p">.</span><span class="nx">actXY</span> <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nx">host</span><span class="p">.</span><span class="nx">actXY</span><span class="p">[</span> <span class="k">this</span><span class="p">.</span><span class="nx">_key</span><span class="p">.</span><span class="nx">xyIndex</span> <span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_valueToOffset</span><span class="p">(</span> <span class="nx">value</span> <span class="p">);</span>
+
+        <span class="nx">host</span><span class="p">.</span><span class="nx">_moveNode</span><span class="p">();</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Validates new values assigned to &lt;code&gt;min&lt;/code&gt; attribute.  Numbers</span>
+<span class="cm">     * are acceptable.  Override this to enforce different rules.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _validateNewMin</span>
+<span class="cm">     * @param value { mixed } Value assigned to &lt;code&gt;min&lt;/code&gt; attribute.</span>
+<span class="cm">     * @return { Boolean } True for numbers.  False otherwise.</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_validateNewMin</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">value</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span> <span class="nx">value</span> <span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Validates new values assigned to &lt;code&gt;max&lt;/code&gt; attribute.  Numbers</span>
+<span class="cm">     * are acceptable.  Override this to enforce different rules.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _validateNewMax</span>
+<span class="cm">     * @param value { mixed } Value assigned to &lt;code&gt;max&lt;/code&gt; attribute.</span>
+<span class="cm">     * @return { Boolean } True for numbers.  False otherwise.</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_validateNewMax</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">value</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span> <span class="nx">value</span> <span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Validates new values assigned to &lt;code&gt;value&lt;/code&gt; attribute.  Numbers</span>
+<span class="cm">     * between the configured &lt;code&gt;min&lt;/code&gt; and &lt;code&gt;max&lt;/code&gt; are</span>
+<span class="cm">     * acceptable.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _validateNewValue</span>
+<span class="cm">     * @param value { mixed } Value assigned to &lt;code&gt;value&lt;/code&gt; attribute.</span>
+<span class="cm">     * @return { Boolean } True if value is a number between the configured</span>
+<span class="cm">     *                     &lt;code&gt;min&lt;/code&gt; and &lt;code&gt;max&lt;/code&gt;.</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_validateNewValue</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">value</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span> <span class="nx">value</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">_nearestValue</span><span class="p">(</span> <span class="nx">value</span> <span class="p">)</span> <span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Returns the nearest valid value to the value input.  If the provided</span>
+<span class="cm">     * value is outside the min - max range, accounting for min &gt; max</span>
+<span class="cm">     * scenarios, the nearest of either min or max is returned.  Otherwise, the</span>
+<span class="cm">     * provided value is returned.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _nearestValue</span>
+<span class="cm">     * @param value { mixed } Value to test against current min - max range</span>
+<span class="cm">     * @return { Number } Current min, max, or value if within range</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_nearestValue</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">value</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">min</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">MIN</span> <span class="p">),</span>
+            <span class="nx">max</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">MAX</span> <span class="p">),</span>
+            <span class="nx">tmp</span><span class="p">;</span>
+
+        <span class="c1">// Account for reverse value range (min &gt; max)</span>
+        <span class="nx">tmp</span> <span class="o">=</span> <span class="p">(</span> <span class="nx">max</span> <span class="o">&gt;</span> <span class="nx">min</span> <span class="p">)</span> <span class="o">?</span> <span class="nx">max</span> <span class="o">:</span> <span class="nx">min</span><span class="p">;</span>
+        <span class="nx">min</span> <span class="o">=</span> <span class="p">(</span> <span class="nx">max</span> <span class="o">&gt;</span> <span class="nx">min</span> <span class="p">)</span> <span class="o">?</span> <span class="nx">min</span> <span class="o">:</span> <span class="nx">max</span><span class="p">;</span>
+        <span class="nx">max</span> <span class="o">=</span> <span class="nx">tmp</span><span class="p">;</span>
+
+        <span class="k">return</span> <span class="p">(</span> <span class="nx">value</span> <span class="o">&lt;</span> <span class="nx">min</span> <span class="p">)</span> <span class="o">?</span>
+                <span class="nx">min</span> <span class="o">:</span>
+                <span class="p">(</span> <span class="nx">value</span> <span class="o">&gt;</span> <span class="nx">max</span> <span class="p">)</span> <span class="o">?</span>
+                    <span class="nx">max</span> <span class="o">:</span>
+                    <span class="nx">value</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/** </span>
+<span class="cm">     * Validates new values assigned to &lt;code&gt;axis&lt;/code&gt; attribute.</span>
+<span class="cm">     * Acceptable values are &quot;x&quot; and &quot;y&quot;.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _validateNewAxis</span>
+<span class="cm">     * @param value { String } proposed value</span>
+<span class="cm">     * @return { Boolean } True if value is &quot;x&quot; or &quot;y&quot;</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_validateNewAxis</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">value</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">value</span> <span class="o">===</span> <span class="s1">&#39;x&#39;</span> <span class="o">||</span> <span class="nx">value</span> <span class="o">===</span> <span class="s1">&#39;y&#39;</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Discover the appropriate axis to associate the value to based on the</span>
+<span class="cm">     * the assignment of &lt;code&gt;stickX&lt;/code&gt; or &lt;code&gt;stickY&lt;/code&gt; attributes</span>
+<span class="cm">     * in the DDConstrained plugin.  If neither are set, defaults to &quot;x&quot;.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _initAxis</span>
+<span class="cm">     * @return { String } &quot;x&quot; or &quot;y&quot;</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_defaultAxis</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">HOST</span> <span class="p">).</span><span class="nx">con</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="s1">&#39;stickY&#39;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">?</span> <span class="s2">&quot;y&quot;</span> <span class="o">:</span> <span class="s2">&quot;x&quot;</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Calculate the value from the current Drag element&#39;s position.  This is</span>
+<span class="cm">     * used to initialize the value attribute if it isn&#39;t set at construction.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _getValueFromPosition</span>
+<span class="cm">     * @return { mixed } Value as calculated from the node&#39;s current position</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_getValueFromPosition</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_key</span> <span class="o">=</span> <span class="nx">DDValue</span><span class="p">.</span><span class="nx">_AXIS_KEYS</span><span class="p">[</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="s1">&#39;axis&#39;</span> <span class="p">)</span> <span class="p">];</span>
+
+        <span class="kd">var</span> <span class="nx">xy</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">HOST</span> <span class="p">)</span>
+                    <span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">DRAG_NODE</span> <span class="p">).</span><span class="nx">getXY</span><span class="p">()[</span> <span class="k">this</span><span class="p">.</span><span class="nx">_key</span><span class="p">.</span><span class="nx">xyIndex</span> <span class="p">];</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_cacheOffset</span><span class="p">();</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_calculateFactor</span><span class="p">();</span>
+
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_offsetToValue</span><span class="p">(</span> <span class="nx">xy</span> <span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">},</span> <span class="p">{</span>
+
+    <span class="c1">// DDValue static properties</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Name of the plugin</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property DDValue.NAME</span>
+<span class="cm">     * @type {String}</span>
+<span class="cm">     * @readonly</span>
+<span class="cm">     * @static</span>
+<span class="cm">     * @default &quot;ddValue&quot;</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">NAME</span><span class="o">:</span> <span class="s1">&#39;ddValue&#39;</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     *</span>
+<span class="cm">     * Namespace for the plugin</span>
+<span class="cm">     * @type {String}</span>
+<span class="cm">     * @default &quot;val&quot;</span>
+<span class="cm">     * @static</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">NS</span><span class="o">:</span> <span class="s1">&#39;val&#39;</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Object property names used for respective X and Y axis accessors (e.g.</span>
+<span class="cm">     * &amp;quot;width&amp;quot; vs. &amp;quot;height&amp;quot; for referencing the</span>
+<span class="cm">     * constraining element&#39;s appropriate dimension.)</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property DDValue._AXIS_KEYS</span>
+<span class="cm">     * @type Object</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">_AXIS_KEYS</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="nx">x</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="nx">offsetEdge</span>    <span class="o">:</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span>
+            <span class="nx">farEdge</span>       <span class="o">:</span> <span class="s1">&#39;right&#39;</span><span class="p">,</span>
+            <span class="nx">xyIndex</span>       <span class="o">:</span> <span class="mi">0</span>
+        <span class="p">},</span>
+        <span class="nx">y</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="nx">offsetEdge</span>    <span class="o">:</span> <span class="s1">&#39;top&#39;</span><span class="p">,</span>
+            <span class="nx">farEdge</span>       <span class="o">:</span> <span class="s1">&#39;bottom&#39;</span><span class="p">,</span>
+            <span class="nx">xyIndex</span>       <span class="o">:</span> <span class="mi">1</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Plugin attributes.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property ATTRS</span>
+<span class="cm">     * @type {Object}</span>
+<span class="cm">     * @static</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+        <span class="cm">/**</span>
+<span class="cm">         * The host Drag instance.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute host</span>
+<span class="cm">         * @type { Object }</span>
+<span class="cm">         * @writeOnce</span>
+<span class="cm">         */</span>
+        <span class="nx">host</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">writeOnce</span><span class="o">:</span> <span class="kc">true</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * Which movement axis to monitor for value association.  Allowable</span>
+<span class="cm">         * values are &amp;quot;x&amp;quot; and &amp;quot;y&amp;quot;.  This will default based</span>
+<span class="cm">         * on the host Drag instance&#39;s configured &lt;code&gt;stickX&lt;/code&gt; or</span>
+<span class="cm">         * &lt;code&gt;stickY&lt;/code&gt; (via DDConstrained config), or &amp;quot;x&amp;quot; if</span>
+<span class="cm">         * neither is defined.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute axis</span>
+<span class="cm">         * @type { String }</span>
+<span class="cm">         * @writeOnce</span>
+<span class="cm">         */</span>
+        <span class="nx">axis</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">valueFn</span>  <span class="o">:</span> <span class="s1">&#39;_defaultAxis&#39;</span><span class="p">,</span>
+            <span class="nx">writeOnce</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">validator</span><span class="o">:</span> <span class="s1">&#39;_validateNewAxis&#39;</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * The value associated with the farthest top, left position of the</span>
+<span class="cm">         * Drag element within its constraining element.  Can be greater than</span>
+<span class="cm">         * the configured &lt;code&gt;max&lt;/code&gt; if you want values to increase from</span>
+<span class="cm">         * right-to-left or bottom-to-top.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute min</span>
+<span class="cm">         * @type { Number }</span>
+<span class="cm">         * @default 0</span>
+<span class="cm">         */</span>
+        <span class="nx">min</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span>    <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nx">validator</span><span class="o">:</span> <span class="s1">&#39;_validateNewMin&#39;</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * The value associated with the farthest bottom, right position of the</span>
+<span class="cm">         * Drag element within its constraining element.  Can be less than</span>
+<span class="cm">         * the configured &lt;code&gt;min&lt;/code&gt; if you want values to increase from</span>
+<span class="cm">         * right-to-left or bottom-to-top.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute max</span>
+<span class="cm">         * @type { Number }</span>
+<span class="cm">         * @default 100</span>
+<span class="cm">         */</span>
+        <span class="nx">max</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span>    <span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+            <span class="nx">validator</span><span class="o">:</span> <span class="s1">&#39;_validateNewMax&#39;</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * The value associated with the Drag element&#39;s current position along</span>
+<span class="cm">         * the axis configured in &lt;code&gt;axis&lt;/code&gt;.  Defaults to the</span>
+<span class="cm">         * value inferred from the Drag element&#39;s current position.  Specifying</span>
+<span class="cm">         * value in the constructor will move the Drag node to the position</span>
+<span class="cm">         * that corresponds to the supplied value.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute value</span>
+<span class="cm">         * @type { Number }</span>
+<span class="cm">         * @default (inferred from current Drag position)</span>
+<span class="cm">         */</span>
+        <span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">valueFn</span>  <span class="o">:</span> <span class="s1">&#39;_getValueFromPosition&#39;</span><span class="p">,</span>
+            <span class="nx">validator</span><span class="o">:</span> <span class="s1">&#39;_validateNewValue&#39;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dd-constrain&#39;</span><span class="p">]});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "DD.DDM.html#property__active", "access": "", "host": "DD.DDM", "type": "property", "name": "_active"}, {"url": "DD.DDM.html#property_activeDrag", "access": "", "host": "DD.DDM", "type": "property", "name": "activeDrag"}, {"url": "DD.DDM.html#property_activeDrop", "access": "", "host": "DD.DDM", "type": "property", "name": "activeDrop"}, {"url": "DD.Drag.html#config_activeHandle", "access": "", "host": "DD.Drag", "type": "config", "name": "activeHandle"}, {"url": "DD.Drag.html#event_activeHandleChange", "access": "", "host": "DD.Drag", "type": "event", "name": "activeHandleChange"}, {"url": "DD.Drag.html#property_actXY", "access": "", "host": "DD.Drag", "type": "property", "name": "actXY"}, {"url": "DD.Drag.html#method_addHandle", "access": "", "host": "DD.Drag", "type": "method", "name": "addHandle"}, {"url": "DD.Drag.html#method_addInvalid", "access": "", "host": "DD.Drag", "type": "method", "name": "addInvalid"}, {"url": "DD.Drag.html#method_addToGroup", "access": "", "host": "DD.Drag", "type": "method", "name": "addToGroup"}, {"url": "DD.Drop.html#method_addToGroup", "access": "", "host": "DD.Drop", "type": "method", "name": "addToGroup"}, {"url": "Plugin.DDConstrained.html#method_align", "access": "", "host": "Plugin.DDConstrained", "type": "method", "name": "align"}, {"url": "DD.Scroll.html#method_align", "access": "", "host": "DD.Scroll", "type": "method", "name": "align"}, {"url": "Plugin.DDProxy.html#config_borderStyle", "access": "", "host": "Plugin.DDProxy", "type": "config", "name": "borderStyle"}, {"url": "Plugin.DDProxy.html#event_borderStyleChange", "access": "", "host": "Plugin.DDProxy", "type": "event", "name": "borderStyleChange"}, {"url": "DD.Drag.html#config_bubbles", "access": "", "host": "DD.Drag", "type": "config", "name": "bubbles"}, {"url": "DD.Drop.html#config_bubbles", "access": "", "host": "DD.Drop", "type": "config", "name": "bubbles"}, {"url": "DD.Drag.html#event_bubblesChange", "access": "", "host": "DD.Drag", "type": "event", "name": "bubblesChange"}, {"url": "DD.Drop.html#event_bubblesChange", "access": "", "host": "DD.Drop", "type": "event", "name": "bubblesChange"}, {"url": "DD.Scroll.html#config_buffer", "access": "", "host": "DD.Scroll", "type": "config", "name": "buffer"}, {"url": "DD.Scroll.html#event_bufferChange", "access": "", "host": "DD.Scroll", "type": "event", "name": "bufferChange"}, {"url": "Plugin.DDConstrained.html#config_cacheRegion", "access": "", "host": "Plugin.DDConstrained", "type": "config", "name": "cacheRegion"}, {"url": "Plugin.DDConstrained.html#event_cacheRegionChange", "access": "", "host": "Plugin.DDConstrained", "type": "event", "name": "cacheRegionChange"}, {"url": "DD.DDM.html#method_clearCache", "access": "", "host": "DD.DDM", "type": "method", "name": "clearCache"}, {"url": "DD.DDM.html#config_clickPixelThresh", "access": "", "host": "DD.DDM", "type": "config", "name": "clickPixelThresh"}, {"url": "DD.Drag.html#config_clickPixelThresh", "access": "", "host": "DD.Drag", "type": "config", "name": "clickPixelThresh"}, {"url": "DD.DDM.html#event_clickPixelThreshChange", "access": "", "host": "DD.DDM", "type": "event", "name": "clickPixelThreshChange"}, {"url": "DD.Drag.html#event_clickPixelThreshChange", "access": "", "host": "DD.Drag", "type": "event", "name": "clickPixelThreshChange"}, {"url": "DD.DDM.html#config_clickTimeThresh", "access": "", "host": "DD.DDM", "type": "config", "name": "clickTimeThresh"}, {"url": "DD.Drag.html#config_clickTimeThresh", "access": "", "host": "DD.Drag", "type": "config", "name": "clickTimeThresh"}, {"url": "DD.DDM.html#event_clickTimeThreshChange", "access": "", "host": "DD.DDM", "type": "event", "name": "clickTimeThreshChange"}, {"url": "DD.Drag.html#event_clickTimeThreshChange", "access": "", "host": "DD.Drag", "type": "event", "name": "clickTimeThreshChange"}, {"url": "Plugin.DDConstrained.html#config_constrain", "access": "", "host": "Plugin.DDConstrained", "type": "config", "name": "constrain"}, {"url": "Plugin.DDConstrained.html#config_constrain2node", "access": "", "host": "Plugin.DDConstrained", "type": "config", "name": "constrain2node"}, {"url": "Plugin.DDConstrained.html#event_constrain2nodeChange", "access": "", "host": "Plugin.DDConstrained", "type": "event", "name": "constrain2nodeChange"}, {"url": "Plugin.DDConstrained.html#config_constrain2region", "access": "", "host": "Plugin.DDConstrained", "type": "config", "name": "constrain2region"}, {"url": "Plugin.DDConstrained.html#event_constrain2regionChange", "access": "", "host": "Plugin.DDConstrained", "type": "event", "name": "constrain2regionChange"}, {"url": "Plugin.DDConstrained.html#config_constrain2view", "access": "", "host": "Plugin.DDConstrained", "type": "config", "name": "constrain2view"}, {"url": "Plugin.DDConstrained.html#event_constrain2viewChange", "access": "", "host": "Plugin.DDConstrained", "type": "event", "name": "constrain2viewChange"}, {"url": "Plugin.DDConstrained.html#event_constrainChange", "access": "", "host": "Plugin.DDConstrained", "type": "event", "name": "constrainChange"}, {"url": "DD.Delegate.html#config_container", "access": "", "host": "DD.Delegate", "type": "config", "name": "container"}, {"url": "DD.Delegate.html#event_containerChange", "access": "", "host": "DD.Delegate", "type": "event", "name": "containerChange"}, {"url": "DD.Delegate.html#method_createDrop", "access": "", "host": "DD.Delegate", "type": "method", "name": "createDrop"}, {"url": "DD.DDM.html#property_CSS_PREFIX", "access": "", "host": "DD.DDM", "type": "property", "name": "CSS_PREFIX"}, {"url": "DD.Delegate.html#config_currentNode", "access": "", "host": "DD.Delegate", "type": "config", "name": "currentNode"}, {"url": "DD.Delegate.html#event_currentNodeChange", "access": "", "host": "DD.Delegate", "type": "event", "name": "currentNodeChange"}, {"url": "DD.Drag.html#config_data", "access": "", "host": "DD.Drag", "type": "config", "name": "data"}, {"url": "DD.Drag.html#event_dataChange", "access": "", "host": "DD.Drag", "type": "event", "name": "dataChange"}, {"url": "DD.Delegate.html#property_dd", "access": "", "host": "DD.Delegate", "type": "property", "name": "dd"}, {"url": "DD.DDM.html#event_ddm:end", "access": "", "host": "DD.DDM", "type": "event", "name": "ddm:end"}, {"url": "DD.DDM.html#event_ddm:start", "access": "", "host": "DD.DDM", "type": "event", "name": "ddm:start"}, {"url": "DD.Drag.html#property_deltaXY", "access": "", "host": "DD.Drag", "type": "property", "name": "deltaXY"}, {"url": "DD.Drag.html#event_drag:addHandle", "access": "", "host": "DD.Drag", "type": "event", "name": "drag:addHandle"}, {"url": "DD.Drag.html#event_drag:addInvalid", "access": "", "host": "DD.Drag", "type": "event", "name": "drag:addInvalid"}, {"url": "DD.Drag.html#event_drag:afterMouseDown", "access": "", "host": "DD.Drag", "type": "event", "name": "drag:afterMouseDown"}, {"url": "DD.Drag.html#event_drag:align", "access": "", "host": "DD.Drag", "type": "event", "name": "drag:align"}, {"url": "DD.Drag.html#event_drag:drag", "access": "", "host": "DD.Drag", "type": "event", "name": "drag:drag"}, {"url": "DD.Drag.html#event_drag:drophit", "access": "", "host": "DD.Drag", "type": "event", "name": "drag:drophit"}, {"url": "DD.Drag.html#event_drag:dropmiss", "access": "", "host": "DD.Drag", "type": "event", "name": "drag:dropmiss"}, {"url": "DD.Drag.html#event_drag:end", "access": "", "host": "DD.Drag", "type": "event", "name": "drag:end"}, {"url": "DD.Drag.html#event_drag:enter", "access": "", "host": "DD.Drag", "type": "event", "name": "drag:enter"}, {"url": "DD.Drag.html#event_drag:exit", "access": "", "host": "DD.Drag", "type": "event", "name": "drag:exit"}, {"url": "DD.Drag.html#event_drag:mouseDown", "access": "", "host": "DD.Drag", "type": "event", "name": "drag:mouseDown"}, {"url": "DD.Drag.html#event_drag:over", "access": "", "host": "DD.Drag", "type": "event", "name": "drag:over"}, {"url": "DD.Drag.html#event_drag:removeHandle", "access": "", "host": "DD.Drag", "type": "event", "name": "drag:removeHandle"}, {"url": "DD.Drag.html#event_drag:removeInvalid", "access": "", "host": "DD.Drag", "type": "event", "name": "drag:removeInvalid"}, {"url": "DD.Drag.html#event_drag:start", "access": "", "host": "DD.Drag", "type": "event", "name": "drag:start"}, {"url": "DD.Delegate.html#config_dragConfig", "access": "", "host": "DD.Delegate", "type": "config", "name": "dragConfig"}, {"url": "DD.Delegate.html#event_dragConfigChange", "access": "", "host": "DD.Delegate", "type": "event", "name": "dragConfigChange"}, {"url": "DD.DDM.html#config_dragCursor", "access": "", "host": "DD.DDM", "type": "config", "name": "dragCursor"}, {"url": "DD.DDM.html#event_dragCursorChange", "access": "", "host": "DD.DDM", "type": "event", "name": "dragCursorChange"}, {"url": "DD.Drag.html#config_dragging", "access": "", "host": "DD.Drag", "type": "config", "name": "dragging"}, {"url": "DD.Drag.html#event_draggingChange", "access": "", "host": "DD.Drag", "type": "event", "name": "draggingChange"}, {"url": "DD.DDM.html#config_dragMode", "access": "", "host": "DD.DDM", "type": "config", "name": "dragMode"}, {"url": "DD.Drag.html#config_dragMode", "access": "", "host": "DD.Drag", "type": "config", "name": "dragMode"}, {"url": "DD.DDM.html#event_dragModeChange", "access": "", "host": "DD.DDM", "type": "event", "name": "dragModeChange"}, {"url": "DD.Drag.html#event_dragModeChange", "access": "", "host": "DD.Drag", "type": "event", "name": "dragModeChange"}, {"url": "DD.Drag.html#config_dragNode", "access": "", "host": "DD.Drag", "type": "config", "name": "dragNode"}, {"url": "DD.Delegate.html#config_dragNode", "access": "", "host": "DD.Delegate", "type": "config", "name": "dragNode"}, {"url": "DD.Drag.html#event_dragNodeChange", "access": "", "host": "DD.Drag", "type": "event", "name": "dragNodeChange"}, {"url": "DD.Delegate.html#event_dragNodeChange", "access": "", "host": "DD.Delegate", "type": "event", "name": "dragNodeChange"}, {"url": "DD.Drop.html#event_drop:enter", "access": "", "host": "DD.Drop", "type": "event", "name": "drop:enter"}, {"url": "DD.Drop.html#event_drop:exit", "access": "", "host": "DD.Drop", "type": "event", "name": "drop:exit"}, {"url": "DD.Drop.html#event_drop:hit", "access": "", "host": "DD.Drop", "type": "event", "name": "drop:hit"}, {"url": "DD.Drop.html#event_drop:over", "access": "", "host": "DD.Drop", "type": "event", "name": "drop:over"}, {"url": "DD.Drag.html#method_end", "access": "", "host": "DD.Drag", "type": "method", "name": "end"}, {"url": "DD.Scroll.html#method_end", "access": "", "host": "DD.Scroll", "type": "method", "name": "end"}, {"url": "DD.DDM.html#method_getBestMatch", "access": "", "host": "DD.DDM", "type": "method", "name": "getBestMatch"}, {"url": "DD.DDM.html#method_getDelegate", "access": "", "host": "DD.DDM", "type": "method", "name": "getDelegate"}, {"url": "DD.DDM.html#method_getDrag", "access": "", "host": "DD.DDM", "type": "method", "name": "getDrag"}, {"url": "DD.DDM.html#method_getDrop", "access": "", "host": "DD.DDM", "type": "method", "name": "getDrop"}, {"url": "DD.DDM.html#method_getNode", "access": "", "host": "DD.DDM", "type": "method", "name": "getNode"}, {"url": "Plugin.DDConstrained.html#method_getRegion", "access": "", "host": "Plugin.DDConstrained", "type": "method", "name": "getRegion"}, {"url": "DD.Drag.html#config_groups", "access": "", "host": "DD.Drag", "type": "config", "name": "groups"}, {"url": "DD.Drop.html#config_groups", "access": "", "host": "DD.Drop", "type": "config", "name": "groups"}, {"url": "DD.Drag.html#event_groupsChange", "access": "", "host": "DD.Drag", "type": "event", "name": "groupsChange"}, {"url": "DD.Drop.html#event_groupsChange", "access": "", "host": "DD.Drop", "type": "event", "name": "groupsChange"}, {"url": "Plugin.DDConstrained.html#config_gutter", "access": "", "host": "Plugin.DDConstrained", "type": "config", "name": "gutter"}, {"url": "Plugin.DDConstrained.html#event_gutterChange", "access": "", "host": "Plugin.DDConstrained", "type": "event", "name": "gutterChange"}, {"url": "DD.Drag.html#config_handles", "access": "", "host": "DD.Drag", "type": "config", "name": "handles"}, {"url": "DD.Delegate.html#config_handles", "access": "", "host": "DD.Delegate", "type": "config", "name": "handles"}, {"url": "DD.Drag.html#event_handlesChange", "access": "", "host": "DD.Drag", "type": "event", "name": "handlesChange"}, {"url": "DD.Delegate.html#event_handlesChange", "access": "", "host": "DD.Delegate", "type": "event", "name": "handlesChange"}, {"url": "Plugin.DDProxy.html#config_hideOnEnd", "access": "", "host": "Plugin.DDProxy", "type": "config", "name": "hideOnEnd"}, {"url": "Plugin.DDProxy.html#event_hideOnEndChange", "access": "", "host": "Plugin.DDProxy", "type": "event", "name": "hideOnEndChange"}, {"url": "DD.Scroll.html#config_horizontal", "access": "", "host": "DD.Scroll", "type": "config", "name": "horizontal"}, {"url": "DD.Scroll.html#event_horizontalChange", "access": "", "host": "DD.Scroll", "type": "event", "name": "horizontalChange"}, {"url": "DD.Scroll.html#config_host", "access": "", "host": "DD.Scroll", "type": "config", "name": "host"}, {"url": "DD.Scroll.html#event_hostChange", "access": "", "host": "DD.Scroll", "type": "event", "name": "hostChange"}, {"url": "DD.Drop.html#method_inGroup", "access": "", "host": "DD.Drop", "type": "method", "name": "inGroup"}, {"url": "Plugin.DDConstrained.html#method_inRegion", "access": "", "host": "Plugin.DDConstrained", "type": "method", "name": "inRegion"}, {"url": "DD.Delegate.html#config_invalid", "access": "", "host": "DD.Delegate", "type": "config", "name": "invalid"}, {"url": "DD.Delegate.html#event_invalidChange", "access": "", "host": "DD.Delegate", "type": "event", "name": "invalidChange"}, {"url": "DD.DDM.html#method_isOverTarget", "access": "", "host": "DD.DDM", "type": "method", "name": "isOverTarget"}, {"url": "DD.Delegate.html#config_lastNode", "access": "", "host": "DD.Delegate", "type": "config", "name": "lastNode"}, {"url": "DD.Delegate.html#event_lastNodeChange", "access": "", "host": "DD.Delegate", "type": "event", "name": "lastNodeChange"}, {"url": "DD.Drag.html#property_lastXY", "access": "", "host": "DD.Drag", "type": "property", "name": "lastXY"}, {"url": "DD.Drag.html#config_lock", "access": "", "host": "DD.Drag", "type": "config", "name": "lock"}, {"url": "DD.Drop.html#config_lock", "access": "", "host": "DD.Drop", "type": "config", "name": "lock"}, {"url": "DD.Drag.html#event_lockChange", "access": "", "host": "DD.Drag", "type": "event", "name": "lockChange"}, {"url": "DD.Drop.html#event_lockChange", "access": "", "host": "DD.Drop", "type": "event", "name": "lockChange"}, {"url": "DD.Drag.html#property_mouseXY", "access": "", "host": "DD.Drag", "type": "property", "name": "mouseXY"}, {"url": "DD.Drag.html#config_move", "access": "", "host": "DD.Drag", "type": "config", "name": "move"}, {"url": "DD.Drag.html#event_moveChange", "access": "", "host": "DD.Drag", "type": "event", "name": "moveChange"}, {"url": "Plugin.DDProxy.html#config_moveOnEnd", "access": "", "host": "Plugin.DDProxy", "type": "config", "name": "moveOnEnd"}, {"url": "Plugin.DDProxy.html#event_moveOnEndChange", "access": "", "host": "Plugin.DDProxy", "type": "event", "name": "moveOnEndChange"}, {"url": "Plugin.Drag.html#property_NAME", "access": "", "host": "Plugin.Drag", "type": "property", "name": "NAME"}, {"url": "Plugin.Drop.html#property_NAME", "access": "", "host": "Plugin.Drop", "type": "property", "name": "NAME"}, {"url": "DD.Drag.html#config_node", "access": "", "host": "DD.Drag", "type": "config", "name": "node"}, {"url": "Plugin.DDNodeScroll.html#config_node", "access": "", "host": "Plugin.DDNodeScroll", "type": "config", "name": "node"}, {"url": "DD.Drop.html#config_node", "access": "", "host": "DD.Drop", "type": "config", "name": "node"}, {"url": "DD.Drag.html#event_nodeChange", "access": "", "host": "DD.Drag", "type": "event", "name": "nodeChange"}, {"url": "Plugin.DDNodeScroll.html#event_nodeChange", "access": "", "host": "Plugin.DDNodeScroll", "type": "event", "name": "nodeChange"}, {"url": "DD.Drop.html#event_nodeChange", "access": "", "host": "DD.Drop", "type": "event", "name": "nodeChange"}, {"url": "DD.Delegate.html#config_nodes", "access": "", "host": "DD.Delegate", "type": "config", "name": "nodes"}, {"url": "DD.Delegate.html#event_nodesChange", "access": "", "host": "DD.Delegate", "type": "event", "name": "nodesChange"}, {"url": "DD.Drag.html#property_nodeXY", "access": "", "host": "DD.Drag", "type": "property", "name": "nodeXY"}, {"url": "Plugin.DDConstrained.html#property_NS", "access": "protected", "host": "Plugin.DDConstrained", "type": "property", "name": "NS"}, {"url": "Plugin.DDProxy.html#property_NS", "access": "protected", "host": "Plugin.DDProxy", "type": "property", "name": "NS"}, {"url": "Plugin.DDWindowScroll.html#property_NS", "access": "protected", "host": "Plugin.DDWindowScroll", "type": "property", "name": "NS"}, {"url": "Plugin.DDNodeScroll.html#property_NS", "access": "protected", "host": "Plugin.DDNodeScroll", "type": "property", "name": "NS"}, {"url": "Plugin.Drag.html#property_NS", "access": "", "host": "Plugin.Drag", "type": "property", "name": "NS"}, {"url": "Plugin.Drop.html#property_NS", "access": "", "host": "Plugin.Drop", "type": "property", "name": "NS"}, {"url": "DD.Drag.html#config_offsetNode", "access": "", "host": "DD.Drag", "type": "config", "name": "offsetNode"}, {"url": "DD.Drag.html#event_offsetNodeChange", "access": "", "host": "DD.Drag", "type": "event", "name": "offsetNodeChange"}, {"url": "DD.DDM.html#property_otherDrops", "access": "", "host": "DD.DDM", "type": "property", "name": "otherDrops"}, {"url": "DD.Delegate.html#config_over", "access": "", "host": "DD.Delegate", "type": "config", "name": "over"}, {"url": "DD.Delegate.html#event_overChange", "access": "", "host": "DD.Delegate", "type": "event", "name": "overChange"}, {"url": "DD.Drop.html#property_overTarget", "access": "", "host": "DD.Drop", "type": "property", "name": "overTarget"}, {"url": "DD.Drop.html#config_padding", "access": "", "host": "DD.Drop", "type": "config", "name": "padding"}, {"url": "DD.Drop.html#event_paddingChange", "access": "", "host": "DD.Drop", "type": "event", "name": "paddingChange"}, {"url": "DD.Scroll.html#config_parentScroll", "access": "", "host": "DD.Scroll", "type": "config", "name": "parentScroll"}, {"url": "DD.Scroll.html#event_parentScrollChange", "access": "", "host": "DD.Scroll", "type": "event", "name": "parentScrollChange"}, {"url": "Plugin.DDProxy.html#config_positionProxy", "access": "", "host": "Plugin.DDProxy", "type": "config", "name": "positionProxy"}, {"url": "Plugin.DDProxy.html#event_positionProxyChange", "access": "", "host": "Plugin.DDProxy", "type": "event", "name": "positionProxyChange"}, {"url": "DD.Drag.html#config_primaryButtonOnly", "access": "", "host": "DD.Drag", "type": "config", "name": "primaryButtonOnly"}, {"url": "DD.Drag.html#event_primaryButtonOnlyChange", "access": "", "host": "DD.Drag", "type": "event", "name": "primaryButtonOnlyChange"}, {"url": "DD.Drag.html#property_realXY", "access": "", "host": "DD.Drag", "type": "property", "name": "realXY"}, {"url": "DD.DDM.html#method_regDelegate", "access": "", "host": "DD.DDM", "type": "method", "name": "regDelegate"}, {"url": "DD.Drag.html#property_region", "access": "", "host": "DD.Drag", "type": "property", "name": "region"}, {"url": "DD.Drop.html#property_region", "access": "", "host": "DD.Drop", "type": "property", "name": "region"}, {"url": "DD.Drag.html#method_removeFromGroup", "access": "", "host": "DD.Drag", "type": "method", "name": "removeFromGroup"}, {"url": "DD.Drop.html#method_removeFromGroup", "access": "", "host": "DD.Drop", "type": "method", "name": "removeFromGroup"}, {"url": "DD.Drag.html#method_removeHandle", "access": "", "host": "DD.Drag", "type": "method", "name": "removeHandle"}, {"url": "DD.Drag.html#method_removeInvalid", "access": "", "host": "DD.Drag", "type": "method", "name": "removeInvalid"}, {"url": "Plugin.DDConstrained.html#method_resetCache", "access": "", "host": "Plugin.DDConstrained", "type": "method", "name": "resetCache"}, {"url": "Plugin.DDProxy.html#config_resizeFrame", "access": "", "host": "Plugin.DDProxy", "type": "config", "name": "resizeFrame"}, {"url": "Plugin.DDProxy.html#event_resizeFrameChange", "access": "", "host": "Plugin.DDProxy", "type": "event", "name": "resizeFrameChange"}, {"url": "DD.Scroll.html#config_scrollDelay", "access": "", "host": "DD.Scroll", "type": "config", "name": "scrollDelay"}, {"url": "DD.Scroll.html#event_scrollDelayChange", "access": "", "host": "DD.Scroll", "type": "event", "name": "scrollDelayChange"}, {"url": "DD.Drop.html#property_shim", "access": "", "host": "DD.Drop", "type": "property", "name": "shim"}, {"url": "DD.Drop.html#method_sizeShim", "access": "", "host": "DD.Drop", "type": "method", "name": "sizeShim"}, {"url": "DD.Drag.html#method_start", "access": "", "host": "DD.Drag", "type": "method", "name": "start"}, {"url": "DD.Scroll.html#method_start", "access": "", "host": "DD.Scroll", "type": "method", "name": "start"}, {"url": "DD.Drag.html#config_startCentered", "access": "", "host": "DD.Drag", "type": "config", "name": "startCentered"}, {"url": "DD.Drag.html#event_startCenteredChange", "access": "", "host": "DD.Drag", "type": "event", "name": "startCenteredChange"}, {"url": "DD.Drag.html#property_startXY", "access": "", "host": "DD.Drag", "type": "property", "name": "startXY"}, {"url": "Plugin.DDConstrained.html#config_stickX", "access": "", "host": "Plugin.DDConstrained", "type": "config", "name": "stickX"}, {"url": "Plugin.DDConstrained.html#event_stickXChange", "access": "", "host": "Plugin.DDConstrained", "type": "event", "name": "stickXChange"}, {"url": "Plugin.DDConstrained.html#config_stickY", "access": "", "host": "Plugin.DDConstrained", "type": "config", "name": "stickY"}, {"url": "Plugin.DDConstrained.html#event_stickYChange", "access": "", "host": "Plugin.DDConstrained", "type": "event", "name": "stickYChange"}, {"url": "DD.DDM.html#method_stopDrag", "access": "", "host": "DD.DDM", "type": "method", "name": "stopDrag"}, {"url": "DD.Drag.html#method_stopDrag", "access": "", "host": "DD.Drag", "type": "method", "name": "stopDrag"}, {"url": "DD.DDM.html#method_swapNode", "access": "", "host": "DD.DDM", "type": "method", "name": "swapNode"}, {"url": "DD.DDM.html#method_swapPosition", "access": "", "host": "DD.DDM", "type": "method", "name": "swapPosition"}, {"url": "DD.DDM.html#method_syncActiveShims", "access": "", "host": "DD.DDM", "type": "method", "name": "syncActiveShims"}, {"url": "DD.Delegate.html#method_syncTargets", "access": "", "host": "DD.Delegate", "type": "method", "name": "syncTargets"}, {"url": "DD.Drag.html#property_target", "access": "", "host": "DD.Drag", "type": "property", "name": "target"}, {"url": "DD.Drag.html#config_target", "access": "", "host": "DD.Drag", "type": "config", "name": "target"}, {"url": "DD.Delegate.html#config_target", "access": "", "host": "DD.Delegate", "type": "config", "name": "target"}, {"url": "DD.Drag.html#event_targetChange", "access": "", "host": "DD.Drag", "type": "event", "name": "targetChange"}, {"url": "DD.Delegate.html#event_targetChange", "access": "", "host": "DD.Delegate", "type": "event", "name": "targetChange"}, {"url": "DD.DDM.html#property_targets", "access": "", "host": "DD.DDM", "type": "property", "name": "targets"}, {"url": "DD.DDM.html#config_throttleTime", "access": "", "host": "DD.DDM", "type": "config", "name": "throttleTime"}, {"url": "DD.DDM.html#event_throttleTimeChange", "access": "", "host": "DD.DDM", "type": "event", "name": "throttleTimeChange"}, {"url": "Plugin.DDConstrained.html#config_tickX", "access": "", "host": "Plugin.DDConstrained", "type": "config", "name": "tickX"}, {"url": "Plugin.DDConstrained.html#config_tickXArray", "access": "", "host": "Plugin.DDConstrained", "type": "config", "name": "tickXArray"}, {"url": "Plugin.DDConstrained.html#event_tickXArrayChange", "access": "", "host": "Plugin.DDConstrained", "type": "event", "name": "tickXArrayChange"}, {"url": "Plugin.DDConstrained.html#event_tickXChange", "access": "", "host": "Plugin.DDConstrained", "type": "event", "name": "tickXChange"}, {"url": "Plugin.DDConstrained.html#config_tickY", "access": "", "host": "Plugin.DDConstrained", "type": "config", "name": "tickY"}, {"url": "Plugin.DDConstrained.html#config_tickYArray", "access": "", "host": "Plugin.DDConstrained", "type": "config", "name": "tickYArray"}, {"url": "Plugin.DDConstrained.html#event_tickYArrayChange", "access": "", "host": "Plugin.DDConstrained", "type": "event", "name": "tickYArrayChange"}, {"url": "Plugin.DDConstrained.html#event_tickYChange", "access": "", "host": "Plugin.DDConstrained", "type": "event", "name": "tickYChange"}, {"url": "DD.Scroll.html#method_toString", "access": "", "host": "DD.Scroll", "type": "method", "name": "toString"}, {"url": "DD.DDM.html#property_useHash", "access": "", "host": "DD.DDM", "type": "property", "name": "useHash"}, {"url": "DD.Drag.html#config_useShim", "access": "", "host": "DD.Drag", "type": "config", "name": "useShim"}, {"url": "DD.Drop.html#config_useShim", "access": "", "host": "DD.Drop", "type": "config", "name": "useShim"}, {"url": "DD.Drag.html#event_useShimChange", "access": "", "host": "DD.Drag", "type": "event", "name": "useShimChange"}, {"url": "DD.Drop.html#event_useShimChange", "access": "", "host": "DD.Drop", "type": "event", "name": "useShimChange"}, {"url": "DD.Drag.html#method_validClick", "access": "", "host": "DD.Drag", "type": "method", "name": "validClick"}, {"url": "DD.DDM.html#property_validDrops", "access": "", "host": "DD.DDM", "type": "property", "name": "validDrops"}, {"url": "DD.Scroll.html#config_vertical", "access": "", "host": "DD.Scroll", "type": "config", "name": "vertical"}, {"url": "DD.Scroll.html#event_verticalChange", "access": "", "host": "DD.Scroll", "type": "event", "name": "verticalChange"}, {"url": "DD.Scroll.html#config_windowScroll", "access": "", "host": "DD.Scroll", "type": "config", "name": "windowScroll"}, {"url": "Plugin.DDWindowScroll.html#config_windowScroll", "access": "", "host": "Plugin.DDWindowScroll", "type": "config", "name": "windowScroll"}, {"url": "DD.Scroll.html#event_windowScrollChange", "access": "", "host": "DD.Scroll", "type": "event", "name": "windowScrollChange"}, {"url": "Plugin.DDWindowScroll.html#event_windowScrollChange", "access": "", "host": "Plugin.DDWindowScroll", "type": "event", "name": "windowScrollChange"}];
+</script>
+</body>
+</html>

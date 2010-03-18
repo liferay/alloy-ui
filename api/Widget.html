@@ -1,0 +1,4026 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: widget  Widget   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			widget&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_widget.html" title="widget">widget</a>
+
+	                 <span class="separator">&gt;</span> <span class="classname">Widget</span> 
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class="selected"><a href="Widget.html" title="Widget">Widget</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-configuration">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-configuration-hd">
+										<span class="aui-widget-hd-text">Configuration Attributes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#config_boundingBox" title="boundingBox">boundingBox</a></li>
+												<li class=""><a href="#config_contentBox" title="contentBox">contentBox</a></li>
+												<li class=""><a href="#config_disabled" title="disabled">disabled</a></li>
+												<li class=""><a href="#config_focused" title="focused">focused</a></li>
+												<li class=""><a href="#config_height" title="height">height</a></li>
+												<li class=""><a href="#config_id" title="id">id</a></li>
+												<li class=""><a href="#config_render" title="render">render</a></li>
+												<li class=""><a href="#config_rendered" title="rendered">rendered</a></li>
+												<li class=""><a href="#config_srcNode" title="srcNode">srcNode</a></li>
+												<li class=""><a href="#config_strings" title="strings">strings</a></li>
+												<li class=""><a href="#config_tabIndex" title="tabIndex">tabIndex</a></li>
+												<li class=""><a href="#config_visible" title="visible">visible</a></li>
+												<li class=""><a href="#config_width" title="width">width</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-properties">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-properties-hd">
+										<span class="aui-widget-hd-text">Properties</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+				                                <li class=""><a href="#property_BOUNDING_TEMPLATE" title="BOUNDING_TEMPLATE">BOUNDING_TEMPLATE</a></li>
+
+				                                <li class=""><a href="#property_CONTENT_TEMPLATE" title="CONTENT_TEMPLATE">CONTENT_TEMPLATE</a></li>
+
+				                                <li class=""><a href="#property_DEF_PARENT_NODE" title="DEF_PARENT_NODE">DEF_PARENT_NODE</a></li>
+
+				                                <li class=""><a href="#property_DEF_UNIT" title="DEF_UNIT">DEF_UNIT</a></li>
+
+				                                <li class=""><a href="#property_UI_EVENTS" title="UI_EVENTS">UI_EVENTS</a></li>
+
+				                                <li class=""><a href="#property_Widget.ATTRS" title="Widget.ATTRS">Widget.ATTRS</a></li>
+
+				                                <li class=""><a href="#property_Widget.HTML_PARSER" title="Widget.HTML_PARSER">Widget.HTML_PARSER</a></li>
+
+				                                <li class=""><a href="#property_Widget.NAME" title="Widget.NAME">Widget.NAME</a></li>
+
+				                                <li class=""><a href="#property_Widget.UI_SRC" title="Widget.UI_SRC">Widget.UI_SRC</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-methods">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-methods-hd">
+										<span class="aui-widget-hd-text">Methods</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+				                               <li class="protected"><a href="#method__applyParsedConfig" title="_applyParsedConfig">_applyParsedConfig</a></li>
+				                               <li class="protected"><a href="#method__bindDOM" title="_bindDOM">_bindDOM</a></li>
+				                               <li class="protected"><a href="#method__bindUI" title="_bindUI">_bindUI</a></li>
+				                               <li class="protected"><a href="#method__defRenderFn" title="_defRenderFn">_defRenderFn</a></li>
+				                               <li class="protected"><a href="#method__getSrcNode" title="_getSrcNode">_getSrcNode</a></li>
+				                               <li class="protected"><a href="#method__getUIEventNode" title="_getUIEventNode">_getUIEventNode</a></li>
+				                               <li class="protected"><a href="#method__guid" title="_guid">_guid</a></li>
+				                               <li class="protected"><a href="#method__onDocFocus" title="_onDocFocus">_onDocFocus</a></li>
+				                               <li class="protected"><a href="#method__onDocMouseDown" title="_onDocMouseDown">_onDocMouseDown</a></li>
+				                               <li class="protected"><a href="#method__removeLoadingClassNames" title="_removeLoadingClassNames">_removeLoadingClassNames</a></li>
+				                               <li class="protected"><a href="#method__renderBoxClassNames" title="_renderBoxClassNames">_renderBoxClassNames</a></li>
+				                               <li class="protected"><a href="#method__renderUI" title="_renderUI">_renderUI</a></li>
+				                               <li class="protected"><a href="#method__strSetter" title="_strSetter">_strSetter</a></li>
+				                               <li class="protected"><a href="#method__syncUI" title="_syncUI">_syncUI</a></li>
+				                               <li class="protected"><a href="#method__uiSetDisabled" title="_uiSetDisabled">_uiSetDisabled</a></li>
+				                               <li class="protected"><a href="#method__uiSetFocused" title="_uiSetFocused">_uiSetFocused</a></li>
+				                               <li class="protected"><a href="#method__uiSetHeight" title="_uiSetHeight">_uiSetHeight</a></li>
+				                               <li class="protected"><a href="#method__uiSetTabIndex" title="_uiSetTabIndex">_uiSetTabIndex</a></li>
+				                               <li class="protected"><a href="#method__uiSetVisible" title="_uiSetVisible">_uiSetVisible</a></li>
+				                               <li class="protected"><a href="#method__uiSetWidth" title="_uiSetWidth">_uiSetWidth</a></li>
+				                               <li class="protected"><a href="#method__uiSizeCB" title="_uiSizeCB">_uiSizeCB</a></li>
+				                               <li class="protected"><a href="#method__unbindDOM" title="_unbindDOM">_unbindDOM</a></li>
+				                               <li class="protected"><a href="#method__unbindUI" title="_unbindUI">_unbindUI</a></li>
+				                               <li class="protected"><a href="#method__validTabIndex" title="_validTabIndex">_validTabIndex</a></li>
+				                               <li class="protected"><a href="#method_bindUI" title="bindUI">bindUI</a></li>
+				                               <li class=""><a href="#method_blur" title="blur">blur</a></li>
+				                               <li class="protected"><a href="#method_destructor" title="destructor">destructor</a></li>
+				                               <li class=""><a href="#method_disable" title="disable">disable</a></li>
+				                               <li class=""><a href="#method_enable" title="enable">enable</a></li>
+				                               <li class=""><a href="#method_focus" title="focus">focus</a></li>
+				                               <li class=""><a href="#method_getClassName" title="getClassName">getClassName</a></li>
+				                               <li class=""><a href="#method_getSkinName" title="getSkinName">getSkinName</a></li>
+				                               <li class=" deprecated"><a href="#method_getString" title="getString">getString</a></li>
+				                               <li class=""><a href="#method_hide" title="hide">hide</a></li>
+				                               <li class="protected"><a href="#method_initializer" title="initializer">initializer</a></li>
+				                               <li class=""><a href="#method_render" title="render">render</a></li>
+				                               <li class="protected"><a href="#method_renderer" title="renderer">renderer</a></li>
+				                               <li class="protected"><a href="#method_renderUI" title="renderUI">renderUI</a></li>
+				                               <li class=""><a href="#method_show" title="show">show</a></li>
+				                               <li class="protected"><a href="#method_syncUI" title="syncUI">syncUI</a></li>
+				                               <li class=""><a href="#method_toString" title="toString">toString</a></li>
+				                               <li class=""><a href="#method_Widget.getByNode" title="Widget.getByNode">Widget.getByNode</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-events">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-events-hd">
+										<span class="aui-widget-hd-text">Events</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#event_boundingBoxChange" title="boundingBoxChange">boundingBoxChange</a></li>
+												<li class=""><a href="#event_contentBoxChange" title="contentBoxChange">contentBoxChange</a></li>
+												<li class=""><a href="#event_disabledChange" title="disabledChange">disabledChange</a></li>
+												<li class=""><a href="#event_focusedChange" title="focusedChange">focusedChange</a></li>
+												<li class=""><a href="#event_heightChange" title="heightChange">heightChange</a></li>
+												<li class=""><a href="#event_idChange" title="idChange">idChange</a></li>
+												<li class=""><a href="#event_renderChange" title="renderChange">renderChange</a></li>
+												<li class=""><a href="#event_renderedChange" title="renderedChange">renderedChange</a></li>
+												<li class=""><a href="#event_srcNodeChange" title="srcNodeChange">srcNodeChange</a></li>
+												<li class=""><a href="#event_stringsChange" title="stringsChange">stringsChange</a></li>
+												<li class=""><a href="#event_tabIndexChange" title="tabIndexChange">tabIndexChange</a></li>
+												<li class=""><a href="#event_visibleChange" title="visibleChange">visibleChange</a></li>
+												<li class=""><a href="#event_widget:contentUpdate" title="widget:contentUpdate">widget:contentUpdate</a></li>
+												<li class=""><a href="#event_widget:render" title="widget:render">widget:render</a></li>
+												<li class=""><a href="#event_widthChange" title="widthChange">widthChange</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="widget-base-debug.js.html" title="widget-base-debug.js">widget-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="widget-base-min.js.html" title="widget-base-min.js">widget-base-min.js</a></li>
+
+
+			                                <li class=""><a href="widget-parent-debug.js.html" title="widget-parent-debug.js">widget-parent-debug.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<h2>
+								
+
+								
+
+								
+
+								Class <b property="yui:name">Widget</b>
+
+									<span class="extends">- extends <a href="Base.html" title="Base">Base</a></span>
+
+							</h2>
+
+							<!-- class tree goes here -->
+								<dl class="subclasses" rel="yui:subclasses">
+									<dt>Known Subclasses:</dt>
+									<dd>
+											<span rel="yui:subclass" resource="TabView.html">
+												<a href="TabView.html" property="yui:name" title="TabView">TabView</a>
+											</span>
+											<span rel="yui:subclass" resource="Tab.html">
+												<a href="Tab.html" property="yui:name" title="Tab">Tab</a>
+											</span>
+											<span rel="yui:subclass" resource="SliderBase.html">
+												<a href="SliderBase.html" property="yui:name" title="SliderBase">SliderBase</a>
+											</span>
+											<span rel="yui:subclass" resource="Overlay.html">
+												<a href="Overlay.html" property="yui:name" title="Overlay">Overlay</a>
+											</span>
+											<span rel="yui:subclass" resource="Component.html">
+												<a href="Component.html" property="yui:name" title="Component">Component</a>
+											</span>
+											<span rel="yui:subclass" resource="Console.html">
+												<a href="Console.html" property="yui:name" title="Console">Console</a>
+											</span>
+											<span rel="yui:subclass" resource="Plugin.Console.html">
+												<a href="Plugin.Console.html" property="yui:name" title="Plugin.Console">Plugin.Console</a>
+											</span>
+									</dd>
+							   </dl>
+
+
+
+							<div class="summary description" property="yui:description">
+								A base class for widgets, providing:
+<ul>
+<li>The render lifecycle method, in addition to the init and destroy 
+lifecycle methods provide by Base</li>
+<li>Abstract methods to support consistent MVC structure across 
+widgets: renderer, renderUI, bindUI, syncUI</li>
+<li>Support for common widget attributes, such as boundingBox, contentBox, visible, 
+disabled, focused, strings</li>
+</ul>
+							</div>
+
+								<div class="section constructor details" rel="yui:constructor" resource="#constructor">
+									<h3 id="constructor">Constructor</h3>
+
+									<div class="content">
+										<div class="detail">
+											<strong property="yui:name">Widget</strong>
+
+											<code>
+												(
+
+													
+															
+															config
+												)
+											</code>
+
+											<div class="description">
+													<dl rel="yui:parameters">
+														<dt>Parameters:</dt>
+															<dd rel="yui:parameter">
+																<code><span property="yui:name">config</span>
+																&lt;<span property="yui:type">Object</span>&gt;
+																</code>
+
+																<span property="yui:description">  Object literal specifying widget configuration properties.</span>
+															</dd>
+													</dl>
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+							<div rel="yui:properties" resource="#properties">
+
+								<div class="section field details">
+
+									<h3 id="properties">Properties</h3>
+
+									<div class="content">
+
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_BOUNDING_TEMPLATE">
+
+											<h4>
+												<a name="property_BOUNDING_TEMPLATE" property="yui:name">BOUNDING_TEMPLATE</a>
+												- <code><span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Property defining the markup template for bounding box.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_CONTENT_TEMPLATE">
+
+											<h4>
+												<a name="property_CONTENT_TEMPLATE" property="yui:name">CONTENT_TEMPLATE</a>
+												- <code><span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Property defining the markup template for content box. If your Widget doesn't
+need the dual boundingBox/contentBox structure, set CONTENT_TEMPLATE to null,
+and contentBox and boundingBox will both point to the same Node.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_DEF_PARENT_NODE">
+
+											<h4>
+												<a name="property_DEF_PARENT_NODE" property="yui:name">DEF_PARENT_NODE</a>
+												- <code><span property="yui:type">String | Node</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Default node to render the bounding box to. If not set,
+will default to the current document body.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_DEF_UNIT">
+
+											<h4>
+												<a name="property_DEF_UNIT" property="yui:name">DEF_UNIT</a>
+												- <code><span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Default unit to use for dimension values
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_UI_EVENTS">
+
+											<h4>
+												<a name="property_UI_EVENTS" property="yui:name">UI_EVENTS</a>
+												- <code><span property="yui:type">Object</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Map of DOM events that should be fired as Custom Events by the  
+Widget instance.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_Widget.ATTRS">
+
+											<h4>
+												<a name="property_Widget.ATTRS" property="yui:name">Widget.ATTRS</a>
+												- <code>static <span property="yui:type">Object</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Static property used to define the default attribute 
+configuration for the Widget.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_Widget.HTML_PARSER">
+
+											<h4>
+												<a name="property_Widget.HTML_PARSER" property="yui:name">Widget.HTML_PARSER</a>
+												- <code>static <span property="yui:type">Object</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Object hash, defining how attribute values are to be parsed from
+markup contained in the widget's content box. e.g.:
+<pre>
+{
+// Set single Node references using selector syntax 
+// (selector is run through node.one)
+titleNode: "span.yui-title",
+// Set NodeList references using selector syntax 
+// (array indicates selector is to be run through node.all)
+listNodes: ["li.yui-item"],
+// Set other attribute types, using a parse function. 
+// Context is set to the widget instance.
+label: function(contentBox) {
+return contentBox.one("span.title").get("innerHTML");
+}
+}
+</pre>
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_Widget.NAME">
+
+											<h4>
+												<a name="property_Widget.NAME" property="yui:name">Widget.NAME</a>
+												- <code>static <span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Static property provides a string to identify the class.
+<p>
+Currently used to apply class identifiers to the bounding box 
+and to classify events fired by the widget.
+</p>
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_Widget.UI_SRC">
+
+											<h4>
+												<a name="property_Widget.UI_SRC" property="yui:name">Widget.UI_SRC</a>
+												- <code>static final <span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Constant used to identify state changes originating from
+the DOM (as opposed to the JavaScript model).
+												</div>
+											</div>
+
+
+
+
+											</div>
+									</div>
+								</div>
+
+								<div rel="yui:inheritance">
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Attribute.html">
+
+										<h4>
+											Properties inherited from <a href="Attribute.html" property="yui:name" title="Attribute">Attribute</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Base.html">
+
+										<h4>
+											Properties inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+
+													
+													
+
+													<div class="deprecated" rel="yui:property" resource="Base.html#property_name">
+													<a href="Base.html#property_name" property="yui:name" title="name">name</a>
+													</div>
+												
+											</code>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div rel="yui:attributes" resource="#configattributes">
+
+									<div class="section field details">
+
+										<h3 id="configattributes">Configuration Attributes</h3>
+
+										<div class="content">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_boundingBox">
+
+													<h4>
+														<a name="config_boundingBox">boundingBox</a>
+														<code>- writeonce <span property="yui:type">String | Node</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The outermost DOM node for the Widget, used for sizing and positioning 
+of a Widget as well as a containing element for any decorator elements used 
+for skinning.
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_contentBox">
+
+													<h4>
+														<a name="config_contentBox">contentBox</a>
+														<code>- writeonce <span property="yui:type">String | Node</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															A DOM node that is a direct descendent of a Widget's bounding box that 
+houses its content.
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_disabled">
+
+													<h4>
+														<a name="config_disabled">disabled</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Boolean indicating if the Widget should be disabled. The disabled implementation
+is left to the specific classes extending widget.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_focused">
+
+													<h4>
+														<a name="config_focused">focused</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Boolean indicating if the Widget, or one of its descendants, 
+has focus.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_height">
+
+													<h4>
+														<a name="config_height">height</a>
+														<code>- <span property="yui:type">{String | Number}</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															String with units, or number, representing the height of the Widget. If a number is provided,
+the default unit, defined by the Widgets DEF_UNIT, property is used.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>EMPTY_STR</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_id">
+
+													<h4>
+														<a name="config_id">id</a>
+														<code>- writeonce <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Generated using guid()</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_render">
+
+													<h4>
+														<a name="config_render">render</a>
+														<code>- writeonce <span property="yui:type">boolean | Node</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Whether or not to render the widget automatically after init, and optionally, to which parent node.
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_rendered">
+
+													<h4>
+														<a name="config_rendered">rendered</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Flag indicating whether or not this Widget
+has been through the render lifecycle phase.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_srcNode">
+
+													<h4>
+														<a name="config_srcNode">srcNode</a>
+														<code>- writeonce <span property="yui:type">String | Node</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The DOM node to parse for configuration values, passed to the Widget's HTML_PARSER definition
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_strings">
+
+													<h4>
+														<a name="config_strings">strings</a>
+														<code>- <span property="yui:type">Object</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Collection of strings used to label elements of the Widget's UI.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>null</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_tabIndex">
+
+													<h4>
+														<a name="config_tabIndex">tabIndex</a>
+														<code>- <span property="yui:type">Number</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Number (between -32767 to 32767) indicating the widget's 
+position in the default tab flow.  The value is used to set the 
+"tabIndex" attribute on the widget's bounding box.  Negative values allow
+the widget to receive DOM focus programmatically (by calling the focus
+method), while being removed from the default tab flow.  A value of 
+null removes the "tabIndex" attribute from the widget's bounding box.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>0</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_visible">
+
+													<h4>
+														<a name="config_visible">visible</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Boolean indicating weather or not the Widget is visible.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>TRUE</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_width">
+
+													<h4>
+														<a name="config_width">width</a>
+														<code>- <span property="yui:type">{String | Number}</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															String with units, or number, representing the width of the Widget. If a number is provided,
+the default unit, defined by the Widgets DEF_UNIT, property is used.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>EMPTY_STR</strong>
+													</div>
+
+												</div>
+
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="Base.html">
+												<h4>Configuration attributes inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="Base.html#config_destroyed">
+															<a href="Base.html#config_destroyed" property="yui:name" title="destroyed">destroyed</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Base.html#config_initialized">
+															<a href="Base.html#config_initialized" property="yui:name" title="initialized">initialized</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+									</div>
+
+
+							</div>
+
+							<div rel="yui:methods" resource="#methods">
+									<div class="section method details">
+
+										<h3 id="methods">Methods</h3>
+
+										<div class="content">
+
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__applyParsedConfig">
+
+													<h4>
+														<a name="method__applyParsedConfig">_applyParsedConfig</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														Object
+															<strong property="yui:name">_applyParsedConfig</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Object
+																	</code></dt>
+																	<dd property="yui:returnInfo">The merged configuration literal</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__bindDOM">
+
+													<h4>
+														<a name="method__bindDOM">_bindDOM</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_bindDOM</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sets up DOM listeners, on elements rendered by the widget.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__bindUI">
+
+													<h4>
+														<a name="method__bindUI">_bindUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_bindUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sets up DOM and CustomEvent listeners for the widget.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__defRenderFn">
+
+													<h4>
+														<a name="method__defRenderFn">_defRenderFn</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_defRenderFn</strong>
+														   (
+																
+																		
+																		 e
+																	
+																
+																		, 
+																		 parentNode
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Default render handler
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">e</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"> The Event object</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">parentNode</span>
+																		&lt;<span property="yui:type">Node</span>&gt;
+																		</code>
+																		<span property="yui:description"> The parent node to render to, if passed in to the <code>render</code> method</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__getSrcNode">
+
+													<h4>
+														<a name="method__getSrcNode">_getSrcNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														Node
+															<strong property="yui:name">_getSrcNode</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Node
+																	</code></dt>
+																	<dd property="yui:returnInfo">The Node to apply HTML_PARSER to</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__getUIEventNode">
+
+													<h4>
+														<a name="method__getUIEventNode">_getUIEventNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_getUIEventNode</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns the node on which to bind delegate listeners.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__guid">
+
+													<h4>
+														<a name="method__guid">_guid</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_guid</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onDocFocus">
+
+													<h4>
+														<a name="method__onDocFocus">_onDocFocus</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onDocFocus</strong>
+														   (
+																
+																		
+																		 evt
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															DOM focus event handler, used to sync the state of the Widget with the DOM
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">evt</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"> The event facade for the DOM focus event</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onDocMouseDown">
+
+													<h4>
+														<a name="method__onDocMouseDown">_onDocMouseDown</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onDocMouseDown</strong>
+														   (
+																
+																		
+																		 evt
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															"mousedown" event handler for the owner document of the 
+widget's bounding box.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">evt</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"> The event facade for the DOM focus event</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__removeLoadingClassNames">
+
+													<h4>
+														<a name="method__removeLoadingClassNames">_removeLoadingClassNames</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_removeLoadingClassNames</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Removes class names representative of the widget's loading state from 
+the boundingBox.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__renderBoxClassNames">
+
+													<h4>
+														<a name="method__renderBoxClassNames">_renderBoxClassNames</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_renderBoxClassNames</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Applies standard class names to the boundingBox and contentBox
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__renderUI">
+
+													<h4>
+														<a name="method__renderUI">_renderUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_renderUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Initializes the UI state for the Widget's bounding/content boxes.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__strSetter">
+
+													<h4>
+														<a name="method__strSetter">_strSetter</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														String
+															<strong property="yui:name">_strSetter</strong>
+														   (
+																
+																		
+																		 strings
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															The default setter for the strings attribute. Merges partial sets
+into the full string set, to allow users to partial sets of strings
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">strings</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			String
+																	</code></dt>
+																	<dd property="yui:returnInfo">The full set of strings to set</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__syncUI">
+
+													<h4>
+														<a name="method__syncUI">_syncUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_syncUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Updates the widget UI to reflect the attribute state.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__uiSetDisabled">
+
+													<h4>
+														<a name="method__uiSetDisabled">_uiSetDisabled</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_uiSetDisabled</strong>
+														   (
+																
+																		
+																		 val
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sets the disabled state for the UI
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">val</span>
+																		&lt;<span property="yui:type">boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__uiSetFocused">
+
+													<h4>
+														<a name="method__uiSetFocused">_uiSetFocused</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_uiSetFocused</strong>
+														   (
+																
+																		
+																		 val
+																	
+																
+																		, 
+																		 src
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sets the focused state for the UI
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">val</span>
+																		&lt;<span property="yui:type">boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">src</span>
+																		&lt;<span property="yui:type">string</span>&gt;
+																		</code>
+																		<span property="yui:description"> String representing the source that triggered an update to 
+the UI.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__uiSetHeight">
+
+													<h4>
+														<a name="method__uiSetHeight">_uiSetHeight</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_uiSetHeight</strong>
+														   (
+																
+																		
+																		 val
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sets the height on the widget's bounding box element
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">val</span>
+																		&lt;<span property="yui:type">String | Number</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__uiSetTabIndex">
+
+													<h4>
+														<a name="method__uiSetTabIndex">_uiSetTabIndex</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_uiSetTabIndex</strong>
+														   (
+																
+																		
+																		 Number
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Set the tabIndex on the widget's rendered UI
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">Number</span>
+																		&lt;<span property="yui:type">object</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__uiSetVisible">
+
+													<h4>
+														<a name="method__uiSetVisible">_uiSetVisible</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_uiSetVisible</strong>
+														   (
+																
+																		
+																		 val
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sets the visible state for the UI
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">val</span>
+																		&lt;<span property="yui:type">boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__uiSetWidth">
+
+													<h4>
+														<a name="method__uiSetWidth">_uiSetWidth</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_uiSetWidth</strong>
+														   (
+																
+																		
+																		 val
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sets the width on the widget's bounding box element
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">val</span>
+																		&lt;<span property="yui:type">String | Number</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__uiSizeCB">
+
+													<h4>
+														<a name="method__uiSizeCB">_uiSizeCB</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_uiSizeCB</strong>
+														   (
+																
+																		
+																		 expand
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">expand</span>
+																		&lt;<span property="yui:type">boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__unbindDOM">
+
+													<h4>
+														<a name="method__unbindDOM">_unbindDOM</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_unbindDOM</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__unbindUI">
+
+													<h4>
+														<a name="method__unbindUI">_unbindUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_unbindUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__validTabIndex">
+
+													<h4>
+														<a name="method__validTabIndex">_validTabIndex</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_validTabIndex</strong>
+														   (
+																
+																		
+																		 tabIndex
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">tabIndex</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_bindUI">
+
+													<h4>
+														<a name="method_bindUI">bindUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">bindUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Configures/Sets up listeners to bind Widget State to UI/DOM
+This method is not called by framework and is not chained 
+automatically for the class hierarchy.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_blur">
+
+													<h4>
+														<a name="method_blur">blur</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">blur</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Causes the Widget to lose focus by setting the "focused" attribute 
+to "false"
+														</div>
+
+														<div class="description">
+
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_destructor">
+
+													<h4>
+														<a name="method_destructor">destructor</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">destructor</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Destructor lifecycle implementation for the Widget class. Purges events attached
+to the bounding box (and all child nodes) and removes the Widget from the 
+list of registered widgets.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_disable">
+
+													<h4>
+														<a name="method_disable">disable</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">disable</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Set the Widget's "disabled" attribute to "true".
+														</div>
+
+														<div class="description">
+
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_enable">
+
+													<h4>
+														<a name="method_enable">enable</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">enable</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Set the Widget's "disabled" attribute to "false".
+														</div>
+
+														<div class="description">
+
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_focus">
+
+													<h4>
+														<a name="method_focus">focus</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">focus</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Causes the Widget to receive the focus by setting the "focused" 
+attribute to "true".
+														</div>
+
+														<div class="description">
+
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getClassName">
+
+													<h4>
+														<a name="method_getClassName">getClassName</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">getClassName</strong>
+														   (
+																
+																		
+																		 args*
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Generate a standard prefixed classname for the Widget, prefixed by the default prefix defined
+by the <code>Y.config.classNamePrefix</code> attribute used by <code>ClassNameManager</code> and 
+<code>Widget.NAME.toLowerCase()</code> (e.g. "yui-widget-xxxxx-yyyyy", based on default values for 
+the prefix and widget class name).
+<p>
+The instance based version of this method can be used to generate standard prefixed classnames,
+based on the instances NAME, as opposed to Widget.NAME. This method should be used when you
+need to use a constant class name across different types instances.
+</p>
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">args*</span>
+																		&lt;<span property="yui:type">String*</span>&gt;
+																		</code>
+																		<span property="yui:description"> 0..n strings which should be concatenated, using the default separator defined by ClassNameManager, to create the class name</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getSkinName">
+
+													<h4>
+														<a name="method_getSkinName">getSkinName</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														String
+															<strong property="yui:name">getSkinName</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns the name of the skin that's currently applied to the widget.
+This is only really useful after the widget's DOM structure is in the
+document, either by render or by progressive enhancement.  Searches up
+the Widget's ancestor axis for a class yui3-skin-(name), and returns the
+(name) portion.  Otherwise, returns null.
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			String
+																	</code></dt>
+																	<dd property="yui:returnInfo">the name of the skin, or null (yui3-skin-sam => sam)</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row  deprecated" rel="yui:method" resource="#method_getString">
+
+													<h4>
+														<a name="method_getString">getString</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														String
+															<strong property="yui:name">getString</strong>
+														   (
+																
+																		
+																		 key
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Helper method to get a specific string value
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">key</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			String
+																	</code></dt>
+																	<dd property="yui:returnInfo">The string</dd>
+																</dl>
+
+
+
+																<div class="deprecated">
+																	<strong>Deprecated</strong> Used by deprecated WidgetLocale implementations.
+																</div>
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_hide">
+
+													<h4>
+														<a name="method_hide">hide</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">hide</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Hides the Widget by setting the "visible" attribute to "false".
+														</div>
+
+														<div class="description">
+
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_initializer">
+
+													<h4>
+														<a name="method_initializer">initializer</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">initializer</strong>
+														   (
+																
+																		
+																		 config
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Initializer lifecycle implementation for the Widget class. Registers the 
+widget instance, and runs through the Widget's HTML_PARSER definition.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">config</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description">  Configuration object literal for the widget</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_render">
+
+													<h4>
+														<a name="method_render">render</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														 final 
+														void
+															<strong property="yui:name">render</strong>
+														   (
+																
+																		
+																		 parentNode
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Establishes the initial DOM for the widget. Invoking this
+method will lead to the creating of all DOM elements for
+the widget (or the manipulation of existing DOM elements 
+for the progressive enhancement use case).
+<p>
+This method should only be invoked once for an initialized
+widget.
+</p>
+<p>
+It delegates to the widget specific renderer method to do
+the actual work.
+</p>
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">parentNode</span>
+																		&lt;<span property="yui:type">Object | String</span>&gt;
+																		</code>
+																		<span property="yui:description">  Optional. The Node under which the 
+Widget is to be rendered. This can be a Node instance or a CSS selector string. 
+<p>
+If the selector string returns more than one Node, the first node will be used 
+as the parentNode. NOTE: This argument is required if both the boundingBox and contentBox
+are not currently in the document. If it's not provided, the Widget will be rendered
+to the body of the current document in this case.
+</p></span>
+																		</dd>
+																</dl>
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_renderer">
+
+													<h4>
+														<a name="method_renderer">renderer</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">renderer</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates DOM (or manipulates DOM for progressive enhancement)
+This method is invoked by render() and is not chained 
+automatically for the class hierarchy (unlike initializer, destructor) 
+so it should be chained manually for subclasses if required.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_renderUI">
+
+													<h4>
+														<a name="method_renderUI">renderUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">renderUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Adds nodes to the DOM 
+This method is not called by framework and is not chained 
+automatically for the class hierarchy.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_show">
+
+													<h4>
+														<a name="method_show">show</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">show</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Shows the Widget by setting the "visible" attribute to "true".
+														</div>
+
+														<div class="description">
+
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_syncUI">
+
+													<h4>
+														<a name="method_syncUI">syncUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">syncUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Refreshes the rendered UI, based on Widget State
+This method is not called by framework and is not chained
+automatically for the class hierarchy.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_toString">
+
+													<h4>
+														<a name="method_toString">toString</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														String
+															<strong property="yui:name">toString</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Generic toString implementation for all widgets.
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			String
+																	</code></dt>
+																	<dd property="yui:returnInfo">The default string value for the widget [ displays the NAME of the instance, and the unique id ]</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_Widget.getByNode">
+
+													<h4>
+														<a name="method_Widget.getByNode">Widget.getByNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														 static 
+														
+														Widget
+															<strong property="yui:name">Widget.getByNode</strong>
+														   (
+																
+																		
+																		 node
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns the widget instance whose bounding box contains, or is, the given node. 
+<p>
+In the case of nested widgets, the nearest bounding box ancestor is used to
+return the widget instance.
+</p>
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">node</span>
+																		&lt;<span property="yui:type">Node | String</span>&gt;
+																		</code>
+																		<span property="yui:description">  The node for which to return a Widget instance. If a selector
+string is passed in, which selects more than one node, the first node found is used.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Widget
+																	</code></dt>
+																	<dd property="yui:returnInfo">Widget instance, or null if not found.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+
+									<div rel="yui:inheritance">
+
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="EventTarget.html">
+
+											<h4>
+												Methods inherited from <a href="EventTarget.html" property="yui:name" title="EventTarget">EventTarget</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_addTarget">
+														<a href="EventTarget.html#method_addTarget" property="yui:name" title="addTarget">addTarget</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_after">
+														<a href="EventTarget.html#method_after" property="yui:name" title="after">after</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_before">
+														<a href="EventTarget.html#method_before" property="yui:name" title="before">before</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_bubble">
+														<a href="EventTarget.html#method_bubble" property="yui:name" title="bubble">bubble</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_detach">
+														<a href="EventTarget.html#method_detach" property="yui:name" title="detach">detach</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_detachAll">
+														<a href="EventTarget.html#method_detachAll" property="yui:name" title="detachAll">detachAll</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_fire">
+														<a href="EventTarget.html#method_fire" property="yui:name" title="fire">fire</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_getEvent">
+														<a href="EventTarget.html#method_getEvent" property="yui:name" title="getEvent">getEvent</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_getTargets">
+														<a href="EventTarget.html#method_getTargets" property="yui:name" title="getTargets">getTargets</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_on">
+														<a href="EventTarget.html#method_on" property="yui:name" title="on">on</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_once">
+														<a href="EventTarget.html#method_once" property="yui:name" title="once">once</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_publish">
+														<a href="EventTarget.html#method_publish" property="yui:name" title="publish">publish</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_removeTarget">
+														<a href="EventTarget.html#method_removeTarget" property="yui:name" title="removeTarget">removeTarget</a><span>,</span>
+														</div>
+
+														
+														
+
+														<div class="deprecated" rel="yui:method" resource="EventTarget.html#method_subscribe">
+														<a href="EventTarget.html#method_subscribe" property="yui:name" title="subscribe">subscribe</a><span>,</span>
+														</div>
+
+														
+														
+
+														<div class="deprecated" rel="yui:method" resource="EventTarget.html#method_unsubscribe">
+														<a href="EventTarget.html#method_unsubscribe" property="yui:name" title="unsubscribe">unsubscribe</a><span>,</span>
+														</div>
+
+														
+														
+
+														<div class="deprecated" rel="yui:method" resource="EventTarget.html#method_unsubscribeAll">
+														<a href="EventTarget.html#method_unsubscribeAll" property="yui:name" title="unsubscribeAll">unsubscribeAll</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Attribute.html">
+
+											<h4>
+												Methods inherited from <a href="Attribute.html" property="yui:name" title="Attribute">Attribute</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttr">
+														<a href="Attribute.html#method__getAttr" property="yui:name" title="_getAttr">_getAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttrs">
+														<a href="Attribute.html#method__getAttrs" property="yui:name" title="_getAttrs">_getAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__protectAttrs">
+														<a href="Attribute.html#method__protectAttrs" property="yui:name" title="_protectAttrs">_protectAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__set">
+														<a href="Attribute.html#method__set" property="yui:name" title="_set">_set</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__setAttr">
+														<a href="Attribute.html#method__setAttr" property="yui:name" title="_setAttr">_setAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__setAttrs">
+														<a href="Attribute.html#method__setAttrs" property="yui:name" title="_setAttrs">_setAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_addAttr">
+														<a href="Attribute.html#method_addAttr" property="yui:name" title="addAttr">addAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_addAttrs">
+														<a href="Attribute.html#method_addAttrs" property="yui:name" title="addAttrs">addAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_attrAdded">
+														<a href="Attribute.html#method_attrAdded" property="yui:name" title="attrAdded">attrAdded</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_get">
+														<a href="Attribute.html#method_get" property="yui:name" title="get">get</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_getAttrs">
+														<a href="Attribute.html#method_getAttrs" property="yui:name" title="getAttrs">getAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_modifyAttr">
+														<a href="Attribute.html#method_modifyAttr" property="yui:name" title="modifyAttr">modifyAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_removeAttr">
+														<a href="Attribute.html#method_removeAttr" property="yui:name" title="removeAttr">removeAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_reset">
+														<a href="Attribute.html#method_reset" property="yui:name" title="reset">reset</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_set">
+														<a href="Attribute.html#method_set" property="yui:name" title="set">set</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_setAttrs">
+														<a href="Attribute.html#method_setAttrs" property="yui:name" title="setAttrs">setAttrs</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Plugin.Host.html">
+
+											<h4>
+												Methods inherited from <a href="Plugin.Host.html" property="yui:name" title="Plugin.Host">Plugin.Host</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="" rel="yui:method" resource="Plugin.Host.html#method_hasPlugin">
+														<a href="Plugin.Host.html#method_hasPlugin" property="yui:name" title="hasPlugin">hasPlugin</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Plugin.Host.html#method_plug">
+														<a href="Plugin.Host.html#method_plug" property="yui:name" title="plug">plug</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Plugin.Host.html#method_unplug">
+														<a href="Plugin.Host.html#method_unplug" property="yui:name" title="unplug">unplug</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Base.html">
+
+											<h4>
+												Methods inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__defDestroyFn">
+														<a href="Base.html#method__defDestroyFn" property="yui:name" title="_defDestroyFn">_defDestroyFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__defInitFn">
+														<a href="Base.html#method__defInitFn" property="yui:name" title="_defInitFn">_defInitFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__getAttrCfgs">
+														<a href="Base.html#method__getAttrCfgs" property="yui:name" title="_getAttrCfgs">_getAttrCfgs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__getClasses">
+														<a href="Base.html#method__getClasses" property="yui:name" title="_getClasses">_getClasses</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method__preInitEventCfg">
+														<a href="Base.html#method__preInitEventCfg" property="yui:name" title="_preInitEventCfg">_preInitEventCfg</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method_destroy">
+														<a href="Base.html#method_destroy" property="yui:name" title="destroy">destroy</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method_init">
+														<a href="Base.html#method_init" property="yui:name" title="init">init</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method_toString">
+														<a href="Base.html#method_toString" property="yui:name" title="toString">toString</a>
+														</div>
+												</code>
+											</div>
+										</div>
+									</div>
+							</div>
+
+							<div rel="yui:events" resource="#events">
+									<div class="section method details">
+										<h3 id="events">Events</h3>
+
+										<div class="content">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_boundingBoxChange">
+
+													<h4>
+														<a name="event_boundingBoxChange">boundingBoxChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">boundingBoxChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'boundingBox' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_contentBoxChange">
+
+													<h4>
+														<a name="event_contentBoxChange">contentBoxChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">contentBoxChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'contentBox' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_disabledChange">
+
+													<h4>
+														<a name="event_disabledChange">disabledChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">disabledChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'disabled' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_focusedChange">
+
+													<h4>
+														<a name="event_focusedChange">focusedChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">focusedChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'focused' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_heightChange">
+
+													<h4>
+														<a name="event_heightChange">heightChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">heightChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'height' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_idChange">
+
+													<h4>
+														<a name="event_idChange">idChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">idChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'id' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_renderChange">
+
+													<h4>
+														<a name="event_renderChange">renderChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">renderChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'render' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_renderedChange">
+
+													<h4>
+														<a name="event_renderedChange">renderedChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">renderedChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'rendered' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_srcNodeChange">
+
+													<h4>
+														<a name="event_srcNodeChange">srcNodeChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">srcNodeChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'srcNode' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_stringsChange">
+
+													<h4>
+														<a name="event_stringsChange">stringsChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">stringsChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'strings' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_tabIndexChange">
+
+													<h4>
+														<a name="event_tabIndexChange">tabIndexChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">tabIndexChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'tabIndex' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_visibleChange">
+
+													<h4>
+														<a name="event_visibleChange">visibleChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">visibleChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'visible' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_widget:contentUpdate">
+
+													<h4>
+														<a name="event_widget:contentUpdate">widget:contentUpdate</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">widget:contentUpdate</strong>
+
+															(
+																
+																		
+																		 e
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Notification event, which widget implementations can fire, when
+they change the content of the widget. This event has no default
+behavior and cannot be prevented, so the "on" or "after"
+moments are effectively equivalent (with on listeners being invoked before 
+after listeners).
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">e</span>&lt;<span property="yui:type">EventFacade</span>&gt;</code>
+																			<span property="yui:description"> The Event Facade</span>
+																		</dd>
+
+																</dl>
+
+
+																<div class="preventable">
+																	<strong>Preventable:</strong>
+																	This event is preventable by method e.preventDefault().  The default function executed by this event is false.
+																</div>
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_widget:render">
+
+													<h4>
+														<a name="event_widget:render">widget:render</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">widget:render</strong>
+
+															(
+																
+																		
+																		 e
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Lifcyle event for the render phase, fired prior to rendering the UI 
+for the widget (prior to invoking the widget's renderer method).
+<p>
+Subscribers to the "on" moment of this event, will be notified 
+before the widget is rendered.
+</p>
+<p>
+Subscribers to the "after" moment of this event, will be notified
+after rendering is complete.
+</p>
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">e</span>&lt;<span property="yui:type">EventFacade</span>&gt;</code>
+																			<span property="yui:description"> The Event Facade</span>
+																		</dd>
+
+																</dl>
+
+
+																<div class="preventable">
+																	<strong>Preventable:</strong>
+																	This event is preventable by method e.preventDefault().  The default function executed by this event is _defRenderFn.
+																</div>
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_widthChange">
+
+													<h4>
+														<a name="event_widthChange">widthChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">widthChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'width' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+										<div class="section field inheritance events" rel="yui:superclass"  resource="Base.html">
+											<h4>
+												Events inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_destroy">
+														<a href="Base.html#event_destroy" property="yui:name" title="destroy">destroy</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_destroyedChange">
+														<a href="Base.html#event_destroyedChange" property="yui:name" title="destroyedChange">destroyedChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_init">
+														<a href="Base.html#event_init" property="yui:name" title="init">init</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_initializedChange">
+														<a href="Base.html#event_initializedChange" property="yui:name" title="initializedChange">initializedChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+
+									</div>
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Widget.html#method__applyParsedConfig", "access": "protected", "host": "Widget", "type": "method", "name": "_applyParsedConfig"}, {"url": "Widget.html#method__bindDOM", "access": "protected", "host": "Widget", "type": "method", "name": "_bindDOM"}, {"url": "Widget.html#method__bindUI", "access": "protected", "host": "Widget", "type": "method", "name": "_bindUI"}, {"url": "Widget.html#method_bindUI", "access": "protected", "host": "Widget", "type": "method", "name": "bindUI"}, {"url": "Widget.html#method_blur", "access": "", "host": "Widget", "type": "method", "name": "blur"}, {"url": "Widget.html#config_boundingBox", "access": "", "host": "Widget", "type": "config", "name": "boundingBox"}, {"url": "Widget.html#event_boundingBoxChange", "access": "", "host": "Widget", "type": "event", "name": "boundingBoxChange"}, {"url": "Widget.html#property_BOUNDING_TEMPLATE", "access": "", "host": "Widget", "type": "property", "name": "BOUNDING_TEMPLATE"}, {"url": "Widget.html#config_contentBox", "access": "", "host": "Widget", "type": "config", "name": "contentBox"}, {"url": "Widget.html#event_contentBoxChange", "access": "", "host": "Widget", "type": "event", "name": "contentBoxChange"}, {"url": "Widget.html#property_CONTENT_TEMPLATE", "access": "", "host": "Widget", "type": "property", "name": "CONTENT_TEMPLATE"}, {"url": "Widget.html#property_DEF_PARENT_NODE", "access": "", "host": "Widget", "type": "property", "name": "DEF_PARENT_NODE"}, {"url": "Widget.html#method__defRenderFn", "access": "protected", "host": "Widget", "type": "method", "name": "_defRenderFn"}, {"url": "Widget.html#property_DEF_UNIT", "access": "", "host": "Widget", "type": "property", "name": "DEF_UNIT"}, {"url": "Widget.html#method_destructor", "access": "protected", "host": "Widget", "type": "method", "name": "destructor"}, {"url": "Widget.html#method_disable", "access": "", "host": "Widget", "type": "method", "name": "disable"}, {"url": "Widget.html#config_disabled", "access": "", "host": "Widget", "type": "config", "name": "disabled"}, {"url": "Widget.html#event_disabledChange", "access": "", "host": "Widget", "type": "event", "name": "disabledChange"}, {"url": "Widget.html#method_enable", "access": "", "host": "Widget", "type": "method", "name": "enable"}, {"url": "Widget.html#method_focus", "access": "", "host": "Widget", "type": "method", "name": "focus"}, {"url": "Widget.html#config_focused", "access": "", "host": "Widget", "type": "config", "name": "focused"}, {"url": "Widget.html#event_focusedChange", "access": "", "host": "Widget", "type": "event", "name": "focusedChange"}, {"url": "Widget.html#method_getClassName", "access": "", "host": "Widget", "type": "method", "name": "getClassName"}, {"url": "Widget.html#method_getSkinName", "access": "", "host": "Widget", "type": "method", "name": "getSkinName"}, {"url": "Widget.html#method__getSrcNode", "access": "protected", "host": "Widget", "type": "method", "name": "_getSrcNode"}, {"url": "Widget.html#method_getString", "access": "", "host": "Widget", "type": "method", "name": "getString"}, {"url": "Widget.html#method__getUIEventNode", "access": "protected", "host": "Widget", "type": "method", "name": "_getUIEventNode"}, {"url": "Widget.html#method__guid", "access": "protected", "host": "Widget", "type": "method", "name": "_guid"}, {"url": "Widget.html#config_height", "access": "", "host": "Widget", "type": "config", "name": "height"}, {"url": "Widget.html#event_heightChange", "access": "", "host": "Widget", "type": "event", "name": "heightChange"}, {"url": "Widget.html#method_hide", "access": "", "host": "Widget", "type": "method", "name": "hide"}, {"url": "Widget.html#config_id", "access": "", "host": "Widget", "type": "config", "name": "id"}, {"url": "Widget.html#event_idChange", "access": "", "host": "Widget", "type": "event", "name": "idChange"}, {"url": "Widget.html#method_initializer", "access": "protected", "host": "Widget", "type": "method", "name": "initializer"}, {"url": "Widget.html#method__onDocFocus", "access": "protected", "host": "Widget", "type": "method", "name": "_onDocFocus"}, {"url": "Widget.html#method__onDocMouseDown", "access": "protected", "host": "Widget", "type": "method", "name": "_onDocMouseDown"}, {"url": "Widget.html#method__removeLoadingClassNames", "access": "protected", "host": "Widget", "type": "method", "name": "_removeLoadingClassNames"}, {"url": "Widget.html#method_render", "access": "", "host": "Widget", "type": "method", "name": "render"}, {"url": "Widget.html#config_render", "access": "", "host": "Widget", "type": "config", "name": "render"}, {"url": "Widget.html#method__renderBoxClassNames", "access": "protected", "host": "Widget", "type": "method", "name": "_renderBoxClassNames"}, {"url": "Widget.html#event_renderChange", "access": "", "host": "Widget", "type": "event", "name": "renderChange"}, {"url": "Widget.html#config_rendered", "access": "", "host": "Widget", "type": "config", "name": "rendered"}, {"url": "Widget.html#event_renderedChange", "access": "", "host": "Widget", "type": "event", "name": "renderedChange"}, {"url": "Widget.html#method_renderer", "access": "protected", "host": "Widget", "type": "method", "name": "renderer"}, {"url": "Widget.html#method__renderUI", "access": "protected", "host": "Widget", "type": "method", "name": "_renderUI"}, {"url": "Widget.html#method_renderUI", "access": "protected", "host": "Widget", "type": "method", "name": "renderUI"}, {"url": "Widget.html#method_show", "access": "", "host": "Widget", "type": "method", "name": "show"}, {"url": "Widget.html#config_srcNode", "access": "", "host": "Widget", "type": "config", "name": "srcNode"}, {"url": "Widget.html#event_srcNodeChange", "access": "", "host": "Widget", "type": "event", "name": "srcNodeChange"}, {"url": "Widget.html#config_strings", "access": "", "host": "Widget", "type": "config", "name": "strings"}, {"url": "Widget.html#event_stringsChange", "access": "", "host": "Widget", "type": "event", "name": "stringsChange"}, {"url": "Widget.html#method__strSetter", "access": "protected", "host": "Widget", "type": "method", "name": "_strSetter"}, {"url": "Widget.html#method__syncUI", "access": "protected", "host": "Widget", "type": "method", "name": "_syncUI"}, {"url": "Widget.html#method_syncUI", "access": "protected", "host": "Widget", "type": "method", "name": "syncUI"}, {"url": "Widget.html#config_tabIndex", "access": "", "host": "Widget", "type": "config", "name": "tabIndex"}, {"url": "Widget.html#event_tabIndexChange", "access": "", "host": "Widget", "type": "event", "name": "tabIndexChange"}, {"url": "Widget.html#method_toString", "access": "", "host": "Widget", "type": "method", "name": "toString"}, {"url": "Widget.html#property_UI_EVENTS", "access": "", "host": "Widget", "type": "property", "name": "UI_EVENTS"}, {"url": "Widget.html#method__uiSetDisabled", "access": "protected", "host": "Widget", "type": "method", "name": "_uiSetDisabled"}, {"url": "Widget.html#method__uiSetFocused", "access": "protected", "host": "Widget", "type": "method", "name": "_uiSetFocused"}, {"url": "Widget.html#method__uiSetHeight", "access": "protected", "host": "Widget", "type": "method", "name": "_uiSetHeight"}, {"url": "Widget.html#method__uiSetTabIndex", "access": "protected", "host": "Widget", "type": "method", "name": "_uiSetTabIndex"}, {"url": "Widget.html#method__uiSetVisible", "access": "protected", "host": "Widget", "type": "method", "name": "_uiSetVisible"}, {"url": "Widget.html#method__uiSetWidth", "access": "protected", "host": "Widget", "type": "method", "name": "_uiSetWidth"}, {"url": "Widget.html#method__uiSizeCB", "access": "protected", "host": "Widget", "type": "method", "name": "_uiSizeCB"}, {"url": "Widget.html#method__unbindDOM", "access": "protected", "host": "Widget", "type": "method", "name": "_unbindDOM"}, {"url": "Widget.html#method__unbindUI", "access": "protected", "host": "Widget", "type": "method", "name": "_unbindUI"}, {"url": "Widget.html#method__validTabIndex", "access": "protected", "host": "Widget", "type": "method", "name": "_validTabIndex"}, {"url": "Widget.html#config_visible", "access": "", "host": "Widget", "type": "config", "name": "visible"}, {"url": "Widget.html#event_visibleChange", "access": "", "host": "Widget", "type": "event", "name": "visibleChange"}, {"url": "Widget.html#event_widget:contentUpdate", "access": "", "host": "Widget", "type": "event", "name": "widget:contentUpdate"}, {"url": "Widget.html#event_widget:render", "access": "", "host": "Widget", "type": "event", "name": "widget:render"}, {"url": "Widget.html#property_Widget.ATTRS", "access": "", "host": "Widget", "type": "property", "name": "Widget.ATTRS"}, {"url": "Widget.html#method_Widget.getByNode", "access": "", "host": "Widget", "type": "method", "name": "Widget.getByNode"}, {"url": "Widget.html#property_Widget.HTML_PARSER", "access": "", "host": "Widget", "type": "property", "name": "Widget.HTML_PARSER"}, {"url": "Widget.html#property_Widget.NAME", "access": "", "host": "Widget", "type": "property", "name": "Widget.NAME"}, {"url": "Widget.html#property_Widget.UI_SRC", "access": "", "host": "Widget", "type": "property", "name": "Widget.UI_SRC"}, {"url": "Widget.html#config_width", "access": "", "host": "Widget", "type": "config", "name": "width"}, {"url": "Widget.html#event_widthChange", "access": "", "host": "Widget", "type": "event", "name": "widthChange"}];
+</script>
+</body>
+</html>

@@ -1,0 +1,614 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-overlay   aui-overlay-context-min.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-overlay&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-overlay.html" title="aui-overlay">aui-overlay</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">aui-overlay-context-min.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class="selected"><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="OverlayBase.html" title="OverlayBase">OverlayBase</a></li>
+
+
+				                                <li class=""><a href="OverlayContext.html" title="OverlayContext">OverlayContext</a></li>
+
+
+				                                <li class=""><a href="OverlayContextManager.html" title="OverlayContextManager">OverlayContextManager</a></li>
+
+
+				                                <li class=""><a href="OverlayContextPanel.html" title="OverlayContextPanel">OverlayContextPanel</a></li>
+
+
+				                                <li class=""><a href="OverlayContextPanelManager.html" title="OverlayContextPanelManager">OverlayContextPanelManager</a></li>
+
+
+				                                <li class=""><a href="OverlayLoading.html" title="OverlayLoading">OverlayLoading</a></li>
+
+
+				                                <li class=""><a href="OverlayManager.html" title="OverlayManager">OverlayManager</a></li>
+
+
+				                                <li class=""><a href="OverlayMask.html" title="OverlayMask">OverlayMask</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="aui-overlay-base-debug.js.html" title="aui-overlay-base-debug.js">aui-overlay-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-overlay-base-min.js.html" title="aui-overlay-base-min.js">aui-overlay-base-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-overlay-base.js.html" title="aui-overlay-base.js">aui-overlay-base.js</a></li>
+
+
+			                                <li class=""><a href="aui-overlay-context-debug.js.html" title="aui-overlay-context-debug.js">aui-overlay-context-debug.js</a></li>
+
+
+			                                <li class="selected"><a href="aui-overlay-context-min.js.html" title="aui-overlay-context-min.js">aui-overlay-context-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-overlay-context-panel-debug.js.html" title="aui-overlay-context-panel-debug.js">aui-overlay-context-panel-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-overlay-context-panel-min.js.html" title="aui-overlay-context-panel-min.js">aui-overlay-context-panel-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-overlay-context-panel.js.html" title="aui-overlay-context-panel.js">aui-overlay-context-panel.js</a></li>
+
+
+			                                <li class=""><a href="aui-overlay-context.js.html" title="aui-overlay-context.js">aui-overlay-context.js</a></li>
+
+
+			                                <li class=""><a href="aui-overlay-debug.js.html" title="aui-overlay-debug.js">aui-overlay-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-overlay-loading-debug.js.html" title="aui-overlay-loading-debug.js">aui-overlay-loading-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-overlay-loading.js.html" title="aui-overlay-loading.js">aui-overlay-loading.js</a></li>
+
+
+			                                <li class=""><a href="aui-overlay-manager-debug.js.html" title="aui-overlay-manager-debug.js">aui-overlay-manager-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-overlay-manager-min.js.html" title="aui-overlay-manager-min.js">aui-overlay-manager-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-overlay-manager.js.html" title="aui-overlay-manager.js">aui-overlay-manager.js</a></li>
+
+
+			                                <li class=""><a href="aui-overlay-mask-debug.js.html" title="aui-overlay-mask-debug.js">aui-overlay-mask-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-overlay-mask-min.js.html" title="aui-overlay-mask-min.js">aui-overlay-mask-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-overlay-mask.js.html" title="aui-overlay-mask.js">aui-overlay-mask.js</a></li>
+
+
+			                                <li class=""><a href="aui-overlay-min.js.html" title="aui-overlay-min.js">aui-overlay-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-overlay.js.html" title="aui-overlay.js">aui-overlay.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;aui-overlay-context&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">P</span><span class="p">){</span><span class="kd">var</span> <span class="nx">H</span><span class="o">=</span><span class="nx">P</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span><span class="nx">N</span><span class="o">=</span><span class="nx">H</span><span class="p">.</span><span class="nx">isString</span><span class="p">,</span><span class="nx">O</span><span class="o">=</span><span class="nx">H</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">,</span><span class="nx">K</span><span class="o">=</span><span class="nx">H</span><span class="p">.</span><span class="nx">isObject</span><span class="p">,</span><span class="nx">J</span><span class="o">=</span><span class="nx">H</span><span class="p">.</span><span class="nx">isBoolean</span><span class="p">,</span><span class="nx">R</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">){</span><span class="k">return</span><span class="p">(</span><span class="nx">A</span> <span class="k">instanceof</span> <span class="nx">P</span><span class="p">.</span><span class="nx">NodeList</span><span class="p">);},</span><span class="nx">G</span><span class="o">=</span><span class="s2">&quot;align&quot;</span><span class="p">,</span><span class="nx">X</span><span class="o">=</span><span class="s2">&quot;bl&quot;</span><span class="p">,</span><span class="nx">Y</span><span class="o">=</span><span class="s2">&quot;boundingBox&quot;</span><span class="p">,</span><span class="nx">B</span><span class="o">=</span><span class="s2">&quot;cancellableHide&quot;</span><span class="p">,</span><span class="nx">Q</span><span class="o">=</span><span class="s2">&quot;overlaycontext&quot;</span><span class="p">,</span><span class="nx">Z</span><span class="o">=</span><span class="s2">&quot;currentNode&quot;</span><span class="p">,</span><span class="nx">M</span><span class="o">=</span><span class="s2">&quot;focused&quot;</span><span class="p">,</span><span class="nx">W</span><span class="o">=</span><span class="s2">&quot;hide&quot;</span><span class="p">,</span><span class="nx">D</span><span class="o">=</span><span class="s2">&quot;hideDelay&quot;</span><span class="p">,</span><span class="nx">S</span><span class="o">=</span><span class="s2">&quot;hideOn&quot;</span><span class="p">,</span><span class="nx">U</span><span class="o">=</span><span class="s2">&quot;hideOnDocumentClick&quot;</span><span class="p">,</span><span class="nx">I</span><span class="o">=</span><span class="s2">&quot;mousedown&quot;</span><span class="p">,</span><span class="nx">E</span><span class="o">=</span><span class="s2">&quot;show&quot;</span><span class="p">,</span><span class="nx">b</span><span class="o">=</span><span class="s2">&quot;showDelay&quot;</span><span class="p">,</span><span class="nx">V</span><span class="o">=</span><span class="s2">&quot;showOn&quot;</span><span class="p">,</span><span class="nx">a</span><span class="o">=</span><span class="s2">&quot;tl&quot;</span><span class="p">,</span><span class="nx">C</span><span class="o">=</span><span class="s2">&quot;trigger&quot;</span><span class="p">,</span><span class="nx">T</span><span class="o">=</span><span class="s2">&quot;visible&quot;</span><span class="p">;</span><span class="kd">function</span> <span class="nx">F</span><span class="p">(</span><span class="nx">L</span><span class="p">){</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="nx">A</span><span class="p">.</span><span class="nx">_hideTask</span><span class="o">=</span><span class="k">new</span> <span class="nx">P</span><span class="p">.</span><span class="nx">DelayedTask</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">hide</span><span class="p">,</span><span class="nx">A</span><span class="p">);</span><span class="nx">A</span><span class="p">.</span><span class="nx">_showTask</span><span class="o">=</span><span class="k">new</span> <span class="nx">P</span><span class="p">.</span><span class="nx">DelayedTask</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">show</span><span class="p">,</span><span class="nx">A</span><span class="p">);</span><span class="nx">A</span><span class="p">.</span><span class="nx">_showCallback</span><span class="o">=</span><span class="kc">null</span><span class="p">;</span><span class="nx">A</span><span class="p">.</span><span class="nx">_hideCallback</span><span class="o">=</span><span class="kc">null</span><span class="p">;</span><span class="nx">F</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="nx">arguments</span><span class="p">);}</span><span class="nx">P</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">F</span><span class="p">,{</span><span class="nx">NAME</span><span class="o">:</span><span class="nx">Q</span><span class="p">,</span><span class="nx">ATTRS</span><span class="o">:</span><span class="p">{</span><span class="nx">align</span><span class="o">:</span><span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="p">{</span><span class="nx">node</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span><span class="nx">points</span><span class="o">:</span><span class="p">[</span><span class="nx">a</span><span class="p">,</span><span class="nx">X</span><span class="p">]}},</span><span class="nx">cancellableHide</span><span class="o">:</span><span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span><span class="nx">validator</span><span class="o">:</span><span class="nx">J</span><span class="p">},</span><span class="nx">currentNode</span><span class="o">:</span><span class="p">{</span><span class="nx">valueFn</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">C</span><span class="p">).</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">);}},</span><span class="nx">delay</span><span class="o">:</span><span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span><span class="nx">validator</span><span class="o">:</span><span class="nx">K</span><span class="p">},</span><span class="nx">hideOn</span><span class="o">:</span><span class="p">{</span><span class="nx">lazyAdd</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="nx">value</span><span class="o">:</span><span class="s2">&quot;mouseout&quot;</span><span class="p">,</span><span class="nx">validator</span><span class="o">:</span><span class="nx">N</span><span class="p">,</span><span class="nx">setter</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">){</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setHideOn</span><span class="p">(</span><span class="nx">A</span><span class="p">);}},</span><span class="nx">hideOnDocumentClick</span><span class="o">:</span><span class="p">{</span><span class="nx">lazyAdd</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="nx">setter</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">){</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setHideOnDocumentClick</span><span class="p">(</span><span class="nx">A</span><span class="p">);},</span><span class="nx">value</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span><span class="nx">validator</span><span class="o">:</span><span class="nx">J</span><span class="p">},</span><span class="nx">hideDelay</span><span class="o">:</span><span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="mi">0</span><span class="p">},</span><span class="nx">showOn</span><span class="o">:</span><span class="p">{</span><span class="nx">lazyAdd</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="nx">value</span><span class="o">:</span><span class="s2">&quot;mouseover&quot;</span><span class="p">,</span><span class="nx">validator</span><span class="o">:</span><span class="nx">N</span><span class="p">,</span><span class="nx">setter</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">){</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setShowOn</span><span class="p">(</span><span class="nx">A</span><span class="p">);}},</span><span class="nx">showDelay</span><span class="o">:</span><span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span><span class="nx">validator</span><span class="o">:</span><span class="nx">O</span><span class="p">},</span><span class="nx">trigger</span><span class="o">:</span><span class="p">{</span><span class="nx">lazyAdd</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="nx">setter</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">){</span><span class="k">if</span><span class="p">(</span><span class="nx">R</span><span class="p">(</span><span class="nx">A</span><span class="p">)){</span><span class="k">return</span> <span class="nx">A</span><span class="p">;}</span><span class="k">else</span><span class="p">{</span><span class="k">if</span><span class="p">(</span><span class="nx">N</span><span class="p">(</span><span class="nx">A</span><span class="p">)){</span><span class="k">return</span> <span class="nx">P</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">A</span><span class="p">);}}</span><span class="k">return</span> <span class="k">new</span> <span class="nx">P</span><span class="p">.</span><span class="nx">NodeList</span><span class="p">([</span><span class="nx">A</span><span class="p">]);}},</span><span class="nx">visible</span><span class="o">:</span><span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="kc">false</span><span class="p">}}});</span><span class="nx">P</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">F</span><span class="p">,</span><span class="nx">P</span><span class="p">.</span><span class="nx">OverlayBase</span><span class="p">,{</span><span class="nx">bindUI</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="kd">var</span> <span class="nx">L</span><span class="o">=</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">Y</span><span class="p">);</span><span class="nx">L</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">I</span><span class="p">,</span><span class="nx">A</span><span class="p">.</span><span class="nx">_stopTriggerEventPropagation</span><span class="p">);</span><span class="nx">A</span><span class="p">.</span><span class="nx">before</span><span class="p">(</span><span class="s2">&quot;triggerChange&quot;</span><span class="p">,</span><span class="nx">A</span><span class="p">.</span><span class="nx">_beforeTriggerChange</span><span class="p">);</span><span class="nx">A</span><span class="p">.</span><span class="nx">before</span><span class="p">(</span><span class="s2">&quot;showOnChange&quot;</span><span class="p">,</span><span class="nx">A</span><span class="p">.</span><span class="nx">_beforeShowOnChange</span><span class="p">);</span><span class="nx">A</span><span class="p">.</span><span class="nx">before</span><span class="p">(</span><span class="s2">&quot;hideOnChange&quot;</span><span class="p">,</span><span class="nx">A</span><span class="p">.</span><span class="nx">_beforeHideOnChange</span><span class="p">);</span><span class="nx">A</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s2">&quot;triggerChange&quot;</span><span class="p">,</span><span class="nx">A</span><span class="p">.</span><span class="nx">_afterTriggerChange</span><span class="p">);</span><span class="nx">A</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s2">&quot;showOnChange&quot;</span><span class="p">,</span><span class="nx">A</span><span class="p">.</span><span class="nx">_afterShowOnChange</span><span class="p">);</span><span class="nx">A</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s2">&quot;hideOnChange&quot;</span><span class="p">,</span><span class="nx">A</span><span class="p">.</span><span class="nx">_afterHideOnChange</span><span class="p">);</span><span class="nx">L</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span><span class="nx">P</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">_cancelAutoHide</span><span class="p">,</span><span class="nx">A</span><span class="p">));</span><span class="nx">L</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;mouseenter&quot;</span><span class="p">,</span><span class="nx">P</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">_cancelAutoHide</span><span class="p">,</span><span class="nx">A</span><span class="p">));</span><span class="nx">L</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;mouseleave&quot;</span><span class="p">,</span><span class="nx">P</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">_invokeHideTaskOnInteraction</span><span class="p">,</span><span class="nx">A</span><span class="p">));</span><span class="nx">A</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s2">&quot;focusedChange&quot;</span><span class="p">,</span><span class="nx">P</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">_invokeHideTaskOnInteraction</span><span class="p">,</span><span class="nx">A</span><span class="p">));},</span><span class="nx">destructor</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">Y</span><span class="p">).</span><span class="nx">remove</span><span class="p">();},</span><span class="nx">hide</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="nx">A</span><span class="p">.</span><span class="nx">clearIntervals</span><span class="p">();</span><span class="nx">A</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s2">&quot;hide&quot;</span><span class="p">);</span><span class="nx">F</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">hide</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">A</span><span class="p">,</span><span class="nx">arguments</span><span class="p">);},</span><span class="nx">show</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">L</span><span class="p">){</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="nx">A</span><span class="p">.</span><span class="nx">clearIntervals</span><span class="p">();</span><span class="nx">A</span><span class="p">.</span><span class="nx">updateCurrentNode</span><span class="p">(</span><span class="nx">L</span><span class="p">);</span><span class="nx">A</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s2">&quot;show&quot;</span><span class="p">);</span><span class="nx">F</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">show</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">A</span><span class="p">,</span><span class="nx">arguments</span><span class="p">);</span><span class="nx">A</span><span class="p">.</span><span class="nx">refreshAlign</span><span class="p">();},</span><span class="nx">toggle</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">L</span><span class="p">){</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">T</span><span class="p">)){</span><span class="nx">A</span><span class="p">.</span><span class="nx">_hideTask</span><span class="p">.</span><span class="nx">delay</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">D</span><span class="p">),</span><span class="kc">null</span><span class="p">,</span><span class="kc">null</span><span class="p">,[</span><span class="nx">L</span><span class="p">]);}</span><span class="k">else</span><span class="p">{</span><span class="nx">A</span><span class="p">.</span><span class="nx">_showTask</span><span class="p">.</span><span class="nx">delay</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">b</span><span class="p">),</span><span class="kc">null</span><span class="p">,</span><span class="kc">null</span><span class="p">,[</span><span class="nx">L</span><span class="p">]);}},</span><span class="nx">clearIntervals</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span><span class="k">this</span><span class="p">.</span><span class="nx">_hideTask</span><span class="p">.</span><span class="nx">cancel</span><span class="p">();</span><span class="k">this</span><span class="p">.</span><span class="nx">_showTask</span><span class="p">.</span><span class="nx">cancel</span><span class="p">();},</span><span class="nx">refreshAlign</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="kd">var</span> <span class="nx">c</span><span class="o">=</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">G</span><span class="p">);</span><span class="kd">var</span> <span class="nx">L</span><span class="o">=</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">Z</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="nx">L</span><span class="p">){</span><span class="nx">A</span><span class="p">.</span><span class="nx">_uiSetAlign</span><span class="p">(</span><span class="nx">L</span><span class="p">,</span><span class="nx">c</span><span class="p">.</span><span class="nx">points</span><span class="p">);}},</span><span class="nx">updateCurrentNode</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="kd">var</span> <span class="nx">f</span><span class="o">=</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">G</span><span class="p">);</span><span class="kd">var</span> <span class="nx">L</span><span class="o">=</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">C</span><span class="p">);</span><span class="kd">var</span> <span class="nx">e</span><span class="o">=</span><span class="kc">null</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="nx">e</span><span class="o">=</span><span class="nx">d</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">;}</span><span class="kd">var</span> <span class="nx">c</span><span class="o">=</span><span class="nx">f</span><span class="p">.</span><span class="nx">node</span><span class="o">||</span><span class="nx">e</span><span class="o">||</span><span class="nx">L</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="nx">c</span><span class="p">){</span><span class="nx">A</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">Z</span><span class="p">,</span><span class="nx">c</span><span class="p">);}},</span><span class="nx">_toggle</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">L</span><span class="p">){</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="kd">var</span> <span class="nx">c</span><span class="o">=</span><span class="nx">L</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">_lastTarget</span><span class="o">!=</span><span class="nx">c</span><span class="p">){</span><span class="nx">A</span><span class="p">.</span><span class="nx">hide</span><span class="p">();}</span><span class="nx">A</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="nx">L</span><span class="p">);</span><span class="nx">L</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span><span class="nx">A</span><span class="p">.</span><span class="nx">_lastTarget</span><span class="o">=</span><span class="nx">c</span><span class="p">;},</span><span class="nx">_afterShowOnChange</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">c</span><span class="p">){</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="kd">var</span> <span class="nx">d</span><span class="o">=</span><span class="nx">c</span><span class="p">.</span><span class="nx">prevVal</span><span class="o">==</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">S</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="kd">var</span> <span class="nx">L</span><span class="o">=</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">C</span><span class="p">);</span><span class="nx">L</span><span class="p">.</span><span class="nx">detach</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">,</span><span class="nx">A</span><span class="p">.</span><span class="nx">_hideCallback</span><span class="p">);</span><span class="nx">A</span><span class="p">.</span><span class="nx">_setHideOn</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">S</span><span class="p">));}},</span><span class="nx">_afterHideOnChange</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">c</span><span class="p">){</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="kd">var</span> <span class="nx">d</span><span class="o">=</span><span class="nx">c</span><span class="p">.</span><span class="nx">prevVal</span><span class="o">==</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">V</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="kd">var</span> <span class="nx">L</span><span class="o">=</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">C</span><span class="p">);</span><span class="nx">L</span><span class="p">.</span><span class="nx">detach</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">,</span><span class="nx">A</span><span class="p">.</span><span class="nx">_showCallback</span><span class="p">);</span><span class="nx">A</span><span class="p">.</span><span class="nx">_setShowOn</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">V</span><span class="p">));}},</span><span class="nx">_afterTriggerChange</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">L</span><span class="p">){</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="nx">A</span><span class="p">.</span><span class="nx">_setShowOn</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">V</span><span class="p">));</span><span class="nx">A</span><span class="p">.</span><span class="nx">_setHideOn</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">S</span><span class="p">));},</span><span class="nx">_beforeShowOnChange</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">c</span><span class="p">){</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="kd">var</span> <span class="nx">L</span><span class="o">=</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">C</span><span class="p">);</span><span class="nx">L</span><span class="p">.</span><span class="nx">detach</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">,</span><span class="nx">A</span><span class="p">.</span><span class="nx">_showCallback</span><span class="p">);},</span><span class="nx">_beforeHideOnChange</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">c</span><span class="p">){</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="kd">var</span> <span class="nx">L</span><span class="o">=</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">C</span><span class="p">);</span><span class="nx">L</span><span class="p">.</span><span class="nx">detach</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">,</span><span class="nx">A</span><span class="p">.</span><span class="nx">_hideCallback</span><span class="p">);},</span><span class="nx">_beforeTriggerChange</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="kd">var</span> <span class="nx">d</span><span class="o">=</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">C</span><span class="p">);</span><span class="kd">var</span> <span class="nx">L</span><span class="o">=</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">V</span><span class="p">);</span><span class="kd">var</span> <span class="nx">c</span><span class="o">=</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">S</span><span class="p">);</span><span class="nx">d</span><span class="p">.</span><span class="nx">detach</span><span class="p">(</span><span class="nx">L</span><span class="p">,</span><span class="nx">A</span><span class="p">.</span><span class="nx">_showCallback</span><span class="p">);</span><span class="nx">d</span><span class="p">.</span><span class="nx">detach</span><span class="p">(</span><span class="nx">c</span><span class="p">,</span><span class="nx">A</span><span class="p">.</span><span class="nx">_hideCallback</span><span class="p">);</span><span class="nx">d</span><span class="p">.</span><span class="nx">detach</span><span class="p">(</span><span class="nx">I</span><span class="p">,</span><span class="nx">A</span><span class="p">.</span><span class="nx">_stopTriggerEventPropagation</span><span class="p">);},</span><span class="nx">_cancelAutoHide</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">L</span><span class="p">){</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">B</span><span class="p">)){</span><span class="nx">A</span><span class="p">.</span><span class="nx">clearIntervals</span><span class="p">();}</span><span class="nx">L</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();},</span><span class="nx">_invokeHideTaskOnInteraction</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">c</span><span class="p">){</span><span class="kd">var</span> <span class="nx">L</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="nx">L</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">B</span><span class="p">);</span><span class="kd">var</span> <span class="nx">d</span><span class="o">=</span><span class="nx">L</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">M</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">d</span><span class="o">&amp;&amp;!</span><span class="nx">A</span><span class="p">){</span><span class="nx">L</span><span class="p">.</span><span class="nx">_hideTask</span><span class="p">.</span><span class="nx">delay</span><span class="p">(</span><span class="nx">L</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">D</span><span class="p">));}},</span><span class="nx">_stopTriggerEventPropagation</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">){</span><span class="nx">A</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();},</span><span class="nx">_setHideOn</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="kd">var</span> <span class="nx">L</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="kd">var</span> <span class="nx">d</span><span class="o">=</span><span class="nx">L</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">C</span><span class="p">);</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="nx">e</span><span class="o">==</span><span class="nx">L</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">V</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="nx">A</span><span class="p">){</span><span class="nx">L</span><span class="p">.</span><span class="nx">_hideCallback</span><span class="o">=</span><span class="nx">P</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">L</span><span class="p">.</span><span class="nx">_toggle</span><span class="p">,</span><span class="nx">L</span><span class="p">);</span><span class="nx">d</span><span class="p">.</span><span class="nx">detach</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">L</span><span class="p">.</span><span class="nx">_showCallback</span><span class="p">);}</span><span class="k">else</span><span class="p">{</span><span class="kd">var</span> <span class="nx">c</span><span class="o">=</span><span class="nx">L</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">D</span><span class="p">);</span><span class="nx">L</span><span class="p">.</span><span class="nx">_hideCallback</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">){</span><span class="nx">L</span><span class="p">.</span><span class="nx">_hideTask</span><span class="p">.</span><span class="nx">delay</span><span class="p">(</span><span class="nx">c</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="kc">null</span><span class="p">,[</span><span class="nx">f</span><span class="p">]);</span><span class="nx">f</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();};}</span><span class="nx">d</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">L</span><span class="p">.</span><span class="nx">_hideCallback</span><span class="p">);</span><span class="k">return</span> <span class="nx">e</span><span class="p">;},</span><span class="nx">_setHideOnDocumentClick</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">L</span><span class="p">){</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">L</span><span class="p">){</span><span class="nx">P</span><span class="p">.</span><span class="nx">OverlayContextManager</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="nx">A</span><span class="p">);}</span><span class="k">else</span><span class="p">{</span><span class="nx">P</span><span class="p">.</span><span class="nx">OverlayContextManager</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">A</span><span class="p">);}</span><span class="k">return</span> <span class="nx">L</span><span class="p">;},</span><span class="nx">_setShowOn</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="kd">var</span> <span class="nx">L</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="kd">var</span> <span class="nx">d</span><span class="o">=</span><span class="nx">L</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">C</span><span class="p">);</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="nx">e</span><span class="o">==</span><span class="nx">L</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">S</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="nx">A</span><span class="p">){</span><span class="nx">L</span><span class="p">.</span><span class="nx">_showCallback</span><span class="o">=</span><span class="nx">P</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">L</span><span class="p">.</span><span class="nx">_toggle</span><span class="p">,</span><span class="nx">L</span><span class="p">);</span><span class="nx">d</span><span class="p">.</span><span class="nx">detach</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">L</span><span class="p">.</span><span class="nx">_hideCallback</span><span class="p">);}</span><span class="k">else</span><span class="p">{</span><span class="kd">var</span> <span class="nx">c</span><span class="o">=</span><span class="nx">L</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span><span class="nx">L</span><span class="p">.</span><span class="nx">_showCallback</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">){</span><span class="nx">L</span><span class="p">.</span><span class="nx">_showTask</span><span class="p">.</span><span class="nx">delay</span><span class="p">(</span><span class="nx">c</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="kc">null</span><span class="p">,[</span><span class="nx">f</span><span class="p">]);</span><span class="nx">f</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();};}</span><span class="k">if</span><span class="p">(</span><span class="nx">e</span><span class="o">!=</span><span class="nx">I</span><span class="p">){</span><span class="nx">d</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">I</span><span class="p">,</span><span class="nx">L</span><span class="p">.</span><span class="nx">_stopTriggerEventPropagation</span><span class="p">);}</span><span class="k">else</span><span class="p">{</span><span class="nx">d</span><span class="p">.</span><span class="nx">detach</span><span class="p">(</span><span class="nx">I</span><span class="p">,</span><span class="nx">L</span><span class="p">.</span><span class="nx">_stopTriggerEventPropagation</span><span class="p">);}</span><span class="nx">d</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">L</span><span class="p">.</span><span class="nx">_showCallback</span><span class="p">);</span><span class="k">return</span> <span class="nx">e</span><span class="p">;}});</span><span class="nx">P</span><span class="p">.</span><span class="nx">OverlayContext</span><span class="o">=</span><span class="nx">F</span><span class="p">;</span><span class="nx">P</span><span class="p">.</span><span class="nx">OverlayContextManager</span><span class="o">=</span><span class="k">new</span> <span class="nx">P</span><span class="p">.</span><span class="nx">OverlayManager</span><span class="p">({});</span><span class="nx">P</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">I</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span><span class="nx">P</span><span class="p">.</span><span class="nx">OverlayContextManager</span><span class="p">.</span><span class="nx">hideAll</span><span class="p">();},</span><span class="nx">P</span><span class="p">.</span><span class="nx">getDoc</span><span class="p">());},</span><span class="s2">&quot;@VERSION@&quot;</span><span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;aui-overlay-manager&quot;</span><span class="p">,</span><span class="s2">&quot;aui-delayed-task&quot;</span><span class="p">]});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "OverlayContext.html#method__afterHideOnChange", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_afterHideOnChange"}, {"url": "OverlayContextPanel.html#method__afterShowArrowChange", "access": "protected", "host": "OverlayContextPanel", "type": "method", "name": "_afterShowArrowChange"}, {"url": "OverlayContext.html#method__afterShowOnChange", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_afterShowOnChange"}, {"url": "OverlayMask.html#method__afterTargetChange", "access": "protected", "host": "OverlayMask", "type": "method", "name": "_afterTargetChange"}, {"url": "OverlayContext.html#method__afterTriggerChange", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_afterTriggerChange"}, {"url": "OverlayMask.html#method__afterVisibleChange", "access": "protected", "host": "OverlayMask", "type": "method", "name": "_afterVisibleChange"}, {"url": "OverlayLoading.html#method__afterVisibleChange", "access": "protected", "host": "OverlayLoading", "type": "method", "name": "_afterVisibleChange"}, {"url": "OverlayContext.html#config_align", "access": "", "host": "OverlayContext", "type": "config", "name": "align"}, {"url": "OverlayContextPanel.html#method_align", "access": "", "host": "OverlayContextPanel", "type": "method", "name": "align"}, {"url": "OverlayContext.html#event_alignChange", "access": "", "host": "OverlayContext", "type": "event", "name": "alignChange"}, {"url": "OverlayMask.html#config_alignPoints", "access": "", "host": "OverlayMask", "type": "config", "name": "alignPoints"}, {"url": "OverlayMask.html#event_alignPointsChange", "access": "", "host": "OverlayMask", "type": "event", "name": "alignPointsChange"}, {"url": "OverlayContextPanel.html#config_anim", "access": "", "host": "OverlayContextPanel", "type": "config", "name": "anim"}, {"url": "OverlayContextPanel.html#event_animChange", "access": "", "host": "OverlayContextPanel", "type": "event", "name": "animChange"}, {"url": "OverlayContextPanel.html#config_arrow", "access": "", "host": "OverlayContextPanel", "type": "config", "name": "arrow"}, {"url": "OverlayContextPanel.html#event_arrowChange", "access": "", "host": "OverlayContextPanel", "type": "event", "name": "arrowChange"}, {"url": "OverlayMask.html#config_background", "access": "", "host": "OverlayMask", "type": "config", "name": "background"}, {"url": "OverlayMask.html#event_backgroundChange", "access": "", "host": "OverlayMask", "type": "event", "name": "backgroundChange"}, {"url": "OverlayContext.html#method__beforeHideOnChange", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_beforeHideOnChange"}, {"url": "OverlayContextPanel.html#method__beforeShow", "access": "protected", "host": "OverlayContextPanel", "type": "method", "name": "_beforeShow"}, {"url": "OverlayContext.html#method__beforeShowOnChange", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_beforeShowOnChange"}, {"url": "OverlayContext.html#method__beforeTriggerChange", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_beforeTriggerChange"}, {"url": "OverlayLoading.html#method__bindOverlayMaskUI", "access": "protected", "host": "OverlayLoading", "type": "method", "name": "_bindOverlayMaskUI"}, {"url": "OverlayContext.html#method_bindUI", "access": "protected", "host": "OverlayContext", "type": "method", "name": "bindUI"}, {"url": "OverlayContextPanel.html#method_bindUI", "access": "protected", "host": "OverlayContextPanel", "type": "method", "name": "bindUI"}, {"url": "OverlayMask.html#method_bindUI", "access": "protected", "host": "OverlayMask", "type": "method", "name": "bindUI"}, {"url": "OverlayLoading.html#method_bindUI", "access": "protected", "host": "OverlayLoading", "type": "method", "name": "bindUI"}, {"url": "OverlayManager.html#method_bringToTop", "access": "", "host": "OverlayManager", "type": "method", "name": "bringToTop"}, {"url": "OverlayContext.html#method__cancelAutoHide", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_cancelAutoHide"}, {"url": "OverlayContext.html#config_cancellableHide", "access": "", "host": "OverlayContext", "type": "config", "name": "cancellableHide"}, {"url": "OverlayContext.html#event_cancellableHideChange", "access": "", "host": "OverlayContext", "type": "event", "name": "cancellableHideChange"}, {"url": "OverlayLoading.html#method_centerMessage", "access": "", "host": "OverlayLoading", "type": "method", "name": "centerMessage"}, {"url": "OverlayContext.html#method_clearIntervals", "access": "", "host": "OverlayContext", "type": "method", "name": "clearIntervals"}, {"url": "OverlayLoading.html#method__createDynamicAttrs", "access": "protected", "host": "OverlayLoading", "type": "method", "name": "_createDynamicAttrs"}, {"url": "OverlayContext.html#config_currentNode", "access": "", "host": "OverlayContext", "type": "config", "name": "currentNode"}, {"url": "OverlayContext.html#event_currentNodeChange", "access": "", "host": "OverlayContext", "type": "event", "name": "currentNodeChange"}, {"url": "OverlayManager.html#method_destroy", "access": "protected", "host": "OverlayManager", "type": "method", "name": "destroy"}, {"url": "OverlayContext.html#method_destructor", "access": "protected", "host": "OverlayContext", "type": "method", "name": "destructor"}, {"url": "OverlayManager.html#method_each", "access": "", "host": "OverlayManager", "type": "method", "name": "each"}, {"url": "OverlayContextPanel.html#method_fixPointerColor", "access": "", "host": "OverlayContextPanel", "type": "method", "name": "fixPointerColor"}, {"url": "OverlayContextPanel.html#method_getAlignPoint", "access": "", "host": "OverlayContextPanel", "type": "method", "name": "getAlignPoint"}, {"url": "OverlayMask.html#method_getTargetSize", "access": "", "host": "OverlayMask", "type": "method", "name": "getTargetSize"}, {"url": "OverlayContext.html#method_hide", "access": "", "host": "OverlayContext", "type": "method", "name": "hide"}, {"url": "OverlayContextPanel.html#method_hide", "access": "", "host": "OverlayContextPanel", "type": "method", "name": "hide"}, {"url": "OverlayLoading.html#method_hide", "access": "", "host": "OverlayLoading", "type": "method", "name": "hide"}, {"url": "OverlayManager.html#method_hideAll", "access": "", "host": "OverlayManager", "type": "method", "name": "hideAll"}, {"url": "OverlayContext.html#config_hideDelay", "access": "", "host": "OverlayContext", "type": "config", "name": "hideDelay"}, {"url": "OverlayContext.html#event_hideDelayChange", "access": "", "host": "OverlayContext", "type": "event", "name": "hideDelayChange"}, {"url": "OverlayContext.html#config_hideOn", "access": "", "host": "OverlayContext", "type": "config", "name": "hideOn"}, {"url": "OverlayContextPanel.html#config_hideOn", "access": "", "host": "OverlayContextPanel", "type": "config", "name": "hideOn"}, {"url": "OverlayContext.html#event_hideOnChange", "access": "", "host": "OverlayContext", "type": "event", "name": "hideOnChange"}, {"url": "OverlayContextPanel.html#event_hideOnChange", "access": "", "host": "OverlayContextPanel", "type": "event", "name": "hideOnChange"}, {"url": "OverlayContext.html#config_hideOnDocumentClick", "access": "", "host": "OverlayContext", "type": "config", "name": "hideOnDocumentClick"}, {"url": "OverlayContext.html#event_hideOnDocumentClickChange", "access": "", "host": "OverlayContext", "type": "event", "name": "hideOnDocumentClickChange"}, {"url": "OverlayManager.html#method_initializer", "access": "protected", "host": "OverlayManager", "type": "method", "name": "initializer"}, {"url": "OverlayLoading.html#method_initializer", "access": "protected", "host": "OverlayLoading", "type": "method", "name": "initializer"}, {"url": "OverlayContext.html#method__invokeHideTaskOnInteraction", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_invokeHideTaskOnInteraction"}, {"url": "OverlayLoading.html#config_messageEl", "access": "", "host": "OverlayLoading", "type": "config", "name": "messageEl"}, {"url": "OverlayLoading.html#event_messageElChange", "access": "", "host": "OverlayLoading", "type": "event", "name": "messageElChange"}, {"url": "OverlayManager.html#method__onFocusedChange", "access": "protected", "host": "OverlayManager", "type": "method", "name": "_onFocusedChange"}, {"url": "OverlayManager.html#method__onMouseDown", "access": "protected", "host": "OverlayManager", "type": "method", "name": "_onMouseDown"}, {"url": "OverlayMask.html#config_opacity", "access": "", "host": "OverlayMask", "type": "config", "name": "opacity"}, {"url": "OverlayMask.html#event_opacityChange", "access": "", "host": "OverlayMask", "type": "event", "name": "opacityChange"}, {"url": "OverlayContext.html#property_OverlayContext.ATTRS", "access": "", "host": "OverlayContext", "type": "property", "name": "OverlayContext.ATTRS"}, {"url": "OverlayContext.html#property_OverlayContext.NAME", "access": "", "host": "OverlayContext", "type": "property", "name": "OverlayContext.NAME"}, {"url": "OverlayContextPanel.html#property_OverlayContextPanel.ATTRS", "access": "", "host": "OverlayContextPanel", "type": "property", "name": "OverlayContextPanel.ATTRS"}, {"url": "OverlayContextPanel.html#property_OverlayContextPanel.NAME", "access": "", "host": "OverlayContextPanel", "type": "property", "name": "OverlayContextPanel.NAME"}, {"url": "OverlayLoading.html#property_OverlayLoading.ATTRS", "access": "", "host": "OverlayLoading", "type": "property", "name": "OverlayLoading.ATTRS"}, {"url": "OverlayLoading.html#property_OverlayLoading.NAME", "access": "", "host": "OverlayLoading", "type": "property", "name": "OverlayLoading.NAME"}, {"url": "OverlayLoading.html#property_OverlayLoading.NS", "access": "", "host": "OverlayLoading", "type": "property", "name": "OverlayLoading.NS"}, {"url": "OverlayManager.html#property_OverlayManager.ATTRS", "access": "", "host": "OverlayManager", "type": "property", "name": "OverlayManager.ATTRS"}, {"url": "OverlayManager.html#property_OverlayManager.NAME", "access": "", "host": "OverlayManager", "type": "property", "name": "OverlayManager.NAME"}, {"url": "OverlayLoading.html#property_overlayMask", "access": "protected", "host": "OverlayLoading", "type": "property", "name": "overlayMask"}, {"url": "OverlayMask.html#property_OverlayMask.ATTRS", "access": "", "host": "OverlayMask", "type": "property", "name": "OverlayMask.ATTRS"}, {"url": "OverlayMask.html#property_OverlayMask.NAME", "access": "", "host": "OverlayMask", "type": "property", "name": "OverlayMask.NAME"}, {"url": "OverlayContext.html#method_refreshAlign", "access": "", "host": "OverlayContext", "type": "method", "name": "refreshAlign"}, {"url": "OverlayMask.html#method_refreshMask", "access": "", "host": "OverlayMask", "type": "method", "name": "refreshMask"}, {"url": "OverlayLoading.html#method_refreshMask", "access": "", "host": "OverlayLoading", "type": "method", "name": "refreshMask"}, {"url": "OverlayManager.html#method_register", "access": "", "host": "OverlayManager", "type": "method", "name": "register"}, {"url": "OverlayManager.html#method__registered", "access": "protected", "host": "OverlayManager", "type": "method", "name": "_registered"}, {"url": "OverlayManager.html#method_remove", "access": "", "host": "OverlayManager", "type": "method", "name": "remove"}, {"url": "OverlayContextPanel.html#method__renderElements", "access": "protected", "host": "OverlayContextPanel", "type": "method", "name": "_renderElements"}, {"url": "OverlayLoading.html#method__renderOverlayMask", "access": "protected", "host": "OverlayLoading", "type": "method", "name": "_renderOverlayMask"}, {"url": "OverlayContextPanel.html#method_renderUI", "access": "protected", "host": "OverlayContextPanel", "type": "method", "name": "renderUI"}, {"url": "OverlayLoading.html#method_renderUI", "access": "protected", "host": "OverlayLoading", "type": "method", "name": "renderUI"}, {"url": "OverlayContextPanel.html#method__setAnim", "access": "protected", "host": "OverlayContextPanel", "type": "method", "name": "_setAnim"}, {"url": "OverlayContext.html#method__setHideOn", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_setHideOn"}, {"url": "OverlayMask.html#method__setOpacity", "access": "protected", "host": "OverlayMask", "type": "method", "name": "_setOpacity"}, {"url": "OverlayContext.html#method__setShowOn", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_setShowOn"}, {"url": "OverlayContextPanel.html#method__setStack", "access": "protected", "host": "OverlayContextPanel", "type": "method", "name": "_setStack"}, {"url": "OverlayMask.html#config_shim", "access": "", "host": "OverlayMask", "type": "config", "name": "shim"}, {"url": "OverlayMask.html#event_shimChange", "access": "", "host": "OverlayMask", "type": "event", "name": "shimChange"}, {"url": "OverlayLoading.html#method_show", "access": "", "host": "OverlayLoading", "type": "method", "name": "show"}, {"url": "OverlayManager.html#method_showAll", "access": "", "host": "OverlayManager", "type": "method", "name": "showAll"}, {"url": "OverlayContextPanel.html#config_showArrow", "access": "", "host": "OverlayContextPanel", "type": "config", "name": "showArrow"}, {"url": "OverlayContextPanel.html#event_showArrowChange", "access": "", "host": "OverlayContextPanel", "type": "event", "name": "showArrowChange"}, {"url": "OverlayContext.html#config_showDelay", "access": "", "host": "OverlayContext", "type": "config", "name": "showDelay"}, {"url": "OverlayContext.html#event_showDelayChange", "access": "", "host": "OverlayContext", "type": "event", "name": "showDelayChange"}, {"url": "OverlayContext.html#config_showOn", "access": "", "host": "OverlayContext", "type": "config", "name": "showOn"}, {"url": "OverlayContextPanel.html#config_showOn", "access": "", "host": "OverlayContextPanel", "type": "config", "name": "showOn"}, {"url": "OverlayContext.html#event_showOnChange", "access": "", "host": "OverlayContext", "type": "event", "name": "showOnChange"}, {"url": "OverlayContextPanel.html#event_showOnChange", "access": "", "host": "OverlayContextPanel", "type": "event", "name": "showOnChange"}, {"url": "OverlayManager.html#method_sortByZIndexDesc", "access": "", "host": "OverlayManager", "type": "method", "name": "sortByZIndexDesc"}, {"url": "OverlayContextPanel.html#config_stack", "access": "", "host": "OverlayContextPanel", "type": "config", "name": "stack"}, {"url": "OverlayContextPanel.html#event_stackChange", "access": "", "host": "OverlayContextPanel", "type": "event", "name": "stackChange"}, {"url": "OverlayContext.html#method__stopTriggerEventPropagation", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_stopTriggerEventPropagation"}, {"url": "OverlayLoading.html#config_strings", "access": "", "host": "OverlayLoading", "type": "config", "name": "strings"}, {"url": "OverlayLoading.html#event_stringsChange", "access": "", "host": "OverlayLoading", "type": "event", "name": "stringsChange"}, {"url": "OverlayContextPanel.html#method__syncElements", "access": "protected", "host": "OverlayContextPanel", "type": "method", "name": "_syncElements"}, {"url": "OverlayContextPanel.html#method_syncUI", "access": "protected", "host": "OverlayContextPanel", "type": "method", "name": "syncUI"}, {"url": "OverlayMask.html#method_syncUI", "access": "protected", "host": "OverlayMask", "type": "method", "name": "syncUI"}, {"url": "OverlayMask.html#config_target", "access": "", "host": "OverlayMask", "type": "config", "name": "target"}, {"url": "OverlayLoading.html#config_target", "access": "", "host": "OverlayLoading", "type": "config", "name": "target"}, {"url": "OverlayMask.html#event_targetChange", "access": "", "host": "OverlayMask", "type": "event", "name": "targetChange"}, {"url": "OverlayLoading.html#event_targetChange", "access": "", "host": "OverlayLoading", "type": "event", "name": "targetChange"}, {"url": "OverlayContext.html#method__toggle", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_toggle"}, {"url": "OverlayContext.html#method_toggle", "access": "", "host": "OverlayContext", "type": "method", "name": "toggle"}, {"url": "OverlayLoading.html#method_toggle", "access": "", "host": "OverlayLoading", "type": "method", "name": "toggle"}, {"url": "OverlayContext.html#config_trigger", "access": "", "host": "OverlayContext", "type": "config", "name": "trigger"}, {"url": "OverlayContext.html#event_triggerChange", "access": "", "host": "OverlayContext", "type": "event", "name": "triggerChange"}, {"url": "OverlayMask.html#method__uiSetVisible", "access": "protected", "host": "OverlayMask", "type": "method", "name": "_uiSetVisible"}, {"url": "OverlayContext.html#method_updateCurrentNode", "access": "", "host": "OverlayContext", "type": "method", "name": "updateCurrentNode"}, {"url": "OverlayContext.html#config_visible", "access": "", "host": "OverlayContext", "type": "config", "name": "visible"}, {"url": "OverlayMask.html#config_visible", "access": "", "host": "OverlayMask", "type": "config", "name": "visible"}, {"url": "OverlayContext.html#event_visibleChange", "access": "", "host": "OverlayContext", "type": "event", "name": "visibleChange"}, {"url": "OverlayMask.html#event_visibleChange", "access": "", "host": "OverlayMask", "type": "event", "name": "visibleChange"}, {"url": "OverlayMask.html#config_zIndex", "access": "", "host": "OverlayMask", "type": "config", "name": "zIndex"}, {"url": "OverlayManager.html#config_zIndexBase", "access": "", "host": "OverlayManager", "type": "config", "name": "zIndexBase"}, {"url": "OverlayManager.html#event_zIndexBaseChange", "access": "", "host": "OverlayManager", "type": "event", "name": "zIndexBaseChange"}, {"url": "OverlayMask.html#event_zIndexChange", "access": "", "host": "OverlayMask", "type": "event", "name": "zIndexChange"}];
+</script>
+</body>
+</html>

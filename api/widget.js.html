@@ -1,0 +1,2036 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: widget-stdmod   widget.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			widget-stdmod&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">widget.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="WidgetStdMod.html" title="WidgetStdMod">WidgetStdMod</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="widget-stdmod-min.js.html" title="widget-stdmod-min.js">widget-stdmod-min.js</a></li>
+
+
+			                                <li class=""><a href="widget-stdmod.js.html" title="widget-stdmod.js">widget-stdmod.js</a></li>
+
+
+			                                <li class="selected"><a href="widget.js.html" title="widget.js">widget.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
+<span class="cm">Code licensed under the BSD License:</span>
+<span class="cm">http://developer.yahoo.com/yui/license.html</span>
+<span class="cm">version: 3.1.0</span>
+<span class="cm">build: nightly</span>
+<span class="cm">*/</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;widget-base&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Provides the base Widget class, with HTML Parser support</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module widget</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Provides the base Widget class</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module widget</span>
+<span class="cm"> * @submodule widget-base</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">L</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+    <span class="nx">Node</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Node</span><span class="p">,</span>
+
+    <span class="nx">ClassNameManager</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">ClassNameManager</span><span class="p">,</span>
+
+    <span class="nx">_getClassName</span> <span class="o">=</span> <span class="nx">ClassNameManager</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">,</span>
+    <span class="nx">_getWidgetClassName</span><span class="p">,</span>
+
+    <span class="nx">_toInitialCap</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">cached</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">).</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">+</span> <span class="nx">str</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}),</span>
+
+    <span class="c1">// K-Weight, IE GC optimizations</span>
+    <span class="nx">CONTENT</span> <span class="o">=</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span>
+    <span class="nx">VISIBLE</span> <span class="o">=</span> <span class="s2">&quot;visible&quot;</span><span class="p">,</span>
+    <span class="nx">HIDDEN</span> <span class="o">=</span> <span class="s2">&quot;hidden&quot;</span><span class="p">,</span>
+    <span class="nx">DISABLED</span> <span class="o">=</span> <span class="s2">&quot;disabled&quot;</span><span class="p">,</span>
+    <span class="nx">FOCUSED</span> <span class="o">=</span> <span class="s2">&quot;focused&quot;</span><span class="p">,</span>
+    <span class="nx">WIDTH</span> <span class="o">=</span> <span class="s2">&quot;width&quot;</span><span class="p">,</span>
+    <span class="nx">HEIGHT</span> <span class="o">=</span> <span class="s2">&quot;height&quot;</span><span class="p">,</span>
+    <span class="nx">BOUNDING_BOX</span> <span class="o">=</span> <span class="s2">&quot;boundingBox&quot;</span><span class="p">,</span>
+    <span class="nx">CONTENT_BOX</span> <span class="o">=</span> <span class="s2">&quot;contentBox&quot;</span><span class="p">,</span>
+    <span class="nx">PARENT_NODE</span> <span class="o">=</span> <span class="s2">&quot;parentNode&quot;</span><span class="p">,</span>
+    <span class="nx">OWNER_DOCUMENT</span> <span class="o">=</span> <span class="s2">&quot;ownerDocument&quot;</span><span class="p">,</span>
+    <span class="nx">OFFSET_HEIGHT</span> <span class="o">=</span> <span class="s2">&quot;offsetHeight&quot;</span><span class="p">,</span>
+    <span class="nx">AUTO</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+    <span class="nx">SRC_NODE</span> <span class="o">=</span> <span class="s2">&quot;srcNode&quot;</span><span class="p">,</span>
+    <span class="nx">BODY</span> <span class="o">=</span> <span class="s2">&quot;body&quot;</span><span class="p">,</span>
+	<span class="nx">TAB_INDEX</span> <span class="o">=</span> <span class="s2">&quot;tabIndex&quot;</span><span class="p">,</span>
+    <span class="nx">ID</span> <span class="o">=</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span>
+    <span class="nx">RENDER</span> <span class="o">=</span> <span class="s2">&quot;render&quot;</span><span class="p">,</span>
+    <span class="nx">RENDERED</span> <span class="o">=</span> <span class="s2">&quot;rendered&quot;</span><span class="p">,</span>
+    <span class="nx">DESTROYED</span> <span class="o">=</span> <span class="s2">&quot;destroyed&quot;</span><span class="p">,</span>
+    <span class="nx">STRINGS</span> <span class="o">=</span> <span class="s2">&quot;strings&quot;</span><span class="p">,</span>
+    <span class="nx">DIV</span> <span class="o">=</span> <span class="s2">&quot;&lt;div&gt;&lt;/div&gt;&quot;</span><span class="p">,</span>
+    <span class="nx">CHANGE</span> <span class="o">=</span> <span class="s2">&quot;Change&quot;</span><span class="p">,</span>
+    <span class="nx">LOADING</span> <span class="o">=</span> <span class="s2">&quot;loading&quot;</span><span class="p">,</span>
+    <span class="nx">_UISET</span> <span class="o">=</span> <span class="s2">&quot;_uiSet&quot;</span><span class="p">,</span>
+
+    <span class="nx">EMPTY_STR</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nx">EMPTY_FN</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{},</span>
+
+    <span class="nx">UI_EVENT_REGEX</span> <span class="o">=</span> <span class="sr">/(\w+):(\w+)/</span><span class="p">,</span>
+    <span class="nx">UI_EVENT_REGEX_REPLACE</span> <span class="o">=</span> <span class="s2">&quot;$2&quot;</span><span class="p">,</span>
+
+    <span class="nx">TRUE</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">FALSE</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+
+    <span class="nx">UI</span><span class="p">,</span>
+    <span class="nx">ATTRS</span> <span class="o">=</span> <span class="p">{},</span>
+    <span class="nx">UI_ATTRS</span> <span class="o">=</span> <span class="p">[</span><span class="nx">VISIBLE</span><span class="p">,</span> <span class="nx">DISABLED</span><span class="p">,</span> <span class="nx">HEIGHT</span><span class="p">,</span> <span class="nx">WIDTH</span><span class="p">,</span> <span class="nx">FOCUSED</span><span class="p">],</span>
+
+    <span class="nx">WEBKIT</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">webkit</span><span class="p">,</span>
+    <span class="nx">IE</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span><span class="p">,</span>
+
+    <span class="nx">ContentUpdate</span> <span class="o">=</span> <span class="s2">&quot;contentUpdate&quot;</span><span class="p">,</span>
+
+    <span class="c1">//  Map of Node instances serving as a delegation containers for a specific</span>
+    <span class="c1">//  event type to Widget instances using that delegation container.</span>
+    <span class="nx">_delegates</span> <span class="o">=</span> <span class="p">{},</span>
+
+    <span class="c1">// Widget nodeguid-to-instance map.</span>
+    <span class="nx">_instances</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * A base class for widgets, providing:</span>
+<span class="cm"> * &lt;ul&gt;</span>
+<span class="cm"> *    &lt;li&gt;The render lifecycle method, in addition to the init and destroy </span>
+<span class="cm"> *        lifecycle methods provide by Base&lt;/li&gt;</span>
+<span class="cm"> *    &lt;li&gt;Abstract methods to support consistent MVC structure across </span>
+<span class="cm"> *        widgets: renderer, renderUI, bindUI, syncUI&lt;/li&gt;</span>
+<span class="cm"> *    &lt;li&gt;Support for common widget attributes, such as boundingBox, contentBox, visible, </span>
+<span class="cm"> *        disabled, focused, strings&lt;/li&gt;</span>
+<span class="cm"> * &lt;/ul&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param config {Object} Object literal specifying widget configuration properties.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class Widget</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @extends Base</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">Widget</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">_strs</span> <span class="o">=</span> <span class="p">{};</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">_cssPrefix</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">CSS_PREFIX</span> <span class="o">||</span> <span class="nx">_getClassName</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">NAME</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">());</span>
+
+    <span class="nx">Widget</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">render</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">RENDER</span><span class="p">),</span> <span class="nx">parentNode</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">render</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Render could be a node or boolean</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">render</span> <span class="o">!==</span> <span class="nx">TRUE</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">render</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">parentNode</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Static property provides a string to identify the class.</span>
+<span class="cm"> * &lt;p&gt;</span>
+<span class="cm"> * Currently used to apply class identifiers to the bounding box </span>
+<span class="cm"> * and to classify events fired by the widget.</span>
+<span class="cm"> * &lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * @property Widget.NAME</span>
+<span class="cm"> * @type String</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+<span class="nx">Widget</span><span class="p">.</span><span class="nx">NAME</span> <span class="o">=</span> <span class="s2">&quot;widget&quot;</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Constant used to identify state changes originating from</span>
+<span class="cm"> * the DOM (as opposed to the JavaScript model).</span>
+<span class="cm"> *</span>
+<span class="cm"> * @property Widget.UI_SRC</span>
+<span class="cm"> * @type String</span>
+<span class="cm"> * @static</span>
+<span class="cm"> * @final</span>
+<span class="cm"> */</span>
+<span class="nx">UI</span> <span class="o">=</span> <span class="nx">Widget</span><span class="p">.</span><span class="nx">UI_SRC</span> <span class="o">=</span> <span class="s2">&quot;ui&quot;</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Static property used to define the default attribute </span>
+<span class="cm"> * configuration for the Widget.</span>
+<span class="cm"> * </span>
+<span class="cm"> * @property Widget.ATTRS</span>
+<span class="cm"> * @type Object</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+<span class="nx">Widget</span><span class="p">.</span><span class="nx">ATTRS</span> <span class="o">=</span> <span class="nx">ATTRS</span><span class="p">;</span>
+
+<span class="c1">// Trying to optimize kweight by setting up attrs this way saves about 0.4K min&#39;d</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @attribute id</span>
+<span class="cm"> * @writeOnce</span>
+<span class="cm"> * @default Generated using guid()</span>
+<span class="cm"> * @type String</span>
+<span class="cm"> */</span>
+
+<span class="nx">ATTRS</span><span class="p">[</span><span class="nx">ID</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">valueFn</span><span class="o">:</span> <span class="s2">&quot;_guid&quot;</span><span class="p">,</span>
+    <span class="nx">writeOnce</span><span class="o">:</span> <span class="nx">TRUE</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Flag indicating whether or not this Widget</span>
+<span class="cm"> * has been through the render lifecycle phase.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @attribute rendered</span>
+<span class="cm"> * @readOnly</span>
+<span class="cm"> * @default false</span>
+<span class="cm"> * @type boolean</span>
+<span class="cm"> */</span>
+<span class="nx">ATTRS</span><span class="p">[</span><span class="nx">RENDERED</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">value</span><span class="o">:</span><span class="nx">FALSE</span><span class="p">,</span>
+    <span class="nx">readOnly</span><span class="o">:</span> <span class="nx">TRUE</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @attribute boundingBox</span>
+<span class="cm"> * @description The outermost DOM node for the Widget, used for sizing and positioning </span>
+<span class="cm"> * of a Widget as well as a containing element for any decorator elements used </span>
+<span class="cm"> * for skinning.</span>
+<span class="cm"> * @type String | Node</span>
+<span class="cm"> * @writeOnce</span>
+<span class="cm"> */</span>
+<span class="nx">ATTRS</span><span class="p">[</span><span class="nx">BOUNDING_BOX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">value</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+    <span class="nx">setter</span><span class="o">:</span> <span class="s2">&quot;_setBB&quot;</span><span class="p">,</span>
+    <span class="nx">writeOnce</span><span class="o">:</span> <span class="nx">TRUE</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @attribute contentBox</span>
+<span class="cm"> * @description A DOM node that is a direct descendent of a Widget&#39;s bounding box that </span>
+<span class="cm"> * houses its content.</span>
+<span class="cm"> * @type String | Node</span>
+<span class="cm"> * @writeOnce</span>
+<span class="cm"> */</span>
+<span class="nx">ATTRS</span><span class="p">[</span><span class="nx">CONTENT_BOX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">valueFn</span><span class="o">:</span><span class="s2">&quot;_defaultCB&quot;</span><span class="p">,</span>
+    <span class="nx">setter</span><span class="o">:</span> <span class="s2">&quot;_setCB&quot;</span><span class="p">,</span>
+    <span class="nx">writeOnce</span><span class="o">:</span> <span class="nx">TRUE</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @attribute tabIndex</span>
+<span class="cm"> * @description Number (between -32767 to 32767) indicating the widget&#39;s </span>
+<span class="cm"> * position in the default tab flow.  The value is used to set the </span>
+<span class="cm"> * &quot;tabIndex&quot; attribute on the widget&#39;s bounding box.  Negative values allow</span>
+<span class="cm"> * the widget to receive DOM focus programmatically (by calling the focus</span>
+<span class="cm"> * method), while being removed from the default tab flow.  A value of </span>
+<span class="cm"> * null removes the &quot;tabIndex&quot; attribute from the widget&#39;s bounding box.</span>
+<span class="cm"> * @type Number</span>
+<span class="cm"> * @default 0</span>
+<span class="cm"> */</span>
+<span class="nx">ATTRS</span><span class="p">[</span><span class="nx">TAB_INDEX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+	<span class="nx">validator</span><span class="o">:</span> <span class="s2">&quot;_validTabIndex&quot;</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @attribute focused</span>
+<span class="cm"> * @description Boolean indicating if the Widget, or one of its descendants, </span>
+<span class="cm"> * has focus.</span>
+<span class="cm"> * @readOnly</span>
+<span class="cm"> * @default false</span>
+<span class="cm"> * @type boolean</span>
+<span class="cm"> */</span>
+<span class="nx">ATTRS</span><span class="p">[</span><span class="nx">FOCUSED</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">value</span><span class="o">:</span> <span class="nx">FALSE</span><span class="p">,</span>
+    <span class="nx">readOnly</span><span class="o">:</span><span class="nx">TRUE</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @attribute disabled</span>
+<span class="cm"> * @description Boolean indicating if the Widget should be disabled. The disabled implementation</span>
+<span class="cm"> * is left to the specific classes extending widget.</span>
+<span class="cm"> * @default false</span>
+<span class="cm"> * @type boolean</span>
+<span class="cm"> */</span>
+<span class="nx">ATTRS</span><span class="p">[</span><span class="nx">DISABLED</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">value</span><span class="o">:</span> <span class="nx">FALSE</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @attribute visible</span>
+<span class="cm"> * @description Boolean indicating weather or not the Widget is visible.</span>
+<span class="cm"> * @default TRUE</span>
+<span class="cm"> * @type boolean</span>
+<span class="cm"> */</span>
+<span class="nx">ATTRS</span><span class="p">[</span><span class="nx">VISIBLE</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">value</span><span class="o">:</span> <span class="nx">TRUE</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @attribute height</span>
+<span class="cm"> * @description String with units, or number, representing the height of the Widget. If a number is provided,</span>
+<span class="cm"> * the default unit, defined by the Widgets DEF_UNIT, property is used.</span>
+<span class="cm"> * @default EMPTY_STR</span>
+<span class="cm"> * @type {String | Number}</span>
+<span class="cm"> */</span>
+<span class="nx">ATTRS</span><span class="p">[</span><span class="nx">HEIGHT</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">value</span><span class="o">:</span> <span class="nx">EMPTY_STR</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @attribute width</span>
+<span class="cm"> * @description String with units, or number, representing the width of the Widget. If a number is provided,</span>
+<span class="cm"> * the default unit, defined by the Widgets DEF_UNIT, property is used.</span>
+<span class="cm"> * @default EMPTY_STR</span>
+<span class="cm"> * @type {String | Number}</span>
+<span class="cm"> */</span>
+<span class="nx">ATTRS</span><span class="p">[</span><span class="nx">WIDTH</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">value</span><span class="o">:</span> <span class="nx">EMPTY_STR</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @attribute strings</span>
+<span class="cm"> * @description Collection of strings used to label elements of the Widget&#39;s UI.</span>
+<span class="cm"> * @default null</span>
+<span class="cm"> * @type Object</span>
+<span class="cm"> */</span>
+<span class="nx">ATTRS</span><span class="p">[</span><span class="nx">STRINGS</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">value</span><span class="o">:</span> <span class="p">{},</span>
+    <span class="nx">setter</span><span class="o">:</span> <span class="s2">&quot;_strSetter&quot;</span><span class="p">,</span>
+    <span class="nx">getter</span><span class="o">:</span> <span class="s2">&quot;_strGetter&quot;</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Whether or not to render the widget automatically after init, and optionally, to which parent node.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @attribute render</span>
+<span class="cm"> * @type boolean | Node</span>
+<span class="cm"> * @writeOnce</span>
+<span class="cm"> */</span>
+<span class="nx">ATTRS</span><span class="p">[</span><span class="nx">RENDER</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">value</span><span class="o">:</span><span class="nx">FALSE</span><span class="p">,</span>
+    <span class="nx">writeOnce</span><span class="o">:</span><span class="nx">TRUE</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * The css prefix which the static Widget.getClassName method should use when constructing class names</span>
+<span class="cm"> *</span>
+<span class="cm"> * @property Widget.CSS_PREFIX</span>
+<span class="cm"> * @type String</span>
+<span class="cm"> * @default Widget.NAME.toLowerCase()</span>
+<span class="cm"> * @private</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+<span class="nx">Widget</span><span class="p">.</span><span class="nx">CSS_PREFIX</span> <span class="o">=</span> <span class="nx">_getClassName</span><span class="p">(</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">NAME</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">());</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Generate a standard prefixed classname for the Widget, prefixed by the default prefix defined</span>
+<span class="cm"> * by the &lt;code&gt;Y.config.classNamePrefix&lt;/code&gt; attribute used by &lt;code&gt;ClassNameManager&lt;/code&gt; and </span>
+<span class="cm"> * &lt;code&gt;Widget.NAME.toLowerCase()&lt;/code&gt; (e.g. &quot;yui-widget-xxxxx-yyyyy&quot;, based on default values for </span>
+<span class="cm"> * the prefix and widget class name).</span>
+<span class="cm"> * &lt;p&gt;</span>
+<span class="cm"> * The instance based version of this method can be used to generate standard prefixed classnames,</span>
+<span class="cm"> * based on the instances NAME, as opposed to Widget.NAME. This method should be used when you</span>
+<span class="cm"> * need to use a constant class name across different types instances.</span>
+<span class="cm"> * &lt;/p&gt;</span>
+<span class="cm"> * @method getClassName</span>
+<span class="cm"> * @param {String*} args* 0..n strings which should be concatenated, using the default separator defined by ClassNameManager, to create the class name</span>
+<span class="cm"> */</span>
+<span class="nx">Widget</span><span class="p">.</span><span class="nx">getClassName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// arguments needs to be array&#39;fied to concat</span>
+    <span class="k">return</span> <span class="nx">_getClassName</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">ClassNameManager</span><span class="p">,</span> <span class="p">[</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">CSS_PREFIX</span><span class="p">].</span><span class="nx">concat</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nb">Array</span><span class="p">(</span><span class="nx">arguments</span><span class="p">),</span> <span class="kc">true</span><span class="p">));</span>
+<span class="p">};</span>
+
+<span class="nx">_getWidgetClassName</span> <span class="o">=</span> <span class="nx">Widget</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Returns the widget instance whose bounding box contains, or is, the given node. </span>
+<span class="cm"> * &lt;p&gt;</span>
+<span class="cm"> * In the case of nested widgets, the nearest bounding box ancestor is used to</span>
+<span class="cm"> * return the widget instance.</span>
+<span class="cm"> * &lt;/p&gt;</span>
+<span class="cm"> * @method Widget.getByNode</span>
+<span class="cm"> * @static</span>
+<span class="cm"> * @param node {Node | String} The node for which to return a Widget instance. If a selector</span>
+<span class="cm"> * string is passed in, which selects more than one node, the first node found is used.</span>
+<span class="cm"> * @return {Widget} Widget instance, or null if not found.</span>
+<span class="cm"> */</span>
+<span class="nx">Widget</span><span class="p">.</span><span class="nx">getByNode</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">widget</span><span class="p">,</span>
+        <span class="nx">widgetMarker</span> <span class="o">=</span> <span class="nx">_getWidgetClassName</span><span class="p">();</span>
+
+    <span class="nx">node</span> <span class="o">=</span> <span class="nx">Node</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">ancestor</span><span class="p">(</span><span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">widgetMarker</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">widget</span> <span class="o">=</span> <span class="nx">_instances</span><span class="p">[</span><span class="nx">Y</span><span class="p">.</span><span class="nx">stamp</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">TRUE</span><span class="p">)];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">widget</span> <span class="o">||</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">Widget</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">{</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Returns a class name prefixed with the the value of the </span>
+<span class="cm">	 * &lt;code&gt;YUI.config.classNamePrefix&lt;/code&gt; attribute + the instances &lt;code&gt;NAME&lt;/code&gt; property.</span>
+<span class="cm">	 * Uses &lt;code&gt;YUI.config.classNameDelimiter&lt;/code&gt; attribute to delimit the provided strings.</span>
+<span class="cm">	 * e.g. </span>
+<span class="cm">	 * &lt;code&gt;</span>
+<span class="cm">	 * &lt;pre&gt;</span>
+<span class="cm">	 *    // returns &quot;yui-slider-foo-bar&quot;, for a slider instance</span>
+<span class="cm">	 *    var scn = slider.getClassName(&#39;foo&#39;,&#39;bar&#39;);</span>
+<span class="cm">	 *</span>
+<span class="cm">	 *    // returns &quot;yui-overlay-foo-bar&quot;, for an overlay instance</span>
+<span class="cm">	 *    var ocn = overlay.getClassName(&#39;foo&#39;,&#39;bar&#39;);</span>
+<span class="cm">	 * &lt;/pre&gt;</span>
+<span class="cm">	 * &lt;/code&gt;</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method getClassName</span>
+<span class="cm">	 * @param {String}+ One or more classname bits to be joined and prefixed</span>
+<span class="cm">	 */</span>
+	<span class="nx">getClassName</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">_getClassName</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">ClassNameManager</span><span class="p">,</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">_cssPrefix</span><span class="p">].</span><span class="nx">concat</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nb">Array</span><span class="p">(</span><span class="nx">arguments</span><span class="p">),</span> <span class="kc">true</span><span class="p">));</span>
+	<span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Returns the name of the skin that&#39;s currently applied to the widget.</span>
+<span class="cm">     * This is only really useful after the widget&#39;s DOM structure is in the</span>
+<span class="cm">     * document, either by render or by progressive enhancement.  Searches up</span>
+<span class="cm">     * the Widget&#39;s ancestor axis for a class yui3-skin-(name), and returns the</span>
+<span class="cm">     * (name) portion.  Otherwise, returns null.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method getSkinName</span>
+<span class="cm">     * @return {String} the name of the skin, or null (yui3-skin-sam =&gt; sam)</span>
+<span class="cm">     */</span>
+    <span class="nx">getSkinName</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">root</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">CONTENT_BOX</span> <span class="p">)</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="nx">BOUNDING_BOX</span> <span class="p">),</span>
+            <span class="nx">search</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span> <span class="s1">&#39;\\b&#39;</span> <span class="o">+</span> <span class="nx">_getClassName</span><span class="p">(</span> <span class="s1">&#39;skin&#39;</span> <span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-(\\S+)&#39;</span> <span class="p">),</span>
+            <span class="nx">match</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span> <span class="nx">root</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">root</span><span class="p">.</span><span class="nx">ancestor</span><span class="p">(</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">node</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="nx">match</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="s1">&#39;className&#39;</span> <span class="p">).</span><span class="nx">match</span><span class="p">(</span> <span class="nx">search</span> <span class="p">);</span>
+                <span class="k">return</span> <span class="nx">match</span><span class="p">;</span>
+            <span class="p">}</span> <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="p">(</span> <span class="nx">match</span> <span class="p">)</span> <span class="o">?</span> <span class="nx">match</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Initializer lifecycle implementation for the Widget class. Registers the </span>
+<span class="cm">     * widget instance, and runs through the Widget&#39;s HTML_PARSER definition. </span>
+<span class="cm">     *</span>
+<span class="cm">     * @method initializer</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     * @param  config {Object} Configuration object literal for the widget</span>
+<span class="cm">     */</span>
+    <span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="nx">_instances</span><span class="p">[</span><span class="nx">Y</span><span class="p">.</span><span class="nx">stamp</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">))]</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * Notification event, which widget implementations can fire, when</span>
+<span class="cm">         * they change the content of the widget. This event has no default</span>
+<span class="cm">         * behavior and cannot be prevented, so the &quot;on&quot; or &quot;after&quot;</span>
+<span class="cm">         * moments are effectively equivalent (with on listeners being invoked before </span>
+<span class="cm">         * after listeners).</span>
+<span class="cm">         *</span>
+<span class="cm">         * @event widget:contentUpdate</span>
+<span class="cm">         * @preventable false</span>
+<span class="cm">         * @param {EventFacade} e The Event Facade</span>
+<span class="cm">         */</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="nx">ContentUpdate</span><span class="p">,</span> <span class="p">{</span> <span class="nx">preventable</span><span class="o">:</span><span class="nx">FALSE</span> <span class="p">});</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_applyParser</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_applyParser</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Destructor lifecycle implementation for the Widget class. Purges events attached</span>
+<span class="cm">     * to the bounding box (and all child nodes) and removes the Widget from the </span>
+<span class="cm">     * list of registered widgets.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method destructor</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">destructor</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+        <span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">),</span>
+            <span class="nx">bbGuid</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">stamp</span><span class="p">(</span><span class="nx">boundingBox</span><span class="p">,</span> <span class="nx">TRUE</span><span class="p">),</span>
+            <span class="nx">widgetGuid</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">stamp</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">TRUE</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">bbGuid</span> <span class="k">in</span> <span class="nx">_instances</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">delete</span> <span class="nx">_instances</span><span class="p">[</span><span class="nx">bbGuid</span><span class="p">];</span>
+        <span class="p">}</span>
+
+        <span class="nx">Y</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">_delegates</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">instances</span><span class="p">[</span><span class="nx">widgetGuid</span><span class="p">])</span> <span class="p">{</span>
+                <span class="c1">//  Unregister this Widget instance as needing this delegated</span>
+                <span class="c1">//  event listener.</span>
+                <span class="k">delete</span> <span class="nx">info</span><span class="p">.</span><span class="nx">instances</span><span class="p">[</span><span class="nx">widgetGuid</span><span class="p">];</span>
+
+                <span class="c1">//  There are no more Widget instances using this delegated </span>
+                <span class="c1">//  event listener, so detach it.</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nb">Object</span><span class="p">.</span><span class="nx">size</span><span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">instances</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">info</span><span class="p">.</span><span class="nx">handle</span><span class="p">.</span><span class="nx">detach</span><span class="p">();</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_unbindUI</span><span class="p">(</span><span class="nx">boundingBox</span><span class="p">);</span>
+        <span class="nx">boundingBox</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">TRUE</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Establishes the initial DOM for the widget. Invoking this</span>
+<span class="cm">     * method will lead to the creating of all DOM elements for</span>
+<span class="cm">     * the widget (or the manipulation of existing DOM elements </span>
+<span class="cm">     * for the progressive enhancement use case).</span>
+<span class="cm">     * &lt;p&gt;</span>
+<span class="cm">     * This method should only be invoked once for an initialized</span>
+<span class="cm">     * widget.</span>
+<span class="cm">     * &lt;/p&gt;</span>
+<span class="cm">     * &lt;p&gt;</span>
+<span class="cm">     * It delegates to the widget specific renderer method to do</span>
+<span class="cm">     * the actual work.</span>
+<span class="cm">     * &lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method render</span>
+<span class="cm">     * @chainable</span>
+<span class="cm">     * @final </span>
+<span class="cm">     * @param  parentNode {Object | String} Optional. The Node under which the </span>
+<span class="cm">     * Widget is to be rendered. This can be a Node instance or a CSS selector string. </span>
+<span class="cm">     * &lt;p&gt;</span>
+<span class="cm">     * If the selector string returns more than one Node, the first node will be used </span>
+<span class="cm">     * as the parentNode. NOTE: This argument is required if both the boundingBox and contentBox</span>
+<span class="cm">     * are not currently in the document. If it&#39;s not provided, the Widget will be rendered</span>
+<span class="cm">     * to the body of the current document in this case.</span>
+<span class="cm">     * &lt;/p&gt;</span>
+<span class="cm">     */</span>
+    <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parentNode</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DESTROYED</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">RENDERED</span><span class="p">))</span> <span class="p">{</span>
+             <span class="cm">/**</span>
+<span class="cm">              * Lifcyle event for the render phase, fired prior to rendering the UI </span>
+<span class="cm">              * for the widget (prior to invoking the widget&#39;s renderer method).</span>
+<span class="cm">              * &lt;p&gt;</span>
+<span class="cm">              * Subscribers to the &quot;on&quot; moment of this event, will be notified </span>
+<span class="cm">              * before the widget is rendered.</span>
+<span class="cm">              * &lt;/p&gt;</span>
+<span class="cm">              * &lt;p&gt;</span>
+<span class="cm">              * Subscribers to the &quot;after&quot; moment of this event, will be notified</span>
+<span class="cm">              * after rendering is complete.</span>
+<span class="cm">              * &lt;/p&gt;</span>
+<span class="cm">              *</span>
+<span class="cm">              * @event widget:render</span>
+<span class="cm">              * @preventable _defRenderFn</span>
+<span class="cm">              * @param {EventFacade} e The Event Facade</span>
+<span class="cm">              */</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="nx">RENDER</span><span class="p">,</span> <span class="p">{</span>
+                <span class="nx">queuable</span><span class="o">:</span><span class="nx">FALSE</span><span class="p">,</span>
+                <span class="nx">fireOnce</span><span class="o">:</span><span class="nx">TRUE</span><span class="p">,</span>
+                <span class="nx">defaultTargetOnly</span><span class="o">:</span><span class="nx">TRUE</span><span class="p">,</span>
+                <span class="nx">defaultFn</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_defRenderFn</span>
+            <span class="p">});</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">RENDER</span><span class="p">,</span> <span class="p">{</span><span class="nx">parentNode</span><span class="o">:</span> <span class="p">(</span><span class="nx">parentNode</span><span class="p">)</span> <span class="o">?</span> <span class="nx">Node</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">parentNode</span><span class="p">)</span> <span class="o">:</span> <span class="kc">null</span><span class="p">});</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Default render handler</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _defRenderFn</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     * @param {EventFacade} e The Event object</span>
+<span class="cm">     * @param {Node} parentNode The parent node to render to, if passed in to the &lt;code&gt;render&lt;/code&gt; method</span>
+<span class="cm">     */</span>
+    <span class="nx">_defRenderFn</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_parentNode</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">;</span>
+         
+        <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_set</span><span class="p">(</span><span class="nx">RENDERED</span><span class="p">,</span> <span class="nx">TRUE</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_removeLoadingClassNames</span><span class="p">();</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Creates DOM (or manipulates DOM for progressive enhancement)</span>
+<span class="cm">     * This method is invoked by render() and is not chained </span>
+<span class="cm">     * automatically for the class hierarchy (unlike initializer, destructor) </span>
+<span class="cm">     * so it should be chained manually for subclasses if required.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method renderer</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">renderer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_renderUI</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">();</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_bindUI</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">();</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_syncUI</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">syncUI</span><span class="p">();</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Configures/Sets up listeners to bind Widget State to UI/DOM</span>
+<span class="cm">     * </span>
+<span class="cm">     * This method is not called by framework and is not chained </span>
+<span class="cm">     * automatically for the class hierarchy.</span>
+<span class="cm">     * </span>
+<span class="cm">     * @method bindUI</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">bindUI</span><span class="o">:</span> <span class="nx">EMPTY_FN</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Adds nodes to the DOM </span>
+<span class="cm">     * </span>
+<span class="cm">     * This method is not called by framework and is not chained </span>
+<span class="cm">     * automatically for the class hierarchy.</span>
+<span class="cm">     * </span>
+<span class="cm">     * @method renderUI</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">renderUI</span><span class="o">:</span> <span class="nx">EMPTY_FN</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Refreshes the rendered UI, based on Widget State</span>
+<span class="cm">     * </span>
+<span class="cm">     * This method is not called by framework and is not chained</span>
+<span class="cm">     * automatically for the class hierarchy.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method syncUI</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     *</span>
+<span class="cm">     */</span>
+    <span class="nx">syncUI</span><span class="o">:</span> <span class="nx">EMPTY_FN</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @method hide</span>
+<span class="cm">     * @description Hides the Widget by setting the &quot;visible&quot; attribute to &quot;false&quot;.</span>
+<span class="cm">     * @chainable</span>
+<span class="cm">     */</span>
+    <span class="nx">hide</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">VISIBLE</span><span class="p">,</span> <span class="nx">FALSE</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @method show</span>
+<span class="cm">     * @description Shows the Widget by setting the &quot;visible&quot; attribute to &quot;true&quot;.</span>
+<span class="cm">     * @chainable</span>
+<span class="cm">     */</span>
+    <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">VISIBLE</span><span class="p">,</span> <span class="nx">TRUE</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @method focus</span>
+<span class="cm">     * @description Causes the Widget to receive the focus by setting the &quot;focused&quot; </span>
+<span class="cm">     * attribute to &quot;true&quot;.</span>
+<span class="cm">     * @chainable</span>
+<span class="cm">     */</span>
+    <span class="nx">focus</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_set</span><span class="p">(</span><span class="nx">FOCUSED</span><span class="p">,</span> <span class="nx">TRUE</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @method blur</span>
+<span class="cm">     * @description Causes the Widget to lose focus by setting the &quot;focused&quot; attribute </span>
+<span class="cm">     * to &quot;false&quot;</span>
+<span class="cm">     * @chainable</span>
+<span class="cm">     */</span>
+    <span class="nx">blur</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_set</span><span class="p">(</span><span class="nx">FOCUSED</span><span class="p">,</span> <span class="nx">FALSE</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @method enable</span>
+<span class="cm">     * @description Set the Widget&#39;s &quot;disabled&quot; attribute to &quot;false&quot;.</span>
+<span class="cm">     * @chainable</span>
+<span class="cm">     */</span>
+    <span class="nx">enable</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">DISABLED</span><span class="p">,</span> <span class="nx">FALSE</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @method disable</span>
+<span class="cm">     * @description Set the Widget&#39;s &quot;disabled&quot; attribute to &quot;true&quot;.</span>
+<span class="cm">     * @chainable</span>
+<span class="cm">     */</span>
+    <span class="nx">disable</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">DISABLED</span><span class="p">,</span> <span class="nx">TRUE</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @method _uiSizeCB</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     * @param {boolean} expand</span>
+<span class="cm">     */</span>
+    <span class="nx">_uiSizeCB</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">expand</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="kd">var</span> <span class="nx">bb</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">),</span>
+            <span class="nx">cb</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">),</span>
+
+            <span class="nx">bbTempExpanding</span> <span class="o">=</span> <span class="nx">_getWidgetClassName</span><span class="p">(</span><span class="s2">&quot;tmp&quot;</span><span class="p">,</span> <span class="s2">&quot;forcesize&quot;</span><span class="p">),</span>
+
+            <span class="nx">borderBoxSupported</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bbs</span><span class="p">,</span>
+            <span class="nx">heightReallyMinHeight</span> <span class="o">=</span> <span class="nx">IE</span> <span class="o">&amp;&amp;</span> <span class="nx">IE</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">borderBoxSupported</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">cb</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">_getWidgetClassName</span><span class="p">(</span><span class="nx">CONTENT</span><span class="p">,</span> <span class="s2">&quot;expanded&quot;</span><span class="p">),</span> <span class="nx">expand</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">expand</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">heightReallyMinHeight</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">bb</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">bbTempExpanding</span><span class="p">);</span>
+                <span class="p">}</span>
+
+                <span class="nx">cb</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">OFFSET_HEIGHT</span><span class="p">,</span> <span class="nx">bb</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_HEIGHT</span><span class="p">));</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">heightReallyMinHeight</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">bb</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">bbTempExpanding</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">cb</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">HEIGHT</span><span class="p">,</span> <span class="nx">EMPTY_STR</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Helper method to collect the boundingBox and contentBox, set styles and append to the provided parentNode, if not</span>
+<span class="cm">     * already a child. The owner document of the boundingBox, or the owner document of the contentBox will be used </span>
+<span class="cm">     * as the document into which the Widget is rendered if a parentNode is node is not provided. If both the boundingBox and</span>
+<span class="cm">     * the contentBox are not currently in the document, and no parentNode is provided, the widget will be rendered </span>
+<span class="cm">     * to the current document&#39;s body.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _renderBox</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param {Node} parentNode The parentNode to render the widget to. If not provided, and both the boundingBox and</span>
+<span class="cm">     * the contentBox are not currently in the document, the widget will be rendered to the current document&#39;s body.</span>
+<span class="cm">     */</span>
+    <span class="nx">_renderBox</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parentNode</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="c1">// TODO: Performance Optimization [ More effective algo to reduce Node refs, compares, replaces? ]</span>
+
+        <span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">),</span>
+            <span class="nx">boundingBox</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">),</span>
+            <span class="nx">srcNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SRC_NODE</span><span class="p">),</span>
+            <span class="nx">defParentNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">DEF_PARENT_NODE</span><span class="p">,</span>
+
+            <span class="nx">doc</span> <span class="o">=</span> <span class="p">(</span><span class="nx">srcNode</span> <span class="o">&amp;&amp;</span> <span class="nx">srcNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OWNER_DOCUMENT</span><span class="p">))</span> <span class="o">||</span> <span class="nx">boundingBox</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OWNER_DOCUMENT</span><span class="p">)</span> <span class="o">||</span> <span class="nx">contentBox</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OWNER_DOCUMENT</span><span class="p">);</span>
+
+        <span class="c1">// If srcNode (assume it&#39;s always in doc), have contentBox take its place (widget render responsible for re-use of srcNode contents)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">srcNode</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">srcNode</span><span class="p">.</span><span class="nx">compareTo</span><span class="p">(</span><span class="nx">contentBox</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">contentBox</span><span class="p">.</span><span class="nx">inDoc</span><span class="p">(</span><span class="nx">doc</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">srcNode</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">contentBox</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">boundingBox</span><span class="p">.</span><span class="nx">compareTo</span><span class="p">(</span><span class="nx">contentBox</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">boundingBox</span><span class="p">.</span><span class="nx">compareTo</span><span class="p">(</span><span class="nx">contentBox</span><span class="p">))</span> <span class="p">{</span>
+            <span class="c1">// If contentBox box is already in the document, have boundingBox box take it&#39;s place</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">contentBox</span><span class="p">.</span><span class="nx">inDoc</span><span class="p">(</span><span class="nx">doc</span><span class="p">))</span> <span class="p">{</span>
+                <span class="nx">contentBox</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">boundingBox</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="nx">boundingBox</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">contentBox</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">parentNode</span> <span class="o">||</span> <span class="p">(</span><span class="nx">defParentNode</span> <span class="o">&amp;&amp;</span> <span class="nx">Node</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">defParentNode</span><span class="p">));</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">parentNode</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">parentNode</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">boundingBox</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">boundingBox</span><span class="p">.</span><span class="nx">inDoc</span><span class="p">(</span><span class="nx">doc</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">Node</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">BODY</span><span class="p">).</span><span class="nx">insert</span><span class="p">(</span><span class="nx">boundingBox</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_bbs</span> <span class="o">=</span> <span class="o">!</span><span class="p">(</span><span class="nx">IE</span> <span class="o">&amp;&amp;</span> <span class="nx">IE</span> <span class="o">&lt;</span> <span class="mi">8</span> <span class="o">&amp;&amp;</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">compatMode</span> <span class="o">!=</span> <span class="s2">&quot;BackCompat&quot;</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Setter for the boundingBox attribute</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _setBB</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param Node/String</span>
+<span class="cm">     * @return Node</span>
+<span class="cm">     */</span>
+    <span class="nx">_setBB</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setBox</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ID</span><span class="p">),</span> <span class="nx">node</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">BOUNDING_TEMPLATE</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Setter for the contentBox attribute</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _setCB</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param {Node|String} node</span>
+<span class="cm">     * @return Node</span>
+<span class="cm">     */</span>
+    <span class="nx">_setCB</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CONTENT_TEMPLATE</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="o">?</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">)</span> <span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setBox</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">node</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">CONTENT_TEMPLATE</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="nx">_defaultCB</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SRC_NODE</span><span class="p">)</span> <span class="o">||</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Helper method to set the bounding/content box, or create it from</span>
+<span class="cm">     * the provided template if not found.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _setBox</span>
+<span class="cm">     * @private</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param {String} id The node&#39;s id attribute</span>
+<span class="cm">     * @param {Node|String} node The node reference</span>
+<span class="cm">     * @param {String} template HTML string template for the node</span>
+<span class="cm">     * @return {Node} The node</span>
+<span class="cm">     */</span>
+    <span class="nx">_setBox</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">node</span><span class="p">,</span> <span class="nx">template</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">node</span> <span class="o">=</span> <span class="nx">Node</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="o">||</span> <span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">template</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ID</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">node</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">ID</span><span class="p">,</span> <span class="nx">id</span> <span class="o">||</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">guid</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">node</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Initializes the UI state for the Widget&#39;s bounding/content boxes.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _renderUI</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_renderBoxClassNames</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_renderBox</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_parentNode</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Applies standard class names to the boundingBox and contentBox</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _renderBoxClassNames</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_renderBoxClassNames</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">classes</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getClasses</span><span class="p">(),</span>
+            <span class="nx">cl</span><span class="p">,</span>
+            <span class="nx">boundingBox</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">),</span>
+            <span class="nx">i</span><span class="p">;</span>
+
+        <span class="nx">boundingBox</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">_getWidgetClassName</span><span class="p">());</span>
+
+        <span class="c1">// Start from Widget Sub Class</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="nx">classes</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">3</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">cl</span> <span class="o">=</span> <span class="nx">classes</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            <span class="nx">boundingBox</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">cl</span><span class="p">.</span><span class="nx">CSS_PREFIX</span> <span class="o">||</span> <span class="nx">_getClassName</span><span class="p">(</span><span class="nx">cl</span><span class="p">.</span><span class="nx">NAME</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()));</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Use instance based name for content box</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">(</span><span class="nx">CONTENT</span><span class="p">));</span>
+    <span class="p">},</span>
+
+
+    <span class="cm">/**</span>
+<span class="cm">     * Removes class names representative of the widget&#39;s loading state from </span>
+<span class="cm">     * the boundingBox.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _removeLoadingClassNames</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_removeLoadingClassNames</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+        <span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">),</span>
+            <span class="nx">contentBox</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
+
+        <span class="nx">boundingBox</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">_getWidgetClassName</span><span class="p">(</span><span class="nx">LOADING</span><span class="p">));</span>
+        <span class="nx">boundingBox</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">(</span><span class="nx">LOADING</span><span class="p">));</span>
+        
+        <span class="nx">contentBox</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">_getWidgetClassName</span><span class="p">(</span><span class="nx">LOADING</span><span class="p">));</span>
+        <span class="nx">contentBox</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">(</span><span class="nx">LOADING</span><span class="p">));</span>
+        
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Sets up DOM and CustomEvent listeners for the widget.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _bindUI</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_bindAttrUI</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_BIND_UI_ATTRS</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_bindDOM</span><span class="p">();</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @method _unbindUI</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_unbindUI</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">boundingBox</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_unbindDOM</span><span class="p">(</span><span class="nx">boundingBox</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Sets up DOM listeners, on elements rendered by the widget.</span>
+<span class="cm">     * </span>
+<span class="cm">     * @method _bindDOM</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_bindDOM</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">oDocument</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">OWNER_DOCUMENT</span><span class="p">);</span>
+
+        <span class="c1">// TODO: Perf Optimization: Use Widget.getByNode delegation, to get by </span>
+        <span class="c1">// with just one _onDocFocus subscription per sandbox, instead of one per widget</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">_hDocFocus</span> <span class="o">=</span> <span class="nx">oDocument</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;focus&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_onDocFocus</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+
+		<span class="c1">//	Fix for Webkit:</span>
+		<span class="c1">//	Document doesn&#39;t receive focus in Webkit when the user mouses </span>
+		<span class="c1">//	down on it, so the &quot;focused&quot; attribute won&#39;t get set to the </span>
+		<span class="c1">//	correct value.</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">WEBKIT</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_hDocMouseDown</span> <span class="o">=</span> <span class="nx">oDocument</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;mousedown&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_onDocMouseDown</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+		<span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @method _unbindDOM</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>   
+    <span class="nx">_unbindDOM</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">boundingBox</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_hDocFocus</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_hDocFocus</span><span class="p">.</span><span class="nx">detach</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">WEBKIT</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_hDocMouseDown</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_hDocMouseDown</span><span class="p">.</span><span class="nx">detach</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Updates the widget UI to reflect the attribute state.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _syncUI</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_syncAttrUI</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_SYNC_UI_ATTRS</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Sets the height on the widget&#39;s bounding box element</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _uiSetHeight</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     * @param {String | Number} val</span>
+<span class="cm">     */</span>
+    <span class="nx">_uiSetHeight</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_uiSetDim</span><span class="p">(</span><span class="nx">HEIGHT</span><span class="p">,</span> <span class="nx">val</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_uiSizeCB</span><span class="p">((</span><span class="nx">val</span> <span class="o">!==</span> <span class="nx">EMPTY_STR</span> <span class="o">&amp;&amp;</span> <span class="nx">val</span> <span class="o">!==</span> <span class="nx">AUTO</span><span class="p">));</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Sets the width on the widget&#39;s bounding box element</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _uiSetWidth</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     * @param {String | Number} val</span>
+<span class="cm">     */</span>
+    <span class="nx">_uiSetWidth</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_uiSetDim</span><span class="p">(</span><span class="nx">WIDTH</span><span class="p">,</span> <span class="nx">val</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @method _uiSetDim</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param {String} dim The dimension - &quot;width&quot; or &quot;height&quot;</span>
+<span class="cm">     * @param {Number | String} val The value to set</span>
+<span class="cm">     */</span>
+    <span class="nx">_uiSetDim</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dimension</span><span class="p">,</span> <span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">).</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">dimension</span><span class="p">,</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="o">?</span> <span class="nx">val</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">DEF_UNIT</span> <span class="o">:</span> <span class="nx">val</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Sets the visible state for the UI</span>
+<span class="cm">     * </span>
+<span class="cm">     * @method _uiSetVisible</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     * @param {boolean} val</span>
+<span class="cm">     */</span>
+    <span class="nx">_uiSetVisible</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">).</span><span class="nx">toggleClass</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">(</span><span class="nx">HIDDEN</span><span class="p">),</span> <span class="o">!</span><span class="nx">val</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Sets the disabled state for the UI</span>
+<span class="cm">     *</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     * @param {boolean} val</span>
+<span class="cm">     */</span>
+    <span class="nx">_uiSetDisabled</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">).</span><span class="nx">toggleClass</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">(</span><span class="nx">DISABLED</span><span class="p">),</span> <span class="nx">val</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Sets the focused state for the UI</span>
+<span class="cm">     *</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     * @param {boolean} val</span>
+<span class="cm">     * @param {string} src String representing the source that triggered an update to </span>
+<span class="cm">     * the UI.     </span>
+<span class="cm">     */</span>
+    <span class="nx">_uiSetFocused</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span> <span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
+         <span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
+
+         <span class="nx">boundingBox</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">(</span><span class="nx">FOCUSED</span><span class="p">),</span> <span class="nx">val</span><span class="p">);</span>
+         <span class="k">if</span> <span class="p">(</span><span class="nx">src</span> <span class="o">!==</span> <span class="nx">UI</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">boundingBox</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>  
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">boundingBox</span><span class="p">.</span><span class="nx">blur</span><span class="p">();</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Set the tabIndex on the widget&#39;s rendered UI</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _uiSetTabIndex</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     * @param Number</span>
+<span class="cm">     */</span>
+    <span class="nx">_uiSetTabIndex</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">L</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">index</span><span class="p">))</span> <span class="p">{</span>
+			<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">TAB_INDEX</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+			<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="nx">TAB_INDEX</span><span class="p">);</span>
+		<span class="p">}</span>
+    <span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * @method _onDocMouseDown</span>
+<span class="cm">	 * @description &quot;mousedown&quot; event handler for the owner document of the </span>
+<span class="cm">	 * widget&#39;s bounding box.</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">     * @param {EventFacade} evt The event facade for the DOM focus event</span>
+<span class="cm">	 */</span>
+	<span class="nx">_onDocMouseDown</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_hasDOMFocus</span><span class="p">)</span> <span class="p">{</span>
+ 			<span class="k">this</span><span class="p">.</span><span class="nx">_onDocFocus</span><span class="p">(</span><span class="nx">evt</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * DOM focus event handler, used to sync the state of the Widget with the DOM</span>
+<span class="cm">     * </span>
+<span class="cm">     * @method _onDocFocus</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     * @param {EventFacade} evt The event facade for the DOM focus event</span>
+<span class="cm">     */</span>
+    <span class="nx">_onDocFocus</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">bFocused</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">).</span><span class="nx">contains</span><span class="p">(</span><span class="nx">evt</span><span class="p">.</span><span class="nx">target</span><span class="p">);</span> <span class="c1">// contains() checks invoking node also</span>
+
+		<span class="k">this</span><span class="p">.</span><span class="nx">_hasDOMFocus</span> <span class="o">=</span> <span class="nx">bFocused</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_set</span><span class="p">(</span><span class="nx">FOCUSED</span><span class="p">,</span> <span class="nx">bFocused</span><span class="p">,</span> <span class="p">{</span> <span class="nx">src</span><span class="o">:</span> <span class="nx">UI</span> <span class="p">});</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Generic toString implementation for all widgets.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method toString</span>
+<span class="cm">     * @return {String} The default string value for the widget [ displays the NAME of the instance, and the unique id ]</span>
+<span class="cm">     */</span>
+    <span class="nx">toString</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">NAME</span> <span class="o">+</span> <span class="s2">&quot;[&quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ID</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Default unit to use for dimension values</span>
+<span class="cm">     * </span>
+<span class="cm">     * @property DEF_UNIT</span>
+<span class="cm">     * @type String</span>
+<span class="cm">     */</span>
+    <span class="nx">DEF_UNIT</span> <span class="o">:</span> <span class="s2">&quot;px&quot;</span><span class="p">,</span>
+
+    <span class="cm">/** </span>
+<span class="cm">     * Default node to render the bounding box to. If not set,</span>
+<span class="cm">     * will default to the current document body.</span>
+<span class="cm">     * </span>
+<span class="cm">     * @property DEF_PARENT_NODE</span>
+<span class="cm">     * @type String | Node</span>
+<span class="cm">     */</span> 
+    <span class="nx">DEF_PARENT_NODE</span> <span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Property defining the markup template for content box. If your Widget doesn&#39;t</span>
+<span class="cm">     * need the dual boundingBox/contentBox structure, set CONTENT_TEMPLATE to null,</span>
+<span class="cm">     * and contentBox and boundingBox will both point to the same Node. </span>
+<span class="cm">     *</span>
+<span class="cm">     * @property CONTENT_TEMPLATE</span>
+<span class="cm">     * @type String</span>
+<span class="cm">     */</span>
+    <span class="nx">CONTENT_TEMPLATE</span> <span class="o">:</span> <span class="nx">DIV</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Property defining the markup template for bounding box.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property BOUNDING_TEMPLATE</span>
+<span class="cm">     * @type String</span>
+<span class="cm">     */</span>
+    <span class="nx">BOUNDING_TEMPLATE</span> <span class="o">:</span> <span class="nx">DIV</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @method _guid</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_guid</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">guid</span><span class="p">();</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @method _validTabIndex</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     * @param {Number} tabIndex</span>
+<span class="cm">     */</span>
+    <span class="nx">_validTabIndex</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">tabIndex</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">L</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">tabIndex</span><span class="p">)</span> <span class="o">||</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isNull</span><span class="p">(</span><span class="nx">tabIndex</span><span class="p">));</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Binds after listeners for the list of attributes provided</span>
+<span class="cm">     * </span>
+<span class="cm">     * @method _bindAttrUI</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param {Array} attrs</span>
+<span class="cm">     */</span>
+    <span class="nx">_bindAttrUI</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">attrs</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> 
+            <span class="nx">l</span> <span class="o">=</span> <span class="nx">attrs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> 
+
+        <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">l</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="nx">attrs</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="nx">CHANGE</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setAttrUI</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Invokes the _uiSet&amp;#61;ATTR NAME&amp;#62; method for the list of attributes provided  </span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _syncAttrUI</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param {Array} attrs</span>
+<span class="cm">     */</span>
+    <span class="nx">_syncAttrUI</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">attrs</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">attrs</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="nx">attr</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">l</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">attr</span> <span class="o">=</span> <span class="nx">attrs</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            <span class="k">this</span><span class="p">[</span><span class="nx">_UISET</span> <span class="o">+</span> <span class="nx">_toInitialCap</span><span class="p">(</span><span class="nx">attr</span><span class="p">)](</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">attr</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @method _setAttrUI</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param {EventFacade} e</span>
+<span class="cm">     */</span>
+    <span class="nx">_setAttrUI</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">[</span><span class="nx">_UISET</span> <span class="o">+</span> <span class="nx">_toInitialCap</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span><span class="p">)](</span><span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">src</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The default setter for the strings attribute. Merges partial sets</span>
+<span class="cm">     * into the full string set, to allow users to partial sets of strings  </span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _strSetter</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     * @param {Object} strings</span>
+<span class="cm">     * @return {String} The full set of strings to set</span>
+<span class="cm">     */</span>
+    <span class="nx">_strSetter</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">strings</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">STRINGS</span><span class="p">),</span> <span class="nx">strings</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Helper method to get a specific string value</span>
+<span class="cm">     *</span>
+<span class="cm">     * @deprecated Used by deprecated WidgetLocale implementations. </span>
+<span class="cm">     * @method getString</span>
+<span class="cm">     * @param {String} key</span>
+<span class="cm">     * @return {String} The string</span>
+<span class="cm">     */</span>
+    <span class="nx">getString</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">STRINGS</span><span class="p">)[</span><span class="nx">key</span><span class="p">];</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Helper method to get the complete set of strings for the widget</span>
+<span class="cm">     *</span>
+<span class="cm">     * @deprecated  Used by deprecated WidgetLocale implementations.</span>
+<span class="cm">     * @method getString</span>
+<span class="cm">     * @param {String} key</span>
+<span class="cm">     * @return {String} The string</span>
+<span class="cm">     */</span>
+    <span class="nx">getStrings</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">STRINGS</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The list of UI attributes to bind for Widget&#39;s _bindUI implementation</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property _BIND_UI_ATTRS</span>
+<span class="cm">     * @type Array</span>
+<span class="cm">     * @private</span>
+<span class="cm">     */</span>
+    <span class="nx">_BIND_UI_ATTRS</span> <span class="o">:</span> <span class="nx">UI_ATTRS</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The list of UI attributes to sync for Widget&#39;s _syncUI implementation</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property _SYNC_UI_ATTRS</span>
+<span class="cm">     * @type Array</span>
+<span class="cm">     * @private</span>
+<span class="cm">     */</span>
+    <span class="nx">_SYNC_UI_ATTRS</span> <span class="o">:</span> <span class="nx">UI_ATTRS</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">TAB_INDEX</span><span class="p">),</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Map of DOM events that should be fired as Custom Events by the  </span>
+<span class="cm">     * Widget instance.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property UI_EVENTS</span>
+<span class="cm">     * @type Object</span>
+<span class="cm">     */</span>
+    <span class="nx">UI_EVENTS</span><span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">DOM_EVENTS</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Returns the node on which to bind delegate listeners.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _getUIEventNode</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_getUIEventNode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Binds a delegated DOM event listener of the specified type to the </span>
+<span class="cm">     * Widget&#39;s outtermost DOM element to facilitate the firing of a Custom</span>
+<span class="cm">     * Event of the same type for the Widget instance.  </span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @method _createUIEvent</span>
+<span class="cm">     * @param type {String} String representing the name of the event</span>
+<span class="cm">     */</span>
+    <span class="nx">_createUIEvent</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="kd">var</span> <span class="nx">uiEvtNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getUIEventNode</span><span class="p">(),</span>
+            <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">uiEvtNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">),</span>
+            <span class="nx">key</span> <span class="o">=</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">stamp</span><span class="p">(</span><span class="nx">parentNode</span><span class="p">)</span> <span class="o">+</span> <span class="nx">type</span><span class="p">),</span>
+            <span class="nx">info</span> <span class="o">=</span> <span class="nx">_delegates</span><span class="p">[</span><span class="nx">key</span><span class="p">],</span>
+            <span class="nx">handle</span><span class="p">;</span>
+
+        <span class="c1">//  For each Node instance: Ensure that there is only one delegated </span>
+        <span class="c1">//  event listener used to fire Widget UI events.</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>
+
+
+            <span class="nx">handle</span> <span class="o">=</span> <span class="nx">parentNode</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+
+                <span class="kd">var</span> <span class="nx">widget</span> <span class="o">=</span> <span class="nx">Widget</span><span class="p">.</span><span class="nx">getByNode</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+                <span class="c1">//  Make the DOM event a property of the custom event</span>
+                <span class="c1">//  so that developers still have access to it.</span>
+                <span class="nx">widget</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">evt</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span> <span class="p">{</span> <span class="nx">domEvent</span><span class="o">:</span> <span class="nx">evt</span> <span class="p">});</span>
+
+            <span class="p">},</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">_getWidgetClassName</span><span class="p">());</span>
+
+            <span class="nx">_delegates</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">info</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">instances</span><span class="o">:</span> <span class="p">{},</span> <span class="nx">handle</span><span class="o">:</span> <span class="nx">handle</span> <span class="p">};</span>
+
+        <span class="p">}</span>
+
+        <span class="c1">//  Register this Widget as using this Node as a delegation container.</span>
+        <span class="nx">info</span><span class="p">.</span><span class="nx">instances</span><span class="p">[</span><span class="nx">Y</span><span class="p">.</span><span class="nx">stamp</span><span class="p">(</span><span class="k">this</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Determines if the specified event is a UI event.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @method _isUIEvent</span>
+<span class="cm">     * @param type {String} String representing the name of the event</span>
+<span class="cm">     * @return {String} Event Returns the name of the UI Event, otherwise </span>
+<span class="cm">     * undefined.</span>
+<span class="cm">     */</span>
+    <span class="nx">_getUIEvent</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">L</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">type</span><span class="p">))</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">sType</span> <span class="o">=</span> <span class="nx">type</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">UI_EVENT_REGEX</span><span class="p">,</span> <span class="nx">UI_EVENT_REGEX_REPLACE</span><span class="p">),</span>
+                <span class="nx">returnVal</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">UI_EVENTS</span><span class="p">[</span><span class="nx">sType</span><span class="p">])</span> <span class="p">{</span>
+                <span class="nx">returnVal</span> <span class="o">=</span> <span class="nx">sType</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">return</span> <span class="nx">returnVal</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Sets up infastructure required to fire a UI event.</span>
+<span class="cm">     * </span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @method _initUIEvent</span>
+<span class="cm">     * @param type {String} String representing the name of the event</span>
+<span class="cm">     * @return {String}     </span>
+<span class="cm">     */</span>
+    <span class="nx">_initUIEvent</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">sType</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getUIEvent</span><span class="p">(</span><span class="nx">type</span><span class="p">),</span>
+            <span class="nx">queue</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_uiEvtsInitQueue</span> <span class="o">||</span> <span class="p">{};</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">sType</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">queue</span><span class="p">[</span><span class="nx">sType</span><span class="p">])</span> <span class="p">{</span>
+
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="nx">RENDER</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+                <span class="k">this</span><span class="p">.</span><span class="nx">_createUIEvent</span><span class="p">(</span><span class="nx">sType</span><span class="p">);</span>
+                <span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">_uiEvtsInitQueue</span><span class="p">[</span><span class="nx">sType</span><span class="p">];</span>
+            <span class="p">});</span>
+            
+            <span class="k">this</span><span class="p">.</span><span class="nx">_uiEvtsInitQueue</span> <span class="o">=</span> <span class="nx">queue</span><span class="p">[</span><span class="nx">sType</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="c1">//  Override of &quot;on&quot; from Base to facilitate the firing of Widget events</span>
+    <span class="c1">//  based on DOM events of the same name/type (e.g. &quot;click&quot;, &quot;mouseover&quot;).</span>
+    <span class="c1">//  Temporary solution until we have the ability to listen to when </span>
+    <span class="c1">//  someone adds an event listener (bug 2528230)</span>
+    <span class="nx">on</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_initUIEvent</span><span class="p">(</span><span class="nx">type</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">Widget</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">on</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="c1">//  Override of &quot;after&quot; from Base to facilitate the firing of Widget events</span>
+    <span class="c1">//  based on DOM events of the same name/type (e.g. &quot;click&quot;, &quot;mouseover&quot;).    </span>
+    <span class="c1">//  Temporary solution until we have the ability to listen to when </span>
+    <span class="c1">//  someone adds an event listener (bug 2528230)    </span>
+    <span class="nx">after</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_initUIEvent</span><span class="p">(</span><span class="nx">type</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">Widget</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">after</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="c1">//  Override of &quot;publish&quot; from Base to facilitate the firing of Widget events</span>
+    <span class="c1">//  based on DOM events of the same name/type (e.g. &quot;click&quot;, &quot;mouseover&quot;).    </span>
+    <span class="c1">//  Temporary solution until we have the ability to listen to when </span>
+    <span class="c1">//  someone publishes an event (bug 2528230)     </span>
+    <span class="nx">publish</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">sType</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getUIEvent</span><span class="p">(</span><span class="nx">type</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">sType</span> <span class="o">&amp;&amp;</span> <span class="nx">config</span> <span class="o">&amp;&amp;</span> <span class="nx">config</span><span class="p">.</span><span class="nx">defaultFn</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_initUIEvent</span><span class="p">(</span><span class="nx">sType</span><span class="p">);</span>
+        <span class="p">}</span>        
+        <span class="k">return</span> <span class="nx">Widget</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">publish</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">});</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">Widget</span> <span class="o">=</span> <span class="nx">Widget</span><span class="p">;</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;attribute&#39;</span><span class="p">,</span> <span class="s1">&#39;event-focus&#39;</span><span class="p">,</span> <span class="s1">&#39;base&#39;</span><span class="p">,</span> <span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;classnamemanager&#39;</span><span class="p">,</span> <span class="s1">&#39;intl&#39;</span><span class="p">]});</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;widget-htmlparser&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Adds HTML Parser support to the base Widget class</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module widget</span>
+<span class="cm"> * @submodule widget-htmlparser</span>
+<span class="cm"> * @for Widget</span>
+<span class="cm"> */</span>
+
+
+<span class="kd">var</span> <span class="nx">Widget</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Widget</span><span class="p">,</span>
+    <span class="nx">Node</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Node</span><span class="p">,</span>
+    <span class="nx">Lang</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+
+    <span class="nx">SRC_NODE</span> <span class="o">=</span> <span class="s2">&quot;srcNode&quot;</span><span class="p">,</span>
+    <span class="nx">CONTENT_BOX</span> <span class="o">=</span> <span class="s2">&quot;contentBox&quot;</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Object hash, defining how attribute values are to be parsed from</span>
+<span class="cm"> * markup contained in the widget&#39;s content box. e.g.:</span>
+<span class="cm"> * &lt;pre&gt;</span>
+<span class="cm"> *   {</span>
+<span class="cm"> *       // Set single Node references using selector syntax </span>
+<span class="cm"> *       // (selector is run through node.one)</span>
+<span class="cm"> *       titleNode: &quot;span.yui-title&quot;,</span>
+<span class="cm"> *       // Set NodeList references using selector syntax </span>
+<span class="cm"> *       // (array indicates selector is to be run through node.all)</span>
+<span class="cm"> *       listNodes: [&quot;li.yui-item&quot;],</span>
+<span class="cm"> *       // Set other attribute types, using a parse function. </span>
+<span class="cm"> *       // Context is set to the widget instance.</span>
+<span class="cm"> *       label: function(contentBox) {</span>
+<span class="cm"> *           return contentBox.one(&quot;span.title&quot;).get(&quot;innerHTML&quot;);</span>
+<span class="cm"> *       }</span>
+<span class="cm"> *   }</span>
+<span class="cm"> * &lt;/pre&gt;</span>
+<span class="cm"> * </span>
+<span class="cm"> * @property Widget.HTML_PARSER</span>
+<span class="cm"> * @type Object</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+<span class="nx">Widget</span><span class="p">.</span><span class="nx">HTML_PARSER</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * The build configuration for the Widget class.</span>
+<span class="cm"> * &lt;p&gt;</span>
+<span class="cm"> * Defines the static fields which need to be aggregated,</span>
+<span class="cm"> * when this class is used as the main class passed to </span>
+<span class="cm"> * the &lt;a href=&quot;Base.html#method_build&quot;&gt;Base.build&lt;/a&gt; method.</span>
+<span class="cm"> * &lt;/p&gt;</span>
+<span class="cm"> * @property _buildCfg</span>
+<span class="cm"> * @type Object</span>
+<span class="cm"> * @static</span>
+<span class="cm"> * @final</span>
+<span class="cm"> * @private</span>
+<span class="cm"> */</span>
+<span class="nx">Widget</span><span class="p">.</span><span class="nx">_buildCfg</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">aggregates</span> <span class="o">:</span> <span class="p">[</span><span class="s2">&quot;HTML_PARSER&quot;</span><span class="p">]</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * The DOM node to parse for configuration values, passed to the Widget&#39;s HTML_PARSER definition</span>
+<span class="cm"> *</span>
+<span class="cm"> * @attribute srcNode</span>
+<span class="cm"> * @type String | Node</span>
+<span class="cm"> * @writeOnce</span>
+<span class="cm"> */</span>
+<span class="nx">Widget</span><span class="p">.</span><span class="nx">ATTRS</span><span class="p">[</span><span class="nx">SRC_NODE</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nx">setter</span><span class="o">:</span> <span class="nx">Node</span><span class="p">.</span><span class="nx">one</span><span class="p">,</span>
+    <span class="nx">getter</span><span class="o">:</span> <span class="s2">&quot;_getSrcNode&quot;</span><span class="p">,</span>
+    <span class="nx">writeOnce</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">};</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="p">{</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @method _getSrcNode</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     * @return {Node} The Node to apply HTML_PARSER to</span>
+<span class="cm">     */</span>
+    <span class="nx">_getSrcNode</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">val</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @method _applyParsedConfig</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     * @return {Object} The merged configuration literal</span>
+<span class="cm">     */</span>
+    <span class="nx">_applyParsedConfig</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">cfg</span><span class="p">,</span> <span class="nx">parsedCfg</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">parsedCfg</span><span class="p">)</span> <span class="o">?</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">(</span><span class="nx">cfg</span><span class="p">,</span> <span class="nx">parsedCfg</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span> <span class="o">:</span> <span class="nx">cfg</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Utilitity method used to apply the &lt;code&gt;HTML_PARSER&lt;/code&gt; configuration for the </span>
+<span class="cm">     * instance, to retrieve config data values.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _applyParser</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param config {Object} User configuration object (will be populated with values from Node) </span>
+<span class="cm">     */</span>
+    <span class="nx">_applyParser</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="kd">var</span> <span class="nx">widget</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+            <span class="nx">srcNode</span> <span class="o">=</span> <span class="nx">widget</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SRC_NODE</span><span class="p">),</span>
+            <span class="nx">schema</span> <span class="o">=</span> <span class="nx">widget</span><span class="p">.</span><span class="nx">_getHtmlParser</span><span class="p">(),</span>
+            <span class="nx">parsedConfig</span><span class="p">,</span>
+            <span class="nx">val</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">schema</span> <span class="o">&amp;&amp;</span> <span class="nx">srcNode</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">Y</span><span class="p">.</span><span class="nb">Object</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">val</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span> <span class="p">{</span>
+                    <span class="nx">val</span> <span class="o">=</span> <span class="nx">v</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">widget</span><span class="p">,</span> <span class="nx">srcNode</span><span class="p">);</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="nx">val</span> <span class="o">=</span> <span class="nx">srcNode</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                        <span class="nx">val</span> <span class="o">=</span> <span class="nx">srcNode</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="o">!==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">val</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">parsedConfig</span> <span class="o">=</span> <span class="nx">parsedConfig</span> <span class="o">||</span> <span class="p">{};</span>
+                    <span class="nx">parsedConfig</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="o">=</span> <span class="nx">val</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+        <span class="p">}</span>
+        <span class="nx">config</span> <span class="o">=</span> <span class="nx">widget</span><span class="p">.</span><span class="nx">_applyParsedConfig</span><span class="p">(</span><span class="nx">srcNode</span><span class="p">,</span> <span class="nx">config</span><span class="p">,</span> <span class="nx">parsedConfig</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Gets the HTML_PARSER definition for this instance, by merging HTML_PARSER</span>
+<span class="cm">     * definitions across the class hierarchy.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @method _getHtmlParser</span>
+<span class="cm">     * @return {Object} HTML_PARSER definition for this instance</span>
+<span class="cm">     */</span>
+    <span class="nx">_getHtmlParser</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Removed caching for kweight. This is a private method</span>
+        <span class="c1">// and only called once so don&#39;t need to cache HTML_PARSER</span>
+        <span class="kd">var</span> <span class="nx">classes</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getClasses</span><span class="p">(),</span>
+            <span class="nx">parser</span> <span class="o">=</span> <span class="p">{},</span>
+            <span class="nx">i</span><span class="p">,</span> <span class="nx">p</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="nx">classes</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">p</span> <span class="o">=</span> <span class="nx">classes</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">HTML_PARSER</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">parser</span><span class="p">,</span> <span class="nx">p</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">parser</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;widget-base&#39;</span><span class="p">]});</span>
+
+
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;widget&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;widget-base&#39;</span><span class="p">,</span> <span class="s1">&#39;widget-htmlparser&#39;</span> <span class="p">]});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "WidgetStdMod.html#method__afterBodyChange", "access": "protected", "host": "WidgetStdMod", "type": "method", "name": "_afterBodyChange"}, {"url": "WidgetStdMod.html#method__afterFillHeightChange", "access": "protected", "host": "WidgetStdMod", "type": "method", "name": "_afterFillHeightChange"}, {"url": "WidgetStdMod.html#method__afterFooterChange", "access": "protected", "host": "WidgetStdMod", "type": "method", "name": "_afterFooterChange"}, {"url": "WidgetStdMod.html#method__afterHeaderChange", "access": "protected", "host": "WidgetStdMod", "type": "method", "name": "_afterHeaderChange"}, {"url": "WidgetStdMod.html#method__bindUIStdMod", "access": "protected", "host": "WidgetStdMod", "type": "method", "name": "_bindUIStdMod"}, {"url": "WidgetStdMod.html#config_bodyContent", "access": "", "host": "WidgetStdMod", "type": "config", "name": "bodyContent"}, {"url": "WidgetStdMod.html#event_bodyContentChange", "access": "", "host": "WidgetStdMod", "type": "event", "name": "bodyContentChange"}, {"url": "WidgetStdMod.html#method_fillHeight", "access": "", "host": "WidgetStdMod", "type": "method", "name": "fillHeight"}, {"url": "WidgetStdMod.html#config_fillHeight", "access": "", "host": "WidgetStdMod", "type": "config", "name": "fillHeight"}, {"url": "WidgetStdMod.html#event_fillHeightChange", "access": "", "host": "WidgetStdMod", "type": "event", "name": "fillHeightChange"}, {"url": "WidgetStdMod.html#config_footerContent", "access": "", "host": "WidgetStdMod", "type": "config", "name": "footerContent"}, {"url": "WidgetStdMod.html#event_footerContentChange", "access": "", "host": "WidgetStdMod", "type": "event", "name": "footerContentChange"}, {"url": "WidgetStdMod.html#method_getStdModNode", "access": "", "host": "WidgetStdMod", "type": "method", "name": "getStdModNode"}, {"url": "WidgetStdMod.html#method__getStdModTemplate", "access": "protected", "host": "WidgetStdMod", "type": "method", "name": "_getStdModTemplate"}, {"url": "WidgetStdMod.html#config_headerContent", "access": "", "host": "WidgetStdMod", "type": "config", "name": "headerContent"}, {"url": "WidgetStdMod.html#event_headerContentChange", "access": "", "host": "WidgetStdMod", "type": "event", "name": "headerContentChange"}, {"url": "WidgetStdMod.html#method__renderStdMod", "access": "protected", "host": "WidgetStdMod", "type": "method", "name": "_renderStdMod"}, {"url": "WidgetStdMod.html#method__renderUIStdMod", "access": "protected", "host": "WidgetStdMod", "type": "method", "name": "_renderUIStdMod"}, {"url": "WidgetStdMod.html#method_setStdModContent", "access": "", "host": "WidgetStdMod", "type": "method", "name": "setStdModContent"}, {"url": "WidgetStdMod.html#method__syncUIStdMod", "access": "protected", "host": "WidgetStdMod", "type": "method", "name": "_syncUIStdMod"}, {"url": "WidgetStdMod.html#method__uiSetFillHeight", "access": "protected", "host": "WidgetStdMod", "type": "method", "name": "_uiSetFillHeight"}, {"url": "WidgetStdMod.html#method__uiSetStdMod", "access": "protected", "host": "WidgetStdMod", "type": "method", "name": "_uiSetStdMod"}, {"url": "WidgetStdMod.html#method__validateFillHeight", "access": "protected", "host": "WidgetStdMod", "type": "method", "name": "_validateFillHeight"}, {"url": "WidgetStdMod.html#property_WidgetStdMod.AFTER", "access": "", "host": "WidgetStdMod", "type": "property", "name": "WidgetStdMod.AFTER"}, {"url": "WidgetStdMod.html#property_WidgetStdMod.ATTRS", "access": "", "host": "WidgetStdMod", "type": "property", "name": "WidgetStdMod.ATTRS"}, {"url": "WidgetStdMod.html#property_WidgetStdMod.BEFORE", "access": "", "host": "WidgetStdMod", "type": "property", "name": "WidgetStdMod.BEFORE"}, {"url": "WidgetStdMod.html#property_WidgetStdMod.BODY", "access": "", "host": "WidgetStdMod", "type": "property", "name": "WidgetStdMod.BODY"}, {"url": "WidgetStdMod.html#property_WidgetStdMod.FOOTER", "access": "", "host": "WidgetStdMod", "type": "property", "name": "WidgetStdMod.FOOTER"}, {"url": "WidgetStdMod.html#property_WidgetStdMod.HEADER", "access": "", "host": "WidgetStdMod", "type": "property", "name": "WidgetStdMod.HEADER"}, {"url": "WidgetStdMod.html#property_WidgetStdMod.HTML_PARSER", "access": "", "host": "WidgetStdMod", "type": "property", "name": "WidgetStdMod.HTML_PARSER"}, {"url": "WidgetStdMod.html#property_WidgetStdMod.REPLACE", "access": "", "host": "WidgetStdMod", "type": "property", "name": "WidgetStdMod.REPLACE"}, {"url": "WidgetStdMod.html#property_WidgetStdMod.SECTION_CLASS_NAMES", "access": "", "host": "WidgetStdMod", "type": "property", "name": "WidgetStdMod.SECTION_CLASS_NAMES"}, {"url": "WidgetStdMod.html#property_WidgetStdMod.TEMPLATES", "access": "", "host": "WidgetStdMod", "type": "property", "name": "WidgetStdMod.TEMPLATES"}];
+</script>
+</body>
+</html>

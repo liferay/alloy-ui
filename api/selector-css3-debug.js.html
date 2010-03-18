@@ -1,0 +1,757 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: dom   selector-css3-debug.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			dom&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_dom.html" title="dom">dom</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">selector-css3-debug.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="DOM.html" title="DOM">DOM</a></li>
+
+
+				                                <li class=""><a href="Selector.html" title="Selector">Selector</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="dom-base-debug.js.html" title="dom-base-debug.js">dom-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="dom-base-min.js.html" title="dom-base-min.js">dom-base-min.js</a></li>
+
+
+			                                <li class=""><a href="dom-screen-debug.js.html" title="dom-screen-debug.js">dom-screen-debug.js</a></li>
+
+
+			                                <li class=""><a href="dom-screen-min.js.html" title="dom-screen-min.js">dom-screen-min.js</a></li>
+
+
+			                                <li class=""><a href="dom-screen.js.html" title="dom-screen.js">dom-screen.js</a></li>
+
+
+			                                <li class=""><a href="dom-style-debug.js.html" title="dom-style-debug.js">dom-style-debug.js</a></li>
+
+
+			                                <li class=""><a href="dom-style-min.js.html" title="dom-style-min.js">dom-style-min.js</a></li>
+
+
+			                                <li class=""><a href="dom-style.js.html" title="dom-style.js">dom-style.js</a></li>
+
+
+			                                <li class=""><a href="dom.js.html" title="dom.js">dom.js</a></li>
+
+
+			                                <li class=""><a href="selector-css2-debug.js.html" title="selector-css2-debug.js">selector-css2-debug.js</a></li>
+
+
+			                                <li class=""><a href="selector-css2-min.js.html" title="selector-css2-min.js">selector-css2-min.js</a></li>
+
+
+			                                <li class=""><a href="selector-css2.js.html" title="selector-css2.js">selector-css2.js</a></li>
+
+
+			                                <li class="selected"><a href="selector-css3-debug.js.html" title="selector-css3-debug.js">selector-css3-debug.js</a></li>
+
+
+			                                <li class=""><a href="selector-css3-min.js.html" title="selector-css3-min.js">selector-css3-min.js</a></li>
+
+
+			                                <li class=""><a href="selector-css3.js.html" title="selector-css3.js">selector-css3.js</a></li>
+
+
+			                                <li class=""><a href="selector-debug.js.html" title="selector-debug.js">selector-debug.js</a></li>
+
+
+			                                <li class=""><a href="selector-min.js.html" title="selector-min.js">selector-min.js</a></li>
+
+
+			                                <li class=""><a href="selector-native-debug.js.html" title="selector-native-debug.js">selector-native-debug.js</a></li>
+
+
+			                                <li class=""><a href="selector-native-min.js.html" title="selector-native-min.js">selector-native-min.js</a></li>
+
+
+			                                <li class=""><a href="selector-native.js.html" title="selector-native.js">selector-native.js</a></li>
+
+
+			                                <li class=""><a href="selector.js.html" title="selector.js">selector.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
+<span class="cm">Code licensed under the BSD License:</span>
+<span class="cm">http://developer.yahoo.com/yui/license.html</span>
+<span class="cm">version: 3.1.0</span>
+<span class="cm">build: nightly</span>
+<span class="cm">*/</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;selector-css3&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * The selector css3 module provides support for css3 selectors.</span>
+<span class="cm"> * @module dom</span>
+<span class="cm"> * @submodule selector-css3</span>
+<span class="cm"> * @for Selector</span>
+<span class="cm"> */</span>
+
+<span class="cm">/*</span>
+<span class="cm">    an+b = get every _a_th node starting at the _b_th</span>
+<span class="cm">    0n+b = no repeat (&quot;0&quot; and &quot;n&quot; may both be omitted (together) , e.g. &quot;0n+1&quot; or &quot;1&quot;, not &quot;0+1&quot;), return only the _b_th element</span>
+<span class="cm">    1n+b =  get every element starting from b (&quot;1&quot; may may be omitted, e.g. &quot;1n+0&quot; or &quot;n+0&quot; or &quot;n&quot;)</span>
+<span class="cm">    an+0 = get every _a_th element, &quot;0&quot; may be omitted </span>
+<span class="cm">*/</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">Selector</span><span class="p">.</span><span class="nx">_reNth</span> <span class="o">=</span> <span class="sr">/^(?:([\-]?\d*)(n){1}|(odd|even)$)*([\-+]?\d*)$/</span><span class="p">;</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">Selector</span><span class="p">.</span><span class="nx">_getNth</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">expr</span><span class="p">,</span> <span class="nx">tag</span><span class="p">,</span> <span class="nx">reverse</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">Selector</span><span class="p">.</span><span class="nx">_reNth</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">expr</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nb">RegExp</span><span class="p">.</span><span class="nx">$1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="c1">// include every _a_ elements (zero means no repeat, just first _a_)</span>
+        <span class="nx">n</span> <span class="o">=</span> <span class="nb">RegExp</span><span class="p">.</span><span class="nx">$2</span><span class="p">,</span> <span class="c1">// &quot;n&quot;</span>
+        <span class="nx">oddeven</span> <span class="o">=</span> <span class="nb">RegExp</span><span class="p">.</span><span class="nx">$3</span><span class="p">,</span> <span class="c1">// &quot;odd&quot; or &quot;even&quot;</span>
+        <span class="nx">b</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nb">RegExp</span><span class="p">.</span><span class="nx">$4</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">||</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// start scan from element _b_</span>
+        <span class="nx">result</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="nx">siblings</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Selector</span><span class="p">.</span><span class="nx">_children</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">,</span> <span class="nx">tag</span><span class="p">),</span>
+        <span class="nx">op</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">oddeven</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">a</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// always every other</span>
+        <span class="nx">op</span> <span class="o">=</span> <span class="s1">&#39;+&#39;</span><span class="p">;</span>
+        <span class="nx">n</span> <span class="o">=</span> <span class="s1">&#39;n&#39;</span><span class="p">;</span>
+        <span class="nx">b</span> <span class="o">=</span> <span class="p">(</span><span class="nx">oddeven</span> <span class="o">===</span> <span class="s1">&#39;odd&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="nb">isNaN</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">a</span> <span class="o">=</span> <span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// start from the first or no repeat</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// just the first</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">reverse</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">b</span> <span class="o">=</span> <span class="nx">siblings</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="nx">b</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> 
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">siblings</span><span class="p">[</span><span class="nx">b</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">===</span> <span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">reverse</span> <span class="o">=</span> <span class="o">!!</span><span class="nx">reverse</span><span class="p">;</span>
+        <span class="nx">a</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">reverse</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">b</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">siblings</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">siblings</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="nx">node</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">siblings</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">siblings</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">-=</span> <span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span> <span class="o">&amp;&amp;</span> <span class="nx">siblings</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="nx">node</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Selector</span><span class="p">.</span><span class="nx">pseudos</span><span class="p">,</span> <span class="p">{</span>
+    <span class="s1">&#39;root&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">node</span> <span class="o">===</span> <span class="nx">node</span><span class="p">.</span><span class="nx">ownerDocument</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;nth-child&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">expr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Selector</span><span class="p">.</span><span class="nx">_getNth</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">expr</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;nth-last-child&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">expr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Selector</span><span class="p">.</span><span class="nx">_getNth</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">expr</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;nth-of-type&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">expr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Selector</span><span class="p">.</span><span class="nx">_getNth</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">expr</span><span class="p">,</span> <span class="nx">node</span><span class="p">.</span><span class="nx">tagName</span><span class="p">);</span>
+    <span class="p">},</span>
+     
+    <span class="s1">&#39;nth-last-of-type&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">expr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Selector</span><span class="p">.</span><span class="nx">_getNth</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">expr</span><span class="p">,</span> <span class="nx">node</span><span class="p">.</span><span class="nx">tagName</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="p">},</span>
+     
+    <span class="s1">&#39;last-child&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">children</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Selector</span><span class="p">.</span><span class="nx">_children</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">children</span><span class="p">[</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">===</span> <span class="nx">node</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;first-of-type&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Selector</span><span class="p">.</span><span class="nx">_children</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">,</span> <span class="nx">node</span><span class="p">.</span><span class="nx">tagName</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="nx">node</span><span class="p">;</span>
+    <span class="p">},</span>
+     
+    <span class="s1">&#39;last-of-type&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">children</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Selector</span><span class="p">.</span><span class="nx">_children</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">,</span> <span class="nx">node</span><span class="p">.</span><span class="nx">tagName</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">children</span><span class="p">[</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">===</span> <span class="nx">node</span><span class="p">;</span>
+    <span class="p">},</span>
+     
+    <span class="s1">&#39;only-child&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">children</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Selector</span><span class="p">.</span><span class="nx">_children</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">children</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="nx">node</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;only-of-type&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">children</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Selector</span><span class="p">.</span><span class="nx">_children</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">,</span> <span class="nx">node</span><span class="p">.</span><span class="nx">tagName</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">children</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="nx">node</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;empty&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">node</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;not&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">expr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">!</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Selector</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">expr</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;contains&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">expr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">||</span> <span class="nx">node</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nx">text</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">expr</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;checked&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">checked</span> <span class="o">===</span> <span class="kc">true</span> <span class="o">||</span> <span class="nx">node</span><span class="p">.</span><span class="nx">selected</span> <span class="o">===</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="nx">enabled</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">!==</span> <span class="kc">undefined</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">node</span><span class="p">.</span><span class="nx">disabled</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="nx">disabled</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">disabled</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Selector</span><span class="p">.</span><span class="nx">operators</span><span class="p">,</span> <span class="p">{</span>
+    <span class="s1">&#39;^=&#39;</span><span class="o">:</span> <span class="s1">&#39;^{val}&#39;</span><span class="p">,</span> <span class="c1">// Match starts with value</span>
+    <span class="s1">&#39;$=&#39;</span><span class="o">:</span> <span class="s1">&#39;{val}$&#39;</span><span class="p">,</span> <span class="c1">// Match ends with value</span>
+    <span class="s1">&#39;*=&#39;</span><span class="o">:</span> <span class="s1">&#39;{val}&#39;</span> <span class="c1">// Match contains value as substring </span>
+<span class="p">});</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">Selector</span><span class="p">.</span><span class="nx">combinators</span><span class="p">[</span><span class="s1">&#39;~&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">axis</span><span class="o">:</span> <span class="s1">&#39;previousSibling&#39;</span>
+<span class="p">};</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dom-base&#39;</span><span class="p">,</span> <span class="s1">&#39;selector-native&#39;</span><span class="p">,</span> <span class="s1">&#39;selector-css2&#39;</span><span class="p">]});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "DOM.html#method_addClass", "access": "", "host": "DOM", "type": "method", "name": "addClass"}, {"url": "DOM.html#method_addHTML", "access": "", "host": "DOM", "type": "method", "name": "addHTML"}, {"url": "Selector.html#method_ancestor", "access": "", "host": "Selector", "type": "method", "name": "ancestor"}, {"url": "DOM.html#method_byId", "access": "", "host": "DOM", "type": "method", "name": "byId"}, {"url": "DOM.html#method_contains", "access": "", "host": "DOM", "type": "method", "name": "contains"}, {"url": "DOM.html#method_create", "access": "", "host": "DOM", "type": "method", "name": "create"}, {"url": "DOM.html#method_docHeight", "access": "", "host": "DOM", "type": "method", "name": "docHeight"}, {"url": "DOM.html#method_docScrollX", "access": "", "host": "DOM", "type": "method", "name": "docScrollX"}, {"url": "DOM.html#method_docScrollY", "access": "", "host": "DOM", "type": "method", "name": "docScrollY"}, {"url": "DOM.html#method_docWidth", "access": "", "host": "DOM", "type": "method", "name": "docWidth"}, {"url": "DOM.html#method_elementByAxis", "access": "", "host": "DOM", "type": "method", "name": "elementByAxis"}, {"url": "DOM.html#method_getAttibute", "access": "", "host": "DOM", "type": "method", "name": "getAttibute"}, {"url": "DOM.html#method_getComputedStyle", "access": "", "host": "DOM", "type": "method", "name": "getComputedStyle"}, {"url": "DOM.html#method_getStyle", "access": "", "host": "DOM", "type": "method", "name": "getStyle"}, {"url": "DOM.html#method_getText", "access": "", "host": "DOM", "type": "method", "name": "getText"}, {"url": "DOM.html#method_getX", "access": "", "host": "DOM", "type": "method", "name": "getX"}, {"url": "DOM.html#method_getXY", "access": "", "host": "DOM", "type": "method", "name": "getXY"}, {"url": "DOM.html#method_getY", "access": "", "host": "DOM", "type": "method", "name": "getY"}, {"url": "DOM.html#method_hasClass", "access": "", "host": "DOM", "type": "method", "name": "hasClass"}, {"url": "DOM.html#method_inDoc", "access": "", "host": "DOM", "type": "method", "name": "inDoc"}, {"url": "DOM.html#method_inRegion", "access": "", "host": "DOM", "type": "method", "name": "inRegion"}, {"url": "DOM.html#method_intersect", "access": "", "host": "DOM", "type": "method", "name": "intersect"}, {"url": "DOM.html#method_inViewportRegion", "access": "", "host": "DOM", "type": "method", "name": "inViewportRegion"}, {"url": "Selector.html#property_operators", "access": "", "host": "Selector", "type": "property", "name": "operators"}, {"url": "Selector.html#property_PARENT_NODE", "access": "", "host": "Selector", "type": "property", "name": "PARENT_NODE"}, {"url": "Selector.html#method_query", "access": "", "host": "Selector", "type": "method", "name": "query"}, {"url": "DOM.html#method_region", "access": "", "host": "DOM", "type": "method", "name": "region"}, {"url": "DOM.html#method_removeClass", "access": "", "host": "DOM", "type": "method", "name": "removeClass"}, {"url": "DOM.html#method_replaceClass", "access": "", "host": "DOM", "type": "method", "name": "replaceClass"}, {"url": "DOM.html#method_setAttibute", "access": "", "host": "DOM", "type": "method", "name": "setAttibute"}, {"url": "DOM.html#method_setHeight", "access": "", "host": "DOM", "type": "method", "name": "setHeight"}, {"url": "DOM.html#method_setStyle", "access": "", "host": "DOM", "type": "method", "name": "setStyle"}, {"url": "DOM.html#method_setStyles", "access": "", "host": "DOM", "type": "method", "name": "setStyles"}, {"url": "DOM.html#method_setText", "access": "", "host": "DOM", "type": "method", "name": "setText"}, {"url": "DOM.html#method_setWidth", "access": "", "host": "DOM", "type": "method", "name": "setWidth"}, {"url": "DOM.html#method_setX", "access": "", "host": "DOM", "type": "method", "name": "setX"}, {"url": "DOM.html#method_setXY", "access": "", "host": "DOM", "type": "method", "name": "setXY"}, {"url": "DOM.html#method_setY", "access": "", "host": "DOM", "type": "method", "name": "setY"}, {"url": "Selector.html#property_shorthand", "access": "", "host": "Selector", "type": "property", "name": "shorthand"}, {"url": "DOM.html#method_swapXY", "access": "", "host": "DOM", "type": "method", "name": "swapXY"}, {"url": "DOM.html#method_toggleClass", "access": "", "host": "DOM", "type": "method", "name": "toggleClass"}, {"url": "Selector.html#method__tokenize", "access": "", "host": "Selector", "type": "method", "name": "_tokenize"}, {"url": "DOM.html#method_viewportRegion", "access": "", "host": "DOM", "type": "method", "name": "viewportRegion"}, {"url": "DOM.html#method_winHeight", "access": "", "host": "DOM", "type": "method", "name": "winHeight"}, {"url": "DOM.html#method_winWidth", "access": "", "host": "DOM", "type": "method", "name": "winWidth"}];
+</script>
+</body>
+</html>

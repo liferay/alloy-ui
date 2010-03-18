@@ -1,0 +1,1281 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: console   console-filters-debug.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			console&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_console.html" title="console">console</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">console-filters-debug.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="Console.html" title="Console">Console</a></li>
+
+
+				                                <li class=""><a href="Plugin.Console.html" title="Plugin.Console">Plugin.Console</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="console-debug.js.html" title="console-debug.js">console-debug.js</a></li>
+
+
+			                                <li class="selected"><a href="console-filters-debug.js.html" title="console-filters-debug.js">console-filters-debug.js</a></li>
+
+
+			                                <li class=""><a href="console.js.html" title="console.js">console.js</a></li>
+
+
+			                                <li class=""><a href="console_en.js.html" title="console_en.js">console_en.js</a></li>
+
+
+			                                <li class=""><a href="console_es.js.html" title="console_es.js">console_es.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
+<span class="cm">Code licensed under the BSD License:</span>
+<span class="cm">http://developer.yahoo.com/yui/license.html</span>
+<span class="cm">version: 3.1.0</span>
+<span class="cm">build: nightly</span>
+<span class="cm">*/</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;console-filters&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * &lt;p&gt;Provides Plugin.ConsoleFilters plugin class.&lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * &lt;p&gt;This plugin adds the ability to control which Console entries display by filtering on category and source. Two groups of checkboxes are added to the Console footer, one for categories and the other for sources.  Only those messages that match a checked category or source are displayed.&lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module console-filters</span>
+<span class="cm"> * @namespace Plugin</span>
+<span class="cm"> * @class ConsoleFilters</span>
+<span class="cm"> */</span>
+
+<span class="c1">// Some common strings and functions</span>
+<span class="kd">var</span> <span class="nx">getCN</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">ClassNameManager</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">,</span>
+    <span class="nx">CONSOLE</span> <span class="o">=</span> <span class="s1">&#39;console&#39;</span><span class="p">,</span>
+    <span class="nx">FILTERS</span> <span class="o">=</span> <span class="s1">&#39;filters&#39;</span><span class="p">,</span>
+    <span class="nx">FILTER</span>  <span class="o">=</span> <span class="s1">&#39;filter&#39;</span><span class="p">,</span>
+    <span class="nx">CATEGORY</span> <span class="o">=</span> <span class="s1">&#39;category&#39;</span><span class="p">,</span>
+    <span class="nx">SOURCE</span>   <span class="o">=</span> <span class="s1">&#39;source&#39;</span><span class="p">,</span>
+    <span class="nx">CATEGORY_DOT</span> <span class="o">=</span> <span class="s1">&#39;category.&#39;</span><span class="p">,</span>
+    <span class="nx">SOURCE_DOT</span>   <span class="o">=</span> <span class="s1">&#39;source.&#39;</span><span class="p">,</span>
+
+    <span class="nx">HOST</span>     <span class="o">=</span> <span class="s1">&#39;host&#39;</span><span class="p">,</span>
+    <span class="nx">PARENT_NODE</span> <span class="o">=</span> <span class="s1">&#39;parentNode&#39;</span><span class="p">,</span>
+    <span class="nx">CHECKED</span>  <span class="o">=</span> <span class="s1">&#39;checked&#39;</span><span class="p">,</span>
+    <span class="nx">DEF_VISIBILITY</span> <span class="o">=</span> <span class="s1">&#39;defaultVisibility&#39;</span><span class="p">,</span>
+
+    <span class="nx">DOT</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span>
+    <span class="nx">EMPTY</span>   <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+
+    <span class="nx">C_BODY</span>       <span class="o">=</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Console</span><span class="p">.</span><span class="nx">CHROME_CLASSES</span><span class="p">.</span><span class="nx">console_bd_class</span><span class="p">,</span>
+    <span class="nx">C_FOOT</span>       <span class="o">=</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Console</span><span class="p">.</span><span class="nx">CHROME_CLASSES</span><span class="p">.</span><span class="nx">console_ft_class</span><span class="p">,</span>
+
+    <span class="nx">SEL_CHECK</span>    <span class="o">=</span> <span class="s1">&#39;input[type=checkbox].&#39;</span><span class="p">,</span>
+    
+    <span class="nx">isString</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">ConsoleFilters</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ConsoleFilters</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="nx">arguments</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;Plugin&#39;</span><span class="p">).</span><span class="nx">ConsoleFilters</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">ConsoleFilters</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span>
+
+<span class="c1">// Y.Plugin.ConsoleFilters prototype</span>
+<span class="p">{</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Collection of all log messages passed through since the plugin&#39;s</span>
+<span class="cm">     * instantiation.  This holds all messages regardless of filter status.</span>
+<span class="cm">     * Used as a single source of truth for repopulating the Console body when</span>
+<span class="cm">     * filters are changed.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property _entries</span>
+<span class="cm">     * @type Array</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_entries</span> <span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Maximum number of entries to store in the message cache.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property _cacheLimit</span>
+<span class="cm">     * @type {Number}</span>
+<span class="cm">     * @default Infinity</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_cacheLimit</span> <span class="o">:</span> <span class="nb">Number</span><span class="p">.</span><span class="nx">POSITIVE_INFINITY</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The container node created to house the category filters.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property _categories</span>
+<span class="cm">     * @type Node</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_categories</span> <span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The container node created to house the source filters.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property _sources</span>
+<span class="cm">     * @type Node</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_sources</span> <span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Initialize entries collection and attach listeners to host events and</span>
+<span class="cm">     * methods.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method initializer</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">initializer</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_entries</span> <span class="o">=</span> <span class="p">[];</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;entry&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_onEntry</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">doAfter</span><span class="p">(</span><span class="s2">&quot;renderUI&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">doAfter</span><span class="p">(</span><span class="s2">&quot;syncUI&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">syncUI</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">doAfter</span><span class="p">(</span><span class="s2">&quot;bindUI&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">doAfter</span><span class="p">(</span><span class="s2">&quot;clearConsole&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterClearConsole</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;rendered&#39;</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">syncUI</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s2">&quot;cacheLimitChange&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterCacheLimitChange</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Removes the plugin UI and unwires events.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method destructor</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">destructor</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//TODO: grab last {consoleLimit} entries and update the console with</span>
+        <span class="c1">//them (no filtering)</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_entries</span> <span class="o">=</span> <span class="p">[];</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_categories</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_categories</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">).</span><span class="nx">removeChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_categories</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_sources</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_sources</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">).</span><span class="nx">removeChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_sources</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Adds the category and source filter sections to the Console footer.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method renderUI</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">renderUI</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">foot</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentBox&#39;</span><span class="p">).</span><span class="nx">one</span><span class="p">(</span><span class="nx">C_FOOT</span><span class="p">),</span>
+            <span class="nx">html</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">foot</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">html</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">substitute</span><span class="p">(</span>
+                        <span class="nx">ConsoleFilters</span><span class="p">.</span><span class="nx">CATEGORIES_TEMPLATE</span><span class="p">,</span>
+                        <span class="nx">ConsoleFilters</span><span class="p">.</span><span class="nx">CHROME_CLASSES</span><span class="p">);</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">_categories</span> <span class="o">=</span> <span class="nx">foot</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">html</span><span class="p">));</span>
+
+            <span class="nx">html</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">substitute</span><span class="p">(</span>
+                        <span class="nx">ConsoleFilters</span><span class="p">.</span><span class="nx">SOURCES_TEMPLATE</span><span class="p">,</span>
+                        <span class="nx">ConsoleFilters</span><span class="p">.</span><span class="nx">CHROME_CLASSES</span><span class="p">);</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">_sources</span> <span class="o">=</span> <span class="nx">foot</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">html</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Binds to checkbox click events and internal attribute change events to</span>
+<span class="cm">     * maintain the UI state.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method bindUI</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">bindUI</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_categories</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_onCategoryCheckboxClick</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_sources</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_onSourceCheckboxClick</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
+            
+        <span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;categoryChange&#39;</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_afterCategoryChange</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;sourceChange&#39;</span><span class="p">,</span>  <span class="k">this</span><span class="p">.</span><span class="nx">_afterSourceChange</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Updates the UI to be in accordance with the current state of the plugin.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method syncUI</span>
+<span class="cm">     */</span>
+    <span class="nx">syncUI</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">Y</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CATEGORY</span><span class="p">),</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_uiSetCheckbox</span><span class="p">(</span><span class="nx">CATEGORY</span><span class="p">,</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
+        <span class="p">},</span> <span class="k">this</span><span class="p">);</span>
+
+        <span class="nx">Y</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SOURCE</span><span class="p">),</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_uiSetCheckbox</span><span class="p">(</span><span class="nx">SOURCE</span><span class="p">,</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
+        <span class="p">},</span> <span class="k">this</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">refreshConsole</span><span class="p">();</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Ensures a filter is set up for any new categories or sources and</span>
+<span class="cm">     * collects the messages in _entries.  If the message is stamped with a</span>
+<span class="cm">     * category or source that is currently being filtered out, the message</span>
+<span class="cm">     * will not pass to the Console&#39;s print buffer.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _onEntry</span>
+<span class="cm">     * @param e {Event} the custom event object</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_onEntry</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_entries</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+        
+        <span class="kd">var</span> <span class="nx">cat</span> <span class="o">=</span> <span class="nx">CATEGORY_DOT</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">.</span><span class="nx">category</span><span class="p">,</span>
+            <span class="nx">src</span> <span class="o">=</span> <span class="nx">SOURCE_DOT</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">.</span><span class="nx">source</span><span class="p">,</span>
+            <span class="nx">cat_filter</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">cat</span><span class="p">),</span>
+            <span class="nx">src_filter</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">src</span><span class="p">),</span>
+            <span class="nx">overLimit</span>  <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_entries</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">_cacheLimit</span><span class="p">,</span>
+            <span class="nx">visible</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">overLimit</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_entries</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">overLimit</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">cat_filter</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">visible</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DEF_VISIBILITY</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">cat</span><span class="p">,</span> <span class="nx">visible</span><span class="p">);</span>
+            <span class="nx">cat_filter</span> <span class="o">=</span> <span class="nx">visible</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">src_filter</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">visible</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DEF_VISIBILITY</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">src</span><span class="p">,</span> <span class="nx">visible</span><span class="p">);</span>
+            <span class="nx">src_filter</span> <span class="o">=</span> <span class="nx">visible</span><span class="p">;</span>
+        <span class="p">}</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">cat_filter</span> <span class="o">||</span> <span class="o">!</span><span class="nx">src_filter</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Flushes the cached entries after a call to the Console&#39;s clearConsole().</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _afterClearConsole</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_afterClearConsole</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_entries</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Triggers the Console to update if a known category filter</span>
+<span class="cm">     * changes value (e.g. visible =&gt; hidden).  Updates the appropriate</span>
+<span class="cm">     * checkbox&#39;s checked state if necessary.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _afterCategoryChange</span>
+<span class="cm">     * @param e {Event} the attribute change event object</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_afterCategoryChange</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">cat</span>    <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">subAttrName</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/category\./</span><span class="p">,</span> <span class="nx">EMPTY</span><span class="p">),</span>
+            <span class="nx">before</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">,</span>
+            <span class="nx">after</span>  <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">;</span>
+
+        <span class="c1">// Don&#39;t update the console for new categories</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">cat</span> <span class="o">||</span> <span class="nx">before</span><span class="p">[</span><span class="nx">cat</span><span class="p">]</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">refreshConsole</span><span class="p">();</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">_filterBuffer</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">cat</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">e</span><span class="p">.</span><span class="nx">fromUI</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_uiSetCheckbox</span><span class="p">(</span><span class="nx">CATEGORY</span><span class="p">,</span> <span class="nx">cat</span><span class="p">,</span> <span class="nx">after</span><span class="p">[</span><span class="nx">cat</span><span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Triggers the Console to update if a known source filter</span>
+<span class="cm">     * changes value (e.g. visible =&gt; hidden).  Updates the appropriate</span>
+<span class="cm">     * checkbox&#39;s checked state if necessary.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _afterSourceChange</span>
+<span class="cm">     * @param e {Event} the attribute change event object</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_afterSourceChange</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">src</span>     <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">subAttrName</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/source\./</span><span class="p">,</span> <span class="nx">EMPTY</span><span class="p">),</span>
+            <span class="nx">before</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">,</span>
+            <span class="nx">after</span>  <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">;</span>
+
+        <span class="c1">// Don&#39;t update the console for new sources</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">src</span> <span class="o">||</span> <span class="nx">before</span><span class="p">[</span><span class="nx">src</span><span class="p">]</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">refreshConsole</span><span class="p">();</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">_filterBuffer</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">src</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">e</span><span class="p">.</span><span class="nx">fromUI</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_uiSetCheckbox</span><span class="p">(</span><span class="nx">SOURCE</span><span class="p">,</span> <span class="nx">src</span><span class="p">,</span> <span class="nx">after</span><span class="p">[</span><span class="nx">src</span><span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Flushes the Console&#39;s print buffer of any entries that have a category</span>
+<span class="cm">     * or source that is currently being excluded.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _filterBuffer</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_filterBuffer</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">cats</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CATEGORY</span><span class="p">),</span>
+            <span class="nx">srcs</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SOURCE</span><span class="p">),</span>
+            <span class="nx">buffer</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">).</span><span class="nx">buffer</span><span class="p">,</span>
+            <span class="nx">start</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nx">i</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="nx">buffer</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">cats</span><span class="p">[</span><span class="nx">buffer</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">category</span><span class="p">]</span> <span class="o">||</span> <span class="o">!</span><span class="nx">srcs</span><span class="p">[</span><span class="nx">buffer</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">source</span><span class="p">])</span> <span class="p">{</span>
+                <span class="nx">start</span> <span class="o">=</span> <span class="nx">start</span> <span class="o">||</span> <span class="nx">i</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">start</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">buffer</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">i</span><span class="p">,(</span><span class="nx">start</span> <span class="o">-</span> <span class="nx">i</span><span class="p">));</span>
+                <span class="nx">start</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">start</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">buffer</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nx">start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Trims the cache of entries to the appropriate new length.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _afterCacheLimitChange </span>
+<span class="cm">     * @param e {Event} the attribute change event object</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_afterCacheLimitChange</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">isFinite</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">))</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">delta</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_entries</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">delta</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">_entries</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nx">delta</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Repopulates the Console with entries appropriate to the current filter</span>
+<span class="cm">     * settings.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method refreshConsole</span>
+<span class="cm">     */</span>
+    <span class="nx">refreshConsole</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">entries</span>   <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_entries</span><span class="p">,</span>
+            <span class="nx">host</span>      <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">),</span>
+            <span class="nx">body</span>      <span class="o">=</span> <span class="nx">host</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentBox&#39;</span><span class="p">).</span><span class="nx">one</span><span class="p">(</span><span class="nx">C_BODY</span><span class="p">),</span>
+            <span class="nx">remaining</span> <span class="o">=</span> <span class="nx">host</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;consoleLimit&#39;</span><span class="p">),</span>
+            <span class="nx">cats</span>      <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CATEGORY</span><span class="p">),</span>
+            <span class="nx">srcs</span>      <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SOURCE</span><span class="p">),</span>
+            <span class="nx">buffer</span>    <span class="o">=</span> <span class="p">[],</span>
+            <span class="nx">i</span><span class="p">,</span><span class="nx">e</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">host</span><span class="p">.</span><span class="nx">_cancelPrintLoop</span><span class="p">();</span>
+
+            <span class="c1">// Evaluate all entries from latest to oldest</span>
+            <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="nx">entries</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">remaining</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">e</span> <span class="o">=</span> <span class="nx">entries</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">cats</span><span class="p">[</span><span class="nx">e</span><span class="p">.</span><span class="nx">category</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">srcs</span><span class="p">[</span><span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">])</span> <span class="p">{</span>
+                    <span class="nx">buffer</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+                    <span class="o">--</span><span class="nx">remaining</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="nx">body</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span><span class="nx">EMPTY</span><span class="p">);</span>
+            <span class="nx">host</span><span class="p">.</span><span class="nx">buffer</span> <span class="o">=</span> <span class="nx">buffer</span><span class="p">;</span>
+            <span class="nx">host</span><span class="p">.</span><span class="nx">printBuffer</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Updates the checked property of a filter checkbox of the specified type.</span>
+<span class="cm">     * If no checkbox is found for the input params, one is created.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _uiSetCheckbox</span>
+<span class="cm">     * @param type {String} &#39;category&#39; or &#39;source&#39;</span>
+<span class="cm">     * @param item {String} the name of the filter (e.g. &#39;info&#39;, &#39;event&#39;)</span>
+<span class="cm">     * @param checked {Boolean} value to set the checkbox&#39;s checked property</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_uiSetCheckbox</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">item</span><span class="p">,</span> <span class="nx">checked</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">&amp;&amp;</span> <span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">type</span> <span class="o">===</span> <span class="nx">CATEGORY</span> <span class="o">?</span>
+                                <span class="k">this</span><span class="p">.</span><span class="nx">_categories</span> <span class="o">:</span>
+                                <span class="k">this</span><span class="p">.</span><span class="nx">_sources</span><span class="p">,</span>
+                <span class="nx">sel</span>      <span class="o">=</span> <span class="nx">SEL_CHECK</span> <span class="o">+</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CONSOLE</span><span class="p">,</span><span class="nx">FILTER</span><span class="p">,</span><span class="nx">item</span><span class="p">),</span>
+                <span class="nx">checkbox</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">sel</span><span class="p">),</span>
+                <span class="nx">host</span><span class="p">;</span>
+                
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">checkbox</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">host</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">);</span>
+
+                <span class="k">this</span><span class="p">.</span><span class="nx">_createCheckbox</span><span class="p">(</span><span class="nx">container</span><span class="p">,</span> <span class="nx">item</span><span class="p">);</span>
+
+                <span class="nx">checkbox</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">sel</span><span class="p">);</span>
+
+                <span class="nx">host</span><span class="p">.</span><span class="nx">_uiSetHeight</span><span class="p">(</span><span class="nx">host</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">));</span>
+            <span class="p">}</span>
+            
+            <span class="nx">checkbox</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CHECKED</span><span class="p">,</span> <span class="nx">checked</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Passes checkbox clicks on to the category attribute.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _onCategoryCheckboxClick</span>
+<span class="cm">     * @param e {Event} the DOM event</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_onCategoryCheckboxClick</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">,</span> <span class="nx">cat</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">ConsoleFilters</span><span class="p">.</span><span class="nx">CHROME_CLASSES</span><span class="p">.</span><span class="nx">filter</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">cat</span> <span class="o">=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">cat</span> <span class="o">&amp;&amp;</span> <span class="nx">cat</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CATEGORY</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CATEGORY_DOT</span> <span class="o">+</span> <span class="nx">cat</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CHECKED</span><span class="p">),</span> <span class="p">{</span> <span class="nx">fromUI</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Passes checkbox clicks on to the source attribute.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _onSourceCheckboxClick</span>
+<span class="cm">     * @param e {Event} the DOM event</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_onSourceCheckboxClick</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">,</span> <span class="nx">src</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">ConsoleFilters</span><span class="p">.</span><span class="nx">CHROME_CLASSES</span><span class="p">.</span><span class="nx">filter</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">src</span> <span class="o">=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">src</span> <span class="o">&amp;&amp;</span> <span class="nx">src</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SOURCE</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">SOURCE_DOT</span> <span class="o">+</span> <span class="nx">src</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CHECKED</span><span class="p">),</span> <span class="p">{</span> <span class="nx">fromUI</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Hides any number of categories from the UI.  Convenience method for</span>
+<span class="cm">     * myConsole.filter.set(&#39;category.foo&#39;, false); set(&#39;category.bar&#39;, false);</span>
+<span class="cm">     * and so on.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method hideCategory</span>
+<span class="cm">     * @param cat* {String} 1..n categories to filter out of the UI</span>
+<span class="cm">     */</span>
+    <span class="nx">hideCategory</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">cat</span><span class="p">,</span> <span class="nx">multiple</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">isString</span><span class="p">(</span><span class="nx">multiple</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">Y</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">arguments</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">hideCategory</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CATEGORY_DOT</span> <span class="o">+</span> <span class="nx">cat</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Shows any number of categories in the UI.  Convenience method for</span>
+<span class="cm">     * myConsole.filter.set(&#39;category.foo&#39;, true); set(&#39;category.bar&#39;, true);</span>
+<span class="cm">     * and so on.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method showCategory</span>
+<span class="cm">     * @param cat* {String} 1..n categories to allow to display in the UI</span>
+<span class="cm">     */</span>
+    <span class="nx">showCategory</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">cat</span><span class="p">,</span> <span class="nx">multiple</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">isString</span><span class="p">(</span><span class="nx">multiple</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">Y</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">arguments</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">showCategory</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CATEGORY_DOT</span> <span class="o">+</span> <span class="nx">cat</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Hides any number of sources from the UI.  Convenience method for</span>
+<span class="cm">     * myConsole.filter.set(&#39;source.foo&#39;, false); set(&#39;source.bar&#39;, false);</span>
+<span class="cm">     * and so on.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method hideSource</span>
+<span class="cm">     * @param src* {String} 1..n sources to filter out of the UI</span>
+<span class="cm">     */</span>
+    <span class="nx">hideSource</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">src</span><span class="p">,</span> <span class="nx">multiple</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">isString</span><span class="p">(</span><span class="nx">multiple</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">Y</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">arguments</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">hideSource</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">SOURCE_DOT</span> <span class="o">+</span> <span class="nx">src</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Shows any number of sources in the UI.  Convenience method for</span>
+<span class="cm">     * myConsole.filter.set(&#39;source.foo&#39;, true); set(&#39;source.bar&#39;, true);</span>
+<span class="cm">     * and so on.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method showSource</span>
+<span class="cm">     * @param src* {String} 1..n sources to allow to display in the UI</span>
+<span class="cm">     */</span>
+    <span class="nx">showSource</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">src</span><span class="p">,</span> <span class="nx">multiple</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">isString</span><span class="p">(</span><span class="nx">multiple</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">Y</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">arguments</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">showSource</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">SOURCE_DOT</span> <span class="o">+</span> <span class="nx">src</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Creates a checkbox and label from the ConsoleFilters.FILTER_TEMPLATE for</span>
+<span class="cm">     * the provided type and name.  The checkbox and label are appended to the</span>
+<span class="cm">     * container node passes as the first arg.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _createCheckbox</span>
+<span class="cm">     * @param container {Node} the parentNode of the new checkbox and label</span>
+<span class="cm">     * @param name {String} the identifier of the filter</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_createCheckbox</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">container</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">info</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span><span class="nx">ConsoleFilters</span><span class="p">.</span><span class="nx">CHROME_CLASSES</span><span class="p">,</span> <span class="p">{</span>
+                        <span class="nx">filter_name</span>  <span class="o">:</span> <span class="nx">name</span><span class="p">,</span>
+                        <span class="nx">filter_class</span> <span class="o">:</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CONSOLE</span><span class="p">,</span> <span class="nx">FILTER</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span>
+                   <span class="p">}),</span>
+            <span class="nx">node</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+                        <span class="nx">Y</span><span class="p">.</span><span class="nx">substitute</span><span class="p">(</span><span class="nx">ConsoleFilters</span><span class="p">.</span><span class="nx">FILTER_TEMPLATE</span><span class="p">,</span> <span class="nx">info</span><span class="p">));</span>
+
+        <span class="nx">container</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Validates category updates are objects and the subattribute is not too</span>
+<span class="cm">     * deep.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _validateCategory</span>
+<span class="cm">     * @param cat {String} the new category:visibility map</span>
+<span class="cm">     * @param v {String} the subattribute path updated</span>
+<span class="cm">     * @return Boolean</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_validateCategory</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">cat</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span><span class="kc">true</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">cat</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/\./</span><span class="p">).</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Validates source updates are objects and the subattribute is not too</span>
+<span class="cm">     * deep.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _validateSource</span>
+<span class="cm">     * @param cat {String} the new source:visibility map</span>
+<span class="cm">     * @param v {String} the subattribute path updated</span>
+<span class="cm">     * @return Boolean</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_validateSource</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">src</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span><span class="kc">true</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">src</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/\./</span><span class="p">).</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Setter method for cacheLimit attribute.  Basically a validator to ensure</span>
+<span class="cm">     * numeric input.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _setCacheLimit</span>
+<span class="cm">     * @param v {Number} Maximum number of entries</span>
+<span class="cm">     * @return {Number}</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_setCacheLimit</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_cacheLimit</span> <span class="o">=</span> <span class="nx">v</span><span class="p">;</span>
+            <span class="k">return</span> <span class="nx">v</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Attribute</span><span class="p">.</span><span class="nx">INVALID_VALUE</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">},</span>
+
+<span class="c1">// Y.Plugin.ConsoleFilters static properties</span>
+<span class="p">{</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Plugin name.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property ConsoleFilters.NAME</span>
+<span class="cm">     * @type String</span>
+<span class="cm">     * @static</span>
+<span class="cm">     * @default &#39;consoleFilters&#39;</span>
+<span class="cm">     */</span>
+    <span class="nx">NAME</span> <span class="o">:</span> <span class="s1">&#39;consoleFilters&#39;</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The namespace hung off the host object that this plugin will inhabit.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property ConsoleFilters.NS</span>
+<span class="cm">     * @type String</span>
+<span class="cm">     * @static</span>
+<span class="cm">     * @default &#39;filter&#39;</span>
+<span class="cm">     */</span>
+    <span class="nx">NS</span> <span class="o">:</span> <span class="nx">FILTER</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Markup template used to create the container for the category filters.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property ConsoleFilters.CATEGORIES_TEMPLATE</span>
+<span class="cm">     * @type String</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">CATEGORIES_TEMPLATE</span> <span class="o">:</span>
+        <span class="s1">&#39;&lt;div class=&quot;{categories}&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Markup template used to create the container for the source filters.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property ConsoleFilters.SOURCES_TEMPLATE</span>
+<span class="cm">     * @type String</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">SOURCES_TEMPLATE</span> <span class="o">:</span>
+        <span class="s1">&#39;&lt;div class=&quot;{sources}&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Markup template used to create the category and source filter checkboxes.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property ConsoleFilters.FILTER_TEMPLATE</span>
+<span class="cm">     * @type String</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">FILTER_TEMPLATE</span> <span class="o">:</span>
+        <span class="c1">// IE8 and FF3 don&#39;t permit breaking _between_ nowrap elements.  IE8</span>
+        <span class="c1">// doesn&#39;t understand (non spec) wbr tag, nor does it create text nodes</span>
+        <span class="c1">// for spaces in innerHTML strings.  The thin-space entity suffices to</span>
+        <span class="c1">// create a breakable point.</span>
+        <span class="s1">&#39;&lt;label class=&quot;{filter_label}&quot;&gt;&#39;</span><span class="o">+</span>
+            <span class="s1">&#39;&lt;input type=&quot;checkbox&quot; value=&quot;{filter_name}&quot; &#39;</span><span class="o">+</span>
+                <span class="s1">&#39;class=&quot;{filter} {filter_class}&quot;&gt; {filter_name}&#39;</span><span class="o">+</span>
+        <span class="s1">&#39;&lt;/label&gt;&amp;#8201;&#39;</span><span class="p">,</span>
+
+    <span class="cm">/** </span>
+<span class="cm">     * Classnames used by the templates when creating nodes.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property ConsoleFilters.CHROME_CLASSES</span>
+<span class="cm">     * @type Object</span>
+<span class="cm">     * @static</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">CHROME_CLASSES</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="nx">categories</span>   <span class="o">:</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CONSOLE</span><span class="p">,</span><span class="nx">FILTERS</span><span class="p">,</span><span class="s1">&#39;categories&#39;</span><span class="p">),</span>
+        <span class="nx">sources</span>      <span class="o">:</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CONSOLE</span><span class="p">,</span><span class="nx">FILTERS</span><span class="p">,</span><span class="s1">&#39;sources&#39;</span><span class="p">),</span>
+        <span class="nx">category</span>     <span class="o">:</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CONSOLE</span><span class="p">,</span><span class="nx">FILTER</span><span class="p">,</span><span class="nx">CATEGORY</span><span class="p">),</span>
+        <span class="nx">source</span>       <span class="o">:</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CONSOLE</span><span class="p">,</span><span class="nx">FILTER</span><span class="p">,</span><span class="nx">SOURCE</span><span class="p">),</span>
+        <span class="nx">filter</span>       <span class="o">:</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CONSOLE</span><span class="p">,</span><span class="nx">FILTER</span><span class="p">),</span>
+        <span class="nx">filter_label</span> <span class="o">:</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">CONSOLE</span><span class="p">,</span><span class="nx">FILTER</span><span class="p">,</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+    <span class="p">},</span>
+
+    <span class="nx">ATTRS</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="cm">/**</span>
+<span class="cm">         * Default visibility applied to new categories and sources.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute defaultVisibility</span>
+<span class="cm">         * @type {Boolean}</span>
+<span class="cm">         * @default true</span>
+<span class="cm">         */</span>
+        <span class="nx">defaultVisibility</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">validator</span> <span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isBoolean</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * &lt;p&gt;Map of entry categories to their visibility status.  Update a</span>
+<span class="cm">         * particular category&#39;s visibility by setting the subattribute to true</span>
+<span class="cm">         * (visible) or false (hidden).&lt;/p&gt;</span>
+<span class="cm">         *</span>
+<span class="cm">         * &lt;p&gt;For example, yconsole.filter.set(&#39;category.info&#39;, false) to hide</span>
+<span class="cm">         * log entries with the category/logLevel of &#39;info&#39;.&lt;/p&gt;</span>
+<span class="cm">         *</span>
+<span class="cm">         * &lt;p&gt;Similarly, yconsole.filter.get(&#39;category.warn&#39;) will return a</span>
+<span class="cm">         * boolean indicating whether that category is currently being included</span>
+<span class="cm">         * in the UI.&lt;/p&gt;</span>
+<span class="cm">         *</span>
+<span class="cm">         * &lt;p&gt;Unlike the YUI instance configuration&#39;s logInclude and logExclude</span>
+<span class="cm">         * properties, filtered entries are only hidden from the UI, but</span>
+<span class="cm">         * can be made visible again.&lt;/p&gt;</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute category</span>
+<span class="cm">         * @type Object</span>
+<span class="cm">         */</span>
+        <span class="nx">category</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span> <span class="o">:</span> <span class="p">{},</span>
+            <span class="nx">validator</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">v</span><span class="p">,</span><span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_validateCategory</span><span class="p">(</span><span class="nx">k</span><span class="p">,</span><span class="nx">v</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * &lt;p&gt;Map of entry sources to their visibility status.  Update a</span>
+<span class="cm">         * particular sources&#39;s visibility by setting the subattribute to true</span>
+<span class="cm">         * (visible) or false (hidden).&lt;/p&gt;</span>
+<span class="cm">         *</span>
+<span class="cm">         * &lt;p&gt;For example, yconsole.filter.set(&#39;sources.slider&#39;, false) to hide</span>
+<span class="cm">         * log entries originating from Y.Slider.&lt;/p&gt;</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute source</span>
+<span class="cm">         * @type Object</span>
+<span class="cm">         */</span>
+        <span class="nx">source</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span> <span class="o">:</span> <span class="p">{},</span>
+            <span class="nx">validator</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">v</span><span class="p">,</span><span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_validateSource</span><span class="p">(</span><span class="nx">k</span><span class="p">,</span><span class="nx">v</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * Maximum number of entries to store in the message cache.  Use this to</span>
+<span class="cm">         * limit the memory footprint in environments with heavy log usage.</span>
+<span class="cm">         * By default, there is no limit (Number.POSITIVE_INFINITY).</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute cacheLimit</span>
+<span class="cm">         * @type {Number}</span>
+<span class="cm">         * @default Number.POSITIVE_INFINITY</span>
+<span class="cm">         */</span>
+        <span class="nx">cacheLimit</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span> <span class="o">:</span> <span class="nb">Number</span><span class="p">.</span><span class="nx">POSITIVE_INFINITY</span><span class="p">,</span>
+            <span class="nx">setter</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setCacheLimit</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;console&#39;</span><span class="p">,</span><span class="s1">&#39;plugin&#39;</span><span class="p">]});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Console.html#method__afterCollapsedChange", "access": "protected", "host": "Console", "type": "method", "name": "_afterCollapsedChange"}, {"url": "Plugin.Console.html#method__afterCollapsedChange", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_afterCollapsedChange"}, {"url": "Console.html#method__afterConsoleLimitChange", "access": "protected", "host": "Console", "type": "method", "name": "_afterConsoleLimitChange"}, {"url": "Plugin.Console.html#method__afterConsoleLimitChange", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_afterConsoleLimitChange"}, {"url": "Console.html#method__afterPausedChange", "access": "protected", "host": "Console", "type": "method", "name": "_afterPausedChange"}, {"url": "Plugin.Console.html#method__afterPausedChange", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_afterPausedChange"}, {"url": "Console.html#method__afterStringsChange", "access": "protected", "host": "Console", "type": "method", "name": "_afterStringsChange"}, {"url": "Plugin.Console.html#method__afterStringsChange", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_afterStringsChange"}, {"url": "Console.html#method__afterVisibleChange", "access": "protected", "host": "Console", "type": "method", "name": "_afterVisibleChange"}, {"url": "Plugin.Console.html#method__afterVisibleChange", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_afterVisibleChange"}, {"url": "Console.html#method_bindUI", "access": "protected", "host": "Console", "type": "method", "name": "bindUI"}, {"url": "Plugin.Console.html#method_bindUI", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "bindUI"}, {"url": "Console.html#property__body", "access": "protected", "host": "Console", "type": "property", "name": "_body"}, {"url": "Plugin.Console.html#property__body", "access": "protected", "host": "Plugin.Console", "type": "property", "name": "_body"}, {"url": "Console.html#property_buffer", "access": "protected", "host": "Console", "type": "property", "name": "buffer"}, {"url": "Plugin.Console.html#property_buffer", "access": "protected", "host": "Plugin.Console", "type": "property", "name": "buffer"}, {"url": "Console.html#method__cancelPrintLoop", "access": "protected", "host": "Console", "type": "method", "name": "_cancelPrintLoop"}, {"url": "Plugin.Console.html#method__cancelPrintLoop", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_cancelPrintLoop"}, {"url": "Console.html#method_clearConsole", "access": "", "host": "Console", "type": "method", "name": "clearConsole"}, {"url": "Plugin.Console.html#method_clearConsole", "access": "", "host": "Plugin.Console", "type": "method", "name": "clearConsole"}, {"url": "Console.html#method_collapse", "access": "", "host": "Console", "type": "method", "name": "collapse"}, {"url": "Plugin.Console.html#method_collapse", "access": "", "host": "Plugin.Console", "type": "method", "name": "collapse"}, {"url": "Console.html#config_collapsed", "access": "", "host": "Console", "type": "config", "name": "collapsed"}, {"url": "Plugin.Console.html#config_collapsed", "access": "", "host": "Plugin.Console", "type": "config", "name": "collapsed"}, {"url": "Console.html#event_collapsedChange", "access": "", "host": "Console", "type": "event", "name": "collapsedChange"}, {"url": "Plugin.Console.html#event_collapsedChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "collapsedChange"}, {"url": "Console.html#property_Console.ATTRS", "access": "", "host": "Console", "type": "property", "name": "Console.ATTRS"}, {"url": "Plugin.Console.html#property_Console.ATTRS", "access": "", "host": "Plugin.Console", "type": "property", "name": "Console.ATTRS"}, {"url": "Console.html#property_Console.BODY_TEMPLATE", "access": "", "host": "Console", "type": "property", "name": "Console.BODY_TEMPLATE"}, {"url": "Plugin.Console.html#property_Console.BODY_TEMPLATE", "access": "", "host": "Plugin.Console", "type": "property", "name": "Console.BODY_TEMPLATE"}, {"url": "Console.html#property_Console.CHROME_CLASSES", "access": "", "host": "Console", "type": "property", "name": "Console.CHROME_CLASSES"}, {"url": "Plugin.Console.html#property_Console.CHROME_CLASSES", "access": "", "host": "Plugin.Console", "type": "property", "name": "Console.CHROME_CLASSES"}, {"url": "Console.html#property_Console.ENTRY_CLASSES", "access": "", "host": "Console", "type": "property", "name": "Console.ENTRY_CLASSES"}, {"url": "Plugin.Console.html#property_Console.ENTRY_CLASSES", "access": "", "host": "Plugin.Console", "type": "property", "name": "Console.ENTRY_CLASSES"}, {"url": "Console.html#property_Console.ENTRY_TEMPLATE", "access": "", "host": "Console", "type": "property", "name": "Console.ENTRY_TEMPLATE"}, {"url": "Plugin.Console.html#property_Console.ENTRY_TEMPLATE", "access": "", "host": "Plugin.Console", "type": "property", "name": "Console.ENTRY_TEMPLATE"}, {"url": "Console.html#property_Console.FOOTER_TEMPLATE", "access": "", "host": "Console", "type": "property", "name": "Console.FOOTER_TEMPLATE"}, {"url": "Plugin.Console.html#property_Console.FOOTER_TEMPLATE", "access": "", "host": "Plugin.Console", "type": "property", "name": "Console.FOOTER_TEMPLATE"}, {"url": "Console.html#property_Console.HEADER_TEMPLATE", "access": "", "host": "Console", "type": "property", "name": "Console.HEADER_TEMPLATE"}, {"url": "Plugin.Console.html#property_Console.HEADER_TEMPLATE", "access": "", "host": "Plugin.Console", "type": "property", "name": "Console.HEADER_TEMPLATE"}, {"url": "Console.html#config_consoleLimit", "access": "", "host": "Console", "type": "config", "name": "consoleLimit"}, {"url": "Plugin.Console.html#config_consoleLimit", "access": "", "host": "Plugin.Console", "type": "config", "name": "consoleLimit"}, {"url": "Console.html#event_consoleLimitChange", "access": "", "host": "Console", "type": "event", "name": "consoleLimitChange"}, {"url": "Plugin.Console.html#event_consoleLimitChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "consoleLimitChange"}, {"url": "Console.html#property_Console.LOG_LEVEL_ERROR", "access": "", "host": "Console", "type": "property", "name": "Console.LOG_LEVEL_ERROR"}, {"url": "Plugin.Console.html#property_Console.LOG_LEVEL_ERROR", "access": "", "host": "Plugin.Console", "type": "property", "name": "Console.LOG_LEVEL_ERROR"}, {"url": "Console.html#property_Console.LOG_LEVEL_INFO", "access": "", "host": "Console", "type": "property", "name": "Console.LOG_LEVEL_INFO"}, {"url": "Plugin.Console.html#property_Console.LOG_LEVEL_INFO", "access": "", "host": "Plugin.Console", "type": "property", "name": "Console.LOG_LEVEL_INFO"}, {"url": "Console.html#property_Console.LOG_LEVEL_WARN", "access": "", "host": "Console", "type": "property", "name": "Console.LOG_LEVEL_WARN"}, {"url": "Plugin.Console.html#property_Console.LOG_LEVEL_WARN", "access": "", "host": "Plugin.Console", "type": "property", "name": "Console.LOG_LEVEL_WARN"}, {"url": "Console.html#property_Console.NAME", "access": "", "host": "Console", "type": "property", "name": "Console.NAME"}, {"url": "Plugin.Console.html#property_Console.NAME", "access": "", "host": "Plugin.Console", "type": "property", "name": "Console.NAME"}, {"url": "Console.html#method__createEntryHTML", "access": "protected", "host": "Console", "type": "method", "name": "_createEntryHTML"}, {"url": "Plugin.Console.html#method__createEntryHTML", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_createEntryHTML"}, {"url": "Console.html#config_defaultCategory", "access": "", "host": "Console", "type": "config", "name": "defaultCategory"}, {"url": "Plugin.Console.html#config_defaultCategory", "access": "", "host": "Plugin.Console", "type": "config", "name": "defaultCategory"}, {"url": "Console.html#event_defaultCategoryChange", "access": "", "host": "Console", "type": "event", "name": "defaultCategoryChange"}, {"url": "Plugin.Console.html#event_defaultCategoryChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "defaultCategoryChange"}, {"url": "Console.html#config_defaultSource", "access": "", "host": "Console", "type": "config", "name": "defaultSource"}, {"url": "Plugin.Console.html#config_defaultSource", "access": "", "host": "Plugin.Console", "type": "config", "name": "defaultSource"}, {"url": "Console.html#event_defaultSourceChange", "access": "", "host": "Console", "type": "event", "name": "defaultSourceChange"}, {"url": "Plugin.Console.html#event_defaultSourceChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "defaultSourceChange"}, {"url": "Console.html#method__defEntryFn", "access": "protected", "host": "Console", "type": "method", "name": "_defEntryFn"}, {"url": "Plugin.Console.html#method__defEntryFn", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_defEntryFn"}, {"url": "Console.html#method__defResetFn", "access": "protected", "host": "Console", "type": "method", "name": "_defResetFn"}, {"url": "Plugin.Console.html#method__defResetFn", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_defResetFn"}, {"url": "Console.html#method_destructor", "access": "protected", "host": "Console", "type": "method", "name": "destructor"}, {"url": "Plugin.Console.html#method_destructor", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "destructor"}, {"url": "Console.html#method__encodeHTML", "access": "protected", "host": "Console", "type": "method", "name": "_encodeHTML"}, {"url": "Plugin.Console.html#method__encodeHTML", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_encodeHTML"}, {"url": "Console.html#event_entry", "access": "", "host": "Console", "type": "event", "name": "entry"}, {"url": "Plugin.Console.html#event_entry", "access": "", "host": "Plugin.Console", "type": "event", "name": "entry"}, {"url": "Console.html#config_entryTemplate", "access": "", "host": "Console", "type": "config", "name": "entryTemplate"}, {"url": "Plugin.Console.html#config_entryTemplate", "access": "", "host": "Plugin.Console", "type": "config", "name": "entryTemplate"}, {"url": "Console.html#event_entryTemplateChange", "access": "", "host": "Console", "type": "event", "name": "entryTemplateChange"}, {"url": "Plugin.Console.html#event_entryTemplateChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "entryTemplateChange"}, {"url": "Console.html#property__evtCat", "access": "protected", "host": "Console", "type": "property", "name": "_evtCat"}, {"url": "Plugin.Console.html#property__evtCat", "access": "protected", "host": "Plugin.Console", "type": "property", "name": "_evtCat"}, {"url": "Console.html#method_expand", "access": "", "host": "Console", "type": "method", "name": "expand"}, {"url": "Plugin.Console.html#method_expand", "access": "", "host": "Plugin.Console", "type": "method", "name": "expand"}, {"url": "Console.html#property__foot", "access": "protected", "host": "Console", "type": "property", "name": "_foot"}, {"url": "Plugin.Console.html#property__foot", "access": "protected", "host": "Plugin.Console", "type": "property", "name": "_foot"}, {"url": "Console.html#method__getUseBrowserConsole", "access": "protected", "host": "Console", "type": "method", "name": "_getUseBrowserConsole"}, {"url": "Plugin.Console.html#method__getUseBrowserConsole", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_getUseBrowserConsole"}, {"url": "Console.html#property__head", "access": "protected", "host": "Console", "type": "property", "name": "_head"}, {"url": "Plugin.Console.html#property__head", "access": "protected", "host": "Plugin.Console", "type": "property", "name": "_head"}, {"url": "Console.html#config_height", "access": "", "host": "Console", "type": "config", "name": "height"}, {"url": "Plugin.Console.html#config_height", "access": "", "host": "Plugin.Console", "type": "config", "name": "height"}, {"url": "Console.html#event_heightChange", "access": "", "host": "Console", "type": "event", "name": "heightChange"}, {"url": "Plugin.Console.html#event_heightChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "heightChange"}, {"url": "Console.html#method__htmlEscapeMessage", "access": "protected", "host": "Console", "type": "method", "name": "_htmlEscapeMessage"}, {"url": "Plugin.Console.html#method__htmlEscapeMessage", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_htmlEscapeMessage"}, {"url": "Console.html#method__initBody", "access": "protected", "host": "Console", "type": "method", "name": "_initBody"}, {"url": "Plugin.Console.html#method__initBody", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_initBody"}, {"url": "Console.html#method__initFoot", "access": "protected", "host": "Console", "type": "method", "name": "_initFoot"}, {"url": "Plugin.Console.html#method__initFoot", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_initFoot"}, {"url": "Console.html#method__initHead", "access": "protected", "host": "Console", "type": "method", "name": "_initHead"}, {"url": "Plugin.Console.html#method__initHead", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_initHead"}, {"url": "Console.html#method_initializer", "access": "protected", "host": "Console", "type": "method", "name": "initializer"}, {"url": "Plugin.Console.html#method_initializer", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "initializer"}, {"url": "Console.html#method__isInLogLevel", "access": "protected", "host": "Console", "type": "method", "name": "_isInLogLevel"}, {"url": "Plugin.Console.html#method__isInLogLevel", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_isInLogLevel"}, {"url": "Console.html#config_lastTime", "access": "", "host": "Console", "type": "config", "name": "lastTime"}, {"url": "Plugin.Console.html#config_lastTime", "access": "", "host": "Plugin.Console", "type": "config", "name": "lastTime"}, {"url": "Console.html#event_lastTimeChange", "access": "", "host": "Console", "type": "event", "name": "lastTimeChange"}, {"url": "Plugin.Console.html#event_lastTimeChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "lastTimeChange"}, {"url": "Console.html#method_log", "access": "", "host": "Console", "type": "method", "name": "log"}, {"url": "Plugin.Console.html#method_log", "access": "", "host": "Plugin.Console", "type": "method", "name": "log"}, {"url": "Console.html#config_logEvent", "access": "", "host": "Console", "type": "config", "name": "logEvent"}, {"url": "Plugin.Console.html#config_logEvent", "access": "", "host": "Plugin.Console", "type": "config", "name": "logEvent"}, {"url": "Console.html#event_logEventChange", "access": "", "host": "Console", "type": "event", "name": "logEventChange"}, {"url": "Plugin.Console.html#event_logEventChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "logEventChange"}, {"url": "Console.html#config_logLevel", "access": "", "host": "Console", "type": "config", "name": "logLevel"}, {"url": "Plugin.Console.html#config_logLevel", "access": "", "host": "Plugin.Console", "type": "config", "name": "logLevel"}, {"url": "Console.html#event_logLevelChange", "access": "", "host": "Console", "type": "event", "name": "logLevelChange"}, {"url": "Plugin.Console.html#event_logLevelChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "logLevelChange"}, {"url": "Console.html#config_logSource", "access": "", "host": "Console", "type": "config", "name": "logSource"}, {"url": "Plugin.Console.html#config_logSource", "access": "", "host": "Plugin.Console", "type": "config", "name": "logSource"}, {"url": "Console.html#event_logSourceChange", "access": "", "host": "Console", "type": "event", "name": "logSourceChange"}, {"url": "Plugin.Console.html#event_logSourceChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "logSourceChange"}, {"url": "Console.html#config_newestOnTop", "access": "", "host": "Console", "type": "config", "name": "newestOnTop"}, {"url": "Plugin.Console.html#config_newestOnTop", "access": "", "host": "Plugin.Console", "type": "config", "name": "newestOnTop"}, {"url": "Console.html#event_newestOnTopChange", "access": "", "host": "Console", "type": "event", "name": "newestOnTopChange"}, {"url": "Plugin.Console.html#event_newestOnTopChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "newestOnTopChange"}, {"url": "Console.html#method__normalizeMessage", "access": "protected", "host": "Console", "type": "method", "name": "_normalizeMessage"}, {"url": "Plugin.Console.html#method__normalizeMessage", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_normalizeMessage"}, {"url": "Console.html#method__onClearClick", "access": "protected", "host": "Console", "type": "method", "name": "_onClearClick"}, {"url": "Plugin.Console.html#method__onClearClick", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_onClearClick"}, {"url": "Console.html#method__onCollapseClick", "access": "protected", "host": "Console", "type": "method", "name": "_onCollapseClick"}, {"url": "Plugin.Console.html#method__onCollapseClick", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_onCollapseClick"}, {"url": "Console.html#method__onLogEvent", "access": "protected", "host": "Console", "type": "method", "name": "_onLogEvent"}, {"url": "Plugin.Console.html#method__onLogEvent", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_onLogEvent"}, {"url": "Console.html#method__onPauseClick", "access": "protected", "host": "Console", "type": "method", "name": "_onPauseClick"}, {"url": "Plugin.Console.html#method__onPauseClick", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_onPauseClick"}, {"url": "Console.html#config_paused", "access": "", "host": "Console", "type": "config", "name": "paused"}, {"url": "Plugin.Console.html#config_paused", "access": "", "host": "Plugin.Console", "type": "config", "name": "paused"}, {"url": "Console.html#event_pausedChange", "access": "", "host": "Console", "type": "event", "name": "pausedChange"}, {"url": "Plugin.Console.html#event_pausedChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "pausedChange"}, {"url": "Console.html#method_printBuffer", "access": "", "host": "Console", "type": "method", "name": "printBuffer"}, {"url": "Plugin.Console.html#method_printBuffer", "access": "", "host": "Plugin.Console", "type": "method", "name": "printBuffer"}, {"url": "Console.html#config_printLimit", "access": "", "host": "Console", "type": "config", "name": "printLimit"}, {"url": "Plugin.Console.html#config_printLimit", "access": "", "host": "Plugin.Console", "type": "config", "name": "printLimit"}, {"url": "Console.html#event_printLimitChange", "access": "", "host": "Console", "type": "event", "name": "printLimitChange"}, {"url": "Plugin.Console.html#event_printLimitChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "printLimitChange"}, {"url": "Console.html#property__printLoop", "access": "protected", "host": "Console", "type": "property", "name": "_printLoop"}, {"url": "Plugin.Console.html#property__printLoop", "access": "protected", "host": "Plugin.Console", "type": "property", "name": "_printLoop"}, {"url": "Console.html#config_printTimeout", "access": "", "host": "Console", "type": "config", "name": "printTimeout"}, {"url": "Plugin.Console.html#config_printTimeout", "access": "", "host": "Plugin.Console", "type": "config", "name": "printTimeout"}, {"url": "Console.html#event_printTimeoutChange", "access": "", "host": "Console", "type": "event", "name": "printTimeoutChange"}, {"url": "Plugin.Console.html#event_printTimeoutChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "printTimeoutChange"}, {"url": "Console.html#method_renderUI", "access": "protected", "host": "Console", "type": "method", "name": "renderUI"}, {"url": "Plugin.Console.html#method_renderUI", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "renderUI"}, {"url": "Console.html#method_reset", "access": "", "host": "Console", "type": "method", "name": "reset"}, {"url": "Console.html#event_reset", "access": "", "host": "Console", "type": "event", "name": "reset"}, {"url": "Plugin.Console.html#method_reset", "access": "", "host": "Plugin.Console", "type": "method", "name": "reset"}, {"url": "Plugin.Console.html#event_reset", "access": "", "host": "Plugin.Console", "type": "event", "name": "reset"}, {"url": "Console.html#method__schedulePrint", "access": "protected", "host": "Console", "type": "method", "name": "_schedulePrint"}, {"url": "Plugin.Console.html#method__schedulePrint", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_schedulePrint"}, {"url": "Console.html#config_scrollIntoView", "access": "", "host": "Console", "type": "config", "name": "scrollIntoView"}, {"url": "Plugin.Console.html#config_scrollIntoView", "access": "", "host": "Plugin.Console", "type": "config", "name": "scrollIntoView"}, {"url": "Console.html#event_scrollIntoViewChange", "access": "", "host": "Console", "type": "event", "name": "scrollIntoViewChange"}, {"url": "Plugin.Console.html#event_scrollIntoViewChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "scrollIntoViewChange"}, {"url": "Console.html#method_scrollToLatest", "access": "", "host": "Console", "type": "method", "name": "scrollToLatest"}, {"url": "Plugin.Console.html#method_scrollToLatest", "access": "", "host": "Plugin.Console", "type": "method", "name": "scrollToLatest"}, {"url": "Console.html#method__setLogLevel", "access": "protected", "host": "Console", "type": "method", "name": "_setLogLevel"}, {"url": "Plugin.Console.html#method__setLogLevel", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_setLogLevel"}, {"url": "Console.html#method__setUseBrowserConsole", "access": "protected", "host": "Console", "type": "method", "name": "_setUseBrowserConsole"}, {"url": "Plugin.Console.html#method__setUseBrowserConsole", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_setUseBrowserConsole"}, {"url": "Console.html#config_startTime", "access": "", "host": "Console", "type": "config", "name": "startTime"}, {"url": "Plugin.Console.html#config_startTime", "access": "", "host": "Plugin.Console", "type": "config", "name": "startTime"}, {"url": "Console.html#event_startTimeChange", "access": "", "host": "Console", "type": "event", "name": "startTimeChange"}, {"url": "Plugin.Console.html#event_startTimeChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "startTimeChange"}, {"url": "Console.html#config_strings", "access": "", "host": "Console", "type": "config", "name": "strings"}, {"url": "Plugin.Console.html#config_strings", "access": "", "host": "Plugin.Console", "type": "config", "name": "strings"}, {"url": "Console.html#event_stringsChange", "access": "", "host": "Console", "type": "event", "name": "stringsChange"}, {"url": "Plugin.Console.html#event_stringsChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "stringsChange"}, {"url": "Console.html#config_style", "access": "", "host": "Console", "type": "config", "name": "style"}, {"url": "Plugin.Console.html#config_style", "access": "", "host": "Plugin.Console", "type": "config", "name": "style"}, {"url": "Console.html#event_styleChange", "access": "", "host": "Console", "type": "event", "name": "styleChange"}, {"url": "Plugin.Console.html#event_styleChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "styleChange"}, {"url": "Console.html#method_syncUI", "access": "", "host": "Console", "type": "method", "name": "syncUI"}, {"url": "Plugin.Console.html#method_syncUI", "access": "", "host": "Plugin.Console", "type": "method", "name": "syncUI"}, {"url": "Console.html#method__trimOldEntries", "access": "protected", "host": "Console", "type": "method", "name": "_trimOldEntries"}, {"url": "Plugin.Console.html#method__trimOldEntries", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_trimOldEntries"}, {"url": "Console.html#method__uiSetHeight", "access": "protected", "host": "Console", "type": "method", "name": "_uiSetHeight"}, {"url": "Plugin.Console.html#method__uiSetHeight", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_uiSetHeight"}, {"url": "Console.html#method__uiSizeCB", "access": "protected", "host": "Console", "type": "method", "name": "_uiSizeCB"}, {"url": "Plugin.Console.html#method__uiSizeCB", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_uiSizeCB"}, {"url": "Console.html#method__uiUpdateCollapsed", "access": "protected", "host": "Console", "type": "method", "name": "_uiUpdateCollapsed"}, {"url": "Plugin.Console.html#method__uiUpdateCollapsed", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_uiUpdateCollapsed"}, {"url": "Console.html#method__uiUpdateFromHideShow", "access": "protected", "host": "Console", "type": "method", "name": "_uiUpdateFromHideShow"}, {"url": "Plugin.Console.html#method__uiUpdateFromHideShow", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_uiUpdateFromHideShow"}, {"url": "Console.html#method__uiUpdatePaused", "access": "protected", "host": "Console", "type": "method", "name": "_uiUpdatePaused"}, {"url": "Plugin.Console.html#method__uiUpdatePaused", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_uiUpdatePaused"}, {"url": "Console.html#config_useBrowserConsole", "access": "", "host": "Console", "type": "config", "name": "useBrowserConsole"}, {"url": "Plugin.Console.html#config_useBrowserConsole", "access": "", "host": "Plugin.Console", "type": "config", "name": "useBrowserConsole"}, {"url": "Console.html#event_useBrowserConsoleChange", "access": "", "host": "Console", "type": "event", "name": "useBrowserConsoleChange"}, {"url": "Plugin.Console.html#event_useBrowserConsoleChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "useBrowserConsoleChange"}, {"url": "Console.html#method__validateLogSource", "access": "protected", "host": "Console", "type": "method", "name": "_validateLogSource"}, {"url": "Plugin.Console.html#method__validateLogSource", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_validateLogSource"}, {"url": "Console.html#method__validateStyle", "access": "protected", "host": "Console", "type": "method", "name": "_validateStyle"}, {"url": "Plugin.Console.html#method__validateStyle", "access": "protected", "host": "Plugin.Console", "type": "method", "name": "_validateStyle"}, {"url": "Console.html#config_width", "access": "", "host": "Console", "type": "config", "name": "width"}, {"url": "Plugin.Console.html#config_width", "access": "", "host": "Plugin.Console", "type": "config", "name": "width"}, {"url": "Console.html#event_widthChange", "access": "", "host": "Console", "type": "event", "name": "widthChange"}, {"url": "Plugin.Console.html#event_widthChange", "access": "", "host": "Plugin.Console", "type": "event", "name": "widthChange"}];
+</script>
+</body>
+</html>

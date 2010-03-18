@@ -1,0 +1,784 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-resize   aui-state-interaction-debug.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-resize&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-resize.html" title="aui-resize">aui-resize</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">aui-state-interaction-debug.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class="selected"><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="Resize.html" title="Resize">Resize</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="aui-resize-debug.js.html" title="aui-resize-debug.js">aui-resize-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-resize-min.js.html" title="aui-resize-min.js">aui-resize-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-resize.js.html" title="aui-resize.js">aui-resize.js</a></li>
+
+
+			                                <li class=""><a href="aui-sortable-debug.js.html" title="aui-sortable-debug.js">aui-sortable-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-sortable-min.js.html" title="aui-sortable-min.js">aui-sortable-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-sortable.js.html" title="aui-sortable.js">aui-sortable.js</a></li>
+
+
+			                                <li class="selected"><a href="aui-state-interaction-debug.js.html" title="aui-state-interaction-debug.js">aui-state-interaction-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-state-interaction-min.js.html" title="aui-state-interaction-min.js">aui-state-interaction-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-state-interaction.js.html" title="aui-state-interaction.js">aui-state-interaction.js</a></li>
+
+
+			                                <li class=""><a href="aui-swf-debug.js.html" title="aui-swf-debug.js">aui-swf-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-swf-min.js.html" title="aui-swf-min.js">aui-swf-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-swf.js.html" title="aui-swf.js">aui-swf.js</a></li>
+
+
+			                                <li class=""><a href="aui-tabs-debug.js.html" title="aui-tabs-debug.js">aui-tabs-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-tabs-min.js.html" title="aui-tabs-min.js">aui-tabs-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-tabs.js.html" title="aui-tabs.js">aui-tabs.js</a></li>
+
+
+			                                <li class=""><a href="aui-textboxlist-debug.js.html" title="aui-textboxlist-debug.js">aui-textboxlist-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-textboxlist-min.js.html" title="aui-textboxlist-min.js">aui-textboxlist-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-textboxlist.js.html" title="aui-textboxlist.js">aui-textboxlist.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-state-interaction&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">Lang</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+	<span class="nx">isBoolean</span> <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isBoolean</span><span class="p">,</span>
+	<span class="nx">isString</span> <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">,</span>
+
+	<span class="nx">getClassName</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">ClassNameManager</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">,</span>
+
+	<span class="nx">STATE</span> <span class="o">=</span> <span class="s1">&#39;state&#39;</span><span class="p">,</span>
+
+	<span class="nx">CSS_STATE_DEFAULT</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">STATE</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">),</span>
+	<span class="nx">CSS_STATE_HOVER</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">STATE</span><span class="p">,</span> <span class="s1">&#39;hover&#39;</span><span class="p">),</span>
+	<span class="nx">CSS_STATE_ACTIVE</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">STATE</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">StateInteractionPlugin</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">host</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">host</span><span class="p">;</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span> <span class="o">&amp;&amp;</span> <span class="nx">host</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">node</span> <span class="o">=</span> <span class="nx">host</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentBox&#39;</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="nx">config</span><span class="p">.</span><span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">;</span>
+
+	<span class="nx">StateInteractionPlugin</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">StateInteractionPlugin</span><span class="p">.</span><span class="nx">NAME</span> <span class="o">=</span> <span class="s1">&#39;stateinteraction&#39;</span><span class="p">;</span>
+<span class="nx">StateInteractionPlugin</span><span class="p">.</span><span class="nx">NS</span> <span class="o">=</span> <span class="s1">&#39;StateInteraction&#39;</span><span class="p">;</span>
+
+<span class="nx">StateInteractionPlugin</span><span class="p">.</span><span class="nx">ATTRS</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="nx">active</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+	<span class="p">},</span>
+
+	<span class="nx">activeState</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+		<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+	<span class="p">},</span>
+
+	<span class="nx">bubbleTarget</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+	<span class="p">},</span>
+
+	<span class="nx">classNames</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="p">{}</span>
+	<span class="p">},</span>
+
+	<span class="s1">&#39;default&#39;</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+	<span class="p">},</span>
+
+	<span class="nx">defaultState</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+		<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+	<span class="p">},</span>
+
+	<span class="nx">hover</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+	<span class="p">},</span>
+
+	<span class="nx">hoverState</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+		<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+	<span class="p">},</span>
+
+	<span class="nx">node</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
+	<span class="nx">StateInteractionPlugin</span><span class="p">,</span>
+	<span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span>
+	<span class="p">{</span>
+		<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">activeClass</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;classNames.active&#39;</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">defaultClass</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;classNames.default&#39;</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">hoverClass</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;classNames.hover&#39;</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_CSS_STATES</span> <span class="o">=</span> <span class="p">{</span>
+				<span class="nx">active</span><span class="o">:</span> <span class="nx">isString</span><span class="p">(</span><span class="nx">activeClass</span><span class="p">)</span> <span class="o">?</span> <span class="nx">activeClass</span> <span class="o">:</span> <span class="nx">CSS_STATE_ACTIVE</span><span class="p">,</span>
+				<span class="s1">&#39;default&#39;</span><span class="o">:</span> <span class="nx">isString</span><span class="p">(</span><span class="nx">defaultClass</span><span class="p">)</span> <span class="o">?</span> <span class="nx">defaultClass</span> <span class="o">:</span> <span class="nx">CSS_STATE_DEFAULT</span><span class="p">,</span>
+				<span class="nx">hover</span><span class="o">:</span> <span class="nx">isString</span><span class="p">(</span><span class="nx">hoverClass</span><span class="p">)</span> <span class="o">?</span> <span class="nx">hoverClass</span> <span class="o">:</span> <span class="nx">CSS_STATE_HOVER</span>
+			<span class="p">};</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;defaultState&#39;</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_CSS_STATES</span><span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">]);</span>
+			<span class="p">}</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_createEvents</span><span class="p">();</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_attachInteractionEvents</span><span class="p">();</span>
+		<span class="p">},</span>
+
+		<span class="nx">_attachInteractionEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
+
+			<span class="nx">node</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_fireEvents</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+
+			<span class="nx">node</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">rbind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_fireEvents</span><span class="p">,</span> <span class="nx">instance</span><span class="p">,</span> <span class="s1">&#39;mouseover&#39;</span><span class="p">));</span>
+			<span class="nx">node</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseleave&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">rbind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_fireEvents</span><span class="p">,</span> <span class="nx">instance</span><span class="p">,</span> <span class="s1">&#39;mouseout&#39;</span><span class="p">));</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;activeChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetState</span><span class="p">);</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;hoverChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetState</span><span class="p">);</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;defaultChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetState</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="nx">_fireEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">officialType</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">bubbleTarget</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;bubbleTarget&#39;</span><span class="p">);</span>
+
+			<span class="nx">officialType</span> <span class="o">=</span> <span class="nx">officialType</span> <span class="o">||</span> <span class="nx">event</span><span class="p">.</span><span class="nx">type</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">bubbleTarget</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">bubbleTarget</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">officialType</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">officialType</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="nx">_createEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">bubbleTarget</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;bubbleTarget&#39;</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">bubbleTarget</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">addTarget</span><span class="p">(</span><span class="nx">bubbleTarget</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
+				<span class="s1">&#39;click&#39;</span><span class="p">,</span>
+				<span class="p">{</span>
+					<span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defClickFn</span><span class="p">,</span>
+					<span class="nx">emitFacade</span><span class="o">:</span> <span class="kc">true</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
+				<span class="s1">&#39;mouseout&#39;</span><span class="p">,</span>
+				<span class="p">{</span>
+					<span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defMouseOutFn</span><span class="p">,</span>
+					<span class="nx">emitFacade</span><span class="o">:</span> <span class="kc">true</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
+				<span class="s1">&#39;mouseover&#39;</span><span class="p">,</span>
+				<span class="p">{</span>
+					<span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defMouseOverFn</span><span class="p">,</span>
+					<span class="nx">emitFacade</span><span class="o">:</span> <span class="kc">true</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="nx">_defClickFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">,</span> <span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">));</span>
+		<span class="p">},</span>
+
+		<span class="nx">_defMouseOutFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;hover&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="nx">_defMouseOverFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;hover&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="nx">_uiSetState</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">attrName</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">attrName</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">attrName</span> <span class="o">+</span> <span class="s1">&#39;State&#39;</span><span class="p">))</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;addClass&#39;</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;removeClass&#39;</span><span class="p">;</span>
+				<span class="p">}</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">)[</span><span class="nx">action</span><span class="p">](</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_CSS_STATES</span><span class="p">[</span><span class="nx">attrName</span><span class="p">]);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">);</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">StateInteractionPlugin</span> <span class="o">=</span> <span class="nx">StateInteractionPlugin</span><span class="p">;</span>
+
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;plugin&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Resize.html#event_activeHandleChange", "access": "", "host": "Resize", "type": "event", "name": "activeHandleChange"}, {"url": "Resize.html#event_activeHandleElChange", "access": "", "host": "Resize", "type": "event", "name": "activeHandleElChange"}, {"url": "Resize.html#method__afterResize", "access": "protected", "host": "Resize", "type": "method", "name": "_afterResize"}, {"url": "Resize.html#config_autoHide", "access": "", "host": "Resize", "type": "config", "name": "autoHide"}, {"url": "Resize.html#event_autoHideChange", "access": "", "host": "Resize", "type": "event", "name": "autoHideChange"}, {"url": "Resize.html#method_bindUI", "access": "protected", "host": "Resize", "type": "method", "name": "bindUI"}, {"url": "Resize.html#method__buildHandle", "access": "protected", "host": "Resize", "type": "method", "name": "_buildHandle"}, {"url": "Resize.html#method__checkHeight", "access": "protected", "host": "Resize", "type": "method", "name": "_checkHeight"}, {"url": "Resize.html#method__checkRatio", "access": "protected", "host": "Resize", "type": "method", "name": "_checkRatio"}, {"url": "Resize.html#method__checkWidth", "access": "protected", "host": "Resize", "type": "method", "name": "_checkWidth"}, {"url": "Resize.html#config_constrain2node", "access": "", "host": "Resize", "type": "config", "name": "constrain2node"}, {"url": "Resize.html#event_constrain2nodeChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2nodeChange"}, {"url": "Resize.html#config_constrain2region", "access": "", "host": "Resize", "type": "config", "name": "constrain2region"}, {"url": "Resize.html#event_constrain2regionChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2regionChange"}, {"url": "Resize.html#config_constrain2view", "access": "", "host": "Resize", "type": "config", "name": "constrain2view"}, {"url": "Resize.html#event_constrain2viewChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2viewChange"}, {"url": "Resize.html#method__copyStyles", "access": "protected", "host": "Resize", "type": "method", "name": "_copyStyles"}, {"url": "Resize.html#method__defMouseUpFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defMouseUpFn"}, {"url": "Resize.html#method__defResizeEndFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeEndFn"}, {"url": "Resize.html#method__defResizeFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeFn"}, {"url": "Resize.html#method__defResizeStartFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeStartFn"}, {"url": "Resize.html#method_destructor", "access": "protected", "host": "Resize", "type": "method", "name": "destructor"}, {"url": "Resize.html#method_eachHandle", "access": "", "host": "Resize", "type": "method", "name": "eachHandle"}, {"url": "Resize.html#method__handleMouseUpEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleMouseUpEvent"}, {"url": "Resize.html#method__handleResizeEndEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeEndEvent"}, {"url": "Resize.html#method__handleResizeEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeEvent"}, {"url": "Resize.html#method__handleResizeStartEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeStartEvent"}, {"url": "Resize.html#config_handles", "access": "", "host": "Resize", "type": "config", "name": "handles"}, {"url": "Resize.html#event_handlesChange", "access": "", "host": "Resize", "type": "event", "name": "handlesChange"}, {"url": "Resize.html#property_info", "access": "protected", "host": "Resize", "type": "property", "name": "info"}, {"url": "Resize.html#method_initializer", "access": "protected", "host": "Resize", "type": "method", "name": "initializer"}, {"url": "Resize.html#config_maxHeight", "access": "", "host": "Resize", "type": "config", "name": "maxHeight"}, {"url": "Resize.html#event_maxHeightChange", "access": "", "host": "Resize", "type": "event", "name": "maxHeightChange"}, {"url": "Resize.html#config_maxWidth", "access": "", "host": "Resize", "type": "config", "name": "maxWidth"}, {"url": "Resize.html#event_maxWidthChange", "access": "", "host": "Resize", "type": "event", "name": "maxWidthChange"}, {"url": "Resize.html#config_minHeight", "access": "", "host": "Resize", "type": "config", "name": "minHeight"}, {"url": "Resize.html#event_minHeightChange", "access": "", "host": "Resize", "type": "event", "name": "minHeightChange"}, {"url": "Resize.html#config_minWidth", "access": "", "host": "Resize", "type": "config", "name": "minWidth"}, {"url": "Resize.html#event_minWidthChange", "access": "", "host": "Resize", "type": "event", "name": "minWidthChange"}, {"url": "Resize.html#config_node", "access": "", "host": "Resize", "type": "config", "name": "node"}, {"url": "Resize.html#event_nodeChange", "access": "", "host": "Resize", "type": "event", "name": "nodeChange"}, {"url": "Resize.html#method__onHandleMouseOut", "access": "protected", "host": "Resize", "type": "method", "name": "_onHandleMouseOut"}, {"url": "Resize.html#method__onHandleMouseOver", "access": "protected", "host": "Resize", "type": "method", "name": "_onHandleMouseOver"}, {"url": "Resize.html#method__onWrapperMouseEnter", "access": "protected", "host": "Resize", "type": "method", "name": "_onWrapperMouseEnter"}, {"url": "Resize.html#method__onWrapperMouseLeave", "access": "protected", "host": "Resize", "type": "method", "name": "_onWrapperMouseLeave"}, {"url": "Resize.html#property_originalInfo", "access": "protected", "host": "Resize", "type": "property", "name": "originalInfo"}, {"url": "Resize.html#config_preserveRatio", "access": "", "host": "Resize", "type": "config", "name": "preserveRatio"}, {"url": "Resize.html#event_preserveRatioChange", "access": "", "host": "Resize", "type": "event", "name": "preserveRatioChange"}, {"url": "Resize.html#config_proxy", "access": "", "host": "Resize", "type": "config", "name": "proxy"}, {"url": "Resize.html#event_proxyChange", "access": "", "host": "Resize", "type": "event", "name": "proxyChange"}, {"url": "Resize.html#config_proxyEl", "access": "", "host": "Resize", "type": "config", "name": "proxyEl"}, {"url": "Resize.html#event_proxyElChange", "access": "", "host": "Resize", "type": "event", "name": "proxyElChange"}, {"url": "Resize.html#method_renderer", "access": "protected", "host": "Resize", "type": "method", "name": "renderer"}, {"url": "Resize.html#method__renderHandles", "access": "protected", "host": "Resize", "type": "method", "name": "_renderHandles"}, {"url": "Resize.html#method__renderProxy", "access": "protected", "host": "Resize", "type": "method", "name": "_renderProxy"}, {"url": "Resize.html#method_renderUI", "access": "protected", "host": "Resize", "type": "method", "name": "renderUI"}, {"url": "Resize.html#method__resize", "access": "protected", "host": "Resize", "type": "method", "name": "_resize"}, {"url": "Resize.html#event_resize:end", "access": "", "host": "Resize", "type": "event", "name": "resize:end"}, {"url": "Resize.html#event_resize:mouseUp", "access": "", "host": "Resize", "type": "event", "name": "resize:mouseUp"}, {"url": "Resize.html#event_resize:resize", "access": "", "host": "Resize", "type": "event", "name": "resize:resize"}, {"url": "Resize.html#event_resize:start", "access": "", "host": "Resize", "type": "event", "name": "resize:start"}, {"url": "Resize.html#property_Resize.ATTRS", "access": "", "host": "Resize", "type": "property", "name": "Resize.ATTRS"}, {"url": "Resize.html#property_Resize.NAME", "access": "", "host": "Resize", "type": "property", "name": "Resize.NAME"}, {"url": "Resize.html#config_resizing", "access": "", "host": "Resize", "type": "config", "name": "resizing"}, {"url": "Resize.html#event_resizingChange", "access": "", "host": "Resize", "type": "event", "name": "resizingChange"}, {"url": "Resize.html#method__setActiveHandlesUI", "access": "protected", "host": "Resize", "type": "method", "name": "_setActiveHandlesUI"}, {"url": "Resize.html#method__setHideHandlesUI", "access": "protected", "host": "Resize", "type": "method", "name": "_setHideHandlesUI"}, {"url": "Resize.html#method__syncProxyUI", "access": "protected", "host": "Resize", "type": "method", "name": "_syncProxyUI"}, {"url": "Resize.html#method__syncUI", "access": "protected", "host": "Resize", "type": "method", "name": "_syncUI"}, {"url": "Resize.html#method_syncUI", "access": "protected", "host": "Resize", "type": "method", "name": "syncUI"}, {"url": "Resize.html#config_tickX", "access": "", "host": "Resize", "type": "config", "name": "tickX"}, {"url": "Resize.html#event_tickXChange", "access": "", "host": "Resize", "type": "event", "name": "tickXChange"}, {"url": "Resize.html#config_tickY", "access": "", "host": "Resize", "type": "config", "name": "tickY"}, {"url": "Resize.html#event_tickYChange", "access": "", "host": "Resize", "type": "event", "name": "tickYChange"}, {"url": "Resize.html#config_wrap", "access": "", "host": "Resize", "type": "config", "name": "wrap"}, {"url": "Resize.html#event_wrapChange", "access": "", "host": "Resize", "type": "event", "name": "wrapChange"}, {"url": "Resize.html#config_wrapper", "access": "", "host": "Resize", "type": "config", "name": "wrapper"}, {"url": "Resize.html#event_wrapperChange", "access": "", "host": "Resize", "type": "event", "name": "wrapperChange"}, {"url": "Resize.html#config_wrapTypes", "access": "", "host": "Resize", "type": "config", "name": "wrapTypes"}, {"url": "Resize.html#event_wrapTypesChange", "access": "", "host": "Resize", "type": "event", "name": "wrapTypesChange"}];
+</script>
+</body>
+</html>

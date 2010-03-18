@@ -1,0 +1,899 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-loading-mask   aui-loading-mask.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-loading-mask&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">aui-loading-mask.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class="selected"><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="LoadingMask.html" title="LoadingMask">LoadingMask</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="aui-loading-mask-debug.js.html" title="aui-loading-mask-debug.js">aui-loading-mask-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-loading-mask-min.js.html" title="aui-loading-mask-min.js">aui-loading-mask-min.js</a></li>
+
+
+			                                <li class="selected"><a href="aui-loading-mask.js.html" title="aui-loading-mask.js">aui-loading-mask.js</a></li>
+
+
+			                                <li class=""><a href="aui-nested-list-debug.js.html" title="aui-nested-list-debug.js">aui-nested-list-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-nested-list-min.js.html" title="aui-nested-list-min.js">aui-nested-list-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-nested-list.js.html" title="aui-nested-list.js">aui-nested-list.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-loading-mask&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span> <span class="p">{</span>
+<span class="cm">/**</span>
+<span class="cm"> * The LoadingMask Utility</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module aui-loading-mask</span>
+<span class="cm"> */</span>
+
+<span class="kd">var</span> <span class="nx">Lang</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+
+	<span class="nx">BOUNDING_BOX</span> <span class="o">=</span> <span class="s1">&#39;boundingBox&#39;</span><span class="p">,</span>
+	<span class="nx">CONTENT_BOX</span> <span class="o">=</span> <span class="s1">&#39;contentBox&#39;</span><span class="p">,</span>
+	<span class="nx">HIDE</span> <span class="o">=</span> <span class="s1">&#39;hide&#39;</span><span class="p">,</span>
+	<span class="nx">HOST</span> <span class="o">=</span> <span class="s1">&#39;host&#39;</span><span class="p">,</span>
+	<span class="nx">MESSAGE_EL</span> <span class="o">=</span> <span class="s1">&#39;messageEl&#39;</span><span class="p">,</span>
+	<span class="nx">NAME</span> <span class="o">=</span> <span class="s1">&#39;loadingmask&#39;</span><span class="p">,</span>
+	<span class="nx">POSITION</span> <span class="o">=</span> <span class="s1">&#39;position&#39;</span><span class="p">,</span>
+	<span class="nx">SHOW</span> <span class="o">=</span> <span class="s1">&#39;show&#39;</span><span class="p">,</span>
+	<span class="nx">STATIC</span> <span class="o">=</span> <span class="s1">&#39;static&#39;</span><span class="p">,</span>
+	<span class="nx">STRINGS</span> <span class="o">=</span> <span class="s1">&#39;strings&#39;</span><span class="p">,</span>
+	<span class="nx">TARGET</span> <span class="o">=</span> <span class="s1">&#39;target&#39;</span><span class="p">,</span>
+	<span class="nx">TOGGLE</span> <span class="o">=</span> <span class="s1">&#39;toggle&#39;</span><span class="p">,</span>
+
+	<span class="nx">getClassName</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">ClassNameManager</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">,</span>
+
+	<span class="nx">CSS_LOADINGMASK</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">),</span>
+	<span class="nx">CSS_MASKED</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="s1">&#39;masked&#39;</span><span class="p">),</span>
+	<span class="nx">CSS_MASKED_RELATIVE</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="s1">&#39;masked&#39;</span><span class="p">,</span> <span class="s1">&#39;relative&#39;</span><span class="p">),</span>
+	<span class="nx">CSS_MESSAGE_LOADING</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span><span class="p">),</span>
+	<span class="nx">CSS_MESSAGE_LOADING_CONTENT</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">),</span>
+
+	<span class="nx">TPL_MESSAGE_LOADING</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">CSS_MESSAGE_LOADING</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">CSS_MESSAGE_LOADING_CONTENT</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;{0}&lt;/div&gt;&lt;/div&gt;&#39;</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * &lt;p&gt;&lt;img src=&quot;assets/images/aui-loading-mask/main.png&quot;/&gt;&lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * A base class for LoadingMask, providing:</span>
+<span class="cm"> * &lt;ul&gt;</span>
+<span class="cm"> *    &lt;li&gt;Cross browser mask functionality to cover an element or the entire page&lt;/li&gt;</span>
+<span class="cm"> *    &lt;li&gt;Customizable mask (i.e., background, opacity)&lt;/li&gt;</span>
+<span class="cm"> *    &lt;li&gt;Display a centered &quot;loading&quot; message on the masked node&lt;/li&gt;</span>
+<span class="cm"> * &lt;/ul&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * Quick Example:&lt;br/&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * &lt;pre&gt;&lt;code&gt;node.plug(A.LoadingMask, { background: &#39;#000&#39; });&lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * Check the list of &lt;a href=&quot;LoadingMask.html#configattributes&quot;&gt;Configuration Attributes&lt;/a&gt; available for</span>
+<span class="cm"> * LoadingMask.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param config {Object} Object literal specifying widget configuration properties.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class LoadingMask</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @extends Plugin.Base</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">LoadingMask</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">LoadingMask</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Static property provides a string to identify the class.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @property LoadingMask.NAME</span>
+<span class="cm"> * @type String</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+<span class="nx">LoadingMask</span><span class="p">.</span><span class="nx">NAME</span> <span class="o">=</span> <span class="nx">NAME</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Static property provides a string to identify the namespace.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @property LoadingMask.NS</span>
+<span class="cm"> * @type String</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+<span class="nx">LoadingMask</span><span class="p">.</span><span class="nx">NS</span> <span class="o">=</span> <span class="nx">NAME</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Static property used to define the default attribute</span>
+<span class="cm"> * configuration for the LoadingMask.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @property LoadingMask.ATTRS</span>
+<span class="cm"> * @type Object</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+<span class="nx">LoadingMask</span><span class="p">.</span><span class="nx">ATTRS</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="cm">/**</span>
+<span class="cm">	 * Node element to display the message.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @attribute messageEl</span>
+<span class="cm">	 * @default Generated HTML div element.</span>
+<span class="cm">	 * @type String</span>
+<span class="cm">	 */</span>
+	<span class="nx">messageEl</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">strings</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">STRINGS</span><span class="p">);</span>
+
+			<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">substitute</span><span class="p">(</span><span class="nx">TPL_MESSAGE_LOADING</span><span class="p">,</span> <span class="p">[</span><span class="nx">strings</span><span class="p">.</span><span class="nx">loading</span><span class="p">])</span>
+			<span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Strings used on the LoadingMask. See</span>
+<span class="cm">     * &lt;a href=&quot;Widget.html#method_strings&quot;&gt;strings&lt;/a&gt;.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @attribute strings</span>
+<span class="cm">	 * @default { loading: &#39;Loading&amp;hellip;&#39; }</span>
+<span class="cm">	 * @type Object</span>
+<span class="cm">	 */</span>
+	<span class="nx">strings</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">loading</span><span class="o">:</span> <span class="s1">&#39;Loading&amp;hellip;&#39;</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Node where the mask will be positioned and re-dimensioned.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @attribute target</span>
+<span class="cm">	 * @default null</span>
+<span class="cm">	 * @type Node | Widget</span>
+<span class="cm">	 */</span>
+	<span class="nx">target</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">target</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">target</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="k">return</span> <span class="nx">target</span><span class="p">;</span>
+		<span class="p">},</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
+	<span class="nx">LoadingMask</span><span class="p">,</span>
+	<span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span>
+	<span class="p">{</span>
+		<span class="cm">/**</span>
+<span class="cm">		 * Construction logic executed during LoadingMask instantiation. Lifecycle.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method initializer</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">IGNORED_ATTRS</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
+				<span class="p">{</span>
+					<span class="nx">host</span><span class="o">:</span> <span class="kc">true</span>
+				<span class="p">},</span>
+				<span class="nx">LoadingMask</span><span class="p">.</span><span class="nx">ATTRS</span>
+			<span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">();</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">();</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_createDynamicAttrs</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Create the DOM structure for the LoadingMask. Lifecycle.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method renderUI</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">strings</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">STRINGS</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderOverlayMask</span><span class="p">();</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMask</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">MESSAGE_EL</span><span class="p">)</span>
+			<span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Bind the events on the LoadingMask UI. Lifecycle.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method bindUI</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindOverlayMaskUI</span><span class="p">();</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Bind events to the</span>
+<span class="cm">         * &lt;a href=&quot;LoadingMask.html#property_overlayMask&quot;&gt;overlayMask&lt;/a&gt;.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _bindOverlayMaskUI</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_bindOverlayMaskUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMask</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;visibleChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterVisibleChange</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Center the</span>
+<span class="cm">         * &lt;a href=&quot;LoadingMask.html#config_messageEl&quot;&gt;messageEl&lt;/a&gt; with the</span>
+<span class="cm">         * &lt;a href=&quot;LoadingMask.html#config_target&quot;&gt;target&lt;/a&gt; node.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method centerMessage</span>
+<span class="cm">		 */</span>
+		<span class="nx">centerMessage</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">MESSAGE_EL</span><span class="p">).</span><span class="nx">center</span><span class="p">(</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMask</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">)</span>
+			<span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Invoke the</span>
+<span class="cm">         * &lt;a href=&quot;LoadingMask.html#property_overlayMask&quot;&gt;overlayMask&lt;/a&gt;</span>
+<span class="cm">         * &lt;code&gt;refreshMask&lt;/code&gt; method.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method refreshMask</span>
+<span class="cm">		 */</span>
+		<span class="nx">refreshMask</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMask</span><span class="p">.</span><span class="nx">refreshMask</span><span class="p">();</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">centerMessage</span><span class="p">();</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Fires after the value of the</span>
+<span class="cm">		 * &lt;a href=&quot;LoadingMask.html#config_visible&quot;&gt;visible&lt;/a&gt; attribute change.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _afterVisibleChange</span>
+<span class="cm">		 * @param {EventFacade} event</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_afterVisibleChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TARGET</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">isStaticPositioned</span> <span class="o">=</span> <span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">getStyle</span><span class="p">(</span><span class="nx">POSITION</span><span class="p">)</span> <span class="o">==</span> <span class="nx">STATIC</span><span class="p">);</span>
+
+			<span class="nx">target</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">CSS_MASKED</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">));</span>
+			<span class="nx">target</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">CSS_MASKED_RELATIVE</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span> <span class="o">&amp;&amp;</span> <span class="nx">isStaticPositioned</span><span class="p">));</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">refreshMask</span><span class="p">();</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Render</span>
+<span class="cm">         * &lt;a href=&quot;LoadingMask.html#property_overlayMask&quot;&gt;overlayMask&lt;/a&gt;</span>
+<span class="cm">         * instance.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _renderOverlayMask</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_renderOverlayMask</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TARGET</span><span class="p">);</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Stores the &lt;a href=&quot;OverlayMask.html&quot;&gt;OverlayMask&lt;/a&gt; used</span>
+<span class="cm">             * internally.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @property overlayMask</span>
+<span class="cm">			 * @type OverlayMask</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMask</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">OverlayMask</span><span class="p">(</span>
+				<span class="p">{</span>
+					<span class="nx">target</span><span class="o">:</span> <span class="nx">target</span><span class="p">,</span>
+					<span class="nx">cssClass</span><span class="o">:</span> <span class="nx">CSS_LOADINGMASK</span>
+				<span class="p">}</span>
+			<span class="p">).</span><span class="nx">render</span><span class="p">(</span><span class="nx">target</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Create dynamic attributes listeners to invoke the setter on</span>
+<span class="cm">         * &lt;a href=&quot;LoadingMask.html#property_overlayMask&quot;&gt;overlayMask&lt;/a&gt; after</span>
+<span class="cm">         * the attribute is set on the LoadingMask instance.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _createDynamicAttrs</span>
+<span class="cm">		 * @param {Object} config Object literal specifying widget configuration properties.</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_createDynamicAttrs</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">A</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">ignoredAttr</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">IGNORED_ATTRS</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">ignoredAttr</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">addAttr</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="p">{</span>
+						<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+							<span class="k">this</span><span class="p">.</span><span class="nx">overlayMask</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">val</span><span class="p">);</span>
+
+							<span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
+						<span class="p">},</span>
+						<span class="nx">value</span><span class="o">:</span> <span class="nx">value</span>
+					<span class="p">});</span>
+				<span class="p">}</span>
+			<span class="p">});</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">);</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">each</span><span class="p">([</span><span class="nx">HIDE</span><span class="p">,</span> <span class="nx">SHOW</span><span class="p">,</span> <span class="nx">TOGGLE</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">method</span><span class="p">)</span> <span class="p">{</span>
+	<span class="cm">/**</span>
+<span class="cm">	 * Invoke the</span>
+<span class="cm">     * &lt;a href=&quot;LoadingMask.html#property_overlayMask&quot;&gt;overlayMask&lt;/a&gt;</span>
+<span class="cm">     * &lt;code&gt;hide&lt;/code&gt; method.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method hide</span>
+<span class="cm">	 */</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Invoke the</span>
+<span class="cm">     * &lt;a href=&quot;LoadingMask.html#property_overlayMask&quot;&gt;overlayMask&lt;/a&gt;</span>
+<span class="cm">     * &lt;code&gt;show&lt;/code&gt; method.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method show</span>
+<span class="cm">	 */</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Invoke the</span>
+<span class="cm">     * &lt;a href=&quot;LoadingMask.html#property_overlayMask&quot;&gt;overlayMask&lt;/a&gt;</span>
+<span class="cm">     * &lt;code&gt;toggle&lt;/code&gt; method.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method toggle</span>
+<span class="cm">	 */</span>
+	<span class="nx">LoadingMask</span><span class="p">.</span><span class="nx">prototype</span><span class="p">[</span><span class="nx">method</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">overlayMask</span><span class="p">[</span><span class="nx">method</span><span class="p">]();</span>
+	<span class="p">};</span>
+<span class="p">});</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">LoadingMask</span> <span class="o">=</span> <span class="nx">LoadingMask</span><span class="p">;</span>
+
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-overlay-mask&#39;</span><span class="p">,</span><span class="s1">&#39;plugin&#39;</span><span class="p">,</span><span class="s1">&#39;substitute&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "LoadingMask.html#method__afterVisibleChange", "access": "protected", "host": "LoadingMask", "type": "method", "name": "_afterVisibleChange"}, {"url": "LoadingMask.html#method__bindOverlayMaskUI", "access": "protected", "host": "LoadingMask", "type": "method", "name": "_bindOverlayMaskUI"}, {"url": "LoadingMask.html#method_bindUI", "access": "protected", "host": "LoadingMask", "type": "method", "name": "bindUI"}, {"url": "LoadingMask.html#method_centerMessage", "access": "", "host": "LoadingMask", "type": "method", "name": "centerMessage"}, {"url": "LoadingMask.html#method__createDynamicAttrs", "access": "protected", "host": "LoadingMask", "type": "method", "name": "_createDynamicAttrs"}, {"url": "LoadingMask.html#method_hide", "access": "", "host": "LoadingMask", "type": "method", "name": "hide"}, {"url": "LoadingMask.html#method_initializer", "access": "protected", "host": "LoadingMask", "type": "method", "name": "initializer"}, {"url": "LoadingMask.html#property_LoadingMask.ATTRS", "access": "", "host": "LoadingMask", "type": "property", "name": "LoadingMask.ATTRS"}, {"url": "LoadingMask.html#property_LoadingMask.NAME", "access": "", "host": "LoadingMask", "type": "property", "name": "LoadingMask.NAME"}, {"url": "LoadingMask.html#property_LoadingMask.NS", "access": "", "host": "LoadingMask", "type": "property", "name": "LoadingMask.NS"}, {"url": "LoadingMask.html#config_messageEl", "access": "", "host": "LoadingMask", "type": "config", "name": "messageEl"}, {"url": "LoadingMask.html#event_messageElChange", "access": "", "host": "LoadingMask", "type": "event", "name": "messageElChange"}, {"url": "LoadingMask.html#property_overlayMask", "access": "protected", "host": "LoadingMask", "type": "property", "name": "overlayMask"}, {"url": "LoadingMask.html#method_refreshMask", "access": "", "host": "LoadingMask", "type": "method", "name": "refreshMask"}, {"url": "LoadingMask.html#method__renderOverlayMask", "access": "protected", "host": "LoadingMask", "type": "method", "name": "_renderOverlayMask"}, {"url": "LoadingMask.html#method_renderUI", "access": "protected", "host": "LoadingMask", "type": "method", "name": "renderUI"}, {"url": "LoadingMask.html#method_show", "access": "", "host": "LoadingMask", "type": "method", "name": "show"}, {"url": "LoadingMask.html#config_strings", "access": "", "host": "LoadingMask", "type": "config", "name": "strings"}, {"url": "LoadingMask.html#event_stringsChange", "access": "", "host": "LoadingMask", "type": "event", "name": "stringsChange"}, {"url": "LoadingMask.html#config_target", "access": "", "host": "LoadingMask", "type": "config", "name": "target"}, {"url": "LoadingMask.html#event_targetChange", "access": "", "host": "LoadingMask", "type": "event", "name": "targetChange"}, {"url": "LoadingMask.html#method_toggle", "access": "", "host": "LoadingMask", "type": "method", "name": "toggle"}];
+</script>
+</body>
+</html>

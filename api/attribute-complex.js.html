@@ -1,0 +1,692 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: attribute   attribute-complex.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			attribute&nbsp; <span class="subtitle">0.1a</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_attribute.html" title="attribute">attribute</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">attribute-complex.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="Attribute.html" title="Attribute">Attribute</a></li>
+
+
+				                                <li class=""><a href="State.html" title="State">State</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="attribute-base-debug.js.html" title="attribute-base-debug.js">attribute-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="attribute-base-min.js.html" title="attribute-base-min.js">attribute-base-min.js</a></li>
+
+
+			                                <li class=""><a href="attribute-base.js.html" title="attribute-base.js">attribute-base.js</a></li>
+
+
+			                                <li class=""><a href="attribute-complex-debug.js.html" title="attribute-complex-debug.js">attribute-complex-debug.js</a></li>
+
+
+			                                <li class=""><a href="attribute-complex-min.js.html" title="attribute-complex-min.js">attribute-complex-min.js</a></li>
+
+
+			                                <li class="selected"><a href="attribute-complex.js.html" title="attribute-complex.js">attribute-complex.js</a></li>
+
+
+			                                <li class=""><a href="attribute-debug.js.html" title="attribute-debug.js">attribute-debug.js</a></li>
+
+
+			                                <li class=""><a href="attribute-min.js.html" title="attribute-min.js">attribute-min.js</a></li>
+
+
+			                                <li class=""><a href="attribute.js.html" title="attribute.js">attribute.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
+<span class="cm">Code licensed under the BSD License:</span>
+<span class="cm">http://developer.yahoo.com/yui/license.html</span>
+<span class="cm">version: 3.1.0</span>
+<span class="cm">build: nightly</span>
+<span class="cm">*/</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;attribute-complex&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Adds support for attribute providers to handle complex attributes in the constructor</span>
+<span class="cm">     *</span>
+<span class="cm">     * @module attribute</span>
+<span class="cm">     * @submodule attribute-complex</span>
+<span class="cm">     * @for Attribute</span>
+<span class="cm">     */</span>
+
+    <span class="kd">var</span> <span class="nx">O</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nb">Object</span><span class="p">,</span>
+        <span class="nx">DOT</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">;</span>
+
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">Attribute</span><span class="p">.</span><span class="nx">Complex</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span>
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">Attribute</span><span class="p">.</span><span class="nx">Complex</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * Utility method to split out simple attribute name/value pairs (&quot;x&quot;) </span>
+<span class="cm">         * from complex attribute name/value pairs (&quot;x.y.z&quot;), so that complex</span>
+<span class="cm">         * attributes can be keyed by the top level attribute name.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @method _normAttrVals</span>
+<span class="cm">         * @param {Object} valueHash An object with attribute name/value pairs</span>
+<span class="cm">         *</span>
+<span class="cm">         * @return {Object} An object literal with 2 properties - &quot;simple&quot; and &quot;complex&quot;,</span>
+<span class="cm">         * containing simple and complex attribute values respectively keyed </span>
+<span class="cm">         * by the top level attribute name, or null, if valueHash is falsey.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @private</span>
+<span class="cm">         */</span>
+        <span class="nx">_normAttrVals</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">valueHash</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">vals</span> <span class="o">=</span> <span class="p">{},</span>
+                <span class="nx">subvals</span> <span class="o">=</span> <span class="p">{},</span>
+                <span class="nx">path</span><span class="p">,</span>
+                <span class="nx">attr</span><span class="p">,</span>
+                <span class="nx">v</span><span class="p">,</span> <span class="nx">k</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">valueHash</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">for</span> <span class="p">(</span><span class="nx">k</span> <span class="k">in</span> <span class="nx">valueHash</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">valueHash</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">k</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="nx">k</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">DOT</span><span class="p">)</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="nx">path</span> <span class="o">=</span> <span class="nx">k</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="nx">DOT</span><span class="p">);</span>
+                            <span class="nx">attr</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+                            <span class="nx">v</span> <span class="o">=</span> <span class="nx">subvals</span><span class="p">[</span><span class="nx">attr</span><span class="p">]</span> <span class="o">=</span> <span class="nx">subvals</span><span class="p">[</span><span class="nx">attr</span><span class="p">]</span> <span class="o">||</span> <span class="p">[];</span>
+                            <span class="nx">v</span><span class="p">[</span><span class="nx">v</span><span class="p">.</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                                <span class="nx">path</span> <span class="o">:</span> <span class="nx">path</span><span class="p">,</span> 
+                                <span class="nx">value</span><span class="o">:</span> <span class="nx">valueHash</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span>
+                            <span class="p">};</span>
+                        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                            <span class="nx">vals</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="o">=</span> <span class="nx">valueHash</span><span class="p">[</span><span class="nx">k</span><span class="p">];</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="k">return</span> <span class="p">{</span> <span class="nx">simple</span><span class="o">:</span><span class="nx">vals</span><span class="p">,</span> <span class="nx">complex</span><span class="o">:</span><span class="nx">subvals</span> <span class="p">};</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * Returns the initial value of the given attribute from</span>
+<span class="cm">         * either the default configuration provided, or the </span>
+<span class="cm">         * over-ridden value if it exists in the set of initValues </span>
+<span class="cm">         * provided and the attribute is not read-only.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @param {String} attr The name of the attribute</span>
+<span class="cm">         * @param {Object} cfg The attribute configuration object</span>
+<span class="cm">         * @param {Object} initValues The object with simple and complex attribute name/value pairs returned from _normAttrVals</span>
+<span class="cm">         *</span>
+<span class="cm">         * @return {Any} The initial value of the attribute.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @method _getAttrInitVal</span>
+<span class="cm">         * @private</span>
+<span class="cm">         */</span>
+        <span class="nx">_getAttrInitVal</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">attr</span><span class="p">,</span> <span class="nx">cfg</span><span class="p">,</span> <span class="nx">initValues</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="nx">cfg</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
+                <span class="nx">valFn</span> <span class="o">=</span> <span class="nx">cfg</span><span class="p">.</span><span class="nx">valueFn</span><span class="p">,</span>
+                <span class="nx">simple</span><span class="p">,</span>
+                <span class="nx">complex</span><span class="p">,</span>
+                <span class="nx">i</span><span class="p">,</span>
+                <span class="nx">l</span><span class="p">,</span>
+                <span class="nx">path</span><span class="p">,</span>
+                <span class="nx">subval</span><span class="p">,</span>
+                <span class="nx">subvals</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">valFn</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">valFn</span><span class="p">.</span><span class="nx">call</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">valFn</span> <span class="o">=</span> <span class="k">this</span><span class="p">[</span><span class="nx">valFn</span><span class="p">];</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">valFn</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">val</span> <span class="o">=</span> <span class="nx">valFn</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">cfg</span><span class="p">.</span><span class="nx">readOnly</span> <span class="o">&amp;&amp;</span> <span class="nx">initValues</span><span class="p">)</span> <span class="p">{</span>
+
+                <span class="c1">// Simple Attributes</span>
+                <span class="nx">simple</span> <span class="o">=</span> <span class="nx">initValues</span><span class="p">.</span><span class="nx">simple</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">simple</span> <span class="o">&amp;&amp;</span> <span class="nx">simple</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">attr</span><span class="p">))</span> <span class="p">{</span>
+                    <span class="nx">val</span> <span class="o">=</span> <span class="nx">simple</span><span class="p">[</span><span class="nx">attr</span><span class="p">];</span>
+                <span class="p">}</span>
+
+                <span class="c1">// Complex Attributes (complex values applied, after simple, incase both are set)</span>
+                <span class="nx">complex</span> <span class="o">=</span> <span class="nx">initValues</span><span class="p">.</span><span class="nx">complex</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">complex</span> <span class="o">&amp;&amp;</span> <span class="nx">complex</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">attr</span><span class="p">))</span> <span class="p">{</span>
+                    <span class="nx">subvals</span> <span class="o">=</span> <span class="nx">complex</span><span class="p">[</span><span class="nx">attr</span><span class="p">];</span>
+                    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">subvals</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">l</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">path</span> <span class="o">=</span> <span class="nx">subvals</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">path</span><span class="p">;</span>
+                        <span class="nx">subval</span> <span class="o">=</span> <span class="nx">subvals</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">value</span><span class="p">;</span>
+                        <span class="nx">O</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="nx">subval</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Attribute</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Attribute</span><span class="p">.</span><span class="nx">Complex</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;attribute-base&#39;</span><span class="p">]});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "State.html#method_add", "access": "", "host": "State", "type": "method", "name": "add"}, {"url": "State.html#method_addAll", "access": "", "host": "State", "type": "method", "name": "addAll"}, {"url": "Attribute.html#method_addAttr", "access": "", "host": "Attribute", "type": "method", "name": "addAttr"}, {"url": "Attribute.html#method_addAttrs", "access": "", "host": "Attribute", "type": "method", "name": "addAttrs"}, {"url": "Attribute.html#method_attrAdded", "access": "", "host": "Attribute", "type": "method", "name": "attrAdded"}, {"url": "Attribute.html#property_Attribute._ATTR_CFG", "access": "protected", "host": "Attribute", "type": "property", "name": "Attribute._ATTR_CFG"}, {"url": "Attribute.html#property_Attribute.INVALID_VALUE", "access": "", "host": "Attribute", "type": "property", "name": "Attribute.INVALID_VALUE"}, {"url": "State.html#property_data", "access": "", "host": "State", "type": "property", "name": "data"}, {"url": "State.html#method_get", "access": "", "host": "State", "type": "method", "name": "get"}, {"url": "Attribute.html#method_get", "access": "", "host": "Attribute", "type": "method", "name": "get"}, {"url": "State.html#method_getAll", "access": "", "host": "State", "type": "method", "name": "getAll"}, {"url": "Attribute.html#method__getAttr", "access": "protected", "host": "Attribute", "type": "method", "name": "_getAttr"}, {"url": "Attribute.html#method__getAttrs", "access": "protected", "host": "Attribute", "type": "method", "name": "_getAttrs"}, {"url": "Attribute.html#method_getAttrs", "access": "", "host": "Attribute", "type": "method", "name": "getAttrs"}, {"url": "Attribute.html#method_modifyAttr", "access": "", "host": "Attribute", "type": "method", "name": "modifyAttr"}, {"url": "Attribute.html#method__protectAttrs", "access": "protected", "host": "Attribute", "type": "method", "name": "_protectAttrs"}, {"url": "State.html#method_remove", "access": "", "host": "State", "type": "method", "name": "remove"}, {"url": "State.html#method_removeAll", "access": "", "host": "State", "type": "method", "name": "removeAll"}, {"url": "Attribute.html#method_removeAttr", "access": "", "host": "Attribute", "type": "method", "name": "removeAttr"}, {"url": "Attribute.html#method_reset", "access": "", "host": "Attribute", "type": "method", "name": "reset"}, {"url": "Attribute.html#method__set", "access": "protected", "host": "Attribute", "type": "method", "name": "_set"}, {"url": "Attribute.html#method_set", "access": "", "host": "Attribute", "type": "method", "name": "set"}, {"url": "Attribute.html#method__setAttr", "access": "protected", "host": "Attribute", "type": "method", "name": "_setAttr"}, {"url": "Attribute.html#method__setAttrs", "access": "protected", "host": "Attribute", "type": "method", "name": "_setAttrs"}, {"url": "Attribute.html#method_setAttrs", "access": "", "host": "Attribute", "type": "method", "name": "setAttrs"}];
+</script>
+</body>
+</html>
