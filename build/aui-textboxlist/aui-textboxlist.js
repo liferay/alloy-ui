@@ -1,4 +1,10 @@
 AUI.add('aui-textboxlist', function(A) {
+/**
+ * The Textboxlist Utility - Full documentation coming soon.
+ *
+ * @module aui-textboxlist
+ */
+
 var Lang = A.Lang,
 
 	getClassName = A.ClassNameManager.getClassName,
@@ -55,12 +61,43 @@ var Lang = A.Lang,
 
 	TPL_INPUT_CONTAINER = '<li class="' + CSS_INPUT_CONTAINER + '"></li>';
 
+/**
+ * A base class for Textboxlist, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>Text box list</li>
+ * </ul>
+ *
+ * Check the list of <a href="Textboxlist.html#configattributes">Configuration Attributes</a> available for
+ * Textboxlist.
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class Textboxlist
+ * @constructor
+ * @extends AutoComplete
+ */
 var TextboxList = function() {
 	TextboxList.superclass.constructor.apply(this, arguments);
 };
 
+/**
+ * Static property provides a string to identify the class.
+ *
+ * @property Textboxlist.NAME
+ * @type String
+ * @static
+ */
 TextboxList.NAME = NAME;
 
+/**
+ * Static property used to define the default attribute
+ * configuration for the Textboxlist.
+ *
+ * @property Textboxlist.ATTRS
+ * @type Object
+ * @static
+ */
 TextboxList.ATTRS = {
 	allowAnyEntry: {
 		value: false
@@ -77,6 +114,12 @@ A.extend(
 	TextboxList,
 	A.AutoComplete,
 	{
+		/**
+		 * Construction logic executed during Textboxlist instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function(config) {
 			var instance = this;
 
@@ -95,6 +138,12 @@ A.extend(
 			instance._lastSelectedEntry = -1;
 		},
 
+		/**
+		 * Create the DOM structure for the Textboxlist. Lifecycle.
+		 *
+		 * @method renderUI
+		 * @protected
+		 */
 		renderUI: function() {
 			var instance = this;
 
@@ -103,6 +152,12 @@ A.extend(
 			TextboxList.superclass.renderUI.apply(instance, arguments);
 		},
 
+		/**
+		 * Bind the events on the Textboxlist UI. Lifecycle.
+		 *
+		 * @method bindUI
+		 * @protected
+		 */
 		bindUI: function() {
 			var instance = this;
 

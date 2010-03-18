@@ -1,4 +1,10 @@
 AUI.add('aui-portal-layout', function(A) {
+/**
+ * The PortalLayout Utility - Full documentation coming soon.
+ *
+ * @module aui-portal-layout
+ */
+
 var Lang = A.Lang,
 	isBoolean = Lang.isBoolean,
 	isFunction = Lang.isFunction,
@@ -87,13 +93,53 @@ var Lang = A.Lang,
 							'<div class="'+concat(CSS_DRAG_INDICATOR_ICON, CSS_DRAG_INDICATOR_ICON_RIGHT, CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_L)+'"></div>' +
 						'<div>';
 
+/**
+ * A base class for PortalLayout, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>DragDrop utility for drag lists, portal layouts (portlets)</li>
+ * </ul>
+ *
+ * Quick Example:<br/>
+ * 
+ * <pre><code>var portalLayout = new A.PortalLayout({
+ *  	dragNodes: '.portlet',
+ *  	dropNodes: '.column',
+ *  	proxyNode: A.Node.create('<div class="aui-portal-layout-proxy"></div>'),
+ *  	lazyStart: true
+ * </code></pre>
+ *
+ * Check the list of <a href="PortalLayout.html#configattributes">Configuration Attributes</a> available for
+ * PortalLayout.
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class PortalLayout
+ * @constructor
+ * @extends Base
+ */
 function PortalLayout(config) {
 	PortalLayout.superclass.constructor.apply(this, arguments);
 }
 
 A.mix(PortalLayout, {
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property PortalLayout.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: PORTAL_LAYOUT,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the PortalLayout.
+	 *
+	 * @property PortalLayout.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
 		dd: {
 			value: null,
@@ -190,9 +236,12 @@ A.mix(PortalLayout, {
 });
 
 A.extend(PortalLayout, A.Base, {
-	/*
-	* Lifecycle
-	*/
+	/**
+	 * Construction logic executed during PortalLayout instantiation. Lifecycle.
+	 *
+	 * @method initializer
+	 * @protected
+	 */
 	initializer: function() {
 		var instance = this;
 
