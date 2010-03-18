@@ -145,7 +145,7 @@ A.mix(IOPlugin, {
 		},
 
 		/**
-		 * Options passed to the <a href="OverlayLoading.html">OverlayLoading</a>.
+		 * Options passed to the <a href="LoadingMask.html">LoadingMask</a>.
 		 *
 		 * @attribute loadingMask
 		 * @default {}
@@ -169,7 +169,7 @@ A.mix(IOPlugin, {
 		},
 
 		/**
-		 * Show the <a href="OverlayLoading.html">OverlayLoading</a> covering the <a
+		 * Show the <a href="LoadingMask.html">LoadingMask</a> covering the <a
          * href="A.Plugin.IO.html#config_node">node</a> while loading.
 		 *
 		 * @attribute showLoading
@@ -267,8 +267,8 @@ A.extend(IOPlugin, A.IORequest, {
 		if ((instance.get(TYPE) == TYPE_WIDGET) && instance.get(SHOW_LOADING)) {
 			var host = instance.get(HOST);
 
-			host.after('heightChange', instance._syncOverlayLoadingUI, instance);
-			host.after('widthChange', instance._syncOverlayLoadingUI, instance);
+			host.after('heightChange', instance._syncLoadingMaskUI, instance);
+			host.after('widthChange', instance._syncLoadingMaskUI, instance);
 		}
 	},
 
@@ -334,8 +334,8 @@ A.extend(IOPlugin, A.IORequest, {
 
 		var node = instance.get(NODE);
 
-		if (node.overlayloading) {
-			node.overlayloading.hide();
+		if (node.loadingmask) {
+			node.loadingmask.hide();
 		}
 	},
 
@@ -364,21 +364,21 @@ A.extend(IOPlugin, A.IORequest, {
 		var instance = this;
 		var node = instance.get(NODE);
 
-		if (node.overlayloading) {
+		if (node.loadingmask) {
 			if (instance.overlayMaskBoundingBox) {
 				node.append(instance.overlayMaskBoundingBox);
 			}
 		}
 		else {
 			node.plug(
-				A.OverlayLoading,
+				A.LoadingMask,
 				instance.get(LOADING_MASK)
 			);
 
-			instance.overlayMaskBoundingBox = node.overlayloading.overlayMask.get('boundingBox');
+			instance.overlayMaskBoundingBox = node.loadingmask.overlayMask.get('boundingBox');
 		}
 
-		node.overlayloading.show();
+		node.loadingmask.show();
 	},
 
 	/**
@@ -422,13 +422,13 @@ A.extend(IOPlugin, A.IORequest, {
 	/**
 	 * Sync the loading mask UI.
 	 *
-	 * @method _syncOverlayLoadingUI
+	 * @method _syncLoadingMaskUI
 	 * @protected
 	 */
-	_syncOverlayLoadingUI: function() {
+	_syncLoadingMaskUI: function() {
 		var instance = this;
 
-		instance.get(NODE).overlayloading.refreshMask();
+		instance.get(NODE).loadingmask.refreshMask();
 	},
 
 	/**

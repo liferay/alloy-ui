@@ -69,7 +69,7 @@ A.mix(ParseContent, {
 	/**
 	 * Static property provides a string to identify the namespace.
 	 *
-	 * @property OverlayLoading.NS
+	 * @property ParseContent.NS
 	 * @type String
 	 * @static
 	 */
@@ -270,4 +270,4 @@ A.extend(ParseContent, A.Plugin.Base, {
 
 A.namespace('Plugin').ParseContent = ParseContent;
 
-}, '@VERSION@' ,{requires:['async-queue','aui-base','io','plugin'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['async-queue','aui-base','io','plugin']});
