@@ -111,7 +111,6 @@
 		<echo>Replacing @VERSION@ tokens</echo>
 
 		<replaceregexp match="@VERSION@" replace="${release.version}" flags="g" byline="true">
-			<fileset dir="${release.temp.dir}/" includes="version.txt"/>
 			<fileset dir="${release.temp.dir}/build/" includes="**/aui-*.js"/>
         </replaceregexp>
 
