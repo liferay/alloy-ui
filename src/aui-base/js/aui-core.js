@@ -60,11 +60,10 @@
 
 	/*
 	 * Alloy JavaScript Library v@VERSION@
-	 * http://alloyui.com/
+	 * http://alloy.liferay.com/
 	 *
 	 * Copyright (c) 2009 Liferay Inc.
-	 * Licensed under the MIT license.
-	 * http://alloyui.com/License
+	 * http://alloy.liferay.com/LICENSE.txt
 	 *
 	 * Eduardo Lundgren (eduardo.lundgren@liferay.com)
 	 * Nate Cavanaugh (nate.cavanaugh@liferay.com)
