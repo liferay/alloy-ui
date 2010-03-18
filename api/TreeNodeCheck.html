@@ -1,0 +1,2291 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-tree  TreeNodeCheck   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-tree&nbsp; <span class="subtitle">1.0pr</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-tree.html" title="aui-tree">aui-tree</a>
+
+	                 <span class="separator">&gt;</span> <span class="classname">TreeNodeCheck</span> 
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+				                                <li class="selected"><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="TreeData.html" title="TreeData">TreeData</a></li>
+
+
+				                                <li class=""><a href="TreeNode.html" title="TreeNode">TreeNode</a></li>
+
+
+				                                <li class="selected"><a href="TreeNodeCheck.html" title="TreeNodeCheck">TreeNodeCheck</a></li>
+
+
+				                                <li class=""><a href="TreeNodeIO.html" title="TreeNodeIO">TreeNodeIO</a></li>
+
+
+				                                <li class=""><a href="TreeNodeTask.html" title="TreeNodeTask">TreeNodeTask</a></li>
+
+
+				                                <li class=""><a href="TreeView.html" title="TreeView">TreeView</a></li>
+
+
+				                                <li class=""><a href="TreeViewDD.html" title="TreeViewDD">TreeViewDD</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-configuration">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-configuration-hd">
+										<span class="aui-widget-hd-text">Configuration Attributes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#config_checkContainerEl" title="checkContainerEl">checkContainerEl</a></li>
+												<li class=""><a href="#config_checked" title="checked">checked</a></li>
+												<li class=""><a href="#config_checkEl" title="checkEl">checkEl</a></li>
+												<li class=""><a href="#config_checkName" title="checkName">checkName</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-properties">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-properties-hd">
+										<span class="aui-widget-hd-text">Properties</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+				                                <li class=""><a href="#property_TreeNode.ATTRS" title="TreeNode.ATTRS">TreeNode.ATTRS</a></li>
+
+				                                <li class=""><a href="#property_TreeNode.NAME" title="TreeNode.NAME">TreeNode.NAME</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-methods">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-methods-hd">
+										<span class="aui-widget-hd-text">Methods</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+				                               <li class=""><a href="#method_check" title="check">check</a></li>
+				                               <li class=""><a href="#method_toggleCheck" title="toggleCheck">toggleCheck</a></li>
+				                               <li class=""><a href="#method_uncheck" title="uncheck">uncheck</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="aui-widget aui-list aui-list-events">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-events-hd">
+										<span class="aui-widget-hd-text">Events</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#event_checkContainerElChange" title="checkContainerElChange">checkContainerElChange</a></li>
+												<li class=""><a href="#event_checkedChange" title="checkedChange">checkedChange</a></li>
+												<li class=""><a href="#event_checkElChange" title="checkElChange">checkElChange</a></li>
+												<li class=""><a href="#event_checkNameChange" title="checkNameChange">checkNameChange</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="aui-tree-data-debug.js.html" title="aui-tree-data-debug.js">aui-tree-data-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-tree-data-min.js.html" title="aui-tree-data-min.js">aui-tree-data-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-tree-data.js.html" title="aui-tree-data.js">aui-tree-data.js</a></li>
+
+
+			                                <li class=""><a href="aui-tree-debug.js.html" title="aui-tree-debug.js">aui-tree-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-tree-min.js.html" title="aui-tree-min.js">aui-tree-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-tree-node-debug.js.html" title="aui-tree-node-debug.js">aui-tree-node-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-tree-node-min.js.html" title="aui-tree-node-min.js">aui-tree-node-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-tree-node.js.html" title="aui-tree-node.js">aui-tree-node.js</a></li>
+
+
+			                                <li class=""><a href="aui-tree-view-debug.js.html" title="aui-tree-view-debug.js">aui-tree-view-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-tree-view-min.js.html" title="aui-tree-view-min.js">aui-tree-view-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-tree-view.js.html" title="aui-tree-view.js">aui-tree-view.js</a></li>
+
+
+			                                <li class=""><a href="aui-tree.js.html" title="aui-tree.js">aui-tree.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<h2>
+								
+
+								
+
+								
+
+								Class <b property="yui:name">TreeNodeCheck</b>
+
+									<span class="extends">- extends <a href="TreeNodeIO.html" title="TreeNodeIO">TreeNodeIO</a></span>
+
+							</h2>
+
+							<!-- class tree goes here -->
+								<dl class="subclasses" rel="yui:subclasses">
+									<dt>Known Subclasses:</dt>
+									<dd>
+											<span rel="yui:subclass" resource="TreeNodeTask.html">
+												<a href="TreeNodeTask.html" property="yui:name" title="TreeNodeTask">TreeNodeTask</a>
+											</span>
+									</dd>
+							   </dl>
+
+
+
+							<div class="summary description" property="yui:description">
+								<p><img src="assets/images/aui-tree-nod-check/main.png"/></p>
+A base class for TreeNodeCheck, providing:
+<ul>
+<li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+<li>Checkbox support for the TreeNode</li>
+</ul>
+Check the list of <a href="TreeNodeCheck.html#configattributes">Configuration Attributes</a> available for
+TreeNodeCheck.
+							</div>
+
+								<div class="section constructor details" rel="yui:constructor" resource="#constructor">
+									<h3 id="constructor">Constructor</h3>
+
+									<div class="content">
+										<div class="detail">
+											<strong property="yui:name">TreeNodeCheck</strong>
+
+											<code>
+												(
+
+													
+															
+															config
+												)
+											</code>
+
+											<div class="description">
+													<dl rel="yui:parameters">
+														<dt>Parameters:</dt>
+															<dd rel="yui:parameter">
+																<code><span property="yui:name">config</span>
+																&lt;<span property="yui:type">Object</span>&gt;
+																</code>
+
+																<span property="yui:description">  Object literal specifying widget configuration properties.</span>
+															</dd>
+													</dl>
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+							<div rel="yui:properties" resource="#properties">
+
+								<div class="section field details">
+
+									<h3 id="properties">Properties</h3>
+
+									<div class="content">
+
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_TreeNode.ATTRS">
+
+											<h4>
+												<a name="property_TreeNode.ATTRS" property="yui:name">TreeNode.ATTRS</a>
+												- <code>static <span property="yui:type">Object</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Static property used to define the default attribute
+configuration for the TreeNode.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_TreeNode.NAME">
+
+											<h4>
+												<a name="property_TreeNode.NAME" property="yui:name">TreeNode.NAME</a>
+												- <code>static <span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Static property provides a string to identify the class.
+												</div>
+											</div>
+
+
+
+
+											</div>
+									</div>
+								</div>
+
+								<div rel="yui:inheritance">
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="TreeData.html">
+
+										<h4>
+											Properties inherited from <a href="TreeData.html" property="yui:name" title="TreeData">TreeData</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+
+													
+
+													<div class="protected" rel="yui:property" resource="TreeData.html#property_UI_EVENTS">
+													<a href="TreeData.html#property_UI_EVENTS" property="yui:name" title="UI_EVENTS">UI_EVENTS</a>
+													</div>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Attribute.html">
+
+										<h4>
+											Properties inherited from <a href="Attribute.html" property="yui:name" title="Attribute">Attribute</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="TreeNodeIO.html">
+
+										<h4>
+											Properties inherited from <a href="TreeNodeIO.html" property="yui:name" title="TreeNodeIO">TreeNodeIO</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Base.html">
+
+										<h4>
+											Properties inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+
+													
+													
+
+													<div class="deprecated" rel="yui:property" resource="Base.html#property_name">
+													<a href="Base.html#property_name" property="yui:name" title="name">name</a>
+													</div>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="TreeNode.html">
+
+										<h4>
+											Properties inherited from <a href="TreeNode.html" property="yui:name" title="TreeNode">TreeNode</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+
+													
+
+													<div class="" rel="yui:property" resource="TreeNode.html#property_A.TreeNode.nodeTypes">
+													<a href="TreeNode.html#property_A.TreeNode.nodeTypes" property="yui:name" title="A.TreeNode.nodeTypes">A.TreeNode.nodeTypes</a><span>,</span>
+													</div>
+												
+
+													
+
+													<div class="protected" rel="yui:property" resource="TreeNode.html#property_BOUNDING_TEMPLATE">
+													<a href="TreeNode.html#property_BOUNDING_TEMPLATE" property="yui:name" title="BOUNDING_TEMPLATE">BOUNDING_TEMPLATE</a><span>,</span>
+													</div>
+												
+
+													
+
+													<div class="protected" rel="yui:property" resource="TreeNode.html#property_CONTENT_TEMPLATE">
+													<a href="TreeNode.html#property_CONTENT_TEMPLATE" property="yui:name" title="CONTENT_TEMPLATE">CONTENT_TEMPLATE</a>
+													</div>
+												
+											</code>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div rel="yui:attributes" resource="#configattributes">
+
+									<div class="section field details">
+
+										<h3 id="configattributes">Configuration Attributes</h3>
+
+										<div class="content">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_checkContainerEl">
+
+													<h4>
+														<a name="config_checkContainerEl">checkContainerEl</a>
+														<code>- <span property="yui:type">Node | String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Container element for the checkbox.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Generated DOM element.</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_checked">
+
+													<h4>
+														<a name="config_checked">checked</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Whether the TreeNode is checked or not.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_checkEl">
+
+													<h4>
+														<a name="config_checkEl">checkEl</a>
+														<code>- <span property="yui:type">Node | String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Checkbox element.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Generated DOM element.</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_checkName">
+
+													<h4>
+														<a name="config_checkName">checkName</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Name of the checkbox element used on the current TreeNode.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>'tree-node-check'</strong>
+													</div>
+
+												</div>
+
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="TreeData.html">
+												<h4>Configuration attributes inherited from <a href="TreeData.html" property="yui:name" title="TreeData">TreeData</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="TreeData.html#config_children">
+															<a href="TreeData.html#config_children" property="yui:name" title="children">children</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="TreeData.html#config_container">
+															<a href="TreeData.html#config_container" property="yui:name" title="container">container</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="TreeData.html#config_index">
+															<a href="TreeData.html#config_index" property="yui:name" title="index">index</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="TreeNodeIO.html">
+												<h4>Configuration attributes inherited from <a href="TreeNodeIO.html" property="yui:name" title="TreeNodeIO">TreeNodeIO</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="TreeNodeIO.html#config_cache">
+															<a href="TreeNodeIO.html#config_cache" property="yui:name" title="cache">cache</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="TreeNodeIO.html#config_io">
+															<a href="TreeNodeIO.html#config_io" property="yui:name" title="io">io</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="TreeNodeIO.html#config_loaded">
+															<a href="TreeNodeIO.html#config_loaded" property="yui:name" title="loaded">loaded</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="TreeNodeIO.html#config_loading">
+															<a href="TreeNodeIO.html#config_loading" property="yui:name" title="loading">loading</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="Base.html">
+												<h4>Configuration attributes inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="Base.html#config_destroyed">
+															<a href="Base.html#config_destroyed" property="yui:name" title="destroyed">destroyed</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Base.html#config_initialized">
+															<a href="Base.html#config_initialized" property="yui:name" title="initialized">initialized</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="TreeNode.html">
+												<h4>Configuration attributes inherited from <a href="TreeNode.html" property="yui:name" title="TreeNode">TreeNode</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="TreeNode.html#config_alwaysShowHitArea">
+															<a href="TreeNode.html#config_alwaysShowHitArea" property="yui:name" title="alwaysShowHitArea">alwaysShowHitArea</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="TreeNode.html#config_draggable">
+															<a href="TreeNode.html#config_draggable" property="yui:name" title="draggable">draggable</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="TreeNode.html#config_expanded">
+															<a href="TreeNode.html#config_expanded" property="yui:name" title="expanded">expanded</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="TreeNode.html#config_hitAreaEl">
+															<a href="TreeNode.html#config_hitAreaEl" property="yui:name" title="hitAreaEl">hitAreaEl</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="TreeNode.html#config_iconEl">
+															<a href="TreeNode.html#config_iconEl" property="yui:name" title="iconEl">iconEl</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="TreeNode.html#config_id">
+															<a href="TreeNode.html#config_id" property="yui:name" title="id">id</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="TreeNode.html#config_label">
+															<a href="TreeNode.html#config_label" property="yui:name" title="label">label</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="TreeNode.html#config_labelEl">
+															<a href="TreeNode.html#config_labelEl" property="yui:name" title="labelEl">labelEl</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="TreeNode.html#config_leaf">
+															<a href="TreeNode.html#config_leaf" property="yui:name" title="leaf">leaf</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="TreeNode.html#config_nextSibling">
+															<a href="TreeNode.html#config_nextSibling" property="yui:name" title="nextSibling">nextSibling</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="TreeNode.html#config_ownerTree">
+															<a href="TreeNode.html#config_ownerTree" property="yui:name" title="ownerTree">ownerTree</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="TreeNode.html#config_parentNode">
+															<a href="TreeNode.html#config_parentNode" property="yui:name" title="parentNode">parentNode</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="TreeNode.html#config_prevSibling">
+															<a href="TreeNode.html#config_prevSibling" property="yui:name" title="prevSibling">prevSibling</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+									</div>
+
+
+							</div>
+
+							<div rel="yui:methods" resource="#methods">
+									<div class="section method details">
+
+										<h3 id="methods">Methods</h3>
+
+										<div class="content">
+
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_check">
+
+													<h4>
+														<a name="method_check">check</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">check</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Check the current TreeNode.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_toggleCheck">
+
+													<h4>
+														<a name="method_toggleCheck">toggleCheck</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">toggleCheck</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Toggle the check status of the current TreeNode.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_uncheck">
+
+													<h4>
+														<a name="method_uncheck">uncheck</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">uncheck</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Uncheck the current TreeNode.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+
+									<div rel="yui:inheritance">
+
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Plugin.Host.html">
+
+											<h4>
+												Methods inherited from <a href="Plugin.Host.html" property="yui:name" title="Plugin.Host">Plugin.Host</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="" rel="yui:method" resource="Plugin.Host.html#method_hasPlugin">
+														<a href="Plugin.Host.html#method_hasPlugin" property="yui:name" title="hasPlugin">hasPlugin</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Plugin.Host.html#method_plug">
+														<a href="Plugin.Host.html#method_plug" property="yui:name" title="plug">plug</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Plugin.Host.html#method_unplug">
+														<a href="Plugin.Host.html#method_unplug" property="yui:name" title="unplug">unplug</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="TreeNodeIO.html">
+
+											<h4>
+												Methods inherited from <a href="TreeNodeIO.html" property="yui:name" title="TreeNodeIO">TreeNodeIO</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="TreeNodeIO.html#method__setIO">
+														<a href="TreeNodeIO.html#method__setIO" property="yui:name" title="_setIO">_setIO</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeNodeIO.html#method_ioCompleteHandler">
+														<a href="TreeNodeIO.html#method_ioCompleteHandler" property="yui:name" title="ioCompleteHandler">ioCompleteHandler</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeNodeIO.html#method_ioFailureHandler">
+														<a href="TreeNodeIO.html#method_ioFailureHandler" property="yui:name" title="ioFailureHandler">ioFailureHandler</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeNodeIO.html#method_ioStartHandler">
+														<a href="TreeNodeIO.html#method_ioStartHandler" property="yui:name" title="ioStartHandler">ioStartHandler</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeNodeIO.html#method_ioSuccessHandler">
+														<a href="TreeNodeIO.html#method_ioSuccessHandler" property="yui:name" title="ioSuccessHandler">ioSuccessHandler</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="TreeNode.html">
+
+											<h4>
+												Methods inherited from <a href="TreeNode.html" property="yui:name" title="TreeNode">TreeNode</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="TreeNode.html#method__afterSetChildren">
+														<a href="TreeNode.html#method__afterSetChildren" property="yui:name" title="_afterSetChildren">_afterSetChildren</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="TreeNode.html#method__collapse">
+														<a href="TreeNode.html#method__collapse" property="yui:name" title="_collapse">_collapse</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="TreeNode.html#method__createNodeContainer">
+														<a href="TreeNode.html#method__createNodeContainer" property="yui:name" title="_createNodeContainer">_createNodeContainer</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeNode.html#method__expand">
+														<a href="TreeNode.html#method__expand" property="yui:name" title="_expand">_expand</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="TreeNode.html#method__renderBoundingBox">
+														<a href="TreeNode.html#method__renderBoundingBox" property="yui:name" title="_renderBoundingBox">_renderBoundingBox</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="TreeNode.html#method__renderContentBox">
+														<a href="TreeNode.html#method__renderContentBox" property="yui:name" title="_renderContentBox">_renderContentBox</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="TreeNode.html#method__renderUI">
+														<a href="TreeNode.html#method__renderUI" property="yui:name" title="_renderUI">_renderUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="TreeNode.html#method__syncHitArea">
+														<a href="TreeNode.html#method__syncHitArea" property="yui:name" title="_syncHitArea">_syncHitArea</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="TreeNode.html#method__syncTreeNodeBBId">
+														<a href="TreeNode.html#method__syncTreeNodeBBId" property="yui:name" title="_syncTreeNodeBBId">_syncTreeNodeBBId</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="TreeNode.html#method_bindUI">
+														<a href="TreeNode.html#method_bindUI" property="yui:name" title="bindUI">bindUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeNode.html#method_collapse">
+														<a href="TreeNode.html#method_collapse" property="yui:name" title="collapse">collapse</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeNode.html#method_contains">
+														<a href="TreeNode.html#method_contains" property="yui:name" title="contains">contains</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeNode.html#method_expand">
+														<a href="TreeNode.html#method_expand" property="yui:name" title="expand">expand</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeNode.html#method_getDepth">
+														<a href="TreeNode.html#method_getDepth" property="yui:name" title="getDepth">getDepth</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="TreeNode.html#method_initializer">
+														<a href="TreeNode.html#method_initializer" property="yui:name" title="initializer">initializer</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeNode.html#method_isLeaf">
+														<a href="TreeNode.html#method_isLeaf" property="yui:name" title="isLeaf">isLeaf</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeNode.html#method_isSelected">
+														<a href="TreeNode.html#method_isSelected" property="yui:name" title="isSelected">isSelected</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="TreeNode.html#method_renderUI">
+														<a href="TreeNode.html#method_renderUI" property="yui:name" title="renderUI">renderUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="TreeNode.html#method_syncUI">
+														<a href="TreeNode.html#method_syncUI" property="yui:name" title="syncUI">syncUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeNode.html#method_toggle">
+														<a href="TreeNode.html#method_toggle" property="yui:name" title="toggle">toggle</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="TreeData.html">
+
+											<h4>
+												Methods inherited from <a href="TreeData.html" property="yui:name" title="TreeData">TreeData</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="TreeData.html#method__appendChild">
+														<a href="TreeData.html#method__appendChild" property="yui:name" title="_appendChild">_appendChild</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="TreeData.html#method__collapseAll">
+														<a href="TreeData.html#method__collapseAll" property="yui:name" title="_collapseAll">_collapseAll</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="TreeData.html#method__expandAll">
+														<a href="TreeData.html#method__expandAll" property="yui:name" title="_expandAll">_expandAll</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method__removeChild">
+														<a href="TreeData.html#method__removeChild" property="yui:name" title="_removeChild">_removeChild</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="TreeData.html#method__setChildren">
+														<a href="TreeData.html#method__setChildren" property="yui:name" title="_setChildren">_setChildren</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_appendChild">
+														<a href="TreeData.html#method_appendChild" property="yui:name" title="appendChild">appendChild</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_bubbleEvent">
+														<a href="TreeData.html#method_bubbleEvent" property="yui:name" title="bubbleEvent">bubbleEvent</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_collapseAll">
+														<a href="TreeData.html#method_collapseAll" property="yui:name" title="collapseAll">collapseAll</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_createNode">
+														<a href="TreeData.html#method_createNode" property="yui:name" title="createNode">createNode</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_eachChildren">
+														<a href="TreeData.html#method_eachChildren" property="yui:name" title="eachChildren">eachChildren</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_empty">
+														<a href="TreeData.html#method_empty" property="yui:name" title="empty">empty</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_expandAll">
+														<a href="TreeData.html#method_expandAll" property="yui:name" title="expandAll">expandAll</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_getChildren">
+														<a href="TreeData.html#method_getChildren" property="yui:name" title="getChildren">getChildren</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_getEventOutputMap">
+														<a href="TreeData.html#method_getEventOutputMap" property="yui:name" title="getEventOutputMap">getEventOutputMap</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_getNodeByChild">
+														<a href="TreeData.html#method_getNodeByChild" property="yui:name" title="getNodeByChild">getNodeByChild</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_getNodeById">
+														<a href="TreeData.html#method_getNodeById" property="yui:name" title="getNodeById">getNodeById</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_hasChildNodes">
+														<a href="TreeData.html#method_hasChildNodes" property="yui:name" title="hasChildNodes">hasChildNodes</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_indexOf">
+														<a href="TreeData.html#method_indexOf" property="yui:name" title="indexOf">indexOf</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="TreeData.html#method_initializer">
+														<a href="TreeData.html#method_initializer" property="yui:name" title="initializer">initializer</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_insert">
+														<a href="TreeData.html#method_insert" property="yui:name" title="insert">insert</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_insertAfter">
+														<a href="TreeData.html#method_insertAfter" property="yui:name" title="insertAfter">insertAfter</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_insertBefore">
+														<a href="TreeData.html#method_insertBefore" property="yui:name" title="insertBefore">insertBefore</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_isRegistered">
+														<a href="TreeData.html#method_isRegistered" property="yui:name" title="isRegistered">isRegistered</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_item">
+														<a href="TreeData.html#method_item" property="yui:name" title="item">item</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_refreshIndex">
+														<a href="TreeData.html#method_refreshIndex" property="yui:name" title="refreshIndex">refreshIndex</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_registerNode">
+														<a href="TreeData.html#method_registerNode" property="yui:name" title="registerNode">registerNode</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_removeChild">
+														<a href="TreeData.html#method_removeChild" property="yui:name" title="removeChild">removeChild</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_selectAll">
+														<a href="TreeData.html#method_selectAll" property="yui:name" title="selectAll">selectAll</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_unregisterNode">
+														<a href="TreeData.html#method_unregisterNode" property="yui:name" title="unregisterNode">unregisterNode</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_updateIndex">
+														<a href="TreeData.html#method_updateIndex" property="yui:name" title="updateIndex">updateIndex</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="TreeData.html#method_updateReferences">
+														<a href="TreeData.html#method_updateReferences" property="yui:name" title="updateReferences">updateReferences</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Attribute.html">
+
+											<h4>
+												Methods inherited from <a href="Attribute.html" property="yui:name" title="Attribute">Attribute</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttr">
+														<a href="Attribute.html#method__getAttr" property="yui:name" title="_getAttr">_getAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttrs">
+														<a href="Attribute.html#method__getAttrs" property="yui:name" title="_getAttrs">_getAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__protectAttrs">
+														<a href="Attribute.html#method__protectAttrs" property="yui:name" title="_protectAttrs">_protectAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__set">
+														<a href="Attribute.html#method__set" property="yui:name" title="_set">_set</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__setAttr">
+														<a href="Attribute.html#method__setAttr" property="yui:name" title="_setAttr">_setAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__setAttrs">
+														<a href="Attribute.html#method__setAttrs" property="yui:name" title="_setAttrs">_setAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_addAttr">
+														<a href="Attribute.html#method_addAttr" property="yui:name" title="addAttr">addAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_addAttrs">
+														<a href="Attribute.html#method_addAttrs" property="yui:name" title="addAttrs">addAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_attrAdded">
+														<a href="Attribute.html#method_attrAdded" property="yui:name" title="attrAdded">attrAdded</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_get">
+														<a href="Attribute.html#method_get" property="yui:name" title="get">get</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_getAttrs">
+														<a href="Attribute.html#method_getAttrs" property="yui:name" title="getAttrs">getAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_modifyAttr">
+														<a href="Attribute.html#method_modifyAttr" property="yui:name" title="modifyAttr">modifyAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_removeAttr">
+														<a href="Attribute.html#method_removeAttr" property="yui:name" title="removeAttr">removeAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_reset">
+														<a href="Attribute.html#method_reset" property="yui:name" title="reset">reset</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_set">
+														<a href="Attribute.html#method_set" property="yui:name" title="set">set</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_setAttrs">
+														<a href="Attribute.html#method_setAttrs" property="yui:name" title="setAttrs">setAttrs</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="EventTarget.html">
+
+											<h4>
+												Methods inherited from <a href="EventTarget.html" property="yui:name" title="EventTarget">EventTarget</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_addTarget">
+														<a href="EventTarget.html#method_addTarget" property="yui:name" title="addTarget">addTarget</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_after">
+														<a href="EventTarget.html#method_after" property="yui:name" title="after">after</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_before">
+														<a href="EventTarget.html#method_before" property="yui:name" title="before">before</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_bubble">
+														<a href="EventTarget.html#method_bubble" property="yui:name" title="bubble">bubble</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_detach">
+														<a href="EventTarget.html#method_detach" property="yui:name" title="detach">detach</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_detachAll">
+														<a href="EventTarget.html#method_detachAll" property="yui:name" title="detachAll">detachAll</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_fire">
+														<a href="EventTarget.html#method_fire" property="yui:name" title="fire">fire</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_getEvent">
+														<a href="EventTarget.html#method_getEvent" property="yui:name" title="getEvent">getEvent</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_getTargets">
+														<a href="EventTarget.html#method_getTargets" property="yui:name" title="getTargets">getTargets</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_on">
+														<a href="EventTarget.html#method_on" property="yui:name" title="on">on</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_once">
+														<a href="EventTarget.html#method_once" property="yui:name" title="once">once</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_publish">
+														<a href="EventTarget.html#method_publish" property="yui:name" title="publish">publish</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_removeTarget">
+														<a href="EventTarget.html#method_removeTarget" property="yui:name" title="removeTarget">removeTarget</a><span>,</span>
+														</div>
+
+														
+														
+
+														<div class="deprecated" rel="yui:method" resource="EventTarget.html#method_subscribe">
+														<a href="EventTarget.html#method_subscribe" property="yui:name" title="subscribe">subscribe</a><span>,</span>
+														</div>
+
+														
+														
+
+														<div class="deprecated" rel="yui:method" resource="EventTarget.html#method_unsubscribe">
+														<a href="EventTarget.html#method_unsubscribe" property="yui:name" title="unsubscribe">unsubscribe</a><span>,</span>
+														</div>
+
+														
+														
+
+														<div class="deprecated" rel="yui:method" resource="EventTarget.html#method_unsubscribeAll">
+														<a href="EventTarget.html#method_unsubscribeAll" property="yui:name" title="unsubscribeAll">unsubscribeAll</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Base.html">
+
+											<h4>
+												Methods inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__defDestroyFn">
+														<a href="Base.html#method__defDestroyFn" property="yui:name" title="_defDestroyFn">_defDestroyFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__defInitFn">
+														<a href="Base.html#method__defInitFn" property="yui:name" title="_defInitFn">_defInitFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__getAttrCfgs">
+														<a href="Base.html#method__getAttrCfgs" property="yui:name" title="_getAttrCfgs">_getAttrCfgs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__getClasses">
+														<a href="Base.html#method__getClasses" property="yui:name" title="_getClasses">_getClasses</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method__preInitEventCfg">
+														<a href="Base.html#method__preInitEventCfg" property="yui:name" title="_preInitEventCfg">_preInitEventCfg</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method_destroy">
+														<a href="Base.html#method_destroy" property="yui:name" title="destroy">destroy</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method_init">
+														<a href="Base.html#method_init" property="yui:name" title="init">init</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method_toString">
+														<a href="Base.html#method_toString" property="yui:name" title="toString">toString</a>
+														</div>
+												</code>
+											</div>
+										</div>
+									</div>
+							</div>
+
+							<div rel="yui:events" resource="#events">
+									<div class="section method details">
+										<h3 id="events">Events</h3>
+
+										<div class="content">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_checkContainerElChange">
+
+													<h4>
+														<a name="event_checkContainerElChange">checkContainerElChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">checkContainerElChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'checkContainerEl' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_checkedChange">
+
+													<h4>
+														<a name="event_checkedChange">checkedChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">checkedChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'checked' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_checkElChange">
+
+													<h4>
+														<a name="event_checkElChange">checkElChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">checkElChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'checkEl' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_checkNameChange">
+
+													<h4>
+														<a name="event_checkNameChange">checkNameChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">checkNameChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'checkName' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+										<div class="section field inheritance events" rel="yui:superclass"  resource="TreeData.html">
+											<h4>
+												Events inherited from <a href="TreeData.html" property="yui:name" title="TreeData">TreeData</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="TreeData.html#event_childrenChange">
+														<a href="TreeData.html#event_childrenChange" property="yui:name" title="childrenChange">childrenChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="TreeData.html#event_containerChange">
+														<a href="TreeData.html#event_containerChange" property="yui:name" title="containerChange">containerChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="TreeData.html#event_indexChange">
+														<a href="TreeData.html#event_indexChange" property="yui:name" title="indexChange">indexChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+										<div class="section field inheritance events" rel="yui:superclass"  resource="TreeNodeIO.html">
+											<h4>
+												Events inherited from <a href="TreeNodeIO.html" property="yui:name" title="TreeNodeIO">TreeNodeIO</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="TreeNodeIO.html#event_cacheChange">
+														<a href="TreeNodeIO.html#event_cacheChange" property="yui:name" title="cacheChange">cacheChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="TreeNodeIO.html#event_ioChange">
+														<a href="TreeNodeIO.html#event_ioChange" property="yui:name" title="ioChange">ioChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="TreeNodeIO.html#event_loadedChange">
+														<a href="TreeNodeIO.html#event_loadedChange" property="yui:name" title="loadedChange">loadedChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="TreeNodeIO.html#event_loadingChange">
+														<a href="TreeNodeIO.html#event_loadingChange" property="yui:name" title="loadingChange">loadingChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+										<div class="section field inheritance events" rel="yui:superclass"  resource="Base.html">
+											<h4>
+												Events inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_destroy">
+														<a href="Base.html#event_destroy" property="yui:name" title="destroy">destroy</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_destroyedChange">
+														<a href="Base.html#event_destroyedChange" property="yui:name" title="destroyedChange">destroyedChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_init">
+														<a href="Base.html#event_init" property="yui:name" title="init">init</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_initializedChange">
+														<a href="Base.html#event_initializedChange" property="yui:name" title="initializedChange">initializedChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+										<div class="section field inheritance events" rel="yui:superclass"  resource="TreeNode.html">
+											<h4>
+												Events inherited from <a href="TreeNode.html" property="yui:name" title="TreeNode">TreeNode</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="TreeNode.html#event_alwaysShowHitAreaChange">
+														<a href="TreeNode.html#event_alwaysShowHitAreaChange" property="yui:name" title="alwaysShowHitAreaChange">alwaysShowHitAreaChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="TreeNode.html#event_draggableChange">
+														<a href="TreeNode.html#event_draggableChange" property="yui:name" title="draggableChange">draggableChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="TreeNode.html#event_expandedChange">
+														<a href="TreeNode.html#event_expandedChange" property="yui:name" title="expandedChange">expandedChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="TreeNode.html#event_hitAreaElChange">
+														<a href="TreeNode.html#event_hitAreaElChange" property="yui:name" title="hitAreaElChange">hitAreaElChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="TreeNode.html#event_iconElChange">
+														<a href="TreeNode.html#event_iconElChange" property="yui:name" title="iconElChange">iconElChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="TreeNode.html#event_idChange">
+														<a href="TreeNode.html#event_idChange" property="yui:name" title="idChange">idChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="TreeNode.html#event_labelChange">
+														<a href="TreeNode.html#event_labelChange" property="yui:name" title="labelChange">labelChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="TreeNode.html#event_labelElChange">
+														<a href="TreeNode.html#event_labelElChange" property="yui:name" title="labelElChange">labelElChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="TreeNode.html#event_leafChange">
+														<a href="TreeNode.html#event_leafChange" property="yui:name" title="leafChange">leafChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="TreeNode.html#event_nextSiblingChange">
+														<a href="TreeNode.html#event_nextSiblingChange" property="yui:name" title="nextSiblingChange">nextSiblingChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="TreeNode.html#event_ownerTreeChange">
+														<a href="TreeNode.html#event_ownerTreeChange" property="yui:name" title="ownerTreeChange">ownerTreeChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="TreeNode.html#event_parentNodeChange">
+														<a href="TreeNode.html#event_parentNodeChange" property="yui:name" title="parentNodeChange">parentNodeChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="TreeNode.html#event_prevSiblingChange">
+														<a href="TreeNode.html#event_prevSiblingChange" property="yui:name" title="prevSiblingChange">prevSiblingChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+
+									</div>
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "TreeNode.html#method__afterSetChildren", "access": "protected", "host": "TreeNode", "type": "method", "name": "_afterSetChildren"}, {"url": "TreeNode.html#config_alwaysShowHitArea", "access": "", "host": "TreeNode", "type": "config", "name": "alwaysShowHitArea"}, {"url": "TreeNode.html#event_alwaysShowHitAreaChange", "access": "", "host": "TreeNode", "type": "event", "name": "alwaysShowHitAreaChange"}, {"url": "TreeData.html#method__appendChild", "access": "protected", "host": "TreeData", "type": "method", "name": "_appendChild"}, {"url": "TreeData.html#method_appendChild", "access": "", "host": "TreeData", "type": "method", "name": "appendChild"}, {"url": "TreeNode.html#property_A.TreeNode.nodeTypes", "access": "", "host": "TreeNode", "type": "property", "name": "A.TreeNode.nodeTypes"}, {"url": "TreeNode.html#method_bindUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "bindUI"}, {"url": "TreeNode.html#property_BOUNDING_TEMPLATE", "access": "protected", "host": "TreeNode", "type": "property", "name": "BOUNDING_TEMPLATE"}, {"url": "TreeData.html#method_bubbleEvent", "access": "", "host": "TreeData", "type": "method", "name": "bubbleEvent"}, {"url": "TreeNodeIO.html#config_cache", "access": "", "host": "TreeNodeIO", "type": "config", "name": "cache"}, {"url": "TreeNodeIO.html#event_cacheChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "cacheChange"}, {"url": "TreeNodeCheck.html#method_check", "access": "", "host": "TreeNodeCheck", "type": "method", "name": "check"}, {"url": "TreeNodeCheck.html#config_checkContainerEl", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checkContainerEl"}, {"url": "TreeNodeCheck.html#event_checkContainerElChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkContainerElChange"}, {"url": "TreeNodeCheck.html#config_checked", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checked"}, {"url": "TreeNodeCheck.html#event_checkedChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkedChange"}, {"url": "TreeNodeCheck.html#config_checkEl", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checkEl"}, {"url": "TreeNodeCheck.html#event_checkElChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkElChange"}, {"url": "TreeNodeCheck.html#config_checkName", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checkName"}, {"url": "TreeNodeCheck.html#event_checkNameChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkNameChange"}, {"url": "TreeData.html#config_children", "access": "", "host": "TreeData", "type": "config", "name": "children"}, {"url": "TreeData.html#event_childrenChange", "access": "", "host": "TreeData", "type": "event", "name": "childrenChange"}, {"url": "TreeNode.html#method__collapse", "access": "protected", "host": "TreeNode", "type": "method", "name": "_collapse"}, {"url": "TreeNode.html#method_collapse", "access": "", "host": "TreeNode", "type": "method", "name": "collapse"}, {"url": "TreeData.html#method__collapseAll", "access": "protected", "host": "TreeData", "type": "method", "name": "_collapseAll"}, {"url": "TreeData.html#method_collapseAll", "access": "", "host": "TreeData", "type": "method", "name": "collapseAll"}, {"url": "TreeData.html#config_container", "access": "", "host": "TreeData", "type": "config", "name": "container"}, {"url": "TreeData.html#event_containerChange", "access": "", "host": "TreeData", "type": "event", "name": "containerChange"}, {"url": "TreeNode.html#method_contains", "access": "", "host": "TreeNode", "type": "method", "name": "contains"}, {"url": "TreeNode.html#property_CONTENT_TEMPLATE", "access": "protected", "host": "TreeNode", "type": "property", "name": "CONTENT_TEMPLATE"}, {"url": "TreeData.html#method_createNode", "access": "", "host": "TreeData", "type": "method", "name": "createNode"}, {"url": "TreeNode.html#method__createNodeContainer", "access": "protected", "host": "TreeNode", "type": "method", "name": "_createNodeContainer"}, {"url": "TreeNode.html#config_draggable", "access": "", "host": "TreeNode", "type": "config", "name": "draggable"}, {"url": "TreeNode.html#event_draggableChange", "access": "", "host": "TreeNode", "type": "event", "name": "draggableChange"}, {"url": "TreeData.html#method_eachChildren", "access": "", "host": "TreeData", "type": "method", "name": "eachChildren"}, {"url": "TreeData.html#method_empty", "access": "", "host": "TreeData", "type": "method", "name": "empty"}, {"url": "TreeNode.html#method__expand", "access": "", "host": "TreeNode", "type": "method", "name": "_expand"}, {"url": "TreeNode.html#method_expand", "access": "", "host": "TreeNode", "type": "method", "name": "expand"}, {"url": "TreeData.html#method__expandAll", "access": "protected", "host": "TreeData", "type": "method", "name": "_expandAll"}, {"url": "TreeData.html#method_expandAll", "access": "", "host": "TreeData", "type": "method", "name": "expandAll"}, {"url": "TreeNode.html#config_expanded", "access": "", "host": "TreeNode", "type": "config", "name": "expanded"}, {"url": "TreeNode.html#event_expandedChange", "access": "", "host": "TreeNode", "type": "event", "name": "expandedChange"}, {"url": "TreeData.html#method_getChildren", "access": "", "host": "TreeData", "type": "method", "name": "getChildren"}, {"url": "TreeNode.html#method_getDepth", "access": "", "host": "TreeNode", "type": "method", "name": "getDepth"}, {"url": "TreeData.html#method_getEventOutputMap", "access": "", "host": "TreeData", "type": "method", "name": "getEventOutputMap"}, {"url": "TreeData.html#method_getNodeByChild", "access": "", "host": "TreeData", "type": "method", "name": "getNodeByChild"}, {"url": "TreeData.html#method_getNodeById", "access": "", "host": "TreeData", "type": "method", "name": "getNodeById"}, {"url": "TreeData.html#method_hasChildNodes", "access": "", "host": "TreeData", "type": "method", "name": "hasChildNodes"}, {"url": "TreeNode.html#config_hitAreaEl", "access": "", "host": "TreeNode", "type": "config", "name": "hitAreaEl"}, {"url": "TreeNode.html#event_hitAreaElChange", "access": "", "host": "TreeNode", "type": "event", "name": "hitAreaElChange"}, {"url": "TreeNode.html#config_iconEl", "access": "", "host": "TreeNode", "type": "config", "name": "iconEl"}, {"url": "TreeNode.html#event_iconElChange", "access": "", "host": "TreeNode", "type": "event", "name": "iconElChange"}, {"url": "TreeNode.html#config_id", "access": "", "host": "TreeNode", "type": "config", "name": "id"}, {"url": "TreeNode.html#event_idChange", "access": "", "host": "TreeNode", "type": "event", "name": "idChange"}, {"url": "TreeData.html#config_index", "access": "", "host": "TreeData", "type": "config", "name": "index"}, {"url": "TreeData.html#event_indexChange", "access": "", "host": "TreeData", "type": "event", "name": "indexChange"}, {"url": "TreeData.html#method_indexOf", "access": "", "host": "TreeData", "type": "method", "name": "indexOf"}, {"url": "TreeData.html#method_initializer", "access": "protected", "host": "TreeData", "type": "method", "name": "initializer"}, {"url": "TreeNode.html#method_initializer", "access": "protected", "host": "TreeNode", "type": "method", "name": "initializer"}, {"url": "TreeData.html#method_insert", "access": "", "host": "TreeData", "type": "method", "name": "insert"}, {"url": "TreeData.html#method_insertAfter", "access": "", "host": "TreeData", "type": "method", "name": "insertAfter"}, {"url": "TreeData.html#method_insertBefore", "access": "", "host": "TreeData", "type": "method", "name": "insertBefore"}, {"url": "TreeNodeIO.html#config_io", "access": "", "host": "TreeNodeIO", "type": "config", "name": "io"}, {"url": "TreeNodeIO.html#event_ioChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "ioChange"}, {"url": "TreeNodeIO.html#method_ioCompleteHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioCompleteHandler"}, {"url": "TreeNodeIO.html#method_ioFailureHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioFailureHandler"}, {"url": "TreeNodeIO.html#method_ioStartHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioStartHandler"}, {"url": "TreeNodeIO.html#method_ioSuccessHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioSuccessHandler"}, {"url": "TreeNode.html#method_isLeaf", "access": "", "host": "TreeNode", "type": "method", "name": "isLeaf"}, {"url": "TreeData.html#method_isRegistered", "access": "", "host": "TreeData", "type": "method", "name": "isRegistered"}, {"url": "TreeNode.html#method_isSelected", "access": "", "host": "TreeNode", "type": "method", "name": "isSelected"}, {"url": "TreeData.html#method_item", "access": "", "host": "TreeData", "type": "method", "name": "item"}, {"url": "TreeNode.html#config_label", "access": "", "host": "TreeNode", "type": "config", "name": "label"}, {"url": "TreeNode.html#event_labelChange", "access": "", "host": "TreeNode", "type": "event", "name": "labelChange"}, {"url": "TreeNode.html#config_labelEl", "access": "", "host": "TreeNode", "type": "config", "name": "labelEl"}, {"url": "TreeNode.html#event_labelElChange", "access": "", "host": "TreeNode", "type": "event", "name": "labelElChange"}, {"url": "TreeNode.html#config_leaf", "access": "", "host": "TreeNode", "type": "config", "name": "leaf"}, {"url": "TreeNode.html#event_leafChange", "access": "", "host": "TreeNode", "type": "event", "name": "leafChange"}, {"url": "TreeNodeIO.html#config_loaded", "access": "", "host": "TreeNodeIO", "type": "config", "name": "loaded"}, {"url": "TreeNodeIO.html#event_loadedChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "loadedChange"}, {"url": "TreeNodeIO.html#config_loading", "access": "", "host": "TreeNodeIO", "type": "config", "name": "loading"}, {"url": "TreeNodeIO.html#event_loadingChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "loadingChange"}, {"url": "TreeNode.html#config_nextSibling", "access": "", "host": "TreeNode", "type": "config", "name": "nextSibling"}, {"url": "TreeNode.html#event_nextSiblingChange", "access": "", "host": "TreeNode", "type": "event", "name": "nextSiblingChange"}, {"url": "TreeNode.html#config_ownerTree", "access": "", "host": "TreeNode", "type": "config", "name": "ownerTree"}, {"url": "TreeNode.html#event_ownerTreeChange", "access": "", "host": "TreeNode", "type": "event", "name": "ownerTreeChange"}, {"url": "TreeNode.html#config_parentNode", "access": "", "host": "TreeNode", "type": "config", "name": "parentNode"}, {"url": "TreeNode.html#event_parentNodeChange", "access": "", "host": "TreeNode", "type": "event", "name": "parentNodeChange"}, {"url": "TreeNode.html#config_prevSibling", "access": "", "host": "TreeNode", "type": "config", "name": "prevSibling"}, {"url": "TreeNode.html#event_prevSiblingChange", "access": "", "host": "TreeNode", "type": "event", "name": "prevSiblingChange"}, {"url": "TreeData.html#method_refreshIndex", "access": "", "host": "TreeData", "type": "method", "name": "refreshIndex"}, {"url": "TreeData.html#method_registerNode", "access": "", "host": "TreeData", "type": "method", "name": "registerNode"}, {"url": "TreeData.html#method__removeChild", "access": "", "host": "TreeData", "type": "method", "name": "_removeChild"}, {"url": "TreeData.html#method_removeChild", "access": "", "host": "TreeData", "type": "method", "name": "removeChild"}, {"url": "TreeNode.html#method__renderBoundingBox", "access": "protected", "host": "TreeNode", "type": "method", "name": "_renderBoundingBox"}, {"url": "TreeNode.html#method__renderContentBox", "access": "protected", "host": "TreeNode", "type": "method", "name": "_renderContentBox"}, {"url": "TreeNode.html#method__renderUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "_renderUI"}, {"url": "TreeNode.html#method_renderUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "renderUI"}, {"url": "TreeData.html#method_selectAll", "access": "", "host": "TreeData", "type": "method", "name": "selectAll"}, {"url": "TreeData.html#method__setChildren", "access": "protected", "host": "TreeData", "type": "method", "name": "_setChildren"}, {"url": "TreeNodeIO.html#method__setIO", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_setIO"}, {"url": "TreeNode.html#method__syncHitArea", "access": "protected", "host": "TreeNode", "type": "method", "name": "_syncHitArea"}, {"url": "TreeNode.html#method__syncTreeNodeBBId", "access": "protected", "host": "TreeNode", "type": "method", "name": "_syncTreeNodeBBId"}, {"url": "TreeNode.html#method_syncUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "syncUI"}, {"url": "TreeNode.html#method_toggle", "access": "", "host": "TreeNode", "type": "method", "name": "toggle"}, {"url": "TreeNodeCheck.html#method_toggleCheck", "access": "", "host": "TreeNodeCheck", "type": "method", "name": "toggleCheck"}, {"url": "TreeData.html#property_TreeData.ATTRS", "access": "", "host": "TreeData", "type": "property", "name": "TreeData.ATTRS"}, {"url": "TreeData.html#property_TreeData.NAME", "access": "", "host": "TreeData", "type": "property", "name": "TreeData.NAME"}, {"url": "TreeNode.html#property_TreeNode.ATTRS", "access": "", "host": "TreeNode", "type": "property", "name": "TreeNode.ATTRS"}, {"url": "TreeNodeIO.html#property_TreeNode.ATTRS", "access": "", "host": "TreeNodeIO", "type": "property", "name": "TreeNode.ATTRS"}, {"url": "TreeNodeCheck.html#property_TreeNode.ATTRS", "access": "", "host": "TreeNodeCheck", "type": "property", "name": "TreeNode.ATTRS"}, {"url": "TreeNode.html#property_TreeNode.NAME", "access": "", "host": "TreeNode", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeNodeIO.html#property_TreeNode.NAME", "access": "", "host": "TreeNodeIO", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeNodeCheck.html#property_TreeNode.NAME", "access": "", "host": "TreeNodeCheck", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeData.html#property_UI_EVENTS", "access": "protected", "host": "TreeData", "type": "property", "name": "UI_EVENTS"}, {"url": "TreeNodeCheck.html#method_uncheck", "access": "", "host": "TreeNodeCheck", "type": "method", "name": "uncheck"}, {"url": "TreeData.html#method_unregisterNode", "access": "", "host": "TreeData", "type": "method", "name": "unregisterNode"}, {"url": "TreeData.html#method_updateIndex", "access": "", "host": "TreeData", "type": "method", "name": "updateIndex"}, {"url": "TreeData.html#method_updateReferences", "access": "", "host": "TreeData", "type": "method", "name": "updateReferences"}];
+</script>
+</body>
+</html>
