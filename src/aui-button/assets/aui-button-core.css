@@ -1,0 +1,25 @@
+.aui-button-content {
+	font-size: 1em;
+	line-height: 1em;
+	padding: 3px;
+	margin: 2px;
+}
+
+.aui-button-icon-label {
+	padding-bottom: 1px
+}
+
+.aui-button-icon {
+	display: inline-block;
+	margin-top: -3px;
+	vertical-align: middle;
+}
+
+.aui-button-label {
+	line-height: 1em;
+	display: inline-block;
+}
+
+.aui-button-label {
+	padding: 0 5px;
+}

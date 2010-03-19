@@ -1,0 +1,16 @@
+.aui-toolbar {
+	white-space: nowrap;
+}
+
+.aui-toolbar-content {
+	float: none;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.aui-toolbar-item {
+	margin: 0;
+	display: inline-block;
+	padding: 3px 1px;
+	vertical-align: top;
+}
