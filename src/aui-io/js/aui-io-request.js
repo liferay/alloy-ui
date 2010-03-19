@@ -383,25 +383,12 @@ A.extend(IORequest, A.Plugin.Base, {
 	 * @method initializer
 	 * @protected
 	 */
-	initializer: function(config) {
+	init: function(config) {
 		var instance = this;
 
-		instance.after('init', instance._afterInit);
-	},
+		IORequest.superclass.init.apply(this, arguments);
 
-	/**
-	 * Fires after the init phase of the IORequest.
-	 *
-	 * @method _afterInit
-	 * @param {EventFacade} event
-	 * @protected
-	 */
-	_afterInit: function(event) {
-		var instance = this;
-
-		if (instance.get(AUTO_LOAD)) {
-			instance.start();
-		}
+		instance._autoStart();
 	},
 
 	/**
@@ -450,6 +437,20 @@ A.extend(IORequest, A.Plugin.Base, {
 
 		if (transaction) {
 			transaction.abort();
+		}
+	},
+
+	/**
+	 * Invoke the <code>start</code> method (autoLoad attribute).
+	 *
+	 * @method _autoStart
+	 * @protected
+	 */
+	_autoStart: function() {
+		var instance = this;
+
+		if (instance.get(AUTO_LOAD)) {
+			instance.start();
 		}
 	},
 
