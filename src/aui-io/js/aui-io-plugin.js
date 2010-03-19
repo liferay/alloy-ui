@@ -50,7 +50,7 @@ var L = A.Lang,
  * </ul>
  *
  * Quick Example:<br/>
- * 
+ *
  * <pre><code>A.one('#content').plug(A.Plugin.IO, { uri: 'assets/content.html', method: 'GET' });</code></pre>
  *
  * Check the list of <a href="A.Plugin.IO.html#configattributes">Configuration Attributes</a> available for
@@ -238,18 +238,6 @@ A.mix(IOPlugin, {
 
 A.extend(IOPlugin, A.IORequest, {
 	/**
-	 * Construction logic executed during A.Plugin.IO instantiation. Lifecycle.
-	 *
-	 * @method initializer
-	 * @protected
-	 */
-	initializer: function() {
-		var instance = this;
-
-		instance.bindUI();
-	},
-
-	/**
 	 * Bind the events on the A.Plugin.IO UI. Lifecycle.
 	 *
 	 * @method bindUI
@@ -272,20 +260,19 @@ A.extend(IOPlugin, A.IORequest, {
 	},
 
 	/**
-	 * Fires after the init phase of the A.Plugin.IO.
+	 * Invoke the <code>start</code> method (autoLoad attribute).
 	 *
-	 * @method _afterInit
-	 * @param {EventFacade} event
+	 * @method _autoStart
 	 * @protected
 	 */
-	_afterInit: function() {
+	_autoStart: function() {
 		var instance = this;
 
-		// bind all child events before invoke the autoStart
+		instance.bindUI();
+
 		instance._bindPlugins();
 
-		// autoStart invoked
-		IOPlugin.superclass._afterInit.apply(this, arguments);
+		IOPlugin.superclass._autoStart.apply(this, arguments);
 	},
 
 	/**
