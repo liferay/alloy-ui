@@ -28,6 +28,7 @@
                     modules: {
 						'aui-autocomplete': {requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox'], skinnable:true},
 						'aui-base': {requires:['aui-node','aui-component','aui-delayed-task','event','oop','widget-css'], skinnable:false},
+						'aui-button': {requires:['aui-base','aui-state-interaction','widget-child'], skinnable:true},
 						'aui-calendar': {submodules: {'aui-calendar-datepicker-select': {requires:['aui-calendar-base','aui-tool-item'], skinnable:true}, 'aui-calendar-base': {requires:['aui-overlay-context','datatype-date','widget-locale'], skinnable:true} }, use:['aui-calendar-base','aui-calendar-datepicker-select'], skinnable:true},
 						'aui-char-counter': {requires:['aui-base','aui-event-input'], skinnable:false},
 						'aui-chart': {requires:['datasource','aui-swf','json'], skinnable:false},
@@ -40,7 +41,7 @@
 						'aui-editable': {requires:['aui-base','aui-form-combobox'], skinnable:true},
 						'aui-event': {submodules: {'aui-event-input': {requires:['aui-base']} }, use:['aui-event-input'], skinnable:false},
 						'aui-form': {submodules: {'aui-form-textfield': {requires:['aui-form-field']}, 'aui-form-textarea': {requires:['aui-form-textfield'], skinnable:true}, 'aui-form-manager': {requires:['aui-base','substitute']}, 'aui-form-field': {requires:['aui-base','aui-component','substitute']}, 'aui-form-combobox': {requires:['aui-form-textarea','aui-tool-set'], skinnable:true}, 'aui-form-base': {requires:['aui-base','aui-data-set','aui-form-field','querystring-parse']} }, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-manager','aui-form-textarea','aui-form-textfield'], skinnable:false},
-						'aui-image-viewer': {submodules: {'aui-image-viewer-gallery': {requires:['aui-image-viewer-base','aui-paginator','aui-tool-set'], skinnable:true}, 'aui-image-viewer-base': {requires:['anim','aui-overlay-mask','substitute'], skinnable:true} }, use:['aui-image-viewer-base','aui-image-viewer-gallery'], skinnable:true},
+						'aui-image-viewer': {submodules: {'aui-image-viewer-gallery': {requires:['aui-image-viewer-base','aui-paginator','aui-toolbar'], skinnable:true}, 'aui-image-viewer-base': {requires:['anim','aui-overlay-mask','substitute'], skinnable:true} }, use:['aui-image-viewer-base','aui-image-viewer-gallery'], skinnable:true},
 						'aui-io': {submodules: {'aui-io-plugin': {requires:['aui-overlay-base','aui-parse-content','aui-io-request','aui-loading-mask']}, 'aui-io-request': {requires:['aui-base','io','json','plugin']} }, use:['aui-io-request','aui-io-plugin'], skinnable:false},
 						'aui-live-search': {requires:['aui-base'], skinnable:false},
 						'aui-loading-mask': {requires:['aui-overlay-mask','plugin','substitute'], skinnable:true},
@@ -59,6 +60,7 @@
 						'aui-tabs': {requires:['aui-component','aui-state-interaction'], skinnable:true},
 						'aui-textboxlist': {requires:['anim-node-plugin','aui-autocomplete','node-focusmanager'], skinnable:true},
 						'aui-tool': {submodules: {'aui-tool-set': {requires:['aui-data-set','aui-tool-item'], skinnable:true}, 'aui-tool-item': {requires:['aui-base','aui-state-interaction']} }, use:['aui-tool-item','aui-tool-set'], skinnable:true},
+						'aui-toolbar': {requires:['aui-base','aui-button','aui-data-set','widget-parent'], skinnable:true},
 						'aui-tooltip': {requires:['aui-overlay-context-panel'], skinnable:true},
 						'aui-tree': {submodules: {'aui-tree-view': {requires:['aui-tree-node','dd'], skinnable:true}, 'aui-tree-node': {requires:['aui-tree-data','io','json'], skinnable:false}, 'aui-tree-data': {requires:['aui-base'], skinnable:false} }, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true}
 					}
@@ -133,11 +135,10 @@
 
 	/*
 	 * Alloy JavaScript Library v@VERSION@
-	 * http://alloyui.com/
+	 * http://alloy.liferay.com/
 	 *
 	 * Copyright (c) 2009 Liferay Inc.
-	 * Licensed under the MIT license.
-	 * http://alloyui.com/License
+	 * http://alloy.liferay.com/LICENSE.txt
 	 *
 	 * Eduardo Lundgren (eduardo.lundgren@liferay.com)
 	 * Nate Cavanaugh (nate.cavanaugh@liferay.com)

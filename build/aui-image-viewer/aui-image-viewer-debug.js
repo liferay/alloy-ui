@@ -1271,7 +1271,7 @@ A.ImageViewer = ImageViewer;
  */
 A.ImageViewerMask = new A.OverlayMask().render();
 
-}, '@VERSION@' ,{requires:['anim','aui-overlay-mask','substitute'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['anim','aui-overlay-mask','substitute']});
 AUI.add('aui-image-viewer-gallery', function(A) {
 /**
  * The ImageGallery Utility
@@ -1319,8 +1319,7 @@ var L = A.Lang,
 	SPACE = ' ',
 	SRC = 'src',
 	THUMB = 'thumb',
-	TOOLSET = 'toolSet',
-	TOOLSET_INSTANCE = 'toolSetInstance',
+	TOOLBAR = 'toolbar',
 	TOTAL_LINKS = 'totalLinks',
 	USE_ORIGINAL_IMAGE = 'useOriginalImage',
 	VIEWPORT_REGION = 'viewportRegion',
@@ -1567,20 +1566,20 @@ A.mix(ImageGallery, {
 		},
 
 		/**
-		 * <a href="ToolSet.html">ToolSet</a> with a play, and pause buttons.
+		 * <a href="Toolbar.html">Toolbar</a> with a play, and pause buttons.
 		 *
-		 * @attribute toolSet
-		 * @default Generated ToolSet with a play, and pause buttons.
-		 * @type ToolSet constructor.
+		 * @attribute toolbar
+		 * @default Generated Toolbar with a play, and pause buttons.
+		 * @type Toolbar constructor.
 		 */
-		toolSet: {
+		toolbar: {
 			value: {},
 			setter: function(value) {
 				var instance = this;
 
 				return A.merge(
 					{
-						tools: [
+						children: [
 							{
 								id: PLAY,
 								icon: PLAY
@@ -1598,17 +1597,6 @@ A.mix(ImageGallery, {
 		},
 
 		/**
-		 * Stores the <a href="ToolSet.html">ToolSet</a> instance.
-		 *
-		 * @attribute toolSetInstance
-		 * @default null
-		 * @type ToolSet
-		 */
-		toolSetInstance: {
-			value: null
-		},
-
-		/**
 		 * If <code>true</code> will use the original image as thumbnails.
 		 *
 		 * @attribute useOriginalImage
@@ -1623,6 +1611,15 @@ A.mix(ImageGallery, {
 });
 
 A.extend(ImageGallery, A.ImageViewer, {
+	/**
+	 * Toolbar instance reference.
+	 *
+	 * @property toolbar
+	 * @type Toolbar
+	 * @protected
+	 */
+	toolbar: null,
+
 	/**
 	 * Stores the <code>A.later</code> reference.
 	 *
@@ -1661,7 +1658,7 @@ A.extend(ImageGallery, A.ImageViewer, {
 
 		ImageGallery.superclass.bindUI.apply(this, arguments);
 
-		instance._bindToolSetUI();
+		instance._bindToolbarUI();
 
 		instance.on('playingChange', instance._onPlayingChange);
 		instance.on('pausedChange', instance._onPausedChange);
@@ -1772,22 +1769,26 @@ A.extend(ImageGallery, A.ImageViewer, {
 	},
 
 	/**
-	 * Bind the ToolSet UI for the play and pause buttons.
+	 * Bind the Toolbar UI for the play and pause buttons.
 	 *
-	 * @method _bindToolSetUI
+	 * @method _bindToolbarUI
 	 * @protected
 	 */
-	_bindToolSetUI: function() {
+	_bindToolbarUI: function() {
 		var instance = this;
 
 		if (instance.get(SHOW_PLAYER)) {
-			var toolSetInstance = instance.get(TOOLSET_INSTANCE);
+			var toolbar = instance.toolbar;
 
-			var play = toolSetInstance.item(PLAY);
-			var pause = toolSetInstance.item(PAUSE);
+			var play = toolbar.item(PLAY);
+			var pause = toolbar.item(PAUSE);
 
-			play.set(HANDLER, A.bind(instance.play, instance));
-			pause.set(HANDLER, A.bind(instance.pause, instance));
+			if (play) {
+				play.set(HANDLER, A.bind(instance.play, instance));
+			}
+			if (pause) {
+				pause.set(HANDLER, A.bind(instance.pause, instance));
+			}
 		}
 	},
 
@@ -1842,12 +1843,10 @@ A.extend(ImageGallery, A.ImageViewer, {
 			A.Node.create(TPL_PLAYER_CONTAINER).append(playerContent)
 		);
 
-		var toolSetInstance = new A.ToolSet(
-			instance.get(TOOLSET)
+		instance.toolbar = new A.Toolbar(
+			instance.get(TOOLBAR)
 		)
 		.render(playerContent);
-
-		instance.set(TOOLSET_INSTANCE, toolSetInstance);
 	},
 
 	/**
@@ -1934,7 +1933,7 @@ A.extend(ImageGallery, A.ImageViewer, {
 	 * Change the UI when click on a thumbnail.
 	 *
 	 * @method _changeRequest
-	 * @param {EventFacade} event 
+	 * @param {EventFacade} event
 	 * @protected
 	 */
 	_changeRequest: function(event) {
@@ -2094,8 +2093,8 @@ A.extend(ImageGallery, A.ImageViewer, {
 
 A.ImageGallery = ImageGallery;
 
-}, '@VERSION@' ,{requires:['aui-image-viewer-base','aui-paginator','aui-tool-set'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-image-viewer-base','aui-paginator','aui-toolbar']});
 
 
-AUI.add('aui-image-viewer', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-image-viewer-base','aui-image-viewer-gallery']});
+AUI.add('aui-image-viewer', function(A){}, '@VERSION@' ,{use:['aui-image-viewer-base','aui-image-viewer-gallery'], skinnable:true});
 
