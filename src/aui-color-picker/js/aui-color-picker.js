@@ -424,13 +424,13 @@ ColorPicker.ATTRS = {
 			var instance = this;
 
 			if (!value) {
-				instance._toolItemTrigger = new A.ToolItem(
+				instance._buttonTrigger = new A.Button(
 					{
 						icon: 'pencil'
 					}
 				);
 
-				value = instance._toolItemTrigger.get('boundingBox');
+				value = instance._buttonTrigger.get('boundingBox');
 
 				instance.set('trigger', value);
 			}
@@ -453,7 +453,7 @@ A.extend(
 		renderUI: function() {
 			var instance = this;
 
-			var toolTrigger = instance._toolItemTrigger;
+			var toolTrigger = instance._buttonTrigger;
 
 			if (toolTrigger && !toolTrigger.get('rendered')) {
 				var triggerParent = instance.get('triggerParent');
@@ -736,7 +736,7 @@ A.extend(
 			if (!instance._pickerContainer) {
 				var container = new A.Panel(
 					{
-						tools: [
+						icons: [
 							{
 								icon: 'close',
 								id: 'close',

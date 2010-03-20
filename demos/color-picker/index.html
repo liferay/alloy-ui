@@ -29,11 +29,99 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-
 AUI().ready(
 	'aui-color-picker',
 	function(A) {
+
 		window.ColorPicker = new A.ColorPicker().render('#demo');
+return;
+		var Lang = A.Lang,
+
+			getClassName = A.ClassNameManager.getClassName,
+
+			NAME = 'Toolbar',
+
+			CSS_TOOLBAR = getClassName(NAME);
+
+		var Toolbar = function() {
+			Toolbar.superclass.constructor.apply(this, arguments);
+		};
+
+		Toolbar.NAME = NAME;
+
+		Toolbar.ATTRS = {
+			defaultChildType: {
+				value: 'Button'
+			}
+		};
+
+		A.extend(
+			Toolbar,
+			A.Widget,
+			{
+				renderUI: function() {
+					var instance = this;
+
+					
+				},
+
+				bindUI: function() {
+					var instance = this;
+
+					
+				}
+			}
+		);
+
+		A.Toolbar = A.Base.build(NAME, Toolbar, [A.WidgetParent, A.WidgetChild], { dynamic: false });
+
+		var BUTTON_NAME = 'Button',
+
+			CSS_BUTTON = getClassName(BUTTON_NAME);
+
+		var Button = function() {
+			Button.superclass.constructor.apply(this, arguments);
+		};
+
+		Button.NAME = BUTTON_NAME;
+
+		Button.ATTRS = {
+			text: {
+				validator: Lang.isString
+			}
+		};
+
+		A.extend(
+			Button,
+			A.Widget,
+			{
+				BOUNDING_TEMPLATE: '<button></button>',
+				CONTENT_TEMPLATE: '<span></span>',
+				renderUI: function() {
+					var instance = this;
+
+					instance.get('contentBox').setContent(instance.get('text'));
+				},
+
+				bindUI: function() {
+					var instance = this;
+
+					
+				}
+			}
+		);
+
+		A.Button = A.Base.build(BUTTON_NAME, Button, [A.WidgetChild], { dynamic: false });
+
+		window.TB = new A.Toolbar(
+			{
+				children: [
+					{text: 'Button 1'},
+					{text: 'Button 2'},
+					{text: 'Button 3'}
+				]
+			}
+		).render();
 	}
 );
 

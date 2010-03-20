@@ -1299,7 +1299,7 @@ A.CalendarManager = new A.OverlayManager({
 	zIndexBase: 1000
 });
 
-}, '@VERSION@' ,{requires:['aui-overlay-context','datatype-date','widget-locale'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-context','datatype-date','widget-locale']});
 AUI.add('aui-calendar-datepicker-select', function(A) {
 /**
  * The DatePickerSelect Utility
@@ -1762,12 +1762,12 @@ A.extend(DatePickerSelect, A.Calendar, {
 		var trigger = instance.get(TRIGGER).item(0);
 		var displayBoundingBox = instance.get(DISPLAY_BOUNDING_BOX);
 
-		instance._buttonItem = new A.ToolItem(CALENDAR);
+		instance._buttonItem = new A.Button(CALENDAR);
 
 		displayBoundingBox.append(trigger);
 
 		if ( trigger.test(DOT+CSS_DATEPICKER_BUTTON_WRAPPER) ) {
-			// use ToolItem if the user doesn't specify a trigger
+			// use Button if the user doesn't specify a trigger
 			instance._buttonItem.render(trigger);
 		}
 	},
@@ -2001,8 +2001,8 @@ A.extend(DatePickerSelect, A.Calendar, {
 
 A.DatePickerSelect = DatePickerSelect;
 
-}, '@VERSION@' ,{requires:['aui-calendar-base','aui-tool-item'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-calendar-base','aui-button']});
 
 
-AUI.add('aui-calendar', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-calendar-base','aui-calendar-datepicker-select']});
+AUI.add('aui-calendar', function(A){}, '@VERSION@' ,{use:['aui-calendar-base','aui-calendar-datepicker-select'], skinnable:true});
 

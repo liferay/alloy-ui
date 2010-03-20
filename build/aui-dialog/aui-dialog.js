@@ -31,6 +31,7 @@ var L = A.Lang,
 	HD = 'hd',
 	HEIGHT = 'height',
 	ICON = 'icon',
+	ICONS = 'icons',
 	IO = 'io',
 	LOADING = 'loading',
 	MODAL = 'modal',
@@ -38,7 +39,6 @@ var L = A.Lang,
 	RESIZABLE = 'resizable',
 	RESIZABLE_INSTANCE = 'resizableInstance',
 	STACK = 'stack',
-	TOOLS = 'tools',
 	WIDTH = 'width',
 
 	EV_RESIZE = 'resize:resize',
@@ -297,7 +297,7 @@ Dialog.prototype = {
 	 */
 	initializer: function(config) {
 		var instance = this;
-		var tools = instance.get(TOOLS);
+		var icons = instance.get(ICONS);
 		var close = instance.get(CLOSE);
 		var buttons = instance.get(BUTTONS);
 
@@ -315,11 +315,11 @@ Dialog.prototype = {
 				}
 			};
 
-			if (tools) {
-				tools.push(closeConfig);
+			if (icons) {
+				icons.push(closeConfig);
 			}
 
-			instance.set(TOOLS, tools);
+			instance.set(ICONS, icons);
 		}
 
 		instance.after('render', instance._afterRenderer);
@@ -749,4 +749,4 @@ A.mix(
  * @static
  */
 
-}, '@VERSION@' ,{requires:['aui-panel','dd-constrain','aui-tool-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-panel','dd-constrain','aui-button','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize'], skinnable:true});

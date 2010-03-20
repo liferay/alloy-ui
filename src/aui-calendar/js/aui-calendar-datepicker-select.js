@@ -459,12 +459,12 @@ A.extend(DatePickerSelect, A.Calendar, {
 		var trigger = instance.get(TRIGGER).item(0);
 		var displayBoundingBox = instance.get(DISPLAY_BOUNDING_BOX);
 
-		instance._buttonItem = new A.ToolItem(CALENDAR);
+		instance._buttonItem = new A.Button(CALENDAR);
 
 		displayBoundingBox.append(trigger);
 
 		if ( trigger.test(DOT+CSS_DATEPICKER_BUTTON_WRAPPER) ) {
-			// use ToolItem if the user doesn't specify a trigger
+			// use Button if the user doesn't specify a trigger
 			instance._buttonItem.render(trigger);
 		}
 	},

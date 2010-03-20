@@ -100,15 +100,15 @@ AUI().ready('aui-dialog', 'aui-overlay-manager', 'dd-constrain', function(A) {
 	var dialog5 = new A.Dialog(
 		A.merge(options, {
 			close: false,
-			tools: [
+			icons: [
 				{
 					icon: 'pin-l',
 					id: 'pin',
 					activeState: true,
-					handler: function(event, tool) {
+					handler: function(event, button) {
 						var instance = this;
 
-						var pinned = !instance.StateInteraction.get('active');
+						var pinned = !!instance.StateInteraction.get('active');
 						var cursor = 'move';
 						var icon = 'pin-l';
 
@@ -120,11 +120,12 @@ AUI().ready('aui-dialog', 'aui-overlay-manager', 'dd-constrain', function(A) {
 						dialog5.get('dragInstance').set('lock', pinned);
 
 						dialog5.headerNode.setStyle('cursor', cursor);
-						tool.set('icon', icon);
+
+						button.set('icon', icon);
 					}
 				}
 			],
-			title: 'Dialog 5 - Pinnable (uses custom tools option)',
+			title: 'Dialog 5 - Pinnable (uses custom icons option)',
 			xy: [300, 250],
 			buttons: null
 		})

@@ -31,7 +31,7 @@ Combobox.ATTRS = {
 		}
 	},
 
-	tools: {
+	icons: {
 		value: ['circle-triangle-b'],
 		validator: Lang.isArray
 	}
@@ -47,7 +47,7 @@ A.extend(
 			Combobox.superclass.renderUI.call(instance);
 
 			instance._renderField();
-			instance._renderTools();
+			instance._renderIcons();
 		},
 
 		_renderField: function() {
@@ -60,23 +60,23 @@ A.extend(
 
 			instance._field = new fieldWidget(field).render();
 
-			contentBox.appendChild(instance._field.get('boundingBox'))
+			contentBox.appendChild(instance._field.get('boundingBox'));
 		},
 
-		_renderTools: function() {
+		_renderIcons: function() {
 			var instance = this;
 
-			var tools = instance.get('tools');
+			var icons = instance.get('icons');
 
-			if (tools.length) {
-				var toolSet = new A.ToolSet(
+			if (icons.length) {
+				var toolbar = new A.Toolbar(
 					{
-						tools: tools
+						children: icons
 					}
 				)
 				.render(instance.get('contentBox'));
 
-				instance.toolset = toolSet;
+				instance.icons = toolbar;
 			}
 		}
 	}
@@ -84,4 +84,4 @@ A.extend(
 
 A.Combobox = Combobox;
 
-}, '@VERSION@' ,{requires:['aui-form-textarea','aui-tool-set'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-form-textarea','aui-toolbar']});

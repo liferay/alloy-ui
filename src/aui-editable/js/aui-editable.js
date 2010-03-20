@@ -65,11 +65,11 @@ Editable.NAME = 'editable';
  */
 Editable.ATTRS = {
 	/**
-	 * <a href="ToolSet.html">ToolSet</a> constructor Object for the
+	 * <a href="Button.html">Button</a> constructor Object for the
      * cancelButton.
 	 *
 	 * @attribute cancelButton
-	 * @default ToolSet constructor Object.
+	 * @default Button constructor Object.
 	 * @type String
 	 */
 	cancelButton: {
@@ -195,11 +195,11 @@ Editable.ATTRS = {
 	},
 
 	/**
-	 * <a href="ToolSet.html">ToolSet</a> constructor Object for the
+	 * <a href="Button.html">Button</a> constructor Object for the
      * saveButton.
 	 *
 	 * @attribute saveButton
-	 * @default ToolSet constructor Object.
+	 * @default Button constructor Object.
 	 * @type String
 	 */
 	saveButton: {
@@ -218,13 +218,13 @@ Editable.ATTRS = {
 	},
 
 	/**
-	 * Array with tools for the <a href="ToolSet.html">ToolSet</a>.
+	 * Array with icons for the <a href="Toolbar.html">Toolbar</a>.
 	 *
-	 * @attribute tools
+	 * @attribute icons
 	 * @default []
 	 * @type Array
 	 */
-	tools: {
+	icons: {
 		value: []
 	},
 
@@ -294,21 +294,21 @@ A.extend(
 
 			var comboConfig = {};
 
-			var tools = instance.get('tools');
+			var icons = instance.get('icons');
 
-			if (tools !== false) {
+			if (icons !== false) {
 				var cancelButton = instance.get('cancelButton');
 				var saveButton = instance.get('saveButton');
 
 				if (cancelButton !== false) {
-					tools.push(cancelButton);
+					icons.push(cancelButton);
 				}
 
 				if (saveButton !== false) {
-					tools.push(saveButton);
+					icons.push(saveButton);
 				}
 
-				comboConfig.tools = tools;
+				comboConfig.icons = icons;
 			}
 
 			if (inputType != 'text') {
@@ -545,7 +545,7 @@ A.extend(
 				}
 			);
 
-			var inputField = instance._comboBox._field
+			var inputField = instance._comboBox._field;
 
 			inputField.set('width', nodeWidth);
 			inputField.fire('adjustSize');
@@ -746,7 +746,7 @@ A.extend(
 		_toText: function(text) {
 			var instance = this;
 
-			var text = String(text);
+			text = String(text);
 
 			text = text.replace(/<br\s*\/?>/gim, '\n');
 

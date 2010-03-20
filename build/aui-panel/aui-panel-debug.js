@@ -23,7 +23,7 @@ var Lang = A.Lang,
 	PANEL = 'panel',
 	PLUS = 'plus',
 	TITLE = 'title',
-	TOOLS = 'tools',
+	ICONS = 'icons',
 	VISIBLE = 'visible',
 
 	getClassName = A.ClassNameManager.getClassName,
@@ -32,7 +32,7 @@ var Lang = A.Lang,
 	CSS_COLLAPSED = getClassName(PANEL, COLLAPSED),
 	CSS_PANEL = getClassName(PANEL),
 	CSS_PANEL_HD_TEXT = getClassName(PANEL, 'hd', 'text'),
-	CSS_PANEL_TOOLSET = getClassName(PANEL, 'toolset'),
+	CSS_PANEL_ICONS = getClassName(PANEL, 'icons'),
 
 	CSS_PANELS = {
 		body: 'bd',
@@ -125,21 +125,21 @@ Panel.ATTRS = {
 	},
 
 	/**
-	 * <p>Array of <a href="ToolItem.html">ToolItem</a> to be displayed as icons
+	 * <p>Array of <a href="Button.html">Button</a> configuration objects to be displayed as icons
      * on the Panel title.</p>
 	 *
 	 * Example:
 	 *
-	 * <pre><code>tools: [ { icon: 'close', id: 'close' } ]</code></pre>
+	 * <pre><code>icons: [ { icon: 'close', id: 'close' } ]</code></pre>
 	 *
 	 * For more information how to use this option see
-     * <a href="ToolItem.html">ToolItem</a>.
+     * <a href="Button.html">Button</a>.
 	 *
-	 * @attribute tools
+	 * @attribute icons
 	 * @default []
 	 * @type Array
 	 */
-	tools: {
+	icons: {
 		value: [],
 		validator: isArray
 	}
@@ -253,19 +253,19 @@ Panel.prototype = {
 	},
 
 	/**
-	 * Render the <a href="Panel.html#config_tools">tools</a>.
+	 * Render the <a href="Panel.html#config_icons">icons</a>.
 	 *
-	 * @method _renderToolItems
+	 * @method _renderIconButtons
 	 * @protected
 	 */
-	_renderToolItems: function() {
+	_renderIconButtons: function() {
 		var instance = this;
-		var tools = instance.get(TOOLS);
+		var icons = instance.get(ICONS);
 
 		if (instance.get(COLLAPSIBLE)) {
 			var icon = instance.get(COLLAPSED) ? PLUS : MINUS;
 
-			tools.unshift(
+			icons.unshift(
 				{
 					icon: icon,
 					id: COLLAPSE,
@@ -277,14 +277,14 @@ Panel.prototype = {
 			);
 		}
 
-		instance.toolset = new A.ToolSet(
+		instance.icons = new A.Toolbar(
 			{
-				tools: tools
+				children: icons
 			}
 		)
 		.render(instance.headerNode);
 
-		instance.toolset.get(BOUNDING_BOX).addClass(CSS_PANEL_TOOLSET);
+		instance.icons.get(BOUNDING_BOX).addClass(CSS_PANEL_ICONS);
 	},
 
 	/**
@@ -336,9 +336,9 @@ Panel.prototype = {
 			var boundingBox = instance.get(BOUNDING_BOX);
 			var collapsed = instance.get(COLLAPSED);
 
-			if (instance.toolset) {
-				var toolset = instance.toolset;
-				var collapseItem = toolset.tools.item(COLLAPSE);
+			if (instance.icons) {
+				var icons = instance.icons;
+				var collapseItem = icons.item(COLLAPSE);
 
 				if (collapseItem) {
 					collapseItem.set(
@@ -405,7 +405,7 @@ Panel.prototype = {
 		instance._addPanelClass('header');
 
 		instance._renderHeaderText();
-		instance._renderToolItems();
+		instance._renderIconButtons();
 
 		instance._syncCollapsedUI();
 	},
@@ -427,4 +427,4 @@ Panel.prototype = {
 
 A.Panel = A.Base.build(PANEL, A.Component, [Panel, A.WidgetStdMod]);
 
-}, '@VERSION@' ,{requires:['aui-component','widget-stdmod','aui-tool-set'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-component','widget-stdmod','aui-toolbar'], skinnable:true});
