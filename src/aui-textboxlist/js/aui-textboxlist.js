@@ -406,7 +406,7 @@ A.extend(
 			instance.inputContainer = inputContainer;
 			instance.inputField = inputField;
 			instance.inputNode = inputField.get('node');
-			instance.button = new A.ToolItem();
+			instance.button = new A.Button();
 
 			instance.set('uniqueName', A.stamp(instance.inputNode));
 		},

@@ -87,7 +87,7 @@ AUI().ready(
 		).render('#nestedPanels');
 
 
-		var toolItemTest = new A.ToolItem({
+		var buttonTest = new A.Button({
 			icon: 'refresh',
 			id: 'refresh',
 			handler: function(event, panel) {
@@ -104,14 +104,15 @@ AUI().ready(
 			}
 		});
 
-		var child1 = new A.Panel(
+		window.child1 = new A.Panel(
 			{
 				collapsible: true,
 				headerContent: 'Child Panel 1',
-				tools: [
-					toolItemTest,
+				icons: [
+					buttonTest,
 					{
 						icon: 'close',
+						label: 'Close',
 						id: 'close',
 						handler: function(event) {
 							var instance = this;
@@ -141,14 +142,14 @@ AUI().ready(
 			}
 		).render(panelContainer.bodyNode);
 
-		// customizing toolset of the Panel
-		child1.toolset.add('alert');
-		child1.toolset.add('info');
-		child1.toolset.add(
-			new A.ToolItem({
+		// customizing icons toolbar of the Panel
+		child1.icons.add('alert');
+		child1.icons.add('info');
+		child1.icons.add(
+			{
 				id: 'unlocked',
 				icon: 'unlocked'
-			})
+			}
 		);
 
 		// child1.collapse();
