@@ -59,7 +59,6 @@
 						'aui-swf': {requires:['aui-base','querystring-stringify-simple'], skinnable:false},
 						'aui-tabs': {requires:['aui-component','aui-state-interaction'], skinnable:true},
 						'aui-textboxlist': {requires:['anim-node-plugin','aui-autocomplete','node-focusmanager'], skinnable:true},
-						'aui-tool': {submodules: {'aui-tool-set': {requires:['aui-data-set','aui-tool-item'], skinnable:true}, 'aui-tool-item': {requires:['aui-base','aui-state-interaction']} }, use:['aui-tool-item','aui-tool-set'], skinnable:true},
 						'aui-toolbar': {requires:['aui-base','aui-button','aui-data-set','widget-parent'], skinnable:true},
 						'aui-tooltip': {requires:['aui-overlay-context-panel'], skinnable:true},
 						'aui-tree': {submodules: {'aui-tree-view': {requires:['aui-tree-node','dd'], skinnable:true}, 'aui-tree-node': {requires:['aui-tree-data','io','json'], skinnable:false}, 'aui-tree-data': {requires:['aui-base'], skinnable:false} }, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true}
