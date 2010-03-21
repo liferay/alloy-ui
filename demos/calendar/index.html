@@ -8,7 +8,7 @@
 	<script src="../../src/javascript/i18n/calendar-pt-br.js" type="text/javascript" charset="utf-8"></script>
 
 	<link rel="stylesheet" href="../../build/aui-skins/core/css/main.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../build/aui-skins/classic/css/custom.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="../../build/aui-button/assets/aui-button-core.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<link rel="stylesheet" href="../../build/aui-skins/classic/css/custom.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 </head>
 
@@ -30,10 +30,10 @@
 <input type="text" name="input1" size="55" value="" id="input1" />
 
 <div class="calendar-icon">
+	<button class="aui-button aui-button-content aui-state-default">
+		<span class="aui-icon aui-icon-calendar"></span>
+	</button>
 	Click on the icon to load a Portuguese Calendar
-	<span class="aui-tool aui-state-default">
-		<span class="aui-icon aui-icon-calendar"/>
-	</span>
 </div>
 
 <script type="text/javascript" charset="utf-8">
@@ -69,7 +69,7 @@ AUI().ready('aui-calendar-base', function(A) {
 	calendar1.toggle();
 
 	var calendar2 = new A.Calendar({
-		trigger: '.aui-icon-calendar',
+		trigger: '.aui-button',
 		// locale: 'pt-br',
 		firstDayOfWeek: 0,
 		on: {
