@@ -6,26 +6,19 @@
 }
 
 .aui-button-icon-label {
-	padding-bottom: 1px
+	padding-bottom: 1px;
+	white-space: nowrap;
 }
 
 .aui-button-icon {
 	display: inline-block;
 	margin-top: -3px;
 	vertical-align: middle;
-
-	/* IE6/7 */
-	*text-indent: 0;
-	*margin-top: 1px;
 }
 
 .aui-button-label {
 	line-height: 1em;
 	display: inline-block;
-	white-space: nowrap;
-
-	/* IE6/7 */
-	*line-height: 1.4em;
 }
 
 .aui-button-label {
