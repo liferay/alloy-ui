@@ -6,6 +6,7 @@
 	<script src="../../build/aui-base/aui-base.js" type="text/javascript"></script>
 
 	<link rel="stylesheet" href="../../build/aui-skins/core/css/main.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../build/aui-button/assets/aui-button-core.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<link rel="stylesheet" href="../../build/aui-skins/classic/css/custom.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 
 	<style type="text/css" media="screen">
@@ -30,7 +31,7 @@
 			border-color: #fc0;
 		}
 
-		.aui-tool {
+		.aui-icon-button {
 			display: inline-block;
 			float: none;
 			vertical-align: middle;
@@ -93,7 +94,7 @@ AUI().ready(
 		);
 
 		var inputNode = A.get('#longNumber');
-		var symbol = A.Node.create('<span class="aui-tool aui-helper-hidden"><span class="aui-icon"></span></span>');
+		var symbol = A.Node.create('<span class="aui-button aui-button-content aui-icon-button aui-helper-hidden"><span class="aui-icon"></span></span>');
 
 		inputNode.get('parentNode').insertBefore(symbol, inputNode.get('nextSibling'));
 
