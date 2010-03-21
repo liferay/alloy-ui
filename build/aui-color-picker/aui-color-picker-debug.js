@@ -737,7 +737,7 @@ A.extend(
 			if (!instance._pickerContainer) {
 				var container = new A.Panel(
 					{
-						tools: [
+						icons: [
 							{
 								icon: 'close',
 								id: 'close',
