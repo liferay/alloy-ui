@@ -1,4 +1,10 @@
 AUI.add('aui-button', function(A) {
+/**
+ * The Button Utility
+ *
+ * @module aui-button
+ */
+
 var Lang = A.Lang,
 
 	getClassName = A.ClassNameManager.getClassName,
@@ -20,6 +26,36 @@ var Lang = A.Lang,
 	TPL_ICON = '<span class="' + [CSS_BUTTON_ICON, CSS_ICON].join(' ') + '"></span>',
 	TPL_LABEL = '<span class="' + CSS_BUTTON_LABEL + '"></span>';
 
+	/**
+	 * <p><img src="assets/images/aui-button/main.png"/></p>
+	 *
+	 * A base class for Button, providing:
+	 * <ul>
+	 *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+	 *    <li>An optional icon or label</li>
+	 *    <li>Managed user interaction states (default, active, hover)</li>
+	 *    <li>Keyboard accessible</li>
+	 * </ul>
+	 *
+	 * Quick Example:<br/>
+	 * 
+	 * <pre><code>var instance = new A.Button({
+	 *	icon: 'gear',
+	 * label: 'Configuration'
+	 * }).render();
+	 * </code></pre>
+	 *
+	 * Check the list of <a href="Button.html#configattributes">Configuration Attributes</a> available for
+	 * Button.
+	 *
+	 * @param config {Object} Object literal specifying widget configuration properties.
+	 *
+	 * @class Button
+	 * @constructor
+	 * @extends Component
+	 * @uses WidgetChild
+	 */
+
 var Button = function(config) {
 	if (Lang.isString(config)) {
 		config = {
@@ -30,17 +66,67 @@ var Button = function(config) {
 	Button.superclass.constructor.call(this, config);
 };
 
+/**
+ * Static property provides a string to identify the class.
+ *
+ * @property Button.NAME
+ * @type String
+ * @static
+ */
+
 Button.NAME = NAME;
 
+/**
+ * Static property used to define the default attribute
+ * configuration for the Button.
+ *
+ * @property Button.ATTRS
+ * @type Object
+ * @static
+ */
+
 Button.ATTRS = {
+	/**
+	 * Whether to track the active state of the button.
+	 * 
+	 * @attribute activeState
+	 * @default false
+	 * @type Boolean
+	 */
 	activeState: {
 		value: false
 	},
 
+	/**
+	 * An object map of the CSS class names to use for the different interaction states.
+	 * 
+	 * @attribute classNames
+	 * @type Object
+	 */
 	classNames: {},
 
+	/**
+	 * Whether to apply the default interaction state to the button
+	 * 
+	 * @attribute defaultState
+	 * @default true
+	 * @type Boolean
+	 */
 	defaultState: {},
 
+	/**
+	 * An event callback to handle when a user interacts with the button.
+	 * This can either be a function that will be attached on click, or 
+	 * an object map that accepts the following keys:
+	 * <code>{fn: // The function to execute
+	 * context: // The context to execute the function in
+	 * type: // The type of event to listen for (defaults to "click")
+	 * }</code>
+	 * 
+	 * @attribute handler
+	 * @default false
+	 * @type Function | Object
+	 */
 	handler: {
 		lazyAdd: false,
 		value: null,
@@ -68,18 +154,43 @@ Button.ATTRS = {
 		}
 	},
 
+	/**
+	 * Whether to track the hover interaction state of the button.
+	 * 
+	 * @attribute hoverState
+	 * @default true
+	 * @type Boolean
+	 */
 	hoverState: {},
 
+	/**
+	 * The icon to use inside of the button. Possible values are: 
+	 * 
+	 * @attribute icon
+	 * @type String
+	 */
 	icon: {
 		value: ''
 	},
 
+	/**
+	 * An id that can be used to identify a button.
+	 * 
+	 * @attribute hoverState
+	 * @type Boolean
+	 */
 	id: {
 		valueFn: function() {
 			return A.guid();
 		}
 	},
 
+	/**
+	 * Text to use inside of the button.
+	 * 
+	 * @attribute label
+	 * @type String
+	 */
 	label: {
 		value: ''
 	}
@@ -91,12 +202,25 @@ A.extend(
 	{
 		BOUNDING_TEMPLATE: TPL_BUTTON,
 		CONTENT_TEMPLATE: null,
+
+		/**
+		 * Create the DOM structure for the Button. Lifecycle.
+		 *
+		 * @method renderUI
+		 * @protected
+		 */
 		renderUI: function() {
 			var instance = this;
 
 			instance._renderStates();
 		},
 
+		/**
+		 * Bind the events on the Button UI. Lifecycle.
+		 *
+		 * @method bindUI
+		 * @protected
+		 */
 		bindUI: function() {
 			var instance = this;
 
@@ -104,6 +228,12 @@ A.extend(
 			instance.after('labelChange', instance._afterLabelChange);
 		},
 
+		/**
+		 * Sync the Button UI. Lifecycle.
+		 *
+		 * @method syncUI
+		 * @protected
+		 */
 		syncUI: function() {
 			var instance = this;
 
@@ -120,30 +250,69 @@ A.extend(
 
 		},
 
+		/**
+		 * Fires after the value of the
+		 * <a href="Button.html#config_icon">icon</a> attribute change.
+		 *
+		 * @method 
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_afterIconChange: function(event) {
 			var instance = this;
 
 			instance._uiSetIcon(event.newVal, event.prevVal);
 		},
 
+		/**
+		 * Fires after the value of the
+		 * <a href="Button.html#config_label">label</a> attribute change.
+		 *
+		 * @method 
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_afterLabelChange: function(event) {
 			var instance = this;
 
 			instance._uiSetLabel(event.newVal);
 		},
 
+		/**
+		 * Get's a reference to the private icon node, or if not created,
+		 * renders its and returns it.
+		 *
+		 * @method _getIconNode
+		 * @protected
+		 * @return {Node}
+		 */
 		_getIconNode: function() {
 			var instance = this;
 
 			return instance._iconNode || instance._renderIcon();
 		},
 
+		/**
+		 * Get's a reference to the private label node, or if not created,
+		 * renders its and returns it.
+		 *
+		 * @method _getLabelNode
+		 * @protected
+		 * @return {Node}
+		 */
 		_getLabelNode: function() {
 			var instance = this;
 
 			return instance._labelNode || instance._renderLabel();
 		},
 
+		/**
+		 * Renders the underlying markup for the <a href="Button.html#config_icon">icon</a>.
+		 *
+		 * @method _renderIcon
+		 * @protected
+		 * @return {Node}
+		 */
 		_renderIcon: function() {
 			var instance = this;
 
@@ -156,6 +325,13 @@ A.extend(
 			return iconNode;
 		},
 
+		/**
+		 * Renders the underlying markup for the <a href="Button.html#config_label">label</a>.
+		 *
+		 * @method _renderLabel
+		 * @protected
+		 * @return {Node}
+		 */
 		_renderLabel: function() {
 			var instance = this;
 
@@ -168,6 +344,16 @@ A.extend(
 			return labelNode;
 		},
 
+		/**
+		 * Retrieves the state value from either the current instance, or if defined, the
+		 * parent widget.
+		 *
+		 * @method _getState
+		 * @param {String} key The state name to retrieve
+		 * @param {Object} parent The parent widget to attempt to retrieve the state from
+		 * @protected
+		 * @return {Object}
+		 */
 		_getState: function(key, parent) {
 			var instance = this;
 
@@ -186,6 +372,13 @@ A.extend(
 			return state;
 		},
 
+		/**
+		 * Attaches state interaction management to the widget.
+		 *
+		 * @method _renderStates
+		 * @param {EventFacade} event
+		 * @protected
+		 */
 		_renderStates: function(event) {
 			var instance = this;
 
@@ -207,6 +400,14 @@ A.extend(
 			);
 		},
 
+		/**
+		 * Updates the UI for the icon in response to the <a href="Button.html#event_iconChange">iconChange</a> event.
+		 *
+		 * @method _uiSetIcon
+		 * @param {String} newVal The new value
+		 * @param {String} prevVal The previous value
+		 * @protected
+		 */
 		_uiSetIcon: function(newVal, prevVal) {
 			var instance = this;
 
@@ -233,6 +434,13 @@ A.extend(
 			instance.get('boundingBox').toggleClass(CSS_BUTTON_ICON_LABEL, hasIconAndLabel);
 		},
 
+		/**
+		 * Updates the UI for the label in response to the <a href="Button.html#event_labelChange">labelChange</a> event.
+		 *
+		 * @method _uiSetLabel
+		 * @param {String} newVal The new value
+		 * @protected
+		 */
 		_uiSetLabel: function(newVal) {
 			var instance = this;
 

@@ -1,4 +1,10 @@
 AUI.add('aui-toolbar', function(A) {
+/**
+ * The Toolbar Utility
+ *
+ * @module aui-toolbar
+ */
+
 var Lang = A.Lang,
 	isString = Lang.isString,
 
@@ -14,6 +20,38 @@ var Lang = A.Lang,
 	CSS_TOOLSET = getClassName(NAME),
 
 	TPL_GENERIC = '<span></span>';
+
+	/**
+	 * <p><img src="assets/images/aui-toolbar/main.png"/></p>
+	 *
+	 * A base class for Toolbar, providing:
+	 * <ul>
+	 *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+	 *    <li>The ability to manage multiple <a href="Button.html">Button</a> widgets as one group</li>
+	 *    <li>Managed user interaction states (default, active, hover)</li>
+	 *    <li>Keyboard accessible</li>
+	 * </ul>
+	 *
+	 * Quick Example:<br/>
+	 * 
+	 * <pre><code>var instance = new A.Toolbar({
+	 *	children: [
+	 * 	{icon: 'plus', label: 'Add'},
+	 * 	{icon: 'minus', label: 'Delete'}
+	 * ]
+	 * }).render();
+	 * </code></pre>
+	 *
+	 * Check the list of <a href="Toolbar.html#configattributes">Configuration Attributes</a> available for
+	 * Toolbar.
+	 *
+	 * @param config {Object} Object literal specifying widget configuration properties.
+	 *
+	 * @class Toolbar
+	 * @constructor
+	 * @extends Component
+	 * @uses WidgetParent
+	 */
 
 function Toolbar(config) {
 	Toolbar.superclass.constructor.apply(this, arguments);
@@ -65,6 +103,12 @@ A.extend(Toolbar, A.Component, {
 	BOUNDING_TEMPLATE: TPL_GENERIC,
 	CONTENT_TEMPLATE: TPL_GENERIC,
 
+	/**
+	 * Construction logic executed during Toolbar instantiation. Lifecycle.
+	 *
+	 * @method initializer
+	 * @protected
+	 */
 	initializer: function() {
 		var instance = this;
 
@@ -74,6 +118,13 @@ A.extend(Toolbar, A.Component, {
 	/*
 	* Lifecycle
 	*/
+
+	/**
+	 * Bind the events on the Toolbar UI. Lifecycle.
+	 *
+	 * @method bindUI
+	 * @protected
+	 */
 	bindUI: function() {
 		var instance = this;
 
@@ -83,6 +134,12 @@ A.extend(Toolbar, A.Component, {
 		instance.after('removeChild', instance._afterRemoveButton);
 	},
 
+	/**
+	 * Sync the Toolbar UI. Lifecycle.
+	 *
+	 * @method syncUI
+	 * @protected
+	 */
 	syncUI: function() {
 		var instance = this;
 
@@ -104,6 +161,16 @@ A.extend(Toolbar, A.Component, {
 	* Methods
 	*/
 
+	/**
+	 * Overloads the add method so that if only a string is passed in, it will be
+	 * assumed to be the icon, and will automatically create a configuration
+	 * object for it.
+	 *
+	 * @method _addByIconId
+	 * @param {String} icon the icon name or object or array of objects to add to the toolbar
+	 * @protected
+	 * @return {String}
+	 */
 	_addByIconId: function(icon) {
 		var instance = this;
 
@@ -116,12 +183,26 @@ A.extend(Toolbar, A.Component, {
 		}
 	},
 
+	/**
+	 * Syncs the UI after a button is added.
+	 *
+	 * @method _afterAddButton
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_afterAddButton: function(event) {
 		var instance = this;
 
 		instance.syncUI();
 	},
 
+	/**
+	 * Syncs the UI after a button is removed.
+	 *
+	 * @method _afterRemoveButton
+	 * @param {EventFacade} event
+	 * @protected
+	 */
 	_afterRemoveButton: function(event) {
 		var instance = this;
 
@@ -159,7 +240,6 @@ WidgetParentId.prototype = {
 
 		var id = event.child.get('id');
 
-		// delete instance._CHILD_MAP[id];
 		instance._CHILD_MAP.removeKey(id);
 	},
 
