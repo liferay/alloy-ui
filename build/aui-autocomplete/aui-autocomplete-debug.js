@@ -1732,7 +1732,7 @@ A.extend(
 				field: {
 					labelText: false
 				},
-				tools: [
+				icons: [
 					{
 						icon: 'circle-triangle-b',
 						id: 'trigger',
@@ -1765,7 +1765,7 @@ A.extend(
 			}
 
 			instance.inputNode = comboBox.get('node');
-			instance.button = comboBox.toolset.tools.item('trigger');
+			instance.button = comboBox.icons.item('trigger');
 
 			instance.set('uniqueName', A.stamp(instance.inputNode));
 		},
