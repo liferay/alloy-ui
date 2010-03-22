@@ -115,13 +115,13 @@
 			<fileset dir="${release.temp.dir}/build/" includes="**/aui-*.js"/>
         </replaceregexp>
 
-		<replaceregexp match="combine: ?false," replace="combine:true," flags="g" byline="true">
+		<!-- <replaceregexp match="combine: ?false," replace="combine:true," flags="g" byline="true">
 			<fileset dir="${release.temp.dir}/build/aui-base/" includes="*.js"/>
         </replaceregexp>
 
 		<replaceregexp match="filter: ?'raw'," replace="filter:'min'," flags="g" byline="true">
 			<fileset dir="${release.temp.dir}/build/aui-base/" includes="*.js"/>
-        </replaceregexp>
+        </replaceregexp> -->
 
 		<echo>Creating Zip file ${release.name}.zip</echo>
 
