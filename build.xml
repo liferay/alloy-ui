@@ -100,6 +100,7 @@
 	<target name="release" depends="clean-release">
 		<copy todir="${release.temp.dir}">
 			<fileset dir="${project.dir}">
+				<include name="api/**" />
 				<include name="build/**" />
 				<include name="demos/**" />
 				<include name="lib/yui-combo/**" />
@@ -142,7 +143,7 @@
 		YUI Docs ant tasks
 	-->
 	<property name="project.name" value="Alloy UI" />
-	<property name="project.url" value="http://alloyui.com/api" />
+	<property name="project.url" value="http://alloy.liferay.com/deploy/api" />
 	<property name="project.docs.dir" value="${project.dir}/resources/docs" />
 	<property name="yui.version" location="3.0.0" />
 
