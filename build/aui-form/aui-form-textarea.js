@@ -230,4 +230,4 @@ A.extend(
 
 A.Textarea = Textarea;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-form-textfield']});
+}, '@VERSION@' ,{requires:['aui-form-textfield'], skinnable:true});
