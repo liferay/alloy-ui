@@ -1764,7 +1764,7 @@ A.extend(
 			}
 
 			instance.inputNode = comboBox.get('node');
-			instance.button = comboBox.toolbar.item('trigger');
+			instance.button = comboBox.icons.item('trigger');
 
 			instance.set('uniqueName', A.stamp(instance.inputNode));
 		},
