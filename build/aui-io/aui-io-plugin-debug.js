@@ -33,6 +33,7 @@ var L = A.Lang,
 	NODE = 'node',
 	PARSE_CONTENT = 'parseContent',
 	QUEUE = 'queue',
+	RENDERED = 'rendered',
 	SECTION = 'section',
 	SHOW_LOADING = 'showLoading',
 	SUCCESS = 'success',
@@ -105,7 +106,7 @@ A.mix(IOPlugin, {
 		 */
 		node: {
 			value: null,
-			setter: function(value) {
+			getter: function(value) {
 				var instance = this;
 
 				if (!value) {
@@ -369,6 +370,26 @@ A.extend(IOPlugin, A.IORequest, {
 	},
 
 	/**
+	 * Overload to the <a href="IORequest.html#method_start">IORequest
+     * start</a> method. Check if the <code>host</code> is already rendered,
+     * otherwise wait to after render phase and to show the LoadingMask.
+	 *
+	 * @method start
+	 */
+	start: function() {
+		var instance = this;
+		var host = instance.get(HOST);
+
+		if (!host.get(RENDERED)) {
+			host.after('render', function() {
+				instance._setLoadingUI(true);
+			});
+		}
+
+		IOPlugin.superclass.start.apply(instance, arguments);
+	},
+
+	/**
 	 * Get the appropriated <a
      * href="A.Plugin.IO.html#method_setContent">setContent</a> function
      * implementation for each <a href="A.Plugin.IO.html#config_type">type</a>.
@@ -404,6 +425,26 @@ A.extend(IOPlugin, A.IORequest, {
 		};
 
 		return setters[this.get(TYPE)];
+	},
+
+	/**
+	 * Whether the <code>show</code> is true show the LoadingMask.
+	 *
+	 * @method _setLoadingUI
+	 * @param {boolean} show
+	 * @protected
+	 */
+	_setLoadingUI: function(show) {
+		var instance = this;
+
+		if (instance.get(SHOW_LOADING)) {
+			if (show) {
+				instance.showLoading();
+			}
+			else {
+				instance.hideLoading();
+			}
+		}
 	},
 
 	/**
@@ -462,18 +503,11 @@ A.extend(IOPlugin, A.IORequest, {
 	 */
 	_onActiveChange: function(event) {
 		var instance = this;
+		var host = instance.get(HOST);
+		var widget = instance.get(TYPE) == TYPE_WIDGET;
 
-		var showLoading = instance.get(SHOW_LOADING);
-
-		if (event.newVal) {
-			if (showLoading) {
-				instance.showLoading();
-			}
-		}
-		else {
-			if (showLoading) {
-				instance.hideLoading();
-			}
+		if (!widget || (widget && host && host.get(RENDERED))) {
+			instance._setLoadingUI(event.newVal);
 		}
 	}
 });
