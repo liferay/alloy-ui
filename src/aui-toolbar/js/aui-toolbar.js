@@ -21,8 +21,6 @@ var Lang = A.Lang,
 	TPL_GENERIC = '<span></span>';
 
 	/**
-	 * <p><img src="assets/images/aui-toolbar/main.png"/></p>
-	 *
 	 * A base class for Toolbar, providing:
 	 * <ul>
 	 *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>

@@ -27,8 +27,6 @@ var Lang = A.Lang,
 	TPL_LABEL = '<span class="' + CSS_BUTTON_LABEL + '"></span>';
 
 	/**
-	 * <p><img src="assets/images/aui-button/main.png"/></p>
-	 *
 	 * A base class for Button, providing:
 	 * <ul>
 	 *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
