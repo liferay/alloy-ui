@@ -16,7 +16,7 @@
 <div id="wrapper">
 	<div class="aui-header">
 		<h1>
-			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+			<a class="aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
 		</h1>
 
 		<h3>
@@ -99,6 +99,10 @@
 
 
 				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
 
 
 
@@ -194,7 +198,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+				                                <li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
 
 
 
@@ -2326,12 +2330,12 @@
 		<span class="kd">var</span> <span class="nx">trigger</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TRIGGER</span><span class="p">).</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 		<span class="kd">var</span> <span class="nx">displayBoundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DISPLAY_BOUNDING_BOX</span><span class="p">);</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_buttonItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">ToolItem</span><span class="p">(</span><span class="nx">CALENDAR</span><span class="p">);</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_buttonItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Button</span><span class="p">(</span><span class="nx">CALENDAR</span><span class="p">);</span>
 
 		<span class="nx">displayBoundingBox</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">trigger</span><span class="p">);</span>
 
 		<span class="k">if</span> <span class="p">(</span> <span class="nx">trigger</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_DATEPICKER_BUTTON_WRAPPER</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// use ToolItem if the user doesn&#39;t specify a trigger</span>
+			<span class="c1">// use Button if the user doesn&#39;t specify a trigger</span>
 			<span class="nx">instance</span><span class="p">.</span><span class="nx">_buttonItem</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">trigger</span><span class="p">);</span>
 		<span class="p">}</span>
 	<span class="p">},</span>
@@ -2565,7 +2569,7 @@
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">DatePickerSelect</span> <span class="o">=</span> <span class="nx">DatePickerSelect</span><span class="p">;</span>
 
-<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-calendar-base&#39;</span><span class="p">,</span><span class="s1">&#39;aui-tool-item&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-calendar-base&#39;</span><span class="p">,</span><span class="s1">&#39;aui-button&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
 
 
 <span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-calendar&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">){},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-calendar-base&#39;</span><span class="p">,</span><span class="s1">&#39;aui-calendar-datepicker-select&#39;</span><span class="p">]});</span>

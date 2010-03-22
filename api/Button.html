@@ -2,7 +2,7 @@
 <html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<title>API: aui-tool  ToolItem   (YUI Library)</title>
+	<title>API: aui-button  Button   (YUI Library)</title>
 
 	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
@@ -16,11 +16,11 @@
 <div id="wrapper">
 	<div class="aui-header">
 		<h1>
-			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+			<a class="aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
 		</h1>
 
 		<h3>
-			aui-tool&nbsp; <span class="subtitle">1.0pr</span>
+			aui-button&nbsp; <span class="subtitle">1.0pr</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -28,9 +28,9 @@
 
 	            <span class="separator">&gt;</span>
 
-				<a class="modulename" href="./module_aui-tool.html" title="aui-tool">aui-tool</a>
+				<a class="modulename" href="./module_aui-button.html" title="aui-button">aui-button</a>
 
-	                 <span class="separator">&gt;</span> <span class="classname">ToolItem</span> 
+	                 <span class="separator">&gt;</span> <span class="classname">Button</span> 
 
 	                
 		</p>
@@ -99,6 +99,10 @@
 
 
 				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class="selected"><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
 
 
 
@@ -194,7 +198,7 @@
 
 
 
-				                                <li class="selected"><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+				                                <li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
 
 
 
@@ -497,10 +501,7 @@
 										<ul class="content">
 
 
-				                                <li class="selected"><a href="ToolItem.html" title="ToolItem">ToolItem</a></li>
-
-
-				                                <li class=""><a href="ToolSet.html" title="ToolSet">ToolSet</a></li>
+				                                <li class="selected"><a href="Button.html" title="Button">Button</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -515,8 +516,12 @@
 									<div class="aui-widget-bd aui-list-bd">
 										<ul class="content">
 												<li class=""><a href="#config_activeState" title="activeState">activeState</a></li>
+												<li class=""><a href="#config_classNames" title="classNames">classNames</a></li>
 												<li class=""><a href="#config_defaultState" title="defaultState">defaultState</a></li>
+												<li class=""><a href="#config_handler" title="handler">handler</a></li>
 												<li class=""><a href="#config_hoverState" title="hoverState">hoverState</a></li>
+												<li class=""><a href="#config_icon" title="icon">icon</a></li>
+												<li class=""><a href="#config_label" title="label">label</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -531,11 +536,9 @@
 									<div class="aui-widget-bd aui-list-bd">
 										<ul class="content">
 
-				                                <li class=""><a href="#property_ToolItem.ATTRS" title="ToolItem.ATTRS">ToolItem.ATTRS</a></li>
+				                                <li class=""><a href="#property_Button.ATTRS" title="Button.ATTRS">Button.ATTRS</a></li>
 
-				                                <li class=""><a href="#property_ToolItem.NAME" title="ToolItem.NAME">ToolItem.NAME</a></li>
-
-				                                <li class="protected"><a href="#property_UI_EVENTS" title="UI_EVENTS">UI_EVENTS</a></li>
+				                                <li class=""><a href="#property_Button.NAME" title="Button.NAME">Button.NAME</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -549,12 +552,18 @@
 
 									<div class="aui-widget-bd aui-list-bd">
 										<ul class="content">
-				                               <li class="protected"><a href="#method__afterIconChange" title="_afterIconChange">_afterIconChange</a></li>
+				                               <li class="protected"><a href="#method_" title=""></a></li>
+				                               <li class="protected"><a href="#method__getIconNode" title="_getIconNode">_getIconNode</a></li>
+				                               <li class="protected"><a href="#method__getLabelNode" title="_getLabelNode">_getLabelNode</a></li>
+				                               <li class="protected"><a href="#method__getState" title="_getState">_getState</a></li>
+				                               <li class="protected"><a href="#method__renderIcon" title="_renderIcon">_renderIcon</a></li>
+				                               <li class="protected"><a href="#method__renderLabel" title="_renderLabel">_renderLabel</a></li>
+				                               <li class="protected"><a href="#method__renderStates" title="_renderStates">_renderStates</a></li>
 				                               <li class="protected"><a href="#method__uiSetIcon" title="_uiSetIcon">_uiSetIcon</a></li>
+				                               <li class="protected"><a href="#method__uiSetLabel" title="_uiSetLabel">_uiSetLabel</a></li>
 				                               <li class="protected"><a href="#method_bindUI" title="bindUI">bindUI</a></li>
-				                               <li class="protected"><a href="#method_destroy" title="destroy">destroy</a></li>
-				                               <li class="protected"><a href="#method_initializer" title="initializer">initializer</a></li>
 				                               <li class="protected"><a href="#method_renderUI" title="renderUI">renderUI</a></li>
+				                               <li class="protected"><a href="#method_syncUI" title="syncUI">syncUI</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -569,8 +578,12 @@
 									<div class="aui-widget-bd aui-list-bd">
 										<ul class="content">
 												<li class=""><a href="#event_activeStateChange" title="activeStateChange">activeStateChange</a></li>
+												<li class=""><a href="#event_classNamesChange" title="classNamesChange">classNamesChange</a></li>
 												<li class=""><a href="#event_defaultStateChange" title="defaultStateChange">defaultStateChange</a></li>
+												<li class=""><a href="#event_handlerChange" title="handlerChange">handlerChange</a></li>
 												<li class=""><a href="#event_hoverStateChange" title="hoverStateChange">hoverStateChange</a></li>
+												<li class=""><a href="#event_iconChange" title="iconChange">iconChange</a></li>
+												<li class=""><a href="#event_labelChange" title="labelChange">labelChange</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -587,31 +600,13 @@
 									<ul class="content">
 
 
-			                                <li class=""><a href="aui-tool-debug.js.html" title="aui-tool-debug.js">aui-tool-debug.js</a></li>
+			                                <li class=""><a href="aui-button-debug.js.html" title="aui-button-debug.js">aui-button-debug.js</a></li>
 
 
-			                                <li class=""><a href="aui-tool-item-debug.js.html" title="aui-tool-item-debug.js">aui-tool-item-debug.js</a></li>
+			                                <li class=""><a href="aui-button-min.js.html" title="aui-button-min.js">aui-button-min.js</a></li>
 
 
-			                                <li class=""><a href="aui-tool-item-min.js.html" title="aui-tool-item-min.js">aui-tool-item-min.js</a></li>
-
-
-			                                <li class=""><a href="aui-tool-item.js.html" title="aui-tool-item.js">aui-tool-item.js</a></li>
-
-
-			                                <li class=""><a href="aui-tool-min.js.html" title="aui-tool-min.js">aui-tool-min.js</a></li>
-
-
-			                                <li class=""><a href="aui-tool-set-debug.js.html" title="aui-tool-set-debug.js">aui-tool-set-debug.js</a></li>
-
-
-			                                <li class=""><a href="aui-tool-set-min.js.html" title="aui-tool-set-min.js">aui-tool-set-min.js</a></li>
-
-
-			                                <li class=""><a href="aui-tool-set.js.html" title="aui-tool-set.js">aui-tool-set.js</a></li>
-
-
-			                                <li class=""><a href="aui-tool.js.html" title="aui-tool.js">aui-tool.js</a></li>
+			                                <li class=""><a href="aui-button.js.html" title="aui-button.js">aui-button.js</a></li>
 			                        </ul>
 								</div>
 							</div>
@@ -628,10 +623,20 @@
 
 								
 
-								Class <b property="yui:name">ToolItem</b>
+								Class <b property="yui:name">Button</b>
 
 									<span class="extends">- extends <a href="Component.html" title="Component">Component</a></span>
 
+									<span class="extends" rel="yui:extends">
+										- uses
+
+										
+											<span rel="extend" resource="WidgetChild.html">
+												<a href="WidgetChild.html" property="yui:name" title="WidgetChild">WidgetChild</a>
+												
+											</span>
+										
+									</span>
 							</h2>
 
 							<!-- class tree goes here -->
@@ -639,196 +644,22 @@
 
 
 							<div class="summary description" property="yui:description">
-								<p><img src="assets/images/aui-tool-item/main.png"/></p>
-A base class for ToolItem, providing:
+								<p><img src="assets/images/aui-button/main.png"/></p>
+A base class for Button, providing:
 <ul>
 <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
-<li>Iconic buttons that provide interaction states and event handling</li>
+<li>An optional icon or label</li>
+<li>Managed user interaction states (default, active, hover)</li>
+<li>Keyboard accessible</li>
 </ul>
 Quick Example:<br/>
-<pre><code>var instance = new A.ToolItem({
-icon: 'circle-plus'
+<pre><code>var instance = new A.Button({
+icon: 'gear',
+label: 'Configuration'
 }).render();
 </code></pre>
-<p>List of valid icons:</p>
-<ul>
-<li>carat-1-t</li>
-<li>carat-1-tr</li>
-<li>carat-1-r</li>
-<li>carat-1-br</li>
-<li>carat-1-b</li>
-<li>carat-1-bl</li>
-<li>carat-1-l</li>
-<li>carat-1-tl</li>
-<li>carat-2-t-b</li>
-<li>carat-2-r-l</li>
-<li>triangle-1-t</li>
-<li>triangle-1-tr</li>
-<li>triangle-1-r</li>
-<li>triangle-1-br</li>
-<li>triangle-1-b</li>
-<li>triangle-1-bl</li>
-<li>triangle-1-l</li>
-<li>triangle-1-tl</li>
-<li>triangle-2-t-b</li>
-<li>triangle-2-r-l</li>
-<li>arrow-1-t</li>
-<li>arrow-1-tr</li>
-<li>arrow-1-r</li>
-<li>arrow-1-br</li>
-<li>arrow-1-b</li>
-<li>arrow-1-bl</li>
-<li>arrow-1-l</li>
-<li>arrow-1-tl</li>
-<li>arrow-2-t-b</li>
-<li>arrow-2-tr-bl</li>
-<li>arrow-2-r-l</li>
-<li>arrow-2-br-tl</li>
-<li>arrowstop-1-t</li>
-<li>arrowstop-1-r</li>
-<li>arrowstop-1-b</li>
-<li>arrowstop-1-l</li>
-<li>arrowthick-1-t</li>
-<li>arrowthick-1-tr</li>
-<li>arrowthick-1-r</li>
-<li>arrowthick-1-br</li>
-<li>arrowthick-1-b</li>
-<li>arrowthick-1-bl</li>
-<li>arrowthick-1-l</li>
-<li>arrowthick-1-tl</li>
-<li>arrowthick-2-t-b</li>
-<li>arrowthick-2-tr-bl</li>
-<li>arrowthick-2-r-l</li>
-<li>arrowthick-2-br-tl</li>
-<li>arrowthickstop-1-t</li>
-<li>arrowthickstop-1-r</li>
-<li>arrowthickstop-1-b</li>
-<li>arrowthickstop-1-l</li>
-<li>arrowreturnthick-1-l</li>
-<li>arrowreturnthick-1-t</li>
-<li>arrowreturnthick-1-r</li>
-<li>arrowreturnthick-1-b</li>
-<li>arrowreturn-1-l</li>
-<li>arrowreturn-1-t</li>
-<li>arrowreturn-1-r</li>
-<li>arrowreturn-1-b</li>
-<li>arrowrefresh-1-l</li>
-<li>arrowrefresh-1-t</li>
-<li>arrowrefresh-1-r</li>
-<li>arrowrefresh-1-b</li>
-<li>arrow-4</li>
-<li>arrow-4-diag</li>
-<li>extlink</li>
-<li>newwin</li>
-<li>refresh</li>
-<li>shuffle</li>
-<li>transfer-r-l</li>
-<li>transferthick-r-l</li>
-<li>folder-collapsed</li>
-<li>folder-open</li>
-<li>document</li>
-<li>document-b</li>
-<li>note</li>
-<li>mail-closed</li>
-<li>mail-open</li>
-<li>suitcase</li>
-<li>comment</li>
-<li>person</li>
-<li>print</li>
-<li>trash</li>
-<li>locked</li>
-<li>unlocked</li>
-<li>bookmark</li>
-<li>tag</li>
-<li>home</li>
-<li>flag</li>
-<li>calendar</li>
-<li>cart</li>
-<li>pencil</li>
-<li>clock</li>
-<li>disk</li>
-<li>calculator</li>
-<li>zoomin</li>
-<li>zoomout</li>
-<li>search</li>
-<li>wrench</li>
-<li>gear</li>
-<li>heart</li>
-<li>star</li>
-<li>link</li>
-<li>cancel</li>
-<li>plus</li>
-<li>plusthick</li>
-<li>minus</li>
-<li>minusthick</li>
-<li>close</li>
-<li>closethick</li>
-<li>key</li>
-<li>lightbulb</li>
-<li>scissors</li>
-<li>clipboard</li>
-<li>copy</li>
-<li>contact</li>
-<li>image</li>
-<li>video</li>
-<li>script</li>
-<li>alert</li>
-<li>info</li>
-<li>notice</li>
-<li>help</li>
-<li>check</li>
-<li>bullet</li>
-<li>radio-off</li>
-<li>radio-on</li>
-<li>pin-l</li>
-<li>pin-b</li>
-<li>play</li>
-<li>pause</li>
-<li>seek-next</li>
-<li>seek-prev</li>
-<li>seek-end</li>
-<li>seek-first</li>
-<li>stop</li>
-<li>eject</li>
-<li>volume-off</li>
-<li>volume-on</li>
-<li>power</li>
-<li>signal-diag</li>
-<li>signal</li>
-<li>battery-0</li>
-<li>battery-1</li>
-<li>battery-2</li>
-<li>battery-3</li>
-<li>circle-plus</li>
-<li>circle-minus</li>
-<li>circle-close</li>
-<li>circle-triangle-r</li>
-<li>circle-triangle-b</li>
-<li>circle-triangle-l</li>
-<li>circle-triangle-t</li>
-<li>circle-arrow-r</li>
-<li>circle-arrow-b</li>
-<li>circle-arrow-l</li>
-<li>circle-arrow-t</li>
-<li>circle-zoomin</li>
-<li>circle-zoomout</li>
-<li>circle-check</li>
-<li>circlesmall-plus</li>
-<li>circlesmall-minus</li>
-<li>circlesmall-close</li>
-<li>squaresmall-plus</li>
-<li>squaresmall-minus</li>
-<li>squaresmall-close</li>
-<li>grip-dotted-vertical</li>
-<li>grip-dotted-horizontal</li>
-<li>grip-solid-vertical</li>
-<li>grip-solid-horizontal</li>
-<li>gripsmall-diagonal-br</li>
-<li>grip-diagonal-br</li>
-<li>loading</li>
-</ul>
-Check the list of <a href="ToolItem.html#configattributes">Configuration Attributes</a> available for
-ToolItem.
+Check the list of <a href="Button.html#configattributes">Configuration Attributes</a> available for
+Button.
 							</div>
 
 								<div class="section constructor details" rel="yui:constructor" resource="#constructor">
@@ -836,7 +667,7 @@ ToolItem.
 
 									<div class="content">
 										<div class="detail">
-											<strong property="yui:name">ToolItem</strong>
+											<strong property="yui:name">Button</strong>
 
 											<code>
 												(
@@ -873,17 +704,17 @@ ToolItem.
 
 									<div class="content">
 
-											<div class="api-entry-row property-row " rel="yui:property" resource="#property_ToolItem.ATTRS">
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_Button.ATTRS">
 
 											<h4>
-												<a name="property_ToolItem.ATTRS" property="yui:name">ToolItem.ATTRS</a>
+												<a name="property_Button.ATTRS" property="yui:name">Button.ATTRS</a>
 												- <code>static <span property="yui:type">Object</span></code>
 											</h4>
 
 											<div class="detail">
 												<div class="description" property="yui:description">
 													Static property used to define the default attribute
-configuration for the ToolItem.
+configuration for the Button.
 												</div>
 											</div>
 
@@ -891,33 +722,16 @@ configuration for the ToolItem.
 
 
 											</div>
-											<div class="api-entry-row property-row " rel="yui:property" resource="#property_ToolItem.NAME">
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_Button.NAME">
 
 											<h4>
-												<a name="property_ToolItem.NAME" property="yui:name">ToolItem.NAME</a>
+												<a name="property_Button.NAME" property="yui:name">Button.NAME</a>
 												- <code>static <span property="yui:type">String</span></code>
 											</h4>
 
 											<div class="detail">
 												<div class="description" property="yui:description">
 													Static property provides a string to identify the class.
-												</div>
-											</div>
-
-
-
-
-											</div>
-											<div class="api-entry-row property-row protected" rel="yui:property" resource="#property_UI_EVENTS">
-
-											<h4>
-												<a name="property_UI_EVENTS" property="yui:name">UI_EVENTS</a>
-												- <code>protected <span property="yui:type">Object</span></code>
-											</h4>
-
-											<div class="detail">
-												<div class="description" property="yui:description">
-													UI_EVENTS empty. See <a href="Widget.html">Widget UI_EVENTS</a>.
 												</div>
 											</div>
 
@@ -1034,12 +848,31 @@ configuration for the ToolItem.
 
 													<h4>
 														<a name="config_activeState">activeState</a>
-														<code>- <span property="yui:type">boolean</span></code>
+														<code>- <span property="yui:type">Boolean</span></code>
 													</h4>
 
 													<div class="detail">
 														<div class="description" property="yui:description">
-															Receives an interaction state of active when the user clicks on it.
+															Whether to track the active state of the button.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_classNames">
+
+													<h4>
+														<a name="config_classNames">classNames</a>
+														<code>- <span property="yui:type">Object</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															An object map of the CSS class names to use for the different interaction states.
 														</div>
 													</div>
 
@@ -1050,29 +883,91 @@ configuration for the ToolItem.
 
 													<h4>
 														<a name="config_defaultState">defaultState</a>
-														<code>- <span property="yui:type">boolean</span></code>
+														<code>- <span property="yui:type">Boolean</span></code>
 													</h4>
 
 													<div class="detail">
 														<div class="description" property="yui:description">
-															Receives a default interaction state.
+															Whether to apply the default interaction state to the button
 														</div>
 													</div>
 
 
+													<div class="default">
+														Default Value: <strong>true</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_handler">
+
+													<h4>
+														<a name="config_handler">handler</a>
+														<code>- <span property="yui:type">Function | Object</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															An event callback to handle when a user interacts with the button.
+This can either be a function that will be attached on click, or 
+an object map that accepts the following keys:
+<code>{fn: // The function to execute
+context: // The context to execute the function in
+type: // The type of event to listen for (defaults to "click")
+}</code>
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
 
 												</div>
 												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_hoverState">
 
 													<h4>
 														<a name="config_hoverState">hoverState</a>
-														<code>- <span property="yui:type">boolean</span></code>
+														<code>- <span property="yui:type">Boolean</span></code>
 													</h4>
 
 													<div class="detail">
 														<div class="description" property="yui:description">
-															Receives an interaction state of hover during the
-<code>mouseover</code> event.
+															Whether to track the hover interaction state of the button.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>true</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_icon">
+
+													<h4>
+														<a name="config_icon">icon</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The icon to use inside of the button. Possible values are:
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_label">
+
+													<h4>
+														<a name="config_label">label</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Text to use inside of the button.
 														</div>
 													</div>
 
@@ -1250,10 +1145,10 @@ configuration for the ToolItem.
 										<div class="content">
 
 
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterIconChange">
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_">
 
 													<h4>
-														<a name="method__afterIconChange">_afterIconChange</a>
+														<a name="method_"></a>
 													</h4>
 
 													<div class="detail">
@@ -1262,7 +1157,7 @@ configuration for the ToolItem.
 														
 														
 														void
-															<strong property="yui:name">_afterIconChange</strong>
+															<strong property="yui:name"></strong>
 														   (
 																
 																		
@@ -1274,7 +1169,240 @@ configuration for the ToolItem.
 
 														<div class="description" property="yui:description">
 															Fires after the value of the
-<a href="ToolItem.html#config_icon">icon</a> attribute change.
+<a href="Button.html#config_icon">icon</a> attribute change.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__getIconNode">
+
+													<h4>
+														<a name="method__getIconNode">_getIconNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														Node
+															<strong property="yui:name">_getIconNode</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Get's a reference to the private icon node, or if not created,
+renders its and returns it.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__getLabelNode">
+
+													<h4>
+														<a name="method__getLabelNode">_getLabelNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														Node
+															<strong property="yui:name">_getLabelNode</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Get's a reference to the private label node, or if not created,
+renders its and returns it.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__getState">
+
+													<h4>
+														<a name="method__getState">_getState</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														Object
+															<strong property="yui:name">_getState</strong>
+														   (
+																
+																		
+																		 key
+																	
+																
+																		, 
+																		 parent
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Retrieves the state value from either the current instance, or if defined, the
+parent widget.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">key</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The state name to retrieve</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">parent</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> The parent widget to attempt to retrieve the state from</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__renderIcon">
+
+													<h4>
+														<a name="method__renderIcon">_renderIcon</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														Node
+															<strong property="yui:name">_renderIcon</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Renders the underlying markup for the <a href="Button.html#config_icon">icon</a>.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__renderLabel">
+
+													<h4>
+														<a name="method__renderLabel">_renderLabel</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														Node
+															<strong property="yui:name">_renderLabel</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Renders the underlying markup for the <a href="Button.html#config_label">label</a>.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__renderStates">
+
+													<h4>
+														<a name="method__renderStates">_renderStates</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_renderStates</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Attaches state interaction management to the widget.
 														</div>
 
 														<div class="description">
@@ -1313,15 +1441,18 @@ configuration for the ToolItem.
 														   (
 																
 																		
-																		 name
+																		 newVal
+																	
+																
+																		, 
+																		 prevVal
 																	
 																
 															)
 														</code>
 
 														<div class="description" property="yui:description">
-															Sets the icon <a href="ToolItem.html#assets_cssClasses">class
-name</a> on the <code>contentBox</code>.
+															Updates the UI for the icon in response to the <a href="Button.html#event_iconChange">iconChange</a> event.
 														</div>
 
 														<div class="description">
@@ -1329,10 +1460,62 @@ name</a> on the <code>contentBox</code>.
 																<dl rel="yui:parameters">
 																	<dt>Parameters:</dt>
 																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">name</span>
-																		&lt;<span property="yui:type">Type</span>&gt;
+																		<code><span property="yui:name">newVal</span>
+																		&lt;<span property="yui:type">String</span>&gt;
 																		</code>
-																		<span property="yui:description"> description</span>
+																		<span property="yui:description"> The new value</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">prevVal</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The previous value</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__uiSetLabel">
+
+													<h4>
+														<a name="method__uiSetLabel">_uiSetLabel</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_uiSetLabel</strong>
+														   (
+																
+																		
+																		 newVal
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Updates the UI for the label in response to the <a href="Button.html#event_labelChange">labelChange</a> event.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">newVal</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The new value</span>
 																		</dd>
 																</dl>
 
@@ -1362,72 +1545,7 @@ name</a> on the <code>contentBox</code>.
 														</code>
 
 														<div class="description" property="yui:description">
-															Bind the events on the ToolItem UI. Lifecycle.
-														</div>
-
-														<div class="description">
-
-
-
-
-
-
-														</div>
-													</div>
-												</div>
-
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_destroy">
-
-													<h4>
-														<a name="method_destroy">destroy</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														 protected 
-														
-														
-														void
-															<strong property="yui:name">destroy</strong>
-														   (
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Descructor lifecycle implementation for the ToolItem class.
-Purges events attached to the node (and all child nodes).
-														</div>
-
-														<div class="description">
-
-
-
-
-
-
-														</div>
-													</div>
-												</div>
-
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_initializer">
-
-													<h4>
-														<a name="method_initializer">initializer</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														 protected 
-														
-														
-														void
-															<strong property="yui:name">initializer</strong>
-														   (
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Construction logic executed during ToolItem instantiation. Lifecycle.
+															Bind the events on the Button UI. Lifecycle.
 														</div>
 
 														<div class="description">
@@ -1459,7 +1577,39 @@ Purges events attached to the node (and all child nodes).
 														</code>
 
 														<div class="description" property="yui:description">
-															Create the DOM structure for the ToolItem. Lifecycle.
+															Create the DOM structure for the Button. Lifecycle.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_syncUI">
+
+													<h4>
+														<a name="method_syncUI">syncUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">syncUI</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sync the Button UI. Lifecycle.
 														</div>
 
 														<div class="description">
@@ -2180,6 +2330,48 @@ Purges events attached to the node (and all child nodes).
 														</div>
 													</div>
 												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_classNamesChange">
+
+													<h4>
+														<a name="event_classNamesChange">classNamesChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">classNamesChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'classNames' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
 												<div class="api-entry-row event-row " rel="yui:event" resource="#event_defaultStateChange">
 
 													<h4>
@@ -2222,6 +2414,48 @@ Purges events attached to the node (and all child nodes).
 														</div>
 													</div>
 												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_handlerChange">
+
+													<h4>
+														<a name="event_handlerChange">handlerChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">handlerChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'handler' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
 												<div class="api-entry-row event-row " rel="yui:event" resource="#event_hoverStateChange">
 
 													<h4>
@@ -2247,6 +2481,90 @@ Purges events attached to the node (and all child nodes).
 
 														<div class="description" property="yui:description">
 															Fires when the value for the configuration attribute 'hoverState' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_iconChange">
+
+													<h4>
+														<a name="event_iconChange">iconChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">iconChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'icon' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_labelChange">
+
+													<h4>
+														<a name="event_labelChange">labelChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">labelChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'label' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
 														</div>
 
 														<div class="description">
@@ -2463,7 +2781,7 @@ Purges events attached to the node (and all child nodes).
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "ToolItem.html#config_activeState", "access": "", "host": "ToolItem", "type": "config", "name": "activeState"}, {"url": "ToolItem.html#event_activeStateChange", "access": "", "host": "ToolItem", "type": "event", "name": "activeStateChange"}, {"url": "ToolItem.html#method__afterIconChange", "access": "protected", "host": "ToolItem", "type": "method", "name": "_afterIconChange"}, {"url": "ToolItem.html#method_bindUI", "access": "protected", "host": "ToolItem", "type": "method", "name": "bindUI"}, {"url": "ToolItem.html#config_defaultState", "access": "", "host": "ToolItem", "type": "config", "name": "defaultState"}, {"url": "ToolItem.html#event_defaultStateChange", "access": "", "host": "ToolItem", "type": "event", "name": "defaultStateChange"}, {"url": "ToolItem.html#method_destroy", "access": "protected", "host": "ToolItem", "type": "method", "name": "destroy"}, {"url": "ToolItem.html#config_hoverState", "access": "", "host": "ToolItem", "type": "config", "name": "hoverState"}, {"url": "ToolItem.html#event_hoverStateChange", "access": "", "host": "ToolItem", "type": "event", "name": "hoverStateChange"}, {"url": "ToolItem.html#method_initializer", "access": "protected", "host": "ToolItem", "type": "method", "name": "initializer"}, {"url": "ToolItem.html#method_renderUI", "access": "protected", "host": "ToolItem", "type": "method", "name": "renderUI"}, {"url": "ToolItem.html#property_ToolItem.ATTRS", "access": "", "host": "ToolItem", "type": "property", "name": "ToolItem.ATTRS"}, {"url": "ToolItem.html#property_ToolItem.NAME", "access": "", "host": "ToolItem", "type": "property", "name": "ToolItem.NAME"}, {"url": "ToolItem.html#property_UI_EVENTS", "access": "protected", "host": "ToolItem", "type": "property", "name": "UI_EVENTS"}, {"url": "ToolItem.html#method__uiSetIcon", "access": "protected", "host": "ToolItem", "type": "method", "name": "_uiSetIcon"}];
+    var ALL_YUI_PROPS = [{"url": "Button.html#method_", "access": "protected", "host": "Button", "type": "method", "name": ""}, {"url": "Button.html#config_activeState", "access": "", "host": "Button", "type": "config", "name": "activeState"}, {"url": "Button.html#event_activeStateChange", "access": "", "host": "Button", "type": "event", "name": "activeStateChange"}, {"url": "Button.html#method_bindUI", "access": "protected", "host": "Button", "type": "method", "name": "bindUI"}, {"url": "Button.html#property_Button.ATTRS", "access": "", "host": "Button", "type": "property", "name": "Button.ATTRS"}, {"url": "Button.html#property_Button.NAME", "access": "", "host": "Button", "type": "property", "name": "Button.NAME"}, {"url": "Button.html#config_classNames", "access": "", "host": "Button", "type": "config", "name": "classNames"}, {"url": "Button.html#event_classNamesChange", "access": "", "host": "Button", "type": "event", "name": "classNamesChange"}, {"url": "Button.html#config_defaultState", "access": "", "host": "Button", "type": "config", "name": "defaultState"}, {"url": "Button.html#event_defaultStateChange", "access": "", "host": "Button", "type": "event", "name": "defaultStateChange"}, {"url": "Button.html#method__getIconNode", "access": "protected", "host": "Button", "type": "method", "name": "_getIconNode"}, {"url": "Button.html#method__getLabelNode", "access": "protected", "host": "Button", "type": "method", "name": "_getLabelNode"}, {"url": "Button.html#method__getState", "access": "protected", "host": "Button", "type": "method", "name": "_getState"}, {"url": "Button.html#config_handler", "access": "", "host": "Button", "type": "config", "name": "handler"}, {"url": "Button.html#event_handlerChange", "access": "", "host": "Button", "type": "event", "name": "handlerChange"}, {"url": "Button.html#config_hoverState", "access": "", "host": "Button", "type": "config", "name": "hoverState"}, {"url": "Button.html#event_hoverStateChange", "access": "", "host": "Button", "type": "event", "name": "hoverStateChange"}, {"url": "Button.html#config_icon", "access": "", "host": "Button", "type": "config", "name": "icon"}, {"url": "Button.html#event_iconChange", "access": "", "host": "Button", "type": "event", "name": "iconChange"}, {"url": "Button.html#config_label", "access": "", "host": "Button", "type": "config", "name": "label"}, {"url": "Button.html#event_labelChange", "access": "", "host": "Button", "type": "event", "name": "labelChange"}, {"url": "Button.html#method__renderIcon", "access": "protected", "host": "Button", "type": "method", "name": "_renderIcon"}, {"url": "Button.html#method__renderLabel", "access": "protected", "host": "Button", "type": "method", "name": "_renderLabel"}, {"url": "Button.html#method__renderStates", "access": "protected", "host": "Button", "type": "method", "name": "_renderStates"}, {"url": "Button.html#method_renderUI", "access": "protected", "host": "Button", "type": "method", "name": "renderUI"}, {"url": "Button.html#method_syncUI", "access": "protected", "host": "Button", "type": "method", "name": "syncUI"}, {"url": "Button.html#method__uiSetIcon", "access": "protected", "host": "Button", "type": "method", "name": "_uiSetIcon"}, {"url": "Button.html#method__uiSetLabel", "access": "protected", "host": "Button", "type": "method", "name": "_uiSetLabel"}];
 </script>
 </body>
 </html>

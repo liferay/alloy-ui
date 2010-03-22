@@ -2,7 +2,7 @@
 <html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<title>API: aui-tool  ToolSet   (YUI Library)</title>
+	<title>API: aui-toolbar  Toolbar   (YUI Library)</title>
 
 	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
@@ -16,11 +16,11 @@
 <div id="wrapper">
 	<div class="aui-header">
 		<h1>
-			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+			<a class="aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
 		</h1>
 
 		<h3>
-			aui-tool&nbsp; <span class="subtitle">1.0pr</span>
+			aui-toolbar&nbsp; <span class="subtitle">1.0pr</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -28,9 +28,9 @@
 
 	            <span class="separator">&gt;</span>
 
-				<a class="modulename" href="./module_aui-tool.html" title="aui-tool">aui-tool</a>
+				<a class="modulename" href="./module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a>
 
-	                 <span class="separator">&gt;</span> <span class="classname">ToolSet</span> 
+	                 <span class="separator">&gt;</span> <span class="classname">Toolbar</span> 
 
 	                
 		</p>
@@ -99,6 +99,10 @@
 
 
 				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
 
 
 
@@ -194,7 +198,7 @@
 
 
 
-				                                <li class="selected"><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+				                                <li class="selected"><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
 
 
 
@@ -497,10 +501,7 @@
 										<ul class="content">
 
 
-				                                <li class=""><a href="ToolItem.html" title="ToolItem">ToolItem</a></li>
-
-
-				                                <li class="selected"><a href="ToolSet.html" title="ToolSet">ToolSet</a></li>
+				                                <li class="selected"><a href="Toolbar.html" title="Toolbar">Toolbar</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -515,30 +516,14 @@
 									<div class="aui-widget-bd aui-list-bd">
 										<ul class="content">
 												<li class=""><a href="#config_activeState" title="activeState">activeState</a></li>
+												<li class=""><a href="#config_defaultChildType" title="defaultChildType">defaultChildType</a></li>
 												<li class=""><a href="#config_defaultState" title="defaultState">defaultState</a></li>
 												<li class=""><a href="#config_hoverState" title="hoverState">hoverState</a></li>
-												<li class=""><a href="#config_tools" title="tools">tools</a></li>
 				                        </ul>
 									</div>
 								</div>
 							</div>
 
-							<div class="aui-widget aui-list aui-list-properties">
-								<div class="aui-widget-content">
-									<div class="aui-widget-hd aui-list-hd aui-list-properties-hd">
-										<span class="aui-widget-hd-text">Properties</span>
-									</div>
-
-									<div class="aui-widget-bd aui-list-bd">
-										<ul class="content">
-
-				                                <li class=""><a href="#property_ToolSet.ATTRS" title="ToolSet.ATTRS">ToolSet.ATTRS</a></li>
-
-				                                <li class=""><a href="#property_ToolSet.NAME" title="ToolSet.NAME">ToolSet.NAME</a></li>
-				                        </ul>
-									</div>
-								</div>
-							</div>
 
 							<div class="aui-widget aui-list aui-list-methods">
 								<div class="aui-widget-content">
@@ -548,14 +533,11 @@
 
 									<div class="aui-widget-bd aui-list-bd">
 										<ul class="content">
-				                               <li class="protected"><a href="#method__afterAddToolItem" title="_afterAddToolItem">_afterAddToolItem</a></li>
-				                               <li class="protected"><a href="#method__afterRemoveToolItem" title="_afterRemoveToolItem">_afterRemoveToolItem</a></li>
-				                               <li class="protected"><a href="#method__createToolItem" title="_createToolItem">_createToolItem</a></li>
-				                               <li class=""><a href="#method_add" title="add">add</a></li>
+				                               <li class="protected"><a href="#method__addByIconId" title="_addByIconId">_addByIconId</a></li>
+				                               <li class="protected"><a href="#method__afterAddButton" title="_afterAddButton">_afterAddButton</a></li>
+				                               <li class="protected"><a href="#method__afterRemoveButton" title="_afterRemoveButton">_afterRemoveButton</a></li>
+				                               <li class="protected"><a href="#method_bindUI" title="bindUI">bindUI</a></li>
 				                               <li class="protected"><a href="#method_initializer" title="initializer">initializer</a></li>
-				                               <li class=""><a href="#method_item" title="item">item</a></li>
-				                               <li class=""><a href="#method_remove" title="remove">remove</a></li>
-				                               <li class="protected"><a href="#method_renderUI" title="renderUI">renderUI</a></li>
 				                               <li class="protected"><a href="#method_syncUI" title="syncUI">syncUI</a></li>
 				                        </ul>
 									</div>
@@ -571,9 +553,9 @@
 									<div class="aui-widget-bd aui-list-bd">
 										<ul class="content">
 												<li class=""><a href="#event_activeStateChange" title="activeStateChange">activeStateChange</a></li>
+												<li class=""><a href="#event_defaultChildTypeChange" title="defaultChildTypeChange">defaultChildTypeChange</a></li>
 												<li class=""><a href="#event_defaultStateChange" title="defaultStateChange">defaultStateChange</a></li>
 												<li class=""><a href="#event_hoverStateChange" title="hoverStateChange">hoverStateChange</a></li>
-												<li class=""><a href="#event_toolsChange" title="toolsChange">toolsChange</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -590,31 +572,13 @@
 									<ul class="content">
 
 
-			                                <li class=""><a href="aui-tool-debug.js.html" title="aui-tool-debug.js">aui-tool-debug.js</a></li>
+			                                <li class=""><a href="aui-toolbar-debug.js.html" title="aui-toolbar-debug.js">aui-toolbar-debug.js</a></li>
 
 
-			                                <li class=""><a href="aui-tool-item-debug.js.html" title="aui-tool-item-debug.js">aui-tool-item-debug.js</a></li>
+			                                <li class=""><a href="aui-toolbar-min.js.html" title="aui-toolbar-min.js">aui-toolbar-min.js</a></li>
 
 
-			                                <li class=""><a href="aui-tool-item-min.js.html" title="aui-tool-item-min.js">aui-tool-item-min.js</a></li>
-
-
-			                                <li class=""><a href="aui-tool-item.js.html" title="aui-tool-item.js">aui-tool-item.js</a></li>
-
-
-			                                <li class=""><a href="aui-tool-min.js.html" title="aui-tool-min.js">aui-tool-min.js</a></li>
-
-
-			                                <li class=""><a href="aui-tool-set-debug.js.html" title="aui-tool-set-debug.js">aui-tool-set-debug.js</a></li>
-
-
-			                                <li class=""><a href="aui-tool-set-min.js.html" title="aui-tool-set-min.js">aui-tool-set-min.js</a></li>
-
-
-			                                <li class=""><a href="aui-tool-set.js.html" title="aui-tool-set.js">aui-tool-set.js</a></li>
-
-
-			                                <li class=""><a href="aui-tool.js.html" title="aui-tool.js">aui-tool.js</a></li>
+			                                <li class=""><a href="aui-toolbar.js.html" title="aui-toolbar.js">aui-toolbar.js</a></li>
 			                        </ul>
 								</div>
 							</div>
@@ -631,10 +595,20 @@
 
 								
 
-								Class <b property="yui:name">ToolSet</b>
+								Class <b property="yui:name">Toolbar</b>
 
 									<span class="extends">- extends <a href="Component.html" title="Component">Component</a></span>
 
+									<span class="extends" rel="yui:extends">
+										- uses
+
+										
+											<span rel="extend" resource="WidgetParent.html">
+												<a href="WidgetParent.html" property="yui:name" title="WidgetParent">WidgetParent</a>
+												
+											</span>
+										
+									</span>
 							</h2>
 
 							<!-- class tree goes here -->
@@ -642,28 +616,24 @@
 
 
 							<div class="summary description" property="yui:description">
-								<p><img src="assets/images/aui-tool-set/main.png"/></p>
-A base class for ToolSet, providing:
+								<p><img src="assets/images/aui-toolbar/main.png"/></p>
+A base class for Toolbar, providing:
 <ul>
 <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
-<li>Managed collection for <a href="ToolItems.html">ToolItems</a></li>
+<li>The ability to manage multiple <a href="Button.html">Button</a> widgets as one group</li>
+<li>Managed user interaction states (default, active, hover)</li>
+<li>Keyboard accessible</li>
 </ul>
 Quick Example:<br/>
-<pre><code>var instance = new A.ToolSet({
-tools: [
-{
-id: 'close',
-icon: 'close'
-},
-{
-id: 'expand',
-icon: 'plus'
-}
+<pre><code>var instance = new A.Toolbar({
+children: [
+{icon: 'plus', label: 'Add'},
+{icon: 'minus', label: 'Delete'}
 ]
 }).render();
 </code></pre>
-Check the list of <a href="ToolSet.html#configattributes">Configuration Attributes</a> available for
-ToolSet.
+Check the list of <a href="Toolbar.html#configattributes">Configuration Attributes</a> available for
+Toolbar.
 							</div>
 
 								<div class="section constructor details" rel="yui:constructor" resource="#constructor">
@@ -671,7 +641,7 @@ ToolSet.
 
 									<div class="content">
 										<div class="detail">
-											<strong property="yui:name">ToolSet</strong>
+											<strong property="yui:name">Toolbar</strong>
 
 											<code>
 												(
@@ -702,51 +672,27 @@ ToolSet.
 
 							<div rel="yui:properties" resource="#properties">
 
-								<div class="section field details">
-
-									<h3 id="properties">Properties</h3>
-
-									<div class="content">
-
-											<div class="api-entry-row property-row " rel="yui:property" resource="#property_ToolSet.ATTRS">
-
-											<h4>
-												<a name="property_ToolSet.ATTRS" property="yui:name">ToolSet.ATTRS</a>
-												- <code>static <span property="yui:type">Object</span></code>
-											</h4>
-
-											<div class="detail">
-												<div class="description" property="yui:description">
-													Static property used to define the default attribute
-configuration for the ToolSet.
-												</div>
-											</div>
-
-
-
-
-											</div>
-											<div class="api-entry-row property-row " rel="yui:property" resource="#property_ToolSet.NAME">
-
-											<h4>
-												<a name="property_ToolSet.NAME" property="yui:name">ToolSet.NAME</a>
-												- <code>static <span property="yui:type">String</span></code>
-											</h4>
-
-											<div class="detail">
-												<div class="description" property="yui:description">
-													Static property provides a string to identify the class.
-												</div>
-											</div>
-
-
-
-
-											</div>
-									</div>
-								</div>
 
 								<div rel="yui:inheritance">
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="WidgetParent.html">
+
+										<h4>
+											Properties inherited from <a href="WidgetParent.html" property="yui:name" title="WidgetParent">WidgetParent</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+
+													
+
+													<div class="protected" rel="yui:property" resource="WidgetParent.html#property__childrenContainer">
+													<a href="WidgetParent.html#property__childrenContainer" property="yui:name" title="_childrenContainer">_childrenContainer</a>
+													</div>
+												
+											</code>
+										</div>
+									</div>
 									<div class="section field inheritance properties" rel="yui:superclass"  resource="Attribute.html">
 
 										<h4>
@@ -864,6 +810,25 @@ configuration for the ToolSet.
 
 
 												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_defaultChildType">
+
+													<h4>
+														<a name="config_defaultChildType">defaultChildType</a>
+														<code>- <span property="yui:type">String | Object</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The default type of child widget to render into the Element
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Button</strong>
+													</div>
+
+												</div>
 												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_defaultState">
 
 													<h4>
@@ -897,31 +862,45 @@ configuration for the ToolSet.
 
 
 												</div>
-												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_tools">
-
-													<h4>
-														<a name="config_tools">tools</a>
-														<code>- <span property="yui:type">Array</span></code>
-													</h4>
-
-													<div class="detail">
-														<div class="description" property="yui:description">
-															Array of <a href="ToolItem.html">ToolItem</a> elements to render when
-the ToolSet renders.
-														</div>
-													</div>
-
-
-													<div class="default">
-														Default Value: <strong>[]</strong>
-													</div>
-
-												</div>
 
 										</div>
 									</div>
 
 									<div rel="yui:inheritance">
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="WidgetParent.html">
+												<h4>Configuration attributes inherited from <a href="WidgetParent.html" property="yui:name" title="WidgetParent">WidgetParent</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="WidgetParent.html#config_activeDescendant">
+															<a href="WidgetParent.html#config_activeDescendant" property="yui:name" title="activeDescendant">activeDescendant</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="WidgetParent.html#config_defaultChildType">
+															<a href="WidgetParent.html#config_defaultChildType" property="yui:name" title="defaultChildType">defaultChildType</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="WidgetParent.html#config_multiple">
+															<a href="WidgetParent.html#config_multiple" property="yui:name" title="multiple">multiple</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="WidgetParent.html#config_selection">
+															<a href="WidgetParent.html#config_selection" property="yui:name" title="selection">selection</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
 
 
 											<div class="section field inheritance configuration" rel="yui:superclass"  resource="Widget.html">
@@ -1088,10 +1067,58 @@ the ToolSet renders.
 										<div class="content">
 
 
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterAddToolItem">
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__addByIconId">
 
 													<h4>
-														<a name="method__afterAddToolItem">_afterAddToolItem</a>
+														<a name="method__addByIconId">_addByIconId</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														String
+															<strong property="yui:name">_addByIconId</strong>
+														   (
+																
+																		
+																		 icon
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Overloads the add method so that if only a string is passed in, it will be
+assumed to be the icon, and will automatically create a configuration
+object for it.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">icon</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> the icon name or object or array of objects to add to the toolbar</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterAddButton">
+
+													<h4>
+														<a name="method__afterAddButton">_afterAddButton</a>
 													</h4>
 
 													<div class="detail">
@@ -1100,7 +1127,7 @@ the ToolSet renders.
 														
 														
 														void
-															<strong property="yui:name">_afterAddToolItem</strong>
+															<strong property="yui:name">_afterAddButton</strong>
 														   (
 																
 																		
@@ -1111,7 +1138,7 @@ the ToolSet renders.
 														</code>
 
 														<div class="description" property="yui:description">
-															Fires after add a <a href="ToolItem.html">ToolItem</a>.
+															Syncs the UI after a button is added.
 														</div>
 
 														<div class="description">
@@ -1134,10 +1161,10 @@ the ToolSet renders.
 													</div>
 												</div>
 
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterRemoveToolItem">
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterRemoveButton">
 
 													<h4>
-														<a name="method__afterRemoveToolItem">_afterRemoveToolItem</a>
+														<a name="method__afterRemoveButton">_afterRemoveButton</a>
 													</h4>
 
 													<div class="detail">
@@ -1146,7 +1173,7 @@ the ToolSet renders.
 														
 														
 														void
-															<strong property="yui:name">_afterRemoveToolItem</strong>
+															<strong property="yui:name">_afterRemoveButton</strong>
 														   (
 																
 																		
@@ -1157,7 +1184,7 @@ the ToolSet renders.
 														</code>
 
 														<div class="description" property="yui:description">
-															Fires after remove a <a href="ToolItem.html">ToolItem</a>.
+															Syncs the UI after a button is removed.
 														</div>
 
 														<div class="description">
@@ -1180,10 +1207,10 @@ the ToolSet renders.
 													</div>
 												</div>
 
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__createToolItem">
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_bindUI">
 
 													<h4>
-														<a name="method__createToolItem">_createToolItem</a>
+														<a name="method_bindUI">bindUI</a>
 													</h4>
 
 													<div class="detail">
@@ -1191,78 +1218,18 @@ the ToolSet renders.
 														 protected 
 														
 														
-														ToolItem
-															<strong property="yui:name">_createToolItem</strong>
-														   (
-																
-																		
-																		 toolItem
-																	
-																
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Create a new <a href="ToolItem.html">ToolItem</a>.
-														</div>
-
-														<div class="description">
-
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">toolItem</span>
-																		&lt;<span property="yui:type">Object</span>&gt;
-																		</code>
-																		<span property="yui:description"></span>
-																		</dd>
-																</dl>
-
-
-
-
-
-														</div>
-													</div>
-												</div>
-
-												<div class="api-entry-row method-row " rel="yui:method" resource="#method_add">
-
-													<h4>
-														<a name="method_add">add</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														
-														
-														
 														void
-															<strong property="yui:name">add</strong>
+															<strong property="yui:name">bindUI</strong>
 														   (
-																
-																		
-																		 toolItem
-																	
-																
 															)
 														</code>
 
 														<div class="description" property="yui:description">
-															Add a <a href="ToolItem.html">ToolItem</a> to this ToolSet.
+															Bind the events on the Toolbar UI. Lifecycle.
 														</div>
 
 														<div class="description">
 
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">toolItem</span>
-																		&lt;<span property="yui:type">Object</span>&gt;
-																		</code>
-																		<span property="yui:description"></span>
-																		</dd>
-																</dl>
 
 
 
@@ -1290,131 +1257,7 @@ the ToolSet renders.
 														</code>
 
 														<div class="description" property="yui:description">
-															Construction logic executed during ToolSet instantiation. Lifecycle.
-														</div>
-
-														<div class="description">
-
-
-
-
-
-
-														</div>
-													</div>
-												</div>
-
-												<div class="api-entry-row method-row " rel="yui:method" resource="#method_item">
-
-													<h4>
-														<a name="method_item">item</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														
-														
-														
-														void
-															<strong property="yui:name">item</strong>
-														   (
-																
-																		
-																		 key
-																	
-																
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Get a <a href="ToolItem.html">ToolItem</a> by its <code>key</code>.
-														</div>
-
-														<div class="description">
-
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">key</span>
-																		&lt;<span property="yui:type">String</span>&gt;
-																		</code>
-																		<span property="yui:description"></span>
-																		</dd>
-																</dl>
-
-
-
-
-
-														</div>
-													</div>
-												</div>
-
-												<div class="api-entry-row method-row " rel="yui:method" resource="#method_remove">
-
-													<h4>
-														<a name="method_remove">remove</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														
-														
-														
-														void
-															<strong property="yui:name">remove</strong>
-														   (
-																
-																		
-																		 item
-																	
-																
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Remove a <a href="ToolItem.html">ToolItem</a> from this ToolSet.
-														</div>
-
-														<div class="description">
-
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">item</span>
-																		&lt;<span property="yui:type">Object</span>&gt;
-																		</code>
-																		<span property="yui:description"></span>
-																		</dd>
-																</dl>
-
-
-
-
-
-														</div>
-													</div>
-												</div>
-
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_renderUI">
-
-													<h4>
-														<a name="method_renderUI">renderUI</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														 protected 
-														
-														
-														void
-															<strong property="yui:name">renderUI</strong>
-														   (
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Create the DOM structure for the ToolSet. Lifecycle.
+															Construction logic executed during Toolbar instantiation. Lifecycle.
 														</div>
 
 														<div class="description">
@@ -1446,7 +1289,7 @@ the ToolSet renders.
 														</code>
 
 														<div class="description" property="yui:description">
-															Sync the ToolSet UI. Lifecycle.
+															Sync the Toolbar UI. Lifecycle.
 														</div>
 
 														<div class="description">
@@ -1491,6 +1334,150 @@ the ToolSet renders.
 
 														<div class="" rel="yui:method" resource="Plugin.Host.html#method_unplug">
 														<a href="Plugin.Host.html#method_unplug" property="yui:name" title="unplug">unplug</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="WidgetParent.html">
+
+											<h4>
+												Methods inherited from <a href="WidgetParent.html" property="yui:name" title="WidgetParent">WidgetParent</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="WidgetParent.html#method__add">
+														<a href="WidgetParent.html#method__add" property="yui:name" title="_add">_add</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="WidgetParent.html#method__afterActiveDescendantChange">
+														<a href="WidgetParent.html#method__afterActiveDescendantChange" property="yui:name" title="_afterActiveDescendantChange">_afterActiveDescendantChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="WidgetParent.html#method__afterDestroyChild">
+														<a href="WidgetParent.html#method__afterDestroyChild" property="yui:name" title="_afterDestroyChild">_afterDestroyChild</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="WidgetParent.html#method__afterParentSelectedChange">
+														<a href="WidgetParent.html#method__afterParentSelectedChange" property="yui:name" title="_afterParentSelectedChange">_afterParentSelectedChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="WidgetParent.html#method__afterSelectionChange">
+														<a href="WidgetParent.html#method__afterSelectionChange" property="yui:name" title="_afterSelectionChange">_afterSelectionChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="WidgetParent.html#method__bindUIParent">
+														<a href="WidgetParent.html#method__bindUIParent" property="yui:name" title="_bindUIParent">_bindUIParent</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="WidgetParent.html#method__createChild">
+														<a href="WidgetParent.html#method__createChild" property="yui:name" title="_createChild">_createChild</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="WidgetParent.html#method__defAddChildFn">
+														<a href="WidgetParent.html#method__defAddChildFn" property="yui:name" title="_defAddChildFn">_defAddChildFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="WidgetParent.html#method__defRemoveChildFn">
+														<a href="WidgetParent.html#method__defRemoveChildFn" property="yui:name" title="_defRemoveChildFn">_defRemoveChildFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="WidgetParent.html#method__destroyChildren">
+														<a href="WidgetParent.html#method__destroyChildren" property="yui:name" title="_destroyChildren">_destroyChildren</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="WidgetParent.html#method__renderChildren">
+														<a href="WidgetParent.html#method__renderChildren" property="yui:name" title="_renderChildren">_renderChildren</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="WidgetParent.html#method__setSelection">
+														<a href="WidgetParent.html#method__setSelection" property="yui:name" title="_setSelection">_setSelection</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="WidgetParent.html#method__uiAddChild">
+														<a href="WidgetParent.html#method__uiAddChild" property="yui:name" title="_uiAddChild">_uiAddChild</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="WidgetParent.html#method__uiRemoveChild">
+														<a href="WidgetParent.html#method__uiRemoveChild" property="yui:name" title="_uiRemoveChild">_uiRemoveChild</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="WidgetParent.html#method__updateActiveDescendant">
+														<a href="WidgetParent.html#method__updateActiveDescendant" property="yui:name" title="_updateActiveDescendant">_updateActiveDescendant</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="WidgetParent.html#method__updateSelection">
+														<a href="WidgetParent.html#method__updateSelection" property="yui:name" title="_updateSelection">_updateSelection</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="WidgetParent.html#method_add">
+														<a href="WidgetParent.html#method_add" property="yui:name" title="add">add</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="WidgetParent.html#method_deselectAll">
+														<a href="WidgetParent.html#method_deselectAll" property="yui:name" title="deselectAll">deselectAll</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="WidgetParent.html#method_remove">
+														<a href="WidgetParent.html#method_remove" property="yui:name" title="remove">remove</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="WidgetParent.html#method_removeAll">
+														<a href="WidgetParent.html#method_removeAll" property="yui:name" title="removeAll">removeAll</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="WidgetParent.html#method_selectAll">
+														<a href="WidgetParent.html#method_selectAll" property="yui:name" title="selectAll">selectAll</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="WidgetParent.html#method_selectChild">
+														<a href="WidgetParent.html#method_selectChild" property="yui:name" title="selectChild">selectChild</a>
 														</div>
 												</code>
 											</div>
@@ -2167,6 +2154,48 @@ the ToolSet renders.
 														</div>
 													</div>
 												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_defaultChildTypeChange">
+
+													<h4>
+														<a name="event_defaultChildTypeChange">defaultChildTypeChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">defaultChildTypeChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'defaultChildType' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
 												<div class="api-entry-row event-row " rel="yui:event" resource="#event_defaultStateChange">
 
 													<h4>
@@ -2251,53 +2280,58 @@ the ToolSet renders.
 														</div>
 													</div>
 												</div>
-												<div class="api-entry-row event-row " rel="yui:event" resource="#event_toolsChange">
-
-													<h4>
-														<a name="event_toolsChange">toolsChange</a>
-													</h4>
-
-													<div class="detail">
-														<code class="event-detail">
-														
-														
-														
-															<strong property="yui:name">toolsChange</strong>
-
-															(
-																
-																		
-																		 event
-																	
-																
-															)
-
-														</code>
-
-														<div class="description" property="yui:description">
-															Fires when the value for the configuration attribute 'tools' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
-														</div>
-
-														<div class="description">
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
-																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
-																		</dd>
-
-																</dl>
-
-
-
-														</div>
-													</div>
-												</div>
 										</div>
 									</div>
 
 									<div rel="yui:inheritance">
 
+										<div class="section field inheritance events" rel="yui:superclass"  resource="WidgetParent.html">
+											<h4>
+												Events inherited from <a href="WidgetParent.html" property="yui:name" title="WidgetParent">WidgetParent</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="WidgetParent.html#event_activeDescendantChange">
+														<a href="WidgetParent.html#event_activeDescendantChange" property="yui:name" title="activeDescendantChange">activeDescendantChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="WidgetParent.html#event_childAdded">
+														<a href="WidgetParent.html#event_childAdded" property="yui:name" title="childAdded">childAdded</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="WidgetParent.html#event_childRemoved">
+														<a href="WidgetParent.html#event_childRemoved" property="yui:name" title="childRemoved">childRemoved</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="WidgetParent.html#event_defaultChildTypeChange">
+														<a href="WidgetParent.html#event_defaultChildTypeChange" property="yui:name" title="defaultChildTypeChange">defaultChildTypeChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="WidgetParent.html#event_multipleChange">
+														<a href="WidgetParent.html#event_multipleChange" property="yui:name" title="multipleChange">multipleChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="WidgetParent.html#event_selectionChange">
+														<a href="WidgetParent.html#event_selectionChange" property="yui:name" title="selectionChange">selectionChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
 										<div class="section field inheritance events" rel="yui:superclass"  resource="Widget.html">
 											<h4>
 												Events inherited from <a href="Widget.html" property="yui:name" title="Widget">Widget</a>:
@@ -2492,7 +2526,7 @@ the ToolSet renders.
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "ToolItem.html#config_activeState", "access": "", "host": "ToolItem", "type": "config", "name": "activeState"}, {"url": "ToolSet.html#config_activeState", "access": "", "host": "ToolSet", "type": "config", "name": "activeState"}, {"url": "ToolItem.html#event_activeStateChange", "access": "", "host": "ToolItem", "type": "event", "name": "activeStateChange"}, {"url": "ToolSet.html#event_activeStateChange", "access": "", "host": "ToolSet", "type": "event", "name": "activeStateChange"}, {"url": "ToolSet.html#method_add", "access": "", "host": "ToolSet", "type": "method", "name": "add"}, {"url": "ToolSet.html#method__afterAddToolItem", "access": "protected", "host": "ToolSet", "type": "method", "name": "_afterAddToolItem"}, {"url": "ToolItem.html#method__afterIconChange", "access": "protected", "host": "ToolItem", "type": "method", "name": "_afterIconChange"}, {"url": "ToolSet.html#method__afterRemoveToolItem", "access": "protected", "host": "ToolSet", "type": "method", "name": "_afterRemoveToolItem"}, {"url": "ToolItem.html#method_bindUI", "access": "protected", "host": "ToolItem", "type": "method", "name": "bindUI"}, {"url": "ToolSet.html#method__createToolItem", "access": "protected", "host": "ToolSet", "type": "method", "name": "_createToolItem"}, {"url": "ToolItem.html#config_defaultState", "access": "", "host": "ToolItem", "type": "config", "name": "defaultState"}, {"url": "ToolSet.html#config_defaultState", "access": "", "host": "ToolSet", "type": "config", "name": "defaultState"}, {"url": "ToolItem.html#event_defaultStateChange", "access": "", "host": "ToolItem", "type": "event", "name": "defaultStateChange"}, {"url": "ToolSet.html#event_defaultStateChange", "access": "", "host": "ToolSet", "type": "event", "name": "defaultStateChange"}, {"url": "ToolItem.html#method_destroy", "access": "protected", "host": "ToolItem", "type": "method", "name": "destroy"}, {"url": "ToolItem.html#config_hoverState", "access": "", "host": "ToolItem", "type": "config", "name": "hoverState"}, {"url": "ToolSet.html#config_hoverState", "access": "", "host": "ToolSet", "type": "config", "name": "hoverState"}, {"url": "ToolItem.html#event_hoverStateChange", "access": "", "host": "ToolItem", "type": "event", "name": "hoverStateChange"}, {"url": "ToolSet.html#event_hoverStateChange", "access": "", "host": "ToolSet", "type": "event", "name": "hoverStateChange"}, {"url": "ToolItem.html#method_initializer", "access": "protected", "host": "ToolItem", "type": "method", "name": "initializer"}, {"url": "ToolSet.html#method_initializer", "access": "protected", "host": "ToolSet", "type": "method", "name": "initializer"}, {"url": "ToolSet.html#method_item", "access": "", "host": "ToolSet", "type": "method", "name": "item"}, {"url": "ToolSet.html#method_remove", "access": "", "host": "ToolSet", "type": "method", "name": "remove"}, {"url": "ToolItem.html#method_renderUI", "access": "protected", "host": "ToolItem", "type": "method", "name": "renderUI"}, {"url": "ToolSet.html#method_renderUI", "access": "protected", "host": "ToolSet", "type": "method", "name": "renderUI"}, {"url": "ToolSet.html#method_syncUI", "access": "protected", "host": "ToolSet", "type": "method", "name": "syncUI"}, {"url": "ToolItem.html#property_ToolItem.ATTRS", "access": "", "host": "ToolItem", "type": "property", "name": "ToolItem.ATTRS"}, {"url": "ToolItem.html#property_ToolItem.NAME", "access": "", "host": "ToolItem", "type": "property", "name": "ToolItem.NAME"}, {"url": "ToolSet.html#config_tools", "access": "", "host": "ToolSet", "type": "config", "name": "tools"}, {"url": "ToolSet.html#event_toolsChange", "access": "", "host": "ToolSet", "type": "event", "name": "toolsChange"}, {"url": "ToolSet.html#property_ToolSet.ATTRS", "access": "", "host": "ToolSet", "type": "property", "name": "ToolSet.ATTRS"}, {"url": "ToolSet.html#property_ToolSet.NAME", "access": "", "host": "ToolSet", "type": "property", "name": "ToolSet.NAME"}, {"url": "ToolItem.html#property_UI_EVENTS", "access": "protected", "host": "ToolItem", "type": "property", "name": "UI_EVENTS"}, {"url": "ToolItem.html#method__uiSetIcon", "access": "protected", "host": "ToolItem", "type": "method", "name": "_uiSetIcon"}];
+    var ALL_YUI_PROPS = [{"url": "Toolbar.html#config_activeState", "access": "", "host": "Toolbar", "type": "config", "name": "activeState"}, {"url": "Toolbar.html#event_activeStateChange", "access": "", "host": "Toolbar", "type": "event", "name": "activeStateChange"}, {"url": "Toolbar.html#method__addByIconId", "access": "protected", "host": "Toolbar", "type": "method", "name": "_addByIconId"}, {"url": "Toolbar.html#method__afterAddButton", "access": "protected", "host": "Toolbar", "type": "method", "name": "_afterAddButton"}, {"url": "Toolbar.html#method__afterRemoveButton", "access": "protected", "host": "Toolbar", "type": "method", "name": "_afterRemoveButton"}, {"url": "Toolbar.html#method_bindUI", "access": "protected", "host": "Toolbar", "type": "method", "name": "bindUI"}, {"url": "Toolbar.html#config_defaultChildType", "access": "", "host": "Toolbar", "type": "config", "name": "defaultChildType"}, {"url": "Toolbar.html#event_defaultChildTypeChange", "access": "", "host": "Toolbar", "type": "event", "name": "defaultChildTypeChange"}, {"url": "Toolbar.html#config_defaultState", "access": "", "host": "Toolbar", "type": "config", "name": "defaultState"}, {"url": "Toolbar.html#event_defaultStateChange", "access": "", "host": "Toolbar", "type": "event", "name": "defaultStateChange"}, {"url": "Toolbar.html#config_hoverState", "access": "", "host": "Toolbar", "type": "config", "name": "hoverState"}, {"url": "Toolbar.html#event_hoverStateChange", "access": "", "host": "Toolbar", "type": "event", "name": "hoverStateChange"}, {"url": "Toolbar.html#method_initializer", "access": "protected", "host": "Toolbar", "type": "method", "name": "initializer"}, {"url": "Toolbar.html#method_syncUI", "access": "protected", "host": "Toolbar", "type": "method", "name": "syncUI"}];
 </script>
 </body>
 </html>

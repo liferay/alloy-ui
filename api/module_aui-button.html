@@ -2,7 +2,7 @@
 <html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<title>API: aui-tool   (YUI Library)</title>
+	<title>API: aui-button   (YUI Library)</title>
 
 	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
@@ -16,11 +16,11 @@
 <div id="wrapper">
 	<div class="aui-header">
 		<h1>
-			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+			<a class="aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
 		</h1>
 
 		<h3>
-			aui-tool&nbsp; <span class="subtitle">1.0pr</span>
+			aui-button&nbsp; <span class="subtitle">1.0pr</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -28,7 +28,7 @@
 
 	            <span class="separator">&gt;</span>
 
-				<a class="modulename" href="./module_aui-tool.html" title="aui-tool">aui-tool</a>
+				<a class="modulename" href="./module_aui-button.html" title="aui-button">aui-button</a>
 
 	                
 
@@ -99,6 +99,10 @@
 
 
 				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class="selected"><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
 
 
 
@@ -194,7 +198,7 @@
 
 
 
-				                                <li class="selected"><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+				                                <li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
 
 
 
@@ -497,10 +501,7 @@
 										<ul class="content">
 
 
-				                                <li class=""><a href="ToolItem.html" title="ToolItem">ToolItem</a></li>
-
-
-				                                <li class=""><a href="ToolSet.html" title="ToolSet">ToolSet</a></li>
+				                                <li class=""><a href="Button.html" title="Button">Button</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -521,31 +522,13 @@
 									<ul class="content">
 
 
-			                                <li class=""><a href="aui-tool-debug.js.html" title="aui-tool-debug.js">aui-tool-debug.js</a></li>
+			                                <li class=""><a href="aui-button-debug.js.html" title="aui-button-debug.js">aui-button-debug.js</a></li>
 
 
-			                                <li class=""><a href="aui-tool-item-debug.js.html" title="aui-tool-item-debug.js">aui-tool-item-debug.js</a></li>
+			                                <li class=""><a href="aui-button-min.js.html" title="aui-button-min.js">aui-button-min.js</a></li>
 
 
-			                                <li class=""><a href="aui-tool-item-min.js.html" title="aui-tool-item-min.js">aui-tool-item-min.js</a></li>
-
-
-			                                <li class=""><a href="aui-tool-item.js.html" title="aui-tool-item.js">aui-tool-item.js</a></li>
-
-
-			                                <li class=""><a href="aui-tool-min.js.html" title="aui-tool-min.js">aui-tool-min.js</a></li>
-
-
-			                                <li class=""><a href="aui-tool-set-debug.js.html" title="aui-tool-set-debug.js">aui-tool-set-debug.js</a></li>
-
-
-			                                <li class=""><a href="aui-tool-set-min.js.html" title="aui-tool-set-min.js">aui-tool-set-min.js</a></li>
-
-
-			                                <li class=""><a href="aui-tool-set.js.html" title="aui-tool-set.js">aui-tool-set.js</a></li>
-
-
-			                                <li class=""><a href="aui-tool.js.html" title="aui-tool.js">aui-tool.js</a></li>
+			                                <li class=""><a href="aui-button.js.html" title="aui-button.js">aui-button.js</a></li>
 			                        </ul>
 								</div>
 							</div>
@@ -557,15 +540,14 @@
 
 
 							<h3>
-								Module: aui-tool
+								Module: aui-button
 
 
 
 							</h3>
 
 							<div class="description summary">
-								The ToolItem Utility - ToolItems are iconic buttons that provide
-interaction states and event handling
+								The Button Utility
 							</div>
 
 
@@ -579,11 +561,7 @@ interaction states and event handling
 											<ul>
 
 													<li>
-														<a href="ToolItem.html" title="ToolItem" id="class_0">ToolItem</a>
-													</li>
-
-													<li>
-														<a href="ToolSet.html" title="ToolSet" id="class_1">ToolSet</a>
+														<a href="Button.html" title="Button" id="class_0">Button</a>
 													</li>
 
 
@@ -594,28 +572,6 @@ interaction states and event handling
 								<div class="yui-u">
 
 
-										<div class="submodules">
-											<h4>Submodules:</h4>
-
-											<dl>
-
-													<dt>
-														<code>aui-tool-item</code>
-													</dt>
-													<dd>
-														The ToolItem Utility - ToolItems are iconic buttons that provide
-interaction states and event handling
-													</dd>
-													<dt>
-														<code>aui-tool-set</code>
-													</dt>
-													<dd>
-														The ToolSet Utility is a managed collection of <a
-href="ToolItem.html">ToolItems</a>.
-													</dd>
-
-											</dl>
-										</div>
 								</div>
 							</div>
 
@@ -632,7 +588,7 @@ href="ToolItem.html">ToolItems</a>.
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "ToolItem.html#config_activeState", "access": "", "host": "ToolItem", "type": "config", "name": "activeState"}, {"url": "ToolSet.html#config_activeState", "access": "", "host": "ToolSet", "type": "config", "name": "activeState"}, {"url": "ToolItem.html#event_activeStateChange", "access": "", "host": "ToolItem", "type": "event", "name": "activeStateChange"}, {"url": "ToolSet.html#event_activeStateChange", "access": "", "host": "ToolSet", "type": "event", "name": "activeStateChange"}, {"url": "ToolSet.html#method_add", "access": "", "host": "ToolSet", "type": "method", "name": "add"}, {"url": "ToolSet.html#method__afterAddToolItem", "access": "protected", "host": "ToolSet", "type": "method", "name": "_afterAddToolItem"}, {"url": "ToolItem.html#method__afterIconChange", "access": "protected", "host": "ToolItem", "type": "method", "name": "_afterIconChange"}, {"url": "ToolSet.html#method__afterRemoveToolItem", "access": "protected", "host": "ToolSet", "type": "method", "name": "_afterRemoveToolItem"}, {"url": "ToolItem.html#method_bindUI", "access": "protected", "host": "ToolItem", "type": "method", "name": "bindUI"}, {"url": "ToolSet.html#method__createToolItem", "access": "protected", "host": "ToolSet", "type": "method", "name": "_createToolItem"}, {"url": "ToolItem.html#config_defaultState", "access": "", "host": "ToolItem", "type": "config", "name": "defaultState"}, {"url": "ToolSet.html#config_defaultState", "access": "", "host": "ToolSet", "type": "config", "name": "defaultState"}, {"url": "ToolItem.html#event_defaultStateChange", "access": "", "host": "ToolItem", "type": "event", "name": "defaultStateChange"}, {"url": "ToolSet.html#event_defaultStateChange", "access": "", "host": "ToolSet", "type": "event", "name": "defaultStateChange"}, {"url": "ToolItem.html#method_destroy", "access": "protected", "host": "ToolItem", "type": "method", "name": "destroy"}, {"url": "ToolItem.html#config_hoverState", "access": "", "host": "ToolItem", "type": "config", "name": "hoverState"}, {"url": "ToolSet.html#config_hoverState", "access": "", "host": "ToolSet", "type": "config", "name": "hoverState"}, {"url": "ToolItem.html#event_hoverStateChange", "access": "", "host": "ToolItem", "type": "event", "name": "hoverStateChange"}, {"url": "ToolSet.html#event_hoverStateChange", "access": "", "host": "ToolSet", "type": "event", "name": "hoverStateChange"}, {"url": "ToolItem.html#method_initializer", "access": "protected", "host": "ToolItem", "type": "method", "name": "initializer"}, {"url": "ToolSet.html#method_initializer", "access": "protected", "host": "ToolSet", "type": "method", "name": "initializer"}, {"url": "ToolSet.html#method_item", "access": "", "host": "ToolSet", "type": "method", "name": "item"}, {"url": "ToolSet.html#method_remove", "access": "", "host": "ToolSet", "type": "method", "name": "remove"}, {"url": "ToolItem.html#method_renderUI", "access": "protected", "host": "ToolItem", "type": "method", "name": "renderUI"}, {"url": "ToolSet.html#method_renderUI", "access": "protected", "host": "ToolSet", "type": "method", "name": "renderUI"}, {"url": "ToolSet.html#method_syncUI", "access": "protected", "host": "ToolSet", "type": "method", "name": "syncUI"}, {"url": "ToolItem.html#property_ToolItem.ATTRS", "access": "", "host": "ToolItem", "type": "property", "name": "ToolItem.ATTRS"}, {"url": "ToolItem.html#property_ToolItem.NAME", "access": "", "host": "ToolItem", "type": "property", "name": "ToolItem.NAME"}, {"url": "ToolSet.html#config_tools", "access": "", "host": "ToolSet", "type": "config", "name": "tools"}, {"url": "ToolSet.html#event_toolsChange", "access": "", "host": "ToolSet", "type": "event", "name": "toolsChange"}, {"url": "ToolSet.html#property_ToolSet.ATTRS", "access": "", "host": "ToolSet", "type": "property", "name": "ToolSet.ATTRS"}, {"url": "ToolSet.html#property_ToolSet.NAME", "access": "", "host": "ToolSet", "type": "property", "name": "ToolSet.NAME"}, {"url": "ToolItem.html#property_UI_EVENTS", "access": "protected", "host": "ToolItem", "type": "property", "name": "UI_EVENTS"}, {"url": "ToolItem.html#method__uiSetIcon", "access": "protected", "host": "ToolItem", "type": "method", "name": "_uiSetIcon"}];
+    var ALL_YUI_PROPS = [{"url": "Button.html#method_", "access": "protected", "host": "Button", "type": "method", "name": ""}, {"url": "Button.html#config_activeState", "access": "", "host": "Button", "type": "config", "name": "activeState"}, {"url": "Button.html#event_activeStateChange", "access": "", "host": "Button", "type": "event", "name": "activeStateChange"}, {"url": "Button.html#method_bindUI", "access": "protected", "host": "Button", "type": "method", "name": "bindUI"}, {"url": "Button.html#property_Button.ATTRS", "access": "", "host": "Button", "type": "property", "name": "Button.ATTRS"}, {"url": "Button.html#property_Button.NAME", "access": "", "host": "Button", "type": "property", "name": "Button.NAME"}, {"url": "Button.html#config_classNames", "access": "", "host": "Button", "type": "config", "name": "classNames"}, {"url": "Button.html#event_classNamesChange", "access": "", "host": "Button", "type": "event", "name": "classNamesChange"}, {"url": "Button.html#config_defaultState", "access": "", "host": "Button", "type": "config", "name": "defaultState"}, {"url": "Button.html#event_defaultStateChange", "access": "", "host": "Button", "type": "event", "name": "defaultStateChange"}, {"url": "Button.html#method__getIconNode", "access": "protected", "host": "Button", "type": "method", "name": "_getIconNode"}, {"url": "Button.html#method__getLabelNode", "access": "protected", "host": "Button", "type": "method", "name": "_getLabelNode"}, {"url": "Button.html#method__getState", "access": "protected", "host": "Button", "type": "method", "name": "_getState"}, {"url": "Button.html#config_handler", "access": "", "host": "Button", "type": "config", "name": "handler"}, {"url": "Button.html#event_handlerChange", "access": "", "host": "Button", "type": "event", "name": "handlerChange"}, {"url": "Button.html#config_hoverState", "access": "", "host": "Button", "type": "config", "name": "hoverState"}, {"url": "Button.html#event_hoverStateChange", "access": "", "host": "Button", "type": "event", "name": "hoverStateChange"}, {"url": "Button.html#config_icon", "access": "", "host": "Button", "type": "config", "name": "icon"}, {"url": "Button.html#event_iconChange", "access": "", "host": "Button", "type": "event", "name": "iconChange"}, {"url": "Button.html#config_label", "access": "", "host": "Button", "type": "config", "name": "label"}, {"url": "Button.html#event_labelChange", "access": "", "host": "Button", "type": "event", "name": "labelChange"}, {"url": "Button.html#method__renderIcon", "access": "protected", "host": "Button", "type": "method", "name": "_renderIcon"}, {"url": "Button.html#method__renderLabel", "access": "protected", "host": "Button", "type": "method", "name": "_renderLabel"}, {"url": "Button.html#method__renderStates", "access": "protected", "host": "Button", "type": "method", "name": "_renderStates"}, {"url": "Button.html#method_renderUI", "access": "protected", "host": "Button", "type": "method", "name": "renderUI"}, {"url": "Button.html#method_syncUI", "access": "protected", "host": "Button", "type": "method", "name": "syncUI"}, {"url": "Button.html#method__uiSetIcon", "access": "protected", "host": "Button", "type": "method", "name": "_uiSetIcon"}, {"url": "Button.html#method__uiSetLabel", "access": "protected", "host": "Button", "type": "method", "name": "_uiSetLabel"}];
 </script>
 </body>
 </html>

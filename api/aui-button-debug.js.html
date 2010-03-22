@@ -1,0 +1,1033 @@
+<!DOCTYPE>
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-button   aui-button-debug.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-button&nbsp; <span class="subtitle">1.0pr</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-button.html" title="aui-button">aui-button</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">aui-button-debug.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="aui-widget aui-list aui-list-modules">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="aui-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class="selected"><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="aui-widget aui-list aui-list-classes">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="aui-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="Button.html" title="Button">Button</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="aui-widget aui-list aui-list-files">
+							<div class="aui-widget-content">
+								<div class="aui-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="aui-widget-hd-text">Files</span>
+								</div>
+
+								<div class="aui-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class="selected"><a href="aui-button-debug.js.html" title="aui-button-debug.js">aui-button-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-button-min.js.html" title="aui-button-min.js">aui-button-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-button.js.html" title="aui-button.js">aui-button.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-button&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span> <span class="p">{</span>
+<span class="cm">/**</span>
+<span class="cm"> * The Button Utility</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module aui-button</span>
+<span class="cm"> */</span>
+
+<span class="kd">var</span> <span class="nx">Lang</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+
+	<span class="nx">getClassName</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">ClassNameManager</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">,</span>
+
+	<span class="nx">NAME</span> <span class="o">=</span> <span class="s1">&#39;button&#39;</span><span class="p">,</span>
+
+	<span class="nx">ICON</span> <span class="o">=</span> <span class="s1">&#39;icon&#39;</span><span class="p">,</span>
+	<span class="nx">STATE</span> <span class="o">=</span> <span class="s1">&#39;state&#39;</span><span class="p">,</span>
+
+	<span class="nx">CSS_BUTTON</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">),</span>
+	<span class="nx">CSS_BUTTON_ICON</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="s1">&#39;icon&#39;</span><span class="p">),</span>
+	<span class="nx">CSS_BUTTON_LABEL</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">),</span>
+
+	<span class="nx">CSS_BUTTON_ICON_LABEL</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="s1">&#39;icon&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">),</span>
+
+	<span class="nx">CSS_ICON</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">ICON</span><span class="p">),</span>
+
+	<span class="nx">TPL_BUTTON</span> <span class="o">=</span> <span class="s1">&#39;&lt;button&gt;&lt;/button&gt;&#39;</span><span class="p">,</span>
+	<span class="nx">TPL_ICON</span> <span class="o">=</span> <span class="s1">&#39;&lt;span class=&quot;&#39;</span> <span class="o">+</span> <span class="p">[</span><span class="nx">CSS_BUTTON_ICON</span><span class="p">,</span> <span class="nx">CSS_ICON</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/span&gt;&#39;</span><span class="p">,</span>
+	<span class="nx">TPL_LABEL</span> <span class="o">=</span> <span class="s1">&#39;&lt;span class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">CSS_BUTTON_LABEL</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/span&gt;&#39;</span><span class="p">;</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * &lt;p&gt;&lt;img src=&quot;assets/images/aui-button/main.png&quot;/&gt;&lt;/p&gt;</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * A base class for Button, providing:</span>
+<span class="cm">	 * &lt;ul&gt;</span>
+<span class="cm">	 *    &lt;li&gt;Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)&lt;/li&gt;</span>
+<span class="cm">	 *    &lt;li&gt;An optional icon or label&lt;/li&gt;</span>
+<span class="cm">	 *    &lt;li&gt;Managed user interaction states (default, active, hover)&lt;/li&gt;</span>
+<span class="cm">	 *    &lt;li&gt;Keyboard accessible&lt;/li&gt;</span>
+<span class="cm">	 * &lt;/ul&gt;</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * Quick Example:&lt;br/&gt;</span>
+<span class="cm">	 * </span>
+<span class="cm">	 * &lt;pre&gt;&lt;code&gt;var instance = new A.Button({</span>
+<span class="cm">	 *	icon: &#39;gear&#39;,</span>
+<span class="cm">	 * label: &#39;Configuration&#39;</span>
+<span class="cm">	 * }).render();</span>
+<span class="cm">	 * &lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * Check the list of &lt;a href=&quot;Button.html#configattributes&quot;&gt;Configuration Attributes&lt;/a&gt; available for</span>
+<span class="cm">	 * Button.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @param config {Object} Object literal specifying widget configuration properties.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @class Button</span>
+<span class="cm">	 * @constructor</span>
+<span class="cm">	 * @extends Component</span>
+<span class="cm">	 * @uses WidgetChild</span>
+<span class="cm">	 */</span>
+
+<span class="kd">var</span> <span class="nx">Button</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">config</span><span class="p">))</span> <span class="p">{</span>
+		<span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+			<span class="nx">icon</span><span class="o">:</span> <span class="nx">config</span>
+		<span class="p">};</span>
+	<span class="p">}</span>
+
+	<span class="nx">Button</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Static property provides a string to identify the class.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @property Button.NAME</span>
+<span class="cm"> * @type String</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+
+<span class="nx">Button</span><span class="p">.</span><span class="nx">NAME</span> <span class="o">=</span> <span class="nx">NAME</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Static property used to define the default attribute</span>
+<span class="cm"> * configuration for the Button.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @property Button.ATTRS</span>
+<span class="cm"> * @type Object</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+
+<span class="nx">Button</span><span class="p">.</span><span class="nx">ATTRS</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="cm">/**</span>
+<span class="cm">	 * Whether to track the active state of the button.</span>
+<span class="cm">	 * </span>
+<span class="cm">	 * @attribute activeState</span>
+<span class="cm">	 * @default false</span>
+<span class="cm">	 * @type Boolean</span>
+<span class="cm">	 */</span>
+	<span class="nx">activeState</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * An object map of the CSS class names to use for the different interaction states.</span>
+<span class="cm">	 * </span>
+<span class="cm">	 * @attribute classNames</span>
+<span class="cm">	 * @type Object</span>
+<span class="cm">	 */</span>
+	<span class="nx">classNames</span><span class="o">:</span> <span class="p">{},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Whether to apply the default interaction state to the button</span>
+<span class="cm">	 * </span>
+<span class="cm">	 * @attribute defaultState</span>
+<span class="cm">	 * @default true</span>
+<span class="cm">	 * @type Boolean</span>
+<span class="cm">	 */</span>
+	<span class="nx">defaultState</span><span class="o">:</span> <span class="p">{},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * An event callback to handle when a user interacts with the button.</span>
+<span class="cm">	 * This can either be a function that will be attached on click, or </span>
+<span class="cm">	 * an object map that accepts the following keys:</span>
+<span class="cm">	 * &lt;code&gt;{fn: // The function to execute</span>
+<span class="cm">	 * context: // The context to execute the function in</span>
+<span class="cm">	 * type: // The type of event to listen for (defaults to &quot;click&quot;)</span>
+<span class="cm">	 * }&lt;/code&gt;</span>
+<span class="cm">	 * </span>
+<span class="cm">	 * @attribute handler</span>
+<span class="cm">	 * @default false</span>
+<span class="cm">	 * @type Function | Object</span>
+<span class="cm">	 */</span>
+	<span class="nx">handler</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">lazyAdd</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+		<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">fn</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">context</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;click&#39;</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">fn</span><span class="p">))</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">handlerConfig</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">;</span>
+
+				<span class="nx">fn</span> <span class="o">=</span> <span class="nx">handlerConfig</span><span class="p">.</span><span class="nx">fn</span> <span class="o">||</span> <span class="nx">fn</span><span class="p">;</span>
+				<span class="nx">context</span> <span class="o">=</span> <span class="nx">handlerConfig</span><span class="p">.</span><span class="nx">context</span> <span class="o">||</span> <span class="nx">context</span><span class="p">;</span>
+				<span class="nx">type</span> <span class="o">=</span> <span class="nx">handlerConfig</span><span class="p">.</span><span class="nx">type</span> <span class="o">||</span> <span class="nx">type</span><span class="p">;</span>
+			<span class="p">}</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">fn</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">rbind</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="nx">args</span><span class="p">,</span> <span class="nx">handlerConfig</span><span class="p">.</span><span class="nx">args</span><span class="p">));</span>
+			<span class="p">}</span>
+
+			<span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Whether to track the hover interaction state of the button.</span>
+<span class="cm">	 * </span>
+<span class="cm">	 * @attribute hoverState</span>
+<span class="cm">	 * @default true</span>
+<span class="cm">	 * @type Boolean</span>
+<span class="cm">	 */</span>
+	<span class="nx">hoverState</span><span class="o">:</span> <span class="p">{},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * The icon to use inside of the button. Possible values are: </span>
+<span class="cm">	 * </span>
+<span class="cm">	 * @attribute icon</span>
+<span class="cm">	 * @type String</span>
+<span class="cm">	 */</span>
+	<span class="nx">icon</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * An id that can be used to identify a button.</span>
+<span class="cm">	 * </span>
+<span class="cm">	 * @attribute hoverState</span>
+<span class="cm">	 * @type Boolean</span>
+<span class="cm">	 */</span>
+	<span class="nx">id</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">guid</span><span class="p">();</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Text to use inside of the button.</span>
+<span class="cm">	 * </span>
+<span class="cm">	 * @attribute label</span>
+<span class="cm">	 * @type String</span>
+<span class="cm">	 */</span>
+	<span class="nx">label</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
+	<span class="nx">Button</span><span class="p">,</span>
+	<span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">,</span>
+	<span class="p">{</span>
+		<span class="nx">BOUNDING_TEMPLATE</span><span class="o">:</span> <span class="nx">TPL_BUTTON</span><span class="p">,</span>
+		<span class="nx">CONTENT_TEMPLATE</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Create the DOM structure for the Button. Lifecycle.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method renderUI</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderStates</span><span class="p">();</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Bind the events on the Button UI. Lifecycle.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method bindUI</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;iconChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterIconChange</span><span class="p">);</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;labelChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterLabelChange</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Sync the Button UI. Lifecycle.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method syncUI</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">icon</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;icon&#39;</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">label</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">icon</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetIcon</span><span class="p">(</span><span class="nx">icon</span><span class="p">)</span>
+			<span class="p">}</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">label</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetLabel</span><span class="p">(</span><span class="nx">label</span><span class="p">);</span>
+			<span class="p">}</span>
+
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Fires after the value of the</span>
+<span class="cm">		 * &lt;a href=&quot;Button.html#config_icon&quot;&gt;icon&lt;/a&gt; attribute change.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method </span>
+<span class="cm">		 * @param {EventFacade} event</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_afterIconChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetIcon</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Fires after the value of the</span>
+<span class="cm">		 * &lt;a href=&quot;Button.html#config_label&quot;&gt;label&lt;/a&gt; attribute change.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method </span>
+<span class="cm">		 * @param {EventFacade} event</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_afterLabelChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetLabel</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Get&#39;s a reference to the private icon node, or if not created,</span>
+<span class="cm">		 * renders its and returns it.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _getIconNode</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 * @return {Node}</span>
+<span class="cm">		 */</span>
+		<span class="nx">_getIconNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_iconNode</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_renderIcon</span><span class="p">();</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Get&#39;s a reference to the private label node, or if not created,</span>
+<span class="cm">		 * renders its and returns it.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _getLabelNode</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 * @return {Node}</span>
+<span class="cm">		 */</span>
+		<span class="nx">_getLabelNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_labelNode</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_renderLabel</span><span class="p">();</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Renders the underlying markup for the &lt;a href=&quot;Button.html#config_icon&quot;&gt;icon&lt;/a&gt;.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _renderIcon</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 * @return {Node}</span>
+<span class="cm">		 */</span>
+		<span class="nx">_renderIcon</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">iconNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_ICON</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_iconNode</span> <span class="o">=</span> <span class="nx">iconNode</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">iconNode</span><span class="p">);</span>
+
+			<span class="k">return</span> <span class="nx">iconNode</span><span class="p">;</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Renders the underlying markup for the &lt;a href=&quot;Button.html#config_label&quot;&gt;label&lt;/a&gt;.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _renderLabel</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 * @return {Node}</span>
+<span class="cm">		 */</span>
+		<span class="nx">_renderLabel</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">labelNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_LABEL</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_labelNode</span> <span class="o">=</span> <span class="nx">labelNode</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">labelNode</span><span class="p">);</span>
+
+			<span class="k">return</span> <span class="nx">labelNode</span><span class="p">;</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Retrieves the state value from either the current instance, or if defined, the</span>
+<span class="cm">		 * parent widget.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _getState</span>
+<span class="cm">		 * @param {String} key The state name to retrieve</span>
+<span class="cm">		 * @param {Object} parent The parent widget to attempt to retrieve the state from</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 * @return {Object}</span>
+<span class="cm">		 */</span>
+		<span class="nx">_getState</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+
+			<span class="kd">var</span> <span class="nx">state</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">value</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">state</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+
+			<span class="k">return</span> <span class="nx">state</span><span class="p">;</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Attaches state interaction management to the widget.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _renderStates</span>
+<span class="cm">		 * @param {EventFacade} event</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_renderStates</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parent&#39;</span><span class="p">);</span>
+
+			<span class="kd">var</span> <span class="nx">activeState</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getState</span><span class="p">(</span><span class="s1">&#39;activeState&#39;</span><span class="p">,</span> <span class="nx">parent</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">classNames</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getState</span><span class="p">(</span><span class="s1">&#39;classNames&#39;</span><span class="p">,</span> <span class="nx">parent</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">defaultState</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getState</span><span class="p">(</span><span class="s1">&#39;defaultState&#39;</span><span class="p">,</span> <span class="nx">parent</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">hoverState</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getState</span><span class="p">(</span><span class="s1">&#39;hoverState&#39;</span><span class="p">,</span> <span class="nx">parent</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">plug</span><span class="p">(</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">StateInteractionPlugin</span><span class="p">,</span>
+				<span class="p">{</span>
+					<span class="nx">activeState</span><span class="o">:</span> <span class="nx">activeState</span><span class="p">,</span>
+					<span class="nx">classNames</span><span class="o">:</span> <span class="nx">classNames</span><span class="p">,</span>
+					<span class="nx">defaultState</span><span class="o">:</span> <span class="nx">defaultState</span><span class="p">,</span>
+					<span class="nx">hoverState</span><span class="o">:</span> <span class="nx">hoverState</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Updates the UI for the icon in response to the &lt;a href=&quot;Button.html#event_iconChange&quot;&gt;iconChange&lt;/a&gt; event.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _uiSetIcon</span>
+<span class="cm">		 * @param {String} newVal The new value</span>
+<span class="cm">		 * @param {String} prevVal The previous value</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_uiSetIcon</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">prevVal</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">iconNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getIconNode</span><span class="p">();</span>
+
+			<span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;show&#39;</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;hide&#39;</span><span class="p">;</span>
+			<span class="p">}</span>
+
+			<span class="nx">newVal</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">ICON</span><span class="p">,</span> <span class="nx">newVal</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">prevVal</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">prevVal</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">ICON</span><span class="p">,</span> <span class="nx">prevVal</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="nx">iconNode</span><span class="p">.</span><span class="nx">replaceClass</span><span class="p">(</span><span class="nx">prevVal</span><span class="p">,</span> <span class="nx">newVal</span><span class="p">);</span>
+
+			<span class="kd">var</span> <span class="nx">hasIconAndLabel</span> <span class="o">=</span> <span class="p">(</span><span class="nx">newVal</span> <span class="o">&amp;&amp;</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">));</span>
+
+			<span class="nx">iconNode</span><span class="p">[</span><span class="nx">action</span><span class="p">]();</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">).</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">CSS_BUTTON_ICON_LABEL</span><span class="p">,</span> <span class="nx">hasIconAndLabel</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Updates the UI for the label in response to the &lt;a href=&quot;Button.html#event_labelChange&quot;&gt;labelChange&lt;/a&gt; event.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _uiSetLabel</span>
+<span class="cm">		 * @param {String} newVal The new value</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_uiSetLabel</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">labelNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getLabelNode</span><span class="p">();</span>
+
+			<span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;show&#39;</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;hide&#39;</span><span class="p">;</span>
+			<span class="p">}</span>
+
+			<span class="nx">labelNode</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">newVal</span><span class="p">);</span>
+
+			<span class="nx">labelNode</span><span class="p">[</span><span class="nx">action</span><span class="p">]();</span>
+
+			<span class="kd">var</span> <span class="nx">hasIconAndLabel</span> <span class="o">=</span> <span class="p">(</span><span class="nx">newVal</span> <span class="o">&amp;&amp;</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;icon&#39;</span><span class="p">));</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">).</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">CSS_BUTTON_ICON_LABEL</span><span class="p">,</span> <span class="nx">hasIconAndLabel</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">);</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">Button</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Base</span><span class="p">.</span><span class="nx">build</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="nx">Button</span><span class="p">,</span> <span class="p">[</span><span class="nx">A</span><span class="p">.</span><span class="nx">WidgetChild</span><span class="p">],</span> <span class="p">{</span> <span class="nx">dynamic</span><span class="o">:</span> <span class="kc">false</span> <span class="p">});</span>
+
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;aui-state-interaction&#39;</span><span class="p">,</span><span class="s1">&#39;widget-child&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2010 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Button.html#method_", "access": "protected", "host": "Button", "type": "method", "name": ""}, {"url": "Button.html#config_activeState", "access": "", "host": "Button", "type": "config", "name": "activeState"}, {"url": "Button.html#event_activeStateChange", "access": "", "host": "Button", "type": "event", "name": "activeStateChange"}, {"url": "Button.html#method_bindUI", "access": "protected", "host": "Button", "type": "method", "name": "bindUI"}, {"url": "Button.html#property_Button.ATTRS", "access": "", "host": "Button", "type": "property", "name": "Button.ATTRS"}, {"url": "Button.html#property_Button.NAME", "access": "", "host": "Button", "type": "property", "name": "Button.NAME"}, {"url": "Button.html#config_classNames", "access": "", "host": "Button", "type": "config", "name": "classNames"}, {"url": "Button.html#event_classNamesChange", "access": "", "host": "Button", "type": "event", "name": "classNamesChange"}, {"url": "Button.html#config_defaultState", "access": "", "host": "Button", "type": "config", "name": "defaultState"}, {"url": "Button.html#event_defaultStateChange", "access": "", "host": "Button", "type": "event", "name": "defaultStateChange"}, {"url": "Button.html#method__getIconNode", "access": "protected", "host": "Button", "type": "method", "name": "_getIconNode"}, {"url": "Button.html#method__getLabelNode", "access": "protected", "host": "Button", "type": "method", "name": "_getLabelNode"}, {"url": "Button.html#method__getState", "access": "protected", "host": "Button", "type": "method", "name": "_getState"}, {"url": "Button.html#config_handler", "access": "", "host": "Button", "type": "config", "name": "handler"}, {"url": "Button.html#event_handlerChange", "access": "", "host": "Button", "type": "event", "name": "handlerChange"}, {"url": "Button.html#config_hoverState", "access": "", "host": "Button", "type": "config", "name": "hoverState"}, {"url": "Button.html#event_hoverStateChange", "access": "", "host": "Button", "type": "event", "name": "hoverStateChange"}, {"url": "Button.html#config_icon", "access": "", "host": "Button", "type": "config", "name": "icon"}, {"url": "Button.html#event_iconChange", "access": "", "host": "Button", "type": "event", "name": "iconChange"}, {"url": "Button.html#config_label", "access": "", "host": "Button", "type": "config", "name": "label"}, {"url": "Button.html#event_labelChange", "access": "", "host": "Button", "type": "event", "name": "labelChange"}, {"url": "Button.html#method__renderIcon", "access": "protected", "host": "Button", "type": "method", "name": "_renderIcon"}, {"url": "Button.html#method__renderLabel", "access": "protected", "host": "Button", "type": "method", "name": "_renderLabel"}, {"url": "Button.html#method__renderStates", "access": "protected", "host": "Button", "type": "method", "name": "_renderStates"}, {"url": "Button.html#method_renderUI", "access": "protected", "host": "Button", "type": "method", "name": "renderUI"}, {"url": "Button.html#method_syncUI", "access": "protected", "host": "Button", "type": "method", "name": "syncUI"}, {"url": "Button.html#method__uiSetIcon", "access": "protected", "host": "Button", "type": "method", "name": "_uiSetIcon"}, {"url": "Button.html#method__uiSetLabel", "access": "protected", "host": "Button", "type": "method", "name": "_uiSetLabel"}];
+</script>
+</body>
+</html>

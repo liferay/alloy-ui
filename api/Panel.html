@@ -16,7 +16,7 @@
 <div id="wrapper">
 	<div class="aui-header">
 		<h1>
-			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+			<a class="aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
 		</h1>
 
 		<h3>
@@ -99,6 +99,10 @@
 
 
 				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
 
 
 
@@ -194,7 +198,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+				                                <li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
 
 
 
@@ -513,8 +517,8 @@
 										<ul class="content">
 												<li class=""><a href="#config_collapsed" title="collapsed">collapsed</a></li>
 												<li class=""><a href="#config_collapsible" title="collapsible">collapsible</a></li>
+												<li class=""><a href="#config_icons" title="icons">icons</a></li>
 												<li class=""><a href="#config_title" title="title">title</a></li>
-												<li class=""><a href="#config_tools" title="tools">tools</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -550,7 +554,7 @@
 				                               <li class="protected"><a href="#method__afterPanelRender" title="_afterPanelRender">_afterPanelRender</a></li>
 				                               <li class="protected"><a href="#method__afterTitleChange" title="_afterTitleChange">_afterTitleChange</a></li>
 				                               <li class="protected"><a href="#method__renderHeaderText" title="_renderHeaderText">_renderHeaderText</a></li>
-				                               <li class="protected"><a href="#method__renderToolItems" title="_renderToolItems">_renderToolItems</a></li>
+				                               <li class="protected"><a href="#method__renderIconButtons" title="_renderIconButtons">_renderIconButtons</a></li>
 				                               <li class="protected"><a href="#method__syncCollapsedUI" title="_syncCollapsedUI">_syncCollapsedUI</a></li>
 				                               <li class="protected"><a href="#method__syncTitleUI" title="_syncTitleUI">_syncTitleUI</a></li>
 				                               <li class=""><a href="#method_collapse" title="collapse">collapse</a></li>
@@ -573,8 +577,8 @@
 										<ul class="content">
 												<li class=""><a href="#event_collapsedChange" title="collapsedChange">collapsedChange</a></li>
 												<li class=""><a href="#event_collapsibleChange" title="collapsibleChange">collapsibleChange</a></li>
+												<li class=""><a href="#event_iconsChange" title="iconsChange">iconsChange</a></li>
 												<li class=""><a href="#event_titleChange" title="titleChange">titleChange</a></li>
-												<li class=""><a href="#event_toolsChange" title="toolsChange">toolsChange</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -896,6 +900,30 @@ configuration for the Panel.
 													</div>
 
 												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_icons">
+
+													<h4>
+														<a name="config_icons">icons</a>
+														<code>- <span property="yui:type">Array</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															<p>Array of <a href="Button.html">Button</a> configuration objects to be displayed as icons
+on the Panel title.</p>
+Example:
+<pre><code>icons: [ { icon: 'close', id: 'close' } ]</code></pre>
+For more information how to use this option see
+<a href="Button.html">Button</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>[]</strong>
+													</div>
+
+												</div>
 												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_title">
 
 													<h4>
@@ -912,30 +940,6 @@ configuration for the Panel.
 
 													<div class="default">
 														Default Value: <strong>''</strong>
-													</div>
-
-												</div>
-												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_tools">
-
-													<h4>
-														<a name="config_tools">tools</a>
-														<code>- <span property="yui:type">Array</span></code>
-													</h4>
-
-													<div class="detail">
-														<div class="description" property="yui:description">
-															<p>Array of <a href="ToolItem.html">ToolItem</a> to be displayed as icons
-on the Panel title.</p>
-Example:
-<pre><code>tools: [ { icon: 'close', id: 'close' } ]</code></pre>
-For more information how to use this option see
-<a href="ToolItem.html">ToolItem</a>.
-														</div>
-													</div>
-
-
-													<div class="default">
-														Default Value: <strong>[]</strong>
 													</div>
 
 												</div>
@@ -1363,10 +1367,10 @@ For more information how to use this option see
 													</div>
 												</div>
 
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__renderToolItems">
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__renderIconButtons">
 
 													<h4>
-														<a name="method__renderToolItems">_renderToolItems</a>
+														<a name="method__renderIconButtons">_renderIconButtons</a>
 													</h4>
 
 													<div class="detail">
@@ -1375,13 +1379,13 @@ For more information how to use this option see
 														
 														
 														void
-															<strong property="yui:name">_renderToolItems</strong>
+															<strong property="yui:name">_renderIconButtons</strong>
 														   (
 															)
 														</code>
 
 														<div class="description" property="yui:description">
-															Render the <a href="Panel.html#config_tools">tools</a>.
+															Render the <a href="Panel.html#config_icons">icons</a>.
 														</div>
 
 														<div class="description">
@@ -2478,6 +2482,48 @@ Expanding and collapsing the Panel.
 														</div>
 													</div>
 												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_iconsChange">
+
+													<h4>
+														<a name="event_iconsChange">iconsChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">iconsChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'icons' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
 												<div class="api-entry-row event-row " rel="yui:event" resource="#event_titleChange">
 
 													<h4>
@@ -2503,48 +2549,6 @@ Expanding and collapsing the Panel.
 
 														<div class="description" property="yui:description">
 															Fires when the value for the configuration attribute 'title' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
-														</div>
-
-														<div class="description">
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
-																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
-																		</dd>
-
-																</dl>
-
-
-
-														</div>
-													</div>
-												</div>
-												<div class="api-entry-row event-row " rel="yui:event" resource="#event_toolsChange">
-
-													<h4>
-														<a name="event_toolsChange">toolsChange</a>
-													</h4>
-
-													<div class="detail">
-														<code class="event-detail">
-														
-														
-														
-															<strong property="yui:name">toolsChange</strong>
-
-															(
-																
-																		
-																		 event
-																	
-																
-															)
-
-														</code>
-
-														<div class="description" property="yui:description">
-															Fires when the value for the configuration attribute 'tools' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
 														</div>
 
 														<div class="description">
@@ -2796,7 +2800,7 @@ Expanding and collapsing the Panel.
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Panel.html#method__addPanelClass", "access": "protected", "host": "Panel", "type": "method", "name": "_addPanelClass"}, {"url": "Panel.html#method__afterCollapsedChange", "access": "protected", "host": "Panel", "type": "method", "name": "_afterCollapsedChange"}, {"url": "Panel.html#method__afterPanelRender", "access": "protected", "host": "Panel", "type": "method", "name": "_afterPanelRender"}, {"url": "Panel.html#method__afterTitleChange", "access": "protected", "host": "Panel", "type": "method", "name": "_afterTitleChange"}, {"url": "Panel.html#method_collapse", "access": "", "host": "Panel", "type": "method", "name": "collapse"}, {"url": "Panel.html#config_collapsed", "access": "", "host": "Panel", "type": "config", "name": "collapsed"}, {"url": "Panel.html#event_collapsedChange", "access": "", "host": "Panel", "type": "event", "name": "collapsedChange"}, {"url": "Panel.html#config_collapsible", "access": "", "host": "Panel", "type": "config", "name": "collapsible"}, {"url": "Panel.html#event_collapsibleChange", "access": "", "host": "Panel", "type": "event", "name": "collapsibleChange"}, {"url": "Panel.html#method_expand", "access": "", "host": "Panel", "type": "method", "name": "expand"}, {"url": "Panel.html#property_headerTextNode", "access": "protected", "host": "Panel", "type": "property", "name": "headerTextNode"}, {"url": "Panel.html#method_initializer", "access": "protected", "host": "Panel", "type": "method", "name": "initializer"}, {"url": "Panel.html#property_Panel.ATTRS", "access": "", "host": "Panel", "type": "property", "name": "Panel.ATTRS"}, {"url": "Panel.html#method__renderHeaderText", "access": "protected", "host": "Panel", "type": "method", "name": "_renderHeaderText"}, {"url": "Panel.html#method__renderToolItems", "access": "protected", "host": "Panel", "type": "method", "name": "_renderToolItems"}, {"url": "Panel.html#method__syncCollapsedUI", "access": "protected", "host": "Panel", "type": "method", "name": "_syncCollapsedUI"}, {"url": "Panel.html#method__syncTitleUI", "access": "protected", "host": "Panel", "type": "method", "name": "_syncTitleUI"}, {"url": "Panel.html#config_title", "access": "", "host": "Panel", "type": "config", "name": "title"}, {"url": "Panel.html#event_titleChange", "access": "", "host": "Panel", "type": "event", "name": "titleChange"}, {"url": "Panel.html#method_toggle", "access": "", "host": "Panel", "type": "method", "name": "toggle"}, {"url": "Panel.html#method_toggleCollapse", "access": "", "host": "Panel", "type": "method", "name": "toggleCollapse"}, {"url": "Panel.html#config_tools", "access": "", "host": "Panel", "type": "config", "name": "tools"}, {"url": "Panel.html#event_toolsChange", "access": "", "host": "Panel", "type": "event", "name": "toolsChange"}];
+    var ALL_YUI_PROPS = [{"url": "Panel.html#method__addPanelClass", "access": "protected", "host": "Panel", "type": "method", "name": "_addPanelClass"}, {"url": "Panel.html#method__afterCollapsedChange", "access": "protected", "host": "Panel", "type": "method", "name": "_afterCollapsedChange"}, {"url": "Panel.html#method__afterPanelRender", "access": "protected", "host": "Panel", "type": "method", "name": "_afterPanelRender"}, {"url": "Panel.html#method__afterTitleChange", "access": "protected", "host": "Panel", "type": "method", "name": "_afterTitleChange"}, {"url": "Panel.html#method_collapse", "access": "", "host": "Panel", "type": "method", "name": "collapse"}, {"url": "Panel.html#config_collapsed", "access": "", "host": "Panel", "type": "config", "name": "collapsed"}, {"url": "Panel.html#event_collapsedChange", "access": "", "host": "Panel", "type": "event", "name": "collapsedChange"}, {"url": "Panel.html#config_collapsible", "access": "", "host": "Panel", "type": "config", "name": "collapsible"}, {"url": "Panel.html#event_collapsibleChange", "access": "", "host": "Panel", "type": "event", "name": "collapsibleChange"}, {"url": "Panel.html#method_expand", "access": "", "host": "Panel", "type": "method", "name": "expand"}, {"url": "Panel.html#property_headerTextNode", "access": "protected", "host": "Panel", "type": "property", "name": "headerTextNode"}, {"url": "Panel.html#config_icons", "access": "", "host": "Panel", "type": "config", "name": "icons"}, {"url": "Panel.html#event_iconsChange", "access": "", "host": "Panel", "type": "event", "name": "iconsChange"}, {"url": "Panel.html#method_initializer", "access": "protected", "host": "Panel", "type": "method", "name": "initializer"}, {"url": "Panel.html#property_Panel.ATTRS", "access": "", "host": "Panel", "type": "property", "name": "Panel.ATTRS"}, {"url": "Panel.html#method__renderHeaderText", "access": "protected", "host": "Panel", "type": "method", "name": "_renderHeaderText"}, {"url": "Panel.html#method__renderIconButtons", "access": "protected", "host": "Panel", "type": "method", "name": "_renderIconButtons"}, {"url": "Panel.html#method__syncCollapsedUI", "access": "protected", "host": "Panel", "type": "method", "name": "_syncCollapsedUI"}, {"url": "Panel.html#method__syncTitleUI", "access": "protected", "host": "Panel", "type": "method", "name": "_syncTitleUI"}, {"url": "Panel.html#config_title", "access": "", "host": "Panel", "type": "config", "name": "title"}, {"url": "Panel.html#event_titleChange", "access": "", "host": "Panel", "type": "event", "name": "titleChange"}, {"url": "Panel.html#method_toggle", "access": "", "host": "Panel", "type": "method", "name": "toggle"}, {"url": "Panel.html#method_toggleCollapse", "access": "", "host": "Panel", "type": "method", "name": "toggleCollapse"}];
 </script>
 </body>
 </html>

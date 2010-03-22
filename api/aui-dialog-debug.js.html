@@ -16,7 +16,7 @@
 <div id="wrapper">
 	<div class="aui-header">
 		<h1>
-			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+			<a class="aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
 		</h1>
 
 		<h3>
@@ -99,6 +99,10 @@
 
 
 				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
 
 
 
@@ -194,7 +198,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+				                                <li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
 
 
 
@@ -577,6 +581,7 @@
 	<span class="nx">HD</span> <span class="o">=</span> <span class="s1">&#39;hd&#39;</span><span class="p">,</span>
 	<span class="nx">HEIGHT</span> <span class="o">=</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span>
 	<span class="nx">ICON</span> <span class="o">=</span> <span class="s1">&#39;icon&#39;</span><span class="p">,</span>
+	<span class="nx">ICONS</span> <span class="o">=</span> <span class="s1">&#39;icons&#39;</span><span class="p">,</span>
 	<span class="nx">IO</span> <span class="o">=</span> <span class="s1">&#39;io&#39;</span><span class="p">,</span>
 	<span class="nx">LOADING</span> <span class="o">=</span> <span class="s1">&#39;loading&#39;</span><span class="p">,</span>
 	<span class="nx">MODAL</span> <span class="o">=</span> <span class="s1">&#39;modal&#39;</span><span class="p">,</span>
@@ -584,7 +589,6 @@
 	<span class="nx">RESIZABLE</span> <span class="o">=</span> <span class="s1">&#39;resizable&#39;</span><span class="p">,</span>
 	<span class="nx">RESIZABLE_INSTANCE</span> <span class="o">=</span> <span class="s1">&#39;resizableInstance&#39;</span><span class="p">,</span>
 	<span class="nx">STACK</span> <span class="o">=</span> <span class="s1">&#39;stack&#39;</span><span class="p">,</span>
-	<span class="nx">TOOLS</span> <span class="o">=</span> <span class="s1">&#39;tools&#39;</span><span class="p">,</span>
 	<span class="nx">WIDTH</span> <span class="o">=</span> <span class="s1">&#39;width&#39;</span><span class="p">,</span>
 
 	<span class="nx">EV_RESIZE</span> <span class="o">=</span> <span class="s1">&#39;resize:resize&#39;</span><span class="p">,</span>
@@ -843,7 +847,7 @@
 <span class="cm">	 */</span>
 	<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
 		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">tools</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TOOLS</span><span class="p">);</span>
+		<span class="kd">var</span> <span class="nx">icons</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ICONS</span><span class="p">);</span>
 		<span class="kd">var</span> <span class="nx">close</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CLOSE</span><span class="p">);</span>
 		<span class="kd">var</span> <span class="nx">buttons</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BUTTONS</span><span class="p">);</span>
 
@@ -861,11 +865,11 @@
 				<span class="p">}</span>
 			<span class="p">};</span>
 
-			<span class="k">if</span> <span class="p">(</span><span class="nx">tools</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">tools</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">closeConfig</span><span class="p">);</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">icons</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">icons</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">closeConfig</span><span class="p">);</span>
 			<span class="p">}</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">TOOLS</span><span class="p">,</span> <span class="nx">tools</span><span class="p">);</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">ICONS</span><span class="p">,</span> <span class="nx">icons</span><span class="p">);</span>
 		<span class="p">}</span>
 
 		<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;render&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterRenderer</span><span class="p">);</span>
@@ -1295,7 +1299,7 @@
 <span class="cm"> * @static</span>
 <span class="cm"> */</span>
 
-<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-panel&#39;</span><span class="p">,</span><span class="s1">&#39;dd-constrain&#39;</span><span class="p">,</span><span class="s1">&#39;aui-tool-item&#39;</span><span class="p">,</span><span class="s1">&#39;aui-overlay-manager&#39;</span><span class="p">,</span><span class="s1">&#39;aui-overlay-mask&#39;</span><span class="p">,</span><span class="s1">&#39;aui-io-plugin&#39;</span><span class="p">,</span><span class="s1">&#39;aui-resize&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-panel&#39;</span><span class="p">,</span><span class="s1">&#39;dd-constrain&#39;</span><span class="p">,</span><span class="s1">&#39;aui-button&#39;</span><span class="p">,</span><span class="s1">&#39;aui-overlay-manager&#39;</span><span class="p">,</span><span class="s1">&#39;aui-overlay-mask&#39;</span><span class="p">,</span><span class="s1">&#39;aui-io-plugin&#39;</span><span class="p">,</span><span class="s1">&#39;aui-resize&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
 </pre></div>
 
 							</div>

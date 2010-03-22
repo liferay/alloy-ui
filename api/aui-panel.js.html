@@ -16,7 +16,7 @@
 <div id="wrapper">
 	<div class="aui-header">
 		<h1>
-			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+			<a class="aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
 		</h1>
 
 		<h3>
@@ -99,6 +99,10 @@
 
 
 				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
 
 
 
@@ -194,7 +198,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+				                                <li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
 
 
 
@@ -563,7 +567,7 @@
 	<span class="nx">PANEL</span> <span class="o">=</span> <span class="s1">&#39;panel&#39;</span><span class="p">,</span>
 	<span class="nx">PLUS</span> <span class="o">=</span> <span class="s1">&#39;plus&#39;</span><span class="p">,</span>
 	<span class="nx">TITLE</span> <span class="o">=</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span>
-	<span class="nx">TOOLS</span> <span class="o">=</span> <span class="s1">&#39;tools&#39;</span><span class="p">,</span>
+	<span class="nx">ICONS</span> <span class="o">=</span> <span class="s1">&#39;icons&#39;</span><span class="p">,</span>
 	<span class="nx">VISIBLE</span> <span class="o">=</span> <span class="s1">&#39;visible&#39;</span><span class="p">,</span>
 
 	<span class="nx">getClassName</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">ClassNameManager</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">,</span>
@@ -572,7 +576,7 @@
 	<span class="nx">CSS_COLLAPSED</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">PANEL</span><span class="p">,</span> <span class="nx">COLLAPSED</span><span class="p">),</span>
 	<span class="nx">CSS_PANEL</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">PANEL</span><span class="p">),</span>
 	<span class="nx">CSS_PANEL_HD_TEXT</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">PANEL</span><span class="p">,</span> <span class="s1">&#39;hd&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">),</span>
-	<span class="nx">CSS_PANEL_TOOLSET</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">PANEL</span><span class="p">,</span> <span class="s1">&#39;toolset&#39;</span><span class="p">),</span>
+	<span class="nx">CSS_PANEL_ICONS</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">PANEL</span><span class="p">,</span> <span class="s1">&#39;icons&#39;</span><span class="p">),</span>
 
 	<span class="nx">CSS_PANELS</span> <span class="o">=</span> <span class="p">{</span>
 		<span class="nx">body</span><span class="o">:</span> <span class="s1">&#39;bd&#39;</span><span class="p">,</span>
@@ -665,21 +669,21 @@
 	<span class="p">},</span>
 
 	<span class="cm">/**</span>
-<span class="cm">	 * &lt;p&gt;Array of &lt;a href=&quot;ToolItem.html&quot;&gt;ToolItem&lt;/a&gt; to be displayed as icons</span>
+<span class="cm">	 * &lt;p&gt;Array of &lt;a href=&quot;Button.html&quot;&gt;Button&lt;/a&gt; configuration objects to be displayed as icons</span>
 <span class="cm">     * on the Panel title.&lt;/p&gt;</span>
 <span class="cm">	 *</span>
 <span class="cm">	 * Example:</span>
 <span class="cm">	 *</span>
-<span class="cm">	 * &lt;pre&gt;&lt;code&gt;tools: [ { icon: &#39;close&#39;, id: &#39;close&#39; } ]&lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm">	 * &lt;pre&gt;&lt;code&gt;icons: [ { icon: &#39;close&#39;, id: &#39;close&#39; } ]&lt;/code&gt;&lt;/pre&gt;</span>
 <span class="cm">	 *</span>
 <span class="cm">	 * For more information how to use this option see</span>
-<span class="cm">     * &lt;a href=&quot;ToolItem.html&quot;&gt;ToolItem&lt;/a&gt;.</span>
+<span class="cm">     * &lt;a href=&quot;Button.html&quot;&gt;Button&lt;/a&gt;.</span>
 <span class="cm">	 *</span>
-<span class="cm">	 * @attribute tools</span>
+<span class="cm">	 * @attribute icons</span>
 <span class="cm">	 * @default []</span>
 <span class="cm">	 * @type Array</span>
 <span class="cm">	 */</span>
-	<span class="nx">tools</span><span class="o">:</span> <span class="p">{</span>
+	<span class="nx">icons</span><span class="o">:</span> <span class="p">{</span>
 		<span class="nx">value</span><span class="o">:</span> <span class="p">[],</span>
 		<span class="nx">validator</span><span class="o">:</span> <span class="nx">isArray</span>
 	<span class="p">}</span>
@@ -793,19 +797,19 @@
 	<span class="p">},</span>
 
 	<span class="cm">/**</span>
-<span class="cm">	 * Render the &lt;a href=&quot;Panel.html#config_tools&quot;&gt;tools&lt;/a&gt;.</span>
+<span class="cm">	 * Render the &lt;a href=&quot;Panel.html#config_icons&quot;&gt;icons&lt;/a&gt;.</span>
 <span class="cm">	 *</span>
-<span class="cm">	 * @method _renderToolItems</span>
+<span class="cm">	 * @method _renderIconButtons</span>
 <span class="cm">	 * @protected</span>
 <span class="cm">	 */</span>
-	<span class="nx">_renderToolItems</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">_renderIconButtons</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">tools</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TOOLS</span><span class="p">);</span>
+		<span class="kd">var</span> <span class="nx">icons</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ICONS</span><span class="p">);</span>
 
 		<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">COLLAPSIBLE</span><span class="p">))</span> <span class="p">{</span>
 			<span class="kd">var</span> <span class="nx">icon</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">COLLAPSED</span><span class="p">)</span> <span class="o">?</span> <span class="nx">PLUS</span> <span class="o">:</span> <span class="nx">MINUS</span><span class="p">;</span>
 
-			<span class="nx">tools</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span>
+			<span class="nx">icons</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span>
 				<span class="p">{</span>
 					<span class="nx">icon</span><span class="o">:</span> <span class="nx">icon</span><span class="p">,</span>
 					<span class="nx">id</span><span class="o">:</span> <span class="nx">COLLAPSE</span><span class="p">,</span>
@@ -817,14 +821,14 @@
 			<span class="p">);</span>
 		<span class="p">}</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">toolset</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">ToolSet</span><span class="p">(</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">icons</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Toolbar</span><span class="p">(</span>
 			<span class="p">{</span>
-				<span class="nx">tools</span><span class="o">:</span> <span class="nx">tools</span>
+				<span class="nx">children</span><span class="o">:</span> <span class="nx">icons</span>
 			<span class="p">}</span>
 		<span class="p">)</span>
 		<span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">headerNode</span><span class="p">);</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">toolset</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_PANEL_TOOLSET</span><span class="p">);</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">icons</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_PANEL_ICONS</span><span class="p">);</span>
 	<span class="p">},</span>
 
 	<span class="cm">/**</span>
@@ -876,9 +880,9 @@
 			<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
 			<span class="kd">var</span> <span class="nx">collapsed</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">COLLAPSED</span><span class="p">);</span>
 
-			<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">toolset</span><span class="p">)</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">toolset</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">toolset</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">collapseItem</span> <span class="o">=</span> <span class="nx">toolset</span><span class="p">.</span><span class="nx">tools</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">COLLAPSE</span><span class="p">);</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">icons</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">icons</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">icons</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">collapseItem</span> <span class="o">=</span> <span class="nx">icons</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">COLLAPSE</span><span class="p">);</span>
 
 				<span class="k">if</span> <span class="p">(</span><span class="nx">collapseItem</span><span class="p">)</span> <span class="p">{</span>
 					<span class="nx">collapseItem</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span>
@@ -945,7 +949,7 @@
 		<span class="nx">instance</span><span class="p">.</span><span class="nx">_addPanelClass</span><span class="p">(</span><span class="s1">&#39;header&#39;</span><span class="p">);</span>
 
 		<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderHeaderText</span><span class="p">();</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderToolItems</span><span class="p">();</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderIconButtons</span><span class="p">();</span>
 
 		<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncCollapsedUI</span><span class="p">();</span>
 	<span class="p">},</span>
@@ -967,7 +971,7 @@
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">Panel</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Base</span><span class="p">.</span><span class="nx">build</span><span class="p">(</span><span class="nx">PANEL</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">,</span> <span class="p">[</span><span class="nx">Panel</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">WidgetStdMod</span><span class="p">]);</span>
 
-<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-component&#39;</span><span class="p">,</span><span class="s1">&#39;widget-stdmod&#39;</span><span class="p">,</span><span class="s1">&#39;aui-tool-set&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-component&#39;</span><span class="p">,</span><span class="s1">&#39;widget-stdmod&#39;</span><span class="p">,</span><span class="s1">&#39;aui-toolbar&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
 </pre></div>
 
 							</div>
@@ -985,7 +989,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Panel.html#method__addPanelClass", "access": "protected", "host": "Panel", "type": "method", "name": "_addPanelClass"}, {"url": "Panel.html#method__afterCollapsedChange", "access": "protected", "host": "Panel", "type": "method", "name": "_afterCollapsedChange"}, {"url": "Panel.html#method__afterPanelRender", "access": "protected", "host": "Panel", "type": "method", "name": "_afterPanelRender"}, {"url": "Panel.html#method__afterTitleChange", "access": "protected", "host": "Panel", "type": "method", "name": "_afterTitleChange"}, {"url": "Panel.html#method_collapse", "access": "", "host": "Panel", "type": "method", "name": "collapse"}, {"url": "Panel.html#config_collapsed", "access": "", "host": "Panel", "type": "config", "name": "collapsed"}, {"url": "Panel.html#event_collapsedChange", "access": "", "host": "Panel", "type": "event", "name": "collapsedChange"}, {"url": "Panel.html#config_collapsible", "access": "", "host": "Panel", "type": "config", "name": "collapsible"}, {"url": "Panel.html#event_collapsibleChange", "access": "", "host": "Panel", "type": "event", "name": "collapsibleChange"}, {"url": "Panel.html#method_expand", "access": "", "host": "Panel", "type": "method", "name": "expand"}, {"url": "Panel.html#property_headerTextNode", "access": "protected", "host": "Panel", "type": "property", "name": "headerTextNode"}, {"url": "Panel.html#method_initializer", "access": "protected", "host": "Panel", "type": "method", "name": "initializer"}, {"url": "Panel.html#property_Panel.ATTRS", "access": "", "host": "Panel", "type": "property", "name": "Panel.ATTRS"}, {"url": "Panel.html#method__renderHeaderText", "access": "protected", "host": "Panel", "type": "method", "name": "_renderHeaderText"}, {"url": "Panel.html#method__renderToolItems", "access": "protected", "host": "Panel", "type": "method", "name": "_renderToolItems"}, {"url": "Panel.html#method__syncCollapsedUI", "access": "protected", "host": "Panel", "type": "method", "name": "_syncCollapsedUI"}, {"url": "Panel.html#method__syncTitleUI", "access": "protected", "host": "Panel", "type": "method", "name": "_syncTitleUI"}, {"url": "Panel.html#config_title", "access": "", "host": "Panel", "type": "config", "name": "title"}, {"url": "Panel.html#event_titleChange", "access": "", "host": "Panel", "type": "event", "name": "titleChange"}, {"url": "Panel.html#method_toggle", "access": "", "host": "Panel", "type": "method", "name": "toggle"}, {"url": "Panel.html#method_toggleCollapse", "access": "", "host": "Panel", "type": "method", "name": "toggleCollapse"}, {"url": "Panel.html#config_tools", "access": "", "host": "Panel", "type": "config", "name": "tools"}, {"url": "Panel.html#event_toolsChange", "access": "", "host": "Panel", "type": "event", "name": "toolsChange"}];
+    var ALL_YUI_PROPS = [{"url": "Panel.html#method__addPanelClass", "access": "protected", "host": "Panel", "type": "method", "name": "_addPanelClass"}, {"url": "Panel.html#method__afterCollapsedChange", "access": "protected", "host": "Panel", "type": "method", "name": "_afterCollapsedChange"}, {"url": "Panel.html#method__afterPanelRender", "access": "protected", "host": "Panel", "type": "method", "name": "_afterPanelRender"}, {"url": "Panel.html#method__afterTitleChange", "access": "protected", "host": "Panel", "type": "method", "name": "_afterTitleChange"}, {"url": "Panel.html#method_collapse", "access": "", "host": "Panel", "type": "method", "name": "collapse"}, {"url": "Panel.html#config_collapsed", "access": "", "host": "Panel", "type": "config", "name": "collapsed"}, {"url": "Panel.html#event_collapsedChange", "access": "", "host": "Panel", "type": "event", "name": "collapsedChange"}, {"url": "Panel.html#config_collapsible", "access": "", "host": "Panel", "type": "config", "name": "collapsible"}, {"url": "Panel.html#event_collapsibleChange", "access": "", "host": "Panel", "type": "event", "name": "collapsibleChange"}, {"url": "Panel.html#method_expand", "access": "", "host": "Panel", "type": "method", "name": "expand"}, {"url": "Panel.html#property_headerTextNode", "access": "protected", "host": "Panel", "type": "property", "name": "headerTextNode"}, {"url": "Panel.html#config_icons", "access": "", "host": "Panel", "type": "config", "name": "icons"}, {"url": "Panel.html#event_iconsChange", "access": "", "host": "Panel", "type": "event", "name": "iconsChange"}, {"url": "Panel.html#method_initializer", "access": "protected", "host": "Panel", "type": "method", "name": "initializer"}, {"url": "Panel.html#property_Panel.ATTRS", "access": "", "host": "Panel", "type": "property", "name": "Panel.ATTRS"}, {"url": "Panel.html#method__renderHeaderText", "access": "protected", "host": "Panel", "type": "method", "name": "_renderHeaderText"}, {"url": "Panel.html#method__renderIconButtons", "access": "protected", "host": "Panel", "type": "method", "name": "_renderIconButtons"}, {"url": "Panel.html#method__syncCollapsedUI", "access": "protected", "host": "Panel", "type": "method", "name": "_syncCollapsedUI"}, {"url": "Panel.html#method__syncTitleUI", "access": "protected", "host": "Panel", "type": "method", "name": "_syncTitleUI"}, {"url": "Panel.html#config_title", "access": "", "host": "Panel", "type": "config", "name": "title"}, {"url": "Panel.html#event_titleChange", "access": "", "host": "Panel", "type": "event", "name": "titleChange"}, {"url": "Panel.html#method_toggle", "access": "", "host": "Panel", "type": "method", "name": "toggle"}, {"url": "Panel.html#method_toggleCollapse", "access": "", "host": "Panel", "type": "method", "name": "toggleCollapse"}];
 </script>
 </body>
 </html>

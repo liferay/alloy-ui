@@ -16,7 +16,7 @@
 <div id="wrapper">
 	<div class="aui-header">
 		<h1>
-			<a class="aui-header-text" href="http://alloyui.com/api" title="Alloy UI">Alloy UI</a>
+			<a class="aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
 		</h1>
 
 		<h3>
@@ -99,6 +99,10 @@
 
 
 				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
 
 
 
@@ -194,7 +198,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-tool.html" title="aui-tool">aui-tool</a></li>
+				                                <li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
 
 
 
@@ -516,11 +520,11 @@
 												<li class=""><a href="#config_eventType" title="eventType">eventType</a></li>
 												<li class=""><a href="#config_formatInput" title="formatInput">formatInput</a></li>
 												<li class=""><a href="#config_formatOutput" title="formatOutput">formatOutput</a></li>
+												<li class=""><a href="#config_icons" title="icons">icons</a></li>
 												<li class=""><a href="#config_inputType" title="inputType">inputType</a></li>
 												<li class=""><a href="#config_node" title="node">node</a></li>
 												<li class=""><a href="#config_renderTo" title="renderTo">renderTo</a></li>
 												<li class=""><a href="#config_saveButton" title="saveButton">saveButton</a></li>
-												<li class=""><a href="#config_tools" title="tools">tools</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -591,6 +595,7 @@
 												<li class=""><a href="#event_eventTypeChange" title="eventTypeChange">eventTypeChange</a></li>
 												<li class=""><a href="#event_formatInputChange" title="formatInputChange">formatInputChange</a></li>
 												<li class=""><a href="#event_formatOutputChange" title="formatOutputChange">formatOutputChange</a></li>
+												<li class=""><a href="#event_iconsChange" title="iconsChange">iconsChange</a></li>
 												<li class=""><a href="#event_inputTypeChange" title="inputTypeChange">inputTypeChange</a></li>
 												<li class=""><a href="#event_nodeChange" title="nodeChange">nodeChange</a></li>
 												<li class=""><a href="#event_renderToChange" title="renderToChange">renderToChange</a></li>
@@ -598,7 +603,6 @@
 												<li class=""><a href="#event_saveButtonChange" title="saveButtonChange">saveButtonChange</a></li>
 												<li class=""><a href="#event_startEditing" title="startEditing">startEditing</a></li>
 												<li class=""><a href="#event_stopEditing" title="stopEditing">stopEditing</a></li>
-												<li class=""><a href="#event_toolsChange" title="toolsChange">toolsChange</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -855,14 +859,14 @@ configuration for the Editable.
 
 													<div class="detail">
 														<div class="description" property="yui:description">
-															<a href="ToolSet.html">ToolSet</a> constructor Object for the
+															<a href="Button.html">Button</a> constructor Object for the
 cancelButton.
 														</div>
 													</div>
 
 
 													<div class="default">
-														Default Value: <strong>ToolSet constructor Object.</strong>
+														Default Value: <strong>Button constructor Object.</strong>
 													</div>
 
 												</div>
@@ -942,6 +946,25 @@ cancelButton.
 													</div>
 
 												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_icons">
+
+													<h4>
+														<a name="config_icons">icons</a>
+														<code>- <span property="yui:type">Array</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Array with icons for the <a href="Toolbar.html">Toolbar</a>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>[]</strong>
+													</div>
+
+												</div>
 												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_inputType">
 
 													<h4>
@@ -1003,33 +1026,14 @@ href="Editable.html#config_node">node</a>.
 
 													<div class="detail">
 														<div class="description" property="yui:description">
-															<a href="ToolSet.html">ToolSet</a> constructor Object for the
+															<a href="Button.html">Button</a> constructor Object for the
 saveButton.
 														</div>
 													</div>
 
 
 													<div class="default">
-														Default Value: <strong>ToolSet constructor Object.</strong>
-													</div>
-
-												</div>
-												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_tools">
-
-													<h4>
-														<a name="config_tools">tools</a>
-														<code>- <span property="yui:type">Array</span></code>
-													</h4>
-
-													<div class="detail">
-														<div class="description" property="yui:description">
-															Array with tools for the <a href="ToolSet.html">ToolSet</a>.
-														</div>
-													</div>
-
-
-													<div class="default">
-														Default Value: <strong>[]</strong>
+														Default Value: <strong>Button constructor Object.</strong>
 													</div>
 
 												</div>
@@ -2998,6 +3002,48 @@ nl2br).
 														</div>
 													</div>
 												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_iconsChange">
+
+													<h4>
+														<a name="event_iconsChange">iconsChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">iconsChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'icons' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
 												<div class="api-entry-row event-row " rel="yui:event" resource="#event_inputTypeChange">
 
 													<h4>
@@ -3304,48 +3350,6 @@ nl2br).
 														</div>
 													</div>
 												</div>
-												<div class="api-entry-row event-row " rel="yui:event" resource="#event_toolsChange">
-
-													<h4>
-														<a name="event_toolsChange">toolsChange</a>
-													</h4>
-
-													<div class="detail">
-														<code class="event-detail">
-														
-														
-														
-															<strong property="yui:name">toolsChange</strong>
-
-															(
-																
-																		
-																		 event
-																	
-																
-															)
-
-														</code>
-
-														<div class="description" property="yui:description">
-															Fires when the value for the configuration attribute 'tools' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
-														</div>
-
-														<div class="description">
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
-																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
-																		</dd>
-
-																</dl>
-
-
-
-														</div>
-													</div>
-												</div>
 										</div>
 									</div>
 
@@ -3545,7 +3549,7 @@ nl2br).
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Editable.html#method__afterFocusedChangeEditable", "access": "protected", "host": "Editable", "type": "method", "name": "_afterFocusedChangeEditable"}, {"url": "Editable.html#method_bindUI", "access": "protected", "host": "Editable", "type": "method", "name": "bindUI"}, {"url": "Editable.html#method_cancel", "access": "", "host": "Editable", "type": "method", "name": "cancel"}, {"url": "Editable.html#event_cancel", "access": "", "host": "Editable", "type": "event", "name": "cancel"}, {"url": "Editable.html#config_cancelButton", "access": "", "host": "Editable", "type": "config", "name": "cancelButton"}, {"url": "Editable.html#event_cancelButtonChange", "access": "", "host": "Editable", "type": "event", "name": "cancelButtonChange"}, {"url": "Editable.html#config_contentText", "access": "", "host": "Editable", "type": "config", "name": "contentText"}, {"url": "Editable.html#event_contentTextChange", "access": "", "host": "Editable", "type": "event", "name": "contentTextChange"}, {"url": "Editable.html#method__createEvents", "access": "protected", "host": "Editable", "type": "method", "name": "_createEvents"}, {"url": "Editable.html#method__defCancelFn", "access": "protected", "host": "Editable", "type": "method", "name": "_defCancelFn"}, {"url": "Editable.html#method__defSaveFn", "access": "protected", "host": "Editable", "type": "method", "name": "_defSaveFn"}, {"url": "Editable.html#method__defStartEditingFn", "access": "protected", "host": "Editable", "type": "method", "name": "_defStartEditingFn"}, {"url": "Editable.html#method__defStopEditingFn", "access": "protected", "host": "Editable", "type": "method", "name": "_defStopEditingFn"}, {"url": "Editable.html#property_Editable.ATTRS", "access": "", "host": "Editable", "type": "property", "name": "Editable.ATTRS"}, {"url": "Editable.html#property_Editable.NAME", "access": "", "host": "Editable", "type": "property", "name": "Editable.NAME"}, {"url": "Editable.html#config_eventType", "access": "", "host": "Editable", "type": "config", "name": "eventType"}, {"url": "Editable.html#event_eventTypeChange", "access": "", "host": "Editable", "type": "event", "name": "eventTypeChange"}, {"url": "Editable.html#config_formatInput", "access": "", "host": "Editable", "type": "config", "name": "formatInput"}, {"url": "Editable.html#event_formatInputChange", "access": "", "host": "Editable", "type": "event", "name": "formatInputChange"}, {"url": "Editable.html#config_formatOutput", "access": "", "host": "Editable", "type": "config", "name": "formatOutput"}, {"url": "Editable.html#event_formatOutputChange", "access": "", "host": "Editable", "type": "event", "name": "formatOutputChange"}, {"url": "Editable.html#method_initializer", "access": "protected", "host": "Editable", "type": "method", "name": "initializer"}, {"url": "Editable.html#config_inputType", "access": "", "host": "Editable", "type": "config", "name": "inputType"}, {"url": "Editable.html#event_inputTypeChange", "access": "", "host": "Editable", "type": "event", "name": "inputTypeChange"}, {"url": "Editable.html#config_node", "access": "", "host": "Editable", "type": "config", "name": "node"}, {"url": "Editable.html#event_nodeChange", "access": "", "host": "Editable", "type": "event", "name": "nodeChange"}, {"url": "Editable.html#method__onKeypressEditable", "access": "protected", "host": "Editable", "type": "method", "name": "_onKeypressEditable"}, {"url": "Editable.html#method__onMouseEnterEditable", "access": "protected", "host": "Editable", "type": "method", "name": "_onMouseEnterEditable"}, {"url": "Editable.html#method__onMouseLeaveEditable", "access": "protected", "host": "Editable", "type": "method", "name": "_onMouseLeaveEditable"}, {"url": "Editable.html#config_renderTo", "access": "", "host": "Editable", "type": "config", "name": "renderTo"}, {"url": "Editable.html#event_renderToChange", "access": "", "host": "Editable", "type": "event", "name": "renderToChange"}, {"url": "Editable.html#method_renderUI", "access": "protected", "host": "Editable", "type": "method", "name": "renderUI"}, {"url": "Editable.html#method_save", "access": "", "host": "Editable", "type": "method", "name": "save"}, {"url": "Editable.html#event_save", "access": "", "host": "Editable", "type": "event", "name": "save"}, {"url": "Editable.html#config_saveButton", "access": "", "host": "Editable", "type": "config", "name": "saveButton"}, {"url": "Editable.html#event_saveButtonChange", "access": "", "host": "Editable", "type": "event", "name": "saveButtonChange"}, {"url": "Editable.html#method__setInput", "access": "protected", "host": "Editable", "type": "method", "name": "_setInput"}, {"url": "Editable.html#method__setOutput", "access": "protected", "host": "Editable", "type": "method", "name": "_setOutput"}, {"url": "Editable.html#method__startEditing", "access": "protected", "host": "Editable", "type": "method", "name": "_startEditing"}, {"url": "Editable.html#event_startEditing", "access": "", "host": "Editable", "type": "event", "name": "startEditing"}, {"url": "Editable.html#event_stopEditing", "access": "", "host": "Editable", "type": "event", "name": "stopEditing"}, {"url": "Editable.html#method__syncContentText", "access": "protected", "host": "Editable", "type": "method", "name": "_syncContentText"}, {"url": "Editable.html#method_syncUI", "access": "protected", "host": "Editable", "type": "method", "name": "syncUI"}, {"url": "Editable.html#method__toHTML", "access": "protected", "host": "Editable", "type": "method", "name": "_toHTML"}, {"url": "Editable.html#config_tools", "access": "", "host": "Editable", "type": "config", "name": "tools"}, {"url": "Editable.html#event_toolsChange", "access": "", "host": "Editable", "type": "event", "name": "toolsChange"}, {"url": "Editable.html#method__toText", "access": "protected", "host": "Editable", "type": "method", "name": "_toText"}];
+    var ALL_YUI_PROPS = [{"url": "Editable.html#method__afterFocusedChangeEditable", "access": "protected", "host": "Editable", "type": "method", "name": "_afterFocusedChangeEditable"}, {"url": "Editable.html#method_bindUI", "access": "protected", "host": "Editable", "type": "method", "name": "bindUI"}, {"url": "Editable.html#method_cancel", "access": "", "host": "Editable", "type": "method", "name": "cancel"}, {"url": "Editable.html#event_cancel", "access": "", "host": "Editable", "type": "event", "name": "cancel"}, {"url": "Editable.html#config_cancelButton", "access": "", "host": "Editable", "type": "config", "name": "cancelButton"}, {"url": "Editable.html#event_cancelButtonChange", "access": "", "host": "Editable", "type": "event", "name": "cancelButtonChange"}, {"url": "Editable.html#config_contentText", "access": "", "host": "Editable", "type": "config", "name": "contentText"}, {"url": "Editable.html#event_contentTextChange", "access": "", "host": "Editable", "type": "event", "name": "contentTextChange"}, {"url": "Editable.html#method__createEvents", "access": "protected", "host": "Editable", "type": "method", "name": "_createEvents"}, {"url": "Editable.html#method__defCancelFn", "access": "protected", "host": "Editable", "type": "method", "name": "_defCancelFn"}, {"url": "Editable.html#method__defSaveFn", "access": "protected", "host": "Editable", "type": "method", "name": "_defSaveFn"}, {"url": "Editable.html#method__defStartEditingFn", "access": "protected", "host": "Editable", "type": "method", "name": "_defStartEditingFn"}, {"url": "Editable.html#method__defStopEditingFn", "access": "protected", "host": "Editable", "type": "method", "name": "_defStopEditingFn"}, {"url": "Editable.html#property_Editable.ATTRS", "access": "", "host": "Editable", "type": "property", "name": "Editable.ATTRS"}, {"url": "Editable.html#property_Editable.NAME", "access": "", "host": "Editable", "type": "property", "name": "Editable.NAME"}, {"url": "Editable.html#config_eventType", "access": "", "host": "Editable", "type": "config", "name": "eventType"}, {"url": "Editable.html#event_eventTypeChange", "access": "", "host": "Editable", "type": "event", "name": "eventTypeChange"}, {"url": "Editable.html#config_formatInput", "access": "", "host": "Editable", "type": "config", "name": "formatInput"}, {"url": "Editable.html#event_formatInputChange", "access": "", "host": "Editable", "type": "event", "name": "formatInputChange"}, {"url": "Editable.html#config_formatOutput", "access": "", "host": "Editable", "type": "config", "name": "formatOutput"}, {"url": "Editable.html#event_formatOutputChange", "access": "", "host": "Editable", "type": "event", "name": "formatOutputChange"}, {"url": "Editable.html#config_icons", "access": "", "host": "Editable", "type": "config", "name": "icons"}, {"url": "Editable.html#event_iconsChange", "access": "", "host": "Editable", "type": "event", "name": "iconsChange"}, {"url": "Editable.html#method_initializer", "access": "protected", "host": "Editable", "type": "method", "name": "initializer"}, {"url": "Editable.html#config_inputType", "access": "", "host": "Editable", "type": "config", "name": "inputType"}, {"url": "Editable.html#event_inputTypeChange", "access": "", "host": "Editable", "type": "event", "name": "inputTypeChange"}, {"url": "Editable.html#config_node", "access": "", "host": "Editable", "type": "config", "name": "node"}, {"url": "Editable.html#event_nodeChange", "access": "", "host": "Editable", "type": "event", "name": "nodeChange"}, {"url": "Editable.html#method__onKeypressEditable", "access": "protected", "host": "Editable", "type": "method", "name": "_onKeypressEditable"}, {"url": "Editable.html#method__onMouseEnterEditable", "access": "protected", "host": "Editable", "type": "method", "name": "_onMouseEnterEditable"}, {"url": "Editable.html#method__onMouseLeaveEditable", "access": "protected", "host": "Editable", "type": "method", "name": "_onMouseLeaveEditable"}, {"url": "Editable.html#config_renderTo", "access": "", "host": "Editable", "type": "config", "name": "renderTo"}, {"url": "Editable.html#event_renderToChange", "access": "", "host": "Editable", "type": "event", "name": "renderToChange"}, {"url": "Editable.html#method_renderUI", "access": "protected", "host": "Editable", "type": "method", "name": "renderUI"}, {"url": "Editable.html#method_save", "access": "", "host": "Editable", "type": "method", "name": "save"}, {"url": "Editable.html#event_save", "access": "", "host": "Editable", "type": "event", "name": "save"}, {"url": "Editable.html#config_saveButton", "access": "", "host": "Editable", "type": "config", "name": "saveButton"}, {"url": "Editable.html#event_saveButtonChange", "access": "", "host": "Editable", "type": "event", "name": "saveButtonChange"}, {"url": "Editable.html#method__setInput", "access": "protected", "host": "Editable", "type": "method", "name": "_setInput"}, {"url": "Editable.html#method__setOutput", "access": "protected", "host": "Editable", "type": "method", "name": "_setOutput"}, {"url": "Editable.html#method__startEditing", "access": "protected", "host": "Editable", "type": "method", "name": "_startEditing"}, {"url": "Editable.html#event_startEditing", "access": "", "host": "Editable", "type": "event", "name": "startEditing"}, {"url": "Editable.html#event_stopEditing", "access": "", "host": "Editable", "type": "event", "name": "stopEditing"}, {"url": "Editable.html#method__syncContentText", "access": "protected", "host": "Editable", "type": "method", "name": "_syncContentText"}, {"url": "Editable.html#method_syncUI", "access": "protected", "host": "Editable", "type": "method", "name": "syncUI"}, {"url": "Editable.html#method__toHTML", "access": "protected", "host": "Editable", "type": "method", "name": "_toHTML"}, {"url": "Editable.html#method__toText", "access": "protected", "host": "Editable", "type": "method", "name": "_toText"}];
 </script>
 </body>
 </html>
