@@ -68,7 +68,6 @@ shadow or rounded corners.
 
 /* Left corners */
 
-.aui-toolbar-first .aui-toolbar-item-content,
 .aui-toolbar-first {
 	-moz-border-radius-topleft: 4px;
 	-moz-border-radius-bottomleft: 4px;
@@ -80,7 +79,6 @@ shadow or rounded corners.
 
 /* Right corners */
 
-.aui-toolbar-last .aui-toolbar-item-content,
 .aui-toolbar-last {
 	-moz-border-radius-topright: 4px;
 	-moz-border-radius-bottomright: 4px;
