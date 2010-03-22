@@ -22,7 +22,7 @@ var Lang = A.Lang,
 
 	CSS_ICON = getClassName(ICON),
 
-	TPL_BUTTON = '<button></button>',
+	TPL_BUTTON = '<button type="button"></button>',
 	TPL_ICON = '<span class="' + [CSS_BUTTON_ICON, CSS_ICON].join(' ') + '"></span>',
 	TPL_LABEL = '<span class="' + CSS_BUTTON_LABEL + '"></span>';
 
