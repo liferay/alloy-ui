@@ -459,7 +459,7 @@ A.extend(DatePickerSelect, A.Calendar, {
 		var trigger = instance.get(TRIGGER).item(0);
 		var displayBoundingBox = instance.get(DISPLAY_BOUNDING_BOX);
 
-		instance._buttonItem = new A.Button(CALENDAR);
+		instance._buttonItem = new A.ButtonItem(CALENDAR);
 
 		displayBoundingBox.append(trigger);
 

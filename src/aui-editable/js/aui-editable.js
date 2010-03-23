@@ -65,7 +65,7 @@ Editable.NAME = 'editable';
  */
 Editable.ATTRS = {
 	/**
-	 * <a href="Button.html">Button</a> constructor Object for the
+	 * <a href="ButtonItem.html">ButtonItem</a> constructor Object for the
      * cancelButton.
 	 *
 	 * @attribute cancelButton
@@ -195,7 +195,7 @@ Editable.ATTRS = {
 	},
 
 	/**
-	 * <a href="Button.html">Button</a> constructor Object for the
+	 * <a href="ButtonItem.html">ButtonItem</a> constructor Object for the
      * saveButton.
 	 *
 	 * @attribute saveButton

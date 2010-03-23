@@ -23,7 +23,7 @@
 			margin: 0 auto;
 		}
 
-		#withLabel .aui-button, #iconOnly .aui-button {
+		#withLabel .aui-buttonitem, #iconOnly .aui-buttonitem {
 			display: block;
 			clear: both;
 		}
@@ -51,7 +51,7 @@
 
 <script type="text/javascript" charset="utf-8">
 
-AUI().ready('aui-button', function(A) {
+AUI().ready('aui-button-item', function(A) {
 
 	var allIcons = [
 		'carat-1-t',
@@ -241,7 +241,7 @@ AUI().ready('aui-button', function(A) {
 		toolItemConfig.icon = allIcons[i];
 		toolItemConfig.label = allIcons[i];
 
-		new A.Button(toolItemConfig);
+		new A.ButtonItem(toolItemConfig);
 	}
 
 	toolItemConfig.render = '#iconOnly';
@@ -250,7 +250,7 @@ AUI().ready('aui-button', function(A) {
 	for (var i = 0; i < (allIcons.length); i++) {
 		toolItemConfig.icon = allIcons[i];
 
-		new A.Button(toolItemConfig);
+		new A.ButtonItem(toolItemConfig);
 	}
 
 });
