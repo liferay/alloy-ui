@@ -877,43 +877,21 @@ A.extend(IOPlugin, A.IORequest, {
 
 		instance.bindUI();
 
-		instance._bindPlugins();
-
 		IOPlugin.superclass._autoStart.apply(this, arguments);
 	},
 
 	/**
-	 * Bind the plugins on the <code>instance</code>.
+	 * Bind the ParseContent plugin on the <code>instance</code>.
 	 *
-	 * @method _bindPlugins
+	 * @method _bindParseContent
 	 * @protected
 	 */
-	_bindPlugins: function() {
+	_bindParseContent: function() {
 		var instance = this;
 		var node = instance.get(NODE);
 
-		if (node && instance.get(PARSE_CONTENT)) {
+		if (node && !node.ParseContent && instance.get(PARSE_CONTENT)) {
 			node.plug(A.Plugin.ParseContent);
-
-			// if its on a Widget dont allow close before the ParseContent finish the queue
-			if (instance.get(TYPE) == TYPE_WIDGET) {
-				var host = instance.get(HOST);
-				var queue = node.ParseContent.get(QUEUE);
-
-				if (queue) {
-					// dont close the overlay while queue is running
-					host.on('close', function(event) {
-						if (queue.isRunning()) {
-							event.halt();
-						}
-					});
-
-					// stop the queue after the dialog is closed, just in case.
-					host.after('close', function(event) {
-						queue.stop();
-					});
-				}
-			}
 		}
 	},
 
@@ -939,7 +917,8 @@ A.extend(IOPlugin, A.IORequest, {
 	 */
 	setContent: function(content) {
 		var instance = this;
-		var node = instance.get(NODE);
+
+		instance._bindParseContent();
 
 		if (instance.overlayMaskBoundingBox) {
 			instance.overlayMaskBoundingBox.remove();
