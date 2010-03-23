@@ -124,7 +124,7 @@ Panel.ATTRS = {
 	},
 
 	/**
-	 * <p>Array of <a href="Button.html">Button</a> configuration objects to be displayed as icons
+	 * <p>Array of <a href="ButtonItem.html">ButtonItem</a> configuration objects to be displayed as icons
      * on the Panel title.</p>
 	 *
 	 * Example:
@@ -132,7 +132,7 @@ Panel.ATTRS = {
 	 * <pre><code>icons: [ { icon: 'close', id: 'close' } ]</code></pre>
 	 *
 	 * For more information how to use this option see
-     * <a href="Button.html">Button</a>.
+     * <a href="ButtonItem.html">ButtonItem</a>.
 	 *
 	 * @attribute icons
 	 * @default []

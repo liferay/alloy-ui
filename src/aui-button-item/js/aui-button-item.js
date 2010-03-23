@@ -1,15 +1,14 @@
-AUI.add('aui-button', function(A) {
 /**
- * The Button Utility
+ * The ButtonItem Utility
  *
- * @module aui-button
+ * @module aui-button-item
  */
 
 var Lang = A.Lang,
 
 	getClassName = A.ClassNameManager.getClassName,
 
-	NAME = 'button',
+	NAME = 'buttonitem',
 
 	ICON = 'icon',
 	STATE = 'state',
@@ -27,7 +26,7 @@ var Lang = A.Lang,
 	TPL_LABEL = '<span class="' + CSS_BUTTON_LABEL + '"></span>';
 
 	/**
-	 * A base class for Button, providing:
+	 * A base class for ButtonItem, providing:
 	 * <ul>
 	 *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
 	 *    <li>An optional icon or label</li>
@@ -37,53 +36,53 @@ var Lang = A.Lang,
 	 *
 	 * Quick Example:<br/>
 	 * 
-	 * <pre><code>var instance = new A.Button({
+	 * <pre><code>var instance = new A.ButtonItem({
 	 *	icon: 'gear',
 	 * label: 'Configuration'
 	 * }).render();
 	 * </code></pre>
 	 *
-	 * Check the list of <a href="Button.html#configattributes">Configuration Attributes</a> available for
-	 * Button.
+	 * Check the list of <a href="ButtonItem.html#configattributes">Configuration Attributes</a> available for
+	 * ButtonItem.
 	 *
 	 * @param config {Object} Object literal specifying widget configuration properties.
 	 *
-	 * @class Button
+	 * @class ButtonItem
 	 * @constructor
 	 * @extends Component
 	 * @uses WidgetChild
 	 */
 
-var Button = function(config) {
+var ButtonItem = function(config) {
 	if (Lang.isString(config)) {
 		config = {
 			icon: config
 		};
 	}
 
-	Button.superclass.constructor.call(this, config);
+	ButtonItem.superclass.constructor.call(this, config);
 };
 
 /**
  * Static property provides a string to identify the class.
  *
- * @property Button.NAME
+ * @property ButtonItem.NAME
  * @type String
  * @static
  */
 
-Button.NAME = NAME;
+ButtonItem.NAME = NAME;
 
 /**
  * Static property used to define the default attribute
- * configuration for the Button.
+ * configuration for the ButtonItem.
  *
- * @property Button.ATTRS
+ * @property ButtonItem.ATTRS
  * @type Object
  * @static
  */
 
-Button.ATTRS = {
+ButtonItem.ATTRS = {
 	/**
 	 * Whether to track the active state of the button.
 	 * 
@@ -195,14 +194,14 @@ Button.ATTRS = {
 };
 
 A.extend(
-	Button,
+	ButtonItem,
 	A.Component,
 	{
 		BOUNDING_TEMPLATE: TPL_BUTTON,
 		CONTENT_TEMPLATE: null,
 
 		/**
-		 * Create the DOM structure for the Button. Lifecycle.
+		 * Create the DOM structure for the ButtonItem. Lifecycle.
 		 *
 		 * @method renderUI
 		 * @protected
@@ -214,7 +213,7 @@ A.extend(
 		},
 
 		/**
-		 * Bind the events on the Button UI. Lifecycle.
+		 * Bind the events on the ButtonItem UI. Lifecycle.
 		 *
 		 * @method bindUI
 		 * @protected
@@ -227,7 +226,7 @@ A.extend(
 		},
 
 		/**
-		 * Sync the Button UI. Lifecycle.
+		 * Sync the ButtonItem UI. Lifecycle.
 		 *
 		 * @method syncUI
 		 * @protected
@@ -250,7 +249,7 @@ A.extend(
 
 		/**
 		 * Fires after the value of the
-		 * <a href="Button.html#config_icon">icon</a> attribute change.
+		 * <a href="ButtonItem.html#config_icon">icon</a> attribute change.
 		 *
 		 * @method 
 		 * @param {EventFacade} event
@@ -264,7 +263,7 @@ A.extend(
 
 		/**
 		 * Fires after the value of the
-		 * <a href="Button.html#config_label">label</a> attribute change.
+		 * <a href="ButtonItem.html#config_label">label</a> attribute change.
 		 *
 		 * @method 
 		 * @param {EventFacade} event
@@ -305,7 +304,7 @@ A.extend(
 		},
 
 		/**
-		 * Renders the underlying markup for the <a href="Button.html#config_icon">icon</a>.
+		 * Renders the underlying markup for the <a href="ButtonItem.html#config_icon">icon</a>.
 		 *
 		 * @method _renderIcon
 		 * @protected
@@ -324,7 +323,7 @@ A.extend(
 		},
 
 		/**
-		 * Renders the underlying markup for the <a href="Button.html#config_label">label</a>.
+		 * Renders the underlying markup for the <a href="ButtonItem.html#config_label">label</a>.
 		 *
 		 * @method _renderLabel
 		 * @protected
@@ -399,7 +398,7 @@ A.extend(
 		},
 
 		/**
-		 * Updates the UI for the icon in response to the <a href="Button.html#event_iconChange">iconChange</a> event.
+		 * Updates the UI for the icon in response to the <a href="ButtonItem.html#event_iconChange">iconChange</a> event.
 		 *
 		 * @method _uiSetIcon
 		 * @param {String} newVal The new value
@@ -433,7 +432,7 @@ A.extend(
 		},
 
 		/**
-		 * Updates the UI for the label in response to the <a href="Button.html#event_labelChange">labelChange</a> event.
+		 * Updates the UI for the label in response to the <a href="ButtonItem.html#event_labelChange">labelChange</a> event.
 		 *
 		 * @method _uiSetLabel
 		 * @param {String} newVal The new value
@@ -461,6 +460,4 @@ A.extend(
 	}
 );
 
-A.Button = A.Base.build(NAME, Button, [A.WidgetChild], { dynamic: false });
-
-}, '@VERSION@' ,{requires:['aui-base','aui-state-interaction','widget-child'], skinnable:true});
+A.ButtonItem = A.Base.build(NAME, ButtonItem, [A.WidgetChild], { dynamic: false });

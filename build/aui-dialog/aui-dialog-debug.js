@@ -749,4 +749,4 @@ A.mix(
  * @static
  */
 
-}, '@VERSION@' ,{requires:['aui-panel','dd-constrain','aui-button','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize'], skinnable:true});

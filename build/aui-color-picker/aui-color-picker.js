@@ -425,7 +425,7 @@ ColorPicker.ATTRS = {
 			var instance = this;
 
 			if (!value) {
-				instance._buttonTrigger = new A.Button(
+				instance._buttonTrigger = new A.ButtonItem(
 					{
 						icon: 'pencil'
 					}
@@ -1017,4 +1017,4 @@ A.extend(
 
 A.ColorPicker = ColorPicker;
 
-}, '@VERSION@' ,{requires:['aui-overlay-context','dd','slider','substitute','aui-button','aui-form','aui-panel'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-overlay-context','dd','slider','substitute','aui-button-item','aui-form','aui-panel'], skinnable:true});

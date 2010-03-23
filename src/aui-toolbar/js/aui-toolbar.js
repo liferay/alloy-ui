@@ -24,7 +24,7 @@ var Lang = A.Lang,
 	 * A base class for Toolbar, providing:
 	 * <ul>
 	 *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
-	 *    <li>The ability to manage multiple <a href="Button.html">Button</a> widgets as one group</li>
+	 *    <li>The ability to manage multiple <a href="ButtonItem.html">ButtonItem</a> widgets as one group</li>
 	 *    <li>Managed user interaction states (default, active, hover)</li>
 	 *    <li>Keyboard accessible</li>
 	 * </ul>
@@ -87,11 +87,11 @@ A.mix(Toolbar, {
 		 * The default type of child widget to render into the Element
 		 *
 		 * @attribute defaultChildType
-		 * @default Button
+		 * @default ButtonItem
 		 * @type String | Object
 		 */
 		defaultChildType: {
-			value: 'Button'
+			value: 'ButtonItem'
 		}
 	}
 });

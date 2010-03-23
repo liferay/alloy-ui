@@ -1,15 +1,15 @@
-.aui-button-content {
+.aui-buttonitem-content {
 	font-size: 1em;
 	line-height: 1em;
 	padding: 3px;
 	margin: 2px;
 }
 
-.aui-button-icon-label {
+.aui-buttonitem-icon-label {
 	white-space: nowrap;
 }
 
-.aui-button-icon {
+.aui-buttonitem-icon {
 	display: inline-block;
 	margin-top: -3px;
 	vertical-align: middle;
@@ -19,7 +19,7 @@
 	*margin-top: 1px;
 }
 
-.aui-button-label {
+.aui-buttonitem-label {
 	line-height: 1em;
 	display: inline-block;
 
@@ -27,6 +27,6 @@
 	*line-height: 1.4em;
 }
 
-.aui-button-label {
+.aui-buttonitem-label {
 	padding: 0 5px;
 }

@@ -424,7 +424,7 @@ ColorPicker.ATTRS = {
 			var instance = this;
 
 			if (!value) {
-				instance._buttonTrigger = new A.Button(
+				instance._buttonTrigger = new A.ButtonItem(
 					{
 						icon: 'pencil'
 					}
