@@ -351,14 +351,16 @@ TabView.ATTRS = {
 
 			var activeTab = instance.get('activeTab');
 
-			if (activeTab && activeTab != value) {
-				activeTab.set('active', false);
+			if (activeTab) {
+				if (activeTab != value) {
+					activeTab.set('active', false);
+				}
+				else if (activeTab.get('disabled')) {
+					value = null;
+				}
 			}
 
 			return value;
-		},
-		validator: function(value) {
-			return Lang.isNull(value) || (value && !value.get('disabled'));
 		}
 	}
 };
