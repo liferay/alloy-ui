@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title>Default value plugin example</title>
+	<script src="../build/yui/yui.js" type="text/javascript"></script>
+	<script src="../build/aui-base/aui-base.js" type="text/javascript"></script>
+</head>
+
+<body>
+<p>Focus on the input field, enter in some data, leave field, focus input field again, clear field, leave field.</p>
+
+<input data-defaultValue="Enter Text" id="myInput" type="text" value="" />
+
+<script type="text/javascript" charset="utf-8">
+AUI().use(
+	'aui-node', 'aui-plugin',
+	function(A) {
+		var defaultValuePlugin = function(config) {
+			var node = config.host;
+
+			var defaultValue = node.getAttribute('data-defaultValue');
+
+			node.val(defaultValue);
+
+			node.on('focus', function(event) {
+				var value = node.val();
+
+				if (value == defaultValue) {
+					node.val('');
+				}
+			});
+
+			node.on('blur', function(event) {
+				var value = node.val();
+
+				if (value == '') {
+					node.val(defaultValue);
+				}
+			});
+		};
+
+		// Add a namespace
+		defaultValuePlugin.NS = 'defaultValue';
+
+		// Now we'll plug our node
+		A.one('#myInput').plug(defaultValuePlugin);
+	}
+);
+
+</script>
+
+</body>
+</html>
