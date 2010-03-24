@@ -22,8 +22,11 @@ AUI().use(
 			var node = config.host;
 
 			var defaultValue = node.getAttribute('data-defaultValue');
+			var startingValue = node.val();
 
-			node.val(defaultValue);
+			if (!startingValue) {
+				node.val(defaultValue);
+			}
 
 			node.on('focus', function(event) {
 				var value = node.val();
