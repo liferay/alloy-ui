@@ -11,6 +11,7 @@ var Lang = A.Lang,
 	CONTENT_NODE = 'contentNode',
 
 	CSS_TAB = getClassName(TAB),
+	CSS_TAB_CONTENT = getClassName(TAB, 'content'),
 	CSS_TAB_LABEL = getClassName(TAB, 'label'),
 	CSS_TAB_DISABLED = getClassName(TAB, 'disabled'),
 	CSS_TAB_ACTIVE = getClassName(TAB, 'active'),
@@ -263,19 +264,6 @@ A.extend(
 			instance.StateInteraction = boundingBox.StateInteraction;
 
 			instance.get('labelNode').on('click', instance._onLabelClick, instance);
-		},
-
-		destructor: function() {
-			var instance = this;
-
-			var boundingBox = instance.get(BOUNDING_BOX);
-			var contentNode = instance.get(CONTENT_NODE);
-
-			A.Event.purgeElement(boundingBox, true);
-			A.Event.purgeElement(contentNode, true);
-
-			boundingBox.remove();
-			contentNode.remove();
 		},
 
 		_createDefaultLabel: function() {
@@ -598,10 +586,13 @@ A.extend(
 
 			var items = instance.get('items');
 
+			var tabContentBoxClass = '.' + CSS_TAB_CONTENT;
+
 			tabs.each(
 				function(node, i, nodeList) {
 					var config = {
 						boundingBox: node,
+						contentBox: node.one(tabContentBoxClass),
 						contentNode: tabContent.item(i)
 					};
 
