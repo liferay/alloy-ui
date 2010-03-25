@@ -170,9 +170,9 @@ A.extend(
 			var entryHolder = instance.entryHolder;
 			var closeSelector = '.' + CSS_ICON_CLOSE;
 
-			entries.on('add', instance._updateEntryHolder, instance);
-			entries.on('replace', instance._updateEntryHolder, instance);
-			entries.on('remove', instance._updateEntryHolder, instance);
+			entries.after('add', instance._updateEntryHolder, instance);
+			entries.after('replace', instance._updateEntryHolder, instance);
+			entries.after('remove', instance._updateEntryHolder, instance);
 
 			entryHolder.delegate('click', A.bind(instance._removeItem, instance), closeSelector);
 			entryHolder.delegate('mouseenter', A.bind(instance._onCloseIconMouseOver, instance), closeSelector);
