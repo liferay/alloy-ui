@@ -509,7 +509,9 @@ A.extend(DatePickerSelect, A.Calendar, {
 		var instance = this;
 		var currentDate = instance.getCurrentDate();
 
-		instance.get(DAY_FIELD).val( currentDate.getDate() );
+		instance.get(DAY_FIELD).val(
+			String(currentDate.getDate())
+		);
 	},
 
 	/**
@@ -522,7 +524,9 @@ A.extend(DatePickerSelect, A.Calendar, {
 		var instance = this;
 		var currentDate = instance.getCurrentDate();
 
-		instance.get(MONTH_FIELD).val( currentDate.getMonth() );
+		instance.get(MONTH_FIELD).val(
+			String(currentDate.getMonth())
+		);
 	},
 
 	/**
@@ -535,7 +539,9 @@ A.extend(DatePickerSelect, A.Calendar, {
 		var instance = this;
 		var currentDate = instance.getCurrentDate();
 
-		instance.get(YEAR_FIELD).val( currentDate.getFullYear() );
+		instance.get(YEAR_FIELD).val(
+			String(currentDate.getFullYear())
+		);
 	},
 
 	/**
@@ -699,4 +705,4 @@ A.extend(DatePickerSelect, A.Calendar, {
 
 A.DatePickerSelect = DatePickerSelect;
 
-}, '@VERSION@' ,{requires:['aui-calendar-base','aui-button-item'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-calendar-base','aui-button-item']});
