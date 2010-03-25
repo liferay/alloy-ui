@@ -232,6 +232,33 @@ AUI(
 					A.Assert.areSame(55, col.getKey(col.item(2)));
 				},
 
+				testPreventAdd: function() {
+					var instance = this;
+
+					var col = instance.myCol;
+
+					var handle = col.on(
+						'add',
+						function(event) {
+							event.preventDefault();
+						}
+					);
+
+					var guid1 = A.guid();
+					col.add('key2', {testVal: guid1});
+
+					A.Assert.areSame(1, col.size());
+
+					handle.detach();
+
+					var guid2 = A.guid();
+					col.add({id: 55, testVal: guid2});
+
+					A.Assert.areSame(2, col.size());
+					A.Assert.areSame(guid2, col.item(1).testVal);
+					A.Assert.areSame(55, col.getKey(col.item(1)));
+				},
+
 				testAddAll: function() {
 					var instance = this;
 
@@ -291,6 +318,26 @@ AUI(
 					A.Assert.areSame(0, col.get('values').length);
 					A.Assert.areSame(0, col.get('keys').length);
 				},
+
+				testPreventClear: function() {
+					var instance = this;
+
+					var col = instance.myCol;
+
+					var handle = col.on(
+						'clear',
+						function(event) {
+							event.preventDefault();
+						}
+					);
+
+					col.clear();
+
+					A.Assert.areNotSame(0, col.size());
+					A.Assert.areNotSame(0, col.get('values').length);
+					A.Assert.areNotSame(0, col.get('keys').length);
+				},
+
 				testClone: function() {
 					var instance = this;
 
@@ -705,6 +752,33 @@ AUI(
 					A.Assert.areSame(4, col.size());
 				},
 
+				testPreventRemove: function() {
+					var instance = this;
+
+					var col = instance.myCol;
+
+					var handle = col.on(
+						'remove',
+						function(event) {
+							event.preventDefault();
+						}
+					);
+
+					col.addAll(
+						{
+							key2: 2,
+							key3: 3,
+							key4: 4,
+							key5: 5
+						}
+					);
+
+					col.remove(4);
+
+					A.Assert.areNotSame(undefined, col.item('key4'));
+					A.Assert.areNotSame(4, col.size());
+				},
+
 				testRemoveAt: function() {
 					var instance = this;
 
@@ -773,6 +847,36 @@ AUI(
 					A.Assert.areSame(88, col.get('last'));
 				},
 
+				testPreventReplace: function() {
+					var instance = this;
+
+					var col = instance.myCol;
+
+					col.addAll(
+						{
+							key2: 2,
+							key3: 3,
+							key4: 4,
+							key5: 5
+						}
+					);
+
+					var handle = col.on(
+						'replace',
+						function(event) {
+							event.preventDefault();
+						}
+					);
+
+					col.replace('key3', 100);
+
+					col.replace('key6', 88);
+
+					A.Assert.areSame(3, col.item('key3'));
+					A.Assert.areSame(6, col.size());
+					A.Assert.areNotSame(88, col.get('key6'));
+				},
+
 				testSize: function() {
 					var instance = this;
 
@@ -820,6 +924,38 @@ AUI(
 					col.sort('asc');
 
 					A.ArrayAssert.itemsAreEqual([2, 3, 4, 5], col.get('values'));
+				},
+
+				testPreventSort: function() {
+					var instance = this;
+
+					var col = instance.myCol;
+
+					col.clear();
+
+					var handle = col.on(
+						'sort',
+						function(event) {
+							event.preventDefault();
+						}
+					);
+
+					col.addAll(
+						{
+							key3: 3,
+							key2: 2,
+							key5: 5,
+							key4: 4
+						}
+					);
+
+					col.sort('desc');
+
+					A.ArrayAssert.itemsAreEqual([3, 2, 5, 4], col.get('values'));
+
+					col.sort('asc');
+
+					A.ArrayAssert.itemsAreEqual([3, 2, 5, 4], col.get('values'));
 				}
 			}
 		);
