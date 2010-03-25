@@ -90,6 +90,41 @@ A.extend(
 			instance.values = [];
 
 			instance.length = 0;
+
+			instance.publish(
+				'add',
+				{
+					defaultFn: instance._defaultAddFn
+				}
+			);
+
+			instance.publish(
+				'clear',
+				{
+					defaultFn: instance._defaultClearFn
+				}
+			);
+
+			instance.publish(
+				'remove',
+				{
+					defaultFn: instance._defaultRemoveFn
+				}
+			);
+
+			instance.publish(
+				'replace',
+				{
+					defaultFn: instance._defaultReplaceFn
+				}
+			);
+
+			instance.publish(
+				'sort',
+				{
+					defaultFn: instance._defaultSortFn
+				}
+			);
 		},
 
 		add: function(key, obj) {
@@ -100,29 +135,20 @@ A.extend(
 				key = instance.getKey(obj);
 			}
 
-			var includeFunctions = instance.get('includeFunctions');
-
 			if (!Lang.isNull(key) && !Lang.isUndefined(key)) {
 				var prevVal = instance.collection[key];
 
 				if (!Lang.isUndefined(prevVal)) {
 					return instance.replace(key, obj);
 				}
-
-				if (includeFunctions || !Lang.isFunction(obj)) {
-					instance.collection[key] = obj;
-				}
 			}
 
-			instance.keys.push(key);
-			instance.values.push(obj);
-
-			var length = (++instance.length);
+			var length = instance.length;
 
 			instance.fire(
 				'add',
 				{
-					index: length - 1,
+					index: length,
 					attrName: key,
 					item: obj,
 					newVal: obj
@@ -159,11 +185,6 @@ A.extend(
 		clear: function() {
 			var instance = this;
 
-			instance.collection = {};
-			instance.keys = [];
-			instance.values = [];
-			instance.length = 0;
-
 			instance.fire('clear');
 		},
 
@@ -195,7 +216,7 @@ A.extend(
 		containsKey: function(key) {
 			var instance = this;
 
-			return !(Lang.isUndefined(instance.collection[key]))
+			return !(Lang.isUndefined(instance.collection[key]));
 		},
 
 		each: function(fn, context) {
@@ -334,19 +355,6 @@ A.extend(
 				instance.removeKey(key);
 			}
 
-			if (index >= instance.length) {
-				return instance.add(key, obj);
-			}
-
-			instance.keys.splice(index, 0, key);
-			instance.values.splice(index, 0, obj);
-
-			instance.length++;
-
-			if (!Lang.isUndefined(key) && !Lang.isNull(key)) {
-				instance.collection[key] = obj;
-			}
-
 			instance.fire(
 				'add',
 				{
@@ -403,7 +411,14 @@ A.extend(
 		keySort: function(direction, fn) {
 			var instance = this;
 
-			instance._sortBy('key', direction, fn || instance._keySorter);
+			instance.fire(
+				'sort',
+				{
+					direction: direction,
+					fn: fn || instance._keySorter,
+					type: 'key'
+				}
+			);
 		},
 
 		remove: function(obj) {
@@ -418,23 +433,8 @@ A.extend(
 			var instance = this;
 
 			if (index < instance.length && index >= 0) {
-				var collection = instance.collection;
-				var keys = instance.keys;
-				var values = instance.values;
-
-				var obj = values[index];
-
-				values.splice(index, 1);
-
-				var key = keys[index];
-
-				if (!Lang.isUndefined(key)) {
-					delete collection[key];
-				}
-
-				keys.splice(index, 1);
-
-				instance.length--;
+				var obj = instance.values[index];
+				var key = instance.keys[index];
 
 				instance.fire(
 					'remove',
@@ -472,8 +472,6 @@ A.extend(
 
 			var index = instance.indexOfKey(key);
 
-			instance.collection[key] = obj;
-
 			instance.fire(
 				'replace',
 				{
@@ -503,7 +501,78 @@ A.extend(
 		sort: function(direction, fn) {
 			var instance = this;
 
-			instance._sortBy('value', direction, fn);
+			instance.fire(
+				'sort',
+				{
+					direction: direction,
+					fn: fn,
+					type: 'value'
+				}
+			);
+		},
+
+		_defaultAddFn: function(event) {
+			var instance = this;
+
+			var key = event.attrName;
+			var obj = event.item;
+			var index = event.index;
+
+			if (!Lang.isNull(key) && !Lang.isUndefined(key)) {
+				if (instance.get('includeFunctions') || !Lang.isFunction(obj)) {
+					instance.collection[key] = obj;
+				}
+			}
+
+			instance.keys.splice(index, 0, key);
+			instance.values.splice(index, 0, obj);
+
+			++instance.length;
+		},
+
+		_defaultClearFn: function(event) {
+			var instance = this;
+
+			instance.collection = {};
+			instance.keys = [];
+			instance.values = [];
+			instance.length = 0;
+		},
+
+		_defaultRemoveFn: function(event) {
+			var instance = this;
+
+			var index = event.index;
+			var obj = event.item;
+			var key = event.attrName;
+
+			var collection = instance.collection;
+			var keys = instance.keys;
+
+			instance.values.splice(index, 1);
+
+			if (!Lang.isUndefined(key)) {
+				delete collection[key];
+			}
+
+			keys.splice(index, 1);
+
+			instance.length--;
+		},
+
+		_defaultReplaceFn: function(event) {
+			var instance = this;
+
+			var key = event.attrName;
+			var obj = event.item;
+
+			instance.collection[key] = obj;
+		},
+
+		_defaultSortFn: function(event) {
+			var instance = this;
+
+			instance._sortBy(event.type, event.direction, event.fn);
 		},
 
 		_each: function(arr, fn, context) {
@@ -630,12 +699,10 @@ A.extend(
 			}
 
 			instance.collection = collection;
-
-			instance.fire('sort');
 		}
 	}
 );
 
 A.DataSet = DataSet;
 
-}, '@VERSION@' ,{skinnable:false, requires:['oop','collection','base']});
+}, '@VERSION@' ,{requires:['oop','collection','base'], skinnable:false});
