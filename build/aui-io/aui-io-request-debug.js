@@ -278,7 +278,8 @@ A.mix(IORequest, {
 		 * @type Object
 		 */
 		data: {
-			valueFn: getDefault(DATA)
+			valueFn: getDefault(DATA),
+			setter: '_setIOData'
 		},
 
 		/**
@@ -521,6 +522,26 @@ A.extend(IORequest, A.Plugin.Base, {
 		instance.set(RESPONSE_DATA, obj);
 
 		instance.fire(SUCCESS, id, obj);
+	},
+
+	/**
+	 * Applies the <code>AUI.defaults.io.dataFormatter</code> if defined.
+	 *
+	 * @method _setIOData
+	 * @param {Object} value
+	 * @protected
+	 * @return {String}
+	 */
+	_setIOData: function(value) {
+		var instance = this;
+
+		var dataFormatter = defaults.dataFormatter;
+
+		if (isFunction(dataFormatter)) {
+			value = dataFormatter.call(instance, value);
+		}
+
+		return value;
 	},
 
 	/**

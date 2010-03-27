@@ -373,8 +373,13 @@ A.mix(A.Array, {
 	}
 });
 
+var Lang = A.Lang;
+var isArray = Lang.isArray;
+var isFunction = Lang.isFunction;
+var isString = Lang.isString;
+
 A.mix(
-	A.Lang,
+	Lang,
 	{
 		emptyFn: function() {},
 		emptyFnFalse: function() {
@@ -387,6 +392,50 @@ A.mix(
 		// Courtesy of: http://simonwillison.net/2006/Jan/20/escape/
 		escapeRegEx: function(str) {
 			return str.replace(/([.*+?^$(){}|[\]\/\\])/g, '\\$1');
+		},
+
+		toQueryString: function(data) {
+			var instance = this;
+
+			var querystring = data;
+
+			if (!isString(data)) {
+				var buffer = [];
+
+				var item;
+				var value;
+
+				var addToQueryString = instance._addToQueryString;
+
+				for (var i in data) {
+					item = data[i];
+
+					if (isArray(item)) {
+						for (var j = 0; j < item.length; j++) {
+							addToQueryString(i, item[j], buffer);
+						}
+					}
+					else {
+						value = item;
+
+						if (isFunction(item)) {
+							value = item();
+						}
+
+						addToQueryString(i, value, buffer);
+					}
+				}
+
+				querystring = buffer.join('&').replace(/%20/g, '+');
+			}
+
+			return querystring;
+		},
+
+		_addToQueryString: function(key, value, buffer) {
+			var instance = this;
+
+			buffer.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
 		}
 	}
 );
