@@ -19,6 +19,36 @@
 		.testing {
 			display: block;
 		}
+
+		.aui-buttonitem-content {
+			margin: 0;
+		}
+		#demo1a {
+			font-size: 13px;
+		}
+		#demo1b {
+			font-size: 15px;
+		}
+		#demo1c{
+			font-size: 11px;
+		}
+		#demo2a {
+			font-size: 23px;
+		}
+		#demo2b {
+			font-size: 18px;
+		}
+		#demo2c{
+			font-size: 21px;
+		}
+
+		.button-container {
+/*
+			display: block;
+			clear: both;*/
+
+		}
+
 	</style>
 </head>
 
@@ -28,12 +58,26 @@
 	<h1>Alloy - Toolbar Demo</h1>
 	<div id="demo1">
 		<h2>Icon and Label</h2>
+		
 	</div>
 	<div id="demo2">
 		<h2>Label only</h2>
+		
 	</div>
 	<div id="demo3">
 		<h2>Icon only</h2>
+	</div>
+
+	<div id="demo4">
+		<h2>Mixed examples of buttons</h2>
+		<p>Testing purposes</p>
+		<span class="button-container" id="demo1a"></span>
+		<span class="button-container" id="demo1b"></span>
+		<span class="button-container" id="demo1c"></span>
+		<span class="button-container" id="demo2a"></span>
+		<span class="button-container" id="demo2b"></span>
+		<span class="button-container" id="demo2c"></span>
+		<span class="button-container" id="demo3a"></span>
 	</div>
 </div>
 
@@ -72,6 +116,207 @@ AUI().ready('aui-toolbar', function(A) {
 			]
 		}
 	).render('#demo3');
+
+// ------
+
+	var component3a = new A.ButtonItem(
+		{
+			icon: 'plus',
+			label: 'Test',
+			activeState: true
+		}
+	).render('#demo3a');
+
+	var component3b = new A.ButtonItem(
+		{
+			icon: 'minus',
+			label: 'Test 2',
+			activeState: true
+		}
+	).render('#demo3a');
+
+	var component3c = new A.ButtonItem(
+		{
+			icon: 'check',
+			label: 'Test 3',
+			activeState: true
+		}
+	).render('#demo3a');
+
+	var component3d = new A.ButtonItem(
+		{
+			icon: 'calendar',
+			activeState: true
+		}
+	).render('#demo3a');
+
+	var component3e = new A.ButtonItem(
+		{
+			icon: 'minus',
+			activeState: true
+		}
+	).render('#demo3a');
+
+	var component3f = new A.ButtonItem(
+		{
+			icon: 'check',
+			activeState: true
+		}
+	).render('#demo3a');
+
+	var component3g = new A.ButtonItem(
+		{
+			label: 'Test 1',
+			activeState: true
+		}
+	).render('#demo3a');
+
+	var component3h = new A.ButtonItem(
+		{
+			label: 'Test 2',
+			activeState: true
+		}
+	).render('#demo3a');
+
+	var component3i = new A.ButtonItem(
+		{
+			label: 'Test 3',
+			activeState: true
+		}
+	).render('#demo3a');
+
+	var component3a = new A.ButtonItem(
+		{
+			icon: 'plus',
+			label: 'Test',
+			activeState: true
+		}
+	).render('#demo1a');
+
+	var component3b = new A.ButtonItem(
+		{
+			icon: 'minus',
+			label: 'Test 2',
+			activeState: true
+		}
+	).render('#demo1a');
+
+	var component3c = new A.ButtonItem(
+		{
+			icon: 'check',
+			label: 'Test 3',
+			activeState: true
+		}
+	).render('#demo1a');
+
+	var component3d = new A.ButtonItem(
+		{
+			icon: 'plus',
+			activeState: true
+		}
+	).render('#demo1b');
+
+	var component3e = new A.ButtonItem(
+		{
+			icon: 'minus',
+			activeState: true
+		}
+	).render('#demo1b');
+
+	var component3f = new A.ButtonItem(
+		{
+			icon: 'check',
+			activeState: true
+		}
+	).render('#demo1b');
+
+	var component3g = new A.ButtonItem(
+		{
+			label: 'Test 1',
+			activeState: true
+		}
+	).render('#demo1c');
+
+	var component3h = new A.ButtonItem(
+		{
+			label: 'Test 2',
+			activeState: true
+		}
+	).render('#demo1c');
+
+	var component3i = new A.ButtonItem(
+		{
+			label: 'Test 3',
+			activeState: true
+		}
+	).render('#demo1c');
+
+	var component3a = new A.ButtonItem(
+		{
+			icon: 'plus',
+			label: 'Test',
+			activeState: true
+		}
+	).render('#demo2a');
+
+	var component3b = new A.ButtonItem(
+		{
+			icon: 'minus',
+			label: 'Test 2',
+			activeState: true
+		}
+	).render('#demo2a');
+
+	var component3c = new A.ButtonItem(
+		{
+			icon: 'check',
+			label: 'Test 3',
+			activeState: true
+		}
+	).render('#demo2a');
+
+	var component3d = new A.ButtonItem(
+		{
+			icon: 'plus',
+			activeState: true
+		}
+	).render('#demo2a');
+
+	var component3e = new A.ButtonItem(
+		{
+			icon: 'minus',
+			activeState: true
+		}
+	).render('#demo2b');
+
+	var component3f = new A.ButtonItem(
+		{
+			icon: 'check',
+			activeState: true
+		}
+	).render('#demo2b');
+
+	var component3g = new A.ButtonItem(
+		{
+			label: 'Test 1',
+			activeState: true
+		}
+	).render('#demo2c');
+
+	var component3h = new A.ButtonItem(
+		{
+			label: 'Test 2',
+			activeState: true
+		}
+	).render('#demo2c');
+
+	var component3i = new A.ButtonItem(
+		{
+			label: 'Test 3',
+			activeState: true
+		}
+	).render('#demo2c');
+
 });
 
 </script>

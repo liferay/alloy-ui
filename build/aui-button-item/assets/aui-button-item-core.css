@@ -1,12 +1,14 @@
 .aui-buttonitem-content {
 	font-size: 1em;
-	line-height: 1em;
-	padding: 3px;
+	line-height: 130%;
+	padding: 4px 5px 3px 4px;
 	margin: 2px;
-}
-
-.aui-buttonitem-icon-label {
 	white-space: nowrap;
+	width: auto;
+	overflow: visible;
+
+	*padding: 2px 5px 2px 4px;
+	*width: 1;
 }
 
 .aui-buttonitem-icon {
@@ -29,4 +31,32 @@
 
 .aui-buttonitem-label {
 	padding: 0 5px;
+}
+
+.aui-buttonitem-icon-only {
+	height: 16px;
+	width: 16px;
+	overflow: hidden;
+	padding: 3px;
+
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+
+	/* IE6/7 */
+	*height: 24px;
+	*width: 24px;
+}
+
+.aui-buttonitem-icon-only .aui-buttonitem-icon {
+	float: left;
+	margin-top: 0;
+
+	/* IE6/7 */
+	*margin-top: -1px;
+	*margin-left: -1px;
+}
+
+.gecko .aui-buttonitem-icon-only .aui-buttonitem-icon {
+	margin-top: -3px;
 }

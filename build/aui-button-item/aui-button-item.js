@@ -12,13 +12,17 @@ var Lang = A.Lang,
 	NAME = 'buttonitem',
 
 	ICON = 'icon',
+	LABEL = 'label',
+	ONLY = 'only',
 	STATE = 'state',
 
 	CSS_BUTTON = getClassName(NAME),
-	CSS_BUTTON_ICON = getClassName(NAME, 'icon'),
-	CSS_BUTTON_LABEL = getClassName(NAME, 'label'),
+	CSS_BUTTON_ICON = getClassName(NAME, ICON),
+	CSS_BUTTON_LABEL = getClassName(NAME, LABEL),
 
-	CSS_BUTTON_ICON_LABEL = getClassName(NAME, 'icon', 'label'),
+	CSS_BUTTON_ICON_LABEL = getClassName(NAME, ICON, LABEL),
+	CSS_BUTTON_ICON_ONLY = getClassName(NAME, ICON, ONLY),
+	CSS_BUTTON_LABEL_ONLY = getClassName(NAME, LABEL, ONLY),
 
 	CSS_ICON = getClassName(ICON),
 
@@ -399,6 +403,29 @@ A.extend(
 		},
 
 		/**
+		 * Syncs the boundingBox class names to reflect whether the children only have icons or labels or both.
+		 *
+		 * @method _syncChildrenStates
+		 * @protected
+		 */
+		_syncChildrenStates: function() {
+			var instance = this;
+
+			var icon = instance.get('icon');
+			var label = instance.get('label');
+
+			var hasIconAndLabel = (icon && label);
+			var hasLabelOnly = (!icon && label);
+			var hasIconOnly = (icon && !label);
+
+			var boundingBox = instance.get('boundingBox');
+
+			boundingBox.toggleClass(CSS_BUTTON_ICON_LABEL, hasIconAndLabel);
+			boundingBox.toggleClass(CSS_BUTTON_ICON_ONLY, hasIconOnly);
+			boundingBox.toggleClass(CSS_BUTTON_LABEL_ONLY, hasLabelOnly);
+		},
+
+		/**
 		 * Updates the UI for the icon in response to the <a href="ButtonItem.html#event_iconChange">iconChange</a> event.
 		 *
 		 * @method _uiSetIcon
@@ -425,11 +452,9 @@ A.extend(
 
 			iconNode.replaceClass(prevVal, newVal);
 
-			var hasIconAndLabel = (newVal && instance.get('label'));
-
 			iconNode[action]();
 
-			instance.get('boundingBox').toggleClass(CSS_BUTTON_ICON_LABEL, hasIconAndLabel);
+			instance._syncChildrenStates();
 		},
 
 		/**
@@ -454,9 +479,7 @@ A.extend(
 
 			labelNode[action]();
 
-			var hasIconAndLabel = (newVal && instance.get('icon'));
-
-			instance.get('boundingBox').toggleClass(CSS_BUTTON_ICON_LABEL, hasIconAndLabel);
+			instance._syncChildrenStates();
 		}
 	}
 );
