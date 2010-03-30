@@ -640,9 +640,11 @@ A.extend(Rating, A.Component, {
 			inputs.remove();
 		}
 
-		hiddenInput.setAttribute(NAME, inputName);
+		if (inputName) {
+			hiddenInput.setAttribute(NAME, inputName);
 
-		boundingBox.appendChild(hiddenInput);
+			boundingBox.appendChild(hiddenInput);
+		}
 
 		instance.set('hiddenInput', hiddenInput);
 	},
