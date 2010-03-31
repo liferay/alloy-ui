@@ -624,7 +624,7 @@ A.extend(
 			 */
 			instance.publish('unmatchedItemSelect');
 
-			instance.overlay.on('visibleChange', instance._realignContainer, instance);
+			instance.overlay.after('visibleChange', instance._realignContainer, instance);
 		},
 
 		/**
@@ -1713,7 +1713,9 @@ A.extend(
 
 			var overlayAlign = instance._overlayAlign;
 
-			instance.overlay._uiSetAlign(overlayAlign.node, overlayAlign.points);
+			if (event.newVal) {
+				instance.overlay._uiSetAlign(overlayAlign.node, overlayAlign.points);
+			}
 		},
 
 		/**
