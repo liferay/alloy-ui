@@ -97,11 +97,19 @@ AUI().ready(
 				},
 				matchKey: 'name',
 				typeAhead: true,
-				contentBox: '#myAutoComplete'
+				contentBox: '#myAutoComplete',
+				width: 600
 			}
 		);
 
 		TBL.render('#demo');
+
+		// Manually adding some entries
+		TBL.add('Washington');
+		TBL.add('Utah');
+		TBL.add('Vermont');
+
+		TBL.inputNode.focus();
 	}
 );
 
