@@ -149,6 +149,8 @@ A.extend(
 			instance._renderEntryHolder();
 
 			TextboxList.superclass.renderUI.apply(instance, arguments);
+
+			instance._overlayAlign.node = instance.get(BOUNDING_BOX);
 		},
 
 		/**
@@ -347,6 +349,14 @@ A.extend(
 			entry[matchKey] = label;
 
 			return entry;
+		},
+
+		_realignContainer: function(event) {
+			var instance = this;
+
+			instance.overlay.set('width', instance.get(BOUNDING_BOX).get('offsetWidth'));
+
+			TextboxList.superclass._realignContainer.apply(instance, arguments);
 		},
 
 		_removeItem: function(event) {
