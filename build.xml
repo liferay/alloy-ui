@@ -73,6 +73,28 @@
 		<delete dir="${yui3.dir}" />
 		<unzip src="${project.dir}/lib/${yui3.file}" dest="${project.dir}/lib/" />
 
+		<echo>Adding patches to [${project.dir}/lib/yui3/build]</echo>
+
+		<!-- IO Patch for AUI-17 -->
+		<replace file="${project.dir}/lib/yui3/src/io/js/io-base.js">
+			<replacetoken>r = Y.mix(r, d, false, ['status', 'statusText', 'responseText', 'responseXML']);</replacetoken>
+			<replacevalue>
+				r.status = d.status;
+				r.statusText = d.statusText;
+				r.responseText = d.responseText;
+				r.responseXML = d.responseXML;
+			</replacevalue>
+		</replace>
+
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/io"
+				includes="build.xml"
+			/>
+		</subant>
+		<!-- /End IO Patch -->
+
 		<echo>Copying files from [${project.dir}/lib/yui3/build] to [${project.dir}/build].</echo>
 		<copy todir="${project.dir}/build" overwrite="true">
 			<fileset dir="${project.dir}/lib/yui3/build">
