@@ -266,7 +266,12 @@ YUI.add('io-base', function(Y) {
             if (s) {
                 d = o.c;
                 r = c.arguments ? { id: o.id, arguments: c.arguments } : { id: o.id };
-                r = Y.mix(r, d, false, ['status', 'statusText', 'responseText', 'responseXML']);
+                
+				r.status = d.status;
+				r.statusText = d.statusText;
+				r.responseText = d.responseText;
+				r.responseXML = d.responseXML;
+			
                 r.getAllResponseHeaders = function() { return d.getAllResponseHeaders(); };
                 r.getResponseHeader = function(h) { return d.getResponseHeader(h); };
 
@@ -787,7 +792,6 @@ YUI.add('io-base', function(Y) {
     */
     Y.io = _io;
     Y.io.http = _io;
-
 
 
 }, '3.1.0' ,{requires:['event-custom-base']});
