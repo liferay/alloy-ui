@@ -357,4 +357,4 @@ A.extend(OverlayMask, A.OverlayBase, {
 
 A.OverlayMask = OverlayMask;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-overlay-base','event-resize'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-overlay-base','event-resize']});

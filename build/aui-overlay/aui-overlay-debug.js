@@ -23,9 +23,9 @@ AUI.add('aui-overlay-base', function(A) {
  * @uses WidgetPositionConstrain
  * @param {Object} object The user configuration for the instance.
  */
-A.OverlayBase = A.Base.build('overlay', A.Component, [A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign, A.WidgetStdMod]);
+A.OverlayBase = A.Base.build('overlay', A.Component, [A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign, A.WidgetPositionConstrain, A.WidgetStdMod]);
 
-}, '@VERSION@' ,{requires:['aui-component','widget-position','widget-stack','widget-position-align','widget-stdmod']});
+}, '@VERSION@' ,{requires:['aui-component','widget-position','widget-stack','widget-position-align','widget-position-constrain','widget-stdmod']});
 AUI.add('aui-overlay-context', function(A) {
 /**
  * The OverlayContext Utility
@@ -1263,7 +1263,7 @@ A.OverlayContextPanelManager = new A.OverlayManager({
 	zIndexBase: 1000
 });
 
-}, '@VERSION@' ,{requires:['aui-overlay-context','anim'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-context','anim']});
 AUI.add('aui-overlay-manager', function(A) {
 /**
  * The OverlayManager Utility
@@ -1958,8 +1958,8 @@ A.extend(OverlayMask, A.OverlayBase, {
 
 A.OverlayMask = OverlayMask;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-overlay-base','event-resize'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-overlay-base','event-resize']});
 
 
-AUI.add('aui-overlay', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-manager','aui-overlay-mask']});
+AUI.add('aui-overlay', function(A){}, '@VERSION@' ,{use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-manager','aui-overlay-mask'], skinnable:true});
 
