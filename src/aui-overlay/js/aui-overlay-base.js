@@ -22,4 +22,4 @@
  * @uses WidgetPositionConstrain
  * @param {Object} object The user configuration for the instance.
  */
-A.OverlayBase = A.Base.build('overlay', A.Component, [A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign, A.WidgetStdMod]);
+A.OverlayBase = A.Base.build('overlay', A.Component, [A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign, A.WidgetPositionConstrain, A.WidgetStdMod]);
