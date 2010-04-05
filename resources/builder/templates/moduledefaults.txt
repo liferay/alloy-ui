@@ -19,8 +19,6 @@
 			},
 
             combine: false,
-		    root: './../../build/',
-			comboBase: PATH_BASE + '../lib/yui-combo/combo.php?',
 
 			groups: {
                 alloy: {
