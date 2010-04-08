@@ -11,12 +11,31 @@ var Lang = A.Lang,
 	isString = Lang.isString,
 	isUndefined = Lang.isUndefined,
 
+	CLONED_EVENTS = false,
+
 	INNER_HTML = 'innerHTML',
 	NEXT_SIBLING = 'nextSibling',
 	NONE = 'none',
 	PARENT_NODE = 'parentNode',
 	SCRIPT = 'script',
 	VALUE = 'value';
+
+	// Event cloning detection support based on pieces from jQuery
+	var div = document.createElement('div');
+	div.innerHTML = '&nbsp;'; // IE throws an error on fireEvent if the element does not have child nodes
+
+	if (div.attachEvent && div.fireEvent) {
+		div.attachEvent(
+			'onclick',
+			function(){
+				CLONED_EVENTS = true;
+
+				div.detachEvent('onclick', arguments.callee);
+			}
+		);
+
+		div.cloneNode(true).fireEvent('onclick');
+	}
 
 /**
  * Augment the <a href="Node.html">YUI3 Node</a> with more util methods.
@@ -84,6 +103,36 @@ A.mix(A.Node.prototype, {
 			return instance.get(name) || instance.getAttribute(name);
 		}
 	},
+
+	/**
+	 * Normalizes the behavior of cloning a node, which by default should not clone
+	 * the events that are attached to it.
+     *
+     * Example:
+     *
+	 * <pre><code>var node = A.one('#nodeId');
+	 * node.clone().appendTo('body');
+	 * </code></pre>
+	 *
+	 * @method clone
+	 * @return {Node}
+	 */
+	clone: (function() {
+		var clone;
+
+		if (CLONED_EVENTS) {
+			clone = function() {
+				return A.Node.create(this.outerHTML());
+			};
+		}
+		else {
+			clone = function() {
+				return this.cloneNode(true);
+			};
+		}
+
+		return clone;
+	})(),
 
 	/**
 	 * <p>Centralize the current Node instance with the passed
