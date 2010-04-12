@@ -44,7 +44,7 @@
 						'aui-live-search': {requires:['aui-base'], skinnable:false},
 						'aui-loading-mask': {requires:['aui-overlay-mask','plugin','substitute'], skinnable:true},
 						'aui-nested-list': {requires:['aui-base','dd'], skinnable:false},
-						'aui-node': {submodules: {'aui-node-fx': {requires:['aui-base','anim','anim-node-plugin']}, 'aui-node-html5': {requires:['collection','aui-base']}, 'aui-node-base': {requires:['aui-base']} }, use:['aui-node-base','aui-node-html5','aui-node-fx'], skinnable:false},
+						'aui-node': {submodules: {'aui-node-fx': {requires:['aui-base','anim','anim-node-plugin']}, 'aui-node-html5-print': {requires:['aui-node-html5']}, 'aui-node-html5': {requires:['collection','aui-base']}, 'aui-node-base': {requires:['aui-base']} }, use:['aui-node-base','aui-node-html5','aui-node-html5-print','aui-node-fx'], skinnable:false},
 						'aui-overlay': {submodules: {'aui-overlay-mask': {requires:['aui-base','aui-overlay-base','event-resize'], skinnable:true}, 'aui-overlay-manager': {requires:['aui-base','aui-overlay-base','overlay','plugin']}, 'aui-overlay-context-panel': {requires:['aui-overlay-context','anim'], skinnable:true}, 'aui-overlay-context': {requires:['aui-overlay-manager','aui-delayed-task']}, 'aui-overlay-base': {requires:['aui-component','widget-position','widget-stack','widget-position-align','widget-position-constrain','widget-stdmod']} }, use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-manager','aui-overlay-mask'], skinnable:true},
 						'aui-paginator': {requires:['aui-base','substitute'], skinnable:true},
 						'aui-panel': {requires:['aui-component','widget-stdmod','aui-toolbar'], skinnable:true},
@@ -233,7 +233,7 @@
 				ALLOY.config = ALLOY.merge(AUI.defaults, defaults);
 			},
 
-			HTML5_ELEMENTS: 'abbr,article,aside,audio,canvas,details,figcaption,figure,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,summary,time,video'.split(',')
+			HTML5_ELEMENTS: 'abbr,article,aside,audio,canvas,datagrid,datalist,details,dialog,figure,figcaption,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,summary,time,video'.split(',')
 		}
 	);
 
