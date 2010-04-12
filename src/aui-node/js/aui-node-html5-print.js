@@ -1,26 +1,41 @@
-var WIN = window,
-	DOC = document;
+var WIN = A.config.win,
+	DOC = A.config.doc,
+	HEAD = DOC.documentElement.firstChild,
+	ELEMENTS = AUI.HTML5_ELEMENTS.join('|'),
+	PROTECT = [],
+
+	getClassName = A.ClassNameManager.getClassName,
+
+	getReplaceRE = A.cached(
+		function(node_name) {
+			return new RegExp('^\\s*<' + node_name + '(.*)\\/' + node_name + '>\\s*$', 'i');
+		}
+	),
+
+	CSS_PREFIX = getClassName('print'),
+	CSS_PREFIX_SELECTOR = '.' + CSS_PREFIX,
+
+	SELECTOR_MATCH = new RegExp('\\b(' + ELEMENTS + ')\\b', 'gi'),
+
+	SELECTOR_REPLACE = function (match) {
+		return CSS_PREFIX_SELECTOR + match;
+	};
 
 if (A.UA.ie) {
 	A.HTML5.print = {
-	_elements: AUI.HTML5_ELEMENTS.join('|'),
-
-	_protect: [],
-
 	_parseSheets: function (stylesheets) {
-		var instance = this,
-			imports,
-			rules,
-			selectors,
-			selectorsMatch = new RegExp('\\b(' + instance._elements + ')\\b', 'gi'),
-			selectorsReplace = function (m) {
-				return '.iepp_' + m;
-			},
-			declarationBlock,
-			a = -1,
-			b;
+		var instance = this;
 
-		while (++a < stylesheets.length) {
+		var a = -1,
+			b,
+			declarationBlock,
+			imports,
+			length = stylesheets.length,
+			rlength,
+			rules,
+			selectors;
+
+		while (++a < length) {
 			imports = stylesheets[a].imports;
 			rules = stylesheets[a].rules;
 			b = -1;
@@ -29,37 +44,39 @@ if (A.UA.ie) {
 				instance._parseSheets(imports);
 			}
 
-			while (++b < rules.length) {
+			rlength = rules.length;
+
+			while (++b < rlength) {
 				selectors = rules[b].selectorText;
 				declarationBlock = rules[b].style.cssText;
 
-				if (selectors.match(selectorsMatch)) {
-					instance._stylesheet.styleSheet.addRule(selectors.replace(selectorsMatch, selectorsReplace), declarationBlock);
+				if (selectors.match(SELECTOR_MATCH)) {
+					instance._stylesheet.styleSheet.addRule(selectors.replace(SELECTOR_MATCH, SELECTOR_REPLACE), declarationBlock);
 				}
 			}
 		}
 	},
 
 	shim: function () {
-		var instance = this,
-			div = DOC.createElement('div');
+		var instance = this;
+
+		var	div = DOC.createElement('div');
 
 		A.HTML5._fragHTML5Shived.appendChild(div);
 
 		instance._fragment = div;
 
 		WIN.attachEvent('onbeforeprint', A.bind(instance.addSafeHTML, instance));
-
 		WIN.attachEvent('onafterprint', A.bind(instance.removeSafeHTML, instance));
 	},
 
 	addSafeCSS: function () {
-		var instance = this,
-			head = DOC.documentElement.firstChild,
-			safeStylesheet = DOC.createElement('style'),
-			stylesheets = DOC.styleSheets;
+		var instance = this;
 
-		head.insertBefore(safeStylesheet, head.firstChild);
+		var safeStylesheet = DOC.createElement('style');
+		var stylesheets = DOC.styleSheets;
+
+		HEAD.insertBefore(safeStylesheet, HEAD.firstChild);
 
 		instance._stylesheet = safeStylesheet;
 
@@ -67,19 +84,22 @@ if (A.UA.ie) {
 	},
 
 	removeSafeCSS: function () {
-		DOC.documentElement.firstChild.removeChild(this._stylesheet);
+		HEAD.removeChild(this._stylesheet);
 	},
 
 	addSafeHTML: function () {
-		var instance = this,
-			els = DOC.getElementsByTagName('*'),
-			node_match = new RegExp('^' + instance._elements + '$', 'i'),
+		var instance = this;
+
+		var els = DOC.getElementsByTagName('*');
+
+		var node_match = new RegExp('^' + ELEMENTS + '$', 'i');
+
+		var	i = -1,
 			node_name,
 			node_replace,
 			node_safe,
-			safe_element,
 			protect,
-			i = -1;
+			safe_element;
 
 		instance.addSafeCSS();
 
@@ -87,16 +107,16 @@ if (A.UA.ie) {
 			node_name = els[i].nodeName.match(node_match);
 
 			if (node_name) {
-				node_replace = new RegExp('^\\s*<' + node_name + '(.*)\\/' + node_name + '>\\s*$', 'i');
-				node_safe = (els[i].currentStyle.display == 'block') ? 'div' : 'span'; 
+				node_replace = getReplaceRE(node_name);
+				node_safe = (els[i].currentStyle.display == 'block') ? 'div' : 'span';
 
 				instance._fragment.innerHTML = els[i].outerHTML.replace(/\r|\n/g, ' ').replace(node_replace, '<' + node_safe + '$1/' + node_safe + '>');
 
 				safe_element = instance._fragment.childNodes[0];
 
-				safe_element.className += ' iepp_' + node_name;
+				safe_element.className += ' ' + CSS_PREFIX + node_name;
 
-				protect = instance._protect[instance._protect.length] = {
+				protect = PROTECT[PROTECT.length] = {
 					before: els[i],
 					after: instance._fragment.childNodes[0]
 				};
@@ -107,17 +127,20 @@ if (A.UA.ie) {
 	},
 
 	removeSafeHTML: function () {
-		var instance = this,
-			els = instance._protect,
-			i = -1;
+		var instance = this;
+
+		var	els = PROTECT;
+		var	i = -1;
 
 		instance.removeSafeCSS();
 
-		while (++i < els.length) {
+		var length = els.length;
+
+		while (++i < length) {
 			els[i].after.parentNode.replaceChild(els[i].before, els[i].after);
 		}
 
-		instance._protect = [];
+		PROTECT = [];
 	}
 };
 
