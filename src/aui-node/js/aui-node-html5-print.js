@@ -3,17 +3,16 @@
 
 var documentElement = document.documentElement,
 	documentFragment = document.createDocumentFragment(),
-	html5_stylesheet = {},
-	html5_elements = 'abbr|article|aside|audio|canvas|command|datalist|details|figure|figcaption|footer|header|hgroup|keygen|mark|meter|nav|output|progress|section|source|summary|time|video',
-	html5_elements_array = html5_elements.split('|'),
+	html5Stylesheet = {},
+	html5Elements = AUI.HTML5_ELEMENTS.join('|'),
 	elementsCache = [],
 	a = -1,
 	firstChild = 'firstChild',
 	createElement = 'createElement';
 
-function append_stylesheet (media, cssText) {
-	if (html5_stylesheet[media]) {
-		html5_stylesheet[media].styleSheet.cssText += cssText;
+function appendStylesheet (media, cssText) {
+	if (html5Stylesheet[media]) {
+		html5Stylesheet[media].styleSheet.cssText += cssText;
 	}
 	else {
 		var head = documentElement[firstChild],
@@ -21,37 +20,36 @@ function append_stylesheet (media, cssText) {
 
 		style.media = media;
 		head.insertBefore(style, head[firstChild]);
-		html5_stylesheet[media] = style;
-		append_stylesheet(media, cssText);
+		html5Stylesheet[media] = style;
+		appendStylesheet(media, cssText);
 	}
 }
 
-function parse_style_sheet_list (styleSheetList, media) {
+function parseStyleSheetList (styleSheetList, media) {
 	var cssRuleList,
 		selectorText,
-		selectorTextMatch = new RegExp('\\b(' + html5_elements + ')\\b(?!.*[;}])', 'gi'),
+		selectorTextMatch = new RegExp('\\b(' + html5Elements + ')\\b(?!.*[;}])', 'gi'),
 		selectorTextReplace = function (m) {
 			return '.iepp_' + m;
 		},
-		a = -1,
-		media_stylesheet;
+		a = -1;
 
 	while (++a < styleSheetList.length) {
 		media = styleSheetList[a].media || media;
 
-		parse_style_sheet_list(styleSheetList[a].imports, media);
+		parseStyleSheetList(styleSheetList[a].imports, media);
 
-		append_stylesheet(media, styleSheetList[a].cssText.replace(selectorTextMatch, selectorTextReplace));
+		appendStylesheet(media, styleSheetList[a].cssText.replace(selectorTextMatch, selectorTextReplace));
 	}
 }
 
-function on_before_print () {
+function onBeforePrint () {
 	var head = documentElement[firstChild],
 		element,
 		elements = document.getElementsByTagName('*'),
 		elementCache,
 		elementName,
-		elementMatch = new RegExp('^' + html5_elements + '$', 'i'),
+		elementMatch = new RegExp('^' + html5Elements + '$', 'i'),
 		elementReplace,
 		elementReplaced,
 		a = -1;
@@ -71,10 +69,10 @@ function on_before_print () {
 		}
 	}
 
-	parse_style_sheet_list(document.styleSheets, 'all');
+	parseStyleSheetList(document.styleSheets, 'all');
 }
 
-function on_after_print () {
+function onAfterPrint () {
 	var a = -1,
 		b;
 
@@ -82,23 +80,23 @@ function on_after_print () {
 		elementsCache[a][1].parentNode.replaceChild(elementsCache[a][0], elementsCache[a][1]);
 	}
 
-	for (b in html5_stylesheet) {
-		documentElement[firstChild].removeChild(html5_stylesheet[b]);
+	for (b in html5Stylesheet) {
+		documentElement[firstChild].removeChild(html5Stylesheet[b]);
 	}
 
-	html5_stylesheet = {};
+	html5Stylesheet = {};
 	elementsCache = [];
 }
 
-while (++a < html5_elements_array.length) {
-	document[createElement](html5_elements_array[a]);
-	documentFragment[createElement](html5_elements_array[a]);
+while (++a < HTML5_ELEMENTS.length) {
+	document[createElement](HTML5_ELEMENTS[a]);
+	documentFragment[createElement](HTML5_ELEMENTS[a]);
 }
 
 documentFragment = documentFragment.appendChild(document[createElement]('div'));
 
-window.attachEvent('onbeforeprint', on_before_print);
-window.attachEvent('onafterprint', on_after_print);
+window.attachEvent('onbeforeprint', onBeforePrint);
+window.attachEvent('onafterprint', onAfterPrint);
 
 }(A.config.win, A.config.doc));
 @end@*/
