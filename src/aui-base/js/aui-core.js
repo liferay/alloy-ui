@@ -161,7 +161,7 @@
 				ALLOY.config = ALLOY.merge(AUI.defaults, defaults);
 			},
 
-			HTML5_ELEMENTS: 'abbr,article,aside,audio,canvas,datagrid,datalist,details,dialog,figure,figcaption,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,summary,time,video'.split(',')
+			HTML5_ELEMENTS: 'abbr,article,aside,audio,canvas,command,datalist,details,figure,figcaption,footer,header,hgroup,keygen,mark,meter,nav,output,progress,section,source,summary,time,video'.split(',')
 		}
 	);
 
