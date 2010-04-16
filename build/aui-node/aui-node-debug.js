@@ -49,6 +49,75 @@ var Lang = A.Lang,
  */
 A.mix(A.Node.prototype, {
 	/**
+	 * <p>Returns the current ancestors of the node element. If a selector is
+	 * specified, the ancestors are filtered to match the selector.</p>
+     *
+     * Example:
+     *
+	 * <pre><code>
+	 * A.one('#nodeId').ancestors('div');
+	 * </code></pre>
+	 *
+	 * @method ancestors
+	 * @param {String} selector A selector to filter the ancestor elements against.
+	 * @return {NodeList}
+	 */
+	ancestors: function(selector) {
+		var instance = this;
+
+		var ancestors = [];
+		var currentEl = instance.getDOM();
+
+		while (currentEl && currentEl.nodeType !== 9) {
+			if (currentEl.nodeType === 1) {
+				ancestors.push(currentEl);
+			}
+
+			currentEl = currentEl.parentNode;
+		}
+
+		var nodeList = new A.all(ancestors);
+
+		if (selector) {
+			nodeList = nodeList.filter(selector);
+		}
+
+		return nodeList;
+	},
+
+	/**
+	 * <p>Returns the current ancestors of the node element filtered by a className.
+	 * This is an optimized method for finding ancestors by a specific CSS class name.</p>
+     *
+     * Example:
+     *
+	 * <pre><code>
+	 * A.one('#nodeId').ancestorsByClassName('aui-helper-hidden');
+	 * </code></pre>
+	 *
+	 * @method ancestors
+	 * @param {String} selector A selector to filter the ancestor elements against.
+	 * @return {NodeList}
+	 */
+	ancestorsByClassName: function(className) {
+		var instance = this;
+
+		var ancestors = [];
+		var cssRE = new RegExp('\\b' + className + '\\b');
+		var currentEl = instance.getDOM();
+
+		while (currentEl && currentEl.nodeType !== 9) {
+			if (currentEl.nodeType === 1 && cssRE.test(currentEl.className)) {
+				ancestors.push(currentEl);
+			}
+
+			currentEl = currentEl.parentNode;
+		}
+
+		return A.all(ancestors);
+	},
+
+	/**
 	 * <p>Insert the node instance to the end of the <code>selector</code>
      * element.</p>
      *
