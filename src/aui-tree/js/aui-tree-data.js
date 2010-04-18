@@ -1,6 +1,6 @@
 /**
  * The TreeData Utility
- * 
+ *
  * @module aui-tree
  * @submodule aui-tree-data
  */
@@ -608,7 +608,7 @@ A.extend(TreeData, A.Widget, {
 	},
 
 	/**
-	 * Remove the passed <code>node</code> from the current TreeData. 
+	 * Remove the passed <code>node</code> from the current TreeData.
 	 *
 	 * @method removeChild
 	 * @param {TreeData} node
@@ -621,7 +621,7 @@ A.extend(TreeData, A.Widget, {
 	},
 
 	/**
-	 * Remove the passed <code>node</code> from the current TreeData. 
+	 * Remove the passed <code>node</code> from the current TreeData.
 	 *
 	 * @method _removeChild
 	 * @param {TreeData} node
@@ -803,9 +803,13 @@ A.extend(TreeData, A.Widget, {
 					node = instance.createNode(node);
 				}
 
-				// before render the node, make sure the PARENT_NODE references are updated
+				// before render the node, make sure the PARENT_NODE and OWNER_TREE references are updated
 				// this is required on the render phase of the TreeNode (_createNodeContainer)
-				// to propagate the appendChild callback
+				// to propagate the events callback (appendChild/expand)
+				if (!isTreeNode(instance)) {
+					node.set(OWNER_TREE, instance);
+				}
+
 				node.render();
 
 				// avoid duplicated children on the childNodes list
