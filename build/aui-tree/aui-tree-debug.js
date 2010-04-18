@@ -1239,10 +1239,16 @@ A.extend(TreeNode, A.TreeData, {
 			contentBox.addClass(CSS_TREE_NODE_LEAF);
 		}
 		else {
+			var expanded = instance.get(EXPANDED);
+
 			// add folder css classes state
 			contentBox.addClass(
-				instance.get(EXPANDED) ? CSS_TREE_EXPANDED : CSS_TREE_COLLAPSED
+				expanded ? CSS_TREE_EXPANDED : CSS_TREE_COLLAPSED
 			);
+
+			if (expanded) {
+				instance.expand();
+			}
 		}
 
 		return contentBox;
