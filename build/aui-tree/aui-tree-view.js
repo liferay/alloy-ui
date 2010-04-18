@@ -931,4 +931,4 @@ A.extend(TreeViewDD, A.TreeView, {
 
 A.TreeViewDD = TreeViewDD;
 
-}, '@VERSION@' ,{requires:['aui-tree-node','dd'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-tree-node','dd']});

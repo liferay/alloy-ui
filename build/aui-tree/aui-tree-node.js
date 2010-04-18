@@ -1533,4 +1533,4 @@ A.TreeNode.nodeTypes = {
 	io: A.TreeNodeIO
 };
 
-}, '@VERSION@' ,{requires:['aui-tree-data','io','json'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-tree-data','io','json']});
