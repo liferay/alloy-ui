@@ -846,14 +846,23 @@ A.TreeNode = TreeNode;
 * TreeNodeIO
 */
 var isFunction = L.isFunction,
+	isObject = L.isObject,
 
 	CACHE = 'cache',
 	IO = 'io',
+	LIMIT = 'limit',
 	LOADED = 'loaded',
 	LOADING = 'loading',
+	OFFSET = 'offset',
+	PAGINATOR = 'paginator',
 	TREE_NODE_IO = 'tree-node-io',
 
-	CSS_TREE_NODE_IO_LOADING = getCN(TREE, NODE, IO, LOADING);
+	EV_TREE_NODE_PAGINATOR_CLICK = 'paginatorClick',
+
+	CSS_TREE_NODE_PAGINATOR = getCN(TREE, NODE, PAGINATOR),
+	CSS_TREE_NODE_IO_LOADING = getCN(TREE, NODE, IO, LOADING),
+
+	TPL_PAGINATOR = '<a class="'+CSS_TREE_NODE_PAGINATOR+'" href="javascript:void(0);">Load more results</a>';
 
 /**
  * A base class for TreeNodeIO, providing:
@@ -863,7 +872,7 @@ var isFunction = L.isFunction,
  * </ul>
  *
  * Quick Example:<br/>
- * 
+ *
  * <pre><code>var treeNodeIO = new A.TreeNodeIO({
  *  	label: 'TreeNodeIO',
  *  	cache: false,
@@ -959,11 +968,73 @@ A.mix(TreeNodeIO, {
 		leaf: {
 			value: false,
 			validator: isBoolean
+		},
+
+		paginator: {
+			setter: function(val) {
+				return A.merge(
+					{
+						element: A.Node.create(TPL_PAGINATOR),
+						limit: Infinity,
+						limitParam: LIMIT,
+						offset: 0,
+						offsetParam: OFFSET
+					},
+					val
+				);
+			},
+			validator: isObject
 		}
 	}
 });
 
 A.extend(TreeNodeIO, A.TreeNode, {
+	/**
+	 * Create the DOM structure for the TreeNodeIO. Lifecycle.
+	 *
+	 * @method renderUI
+	 * @protected
+	 */
+	renderUI: function() {
+		var instance = this;
+
+		instance._inheritOwnerTreeAttrs();
+
+		TreeNodeIO.superclass.renderUI.apply(this, arguments);
+	},
+
+	/**
+	 * Bind the events on the TreeNodeIO UI. Lifecycle.
+	 *
+	 * @method bindUI
+	 * @protected
+	 */
+	bindUI: function() {
+		var instance = this;
+
+		TreeNodeIO.superclass.bindUI.apply(this, arguments);
+
+		if (instance.get(PAGINATOR)) {
+			instance._bindPaginatorUI();
+		}
+
+		instance._createEvents();
+	},
+
+	/**
+	 * Bind events to the paginator "show more" link.
+	 *
+	 * @method _bindPaginatorUI
+	 * @protected
+	 */
+	_bindPaginatorUI: function() {
+		var instance = this;
+		var paginator = instance.get(PAGINATOR);
+		var handlePaginator = A.bind(instance._handlePaginatorClickEvent, instance);
+
+		paginator.element.on('click', handlePaginator);
+	},
+
 	/*
 	* Methods
 	*/
@@ -975,6 +1046,10 @@ A.extend(TreeNodeIO, A.TreeNode, {
 
 			instance.appendChild(newNode);
 		});
+
+		if (instance.get(PAGINATOR)) {
+			instance._syncPaginatorUI();
+		}
 	},
 
 	expand: function() {
@@ -983,14 +1058,6 @@ A.extend(TreeNodeIO, A.TreeNode, {
 		var io = instance.get(IO);
 		var loaded = instance.get(LOADED);
 		var loading = instance.get(LOADING);
-		var ownerTree = instance.get(OWNER_TREE);
-
-		// inheriting the IO configuration from the OWNER_TREE
-		if (!io && ownerTree) {
-			instance.set( IO, A.clone(ownerTree.get(IO)) );
-
-			io = instance.get(IO);
-		}
 
 		if (!cache) {
 			// if cache is false on expand, always set LOADED to false
@@ -1007,20 +1074,37 @@ A.extend(TreeNodeIO, A.TreeNode, {
 					instance.empty();
 				}
 
-				if (isFunction(io.cfg.data)) {
-					io.cfg.data = io.cfg.data.apply(instance, [instance]);
-				}
-
-				if (isFunction(io.loader)) {
-					var loader = A.bind(io.loader, instance);
-
-					// apply loader in the TreeNodeIO scope
-					loader(io.url, io.cfg, instance);
-				}
-				else {
-					A.io(io.url, io.cfg);
-				}
+				instance.initIO();
 			}
+		}
+	},
+
+	/**
+	 * Initialize the IO transaction setup on the <a
+	 * href="TreeNode.html#config_io">io</a> attribute.
+	 *
+	 * @method initIO
+	 */
+	initIO: function() {
+		var instance = this;
+		var io = instance.get(IO);
+
+		if (isFunction(io.cfg.data)) {
+			io.cfg.data = io.cfg.data.apply(instance, [instance]);
+		}
+
+		if (instance.get(PAGINATOR)) {
+			instance._syncPaginatorIOData(io);
+		}
+
+		if (isFunction(io.loader)) {
+			var loader = A.bind(io.loader, instance);
+
+			// apply loader in the TreeNodeIO scope
+			loader(io.url, io.cfg, instance);
+		}
+		else {
+			A.io(io.url, io.cfg);
 		}
 	},
 
@@ -1100,6 +1184,93 @@ A.extend(TreeNodeIO, A.TreeNode, {
 		instance.set(LOADED, false);
 	},
 
+    /**
+     * Create custom events.
+     *
+     * @method _createEvents
+     * @private
+     */
+	_createEvents: function() {
+		var instance = this;
+
+		instance.publish(
+			EV_TREE_NODE_PAGINATOR_CLICK,
+			{
+	            defaultFn: instance._defPaginatorClickFn,
+	            prefix: TREE_NODE_IO
+        	}
+		);
+	},
+
+    /**
+     * Default paginatorClick event handler. Increment the
+	 * <code>paginator.offset</code> to the next <code>paginator.limit</code>.
+     *
+     * @method _defPaginatorClickFn
+     * @param {EventFacade} event The Event object
+     * @protected
+     */
+	_defPaginatorClickFn: function(event) {
+		var instance = this;
+		var paginator = instance.get(PAGINATOR);
+
+		paginator.offset += paginator.limit;
+
+		if (instance.get(IO)) {
+			instance.initIO();
+		}
+	},
+
+    /**
+     * Fires the paginatorClick event.
+     *
+     * @method _handlePaginatorClickEvent
+     * @param {EventFacade} event paginatorClick event facade
+     * @protected
+     */
+	_handlePaginatorClickEvent: function(event) {
+		var instance = this;
+		var ownerTree = instance.get(OWNER_TREE);
+		var output = instance.getEventOutputMap(instance);
+
+		instance.fire(EV_TREE_NODE_PAGINATOR_CLICK, output);
+
+		if (ownerTree) {
+			ownerTree.fire(EV_TREE_NODE_PAGINATOR_CLICK, output);
+		}
+
+		event.halt();
+	},
+
+	/**
+	 * If not specified on the TreeNode some attributes are inherited from the
+     * ownerTree by this method.
+	 *
+	 * @method _inheritOwnerTreeAttrs
+	 * @protected
+	 */
+	_inheritOwnerTreeAttrs: function() {
+		var instance = this;
+		var ownerTree = instance.get(OWNER_TREE);
+
+		if (ownerTree) {
+			if (!instance.get(IO)) {
+				instance.set(IO, A.clone(ownerTree.get(IO)));
+			}
+
+			if (!instance.get(PAGINATOR)) {
+				var otPaginator = ownerTree.get(PAGINATOR);
+
+				// make sure we are not using the same element passed to the ownerTree on the TreeNode
+				if (otPaginator && otPaginator.element) {
+					otPaginator.element = otPaginator.element.cloneNode(true);
+				}
+
+				instance.set(PAGINATOR, otPaginator);
+			}
+		}
+	},
+
 	/**
 	 * Setter for <a href="TreeNodeIO.html#config_io">io</a>.
 	 *
@@ -1149,6 +1320,47 @@ A.extend(TreeNodeIO, A.TreeNode, {
 		});
 
 		return v;
+	},
+
+	/**
+	 * Adds two extra IO data parameter to the request to handle the
+     * paginator. By default these parameters are <code>limit</code> and
+     * <code>offset</code>.
+	 *
+	 * @method _syncPaginatorIOData
+	 * @protected
+	 */
+	_syncPaginatorIOData: function(io) {
+		var instance = this;
+		var data = io.cfg.data || {};
+		var paginator = instance.get(PAGINATOR);
+
+		data[ paginator.limitParam ] = paginator.limit;
+		data[ paginator.offsetParam ] = paginator.offset;
+
+		io.cfg.data = data;
+	},
+
+	/**
+	 * Sync the paginator link UI.
+	 *
+	 * @method _syncPaginatorUI
+	 * @protected
+	 */
+	_syncPaginatorUI: function() {
+		var instance = this;
+		var children = instance.get(CHILDREN);
+		var paginator = instance.get(PAGINATOR);
+		var limit = paginator.limit + paginator.offset;
+
+		if (children.length >= limit) {
+			instance.get(CONTAINER).append(
+				paginator.element.show()
+			);
+		}
+		else {
+			paginator.element.hide();
+		}
 	}
 });
 
