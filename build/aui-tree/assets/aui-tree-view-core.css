@@ -158,3 +158,7 @@
 	font-size: 12px;
 	padding-left: 2px;
 }
+
+.aui-tree-node-paginator {
+	margin-left: 18px;
+}

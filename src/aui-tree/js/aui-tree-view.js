@@ -137,6 +137,10 @@ A.mix(TreeView, {
 		 */
 		io: {
 			value: null
+		},
+
+		paginator: {
+			value: null
 		}
 	}
 });
