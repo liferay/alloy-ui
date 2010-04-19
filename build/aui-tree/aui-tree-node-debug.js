@@ -739,7 +739,7 @@ A.extend(TreeNode, A.TreeData, {
 
 	/*
 	* Select the current TreeNode.
-	* 
+	*
 	* @method select
 	*/
 	select: function() {
@@ -757,7 +757,7 @@ A.extend(TreeNode, A.TreeData, {
 
 	/*
 	* Unselect the current TreeNode.
-	* 
+	*
 	* @method unselect
 	*/
 	unselect: function() {
@@ -770,7 +770,7 @@ A.extend(TreeNode, A.TreeData, {
 
 	/*
 	* Fires when <code>mouseover</code> the current TreeNode.
-	* 
+	*
 	* @method over
 	*/
 	over: function() {
@@ -779,7 +779,7 @@ A.extend(TreeNode, A.TreeData, {
 
 	/*
 	* Fires when <code>mouseout</code> the current TreeNode.
-	* 
+	*
 	* @method over
 	*/
 	out: function() {
@@ -788,7 +788,7 @@ A.extend(TreeNode, A.TreeData, {
 
 	/*
 	* Show hitarea icon.
-	* 
+	*
 	* @method showHitArea
 	*/
 	showHitArea: function() {
@@ -800,7 +800,7 @@ A.extend(TreeNode, A.TreeData, {
 
 	/*
 	* Hide hitarea icon.
-	* 
+	*
 	* @method hideHitArea
 	*/
 	hideHitArea: function() {
@@ -975,6 +975,7 @@ A.mix(TreeNodeIO, {
 			setter: function(val) {
 				return A.merge(
 					{
+						autoFocus: true,
 						element: A.Node.create(TPL_PAGINATOR),
 						limit: Infinity,
 						limitParam: LIMIT,
@@ -1358,6 +1359,10 @@ A.extend(TreeNodeIO, A.TreeNode, {
 			instance.get(CONTAINER).append(
 				paginator.element.show()
 			);
+
+			if (paginator.autoFocus) {
+				paginator.element.focus();
+			}
 		}
 		else {
 			paginator.element.hide();
@@ -1582,7 +1587,7 @@ A.extend(TreeNodeCheck, A.TreeNodeIO, {
 
 	/*
 	* Whether the current TreeNodeCheck is checked.
-	* 
+	*
 	* @method isChecked
 	* @return boolean
 	*/
@@ -1739,7 +1744,7 @@ A.TreeNodeTask = TreeNodeTask;
  *  node: A.TreeNode,
  *  io: A.TreeNodeIO
  *};</code></pre>
- * 
+ *
  * @for TreeNode
  * @property A.TreeNode.nodeTypes
  * @type Object
