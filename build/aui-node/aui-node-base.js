@@ -394,13 +394,7 @@ A.mix(A.Node.prototype, {
 	placeAfter: function(newNode) {
 		var instance = this;
 
-		var parent = instance.get(PARENT_NODE);
-
-		if (parent) {
-			parent.insertBefore(newNode, instance.get(NEXT_SIBLING));
-		}
-
-		return instance;
+		return instance._place(newNode, instance.get(NEXT_SIBLING));
 	},
 
 	/**
@@ -422,13 +416,7 @@ A.mix(A.Node.prototype, {
 	placeBefore: function(newNode) {
 		var instance = this;
 
-		var parent = instance.get(PARENT_NODE);
-
-		if (parent) {
-			parent.insertBefore(newNode, instance);
-		}
-
-		return instance;
+		return instance._place(newNode, instance);
 	},
 
 	/**
@@ -720,6 +708,30 @@ A.mix(A.Node.prototype, {
 		}
 
 		return str.join('');
+	},
+
+	/**
+     * Place a node or html string at a specific location
+	 *
+     * @method _place
+     * @private
+     * @param {Node|String} newNode
+     * @param {Node} refNode
+     */
+	_place: function(newNode, refNode) {
+		var instance = this;
+
+		var parent = instance.get(PARENT_NODE);
+
+		if (parent) {
+			if (Lang.isString(newNode)) {
+				newNode = A.Node.create(newNode);
+			}
+
+			parent.insertBefore(newNode, refNode);
+		}
+
+		return instance;
 	}
 }, true);
 
