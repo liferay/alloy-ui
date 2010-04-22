@@ -148,7 +148,6 @@ A.mix(OverlayContext, {
 		hideOn: {
 			lazyAdd: false,
 			value: 'mouseout',
-			validator: isString,
 			setter: function(v) {
 				return this._setHideOn(v);
 			}
@@ -194,7 +193,6 @@ A.mix(OverlayContext, {
 		showOn: {
 			lazyAdd: false,
 			value: 'mouseover',
-			validator: isString,
 			setter: function(v) {
 				return this._setShowOn(v);
 			}
