@@ -1,1 +1,105 @@
-AUI.add("aui-node-html5-print",function(E){var D=E.config.win,H=E.config.doc,K=H.documentElement.firstChild,J=AUI.HTML5_ELEMENTS.join("|"),M=[],F=E.ClassNameManager.getClassName,L=E.cached(function(A){return new RegExp("^\\s*<"+A+"(.*)\\/"+A+">\\s*$","i");}),G=F("print"),C="."+G,B=new RegExp("\\b("+J+")\\b","gi"),I=function(A){return C+A;};if(E.UA.ie){E.HTML5.print={_parseSheets:function(S){var T=this;var Q=-1,P,O,A,N=S.length,V,U,R;while(++Q<N){A=S[Q].imports;U=S[Q].rules;P=-1;if(A.length){T._parseSheets(A);}V=U.length;while(++P<V){R=U[P].selectorText;O=U[P].style.cssText;if(R.match(B)){T._stylesheet.styleSheet.addRule(R.replace(B,I),O);}}}},shim:function(){var A=this;var N=H.createElement("div");E.HTML5._fragHTML5Shived.appendChild(N);A._fragment=N;D.attachEvent("onbeforeprint",E.bind(A.addSafeHTML,A));D.attachEvent("onafterprint",E.bind(A.removeSafeHTML,A));},addSafeCSS:function(){var A=this;var N=H.createElement("style");var O=H.styleSheets;K.insertBefore(N,K.firstChild);A._stylesheet=N;A._parseSheets(O);},removeSafeCSS:function(){K.removeChild(this._stylesheet);},addSafeHTML:function(){var T=this;var P=H.getElementsByTagName("*");var R=new RegExp("^"+J+"$","i");var Q=-1,S,O,U,A,N;T.addSafeCSS();while(++Q<P.length){S=P[Q].nodeName.match(R);if(S){O=L(S);U=(P[Q].currentStyle.display=="block")?"div":"span";T._fragment.innerHTML=P[Q].outerHTML.replace(/\r|\n/g," ").replace(O,"<"+U+"$1/"+U+">");N=T._fragment.childNodes[0];N.className+=" "+G+S;A=M[M.length]={before:P[Q],after:T._fragment.childNodes[0]};P[Q].parentNode.replaceChild(A.after,A.before);}}},removeSafeHTML:function(){var A=this;var O=M;var N=-1;A.removeSafeCSS();var P=O.length;while(++N<P){O[N].after.parentNode.replaceChild(O[N].before,O[N].after);}M=[];}};E.HTML5.print.shim();}},"@VERSION@",{requires:["aui-node-html5"]});
+AUI.add("aui-node-html5-print",function(A){
+/*@cc_on@if(@_jscript_version<9)
+(function (window, document) {
+
+var DOCUMENT_ELEMENT = document.documentElement,
+	DOCUMENT_FRAGMENT = document.createDocumentFragment(),
+	HTML5_STYLESHEET = {},
+	HTML5_ELEMENTS = AUI.HTML5_ELEMENTS,
+	HTML5_ELEMENTS_STRING = HTML5_ELEMENTS.join('|'),
+	ELEMENTS_CACHE = [],
+	FIRST_CHILD = 'firstChild',
+	CREATE_ELEMENT = 'createElement',
+	a = -1;
+
+function appendStylesheet (media, cssText) {
+	if (HTML5_STYLESHEET[media]) {
+		HTML5_STYLESHEET[media].styleSheet.cssText += cssText;
+	}
+	else {
+		var head = DOCUMENT_ELEMENT[FIRST_CHILD],
+			style = document[CREATE_ELEMENT]('style');
+
+		style.media = media;
+		head.insertBefore(style, head[FIRST_CHILD]);
+		HTML5_STYLESHEET[media] = style;
+		appendStylesheet(media, cssText);
+	}
+}
+
+function parseStyleSheetList (styleSheetList, media) {
+	var cssRuleList,
+		selectorText,
+		selectorTextMatch = new RegExp('\\b(' + HTML5_ELEMENTS_STRING + ')\\b(?!.*[;}])', 'gi'),
+		selectorTextReplace = function (m) {
+			return '.iepp_' + m;
+		},
+		a = -1;
+
+	while (++a < styleSheetList.length) {
+		media = styleSheetList[a].media || media;
+
+		parseStyleSheetList(styleSheetList[a].imports, media);
+
+		appendStylesheet(media, styleSheetList[a].cssText.replace(selectorTextMatch, selectorTextReplace));
+	}
+}
+
+function onBeforePrint () {
+	var head = DOCUMENT_ELEMENT[FIRST_CHILD],
+		element,
+		elements = document.getElementsByTagName('*'),
+		elementCache,
+		elementName,
+		elementMatch = new RegExp('^' + HTML5_ELEMENTS_STRING + '$', 'i'),
+		elementReplace,
+		elementReplaced,
+		a = -1;
+
+	while (++a < elements.length) {
+		if ((element = elements[a]) && (elementName = element.nodeName.match(elementMatch))) {
+			elementReplace = new RegExp('^\\s*<' + elementName + '(.*)\\/' + elementName + '>\\s*$', 'i');
+
+			DOCUMENT_FRAGMENT.innerHTML = element.outerHTML.replace(/\r|\n/g, ' ').replace(elementReplace, (element.currentStyle.display == 'block') ? '<div$1/div>' : '<span$1/span>');
+
+			elementReplaced = DOCUMENT_FRAGMENT.childNodes[0];
+			elementReplaced.className += ' iepp_' + elementName;
+
+			elementCache = ELEMENTS_CACHE[ELEMENTS_CACHE.length] = [element, elementReplaced];
+
+			element.parentNode.replaceChild(elementCache[1], elementCache[0]);
+		}
+	}
+
+	parseStyleSheetList(document.styleSheets, 'all');
+}
+
+function onAfterPrint () {
+	var a = -1,
+		b;
+
+	while (++a < ELEMENTS_CACHE.length) {
+		ELEMENTS_CACHE[a][1].parentNode.replaceChild(ELEMENTS_CACHE[a][0], ELEMENTS_CACHE[a][1]);
+	}
+
+	for (b in HTML5_STYLESHEET) {
+		DOCUMENT_ELEMENT[FIRST_CHILD].removeChild(HTML5_STYLESHEET[b]);
+	}
+
+	HTML5_STYLESHEET = {};
+	ELEMENTS_CACHE = [];
+}
+
+while (++a < HTML5_ELEMENTS.length) {
+	document[CREATE_ELEMENT](HTML5_ELEMENTS[a]);
+	DOCUMENT_FRAGMENT[CREATE_ELEMENT](HTML5_ELEMENTS[a]);
+}
+
+DOCUMENT_FRAGMENT = DOCUMENT_FRAGMENT.appendChild(document[CREATE_ELEMENT]('div'));
+
+window.attachEvent('onbeforeprint', onBeforePrint);
+window.attachEvent('onafterprint', onAfterPrint);
+
+}(A.config.win, A.config.doc));
+@end@*/
+},"@VERSION@",{requires:["aui-node-html5"]});
