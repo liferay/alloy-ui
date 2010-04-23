@@ -1,149 +1,103 @@
-var WIN = A.config.win,
-	DOC = A.config.doc,
-	HEAD = DOC.documentElement.firstChild,
-	ELEMENTS = AUI.HTML5_ELEMENTS.join('|'),
-	PROTECT = [],
+/*@cc_on@if(@_jscript_version<9)
+(function (window, document) {
 
-	getClassName = A.ClassNameManager.getClassName,
+var DOCUMENT_ELEMENT = document.documentElement,
+	DOCUMENT_FRAGMENT = document.createDocumentFragment(),
+	HTML5_STYLESHEET = {},
+	HTML5_ELEMENTS = AUI.HTML5_ELEMENTS,
+	HTML5_ELEMENTS_STRING = HTML5_ELEMENTS.join('|'),
+	ELEMENTS_CACHE = [],
+	FIRST_CHILD = 'firstChild',
+	CREATE_ELEMENT = 'createElement',
+	a = -1;
 
-	getReplaceRE = A.cached(
-		function(node_name) {
-			return new RegExp('^\\s*<' + node_name + '(.*)\\/' + node_name + '>\\s*$', 'i');
-		}
-	),
-
-	CSS_PREFIX = getClassName('print'),
-	CSS_PREFIX_SELECTOR = '.' + CSS_PREFIX,
-
-	SELECTOR_MATCH = new RegExp('\\b(' + ELEMENTS + ')\\b', 'gi'),
-
-	SELECTOR_REPLACE = function (match) {
-		return CSS_PREFIX_SELECTOR + match;
-	};
-
-if (A.UA.ie) {
-	A.HTML5.print = {
-	_parseSheets: function (stylesheets) {
-		var instance = this;
-
-		var a = -1,
-			b,
-			declarationBlock,
-			imports,
-			length = stylesheets.length,
-			rlength,
-			rules,
-			selectors;
-
-		while (++a < length) {
-			imports = stylesheets[a].imports;
-			rules = stylesheets[a].rules;
-			b = -1;
-
-			if (imports.length) {
-				instance._parseSheets(imports);
-			}
-
-			rlength = rules.length;
-
-			while (++b < rlength) {
-				selectors = rules[b].selectorText;
-				declarationBlock = rules[b].style.cssText;
-
-				if (selectors.match(SELECTOR_MATCH)) {
-					instance._stylesheet.styleSheet.addRule(selectors.replace(SELECTOR_MATCH, SELECTOR_REPLACE), declarationBlock);
-				}
-			}
-		}
-	},
-
-	shim: function () {
-		var instance = this;
-
-		var	div = DOC.createElement('div');
-
-		A.HTML5._fragHTML5Shived.appendChild(div);
-
-		instance._fragment = div;
-
-		WIN.attachEvent('onbeforeprint', A.bind(instance.addSafeHTML, instance));
-		WIN.attachEvent('onafterprint', A.bind(instance.removeSafeHTML, instance));
-	},
-
-	addSafeCSS: function () {
-		var instance = this;
-
-		var safeStylesheet = DOC.createElement('style');
-		var stylesheets = DOC.styleSheets;
-
-		HEAD.insertBefore(safeStylesheet, HEAD.firstChild);
-
-		instance._stylesheet = safeStylesheet;
-
-		instance._parseSheets(stylesheets);
-	},
-
-	removeSafeCSS: function () {
-		HEAD.removeChild(this._stylesheet);
-	},
-
-	addSafeHTML: function () {
-		var instance = this;
-
-		var els = DOC.getElementsByTagName('*');
-
-		var node_match = new RegExp('^' + ELEMENTS + '$', 'i');
-
-		var	i = -1,
-			node_name,
-			node_replace,
-			node_safe,
-			protect,
-			safe_element;
-
-		instance.addSafeCSS();
-
-		while (++i < els.length) {
-			node_name = els[i].nodeName.match(node_match);
-
-			if (node_name) {
-				node_replace = getReplaceRE(node_name);
-				node_safe = (els[i].currentStyle.display == 'block') ? 'div' : 'span';
-
-				instance._fragment.innerHTML = els[i].outerHTML.replace(/\r|\n/g, ' ').replace(node_replace, '<' + node_safe + '$1/' + node_safe + '>');
-
-				safe_element = instance._fragment.childNodes[0];
-
-				safe_element.className += ' ' + CSS_PREFIX + node_name;
-
-				protect = PROTECT[PROTECT.length] = {
-					before: els[i],
-					after: instance._fragment.childNodes[0]
-				};
-
-				els[i].parentNode.replaceChild(protect.after, protect.before);
-			}
-		}
-	},
-
-	removeSafeHTML: function () {
-		var instance = this;
-
-		var	els = PROTECT;
-		var	i = -1;
-
-		instance.removeSafeCSS();
-
-		var length = els.length;
-
-		while (++i < length) {
-			els[i].after.parentNode.replaceChild(els[i].before, els[i].after);
-		}
-
-		PROTECT = [];
+function appendStylesheet (media, cssText) {
+	if (HTML5_STYLESHEET[media]) {
+		HTML5_STYLESHEET[media].styleSheet.cssText += cssText;
 	}
-};
+	else {
+		var head = DOCUMENT_ELEMENT[FIRST_CHILD],
+			style = document[CREATE_ELEMENT]('style');
 
-A.HTML5.print.shim();
-
+		style.media = media;
+		head.insertBefore(style, head[FIRST_CHILD]);
+		HTML5_STYLESHEET[media] = style;
+		appendStylesheet(media, cssText);
+	}
 }
+
+function parseStyleSheetList (styleSheetList, media) {
+	var cssRuleList,
+		selectorText,
+		selectorTextMatch = new RegExp('\\b(' + HTML5_ELEMENTS_STRING + ')\\b(?!.*[;}])', 'gi'),
+		selectorTextReplace = function (m) {
+			return '.iepp_' + m;
+		},
+		a = -1;
+
+	while (++a < styleSheetList.length) {
+		media = styleSheetList[a].media || media;
+
+		parseStyleSheetList(styleSheetList[a].imports, media);
+
+		appendStylesheet(media, styleSheetList[a].cssText.replace(selectorTextMatch, selectorTextReplace));
+	}
+}
+
+function onBeforePrint () {
+	var head = DOCUMENT_ELEMENT[FIRST_CHILD],
+		element,
+		elements = document.getElementsByTagName('*'),
+		elementCache,
+		elementName,
+		elementMatch = new RegExp('^' + HTML5_ELEMENTS_STRING + '$', 'i'),
+		elementReplace,
+		elementReplaced,
+		a = -1;
+
+	while (++a < elements.length) {
+		if ((element = elements[a]) && (elementName = element.nodeName.match(elementMatch))) {
+			elementReplace = new RegExp('^\\s*<' + elementName + '(.*)\\/' + elementName + '>\\s*$', 'i');
+
+			DOCUMENT_FRAGMENT.innerHTML = element.outerHTML.replace(/\r|\n/g, ' ').replace(elementReplace, (element.currentStyle.display == 'block') ? '<div$1/div>' : '<span$1/span>');
+
+			elementReplaced = DOCUMENT_FRAGMENT.childNodes[0];
+			elementReplaced.className += ' iepp_' + elementName;
+
+			elementCache = ELEMENTS_CACHE[ELEMENTS_CACHE.length] = [element, elementReplaced];
+
+			element.parentNode.replaceChild(elementCache[1], elementCache[0]);
+		}
+	}
+
+	parseStyleSheetList(document.styleSheets, 'all');
+}
+
+function onAfterPrint () {
+	var a = -1,
+		b;
+
+	while (++a < ELEMENTS_CACHE.length) {
+		ELEMENTS_CACHE[a][1].parentNode.replaceChild(ELEMENTS_CACHE[a][0], ELEMENTS_CACHE[a][1]);
+	}
+
+	for (b in HTML5_STYLESHEET) {
+		DOCUMENT_ELEMENT[FIRST_CHILD].removeChild(HTML5_STYLESHEET[b]);
+	}
+
+	HTML5_STYLESHEET = {};
+	ELEMENTS_CACHE = [];
+}
+
+while (++a < HTML5_ELEMENTS.length) {
+	document[CREATE_ELEMENT](HTML5_ELEMENTS[a]);
+	DOCUMENT_FRAGMENT[CREATE_ELEMENT](HTML5_ELEMENTS[a]);
+}
+
+DOCUMENT_FRAGMENT = DOCUMENT_FRAGMENT.appendChild(document[CREATE_ELEMENT]('div'));
+
+window.attachEvent('onbeforeprint', onBeforePrint);
+window.attachEvent('onafterprint', onAfterPrint);
+
+}(A.config.win, A.config.doc));
+@end@*/
