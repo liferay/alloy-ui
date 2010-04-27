@@ -2191,7 +2191,10 @@ A.extend(TreeNodeIO, A.TreeNode, {
 				);
 
 				if (paginator.autoFocus) {
-					paginator.element.focus();
+					try {
+						paginator.element.focus();
+					}
+					catch(e) {}
 				}
 			}
 			else {
