@@ -1016,9 +1016,7 @@ A.extend(TreeNodeIO, A.TreeNode, {
 
 		TreeNodeIO.superclass.bindUI.apply(this, arguments);
 
-		if (instance.get(PAGINATOR)) {
-			instance._bindPaginatorUI();
-		}
+		instance._bindPaginatorUI();
 
 		instance._createEvents();
 	},
@@ -1032,9 +1030,12 @@ A.extend(TreeNodeIO, A.TreeNode, {
 	_bindPaginatorUI: function() {
 		var instance = this;
 		var paginator = instance.get(PAGINATOR);
-		var handlePaginator = A.bind(instance._handlePaginatorClickEvent, instance);
 
-		paginator.element.on('click', handlePaginator);
+		if (paginator) {
+			var handlePaginator = A.bind(instance._handlePaginatorClickEvent, instance);
+
+			paginator.element.on('click', handlePaginator);
+		}
 	},
 
 	/*
@@ -1049,9 +1050,7 @@ A.extend(TreeNodeIO, A.TreeNode, {
 			instance.appendChild(newNode);
 		});
 
-		if (instance.get(PAGINATOR)) {
-			instance._syncPaginatorUI();
-		}
+		instance._syncPaginatorUI();
 	},
 
 	expand: function() {
@@ -1095,9 +1094,7 @@ A.extend(TreeNodeIO, A.TreeNode, {
 			io.cfg.data = io.cfg.data.apply(instance, [instance]);
 		}
 
-		if (instance.get(PAGINATOR)) {
-			instance._syncPaginatorIOData(io);
-		}
+		instance._syncPaginatorIOData(io);
 
 		if (isFunction(io.loader)) {
 			var loader = A.bind(io.loader, instance);
@@ -1337,10 +1334,12 @@ A.extend(TreeNodeIO, A.TreeNode, {
 		var data = io.cfg.data || {};
 		var paginator = instance.get(PAGINATOR);
 
-		data[ paginator.limitParam ] = paginator.limit;
-		data[ paginator.offsetParam ] = paginator.offset;
+		if (paginator) {
+			data[ paginator.limitParam ] = paginator.limit;
+			data[ paginator.offsetParam ] = paginator.offset;
 
-		io.cfg.data = data;
+			io.cfg.data = data;
+		}
 	},
 
 	/**
@@ -1353,19 +1352,22 @@ A.extend(TreeNodeIO, A.TreeNode, {
 		var instance = this;
 		var children = instance.get(CHILDREN);
 		var paginator = instance.get(PAGINATOR);
-		var limit = paginator.limit + paginator.offset;
 
-		if (children.length >= limit) {
-			instance.get(CONTAINER).append(
-				paginator.element.show()
-			);
+		if (paginator) {
+			var limit = paginator.limit + paginator.offset;
 
-			if (paginator.autoFocus) {
-				paginator.element.focus();
+			if (children.length >= limit) {
+				instance.get(CONTAINER).append(
+					paginator.element.show()
+				);
+
+				if (paginator.autoFocus) {
+					paginator.element.focus();
+				}
 			}
-		}
-		else {
-			paginator.element.hide();
+			else {
+				paginator.element.hide();
+			}
 		}
 	}
 });
