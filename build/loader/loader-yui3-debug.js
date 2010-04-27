@@ -626,9 +626,11 @@ YUI.Env[Y.version].modules = {
     "io": {
         "submodules": {
             "io-base": {
-                "requires": [
-                    "event-custom-base", 
+                "optional": [
                     "querystring-stringify-simple"
+                ], 
+                "requires": [
+                    "event-custom-base"
                 ]
             }, 
             "io-form": {
@@ -678,12 +680,12 @@ YUI.Env[Y.version].modules = {
         ], 
         "submodules": {
             "loader-base": {}, 
-            "rollup": {
+            "loader-rollup": {
                 "requires": [
                     "loader-base"
                 ]
             }, 
-            "yui3": {
+            "loader-yui3": {
                 "requires": [
                     "loader-base"
                 ]
@@ -815,13 +817,13 @@ YUI.Env[Y.version].modules = {
         }
     }, 
     "querystring-parse-simple": {
-        "path": "querystring/querystring-parse-simple.js", 
+        "path": "querystring/querystring-parse-simple-min.js", 
         "requires": [
             "yui-base"
         ]
     }, 
     "querystring-stringify-simple": {
-        "path": "querystring/querystring-stringify-simple.js", 
+        "path": "querystring/querystring-stringify-simple-min.js", 
         "requires": [
             "yui-base"
         ]
@@ -895,8 +897,7 @@ YUI.Env[Y.version].modules = {
         "plugins": {
             "tabview-plugin": {
                 "requires": [
-                    "tabview-base", 
-                    "node-focusmanager"
+                    "tabview-base"
                 ], 
                 "skinnable": true
             }
@@ -912,6 +913,7 @@ YUI.Env[Y.version].modules = {
             "tabview-base": {
                 "requires": [
                     "node-event-delegate", 
+                    "node-focusmanager", 
                     "classnamemanager"
                 ]
             }

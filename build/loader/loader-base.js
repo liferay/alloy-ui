@@ -18,7 +18,7 @@ var VERSION         = Y.version,
     BUILD           = '/build/',
     ROOT            = VERSION + BUILD,
     CDN_BASE        = Y.Env.base,
-    GALLERY_VERSION = CONFIG.gallery || 'gallery-2010.03.10-18',
+    GALLERY_VERSION = CONFIG.gallery || 'gallery-2010.03.30-17-26',
     GALLERY_ROOT    = GALLERY_VERSION + BUILD,
     TNT             = '2in3',
     TNT_VERSION     = CONFIG[TNT] || '1',
@@ -89,7 +89,6 @@ YUI.Env[VERSION] = META;
  * @submodule loader-base
  */
 
-
 /**
  * Loader dynamically loads script and css files.  It includes the dependency
  * info for the version of the library in use, and will automatically pull in
@@ -110,8 +109,6 @@ YUI.Env[VERSION] = META;
  * <ul>
  *  <li>base:
  *  The base dir</li>
- *  <li>secureBase:
- *  The secure base dir (not implemented)</li>
  *  <li>comboBase:
  *  The YUI combo service base dir. Ex: http://yui.yahooapis.com/combo?</li>
  *  <li>root:
@@ -334,7 +331,7 @@ Y.Loader = function(o) {
      * Browsers:
      *    IE: 2048
      *    Other A-Grade Browsers: Higher that what is typically supported 
-     *    'Capable' mobile browsers: @TODO
+     *    'capable' mobile browsers: @TODO
      *
      * Servers:
      *    Apache: 8192
@@ -476,14 +473,6 @@ Y.Loader = function(o) {
      *      // the default root directory for a skin. ex:
      *      // http://yui.yahooapis.com/2.3.0/build/assets/skins/sam/
      *      base: 'assets/skins/',
-     *
-     *      // The name of the rollup css file for the skin
-     *      path: 'skin.css',
-     *
-     *      // The number of skinnable components requested that are
-     *      // required before using the rollup file rather than the
-     *      // individual component css files
-     *      rollup: 3,
      *
      *      // Any component-specific overrides can be specified here,
      *      // making it possible to load different skins for different
@@ -1328,7 +1317,7 @@ Y.Loader.prototype = {
         // create an indexed list
         var s = YObject.keys(this.required), 
             info = this.moduleInfo, 
-            loaded = this.loaded,
+            // loaded = this.loaded,
             done = {},
             p=0, l, a, b, j, k, moved, doneKey,
 
@@ -1338,7 +1327,8 @@ Y.Loader.prototype = {
 
                 var m = info[mod1], i, r, after, other = info[mod2], s;
 
-                if (loaded[mod2] || !m || !other) {
+                // if (loaded[mod2] || !m || !other) {
+                if (!m || !other) {
                     return false;
                 }
 
@@ -1390,6 +1380,7 @@ Y.Loader.prototype = {
                 // find a requirement for the current item
                 for (k=j+1; k<l; k=k+1) {
                     doneKey = a + s[k];
+
                     if (!done[doneKey] && requires(a, s[k])) {
 
                         // extract the dependency so we can move it up
@@ -1448,11 +1439,27 @@ Y.Loader.prototype = {
             var self = this;
 
             this._internalCallback = function() {
-                var f = self.onCSS;
+
+                var f = self.onCSS, n, p, sib;
+
+                // IE hack for style overrides that are not being applied
+                if (this.insertBefore && Y.UA.ie) {
+                    n = Y.config.doc.getElementById(this.insertBefore);
+                    p = n.parentNode;
+                    sib = n.nextSibling;
+                    p.removeChild(n);
+                    if (sib) {
+                        p.insertBefore(n, sib);
+                    } else {
+                        p.appendChild(n);
+                    }
+                }
+
                 if (f) {
                     f.call(self.context, Y);
                 }
                 self._internalCallback = null;
+
                 self._insert(null, null, JS);
             };
 

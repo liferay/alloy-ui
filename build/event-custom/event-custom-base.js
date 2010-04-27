@@ -53,6 +53,8 @@ Y.Do = {
      * @param obj the object hosting the method to displace
      * @param sFn {string} the name of the method to displace
      * @param c The execution context for fn
+     * @param arg* {mixed} 0..n additional arguments to supply to the subscriber
+     * when the event fires.
      * @return {string} handle for the subscription
      * @static
      */
@@ -73,6 +75,7 @@ Y.Do = {
      * @param obj the object hosting the method to displace
      * @param sFn {string} the name of the method to displace
      * @param c The execution context for fn
+     * @param arg* {mixed} 0..n additional arguments to supply to the subscriber
      * @return {string} handle for the subscription
      * @static
      */
@@ -344,7 +347,6 @@ var AFTER = 'after',
         'type'
     ],
 
-
     YUI3_SIGNATURE = 9,
     YUI_LOG = 'yui:log';
 
@@ -392,7 +394,7 @@ Y.EventHandle.prototype = {
      * subscribing to an event.
      * @method monitor
      * @param what {string} what to monitor ('attach', 'detach', 'publish')
-     * return {EventHandle} return value from the monitor event subscription
+     * @return {EventHandle} return value from the monitor event subscription
      */
     monitor: function(what) {
         return this.evt.monitor.apply(this.evt, arguments);
@@ -640,7 +642,7 @@ Y.CustomEvent.prototype = {
      * subscribing to an event.
      * @method monitor
      * @param what {string} what to monitor ('detach', 'attach', 'publish')
-     * return {EventHandle} return value from the monitor event subscription
+     * @return {EventHandle} return value from the monitor event subscription
      */
     monitor: function(what) {
         this.monitored = true;
@@ -707,7 +709,7 @@ Y.CustomEvent.prototype = {
      * Listen for this event
      * @method subscribe
      * @param {Function} fn The function to execute
-     * @return {EventHandle} handle Unsubscribe handle
+     * @return {EventHandle} Unsubscribe handle
      * @deprecated use on
      */
     subscribe: function(fn, context) {
@@ -719,7 +721,10 @@ Y.CustomEvent.prototype = {
      * Listen for this event
      * @method on
      * @param {Function} fn The function to execute
-     * @return {EventHandle} handle Unsubscribe handle
+     * @param context {object} optional execution context.
+     * @param arg* {mixed} 0..n additional arguments to supply to the subscriber
+     * when the event fires.
+     * @return {EventHandle} An object with a detach method to detch the handler(s)
      */
     on: function(fn, context) {
         var a = (arguments.length > 2) ? Y.Array(arguments, 2, true): null;
@@ -735,6 +740,9 @@ Y.CustomEvent.prototype = {
      * default behavior, it also prevents after listeners from firing.
      * @method after
      * @param {Function} fn The function to execute
+     * @param context {object} optional execution context.
+     * @param arg* {mixed} 0..n additional arguments to supply to the subscriber
+     * when the event fires.
      * @return {EventHandle} handle Unsubscribe handle
      */
     after: function(fn, context) {
@@ -783,7 +791,6 @@ Y.CustomEvent.prototype = {
     unsubscribe: function() {
         return this.detach.apply(this, arguments);
     },
-
 
     /**
      * Notify a single subscriber
@@ -1216,6 +1223,8 @@ ET.prototype = {
      * @method once
      * @param type    {string}   The type of the event
      * @param fn {Function} The callback
+     * @param context {object} optional execution context.
+     * @param arg* {mixed} 0..n additional arguments to supply to the subscriber
      * @return the event target or a detach handle per 'chain' config
      */
     once: function() {
@@ -1229,9 +1238,11 @@ ET.prototype = {
      * @method on 
      * @param type    {string}   The type of the event
      * @param fn {Function} The callback
+     * @param context {object} optional execution context.
+     * @param arg* {mixed} 0..n additional arguments to supply to the subscriber
      * @return the event target or a detach handle per 'chain' config
      */
-    on: function(type, fn, context, x) {
+    on: function(type, fn, context) {
 
         var parts = _parseType(type, this._yuievt.config.prefix), f, c, args, ret, ce,
             detachcategory, handle, store = Y.Env.evt.handles, after, adapt, shorttype,
@@ -1448,7 +1459,8 @@ ET.prototype = {
             }
         }
 
-        ce = evts[type];
+        // ce = evts[type];
+        ce = evts[parts[1]];
         if (ce) {
             ce.detach(fn, context);
         }
@@ -1593,8 +1605,8 @@ ET.prototype = {
 
     /**
      * This is the entry point for the event monitoring system.
-     * You can monitor 'attach', 'detach', and 'publish.  When
-     * configured, these events generate an event.  click ->
+     * You can monitor 'attach', 'detach', 'fire', and 'publish'.  
+     * When configured, these events generate an event.  click ->
      * click_attach, click_detach, click_publish -- these can
      * be subscribed to like other events to monitor the event
      * system.  Inividual published events can have monitoring
@@ -1721,6 +1733,8 @@ ET.prototype = {
      * @method after
      * @param type    {string}   The type of the event
      * @param fn {Function} The callback
+     * @param context {object} optional execution context.
+     * @param arg* {mixed} 0..n additional arguments to supply to the subscriber
      * @return the event target or a detach handle per 'chain' config
      */
     after: function(type, fn) {

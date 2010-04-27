@@ -5,4 +5,4 @@ http://developer.yahoo.com/yui/license.html
 version: 3.1.0
 build: nightly
 */
-.yui3-overlay{position:absolute;}.yui3-overlay-hidden{visibility:hidden;}
+.yui3-overlay{position:absolute;}.yui3-overlay-hidden{visibility:hidden;}.yui3-widget-tmp-forcesize .yui3-overlay-content{overflow:hidden!important;}
