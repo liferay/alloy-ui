@@ -40,7 +40,7 @@
 						'aui-event': {submodules: {'aui-event-input': {requires:['aui-base']} }, use:['aui-event-input'], skinnable:false},
 						'aui-form': {submodules: {'aui-form-textfield': {requires:['aui-form-field']}, 'aui-form-textarea': {requires:['aui-form-textfield'], skinnable:true}, 'aui-form-manager': {requires:['aui-base','substitute']}, 'aui-form-field': {requires:['aui-base','aui-component','substitute']}, 'aui-form-combobox': {requires:['aui-form-textarea','aui-toolbar'], skinnable:true}, 'aui-form-base': {requires:['aui-base','aui-data-set','aui-form-field','querystring-parse']} }, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-manager','aui-form-textarea','aui-form-textfield'], skinnable:false},
 						'aui-image-viewer': {submodules: {'aui-image-viewer-gallery': {requires:['aui-image-viewer-base','aui-paginator','aui-toolbar'], skinnable:true}, 'aui-image-viewer-base': {requires:['anim','aui-overlay-mask','substitute'], skinnable:true} }, use:['aui-image-viewer-base','aui-image-viewer-gallery'], skinnable:true},
-						'aui-io': {submodules: {'aui-io-plugin': {requires:['aui-overlay-base','aui-parse-content','aui-io-request','aui-loading-mask']}, 'aui-io-request': {requires:['aui-base','io','json','plugin']} }, use:['aui-io-request','aui-io-plugin'], skinnable:false},
+						'aui-io': {submodules: {'aui-io-plugin': {requires:['aui-overlay-base','aui-parse-content','aui-io-request','aui-loading-mask']}, 'aui-io-request': {requires:['aui-base','io','json','plugin','querystring-stringify']} }, use:['aui-io-request','aui-io-plugin'], skinnable:false},
 						'aui-live-search': {requires:['aui-base'], skinnable:false},
 						'aui-loading-mask': {requires:['aui-overlay-mask','plugin','substitute'], skinnable:true},
 						'aui-nested-list': {requires:['aui-base','dd'], skinnable:false},
@@ -233,7 +233,7 @@
 				ALLOY.config = ALLOY.merge(AUI.defaults, defaults);
 			},
 
-			HTML5_ELEMENTS: 'abbr,article,aside,audio,canvas,datagrid,datalist,details,dialog,figure,figcaption,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,summary,time,video'.split(',')
+			HTML5_ELEMENTS: 'abbr,article,aside,audio,canvas,command,datalist,details,figure,figcaption,footer,header,hgroup,keygen,mark,meter,nav,output,progress,section,source,summary,time,video'.split(',')
 		}
 	);
 
