@@ -1,9 +1,15 @@
 <?
 	$limit = $_REQUEST['limit'];
-	$offset = $_REQUEST['offset'];
+	$start = $_REQUEST['start'];
+	$end = $_REQUEST['end'];
+	
+	if ($end > 20) {
+		echo "[]";
+		die;
+	}
 ?>
 [
-	<? for ($x = $offset; $x < ($offset + $limit); $x++) { ?>
+	<? for ($x = $start; $x < $end; $x++) { ?>
 	{ "label": "io node <?=$x?>" },
 	<? } ?>
 	{

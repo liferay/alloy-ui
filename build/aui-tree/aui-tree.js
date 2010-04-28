@@ -1677,14 +1677,16 @@ A.TreeNode = TreeNode;
 */
 var isFunction = L.isFunction,
 	isObject = L.isObject,
+	isValue = L.isValue,
 
 	CACHE = 'cache',
+	END = 'end',
 	IO = 'io',
 	LIMIT = 'limit',
 	LOADED = 'loaded',
 	LOADING = 'loading',
-	OFFSET = 'offset',
 	PAGINATOR = 'paginator',
+	START = 'start',
 	TREE_NODE_IO = 'tree-node-io',
 
 	EV_TREE_NODE_PAGINATOR_CLICK = 'paginatorClick',
@@ -1804,12 +1806,13 @@ A.mix(TreeNodeIO, {
 			setter: function(val) {
 				return A.merge(
 					{
+						alwaysVisible: false,
 						autoFocus: true,
 						element: A.Node.create(TPL_PAGINATOR),
-						limit: Infinity,
+						endParam: END,
 						limitParam: LIMIT,
-						offset: 0,
-						offsetParam: OFFSET
+						start: 0,
+						startParam: START
 					},
 					val
 				);
@@ -1879,7 +1882,7 @@ A.extend(TreeNodeIO, A.TreeNode, {
 			instance.appendChild(newNode);
 		});
 
-		instance._syncPaginatorUI();
+		instance._syncPaginatorUI(nodes);
 	},
 
 	expand: function() {
@@ -2032,7 +2035,7 @@ A.extend(TreeNodeIO, A.TreeNode, {
 
     /**
      * Default paginatorClick event handler. Increment the
-	 * <code>paginator.offset</code> to the next <code>paginator.limit</code>.
+	 * <code>paginator.start</code> to the next <code>paginator.limit</code>.
      *
      * @method _defPaginatorClickFn
      * @param {EventFacade} event The Event object
@@ -2042,7 +2045,9 @@ A.extend(TreeNodeIO, A.TreeNode, {
 		var instance = this;
 		var paginator = instance.get(PAGINATOR);
 
-		paginator.offset += paginator.limit;
+		if (isValue(paginator.limit)) {
+			paginator.start += paginator.limit;
+		}
 
 		if (instance.get(IO)) {
 			instance.initIO();
@@ -2153,19 +2158,21 @@ A.extend(TreeNodeIO, A.TreeNode, {
 	/**
 	 * Adds two extra IO data parameter to the request to handle the
      * paginator. By default these parameters are <code>limit</code> and
-     * <code>offset</code>.
+     * <code>start</code>.
 	 *
 	 * @method _syncPaginatorIOData
 	 * @protected
 	 */
 	_syncPaginatorIOData: function(io) {
 		var instance = this;
-		var data = io.cfg.data || {};
 		var paginator = instance.get(PAGINATOR);
 
-		if (paginator) {
+		if (paginator && isValue(paginator.limit)) {
+			var data = io.cfg.data || {};
+
 			data[ paginator.limitParam ] = paginator.limit;
-			data[ paginator.offsetParam ] = paginator.offset;
+			data[ paginator.startParam ] = paginator.start;
+			data[ paginator.endParam ] = (paginator.start + paginator.limit);
 
 			io.cfg.data = data;
 		}
@@ -2177,15 +2184,16 @@ A.extend(TreeNodeIO, A.TreeNode, {
 	 * @method _syncPaginatorUI
 	 * @protected
 	 */
-	_syncPaginatorUI: function() {
+	_syncPaginatorUI: function(newNodes) {
 		var instance = this;
 		var children = instance.get(CHILDREN);
 		var paginator = instance.get(PAGINATOR);
 
 		if (paginator) {
-			var limit = paginator.limit + paginator.offset;
+			var hasMoreData = (newNodes && newNodes.length);
+			var showPaginator = hasMoreData && (children.length >= paginator.limit);
 
-			if (children.length >= limit) {
+			if (paginator.alwaysVisible || showPaginator) {
 				instance.get(CONTAINER).append(
 					paginator.element.show()
 				);
