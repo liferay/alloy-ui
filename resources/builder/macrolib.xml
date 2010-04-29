@@ -160,7 +160,7 @@
 			<replace file="${project.dir}/resources/temp/defaults.js">
 				<replacefilter token=": ," value=": "/>
 			</replace>
-			<replaceregexp match="@MODULES@\n" replace="" flags="g" byline="false">
+			<replaceregexp match="@MODULES@[\r\n]" replace="" flags="g" byline="false">
 				<fileset dir="${project.dir}/resources/temp/" includes="defaults.js"/>
 			</replaceregexp>
 			<replaceregexp match="\},([\s\t\n]+)}" replace="}\1}" flags="g" byline="false">
