@@ -38,6 +38,7 @@
 	<h1>Alloy - ProgressBar Demo</h1>
 
 	<button id="pb1btn1">Set to 50%</button>
+	<button id="pb1btn2">Vertical orientation</button>
 
 	<div id="pb1"></div>
 
@@ -113,6 +114,10 @@ AUI().ready('aui-progressbar', 'async-queue', 'anim', function(A) {
 
 	A.one('#pb1btn1').on('click', function() {
 		pb1.set('value', 50);
+	});
+
+	A.one('#pb1btn2').on('click', function() {
+		pb1.set('orientation', 'vertical');
 	});
 });
 
