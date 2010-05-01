@@ -50,6 +50,7 @@
 						'aui-panel': {requires:['aui-component','widget-stdmod','aui-toolbar'], skinnable:true},
 						'aui-parse-content': {requires:['async-queue','aui-base','io','plugin'], skinnable:false},
 						'aui-portal-layout': {requires:['aui-base','dd'], skinnable:true},
+						'aui-progressbar': {requires:['aui-base'], skinnable:true},
 						'aui-rating': {requires:['aui-base'], skinnable:true},
 						'aui-resize': {requires:['aui-base','dd','substitute'], skinnable:true},
 						'aui-sortable': {requires:['aui-base','dd'], skinnable:true},

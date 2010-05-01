@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/yui/yui.js" type="text/javascript"></script>
+	<script src="../../build/aui-base/aui-base.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skins/core/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+
+		#pb1 {
+			height: 30px;
+			width: 350px;
+		}
+
+		#pb2 {
+			height: 400px;
+			width: 40px;
+		}
+
+		#pb3 {
+			position: relative;
+		}
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - ProgressBar Demo</h1>
+
+	<button id="pb1btn1">Set to 50%</button>
+
+	<div id="pb1"></div>
+
+	<div id="pb2"></div>
+
+	<div id="pb3">
+		<div class="aui-progress-bar-text">
+			From markup
+        </div>
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('aui-progressbar', 'async-queue', 'anim', function(A) {
+
+	var pb1 = new A.ProgressBar({
+		boundingBox: '#pb1',
+		// width: 100,
+		// orientation: 'horizontal',
+		// min: 100,
+		// max: 200,
+		// max: 150,
+		// label: 'Progressbar!',
+		on: {
+			complete: function(e) {
+				this.set('label', 'complete!');
+			},
+			valueChange: function(e) {
+				// console.log('valueChange', e.newVal);
+				this.set('label', e.newVal + '%');
+			}
+		},
+		// value: 0,
+		height: 25
+	})
+	.render();
+
+	// pb1.set('value', 100);
+
+	var pb2 = new A.ProgressBar({
+		boundingBox: '#pb2',
+		orientation: 'vertical',
+		height: 300
+	})
+	.render();
+
+
+
+	var pb3 = new A.ProgressBar({
+		contentBox: '#pb3'
+	})
+	.render();
+
+
+	// extra
+	var step = 0;
+	var task1 = new A.AsyncQueue({
+		fn: function() {
+			++step;
+
+			pb1.set('value', step);
+
+			pb2.set('label', 'Loading... ' + step + '%');
+			pb2.set('value', step);
+
+			pb3.set('value', step);
+		},
+		timeout: 1,
+		iterations: 100
+	});
+	task1.run();
+
+	A.one('#pb1btn1').on('click', function() {
+		pb1.set('value', 50);
+	});
+});
+
+</script>
+
+</body>
+</html>
