@@ -30,7 +30,7 @@ var L = A.Lang,
 	WIDTH = 'width',
 
 	toNumber = function(v) {
-		return parseInt(v, 10) || 0;
+		return parseFloat(v) || 0;
 	},
 
 	getCN = A.ClassNameManager.getClassName,
