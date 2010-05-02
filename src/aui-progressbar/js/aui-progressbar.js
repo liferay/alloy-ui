@@ -29,8 +29,8 @@ var L = A.Lang,
 	VERTICAL = 'vertical',
 	WIDTH = 'width',
 
-	toNumber = function(v) {
-		return parseFloat(v) || 0;
+	toNumber = function(v, defValue) {
+		return parseFloat(v) || (defValue || 0);
 	},
 
 	getCN = A.ClassNameManager.getClassName,
@@ -53,7 +53,7 @@ var L = A.Lang,
 	BIND_UI_ATTRS = _BIND_UI_ATTRS.concat(UI_ATTRS),
 	SYNC_UI_ATTRS = _SYNC_UI_ATTRS.concat(UI_ATTRS);
 
-function ProgressBar(config) {
+function ProgressBar() {
 	ProgressBar.superclass.constructor.apply(this, arguments);
 }
 
@@ -62,7 +62,11 @@ A.mix(ProgressBar, {
 
 	ATTRS: {
 		height: {
-			value: 25
+			valueFn: function() {
+				var boundingBox = this.get(BOUNDING_BOX);
+
+				return toNumber(boundingBox.getStyle(HEIGHT), 25);
+			}
 		},
 
 		label: {
@@ -117,19 +121,25 @@ A.mix(ProgressBar, {
 		},
 
 		width: {
-			value: 250
+			valueFn: function() {
+				var boundingBox = this.get(BOUNDING_BOX);
+
+				return toNumber(boundingBox.getStyle(WIDTH), 250);
+			}
 		}
 	},
 
 	HTML_PARSER: {
-		label: function(boundingBox) {
-			var textNode = boundingBox.one(DOT+CSS_TEXT);
+		label: function(contentBox) {
+			var textNode = contentBox.one(DOT+CSS_TEXT);
 
 			if (textNode) {
 				return textNode.html();
 			}
 		},
+
 		statusNode: DOT+CSS_STATUS,
+
 		textNode: DOT+CSS_TEXT
 	}
 });
@@ -175,7 +185,7 @@ A.extend(ProgressBar, A.Widget, {
 
 		return toNumber(
 			contentBox.getStyle(
-				(this.get(ORIENTATION) === HORIZONTAL) ? WIDTH : HEIGHT
+				this.get(ORIENTATION) === HORIZONTAL ? WIDTH : HEIGHT
 			)
 		);
 	},
