@@ -17,6 +17,7 @@ var L = A.Lang,
 	LINE_HEIGHT = 'lineHeight',
 	MAX = 'max',
 	MIN = 'min',
+	OFFSET_HEIGHT = 'offsetHeight',
 	ORIENTATION = 'orientation',
 	PROGRESS_BAR = 'progress-bar',
 	PX = 'px',
@@ -30,8 +31,8 @@ var L = A.Lang,
 	VERTICAL = 'vertical',
 	WIDTH = 'width',
 
-	toNumber = function(v, defValue) {
-		return parseFloat(v) || (defValue || 0);
+	toNumber = function(v) {
+		return parseFloat(v) || 0;
 	},
 
 	getCN = A.ClassNameManager.getClassName,
@@ -64,9 +65,7 @@ A.mix(ProgressBar, {
 	ATTRS: {
 		height: {
 			valueFn: function() {
-				var boundingBox = this.get(BOUNDING_BOX);
-
-				return toNumber(boundingBox.getStyle(HEIGHT), 25);
+				return this.get(BOUNDING_BOX).get(OFFSET_HEIGHT) || 25;
 			}
 		},
 
@@ -119,14 +118,6 @@ A.mix(ProgressBar, {
 				return isNumber(toNumber(val)) && ((val >= this.get(MIN)) && (val <= this.get(MAX)));
 			},
 			value: 0
-		},
-
-		width: {
-			valueFn: function() {
-				var boundingBox = this.get(BOUNDING_BOX);
-
-				return toNumber(boundingBox.getStyle(WIDTH), 250);
-			}
 		}
 	},
 
