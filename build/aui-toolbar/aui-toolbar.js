@@ -17,7 +17,7 @@ var Lang = A.Lang,
 	CSS_ITEM = getClassName(NAME, 'item'),
 	CSS_ITEM_CONTENT = getClassName(NAME, 'item', 'content'),
 	CSS_LAST = getClassName(NAME, 'last'),
-	CSS_TOOLSET = getClassName(NAME),
+	CSS_VERTICAL = getClassName(NAME, 'vertical'),
 
 	TPL_GENERIC = '<span></span>';
 
@@ -93,6 +93,17 @@ A.mix(Toolbar, {
 		 */
 		defaultChildType: {
 			value: 'ButtonItem'
+		},
+
+		/**
+		 * If the toolbar should be rendered in a vertical fashion
+		 *
+		 * @attribute vertical
+		 * @default false
+		 * @type boolean
+		 */
+		vertical: {
+			value: false
 		}
 	}
 });
@@ -130,6 +141,8 @@ A.extend(Toolbar, A.Component, {
 
 		instance.after('addChild', instance._afterAddButton);
 		instance.after('removeChild', instance._afterRemoveButton);
+
+		instance.after('verticalChange', instance._afterVerticalChange);
 	},
 
 	/**
@@ -142,6 +155,8 @@ A.extend(Toolbar, A.Component, {
 		var instance = this;
 
 		var length = instance.size() - 1;
+
+		instance._uiSetVertical(instance.get('vertical'));
 
 		instance.each(
 			function(item, index, collection) {
@@ -207,6 +222,32 @@ A.extend(Toolbar, A.Component, {
 		event.child.destroy();
 
 		instance.syncUI();
+	},
+
+	/**
+	 * Handles the logic after vertical alignment is set.
+	 *
+	 * @method _afterVerticalChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
+	_afterVerticalChange: function(event) {
+		var instance = this;
+
+		instance._uiSetVertical(event.newVal);
+	},
+
+	/**
+	 * Updates the UI for the vertical attribute in response to the <a href="Toolbar.html#event_verticalChange">verticalChange</a> event.
+	 *
+	 * @method _uiSetVertical
+	 * @param {String} newVal The new value
+	 * @protected
+	 */
+	_uiSetVertical: function(newVal) {
+		var instance = this;
+
+		instance.get('boundingBox').toggleClass(CSS_VERTICAL, newVal);
 	}
 });
 

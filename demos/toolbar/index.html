@@ -69,6 +69,19 @@
 	</div>
 
 	<div id="demo4">
+		<h2>Vertical Toolbars</h2>
+		<span id="demo4a">
+			<h3>Icon and Label</h3>
+		</span>
+		<span id="demo4b">
+			<h3>Label only</h3>
+		</span>
+		<span id="demo4c">
+			<h3>Icon only</h3>
+		</span>
+	</div>
+
+	<div id="demo5">
 		<h2>Mixed examples of buttons</h2>
 		<p>Testing purposes</p>
 		<span class="button-container" id="demo1a"></span>
@@ -116,6 +129,21 @@ AUI().ready('aui-toolbar', function(A) {
 			]
 		}
 	).render('#demo3');
+
+	var component4a = component.clone({
+		render: '#demo4a',
+		vertical: true
+	});
+
+	var component4b = component2.clone({
+		render: '#demo4b',
+		vertical: true
+	});
+
+	var component4c = component3.clone({
+		render: '#demo4c',
+		vertical: true
+	});
 
 // ------
 
