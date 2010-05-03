@@ -12,12 +12,16 @@ var Lang = A.Lang,
 
 	getClassName = A.ClassNameManager.getClassName,
 
+	HORIZONTAL = 'horizontal',
+	VERTICAL = 'vertical',
+
 	CSS_TOOLBAR = getClassName(NAME),
 	CSS_FIRST = getClassName(NAME, 'first'),
+	CSS_HORIZONTAL = getClassName(NAME, HORIZONTAL),
 	CSS_ITEM = getClassName(NAME, 'item'),
 	CSS_ITEM_CONTENT = getClassName(NAME, 'item', 'content'),
 	CSS_LAST = getClassName(NAME, 'last'),
-	CSS_VERTICAL = getClassName(NAME, 'vertical'),
+	CSS_VERTICAL = getClassName(NAME, VERTICAL),
 
 	TPL_GENERIC = '<span></span>';
 
@@ -96,14 +100,15 @@ A.mix(Toolbar, {
 		},
 
 		/**
-		 * If the toolbar should be rendered in a vertical fashion
+		 * The orientation, horizontal or vertical, of the toolbar.
 		 *
-		 * @attribute vertical
-		 * @default false
-		 * @type boolean
+		 * @attribute orientation
+		 * @default horizontal
+		 * @type string
 		 */
-		vertical: {
-			value: false
+		orientation: {
+			value: 'horizontal',
+			setter: '_setOrientation'
 		}
 	}
 });
@@ -142,7 +147,7 @@ A.extend(Toolbar, A.Component, {
 		instance.after('addChild', instance._afterAddButton);
 		instance.after('removeChild', instance._afterRemoveButton);
 
-		instance.after('verticalChange', instance._afterVerticalChange);
+		instance.after('orientationChange', instance._afterOrientationChange);
 	},
 
 	/**
@@ -156,7 +161,7 @@ A.extend(Toolbar, A.Component, {
 
 		var length = instance.size() - 1;
 
-		instance._uiSetVertical(instance.get('vertical'));
+		instance._uiSetOrientation(instance.get('orientation'));
 
 		instance.each(
 			function(item, index, collection) {
@@ -225,29 +230,48 @@ A.extend(Toolbar, A.Component, {
 	},
 
 	/**
-	 * Handles the logic after vertical alignment is set.
+	 * Handles the logic after the orientation is set.
 	 *
-	 * @method _afterVerticalChange
+	 * @method _afterOrientationChange
 	 * @param {EventFacade} event
 	 * @protected
 	 */
-	_afterVerticalChange: function(event) {
+	_afterOrientationChange: function(event) {
 		var instance = this;
 
-		instance._uiSetVertical(event.newVal);
+		instance._uiSetOrientation(event.newVal);
 	},
 
 	/**
-	 * Updates the UI for the vertical attribute in response to the <a href="Toolbar.html#event_verticalChange">verticalChange</a> event.
+	 * Setter for the orientation attribute
 	 *
-	 * @method _uiSetVertical
+	 * @method _setOrientation
+	 * @protected
+	 */
+	_setOrientation: function(value) {
+		var instance = this;
+
+		return String(value).toLowerCase();
+	},
+
+	/**
+	 * Updates the UI for the orientation attribute in response to the <a href="Toolbar.html#event_orientationChange">orientationChange</a> event.
+	 *
+	 * @method _uiSetOrientation
 	 * @param {String} newVal The new value
 	 * @protected
 	 */
-	_uiSetVertical: function(newVal) {
+	_uiSetOrientation: function(newVal) {
 		var instance = this;
 
-		instance.get('boundingBox').toggleClass(CSS_VERTICAL, newVal);
+		var boundingBox = instance.get('boundingBox');
+
+		if (newVal == HORIZONTAL) {
+			boundingBox.replaceClass(CSS_VERTICAL, CSS_HORIZONTAL);
+		}
+		else if (newVal == VERTICAL) {
+			boundingBox.replaceClass(CSS_HORIZONTAL, CSS_VERTICAL);
+		}
 	}
 });
 

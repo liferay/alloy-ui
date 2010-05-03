@@ -123,26 +123,26 @@ AUI().ready('aui-toolbar', function(A) {
 		{
 			activeState: true,
 			children: [
-				{icon: 'plus'},
-				{icon: 'minus'},
-				{icon: 'gear'}
+				{icon: 'plus', title: 'Add'},
+				{icon: 'minus', title: 'Remove'},
+				{icon: 'gear', title: 'Config'}
 			]
 		}
 	).render('#demo3');
 
 	var component4a = component.clone({
 		render: '#demo4a',
-		vertical: true
+		orientation: 'vertical'
 	});
 
 	var component4b = component2.clone({
 		render: '#demo4b',
-		vertical: true
+		orientation: 'vertical'
 	});
 
 	var component4c = component3.clone({
 		render: '#demo4c',
-		vertical: true
+		orientation: 'vertical'
 	});
 
 // ------
