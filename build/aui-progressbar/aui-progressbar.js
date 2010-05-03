@@ -158,16 +158,9 @@ A.extend(ProgressBar, A.Widget, {
 
 	_afterValueChange: function(event) {
 		var instance = this;
-		var step = instance.get(STEP);
 
-		if (step >= 100) {
-			instance.fire(COMPLETE, {
-				progressbar: {
-					ratio: instance.get(RATIO),
-					step: step,
-					value: instance.get(VALUE)
-				}
-			});
+		if (instance.get(STEP) >= 100) {
+			instance.fire(COMPLETE);
 		}
 	},
 
