@@ -21,14 +21,11 @@
 
 .aui-toolbar-vertical .aui-buttonitem-icon-only {
 	text-align: center;
+	width: auto;
 }
 
 .aui-toolbar-vertical .aui-buttonitem-icon-label {
 	text-align: left;
-}
-
-.aui-toolbar-vertical .aui-buttonitem-icon-only {
-	text-align: center;
 }
 
 .aui-toolbar-vertical .aui-buttonitem-icon-only .aui-buttonitem-icon {
