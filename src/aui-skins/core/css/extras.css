@@ -62,7 +62,8 @@ shadow or rounded corners.
 .aui-tab,
 .aui-overlaycontextpanel-pointer.aui-state-default,
 .aui-toolbar-item-content,
-.aui-toolbar-item {
+.aui-toolbar-item,
+.aui-toolbar-vertical .aui-toolbar-item {
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
 	border-radius: 0;
@@ -93,7 +94,8 @@ shadow or rounded corners.
 /* Top left */
 
 .aui-image-viewer-bd,
-.aui-tab {
+.aui-tab,
+.aui-toolbar-vertical .aui-toolbar-first {
 	-moz-border-radius-topleft: 4px;
 	-webkit-border-top-left-radius: 4px;
 	border-top-left-radius: 4px;
@@ -102,7 +104,8 @@ shadow or rounded corners.
 /* Top right */
 
 .aui-image-viewer-bd,
-.aui-tab {
+.aui-tab,
+.aui-toolbar-vertical .aui-toolbar-first {
 	-moz-border-radius-topright: 4px;
 	-webkit-border-top-right-radius: 4px;
 	border-top-right-radius: 4px;
@@ -110,7 +113,8 @@ shadow or rounded corners.
 
 /* Bottom left */
 
-.aui-image-viewer-content .aui-widget-ft {
+.aui-image-viewer-content .aui-widget-ft,
+.aui-toolbar-vertical .aui-toolbar-last {
 	-moz-border-radius-bottomleft: 4px;
 	-webkit-border-bottom-left-radius: 4px;
 	border-bottom-left-radius: 4px;
@@ -118,7 +122,8 @@ shadow or rounded corners.
 
 /* Bottom right */
 
-.aui-image-viewer-content .aui-widget-ft {
+.aui-image-viewer-content .aui-widget-ft,
+.aui-toolbar-vertical .aui-toolbar-last {
 	-moz-border-radius-bottomright: 4px;
 	-webkit-border-bottom-right-radius: 4px;
 	border-bottom-right-radius: 4px;
