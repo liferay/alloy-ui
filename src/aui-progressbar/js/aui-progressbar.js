@@ -48,11 +48,8 @@ var L = A.Lang,
 
 	UI_ATTRS = [ LABEL, ORIENTATION, VALUE ],
 
-	_BIND_UI_ATTRS = WP._BIND_UI_ATTRS,
-	_SYNC_UI_ATTRS = WP._SYNC_UI_ATTRS,
-
-	BIND_UI_ATTRS = _BIND_UI_ATTRS.concat(UI_ATTRS),
-	SYNC_UI_ATTRS = _SYNC_UI_ATTRS.concat(UI_ATTRS);
+	BIND_UI_ATTRS = WP._BIND_UI_ATTRS.concat(UI_ATTRS),
+	SYNC_UI_ATTRS = WP._SYNC_UI_ATTRS.concat(UI_ATTRS);
 
 function ProgressBar() {
 	ProgressBar.superclass.constructor.apply(this, arguments);
