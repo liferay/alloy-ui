@@ -15,6 +15,63 @@
 
 	<target name="build-aui" depends="build-components, build-modules, build-skins, clean"/>
 
+	<target name="build-gallery" depends="build-gallery-templates, build-gallery-components, build-gallery-modules, clean-gallery-templates" />
+
+	<target name="build-gallery-templates">
+		<echo>Backing up templates</echo>
+
+		<copy todir="${project.dir}/resources/builder/_new_templates">
+			<fileset dir="${project.dir}/resources/builder/templates"/>
+
+			<filterset begintoken="(@" endtoken="@)">
+				<filter token="YUIVAR" value="(A)"/>
+			</filterset>
+		</copy>
+
+		<move todir="${project.dir}/resources/builder/_old_templates">
+			<fileset dir="${project.dir}/resources/builder/templates"/>
+		</move>
+
+		<move todir="${project.dir}/resources/builder/templates">
+			<fileset dir="${project.dir}/resources/builder/_new_templates"/>
+		</move>
+	</target>
+
+	<target name="clean-gallery-templates">
+		<echo>Cleaning up templates</echo>
+
+		<move todir="${project.dir}/resources/builder/templates" overwrite="true">
+			<fileset dir="${project.dir}/resources/builder/_old_templates"/>
+		</move>
+	</target>
+
+	<target name="build-gallery-components" depends="remove-whitespace">
+		<subant target="all">
+			<property name="yui.variable" value="Y"/>
+
+			<fileset
+				dir="${project.dir}/src/"
+				excludes="build.xml"
+				includes="**/build.xml"
+			/>
+		</subant>
+	</target>
+
+	<target name="build-gallery-modules">
+		<subant target="all">
+			<property name="yui.variable" value="Y"/>
+			<property name="component.jsfiles" value="aui-core.js, aui-base.js" />
+			<property name="component.prependfiles" value="" />
+
+			<fileset
+				dir="${project.dir}/src/aui-base/"
+				includes="**/build.xml"
+			/>
+		</subant>
+
+		<create-module-list/>
+	</target>
+
 	<target name="build-components" depends="remove-whitespace">
 		<subant target="all">
 			<fileset
