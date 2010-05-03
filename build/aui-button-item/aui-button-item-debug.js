@@ -195,6 +195,17 @@ ButtonItem.ATTRS = {
 	 */
 	label: {
 		value: ''
+	},
+
+	/**
+	 * Text to use as the title attribute of the button.
+	 * 
+	 * @attribute title
+	 * @type String
+	 */
+	title: {
+		setter: '_setTitle',
+		value: false
 	}
 };
 
@@ -228,6 +239,7 @@ A.extend(
 
 			instance.after('iconChange', instance._afterIconChange);
 			instance.after('labelChange', instance._afterLabelChange);
+			instance.after('titleChange', instance._afterTitleChange);
 		},
 
 		/**
@@ -241,6 +253,7 @@ A.extend(
 
 			var icon = instance.get('icon');
 			var label = instance.get('label');
+			var title = instance.get('title');
 
 			if (icon) {
 				instance._uiSetIcon(icon)
@@ -250,6 +263,9 @@ A.extend(
 				instance._uiSetLabel(label);
 			}
 
+			if (title) {
+				instance._uiSetTitle(title);
+			}
 		},
 
 		/**
@@ -278,6 +294,20 @@ A.extend(
 			var instance = this;
 
 			instance._uiSetLabel(event.newVal);
+		},
+
+		/**
+		 * Fires after the value of the
+		 * <a href="ButtonItem.html#config_title">title</a> attribute change.
+		 *
+		 * @method 
+		 * @param {EventFacade} event
+		 * @protected
+		 */
+		_afterTitleChange: function(event) {
+			var instance = this;
+
+			instance._uiSetTitle(event.newVal);
 		},
 
 		/**
@@ -403,6 +433,25 @@ A.extend(
 		},
 
 		/**
+		 * Setter for the title attribute
+		 *
+		 * @method _setTitle
+		 * @protected
+		 */
+		_setTitle: function(value) {
+			var instance = this;
+
+			if (value === null) {
+				value = instance.get('label');
+			}
+			else if (value === false) {
+				value = '';
+			}
+
+			return String(value);
+		},
+
+		/**
 		 * Syncs the boundingBox class names to reflect whether the children only have icons or labels or both.
 		 *
 		 * @method _syncChildrenStates
@@ -480,6 +529,21 @@ A.extend(
 			labelNode[action]();
 
 			instance._syncChildrenStates();
+		},
+
+		/**
+		 * Updates the UI for the title in response to the <a href="ButtonItem.html#event_titleChange">titleChange</a> event.
+		 *
+		 * @method _uiSetTitle
+		 * @param {String} newVal The new value
+		 * @protected
+		 */
+		_uiSetTitle: function(newVal) {
+			var instance = this;
+
+			var boundingBox = instance.get('boundingBox');
+
+			boundingBox.setAttribute('title', newVal);
 		}
 	}
 );
