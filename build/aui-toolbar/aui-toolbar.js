@@ -8,14 +8,13 @@ AUI.add('aui-toolbar', function(A) {
 var Lang = A.Lang,
 	isString = Lang.isString,
 
+	HORIZONTAL = 'horizontal',
 	NAME = 'toolbar',
+	ORIENTATION = 'orientation',
+	VERTICAL = 'vertical',
 
 	getClassName = A.ClassNameManager.getClassName,
 
-	HORIZONTAL = 'horizontal',
-	VERTICAL = 'vertical',
-
-	CSS_TOOLBAR = getClassName(NAME),
 	CSS_FIRST = getClassName(NAME, 'first'),
 	CSS_HORIZONTAL = getClassName(NAME, HORIZONTAL),
 	CSS_ITEM = getClassName(NAME, 'item'),
@@ -23,7 +22,14 @@ var Lang = A.Lang,
 	CSS_LAST = getClassName(NAME, 'last'),
 	CSS_VERTICAL = getClassName(NAME, VERTICAL),
 
-	TPL_GENERIC = '<span></span>';
+	TPL_GENERIC = '<span></span>',
+
+	WP = A.Widget.prototype,
+
+	UI_ATTRS = [ ORIENTATION ],
+
+	BIND_UI_ATTRS = WP._BIND_UI_ATTRS.concat(UI_ATTRS),
+	SYNC_UI_ATTRS = WP._SYNC_UI_ATTRS.concat(UI_ATTRS);
 
 	/**
 	 * A base class for Toolbar, providing:
@@ -35,7 +41,7 @@ var Lang = A.Lang,
 	 * </ul>
 	 *
 	 * Quick Example:<br/>
-	 * 
+	 *
 	 * <pre><code>var instance = new A.Toolbar({
 	 *	children: [
 	 * 	{icon: 'plus', label: 'Add'},
@@ -100,15 +106,18 @@ A.mix(Toolbar, {
 		},
 
 		/**
-		 * The orientation, horizontal or vertical, of the toolbar.
+		 * Representing the orientation of the progress bar. Could be
+         * <code>horizontal</code> or <code>vertical</code>.
 		 *
 		 * @attribute orientation
-		 * @default horizontal
-		 * @type string
+		 * @default 'horizontal'
+		 * @type String
 		 */
 		orientation: {
-			value: 'horizontal',
-			setter: '_setOrientation'
+			value: HORIZONTAL,
+			validator: function(val) {
+				return isString(val) && (val === HORIZONTAL || val === VERTICAL);
+			}
 		}
 	}
 });
@@ -116,6 +125,9 @@ A.mix(Toolbar, {
 A.extend(Toolbar, A.Component, {
 	BOUNDING_TEMPLATE: TPL_GENERIC,
 	CONTENT_TEMPLATE: TPL_GENERIC,
+
+	_BIND_UI_ATTRS: BIND_UI_ATTRS,
+	_SYNC_UI_ATTRS: SYNC_UI_ATTRS,
 
 	/**
 	 * Construction logic executed during Toolbar instantiation. Lifecycle.
@@ -146,8 +158,6 @@ A.extend(Toolbar, A.Component, {
 
 		instance.after('addChild', instance._afterAddButton);
 		instance.after('removeChild', instance._afterRemoveButton);
-
-		instance.after('orientationChange', instance._afterOrientationChange);
 	},
 
 	/**
@@ -160,8 +170,6 @@ A.extend(Toolbar, A.Component, {
 		var instance = this;
 
 		var length = instance.size() - 1;
-
-		instance._uiSetOrientation(instance.get('orientation'));
 
 		instance.each(
 			function(item, index, collection) {
@@ -230,48 +238,19 @@ A.extend(Toolbar, A.Component, {
 	},
 
 	/**
-	 * Handles the logic after the orientation is set.
-	 *
-	 * @method _afterOrientationChange
-	 * @param {EventFacade} event
-	 * @protected
-	 */
-	_afterOrientationChange: function(event) {
-		var instance = this;
-
-		instance._uiSetOrientation(event.newVal);
-	},
-
-	/**
-	 * Setter for the orientation attribute
-	 *
-	 * @method _setOrientation
-	 * @protected
-	 */
-	_setOrientation: function(value) {
-		var instance = this;
-
-		return String(value).toLowerCase();
-	},
-
-	/**
-	 * Updates the UI for the orientation attribute in response to the <a href="Toolbar.html#event_orientationChange">orientationChange</a> event.
+	 * Updates the UI for the orientation attribute.
 	 *
 	 * @method _uiSetOrientation
 	 * @param {String} newVal The new value
 	 * @protected
 	 */
-	_uiSetOrientation: function(newVal) {
+	_uiSetOrientation: function(val) {
 		var instance = this;
-
 		var boundingBox = instance.get('boundingBox');
+		var horizontal = (val == HORIZONTAL);
 
-		if (newVal == HORIZONTAL) {
-			boundingBox.replaceClass(CSS_VERTICAL, CSS_HORIZONTAL);
-		}
-		else if (newVal == VERTICAL) {
-			boundingBox.replaceClass(CSS_HORIZONTAL, CSS_VERTICAL);
-		}
+		boundingBox.toggleClass(CSS_HORIZONTAL, horizontal);
+		boundingBox.toggleClass(CSS_VERTICAL, !horizontal);
 	}
 });
 
