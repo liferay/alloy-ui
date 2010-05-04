@@ -146,20 +146,6 @@ A.extend(ProgressBar, A.Widget, {
 		instance._renderTextNode();
 	},
 
-	bindUI: function() {
-		var instance = this;
-
-		instance.after('valueChange', A.bind(instance._afterValueChange, instance));
-	},
-
-	_afterValueChange: function(event) {
-		var instance = this;
-
-		if (instance.get(STEP) >= 100) {
-			instance.fire(COMPLETE);
-		}
-	},
-
 	_getContentBoxSize: function() {
 		var instance = this;
 		var contentBox = instance.get(CONTENT_BOX);
@@ -240,6 +226,10 @@ A.extend(ProgressBar, A.Widget, {
 				top: toNumber(instance._getContentBoxSize() - pixelStep)+PX,
 				width: '100%'
 			};
+		}
+
+		if (instance.get(STEP) >= 100) {
+			instance.fire(COMPLETE);
 		}
 
 		statusNode.setStyles(styles);
