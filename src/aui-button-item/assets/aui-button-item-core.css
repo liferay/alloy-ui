@@ -34,6 +34,7 @@
 }
 
 .aui-buttonitem-icon-only {
+	font-size: 0;
 	height: 16px;
 	width: 16px;
 	overflow: hidden;
@@ -49,7 +50,6 @@
 }
 
 .aui-buttonitem-icon-only .aui-buttonitem-icon {
-	float: left;
 	margin-top: 0;
 
 	/* IE6/7 */
