@@ -19,6 +19,7 @@ var Lang = A.Lang,
 	CSS_CONTAINER = getClassName(NAME, 'container'),
 	CSS_CONTROLS_CONTAINER = getClassName(NAME, 'controls'),
 
+	CSS_PANEL = getClassName(NAME, 'panel'),
 	CSS_SWATCH_CONTAINER = getClassName(NAME, 'swatch'),
 	CSS_SWATCH_CURRENT = getClassName(NAME, 'swatch-current'),
 	CSS_SWATCH_ORIGINAL = getClassName(NAME, 'swatch-original'),
@@ -27,7 +28,6 @@ var Lang = A.Lang,
 	CSS_HUE_THUMB = getClassName(NAME, 'hue-thumb'),
 	CSS_HUE_THUMB_IMAGE = getClassName(NAME, 'hue-thumb-image'),
 	CSS_TRIGGER= getClassName(NAME, 'trigger'),
-	CSS_TRIGGER_IMAGE = getClassName(NAME, 'trigger-image'),
 
 	TPL_CANVAS = '<div class="' + CSS_CANVAS + '"></div>',
 	TPL_HUE_CANVAS = '<span class="' + CSS_HUE_CANVAS + '"></span>',
@@ -426,6 +426,7 @@ ColorPicker.ATTRS = {
 			if (!value) {
 				instance._buttonTrigger = new A.ButtonItem(
 					{
+						cssClass: CSS_TRIGGER,
 						icon: 'pencil'
 					}
 				);
@@ -736,6 +737,7 @@ A.extend(
 			if (!instance._pickerContainer) {
 				var container = new A.Panel(
 					{
+						cssClass: CSS_PANEL,
 						icons: [
 							{
 								icon: 'close',
