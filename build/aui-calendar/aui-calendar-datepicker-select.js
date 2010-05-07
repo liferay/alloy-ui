@@ -27,6 +27,7 @@ var L = A.Lang,
 	CURRENT_DAY = 'currentDay',
 	CURRENT_MONTH = 'currentMonth',
 	CURRENT_YEAR = 'currentYear',
+	DATA_COMPONENT_ID = 'data-auiComponentID',
 	DATEPICKER = 'datepicker',
 	DATE_FORMAT = 'dateFormat',
 	DAY = 'day',
@@ -274,7 +275,7 @@ A.mix(DatePickerSelect, {
 			valueFn: function() {
 				var year = new Date().getFullYear();
 
-				return [ year - 10, year + 10 ]
+				return [ year - 10, year + 10 ];
 			},
 			validator: isArray
 		},
@@ -356,8 +357,9 @@ A.extend(DatePickerSelect, A.Calendar, {
 
 		DatePickerSelect.superclass.bindUI.apply(this, arguments);
 
-		instance.after('datesChange', A.bind(instance._selectCurrentValues, instance));
-		instance.after('currentMonthChange', A.bind(instance._afterSetCurrentMonth, instance));
+		instance.after('datesChange', instance._selectCurrentValues);
+		instance.after('currentMonthChange', instance._afterSetCurrentMonth);
+		instance.after('disabledChange', instance._afterDisabledChangeDatePicker);
 
 		instance._bindSelectEvents();
 	},
@@ -375,6 +377,24 @@ A.extend(DatePickerSelect, A.Calendar, {
 
 		instance._pupulateSelects();
 		instance._selectCurrentValues();
+	},
+
+	/**
+	 * Fired after
+     * <a href="DatePickerSelect.html#config_disabled">disabled</a> is set.
+	 *
+	 * @method _afterDisabledChangeDatePicker
+	 * @param {EventFacade} event
+	 * @protected
+	 */
+	_afterDisabledChangeDatePicker: function(event) {
+		var instance = this;
+
+		var disabled = event.newVal;
+
+		instance.get(DAY_FIELD).set('disabled', disabled);
+		instance.get(MONTH_FIELD).set('disabled', disabled);
+		instance.get(YEAR_FIELD).set('disabled', disabled);
 	},
 
 	/**
@@ -399,7 +419,13 @@ A.extend(DatePickerSelect, A.Calendar, {
 		var secondField = mapping[ appendOrder[1] ];
 		var thirdField = mapping[ appendOrder[2] ];
 
-		return [ firstField, secondField, thirdField ]
+		var id = instance.get('id');
+
+		firstField.setAttribute(DATA_COMPONENT_ID, id);
+		secondField.setAttribute(DATA_COMPONENT_ID, id);
+		thirdField.setAttribute(DATA_COMPONENT_ID, id);
+
+		return [ firstField, secondField, thirdField ];
 	},
 
 	/**
@@ -463,6 +489,8 @@ A.extend(DatePickerSelect, A.Calendar, {
 		instance._buttonItem = new A.ButtonItem(CALENDAR);
 
 		displayBoundingBox.append(trigger);
+
+		trigger.setAttribute(DATA_COMPONENT_ID, instance.get('id'));
 
 		if ( trigger.test(DOT+CSS_DATEPICKER_BUTTON_WRAPPER) ) {
 			// use Button if the user doesn't specify a trigger
@@ -691,7 +719,7 @@ A.extend(DatePickerSelect, A.Calendar, {
 	 * Fired after
      * <a href="DatePickerSelect.html#config_currentMonth">currentMonth</a> is set.
 	 *
-	 * @method _onSelectChange
+	 * @method _afterSetCurrentMonth
 	 * @param {EventFacade} event
 	 * @protected
 	 */
