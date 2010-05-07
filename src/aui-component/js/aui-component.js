@@ -36,7 +36,11 @@ var Component = function(config) {
 	instance._originalConfig = config;
 
 	Component.superclass.constructor.apply(this, arguments);
+
+	INSTANCES[instance.get('id')] = instance;
 };
+
+var INSTANCES = Component._INSTANCES = {};
 
 /**
  * Static property provides a string to identify the class.
@@ -365,5 +369,9 @@ A.extend(
 		}
 	}
 );
+
+Component.getById = function(id) {
+	return INSTANCES[id];
+};
 
 A.Component = Component;
