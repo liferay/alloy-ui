@@ -383,7 +383,7 @@ A.extend(
 				node = obj.get('node');
 			}
 			else {
-				node = A.get(obj);
+				node = A.one(obj);
 			}
 			var guid = node && node.guid();
 
@@ -610,7 +610,7 @@ A.extend(
 
 A.Combobox = Combobox;
 
-}, '@VERSION@' ,{requires:['aui-form-textarea','aui-toolbar'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-form-textarea','aui-toolbar']});
 AUI.add('aui-form-field', function(A) {
 var Lang = A.Lang,
 
@@ -742,7 +742,7 @@ Field.ATTRS = {
 		setter: function(value) {
 			var instance = this;
 
-			return A.get(value) || instance._createFieldNode();
+			return A.one(value) || instance._createFieldNode();
 		}
 	},
 
@@ -755,7 +755,7 @@ Field.ATTRS = {
 		setter: function(value) {
 			var instance = this;
 
-			return A.get(value) || instance._createFieldHint();
+			return A.one(value) || instance._createFieldHint();
 		}
 	},
 
@@ -1119,7 +1119,7 @@ Field.getField = function(field) {
 		fieldWidget = field;
 	}
 	else if (field && (Lang.isString(field) || field instanceof A.Node || field.nodeName)) {
-		var fieldId = A.get(field).get('id');
+		var fieldId = A.one(field).get('id');
 
 		fieldWidget = _FIELD_INSTANCES[fieldId];
 
@@ -2708,7 +2708,7 @@ A.extend(
 
 A.Textarea = Textarea;
 
-}, '@VERSION@' ,{requires:['aui-form-textfield'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-form-textfield']});
 AUI.add('aui-form-textfield', function(A) {
 var Lang = A.Lang,
 
@@ -2837,5 +2837,5 @@ A.Textfield = Textfield;
 }, '@VERSION@' ,{requires:['aui-form-field']});
 
 
-AUI.add('aui-form', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-manager','aui-form-textarea','aui-form-textfield']});
+AUI.add('aui-form', function(A){}, '@VERSION@' ,{use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-manager','aui-form-textarea','aui-form-textfield'], skinnable:false});
 

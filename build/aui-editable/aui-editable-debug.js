@@ -140,7 +140,7 @@ Editable.ATTRS = {
 	 */
 	node: {
 		setter: function(value) {
-			var node = A.get(value);
+			var node = A.one(value);
 
 			if (!node) {
 				A.error('AUI.Editable: Invalid Node Given: ' + value);
@@ -181,7 +181,7 @@ Editable.ATTRS = {
 				node = instance.get(value);
 			}
 			else {
-				node = A.get(value);
+				node = A.one(value);
 			}
 
 			if (!node) {

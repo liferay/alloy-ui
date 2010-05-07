@@ -129,7 +129,7 @@ Field.ATTRS = {
 		setter: function(value) {
 			var instance = this;
 
-			return A.get(value) || instance._createFieldNode();
+			return A.one(value) || instance._createFieldNode();
 		}
 	},
 
@@ -142,7 +142,7 @@ Field.ATTRS = {
 		setter: function(value) {
 			var instance = this;
 
-			return A.get(value) || instance._createFieldHint();
+			return A.one(value) || instance._createFieldHint();
 		}
 	},
 
@@ -506,7 +506,7 @@ Field.getField = function(field) {
 		fieldWidget = field;
 	}
 	else if (field && (Lang.isString(field) || field instanceof A.Node || field.nodeName)) {
-		var fieldId = A.get(field).get('id');
+		var fieldId = A.one(field).get('id');
 
 		fieldWidget = _FIELD_INSTANCES[fieldId];
 

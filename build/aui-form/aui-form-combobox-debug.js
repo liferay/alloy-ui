@@ -84,4 +84,4 @@ A.extend(
 
 A.Combobox = Combobox;
 
-}, '@VERSION@' ,{requires:['aui-form-textarea','aui-toolbar'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-form-textarea','aui-toolbar']});

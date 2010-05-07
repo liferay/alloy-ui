@@ -103,5 +103,4 @@ window.attachEvent('onafterprint', onAfterPrint);
 }(A.config.win, A.config.doc));
 @end@*/
 
-
 }, '@VERSION@' ,{requires:['aui-node-html5']});

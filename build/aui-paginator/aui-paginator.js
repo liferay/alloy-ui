@@ -57,7 +57,7 @@ var L = A.Lang,
 	TOTAL_PAGES = 'totalPages',
 
 	nodeSetter = function(v) {
-		return A.get(v);
+		return A.one(v);
 	},
 
 	concat = function() {

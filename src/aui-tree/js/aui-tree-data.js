@@ -27,7 +27,7 @@ var L = A.Lang,
 	TREE_DATA = 'tree-data',
 
 	nodeSetter = function(v) {
-		return A.get(v);
+		return A.one(v);
 	},
 
 	isTreeNode = function(v) {

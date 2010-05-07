@@ -602,7 +602,7 @@ A.extend(Rating, A.Component, {
 	_parseInputElements: function() {
 		var instance = this;
 		var boundingBox = instance.get(BOUNDING_BOX);
-		var inputs = boundingBox.queryAll(INPUT);
+		var inputs = boundingBox.all(INPUT);
 		var size = inputs.size();
 		var inputName = instance.get(INPUT_NAME);
 		var hiddenInput = A.Node.create('<input type="hidden" />');
@@ -702,7 +702,7 @@ A.extend(Rating, A.Component, {
 		}
 
 		instance.set(LABEL_ELEMENT, labelElement);
-		instance.set(ELEMENTS, contentBox.queryAll(DOT+CSS_RATING_EL));
+		instance.set(ELEMENTS, contentBox.all(DOT+CSS_RATING_EL));
 	},
 
 	/**

@@ -610,8 +610,8 @@ A.extend(Calendar, A.OverlayContext, {
 		var headerContentNode = instance.headerContentNode;
 		var boundingBox = instance.get(BOUNDING_BOX);
 
-		var nextIcon = headerContentNode.query(DOT+CSS_ICON_CIRCLE_TRIANGLE_R)
-		var prevIcon = headerContentNode.query(DOT+CSS_ICON_CIRCLE_TRIANGLE_L)
+		var nextIcon = headerContentNode.one(DOT+CSS_ICON_CIRCLE_TRIANGLE_R)
+		var prevIcon = headerContentNode.one(DOT+CSS_ICON_CIRCLE_TRIANGLE_L)
 
 		var eventHalt = function(event) {
 			event.halt();

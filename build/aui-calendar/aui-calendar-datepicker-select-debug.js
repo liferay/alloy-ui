@@ -10,7 +10,7 @@ var L = A.Lang,
 	isArray = L.isArray,
 
 	nodeSetter = function(v) {
-		return A.get(v);
+		return A.one(v);
 	},
 
 	createSelect = function() {
@@ -443,7 +443,7 @@ A.extend(DatePickerSelect, A.Calendar, {
 
 			instance.set(DISPLAY_BOUNDING_BOX, displayBoundingBox);
 
-			A.get(BODY).append(displayBoundingBox);
+			A.one(BODY).append(displayBoundingBox);
 		}
 
 		var dayField = instance.get(DAY_FIELD);

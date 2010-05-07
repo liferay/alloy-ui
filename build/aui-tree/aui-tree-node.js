@@ -41,7 +41,7 @@ var L = A.Lang,
 	TREE_NODE = 'tree-node',
 
 	nodeSetter = function(v) {
-		return A.get(v);
+		return A.one(v);
 	},
 
 	concat = function() {

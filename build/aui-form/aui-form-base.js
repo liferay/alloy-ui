@@ -383,7 +383,7 @@ A.extend(
 				node = obj.get('node');
 			}
 			else {
-				node = A.get(obj);
+				node = A.one(obj);
 			}
 			var guid = node && node.guid();
 

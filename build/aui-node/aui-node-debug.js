@@ -139,7 +139,7 @@ A.mix(A.Node.prototype, {
 	appendTo: function(selector) {
 		var instance = this;
 
-		A.get(selector).append(instance);
+		A.one(selector).append(instance);
 
 		return instance;
 	},
@@ -251,7 +251,7 @@ A.mix(A.Node.prototype, {
 	empty: function() {
 		var instance = this;
 
-		instance.queryAll('>*').remove();
+		instance.all('>*').remove();
 
 		var el = A.Node.getDOMNode(instance);
 
@@ -437,7 +437,7 @@ A.mix(A.Node.prototype, {
 	prependTo: function(selector) {
 		var instance = this;
 
-		A.get(selector).prepend(instance);
+		A.one(selector).prepend(instance);
 
 		return instance;
 	},
@@ -901,9 +901,7 @@ A.mix(
 	}
 );
 
-
 }, '@VERSION@' ,{requires:['aui-base']});
-
 AUI.add('aui-node-html5', function(A) {
 /**
  * aui-node-html5 provides support for HTML shiv natively on the Alloy dom
@@ -994,9 +992,7 @@ if (A.UA.ie) {
 	A.Do.before(HTML5._doBeforeCreate, A.DOM, '_create', A.DOM);
 }
 
-
 }, '@VERSION@' ,{requires:['collection','aui-base']});
-
 AUI.add('aui-node-html5-print', function(A) {
 /*@cc_on@if(@_jscript_version<9)
 (function (window, document) {
@@ -1102,9 +1098,7 @@ window.attachEvent('onafterprint', onAfterPrint);
 }(A.config.win, A.config.doc));
 @end@*/
 
-
 }, '@VERSION@' ,{requires:['aui-node-html5']});
-
 AUI.add('aui-node-fx', function(A) {
 /*
 	Experimental
@@ -1437,9 +1431,7 @@ A.mix(
 	}
 );
 
-
 }, '@VERSION@' ,{requires:['aui-base','anim','anim-node-plugin']});
-
 
 
 AUI.add('aui-node', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-node-base','aui-node-html5','aui-node-html5-print','aui-node-fx']});

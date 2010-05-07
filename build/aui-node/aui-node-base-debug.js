@@ -139,7 +139,7 @@ A.mix(A.Node.prototype, {
 	appendTo: function(selector) {
 		var instance = this;
 
-		A.get(selector).append(instance);
+		A.one(selector).append(instance);
 
 		return instance;
 	},
@@ -251,7 +251,7 @@ A.mix(A.Node.prototype, {
 	empty: function() {
 		var instance = this;
 
-		instance.queryAll('>*').remove();
+		instance.all('>*').remove();
 
 		var el = A.Node.getDOMNode(instance);
 
@@ -437,7 +437,7 @@ A.mix(A.Node.prototype, {
 	prependTo: function(selector) {
 		var instance = this;
 
-		A.get(selector).prepend(instance);
+		A.one(selector).prepend(instance);
 
 		return instance;
 	},
@@ -900,6 +900,5 @@ A.mix(
 		}
 	}
 );
-
 
 }, '@VERSION@' ,{requires:['aui-base']});

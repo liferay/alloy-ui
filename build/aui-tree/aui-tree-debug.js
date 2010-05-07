@@ -28,7 +28,7 @@ var L = A.Lang,
 	TREE_DATA = 'tree-data',
 
 	nodeSetter = function(v) {
-		return A.get(v);
+		return A.one(v);
 	},
 
 	isTreeNode = function(v) {
@@ -870,7 +870,7 @@ var L = A.Lang,
 	TREE_NODE = 'tree-node',
 
 	nodeSetter = function(v) {
-		return A.get(v);
+		return A.one(v);
 	},
 
 	concat = function() {
@@ -3155,7 +3155,7 @@ A.extend(TreeViewDD, A.TreeView, {
 		var helper = A.Node.create(HELPER_TPL).hide();
 
 		// append helper to the body
-		A.get(BODY).append(helper);
+		A.one(BODY).append(helper);
 
 		instance.set(HELPER, helper);
 
@@ -3443,7 +3443,7 @@ A.extend(TreeViewDD, A.TreeView, {
 
 		// initialize drag helper
 		var helper = instance.get(HELPER);
-		var helperLabel = helper.query(DOT+CSS_TREE_DRAG_HELPER_LABEL);
+		var helperLabel = helper.one(DOT+CSS_TREE_DRAG_HELPER_LABEL);
 
 		// show helper, we need display block here, yui dd hide it with display none
 		helper.setStyle(DISPLAY, BLOCK).show();

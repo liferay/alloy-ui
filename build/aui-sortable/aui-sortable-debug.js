@@ -48,7 +48,7 @@ Sortable.ATTRS = {
 			if (!(value instanceof A.NodeList)) {
 				if(Lang.isString(value)) {
 					if (container) {
-						value = container.queryAll(value);
+						value = container.all(value);
 					}
 					else {
 						value = A.all(value);
@@ -129,7 +129,7 @@ A.extend(
 				var ddConfig = instance._ddConfig;
 
 				if ((item instanceof A.Node) || Lang.isString(item) || item.nodeName) {
-					item = A.get(item);
+					item = A.one(item);
 
 					ddConfig.node = item;
 				}
@@ -294,7 +294,7 @@ A.extend(
 				for (var i = handles.length - 1; i >= 0; i--) {
 					var handle = handles[i];
 
-					node.queryAll(handle).addClass(CSS_HANDLE);
+					node.all(handle).addClass(CSS_HANDLE);
 				}
 			}
 			else {

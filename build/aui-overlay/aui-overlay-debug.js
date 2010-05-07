@@ -1019,7 +1019,7 @@ A.extend(OverlayContextPanel, A.OverlayContext, {
 	fixPointerColor: function() {
 		var instance = this;
 		var contentBox = instance.get(CONTENT_BOX);
-		var pointer = contentBox.query(DOT+CSS_CONTEXTPANEL_POINTER_INNER);
+		var pointer = contentBox.one(DOT+CSS_CONTEXTPANEL_POINTER_INNER);
 
 		pointer.removeAttribute(STYLE);
 
@@ -1740,7 +1740,7 @@ A.mix(OverlayMask, {
 			lazyAdd: false,
 			value: document,
 			setter: function(v) {
-				var target = A.get(v);
+				var target = A.one(v);
 
 				isDoc = target.compareTo(document);
 				isWin = target.compareTo(window);

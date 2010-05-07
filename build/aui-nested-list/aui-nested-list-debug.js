@@ -233,7 +233,7 @@ A.extend(NestedList, A.Base, {
 
 		if (helper) {
 			// append helper to the body
-			A.get(BODY).append( helper.hide() );
+			A.one(BODY).append( helper.hide() );
 
 			instance.set(HELPER, helper);
 		}
@@ -418,4 +418,4 @@ A.extend(NestedList, A.Base, {
 
 A.NestedList = NestedList;
 
-}, '@VERSION@' ,{requires:['aui-base','dd'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base','dd']});

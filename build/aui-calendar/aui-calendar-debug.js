@@ -610,8 +610,8 @@ A.extend(Calendar, A.OverlayContext, {
 		var headerContentNode = instance.headerContentNode;
 		var boundingBox = instance.get(BOUNDING_BOX);
 
-		var nextIcon = headerContentNode.query(DOT+CSS_ICON_CIRCLE_TRIANGLE_R)
-		var prevIcon = headerContentNode.query(DOT+CSS_ICON_CIRCLE_TRIANGLE_L)
+		var nextIcon = headerContentNode.one(DOT+CSS_ICON_CIRCLE_TRIANGLE_R)
+		var prevIcon = headerContentNode.one(DOT+CSS_ICON_CIRCLE_TRIANGLE_L)
 
 		var eventHalt = function(event) {
 			event.halt();
@@ -1312,7 +1312,7 @@ var L = A.Lang,
 	isArray = L.isArray,
 
 	nodeSetter = function(v) {
-		return A.get(v);
+		return A.one(v);
 	},
 
 	createSelect = function() {
@@ -1745,7 +1745,7 @@ A.extend(DatePickerSelect, A.Calendar, {
 
 			instance.set(DISPLAY_BOUNDING_BOX, displayBoundingBox);
 
-			A.get(BODY).append(displayBoundingBox);
+			A.one(BODY).append(displayBoundingBox);
 		}
 
 		var dayField = instance.get(DAY_FIELD);

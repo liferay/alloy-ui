@@ -122,7 +122,7 @@ A.mix(OverlayMask, {
 			lazyAdd: false,
 			value: document,
 			setter: function(v) {
-				var target = A.get(v);
+				var target = A.one(v);
 
 				isDoc = target.compareTo(document);
 				isWin = target.compareTo(window);

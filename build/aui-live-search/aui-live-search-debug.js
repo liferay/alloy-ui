@@ -148,7 +148,7 @@ A.mix(LiveSearch, {
 		 */
 		input: {
 			setter: function(v) {
-				return A.get(v);
+				return A.one(v);
 			}
 		},
 
@@ -432,4 +432,4 @@ A.extend(LiveSearch, A.Base, {
 
 A.LiveSearch = LiveSearch;
 
-}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
