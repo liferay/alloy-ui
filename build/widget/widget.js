@@ -1292,14 +1292,12 @@ Y.extend(Widget, Y.Base, {
 
         if (sType && !queue[sType]) {
 
+            this._uiEvtsInitQueue = queue[sType] = 1;
 
             this.after(RENDER, function() { 
                 this._createUIEvent(sType);
                 delete this._uiEvtsInitQueue[sType];
             });
-            
-            this._uiEvtsInitQueue = queue[sType] = 1;
-
         }
     },
 
@@ -1430,7 +1428,7 @@ Y.mix(Widget.prototype, {
      * @return {Object} The merged configuration literal
      */
     _applyParsedConfig : function(node, cfg, parsedCfg) {
-        return (parsedCfg) ? Y.aggregate(cfg, parsedCfg, false) : cfg;
+        return (parsedCfg) ? Y.mix(cfg, parsedCfg, false) : cfg;
     },
 
     /**

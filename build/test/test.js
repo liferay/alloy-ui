@@ -2992,6 +2992,12 @@ YUI.add('test', function(Y) {
     Y.Mock.Value.String     = Y.Mock.Value(Y.Assert.isString);
     Y.Mock.Value.Object     = Y.Mock.Value(Y.Assert.isObject);
     Y.Mock.Value.Function   = Y.Mock.Value(Y.Assert.isFunction);
+/*Stub for future compatibility*/
+YUITest = {
+    TestRunner: Y.Test.Runner,
+    ResultsFormat: Y.Test.Format,
+    CoverageFormat: Y.Coverage.Format
+};
 
 
 }, '3.1.0' ,{requires:['substitute','event-base']});

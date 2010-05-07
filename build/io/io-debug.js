@@ -195,7 +195,7 @@ YUI.add('io-base', function(Y) {
     * @return object
     */
     function _io(uri, c, i) {
-        var f, o, d, m, r, s, oD,
+        var f, o, d, m, r, s, oD, a, j,
             u = uri;
             c = Y.Object(c);
             o = _create(c.xdr || c.form, i);
@@ -265,16 +265,15 @@ YUI.add('io-base', function(Y) {
             o.c.send(c.data || '');
             if (s) {
                 d = o.c;
+                a  = ['status', 'statusText', 'responseText', 'responseXML'];
                 r = c.arguments ? { id: o.id, arguments: c.arguments } : { id: o.id };
-                
-				r.status = d.status;
-				r.statusText = d.statusText;
-				r.responseText = d.responseText;
-				r.responseXML = d.responseXML;
-			
+
+                for (j = 0; j < 4; j++) {
+                    r[a[j]] = o.c[a[j]];
+                }
+
                 r.getAllResponseHeaders = function() { return d.getAllResponseHeaders(); };
                 r.getResponseHeader = function(h) { return d.getResponseHeader(h); };
-
                 _ioComplete(o, c);
                 _handleResponse(o, c);
 
@@ -794,7 +793,9 @@ YUI.add('io-base', function(Y) {
     Y.io.http = _io;
 
 
-}, '3.1.0' ,{optional:['querystring-stringify-simple'], requires:['event-custom-base']});
+
+}, '3.1.0' ,{requires:['event-custom-base'], optional:['querystring-stringify-simple']});
+
 YUI.add('io-form', function(Y) {
 
    /**
@@ -888,7 +889,9 @@ YUI.add('io-form', function(Y) {
     }, true);
 
 
+
 }, '3.1.0' ,{requires:['io-base','node-base']});
+
 YUI.add('io-xdr', function(Y) {
 
    /**
@@ -1186,7 +1189,9 @@ YUI.add('io-xdr', function(Y) {
     });
 
 
+
 }, '3.1.0' ,{requires:['io-base','datatype-xml']});
+
 YUI.add('io-upload-iframe', function(Y) {
 
    /**
@@ -1469,7 +1474,9 @@ YUI.add('io-upload-iframe', function(Y) {
     });
 
 
+
 }, '3.1.0' ,{requires:['io-base','node-base']});
+
 YUI.add('io-queue', function(Y) {
 
    /**
@@ -1686,7 +1693,9 @@ YUI.add('io-queue', function(Y) {
     }, true);
 
 
+
 }, '3.1.0' ,{requires:['io-base','queue-promote']});
+
 
 
 YUI.add('io', function(Y){}, '3.1.0' ,{use:['io-base', 'io-form', 'io-xdr', 'io-upload-iframe', 'io-queue']});
