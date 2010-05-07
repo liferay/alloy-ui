@@ -7,10 +7,6 @@
 	float: left;
 }
 
-.ie .aui-datepicker-select-wrapper {
-	padding-top: 3px;
-}
-
 .aui-datepicker-button-wrapper .aui-buttonitem-content {
 	margin: 0;
 }
