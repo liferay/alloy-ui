@@ -395,7 +395,7 @@ A.extend(
 			var inputParent = null;
 
 			if (input) {
-				input = A.get(input);
+				input = A.one(input);
 
 				fieldConfig.node = input;
 

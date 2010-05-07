@@ -147,7 +147,7 @@ A.mix(LiveSearch, {
 		 */
 		input: {
 			setter: function(v) {
-				return A.get(v);
+				return A.one(v);
 			}
 		},
 

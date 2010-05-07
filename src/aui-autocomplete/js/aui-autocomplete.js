@@ -1749,7 +1749,7 @@ A.extend(
 			var inputParent = null;
 
 			if (input) {
-				input = A.get(input);
+				input = A.one(input);
 
 				comboConfig.field.node = input;
 
@@ -1828,7 +1828,7 @@ A.extend(
 			overlay.addTarget(instance);
 
 			instance.overlay = overlay;
-			instance.resultList = contentBox.query('ul');
+			instance.resultList = contentBox.one('ul');
 
 			instance.resultList.addClass(CSS_RESULTS_LIST);
 

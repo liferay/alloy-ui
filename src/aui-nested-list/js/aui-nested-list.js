@@ -232,7 +232,7 @@ A.extend(NestedList, A.Base, {
 
 		if (helper) {
 			// append helper to the body
-			A.get(BODY).append( helper.hide() );
+			A.one(BODY).append( helper.hide() );
 
 			instance.set(HELPER, helper);
 		}
