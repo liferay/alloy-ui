@@ -112,7 +112,7 @@
 
 	var ALLOY = YUI(apply({}, defaults));
 
-	ALLOY.Env._guidp = ['aui', ALLOY.version, ALLOY.Env._yidx, new Date().getTime()].join('-').replace(/\./g, '-');
+	ALLOY.Env._guidp = ['aui', ALLOY.version, ALLOY.Env._yidx].join('-').replace(/\./g, '-');
 
 	var originalConfig = ALLOY.config;
 
