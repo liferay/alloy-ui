@@ -28,6 +28,7 @@
 						'aui-base': {requires:['aui-node','aui-component','aui-delayed-task','event','oop','widget-css'], skinnable:false},
 						'aui-button-item': {requires:['aui-base','aui-state-interaction','widget-child'], skinnable:true},
 						'aui-calendar': {submodules: {'aui-calendar-datepicker-select': {requires:['aui-calendar-base','aui-button-item'], skinnable:true}, 'aui-calendar-base': {requires:['aui-overlay-context','datatype-date','widget-locale'], skinnable:true} }, use:['aui-calendar-base','aui-calendar-datepicker-select'], skinnable:true},
+						'aui-carousel': {requires:['aui-base','anim'], skinnable:true},
 						'aui-char-counter': {requires:['aui-base','aui-event-input'], skinnable:false},
 						'aui-chart': {requires:['datasource','aui-swf','json'], skinnable:false},
 						'aui-color-picker': {requires:['aui-overlay-context','dd','slider','substitute','aui-button-item','aui-form','aui-panel'], skinnable:true},
