@@ -301,6 +301,8 @@ A.extend(OverlayContext, A.OverlayBase, {
 		boundingBox.on('mouseenter', A.bind(instance._cancelAutoHide, instance));
 		boundingBox.on('mouseleave', A.bind(instance._invokeHideTaskOnInteraction, instance));
 		instance.after('focusedChange', A.bind(instance._invokeHideTaskOnInteraction, instance));
+
+		instance.on('visibleChange', instance._onVisibleChangeOverlayContext);
 	},
 
 	/**
@@ -589,6 +591,22 @@ A.extend(OverlayContext, A.OverlayBase, {
 
 		if (!focused && !cancellableHide) {
 			instance._hideTask.delay( instance.get(HIDE_DELAY) );
+		}
+	},
+
+	/**
+	 * Fires when the <a href="OverlayContext.html#config_visible">visible</a>
+     * attribute changes.
+	 *
+	 * @method _onVisibleChangeOverlayContext
+	 * @param {EventFacade} event
+	 * @protected
+	 */
+	_onVisibleChangeOverlayContext: function(event) {
+		var instance = this;
+
+		if (event.newVal && instance.get('disabled')) {
+			event.preventDefault();
 		}
 	},
 
