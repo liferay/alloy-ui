@@ -138,8 +138,8 @@ A.extend(Carousel, A.Component, {
 	_afterIntervalTimeChange: function (e) {
 		var instance = this;
 
-		instance._clearInterval();
-		instance._createInterval();
+		instance._clearIntervalRotationTask();
+		instance._createIntervalRotationTask();
 	},
 
 	_afterPlayingChange: function (e) {
