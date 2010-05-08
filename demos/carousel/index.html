@@ -16,6 +16,14 @@
 		#wrapper {
 			padding: 10px;
 		}
+
+		.aui-carousel-item {
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
+			border-radius: 10px;
+
+			text-indent: -9999em;
+		}
 	</style>
 </head>
 
@@ -42,6 +50,7 @@ AUI().ready('aui-carousel', function(A) {
 
 	var component = new A.Carousel(
 		{
+			intervalTime: 1,
 			contentBox: '#demo',
 			activeIndex: 'rand',
 			height: 254,
