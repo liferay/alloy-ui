@@ -42,7 +42,7 @@ Carousel.ATTRS = {
 		value: 0.75
 	},
 	itemSelector: {
-		value: 'div'
+		value: '>*'
 	},
 	playing: {
 		value: true
@@ -78,15 +78,10 @@ A.extend(Carousel, A.Component, {
 		instance.after({
 			activeIndexChange: instance._afterActiveIndexChange,
 			animationTimeChange: instance._afterAnimationTimeChange,
-			itemSelector: instance._afterItemSelectorChange,
+			itemSelectorChange: instance._afterItemSelectorChange,
 			intervalTimeChange: instance._afterIntervalTimeChange,
 			playingChange: instance._afterPlayingChange
 		});
-
-		instance.get('contentBox').on({
-			mouseenter: instance._onContentBoxMouseEnter,
-			mouseleave: instance._onContentBoxMouseLeave
-		}, null, instance);
 
 		instance._bindMenu();
 
@@ -308,12 +303,13 @@ A.extend(Carousel, A.Component, {
 	_updateNodeSelection: function () {
 		var instance = this;
 
-		instance.nodeSelection = instance.get('contentBox').all(instance.get('itemSelector'));
+		instance.nodeSelection = instance.get('contentBox').all(instance.get('itemSelector')).addClass(CSS_ITEM);
 	},
 
 	_intervalRotationTask: null
 });
 
 A.Carousel = Carousel;
+
 
 }, '@VERSION@' ,{requires:['aui-base','anim'], skinnable:true});
