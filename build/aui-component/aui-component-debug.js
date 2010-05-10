@@ -13,7 +13,8 @@ var Lang = A.Lang,
 
 	CSS_COMPONENT = getClassName(NAME),
 
-	CSS_HELPER_HIDDEN = getClassName('helper', 'hidden');
+	CSS_HELPER_HIDDEN = getClassName('helper', 'hidden'),
+	CONSTRUCTOR_OBJECT = Object.prototype.constructor;
 
 /**
  * A base class for Component, providing:
@@ -373,6 +374,45 @@ A.extend(
 
 Component.getById = function(id) {
 	return INSTANCES[id];
+};
+
+var COMP_PROTO = Component.prototype;
+
+Component.create = function(config) {
+	config = config || {};
+
+	var extendsClass = config.EXTENDS || A.Component;
+
+	var component = config.constructor;
+
+	if (!component || component == CONSTRUCTOR_OBJECT){
+		component = function(){
+			extendsClass.superclass.constructor.apply(this, arguments);
+		};
+	}
+
+	var configProto = config.prototype;
+
+	if (config.UI_ATTRS) {
+		configProto._BIND_UI_ATTRS = config.UI_ATTRS.concat(COMP_PROTO._BIND_UI_ATTRS);
+		configProto._SYNC_UI_ATTRS = config.UI_ATTRS.concat(COMP_PROTO._SYNC_UI_ATTRS);
+	}
+
+	if (config.BIND_UI_ATTRS) {
+		configProto._BIND_UI_ATTRS = config.BIND_UI_ATTRS.concat(COMP_PROTO._BIND_UI_ATTRS);
+	}
+
+	if (config.SYNC_UI_ATTRS) {
+		configProto._SYNC_UI_ATTRS = config.SYNC_UI_ATTRS.concat(COMP_PROTO._SYNC_UI_ATTRS);
+	}
+
+	A.mix(component, config);
+
+	delete component.prototype;
+
+	A.extend(component, extendsClass, configProto);
+
+	return component;
 };
 
 A.Component = Component;

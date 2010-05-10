@@ -40,6 +40,144 @@ AUI().ready(
 	function(A) {
 		var componentText = 'This is a component';
 
+		// Defining a new component, minimal
+
+		var cmp = A.Component.create(
+			{
+				NAME: 'component',
+
+				ATTRS: {
+					myAttr: {
+						val: ''
+					}
+				},
+
+				prototype: {
+					renderUI: function() {
+						// 
+					}
+				}
+			}
+		);
+
+		// Defining a new component, with inheritance, HTML_PARSER, custom constructor, custom static properties
+
+		var cmp2 = A.Component.create(
+			{
+				NAME: 'component',
+
+				ATTRS: {
+					myAttr: {
+						val: ''
+					}
+				},
+
+				EXTENDS: A.Combobox,
+
+				HTML_PARSER: {
+					myAttr: '.my-attr'
+				},
+
+				STATIC_PROP_1: 123,
+				STATIC_PROP_2: [0,1,2],
+
+				// only needed if you wish to overwrite default constructor, otherwise use initializer
+				constructor: function(config) {
+					// ...custom logic here...
+					cmp2.superclass.constructor.apply(this, arguments);
+				},
+				prototype: {
+					renderUI: function() {
+						// 
+					}
+				}
+			}
+		);
+
+		// Defining a new component, with binding of attrs for UI
+		var cmp3 = A.Component.create(
+			{
+				NAME: 'component',
+
+				ATTRS: {
+					myAttr: {
+						val: ''
+					}
+				},
+
+				/*
+					UI_ATTRS concats it's array property to BOTH the default prototype._BIND_UI_ATTRS and prototype._SYNC_UI_ATTRS. This is a useful property for quickly adding a property to both lists without modifying the array for all components. If you wish to only add a property to one of the lists, such as bind OR sync, use BIND_UI_ATTRS or SYNC_UI_ATTRS.
+					If you wish for more fine-grained control over what is used, you can still pass in an array (or null), onto the prototype for _BIND_UI_ATTRS and _SYNC_UI_ATTRS, but these static values will simply be appended to the list.
+				*/
+				UI_ATTRS: ['myAttr'],
+				// BIND_UI_ATTRS: ['myAttr'],
+				// SYNC_UI_ATTRS: ['myAttr'],
+
+				prototype: {
+					renderUI: function() {
+						// 
+					}
+				}
+			}
+		);
+
+		var testComponent = A.Component.create(
+			{
+				NAME: 'test',
+
+				ATTRS: {
+					myAttr: {
+						value: ''
+					},
+					myAttr2: {
+						value: ''
+					}
+				},
+
+				UI_ATTRS: ['myAttr', 'myAttr2'],
+
+				prototype: {
+					initializer: function(){
+						console.log('hello');
+					},
+
+					renderUI: function() {
+						var instance = this;
+
+						instance._myAttrContainer = A.Node.create('<span></span>');
+						instance._link = A.Node.create('<a href="javascript:;">Set new value var myAttr2</a>');
+
+						var contentBox = instance.get('contentBox');
+
+						contentBox.append(instance._myAttrContainer);
+						contentBox.append(instance._link);
+					},
+
+					bindUI: function() {
+						var instance = this;
+
+						instance._link.on('click', function(event) {
+							instance.set('myAttr2', parseInt(Math.random() * 100, 10));
+						});
+					},
+
+					_uiSetMyAttr: function(value) {
+						var instance = this;
+
+						instance._myAttrContainer.setContent(value);
+					},
+
+					_uiSetMyAttr2: function(value) {
+						var instance = this;
+
+						instance.get('contentBox').append('<br/><b>' + value + '</b>');
+					}
+				}
+			}
+		);
+
+		var testInstance = (new testComponent({myAttr: 'My Attr 1', myAttr2: 55})).render();
+
 		cmp = new A.Component(
 			{
 				cssClass: 'lfr-panel',
