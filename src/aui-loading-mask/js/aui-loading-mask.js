@@ -52,264 +52,263 @@ var Lang = A.Lang,
  * @constructor
  * @extends Plugin.Base
  */
-var LoadingMask = function(config) {
-	LoadingMask.superclass.constructor.apply(this, arguments);
-};
-
-/**
- * Static property provides a string to identify the class.
- *
- * @property LoadingMask.NAME
- * @type String
- * @static
- */
-LoadingMask.NAME = NAME;
-
-/**
- * Static property provides a string to identify the namespace.
- *
- * @property LoadingMask.NS
- * @type String
- * @static
- */
-LoadingMask.NS = NAME;
-
-/**
- * Static property used to define the default attribute
- * configuration for the LoadingMask.
- *
- * @property LoadingMask.ATTRS
- * @type Object
- * @static
- */
-LoadingMask.ATTRS = {
-	/**
-	 * Node element to display the message.
-	 *
-	 * @attribute messageEl
-	 * @default Generated HTML div element.
-	 * @type String
-	 */
-	messageEl: {
-		valueFn: function(val) {
-			var instance = this;
-			var strings = instance.get(STRINGS);
-
-			return A.Node.create(
-				A.substitute(TPL_MESSAGE_LOADING, [strings.loading])
-			);
-		}
-	},
-
-	/**
-	 * Strings used on the LoadingMask. See
-     * <a href="Widget.html#method_strings">strings</a>.
-	 *
-	 * @attribute strings
-	 * @default { loading: 'Loading&hellip;' }
-	 * @type Object
-	 */
-	strings: {
-		value: {
-			loading: 'Loading&hellip;'
-		}
-	},
-
-	/**
-	 * Node where the mask will be positioned and re-dimensioned.
-	 *
-	 * @attribute target
-	 * @default null
-	 * @type Node | Widget
-	 */
-	target: {
-		setter: function() {
-			var instance = this;
-			var target = instance.get(HOST);
-
-			if (target instanceof A.Widget) {
-				target = target.get(CONTENT_BOX);
-			}
-
-			return target;
-		},
-		value: null
-	}
-};
-
-A.extend(
-	LoadingMask,
-	A.Plugin.Base,
+var LoadingMask = A.Component.create(
 	{
-		/**
-		 * Construction logic executed during LoadingMask instantiation. Lifecycle.
-		 *
-		 * @method initializer
-		 * @protected
-		 */
-		initializer: function(config) {
-			var instance = this;
-
-			instance.IGNORED_ATTRS = A.merge(
-				{
-					host: true
-				},
-				LoadingMask.ATTRS
-			);
-
-			instance.renderUI();
-			instance.bindUI();
-
-			instance._createDynamicAttrs(config);
-		},
 
 		/**
-		 * Create the DOM structure for the LoadingMask. Lifecycle.
+		 * Static property provides a string to identify the class.
 		 *
-		 * @method renderUI
-		 * @protected
+		 * @property LoadingMask.NAME
+		 * @type String
+		 * @static
 		 */
-		renderUI: function() {
-			var instance = this;
-			var strings = instance.get(STRINGS);
-
-			instance._renderOverlayMask();
-
-			instance.overlayMask.get(BOUNDING_BOX).append(
-				instance.get(MESSAGE_EL)
-			);
-		},
+		NAME: NAME,
 
 		/**
-		 * Bind the events on the LoadingMask UI. Lifecycle.
+		 * Static property provides a string to identify the namespace.
 		 *
-		 * @method bindUI
-		 * @protected
+		 * @property LoadingMask.NS
+		 * @type String
+		 * @static
 		 */
-		bindUI: function() {
-			var instance = this;
-
-			instance._bindOverlayMaskUI();
-		},
+		NS: NAME,
 
 		/**
-		 * Bind events to the
-         * <a href="LoadingMask.html#property_overlayMask">overlayMask</a>.
+		 * Static property used to define the default attribute
+		 * configuration for the LoadingMask.
 		 *
-		 * @method _bindOverlayMaskUI
-		 * @protected
+		 * @property LoadingMask.ATTRS
+		 * @type Object
+		 * @static
 		 */
-		_bindOverlayMaskUI: function() {
-			var instance = this;
+		ATTRS: {
+			/**
+			 * Node element to display the message.
+			 *
+			 * @attribute messageEl
+			 * @default Generated HTML div element.
+			 * @type String
+			 */
+			messageEl: {
+				valueFn: function(val) {
+					var instance = this;
+					var strings = instance.get(STRINGS);
 
-			instance.overlayMask.after('visibleChange', instance._afterVisibleChange, instance);
-		},
-
-		/**
-		 * Center the
-         * <a href="LoadingMask.html#config_messageEl">messageEl</a> with the
-         * <a href="LoadingMask.html#config_target">target</a> node.
-		 *
-		 * @method centerMessage
-		 */
-		centerMessage: function() {
-			var instance = this;
-
-			instance.get(MESSAGE_EL).center(
-				instance.overlayMask.get(BOUNDING_BOX)
-			);
-		},
-
-		/**
-		 * Invoke the
-         * <a href="LoadingMask.html#property_overlayMask">overlayMask</a>
-         * <code>refreshMask</code> method.
-		 *
-		 * @method refreshMask
-		 */
-		refreshMask: function() {
-			var instance = this;
-
-			instance.overlayMask.refreshMask();
-
-			instance.centerMessage();
-		},
-
-		/**
-		 * Fires after the value of the
-		 * <a href="LoadingMask.html#config_visible">visible</a> attribute change.
-		 *
-		 * @method _afterVisibleChange
-		 * @param {EventFacade} event
-		 * @protected
-		 */
-		_afterVisibleChange: function(event) {
-			var instance = this;
-			var target = instance.get(TARGET);
-			var isStaticPositioned = (target.getStyle(POSITION) == STATIC);
-
-			target.toggleClass(CSS_MASKED, (event.newVal));
-			target.toggleClass(CSS_MASKED_RELATIVE, (event.newVal && isStaticPositioned));
-
-			if (event.newVal) {
-				instance.refreshMask();
-			}
-		},
-
-		/**
-		 * Render
-         * <a href="LoadingMask.html#property_overlayMask">overlayMask</a>
-         * instance.
-		 *
-		 * @method _renderOverlayMask
-		 * @protected
-		 */
-		_renderOverlayMask: function() {
-			var instance = this;
-			var target = instance.get(TARGET);
+					return A.Node.create(
+						A.substitute(TPL_MESSAGE_LOADING, [strings.loading])
+					);
+				}
+			},
 
 			/**
-			 * Stores the <a href="OverlayMask.html">OverlayMask</a> used
-             * internally.
+			 * Strings used on the LoadingMask. See
+		     * <a href="Widget.html#method_strings">strings</a>.
 			 *
-			 * @property overlayMask
-			 * @type OverlayMask
-			 * @protected
+			 * @attribute strings
+			 * @default { loading: 'Loading&hellip;' }
+			 * @type Object
 			 */
-			instance.overlayMask = new A.OverlayMask(
-				{
-					target: target,
-					cssClass: CSS_LOADINGMASK
+			strings: {
+				value: {
+					loading: 'Loading&hellip;'
 				}
-			).render(target);
+			},
+
+			/**
+			 * Node where the mask will be positioned and re-dimensioned.
+			 *
+			 * @attribute target
+			 * @default null
+			 * @type Node | Widget
+			 */
+			target: {
+				setter: function() {
+					var instance = this;
+					var target = instance.get(HOST);
+
+					if (target instanceof A.Widget) {
+						target = target.get(CONTENT_BOX);
+					}
+
+					return target;
+				},
+				value: null
+			}
 		},
 
-		/**
-		 * Create dynamic attributes listeners to invoke the setter on
-         * <a href="LoadingMask.html#property_overlayMask">overlayMask</a> after
-         * the attribute is set on the LoadingMask instance.
-		 *
-		 * @method _createDynamicAttrs
-		 * @param {Object} config Object literal specifying widget configuration properties.
-		 * @protected
-		 */
-		_createDynamicAttrs: function(config) {
-			var instance = this;
+		EXTENDS: A.Plugin.Base,
 
-			A.each(config, function(value, key) {
-				var ignoredAttr = instance.IGNORED_ATTRS[key];
+		prototype: {
+			/**
+			 * Construction logic executed during LoadingMask instantiation. Lifecycle.
+			 *
+			 * @method initializer
+			 * @protected
+			 */
+			initializer: function(config) {
+				var instance = this;
 
-				if (!ignoredAttr) {
-					instance.addAttr(key, {
-						setter: function(val) {
-							this.overlayMask.set(key, val);
+				instance.IGNORED_ATTRS = A.merge(
+					{
+						host: true
+					},
+					LoadingMask.ATTRS
+				);
 
-							return val;
-						},
-						value: value
-					});
+				instance.renderUI();
+				instance.bindUI();
+
+				instance._createDynamicAttrs(config);
+			},
+
+			/**
+			 * Create the DOM structure for the LoadingMask. Lifecycle.
+			 *
+			 * @method renderUI
+			 * @protected
+			 */
+			renderUI: function() {
+				var instance = this;
+				var strings = instance.get(STRINGS);
+
+				instance._renderOverlayMask();
+
+				instance.overlayMask.get(BOUNDING_BOX).append(
+					instance.get(MESSAGE_EL)
+				);
+			},
+
+			/**
+			 * Bind the events on the LoadingMask UI. Lifecycle.
+			 *
+			 * @method bindUI
+			 * @protected
+			 */
+			bindUI: function() {
+				var instance = this;
+
+				instance._bindOverlayMaskUI();
+			},
+
+			/**
+			 * Bind events to the
+	         * <a href="LoadingMask.html#property_overlayMask">overlayMask</a>.
+			 *
+			 * @method _bindOverlayMaskUI
+			 * @protected
+			 */
+			_bindOverlayMaskUI: function() {
+				var instance = this;
+
+				instance.overlayMask.after('visibleChange', instance._afterVisibleChange, instance);
+			},
+
+			/**
+			 * Center the
+	         * <a href="LoadingMask.html#config_messageEl">messageEl</a> with the
+	         * <a href="LoadingMask.html#config_target">target</a> node.
+			 *
+			 * @method centerMessage
+			 */
+			centerMessage: function() {
+				var instance = this;
+
+				instance.get(MESSAGE_EL).center(
+					instance.overlayMask.get(BOUNDING_BOX)
+				);
+			},
+
+			/**
+			 * Invoke the
+	         * <a href="LoadingMask.html#property_overlayMask">overlayMask</a>
+	         * <code>refreshMask</code> method.
+			 *
+			 * @method refreshMask
+			 */
+			refreshMask: function() {
+				var instance = this;
+
+				instance.overlayMask.refreshMask();
+
+				instance.centerMessage();
+			},
+
+			/**
+			 * Fires after the value of the
+			 * <a href="LoadingMask.html#config_visible">visible</a> attribute change.
+			 *
+			 * @method _afterVisibleChange
+			 * @param {EventFacade} event
+			 * @protected
+			 */
+			_afterVisibleChange: function(event) {
+				var instance = this;
+				var target = instance.get(TARGET);
+				var isStaticPositioned = (target.getStyle(POSITION) == STATIC);
+
+				target.toggleClass(CSS_MASKED, (event.newVal));
+				target.toggleClass(CSS_MASKED_RELATIVE, (event.newVal && isStaticPositioned));
+
+				if (event.newVal) {
+					instance.refreshMask();
 				}
-			});
+			},
+
+			/**
+			 * Render
+	         * <a href="LoadingMask.html#property_overlayMask">overlayMask</a>
+	         * instance.
+			 *
+			 * @method _renderOverlayMask
+			 * @protected
+			 */
+			_renderOverlayMask: function() {
+				var instance = this;
+				var target = instance.get(TARGET);
+
+				/**
+				 * Stores the <a href="OverlayMask.html">OverlayMask</a> used
+	             * internally.
+				 *
+				 * @property overlayMask
+				 * @type OverlayMask
+				 * @protected
+				 */
+				instance.overlayMask = new A.OverlayMask(
+					{
+						target: target,
+						cssClass: CSS_LOADINGMASK
+					}
+				).render(target);
+			},
+
+			/**
+			 * Create dynamic attributes listeners to invoke the setter on
+	         * <a href="LoadingMask.html#property_overlayMask">overlayMask</a> after
+	         * the attribute is set on the LoadingMask instance.
+			 *
+			 * @method _createDynamicAttrs
+			 * @param {Object} config Object literal specifying widget configuration properties.
+			 * @protected
+			 */
+			_createDynamicAttrs: function(config) {
+				var instance = this;
+
+				A.each(config, function(value, key) {
+					var ignoredAttr = instance.IGNORED_ATTRS[key];
+
+					if (!ignoredAttr) {
+						instance.addAttr(key, {
+							setter: function(val) {
+								this.overlayMask.set(key, val);
+
+								return val;
+							},
+							value: value
+						});
+					}
+				});
+			}
 		}
 	}
 );

@@ -386,23 +386,23 @@ Component.create = function(config) {
 
 	if (!component || component == CONSTRUCTOR_OBJECT){
 		component = function(){
-			extendsClass.superclass.constructor.apply(this, arguments);
+			component.superclass.constructor.apply(this, arguments);
 		};
 	}
 
 	var configProto = config.prototype;
 
 	if (config.UI_ATTRS) {
-		configProto._BIND_UI_ATTRS = config.UI_ATTRS.concat(COMP_PROTO._BIND_UI_ATTRS);
-		configProto._SYNC_UI_ATTRS = config.UI_ATTRS.concat(COMP_PROTO._SYNC_UI_ATTRS);
+		configProto._BIND_UI_ATTRS = COMP_PROTO._BIND_UI_ATTRS.concat(config.UI_ATTRS);
+		configProto._SYNC_UI_ATTRS = COMP_PROTO._SYNC_UI_ATTRS.concat(config.UI_ATTRS);
 	}
 
 	if (config.BIND_UI_ATTRS) {
-		configProto._BIND_UI_ATTRS = config.BIND_UI_ATTRS.concat(COMP_PROTO._BIND_UI_ATTRS);
+		configProto._BIND_UI_ATTRS = COMP_PROTO._BIND_UI_ATTRS.concat(config.BIND_UI_ATTRS);
 	}
 
 	if (config.SYNC_UI_ATTRS) {
-		configProto._SYNC_UI_ATTRS = config.SYNC_UI_ATTRS.concat(COMP_PROTO._SYNC_UI_ATTRS);
+		configProto._SYNC_UI_ATTRS = COMP_PROTO._SYNC_UI_ATTRS.concat(config.SYNC_UI_ATTRS);
 	}
 
 	A.mix(component, config);

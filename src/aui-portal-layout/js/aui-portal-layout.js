@@ -117,589 +117,589 @@ var Lang = A.Lang,
  * @constructor
  * @extends Base
  */
-function PortalLayout(config) {
-	PortalLayout.superclass.constructor.apply(this, arguments);
-}
+var PortalLayout = A.Component.create(
+	{
+		/**
+		 * Static property provides a string to identify the class.
+		 *
+		 * @property PortalLayout.NAME
+		 * @type String
+		 * @static
+		 */
+		NAME: PORTAL_LAYOUT,
 
-A.mix(PortalLayout, {
-	/**
-	 * Static property provides a string to identify the class.
-	 *
-	 * @property PortalLayout.NAME
-	 * @type String
-	 * @static
-	 */
-	NAME: PORTAL_LAYOUT,
+		/**
+		 * Static property used to define the default attribute
+		 * configuration for the PortalLayout.
+		 *
+		 * @property PortalLayout.ATTRS
+		 * @type Object
+		 * @static
+		 */
+		ATTRS: {
+			dd: {
+				value: null,
+				setter: function(val) {
+					var instance = this;
 
-	/**
-	 * Static property used to define the default attribute
-	 * configuration for the PortalLayout.
-	 *
-	 * @property PortalLayout.ATTRS
-	 * @type Object
-	 * @static
-	 */
-	ATTRS: {
-		dd: {
-			value: null,
-			setter: function(val) {
-				var instance = this;
-
-				return A.merge(
-					{
-						bubbleTargets: instance,
-						groups: instance.get(GROUPS),
-						startCentered: true,
-						target: true
-					},
-					val
-				);
-			},
-			validator: isObject
-		},
-
-		proxyNode: {
-			setter: function(val) {
-				return isString(val) ? A.Node.create(val) : val;
-			}
-		},
-
-		dragNodes: {
-			value: false,
-			setter: nodeListSetter
-		},
-
-		dropContainer: {
-			value: function(dropNode) {
-				return dropNode;
-			},
-			validator: isFunction
-		},
-
-		dropNodes: {
-			value: false,
-			setter: nodeListSetter
-		},
-
-		groups: {
-			value: [PORTAL_LAYOUT]
-		},
-
-		lazyStart: {
-			value: false,
-			validator: isBoolean
-		},
-
-		placeholder: {
-			value: TPL_PLACEHOLDER,
-			setter: function(val) {
-				var placeholder = isString(val) ? A.Node.create(val) : val;
-
-				if (!placeholder.inDoc()) {
-					A.getBody().append(
-						placeholder.hide()
-					);
-				}
-
-				PLACEHOLDER_MARGIN_BOTTOM = getNumStyle(placeholder, MARGIN_BOTTOM);
-				PLACEHOLDER_MARGIN_TOP = getNumStyle(placeholder, MARGIN_TOP);
-
-				placeholder.addClass(CSS_DRAG_TARGET_INDICATOR);
-
-				PLACEHOLDER_TARGET_MARGIN_BOTTOM = getNumStyle(placeholder, MARGIN_BOTTOM);
-				PLACEHOLDER_TARGET_MARGIN_TOP = getNumStyle(placeholder, MARGIN_TOP);
-
-				return placeholder;
-			}
-		},
-
-		proxy: {
-			value: null,
-			setter: function(val) {
-				var instance = this;
-
-				var defaults = {
-					moveOnEnd: false,
-					positionProxy: false
-				};
-
-				// if proxyNode is set remove the border from the default proxy
-				if (instance.get(PROXY_NODE)) {
-					defaults.borderStyle = null;
-				}
-
-				return A.merge(defaults, val || {});
-			}
-		}
-	}
-});
-
-A.extend(PortalLayout, A.Base, {
-	/**
-	 * Construction logic executed during PortalLayout instantiation. Lifecycle.
-	 *
-	 * @method initializer
-	 * @protected
-	 */
-	initializer: function() {
-		var instance = this;
-
-		instance.bindUI();
-	},
-
-	bindUI: function() {
-		var instance = this;
-
-		// publishing placeholderAlign event
-		instance.publish(EV_PLACEHOLDER_ALIGN, {
-            defaultFn: instance._defPlaceholderAlign,
-            queuable: false,
-            emitFacade: true,
-            bubbles: true
-        });
-
-		instance._bindDDEvents();
-		instance._bindDropZones();
-	},
-
-	/*
-	* Methods
-	*/
-	addDragTarget: function(node) {
-		var instance = this;
-
-		if (!DDM.getDrag(node)) {
-			var dd = instance.get(DD);
-			var proxy = instance.get(PROXY);
-
-			// updating node reference on the default dd config
-			dd.node = node;
-
-			// creating DD.Drag instance and plugging the DDProxy
-			var drag = new A.DD.Drag(dd).plug(A.Plugin.DDProxy, proxy);
-		}
-	},
-
-	addDropNode: function(node, config) {
-		var instance = this;
-
-		node = A.one(node);
-
-		if (!DDM.getDrop(node)) {
-			instance.addDropTarget(
-				new A.DD.Drop(
-					A.merge(
+					return A.merge(
 						{
 							bubbleTargets: instance,
-							node: node
+							groups: instance.get(GROUPS),
+							startCentered: true,
+							target: true
 						},
-						config
-					)
-				)
-			);
-		}
-	},
+						val
+					);
+				},
+				validator: isObject
+			},
 
-	addDropTarget: function(drop) {
-		var instance = this;
+			proxyNode: {
+				setter: function(val) {
+					return isString(val) ? A.Node.create(val) : val;
+				}
+			},
 
-		drop.addToGroup(
-			instance.get(GROUPS)
-		);
-	},
+			dragNodes: {
+				value: false,
+				setter: nodeListSetter
+			},
 
-	alignPlaceholder: function(region, isTarget) {
-		var instance = this;
-		var placeholder = instance.get(PLACEHOLDER);
+			dropContainer: {
+				value: function(dropNode) {
+					return dropNode;
+				},
+				validator: isFunction
+			},
 
-		if (!instance.lazyEvents) {
-			placeholder.show();
-		}
+			dropNodes: {
+				value: false,
+				setter: nodeListSetter
+			},
 
-		// sync placeholder size
-		instance._syncPlaceholderSize();
+			groups: {
+				value: [PORTAL_LAYOUT]
+			},
 
-		placeholder.setXY(
-			instance.getPlaceholderXY(region, isTarget)
-		);
-	},
+			lazyStart: {
+				value: false,
+				validator: isBoolean
+			},
 
-	calculateDirections: function(drag) {
-		var instance = this;
-		var lastY = instance.lastY;
-		var lastX = instance.lastX;
+			placeholder: {
+				value: TPL_PLACEHOLDER,
+				setter: function(val) {
+					var placeholder = isString(val) ? A.Node.create(val) : val;
 
-		var x = drag.lastXY[0];
-		var y = drag.lastXY[1];
+					if (!placeholder.inDoc()) {
+						A.getBody().append(
+							placeholder.hide()
+						);
+					}
 
-		// if the x change
-		if (x != lastX) {
-			// set the drag direction
-			instance.XDirection = (x < lastX) ? LEFT : RIGHT;
-		}
+					PLACEHOLDER_MARGIN_BOTTOM = getNumStyle(placeholder, MARGIN_BOTTOM);
+					PLACEHOLDER_MARGIN_TOP = getNumStyle(placeholder, MARGIN_TOP);
 
-		// if the y change
-		if (y != lastY) {
-			// set the drag direction
-			instance.YDirection = (y < lastY) ? UP : DOWN;
-		}
+					placeholder.addClass(CSS_DRAG_TARGET_INDICATOR);
 
-		instance.lastX = x;
-		instance.lastY = y;
-	},
+					PLACEHOLDER_TARGET_MARGIN_BOTTOM = getNumStyle(placeholder, MARGIN_BOTTOM);
+					PLACEHOLDER_TARGET_MARGIN_TOP = getNumStyle(placeholder, MARGIN_TOP);
 
-	calculateQuadrant: function(drag, drop) {
-		var instance = this;
-		var quadrant = 1;
-		var region = drop.region;
-		var mouseXY = drag.mouseXY;
-		var mouseX = mouseXY[0];
-		var mouseY = mouseXY[1];
+					return placeholder;
+				}
+			},
 
-		var top = region.top;
-		var left = region.left;
+			proxy: {
+				value: null,
+				setter: function(val) {
+					var instance = this;
 
-		// (region.bottom - top) finds the height of the region
-		var vCenter = top + (region.bottom - top)/2;
-		// (region.right - left) finds the width of the region
-		var hCenter = left + (region.right - left)/2;
+					var defaults = {
+						moveOnEnd: false,
+						positionProxy: false
+					};
 
-		if (mouseY < vCenter) {
-			quadrant = (mouseX > hCenter) ? 1 : 2;
-		}
-		else {
-			quadrant = (mouseX < hCenter) ? 3 : 4;
-		}
+					// if proxyNode is set remove the border from the default proxy
+					if (instance.get(PROXY_NODE)) {
+						defaults.borderStyle = null;
+					}
 
-		instance.quadrant = quadrant;
-
-		return quadrant;
-	},
-
-	getPlaceholderXY: function(region, isTarget) {
-		var instance = this;
-		var placeholder = instance.get(PLACEHOLDER);
-		var marginBottom = PLACEHOLDER_MARGIN_BOTTOM;
-		var marginTop = PLACEHOLDER_MARGIN_TOP;
-
-		if (isTarget) {
-			// update the margin values in case of the target placeholder has a different margin
-			marginBottom = PLACEHOLDER_TARGET_MARGIN_BOTTOM;
-			marginTop = PLACEHOLDER_TARGET_MARGIN_TOP;
-		}
-
-		// update the className of the placeholder when interact with target (drag/drop) elements
-		placeholder.toggleClass(CSS_DRAG_TARGET_INDICATOR, isTarget);
-
-		var regionBottom = ceil(region.bottom);
-		var regionLeft = ceil(region.left);
-		var regionTop = ceil(region.top);
-
-		var x = regionLeft;
-
-		// 1 and 2 quadrants are the top quadrants, so align to the region.top when quadrant < 3
-		var y = (instance.quadrant < 3) ?
-					(regionTop - (placeholder.get(OFFSET_HEIGHT) + marginBottom)) : (regionBottom + marginTop);
-
-		return [ x, y ];
-	},
-
-	removeDropTarget: function(drop) {
-		var instance = this;
-
-		drop.removeFromGroup(
-			instance.get(GROUPS)
-		);
-	},
-
-	_alignCondition: function() {
-		var instance = this;
-		var activeDrag = DDM.activeDrag;
-		var activeDrop = instance.activeDrop;
-
-		if (activeDrag && activeDrop) {
-			var dragNode = activeDrag.get(NODE);
-			var dropNode = activeDrop.get(NODE);
-
-			return !dragNode.contains(dropNode);
-		}
-
-		return true;
-	},
-
-	_bindDDEvents: function() {
-		var instance = this;
-
-		instance.get(DRAG_NODES).each(
-			function(node, i) {
-				instance.addDragTarget(node);
+					return A.merge(defaults, val || {});
+				}
 			}
-		);
+		},
 
-		instance.on('drag:end', A.bind(instance._onDragEnd, instance));
-		instance.on('drag:enter', A.bind(instance._onDragEnter, instance));
-		instance.on('drag:exit', A.bind(instance._onDragExit, instance));
-		instance.on('drag:over', A.bind(instance._onDragOver, instance));
-		instance.on('drag:start', A.bind(instance._onDragStart, instance));
-		instance.after('drag:start', A.bind(instance._afterDragStart, instance));
+		EXTENDS: A.Base,
 
-		instance.on(EV_QUADRANT_ENTER, instance._syncPlaceholderUI);
-		instance.on(EV_QUADRANT_EXIT, instance._syncPlaceholderUI);
-	},
+		prototype: {
+			/**
+			 * Construction logic executed during PortalLayout instantiation. Lifecycle.
+			 *
+			 * @method initializer
+			 * @protected
+			 */
+			initializer: function() {
+				var instance = this;
 
-	_bindDropZones: function() {
-		var instance = this;
+				instance.bindUI();
+			},
 
-		instance.get(DROP_NODES).each(function(node, i) {
-			instance.addDropNode(node);
-		});
-	},
+			bindUI: function() {
+				var instance = this;
 
-	_defPlaceholderAlign: function(event) {
-		var instance = this;
-		var activeDrop = instance.activeDrop;
-		var placeholder = instance.get(PLACEHOLDER);
+				// publishing placeholderAlign event
+				instance.publish(EV_PLACEHOLDER_ALIGN, {
+		            defaultFn: instance._defPlaceholderAlign,
+		            queuable: false,
+		            emitFacade: true,
+		            bubbles: true
+		        });
 
-		if (activeDrop && placeholder) {
-			var node = activeDrop.get('node');
-			var isTarget = !!node.dd;
+				instance._bindDDEvents();
+				instance._bindDropZones();
+			},
 
-			instance.lastAlignDrop = activeDrop;
+			/*
+			* Methods
+			*/
+			addDragTarget: function(node) {
+				var instance = this;
 
-			instance.alignPlaceholder(activeDrop.region, isTarget);
-		}
-	},
+				if (!DDM.getDrag(node)) {
+					var dd = instance.get(DD);
+					var proxy = instance.get(PROXY);
 
-	_evOutput: function() {
-		var instance = this;
+					// updating node reference on the default dd config
+					dd.node = node;
 
-		return {
-			drag: DDM.activeDrag,
-			drop: instance.activeDrop,
-			quadrant: instance.quadrant,
-			XDirection: instance.XDirection,
-			YDirection: instance.YDirection
-		};
-	},
+					// creating DD.Drag instance and plugging the DDProxy
+					var drag = new A.DD.Drag(dd).plug(A.Plugin.DDProxy, proxy);
+				}
+			},
 
-	_fireQuadrantEvents: function() {
-		var instance = this;
-		var evOutput = instance._evOutput();
-		var lastQuadrant = instance.lastQuadrant;
-		var quadrant = instance.quadrant;
+			addDropNode: function(node, config) {
+				var instance = this;
 
-		if (quadrant != lastQuadrant) {
-			// only trigger exit if it has previously entered in any quadrant
-			if (lastQuadrant) {
-				// merging event with the "last" information
-				instance.fire(
-					EV_QUADRANT_EXIT,
-					A.merge(
-						{
-							lastDrag: instance.lastDrag,
-							lastDrop: instance.lastDrop,
-							lastQuadrant: instance.lastQuadrant,
-							lastXDirection: instance.lastXDirection,
-							lastYDirection: instance.lastYDirection
-						},
-						evOutput
-					)
+				node = A.one(node);
+
+				if (!DDM.getDrop(node)) {
+					instance.addDropTarget(
+						new A.DD.Drop(
+							A.merge(
+								{
+									bubbleTargets: instance,
+									node: node
+								},
+								config
+							)
+						)
+					);
+				}
+			},
+
+			addDropTarget: function(drop) {
+				var instance = this;
+
+				drop.addToGroup(
+					instance.get(GROUPS)
 				);
-			}
+			},
 
-			// firing EV_QUADRANT_ENTER event
-			instance.fire(EV_QUADRANT_ENTER, evOutput);
-		}
+			alignPlaceholder: function(region, isTarget) {
+				var instance = this;
+				var placeholder = instance.get(PLACEHOLDER);
 
-		// firing EV_QUADRANT_OVER, align event fires like the drag over without bubbling for performance reasons
-		instance.fire(EV_QUADRANT_OVER, evOutput);
-
-		// updating "last" information
-		instance.lastDrag = DDM.activeDrag;
-		instance.lastDrop = instance.activeDrop;
-		instance.lastQuadrant = quadrant;
-		instance.lastXDirection = instance.XDirection;
-		instance.lastYDirection = instance.YDirection;
-	},
-
-	_getAppendNode: function() {
-		return DDM.activeDrag.get(NODE);
-	},
-
-	_positionNode: function(event) {
-		var instance = this;
-		var activeDrop = instance.lastAlignDrop || instance.activeDrop;
-
-		if (activeDrop) {
-			var dragNode = instance._getAppendNode();
-			var dropNode = activeDrop.get(NODE);
-
-			// detects if the activeDrop is a dd target (portlet) or a drop area only (column)
-			var isTarget = isValue(dropNode.dd);
-			var topQuadrants = (instance.quadrant < 3);
-
-			if (instance._alignCondition()) {
-				if (isTarget) {
-					dropNode[ topQuadrants ? PLACE_BEFORE : PLACE_AFTER ](dragNode);
+				if (!instance.lazyEvents) {
+					placeholder.show();
 				}
-				// interacting with the columns (drop areas only)
+
+				// sync placeholder size
+				instance._syncPlaceholderSize();
+
+				placeholder.setXY(
+					instance.getPlaceholderXY(region, isTarget)
+				);
+			},
+
+			calculateDirections: function(drag) {
+				var instance = this;
+				var lastY = instance.lastY;
+				var lastX = instance.lastX;
+
+				var x = drag.lastXY[0];
+				var y = drag.lastXY[1];
+
+				// if the x change
+				if (x != lastX) {
+					// set the drag direction
+					instance.XDirection = (x < lastX) ? LEFT : RIGHT;
+				}
+
+				// if the y change
+				if (y != lastY) {
+					// set the drag direction
+					instance.YDirection = (y < lastY) ? UP : DOWN;
+				}
+
+				instance.lastX = x;
+				instance.lastY = y;
+			},
+
+			calculateQuadrant: function(drag, drop) {
+				var instance = this;
+				var quadrant = 1;
+				var region = drop.region;
+				var mouseXY = drag.mouseXY;
+				var mouseX = mouseXY[0];
+				var mouseY = mouseXY[1];
+
+				var top = region.top;
+				var left = region.left;
+
+				// (region.bottom - top) finds the height of the region
+				var vCenter = top + (region.bottom - top)/2;
+				// (region.right - left) finds the width of the region
+				var hCenter = left + (region.right - left)/2;
+
+				if (mouseY < vCenter) {
+					quadrant = (mouseX > hCenter) ? 1 : 2;
+				}
 				else {
-					// find the dropContainer of the dropNode, the default DROP_CONTAINER function returns the dropNode
-					var dropContainer = instance.get(DROP_CONTAINER).apply(instance, [dropNode]);
-
-					dropContainer[ topQuadrants ? PREPEND : APPEND ](dragNode);
+					quadrant = (mouseX < hCenter) ? 3 : 4;
 				}
+
+				instance.quadrant = quadrant;
+
+				return quadrant;
+			},
+
+			getPlaceholderXY: function(region, isTarget) {
+				var instance = this;
+				var placeholder = instance.get(PLACEHOLDER);
+				var marginBottom = PLACEHOLDER_MARGIN_BOTTOM;
+				var marginTop = PLACEHOLDER_MARGIN_TOP;
+
+				if (isTarget) {
+					// update the margin values in case of the target placeholder has a different margin
+					marginBottom = PLACEHOLDER_TARGET_MARGIN_BOTTOM;
+					marginTop = PLACEHOLDER_TARGET_MARGIN_TOP;
+				}
+
+				// update the className of the placeholder when interact with target (drag/drop) elements
+				placeholder.toggleClass(CSS_DRAG_TARGET_INDICATOR, isTarget);
+
+				var regionBottom = ceil(region.bottom);
+				var regionLeft = ceil(region.left);
+				var regionTop = ceil(region.top);
+
+				var x = regionLeft;
+
+				// 1 and 2 quadrants are the top quadrants, so align to the region.top when quadrant < 3
+				var y = (instance.quadrant < 3) ?
+							(regionTop - (placeholder.get(OFFSET_HEIGHT) + marginBottom)) : (regionBottom + marginTop);
+
+				return [ x, y ];
+			},
+
+			removeDropTarget: function(drop) {
+				var instance = this;
+
+				drop.removeFromGroup(
+					instance.get(GROUPS)
+				);
+			},
+
+			_alignCondition: function() {
+				var instance = this;
+				var activeDrag = DDM.activeDrag;
+				var activeDrop = instance.activeDrop;
+
+				if (activeDrag && activeDrop) {
+					var dragNode = activeDrag.get(NODE);
+					var dropNode = activeDrop.get(NODE);
+
+					return !dragNode.contains(dropNode);
+				}
+
+				return true;
+			},
+
+			_bindDDEvents: function() {
+				var instance = this;
+
+				instance.get(DRAG_NODES).each(
+					function(node, i) {
+						instance.addDragTarget(node);
+					}
+				);
+
+				instance.on('drag:end', A.bind(instance._onDragEnd, instance));
+				instance.on('drag:enter', A.bind(instance._onDragEnter, instance));
+				instance.on('drag:exit', A.bind(instance._onDragExit, instance));
+				instance.on('drag:over', A.bind(instance._onDragOver, instance));
+				instance.on('drag:start', A.bind(instance._onDragStart, instance));
+				instance.after('drag:start', A.bind(instance._afterDragStart, instance));
+
+				instance.on(EV_QUADRANT_ENTER, instance._syncPlaceholderUI);
+				instance.on(EV_QUADRANT_EXIT, instance._syncPlaceholderUI);
+			},
+
+			_bindDropZones: function() {
+				var instance = this;
+
+				instance.get(DROP_NODES).each(function(node, i) {
+					instance.addDropNode(node);
+				});
+			},
+
+			_defPlaceholderAlign: function(event) {
+				var instance = this;
+				var activeDrop = instance.activeDrop;
+				var placeholder = instance.get(PLACEHOLDER);
+
+				if (activeDrop && placeholder) {
+					var node = activeDrop.get('node');
+					var isTarget = !!node.dd;
+
+					instance.lastAlignDrop = activeDrop;
+
+					instance.alignPlaceholder(activeDrop.region, isTarget);
+				}
+			},
+
+			_evOutput: function() {
+				var instance = this;
+
+				return {
+					drag: DDM.activeDrag,
+					drop: instance.activeDrop,
+					quadrant: instance.quadrant,
+					XDirection: instance.XDirection,
+					YDirection: instance.YDirection
+				};
+			},
+
+			_fireQuadrantEvents: function() {
+				var instance = this;
+				var evOutput = instance._evOutput();
+				var lastQuadrant = instance.lastQuadrant;
+				var quadrant = instance.quadrant;
+
+				if (quadrant != lastQuadrant) {
+					// only trigger exit if it has previously entered in any quadrant
+					if (lastQuadrant) {
+						// merging event with the "last" information
+						instance.fire(
+							EV_QUADRANT_EXIT,
+							A.merge(
+								{
+									lastDrag: instance.lastDrag,
+									lastDrop: instance.lastDrop,
+									lastQuadrant: instance.lastQuadrant,
+									lastXDirection: instance.lastXDirection,
+									lastYDirection: instance.lastYDirection
+								},
+								evOutput
+							)
+						);
+					}
+
+					// firing EV_QUADRANT_ENTER event
+					instance.fire(EV_QUADRANT_ENTER, evOutput);
+				}
+
+				// firing EV_QUADRANT_OVER, align event fires like the drag over without bubbling for performance reasons
+				instance.fire(EV_QUADRANT_OVER, evOutput);
+
+				// updating "last" information
+				instance.lastDrag = DDM.activeDrag;
+				instance.lastDrop = instance.activeDrop;
+				instance.lastQuadrant = quadrant;
+				instance.lastXDirection = instance.XDirection;
+				instance.lastYDirection = instance.YDirection;
+			},
+
+			_getAppendNode: function() {
+				return DDM.activeDrag.get(NODE);
+			},
+
+			_positionNode: function(event) {
+				var instance = this;
+				var activeDrop = instance.lastAlignDrop || instance.activeDrop;
+
+				if (activeDrop) {
+					var dragNode = instance._getAppendNode();
+					var dropNode = activeDrop.get(NODE);
+
+					// detects if the activeDrop is a dd target (portlet) or a drop area only (column)
+					var isTarget = isValue(dropNode.dd);
+					var topQuadrants = (instance.quadrant < 3);
+
+					if (instance._alignCondition()) {
+						if (isTarget) {
+							dropNode[ topQuadrants ? PLACE_BEFORE : PLACE_AFTER ](dragNode);
+						}
+						// interacting with the columns (drop areas only)
+						else {
+							// find the dropContainer of the dropNode, the default DROP_CONTAINER function returns the dropNode
+							var dropContainer = instance.get(DROP_CONTAINER).apply(instance, [dropNode]);
+
+							dropContainer[ topQuadrants ? PREPEND : APPEND ](dragNode);
+						}
+					}
+				}
+			},
+
+			_syncPlaceholderUI: function(event) {
+				var instance = this;
+
+				if (instance._alignCondition()) {
+					// firing placeholderAlign event
+					instance.fire(EV_PLACEHOLDER_ALIGN, {
+						drop: instance.activeDrop,
+						originalEvent: event
+					});
+				}
+			},
+
+			_syncPlaceholderSize: function() {
+				var instance = this;
+				var node = instance.activeDrop.get(NODE);
+
+				var placeholder = instance.get(PLACEHOLDER);
+
+				if (placeholder) {
+					placeholder.set(
+						OFFSET_WIDTH,
+						node.get(OFFSET_WIDTH)
+					);
+				}
+			},
+
+			_syncProxyNodeUI: function(event) {
+				var instance = this;
+				var dragNode = DDM.activeDrag.get(DRAG_NODE);
+				var proxyNode = instance.get(PROXY_NODE);
+
+				if (proxyNode && !proxyNode.compareTo(dragNode)) {
+					dragNode.append(proxyNode);
+
+					instance._syncProxyNodeSize();
+				}
+			},
+
+			_syncProxyNodeSize: function() {
+				var instance = this;
+				var node = DDM.activeDrag.get(NODE);
+				var proxyNode = instance.get(PROXY_NODE);
+
+				if (node && proxyNode) {
+					proxyNode.set(
+						OFFSET_HEIGHT,
+						node.get(OFFSET_HEIGHT)
+					);
+
+					proxyNode.set(
+						OFFSET_WIDTH,
+						node.get(OFFSET_WIDTH)
+					);
+				}
+			},
+
+			/*
+			* Listeners
+			*/
+			_afterDragStart: function(event) {
+				var instance = this;
+
+				if (instance.get(PROXY)) {
+					instance._syncProxyNodeUI(event);
+				}
+			},
+
+			_onDragEnd: function(event) {
+				var instance = this;
+				var placeholder = instance.get(PLACEHOLDER);
+				var proxyNode = instance.get(PROXY_NODE);
+
+				if (!instance.lazyEvents) {
+					instance._positionNode(event);
+				}
+
+				if (proxyNode) {
+					proxyNode.remove();
+				}
+
+				if (placeholder) {
+					placeholder.hide();
+				}
+
+				// reset the last information
+				instance.lastQuadrant = null;
+				instance.lastXDirection = null;
+				instance.lastYDirection = null;
+			},
+
+			// fires after drag:start
+			_onDragEnter: function(event) {
+				var instance = this;
+
+				instance.activeDrop = DDM.activeDrop;
+
+				// check if lazyEvents is true and if there is a lastActiveDrop
+				// the checking for lastActiveDrop prevents fire the _syncPlaceholderUI when quadrant* events fires
+				if (instance.lazyEvents && instance.lastActiveDrop) {
+					instance.lazyEvents = false;
+
+					instance._syncPlaceholderUI(event);
+				}
+
+				// lastActiveDrop is always updated by the drag exit,
+				// but if there is no lastActiveDrop update it on drag enter update it
+				if (!instance.lastActiveDrop) {
+					instance.lastActiveDrop = DDM.activeDrop;
+				}
+			},
+
+			_onDragExit: function(event) {
+				var instance = this;
+
+				instance._syncPlaceholderUI(event);
+
+				instance.activeDrop = DDM.activeDrop;
+
+				instance.lastActiveDrop = DDM.activeDrop;
+			},
+
+			_onDragOver: function(event) {
+				var instance = this;
+				var drag = event.drag;
+
+				// prevent drag over bubbling, filtering the top most element
+				if (instance.activeDrop == DDM.activeDrop) {
+					instance.calculateDirections(drag);
+
+					instance.calculateQuadrant(drag, instance.activeDrop);
+
+					instance._fireQuadrantEvents();
+				}
+			},
+
+			// fires before drag:enter
+			_onDragStart: function(event) {
+				var instance = this;
+
+				if (instance.get(LAZY_START)) {
+					instance.lazyEvents = true;
+				}
+
+				instance.lastActiveDrop = null;
+
+				instance.activeDrop = DDM.activeDrop;
 			}
 		}
-	},
-
-	_syncPlaceholderUI: function(event) {
-		var instance = this;
-
-		if (instance._alignCondition()) {
-			// firing placeholderAlign event
-			instance.fire(EV_PLACEHOLDER_ALIGN, {
-				drop: instance.activeDrop,
-				originalEvent: event
-			});
-		}
-	},
-
-	_syncPlaceholderSize: function() {
-		var instance = this;
-		var node = instance.activeDrop.get(NODE);
-
-		var placeholder = instance.get(PLACEHOLDER);
-
-		if (placeholder) {
-			placeholder.set(
-				OFFSET_WIDTH,
-				node.get(OFFSET_WIDTH)
-			);
-		}
-	},
-
-	_syncProxyNodeUI: function(event) {
-		var instance = this;
-		var dragNode = DDM.activeDrag.get(DRAG_NODE);
-		var proxyNode = instance.get(PROXY_NODE);
-
-		if (proxyNode && !proxyNode.compareTo(dragNode)) {
-			dragNode.append(proxyNode);
-
-			instance._syncProxyNodeSize();
-		}
-	},
-
-	_syncProxyNodeSize: function() {
-		var instance = this;
-		var node = DDM.activeDrag.get(NODE);
-		var proxyNode = instance.get(PROXY_NODE);
-
-		if (node && proxyNode) {
-			proxyNode.set(
-				OFFSET_HEIGHT,
-				node.get(OFFSET_HEIGHT)
-			);
-
-			proxyNode.set(
-				OFFSET_WIDTH,
-				node.get(OFFSET_WIDTH)
-			);
-		}
-	},
-
-	/*
-	* Listeners
-	*/
-	_afterDragStart: function(event) {
-		var instance = this;
-
-		if (instance.get(PROXY)) {
-			instance._syncProxyNodeUI(event);
-		}
-	},
-
-	_onDragEnd: function(event) {
-		var instance = this;
-		var placeholder = instance.get(PLACEHOLDER);
-		var proxyNode = instance.get(PROXY_NODE);
-
-		if (!instance.lazyEvents) {
-			instance._positionNode(event);
-		}
-
-		if (proxyNode) {
-			proxyNode.remove();
-		}
-
-		if (placeholder) {
-			placeholder.hide();
-		}
-
-		// reset the last information
-		instance.lastQuadrant = null;
-		instance.lastXDirection = null;
-		instance.lastYDirection = null;
-	},
-
-	// fires after drag:start
-	_onDragEnter: function(event) {
-		var instance = this;
-
-		instance.activeDrop = DDM.activeDrop;
-
-		// check if lazyEvents is true and if there is a lastActiveDrop
-		// the checking for lastActiveDrop prevents fire the _syncPlaceholderUI when quadrant* events fires
-		if (instance.lazyEvents && instance.lastActiveDrop) {
-			instance.lazyEvents = false;
-
-			instance._syncPlaceholderUI(event);
-		}
-
-		// lastActiveDrop is always updated by the drag exit,
-		// but if there is no lastActiveDrop update it on drag enter update it
-		if (!instance.lastActiveDrop) {
-			instance.lastActiveDrop = DDM.activeDrop;
-		}
-	},
-
-	_onDragExit: function(event) {
-		var instance = this;
-
-		instance._syncPlaceholderUI(event);
-
-		instance.activeDrop = DDM.activeDrop;
-
-		instance.lastActiveDrop = DDM.activeDrop;
-	},
-
-	_onDragOver: function(event) {
-		var instance = this;
-		var drag = event.drag;
-
-		// prevent drag over bubbling, filtering the top most element
-		if (instance.activeDrop == DDM.activeDrop) {
-			instance.calculateDirections(drag);
-
-			instance.calculateQuadrant(drag, instance.activeDrop);
-
-			instance._fireQuadrantEvents();
-		}
-	},
-
-	// fires before drag:enter
-	_onDragStart: function(event) {
-		var instance = this;
-
-		if (instance.get(LAZY_START)) {
-			instance.lazyEvents = true;
-		}
-
-		instance.lastActiveDrop = null;
-
-		instance.activeDrop = DDM.activeDrop;
 	}
-});
+);
 
 A.PortalLayout = PortalLayout;

@@ -51,220 +51,220 @@ var L = A.Lang,
  * @constructor
  * @extends Plugin.Base
  */
-function ParseContent(config) {
-	ParseContent.superclass.constructor.apply(this, arguments);
-}
+var ParseContent = A.Component.create(
+	{
+		/**
+		 * Static property provides a string to identify the class.
+		 *
+		 * @property ParseContent.NAME
+		 * @type String
+		 * @static
+		 */
+		NAME: PARSE_CONTENT,
 
-A.mix(ParseContent, {
-	/**
-	 * Static property provides a string to identify the class.
-	 *
-	 * @property ParseContent.NAME
-	 * @type String
-	 * @static
-	 */
-	NAME: PARSE_CONTENT,
+		/**
+		 * Static property provides a string to identify the namespace.
+		 *
+		 * @property ParseContent.NS
+		 * @type String
+		 * @static
+		 */
+		NS: PARSE_CONTENT,
 
-	/**
-	 * Static property provides a string to identify the namespace.
-	 *
-	 * @property ParseContent.NS
-	 * @type String
-	 * @static
-	 */
-	NS: PARSE_CONTENT,
-
-	/**
-	 * Static property used to define the default attribute
-	 * configuration for the ParseContent.
-	 *
-	 * @property ParseContent.ATTRS
-	 * @type Object
-	 * @static
-	 */
-	ATTRS: {
-		queue: {
-			value: null
-		}
-	}
-});
-
-A.extend(ParseContent, A.Plugin.Base, {
-	/**
-	 * Construction logic executed during ParseContent instantiation. Lifecycle.
-	 *
-	 * @method initializer
-	 * @protected
-	 */
-	initializer: function() {
-		var instance = this;
-
-		ParseContent.superclass.initializer.apply(this, arguments);
-
-		instance.set(
-			QUEUE,
-			new A.AsyncQueue()
-		);
-
-		instance._bindAOP();
-	},
-
-	/**
-	 * Global eval the <data>data</data> passed.
-	 *
-	 * @method globalEval
-	 * @param {String} data JavaScript String.
-	 */
-	globalEval: function(data) {
-		var doc = A.getDoc();
-		var head = doc.one(HEAD) || doc.get(DOCUMENT_ELEMENT);
-
-		// NOTE: A.Node.create('<script></script>') doesn't work correctly on Opera
-		var newScript = document.createElement(SCRIPT);
-
-		newScript.type = 'text/javascript';
-
-		if (data) {
-			// NOTE: newScript.set(TEXT, data) breaks on IE, YUI BUG.
-			newScript.text = L.trim(data);
-		}
-
-		head.appendChild(newScript).remove(); //removes the script node immediately after executing it
-	},
-
-	/**
-	 * Extract the <code>script</code> tags from the string content and
-	 * evaluate the chunks.
-	 *
-	 * @method parseContent
-	 * @param {String} content HTML string
-	 * @return {String}
-	 */
-	parseContent: function(content) {
-		var instance = this;
-		var output = instance._clean(content);
-
-		instance._dispatch(output);
-
-		return output;
-	},
-
-	/**
-	 * Bind listeners on the <code>insert</code> and <code>setContent</code>
-     * methods of the Node instance where you are plugging the ParseContent.
-     * These listeners are responsible for intercept the HTML passed and parse
-     * them.
-	 *
-	 * @method _bindAOP
-	 * @protected
-	 */
-	_bindAOP: function() {
-		var instance = this;
-
-		// overloading node.insert() arguments, affects append/prepend methods
-		this.doBefore('insert', function(content) {
-			var args = Array.prototype.slice.call(arguments);
-			var output = instance.parseContent(content);
-
-			// replace the first argument with the clean fragment
-			args.splice(0, 1, output.fragment);
-
-			return new A.Do.AlterArgs(null, args);
-		});
-
-		// overloading node.setContent() arguments
-		this.doBefore('setContent', function(content) {
-			var output = instance.parseContent(content);
-
-			return new A.Do.AlterArgs(null, [output.fragment]);
-		});
-	},
-
-	/**
-	 * Create an HTML fragment with the String passed, extract all the script
-     * tags and return an Object with a reference for the extracted scripts and
-     * the fragment.
-	 *
-	 * @method clean
-	 * @param {String} content HTML content.
-	 * @protected
-	 * @return {Object}
-	 */
-	_clean: function(content) {
-		var output = {};
-		var fragment = A.getDoc().invoke(CREATE_DOCUMENT_FRAGMENT);
-
-		// instead of fix all tags to "XHTML"-style, make the firstChild be a valid non-empty tag
-		fragment.append('<div>_</div>');
-
-		if (isString(content)) {
-			// create fragment from {String}
-			A.DOM.addHTML(fragment, content, APPEND);
-		}
-		else {
-			// create fragment from {Y.Node | HTMLElement}
-			fragment.append(content);
-		}
-
-		output.js = fragment.all(SCRIPT).each(
-			function(node, i) {
-				node.remove();
+		/**
+		 * Static property used to define the default attribute
+		 * configuration for the ParseContent.
+		 *
+		 * @property ParseContent.ATTRS
+		 * @type Object
+		 * @static
+		 */
+		ATTRS: {
+			queue: {
+				value: null
 			}
-		);
+		},
 
-		// remove padding node
-		fragment.get(FIRST_CHILD).remove();
+		EXTENDS: A.Plugin.Base,
 
-		output.fragment = fragment;
+		prototype: {
+			/**
+			 * Construction logic executed during ParseContent instantiation. Lifecycle.
+			 *
+			 * @method initializer
+			 * @protected
+			 */
+			initializer: function() {
+				var instance = this;
 
-		return output;
-	},
+				ParseContent.superclass.initializer.apply(this, arguments);
 
-	/**
-	 * Loop trough all extracted <code>script</code> tags and evaluate them.
-	 *
-	 * @method _dispatch
-	 * @param {Object} output Object containing the reference for the fragment and the extracted <code>script</code> tags.
-	 * @protected
-	 * @return {String}
-	 */
-	_dispatch: function(output) {
-		var instance = this;
-		var queue = instance.get(QUEUE);
+				instance.set(
+					QUEUE,
+					new A.AsyncQueue()
+				);
 
-		output.js.each(function(node, i) {
-			var src = node.get(SRC);
+				instance._bindAOP();
+			},
 
-			if (src) {
-				queue.add({
-					autoContinue: false,
-					fn: function () {
-						A.Get.script(src, {
-							onEnd: function (o) {
-								o.purge(); //removes the script node immediately after executing it
-								queue.run();
-							}
+			/**
+			 * Global eval the <data>data</data> passed.
+			 *
+			 * @method globalEval
+			 * @param {String} data JavaScript String.
+			 */
+			globalEval: function(data) {
+				var doc = A.getDoc();
+				var head = doc.one(HEAD) || doc.get(DOCUMENT_ELEMENT);
+
+				// NOTE: A.Node.create('<script></script>') doesn't work correctly on Opera
+				var newScript = document.createElement(SCRIPT);
+
+				newScript.type = 'text/javascript';
+
+				if (data) {
+					// NOTE: newScript.set(TEXT, data) breaks on IE, YUI BUG.
+					newScript.text = L.trim(data);
+				}
+
+				head.appendChild(newScript).remove(); //removes the script node immediately after executing it
+			},
+
+			/**
+			 * Extract the <code>script</code> tags from the string content and
+			 * evaluate the chunks.
+			 *
+			 * @method parseContent
+			 * @param {String} content HTML string
+			 * @return {String}
+			 */
+			parseContent: function(content) {
+				var instance = this;
+				var output = instance._clean(content);
+
+				instance._dispatch(output);
+
+				return output;
+			},
+
+			/**
+			 * Bind listeners on the <code>insert</code> and <code>setContent</code>
+		     * methods of the Node instance where you are plugging the ParseContent.
+		     * These listeners are responsible for intercept the HTML passed and parse
+		     * them.
+			 *
+			 * @method _bindAOP
+			 * @protected
+			 */
+			_bindAOP: function() {
+				var instance = this;
+
+				// overloading node.insert() arguments, affects append/prepend methods
+				this.doBefore('insert', function(content) {
+					var args = Array.prototype.slice.call(arguments);
+					var output = instance.parseContent(content);
+
+					// replace the first argument with the clean fragment
+					args.splice(0, 1, output.fragment);
+
+					return new A.Do.AlterArgs(null, args);
+				});
+
+				// overloading node.setContent() arguments
+				this.doBefore('setContent', function(content) {
+					var output = instance.parseContent(content);
+
+					return new A.Do.AlterArgs(null, [output.fragment]);
+				});
+			},
+
+			/**
+			 * Create an HTML fragment with the String passed, extract all the script
+		     * tags and return an Object with a reference for the extracted scripts and
+		     * the fragment.
+			 *
+			 * @method clean
+			 * @param {String} content HTML content.
+			 * @protected
+			 * @return {Object}
+			 */
+			_clean: function(content) {
+				var output = {};
+				var fragment = A.getDoc().invoke(CREATE_DOCUMENT_FRAGMENT);
+
+				// instead of fix all tags to "XHTML"-style, make the firstChild be a valid non-empty tag
+				fragment.append('<div>_</div>');
+
+				if (isString(content)) {
+					// create fragment from {String}
+					A.DOM.addHTML(fragment, content, APPEND);
+				}
+				else {
+					// create fragment from {Y.Node | HTMLElement}
+					fragment.append(content);
+				}
+
+				output.js = fragment.all(SCRIPT).each(
+					function(node, i) {
+						node.remove();
+					}
+				);
+
+				// remove padding node
+				fragment.get(FIRST_CHILD).remove();
+
+				output.fragment = fragment;
+
+				return output;
+			},
+
+			/**
+			 * Loop trough all extracted <code>script</code> tags and evaluate them.
+			 *
+			 * @method _dispatch
+			 * @param {Object} output Object containing the reference for the fragment and the extracted <code>script</code> tags.
+			 * @protected
+			 * @return {String}
+			 */
+			_dispatch: function(output) {
+				var instance = this;
+				var queue = instance.get(QUEUE);
+
+				output.js.each(function(node, i) {
+					var src = node.get(SRC);
+
+					if (src) {
+						queue.add({
+							autoContinue: false,
+							fn: function () {
+								A.Get.script(src, {
+									onEnd: function (o) {
+										o.purge(); //removes the script node immediately after executing it
+										queue.run();
+									}
+								});
+							},
+							timeout: 0
 						});
-					},
-					timeout: 0
-				});
-			}
-			else {
-				queue.add({
-					fn: function () {
-						var dom = node._node;
+					}
+					else {
+						queue.add({
+							fn: function () {
+								var dom = node._node;
 
-						instance.globalEval(
-							dom.text || dom.textContent || dom.innerHTML || ''
-						);
-					},
-					timeout: 0
+								instance.globalEval(
+									dom.text || dom.textContent || dom.innerHTML || ''
+								);
+							},
+							timeout: 0
+						});
+					}
 				});
-			}
-		});
 
-		queue.run();
+				queue.run();
+			}
+		}
 	}
-});
+);
 
 A.namespace('Plugin').ParseContent = ParseContent;
