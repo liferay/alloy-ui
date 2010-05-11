@@ -9,467 +9,464 @@ var Lang = A.Lang,
 
 AUI.namespace('_CHART');
 
-var Chart = function() {
-	Chart.superclass.constructor.apply(this, arguments);
-};
-
-Chart.NAME = NAME;
-
-Chart.ATTRS = {
-	type: {
-		value: 'pie'
-	},
-	dataSource: {
-		value: null
-	},
-	altText: {
-		getter: '_getAltText',
-		setter: '_setAltText'
-	},
-	swfURL: {
-		valueFn: function() {
-			return AUI.defaults.chart.swfURL;
-		}
-	},
-	swfCfg: {
-		value: {}
-	},
-	request: {
-		value: '*'
-	},
-	dataSource: {
-		value: null
-	},
-	series: {
-		value: null
-	},
-	categoryNames: {
-		getter: '_getCategoryNames',
-		setter: '_setCategoryNames'
-	},
-	dataTipFunction: {
-		setter: '_setDataTipFunction'
-	},
-	legendLabelFunction: {
-		setter: '_setLegendLabelFunction'
-	},
-	style: {
-		value: null
-	},
-	pollingInterval: {
-		value: 0
-	}
-};
-
-A.extend(
-	Chart,
-	A.Component,
+var Chart = A.Component.create(
 	{
-		renderUI: function() {
+		NAME: NAME,
+
+		ATTRS: {
+			type: {
+				value: 'pie'
+			},
+			dataSource: {
+				value: null
+			},
+			altText: {
+				getter: '_getAltText',
+				setter: '_setAltText'
+			},
+			swfURL: {
+				valueFn: function() {
+					return AUI.defaults.chart.swfURL;
+				}
+			},
+			swfCfg: {
+				value: {}
+			},
+			request: {
+				value: '*'
+			},
+			dataSource: {
+				value: null
+			},
+			series: {
+				value: null
+			},
+			categoryNames: {
+				getter: '_getCategoryNames',
+				setter: '_setCategoryNames'
+			},
+			dataTipFunction: {
+				setter: '_setDataTipFunction'
+			},
+			legendLabelFunction: {
+				setter: '_setLegendLabelFunction'
+			},
+			style: {
+				value: null
+			},
+			pollingInterval: {
+				value: 0
+			}
+		},
+
+		// Statics
+		proxyFunctionCount: 0,
+
+		createProxyFunction: function(fn, context) {
+			var index = Chart.proxyFunctionCount;
+
+			var proxyName = 'proxyFunction' + index;
+
+			AUI._CHART[proxyName] = A.bind(fn, context);
+
+			Chart.proxyFunctionCount++;
+
+			return 'AUI._CHART.' + proxyName;
+		},
+
+		getFunctionReference: function(value) {
 			var instance = this;
 
-			var possibleParams = {
-				align: '',
-				allowNetworking: '',
-				allowScriptAccess: '',
-				base: '',
-				bgcolor: '',
-				menu: '',
-				name: '',
-				quality: '',
-				salign: '',
-				scale: '',
-				tabindex: '',
-				wmode: ''
-			};
+			if (Lang.isFunction(value)) {
+				value = Chart.createProxyFunction(value);
+			}
+			else if (value.fn && Lang.isFunction(value.fn)) {
+				var args = [value.fn];
 
-			var contentBox = instance.get('contentBox');
-
-			var params = {
-				boundingBox: contentBox,
-				fixedAttributes: {
-					allowScriptAccess: 'always'
-				},
-				flashVars: {
-					allowedDomain: document.location.hostname
-				},
-				backgroundColor: contentBox.getComputedStyle('backgroundColor'),
-				url: instance.get('swfURL'),
-				height: instance.get('height'),
-				width: instance.get('width'),
-				version: 9.045
-			};
-
-			var swfCfg = instance.get('swfCfg');
-
-			for (var i in swfCfg) {
-				if (possibleParams.hasOwnProperty(i)) {
-					params.fixedAttributes[i] = swfCfg[i];
+				if (value.context && Lang.isObject(context)) {
+					args.push(value.context);
 				}
-				else {
-					params[i] = swfCfg[i];
-				}
+
+				value = Chart.createProxyFunction(instance, args);
 			}
 
-			var version = params.version;
+			return value;
+		},
 
-			if (version && Lang.isValue(version) && version != 'undefined') {
-				var verString = (/\w*.\w*/.exec(((version).toString()).replace(/.0./g, '.'))).toString();
-				var verSplit = verString.split('.');
+		removeProxyFunction: function(fnName) {
+			if (fnName && fnName.indexOf('AUI._CHART.proxyFunction') > -1) {
+				fnName = fnName.substr(12);
+				AUI._CHART[fnName] = null;
+			}
+		},
 
-				version = verSplit[0] + '.';
+		prototype: {
+			renderUI: function() {
+				var instance = this;
 
-				switch ((verSplit[1].toString()).length) {
-					case 1:
-						version += '00';
-					break;
-					case 2:
-						version += '0';
-					break;
+				var possibleParams = {
+					align: '',
+					allowNetworking: '',
+					allowScriptAccess: '',
+					base: '',
+					bgcolor: '',
+					menu: '',
+					name: '',
+					quality: '',
+					salign: '',
+					scale: '',
+					tabindex: '',
+					wmode: ''
+				};
+
+				var contentBox = instance.get('contentBox');
+
+				var params = {
+					boundingBox: contentBox,
+					fixedAttributes: {
+						allowScriptAccess: 'always'
+					},
+					flashVars: {
+						allowedDomain: document.location.hostname
+					},
+					backgroundColor: contentBox.getComputedStyle('backgroundColor'),
+					url: instance.get('swfURL'),
+					height: instance.get('height'),
+					width: instance.get('width'),
+					version: 9.045
+				};
+
+				var swfCfg = instance.get('swfCfg');
+
+				for (var i in swfCfg) {
+					if (possibleParams.hasOwnProperty(i)) {
+						params.fixedAttributes[i] = swfCfg[i];
+					}
+					else {
+						params[i] = swfCfg[i];
+					}
 				}
 
-				version += verSplit[1];
+				var version = params.version;
 
-				params.version = parseFloat(version);
-			}
+				if (version && Lang.isValue(version) && version != 'undefined') {
+					var verString = (/\w*.\w*/.exec(((version).toString()).replace(/.0./g, '.'))).toString();
+					var verSplit = verString.split('.');
 
-			instance._swfWidget = new A.SWF(params);
-			instance._swfNode = instance._swfWidget._swf;
-			instance._swf = instance._swfNode.getDOM();
+					version = verSplit[0] + '.';
 
-			instance._swfWidget.on('swfReady', instance._eventHandler, instance);
+					switch ((verSplit[1].toString()).length) {
+						case 1:
+							version += '00';
+						break;
+						case 2:
+							version += '0';
+						break;
+					}
 
-			instance.set('swfCfg', params);
-		},
+					version += verSplit[1];
 
-		bindUI: function() {
-			var instance = this;
+					params.version = parseFloat(version);
+				}
 
-			instance.publish('itemMouseOver');
-			instance.publish('itemMouseOut');
-			instance.publish('itemClick');
-			instance.publish('itemDblClick');
-			instance.publish('itemDragStart');
-			instance.publish('itemDragEnd');
-			instance.publish('itemDrag');
-
-			instance.after('seriesChange', instance.refreshData);
-			instance.after('dataSourceChange', instance.refreshData);
-			instance.after('pollingIntervalChange', instance.refreshData);
-
-			var dataSource = instance.get('dataSource');
-
-			dataSource.after('response', instance._loadDataHandler, instance);
-		},
-
-		setStyle: function(name, value) {
-			var instance = this;
-
-			value = A.JSON.stringify(value);
-
-			instance._swf.setStyle(name, value);
-		},
-
-		setStyles: function(styles) {
-			var instance = this;
-
-			styles = A.JSON.stringify(styles);
-
-			instance._swf.setStyles(styles);
-		},
-
-		setSeriesStyles: function(styles) {
-			var instance = this;
-
-			for (var i = 0; i < styles.length; i++) {
-				styles[i] = A.JSON.stringify(styles[i]);
-			}
-
-			instance._swf.setSeriesStyles(styles);
-		},
-
-		_eventHandler: function(event) {
-			var instance = this;
-
-			if (event.type == 'swfReady') {
+				instance._swfWidget = new A.SWF(params);
 				instance._swfNode = instance._swfWidget._swf;
 				instance._swf = instance._swfNode.getDOM();
 
-				instance._loadHandler();
-				instance.fire('contentReady');
-			}
-		},
+				instance._swfWidget.on('swfReady', instance._eventHandler, instance);
 
-		_loadHandler: function() {
-			var instance = this;
+				instance.set('swfCfg', params);
+			},
 
-			if (instance._swf && instance._swf.setType) {
-				instance._swf.setType(instance.get('type'));
+			bindUI: function() {
+				var instance = this;
 
-				var style = instance.get('style');
+				instance.publish('itemMouseOver');
+				instance.publish('itemMouseOut');
+				instance.publish('itemClick');
+				instance.publish('itemDblClick');
+				instance.publish('itemDragStart');
+				instance.publish('itemDragEnd');
+				instance.publish('itemDrag');
 
-				if (style) {
-					instance.setStyles(style);
-				}
+				instance.after('seriesChange', instance.refreshData);
+				instance.after('dataSourceChange', instance.refreshData);
+				instance.after('pollingIntervalChange', instance.refreshData);
 
-				instance._syncChartAttrs();
-
-				instance._initialized = true;
-
-				instance.refreshData();
-			}
-		},
-
-		_syncChartAttrs: function() {
-			var instance = this;
-
-			var config = instance._originalConfig;
-
-			if (config.categoryNames) {
-				instance.set('categoryNames', config.categoryNames);
-			}
-
-			if (config.dataTipFunction) {
-				instance.set('dataTipFunction', config.dataTipFunction);
-			}
-
-			if (config.legendLabelFunction) {
-				instance.set('legendLabelFunction', config.legendLabelFunction);
-			}
-
-			if (config.series) {
-				instance.set('series', config.series);
-			}
-		},
-
-		refreshData: function() {
-			var instance = this;
-
-			if (instance._initialized) {
 				var dataSource = instance.get('dataSource');
 
-				if (dataSource) {
-					var pollingID = instance._pollingID;
+				dataSource.after('response', instance._loadDataHandler, instance);
+			},
 
-					if (pollingID !== null) {
-						dataSource.clearInterval(pollingID);
-						instance._pollingID = null;
-					}
+			setStyle: function(name, value) {
+				var instance = this;
 
-					var pollingInterval = instance.get('pollingInterval');
-					var request = instance.get('request');
+				value = A.JSON.stringify(value);
 
-					if (pollingInterval > 0) {
-						instance._pollingID = dataSource.setInterval(pollingInterval, request);
-					}
+				instance._swf.setStyle(name, value);
+			},
 
-					dataSource.sendRequest(request);
-				}
-			}
-		},
+			setStyles: function(styles) {
+				var instance = this;
 
-		_loadDataHandler: function(event) {
-			var instance = this;
+				styles = A.JSON.stringify(styles);
 
-			if (instance._swf && !event.error) {
-				var seriesFunctions = instance._seriesFunctions;
+				instance._swf.setStyles(styles);
+			},
 
-				if (seriesFunctions) {
-					for (var i = 0; i < seriesFunctions.length; i++) {
-						Chart.removeProxyFunction(seriesFunctions[i]);
-					}
+			setSeriesStyles: function(styles) {
+				var instance = this;
 
-					instance._seriesFunctions = null;
+				for (var i = 0; i < styles.length; i++) {
+					styles[i] = A.JSON.stringify(styles[i]);
 				}
 
-				instance._seriesFunctions = [];
+				instance._swf.setSeriesStyles(styles);
+			},
 
-				var dataProvider = [];
-				var seriesCount = 0;
-				var currentSeries = null;
-				var seriesDefs = instance.get('series');
+			_eventHandler: function(event) {
+				var instance = this;
 
-				if (seriesDefs !== null) {
-					seriesCount = seriesDefs.length;
+				if (event.type == 'swfReady') {
+					instance._swfNode = instance._swfWidget._swf;
+					instance._swf = instance._swfNode.getDOM();
 
-					for (var i = 0; i < seriesCount; i++) {
-						currentSeries = seriesDefs[i];
+					instance._loadHandler();
+					instance.fire('contentReady');
+				}
+			},
 
-						var clonedSeries = {};
+			_loadHandler: function() {
+				var instance = this;
 
-						for (var property in currentSeries) {
-							if (property == 'style') {
-								if (currentSeries.style !== null) {
-									clonedSeries.style = A.JSON.stringify(currentSeries.style);
-								}
-							}
-							else if (property == 'labelFunction') {
-								if (currentSeries.labelFunction !== null) {
-									clonedSeries.labelFunction = Chart.getFunctionReference(currentSeries.labelFunction);
+				if (instance._swf && instance._swf.setType) {
+					instance._swf.setType(instance.get('type'));
 
-									instance._seriesFunctions.push(clonedSeries.labelFunction);
-								}
-							}
-							else if (property == 'dataTipFunction') {
-								if (currentSeries.dataTipFunction !== null) {
-									clonedSeries.dataTipFunction = Chart.getFunctionReference(currentSeries.dataTipFunction);
+					var style = instance.get('style');
 
-									instance._seriesFunctions.push(clonedSeries.dataTipFunction);
-								}
-							}
-							else if (property == 'legendLabelFunction') {
-								if (currentSeries.legendLabelFunction !== null) {
-									clonedSeries.legendLabelFunction = Chart.getFunctionReference(currentSeries.legendLabelFunction);
+					if (style) {
+						instance.setStyles(style);
+					}
 
-									instance._seriesFunctions.push(clonedSeries.legendLabelFunction);
-								}
-							}
-							else {
-								clonedSeries[property] = currentSeries[property];
-							}
+					instance._syncChartAttrs();
+
+					instance._initialized = true;
+
+					instance.refreshData();
+				}
+			},
+
+			_syncChartAttrs: function() {
+				var instance = this;
+
+				var config = instance._originalConfig;
+
+				if (config.categoryNames) {
+					instance.set('categoryNames', config.categoryNames);
+				}
+
+				if (config.dataTipFunction) {
+					instance.set('dataTipFunction', config.dataTipFunction);
+				}
+
+				if (config.legendLabelFunction) {
+					instance.set('legendLabelFunction', config.legendLabelFunction);
+				}
+
+				if (config.series) {
+					instance.set('series', config.series);
+				}
+			},
+
+			refreshData: function() {
+				var instance = this;
+
+				if (instance._initialized) {
+					var dataSource = instance.get('dataSource');
+
+					if (dataSource) {
+						var pollingID = instance._pollingID;
+
+						if (pollingID !== null) {
+							dataSource.clearInterval(pollingID);
+							instance._pollingID = null;
 						}
 
-						dataProvider.push(clonedSeries);
-					}
-				}
+						var pollingInterval = instance.get('pollingInterval');
+						var request = instance.get('request');
 
-				var type = instance.get('type');
-				var results = event.response.results;
-
-				if (seriesCount > 0) {
-					for (var i = 0; i < seriesCount; i++) {
-						currentSeries = dataProvider[i];
-
-						if (!currentSeries.type) {
-							currentSeries.type = type;
+						if (pollingInterval > 0) {
+							instance._pollingID = dataSource.setInterval(pollingInterval, request);
 						}
 
-						currentSeries.dataProvider = results;
+						dataSource.sendRequest(request);
 					}
 				}
-				else {
-					var series = {
-						type: type,
-						dataProvider: results
-					};
+			},
 
-					dataProvider.push(series);
-				}
+			_loadDataHandler: function(event) {
+				var instance = this;
 
-				try {
-					if (instance._swf.setDataProvider) {
+				if (instance._swf && !event.error) {
+					var seriesFunctions = instance._seriesFunctions;
+
+					if (seriesFunctions) {
+						for (var i = 0; i < seriesFunctions.length; i++) {
+							Chart.removeProxyFunction(seriesFunctions[i]);
+						}
+
+						instance._seriesFunctions = null;
+					}
+
+					instance._seriesFunctions = [];
+
+					var dataProvider = [];
+					var seriesCount = 0;
+					var currentSeries = null;
+					var seriesDefs = instance.get('series');
+
+					if (seriesDefs !== null) {
+						seriesCount = seriesDefs.length;
+
+						for (var i = 0; i < seriesCount; i++) {
+							currentSeries = seriesDefs[i];
+
+							var clonedSeries = {};
+
+							for (var property in currentSeries) {
+								if (property == 'style') {
+									if (currentSeries.style !== null) {
+										clonedSeries.style = A.JSON.stringify(currentSeries.style);
+									}
+								}
+								else if (property == 'labelFunction') {
+									if (currentSeries.labelFunction !== null) {
+										clonedSeries.labelFunction = Chart.getFunctionReference(currentSeries.labelFunction);
+
+										instance._seriesFunctions.push(clonedSeries.labelFunction);
+									}
+								}
+								else if (property == 'dataTipFunction') {
+									if (currentSeries.dataTipFunction !== null) {
+										clonedSeries.dataTipFunction = Chart.getFunctionReference(currentSeries.dataTipFunction);
+
+										instance._seriesFunctions.push(clonedSeries.dataTipFunction);
+									}
+								}
+								else if (property == 'legendLabelFunction') {
+									if (currentSeries.legendLabelFunction !== null) {
+										clonedSeries.legendLabelFunction = Chart.getFunctionReference(currentSeries.legendLabelFunction);
+
+										instance._seriesFunctions.push(clonedSeries.legendLabelFunction);
+									}
+								}
+								else {
+									clonedSeries[property] = currentSeries[property];
+								}
+							}
+
+							dataProvider.push(clonedSeries);
+						}
+					}
+
+					var type = instance.get('type');
+					var results = event.response.results;
+
+					if (seriesCount > 0) {
+						for (var i = 0; i < seriesCount; i++) {
+							currentSeries = dataProvider[i];
+
+							if (!currentSeries.type) {
+								currentSeries.type = type;
+							}
+
+							currentSeries.dataProvider = results;
+						}
+					}
+					else {
+						var series = {
+							type: type,
+							dataProvider: results
+						};
+
+						dataProvider.push(series);
+					}
+
+					try {
+						if (instance._swf.setDataProvider) {
+							instance._swf.setDataProvider(dataProvider);
+						}
+					}
+					catch (e) {
 						instance._swf.setDataProvider(dataProvider);
 					}
 				}
-				catch (e) {
-					instance._swf.setDataProvider(dataProvider);
+			},
+
+			_getCategoryNames: function() {
+				var instance = this;
+
+				return instance._swf.getCategoryNames();
+			},
+
+			_setCategoryNames: function(value) {
+				var instance = this;
+
+				instance._swf.setCategoryNames(value);
+
+				return value;
+			},
+
+			_setDataTipFunction: function(value) {
+				var instance = this;
+
+				if (instance._dataTipFunction) {
+					Chart.removeProxyFunction(instance._dataTipFunction);
 				}
-			}
-		},
 
-		_getCategoryNames: function() {
-			var instance = this;
+				if (value) {
+					instance._dataTipFunction = value = Chart.getFunctionReference(value);
+				}
 
-			return instance._swf.getCategoryNames();
-		},
+				instance._swf.setDataTipFunction(value);
 
-		_setCategoryNames: function(value) {
-			var instance = this;
+				return value;
+			},
 
-			instance._swf.setCategoryNames(value);
+			_setLegendLabelFunction: function(value) {
+				var instance = this;
 
-			return value;
-		},
+				if (instance._legendLabelFunction) {
+					Chart.removeProxyFunction(instance._legendLabelFunction);
+				}
 
-		_setDataTipFunction: function(value) {
-			var instance = this;
+				if (value) {
+					instance._legendLabelFunction = value = Chart.getFunctionReference(value);
+				}
 
-			if (instance._dataTipFunction) {
-				Chart.removeProxyFunction(instance._dataTipFunction);
-			}
+				instance._swf.setLegendLabelFunction(value);
 
-			if (value) {
-				instance._dataTipFunction = value = Chart.getFunctionReference(value);
-			}
+				return value;
+			},
 
-			instance._swf.setDataTipFunction(value);
+			_getAltText: function() {
+				var instance = this;
 
-			return value;
-		},
+				return instance._swf.getAltText();
+			},
 
-		_setLegendLabelFunction: function(value) {
-			var instance = this;
+			_setAltText: function() {
+				var instance = this;
 
-			if (instance._legendLabelFunction) {
-				Chart.removeProxyFunction(instance._legendLabelFunction);
-			}
+				instance._swf.setAltText(value);
 
-			if (value) {
-				instance._legendLabelFunction = value = Chart.getFunctionReference(value);
-			}
+				return value;
+			},
 
-			instance._swf.setLegendLabelFunction(value);
-
-			return value;
-		},
-
-		_getAltText: function() {
-			var instance = this;
-
-			return instance._swf.getAltText();
-		},
-
-		_setAltText: function() {
-			var instance = this;
-
-			instance._swf.setAltText(value);
-
-			return value;
-		},
-
-		_pollingID: null
+			_pollingID: null
+		}
 	}
 );
-
-Chart.proxyFunctionCount = 0;
-
-Chart.createProxyFunction = function(fn, context) {
-	var index = Chart.proxyFunctionCount;
-
-	var proxyName = 'proxyFunction' + index;
-
-	AUI._CHART[proxyName] = A.bind(fn, context);
-
-	Chart.proxyFunctionCount++;
-
-	return 'AUI._CHART.' + proxyName;
-};
-
-Chart.getFunctionReference = function(value) {
-	var instance = this;
-
-	if (Lang.isFunction(value)) {
-		value = Chart.createProxyFunction(value);
-	}
-	else if (value.fn && Lang.isFunction(value.fn)) {
-		var args = [value.fn];
-
-		if (value.context && Lang.isObject(context)) {
-			args.push(value.context);
-		}
-
-		value = Chart.createProxyFunction(instance, args);
-	}
-
-	return value;
-};
-
-Chart.removeProxyFunction = function(fnName) {
-	if (fnName && fnName.indexOf('AUI._CHART.proxyFunction') > -1) {
-		fnName = fnName.substr(12);
-		AUI._CHART[fnName] = null;
-	}
-};
 
 A.Chart = Chart;
 
@@ -483,71 +480,69 @@ var Lang = A.Lang,
 
 	NAME = 'piechart';
 
-var PieChart = function() {
-	PieChart.superclass.constructor.apply(this, arguments);
-};
-
-PieChart.NAME = NAME;
-
-PieChart.ATTRS = {
-	dataField: {
-		getter: '_getDataField',
-		setter: '_setDataField',
-		validator: Lang.isString
-	},
-	categoryField: {
-		getter: '_getCategoryField',
-		setter: '_setCategoryField',
-		validator: Lang.isString
-	}
-};
-
-A.extend(
-	PieChart,
-	A.Chart,
+var PieChart = A.Component.create(
 	{
-		_syncChartAttrs: function() {
-			var instance = this;
+		NAME: NAME,
 
-			PieChart.superclass._syncChartAttrs.apply(instance, arguments);
-
-			var config = instance._originalConfig;
-
-			if (config.dataField) {
-				instance.set('dataField', config.dataField);
+		ATTRS: {
+			dataField: {
+				getter: '_getDataField',
+				setter: '_setDataField',
+				validator: Lang.isString
+			},
+			categoryField: {
+				getter: '_getCategoryField',
+				setter: '_setCategoryField',
+				validator: Lang.isString
 			}
+		},
 
-			if (config.categoryField) {
-				instance.set('categoryField', config.categoryField);
+		EXTENDS: A.Chart,
+
+		prototype: {
+			_syncChartAttrs: function() {
+				var instance = this;
+
+				PieChart.superclass._syncChartAttrs.apply(instance, arguments);
+
+				var config = instance._originalConfig;
+
+				if (config.dataField) {
+					instance.set('dataField', config.dataField);
+				}
+
+				if (config.categoryField) {
+					instance.set('categoryField', config.categoryField);
+				}
+			},
+
+			_getDataField: function() {
+				var instance = this;
+
+				return instance._swf.getDataField();
+			},
+
+			_setDataField: function(value) {
+				var instance = this;
+
+				instance._swf.setDataField(value);
+
+				return value;
+			},
+
+			_getCategoryField: function() {
+				var instance = this;
+
+				return instance._swf.getCategoryField();
+			},
+
+			_setCategoryField: function(value) {
+				var instance = this;
+
+				instance._swf.setCategoryField(value);
+
+				return value;
 			}
-		},
-
-		_getDataField: function() {
-			var instance = this;
-
-			return instance._swf.getDataField();
-		},
-
-		_setDataField: function(value) {
-			var instance = this;
-
-			instance._swf.setDataField(value);
-
-			return value;
-		},
-
-		_getCategoryField: function() {
-			var instance = this;
-
-			return instance._swf.getCategoryField();
-		},
-
-		_setCategoryField: function(value) {
-			var instance = this;
-
-			instance._swf.setCategoryField(value);
-
-			return value;
 		}
 	}
 );
@@ -566,240 +561,238 @@ var Lang = A.Lang,
 
 	CSS_CARTESIANCHART = getClassName(NAME);
 
-var CartesianChart = function() {
-	CartesianChart.superclass.constructor.apply(this, arguments);
-};
-
-CartesianChart.NAME = NAME;
-
-CartesianChart.ATTRS = {
-	xField: {
-		getter: '_getXField',
-		setter: '_setXField',
-		validator: Lang.isString
-	},
-	yField: {
-		getter: '_getYField',
-		setter: '_setYField',
-		validator: Lang.isString
-	},
-	xAxis: {
-		setter: '_setXAxis'
-	},
-	xAxes: {
-		setter: '_setXAxes'
-	},
-	yAxis: {
-		setter: '_setYAxis'
-	},
-	yAxes: {
-		setter: '_setYAxes'
-	},
-	constrain2view: {
-		setter: '_setConstrain2view'
-	}
-};
-
-A.extend(
-	CartesianChart,
-	A.Chart,
+var CartesianChart = A.Component.create(
 	{
-		destructor: function() {
-			var instance = this;
+		NAME: NAME,
 
-			instance._removeAxisFunctions(instance._xAxisLabelFunctions);
-			instance._removeAxisFunctions(instance._yAxisLabelFunctions);
-		},
-
-		_syncChartAttrs: function() {
-			var instance = this;
-
-			CartesianChart.superclass._syncChartAttrs.apply(instance, arguments);
-
-			var config = instance._originalConfig;
-
-			if (config.xField) {
-				instance.set('xField', config.xField);
-			}
-
-			if (config.yField) {
-				instance.set('yField', config.yField);
-			}
-
-			if (config.xAxis) {
-				instance.set('xAxis', config.xAxis);
-			}
-
-			if (config.yAxis) {
-				instance.set('yAxis', config.yAxis);
-			}
-
-			if (config.xAxes) {
-				instance.set('xAxes', config.xAxes);
-			}
-
-			if (config.yAxes) {
-				instance.set('yAxes', config.yAxes);
-			}
-
-			if (config.constrain2view) {
-				instance.set('constrain2view', config.constrain2view);
+		ATTRS: {
+			xField: {
+				getter: '_getXField',
+				setter: '_setXField',
+				validator: Lang.isString
+			},
+			yField: {
+				getter: '_getYField',
+				setter: '_setYField',
+				validator: Lang.isString
+			},
+			xAxis: {
+				setter: '_setXAxis'
+			},
+			xAxes: {
+				setter: '_setXAxes'
+			},
+			yAxis: {
+				setter: '_setYAxis'
+			},
+			yAxes: {
+				setter: '_setYAxes'
+			},
+			constrain2view: {
+				setter: '_setConstrain2view'
 			}
 		},
 
-		_getXField: function() {
-			var instance = this;
+		EXTENDS: A.Chart,
 
-			return instance._swf.getHorizontalField();
-		},
+		prototype: {
+			destructor: function() {
+				var instance = this;
 
-		_setXField: function(value) {
-			var instance = this;
+				instance._removeAxisFunctions(instance._xAxisLabelFunctions);
+				instance._removeAxisFunctions(instance._yAxisLabelFunctions);
+			},
 
-			instance._swf.setHorizontalField(value);
+			_syncChartAttrs: function() {
+				var instance = this;
 
-			return value;
-		},
+				CartesianChart.superclass._syncChartAttrs.apply(instance, arguments);
 
-		_getYField: function() {
-			var instance = this;
+				var config = instance._originalConfig;
 
-			return instance._swf.getVerticalField();
-		},
+				if (config.xField) {
+					instance.set('xField', config.xField);
+				}
 
-		_setYField: function(value) {
-			var instance = this;
+				if (config.yField) {
+					instance.set('yField', config.yField);
+				}
 
-			instance._swf.setVerticalField(value);
+				if (config.xAxis) {
+					instance.set('xAxis', config.xAxis);
+				}
 
-			return value;
-		},
+				if (config.yAxis) {
+					instance.set('yAxis', config.yAxis);
+				}
 
-		_getClonedAxis: function(value) {
-			var instance = this;
+				if (config.xAxes) {
+					instance.set('xAxes', config.xAxes);
+				}
 
-			var clonedAxis = {};
+				if (config.yAxes) {
+					instance.set('yAxes', config.yAxes);
+				}
 
-			for (var i in value) {
-				if (i == 'labelFunction') {
-					if (value.labelFunction && value.labelFunction !== null) {
-						clonedAxis.labelFunction = Chart.getFunctionReference(value.labelFunction);
+				if (config.constrain2view) {
+					instance.set('constrain2view', config.constrain2view);
+				}
+			},
+
+			_getXField: function() {
+				var instance = this;
+
+				return instance._swf.getHorizontalField();
+			},
+
+			_setXField: function(value) {
+				var instance = this;
+
+				instance._swf.setHorizontalField(value);
+
+				return value;
+			},
+
+			_getYField: function() {
+				var instance = this;
+
+				return instance._swf.getVerticalField();
+			},
+
+			_setYField: function(value) {
+				var instance = this;
+
+				instance._swf.setVerticalField(value);
+
+				return value;
+			},
+
+			_getClonedAxis: function(value) {
+				var instance = this;
+
+				var clonedAxis = {};
+
+				for (var i in value) {
+					if (i == 'labelFunction') {
+						if (value.labelFunction && value.labelFunction !== null) {
+							clonedAxis.labelFunction = Chart.getFunctionReference(value.labelFunction);
+						}
 					}
-				}
-				else {
-					clonedAxis[i] = value[i];
-				}
-			}
-
-			return clonedAxis;
-		},
-
-		_setXAxis: function(value) {
-			var instance = this;
-
-			if (value.position != 'bottom' && value.position != 'top') {
-				value.position = 'bottom';
-			}
-
-			instance._removeAxisFunctions(instance._xAxisLabelFunctions);
-
-			value = instance._getClonedAxis(value);
-
-			instance._xAxisLabelFunctions.push(value.labelFunction);
-
-			instance._swf.setHorizontalAxis(value);
-
-			return value;
-		},
-
-		_setXAxes: function(value) {
-			var instance = this;
-
-			instance._removeAxisFunctions(instance._xAxisLabelFunctions);
-
-			for (var i = 0; i < value.length; i++) {
-				var val = value[i];
-
-				if (val.position == 'left') {
-					val.position = 'bottom';
-				}
-
-				value[i] = instance._getClonedAxis(val);
-
-				val = value[i];
-
-				if (val.labelFunction) {
-					instance._xAxisLabelFunctions.push(val.labelFunction);
-				}
-
-				instance._swf.setHorizontalAxis(val);
-			}
-		},
-
-		_setYAxis: function(value) {
-			var instance = this;
-
-			instance._removeAxisFunctions(instance._yAxisLabelFunctions);
-
-			value = instance._getClonedAxis(value);
-
-			instance._yAxisLabelFunctions.push(value.labelFunction);
-
-			instance._swf.setVerticalAxis(value);
-		},
-
-		_setYAxes: function(value) {
-			var instance = this;
-
-			instance._removeAxisFunctions(instance._yAxisLabelFunctions);
-
-			for (var i = 0; i < value.length; i++) {
-				value[i] = instance._getClonedAxis(value[i]);
-
-				var val = value[i];
-
-				if (val.labelFunction) {
-					instance._yAxisLabelFunctions.push(val.labelFunction);
-				}
-
-				instance._swf.setVerticalAxis(val);
-			}
-		},
-
-		_setConstrain2view: function(value) {
-			var instance = this;
-
-			instance._swf.setConstrainViewport(value);
-		},
-
-		setSeriesStylesByIndex: function(index, style) {
-			var instance = this;
-
-			if (instance._swf && instance._swf.setSeriesStylesByIndex) {
-				style = A.JSON.stringify(style);
-
-				instance._swf.setSeriesStylesByIndex(index, style);
-			}
-		},
-
-		_removeAxisFunctions: function(axisFunctions) {
-			var instance = this;
-
-			if (axisFunctions && axisFunctions.length) {
-				for (var i = 0; i < axisFunctions.length; i++) {
-					var axisFn = axisFunctions[i];
-
-					if (axisFn) {
-						A.Chart.removeProxyFunction(axisFn);
+					else {
+						clonedAxis[i] = value[i];
 					}
 				}
 
-				axisFunctions = [];
-			}
-		},
+				return clonedAxis;
+			},
 
-		_xAxisLabelFunctions: [],
-		_yAxisLabelFunctions: []
+			_setXAxis: function(value) {
+				var instance = this;
+
+				if (value.position != 'bottom' && value.position != 'top') {
+					value.position = 'bottom';
+				}
+
+				instance._removeAxisFunctions(instance._xAxisLabelFunctions);
+
+				value = instance._getClonedAxis(value);
+
+				instance._xAxisLabelFunctions.push(value.labelFunction);
+
+				instance._swf.setHorizontalAxis(value);
+
+				return value;
+			},
+
+			_setXAxes: function(value) {
+				var instance = this;
+
+				instance._removeAxisFunctions(instance._xAxisLabelFunctions);
+
+				for (var i = 0; i < value.length; i++) {
+					var val = value[i];
+
+					if (val.position == 'left') {
+						val.position = 'bottom';
+					}
+
+					value[i] = instance._getClonedAxis(val);
+
+					val = value[i];
+
+					if (val.labelFunction) {
+						instance._xAxisLabelFunctions.push(val.labelFunction);
+					}
+
+					instance._swf.setHorizontalAxis(val);
+				}
+			},
+
+			_setYAxis: function(value) {
+				var instance = this;
+
+				instance._removeAxisFunctions(instance._yAxisLabelFunctions);
+
+				value = instance._getClonedAxis(value);
+
+				instance._yAxisLabelFunctions.push(value.labelFunction);
+
+				instance._swf.setVerticalAxis(value);
+			},
+
+			_setYAxes: function(value) {
+				var instance = this;
+
+				instance._removeAxisFunctions(instance._yAxisLabelFunctions);
+
+				for (var i = 0; i < value.length; i++) {
+					value[i] = instance._getClonedAxis(value[i]);
+
+					var val = value[i];
+
+					if (val.labelFunction) {
+						instance._yAxisLabelFunctions.push(val.labelFunction);
+					}
+
+					instance._swf.setVerticalAxis(val);
+				}
+			},
+
+			_setConstrain2view: function(value) {
+				var instance = this;
+
+				instance._swf.setConstrainViewport(value);
+			},
+
+			setSeriesStylesByIndex: function(index, style) {
+				var instance = this;
+
+				if (instance._swf && instance._swf.setSeriesStylesByIndex) {
+					style = A.JSON.stringify(style);
+
+					instance._swf.setSeriesStylesByIndex(index, style);
+				}
+			},
+
+			_removeAxisFunctions: function(axisFunctions) {
+				var instance = this;
+
+				if (axisFunctions && axisFunctions.length) {
+					for (var i = 0; i < axisFunctions.length; i++) {
+						var axisFn = axisFunctions[i];
+
+						if (axisFn) {
+							A.Chart.removeProxyFunction(axisFn);
+						}
+					}
+
+					axisFunctions = [];
+				}
+			},
+
+			_xAxisLabelFunctions: [],
+			_yAxisLabelFunctions: []
+		}
 	}
 );
 
@@ -813,19 +806,19 @@ var Lang = A.Lang,
 
 	CSS_LINECHART = getClassName(NAME);
 
-var LineChart = function() {
-	LineChart.superclass.constructor.apply(this, arguments);
-};
+var LineChart = A.Component.create(
+	{
+		NAME: NAME,
 
-LineChart.NAME = NAME;
+		ATTRS: {
+			type: {
+				value: 'line'
+			}
+		},
 
-LineChart.ATTRS = {
-	type: {
-		value: 'line'
+		EXTENDS: A.CartesianChart
 	}
-};
-
-A.extend(LineChart, A.CartesianChart);
+);
 
 A.LineChart = LineChart;
 
@@ -837,19 +830,19 @@ var Lang = A.Lang,
 
 	CSS_COLUMNCHART = getClassName(NAME);
 
-var ColumnChart = function() {
-	ColumnChart.superclass.constructor.apply(this, arguments);
-};
+var ColumnChart = A.Component.create(
+	{
+		NAME: NAME,
 
-ColumnChart.NAME = NAME;
+		ATTRS: {
+			type: {
+				value: 'column'
+			}
+		},
 
-ColumnChart.ATTRS = {
-	type: {
-		value: 'column'
+		EXTENDS: A.CartesianChart
 	}
-};
-
-A.extend(ColumnChart, A.CartesianChart);
+);
 
 A.ColumnChart = ColumnChart;
 
@@ -861,19 +854,19 @@ var Lang = A.Lang,
 
 	CSS_BARCHART = getClassName(NAME);
 
-var BarChart = function() {
-	BarChart.superclass.constructor.apply(this, arguments);
-};
+var BarChart = A.Component.create(
+	{
+		NAME: NAME,
 
-BarChart.NAME = NAME;
+		ATTRS: {
+			type: {
+				value: 'bar'
+			}
+		},
 
-BarChart.ATTRS = {
-	type: {
-		value: 'bar'
+		EXTENDS: A.CartesianChart
 	}
-};
-
-A.extend(BarChart, A.CartesianChart);
+);
 
 A.BarChart = BarChart;
 
@@ -885,19 +878,19 @@ var Lang = A.Lang,
 
 	CSS_STACKEDCOLUMNCHART = getClassName(NAME);
 
-var StackedColumnChart = function() {
-	StackedColumnChart.superclass.constructor.apply(this, arguments);
-};
+var StackedColumnChart = A.Component.create(
+	{
+		NAME: NAME,
 
-StackedColumnChart.NAME = NAME;
+		ATTRS: {
+			type: {
+				value: 'stackcolumn'
+			}
+		},
 
-StackedColumnChart.ATTRS = {
-	type: {
-		value: 'stackcolumn'
+		EXTENDS: A.CartesianChart
 	}
-};
-
-A.extend(StackedColumnChart, A.CartesianChart);
+);
 
 A.StackedColumnChart = StackedColumnChart;
 
@@ -909,19 +902,19 @@ var Lang = A.Lang,
 
 	CSS_STACKEDBARCHART = getClassName(NAME);
 
-var StackedBarChart = function() {
-	StackedBarChart.superclass.constructor.apply(this, arguments);
-};
+var StackedBarChart = A.Component.create(
+	{
+		NAME: NAME,
 
-StackedBarChart.NAME = NAME;
+		ATTRS: {
+			type: {
+				value: 'stackbar'
+			}
+		},
 
-StackedBarChart.ATTRS = {
-	type: {
-		value: 'stackbar'
+		EXTENDS: A.CartesianChart
 	}
-};
-
-A.extend(StackedBarChart, A.CartesianChart);
+);
 
 A.StackedBarChart = StackedBarChart;
 
@@ -1118,4 +1111,4 @@ A.extend(
 
 A.Chart.StackedColumnSeries = StackedColumnSeries;
 
-}, '@VERSION@' ,{skinnable:false, requires:['datasource','aui-swf','json']});
+}, '@VERSION@' ,{requires:['datasource','aui-swf','json'], skinnable:false});

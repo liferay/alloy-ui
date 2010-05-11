@@ -29,586 +29,578 @@ var Lang = A.Lang,
 	TPL_CONTENT_ITEM = TPL_DIV,
 	TPL_CONTENT_CONTAINER = TPL_DIV;
 
-var Tab = function() {
-	Tab.superclass.constructor.apply(this, arguments);
-};
-
-Tab.NAME = TAB;
-
-Tab.ATTRS = {
-	label: {
-		lazyAdd: false,
-		valueFn: function() {
-			var instance = this;
-
-			var boundingBox = instance.get(BOUNDING_BOX);
-
-			var label = boundingBox.one('.' + CSS_TAB_LABEL);
-
-			var value;
-
-			if (label) {
-				value = label.html();
-
-				instance.set('labelNode', label);
-			}
-			else {
-				value = boundingBox.html();
-				boundingBox.html('');
-			}
-
-			return value;
-		},
-
-		setter: function(value) {
-			var instance = this;
-
-			var labelNode = instance.get('labelNode');
-
-			labelNode.html(value);
-
-			return value;
-		}
-	},
-
-	labelNode: {
-		valueFn: function() {
-			var instance = this;
-
-			var labelNode = instance.get(BOUNDING_BOX).one('.' + CSS_TAB_LABEL);
-
-			if (!labelNode) {
-				labelNode = instance._createDefaultLabel();
-			}
-
-			instance.get(CONTENT_BOX).appendChild(labelNode);
-
-			return labelNode;
-		},
-		setter: function(value) {
-			var instance = this;
-
-			var node = A.Node.get(value);
-
-			if (!node) {
-				node = instance._createDefaultLabel();
-
-				instance.get(CONTENT_BOX).appendChild(node);
-			}
-
-			node.addClass(CSS_TAB_LABEL);
-
-			return node;
-		}
-	},
-
-	contentNode: {
-		value: null,
-		setter: function(value) {
-			var instance = this;
-
-			var node = A.Node.get(value);
-
-			if (!node) {
-				node = instance._createDefaultContentEl();
-
-				instance.get(CONTENT_BOX).prepend(node);
-			}
-
-			node.addClass(CSS_TABVIEW_CONTENT);
-
-			var current = instance.get(CONTENT_NODE);
-
-			if (current) {
-				if (!instance.get('active')) {
-					node.addClass(CSS_HIDDEN);
-				}
-
-				var currentHTML = node.html();
-
-				instance.set('content', currentHTML);
-			}
-
-			return node;
-		}
-	},
-
-	content: {
-		lazyAdd: false,
-		valueFn: function() {
-			var instance = this;
-
-			var value = '';
-			var contentNode = instance.get(CONTENT_NODE);
-
-			if (contentNode) {
-				value = contentNode.html();
-			}
-
-			return value;
-		},
-		setter: function(value) {
-			var instance = this;
-
-			var node = instance.get(CONTENT_NODE);
-
-			var currentHTML = node.html();
-
-			if (currentHTML != value) {
-				node.html(value);
-			}
-
-			return value;
-		}
-	},
-
-	active: {
-		valueFn: function() {
-			var instance = this;
-
-			return instance.get(BOUNDING_BOX).hasClass(CSS_TAB_ACTIVE);
-		},
-		validator: function(value) {
-			var instance = this;
-
-			return Lang.isBoolean(value) && !instance.get('disabled');
-		},
-		setter: function(value) {
-			var instance = this;
-
-			var action = 'addClass';
-			var boundingBox = instance.get(BOUNDING_BOX);
-
-			if (value === false) {
-				action = 'removeClass';
-			}
-
-			instance.StateInteraction.set('active', value);
-
-			boundingBox[action](CSS_TAB_ACTIVE);
-
-			instance.set('contentVisible', value);
-
-			return value;
-		}
-	},
-
-	disabled: {
-		valueFn: function() {
-			var instance = this;
-
-			return instance.get(BOUNDING_BOX).hasClass(CSS_TAB_DISABLED);
-		},
-		setter: function(value) {
-			var instance = this;
-
-			var action = 'addClass';
-			var boundingBox = instance.get(BOUNDING_BOX);
-
-			if (value === false) {
-				action = 'removeClass';
-			}
-
-			boundingBox[action](CSS_TAB_DISABLED);
-
-			return value;
-		}
-	},
-
-	contentVisible: {
-		value: false,
-		setter: function(value) {
-			var instance = this;
-
-			var action = 'addClass';
-			var contentNode = instance.get(CONTENT_NODE);
-
-			if (value === true) {
-				action = 'removeClass';
-			}
-
-			if (!instance.get('active')) {
-				contentNode[action](CSS_HIDDEN);
-			}
-
-			return value;
-		}
-	},
-
-	tabView: {
-		value: null
-	}
-};
-
-A.extend(
-	Tab,
-	A.Component,
+var Tab = A.Component.create(
 	{
-		BOUNDING_TEMPLATE: '<li></li>',
-		CONTENT_TEMPLATE: '<span></span>',
-		bindUI: function() {
-			var instance = this;
+		NAME: TAB,
 
-			var boundingBox = instance.get(BOUNDING_BOX);
+		ATTRS: {
+			label: {
+				lazyAdd: false,
+				valueFn: function() {
+					var instance = this;
 
-			boundingBox.plug(
-				A.StateInteractionPlugin,
-				{
-					bubbleTarget: instance
+					var boundingBox = instance.get(BOUNDING_BOX);
+
+					var label = boundingBox.one('.' + CSS_TAB_LABEL);
+
+					var value;
+
+					if (label) {
+						value = label.html();
+
+						instance.set('labelNode', label);
+					}
+					else {
+						value = boundingBox.html();
+						boundingBox.html('');
+					}
+
+					return value;
+				},
+
+				setter: function(value) {
+					var instance = this;
+
+					var labelNode = instance.get('labelNode');
+
+					labelNode.html(value);
+
+					return value;
 				}
-			);
+			},
 
-			boundingBox.StateInteraction.on('click', instance._onActivateTab, instance);
+			labelNode: {
+				valueFn: function() {
+					var instance = this;
 
-			instance.StateInteraction = boundingBox.StateInteraction;
+					var labelNode = instance.get(BOUNDING_BOX).one('.' + CSS_TAB_LABEL);
 
-			instance.get('labelNode').on('click', instance._onLabelClick, instance);
+					if (!labelNode) {
+						labelNode = instance._createDefaultLabel();
+					}
+
+					instance.get(CONTENT_BOX).appendChild(labelNode);
+
+					return labelNode;
+				},
+				setter: function(value) {
+					var instance = this;
+
+					var node = A.Node.get(value);
+
+					if (!node) {
+						node = instance._createDefaultLabel();
+
+						instance.get(CONTENT_BOX).appendChild(node);
+					}
+
+					node.addClass(CSS_TAB_LABEL);
+
+					return node;
+				}
+			},
+
+			contentNode: {
+				value: null,
+				setter: function(value) {
+					var instance = this;
+
+					var node = A.Node.get(value);
+
+					if (!node) {
+						node = instance._createDefaultContentEl();
+
+						instance.get(CONTENT_BOX).prepend(node);
+					}
+
+					node.addClass(CSS_TABVIEW_CONTENT);
+
+					var current = instance.get(CONTENT_NODE);
+
+					if (current) {
+						if (!instance.get('active')) {
+							node.addClass(CSS_HIDDEN);
+						}
+
+						var currentHTML = node.html();
+
+						instance.set('content', currentHTML);
+					}
+
+					return node;
+				}
+			},
+
+			content: {
+				lazyAdd: false,
+				valueFn: function() {
+					var instance = this;
+
+					var value = '';
+					var contentNode = instance.get(CONTENT_NODE);
+
+					if (contentNode) {
+						value = contentNode.html();
+					}
+
+					return value;
+				},
+				setter: function(value) {
+					var instance = this;
+
+					var node = instance.get(CONTENT_NODE);
+
+					var currentHTML = node.html();
+
+					if (currentHTML != value) {
+						node.html(value);
+					}
+
+					return value;
+				}
+			},
+
+			active: {
+				valueFn: function() {
+					var instance = this;
+
+					return instance.get(BOUNDING_BOX).hasClass(CSS_TAB_ACTIVE);
+				},
+				validator: function(value) {
+					var instance = this;
+
+					return Lang.isBoolean(value) && !instance.get('disabled');
+				},
+				setter: function(value) {
+					var instance = this;
+
+					var action = 'addClass';
+					var boundingBox = instance.get(BOUNDING_BOX);
+
+					if (value === false) {
+						action = 'removeClass';
+					}
+
+					instance.StateInteraction.set('active', value);
+
+					boundingBox[action](CSS_TAB_ACTIVE);
+
+					instance.set('contentVisible', value);
+
+					return value;
+				}
+			},
+
+			disabled: {
+				valueFn: function() {
+					var instance = this;
+
+					return instance.get(BOUNDING_BOX).hasClass(CSS_TAB_DISABLED);
+				},
+				setter: function(value) {
+					var instance = this;
+
+					var action = 'addClass';
+					var boundingBox = instance.get(BOUNDING_BOX);
+
+					if (value === false) {
+						action = 'removeClass';
+					}
+
+					boundingBox[action](CSS_TAB_DISABLED);
+
+					return value;
+				}
+			},
+
+			contentVisible: {
+				value: false,
+				setter: function(value) {
+					var instance = this;
+
+					var action = 'addClass';
+					var contentNode = instance.get(CONTENT_NODE);
+
+					if (value === true) {
+						action = 'removeClass';
+					}
+
+					if (!instance.get('active')) {
+						contentNode[action](CSS_HIDDEN);
+					}
+
+					return value;
+				}
+			},
+
+			tabView: {
+				value: null
+			}
 		},
 
-		_createDefaultLabel: function() {
-			var instance = this;
+		prototype: {
+			BOUNDING_TEMPLATE: '<li></li>',
+			CONTENT_TEMPLATE: '<span></span>',
+			bindUI: function() {
+				var instance = this;
 
-			return A.Node.create(TPL_LABEL);
-		},
+				var boundingBox = instance.get(BOUNDING_BOX);
 
-		_createDefaultContentEl: function() {
-			var instance = this;
+				boundingBox.plug(
+					A.StateInteractionPlugin,
+					{
+						bubbleTarget: instance
+					}
+				);
 
-			return A.Node.create(TPL_CONTENT_ITEM);
-		},
+				boundingBox.StateInteraction.on('click', instance._onActivateTab, instance);
 
-		_onActivateTab: function(event) {
-			var instance = this;
+				instance.StateInteraction = boundingBox.StateInteraction;
 
-			event.halt();
+				instance.get('labelNode').on('click', instance._onLabelClick, instance);
+			},
 
-			var tabView = instance.get('tabView');
+			_createDefaultLabel: function() {
+				var instance = this;
 
-			tabView.set('activeTab', instance);
-		},
+				return A.Node.create(TPL_LABEL);
+			},
 
-		_onLabelClick: function(event) {
-			event.preventDefault();
+			_createDefaultContentEl: function() {
+				var instance = this;
+
+				return A.Node.create(TPL_CONTENT_ITEM);
+			},
+
+			_onActivateTab: function(event) {
+				var instance = this;
+
+				event.halt();
+
+				var tabView = instance.get('tabView');
+
+				tabView.set('activeTab', instance);
+			},
+
+			_onLabelClick: function(event) {
+				event.preventDefault();
+			}
 		}
 	}
 );
 
 A.Tab = Tab;
 
-var TabView = function() {
-	TabView.superclass.constructor.apply(this, arguments);
-};
-
-TabView.NAME = TABVIEW;
-
-TabView.ATTRS = {
-	listNode: {
-		value: null,
-		setter: function(value) {
-			var instance = this;
-
-			var node = A.Node.get(value);
-
-			if (!node) {
-				node = instance._createDefaultList();
-			}
-
-			instance.get(CONTENT_BOX).prepend(node);
-
-			node.addClass(CSS_TABVIEW_LIST);
-
-			return node;
-		}
-	},
-
-	contentNode: {
-		value: null,
-		setter: function(value) {
-			var instance = this;
-
-			var node = A.Node.get(value);
-
-			if (!node) {
-				node = instance._createDefaultContentContainer();
-			}
-
-			instance.get(CONTENT_BOX).appendChild(node);
-
-			node.addClass(CSS_TABVIEW_CONTENT);
-
-			return node;
-		}
-	},
-
-	items: {
-		value: []
-	},
-
-	activeTab: {
-		value: null,
-		setter: function(value) {
-			var instance = this;
-
-			var activeTab = instance.get('activeTab');
-
-			if (activeTab) {
-				if (activeTab != value) {
-					activeTab.set('active', false);
-				}
-				else if (activeTab.get('disabled')) {
-					value = null;
-				}
-			}
-
-			return value;
-		}
-	}
-};
-
-A.extend(
-	TabView,
-	A.Component,
+var TabView = A.Component.create(
 	{
-		renderUI: function() {
-			var instance = this;
+		NAME: TABVIEW,
 
-			instance.after('activeTabChange', instance._onActiveTabChange);
+		ATTRS: {
+			listNode: {
+				value: null,
+				setter: function(value) {
+					var instance = this;
 
-			instance._renderContentSections();
-			instance._renderTabs();
-		},
+					var node = A.Node.get(value);
 
-		addTab: function(tab, index) {
-			var instance = this;
+					if (!node) {
+						node = instance._createDefaultList();
+					}
 
-			var before = instance.getTab(index);
+					instance.get(CONTENT_BOX).prepend(node);
 
-			var items = instance.get('items');
+					node.addClass(CSS_TABVIEW_LIST);
 
-			if (Lang.isUndefined(index)) {
-				index = A.Array.indexOf(items, tab);
-			}
+					return node;
+				}
+			},
 
-			var inArray = index > -1;
+			contentNode: {
+				value: null,
+				setter: function(value) {
+					var instance = this;
 
-			if (!inArray) {
-				index = items.length;
+					var node = A.Node.get(value);
 
-				items.splice(index, 0, tab);
-			}
+					if (!node) {
+						node = instance._createDefaultContentContainer();
+					}
 
-			if (!instance.get('rendered') && !inArray) {
-				return;
-			}
+					instance.get(CONTENT_BOX).appendChild(node);
 
-			if (!(tab instanceof Tab)) {
-				tab = new Tab(tab);
+					node.addClass(CSS_TABVIEW_CONTENT);
 
-				items.splice(index, 1, tab);
-			}
+					return node;
+				}
+			},
 
-			var listNode = instance.get('listNode');
+			items: {
+				value: []
+			},
 
-			tab.render(listNode);
+			activeTab: {
+				value: null,
+				setter: function(value) {
+					var instance = this;
 
-			if (before) {
-				listNode.insert(tab.get(BOUNDING_BOX), before.get(BOUNDING_BOX));
-			}
-			else {
-				listNode.appendChild(tab.get(BOUNDING_BOX));
-			}
+					var activeTab = instance.get('activeTab');
 
-			var tabContentNode = tab.get(CONTENT_NODE);
+					if (activeTab) {
+						if (activeTab != value) {
+							activeTab.set('active', false);
+						}
+						else if (activeTab.get('disabled')) {
+							value = null;
+						}
+					}
 
-			var tabViewContentNode = instance.get(CONTENT_NODE);
-
-			if (!tabViewContentNode.contains(tabContentNode)) {
-				tabViewContentNode.appendChild(tabContentNode);
-			}
-
-			if (tab.get('active')) {
-				instance.set('activeTab', tab);
-			}
-
-			tab.set('tabView', instance);
-		},
-
-		deselectTab: function(index){
-			var instance = this;
-
-			if (instance.getTab(index) === instance.get('activeTab')) {
-				instance.set('activeTab', null);
+					return value;
+				}
 			}
 		},
 
-		disableTab: function(index){
-			var instance = this;
+		prototype: {
+			renderUI: function() {
+				var instance = this;
 
-			var tab;
+				instance.after('activeTabChange', instance._onActiveTabChange);
 
-			if (Lang.isNumber(index)) {
-				tab = instance.getTab(index);
-			}
-			else {
-				tab = index;
-			}
+				instance._renderContentSections();
+				instance._renderTabs();
+			},
 
-			if (tab) {
-				tab.set('disabled', true);
-			}
-		},
+			addTab: function(tab, index) {
+				var instance = this;
 
-		enableTab: function(index){
-			var instance = this;
+				var before = instance.getTab(index);
 
-			var tab;
-
-			if (Lang.isNumber(index)) {
-				tab = instance.getTab(index);
-			}
-			else {
-				tab = index;
-			}
-
-			if (tab) {
-				tab.set('disabled', false);
-			}
-		},
-
-		getTab: function(index){
-			var instance = this;
-
-			return instance.get('items')[index];
-		},
-
-		getTabIndex: function(tab){
-			var instance = this;
-
-			var items = instance.get('items');
-
-			return A.Array.indexOf(items, tab);
-		},
-
-		removeTab: function(index){
-			var instance = this;
-
-			var tab;
-
-			if (Lang.isNumber(index)) {
-				tab = instance.getTab(index);
-			}
-			else {
-				tab = index;
-			}
-
-			if (tab) {
 				var items = instance.get('items');
 
-				var tabCount = items.length;
+				if (Lang.isUndefined(index)) {
+					index = A.Array.indexOf(items, tab);
+				}
 
-				if (tab === instance.get('activeTab')) {
-					if (tabCount > 1) {
-						if (index + 1 === tabCount) {
-							instance.selectTab(index - 1);
+				var inArray = index > -1;
+
+				if (!inArray) {
+					index = items.length;
+
+					items.splice(index, 0, tab);
+				}
+
+				if (!instance.get('rendered') && !inArray) {
+					return;
+				}
+
+				if (!(tab instanceof Tab)) {
+					tab = new Tab(tab);
+
+					items.splice(index, 1, tab);
+				}
+
+				var listNode = instance.get('listNode');
+
+				tab.render(listNode);
+
+				if (before) {
+					listNode.insert(tab.get(BOUNDING_BOX), before.get(BOUNDING_BOX));
+				}
+				else {
+					listNode.appendChild(tab.get(BOUNDING_BOX));
+				}
+
+				var tabContentNode = tab.get(CONTENT_NODE);
+
+				var tabViewContentNode = instance.get(CONTENT_NODE);
+
+				if (!tabViewContentNode.contains(tabContentNode)) {
+					tabViewContentNode.appendChild(tabContentNode);
+				}
+
+				if (tab.get('active')) {
+					instance.set('activeTab', tab);
+				}
+
+				tab.set('tabView', instance);
+			},
+
+			deselectTab: function(index){
+				var instance = this;
+
+				if (instance.getTab(index) === instance.get('activeTab')) {
+					instance.set('activeTab', null);
+				}
+			},
+
+			disableTab: function(index){
+				var instance = this;
+
+				var tab;
+
+				if (Lang.isNumber(index)) {
+					tab = instance.getTab(index);
+				}
+				else {
+					tab = index;
+				}
+
+				if (tab) {
+					tab.set('disabled', true);
+				}
+			},
+
+			enableTab: function(index){
+				var instance = this;
+
+				var tab;
+
+				if (Lang.isNumber(index)) {
+					tab = instance.getTab(index);
+				}
+				else {
+					tab = index;
+				}
+
+				if (tab) {
+					tab.set('disabled', false);
+				}
+			},
+
+			getTab: function(index){
+				var instance = this;
+
+				return instance.get('items')[index];
+			},
+
+			getTabIndex: function(tab){
+				var instance = this;
+
+				var items = instance.get('items');
+
+				return A.Array.indexOf(items, tab);
+			},
+
+			removeTab: function(index){
+				var instance = this;
+
+				var tab;
+
+				if (Lang.isNumber(index)) {
+					tab = instance.getTab(index);
+				}
+				else {
+					tab = index;
+				}
+
+				if (tab) {
+					var items = instance.get('items');
+
+					var tabCount = items.length;
+
+					if (tab === instance.get('activeTab')) {
+						if (tabCount > 1) {
+							if (index + 1 === tabCount) {
+								instance.selectTab(index - 1);
+							}
+							else {
+								instance.selectTab(index + 1);
+							}
 						}
 						else {
-							instance.selectTab(index + 1);
+							instance.set('activeTab', null);
 						}
 					}
-					else {
-						instance.set('activeTab', null);
+
+					tab.destroy();
+
+					items.splice(index, 1);
+				}
+			},
+
+			selectTab: function(index){
+				var instance = this;
+
+				var selectedTab = instance.getTab(index);
+
+				instance.set('activeTab', selectedTab);
+			},
+
+			_createDefaultList: function() {
+				var instance = this;
+
+				return A.Node.create(TPL_TAB_CONTAINER);
+			},
+
+			_createDefaultContentContainer: function() {
+				var instance = this;
+
+				return A.Node.create(TPL_CONTENT_CONTAINER);
+			},
+
+			_onActiveTabChange: function(event) {
+				var instance = this;
+
+				var oldTab = event.prevVal;
+				var newTab = event.newVal;
+
+				if (newTab) {
+					newTab.set('active', true);
+				}
+
+				if (newTab != oldTab) {
+					if (oldTab) {
+						oldTab.set('active', false);
 					}
 				}
+			},
 
-				tab.destroy();
+			_renderContentSections: function() {
+				var instance = this;
 
-				items.splice(index, 1);
-			}
-		},
+				instance._renderSection('list');
+				instance._renderSection('content');
+			},
 
-		selectTab: function(index){
-			var instance = this;
+			_renderSection: function(section) {
+				var instance = this;
 
-			var selectedTab = instance.getTab(index);
+				instance.get(section + 'Node');
+			},
 
-			instance.set('activeTab', selectedTab);
-		},
+			_renderTabs: function() {
+				var instance = this;
 
-		_createDefaultList: function() {
-			var instance = this;
+				var contentNode = instance.get(CONTENT_NODE);
+				var listNode = instance.get('listNode');
 
-			return A.Node.create(TPL_TAB_CONTAINER);
-		},
+				var tabs = listNode.get('children');
+				var tabContent = contentNode.get('children');
 
-		_createDefaultContentContainer: function() {
-			var instance = this;
+				var items = instance.get('items');
 
-			return A.Node.create(TPL_CONTENT_CONTAINER);
-		},
+				var tabContentBoxClass = '.' + CSS_TAB_CONTENT;
 
-		_onActiveTabChange: function(event) {
-			var instance = this;
+				tabs.each(
+					function(node, i, nodeList) {
+						var config = {
+							boundingBox: node,
+							contentBox: node.one(tabContentBoxClass),
+							contentNode: tabContent.item(i)
+						};
 
-			var oldTab = event.prevVal;
-			var newTab = event.newVal;
+						items.splice(i, 0, config);
+					}
+				);
 
-			if (newTab) {
-				newTab.set('active', true);
-			}
+				var length = items.length;
 
-			if (newTab != oldTab) {
-				if (oldTab) {
-					oldTab.set('active', false);
+				for (var i = 0; i < items.length; i++) {
+					instance.addTab(items[i]);
 				}
-			}
-		},
 
-		_renderContentSections: function() {
-			var instance = this;
-
-			instance._renderSection('list');
-			instance._renderSection('content');
-		},
-
-		_renderSection: function(section) {
-			var instance = this;
-
-			instance.get(section + 'Node');
-		},
-
-		_renderTabs: function() {
-			var instance = this;
-
-			var contentNode = instance.get(CONTENT_NODE);
-			var listNode = instance.get('listNode');
-
-			var tabs = listNode.get('children');
-			var tabContent = contentNode.get('children');
-
-			var items = instance.get('items');
-
-			var tabContentBoxClass = '.' + CSS_TAB_CONTENT;
-
-			tabs.each(
-				function(node, i, nodeList) {
-					var config = {
-						boundingBox: node,
-						contentBox: node.one(tabContentBoxClass),
-						contentNode: tabContent.item(i)
-					};
-
-					items.splice(i, 0, config);
+				if (!instance.get('activeTab')) {
+					instance.selectTab(0);
 				}
-			);
-
-			var length = items.length;
-
-			for (var i = 0; i < items.length; i++) {
-				instance.addTab(items[i]);
-			}
-
-			if (!instance.get('activeTab')) {
-				instance.selectTab(0);
 			}
 		}
 	}

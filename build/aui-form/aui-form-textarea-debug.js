@@ -19,211 +19,207 @@ var Lang = A.Lang,
 	TPL_HEIGHT_MONITOR_CLOSE = '</pre>',
 	TPL_INPUT = '<textarea autocomplete="off" class="{cssClass}" name="{name}"></textarea>';
 
-var Textarea = function() {
-	Textarea.superclass.constructor.apply(this, arguments);
-};
-
-Textarea.NAME = NAME;
-
-var textareaPrototype = Textarea.prototype;
-
-Textarea.ATTRS = {
-	autoSize: {
-		value: true
-	},
-
-	height: {
-		value: 'auto'
-	},
-
-	maxHeight: {
-		value: 1000,
-		setter: textareaPrototype._setAutoDimension
-	},
-
-	minHeight: {
-		value: 45,
-		setter: textareaPrototype._setAutoDimension
-	},
-
-	width: {
-		value: 'auto',
-		setter: textareaPrototype._setAutoDimension
-	}
-};
-
-Textarea.HTML_PARSER = {
-	node: 'textarea'
-};
-
-A.extend(
-	Textarea,
-	A.Textfield,
+var Textarea = A.Component.create(
 	{
-		FIELD_TEMPLATE: TPL_INPUT,
-		renderUI: function() {
-			var instance = this;
+		NAME: NAME,
 
-			Textarea.superclass.renderUI.call(instance);
+		ATTRS: {
+			autoSize: {
+				value: true
+			},
 
-			if (instance.get('autoSize')) {
-				instance._renderHeightMonitor();
+			height: {
+				value: 'auto'
+			},
+
+			maxHeight: {
+				value: 1000,
+				setter: '_setAutoDimension'
+			},
+
+			minHeight: {
+				value: 45,
+				setter: '_setAutoDimension'
+			},
+
+			width: {
+				value: 'auto',
+				setter: '_setAutoDimension'
 			}
 		},
 
-		bindUI: function() {
-			var instance = this;
-
-			Textarea.superclass.bindUI.call(instance);
-
-			if (instance.get('autoSize')) {
-				instance.get('node').on('keyup', instance._onKeyup, instance);
-			}
-
-			instance.after('adjustSize', instance._uiAutoSize);
-
-			instance.after('heightChange', instance._afterHeightChange);
-			instance.after('widthChange', instance._afterWidthChange);
+		HTML_PARSER: {
+			node: 'textarea'
 		},
 
-		syncUI: function() {
-			var instance = this;
+		EXTENDS: A.Textfield,
 
-			Textarea.superclass.syncUI.call(instance);
+		prototype: {
+			FIELD_TEMPLATE: TPL_INPUT,
+			renderUI: function() {
+				var instance = this;
 
-			instance._setAutoDimension(instance.get('minHeight'), 'minHeight');
-			instance._setAutoDimension(instance.get('maxHeight'), 'maxHeight');
+				Textarea.superclass.renderUI.call(instance);
 
-			var width = instance.get('width');
-			var height = instance.get('minHeight');
-
-			instance._setAutoDimension(width, 'width');
-
-			instance._uiSetDim('height', height);
-			instance._uiSetDim('width', width);
-		},
-
-		_afterHeightChange: function(event) {
-			var instance = this;
-
-			instance._uiSetDim('height', event.newVal, event.prevVal);
-		},
-
-		_afterWidthChange: function(event) {
-			var instance = this;
-
-			instance._uiSetDim('width', event.newVal, event.prevVal);
-		},
-
-		_onKeyup: function(event) {
-			var instance = this;
-
-			instance.fire('adjustSize');
-		},
-
-		_renderHeightMonitor: function() {
-			var instance = this;
-
-			var heightMonitor = A.Node.create(TPL_HEIGHT_MONITOR_OPEN + TPL_HEIGHT_MONITOR_CLOSE);
-			var node = instance.get('node');
-
-			A.getBody().append(heightMonitor);
-
-			instance._heightMonitor = heightMonitor;
-
-			var fontFamily = node.getComputedStyle('fontFamily');
-			var fontSize = node.getComputedStyle('fontSize');
-			var fontWeight = node.getComputedStyle('fontWeight');
-			var lineHeight = node.getComputedStyle('fontSize');
-
-			node.setStyle('height', instance.get('minHeight') + 'px');
-
-			heightMonitor.setStyles(
-				{
-					fontFamily: fontFamily,
-					fontSize: fontSize,
-					fontWeight: fontWeight
+				if (instance.get('autoSize')) {
+					instance._renderHeightMonitor();
 				}
-			);
+			},
 
-			if ('outerHTML' in heightMonitor.getDOM()) {
-				instance._updateContent = instance._updateOuterContent;
-			}
-			else {
-				instance._updateContent = instance._updateInnerContent;
-			}
-		},
+			bindUI: function() {
+				var instance = this;
 
-		_setAutoDimension: function(value, key) {
-			var instance = this;
+				Textarea.superclass.bindUI.call(instance);
 
-			instance['_' + key] = value;
-		},
+				if (instance.get('autoSize')) {
+					instance.get('node').on('keyup', instance._onKeyup, instance);
+				}
 
-		_uiAutoSize: function() {
-			var instance = this;
+				instance.after('adjustSize', instance._uiAutoSize);
 
-			var node = instance.get('node');
-			var heightMonitor = instance._heightMonitor;
+				instance.after('heightChange', instance._afterHeightChange);
+				instance.after('widthChange', instance._afterWidthChange);
+			},
 
-			var minHeight = instance._minHeight;
-			var maxHeight = instance._maxHeight;
+			syncUI: function() {
+				var instance = this;
 
-			var content = node.val();
-			var textNode = document.createTextNode(content);
+				Textarea.superclass.syncUI.call(instance);
 
-			heightMonitor.set('innerHTML', '');
+				instance._setAutoDimension(instance.get('minHeight'), 'minHeight');
+				instance._setAutoDimension(instance.get('maxHeight'), 'maxHeight');
 
-			heightMonitor.appendChild(textNode);
+				var width = instance.get('width');
+				var height = instance.get('minHeight');
 
-			heightMonitor.setStyle('width', node.getComputedStyle('width'));
-
-			content = heightMonitor.get('innerHTML');
-
-			if (!content.length) {
-				content = DEFAULT_EMPTY_CONTENT;
-			}
-			else {
-				content += DEFAULT_APPEND_CONTENT;
-			}
-
-			instance._updateContent(content);
-
-			var height = Math.max(heightMonitor.get('offsetHeight'), minHeight);
-
-			height = Math.min(height, maxHeight);
-
-			if (height != instance._lastHeight) {
-				instance._lastHeight = height;
+				instance._setAutoDimension(width, 'width');
 
 				instance._uiSetDim('height', height);
+				instance._uiSetDim('width', width);
+			},
+
+			_afterHeightChange: function(event) {
+				var instance = this;
+
+				instance._uiSetDim('height', event.newVal, event.prevVal);
+			},
+
+			_afterWidthChange: function(event) {
+				var instance = this;
+
+				instance._uiSetDim('width', event.newVal, event.prevVal);
+			},
+
+			_onKeyup: function(event) {
+				var instance = this;
+
+				instance.fire('adjustSize');
+			},
+
+			_renderHeightMonitor: function() {
+				var instance = this;
+
+				var heightMonitor = A.Node.create(TPL_HEIGHT_MONITOR_OPEN + TPL_HEIGHT_MONITOR_CLOSE);
+				var node = instance.get('node');
+
+				A.getBody().append(heightMonitor);
+
+				instance._heightMonitor = heightMonitor;
+
+				var fontFamily = node.getComputedStyle('fontFamily');
+				var fontSize = node.getComputedStyle('fontSize');
+				var fontWeight = node.getComputedStyle('fontWeight');
+				var lineHeight = node.getComputedStyle('fontSize');
+
+				node.setStyle('height', instance.get('minHeight') + 'px');
+
+				heightMonitor.setStyles(
+					{
+						fontFamily: fontFamily,
+						fontSize: fontSize,
+						fontWeight: fontWeight
+					}
+				);
+
+				if ('outerHTML' in heightMonitor.getDOM()) {
+					instance._updateContent = instance._updateOuterContent;
+				}
+				else {
+					instance._updateContent = instance._updateInnerContent;
+				}
+			},
+
+			_setAutoDimension: function(value, key) {
+				var instance = this;
+
+				instance['_' + key] = value;
+			},
+
+			_uiAutoSize: function() {
+				var instance = this;
+
+				var node = instance.get('node');
+				var heightMonitor = instance._heightMonitor;
+
+				var minHeight = instance._minHeight;
+				var maxHeight = instance._maxHeight;
+
+				var content = node.val();
+				var textNode = document.createTextNode(content);
+
+				heightMonitor.set('innerHTML', '');
+
+				heightMonitor.appendChild(textNode);
+
+				heightMonitor.setStyle('width', node.getComputedStyle('width'));
+
+				content = heightMonitor.get('innerHTML');
+
+				if (!content.length) {
+					content = DEFAULT_EMPTY_CONTENT;
+				}
+				else {
+					content += DEFAULT_APPEND_CONTENT;
+				}
+
+				instance._updateContent(content);
+
+				var height = Math.max(heightMonitor.get('offsetHeight'), minHeight);
+
+				height = Math.min(height, maxHeight);
+
+				if (height != instance._lastHeight) {
+					instance._lastHeight = height;
+
+					instance._uiSetDim('height', height);
+				}
+			},
+
+			_uiSetDim: function(key, newVal) {
+				var instance = this;
+
+				var node = instance.get('node');
+
+				if (Lang.isNumber(newVal)) {
+					newVal += 'px';
+				}
+
+				node.setStyle(key, newVal);
+			},
+
+			_updateInnerContent: function(content) {
+				var instance = this;
+
+				return instance._heightMonitor.set('innerHTML', content);
+			},
+
+			_updateOuterContent: function(content) {
+				var instance = this;
+
+				content = content.replace(/\n/g, '<br />');
+
+				return instance._updateInnerContent(content);
 			}
-		},
-
-		_uiSetDim: function(key, newVal) {
-			var instance = this;
-
-			var node = instance.get('node');
-
-			if (Lang.isNumber(newVal)) {
-				newVal += 'px';
-			}
-
-			node.setStyle(key, newVal);
-		},
-
-		_updateInnerContent: function(content) {
-			var instance = this;
-
-			return instance._heightMonitor.set('innerHTML', content);
-		},
-
-		_updateOuterContent: function(content) {
-			var instance = this;
-
-			content = content.replace(/\n/g, '<br />');
-
-			return instance._updateInnerContent(content);
 		}
 	}
 );

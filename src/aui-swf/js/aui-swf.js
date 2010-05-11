@@ -87,159 +87,150 @@ else if (UA.ie) {
 
 UA.flash = VERSION;
 
-var SWF = function() {
-	SWF.superclass.constructor.apply(this, arguments);
-};
-
-SWF.NAME = NAME;
-
-SWF.ATTRS = {
-	url: {
-		value: ''
-	},
-	version: {
-		value: ATTR_VERSION
-	},
-	useExpressInstall: {
-		value: false
-	},
-	fixedAttributes: {
-		value: {}
-	},
-	flashVars: {
-		value: {}
-	},
-	render: {
-		value: true
-	}
-};
-
-A.mix(
-	SWF,
+var SWF = A.Component.create(
 	{
+		NAME: NAME,
+
+		ATTRS: {
+			url: {
+				value: ''
+			},
+			version: {
+				value: ATTR_VERSION
+			},
+			useExpressInstall: {
+				value: false
+			},
+			fixedAttributes: {
+				value: {}
+			},
+			flashVars: {
+				value: {}
+			},
+			render: {
+				value: true
+			}
+		},
+
 		getFlashVersion: function() {
 			return VERSION;
 		},
 
 		isFlashVersionAtLeast: function(ver) {
 			return VERSION >= ver;
-		}
-	}
-);
-
-A.extend(
-	SWF,
-	A.Widget,
-	{
-		CONTENT_TEMPLATE: null,
-
-		renderUI: function() {
-			var instance = this;
-
-			var properFlashVersion = SWF.isFlashVersionAtLeast(instance.get('version'));
-			var canExpressInstall = (UA.flash >= 8.0);
-
-			var shouldExpressInstall = canExpressInstall && !properFlashVersion && instance.get('useExpressInstall');
-
-			var flashURL = instance.get('url');
-
-			if (shouldExpressInstall) {
-				flashURL = ATTR_EXPRESS_INSTALL_URL;
-			}
-
-			var swfId = A.guid();
-
-			SWF_INSTANCES[swfId] = this;
-
-			instance._swfId = swfId;
-
-			var boundingBox = instance.get('boundingBox');
-			var flashVars = instance.get('flashVars');
-
-			A.mix(
-				flashVars,
-				{
-					YUISwfId: swfId,
-					YUIBridgeCallback: ATTR_EVENT_HANDLER
-				}
-			);
-
-			var flashVarString = A.QueryString.stringify(flashVars);
-
-			var tplObj = '<object ';
-
-			if ((properFlashVersion || shouldExpressInstall) && flashURL) {
-				tplObj += 'id="' + swfId + '" ';
-
-				if (UA.ie) {
-					tplObj += 'classid="' + ATTR_CLSID + '" ';
-				}
-				else {
-					tplObj += 'type="' + ATTR_TYPE + '" data="' + flashURL + '" ';
-				}
-
-				tplObj += 'height="100%" width="100%">';
-
-				if (UA.ie) {
-					tplObj += '<param name="movie" value="' + flashURL + '"/>';
-				}
-
-				var fixedAttributes = instance.get('fixedAttributes');
-
-				for (var i in fixedAttributes) {
-					tplObj += '<param name="' + i + '" value="' + fixedAttributes[i] + '" />';
-				}
-
-				if (flashVarString) {
-					tplObj += '<param name="flashVars" value="' + flashVarString + '" />';
-				}
-
-				tplObj += '</object>';
-
-				boundingBox.set('innerHTML', tplObj);
-			}
-
-			instance._swf = A.one('#' + swfId);
 		},
 
-		bindUI: function() {
-			var instance = this;
+		prototype: {
+			CONTENT_TEMPLATE: null,
 
-			instance.publish(
-				'swfReady',
-				{
-					fireOnce: true
+			renderUI: function() {
+				var instance = this;
+
+				var properFlashVersion = SWF.isFlashVersionAtLeast(instance.get('version'));
+				var canExpressInstall = (UA.flash >= 8.0);
+
+				var shouldExpressInstall = canExpressInstall && !properFlashVersion && instance.get('useExpressInstall');
+
+				var flashURL = instance.get('url');
+
+				if (shouldExpressInstall) {
+					flashURL = ATTR_EXPRESS_INSTALL_URL;
 				}
-			);
-		},
 
-		callSWF: function(fn, args) {
-			var instance = this;
+				var swfId = A.guid();
 
-			args = args || [];
+				SWF_INSTANCES[swfId] = this;
 
-			var swf = instance._swf.getDOM();
+				instance._swfId = swfId;
 
-			if (swf[fn]) {
-				return swf[fn].apply(swf, args);
-			}
+				var boundingBox = instance.get('boundingBox');
+				var flashVars = instance.get('flashVars');
 
-			return null;
-		},
+				A.mix(
+					flashVars,
+					{
+						YUISwfId: swfId,
+						YUIBridgeCallback: ATTR_EVENT_HANDLER
+					}
+				);
 
-		toString: function() {
-			var instance = this;
+				var flashVarString = A.QueryString.stringify(flashVars);
 
-			return 'SWF' + instance._swfId;
-		},
+				var tplObj = '<object ';
 
-		_eventHandler: function(event) {
-			var instance = this;
+				if ((properFlashVersion || shouldExpressInstall) && flashURL) {
+					tplObj += 'id="' + swfId + '" ';
 
-			var eventType = event.type;
+					if (UA.ie) {
+						tplObj += 'classid="' + ATTR_CLSID + '" ';
+					}
+					else {
+						tplObj += 'type="' + ATTR_TYPE + '" data="' + flashURL + '" ';
+					}
 
-			if (eventType != 'log') {
-				instance.fire(eventType, event);
+					tplObj += 'height="100%" width="100%">';
+
+					if (UA.ie) {
+						tplObj += '<param name="movie" value="' + flashURL + '"/>';
+					}
+
+					var fixedAttributes = instance.get('fixedAttributes');
+
+					for (var i in fixedAttributes) {
+						tplObj += '<param name="' + i + '" value="' + fixedAttributes[i] + '" />';
+					}
+
+					if (flashVarString) {
+						tplObj += '<param name="flashVars" value="' + flashVarString + '" />';
+					}
+
+					tplObj += '</object>';
+
+					boundingBox.set('innerHTML', tplObj);
+				}
+
+				instance._swf = A.one('#' + swfId);
+			},
+
+			bindUI: function() {
+				var instance = this;
+
+				instance.publish(
+					'swfReady',
+					{
+						fireOnce: true
+					}
+				);
+			},
+
+			callSWF: function(fn, args) {
+				var instance = this;
+
+				args = args || [];
+
+				var swf = instance._swf.getDOM();
+
+				if (swf[fn]) {
+					return swf[fn].apply(swf, args);
+				}
+
+				return null;
+			},
+
+			toString: function() {
+				var instance = this;
+
+				return 'SWF' + instance._swfId;
+			},
+
+			_eventHandler: function(event) {
+				var instance = this;
+
+				var eventType = event.type;
+
+				if (eventType != 'log') {
+					instance.fire(eventType, event);
+				}
 			}
 		}
 	}

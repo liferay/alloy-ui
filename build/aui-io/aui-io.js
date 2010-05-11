@@ -80,522 +80,522 @@ var L = A.Lang,
  * @extends Plugin.Base
  * @uses io
  */
-function IORequest() {
-	IORequest.superclass.constructor.apply(this, arguments);
-}
-
-A.mix(IORequest, {
-	/**
-	 * Static property provides a string to identify the class.
-	 *
-	 * @property IORequest.NAME
-	 * @type String
-	 * @static
-	 */
-	NAME: IO_REQUEST,
-
-	/**
-	 * Static property used to define the default attribute
-	 * configuration for the IORequest.
-	 *
-	 * @property IORequest.ATTRS
-	 * @type Object
-	 * @static
-	 */
-	ATTRS: {
+var IORequest = A.Component.create(
+	{
 		/**
-		 * If <code>true</code> invoke the
-         * <a href="IORequest.html#method_start">start</a> method automatically,
-         * initializing the IO transaction.
+		 * Static property provides a string to identify the class.
 		 *
-		 * @attribute autoLoad
-		 * @default true
-		 * @type boolean
-		 */
-		autoLoad: {
-			value: true,
-			validator: isBoolean
-		},
-
-		/**
-		 * If <code>false</code> the current timestamp will be appended to the
-         * url, avoiding the url to be cached.
-		 *
-		 * @attribute cache
-		 * @default true
-		 * @type boolean
-		 */
-		cache: {
-			value: true,
-			validator: isBoolean
-		},
-
-		/**
-		 * The type of the request (i.e., could be xml, json, javascript, text).
-		 *
-		 * @attribute dataType
-		 * @default null
+		 * @property IORequest.NAME
 		 * @type String
+		 * @static
 		 */
-		dataType: {
-			setter: function(v) {
-				return (v || EMPTY_STRING).toLowerCase();
+		NAME: IO_REQUEST,
+
+		/**
+		 * Static property used to define the default attribute
+		 * configuration for the IORequest.
+		 *
+		 * @property IORequest.ATTRS
+		 * @type Object
+		 * @static
+		 */
+		ATTRS: {
+			/**
+			 * If <code>true</code> invoke the
+	         * <a href="IORequest.html#method_start">start</a> method automatically,
+	         * initializing the IO transaction.
+			 *
+			 * @attribute autoLoad
+			 * @default true
+			 * @type boolean
+			 */
+			autoLoad: {
+				value: true,
+				validator: isBoolean
 			},
-			value: null,
-			validator: isString
-		},
 
-		/**
-		 * This is a normalized attribute for the response data. It's useful
-         * to retrieve the correct type for the
-         * <a href="IORequest.html#config_dataType">dataType</a> (i.e., in json
-         * requests the <code>responseData</code>) is a JSONObject.
-		 *
-		 * @attribute responseData
-		 * @default null
-		 * @type String | JSONObject | XMLDocument
-		 */
-		responseData: {
-			setter: function(v) {
-				return this._setResponseData(v);
+			/**
+			 * If <code>false</code> the current timestamp will be appended to the
+	         * url, avoiding the url to be cached.
+			 *
+			 * @attribute cache
+			 * @default true
+			 * @type boolean
+			 */
+			cache: {
+				value: true,
+				validator: isBoolean
 			},
-			value: null
-		},
 
-		/**
-		 * URI to be requested using AJAX.
-		 *
-		 * @attribute uri
-		 * @default null
-		 * @type String
-		 */
-		uri: {
-			setter: function(v) {
-				return this._parseURL(v);
+			/**
+			 * The type of the request (i.e., could be xml, json, javascript, text).
+			 *
+			 * @attribute dataType
+			 * @default null
+			 * @type String
+			 */
+			dataType: {
+				setter: function(v) {
+					return (v || EMPTY_STRING).toLowerCase();
+				},
+				value: null,
+				validator: isString
 			},
-			value: null,
-			validator: isString
-		},
 
-		// User readOnly variables
-
-		/**
-		 * Whether the transaction is active or not.
-		 *
-		 * @attribute active
-		 * @default false
-		 * @type boolean
-		 */
-		active: {
-			value: false,
-			validator: isBoolean
-		},
-
-		/**
-		 * Object containing all the
-         * <a href="io.html#configattributes">IO Configuration Attributes</a>.
-         * This Object is passed to the <code>A.io</code> internally.
-		 *
-		 * @attribute cfg
-		 * @default Object containing all the
-         * <a href="io.html#configattributes">IO Configuration Attributes</a>.
-         * @readOnly
-		 * @type String
-		 */
-		cfg: {
-			getter: function() {
-				var instance = this;
-
-				// keep the current cfg object always synchronized with the mapped public attributes
-				// when the user call .start() it always retrieve the last set values for each mapped attr
-				return {
-					arguments: instance.get(ARGUMENTS),
-					context: instance.get(CONTEXT),
-					data: instance.get(DATA),
-					form: instance.get(FORM),
-					headers: instance.get(HEADERS),
-					method: instance.get(METHOD),
-					on: {
-						complete: A.bind(instance.fire, instance, COMPLETE),
-						end: A.bind(instance._end, instance),
-						failure: A.bind(instance.fire, instance, FAILURE),
-						start: A.bind(instance.fire, instance, START),
-						success: A.bind(instance._success, instance)
-					},
-					sync: instance.get(SYNC),
-					timeout: instance.get(TIMEOUT),
-					xdr: instance.get(XDR)
-				}
+			/**
+			 * This is a normalized attribute for the response data. It's useful
+	         * to retrieve the correct type for the
+	         * <a href="IORequest.html#config_dataType">dataType</a> (i.e., in json
+	         * requests the <code>responseData</code>) is a JSONObject.
+			 *
+			 * @attribute responseData
+			 * @default null
+			 * @type String | JSONObject | XMLDocument
+			 */
+			responseData: {
+				setter: function(v) {
+					return this._setResponseData(v);
+				},
+				value: null
 			},
-			readOnly: true
-		},
 
-		/**
-		 * Stores the IO Object of the current transaction.
-		 *
-		 * @attribute transaction
-		 * @default null
-		 * @type Object
-		 */
-		transaction: {
-			value: null
-		},
+			/**
+			 * URI to be requested using AJAX.
+			 *
+			 * @attribute uri
+			 * @default null
+			 * @type String
+			 */
+			uri: {
+				setter: function(v) {
+					return this._parseURL(v);
+				},
+				value: null,
+				validator: isString
+			},
 
-		// Configuration Object mapping
-		// To take advantages of the Attribute listeners of A.Base
-		// See: http://developer.yahoo.com/yui/3/io/
+			// User readOnly variables
 
-		/**
-		 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-        * Configuration</a>.
-		 *
-		 * @attribute arguments
-		 * @default Value mapped on AUI.defaults.io.
-		 * @type Object
-		 */
-		arguments: {
-			valueFn: getDefault(ARGUMENTS)
-		},
+			/**
+			 * Whether the transaction is active or not.
+			 *
+			 * @attribute active
+			 * @default false
+			 * @type boolean
+			 */
+			active: {
+				value: false,
+				validator: isBoolean
+			},
 
-		/**
-		 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-        * Configuration</a>.
-		 *
-		 * @attribute context
-		 * @default Value mapped on AUI.defaults.io.
-		 * @type Object
-		 */
-		context: {
-			valueFn: getDefault(CONTEXT)
-		},
+			/**
+			 * Object containing all the
+	         * <a href="io.html#configattributes">IO Configuration Attributes</a>.
+	         * This Object is passed to the <code>A.io</code> internally.
+			 *
+			 * @attribute cfg
+			 * @default Object containing all the
+	         * <a href="io.html#configattributes">IO Configuration Attributes</a>.
+	         * @readOnly
+			 * @type String
+			 */
+			cfg: {
+				getter: function() {
+					var instance = this;
 
-		/**
-		 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-        * Configuration</a>.
-		 *
-		 * @attribute data
-		 * @default Value mapped on AUI.defaults.io.
-		 * @type Object
-		 */
-		data: {
-			valueFn: getDefault(DATA),
-			setter: '_setIOData'
-		},
+					// keep the current cfg object always synchronized with the mapped public attributes
+					// when the user call .start() it always retrieve the last set values for each mapped attr
+					return {
+						arguments: instance.get(ARGUMENTS),
+						context: instance.get(CONTEXT),
+						data: instance.get(DATA),
+						form: instance.get(FORM),
+						headers: instance.get(HEADERS),
+						method: instance.get(METHOD),
+						on: {
+							complete: A.bind(instance.fire, instance, COMPLETE),
+							end: A.bind(instance._end, instance),
+							failure: A.bind(instance.fire, instance, FAILURE),
+							start: A.bind(instance.fire, instance, START),
+							success: A.bind(instance._success, instance)
+						},
+						sync: instance.get(SYNC),
+						timeout: instance.get(TIMEOUT),
+						xdr: instance.get(XDR)
+					};
+				},
+				readOnly: true
+			},
 
-		/**
-		 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-        * Configuration</a>.
-		 *
-		 * @attribute form
-		 * @default Value mapped on AUI.defaults.io.
-		 * @type Object
-		 */
-		form: {
-			valueFn: getDefault(FORM)
-		},
+			/**
+			 * Stores the IO Object of the current transaction.
+			 *
+			 * @attribute transaction
+			 * @default null
+			 * @type Object
+			 */
+			transaction: {
+				value: null
+			},
 
-		/**
-		 * Set the correct ACCEPT header based on the dataType.
-		 *
-		 * @attribute headers
-		 * @default Object
-		 * @type Object
-		 */
-		headers: {
-			getter: function(value) {
-				var header = [];
-				var instance = this;
-				var dataType = instance.get(DATA_TYPE);
+			// Configuration Object mapping
+			// To take advantages of the Attribute listeners of A.Base
+			// See: http://developer.yahoo.com/yui/3/io/
 
-				if (dataType) {
-					header.push(
-						ACCEPTS[dataType]
-					);
-				}
+			/**
+			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+	        * Configuration</a>.
+			 *
+			 * @attribute arguments
+			 * @default Value mapped on AUI.defaults.io.
+			 * @type Object
+			 */
+			arguments: {
+				valueFn: getDefault(ARGUMENTS)
+			},
 
-				// always add *.* to the accept header
-				header.push(
-					ACCEPTS.all
-				);
+			/**
+			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+	        * Configuration</a>.
+			 *
+			 * @attribute context
+			 * @default Value mapped on AUI.defaults.io.
+			 * @type Object
+			 */
+			context: {
+				valueFn: getDefault(CONTEXT)
+			},
 
-				return A.merge(
-					value,
-					{
-						Accept: header.join(', ')
+			/**
+			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+	        * Configuration</a>.
+			 *
+			 * @attribute data
+			 * @default Value mapped on AUI.defaults.io.
+			 * @type Object
+			 */
+			data: {
+				valueFn: getDefault(DATA),
+				setter: '_setIOData'
+			},
+
+			/**
+			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+	        * Configuration</a>.
+			 *
+			 * @attribute form
+			 * @default Value mapped on AUI.defaults.io.
+			 * @type Object
+			 */
+			form: {
+				valueFn: getDefault(FORM)
+			},
+
+			/**
+			 * Set the correct ACCEPT header based on the dataType.
+			 *
+			 * @attribute headers
+			 * @default Object
+			 * @type Object
+			 */
+			headers: {
+				getter: function(value) {
+					var header = [];
+					var instance = this;
+					var dataType = instance.get(DATA_TYPE);
+
+					if (dataType) {
+						header.push(
+							ACCEPTS[dataType]
+						);
 					}
-				);
+
+					// always add *.* to the accept header
+					header.push(
+						ACCEPTS.all
+					);
+
+					return A.merge(
+						value,
+						{
+							Accept: header.join(', ')
+						}
+					);
+				},
+				valueFn: getDefault(HEADERS)
 			},
-			valueFn: getDefault(HEADERS)
+
+			/**
+			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+	        * Configuration</a>.
+			 *
+			 * @attribute method
+			 * @default Value mapped on AUI.defaults.io.
+			 * @type String
+			 */
+			method: {
+				valueFn: getDefault(METHOD)
+			},
+
+			/**
+			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+	        * Configuration</a>.
+			 *
+			 * @attribute sync
+			 * @default Value mapped on AUI.defaults.io.
+			 * @type boolean
+			 */
+			sync: {
+				valueFn: getDefault(SYNC)
+			},
+
+			/**
+			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+	        * Configuration</a>.
+			 *
+			 * @attribute timeout
+			 * @default Value mapped on AUI.defaults.io.
+			 * @type Number
+			 */
+			timeout: {
+				valueFn: getDefault(TIMEOUT)
+			},
+
+			/**
+			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+	         * Configuration</a>.
+			 *
+			 * @attribute xdr
+			 * @default Value mapped on AUI.defaults.io.
+			 * @type Object
+			 */
+			xdr: {
+				valueFn: getDefault(XDR)
+			}
 		},
 
-		/**
-		 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-        * Configuration</a>.
-		 *
-		 * @attribute method
-		 * @default Value mapped on AUI.defaults.io.
-		 * @type String
-		 */
-		method: {
-			valueFn: getDefault(METHOD)
-		},
+		EXTENDS: A.Plugin.Base,
 
-		/**
-		 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-        * Configuration</a>.
-		 *
-		 * @attribute sync
-		 * @default Value mapped on AUI.defaults.io.
-		 * @type boolean
-		 */
-		sync: {
-			valueFn: getDefault(SYNC)
-		},
+		prototype: {
+			/**
+			 * Construction logic executed during IORequest instantiation. Lifecycle.
+			 *
+			 * @method initializer
+			 * @protected
+			 */
+			init: function(config) {
+				var instance = this;
 
-		/**
-		 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-        * Configuration</a>.
-		 *
-		 * @attribute timeout
-		 * @default Value mapped on AUI.defaults.io.
-		 * @type Number
-		 */
-		timeout: {
-			valueFn: getDefault(TIMEOUT)
-		},
+				IORequest.superclass.init.apply(this, arguments);
 
-		/**
-		 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-         * Configuration</a>.
-		 *
-		 * @attribute xdr
-		 * @default Value mapped on AUI.defaults.io.
-		 * @type Object
-		 */
-		xdr: {
-			valueFn: getDefault(XDR)
+				instance._autoStart();
+			},
+
+			/**
+			 * Descructor lifecycle implementation for the IORequest class.
+			 * Purges events attached to the node (and all child nodes).
+			 *
+			 * @method destructor
+			 * @protected
+			 */
+			destructor: function() {
+				var instance = this;
+
+				instance.stop();
+
+				instance.set(TRANSACTION, null);
+			},
+
+			/**
+			 * Starts the IO transaction. Used to refresh the content also.
+			 *
+			 * @method start
+			 */
+			start: function() {
+				var instance = this;
+
+				instance.destructor();
+
+				instance.set(ACTIVE, true);
+
+				var transaction = A.io(
+					instance.get(URI),
+					instance.get(CFG)
+				);
+
+				instance.set(TRANSACTION, transaction);
+			},
+
+			/**
+			 * Stops the IO transaction.
+			 *
+			 * @method stop
+			 */
+			stop: function() {
+				var instance = this;
+				var transaction = instance.get(TRANSACTION);
+
+				if (transaction) {
+					transaction.abort();
+				}
+			},
+
+			/**
+			 * Invoke the <code>start</code> method (autoLoad attribute).
+			 *
+			 * @method _autoStart
+			 * @protected
+			 */
+			_autoStart: function() {
+				var instance = this;
+
+				if (instance.get(AUTO_LOAD)) {
+					instance.start();
+				}
+			},
+
+			/**
+			 * Parse the <a href="IORequest.html#config_uri">uri</a> to add a
+		     * timestamp if <a href="IORequest.html#config_cache">cache</a> is
+		     * <code>true</code>. Also applies the
+		     * <code>AUI.defaults.io.uriFormatter</code>.
+			 *
+			 * @method _parseURL
+			 * @param {String} url
+			 * @protected
+			 * @return {String}
+			 */
+			_parseURL: function(url) {
+				var instance = this;
+				var cache = instance.get(CACHE);
+				var method = instance.get(METHOD);
+
+				// reusing logic to add a timestamp on the url from jQuery 1.3.2
+				if ( (cache === false) && (method == GET) ) {
+					var ts = +new Date;
+					// try replacing _= if it is there
+					var ret = url.replace(/(\?|&)_=.*?(&|$)/, '$1_=' + ts + '$2');
+					// if nothing was replaced, add timestamp to the end
+					url = ret + ((ret == url) ? (url.match(/\?/) ? '&' : '?') + '_=' + ts : '');
+				}
+
+				// formatting the URL with the default uriFormatter after the cache timestamp was added
+				var uriFormatter = defaults.uriFormatter;
+
+				if (isFunction(uriFormatter)) {
+					url = uriFormatter.apply(instance, [url]);
+				}
+
+				return url;
+			},
+
+			/**
+			 * Internal end callback for the IO transaction.
+			 *
+			 * @method _end
+			 * @param {Number} id ID of the IO transaction.
+			 * @protected
+			 */
+			_end: function(id) {
+				var instance = this;
+
+				instance.set(ACTIVE, false);
+				instance.set(TRANSACTION, null);
+
+				instance.fire(END, id);
+			},
+
+			/**
+			 * Internal success callback for the IO transaction.
+			 *
+			 * @method _success
+			 * @param {Number} id ID of the IO transaction.
+			 * @param {Object} obj IO transaction Object.
+			 * @protected
+			 */
+			_success: function(id, obj) {
+				var instance = this;
+
+				// update the responseData attribute with the new data from xhr
+				instance.set(RESPONSE_DATA, obj);
+
+				instance.fire(SUCCESS, id, obj);
+			},
+
+			/**
+			 * Applies the <code>AUI.defaults.io.dataFormatter</code> if defined.
+			 *
+			 * @method _setIOData
+			 * @param {Object} value
+			 * @protected
+			 * @return {String}
+			 */
+			_setIOData: function(value) {
+				var instance = this;
+
+				var dataFormatter = defaults.dataFormatter;
+
+				if (isFunction(dataFormatter)) {
+					value = dataFormatter.call(instance, value);
+				}
+
+				return value;
+			},
+
+			/**
+			 * Setter for <a href="IORequest.html#config_responseData">responseData</a>.
+			 *
+			 * @method _setResponseData
+			 * @protected
+			 * @param {Object} xhr XHR Object.
+			 * @return {Object}
+			 */
+			_setResponseData: function(xhr) {
+				var data = null;
+				var instance = this;
+
+				if (xhr) {
+					var dataType = instance.get(DATA_TYPE);
+					var contentType = xhr.getResponseHeader(CONTENT_TYPE);
+
+					// if the dataType or the content-type is XML...
+					if ((dataType == XML) ||
+						(!dataType && contentType.indexOf(XML) >= 0)) {
+
+						// use responseXML
+						data = xhr.responseXML;
+
+						// check if the XML was parsed correctly
+						if (data.documentElement.tagName == 'parsererror') {
+							throw PARSE_ERROR;
+						}
+					}
+					else {
+						// otherwise use the responseText
+						data = xhr.responseText;
+					}
+
+					// empty string is not a valid JSON, convert it to null
+					if (data === EMPTY_STRING) {
+						data = null;
+					}
+
+					// trying to parse to JSON if dataType is a valid json
+					if (dataType == JSON) {
+						try {
+							data = A.JSON.parse(data);
+						}
+						catch(e) {
+							// throw PARSE_ERROR;
+						}
+					}
+				}
+
+				return data;
+			}
 		}
 	}
-});
-
-A.extend(IORequest, A.Plugin.Base, {
-	/**
-	 * Construction logic executed during IORequest instantiation. Lifecycle.
-	 *
-	 * @method initializer
-	 * @protected
-	 */
-	init: function(config) {
-		var instance = this;
-
-		IORequest.superclass.init.apply(this, arguments);
-
-		instance._autoStart();
-	},
-
-	/**
-	 * Descructor lifecycle implementation for the IORequest class.
-	 * Purges events attached to the node (and all child nodes).
-	 *
-	 * @method destructor
-	 * @protected
-	 */
-	destructor: function() {
-		var instance = this;
-
-		instance.stop();
-
-		instance.set(TRANSACTION, null);
-	},
-
-	/**
-	 * Starts the IO transaction. Used to refresh the content also.
-	 *
-	 * @method start
-	 */
-	start: function() {
-		var instance = this;
-
-		instance.destructor();
-
-		instance.set(ACTIVE, true);
-
-		var transaction = A.io(
-			instance.get(URI),
-			instance.get(CFG)
-		);
-
-		instance.set(TRANSACTION, transaction);
-	},
-
-	/**
-	 * Stops the IO transaction.
-	 *
-	 * @method stop
-	 */
-	stop: function() {
-		var instance = this;
-		var transaction = instance.get(TRANSACTION);
-
-		if (transaction) {
-			transaction.abort();
-		}
-	},
-
-	/**
-	 * Invoke the <code>start</code> method (autoLoad attribute).
-	 *
-	 * @method _autoStart
-	 * @protected
-	 */
-	_autoStart: function() {
-		var instance = this;
-
-		if (instance.get(AUTO_LOAD)) {
-			instance.start();
-		}
-	},
-
-	/**
-	 * Parse the <a href="IORequest.html#config_uri">uri</a> to add a
-     * timestamp if <a href="IORequest.html#config_cache">cache</a> is
-     * <code>true</code>. Also applies the
-     * <code>AUI.defaults.io.uriFormatter</code>.
-	 *
-	 * @method _parseURL
-	 * @param {String} url
-	 * @protected
-	 * @return {String}
-	 */
-	_parseURL: function(url) {
-		var instance = this;
-		var cache = instance.get(CACHE);
-		var method = instance.get(METHOD);
-
-		// reusing logic to add a timestamp on the url from jQuery 1.3.2
-		if ( (cache === false) && (method == GET) ) {
-			var ts = +new Date;
-			// try replacing _= if it is there
-			var ret = url.replace(/(\?|&)_=.*?(&|$)/, '$1_=' + ts + '$2');
-			// if nothing was replaced, add timestamp to the end
-			url = ret + ((ret == url) ? (url.match(/\?/) ? '&' : '?') + '_=' + ts : '');
-		}
-
-		// formatting the URL with the default uriFormatter after the cache timestamp was added
-		var uriFormatter = defaults.uriFormatter;
-
-		if (isFunction(uriFormatter)) {
-			url = uriFormatter.apply(instance, [url]);
-		}
-
-		return url;
-	},
-
-	/**
-	 * Internal end callback for the IO transaction.
-	 *
-	 * @method _end
-	 * @param {Number} id ID of the IO transaction.
-	 * @protected
-	 */
-	_end: function(id) {
-		var instance = this;
-
-		instance.set(ACTIVE, false);
-		instance.set(TRANSACTION, null);
-
-		instance.fire(END, id);
-	},
-
-	/**
-	 * Internal success callback for the IO transaction.
-	 *
-	 * @method _success
-	 * @param {Number} id ID of the IO transaction.
-	 * @param {Object} obj IO transaction Object.
-	 * @protected
-	 */
-	_success: function(id, obj) {
-		var instance = this;
-
-		// update the responseData attribute with the new data from xhr
-		instance.set(RESPONSE_DATA, obj);
-
-		instance.fire(SUCCESS, id, obj);
-	},
-
-	/**
-	 * Applies the <code>AUI.defaults.io.dataFormatter</code> if defined.
-	 *
-	 * @method _setIOData
-	 * @param {Object} value
-	 * @protected
-	 * @return {String}
-	 */
-	_setIOData: function(value) {
-		var instance = this;
-
-		var dataFormatter = defaults.dataFormatter;
-
-		if (isFunction(dataFormatter)) {
-			value = dataFormatter.call(instance, value);
-		}
-
-		return value;
-	},
-
-	/**
-	 * Setter for <a href="IORequest.html#config_responseData">responseData</a>.
-	 *
-	 * @method _setResponseData
-	 * @protected
-	 * @param {Object} xhr XHR Object.
-	 * @return {Object}
-	 */
-	_setResponseData: function(xhr) {
-		var data = null;
-		var instance = this;
-
-		if (xhr) {
-			var dataType = instance.get(DATA_TYPE);
-			var contentType = xhr.getResponseHeader(CONTENT_TYPE);
-
-			// if the dataType or the content-type is XML...
-			if ((dataType == XML) ||
-				(!dataType && contentType.indexOf(XML) >= 0)) {
-
-				// use responseXML
-				data = xhr.responseXML;
-
-				// check if the XML was parsed correctly
-				if (data.documentElement.tagName == 'parsererror') {
-					throw PARSE_ERROR;
-				}
-			}
-			else {
-				// otherwise use the responseText
-				data = xhr.responseText;
-			}
-
-			// empty string is not a valid JSON, convert it to null
-			if (data === EMPTY_STRING) {
-				data = null;
-			}
-
-			// trying to parse to JSON if dataType is a valid json
-			if (dataType == JSON) {
-				try {
-					data = A.JSON.parse(data);
-				}
-				catch(e) {
-					// throw PARSE_ERROR;
-				}
-			}
-		}
-
-		return data;
-	}
-});
+);
 
 A.IORequest = IORequest;
 
@@ -690,432 +690,432 @@ var L = A.Lang,
  * @constructor
  * @extends IORequest
  */
-function IOPlugin(config) {
-	IOPlugin.superclass.constructor.apply(this, arguments);
-}
-
-A.mix(IOPlugin, {
-	/**
-	 * Static property provides a string to identify the class.
-	 *
-	 * @property A.Plugin.IO.NAME
-	 * @type String
-	 * @static
-	 */
-	NAME: IO_PLUGIN,
-
-	/**
-	 * Static property provides a string to identify the namespace.
-	 *
-	 * @property A.Plugin.IO.NS
-	 * @type String
-	 * @static
-	 */
-	NS: IO,
-
-	/**
-	 * Static property used to define the default attribute
-	 * configuration for the A.Plugin.IO.
-	 *
-	 * @property A.Plugin.IO.ATTRS
-	 * @type Object
-	 * @static
-	 */
-	ATTRS: {
+var IOPlugin = A.Component.create(
+	{
 		/**
-		 * Plug IO in any object we want, the setContent will use the node to
-         * set the content.
+		 * Static property provides a string to identify the class.
 		 *
-		 * @attribute node
-		 * @default null
-		 * @type Node | String
-		 */
-		node: {
-			value: null,
-			getter: function(value) {
-				var instance = this;
-
-				if (!value) {
-					var host = instance.get(HOST);
-					var type = instance.get(TYPE);
-
-					if (type == TYPE_NODE) {
-						value = host;
-					}
-					else if (type == TYPE_WIDGET) {
-						var section = instance.get(SECTION);
-
-						// if there is no node for the SECTION, forces creation
-						if (!host.getStdModNode(section)) {
-							host.setStdModContent(section, EMPTY);
-						}
-
-						value = host.getStdModNode(section);
-					}
-				}
-
-				return A.one(value);
-			},
-			validator: isNode
-		},
-
-		/**
-		 * Message to be set on the content when the transaction fails.
-		 *
-		 * @attribute failureMessage
-		 * @default 'Failed to retrieve content'
+		 * @property A.Plugin.IO.NAME
 		 * @type String
+		 * @static
 		 */
-		failureMessage: {
-			value: 'Failed to retrieve content',
-			validator: isString
-		},
+		NAME: IO_PLUGIN,
 
 		/**
-		 * Options passed to the <a href="LoadingMask.html">LoadingMask</a>.
+		 * Static property provides a string to identify the namespace.
 		 *
-		 * @attribute loadingMask
-		 * @default {}
+		 * @property A.Plugin.IO.NS
+		 * @type String
+		 * @static
+		 */
+		NS: IO,
+
+		/**
+		 * Static property used to define the default attribute
+		 * configuration for the A.Plugin.IO.
+		 *
+		 * @property A.Plugin.IO.ATTRS
 		 * @type Object
+		 * @static
 		 */
-		loadingMask: {
-			value: {}
-		},
+		ATTRS: {
+			/**
+			 * Plug IO in any object we want, the setContent will use the node to
+	         * set the content.
+			 *
+			 * @attribute node
+			 * @default null
+			 * @type Node | String
+			 */
+			node: {
+				value: null,
+				getter: function(value) {
+					var instance = this;
 
-		/**
-		 * If true the <a href="ParseContent.html">ParseContent</a> plugin
-         * will be plugged to the <a href="A.Plugin.IO.html#config_node">node</a>.
-		 *
-		 * @attribute parseContent
-		 * @default true
-		 * @type boolean
-		 */
-		parseContent: {
-			value: true,
-			validator: isBoolean
-		},
+					if (!value) {
+						var host = instance.get(HOST);
+						var type = instance.get(TYPE);
 
-		/**
-		 * Show the <a href="LoadingMask.html">LoadingMask</a> covering the <a
-         * href="A.Plugin.IO.html#config_node">node</a> while loading.
-		 *
-		 * @attribute showLoading
-		 * @default true
-		 * @type boolean
-		 */
-		showLoading: {
-			value: true,
-			validator: isBoolean
-		},
+						if (type == TYPE_NODE) {
+							value = host;
+						}
+						else if (type == TYPE_WIDGET) {
+							var section = instance.get(SECTION);
 
-		/**
-		 * Section where the content will be set in case you are plugging it
-         * on a instace of <a href="WidgetStdMod.html">WidgetStdMod</a>.
-		 *
-		 * @attribute section
-		 * @default StdMod.BODY
-		 * @type String
-		 */
-		section: {
-			value: StdMod.BODY,
-			validator: function(val) {
-				return (!val || val == StdMod.BODY || val == StdMod.HEADER || val == StdMod.FOOTER);
-			}
-		},
+							// if there is no node for the SECTION, forces creation
+							if (!host.getStdModNode(section)) {
+								host.setStdModContent(section, EMPTY);
+							}
 
-		/**
-		 * Type of the <code>instance</code> we are pluggin the A.Plugin.IO.
-         * Could be a Node, or a Widget.
-		 *
-		 * @attribute type
-		 * @default 'Node'
-		 * @readOnly
-		 * @type String
-		 */
-		type: {
-			readOnly: true,
-			valueFn: function() {
-				var instance = this;
-				// NOTE: default type
-				var type = TYPE_NODE;
+							value = host.getStdModNode(section);
+						}
+					}
 
-				if (instance.get(HOST) instanceof A.Widget) {
-					type = TYPE_WIDGET;
-				}
-
-				return type;
+					return A.one(value);
+				},
+				validator: isNode
 			},
-			validator: isString
+
+			/**
+			 * Message to be set on the content when the transaction fails.
+			 *
+			 * @attribute failureMessage
+			 * @default 'Failed to retrieve content'
+			 * @type String
+			 */
+			failureMessage: {
+				value: 'Failed to retrieve content',
+				validator: isString
+			},
+
+			/**
+			 * Options passed to the <a href="LoadingMask.html">LoadingMask</a>.
+			 *
+			 * @attribute loadingMask
+			 * @default {}
+			 * @type Object
+			 */
+			loadingMask: {
+				value: {}
+			},
+
+			/**
+			 * If true the <a href="ParseContent.html">ParseContent</a> plugin
+	         * will be plugged to the <a href="A.Plugin.IO.html#config_node">node</a>.
+			 *
+			 * @attribute parseContent
+			 * @default true
+			 * @type boolean
+			 */
+			parseContent: {
+				value: true,
+				validator: isBoolean
+			},
+
+			/**
+			 * Show the <a href="LoadingMask.html">LoadingMask</a> covering the <a
+	         * href="A.Plugin.IO.html#config_node">node</a> while loading.
+			 *
+			 * @attribute showLoading
+			 * @default true
+			 * @type boolean
+			 */
+			showLoading: {
+				value: true,
+				validator: isBoolean
+			},
+
+			/**
+			 * Section where the content will be set in case you are plugging it
+	         * on a instace of <a href="WidgetStdMod.html">WidgetStdMod</a>.
+			 *
+			 * @attribute section
+			 * @default StdMod.BODY
+			 * @type String
+			 */
+			section: {
+				value: StdMod.BODY,
+				validator: function(val) {
+					return (!val || val == StdMod.BODY || val == StdMod.HEADER || val == StdMod.FOOTER);
+				}
+			},
+
+			/**
+			 * Type of the <code>instance</code> we are pluggin the A.Plugin.IO.
+	         * Could be a Node, or a Widget.
+			 *
+			 * @attribute type
+			 * @default 'Node'
+			 * @readOnly
+			 * @type String
+			 */
+			type: {
+				readOnly: true,
+				valueFn: function() {
+					var instance = this;
+					// NOTE: default type
+					var type = TYPE_NODE;
+
+					if (instance.get(HOST) instanceof A.Widget) {
+						type = TYPE_WIDGET;
+					}
+
+					return type;
+				},
+				validator: isString
+			},
+
+			/**
+			 * Where to insert the content, AFTER, BEFORE or REPLACE.
+			 *
+			 * @attribute where
+			 * @default StdMod.REPLACE
+			 * @type String
+			 */
+			where: {
+				value: StdMod.REPLACE,
+				validator: function(val) {
+					return (!val || val == StdMod.AFTER || val == StdMod.BEFORE || val == StdMod.REPLACE);
+				}
+			}
 		},
 
-		/**
-		 * Where to insert the content, AFTER, BEFORE or REPLACE.
-		 *
-		 * @attribute where
-		 * @default StdMod.REPLACE
-		 * @type String
-		 */
-		where: {
-			value: StdMod.REPLACE,
-			validator: function(val) {
-				return (!val || val == StdMod.AFTER || val == StdMod.BEFORE || val == StdMod.REPLACE);
-			}
-		}
-	}
-});
+		EXTENDS: A.IORequest,
 
-A.extend(IOPlugin, A.IORequest, {
-	/**
-	 * Bind the events on the A.Plugin.IO UI. Lifecycle.
-	 *
-	 * @method bindUI
-	 * @protected
-	 */
-	bindUI: function() {
-		var instance = this;
-
-		instance.on('activeChange', instance._onActiveChange);
-
-		instance.on(SUCCESS, instance._successHandler);
-		instance.on(FAILURE, instance._failureHandler);
-
-		if ((instance.get(TYPE) == TYPE_WIDGET) && instance.get(SHOW_LOADING)) {
-			var host = instance.get(HOST);
-
-			host.after('heightChange', instance._syncLoadingMaskUI, instance);
-			host.after('widthChange', instance._syncLoadingMaskUI, instance);
-		}
-	},
-
-	/**
-	 * Invoke the <code>start</code> method (autoLoad attribute).
-	 *
-	 * @method _autoStart
-	 * @protected
-	 */
-	_autoStart: function() {
-		var instance = this;
-
-		instance.bindUI();
-
-		IOPlugin.superclass._autoStart.apply(this, arguments);
-	},
-
-	/**
-	 * Bind the ParseContent plugin on the <code>instance</code>.
-	 *
-	 * @method _bindParseContent
-	 * @protected
-	 */
-	_bindParseContent: function() {
-		var instance = this;
-		var node = instance.get(NODE);
-
-		if (node && !node.ParseContent && instance.get(PARSE_CONTENT)) {
-			node.plug(A.Plugin.ParseContent);
-		}
-	},
-
-	/**
-	 * Invoke the <a href="OverlayMask.html#method_hide">OverlayMask hide</a> method.
-	 *
-	 * @method hideLoading
-	 */
-	hideLoading: function() {
-		var instance = this;
-
-		var node = instance.get(NODE);
-
-		if (node.loadingmask) {
-			node.loadingmask.hide();
-		}
-	},
-
-	/**
-	 * Set the content of the <a href="A.Plugin.IO.html#config_node">node</a>.
-	 *
-	 * @method setContent
-	 */
-	setContent: function(content) {
-		var instance = this;
-
-		instance._bindParseContent();
-
-		if (instance.overlayMaskBoundingBox) {
-			instance.overlayMaskBoundingBox.remove();
-		}
-
-		instance._getContentSetterByType().apply(instance, [content]);
-	},
-
-	/**
-	 * Invoke the <a href="OverlayMask.html#method_show">OverlayMask show</a> method.
-	 *
-	 * @method showLoading
-	 */
-	showLoading: function() {
-		var instance = this;
-		var node = instance.get(NODE);
-
-		if (node.loadingmask) {
-			if (instance.overlayMaskBoundingBox) {
-				node.append(instance.overlayMaskBoundingBox);
-			}
-		}
-		else {
-			node.plug(
-				A.LoadingMask,
-				instance.get(LOADING_MASK)
-			);
-
-			instance.overlayMaskBoundingBox = node.loadingmask.overlayMask.get('boundingBox');
-		}
-
-		node.loadingmask.show();
-	},
-
-	/**
-	 * Overload to the <a href="IORequest.html#method_start">IORequest
-     * start</a> method. Check if the <code>host</code> is already rendered,
-     * otherwise wait to after render phase and to show the LoadingMask.
-	 *
-	 * @method start
-	 */
-	start: function() {
-		var instance = this;
-		var host = instance.get(HOST);
-
-		if (!host.get(RENDERED)) {
-			host.after('render', function() {
-				instance._setLoadingUI(true);
-			});
-		}
-
-		IOPlugin.superclass.start.apply(instance, arguments);
-	},
-
-	/**
-	 * Get the appropriated <a
-     * href="A.Plugin.IO.html#method_setContent">setContent</a> function
-     * implementation for each <a href="A.Plugin.IO.html#config_type">type</a>.
-	 *
-	 * @method _getContentSetterByType
-	 * @protected
-	 * @return {function}
-	 */
-	_getContentSetterByType: function() {
-		var instance = this;
-
-		var setters = {
-			// NOTE: default setter, see 'type' attribute definition
-			Node: function(content) {
+		prototype: {
+			/**
+			 * Bind the events on the A.Plugin.IO UI. Lifecycle.
+			 *
+			 * @method bindUI
+			 * @protected
+			 */
+			bindUI: function() {
 				var instance = this;
-				// when this.get(HOST) is a Node instance the NODE is the host
+
+				instance.on('activeChange', instance._onActiveChange);
+
+				instance.on(SUCCESS, instance._successHandler);
+				instance.on(FAILURE, instance._failureHandler);
+
+				if ((instance.get(TYPE) == TYPE_WIDGET) && instance.get(SHOW_LOADING)) {
+					var host = instance.get(HOST);
+
+					host.after('heightChange', instance._syncLoadingMaskUI, instance);
+					host.after('widthChange', instance._syncLoadingMaskUI, instance);
+				}
+			},
+
+			/**
+			 * Invoke the <code>start</code> method (autoLoad attribute).
+			 *
+			 * @method _autoStart
+			 * @protected
+			 */
+			_autoStart: function() {
+				var instance = this;
+
+				instance.bindUI();
+
+				IOPlugin.superclass._autoStart.apply(this, arguments);
+			},
+
+			/**
+			 * Bind the ParseContent plugin on the <code>instance</code>.
+			 *
+			 * @method _bindParseContent
+			 * @protected
+			 */
+			_bindParseContent: function() {
+				var instance = this;
 				var node = instance.get(NODE);
 
-				node.setContent.apply(node, [content]);
+				if (node && !node.ParseContent && instance.get(PARSE_CONTENT)) {
+					node.plug(A.Plugin.ParseContent);
+				}
 			},
 
-			// Widget forces set the content on the SECTION node using setStdModContent method
-			Widget: function(content) {
+			/**
+			 * Invoke the <a href="OverlayMask.html#method_hide">OverlayMask hide</a> method.
+			 *
+			 * @method hideLoading
+			 */
+			hideLoading: function() {
+				var instance = this;
+
+				var node = instance.get(NODE);
+
+				if (node.loadingmask) {
+					node.loadingmask.hide();
+				}
+			},
+
+			/**
+			 * Set the content of the <a href="A.Plugin.IO.html#config_node">node</a>.
+			 *
+			 * @method setContent
+			 */
+			setContent: function(content) {
+				var instance = this;
+
+				instance._bindParseContent();
+
+				if (instance.overlayMaskBoundingBox) {
+					instance.overlayMaskBoundingBox.remove();
+				}
+
+				instance._getContentSetterByType().apply(instance, [content]);
+			},
+
+			/**
+			 * Invoke the <a href="OverlayMask.html#method_show">OverlayMask show</a> method.
+			 *
+			 * @method showLoading
+			 */
+			showLoading: function() {
+				var instance = this;
+				var node = instance.get(NODE);
+
+				if (node.loadingmask) {
+					if (instance.overlayMaskBoundingBox) {
+						node.append(instance.overlayMaskBoundingBox);
+					}
+				}
+				else {
+					node.plug(
+						A.LoadingMask,
+						instance.get(LOADING_MASK)
+					);
+
+					instance.overlayMaskBoundingBox = node.loadingmask.overlayMask.get('boundingBox');
+				}
+
+				node.loadingmask.show();
+			},
+
+			/**
+			 * Overload to the <a href="IORequest.html#method_start">IORequest
+		     * start</a> method. Check if the <code>host</code> is already rendered,
+		     * otherwise wait to after render phase and to show the LoadingMask.
+			 *
+			 * @method start
+			 */
+			start: function() {
 				var instance = this;
 				var host = instance.get(HOST);
 
-				host.setStdModContent.apply(host, [
-					instance.get(SECTION),
-					content,
-					instance.get(WHERE)
-				]);
+				if (!host.get(RENDERED)) {
+					host.after('render', function() {
+						instance._setLoadingUI(true);
+					});
+				}
+
+				IOPlugin.superclass.start.apply(instance, arguments);
+			},
+
+			/**
+			 * Get the appropriated <a
+		     * href="A.Plugin.IO.html#method_setContent">setContent</a> function
+		     * implementation for each <a href="A.Plugin.IO.html#config_type">type</a>.
+			 *
+			 * @method _getContentSetterByType
+			 * @protected
+			 * @return {function}
+			 */
+			_getContentSetterByType: function() {
+				var instance = this;
+
+				var setters = {
+					// NOTE: default setter, see 'type' attribute definition
+					Node: function(content) {
+						var instance = this;
+						// when this.get(HOST) is a Node instance the NODE is the host
+						var node = instance.get(NODE);
+
+						node.setContent.apply(node, [content]);
+					},
+
+					// Widget forces set the content on the SECTION node using setStdModContent method
+					Widget: function(content) {
+						var instance = this;
+						var host = instance.get(HOST);
+
+						host.setStdModContent.apply(host, [
+							instance.get(SECTION),
+							content,
+							instance.get(WHERE)
+						]);
+					}
+				};
+
+				return setters[this.get(TYPE)];
+			},
+
+			/**
+			 * Whether the <code>show</code> is true show the LoadingMask.
+			 *
+			 * @method _setLoadingUI
+			 * @param {boolean} show
+			 * @protected
+			 */
+			_setLoadingUI: function(show) {
+				var instance = this;
+
+				if (instance.get(SHOW_LOADING)) {
+					if (show) {
+						instance.showLoading();
+					}
+					else {
+						instance.hideLoading();
+					}
+				}
+			},
+
+			/**
+			 * Sync the loading mask UI.
+			 *
+			 * @method _syncLoadingMaskUI
+			 * @protected
+			 */
+			_syncLoadingMaskUI: function() {
+				var instance = this;
+
+				instance.get(NODE).loadingmask.refreshMask();
+			},
+
+			/**
+			 * Internal success callback for the IO transaction.
+			 *
+			 * @method _successHandler
+			 * @param {EventFavade} event
+			 * @param {String} id Id of the IO transaction.
+			 * @param {Object} obj XHR transaction Object.
+			 * @protected
+			 */
+			_successHandler: function(event, id, xhr) {
+				var instance = this;
+
+				instance.setContent(
+					xhr.responseText
+				);
+			},
+
+			/**
+			 * Internal failure callback for the IO transaction.
+			 *
+			 * @method _failureHandler
+			 * @param {EventFavade} event
+			 * @param {String} id Id of the IO transaction.
+			 * @param {Object} obj XHR transaction Object.
+			 * @protected
+			 */
+			_failureHandler: function(event, id, xhr) {
+				var instance = this;
+
+				instance.setContent(
+					instance.get(FAILURE_MESSAGE)
+				);
+			},
+
+			/**
+			 * Fires after the value of the
+			 * <a href="A.Plugin.IO.html#config_active">active</a> attribute change.
+			 *
+			 * @method _onActiveChange
+			 * @param {EventFacade} event
+			 * @protected
+			 */
+			_onActiveChange: function(event) {
+				var instance = this;
+				var host = instance.get(HOST);
+				var widget = instance.get(TYPE) == TYPE_WIDGET;
+
+				if (!widget || (widget && host && host.get(RENDERED))) {
+					instance._setLoadingUI(event.newVal);
+				}
 			}
-		};
-
-		return setters[this.get(TYPE)];
-	},
-
-	/**
-	 * Whether the <code>show</code> is true show the LoadingMask.
-	 *
-	 * @method _setLoadingUI
-	 * @param {boolean} show
-	 * @protected
-	 */
-	_setLoadingUI: function(show) {
-		var instance = this;
-
-		if (instance.get(SHOW_LOADING)) {
-			if (show) {
-				instance.showLoading();
-			}
-			else {
-				instance.hideLoading();
-			}
-		}
-	},
-
-	/**
-	 * Sync the loading mask UI.
-	 *
-	 * @method _syncLoadingMaskUI
-	 * @protected
-	 */
-	_syncLoadingMaskUI: function() {
-		var instance = this;
-
-		instance.get(NODE).loadingmask.refreshMask();
-	},
-
-	/**
-	 * Internal success callback for the IO transaction.
-	 *
-	 * @method _successHandler
-	 * @param {EventFavade} event
-	 * @param {String} id Id of the IO transaction.
-	 * @param {Object} obj XHR transaction Object.
-	 * @protected
-	 */
-	_successHandler: function(event, id, xhr) {
-		var instance = this;
-
-		instance.setContent(
-			xhr.responseText
-		);
-	},
-
-	/**
-	 * Internal failure callback for the IO transaction.
-	 *
-	 * @method _failureHandler
-	 * @param {EventFavade} event
-	 * @param {String} id Id of the IO transaction.
-	 * @param {Object} obj XHR transaction Object.
-	 * @protected
-	 */
-	_failureHandler: function(event, id, xhr) {
-		var instance = this;
-
-		instance.setContent(
-			instance.get(FAILURE_MESSAGE)
-		);
-	},
-
-	/**
-	 * Fires after the value of the
-	 * <a href="A.Plugin.IO.html#config_active">active</a> attribute change.
-	 *
-	 * @method _onActiveChange
-	 * @param {EventFacade} event
-	 * @protected
-	 */
-	_onActiveChange: function(event) {
-		var instance = this;
-		var host = instance.get(HOST);
-		var widget = instance.get(TYPE) == TYPE_WIDGET;
-
-		if (!widget || (widget && host && host.get(RENDERED))) {
-			instance._setLoadingUI(event.newVal);
 		}
 	}
-});
+);
 
 A.namespace('Plugin').IO = IOPlugin;
 

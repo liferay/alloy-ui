@@ -21,14 +21,7 @@ var Lang = A.Lang,
 	CSS_LAST = getClassName(NAME, 'last'),
 	CSS_VERTICAL = getClassName(NAME, VERTICAL),
 
-	TPL_GENERIC = '<span></span>',
-
-	WP = A.Widget.prototype,
-
-	UI_ATTRS = [ ORIENTATION ],
-
-	BIND_UI_ATTRS = WP._BIND_UI_ATTRS.concat(UI_ATTRS),
-	SYNC_UI_ATTRS = WP._SYNC_UI_ATTRS.concat(UI_ATTRS);
+	TPL_GENERIC = '<span></span>';
 
 	/**
 	 * A base class for Toolbar, providing:
@@ -60,198 +53,195 @@ var Lang = A.Lang,
 	 * @uses WidgetParent
 	 */
 
-function Toolbar(config) {
-	Toolbar.superclass.constructor.apply(this, arguments);
-}
+var Toolbar = A.Component.create(
+	{
+		NAME: NAME,
 
-A.mix(Toolbar, {
-	NAME: NAME,
+		ATTRS: {
+			/**
+			 * Receives an interaction state of active when the user clicks on it.
+			 *
+			 * @attribute activeState
+			 * @type boolean
+			 */
+			activeState: {},
 
-	ATTRS: {
-		/**
-		 * Receives an interaction state of active when the user clicks on it.
-		 *
-		 * @attribute activeState
-		 * @type boolean
-		 */
-		activeState: {},
+			/**
+			 * Receives a default interaction state.
+			 *
+			 * @attribute defaultState
+			 * @type boolean
+			 */
+			defaultState: {},
 
-		/**
-		 * Receives a default interaction state.
-		 *
-		 * @attribute defaultState
-		 * @type boolean
-		 */
-		defaultState: {},
+			/**
+			 * Receives an interaction state of hover during the
+		     * <code>mouseover</code> event.
+			 *
+			 * @attribute hoverState
+			 * @type boolean
+			 */
+			hoverState: {},
 
-		/**
-		 * Receives an interaction state of hover during the
-	     * <code>mouseover</code> event.
-		 *
-		 * @attribute hoverState
-		 * @type boolean
-		 */
-		hoverState: {},
+			/**
+			 * The default type of child widget to render into the Element
+			 *
+			 * @attribute defaultChildType
+			 * @default ButtonItem
+			 * @type String | Object
+			 */
+			defaultChildType: {
+				value: 'ButtonItem'
+			},
 
-		/**
-		 * The default type of child widget to render into the Element
-		 *
-		 * @attribute defaultChildType
-		 * @default ButtonItem
-		 * @type String | Object
-		 */
-		defaultChildType: {
-			value: 'ButtonItem'
+			/**
+			 * Representing the orientation of the progress bar. Could be
+	         * <code>horizontal</code> or <code>vertical</code>.
+			 *
+			 * @attribute orientation
+			 * @default 'horizontal'
+			 * @type String
+			 */
+			orientation: {
+				value: HORIZONTAL,
+				validator: function(val) {
+					return isString(val) && (val === HORIZONTAL || val === VERTICAL);
+				}
+			}
 		},
 
-		/**
-		 * Representing the orientation of the progress bar. Could be
-         * <code>horizontal</code> or <code>vertical</code>.
-		 *
-		 * @attribute orientation
-		 * @default 'horizontal'
-		 * @type String
-		 */
-		orientation: {
-			value: HORIZONTAL,
-			validator: function(val) {
-				return isString(val) && (val === HORIZONTAL || val === VERTICAL);
+		UI_ATTRS: [ORIENTATION],
+
+		prototype: {
+			BOUNDING_TEMPLATE: TPL_GENERIC,
+			CONTENT_TEMPLATE: TPL_GENERIC,
+
+			/**
+			 * Construction logic executed during Toolbar instantiation. Lifecycle.
+			 *
+			 * @method initializer
+			 * @protected
+			 */
+			initializer: function() {
+				var instance = this;
+
+				A.Do.before(instance._addByIconId, instance, 'add');
+			},
+
+			/*
+			* Lifecycle
+			*/
+
+			/**
+			 * Bind the events on the Toolbar UI. Lifecycle.
+			 *
+			 * @method bindUI
+			 * @protected
+			 */
+			bindUI: function() {
+				var instance = this;
+
+				instance.on('addChild', instance._onAddButton);
+
+				instance.after('addChild', instance._afterAddButton);
+				instance.after('removeChild', instance._afterRemoveButton);
+			},
+
+			/**
+			 * Sync the Toolbar UI. Lifecycle.
+			 *
+			 * @method syncUI
+			 * @protected
+			 */
+			syncUI: function() {
+				var instance = this;
+
+				var length = instance.size() - 1;
+
+				instance.each(
+					function(item, index, collection) {
+						var itemBoundingBox = item.get('boundingBox');
+
+						itemBoundingBox.toggleClass(CSS_FIRST, index == 0);
+						itemBoundingBox.toggleClass(CSS_LAST, index == length);
+
+						itemBoundingBox.addClass(CSS_ITEM);
+					}
+				);
+			},
+
+			/*
+			* Methods
+			*/
+
+			/**
+			 * Overloads the add method so that if only a string is passed in, it will be
+			 * assumed to be the icon, and will automatically create a configuration
+			 * object for it.
+			 *
+			 * @method _addByIconId
+			 * @param {String} icon the icon name or object or array of objects to add to the toolbar
+			 * @protected
+			 * @return {String}
+			 */
+			_addByIconId: function(icon) {
+				var instance = this;
+
+				if (Lang.isString(icon)) {
+					var item = {
+						icon: icon
+					};
+
+					return new A.Do.AlterArgs(null, [item]);
+				}
+			},
+
+			/**
+			 * Syncs the UI after a button is added.
+			 *
+			 * @method _afterAddButton
+			 * @param {EventFacade} event
+			 * @protected
+			 */
+			_afterAddButton: function(event) {
+				var instance = this;
+
+				instance.syncUI();
+			},
+
+			/**
+			 * Syncs the UI after a button is removed.
+			 *
+			 * @method _afterRemoveButton
+			 * @param {EventFacade} event
+			 * @protected
+			 */
+			_afterRemoveButton: function(event) {
+				var instance = this;
+
+				event.child.destroy();
+
+				instance.syncUI();
+			},
+
+			/**
+			 * Updates the UI for the orientation attribute.
+			 *
+			 * @method _uiSetOrientation
+			 * @param {String} newVal The new value
+			 * @protected
+			 */
+			_uiSetOrientation: function(val) {
+				var instance = this;
+				var boundingBox = instance.get('boundingBox');
+				var horizontal = (val == HORIZONTAL);
+
+				boundingBox.toggleClass(CSS_HORIZONTAL, horizontal);
+				boundingBox.toggleClass(CSS_VERTICAL, !horizontal);
 			}
 		}
 	}
-});
-
-A.extend(Toolbar, A.Component, {
-	BOUNDING_TEMPLATE: TPL_GENERIC,
-	CONTENT_TEMPLATE: TPL_GENERIC,
-
-	_BIND_UI_ATTRS: BIND_UI_ATTRS,
-	_SYNC_UI_ATTRS: SYNC_UI_ATTRS,
-
-	/**
-	 * Construction logic executed during Toolbar instantiation. Lifecycle.
-	 *
-	 * @method initializer
-	 * @protected
-	 */
-	initializer: function() {
-		var instance = this;
-
-		A.Do.before(instance._addByIconId, instance, 'add');
-	},
-
-	/*
-	* Lifecycle
-	*/
-
-	/**
-	 * Bind the events on the Toolbar UI. Lifecycle.
-	 *
-	 * @method bindUI
-	 * @protected
-	 */
-	bindUI: function() {
-		var instance = this;
-
-		instance.on('addChild', instance._onAddButton);
-
-		instance.after('addChild', instance._afterAddButton);
-		instance.after('removeChild', instance._afterRemoveButton);
-	},
-
-	/**
-	 * Sync the Toolbar UI. Lifecycle.
-	 *
-	 * @method syncUI
-	 * @protected
-	 */
-	syncUI: function() {
-		var instance = this;
-
-		var length = instance.size() - 1;
-
-		instance.each(
-			function(item, index, collection) {
-				var itemBoundingBox = item.get('boundingBox');
-
-				itemBoundingBox.toggleClass(CSS_FIRST, index == 0);
-				itemBoundingBox.toggleClass(CSS_LAST, index == length);
-
-				itemBoundingBox.addClass(CSS_ITEM);
-			}
-		);
-	},
-
-	/*
-	* Methods
-	*/
-
-	/**
-	 * Overloads the add method so that if only a string is passed in, it will be
-	 * assumed to be the icon, and will automatically create a configuration
-	 * object for it.
-	 *
-	 * @method _addByIconId
-	 * @param {String} icon the icon name or object or array of objects to add to the toolbar
-	 * @protected
-	 * @return {String}
-	 */
-	_addByIconId: function(icon) {
-		var instance = this;
-
-		if (Lang.isString(icon)) {
-			var item = {
-				icon: icon
-			};
-
-			return new A.Do.AlterArgs(null, [item]);
-		}
-	},
-
-	/**
-	 * Syncs the UI after a button is added.
-	 *
-	 * @method _afterAddButton
-	 * @param {EventFacade} event
-	 * @protected
-	 */
-	_afterAddButton: function(event) {
-		var instance = this;
-
-		instance.syncUI();
-	},
-
-	/**
-	 * Syncs the UI after a button is removed.
-	 *
-	 * @method _afterRemoveButton
-	 * @param {EventFacade} event
-	 * @protected
-	 */
-	_afterRemoveButton: function(event) {
-		var instance = this;
-
-		event.child.destroy();
-
-		instance.syncUI();
-	},
-
-	/**
-	 * Updates the UI for the orientation attribute.
-	 *
-	 * @method _uiSetOrientation
-	 * @param {String} newVal The new value
-	 * @protected
-	 */
-	_uiSetOrientation: function(val) {
-		var instance = this;
-		var boundingBox = instance.get('boundingBox');
-		var horizontal = (val == HORIZONTAL);
-
-		boundingBox.toggleClass(CSS_HORIZONTAL, horizontal);
-		boundingBox.toggleClass(CSS_VERTICAL, !horizontal);
-	}
-});
+);
 
 var WidgetParentId = function() {
 	var instance = this;
