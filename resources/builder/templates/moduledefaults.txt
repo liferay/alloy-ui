@@ -4,34 +4,32 @@
 	var PATH_THEME_ROOT = PATH_BASE + 'themes/base/css/';
 	var PATH_THEME_IMAGES = PATH_THEME_ROOT + '../images/';
 
-	window.AUI = {
-		defaults: {
-			chart: {
-				swfURL: 'assets/chart.swf'
-			},
+	YUI.AUI_config = {
+		chart: {
+			swfURL: 'assets/chart.swf'
+		},
 
-			classNamePrefix: 'aui',
+		classNamePrefix: 'aui',
 
-			filter: 'raw',
+		filter: 'raw',
 
-			io: {
-				method: 'GET'
-			},
+		io: {
+			method: 'GET'
+		},
 
-            combine: false,
+        combine: false,
 
-			groups: {
-                alloy: {
-		            combine: false,
-                    modules: {
+		groups: {
+            alloy: {
+	            combine: false,
+                modules: {
 @MODULES@
-					}
-			    }
-			},
+				}
+		    }
+		},
 
-			paths: {
-				images: PATH_THEME_IMAGES
-			}
+		paths: {
+			images: PATH_THEME_IMAGES
 		}
 	}
 })();

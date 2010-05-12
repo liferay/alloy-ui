@@ -4,26 +4,25 @@
 	var PATH_THEME_ROOT = PATH_BASE + 'themes/base/css/';
 	var PATH_THEME_IMAGES = PATH_THEME_ROOT + '../images/';
 
-	window.AUI = {
-		defaults: {
-			chart: {
-				swfURL: 'assets/chart.swf'
-			},
+	YUI.AUI_config = {
+		chart: {
+			swfURL: 'assets/chart.swf'
+		},
 
-			classNamePrefix: 'aui',
+		classNamePrefix: 'aui',
 
-			filter: 'raw',
+		filter: 'raw',
 
-			io: {
-				method: 'GET'
-			},
+		io: {
+			method: 'GET'
+		},
 
-            combine: false,
+        combine: false,
 
-			groups: {
-                alloy: {
-		            combine: false,
-                    modules: {
+		groups: {
+            alloy: {
+	            combine: false,
+                modules: {
 						'aui-autocomplete': {requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox'], skinnable:true},
 						'aui-base': {requires:['aui-node','aui-component','aui-delayed-task','event','oop','widget-css'], skinnable:false},
 						'aui-button-item': {requires:['aui-base','aui-state-interaction','widget-child'], skinnable:true},
@@ -62,137 +61,71 @@
 						'aui-toolbar': {requires:['aui-base','aui-button-item','aui-data-set','widget-parent'], skinnable:true},
 						'aui-tooltip': {requires:['aui-overlay-context-panel'], skinnable:true},
 						'aui-tree': {submodules: {'aui-tree-view': {requires:['aui-tree-node','dd'], skinnable:true}, 'aui-tree-node': {requires:['aui-tree-data','io','json','querystring-stringify'], skinnable:false}, 'aui-tree-data': {requires:['aui-base'], skinnable:false} }, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true}
-					}
-			    }
-			},
+				}
+		    }
+		},
 
-			paths: {
-				images: PATH_THEME_IMAGES
-			}
+		paths: {
+			images: PATH_THEME_IMAGES
 		}
 	}
 })();
 ;(function() {
-
-	var toString = Object.prototype.toString;
-
-	var isFunction = function(obj) {
-		return toString.call(obj) === "[object Function]";
-	};
-
-	// Based on jQuery.extend
-	var apply = function() {
-		var target = arguments[0] || {},
-			i = 1,
-			length = arguments.length,
-			deep = false,
-			options;
-
-		if (typeof target === 'boolean') {
-			deep = target;
-			target = arguments[1] || {};
-			i = 2;
-		}
-
-		if (typeof target !== 'object' && !isFunction(target)) {
-			target = {};
-		}
-
-		if (length == i) {
-			target = this;
-			--i;
-		}
-
-		for (; i < length; i++) {
-			if ((options = arguments[i]) != null) {
-				for (var name in options) {
-					var src = target[name],
-						copy = options[name];
-
-					if (target === copy) {
-						continue;
-					}
-
-					if (deep && copy && typeof copy === 'object' && !copy.nodeType) {
-						target[name] = apply(
-							deep,
-							src || (copy.length != null ? [] : {}),
-							copy
-						);
-					}
-
-					else if (copy !== undefined) {
-						target[name] = copy;
-					}
-
-				}
-			}
-		}
-
-		return target;
-	};
-
 	/*
 	 * Alloy JavaScript Library v@VERSION@
 	 * http://alloy.liferay.com/
 	 *
-	 * Copyright (c) 2009 Liferay Inc.
+	 * Copyright (c) 2010 Liferay Inc.
 	 * http://alloy.liferay.com/LICENSE.txt
 	 *
+	 * Nate Cavanaugh (nathan.cavanaugh@liferay.com)
 	 * Eduardo Lundgren (eduardo.lundgren@liferay.com)
-	 * Nate Cavanaugh (nate.cavanaugh@liferay.com)
 	 *
 	 * Date: @DATE@
 	 * Revision: @REVISION@
 	 */
 
-	window.AUI = window.AUI || {};
+	YUI.AUI_config = YUI.AUI_config || {};
 
-	var defaults = AUI.defaults || {};
+	var defaults = YUI.AUI_config;
 
-	apply(
-		YUI.prototype,
-		{
-			apply: apply,
-			ready: function() {
-				var instance = this;
+	YUI.prototype.ready = function() {
+		var instance = this;
 
-				var slice = Array.prototype.slice;
-				var args = slice.call(arguments, 0), index = args.length - 1;
+		var slice = Array.prototype.slice;
+		var args = slice.call(arguments, 0), index = args.length - 1;
 
-				var fn = args[index];
+		var fn = args[index];
 
-				var modules = slice.call(arguments, 0, index);
+		var modules = slice.call(arguments, 0, index);
 
-				modules.push('event');
+		modules.push('event');
 
-				modules.push(
-					function(instance) {
-						var args = arguments;
+		modules.push(
+			function(instance) {
+				var args = arguments;
 
-						instance.on(
-							'domready',
-							function() {
-								fn.apply(this, args);
-							}
-						);
+				instance.on(
+					'domready',
+					function() {
+						fn.apply(this, args);
 					}
 				);
-
-				instance.use.apply(instance, modules);
 			}
-		}
-	);
+		);
 
-	var ALLOY = YUI(apply({}, defaults));
+		instance.use.apply(instance, modules);
+	};
+
+	var ALLOY = YUI(defaults);
 
 	ALLOY.Env._guidp = ['aui', ALLOY.version, ALLOY.Env._yidx].join('-').replace(/\./g, '-');
 
 	var originalConfig = ALLOY.config;
 
-	ALLOY.config = ALLOY.merge(originalConfig, AUI.defaults);
+	ALLOY.config = ALLOY.merge(originalConfig, YUI.AUI_config);
 
-	AUI = function(o) {
+	YUI.AUI = function(o) {
 		var instance = this;
 
 		if (o || instance instanceof AUI) {
@@ -202,15 +135,18 @@
 		return ALLOY;
 	};
 
+	var AUI = YUI.AUI;
+
+	window.AUI = AUI;
+
 	var UA = ALLOY.UA;
 
-	apply(
+	ALLOY.mix(AUI, YUI, true, null, 2);
+
+	ALLOY.mix(
 		AUI,
-		YUI,
 		{
 			__version: '@VERSION',
-
-			apply: apply,
 
 			defaults: defaults,
 
@@ -232,11 +168,13 @@
 			setDefaults: function(defaults) {
 				var instance = this;
 
-				ALLOY.config = ALLOY.merge(AUI.defaults, defaults);
+				ALLOY.mix(AUI.defaults, defaults, true, null, 0, true);
+				ALLOY.mix(ALLOY.config, defaults, true, null, 0, true);
 			},
 
 			HTML5_ELEMENTS: 'abbr,article,aside,audio,canvas,command,datalist,details,figure,figcaption,footer,header,hgroup,keygen,mark,meter,nav,output,progress,section,source,summary,time,video'.split(',')
-		}
+		},
+		true
 	);
 
 	/*
@@ -258,7 +196,7 @@
 	b = (!b || !b.length) ? (/(Mozilla)/.exec(u) || ['']) : b;
 	os = (!os || !os.length) ? [''] : os;
 
-	apply(
+	UA = ALLOY.merge(
 		UA,
 		{
 			gecko: /Gecko/.test(u) && !/like Gecko/.test(u),
@@ -326,6 +264,8 @@
 		UA.renderer = 'presto';
 	}
 
+	ALLOY.UA = UA;
+
 	/*
 	* Browser selectors
 	*/
@@ -372,19 +312,6 @@ A.mix(A.Array, {
 		return A.Array.remove(a, index);
 	}
 });
-
-A.mix(
-	A.Object,
-	{
-		isEmpty: function(o) {
-			for (var name in o) {
-				return false;
-			}
-
-			return true;
-		}
-	}
-);
 
 var Lang = A.Lang;
 var isArray = Lang.isArray;
