@@ -1,0 +1,603 @@
+AUI.add('aui-form-validator', function(A) {
+// API inspired on the amazing jQuery Form Validation - http://jquery.bassistance.de/validate/
+
+var L = A.Lang,
+	O = A.Object,
+	isBoolean = L.isBoolean,
+	isDate = L.isDate,
+	isEmpty = O.isEmpty,
+	isNumber = L.isNumber,
+	isFunction = L.isFunction,
+	isObject = L.isObject,
+	isString = L.isString,
+	trim = L.trim,
+
+	EMPTY_STRING = '',
+	FORM_VALIDATOR = 'form-validator',
+	INVALID_DATE = 'Invalid Date',
+	PIPE = '|',
+
+	CHECKBOX = 'checkbox',
+	CONTAINER = 'container',
+	ERROR = 'error',
+	ERROR_CLASS = 'errorClass',
+	ERROR_CONTAINER = 'errorContainer',
+	FORM = 'form',
+	MESSAGE = 'message',
+	MESSAGES = 'messages',
+	MESSAGE_CONTAINER = 'messageContainer',
+	NAME = 'name',
+	RADIO = 'radio',
+	RULES = 'rules',
+	SHOW_ALL_MESSAGES = 'showAllMessages',
+	SHOW_MESSAGES = 'showMessages',
+	TYPE = 'type',
+	VALID = 'valid',
+	VALIDATE_ON_BLUR = 'validateOnBlur',
+	VALID_CLASS = 'validClass',
+
+	EV_DOM_BLUR = FORM_VALIDATOR + '|blur',
+	EV_ERROR_FIELD = 'errorField',
+	EV_RESET = 'reset',
+	EV_SUBMIT = 'submit',
+	EV_SUBMIT_ERROR = 'submitError',
+	EV_VALIDATE_FIELD = 'validateField',
+	EV_VALID_FIELD = 'validField',
+
+	getCN = A.ClassNameManager.getClassName,
+
+	CSS_ERROR = getCN(FORM_VALIDATOR, ERROR),
+	CSS_VALID = getCN(FORM_VALIDATOR, VALID),
+
+	CSS_ERROR_CONTAINER = getCN(FORM_VALIDATOR, ERROR, CONTAINER),
+	CSS_MESSAGE_CONTAINER = getCN(FORM_VALIDATOR, MESSAGE, CONTAINER),
+
+	TPL_ERROR_CONTAINER = '<label class="'+CSS_ERROR_CONTAINER+'"></label>',
+	TPL_MESSAGE_CONTAINER = '<div class="'+CSS_MESSAGE_CONTAINER+'"></div>';
+
+function FormValidator() {
+	FormValidator.superclass.constructor.apply(this, arguments);
+}
+
+A.mix(FormValidator, {
+	NAME: FORM_VALIDATOR,
+
+	ATTRS: {
+		errorContainer: {
+			getter: function(val) {
+				return A.Node.create(val).cloneNode(true);
+			},
+			value: TPL_ERROR_CONTAINER
+		},
+
+		errorClass: {
+			value: CSS_ERROR,
+			validator: isString
+		},
+
+		form: {
+			setter: A.one
+		},
+
+		messages: {
+			value: {},
+			validator: isObject
+		},
+
+		messageContainer: {
+			getter: function(val) {
+				return A.Node.create(val).cloneNode(true);
+			},
+			value: TPL_MESSAGE_CONTAINER
+		},
+
+		rules: {
+			validator: isObject,
+			value: {}
+		},
+
+		showMessages: {
+			value: true,
+			validator: isBoolean
+		},
+
+		showAllMessages: {
+			value: false,
+			validator: isBoolean
+		},
+
+		validateOnBlur: {
+			value: true,
+			validator: isBoolean
+		},
+
+		validClass: {
+			value: CSS_VALID,
+			validator: isString
+		}
+	},
+
+	MESSAGES: {
+		acceptFiles: 'Please enter a value with a valid extension ({0}).',
+		alpha: 'Please enter only apha characters.',
+		alphanum: 'Please enter only aphanumeric characters.',
+		date: 'Please enter a valid date.',
+		digits: 'Please enter only digits.',
+		email: 'Please enter a valid email address.',
+		equalTo: 'Please enter the same value again.',
+		max: 'Please enter a value less than or equal to {0}.',
+		maxLength: 'Please enter no more than {0} characters.',
+		min: 'Please enter a value greater than or equal to {0}.',
+		minLength: 'Please enter at least {0} characters.',
+		number: 'Please enter a valid number.',
+		range: 'Please enter a value between {0} and {1}.',
+		rangeLength: 'Please enter a value between {0} and {1} characters long.',
+		required: 'This field is required.',
+		url: 'Please enter a valid URL.'
+	},
+
+	REGEX: {
+		alpha: /^[a-z_]+$/i,
+
+		alphanum: /^\w+$/,
+
+		digits: /^\d+$/,
+
+		number: /^[+\-]?(\d+([.,]\d+)?)+$/,
+
+		// Regex from Scott Gonzalez Email Address Validation: http://projects.scottsplayground.com/email_address_validation/
+		email: /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i,
+
+		// Regex from Scott Gonzalez IRI: http://projects.scottsplayground.com/iri/
+		url: /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i
+	},
+
+	RULES: {
+		acceptFiles: function(val, node, ruleValue) {
+			var regex = null;
+
+			if (isString(ruleValue)) {
+				// convert syntax (jpg, png) or (jpg png) to regex syntax (jpg|png)
+				var extensions = ruleValue.split(/,\s*|\b\s*/).join(PIPE);
+
+				regex = new RegExp('\.(' + extensions + ')$', 'i');
+			}
+
+			return regex && regex.test(val);
+		},
+
+		date: function(val, node, ruleValue) {
+			var date = new Date(val);
+
+			return (isDate(date) && (date != INVALID_DATE) && !isNaN(date));
+		},
+
+		equalTo: function(val, node, ruleValue) {
+			var comparator = A.one(ruleValue);
+
+			return comparator && (trim(comparator.val()) == val);
+		},
+
+		max: function(val, node, ruleValue) {
+			return (FormValidator.toNumber(val) <= ruleValue);
+		},
+
+		maxLength: function(val, node, ruleValue) {
+			return (val.length <= ruleValue);
+		},
+
+		min: function(val, node, ruleValue) {
+			return (FormValidator.toNumber(val) >= ruleValue);
+		},
+
+		minLength: function(val, node, ruleValue) {
+			return (val.length >= ruleValue);
+		},
+
+		range: function(val, node, ruleValue) {
+			var num = FormValidator.toNumber(val);
+
+			return (num >= ruleValue[0]) && (num <= ruleValue[1]);
+		},
+
+		rangeLength: function(val, node, ruleValue) {
+			var length = val.length;
+
+			return (length >= ruleValue[0]) && (length <= ruleValue[1]);
+		},
+
+		required: function(val, node, ruleValue) {
+			var instance = this;
+
+			if (A.FormValidator.isCheckable(node)) {
+				var name = node.get(NAME);
+				var elements = instance.getElementsByName(name);
+
+				return (elements.filter(':checked').size() > 0);
+			}
+			else {
+				return !!val;
+			}
+		}
+	},
+
+	isCheckable: function(node) {
+		var nodeType = node.get(TYPE).toLowerCase();
+
+		return (nodeType == CHECKBOX || nodeType == RADIO);
+	},
+
+	toNumber: function(val) {
+		return parseFloat(val) || 0;
+	}
+});
+
+A.each(
+	FormValidator.REGEX,
+	function(regex, key) {
+		FormValidator.RULES[key] = function(val, node, ruleValue) {
+			return FormValidator.REGEX[key].test(val);
+		};
+	}
+);
+
+A.extend(FormValidator, A.Base, {
+	errors: {},
+	errorContainers: {},
+
+	initializer: function() {
+		var instance = this;
+
+		instance.bindUI();
+	},
+
+	bindUI: function() {
+		var instance = this;
+
+		instance._createEvents();
+		instance._bindValidation();
+	},
+
+	addFieldError: function(field, ruleName) {
+		var instance = this;
+		var errors = instance.errors;
+		var name = field.get(NAME);
+
+		if (!errors[name]) {
+			errors[name] = [];
+		}
+
+		errors[name].push(ruleName);
+	},
+
+	clearFieldError: function(field) {
+		var instance = this;
+
+		delete instance.errors[field.get(NAME)];
+	},
+
+	clearErrors: function() {
+		var instance = this;
+
+		instance.errors = {};
+	},
+
+	eachRule: function(fn) {
+		var instance = this;
+
+		A.each(
+			instance.get(RULES),
+			function(rule, fieldName) {
+				if (isFunction(fn)) {
+					fn.apply(instance, [rule, fieldName]);
+				}
+			}
+		);
+	},
+
+	getField: function(field) {
+		var instance = this;
+
+		if (isString(field)) {
+			field = instance.getElementsByName(field).item(0);
+		}
+
+		return field;
+	},
+
+	getFieldError: function(field) {
+		var instance = this;
+
+		return instance.errors[field.get(NAME)];
+	},
+
+	hasErrors: function() {
+		var instance = this;
+
+		return !isEmpty(instance.errors);
+	},
+
+	getElementsByName: function(name) {
+		var instance = this;
+
+		return instance.get(FORM).all('[name="' + name + '"]');
+	},
+
+	getFieldErrorContainer: function(field) {
+		var instance = this;
+		var name = field.get(NAME);
+		var containers = instance.errorContainers;
+
+		if (!containers[name]) {
+			containers[name] = instance.get(ERROR_CONTAINER);
+		}
+
+		return containers[name];
+	},
+
+	getFieldErrorMessage: function(field, rule) {
+		var instance = this;
+		var fieldName = field.get(NAME);
+		var fieldMessages = instance.get(MESSAGES)[fieldName] || {};
+		var fieldRules = instance.get(RULES)[fieldName];
+
+		var substituteRulesMap = {};
+
+		if (rule in fieldRules) {
+			var ruleValue = fieldRules[rule];
+
+			A.Array(ruleValue).map(
+				function(value, index) {
+					substituteRulesMap[index] = [value].join(EMPTY_STRING);
+				}
+			);
+		}
+
+		var message = (fieldMessages[rule] || FormValidator.MESSAGES[rule]);
+
+		return A.substitute(message, substituteRulesMap);
+	},
+
+	highlight: function(field) {
+		var instance = this;
+		var errorClass = instance.get(ERROR_CLASS);
+		var validClass = instance.get(VALID_CLASS);
+
+		field.removeClass(validClass).addClass(errorClass);
+	},
+
+	unhighlight: function(field) {
+		var instance = this;
+		var errorClass = instance.get(ERROR_CLASS);
+		var validClass = instance.get(VALID_CLASS);
+
+		field.removeClass(errorClass).addClass(validClass);
+	},
+
+	printErrorStack: function(field, container, errors) {
+		var instance = this;
+
+		if (!instance.get(SHOW_ALL_MESSAGES)) {
+			errors = errors.slice(0, 1);
+		}
+
+		container.empty();
+
+		A.each(
+			errors,
+			function(error, index) {
+				var message = instance.getFieldErrorMessage(field, error);
+				var messageEl = instance.get(MESSAGE_CONTAINER).addClass(error);
+
+				container.append(
+					messageEl.html(message)
+				);
+			}
+		);
+	},
+
+	resetField: function(field) {
+		var instance = this;
+		var errorClass = instance.get(ERROR_CLASS);
+		var validClass = instance.get(VALID_CLASS);
+		var container = instance.getFieldErrorContainer(field);
+
+		container.remove();
+
+		instance.clearFieldError(field);
+
+		field.removeClass(validClass).removeClass(errorClass);
+	},
+
+	validatable: function(field) {
+		var instance = this;
+		var fieldRules = instance.get(RULES)[field.get(NAME)];
+
+		var required = fieldRules.required;
+		var hasValue = FormValidator.RULES.required.apply(instance, [field.val(), field]);
+
+		return (required || (!required && hasValue));
+	},
+
+	validate: function() {
+		var instance = this;
+
+		instance.eachRule(
+			function(rule, fieldName) {
+				instance.validateField(fieldName);
+			}
+		);
+	},
+
+	validateField: function(field) {
+		var instance = this;
+		var fieldNode = instance.getField(field);
+		var validatable = instance.validatable(fieldNode);
+
+		instance.resetField(fieldNode);
+
+		if (validatable) {
+			instance.fire(EV_VALIDATE_FIELD, {
+				validator: {
+					field: fieldNode
+				}
+			});
+		}
+	},
+
+	_bindValidation: function() {
+		var instance = this;
+		var form = instance.get(FORM);
+
+		instance.eachRule(
+			function(rule, fieldName) {
+				var field = instance.getElementsByName(fieldName);
+
+				field.on(EV_DOM_BLUR, A.bind(instance._onBlurField, instance));
+			}
+		);
+
+		form.on(EV_RESET, A.bind(instance._onFormReset, instance));
+		form.on(EV_SUBMIT, A.bind(instance._onFormSubmit, instance));
+	},
+
+	_createEvents: function() {
+		var instance = this;
+
+		// create publish function for kweight optimization
+		var publish = function(name, fn) {
+			instance.publish(name, {
+	            defaultFn: fn
+	        });
+		};
+
+		publish(
+			EV_ERROR_FIELD,
+			instance._defErrorFieldFn
+		);
+
+		publish(
+			EV_VALID_FIELD,
+			instance._defValidFieldFn
+		);
+
+		publish(
+			EV_VALIDATE_FIELD,
+			instance._defValidateFieldFn
+		);
+	},
+
+	_defErrorFieldFn: function(event) {
+		var instance = this;
+		var validator = event.validator;
+		var field = validator.field;
+
+		instance.highlight(field);
+
+		if (instance.get(SHOW_MESSAGES)) {
+			var container = instance.getFieldErrorContainer(field);
+
+			field.placeBefore(container);
+
+			instance.printErrorStack(
+				field,
+				container,
+				validator.errors
+			);
+		}
+	},
+
+	_defValidFieldFn: function(event) {
+		var instance = this;
+		var field = event.validator.field;
+
+		instance.unhighlight(field);
+	},
+
+	_defValidateFieldFn: function(event) {
+		var instance = this;
+		var field = event.validator.field;
+		var fieldRules = instance.get(RULES)[field.get(NAME)];
+
+		A.each(
+			fieldRules,
+			function(ruleValue, ruleName) {
+				var rule = FormValidator.RULES[ruleName];
+				var fieldValue = trim(field.val());
+
+				if (isFunction(rule) &&
+					!rule.apply(instance, [fieldValue, field, ruleValue])) {
+
+					instance.addFieldError(field, ruleName);
+				}
+			}
+		);
+
+		var fieldErrors = instance.getFieldError(field);
+
+		if (fieldErrors) {
+			instance.fire(EV_ERROR_FIELD, {
+				validator: {
+					field: field,
+					errors: fieldErrors
+				}
+			});
+		}
+		else {
+			instance.fire(EV_VALID_FIELD, {
+				validator: {
+					field: field
+				}
+			});
+		}
+	},
+
+	_onBlurField: function(event) {
+		var instance = this;
+
+		if (instance.get(VALIDATE_ON_BLUR)) {
+			var fieldName = event.currentTarget.get(NAME);
+
+			instance.validateField(fieldName);
+		}
+	},
+
+	_onFormSubmit: function(event) {
+		var instance = this;
+
+		var data = {
+			validator: {
+				formEvent: event
+			}
+		};
+
+		instance.validate();
+
+		if (instance.hasErrors()) {
+			data.validator.errors = instance.errors;
+
+			instance.fire(EV_SUBMIT_ERROR, data);
+
+			event.halt();
+		}
+		else {
+			instance.fire(EV_SUBMIT, data);
+		}
+	},
+
+	_onFormReset: function(event) {
+		var instance = this;
+
+		instance.eachRule(
+			function(rule, fieldName) {
+				var field = instance.getField(fieldName);
+
+				instance.resetField(field);
+			}
+		);
+	}
+});
+
+A.FormValidator = FormValidator;
+
+}, '@VERSION@' ,{requires:['aui-base','substitute']});
