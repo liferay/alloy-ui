@@ -2,11 +2,12 @@
 
 var L = A.Lang,
 	O = A.Object,
+	isArray = L.isArray,
 	isBoolean = L.isBoolean,
 	isDate = L.isDate,
 	isEmpty = O.isEmpty,
-	isNumber = L.isNumber,
 	isFunction = L.isFunction,
+	isNumber = L.isNumber,
 	isObject = L.isObject,
 	isString = L.isString,
 	trim = L.trim,
@@ -343,9 +344,10 @@ A.extend(FormValidator, A.Base, {
 		var substituteRulesMap = {};
 
 		if (rule in fieldRules) {
-			var ruleValue = fieldRules[rule];
+			var ruleValue = A.Array(fieldRules[rule]);
 
-			A.Array(ruleValue).map(
+			A.each(
+				ruleValue,
 				function(value, index) {
 					substituteRulesMap[index] = [value].join(EMPTY_STRING);
 				}
