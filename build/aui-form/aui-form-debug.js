@@ -2820,6 +2820,7 @@ var L = A.Lang,
 	isString = L.isString,
 	trim = L.trim,
 
+	DOT = '.',
 	EMPTY_STRING = '',
 	FORM_VALIDATOR = 'form-validator',
 	INVALID_DATE = 'Invalid Date',
@@ -2828,9 +2829,11 @@ var L = A.Lang,
 	BLUR_HANDLERS = 'blurHandlers',
 	CHECKBOX = 'checkbox',
 	CONTAINER = 'container',
+	CSS_FIELD_PREFIX = 'cssFieldPrefix',
 	ERROR = 'error',
 	ERROR_CLASS = 'errorClass',
 	ERROR_CONTAINER = 'errorContainer',
+	FIELD = 'field',
 	FORM = 'form',
 	INPUT_HANDLERS = 'inputHandlers',
 	MESSAGE = 'message',
@@ -2859,6 +2862,7 @@ var L = A.Lang,
 	getCN = A.ClassNameManager.getClassName,
 
 	CSS_ERROR = getCN(FORM_VALIDATOR, ERROR),
+	CSS_FIELD = getCN(FIELD, EMPTY_STRING),
 	CSS_VALID = getCN(FORM_VALIDATOR, VALID),
 
 	CSS_ERROR_CONTAINER = getCN(FORM_VALIDATOR, ERROR, CONTAINER),
@@ -2875,6 +2879,11 @@ A.mix(FormValidator, {
 	NAME: FORM_VALIDATOR,
 
 	ATTRS: {
+		cssFieldPrefix: {
+			value: CSS_FIELD,
+			validator: isString
+		},
+
 		errorContainer: {
 			getter: function(val) {
 				return A.Node.create(val).cloneNode(true);
@@ -3068,6 +3077,8 @@ A.extend(FormValidator, A.Base, {
 
 	initializer: function() {
 		var instance = this;
+
+		instance._extractMarkupRules();
 
 		instance.bindUI();
 	},
@@ -3394,6 +3405,34 @@ A.extend(FormValidator, A.Base, {
 				}
 			});
 		}
+	},
+
+	_extractMarkupRules: function() {
+		var instance = this;
+		var form = instance.get(FORM);
+		var rules = instance.get(RULES);
+		var cssFieldPrefix = instance.get(CSS_FIELD_PREFIX);
+
+		A.each(
+			FormValidator.RULES,
+			function(ruleValue, ruleName) {
+				var query = [DOT, cssFieldPrefix, ruleName].join(EMPTY_STRING);
+
+				form.all(query).each(
+					function(node) {
+						var fieldName = node.get(NAME);
+
+						if (!rules[fieldName]) {
+							rules[fieldName] = {};
+						}
+
+						if (!(ruleName in rules[fieldName])) {
+							rules[fieldName][ruleName] = true;
+						}
+					}
+				);
+			}
+		);
 	},
 
 	_onBlurField: function(event) {

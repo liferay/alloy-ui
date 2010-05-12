@@ -51,9 +51,32 @@
 
 <h1>Alloy - FormValidator</h1>
 
-<form action="" name="fm1">
+<form action="" id="fm1" name="fm1">
+	<fieldset>
+		<legend>Example 2 - Rules extracted from CSS classes</legend>
+			<p>
+				<label class="aui-field-label" for="name2">Name:</label>
+				<input class="aui-field-required" type="text" name="name" id="name2" />
+			</p>
+			<p>
+				<label class="aui-field-label" for="email2">Email:</label>
+				<input class="aui-field-required aui-field-email" type="text" name="email" id="email2" />
+			</p>
+			<p>
+				<label class="aui-field-label" for="age2">Age:</label>
+				<input class="aui-field-digits" type="text" name="age" id="age2" />
+			</p>
+
+			<p>
+				<input class="aui-button-input" type="submit" value="Submit" />
+				<input class="aui-button-input" type="reset" value="Reset" />
+			</p>
+	</fieldset>
+</form>
+
+<form action="" name="fm2">
 	<fieldset id="simpleForm">
-		<legend>Simple form</legend>
+		<legend>Example 1 - Rules passed on the constructor</legend>
 			<p>
 				<label class="aui-field-label" for="types1">
 					<input type="radio" name="type[]" id="types1" value="type1" /> Type 1
@@ -64,19 +87,19 @@
 			</p>
 			<p>
 				<label class="aui-field-label" for="name1">Name:</label>
-				<input class="aui-required" type="text" name="name" id="name1" />
+				<input type="text" name="name" id="name1" />
 			</p>
 			<p>
 				<label class="aui-field-label" for="lastName1">Last Name:</label>
-				<input class="aui-required" type="text" name="lastName" id="lastName1" />
+				<input type="text" name="lastName" id="lastName1" />
 			</p>
 			<p>
 				<label class="aui-field-label" for="age1">Age:</label>
-				<input class="aui-required" type="text" name="age" id="age1" />
+				<input type="text" name="age" id="age1" />
 			</p>
 			<p>
 				<label class="aui-field-label" for="gender1">Gender:</label>
-				<select class="aui-required" name="gender" id="gender1">
+				<select name="gender" id="gender1">
 					<option value="">- Select -</option>
 					<option value="male">Male</option>
 					<option value="female">Female</option>
@@ -84,23 +107,23 @@
 			</p>
 			<p>
 				<label class="aui-field-label" for="email1">Email:</label>
-				<input class="aui-required" type="text" name="email" id="email1" />
+				<input type="text" name="email" id="email1" />
 			</p>
 			<p>
 				<label class="aui-field-label" for="emailConfirmation1">Email (confirmation):</label>
-				<input class="aui-required" type="text" name="emailConfirmation" id="emailConfirmation1" />
+				<input type="text" name="emailConfirmation" id="emailConfirmation1" />
 			</p>
 			<p>
 				<label class="aui-field-label" for="picture1">Picture (upload):</label>
-				<input class="aui-required" type="file" name="picture" id="picture1" />
+				<input type="file" name="picture" id="picture1" />
 			</p>
 			<p>
 				<label class="aui-field-label" for="url1">Site URL:</label>
-				<input class="aui-required" type="text" name="url" id="url1" />
+				<input class="aui-field-url" type="text" name="url" id="url1" />
 			</p>
 			<p>
 				<label class="aui-field-label" for="comment1">Comment:</label>
-					<textarea class="aui-required" name="comment" id="comment1" cols="30" rows="5"></textarea>
+					<textarea name="comment" id="comment1" cols="30" rows="5"></textarea>
 			</p>
 			<p>
 				<label class="aui-field-label" for="receiveMessages1">
@@ -108,7 +131,7 @@
 				</label>
 			</p>
 			<p>
-				<input class="aui-button-input" id="submit" type="submit" value="Submit" />
+				<input class="aui-button-input" type="submit" value="Submit" />
 				<input class="aui-button-input" type="reset" value="Reset" />
 			</p>
 	</fieldset>
@@ -119,7 +142,12 @@
 AUI().ready('aui-form-validator', function(A) {
 
 	var validator1 = new A.FormValidator({
-		form: document.fm1,
+		form: '#fm1',
+		// cssFieldPrefix: 'liferay-field-validation-'
+	});
+
+	var validator2 = new A.FormValidator({
+		form: document.fm2,
 
 		// validateOnBlur: false,
 		// validateOnInput: true,
