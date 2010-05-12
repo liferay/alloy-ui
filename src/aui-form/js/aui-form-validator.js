@@ -2,12 +2,10 @@
 
 var L = A.Lang,
 	O = A.Object,
-	isArray = L.isArray,
 	isBoolean = L.isBoolean,
 	isDate = L.isDate,
 	isEmpty = O.isEmpty,
 	isFunction = L.isFunction,
-	isNumber = L.isNumber,
 	isObject = L.isObject,
 	isString = L.isString,
 	trim = L.trim,
@@ -630,9 +628,9 @@ A.extend(FormValidator, A.Base, {
 		instance.resetAllFields();
 	},
 
+	// helper method for k-weight optimizations
 	_bindValidateHelper: function(bind, evType, fn, handler) {
 		var instance = this;
-		var form = instance.get(FORM);
 
 		instance._unbindHandlers(handler);
 
