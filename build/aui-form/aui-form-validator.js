@@ -18,12 +18,14 @@ var L = A.Lang,
 	INVALID_DATE = 'Invalid Date',
 	PIPE = '|',
 
+	BLUR_HANDLERS = 'blurHandlers',
 	CHECKBOX = 'checkbox',
 	CONTAINER = 'container',
 	ERROR = 'error',
 	ERROR_CLASS = 'errorClass',
 	ERROR_CONTAINER = 'errorContainer',
 	FORM = 'form',
+	INPUT_HANDLERS = 'inputHandlers',
 	MESSAGE = 'message',
 	MESSAGES = 'messages',
 	MESSAGE_CONTAINER = 'messageContainer',
@@ -35,10 +37,12 @@ var L = A.Lang,
 	TYPE = 'type',
 	VALID = 'valid',
 	VALIDATE_ON_BLUR = 'validateOnBlur',
+	VALIDATE_ON_INPUT = 'validateOnInput',
 	VALID_CLASS = 'validClass',
 
-	EV_DOM_BLUR = FORM_VALIDATOR + '|blur',
+	EV_BLUR = 'blur',
 	EV_ERROR_FIELD = 'errorField',
+	EV_INPUT = 'input',
 	EV_RESET = 'reset',
 	EV_SUBMIT = 'submit',
 	EV_SUBMIT_ERROR = 'submitError',
@@ -112,6 +116,11 @@ A.mix(FormValidator, {
 			validator: isBoolean
 		},
 
+		validateOnInput: {
+			value: false,
+			validator: isBoolean
+		},
+
 		validClass: {
 			value: CSS_VALID,
 			validator: isString
@@ -162,7 +171,7 @@ A.mix(FormValidator, {
 				// convert syntax (jpg, png) or (jpg png) to regex syntax (jpg|png)
 				var extensions = ruleValue.split(/,\s*|\b\s*/).join(PIPE);
 
-				regex = new RegExp('\.(' + extensions + ')$', 'i');
+				regex = new RegExp('[.](' + extensions + ')$', 'i');
 			}
 
 			return regex && regex.test(val);
@@ -244,8 +253,11 @@ A.each(
 );
 
 A.extend(FormValidator, A.Base, {
-	errors: {},
+	blurHandlers: [],
+	inputHandlers: [],
+
 	errorContainers: {},
+	errors: {},
 
 	initializer: function() {
 		var instance = this;
@@ -455,17 +467,32 @@ A.extend(FormValidator, A.Base, {
 		}
 	},
 
+	_afterValidateOnBlurChange: function(event) {
+		var instance = this;
+
+		instance._uiSetValidateOnBlur(event.newVal);
+	},
+
+	_afterValidateOnInputChange: function(event) {
+		var instance = this;
+
+		instance._uiSetValidateOnInput(event.newVal);
+	},
+
 	_bindValidation: function() {
 		var instance = this;
 		var form = instance.get(FORM);
 
-		instance.eachRule(
-			function(rule, fieldName) {
-				var field = instance.getElementsByName(fieldName);
-
-				field.on(EV_DOM_BLUR, A.bind(instance._onBlurField, instance));
-			}
+		instance._uiSetValidateOnBlur(
+			instance.get(VALIDATE_ON_BLUR)
 		);
+
+		instance._uiSetValidateOnInput(
+			instance.get(VALIDATE_ON_INPUT)
+		);
+
+		instance.after('validateOnBlurChange', instance._afterValidateOnBlurChange);
+		instance.after('validateOnInputChange', instance._afterValidateOnInputChange);
 
 		form.on(EV_RESET, A.bind(instance._onFormReset, instance));
 		form.on(EV_SUBMIT, A.bind(instance._onFormSubmit, instance));
@@ -564,12 +591,15 @@ A.extend(FormValidator, A.Base, {
 
 	_onBlurField: function(event) {
 		var instance = this;
+		var fieldName = event.currentTarget.get(NAME);
 
-		if (instance.get(VALIDATE_ON_BLUR)) {
-			var fieldName = event.currentTarget.get(NAME);
+		instance.validateField(fieldName);
+	},
 
-			instance.validateField(fieldName);
-		}
+	_onFieldInputChange: function(event) {
+		var instance = this;
+
+		instance.validateField(event.currentTarget);
 	},
 
 	_onFormSubmit: function(event) {
@@ -599,9 +629,53 @@ A.extend(FormValidator, A.Base, {
 		var instance = this;
 
 		instance.resetAllFields();
+	},
+
+	_bindValidateHelper: function(val, evType, fn, handler) {
+		var instance = this;
+		var form = instance.get(FORM);
+
+		instance._unbindHandlers(handler);
+
+		if (val) {
+			instance.eachRule(
+				function(rule, fieldName) {
+					var field = instance.getElementsByName(fieldName);
+
+					instance[handler].push(
+						field.on(evType, A.bind(fn, instance))
+					);
+				}
+			);
+		}
+	},
+
+	_uiSetValidateOnInput: function(val) {
+		var instance = this;
+
+		instance._bindValidateHelper(val, EV_INPUT, instance._onFieldInputChange, INPUT_HANDLERS);
+	},
+
+	_uiSetValidateOnBlur: function(val) {
+		var instance = this;
+
+		instance._bindValidateHelper(val, EV_BLUR, instance._onBlurField, BLUR_HANDLERS);
+	},
+
+	_unbindHandlers: function(handler) {
+		var instance = this;
+
+		A.each(
+			instance[handler],
+			function(handler) {
+				handler.detach();
+			}
+		);
+
+		instance[handler] = [];
 	}
 });
 
 A.FormValidator = FormValidator;
 
-}, '@VERSION@' ,{requires:['aui-base','substitute']});
+}, '@VERSION@' ,{requires:['aui-base','aui-event-input','substitute']});
