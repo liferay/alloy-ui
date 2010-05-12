@@ -93,6 +93,10 @@
 		<create-module-list/>
 	</target>
 
+	<target name="create-module-list">
+		<create-module-list/>
+	</target>
+
 	<target name="build-skins">
 		<copy todir="${project.dir}/build/aui-skins" overwrite="true">
 			<fileset dir="${project.dir}/src/aui-skins"/>
