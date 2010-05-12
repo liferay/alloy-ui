@@ -3542,7 +3542,7 @@ A.extend(FormValidator, A.Base, {
 
 A.FormValidator = FormValidator;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-event-input','substitute']});
+}, '@VERSION@' ,{requires:['aui-base','aui-event-input','selector-css3','substitute']});
 
 
 AUI.add('aui-form', function(A){}, '@VERSION@' ,{use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-manager','aui-form-textarea','aui-form-textfield','aui-form-validator'], skinnable:false});

@@ -733,4 +733,4 @@ A.extend(FormValidator, A.Base, {
 
 A.FormValidator = FormValidator;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-event-input','substitute']});
+}, '@VERSION@' ,{requires:['aui-base','aui-event-input','selector-css3','substitute']});
