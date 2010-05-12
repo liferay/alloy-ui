@@ -2928,6 +2928,7 @@ A.mix(FormValidator, {
 	},
 
 	MESSAGES: {
+		DEFAULT: 'Please fix this field.',
 		acceptFiles: 'Please enter a value with a valid extension ({0}).',
 		alpha: 'Please enter only apha characters.',
 		alphanum: 'Please enter only aphanumeric characters.',
@@ -3086,12 +3087,6 @@ A.extend(FormValidator, A.Base, {
 		delete instance.errors[field.get(NAME)];
 	},
 
-	clearErrors: function() {
-		var instance = this;
-
-		instance.errors = {};
-	},
-
 	eachRule: function(fn) {
 		var instance = this;
 
@@ -3151,6 +3146,7 @@ A.extend(FormValidator, A.Base, {
 		var fieldMessages = instance.get(MESSAGES)[fieldName] || {};
 		var fieldRules = instance.get(RULES)[fieldName];
 
+		var messages = FormValidator.MESSAGES;
 		var substituteRulesMap = {};
 
 		if (rule in fieldRules) {
@@ -3164,7 +3160,7 @@ A.extend(FormValidator, A.Base, {
 			);
 		}
 
-		var message = (fieldMessages[rule] || FormValidator.MESSAGES[rule]);
+		var message = (fieldMessages[rule] || messages[rule] || messages.DEFAULT);
 
 		return A.substitute(message, substituteRulesMap);
 	},
@@ -3203,6 +3199,18 @@ A.extend(FormValidator, A.Base, {
 				container.append(
 					messageEl.html(message)
 				);
+			}
+		);
+	},
+
+	resetAllFields: function() {
+		var instance = this;
+
+		instance.eachRule(
+			function(rule, fieldName) {
+				var field = instance.getField(fieldName);
+
+				instance.resetField(field);
 			}
 		);
 	},
@@ -3399,13 +3407,7 @@ A.extend(FormValidator, A.Base, {
 	_onFormReset: function(event) {
 		var instance = this;
 
-		instance.eachRule(
-			function(rule, fieldName) {
-				var field = instance.getField(fieldName);
-
-				instance.resetField(field);
-			}
-		);
+		instance.resetAllFields();
 	}
 });
 
