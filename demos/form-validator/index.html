@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/yui/yui.js" type="text/javascript"></script>
+	<script src="../../build/aui-base/aui-base.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skins/core/css/main.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="../../build/aui-skins/classic/css/custom.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<style type="text/css">
+
+	fieldset {
+		border: 1px solid #CCCCCC;
+		margin: 10px;
+		padding: 10px;
+		font-size: 13px;
+	}
+
+	legend {
+		font-size: 20px;
+		font-weight: bold;
+	}
+
+	input[type=text], textarea, select {
+		border: 1px solid #777;
+		padding: 3px;
+	}
+
+	.aui-form-validator-valid {
+/*		border: 1px solid green;*/
+		background: lightGreen;
+	}
+
+	.aui-form-validator-error-container {
+		color: red;
+		display: block;
+		font-weight: normal;
+		font-style: italic;
+		margin: 3px 0;
+	}
+
+	.aui-form-validator-error {
+/*		border: 1px dotted red;*/
+		background: lightPink;
+	}
+	</style>
+</head>
+
+<body>
+
+<h1>Alloy - FormValidator</h1>
+
+<form action="" name="fm1">
+	<fieldset id="simpleForm">
+		<legend>Simple form</legend>
+			<p>
+				<label class="aui-field-label" for="types1">
+					<input type="radio" name="type[]" id="types1" value="type1" /> Type 1
+				</label>
+				<label class="aui-field-label" for="types2">
+					<input type="radio" name="type[]" id="types2" value="type2" /> Type 2
+				</label>
+			</p>
+			<p>
+				<label class="aui-field-label" for="name1">Name:</label>
+				<input class="aui-required" type="text" name="name" id="name1" />
+			</p>
+			<p>
+				<label class="aui-field-label" for="lastName1">Last Name:</label>
+				<input class="aui-required" type="text" name="lastName" id="lastName1" />
+			</p>
+			<p>
+				<label class="aui-field-label" for="age1">Age:</label>
+				<input class="aui-required" type="text" name="age" id="age1" />
+			</p>
+			<p>
+				<label class="aui-field-label" for="gender1">Gender:</label>
+				<select class="aui-required" name="gender" id="gender1">
+					<option value="">- Select -</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+				</select>
+			</p>
+			<p>
+				<label class="aui-field-label" for="email1">Email:</label>
+				<input class="aui-required" type="text" name="email" id="email1" />
+			</p>
+			<p>
+				<label class="aui-field-label" for="emailConfirmation1">Email (confirmation):</label>
+				<input class="aui-required" type="text" name="emailConfirmation" id="emailConfirmation1" />
+			</p>
+			<p>
+				<label class="aui-field-label" for="picture1">Picture (upload):</label>
+				<input class="aui-required" type="file" name="picture" id="picture1" />
+			</p>
+			<p>
+				<label class="aui-field-label" for="url1">Site URL:</label>
+				<input class="aui-required" type="text" name="url" id="url1" />
+			</p>
+			<p>
+				<label class="aui-field-label" for="comment1">Comment:</label>
+					<textarea class="aui-required" name="comment" id="comment1" cols="30" rows="5"></textarea>
+			</p>
+			<p>
+				<label class="aui-field-label" for="receiveMessages1">
+					<input type="checkbox" name="receiveMessages" id="receiveMessages1" /> Add your email to our database
+				</label>
+			</p>
+			<p>
+				<input class="aui-button-input" id="submit" type="submit" value="Submit" />
+				<input class="aui-button-input" type="reset" value="Reset" />
+			</p>
+	</fieldset>
+</form>
+
+<script type="text/javascript">
+
+AUI().ready('aui-form-validator', function(A) {
+
+	var validator1 = new A.FormValidator({
+		form: document.fm1,
+
+		// validateOnBlur: false,
+		// showMessages: false,
+		// showAllMessages: true,
+
+		rules: {
+			picture: {
+				required: true,
+				acceptFiles: 'jpg, gif, png'
+			},
+
+			age: {
+				digits: true,
+				range: [18, 50]
+				// min: 18,
+				// max: 50
+			},
+			email: {
+				required: true,
+				email: true
+			},
+			emailConfirmation: {
+				required: true,
+				email: true,
+				equalTo: '#email1'
+			},
+			url: {
+				url: true
+			},
+			gender: {
+				required: true
+			},
+			'type[]': {
+				required: true
+			},
+			lastName: {
+				required: true,
+				rangeLength: [2,50]
+				// maxLength: 50,
+				// minLength: 2
+			},
+			name: {
+				required: true,
+				rangeLength: [2,50]
+				// maxLength: 50,
+				// minLength: 2
+				// email: true,
+				// equalTo: '#emailConfirmation1',
+				// max: 100,
+				// maxLength: 10,
+				// min: 0,
+				// minLength: 10,
+				// number: true,
+				// url: true,
+			}
+		},
+
+		messages: {
+			email: {
+				email: 'Type your email in this field.'
+			},
+			gender: {
+				required: 'The gender is required.'
+			},
+			'type[]': {
+				required: 'Select the type is required.'
+			},
+			name: {
+				required: 'Required field with a custom message.'
+			}
+		},
+
+		on: {
+			validateField: function(event) {
+				// console.log('validateField', event);
+				// event.halt();
+			},
+
+			validField: function(event) {
+				// console.log('validField', event);
+			},
+
+			errorField: function(event) {
+				// console.log('errorField', event);
+				// event.halt();
+			},
+
+			submitError: function(event) {
+				var formEvent = event.validator.formEvent;
+				var errors = event.validator.errors;
+
+				// console.log('submitError', event, formEvent, errors);
+			},
+
+			submit: function(event) {
+				var formEvent = event.validator.formEvent;
+
+				// console.log('user submit', event);
+
+				formEvent.halt();
+			}
+		}
+	});
+
+});
+
+</script>
+
+</body>
+</html>
