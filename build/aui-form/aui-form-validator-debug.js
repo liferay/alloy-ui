@@ -631,13 +631,13 @@ A.extend(FormValidator, A.Base, {
 		instance.resetAllFields();
 	},
 
-	_bindValidateHelper: function(val, evType, fn, handler) {
+	_bindValidateHelper: function(bind, evType, fn, handler) {
 		var instance = this;
 		var form = instance.get(FORM);
 
 		instance._unbindHandlers(handler);
 
-		if (val) {
+		if (bind) {
 			instance.eachRule(
 				function(rule, fieldName) {
 					var field = instance.getElementsByName(fieldName);
@@ -650,16 +650,16 @@ A.extend(FormValidator, A.Base, {
 		}
 	},
 
-	_uiSetValidateOnInput: function(val) {
+	_uiSetValidateOnInput: function(bind) {
 		var instance = this;
 
-		instance._bindValidateHelper(val, EV_INPUT, instance._onFieldInputChange, INPUT_HANDLERS);
+		instance._bindValidateHelper(bind, EV_INPUT, instance._onFieldInputChange, INPUT_HANDLERS);
 	},
 
-	_uiSetValidateOnBlur: function(val) {
+	_uiSetValidateOnBlur: function(bind) {
 		var instance = this;
 
-		instance._bindValidateHelper(val, EV_BLUR, instance._onBlurField, BLUR_HANDLERS);
+		instance._bindValidateHelper(bind, EV_BLUR, instance._onBlurField, BLUR_HANDLERS);
 	},
 
 	_unbindHandlers: function(handler) {
