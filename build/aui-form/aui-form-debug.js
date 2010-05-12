@@ -2829,10 +2829,11 @@ var L = A.Lang,
 	BLUR_HANDLERS = 'blurHandlers',
 	CHECKBOX = 'checkbox',
 	CONTAINER = 'container',
-	CSS_FIELD_PREFIX = 'cssFieldPrefix',
 	ERROR = 'error',
 	ERROR_CLASS = 'errorClass',
 	ERROR_CONTAINER = 'errorContainer',
+	EXTRACT_CSS_PREFIX = 'extractCssPrefix',
+	EXTRACT_RULES = 'extractRules',
 	FIELD = 'field',
 	FORM = 'form',
 	INPUT_HANDLERS = 'inputHandlers',
@@ -2879,11 +2880,6 @@ A.mix(FormValidator, {
 	NAME: FORM_VALIDATOR,
 
 	ATTRS: {
-		cssFieldPrefix: {
-			value: CSS_FIELD,
-			validator: isString
-		},
-
 		errorContainer: {
 			getter: function(val) {
 				return A.Node.create(val).cloneNode(true);
@@ -2894,6 +2890,16 @@ A.mix(FormValidator, {
 		errorClass: {
 			value: CSS_ERROR,
 			validator: isString
+		},
+
+		extractCssPrefix: {
+			value: CSS_FIELD,
+			validator: isString
+		},
+
+		extractRules: {
+			value: true,
+			validator: isBoolean
 		},
 
 		form: {
@@ -3078,7 +3084,9 @@ A.extend(FormValidator, A.Base, {
 	initializer: function() {
 		var instance = this;
 
-		instance._extractMarkupRules();
+		instance._uiSetExtractRules(
+			instance.get(EXTRACT_RULES)
+		);
 
 		instance.bindUI();
 	},
@@ -3285,6 +3293,12 @@ A.extend(FormValidator, A.Base, {
 		}
 	},
 
+	_afterExtractRulesChange: function(event) {
+		var instance = this;
+
+		instance._uiSetExtractRules(event.newVal);
+	},
+
 	_afterValidateOnBlurChange: function(event) {
 		var instance = this;
 
@@ -3309,6 +3323,7 @@ A.extend(FormValidator, A.Base, {
 			instance.get(VALIDATE_ON_INPUT)
 		);
 
+		instance.after('extractRulesChange', instance._afterExtractRulesChange);
 		instance.after('validateOnBlurChange', instance._afterValidateOnBlurChange);
 		instance.after('validateOnInputChange', instance._afterValidateOnInputChange);
 
@@ -3407,34 +3422,6 @@ A.extend(FormValidator, A.Base, {
 		}
 	},
 
-	_extractMarkupRules: function() {
-		var instance = this;
-		var form = instance.get(FORM);
-		var rules = instance.get(RULES);
-		var cssFieldPrefix = instance.get(CSS_FIELD_PREFIX);
-
-		A.each(
-			FormValidator.RULES,
-			function(ruleValue, ruleName) {
-				var query = [DOT, cssFieldPrefix, ruleName].join(EMPTY_STRING);
-
-				form.all(query).each(
-					function(node) {
-						var fieldName = node.get(NAME);
-
-						if (!rules[fieldName]) {
-							rules[fieldName] = {};
-						}
-
-						if (!(ruleName in rules[fieldName])) {
-							rules[fieldName][ruleName] = true;
-						}
-					}
-				);
-			}
-		);
-	},
-
 	_onBlurField: function(event) {
 		var instance = this;
 		var fieldName = event.currentTarget.get(NAME);
@@ -3490,6 +3477,37 @@ A.extend(FormValidator, A.Base, {
 
 					instance[handler].push(
 						field.on(evType, A.bind(fn, instance))
+					);
+				}
+			);
+		}
+	},
+
+	_uiSetExtractRules: function(val) {
+		var instance = this;
+
+		if (val) {
+			var form = instance.get(FORM);
+			var rules = instance.get(RULES);
+			var extractCssPrefix = instance.get(EXTRACT_CSS_PREFIX);
+
+			A.each(
+				FormValidator.RULES,
+				function(ruleValue, ruleName) {
+					var query = [DOT, extractCssPrefix, ruleName].join(EMPTY_STRING);
+
+					form.all(query).each(
+						function(node) {
+							var fieldName = node.get(NAME);
+
+							if (!rules[fieldName]) {
+								rules[fieldName] = {};
+							}
+
+							if (!(ruleName in rules[fieldName])) {
+								rules[fieldName][ruleName] = true;
+							}
+						}
 					);
 				}
 			);
