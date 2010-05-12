@@ -16,6 +16,7 @@ getClassName = A.ClassNameManager.getClassName,
 ALERT = 'alert',
 CONTENT = 'content',
 HELPER = 'helper',
+HIDDEN = 'hidden',
 ICON = 'icon',
 ITEM = 'item',
 LIST = 'list',
@@ -30,6 +31,7 @@ ICON_ERROR = ALERT,
 ICON_LOADING = LOADING,
 
 CSS_HIGLIGHT = getClassName(NAME, SELECTED),
+CSS_HIDDEN = getClassName(HELPER, HIDDEN),
 CSS_LIST_ITEM = getClassName(NAME, LIST, ITEM),
 CSS_RESULTS_LIST = getClassName(HELPER, RESET),
 CSS_RESULTS_OVERLAY = getClassName(NAME, RESULTS),
@@ -1657,10 +1659,10 @@ var AutoComplete = A.Component.create(
 										node._resultData = result;
 										node.html(instance.formatResult(result, currentQuery, resultMatch));
 
-										node.removeClass('aui-helper-hidden');
+										node.removeClass(CSS_HIDDEN);
 									}
 									else {
-										node.addClass('aui-helper-hidden');
+										node.addClass(CSS_HIDDEN);
 									}
 								}
 							);
@@ -1787,7 +1789,7 @@ var AutoComplete = A.Component.create(
 				var listItems = [];
 
 				while (maxResultsDisplayed--) {
-					listItems[maxResultsDisplayed] = '<li class="aui-helper-hidden ' + CSS_LIST_ITEM + '" data-listItemIndex="' + maxResultsDisplayed + '"></li>';
+					listItems[maxResultsDisplayed] = '<li class="' + CSS_HIDDEN + ' ' + CSS_LIST_ITEM + '" data-listItemIndex="' + maxResultsDisplayed + '"></li>';
 				}
 
 				resultList.html(listItems.join(''));
