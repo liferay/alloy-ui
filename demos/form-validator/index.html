@@ -139,16 +139,22 @@
 
 <script type="text/javascript">
 
-AUI().ready('aui-form-validator', function(A) {
+AUI().ready('aui-form-validator', 'aui-overlay-context-panel', function(A) {
+
+	A.FormValidator.MESSAGES.customRule = 'Type the number 55.';
+
+	A.FormValidator.RULES.customRule = function(val, fieldNode, ruleValue) {
+		return (val == 55);
+	};
 
 	var validator1 = new A.FormValidator({
-		form: '#fm1',
+		boundingBox: '#fm1'
 		// extractRules: false,
 		// extractCssPrefix: 'aui-field-'
 	});
 
 	var validator2 = new A.FormValidator({
-		form: document.fm2,
+		boundingBox: document.fm2,
 
 		// validateOnBlur: false,
 		// validateOnInput: true,
@@ -162,6 +168,7 @@ AUI().ready('aui-form-validator', function(A) {
 			},
 
 			age: {
+				customRule: true,
 				digits: true,
 				range: [18, 50]
 				// min: 18,
@@ -243,7 +250,6 @@ AUI().ready('aui-form-validator', function(A) {
 			}
 		}
 	});
-
 });
 
 </script>
