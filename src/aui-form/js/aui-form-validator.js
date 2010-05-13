@@ -688,14 +688,16 @@ A.extend(FormValidator, A.Base, {
 
 					form.all(query).each(
 						function(node) {
-							var fieldName = node.get(NAME);
+							if (node.get(TYPE)) {
+								var fieldName = node.get(NAME);
 
-							if (!rules[fieldName]) {
-								rules[fieldName] = {};
-							}
+								if (!rules[fieldName]) {
+									rules[fieldName] = {};
+								}
 
-							if (!(ruleName in rules[fieldName])) {
-								rules[fieldName][ruleName] = true;
+								if (!(ruleName in rules[fieldName])) {
+									rules[fieldName][ruleName] = true;
+								}
 							}
 						}
 					);
