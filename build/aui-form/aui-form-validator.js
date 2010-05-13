@@ -18,6 +18,7 @@ var L = A.Lang,
 	PIPE = '|',
 
 	BLUR_HANDLERS = 'blurHandlers',
+	BOUNDING_BOX = 'boundingBox',
 	CHECKBOX = 'checkbox',
 	CONTAINER = 'container',
 	ERROR = 'error',
@@ -26,7 +27,6 @@ var L = A.Lang,
 	EXTRACT_CSS_PREFIX = 'extractCssPrefix',
 	EXTRACT_RULES = 'extractRules',
 	FIELD = 'field',
-	FORM = 'form',
 	INPUT_HANDLERS = 'inputHandlers',
 	MESSAGE = 'message',
 	MESSAGES = 'messages',
@@ -61,7 +61,14 @@ var L = A.Lang,
 	CSS_MESSAGE_CONTAINER = getCN(FORM_VALIDATOR, MESSAGE, CONTAINER),
 
 	TPL_ERROR_CONTAINER = '<label class="'+CSS_ERROR_CONTAINER+'"></label>',
-	TPL_MESSAGE_CONTAINER = '<div class="'+CSS_MESSAGE_CONTAINER+'"></div>';
+	TPL_MESSAGE_CONTAINER = '<div class="'+CSS_MESSAGE_CONTAINER+'"></div>',
+
+	WP = A.Widget.prototype,
+
+	UI_ATTRS = [ EXTRACT_RULES, VALIDATE_ON_BLUR, VALIDATE_ON_INPUT ],
+
+	BIND_UI_ATTRS = WP._BIND_UI_ATTRS.concat(UI_ATTRS),
+	SYNC_UI_ATTRS = WP._SYNC_UI_ATTRS.concat(UI_ATTRS);
 
 function FormValidator() {
 	FormValidator.superclass.constructor.apply(this, arguments);
@@ -93,10 +100,6 @@ A.mix(FormValidator, {
 			validator: isBoolean
 		},
 
-		form: {
-			setter: A.one
-		},
-
 		messages: {
 			value: {},
 			validator: isObject
@@ -107,6 +110,10 @@ A.mix(FormValidator, {
 				return A.Node.create(val).cloneNode(true);
 			},
 			value: TPL_MESSAGE_CONTAINER
+		},
+
+		render: {
+			value: true
 		},
 
 		rules: {
@@ -265,22 +272,16 @@ A.each(
 	}
 );
 
-A.extend(FormValidator, A.Base, {
-	blurHandlers: [],
-	inputHandlers: [],
+A.extend(FormValidator, A.Widget, {
+	CONTENT_TEMPLATE: null,
 
+	_BIND_UI_ATTRS: BIND_UI_ATTRS,
+	_SYNC_UI_ATTRS: SYNC_UI_ATTRS,
+
+	blurHandlers: [],
 	errorContainers: {},
 	errors: {},
-
-	initializer: function() {
-		var instance = this;
-
-		instance._uiSetExtractRules(
-			instance.get(EXTRACT_RULES)
-		);
-
-		instance.bindUI();
-	},
+	inputHandlers: [],
 
 	bindUI: function() {
 		var instance = this;
@@ -345,7 +346,7 @@ A.extend(FormValidator, A.Base, {
 	getElementsByName: function(name) {
 		var instance = this;
 
-		return instance.get(FORM).all('[name="' + name + '"]');
+		return instance.get(BOUNDING_BOX).all('[name="' + name + '"]');
 	},
 
 	getFieldErrorContainer: function(field) {
@@ -484,39 +485,9 @@ A.extend(FormValidator, A.Base, {
 		}
 	},
 
-	_afterExtractRulesChange: function(event) {
-		var instance = this;
-
-		instance._uiSetExtractRules(event.newVal);
-	},
-
-	_afterValidateOnBlurChange: function(event) {
-		var instance = this;
-
-		instance._uiSetValidateOnBlur(event.newVal);
-	},
-
-	_afterValidateOnInputChange: function(event) {
-		var instance = this;
-
-		instance._uiSetValidateOnInput(event.newVal);
-	},
-
 	_bindValidation: function() {
 		var instance = this;
-		var form = instance.get(FORM);
-
-		instance._uiSetValidateOnBlur(
-			instance.get(VALIDATE_ON_BLUR)
-		);
-
-		instance._uiSetValidateOnInput(
-			instance.get(VALIDATE_ON_INPUT)
-		);
-
-		instance.after('extractRulesChange', instance._afterExtractRulesChange);
-		instance.after('validateOnBlurChange', instance._afterValidateOnBlurChange);
-		instance.after('validateOnInputChange', instance._afterValidateOnInputChange);
+		var form = instance.get(BOUNDING_BOX);
 
 		form.on(EV_RESET, A.bind(instance._onFormReset, instance));
 		form.on(EV_SUBMIT, A.bind(instance._onFormSubmit, instance));
@@ -678,7 +649,7 @@ A.extend(FormValidator, A.Base, {
 		var instance = this;
 
 		if (val) {
-			var form = instance.get(FORM);
+			var form = instance.get(BOUNDING_BOX);
 			var rules = instance.get(RULES);
 			var extractCssPrefix = instance.get(EXTRACT_CSS_PREFIX);
 
