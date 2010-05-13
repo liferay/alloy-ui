@@ -97,7 +97,7 @@ var SWF = A.Component.create(
 				value: ''
 			},
 			version: {
-				value: ATTR_VERSION
+				value: VERSION
 			},
 			useExpressInstall: {
 				value: false
