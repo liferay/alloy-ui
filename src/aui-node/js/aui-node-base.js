@@ -10,7 +10,14 @@ var Lang = A.Lang,
 	isString = Lang.isString,
 	isUndefined = Lang.isUndefined,
 
+	getClassName = A.ClassNameManager.getClassName,
+
 	CLONED_EVENTS = false,
+
+	HELPER = 'helper',
+
+	CSS_HELPER_HIDDEN = getClassName(HELPER, 'hidden'),
+	CSS_HELPER_UNSELECTABLE = getClassName(HELPER, 'unselectable'),
 
 	INNER_HTML = 'innerHTML',
 	NEXT_SIBLING = 'nextSibling',
@@ -312,7 +319,7 @@ A.mix(A.Node.prototype, {
 	hide: function(cssClass) {
 		var instance = this;
 
-		instance.addClass(cssClass || instance._hideClass || 'aui-helper-hidden');
+		instance.addClass(cssClass || instance._hideClass || CSS_HELPER_HIDDEN);
 
 		return instance;
 	},
@@ -495,7 +502,7 @@ A.mix(A.Node.prototype, {
 			}
 		);
 
-		instance.removeClass('aui-helper-unselectable');
+		instance.removeClass(CSS_HELPER_UNSELECTABLE);
 
 		return instance;
 	},
@@ -517,7 +524,7 @@ A.mix(A.Node.prototype, {
 	show: function(cssClass) {
 		var instance = this;
 
-		instance.removeClass(cssClass || instance._hideClass || 'aui-helper-hidden');
+		instance.removeClass(cssClass || instance._hideClass || CSS_HELPER_HIDDEN);
 
 		return instance;
 	},
@@ -614,7 +621,7 @@ A.mix(A.Node.prototype, {
 		var instance = this;
 
 		var action = 'hide';
-		var hideClass = cssClass || instance._hideClass || 'aui-helper-hidden';
+		var hideClass = cssClass || instance._hideClass || CSS_HELPER_HIDDEN;
 
 		if (instance.hasClass(hideClass)) {
 			action = 'show';
@@ -645,7 +652,7 @@ A.mix(A.Node.prototype, {
 			}
 		);
 
-		instance.addClass('aui-helper-unselectable');
+		instance.addClass(CSS_HELPER_UNSELECTABLE);
 
 		return instance;
 	},
