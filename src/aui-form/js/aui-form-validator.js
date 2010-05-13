@@ -62,18 +62,9 @@ var L = A.Lang,
 	TPL_ERROR_CONTAINER = '<label class="'+CSS_ERROR_CONTAINER+'"></label>',
 	TPL_MESSAGE_CONTAINER = '<div class="'+CSS_MESSAGE_CONTAINER+'"></div>',
 
-	WP = A.Widget.prototype,
+	UI_ATTRS = [ EXTRACT_RULES, VALIDATE_ON_BLUR, VALIDATE_ON_INPUT ];
 
-	UI_ATTRS = [ EXTRACT_RULES, VALIDATE_ON_BLUR, VALIDATE_ON_INPUT ],
-
-	BIND_UI_ATTRS = WP._BIND_UI_ATTRS.concat(UI_ATTRS),
-	SYNC_UI_ATTRS = WP._SYNC_UI_ATTRS.concat(UI_ATTRS);
-
-function FormValidator() {
-	FormValidator.superclass.constructor.apply(this, arguments);
-}
-
-A.mix(FormValidator, {
+var FormValidator = A.Component.create({
 	NAME: FORM_VALIDATOR,
 
 	ATTRS: {
@@ -259,6 +250,439 @@ A.mix(FormValidator, {
 
 	toNumber: function(val) {
 		return parseFloat(val) || 0;
+	},
+
+	EXTENDS: A.Widget,
+
+	UI_ATTRS: UI_ATTRS,
+
+	prototype: {
+		CONTENT_TEMPLATE: null,
+
+		blurHandlers: [],
+		errorContainers: {},
+		errors: {},
+		inputHandlers: [],
+
+		bindUI: function() {
+			var instance = this;
+
+			instance._createEvents();
+			instance._bindValidation();
+		},
+
+		addFieldError: function(field, ruleName) {
+			var instance = this;
+			var errors = instance.errors;
+			var name = field.get(NAME);
+
+			if (!errors[name]) {
+				errors[name] = [];
+			}
+
+			errors[name].push(ruleName);
+		},
+
+		clearFieldError: function(field) {
+			var instance = this;
+
+			delete instance.errors[field.get(NAME)];
+		},
+
+		eachRule: function(fn) {
+			var instance = this;
+
+			A.each(
+				instance.get(RULES),
+				function(rule, fieldName) {
+					if (isFunction(fn)) {
+						fn.apply(instance, [rule, fieldName]);
+					}
+				}
+			);
+		},
+
+		getField: function(field) {
+			var instance = this;
+
+			if (isString(field)) {
+				field = instance.getElementsByName(field).item(0);
+			}
+
+			return field;
+		},
+
+		getFieldError: function(field) {
+			var instance = this;
+
+			return instance.errors[field.get(NAME)];
+		},
+
+		hasErrors: function() {
+			var instance = this;
+
+			return !isEmpty(instance.errors);
+		},
+
+		getElementsByName: function(name) {
+			var instance = this;
+
+			return instance.get(BOUNDING_BOX).all('[name="' + name + '"]');
+		},
+
+		getFieldErrorContainer: function(field) {
+			var instance = this;
+			var name = field.get(NAME);
+			var containers = instance.errorContainers;
+
+			if (!containers[name]) {
+				containers[name] = instance.get(ERROR_CONTAINER);
+			}
+
+			return containers[name];
+		},
+
+		getFieldErrorMessage: function(field, rule) {
+			var instance = this;
+			var fieldName = field.get(NAME);
+			var fieldMessages = instance.get(MESSAGES)[fieldName] || {};
+			var fieldRules = instance.get(RULES)[fieldName];
+
+			var messages = FormValidator.MESSAGES;
+			var substituteRulesMap = {};
+
+			if (rule in fieldRules) {
+				var ruleValue = A.Array(fieldRules[rule]);
+
+				A.each(
+					ruleValue,
+					function(value, index) {
+						substituteRulesMap[index] = [value].join(EMPTY_STRING);
+					}
+				);
+			}
+
+			var message = (fieldMessages[rule] || messages[rule] || messages.DEFAULT);
+
+			return A.substitute(message, substituteRulesMap);
+		},
+
+		highlight: function(field) {
+			var instance = this;
+			var errorClass = instance.get(ERROR_CLASS);
+			var validClass = instance.get(VALID_CLASS);
+
+			field.removeClass(validClass).addClass(errorClass);
+		},
+
+		unhighlight: function(field) {
+			var instance = this;
+			var errorClass = instance.get(ERROR_CLASS);
+			var validClass = instance.get(VALID_CLASS);
+
+			field.removeClass(errorClass).addClass(validClass);
+		},
+
+		printErrorStack: function(field, container, errors) {
+			var instance = this;
+
+			if (!instance.get(SHOW_ALL_MESSAGES)) {
+				errors = errors.slice(0, 1);
+			}
+
+			container.empty();
+
+			A.each(
+				errors,
+				function(error, index) {
+					var message = instance.getFieldErrorMessage(field, error);
+					var messageEl = instance.get(MESSAGE_CONTAINER).addClass(error);
+
+					container.append(
+						messageEl.html(message)
+					);
+				}
+			);
+		},
+
+		resetAllFields: function() {
+			var instance = this;
+
+			instance.eachRule(
+				function(rule, fieldName) {
+					var field = instance.getField(fieldName);
+
+					instance.resetField(field);
+				}
+			);
+		},
+
+		resetField: function(field) {
+			var instance = this;
+			var errorClass = instance.get(ERROR_CLASS);
+			var validClass = instance.get(VALID_CLASS);
+			var container = instance.getFieldErrorContainer(field);
+
+			container.remove();
+
+			instance.clearFieldError(field);
+
+			field.removeClass(validClass).removeClass(errorClass);
+		},
+
+		validatable: function(field) {
+			var instance = this;
+			var fieldRules = instance.get(RULES)[field.get(NAME)];
+
+			var required = fieldRules.required;
+			var hasValue = FormValidator.RULES.required.apply(instance, [field.val(), field]);
+
+			return (required || (!required && hasValue));
+		},
+
+		validate: function() {
+			var instance = this;
+
+			instance.eachRule(
+				function(rule, fieldName) {
+					instance.validateField(fieldName);
+				}
+			);
+		},
+
+		validateField: function(field) {
+			var instance = this;
+			var fieldNode = instance.getField(field);
+			var validatable = instance.validatable(fieldNode);
+
+			instance.resetField(fieldNode);
+
+			if (validatable) {
+				instance.fire(EV_VALIDATE_FIELD, {
+					validator: {
+						field: fieldNode
+					}
+				});
+			}
+		},
+
+		_bindValidation: function() {
+			var instance = this;
+			var form = instance.get(BOUNDING_BOX);
+
+			form.on(EV_RESET, A.bind(instance._onFormReset, instance));
+			form.on(EV_SUBMIT, A.bind(instance._onFormSubmit, instance));
+		},
+
+		_createEvents: function() {
+			var instance = this;
+
+			// create publish function for kweight optimization
+			var publish = function(name, fn) {
+				instance.publish(name, {
+		            defaultFn: fn
+		        });
+			};
+
+			publish(
+				EV_ERROR_FIELD,
+				instance._defErrorFieldFn
+			);
+
+			publish(
+				EV_VALID_FIELD,
+				instance._defValidFieldFn
+			);
+
+			publish(
+				EV_VALIDATE_FIELD,
+				instance._defValidateFieldFn
+			);
+		},
+
+		_defErrorFieldFn: function(event) {
+			var instance = this;
+			var validator = event.validator;
+			var field = validator.field;
+
+			instance.highlight(field);
+
+			if (instance.get(SHOW_MESSAGES)) {
+				var container = instance.getFieldErrorContainer(field);
+
+				field.placeBefore(container);
+
+				instance.printErrorStack(
+					field,
+					container,
+					validator.errors
+				);
+			}
+		},
+
+		_defValidFieldFn: function(event) {
+			var instance = this;
+			var field = event.validator.field;
+
+			instance.unhighlight(field);
+		},
+
+		_defValidateFieldFn: function(event) {
+			var instance = this;
+			var field = event.validator.field;
+			var fieldRules = instance.get(RULES)[field.get(NAME)];
+
+			A.each(
+				fieldRules,
+				function(ruleValue, ruleName) {
+					var rule = FormValidator.RULES[ruleName];
+					var fieldValue = trim(field.val());
+
+					if (isFunction(rule) &&
+						!rule.apply(instance, [fieldValue, field, ruleValue])) {
+
+						instance.addFieldError(field, ruleName);
+					}
+				}
+			);
+
+			var fieldErrors = instance.getFieldError(field);
+
+			if (fieldErrors) {
+				instance.fire(EV_ERROR_FIELD, {
+					validator: {
+						field: field,
+						errors: fieldErrors
+					}
+				});
+			}
+			else {
+				instance.fire(EV_VALID_FIELD, {
+					validator: {
+						field: field
+					}
+				});
+			}
+		},
+
+		_onBlurField: function(event) {
+			var instance = this;
+			var fieldName = event.currentTarget.get(NAME);
+
+			instance.validateField(fieldName);
+		},
+
+		_onFieldInputChange: function(event) {
+			var instance = this;
+
+			instance.validateField(event.currentTarget);
+		},
+
+		_onFormSubmit: function(event) {
+			var instance = this;
+
+			var data = {
+				validator: {
+					formEvent: event
+				}
+			};
+
+			instance.validate();
+
+			if (instance.hasErrors()) {
+				data.validator.errors = instance.errors;
+
+				instance.fire(EV_SUBMIT_ERROR, data);
+
+				event.halt();
+			}
+			else {
+				instance.fire(EV_SUBMIT, data);
+			}
+		},
+
+		_onFormReset: function(event) {
+			var instance = this;
+
+			instance.resetAllFields();
+		},
+
+		// helper method for k-weight optimizations
+		_bindValidateHelper: function(bind, evType, fn, handler) {
+			var instance = this;
+
+			instance._unbindHandlers(handler);
+
+			if (bind) {
+				instance.eachRule(
+					function(rule, fieldName) {
+						var field = instance.getElementsByName(fieldName);
+
+						instance[handler].push(
+							field.on(evType, A.bind(fn, instance))
+						);
+					}
+				);
+			}
+		},
+
+		_uiSetExtractRules: function(val) {
+			var instance = this;
+
+			if (val) {
+				var form = instance.get(BOUNDING_BOX);
+				var rules = instance.get(RULES);
+				var extractCssPrefix = instance.get(EXTRACT_CSS_PREFIX);
+
+				A.each(
+					FormValidator.RULES,
+					function(ruleValue, ruleName) {
+						var query = [DOT, extractCssPrefix, ruleName].join(EMPTY_STRING);
+
+						form.all(query).each(
+							function(node) {
+								if (node.get(TYPE)) {
+									var fieldName = node.get(NAME);
+
+									if (!rules[fieldName]) {
+										rules[fieldName] = {};
+									}
+
+									if (!(ruleName in rules[fieldName])) {
+										rules[fieldName][ruleName] = true;
+									}
+								}
+							}
+						);
+					}
+				);
+			}
+		},
+
+		_uiSetValidateOnInput: function(bind) {
+			var instance = this;
+
+			instance._bindValidateHelper(bind, EV_INPUT, instance._onFieldInputChange, INPUT_HANDLERS);
+		},
+
+		_uiSetValidateOnBlur: function(bind) {
+			var instance = this;
+
+			instance._bindValidateHelper(bind, EV_BLUR, instance._onBlurField, BLUR_HANDLERS);
+		},
+
+		_unbindHandlers: function(handler) {
+			var instance = this;
+
+			A.each(
+				instance[handler],
+				function(handler) {
+					handler.detach();
+				}
+			);
+
+			instance[handler] = [];
+		}
 	}
 });
 
@@ -270,437 +694,5 @@ A.each(
 		};
 	}
 );
-
-A.extend(FormValidator, A.Widget, {
-	CONTENT_TEMPLATE: null,
-
-	_BIND_UI_ATTRS: BIND_UI_ATTRS,
-	_SYNC_UI_ATTRS: SYNC_UI_ATTRS,
-
-	blurHandlers: [],
-	errorContainers: {},
-	errors: {},
-	inputHandlers: [],
-
-	bindUI: function() {
-		var instance = this;
-
-		instance._createEvents();
-		instance._bindValidation();
-	},
-
-	addFieldError: function(field, ruleName) {
-		var instance = this;
-		var errors = instance.errors;
-		var name = field.get(NAME);
-
-		if (!errors[name]) {
-			errors[name] = [];
-		}
-
-		errors[name].push(ruleName);
-	},
-
-	clearFieldError: function(field) {
-		var instance = this;
-
-		delete instance.errors[field.get(NAME)];
-	},
-
-	eachRule: function(fn) {
-		var instance = this;
-
-		A.each(
-			instance.get(RULES),
-			function(rule, fieldName) {
-				if (isFunction(fn)) {
-					fn.apply(instance, [rule, fieldName]);
-				}
-			}
-		);
-	},
-
-	getField: function(field) {
-		var instance = this;
-
-		if (isString(field)) {
-			field = instance.getElementsByName(field).item(0);
-		}
-
-		return field;
-	},
-
-	getFieldError: function(field) {
-		var instance = this;
-
-		return instance.errors[field.get(NAME)];
-	},
-
-	hasErrors: function() {
-		var instance = this;
-
-		return !isEmpty(instance.errors);
-	},
-
-	getElementsByName: function(name) {
-		var instance = this;
-
-		return instance.get(BOUNDING_BOX).all('[name="' + name + '"]');
-	},
-
-	getFieldErrorContainer: function(field) {
-		var instance = this;
-		var name = field.get(NAME);
-		var containers = instance.errorContainers;
-
-		if (!containers[name]) {
-			containers[name] = instance.get(ERROR_CONTAINER);
-		}
-
-		return containers[name];
-	},
-
-	getFieldErrorMessage: function(field, rule) {
-		var instance = this;
-		var fieldName = field.get(NAME);
-		var fieldMessages = instance.get(MESSAGES)[fieldName] || {};
-		var fieldRules = instance.get(RULES)[fieldName];
-
-		var messages = FormValidator.MESSAGES;
-		var substituteRulesMap = {};
-
-		if (rule in fieldRules) {
-			var ruleValue = A.Array(fieldRules[rule]);
-
-			A.each(
-				ruleValue,
-				function(value, index) {
-					substituteRulesMap[index] = [value].join(EMPTY_STRING);
-				}
-			);
-		}
-
-		var message = (fieldMessages[rule] || messages[rule] || messages.DEFAULT);
-
-		return A.substitute(message, substituteRulesMap);
-	},
-
-	highlight: function(field) {
-		var instance = this;
-		var errorClass = instance.get(ERROR_CLASS);
-		var validClass = instance.get(VALID_CLASS);
-
-		field.removeClass(validClass).addClass(errorClass);
-	},
-
-	unhighlight: function(field) {
-		var instance = this;
-		var errorClass = instance.get(ERROR_CLASS);
-		var validClass = instance.get(VALID_CLASS);
-
-		field.removeClass(errorClass).addClass(validClass);
-	},
-
-	printErrorStack: function(field, container, errors) {
-		var instance = this;
-
-		if (!instance.get(SHOW_ALL_MESSAGES)) {
-			errors = errors.slice(0, 1);
-		}
-
-		container.empty();
-
-		A.each(
-			errors,
-			function(error, index) {
-				var message = instance.getFieldErrorMessage(field, error);
-				var messageEl = instance.get(MESSAGE_CONTAINER).addClass(error);
-
-				container.append(
-					messageEl.html(message)
-				);
-			}
-		);
-	},
-
-	resetAllFields: function() {
-		var instance = this;
-
-		instance.eachRule(
-			function(rule, fieldName) {
-				var field = instance.getField(fieldName);
-
-				instance.resetField(field);
-			}
-		);
-	},
-
-	resetField: function(field) {
-		var instance = this;
-		var errorClass = instance.get(ERROR_CLASS);
-		var validClass = instance.get(VALID_CLASS);
-		var container = instance.getFieldErrorContainer(field);
-
-		container.remove();
-
-		instance.clearFieldError(field);
-
-		field.removeClass(validClass).removeClass(errorClass);
-	},
-
-	validatable: function(field) {
-		var instance = this;
-		var fieldRules = instance.get(RULES)[field.get(NAME)];
-
-		var required = fieldRules.required;
-		var hasValue = FormValidator.RULES.required.apply(instance, [field.val(), field]);
-
-		return (required || (!required && hasValue));
-	},
-
-	validate: function() {
-		var instance = this;
-
-		instance.eachRule(
-			function(rule, fieldName) {
-				instance.validateField(fieldName);
-			}
-		);
-	},
-
-	validateField: function(field) {
-		var instance = this;
-		var fieldNode = instance.getField(field);
-		var validatable = instance.validatable(fieldNode);
-
-		instance.resetField(fieldNode);
-
-		if (validatable) {
-			instance.fire(EV_VALIDATE_FIELD, {
-				validator: {
-					field: fieldNode
-				}
-			});
-		}
-	},
-
-	_bindValidation: function() {
-		var instance = this;
-		var form = instance.get(BOUNDING_BOX);
-
-		form.on(EV_RESET, A.bind(instance._onFormReset, instance));
-		form.on(EV_SUBMIT, A.bind(instance._onFormSubmit, instance));
-	},
-
-	_createEvents: function() {
-		var instance = this;
-
-		// create publish function for kweight optimization
-		var publish = function(name, fn) {
-			instance.publish(name, {
-	            defaultFn: fn
-	        });
-		};
-
-		publish(
-			EV_ERROR_FIELD,
-			instance._defErrorFieldFn
-		);
-
-		publish(
-			EV_VALID_FIELD,
-			instance._defValidFieldFn
-		);
-
-		publish(
-			EV_VALIDATE_FIELD,
-			instance._defValidateFieldFn
-		);
-	},
-
-	_defErrorFieldFn: function(event) {
-		var instance = this;
-		var validator = event.validator;
-		var field = validator.field;
-
-		instance.highlight(field);
-
-		if (instance.get(SHOW_MESSAGES)) {
-			var container = instance.getFieldErrorContainer(field);
-
-			field.placeBefore(container);
-
-			instance.printErrorStack(
-				field,
-				container,
-				validator.errors
-			);
-		}
-	},
-
-	_defValidFieldFn: function(event) {
-		var instance = this;
-		var field = event.validator.field;
-
-		instance.unhighlight(field);
-	},
-
-	_defValidateFieldFn: function(event) {
-		var instance = this;
-		var field = event.validator.field;
-		var fieldRules = instance.get(RULES)[field.get(NAME)];
-
-		A.each(
-			fieldRules,
-			function(ruleValue, ruleName) {
-				var rule = FormValidator.RULES[ruleName];
-				var fieldValue = trim(field.val());
-
-				if (isFunction(rule) &&
-					!rule.apply(instance, [fieldValue, field, ruleValue])) {
-
-					instance.addFieldError(field, ruleName);
-				}
-			}
-		);
-
-		var fieldErrors = instance.getFieldError(field);
-
-		if (fieldErrors) {
-			instance.fire(EV_ERROR_FIELD, {
-				validator: {
-					field: field,
-					errors: fieldErrors
-				}
-			});
-		}
-		else {
-			instance.fire(EV_VALID_FIELD, {
-				validator: {
-					field: field
-				}
-			});
-		}
-	},
-
-	_onBlurField: function(event) {
-		var instance = this;
-		var fieldName = event.currentTarget.get(NAME);
-
-		instance.validateField(fieldName);
-	},
-
-	_onFieldInputChange: function(event) {
-		var instance = this;
-
-		instance.validateField(event.currentTarget);
-	},
-
-	_onFormSubmit: function(event) {
-		var instance = this;
-
-		var data = {
-			validator: {
-				formEvent: event
-			}
-		};
-
-		instance.validate();
-
-		if (instance.hasErrors()) {
-			data.validator.errors = instance.errors;
-
-			instance.fire(EV_SUBMIT_ERROR, data);
-
-			event.halt();
-		}
-		else {
-			instance.fire(EV_SUBMIT, data);
-		}
-	},
-
-	_onFormReset: function(event) {
-		var instance = this;
-
-		instance.resetAllFields();
-	},
-
-	// helper method for k-weight optimizations
-	_bindValidateHelper: function(bind, evType, fn, handler) {
-		var instance = this;
-
-		instance._unbindHandlers(handler);
-
-		if (bind) {
-			instance.eachRule(
-				function(rule, fieldName) {
-					var field = instance.getElementsByName(fieldName);
-
-					instance[handler].push(
-						field.on(evType, A.bind(fn, instance))
-					);
-				}
-			);
-		}
-	},
-
-	_uiSetExtractRules: function(val) {
-		var instance = this;
-
-		if (val) {
-			var form = instance.get(BOUNDING_BOX);
-			var rules = instance.get(RULES);
-			var extractCssPrefix = instance.get(EXTRACT_CSS_PREFIX);
-
-			A.each(
-				FormValidator.RULES,
-				function(ruleValue, ruleName) {
-					var query = [DOT, extractCssPrefix, ruleName].join(EMPTY_STRING);
-
-					form.all(query).each(
-						function(node) {
-							if (node.get(TYPE)) {
-								var fieldName = node.get(NAME);
-
-								if (!rules[fieldName]) {
-									rules[fieldName] = {};
-								}
-
-								if (!(ruleName in rules[fieldName])) {
-									rules[fieldName][ruleName] = true;
-								}
-							}
-						}
-					);
-				}
-			);
-		}
-	},
-
-	_uiSetValidateOnInput: function(bind) {
-		var instance = this;
-
-		instance._bindValidateHelper(bind, EV_INPUT, instance._onFieldInputChange, INPUT_HANDLERS);
-	},
-
-	_uiSetValidateOnBlur: function(bind) {
-		var instance = this;
-
-		instance._bindValidateHelper(bind, EV_BLUR, instance._onBlurField, BLUR_HANDLERS);
-	},
-
-	_unbindHandlers: function(handler) {
-		var instance = this;
-
-		A.each(
-			instance[handler],
-			function(handler) {
-				handler.detach();
-			}
-		);
-
-		instance[handler] = [];
-	}
-});
 
 A.FormValidator = FormValidator;
