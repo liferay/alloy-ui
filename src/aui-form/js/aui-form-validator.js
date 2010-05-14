@@ -258,6 +258,7 @@ var FormValidator = A.Component.create({
 
 	prototype: {
 		CONTENT_TEMPLATE: null,
+		UI_EVENTS: {},
 
 		blurHandlers: [],
 		errorContainers: {},
