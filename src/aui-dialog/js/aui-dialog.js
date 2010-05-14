@@ -45,6 +45,7 @@ var L = A.Lang,
 
 	getCN = A.ClassNameManager.getClassName,
 
+	CSS_DIALOG = getCN(DIALOG),
 	CSS_DIALOG_BUTTON = getCN(DIALOG, BUTTON),
 	CSS_DIALOG_BUTTON_CONTAINER = getCN(DIALOG, BUTTON, CONTAINER),
 	CSS_DIALOG_BUTTON_DEFAULT = getCN(DIALOG, BUTTON, DEFAULT),
@@ -695,7 +696,9 @@ A.mix(
 		 * @return {Widget}
 		 */
 		findByChild: function(child) {
-			return A.Widget.getByNode(child);
+			return A.Widget.getByNode(
+				A.one(child).ancestor(DOT + CSS_DIALOG, true)
+			);
 		},
 
 		/**
