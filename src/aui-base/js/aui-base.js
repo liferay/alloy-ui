@@ -47,6 +47,12 @@ A.mix(
 			return str.replace(/([.*+?^$(){}|[\]\/\\])/g, '\\$1');
 		},
 
+		isGuid: function(id) {
+			var instance = this;
+
+			return String(id).indexOf(A.Env._guidp) === 0;
+		},
+
 		toQueryString: function(data) {
 			var instance = this;
 
