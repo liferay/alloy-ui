@@ -10,6 +10,7 @@ var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isString = Lang.isString,
 	isUndefined = Lang.isUndefined,
+	isValue = Lang.isValue,
 
 	getClassName = A.ClassNameManager.getClassName,
 
@@ -485,6 +486,40 @@ A.mix(A.Node.prototype, {
 	},
 
 	/**
+	 * Selects a substring of text inside of the input element.
+	 *
+	 * @method selectText
+	 * @param {Number} start The index to start the selection range from
+	 * @param {Number} end The index to end the selection range at
+	 */
+	selectText: function(start, end) {
+		var instance = this;
+
+		var domEl = instance.getDOM();
+		var length = instance.val().length;
+
+		end = isValue(end) ? end : length;
+		start = isValue(start) ? start : 0;
+
+		if (domEl.setSelectionRange) {
+			domEl.setSelectionRange(start, end);
+		}
+		else if (domEl.createTextRange) {
+			var range = domEl.createTextRange();
+
+			range.moveStart('character', start);
+			range.moveEnd('character', end - length);
+
+			range.select();
+		}
+		else {
+			domEl.select();
+		}
+
+		return instance;
+	},
+
+	/**
 	 * Enables text selection for this element (normalized across browsers).
 	 *
 	 * @method selectable
@@ -774,6 +809,8 @@ A.NodeList.importMethod(
 		'prepend',
 
 		'prependTo',
+
+		'selectText',
 
 		'selectable',
 

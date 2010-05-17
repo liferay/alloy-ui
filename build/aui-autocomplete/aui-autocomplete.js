@@ -1859,37 +1859,6 @@ var AutoComplete = A.Component.create(
 			},
 
 			/**
-			 * Selects a substring of text inside of the input element.
-			 *
-			 * @method _selectText
-			 * @param {Node} el The input element to read the value from
-			 * @param {Number} start The index to start the selection range from
-			 * @param {Number} end The index to end the selection range at
-			 * @protected
-			 */
-			_selectText: function(el, start, end) {
-				var instance = this;
-
-				var rawEl = A.Node.getDOMNode(el);
-				var value = el.get('value');
-
-				if (rawEl.setSelectionRange) {
-					rawEl.setSelectionRange(start, end);
-				}
-				else if (rawEl.createTextRange) {
-					var range = rawEl.createTextRange();
-
-					range.moveStart('character', start);
-					range.moveEnd('character', end - value.length);
-
-					range.select();
-				}
-				else {
-					rawEl.select();
-				}
-			},
-
-			/**
 			 * Makes a query request to the data source.
 			 *
 			 * @method _sendQuery
@@ -2057,7 +2026,7 @@ var AutoComplete = A.Component.create(
 
 							var end = inputEl.value.length;
 
-							instance._selectText(instance.inputNode, start, end);
+							instance.inputNode.selectText(start, end);
 
 							var prefill = inputEl.value.substr(start, end);
 
@@ -2111,7 +2080,7 @@ var AutoComplete = A.Component.create(
 
 					var end = newValue.length;
 
-					instance._selectText(input, end, end);
+					input.selectText(end, end);
 
 					instance._elCurListItem = elListItem;
 				}
