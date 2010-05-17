@@ -495,7 +495,7 @@ A.mix(A.Node.prototype, {
 	selectText: function(start, end) {
 		var instance = this;
 
-		var textfield = instance.getDOM();
+		var textField = instance.getDOM();
 		var length = instance.val().length;
 
 		end = isValue(end) ? end : length;
@@ -505,11 +505,11 @@ A.mix(A.Node.prototype, {
         // [nsIDOMNSHTMLInputElement.setSelectionRange] error when invoke the
         // setSelectionRange on firefox. Wrapping in a try/catch to prevent the error be thrown
 		try {
-			if (textfield.setSelectionRange) {
-				textfield.setSelectionRange(start, end);
+			if (textField.setSelectionRange) {
+				textField.setSelectionRange(start, end);
 			}
-			else if (textfield.createTextRange) {
-				var range = textfield.createTextRange();
+			else if (textField.createTextRange) {
+				var range = textField.createTextRange();
 
 				range.moveStart('character', start);
 				range.moveEnd('character', end - length);
@@ -517,7 +517,7 @@ A.mix(A.Node.prototype, {
 				range.select();
 			}
 			else {
-				textfield.select();
+				textField.select();
 			}
 		}
 		catch(e) {}
