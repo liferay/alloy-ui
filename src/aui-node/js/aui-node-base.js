@@ -494,26 +494,32 @@ A.mix(A.Node.prototype, {
 	selectText: function(start, end) {
 		var instance = this;
 
-		var domEl = instance.getDOM();
+		var textfield = instance.getDOM();
 		var length = instance.val().length;
 
 		end = isValue(end) ? end : length;
 		start = isValue(start) ? start : 0;
 
-		if (domEl.setSelectionRange) {
-			domEl.setSelectionRange(start, end);
-		}
-		else if (domEl.createTextRange) {
-			var range = domEl.createTextRange();
+		// Some form elements could throw a (NS_ERROR_FAILURE)
+        // [nsIDOMNSHTMLInputElement.setSelectionRange] error when invoke the
+        // setSelectionRange on firefox. Wrapping in a try/catch to prevent the error be thrown
+		try {
+			if (textfield.setSelectionRange) {
+				textfield.setSelectionRange(start, end);
+			}
+			else if (textfield.createTextRange) {
+				var range = textfield.createTextRange();
 
-			range.moveStart('character', start);
-			range.moveEnd('character', end - length);
+				range.moveStart('character', start);
+				range.moveEnd('character', end - length);
 
-			range.select();
+				range.select();
+			}
+			else {
+				textfield.select();
+			}
 		}
-		else {
-			domEl.select();
-		}
+		catch(e) {}
 
 		return instance;
 	},
