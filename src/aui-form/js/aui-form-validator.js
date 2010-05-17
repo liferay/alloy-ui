@@ -33,6 +33,7 @@ var L = A.Lang,
 	NAME = 'name',
 	RADIO = 'radio',
 	RULES = 'rules',
+	SELECT_TEXT = 'selectText',
 	SHOW_ALL_MESSAGES = 'showAllMessages',
 	SHOW_MESSAGES = 'showMessages',
 	TYPE = 'type',
@@ -109,6 +110,11 @@ var FormValidator = A.Component.create({
 		rules: {
 			validator: isObject,
 			value: {}
+		},
+
+		selectText: {
+			value: true,
+			validator: isBoolean
 		},
 
 		showMessages: {
@@ -303,6 +309,26 @@ var FormValidator = A.Component.create({
 			);
 		},
 
+		focusInvalidField: function() {
+			var instance = this;
+			var boundingBox = instance.get(BOUNDING_BOX);
+			var field = boundingBox.one(DOT+CSS_ERROR);
+
+			if (field) {
+				if (instance.get(SELECT_TEXT)) {
+					field.selectText();
+				}
+
+				field.focus();
+			}
+		},
+
+		getElementsByName: function(name) {
+			var instance = this;
+
+			return instance.get(BOUNDING_BOX).all('[name="' + name + '"]');
+		},
+
 		getField: function(field) {
 			var instance = this;
 
@@ -317,18 +343,6 @@ var FormValidator = A.Component.create({
 			var instance = this;
 
 			return instance.errors[field.get(NAME)];
-		},
-
-		hasErrors: function() {
-			var instance = this;
-
-			return !isEmpty(instance.errors);
-		},
-
-		getElementsByName: function(name) {
-			var instance = this;
-
-			return instance.get(BOUNDING_BOX).all('[name="' + name + '"]');
 		},
 
 		getFieldErrorContainer: function(field) {
@@ -368,6 +382,12 @@ var FormValidator = A.Component.create({
 			return A.substitute(message, substituteRulesMap);
 		},
 
+		hasErrors: function() {
+			var instance = this;
+
+			return !isEmpty(instance.errors);
+		},
+
 		highlight: function(field) {
 			var instance = this;
 			var errorClass = instance.get(ERROR_CLASS);
@@ -384,7 +404,7 @@ var FormValidator = A.Component.create({
 			field.removeClass(errorClass).addClass(validClass);
 		},
 
-		printErrorStack: function(field, container, errors) {
+		printStackError: function(field, container, errors) {
 			var instance = this;
 
 			if (!instance.get(SHOW_ALL_MESSAGES)) {
@@ -449,6 +469,8 @@ var FormValidator = A.Component.create({
 					instance.validateField(fieldName);
 				}
 			);
+
+			instance.focusInvalidField();
 		},
 
 		validateField: function(field) {
@@ -513,7 +535,7 @@ var FormValidator = A.Component.create({
 
 				field.placeBefore(container);
 
-				instance.printErrorStack(
+				instance.printStackError(
 					field,
 					container,
 					validator.errors
