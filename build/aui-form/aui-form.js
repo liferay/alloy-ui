@@ -2011,16 +2011,19 @@ var FormValidator = A.Component.create({
 		validateField: function(field) {
 			var instance = this;
 			var fieldNode = instance.getField(field);
-			var validatable = instance.validatable(fieldNode);
 
-			instance.resetField(fieldNode);
+			if (fieldNode) {
+				var validatable = instance.validatable(fieldNode);
 
-			if (validatable) {
-				instance.fire(EV_VALIDATE_FIELD, {
-					validator: {
-						field: fieldNode
-					}
-				});
+				instance.resetField(fieldNode);
+
+				if (validatable) {
+					instance.fire(EV_VALIDATE_FIELD, {
+						validator: {
+							field: fieldNode
+						}
+					});
+				}
 			}
 		},
 
