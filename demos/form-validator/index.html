@@ -144,14 +144,44 @@
 
 AUI().ready('aui-form-validator', 'aui-overlay-context-panel', function(A) {
 
-	A.FormValidator.MESSAGES.customRule = 'Type the number 55.';
+	// Extending Alloy Default values for FormValidator STRINGS and RULES
+	A.mix(
+		AUI.defaults.FormValidator.STRINGS,
+		{
+			customRule: 'Type the number 55.',
+			anotherRule: 'Message for another rule'
+		},
+		true
+	);
 
-	A.FormValidator.RULES.customRule = function(val, fieldNode, ruleValue) {
-		return (val == 55);
-	};
+	A.mix(
+		AUI.defaults.FormValidator.RULES,
+		{
+			customRule: function(val, fieldNode, ruleValue) {
+				return (val == 55);
+			},
+
+			anotherRule: function(val, fieldNode, ruleValue) {
+				return (val == 'another');
+			}
+		},
+		true
+	);
+
+
 
 	var validator1 = new A.FormValidator({
-		boundingBox: '#fm1'
+		boundingBox: '#fm1',
+
+		// strings: {
+		// 	required: 'Overwriting default REQUIRED string from AUI.defaults.FormValidator.STRINGS'
+		// },
+		//
+		// fieldStrings: {
+		// 	email: {
+		// 		required: 'Custom message for a required email field'
+		// 	}
+		// },
 
 		// errorClass: 'aui-form-validator-error',
 		// validClass: 'aui-form-validator-valid',
@@ -224,7 +254,7 @@ AUI().ready('aui-form-validator', 'aui-overlay-context-panel', function(A) {
 			}
 		},
 
-		messages: {
+		fieldStrings: {
 			email: {
 				email: 'Type your email in this field.'
 			},
