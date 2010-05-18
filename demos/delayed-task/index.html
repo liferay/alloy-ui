@@ -61,9 +61,10 @@
 <script type="text/javascript" charset="utf-8">
 
 AUI().ready(
+	'aui-base',
 	'aui-delayed-task',
 	function(A) {
-		var demoNode = A.get('#demo');
+		var demoNode = A.one('#demo');
 
 		var FocusTask = new A.DelayedTask(
 			function() {
