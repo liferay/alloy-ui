@@ -103,8 +103,7 @@ var FormValidator = A.Component.create({
 		},
 
 		fieldContainer: {
-			value: DOT+CSS_FIELD,
-			validator: isString
+			value: DOT+CSS_FIELD
 		},
 
 		messages: {
@@ -334,10 +333,11 @@ var FormValidator = A.Component.create({
 
 		findFieldContainer: function(field) {
 			var instance = this;
+			var fieldContainer = instance.get(FIELD_CONTAINER);
 
-			return field.ancestor(
-				instance.get(FIELD_CONTAINER)
-			);
+			if (fieldContainer) {
+				return field.ancestor(fieldContainer);
+			}
 		},
 
 		focusInvalidField: function() {
