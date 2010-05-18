@@ -1521,7 +1521,6 @@ var L = A.Lang,
 	SHOW_MESSAGES = 'showMessages',
 	STACK = 'stack',
 	STACK_ERROR_CONTAINER = 'stackErrorContainer',
-	STRINGS = 'strings',
 	TYPE = 'type',
 	VALID = 'valid',
 	VALIDATE_ON_BLUR = 'validateOnBlur',
@@ -1658,7 +1657,7 @@ AUI.defaults.FormValidator = {
 			}
 		}
 	}
-}
+};
 
 var FormValidator = A.Component.create({
 	NAME: FORM_VALIDATOR,
@@ -2136,8 +2135,6 @@ var FormValidator = A.Component.create({
 		},
 
 		_highlightHelper: function(field, errorClass, validClass, valid) {
-			var instance = this;
-
 			if (field) {
 				if (valid) {
 					field.removeClass(errorClass).addClass(validClass);
