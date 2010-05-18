@@ -30,7 +30,7 @@
 <input type="text" name="input1" size="55" value="" id="input1" />
 
 <div class="calendar-icon">
-	<button class="aui-button aui-button-content aui-state-default">
+	<button class="aui-buttonitem aui-buttonitem-content aui-state-default">
 		<span class="aui-icon aui-icon-calendar"></span>
 	</button>
 	Click on the icon to load a Portuguese Calendar
@@ -38,7 +38,7 @@
 
 <script type="text/javascript" charset="utf-8">
 
-AUI().ready('aui-calendar-base', function(A) {
+AUI().ready('aui-skin-base','aui-calendar-base', function(A) {
 
 	var calendar1 = new A.Calendar({
 		trigger: '#input1',
@@ -69,7 +69,7 @@ AUI().ready('aui-calendar-base', function(A) {
 	calendar1.toggle();
 
 	var calendar2 = new A.Calendar({
-		trigger: '.aui-button',
+		trigger: '.aui-buttonitem-content',
 		// locale: 'pt-br',
 		firstDayOfWeek: 0,
 		on: {
