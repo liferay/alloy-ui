@@ -10,6 +10,7 @@ var L = A.Lang,
 	isString = L.isString,
 	trim = L.trim,
 
+	DASH = '-',
 	DOT = '.',
 	EMPTY_STRING = '',
 	FORM_VALIDATOR = 'form-validator',
@@ -20,12 +21,14 @@ var L = A.Lang,
 	BOUNDING_BOX = 'boundingBox',
 	CHECKBOX = 'checkbox',
 	CONTAINER = 'container',
+	CONTAINER_ERROR_CLASS = 'containerErrorClass',
+	CONTAINER_VALID_CLASS = 'containerValidClass',
 	ERROR = 'error',
 	ERROR_CLASS = 'errorClass',
-	ERROR_CONTAINER = 'errorContainer',
 	EXTRACT_CSS_PREFIX = 'extractCssPrefix',
 	EXTRACT_RULES = 'extractRules',
 	FIELD = 'field',
+	FIELD_CONTAINER = 'fieldContainer',
 	INPUT_HANDLERS = 'inputHandlers',
 	MESSAGE = 'message',
 	MESSAGES = 'messages',
@@ -36,6 +39,8 @@ var L = A.Lang,
 	SELECT_TEXT = 'selectText',
 	SHOW_ALL_MESSAGES = 'showAllMessages',
 	SHOW_MESSAGES = 'showMessages',
+	STACK = 'stack',
+	STACK_ERROR_CONTAINER = 'stackErrorContainer',
 	TYPE = 'type',
 	VALID = 'valid',
 	VALIDATE_ON_BLUR = 'validateOnBlur',
@@ -54,14 +59,16 @@ var L = A.Lang,
 	getCN = A.ClassNameManager.getClassName,
 
 	CSS_ERROR = getCN(FORM_VALIDATOR, ERROR),
-	CSS_FIELD = getCN(FIELD, EMPTY_STRING),
-	CSS_VALID = getCN(FORM_VALIDATOR, VALID),
-
 	CSS_ERROR_CONTAINER = getCN(FORM_VALIDATOR, ERROR, CONTAINER),
-	CSS_MESSAGE_CONTAINER = getCN(FORM_VALIDATOR, MESSAGE, CONTAINER),
+	CSS_VALID = getCN(FORM_VALIDATOR, VALID),
+	CSS_VALID_CONTAINER = getCN(FORM_VALIDATOR, VALID, CONTAINER),
 
-	TPL_ERROR_CONTAINER = '<label class="'+CSS_ERROR_CONTAINER+'"></label>',
-	TPL_MESSAGE_CONTAINER = '<div class="'+CSS_MESSAGE_CONTAINER+'"></div>',
+	CSS_FIELD = getCN(FIELD),
+	CSS_MESSAGE = getCN(FORM_VALIDATOR, MESSAGE),
+	CSS_STACK_ERROR = getCN(FORM_VALIDATOR, STACK, ERROR),
+
+	TPL_MESSAGE = '<div class="'+CSS_MESSAGE+'"></div>',
+	TPL_STACK_ERROR = '<label class="'+CSS_STACK_ERROR+'"></label>',
 
 	UI_ATTRS = [ EXTRACT_RULES, VALIDATE_ON_BLUR, VALIDATE_ON_INPUT ];
 
@@ -69,11 +76,14 @@ var FormValidator = A.Component.create({
 	NAME: FORM_VALIDATOR,
 
 	ATTRS: {
-		errorContainer: {
-			getter: function(val) {
-				return A.Node.create(val).cloneNode(true);
-			},
-			value: TPL_ERROR_CONTAINER
+		containerErrorClass: {
+			value: CSS_ERROR_CONTAINER,
+			validator: isString
+		},
+
+		containerValidClass: {
+			value: CSS_VALID_CONTAINER,
+			validator: isString
 		},
 
 		errorClass: {
@@ -82,13 +92,18 @@ var FormValidator = A.Component.create({
 		},
 
 		extractCssPrefix: {
-			value: CSS_FIELD,
+			value: CSS_FIELD+DASH,
 			validator: isString
 		},
 
 		extractRules: {
 			value: true,
 			validator: isBoolean
+		},
+
+		fieldContainer: {
+			value: DOT+CSS_FIELD,
+			validator: isString
 		},
 
 		messages: {
@@ -100,7 +115,7 @@ var FormValidator = A.Component.create({
 			getter: function(val) {
 				return A.Node.create(val).cloneNode(true);
 			},
-			value: TPL_MESSAGE_CONTAINER
+			value: TPL_MESSAGE
 		},
 
 		render: {
@@ -125,6 +140,13 @@ var FormValidator = A.Component.create({
 		showAllMessages: {
 			value: false,
 			validator: isBoolean
+		},
+
+		stackErrorContainer: {
+			getter: function(val) {
+				return A.Node.create(val).cloneNode(true);
+			},
+			value: TPL_STACK_ERROR
 		},
 
 		validateOnBlur: {
@@ -267,9 +289,9 @@ var FormValidator = A.Component.create({
 		UI_EVENTS: {},
 
 		blurHandlers: [],
-		errorContainers: {},
 		errors: {},
 		inputHandlers: [],
+		stackErrorContainers: {},
 
 		bindUI: function() {
 			var instance = this;
@@ -309,6 +331,14 @@ var FormValidator = A.Component.create({
 			);
 		},
 
+		findFieldContainer: function(field) {
+			var instance = this;
+
+			return field.ancestor(
+				instance.get(FIELD_CONTAINER)
+			);
+		},
+
 		focusInvalidField: function() {
 			var instance = this;
 			var boundingBox = instance.get(BOUNDING_BOX);
@@ -345,16 +375,16 @@ var FormValidator = A.Component.create({
 			return instance.errors[field.get(NAME)];
 		},
 
-		getFieldErrorContainer: function(field) {
+		getFieldStackErrorContainer: function(field) {
 			var instance = this;
 			var name = field.get(NAME);
-			var containers = instance.errorContainers;
+			var stackContainers = instance.stackErrorContainers;
 
-			if (!containers[name]) {
-				containers[name] = instance.get(ERROR_CONTAINER);
+			if (!stackContainers[name]) {
+				stackContainers[name] = instance.get(STACK_ERROR_CONTAINER);
 			}
 
-			return containers[name];
+			return stackContainers[name];
 		},
 
 		getFieldErrorMessage: function(field, rule) {
@@ -388,20 +418,29 @@ var FormValidator = A.Component.create({
 			return !isEmpty(instance.errors);
 		},
 
-		highlight: function(field) {
+		highlight: function(field, valid) {
 			var instance = this;
-			var errorClass = instance.get(ERROR_CLASS);
-			var validClass = instance.get(VALID_CLASS);
+			var fieldContainer = instance.findFieldContainer(field);
 
-			field.removeClass(validClass).addClass(errorClass);
+			instance._highlightHelper(
+				field,
+				instance.get(ERROR_CLASS),
+				instance.get(VALID_CLASS),
+				valid
+			);
+
+			instance._highlightHelper(
+				fieldContainer,
+				instance.get(CONTAINER_ERROR_CLASS),
+				instance.get(CONTAINER_VALID_CLASS),
+				valid
+			);
 		},
 
 		unhighlight: function(field) {
 			var instance = this;
-			var errorClass = instance.get(ERROR_CLASS);
-			var validClass = instance.get(VALID_CLASS);
 
-			field.removeClass(errorClass).addClass(validClass);
+			instance.highlight(field, true);
 		},
 
 		printStackError: function(field, container, errors) {
@@ -440,15 +479,31 @@ var FormValidator = A.Component.create({
 
 		resetField: function(field) {
 			var instance = this;
-			var errorClass = instance.get(ERROR_CLASS);
-			var validClass = instance.get(VALID_CLASS);
-			var container = instance.getFieldErrorContainer(field);
+			var stackContainer = instance.getFieldStackErrorContainer(field);
 
-			container.remove();
+			stackContainer.remove();
+
+			instance.resetFieldCss(field);
 
 			instance.clearFieldError(field);
+		},
 
-			field.removeClass(validClass).removeClass(errorClass);
+		resetFieldCss: function(field) {
+			var instance = this;
+			var fieldContainer = instance.findFieldContainer(field);
+
+			var removeClasses = function(elem, classAttrs) {
+				if (elem) {
+					A.each(classAttrs, function(attrName) {
+						elem.removeClass(
+							instance.get(attrName)
+						);
+					});
+				}
+			};
+
+			removeClasses(field, [VALID_CLASS, ERROR_CLASS]);
+			removeClasses(fieldContainer, [CONTAINER_VALID_CLASS, CONTAINER_ERROR_CLASS]);
 		},
 
 		validatable: function(field) {
@@ -531,13 +586,13 @@ var FormValidator = A.Component.create({
 			instance.highlight(field);
 
 			if (instance.get(SHOW_MESSAGES)) {
-				var container = instance.getFieldErrorContainer(field);
+				var stackContainer = instance.getFieldStackErrorContainer(field);
 
-				field.placeBefore(container);
+				field.placeBefore(stackContainer);
 
 				instance.printStackError(
 					field,
-					container,
+					stackContainer,
 					validator.errors
 				);
 			}
@@ -585,6 +640,19 @@ var FormValidator = A.Component.create({
 						field: field
 					}
 				});
+			}
+		},
+
+		_highlightHelper: function(field, errorClass, validClass, valid) {
+			var instance = this;
+
+			if (field) {
+				if (valid) {
+					field.removeClass(errorClass).addClass(validClass);
+				}
+				else {
+					field.removeClass(validClass).addClass(errorClass);
+				}
 			}
 		},
 

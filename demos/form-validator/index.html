@@ -27,12 +27,7 @@
 		padding: 3px;
 	}
 
-	.aui-form-validator-valid {
-/*		border: 1px solid green;*/
-		background: lightGreen;
-	}
-
-	.aui-form-validator-error-container {
+	.aui-form-validator-stack-error {
 		color: red;
 		display: block;
 		font-weight: normal;
@@ -40,9 +35,17 @@
 		margin: 3px 0;
 	}
 
+	.aui-form-validator-error-container {}
+	.aui-form-validator-valid-container {}
+
 	.aui-form-validator-error {
 /*		border: 1px dotted red;*/
 		background: lightPink;
+	}
+
+	.aui-form-validator-valid {
+/*		border: 1px solid green;*/
+		background: lightGreen;
 	}
 	</style>
 </head>
@@ -54,7 +57,7 @@
 <form action="" id="fm1" name="fm1">
 	<fieldset>
 		<legend>Example 1 - Rules extracted from CSS classes</legend>
-			<p>
+			<p class="aui-field">
 				<label class="aui-field-label" for="name2">Name:</label>
 				<input class="aui-field-required" type="text" name="name" id="name2" />
 			</p>
@@ -149,6 +152,18 @@ AUI().ready('aui-form-validator', 'aui-overlay-context-panel', function(A) {
 
 	var validator1 = new A.FormValidator({
 		boundingBox: '#fm1'
+
+		// errorClass: 'aui-form-validator-error',
+		// validClass: 'aui-form-validator-valid',
+
+		// fieldContainer: 'p',
+		// containerErrorClass: 'aui-form-validator-error-container',
+		// containerValidClass: 'aui-form-validator-valid-container',
+
+		// validateOnBlur: false,
+		// validateOnInput: true,
+		// showMessages: false,
+		// showAllMessages: true,
 		// selectText: false,
 		// validateOnInput: true,
 		// extractRules: false,
@@ -157,6 +172,8 @@ AUI().ready('aui-form-validator', 'aui-overlay-context-panel', function(A) {
 
 	var validator2 = new A.FormValidator({
 		boundingBox: document.fm2,
+
+		fieldContainer: 'p',
 
 		// validateOnBlur: false,
 		// validateOnInput: true,
