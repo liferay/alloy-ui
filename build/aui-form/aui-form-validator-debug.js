@@ -30,9 +30,9 @@ var L = A.Lang,
 	EXTRACT_RULES = 'extractRules',
 	FIELD = 'field',
 	FIELD_CONTAINER = 'fieldContainer',
+	FIELD_STRINGS = 'fieldStrings',
 	INPUT_HANDLERS = 'inputHandlers',
 	MESSAGE = 'message',
-	MESSAGES = 'messages',
 	MESSAGE_CONTAINER = 'messageContainer',
 	NAME = 'name',
 	RADIO = 'radio',
@@ -42,6 +42,7 @@ var L = A.Lang,
 	SHOW_MESSAGES = 'showMessages',
 	STACK = 'stack',
 	STACK_ERROR_CONTAINER = 'stackErrorContainer',
+	STRINGS = 'strings',
 	TYPE = 'type',
 	VALID = 'valid',
 	VALIDATE_ON_BLUR = 'validateOnBlur',
@@ -73,99 +74,8 @@ var L = A.Lang,
 
 	UI_ATTRS = [ EXTRACT_RULES, VALIDATE_ON_BLUR, VALIDATE_ON_INPUT ];
 
-var FormValidator = A.Component.create({
-	NAME: FORM_VALIDATOR,
-
-	ATTRS: {
-		containerErrorClass: {
-			value: CSS_ERROR_CONTAINER,
-			validator: isString
-		},
-
-		containerValidClass: {
-			value: CSS_VALID_CONTAINER,
-			validator: isString
-		},
-
-		errorClass: {
-			value: CSS_ERROR,
-			validator: isString
-		},
-
-		extractCssPrefix: {
-			value: CSS_FIELD+DASH,
-			validator: isString
-		},
-
-		extractRules: {
-			value: true,
-			validator: isBoolean
-		},
-
-		fieldContainer: {
-			value: DOT+CSS_FIELD
-		},
-
-		messages: {
-			value: {},
-			validator: isObject
-		},
-
-		messageContainer: {
-			getter: function(val) {
-				return A.Node.create(val).cloneNode(true);
-			},
-			value: TPL_MESSAGE
-		},
-
-		render: {
-			value: true
-		},
-
-		rules: {
-			validator: isObject,
-			value: {}
-		},
-
-		selectText: {
-			value: true,
-			validator: isBoolean
-		},
-
-		showMessages: {
-			value: true,
-			validator: isBoolean
-		},
-
-		showAllMessages: {
-			value: false,
-			validator: isBoolean
-		},
-
-		stackErrorContainer: {
-			getter: function(val) {
-				return A.Node.create(val).cloneNode(true);
-			},
-			value: TPL_STACK_ERROR
-		},
-
-		validateOnBlur: {
-			value: true,
-			validator: isBoolean
-		},
-
-		validateOnInput: {
-			value: false,
-			validator: isBoolean
-		},
-
-		validClass: {
-			value: CSS_VALID,
-			validator: isString
-		}
-	},
-
-	MESSAGES: {
+AUI.defaults.FormValidator = {
+	STRINGS: {
 		DEFAULT: 'Please fix this field.',
 		acceptFiles: 'Please enter a value with a valid extension ({0}).',
 		alpha: 'Please enter only apha characters.',
@@ -267,6 +177,105 @@ var FormValidator = A.Component.create({
 			else {
 				return !!val;
 			}
+		}
+	}
+}
+
+var FormValidator = A.Component.create({
+	NAME: FORM_VALIDATOR,
+
+	ATTRS: {
+		containerErrorClass: {
+			value: CSS_ERROR_CONTAINER,
+			validator: isString
+		},
+
+		containerValidClass: {
+			value: CSS_VALID_CONTAINER,
+			validator: isString
+		},
+
+		errorClass: {
+			value: CSS_ERROR,
+			validator: isString
+		},
+
+		extractCssPrefix: {
+			value: CSS_FIELD+DASH,
+			validator: isString
+		},
+
+		extractRules: {
+			value: true,
+			validator: isBoolean
+		},
+
+		fieldContainer: {
+			value: DOT+CSS_FIELD
+		},
+
+		fieldStrings: {
+			value: {},
+			validator: isObject
+		},
+
+		messageContainer: {
+			getter: function(val) {
+				return A.Node.create(val).cloneNode(true);
+			},
+			value: TPL_MESSAGE
+		},
+
+		render: {
+			value: true
+		},
+
+		strings: {
+			valueFn: function() {
+				return AUI.defaults.FormValidator.STRINGS;
+			}
+		},
+
+		rules: {
+			validator: isObject,
+			value: {}
+		},
+
+		selectText: {
+			value: true,
+			validator: isBoolean
+		},
+
+		showMessages: {
+			value: true,
+			validator: isBoolean
+		},
+
+		showAllMessages: {
+			value: false,
+			validator: isBoolean
+		},
+
+		stackErrorContainer: {
+			getter: function(val) {
+				return A.Node.create(val).cloneNode(true);
+			},
+			value: TPL_STACK_ERROR
+		},
+
+		validateOnBlur: {
+			value: true,
+			validator: isBoolean
+		},
+
+		validateOnInput: {
+			value: false,
+			validator: isBoolean
+		},
+
+		validClass: {
+			value: CSS_VALID,
+			validator: isString
 		}
 	},
 
@@ -391,10 +400,10 @@ var FormValidator = A.Component.create({
 		getFieldErrorMessage: function(field, rule) {
 			var instance = this;
 			var fieldName = field.get(NAME);
-			var fieldMessages = instance.get(MESSAGES)[fieldName] || {};
+			var fieldStrings = instance.get(FIELD_STRINGS)[fieldName] || {};
 			var fieldRules = instance.get(RULES)[fieldName];
 
-			var messages = FormValidator.MESSAGES;
+			var strings = instance.getStrings();
 			var substituteRulesMap = {};
 
 			if (rule in fieldRules) {
@@ -408,7 +417,7 @@ var FormValidator = A.Component.create({
 				);
 			}
 
-			var message = (fieldMessages[rule] || messages[rule] || messages.DEFAULT);
+			var message = (fieldStrings[rule] || strings[rule] || strings.DEFAULT);
 
 			return A.substitute(message, substituteRulesMap);
 		},
@@ -512,7 +521,7 @@ var FormValidator = A.Component.create({
 			var fieldRules = instance.get(RULES)[field.get(NAME)];
 
 			var required = fieldRules.required;
-			var hasValue = FormValidator.RULES.required.apply(instance, [field.val(), field]);
+			var hasValue = AUI.defaults.FormValidator.RULES.required.apply(instance, [field.val(), field]);
 
 			return (required || (!required && hasValue));
 		},
@@ -617,7 +626,7 @@ var FormValidator = A.Component.create({
 			A.each(
 				fieldRules,
 				function(ruleValue, ruleName) {
-					var rule = FormValidator.RULES[ruleName];
+					var rule = AUI.defaults.FormValidator.RULES[ruleName];
 					var fieldValue = trim(field.val());
 
 					if (isFunction(rule) &&
@@ -730,7 +739,7 @@ var FormValidator = A.Component.create({
 				var extractCssPrefix = instance.get(EXTRACT_CSS_PREFIX);
 
 				A.each(
-					FormValidator.RULES,
+					AUI.defaults.FormValidator.RULES,
 					function(ruleValue, ruleName) {
 						var query = [DOT, extractCssPrefix, ruleName].join(EMPTY_STRING);
 
@@ -782,10 +791,10 @@ var FormValidator = A.Component.create({
 });
 
 A.each(
-	FormValidator.REGEX,
+	AUI.defaults.FormValidator.REGEX,
 	function(regex, key) {
-		FormValidator.RULES[key] = function(val, node, ruleValue) {
-			return FormValidator.REGEX[key].test(val);
+		AUI.defaults.FormValidator.RULES[key] = function(val, node, ruleValue) {
+			return AUI.defaults.FormValidator.REGEX[key].test(val);
 		};
 	}
 );
