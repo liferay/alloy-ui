@@ -560,7 +560,7 @@ var Resize = A.Component.create(
 		     * @type Object
 		     * @protected
 		     */
-			info: {},
+			info: null,
 
 		    /**
 		     * Stores the original values for the height, width, top and left, stored
@@ -570,7 +570,7 @@ var Resize = A.Component.create(
 		     * @type Object
 		     * @protected
 		     */
-			originalInfo: {},
+			originalInfo: null,
 
 		    /**
 		     * Construction logic executed during Resize instantiation. Lifecycle.
@@ -580,6 +580,10 @@ var Resize = A.Component.create(
 		     */
 			initializer: function() {
 				var instance = this;
+
+				instance.info = {};
+
+				instance.originalInfo = {};
 
 				instance.get(NODE).addClass(CSS_RESIZE);
 
