@@ -145,7 +145,7 @@ AUI().ready('aui-form-validator', 'aui-overlay-context-panel', function(A) {
 
 	// Extending Alloy Default values for FormValidator STRINGS and RULES
 	A.mix(
-		AUI.defaults.FormValidator.STRINGS,
+		YUI.AUI.defaults.FormValidator.STRINGS,
 		{
 			customRule: 'Type the number 55.',
 			anotherRule: 'Message for another rule'
@@ -154,7 +154,7 @@ AUI().ready('aui-form-validator', 'aui-overlay-context-panel', function(A) {
 	);
 
 	A.mix(
-		AUI.defaults.FormValidator.RULES,
+		YUI.AUI.defaults.FormValidator.RULES,
 		{
 			customRule: function(val, fieldNode, ruleValue) {
 				return (val == 55);
@@ -173,7 +173,7 @@ AUI().ready('aui-form-validator', 'aui-overlay-context-panel', function(A) {
 		boundingBox: '#fm1',
 
 		// strings: {
-		// 	required: 'Overwriting default REQUIRED string from AUI.defaults.FormValidator.STRINGS'
+		// 	required: 'Overwriting default REQUIRED string from YUI.AUI.defaults.FormValidator.STRINGS'
 		// },
 		//
 		// fieldStrings: {
