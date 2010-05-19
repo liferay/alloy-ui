@@ -984,7 +984,7 @@ if (A.UA.ie) {
 		 * @type DocumentFragment (shived)
 		 * @protected
 		 */
-		HTML5._fragHTML5Shived = AUI.html5shiv(
+		HTML5._fragHTML5Shived = YUI.AUI.html5shiv(
 			document.createDocumentFragment()
 		);
 	}
@@ -1050,7 +1050,7 @@ AUI.add('aui-node-html5-print', function(A) {
 var DOCUMENT_ELEMENT = document.documentElement,
 	DOCUMENT_FRAGMENT = document.createDocumentFragment(),
 	HTML5_STYLESHEET = {},
-	HTML5_ELEMENTS = AUI.HTML5_ELEMENTS,
+	HTML5_ELEMENTS = YUI.AUI.HTML5_ELEMENTS,
 	HTML5_ELEMENTS_STRING = HTML5_ELEMENTS.join('|'),
 	ELEMENTS_CACHE = [],
 	FIRST_CHILD = 'firstChild',
@@ -1484,5 +1484,5 @@ A.mix(
 }, '@VERSION@' ,{requires:['aui-base','anim','anim-node-plugin']});
 
 
-AUI.add('aui-node', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-node-base','aui-node-html5','aui-node-html5-print','aui-node-fx']});
+AUI.add('aui-node', function(A){}, '@VERSION@' ,{use:['aui-node-base','aui-node-html5','aui-node-html5-print','aui-node-fx'], skinnable:false});
 

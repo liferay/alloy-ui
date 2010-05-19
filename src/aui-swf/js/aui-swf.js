@@ -8,16 +8,16 @@ var Lang = A.Lang,
 	ATTR_EXPRESS_INSTALL_URL = 'http://fpdownload.macromedia.com/pub/flashplayer/update/current/swf/autoUpdater.swf?' + (+ new Date),
 	ATTR_TYPE = 'application/x-shockwave-flash',
 	ATTR_CLSID = 'clsid:d27cdb6e-ae6d-11cf-96b8-444553540000',
-	ATTR_EVENT_HANDLER = 'AUI._SWF.eventHandler',
+	ATTR_EVENT_HANDLER = 'YUI.AUI._SWF.eventHandler',
 
 	SF = 'ShockwaveFlash',
 	VERSION = 0,
 
-	SWF_INSTANCES = AUI.namespace('_SWF.instances'),
+	SWF_INSTANCES = YUI.AUI.namespace('_SWF.instances'),
 
 	CSS_SWF = getClassName(NAME);
 
-AUI._SWF.eventHandler = function(id, event) {
+YUI.AUI._SWF.eventHandler = function(id, event) {
 	SWF_INSTANCES[id]._eventHandler(event);
 };
 

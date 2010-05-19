@@ -11,7 +11,7 @@ var L = A.Lang,
 	isFunction = L.isFunction,
 	isString = L.isString,
 
-	defaults = AUI.defaults.io,
+	defaults = YUI.AUI.defaults.io,
 
 	getDefault = function(attr) {
 		return function() {
@@ -246,7 +246,7 @@ var IORequest = A.Component.create(
 	        * Configuration</a>.
 			 *
 			 * @attribute arguments
-			 * @default Value mapped on AUI.defaults.io.
+			 * @default Value mapped on YUI.AUI.defaults.io.
 			 * @type Object
 			 */
 			arguments: {
@@ -258,7 +258,7 @@ var IORequest = A.Component.create(
 	        * Configuration</a>.
 			 *
 			 * @attribute context
-			 * @default Value mapped on AUI.defaults.io.
+			 * @default Value mapped on YUI.AUI.defaults.io.
 			 * @type Object
 			 */
 			context: {
@@ -270,7 +270,7 @@ var IORequest = A.Component.create(
 	        * Configuration</a>.
 			 *
 			 * @attribute data
-			 * @default Value mapped on AUI.defaults.io.
+			 * @default Value mapped on YUI.AUI.defaults.io.
 			 * @type Object
 			 */
 			data: {
@@ -283,7 +283,7 @@ var IORequest = A.Component.create(
 	        * Configuration</a>.
 			 *
 			 * @attribute form
-			 * @default Value mapped on AUI.defaults.io.
+			 * @default Value mapped on YUI.AUI.defaults.io.
 			 * @type Object
 			 */
 			form: {
@@ -329,7 +329,7 @@ var IORequest = A.Component.create(
 	        * Configuration</a>.
 			 *
 			 * @attribute method
-			 * @default Value mapped on AUI.defaults.io.
+			 * @default Value mapped on YUI.AUI.defaults.io.
 			 * @type String
 			 */
 			method: {
@@ -341,7 +341,7 @@ var IORequest = A.Component.create(
 	        * Configuration</a>.
 			 *
 			 * @attribute sync
-			 * @default Value mapped on AUI.defaults.io.
+			 * @default Value mapped on YUI.AUI.defaults.io.
 			 * @type boolean
 			 */
 			sync: {
@@ -353,7 +353,7 @@ var IORequest = A.Component.create(
 	        * Configuration</a>.
 			 *
 			 * @attribute timeout
-			 * @default Value mapped on AUI.defaults.io.
+			 * @default Value mapped on YUI.AUI.defaults.io.
 			 * @type Number
 			 */
 			timeout: {
@@ -365,7 +365,7 @@ var IORequest = A.Component.create(
 	         * Configuration</a>.
 			 *
 			 * @attribute xdr
-			 * @default Value mapped on AUI.defaults.io.
+			 * @default Value mapped on YUI.AUI.defaults.io.
 			 * @type Object
 			 */
 			xdr: {
@@ -457,7 +457,7 @@ var IORequest = A.Component.create(
 			 * Parse the <a href="IORequest.html#config_uri">uri</a> to add a
 		     * timestamp if <a href="IORequest.html#config_cache">cache</a> is
 		     * <code>true</code>. Also applies the
-		     * <code>AUI.defaults.io.uriFormatter</code>.
+		     * <code>YUI.AUI.defaults.io.uriFormatter</code>.
 			 *
 			 * @method _parseURL
 			 * @param {String} url
@@ -522,7 +522,7 @@ var IORequest = A.Component.create(
 			},
 
 			/**
-			 * Applies the <code>AUI.defaults.io.dataFormatter</code> if defined.
+			 * Applies the <code>YUI.AUI.defaults.io.dataFormatter</code> if defined.
 			 *
 			 * @method _setIOData
 			 * @param {Object} value

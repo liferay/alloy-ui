@@ -352,8 +352,8 @@ var ColorPicker = A.Component.create(
 
 			images: {
 				value: {
-					HUE_THUMB: AUI.defaults.paths.images + 'color_indic.png',
-					PICKER_THUMB: AUI.defaults.paths.images + 'select.png'
+					HUE_THUMB: YUI.AUI.defaults.paths.images + 'color_indic.png',
+					PICKER_THUMB: YUI.AUI.defaults.paths.images + 'select.png'
 				}
 			},
 

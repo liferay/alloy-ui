@@ -7,7 +7,7 @@ var Lang = A.Lang,
 
 	CSS_CHART = getClassName(NAME);
 
-AUI.namespace('_CHART');
+YUI.AUI.namespace('_CHART');
 
 var Chart = A.Component.create(
 	{
@@ -26,7 +26,7 @@ var Chart = A.Component.create(
 			},
 			swfURL: {
 				valueFn: function() {
-					return AUI.defaults.chart.swfURL;
+					return YUI.AUI.defaults.chart.swfURL;
 				}
 			},
 			swfCfg: {
@@ -67,11 +67,11 @@ var Chart = A.Component.create(
 
 			var proxyName = 'proxyFunction' + index;
 
-			AUI._CHART[proxyName] = A.bind(fn, context);
+			YUI.AUI._CHART[proxyName] = A.bind(fn, context);
 
 			Chart.proxyFunctionCount++;
 
-			return 'AUI._CHART.' + proxyName;
+			return 'YUI.AUI._CHART.' + proxyName;
 		},
 
 		getFunctionReference: function(value) {
@@ -94,9 +94,9 @@ var Chart = A.Component.create(
 		},
 
 		removeProxyFunction: function(fnName) {
-			if (fnName && fnName.indexOf('AUI._CHART.proxyFunction') > -1) {
+			if (fnName && fnName.indexOf('YUI.AUI._CHART.proxyFunction') > -1) {
 				fnName = fnName.substr(12);
-				AUI._CHART[fnName] = null;
+				YUI.AUI._CHART[fnName] = null;
 			}
 		},
 
@@ -1111,4 +1111,4 @@ A.extend(
 
 A.Chart.StackedColumnSeries = StackedColumnSeries;
 
-}, '@VERSION@' ,{requires:['datasource','aui-swf','json'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['datasource','aui-swf','json']});

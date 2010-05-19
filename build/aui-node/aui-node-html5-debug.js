@@ -30,7 +30,7 @@ if (A.UA.ie) {
 		 * @type DocumentFragment (shived)
 		 * @protected
 		 */
-		HTML5._fragHTML5Shived = AUI.html5shiv(
+		HTML5._fragHTML5Shived = YUI.AUI.html5shiv(
 			document.createDocumentFragment()
 		);
 	}

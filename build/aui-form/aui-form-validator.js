@@ -73,7 +73,7 @@ var L = A.Lang,
 
 	UI_ATTRS = [ EXTRACT_RULES, VALIDATE_ON_BLUR, VALIDATE_ON_INPUT ];
 
-AUI.defaults.FormValidator = {
+YUI.AUI.defaults.FormValidator = {
 	STRINGS: {
 		DEFAULT: 'Please fix this field.',
 		acceptFiles: 'Please enter a value with a valid extension ({0}).',
@@ -231,7 +231,7 @@ var FormValidator = A.Component.create({
 
 		strings: {
 			valueFn: function() {
-				return AUI.defaults.FormValidator.STRINGS;
+				return YUI.AUI.defaults.FormValidator.STRINGS;
 			}
 		},
 
@@ -520,7 +520,7 @@ var FormValidator = A.Component.create({
 			var fieldRules = instance.get(RULES)[field.get(NAME)];
 
 			var required = fieldRules.required;
-			var hasValue = AUI.defaults.FormValidator.RULES.required.apply(instance, [field.val(), field]);
+			var hasValue = YUI.AUI.defaults.FormValidator.RULES.required.apply(instance, [field.val(), field]);
 
 			return (required || (!required && hasValue));
 		},
@@ -625,7 +625,7 @@ var FormValidator = A.Component.create({
 			A.each(
 				fieldRules,
 				function(ruleValue, ruleName) {
-					var rule = AUI.defaults.FormValidator.RULES[ruleName];
+					var rule = YUI.AUI.defaults.FormValidator.RULES[ruleName];
 					var fieldValue = trim(field.val());
 
 					if (isFunction(rule) &&
@@ -736,7 +736,7 @@ var FormValidator = A.Component.create({
 				var extractCssPrefix = instance.get(EXTRACT_CSS_PREFIX);
 
 				A.each(
-					AUI.defaults.FormValidator.RULES,
+					YUI.AUI.defaults.FormValidator.RULES,
 					function(ruleValue, ruleName) {
 						var query = [DOT, extractCssPrefix, ruleName].join(EMPTY_STRING);
 
@@ -788,10 +788,10 @@ var FormValidator = A.Component.create({
 });
 
 A.each(
-	AUI.defaults.FormValidator.REGEX,
+	YUI.AUI.defaults.FormValidator.REGEX,
 	function(regex, key) {
-		AUI.defaults.FormValidator.RULES[key] = function(val, node, ruleValue) {
-			return AUI.defaults.FormValidator.REGEX[key].test(val);
+		YUI.AUI.defaults.FormValidator.RULES[key] = function(val, node, ruleValue) {
+			return YUI.AUI.defaults.FormValidator.REGEX[key].test(val);
 		};
 	}
 );

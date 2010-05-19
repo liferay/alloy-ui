@@ -5,7 +5,7 @@ AUI.add("aui-node-html5-print",function(A){
 var DOCUMENT_ELEMENT = document.documentElement,
 	DOCUMENT_FRAGMENT = document.createDocumentFragment(),
 	HTML5_STYLESHEET = {},
-	HTML5_ELEMENTS = AUI.HTML5_ELEMENTS,
+	HTML5_ELEMENTS = YUI.AUI.HTML5_ELEMENTS,
 	HTML5_ELEMENTS_STRING = HTML5_ELEMENTS.join('|'),
 	ELEMENTS_CACHE = [],
 	FIRST_CHILD = 'firstChild',
