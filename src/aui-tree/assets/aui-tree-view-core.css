@@ -88,7 +88,7 @@
 /* TreeNodeIO */
 
 .aui-tree-view-content .aui-tree-node-io-loading .aui-tree-icon {
-	background: url(../../../../../build/aui-skins/core/images/loading_indicator.gif) no-repeat 50% 50% !important;
+	background: url(../../../../../build/aui-skin-base/images/loading_indicator.gif) no-repeat 50% 50% !important;
 }
 
 /* TreeNodeCheck */
