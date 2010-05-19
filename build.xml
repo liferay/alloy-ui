@@ -109,7 +109,7 @@
 	</target>
 
 	<target name="build-skins">
-		<clean-variables regex="${regex.clean.vars}|component"/>
+		<clean-variables regex="${regex.clean.vars}|component\.cssfiles|component"/>
 		
 		<for param="dir">
 			<path>
@@ -249,7 +249,7 @@
 			</sequential>
 		</for>
 	</target>
-<target name="test-build" depends="build-modules, build-skins" />
+
 	<target name="build-yui">
 		<subant target="all">
 			<fileset
