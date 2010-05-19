@@ -296,10 +296,14 @@ var FormValidator = A.Component.create({
 		CONTENT_TEMPLATE: null,
 		UI_EVENTS: {},
 
-		blurHandlers: [],
-		errors: {},
-		inputHandlers: [],
-		stackErrorContainers: {},
+		initializer: function() {
+			var instance = this;
+
+			instance.blurHandlers = [];
+			instance.errors = {};
+			instance.inputHandlers = [];
+			instance.stackErrorContainers = {};
+		},
 
 		bindUI: function() {
 			var instance = this;

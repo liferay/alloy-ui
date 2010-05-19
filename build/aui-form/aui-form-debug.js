@@ -599,7 +599,7 @@ var Combobox = A.Component.create(
 
 A.Combobox = Combobox;
 
-}, '@VERSION@' ,{requires:['aui-form-textarea','aui-toolbar'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-form-textarea','aui-toolbar']});
 AUI.add('aui-form-field', function(A) {
 var Lang = A.Lang,
 
@@ -1352,7 +1352,7 @@ var Textarea = A.Component.create(
 
 A.Textarea = Textarea;
 
-}, '@VERSION@' ,{requires:['aui-form-textfield'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-form-textfield']});
 AUI.add('aui-form-textfield', function(A) {
 var Lang = A.Lang,
 
@@ -1775,10 +1775,14 @@ var FormValidator = A.Component.create({
 		CONTENT_TEMPLATE: null,
 		UI_EVENTS: {},
 
-		blurHandlers: [],
-		errors: {},
-		inputHandlers: [],
-		stackErrorContainers: {},
+		initializer: function() {
+			var instance = this;
+
+			instance.blurHandlers = [];
+			instance.errors = {};
+			instance.inputHandlers = [];
+			instance.stackErrorContainers = {};
+		},
 
 		bindUI: function() {
 			var instance = this;
@@ -2280,5 +2284,5 @@ A.FormValidator = FormValidator;
 }, '@VERSION@' ,{requires:['aui-base','aui-event-input','selector-css3','substitute']});
 
 
-AUI.add('aui-form', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-textarea','aui-form-textfield','aui-form-validator']});
+AUI.add('aui-form', function(A){}, '@VERSION@' ,{use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-textarea','aui-form-textfield','aui-form-validator'], skinnable:false});
 
