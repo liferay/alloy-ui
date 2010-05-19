@@ -107,51 +107,65 @@
 		<sequential>
 			<clean-variables regex="${regex.clean.vars}"/>
 
-			<copy
-				file="${project.dir}/resources/builder/templates/moduledefaults.txt"
-				tofile="${project.dir}/resources/temp/defaults.js"
-				overwrite="true"
-			/>
+			<if>
+				<available file="${project.dir}/src/${build.aui.prefix}aui-base/build_tmp/" />
+				<then>
+					<copy
+						file="${project.dir}/resources/builder/templates/moduledefaults.txt"
+						tofile="${project.dir}/resources/temp/defaults.js"
+						overwrite="true"
+					/>
 
-			<for param="file">
-				<path>
-					<fileset dir="${project.dir}/src" includes="**/build.properties"/>
-				</path>
-				<sequential>
-					<var file="@{file}"/>
-					<createdetails />
-					<create-module-details/>
-					<clean-variables regex="${regex.clean.vars}"/>
-				</sequential>
-			</for>
+					<for param="file">
+						<path>
+							<fileset dir="${project.dir}/src" includes="**/build.properties,**/build.all-css.properties" excludes="**/_diffs/build.properties"/>
+						</path>
+						<sequential>
+							<var file="@{file}"/>
+							<createdetails />
+							<create-module-details/>
+							<clean-variables regex="${regex.clean.vars}"/>
+						</sequential>
+					</for>
 
-			<format-module-list/>
+					<format-module-list/>
 
-			<property name="aui.base.component.dir" value="${global.build.base}/aui-base/" />
-			<property name="aui.base.component.tmp.dir" value="${project.dir}/src/aui-base/build_tmp/" />
-			<property name="aui.temp.dir" value="${project.dir}/resources/temp/" />
+					<property name="aui.base.component.dir" value="${global.build.base}/${build.aui.prefix}aui-base/" />
+					<property name="aui.base.component.tmp.dir" value="${project.dir}/src/${build.aui.prefix}aui-base/build_tmp/" />
+					<property name="aui.temp.dir" value="${project.dir}/resources/temp/" />
 
-			<delete file="${aui.base.component.dir}/defaults.js"/>
-			<concat destfile="${aui.base.component.dir}/aui-base.js" fixlastline="yes">
-				<header file="${aui.temp.dir}/defaults.js"/>
-				<fileset dir="${aui.base.component.tmp.dir}" includes="aui-base.js"/>
-			</concat>
-			<concat destfile="${aui.base.component.dir}/aui-base-debug.js" fixlastline="yes">
-				<header file="${aui.temp.dir}/defaults.js"/>
-				<fileset dir="${aui.base.component.tmp.dir}" includes="aui-base-debug.js"/>
-			</concat>
-			<concat destfile="${aui.base.component.dir}/aui-base-min.js" fixlastline="yes">
-				<header file="${aui.temp.dir}/defaults.js"/>
-				<fileset dir="${aui.base.component.tmp.dir}" includes="aui-base-min.js"/>
-			</concat>
+					<delete file="${aui.base.component.dir}/defaults.js"/>
+					<concat destfile="${aui.base.component.dir}/${build.aui.prefix}aui-base.js" fixlastline="yes">
+						<header file="${aui.temp.dir}/defaults.js"/>
+						<fileset dir="${aui.base.component.tmp.dir}" includes="${build.aui.prefix}aui-base.js"/>
+					</concat>
+					<concat destfile="${aui.base.component.dir}/${build.aui.prefix}aui-base-debug.js" fixlastline="yes">
+						<header file="${aui.temp.dir}/defaults.js"/>
+						<fileset dir="${aui.base.component.tmp.dir}" includes="${build.aui.prefix}aui-base-debug.js"/>
+					</concat>
+					<concat destfile="${aui.base.component.dir}/${build.aui.prefix}aui-base-min.js" fixlastline="yes">
+						<header file="${aui.temp.dir}/defaults.js"/>
+						<fileset dir="${aui.base.component.tmp.dir}" includes="${build.aui.prefix}aui-base-min.js"/>
+					</concat>
 
-			<yuicompress
-				args="${yuicompressor.js.args.internal}"
-				dest="${project.dir}/build/aui-base/aui-base-min.js"
-				src="${aui.base.component.dir}/aui-base.js"
-			/>
+					<yuicompress
+						args="${yuicompressor.js.args.internal}"
+						dest="${project.dir}/build/${build.aui.prefix}aui-base/${build.aui.prefix}aui-base-min.js"
+						src="${aui.base.component.dir}/${build.aui.prefix}aui-base.js"
+					/>
 
-			<delete dir="${aui.temp.dir}"/>
+					<delete dir="${aui.temp.dir}"/>
+				</then>
+				<else>
+					<subant target="local">
+						<fileset dir="${project.dir}/src/${build.aui.prefix}aui-base/">
+							<include name="build.xml"/>
+						</fileset>
+					</subant>
+
+					<create-module-list/>
+				</else>
+			</if>
 		</sequential>
 	</macrodef>
 
