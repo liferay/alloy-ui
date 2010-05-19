@@ -18,6 +18,8 @@ fi
 rm -rf $toDir
 cp -R $fromDir $toDir
 
+find $toDir -type d -name ".svn" | xargs rm -rf
+
 srcDir=${toDir}/src
 demosDir=${toDir}/demos
 buildDir=${toDir}/build
@@ -32,6 +34,7 @@ find $srcDir/* -type f -name "*.css" | xargs perl -pi -e 's/\/aui-/\/gallery-aui
 find $demosDir/* -type f -name "*.html" | xargs perl -pi -e "s/(\/|')aui-/\$1gallery-aui-/g;"
 find $demosDir/* -type f -name "*.html" | xargs perl -pi -e "s/([^gallery-])aui-/\$1yui3-/g;"
 find $demosDir/* -type f -name "*.html" | xargs perl -pi -e "s/\.ready\(/.use(/g;"
+find $demosDir/* -type f -name "*.html" | xargs perl -pi -e "s/\.use\(/.use('gallery-aui-skin-classic',/g;"
 find $demosDir/* -type f -name "*.html" | xargs perl -pi -e "s/AUI\(\)/YUI(YUI.AUI_config)/g;"
 find $demosDir/* -type f -name "*.html" | xargs perl -pi -e "s/AUI\(/YUI(/g;"
 
@@ -44,3 +47,4 @@ rm -rf `find $buildDir -type d -name 'aui-*'`
 
 cd $toDir
 ant build-gallery
+
