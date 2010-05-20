@@ -595,6 +595,13 @@ var CartesianChart = A.Component.create(
 		EXTENDS: A.Chart,
 
 		prototype: {
+			initializer: function() {
+				var instance = this;
+
+				instance._xAxisLabelFunctions = [];
+				instance._yAxisLabelFunctions = [];
+			},
+
 			destructor: function() {
 				var instance = this;
 
@@ -787,10 +794,7 @@ var CartesianChart = A.Component.create(
 
 					axisFunctions = [];
 				}
-			},
-
-			_xAxisLabelFunctions: [],
-			_yAxisLabelFunctions: []
+			}
 		}
 	}
 );
