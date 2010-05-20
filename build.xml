@@ -7,7 +7,7 @@
 	<property name="yui3.build.version" value="nightly"/>
 	<property name="yui3.dir" value="${project.dir}/lib/yui3/" />
 	<property name="yui3.file" value="yui3.zip" />
-	<property name="yui3.version" value="3.1.0"/>
+	<property name="yui3.version" value="3.1.1"/>
 	<property name="build.aui.prefix" value=""/>
 
 	<import file="resources/builder/bootstrap.xml"/>
