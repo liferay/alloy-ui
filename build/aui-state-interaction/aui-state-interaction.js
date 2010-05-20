@@ -11,7 +11,7 @@ var Lang = A.Lang,
 	CSS_STATE_HOVER = getClassName(STATE, 'hover'),
 	CSS_STATE_ACTIVE = getClassName(STATE, 'active');
 
-var StateInteractionPlugin = A.Component.create(
+var StateInteraction = A.Component.create(
 	{
 		NAME: 'stateinteraction',
 		NS: 'StateInteraction',
@@ -69,7 +69,7 @@ var StateInteractionPlugin = A.Component.create(
 
 			config.node = node;
 
-			StateInteractionPlugin.superclass.constructor.apply(this, arguments);
+			StateInteraction.superclass.constructor.apply(this, arguments);
 		},
 
 		prototype: {
@@ -195,6 +195,6 @@ var StateInteractionPlugin = A.Component.create(
 	}
 );
 
-A.StateInteractionPlugin = StateInteractionPlugin;
+A.namespace('Plugin').StateInteraction = StateInteraction;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base','plugin']});
+}, '@VERSION@' ,{requires:['aui-base','plugin'], skinnable:false});
