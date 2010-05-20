@@ -247,7 +247,7 @@ var Tab = A.Component.create(
 				var boundingBox = instance.get(BOUNDING_BOX);
 
 				boundingBox.plug(
-					A.StateInteractionPlugin,
+					A.Plugin.StateInteraction,
 					{
 						bubbleTarget: instance
 					}

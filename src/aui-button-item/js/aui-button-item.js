@@ -420,7 +420,7 @@ var ButtonItem = A.Component.create(
 				var hoverState = instance._getState('hoverState', parent);
 
 				instance.plug(
-					A.StateInteractionPlugin,
+					A.Plugin.StateInteraction,
 					{
 						activeState: activeState,
 						classNames: classNames,
