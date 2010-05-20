@@ -3,7 +3,7 @@
 	<property name="project.dir" value="."/>
 	<property name="release.name" value="alloy" />
 	<property name="release.temp.dir" value="${project.dir}/resources/temp/alloy/" />
-	<property name="release.version" value="1.0"/>
+	<property name="release.version" value="1.0.0"/>
 	<property name="yui3.build.version" value="nightly"/>
 	<property name="yui3.dir" value="${project.dir}/lib/yui3/" />
 	<property name="yui3.file" value="yui3.zip" />
