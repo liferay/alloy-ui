@@ -17,6 +17,7 @@ var L = A.Lang,
 	BUTTON = 'button',
 	BUTTONS = 'buttons',
 	CLOSE = 'close',
+	CLOSETHICK = 'closethick',
 	CONSTRAIN_TO_VIEWPORT = 'constrain2view',
 	CONTAINER = 'container',
 	DD = 'dd',
@@ -307,8 +308,8 @@ Dialog.prototype = {
 
 		if (close) {
 			var closeConfig = {
-				icon: CLOSE,
-				id: CLOSE,
+				icon: CLOSETHICK,
+				id: CLOSETHICK,
 				handler: {
 					fn: instance.close,
 					context: instance
