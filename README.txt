@@ -4,6 +4,7 @@ Welcome to Alloy Library Source @VERSION@
 * Documentation: http://alloy.liferay.com/api/
 * Discuss: http://alloy.liferay.com/forum/
 * Latest Stable Release: http://alloy.liferay.com/downloads/
+* Attribution/Third-party licenses: http://alloy.liferay.com/ATTRIBUTION.txt
 
 Folder description
 	api/				- Contains the generated API Documentation
