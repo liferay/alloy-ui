@@ -1,0 +1,9 @@
+Portions of the AlloyUI CSS Framwork (base.css, icons.css)
+based on the jQuery UI CSS Framework
+Copyright (c) 2008 jQuery UI Team (http://jqueryui.com/about)
+Dual licensed under the MIT (MIT-LICENSE.txt) and GPL (GPL-LICENSE.txt) licenses.
+----------------------------------
+Fugue Icons (icon_sprite.png)
+Copyright (C) 2009 Yusuke Kamiyamane. All rights reserved.
+The icons are licensed under a Creative Commons Attribution 3.0 license.
+<http://creativecommons.org/licenses/by/3.0/>

@@ -9,6 +9,9 @@
 	 * Nate Cavanaugh (nathan.cavanaugh@liferay.com)
 	 * Eduardo Lundgren (eduardo.lundgren@liferay.com)
 	 *
+	 * Attribution/Third-party licenses
+	 * http://alloy.liferay.com/ATTRIBUTION.txt
+	 *
 	 * Date: @DATE@
 	 * Revision: @REVISION@
 	 */
