@@ -110,7 +110,76 @@
 
 	<target name="build-skins">
 		<clean-variables regex="${regex.clean.vars}|component\.cssfiles|component"/>
-		
+
+		<antcall target="generate-skin-src" />
+
+		<delete dir="${project.dir}/src/${build.aui.prefix}aui-skin-*/build_tmp" />
+
+		 <subant target="local">
+			<property name="clean.skip" value="true"/>
+
+			<fileset dir="${project.dir}/src">
+				<include name="${build.aui.prefix}aui-skin-*/build*.xml"/>
+			</fileset>
+		</subant>
+
+		<!-- Deploy to the build directory -->
+
+		<copy todir="${project.dir}/build" overwrite="true">
+			<fileset dir="${project.dir}/src">
+				<include name="${build.aui.prefix}aui-skin-*/css/**"/>
+				<include name="${build.aui.prefix}aui-skin-*/images/**"/>
+				<include name="${build.aui.prefix}aui-skin-*/build_tmp/**"/>
+			</fileset>
+		</copy>
+
+		<!-- Move the built files into the CSS directory -->
+
+		<for param="dir">
+			<path>
+				<dirset
+					dir="${project.dir}/build"
+					includes="${build.aui.prefix}aui-skin-*"
+				/>
+			</path>
+			<sequential>
+				<copy todir="@{dir}/css" overwrite="true">
+					<fileset dir="@{dir}/build_tmp" includes="*"/>
+				</copy>
+			</sequential>
+		</for>
+
+		<delete includeemptydirs="true">
+			<fileset dir="${project.dir}/build">
+				<include name="${build.aui.prefix}aui-skin-*/build_tmp/**"/>
+				<include name="${build.aui.prefix}aui-skin-*/build_tmp"/>
+			</fileset>
+		</delete>
+
+		<create-module-list/>		
+	</target>
+
+	<target name="clean-skin-src">
+		<for param="dir">
+			<path>
+				<dirset
+					dir="${project.dir}/src"
+					includes="${build.aui.prefix}aui-skin-*"
+					excludes="${build.aui.prefix}aui-skin-base"
+				/>
+			</path>
+			<sequential>
+				<delete includeemptydirs="true">
+					<fileset dir="@{dir}">
+						<include name="**/*"/>
+						<exclude name="_diffs/**"/>
+					</fileset>
+				</delete>
+			</sequential>
+		</for>
+	</target>
+
+	<target name="generate-skin-src">
 		<for param="dir">
 			<path>
 				<dirset
@@ -183,71 +252,6 @@
 				
 			</sequential>
 		</for>
-
-		<delete dir="${project.dir}/src/${build.aui.prefix}aui-skin-*/build_tmp" />
-
-		 <subant target="local">
-			<property name="clean.skip" value="true"/>
-
-			<fileset dir="${project.dir}/src">
-				<include name="${build.aui.prefix}aui-skin-*/build*.xml"/>
-			</fileset>
-		</subant>
-
-		<!-- Deploy to the build directory -->
-
-		<copy todir="${project.dir}/build" overwrite="true">
-			<fileset dir="${project.dir}/src">
-				<include name="${build.aui.prefix}aui-skin-*/css/**"/>
-				<include name="${build.aui.prefix}aui-skin-*/images/**"/>
-				<include name="${build.aui.prefix}aui-skin-*/build_tmp/**"/>
-			</fileset>
-		</copy>
-
-		<!-- Move the built files into the CSS directory -->
-
-		<for param="dir">
-			<path>
-				<dirset
-					dir="${project.dir}/build"
-					includes="${build.aui.prefix}aui-skin-*"
-				/>
-			</path>
-			<sequential>
-				<copy todir="@{dir}/css" overwrite="true">
-					<fileset dir="@{dir}/build_tmp" includes="*"/>
-				</copy>
-			</sequential>
-		</for>
-
-		<delete includeemptydirs="true">
-			<fileset dir="${project.dir}/build">
-				<include name="${build.aui.prefix}aui-skin-*/build_tmp/**"/>
-				<include name="${build.aui.prefix}aui-skin-*/build_tmp"/>
-			</fileset>
-		</delete>
-
-		<create-module-list/>
-
-		<!-- Clean up skin src directories -->
-
-		<for param="dir">
-			<path>
-				<dirset
-					dir="${project.dir}/src"
-					includes="${build.aui.prefix}aui-skin-*"
-					excludes="${build.aui.prefix}aui-skin-base"
-				/>
-			</path>
-			<sequential>
-				<delete includeemptydirs="true">
-					<fileset dir="@{dir}">
-						<include name="**/*"/>
-						<exclude name="_diffs/**"/>
-					</fileset>
-				</delete>
-			</sequential>
-		</for>
 	</target>
 
 	<target name="build-yui">
@@ -268,6 +272,8 @@
 				<include name="**/*build_rollup_tmp*/**" />
 			</fileset>
 		</delete>
+
+		<antcall target="clean-skin-src"/>
 	</target>
 
 	<target name="clean-release">
