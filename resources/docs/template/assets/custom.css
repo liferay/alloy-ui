@@ -330,7 +330,7 @@ body.show_protected .protected {
 }
 
 .aui-list-hd {
-	background: #D4D4D4 url(../../build/aui-skins/classic/images/common/state_default_bg.png) repeat-x 0 0;
+	background: #D4D4D4 url(../../build/aui-skin-classic/images/common/state_default_bg.png) repeat-x 0 0;
 	border: 1px solid;
 	border-color: #C8C9CA #9E9E9E #9E9E9E #C8C9CA;
 	margin-bottom: 0.5em;
