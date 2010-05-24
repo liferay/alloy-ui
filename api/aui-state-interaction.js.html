@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-resize   aui-state-interaction.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-resize&nbsp; <span class="subtitle">1.0pr</span>
+			aui-resize&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -591,189 +586,191 @@
 	<span class="nx">CSS_STATE_HOVER</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">STATE</span><span class="p">,</span> <span class="s1">&#39;hover&#39;</span><span class="p">),</span>
 	<span class="nx">CSS_STATE_ACTIVE</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">STATE</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">);</span>
 
-<span class="kd">var</span> <span class="nx">StateInteractionPlugin</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">host</span><span class="p">;</span>
-	<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">host</span><span class="p">;</span>
-
-	<span class="k">if</span> <span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span> <span class="o">&amp;&amp;</span> <span class="nx">host</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">)</span> <span class="p">{</span>
-		<span class="nx">node</span> <span class="o">=</span> <span class="nx">host</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentBox&#39;</span><span class="p">);</span>
-	<span class="p">}</span>
-
-	<span class="nx">config</span><span class="p">.</span><span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">;</span>
-
-	<span class="nx">StateInteractionPlugin</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-<span class="p">};</span>
-
-<span class="nx">StateInteractionPlugin</span><span class="p">.</span><span class="nx">NAME</span> <span class="o">=</span> <span class="s1">&#39;stateinteraction&#39;</span><span class="p">;</span>
-<span class="nx">StateInteractionPlugin</span><span class="p">.</span><span class="nx">NS</span> <span class="o">=</span> <span class="s1">&#39;StateInteraction&#39;</span><span class="p">;</span>
-
-<span class="nx">StateInteractionPlugin</span><span class="p">.</span><span class="nx">ATTRS</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="nx">active</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
-	<span class="p">},</span>
-
-	<span class="nx">activeState</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-		<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
-	<span class="p">},</span>
-
-	<span class="nx">bubbleTarget</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
-	<span class="p">},</span>
-
-	<span class="nx">classNames</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="p">{}</span>
-	<span class="p">},</span>
-
-	<span class="s1">&#39;default&#39;</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
-	<span class="p">},</span>
-
-	<span class="nx">defaultState</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-		<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
-	<span class="p">},</span>
-
-	<span class="nx">hover</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
-	<span class="p">},</span>
-
-	<span class="nx">hoverState</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-		<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
-	<span class="p">},</span>
-
-	<span class="nx">node</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
-	<span class="p">}</span>
-<span class="p">};</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
-	<span class="nx">StateInteractionPlugin</span><span class="p">,</span>
-	<span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span>
+<span class="kd">var</span> <span class="nx">StateInteraction</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
 	<span class="p">{</span>
-		<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="s1">&#39;stateinteraction&#39;</span><span class="p">,</span>
+		<span class="nx">NS</span><span class="o">:</span> <span class="s1">&#39;StateInteraction&#39;</span><span class="p">,</span>
 
-			<span class="kd">var</span> <span class="nx">activeClass</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;classNames.active&#39;</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">defaultClass</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;classNames.default&#39;</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">hoverClass</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;classNames.hover&#39;</span><span class="p">);</span>
+		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">active</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+			<span class="p">},</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_CSS_STATES</span> <span class="o">=</span> <span class="p">{</span>
-				<span class="nx">active</span><span class="o">:</span> <span class="nx">isString</span><span class="p">(</span><span class="nx">activeClass</span><span class="p">)</span> <span class="o">?</span> <span class="nx">activeClass</span> <span class="o">:</span> <span class="nx">CSS_STATE_ACTIVE</span><span class="p">,</span>
-				<span class="s1">&#39;default&#39;</span><span class="o">:</span> <span class="nx">isString</span><span class="p">(</span><span class="nx">defaultClass</span><span class="p">)</span> <span class="o">?</span> <span class="nx">defaultClass</span> <span class="o">:</span> <span class="nx">CSS_STATE_DEFAULT</span><span class="p">,</span>
-				<span class="nx">hover</span><span class="o">:</span> <span class="nx">isString</span><span class="p">(</span><span class="nx">hoverClass</span><span class="p">)</span> <span class="o">?</span> <span class="nx">hoverClass</span> <span class="o">:</span> <span class="nx">CSS_STATE_HOVER</span>
-			<span class="p">};</span>
+			<span class="nx">activeState</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+			<span class="p">},</span>
 
-			<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;defaultState&#39;</span><span class="p">))</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_CSS_STATES</span><span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">]);</span>
+			<span class="nx">bubbleTarget</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+			<span class="p">},</span>
+
+			<span class="nx">classNames</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="p">{}</span>
+			<span class="p">},</span>
+
+			<span class="s1">&#39;default&#39;</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+			<span class="p">},</span>
+
+			<span class="nx">defaultState</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+			<span class="p">},</span>
+
+			<span class="nx">hover</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+			<span class="p">},</span>
+
+			<span class="nx">hoverState</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+			<span class="p">},</span>
+
+			<span class="nx">node</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="nx">EXTENDS</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span>
+
+		<span class="nx">constructor</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">host</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">host</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span> <span class="o">&amp;&amp;</span> <span class="nx">host</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">node</span> <span class="o">=</span> <span class="nx">host</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentBox&#39;</span><span class="p">);</span>
 			<span class="p">}</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_createEvents</span><span class="p">();</span>
+			<span class="nx">config</span><span class="p">.</span><span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">;</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_attachInteractionEvents</span><span class="p">();</span>
+			<span class="nx">StateInteraction</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 		<span class="p">},</span>
 
-		<span class="nx">_attachInteractionEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-			<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">activeClass</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;classNames.active&#39;</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">defaultClass</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;classNames.default&#39;</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">hoverClass</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;classNames.hover&#39;</span><span class="p">);</span>
 
-			<span class="nx">node</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_fireEvents</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_CSS_STATES</span> <span class="o">=</span> <span class="p">{</span>
+					<span class="nx">active</span><span class="o">:</span> <span class="nx">isString</span><span class="p">(</span><span class="nx">activeClass</span><span class="p">)</span> <span class="o">?</span> <span class="nx">activeClass</span> <span class="o">:</span> <span class="nx">CSS_STATE_ACTIVE</span><span class="p">,</span>
+					<span class="s1">&#39;default&#39;</span><span class="o">:</span> <span class="nx">isString</span><span class="p">(</span><span class="nx">defaultClass</span><span class="p">)</span> <span class="o">?</span> <span class="nx">defaultClass</span> <span class="o">:</span> <span class="nx">CSS_STATE_DEFAULT</span><span class="p">,</span>
+					<span class="nx">hover</span><span class="o">:</span> <span class="nx">isString</span><span class="p">(</span><span class="nx">hoverClass</span><span class="p">)</span> <span class="o">?</span> <span class="nx">hoverClass</span> <span class="o">:</span> <span class="nx">CSS_STATE_HOVER</span>
+				<span class="p">};</span>
 
-			<span class="nx">node</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">rbind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_fireEvents</span><span class="p">,</span> <span class="nx">instance</span><span class="p">,</span> <span class="s1">&#39;mouseover&#39;</span><span class="p">));</span>
-			<span class="nx">node</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseleave&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">rbind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_fireEvents</span><span class="p">,</span> <span class="nx">instance</span><span class="p">,</span> <span class="s1">&#39;mouseout&#39;</span><span class="p">));</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;activeChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetState</span><span class="p">);</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;hoverChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetState</span><span class="p">);</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;defaultChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetState</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">_fireEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">officialType</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">bubbleTarget</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;bubbleTarget&#39;</span><span class="p">);</span>
-
-			<span class="nx">officialType</span> <span class="o">=</span> <span class="nx">officialType</span> <span class="o">||</span> <span class="nx">event</span><span class="p">.</span><span class="nx">type</span><span class="p">;</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">bubbleTarget</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">bubbleTarget</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">officialType</span><span class="p">);</span>
-			<span class="p">}</span>
-
-			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">officialType</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">_createEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">bubbleTarget</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;bubbleTarget&#39;</span><span class="p">);</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">bubbleTarget</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">addTarget</span><span class="p">(</span><span class="nx">bubbleTarget</span><span class="p">);</span>
-			<span class="p">}</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
-				<span class="s1">&#39;click&#39;</span><span class="p">,</span>
-				<span class="p">{</span>
-					<span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defClickFn</span><span class="p">,</span>
-					<span class="nx">emitFacade</span><span class="o">:</span> <span class="kc">true</span>
-				<span class="p">}</span>
-			<span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
-				<span class="s1">&#39;mouseout&#39;</span><span class="p">,</span>
-				<span class="p">{</span>
-					<span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defMouseOutFn</span><span class="p">,</span>
-					<span class="nx">emitFacade</span><span class="o">:</span> <span class="kc">true</span>
-				<span class="p">}</span>
-			<span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
-				<span class="s1">&#39;mouseover&#39;</span><span class="p">,</span>
-				<span class="p">{</span>
-					<span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defMouseOverFn</span><span class="p">,</span>
-					<span class="nx">emitFacade</span><span class="o">:</span> <span class="kc">true</span>
-				<span class="p">}</span>
-			<span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">_defClickFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">,</span> <span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">));</span>
-		<span class="p">},</span>
-
-		<span class="nx">_defMouseOutFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;hover&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">_defMouseOverFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;hover&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">_uiSetState</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">attrName</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">attrName</span><span class="p">;</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">attrName</span> <span class="o">+</span> <span class="s1">&#39;State&#39;</span><span class="p">))</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;addClass&#39;</span><span class="p">;</span>
-
-				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
-					<span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;removeClass&#39;</span><span class="p">;</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;defaultState&#39;</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_CSS_STATES</span><span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">]);</span>
 				<span class="p">}</span>
 
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">)[</span><span class="nx">action</span><span class="p">](</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_CSS_STATES</span><span class="p">[</span><span class="nx">attrName</span><span class="p">]);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_createEvents</span><span class="p">();</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_attachInteractionEvents</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="nx">_attachInteractionEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
+
+				<span class="nx">node</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_fireEvents</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+
+				<span class="nx">node</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">rbind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_fireEvents</span><span class="p">,</span> <span class="nx">instance</span><span class="p">,</span> <span class="s1">&#39;mouseover&#39;</span><span class="p">));</span>
+				<span class="nx">node</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseleave&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">rbind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_fireEvents</span><span class="p">,</span> <span class="nx">instance</span><span class="p">,</span> <span class="s1">&#39;mouseout&#39;</span><span class="p">));</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;activeChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetState</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;hoverChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetState</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;defaultChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetState</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_fireEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">officialType</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">bubbleTarget</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;bubbleTarget&#39;</span><span class="p">);</span>
+
+				<span class="nx">officialType</span> <span class="o">=</span> <span class="nx">officialType</span> <span class="o">||</span> <span class="nx">event</span><span class="p">.</span><span class="nx">type</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">bubbleTarget</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">bubbleTarget</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">officialType</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">officialType</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_createEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">bubbleTarget</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;bubbleTarget&#39;</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">bubbleTarget</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">addTarget</span><span class="p">(</span><span class="nx">bubbleTarget</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
+					<span class="s1">&#39;click&#39;</span><span class="p">,</span>
+					<span class="p">{</span>
+						<span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defClickFn</span><span class="p">,</span>
+						<span class="nx">emitFacade</span><span class="o">:</span> <span class="kc">true</span>
+					<span class="p">}</span>
+				<span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
+					<span class="s1">&#39;mouseout&#39;</span><span class="p">,</span>
+					<span class="p">{</span>
+						<span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defMouseOutFn</span><span class="p">,</span>
+						<span class="nx">emitFacade</span><span class="o">:</span> <span class="kc">true</span>
+					<span class="p">}</span>
+				<span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
+					<span class="s1">&#39;mouseover&#39;</span><span class="p">,</span>
+					<span class="p">{</span>
+						<span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defMouseOverFn</span><span class="p">,</span>
+						<span class="nx">emitFacade</span><span class="o">:</span> <span class="kc">true</span>
+					<span class="p">}</span>
+				<span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_defClickFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">,</span> <span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">));</span>
+			<span class="p">},</span>
+
+			<span class="nx">_defMouseOutFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;hover&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_defMouseOverFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;hover&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_uiSetState</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">attrName</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">attrName</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">attrName</span> <span class="o">+</span> <span class="s1">&#39;State&#39;</span><span class="p">))</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;addClass&#39;</span><span class="p">;</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;removeClass&#39;</span><span class="p">;</span>
+					<span class="p">}</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">)[</span><span class="nx">action</span><span class="p">](</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_CSS_STATES</span><span class="p">[</span><span class="nx">attrName</span><span class="p">]);</span>
+				<span class="p">}</span>
 			<span class="p">}</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
 <span class="p">);</span>
 
-<span class="nx">A</span><span class="p">.</span><span class="nx">StateInteractionPlugin</span> <span class="o">=</span> <span class="nx">StateInteractionPlugin</span><span class="p">;</span>
+<span class="nx">A</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;Plugin&#39;</span><span class="p">).</span><span class="nx">StateInteraction</span> <span class="o">=</span> <span class="nx">StateInteraction</span><span class="p">;</span>
 
 <span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;plugin&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">});</span>
 </pre></div>

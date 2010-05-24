@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-io   aui-io-plugin-debug.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-io&nbsp; <span class="subtitle">1.0pr</span>
+			aui-io&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -601,6 +596,7 @@
 	<span class="nx">NODE</span> <span class="o">=</span> <span class="s1">&#39;node&#39;</span><span class="p">,</span>
 	<span class="nx">PARSE_CONTENT</span> <span class="o">=</span> <span class="s1">&#39;parseContent&#39;</span><span class="p">,</span>
 	<span class="nx">QUEUE</span> <span class="o">=</span> <span class="s1">&#39;queue&#39;</span><span class="p">,</span>
+	<span class="nx">RENDERED</span> <span class="o">=</span> <span class="s1">&#39;rendered&#39;</span><span class="p">,</span>
 	<span class="nx">SECTION</span> <span class="o">=</span> <span class="s1">&#39;section&#39;</span><span class="p">,</span>
 	<span class="nx">SHOW_LOADING</span> <span class="o">=</span> <span class="s1">&#39;showLoading&#39;</span><span class="p">,</span>
 	<span class="nx">SUCCESS</span> <span class="o">=</span> <span class="s1">&#39;success&#39;</span><span class="p">,</span>
@@ -631,420 +627,432 @@
 <span class="cm"> * @constructor</span>
 <span class="cm"> * @extends IORequest</span>
 <span class="cm"> */</span>
-<span class="kd">function</span> <span class="nx">IOPlugin</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">IOPlugin</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">IOPlugin</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property provides a string to identify the class.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property A.Plugin.IO.NAME</span>
-<span class="cm">	 * @type String</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">NAME</span><span class="o">:</span> <span class="nx">IO_PLUGIN</span><span class="p">,</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property provides a string to identify the namespace.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property A.Plugin.IO.NS</span>
-<span class="cm">	 * @type String</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">NS</span><span class="o">:</span> <span class="nx">IO</span><span class="p">,</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property used to define the default attribute</span>
-<span class="cm">	 * configuration for the A.Plugin.IO.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property A.Plugin.IO.ATTRS</span>
-<span class="cm">	 * @type Object</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">IOPlugin</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+	<span class="p">{</span>
 		<span class="cm">/**</span>
-<span class="cm">		 * Plug IO in any object we want, the setContent will use the node to</span>
-<span class="cm">         * set the content.</span>
+<span class="cm">		 * Static property provides a string to identify the class.</span>
 <span class="cm">		 *</span>
-<span class="cm">		 * @attribute node</span>
-<span class="cm">		 * @default null</span>
-<span class="cm">		 * @type Node | String</span>
-<span class="cm">		 */</span>
-		<span class="nx">node</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-					<span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">);</span>
-					<span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TYPE</span><span class="p">);</span>
-
-					<span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="nx">TYPE_NODE</span><span class="p">)</span> <span class="p">{</span>
-						<span class="nx">value</span> <span class="o">=</span> <span class="nx">host</span><span class="p">;</span>
-					<span class="p">}</span>
-					<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="nx">TYPE_WIDGET</span><span class="p">)</span> <span class="p">{</span>
-						<span class="kd">var</span> <span class="nx">section</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SECTION</span><span class="p">);</span>
-
-						<span class="c1">// if there is no node for the SECTION, forces creation</span>
-						<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">host</span><span class="p">.</span><span class="nx">getStdModNode</span><span class="p">(</span><span class="nx">section</span><span class="p">))</span> <span class="p">{</span>
-							<span class="nx">host</span><span class="p">.</span><span class="nx">setStdModContent</span><span class="p">(</span><span class="nx">section</span><span class="p">,</span> <span class="nx">EMPTY</span><span class="p">);</span>
-						<span class="p">}</span>
-
-						<span class="nx">value</span> <span class="o">=</span> <span class="nx">host</span><span class="p">.</span><span class="nx">getStdModNode</span><span class="p">(</span><span class="nx">section</span><span class="p">);</span>
-					<span class="p">}</span>
-				<span class="p">}</span>
-
-				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
-			<span class="p">},</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNode</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Message to be set on the content when the transaction fails.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute failureMessage</span>
-<span class="cm">		 * @default &#39;Failed to retrieve content&#39;</span>
+<span class="cm">		 * @property A.Plugin.IO.NAME</span>
 <span class="cm">		 * @type String</span>
+<span class="cm">		 * @static</span>
 <span class="cm">		 */</span>
-		<span class="nx">failureMessage</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;Failed to retrieve content&#39;</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isString</span>
-		<span class="p">},</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="nx">IO_PLUGIN</span><span class="p">,</span>
 
 		<span class="cm">/**</span>
-<span class="cm">		 * Options passed to the &lt;a href=&quot;LoadingMask.html&quot;&gt;LoadingMask&lt;/a&gt;.</span>
+<span class="cm">		 * Static property provides a string to identify the namespace.</span>
 <span class="cm">		 *</span>
-<span class="cm">		 * @attribute loadingMask</span>
-<span class="cm">		 * @default {}</span>
+<span class="cm">		 * @property A.Plugin.IO.NS</span>
+<span class="cm">		 * @type String</span>
+<span class="cm">		 * @static</span>
+<span class="cm">		 */</span>
+		<span class="nx">NS</span><span class="o">:</span> <span class="nx">IO</span><span class="p">,</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Static property used to define the default attribute</span>
+<span class="cm">		 * configuration for the A.Plugin.IO.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property A.Plugin.IO.ATTRS</span>
 <span class="cm">		 * @type Object</span>
+<span class="cm">		 * @static</span>
 <span class="cm">		 */</span>
-		<span class="nx">loadingMask</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="p">{}</span>
-		<span class="p">},</span>
+		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Plug IO in any object we want, the setContent will use the node to</span>
+<span class="cm">	         * set the content.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute node</span>
+<span class="cm">			 * @default null</span>
+<span class="cm">			 * @type Node | String</span>
+<span class="cm">			 */</span>
+			<span class="nx">node</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+				<span class="nx">getter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * If true the &lt;a href=&quot;ParseContent.html&quot;&gt;ParseContent&lt;/a&gt; plugin</span>
-<span class="cm">         * will be plugged to the &lt;a href=&quot;A.Plugin.IO.html#config_node&quot;&gt;node&lt;/a&gt;.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute parseContent</span>
-<span class="cm">		 * @default true</span>
-<span class="cm">		 * @type boolean</span>
-<span class="cm">		 */</span>
-		<span class="nx">parseContent</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
-		<span class="p">},</span>
+					<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+						<span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">);</span>
+						<span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TYPE</span><span class="p">);</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * Show the &lt;a href=&quot;LoadingMask.html&quot;&gt;LoadingMask&lt;/a&gt; covering the &lt;a</span>
-<span class="cm">         * href=&quot;A.Plugin.IO.html#config_node&quot;&gt;node&lt;/a&gt; while loading.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute showLoading</span>
-<span class="cm">		 * @default true</span>
-<span class="cm">		 * @type boolean</span>
-<span class="cm">		 */</span>
-		<span class="nx">showLoading</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Section where the content will be set in case you are plugging it</span>
-<span class="cm">         * on a instace of &lt;a href=&quot;WidgetStdMod.html&quot;&gt;WidgetStdMod&lt;/a&gt;.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute section</span>
-<span class="cm">		 * @default StdMod.BODY</span>
-<span class="cm">		 * @type String</span>
-<span class="cm">		 */</span>
-		<span class="nx">section</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="nx">StdMod</span><span class="p">.</span><span class="nx">BODY</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="p">(</span><span class="o">!</span><span class="nx">val</span> <span class="o">||</span> <span class="nx">val</span> <span class="o">==</span> <span class="nx">StdMod</span><span class="p">.</span><span class="nx">BODY</span> <span class="o">||</span> <span class="nx">val</span> <span class="o">==</span> <span class="nx">StdMod</span><span class="p">.</span><span class="nx">HEADER</span> <span class="o">||</span> <span class="nx">val</span> <span class="o">==</span> <span class="nx">StdMod</span><span class="p">.</span><span class="nx">FOOTER</span><span class="p">);</span>
-			<span class="p">}</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Type of the &lt;code&gt;instance&lt;/code&gt; we are pluggin the A.Plugin.IO.</span>
-<span class="cm">         * Could be a Node, or a Widget.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute type</span>
-<span class="cm">		 * @default &#39;Node&#39;</span>
-<span class="cm">		 * @readOnly</span>
-<span class="cm">		 * @type String</span>
-<span class="cm">		 */</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">readOnly</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-			<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-				<span class="c1">// NOTE: default type</span>
-				<span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">TYPE_NODE</span><span class="p">;</span>
-
-				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">)</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">)</span> <span class="p">{</span>
-					<span class="nx">type</span> <span class="o">=</span> <span class="nx">TYPE_WIDGET</span><span class="p">;</span>
-				<span class="p">}</span>
-
-				<span class="k">return</span> <span class="nx">type</span><span class="p">;</span>
-			<span class="p">},</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isString</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Where to insert the content, AFTER, BEFORE or REPLACE.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute where</span>
-<span class="cm">		 * @default StdMod.REPLACE</span>
-<span class="cm">		 * @type String</span>
-<span class="cm">		 */</span>
-		<span class="nx">where</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="nx">StdMod</span><span class="p">.</span><span class="nx">REPLACE</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="p">(</span><span class="o">!</span><span class="nx">val</span> <span class="o">||</span> <span class="nx">val</span> <span class="o">==</span> <span class="nx">StdMod</span><span class="p">.</span><span class="nx">AFTER</span> <span class="o">||</span> <span class="nx">val</span> <span class="o">==</span> <span class="nx">StdMod</span><span class="p">.</span><span class="nx">BEFORE</span> <span class="o">||</span> <span class="nx">val</span> <span class="o">==</span> <span class="nx">StdMod</span><span class="p">.</span><span class="nx">REPLACE</span><span class="p">);</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-<span class="p">});</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">IOPlugin</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">IORequest</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Bind the events on the A.Plugin.IO UI. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method bindUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;activeChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onActiveChange</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">SUCCESS</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_successHandler</span><span class="p">);</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">FAILURE</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_failureHandler</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">((</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TYPE</span><span class="p">)</span> <span class="o">==</span> <span class="nx">TYPE_WIDGET</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SHOW_LOADING</span><span class="p">))</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">);</span>
-
-			<span class="nx">host</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;heightChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_syncLoadingMaskUI</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
-			<span class="nx">host</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;widthChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_syncLoadingMaskUI</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Invoke the &lt;code&gt;start&lt;/code&gt; method (autoLoad attribute).</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _autoStart</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_autoStart</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">();</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindPlugins</span><span class="p">();</span>
-
-		<span class="nx">IOPlugin</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">_autoStart</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Bind the plugins on the &lt;code&gt;instance&lt;/code&gt;.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _bindPlugins</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_bindPlugins</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">node</span> <span class="o">&amp;&amp;</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARSE_CONTENT</span><span class="p">))</span> <span class="p">{</span>
-			<span class="nx">node</span><span class="p">.</span><span class="nx">plug</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">ParseContent</span><span class="p">);</span>
-
-			<span class="c1">// if its on a Widget dont allow close before the ParseContent finish the queue</span>
-			<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TYPE</span><span class="p">)</span> <span class="o">==</span> <span class="nx">TYPE_WIDGET</span><span class="p">)</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">);</span>
-				<span class="kd">var</span> <span class="nx">queue</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">ParseContent</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">QUEUE</span><span class="p">);</span>
-
-				<span class="k">if</span> <span class="p">(</span><span class="nx">queue</span><span class="p">)</span> <span class="p">{</span>
-					<span class="c1">// dont close the overlay while queue is running</span>
-					<span class="nx">host</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-						<span class="k">if</span> <span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">isRunning</span><span class="p">())</span> <span class="p">{</span>
-							<span class="nx">event</span><span class="p">.</span><span class="nx">halt</span><span class="p">();</span>
+						<span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="nx">TYPE_NODE</span><span class="p">)</span> <span class="p">{</span>
+							<span class="nx">value</span> <span class="o">=</span> <span class="nx">host</span><span class="p">;</span>
 						<span class="p">}</span>
-					<span class="p">});</span>
+						<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="nx">TYPE_WIDGET</span><span class="p">)</span> <span class="p">{</span>
+							<span class="kd">var</span> <span class="nx">section</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SECTION</span><span class="p">);</span>
 
-					<span class="c1">// stop the queue after the dialog is closed, just in case.</span>
-					<span class="nx">host</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-						<span class="nx">queue</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
-					<span class="p">});</span>
+							<span class="c1">// if there is no node for the SECTION, forces creation</span>
+							<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">host</span><span class="p">.</span><span class="nx">getStdModNode</span><span class="p">(</span><span class="nx">section</span><span class="p">))</span> <span class="p">{</span>
+								<span class="nx">host</span><span class="p">.</span><span class="nx">setStdModContent</span><span class="p">(</span><span class="nx">section</span><span class="p">,</span> <span class="nx">EMPTY</span><span class="p">);</span>
+							<span class="p">}</span>
+
+							<span class="nx">value</span> <span class="o">=</span> <span class="nx">host</span><span class="p">.</span><span class="nx">getStdModNode</span><span class="p">(</span><span class="nx">section</span><span class="p">);</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+
+					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+				<span class="p">},</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNode</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Message to be set on the content when the transaction fails.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute failureMessage</span>
+<span class="cm">			 * @default &#39;Failed to retrieve content&#39;</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
+			<span class="nx">failureMessage</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;Failed to retrieve content&#39;</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isString</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Options passed to the &lt;a href=&quot;LoadingMask.html&quot;&gt;LoadingMask&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute loadingMask</span>
+<span class="cm">			 * @default {}</span>
+<span class="cm">			 * @type Object</span>
+<span class="cm">			 */</span>
+			<span class="nx">loadingMask</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="p">{}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * If true the &lt;a href=&quot;ParseContent.html&quot;&gt;ParseContent&lt;/a&gt; plugin</span>
+<span class="cm">	         * will be plugged to the &lt;a href=&quot;A.Plugin.IO.html#config_node&quot;&gt;node&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute parseContent</span>
+<span class="cm">			 * @default true</span>
+<span class="cm">			 * @type boolean</span>
+<span class="cm">			 */</span>
+			<span class="nx">parseContent</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Show the &lt;a href=&quot;LoadingMask.html&quot;&gt;LoadingMask&lt;/a&gt; covering the &lt;a</span>
+<span class="cm">	         * href=&quot;A.Plugin.IO.html#config_node&quot;&gt;node&lt;/a&gt; while loading.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute showLoading</span>
+<span class="cm">			 * @default true</span>
+<span class="cm">			 * @type boolean</span>
+<span class="cm">			 */</span>
+			<span class="nx">showLoading</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Section where the content will be set in case you are plugging it</span>
+<span class="cm">	         * on a instace of &lt;a href=&quot;WidgetStdMod.html&quot;&gt;WidgetStdMod&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute section</span>
+<span class="cm">			 * @default StdMod.BODY</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
+			<span class="nx">section</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="nx">StdMod</span><span class="p">.</span><span class="nx">BODY</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="p">(</span><span class="o">!</span><span class="nx">val</span> <span class="o">||</span> <span class="nx">val</span> <span class="o">==</span> <span class="nx">StdMod</span><span class="p">.</span><span class="nx">BODY</span> <span class="o">||</span> <span class="nx">val</span> <span class="o">==</span> <span class="nx">StdMod</span><span class="p">.</span><span class="nx">HEADER</span> <span class="o">||</span> <span class="nx">val</span> <span class="o">==</span> <span class="nx">StdMod</span><span class="p">.</span><span class="nx">FOOTER</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Type of the &lt;code&gt;instance&lt;/code&gt; we are pluggin the A.Plugin.IO.</span>
+<span class="cm">	         * Could be a Node, or a Widget.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute type</span>
+<span class="cm">			 * @default &#39;Node&#39;</span>
+<span class="cm">			 * @readOnly</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
+			<span class="nx">type</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">readOnly</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+				<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+					<span class="c1">// NOTE: default type</span>
+					<span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">TYPE_NODE</span><span class="p">;</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">)</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">type</span> <span class="o">=</span> <span class="nx">TYPE_WIDGET</span><span class="p">;</span>
+					<span class="p">}</span>
+
+					<span class="k">return</span> <span class="nx">type</span><span class="p">;</span>
+				<span class="p">},</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isString</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Where to insert the content, AFTER, BEFORE or REPLACE.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute where</span>
+<span class="cm">			 * @default StdMod.REPLACE</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
+			<span class="nx">where</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="nx">StdMod</span><span class="p">.</span><span class="nx">REPLACE</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="p">(</span><span class="o">!</span><span class="nx">val</span> <span class="o">||</span> <span class="nx">val</span> <span class="o">==</span> <span class="nx">StdMod</span><span class="p">.</span><span class="nx">AFTER</span> <span class="o">||</span> <span class="nx">val</span> <span class="o">==</span> <span class="nx">StdMod</span><span class="p">.</span><span class="nx">BEFORE</span> <span class="o">||</span> <span class="nx">val</span> <span class="o">==</span> <span class="nx">StdMod</span><span class="p">.</span><span class="nx">REPLACE</span><span class="p">);</span>
 				<span class="p">}</span>
 			<span class="p">}</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
+		<span class="p">},</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Invoke the &lt;a href=&quot;OverlayMask.html#method_hide&quot;&gt;OverlayMask hide&lt;/a&gt; method.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method hideLoading</span>
-<span class="cm">	 */</span>
-	<span class="nx">hideLoading</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="nx">EXTENDS</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">IORequest</span><span class="p">,</span>
 
-		<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">loadingmask</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">node</span><span class="p">.</span><span class="nx">loadingmask</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Set the content of the &lt;a href=&quot;A.Plugin.IO.html#config_node&quot;&gt;node&lt;/a&gt;.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method setContent</span>
-<span class="cm">	 */</span>
-	<span class="nx">setContent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMaskBoundingBox</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMaskBoundingBox</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
-		<span class="p">}</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_getContentSetterByType</span><span class="p">().</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="p">[</span><span class="nx">content</span><span class="p">]);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Invoke the &lt;a href=&quot;OverlayMask.html#method_show&quot;&gt;OverlayMask show&lt;/a&gt; method.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method showLoading</span>
-<span class="cm">	 */</span>
-	<span class="nx">showLoading</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">loadingmask</span><span class="p">)</span> <span class="p">{</span>
-			<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMaskBoundingBox</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">node</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMaskBoundingBox</span><span class="p">);</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
-		<span class="k">else</span> <span class="p">{</span>
-			<span class="nx">node</span><span class="p">.</span><span class="nx">plug</span><span class="p">(</span>
-				<span class="nx">A</span><span class="p">.</span><span class="nx">LoadingMask</span><span class="p">,</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LOADING_MASK</span><span class="p">)</span>
-			<span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMaskBoundingBox</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">loadingmask</span><span class="p">.</span><span class="nx">overlayMask</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">);</span>
-		<span class="p">}</span>
-
-		<span class="nx">node</span><span class="p">.</span><span class="nx">loadingmask</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Get the appropriated &lt;a</span>
-<span class="cm">     * href=&quot;A.Plugin.IO.html#method_setContent&quot;&gt;setContent&lt;/a&gt; function</span>
-<span class="cm">     * implementation for each &lt;a href=&quot;A.Plugin.IO.html#config_type&quot;&gt;type&lt;/a&gt;.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _getContentSetterByType</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 * @return {function}</span>
-<span class="cm">	 */</span>
-	<span class="nx">_getContentSetterByType</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="kd">var</span> <span class="nx">setters</span> <span class="o">=</span> <span class="p">{</span>
-			<span class="c1">// NOTE: default setter, see &#39;type&#39; attribute definition</span>
-			<span class="nx">Node</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Bind the events on the A.Plugin.IO UI. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method bindUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-				<span class="c1">// when this.get(HOST) is a Node instance the NODE is the host</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;activeChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onActiveChange</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">SUCCESS</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_successHandler</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">FAILURE</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_failureHandler</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">((</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TYPE</span><span class="p">)</span> <span class="o">==</span> <span class="nx">TYPE_WIDGET</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SHOW_LOADING</span><span class="p">))</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">);</span>
+
+					<span class="nx">host</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;heightChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_syncLoadingMaskUI</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+					<span class="nx">host</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;widthChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_syncLoadingMaskUI</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Invoke the &lt;code&gt;start&lt;/code&gt; method (autoLoad attribute).</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _autoStart</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_autoStart</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">();</span>
+
+				<span class="nx">IOPlugin</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">_autoStart</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Bind the ParseContent plugin on the &lt;code&gt;instance&lt;/code&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _bindParseContent</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_bindParseContent</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
 
-				<span class="nx">node</span><span class="p">.</span><span class="nx">setContent</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="p">[</span><span class="nx">content</span><span class="p">]);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">node</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">node</span><span class="p">.</span><span class="nx">ParseContent</span> <span class="o">&amp;&amp;</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARSE_CONTENT</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">node</span><span class="p">.</span><span class="nx">plug</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">ParseContent</span><span class="p">);</span>
+				<span class="p">}</span>
 			<span class="p">},</span>
 
-			<span class="c1">// Widget forces set the content on the SECTION node using setStdModContent method</span>
-			<span class="nx">Widget</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Invoke the &lt;a href=&quot;OverlayMask.html#method_hide&quot;&gt;OverlayMask hide&lt;/a&gt; method.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method hideLoading</span>
+<span class="cm">			 */</span>
+			<span class="nx">hideLoading</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">loadingmask</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">node</span><span class="p">.</span><span class="nx">loadingmask</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Set the content of the &lt;a href=&quot;A.Plugin.IO.html#config_node&quot;&gt;node&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method setContent</span>
+<span class="cm">			 */</span>
+			<span class="nx">setContent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindParseContent</span><span class="p">();</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMaskBoundingBox</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMaskBoundingBox</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+				<span class="p">}</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_getContentSetterByType</span><span class="p">().</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="p">[</span><span class="nx">content</span><span class="p">]);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Invoke the &lt;a href=&quot;OverlayMask.html#method_show&quot;&gt;OverlayMask show&lt;/a&gt; method.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method showLoading</span>
+<span class="cm">			 */</span>
+			<span class="nx">showLoading</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">loadingmask</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMaskBoundingBox</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">node</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMaskBoundingBox</span><span class="p">);</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="p">{</span>
+					<span class="nx">node</span><span class="p">.</span><span class="nx">plug</span><span class="p">(</span>
+						<span class="nx">A</span><span class="p">.</span><span class="nx">LoadingMask</span><span class="p">,</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LOADING_MASK</span><span class="p">)</span>
+					<span class="p">);</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMaskBoundingBox</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">loadingmask</span><span class="p">.</span><span class="nx">overlayMask</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="nx">node</span><span class="p">.</span><span class="nx">loadingmask</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Overload to the &lt;a href=&quot;IORequest.html#method_start&quot;&gt;IORequest</span>
+<span class="cm">		     * start&lt;/a&gt; method. Check if the &lt;code&gt;host&lt;/code&gt; is already rendered,</span>
+<span class="cm">		     * otherwise wait to after render phase and to show the LoadingMask.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method start</span>
+<span class="cm">			 */</span>
+			<span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">);</span>
 
-				<span class="nx">host</span><span class="p">.</span><span class="nx">setStdModContent</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">host</span><span class="p">,</span> <span class="p">[</span>
-					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SECTION</span><span class="p">),</span>
-					<span class="nx">content</span><span class="p">,</span>
-					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">WHERE</span><span class="p">)</span>
-				<span class="p">]);</span>
-			<span class="p">}</span>
-		<span class="p">};</span>
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">host</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">RENDERED</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">host</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;render&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">_setLoadingUI</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+					<span class="p">});</span>
+				<span class="p">}</span>
 
-		<span class="k">return</span> <span class="nx">setters</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TYPE</span><span class="p">)];</span>
-	<span class="p">},</span>
+				<span class="nx">IOPlugin</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">start</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+			<span class="p">},</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Sync the loading mask UI.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _syncLoadingMaskUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_syncLoadingMaskUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Get the appropriated &lt;a</span>
+<span class="cm">		     * href=&quot;A.Plugin.IO.html#method_setContent&quot;&gt;setContent&lt;/a&gt; function</span>
+<span class="cm">		     * implementation for each &lt;a href=&quot;A.Plugin.IO.html#config_type&quot;&gt;type&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _getContentSetterByType</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 * @return {function}</span>
+<span class="cm">			 */</span>
+			<span class="nx">_getContentSetterByType</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">).</span><span class="nx">loadingmask</span><span class="p">.</span><span class="nx">refreshMask</span><span class="p">();</span>
-	<span class="p">},</span>
+				<span class="kd">var</span> <span class="nx">setters</span> <span class="o">=</span> <span class="p">{</span>
+					<span class="c1">// NOTE: default setter, see &#39;type&#39; attribute definition</span>
+					<span class="nx">Node</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
+						<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+						<span class="c1">// when this.get(HOST) is a Node instance the NODE is the host</span>
+						<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Internal success callback for the IO transaction.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _successHandler</span>
-<span class="cm">	 * @param {EventFavade} event</span>
-<span class="cm">	 * @param {String} id Id of the IO transaction.</span>
-<span class="cm">	 * @param {Object} obj XHR transaction Object.</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_successHandler</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">xhr</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+						<span class="nx">node</span><span class="p">.</span><span class="nx">setContent</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="p">[</span><span class="nx">content</span><span class="p">]);</span>
+					<span class="p">},</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span>
-			<span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span>
-		<span class="p">);</span>
-	<span class="p">},</span>
+					<span class="c1">// Widget forces set the content on the SECTION node using setStdModContent method</span>
+					<span class="nx">Widget</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
+						<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+						<span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">);</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Internal failure callback for the IO transaction.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _failureHandler</span>
-<span class="cm">	 * @param {EventFavade} event</span>
-<span class="cm">	 * @param {String} id Id of the IO transaction.</span>
-<span class="cm">	 * @param {Object} obj XHR transaction Object.</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_failureHandler</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">xhr</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+						<span class="nx">host</span><span class="p">.</span><span class="nx">setStdModContent</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">host</span><span class="p">,</span> <span class="p">[</span>
+							<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SECTION</span><span class="p">),</span>
+							<span class="nx">content</span><span class="p">,</span>
+							<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">WHERE</span><span class="p">)</span>
+						<span class="p">]);</span>
+					<span class="p">}</span>
+				<span class="p">};</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FAILURE_MESSAGE</span><span class="p">)</span>
-		<span class="p">);</span>
-	<span class="p">},</span>
+				<span class="k">return</span> <span class="nx">setters</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TYPE</span><span class="p">)];</span>
+			<span class="p">},</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires after the value of the</span>
-<span class="cm">	 * &lt;a href=&quot;A.Plugin.IO.html#config_active&quot;&gt;active&lt;/a&gt; attribute change.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _onActiveChange</span>
-<span class="cm">	 * @param {EventFacade} event</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_onActiveChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Whether the &lt;code&gt;show&lt;/code&gt; is true show the LoadingMask.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _setLoadingUI</span>
+<span class="cm">			 * @param {boolean} show</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_setLoadingUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">show</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-		<span class="kd">var</span> <span class="nx">showLoading</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SHOW_LOADING</span><span class="p">);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SHOW_LOADING</span><span class="p">))</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">show</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">showLoading</span><span class="p">();</span>
+					<span class="p">}</span>
+					<span class="k">else</span> <span class="p">{</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">hideLoading</span><span class="p">();</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
 
-		<span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
-			<span class="k">if</span> <span class="p">(</span><span class="nx">showLoading</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">showLoading</span><span class="p">();</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
-		<span class="k">else</span> <span class="p">{</span>
-			<span class="k">if</span> <span class="p">(</span><span class="nx">showLoading</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">hideLoading</span><span class="p">();</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Sync the loading mask UI.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _syncLoadingMaskUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_syncLoadingMaskUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">).</span><span class="nx">loadingmask</span><span class="p">.</span><span class="nx">refreshMask</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Internal success callback for the IO transaction.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _successHandler</span>
+<span class="cm">			 * @param {EventFavade} event</span>
+<span class="cm">			 * @param {String} id Id of the IO transaction.</span>
+<span class="cm">			 * @param {Object} obj XHR transaction Object.</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_successHandler</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">xhr</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span>
+					<span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span>
+				<span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Internal failure callback for the IO transaction.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _failureHandler</span>
+<span class="cm">			 * @param {EventFavade} event</span>
+<span class="cm">			 * @param {String} id Id of the IO transaction.</span>
+<span class="cm">			 * @param {Object} obj XHR transaction Object.</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_failureHandler</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">xhr</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FAILURE_MESSAGE</span><span class="p">)</span>
+				<span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires after the value of the</span>
+<span class="cm">			 * &lt;a href=&quot;A.Plugin.IO.html#config_active&quot;&gt;active&lt;/a&gt; attribute change.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _onActiveChange</span>
+<span class="cm">			 * @param {EventFacade} event</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_onActiveChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">widget</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TYPE</span><span class="p">)</span> <span class="o">==</span> <span class="nx">TYPE_WIDGET</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">widget</span> <span class="o">||</span> <span class="p">(</span><span class="nx">widget</span> <span class="o">&amp;&amp;</span> <span class="nx">host</span> <span class="o">&amp;&amp;</span> <span class="nx">host</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">RENDERED</span><span class="p">)))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_setLoadingUI</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">);</span>
+				<span class="p">}</span>
 			<span class="p">}</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
-<span class="p">});</span>
+<span class="p">);</span>
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;Plugin&#39;</span><span class="p">).</span><span class="nx">IO</span> <span class="o">=</span> <span class="nx">IOPlugin</span><span class="p">;</span>
 
@@ -1066,7 +1074,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "IORequest.html#config_active", "access": "", "host": "IORequest", "type": "config", "name": "active"}, {"url": "IORequest.html#event_activeChange", "access": "", "host": "IORequest", "type": "event", "name": "activeChange"}, {"url": "A.io.html#method_A.io.request", "access": "", "host": "A.io", "type": "method", "name": "A.io.request"}, {"url": "A.Plugin.IO.html#property_A.Plugin.IO.ATTRS", "access": "", "host": "A.Plugin.IO", "type": "property", "name": "A.Plugin.IO.ATTRS"}, {"url": "A.Plugin.IO.html#property_A.Plugin.IO.NAME", "access": "", "host": "A.Plugin.IO", "type": "property", "name": "A.Plugin.IO.NAME"}, {"url": "A.Plugin.IO.html#property_A.Plugin.IO.NS", "access": "", "host": "A.Plugin.IO", "type": "property", "name": "A.Plugin.IO.NS"}, {"url": "IORequest.html#config_arguments", "access": "", "host": "IORequest", "type": "config", "name": "arguments"}, {"url": "IORequest.html#event_argumentsChange", "access": "", "host": "IORequest", "type": "event", "name": "argumentsChange"}, {"url": "IORequest.html#config_autoLoad", "access": "", "host": "IORequest", "type": "config", "name": "autoLoad"}, {"url": "IORequest.html#event_autoLoadChange", "access": "", "host": "IORequest", "type": "event", "name": "autoLoadChange"}, {"url": "IORequest.html#method__autoStart", "access": "protected", "host": "IORequest", "type": "method", "name": "_autoStart"}, {"url": "A.Plugin.IO.html#method__autoStart", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_autoStart"}, {"url": "A.Plugin.IO.html#method__bindPlugins", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_bindPlugins"}, {"url": "A.Plugin.IO.html#method_bindUI", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "bindUI"}, {"url": "IORequest.html#config_cache", "access": "", "host": "IORequest", "type": "config", "name": "cache"}, {"url": "IORequest.html#event_cacheChange", "access": "", "host": "IORequest", "type": "event", "name": "cacheChange"}, {"url": "IORequest.html#config_cfg", "access": "", "host": "IORequest", "type": "config", "name": "cfg"}, {"url": "IORequest.html#event_cfgChange", "access": "", "host": "IORequest", "type": "event", "name": "cfgChange"}, {"url": "IORequest.html#config_context", "access": "", "host": "IORequest", "type": "config", "name": "context"}, {"url": "IORequest.html#event_contextChange", "access": "", "host": "IORequest", "type": "event", "name": "contextChange"}, {"url": "IORequest.html#config_data", "access": "", "host": "IORequest", "type": "config", "name": "data"}, {"url": "IORequest.html#event_dataChange", "access": "", "host": "IORequest", "type": "event", "name": "dataChange"}, {"url": "IORequest.html#config_dataType", "access": "", "host": "IORequest", "type": "config", "name": "dataType"}, {"url": "IORequest.html#event_dataTypeChange", "access": "", "host": "IORequest", "type": "event", "name": "dataTypeChange"}, {"url": "IORequest.html#method_destructor", "access": "protected", "host": "IORequest", "type": "method", "name": "destructor"}, {"url": "IORequest.html#method__end", "access": "protected", "host": "IORequest", "type": "method", "name": "_end"}, {"url": "A.Plugin.IO.html#method__failureHandler", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_failureHandler"}, {"url": "A.Plugin.IO.html#config_failureMessage", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "failureMessage"}, {"url": "A.Plugin.IO.html#event_failureMessageChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "failureMessageChange"}, {"url": "IORequest.html#config_form", "access": "", "host": "IORequest", "type": "config", "name": "form"}, {"url": "IORequest.html#event_formChange", "access": "", "host": "IORequest", "type": "event", "name": "formChange"}, {"url": "A.Plugin.IO.html#method__getContentSetterByType", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_getContentSetterByType"}, {"url": "IORequest.html#config_headers", "access": "", "host": "IORequest", "type": "config", "name": "headers"}, {"url": "IORequest.html#event_headersChange", "access": "", "host": "IORequest", "type": "event", "name": "headersChange"}, {"url": "A.Plugin.IO.html#method_hideLoading", "access": "", "host": "A.Plugin.IO", "type": "method", "name": "hideLoading"}, {"url": "IORequest.html#method_initializer", "access": "protected", "host": "IORequest", "type": "method", "name": "initializer"}, {"url": "IORequest.html#property_IORequest.ATTRS", "access": "", "host": "IORequest", "type": "property", "name": "IORequest.ATTRS"}, {"url": "IORequest.html#property_IORequest.NAME", "access": "", "host": "IORequest", "type": "property", "name": "IORequest.NAME"}, {"url": "A.Plugin.IO.html#config_loadingMask", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "loadingMask"}, {"url": "A.Plugin.IO.html#event_loadingMaskChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "loadingMaskChange"}, {"url": "IORequest.html#config_method", "access": "", "host": "IORequest", "type": "config", "name": "method"}, {"url": "IORequest.html#event_methodChange", "access": "", "host": "IORequest", "type": "event", "name": "methodChange"}, {"url": "A.Plugin.IO.html#config_node", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "node"}, {"url": "A.Plugin.IO.html#event_nodeChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "nodeChange"}, {"url": "A.Plugin.IO.html#method__onActiveChange", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_onActiveChange"}, {"url": "A.Plugin.IO.html#config_parseContent", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "parseContent"}, {"url": "A.Plugin.IO.html#event_parseContentChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "parseContentChange"}, {"url": "IORequest.html#method__parseURL", "access": "protected", "host": "IORequest", "type": "method", "name": "_parseURL"}, {"url": "IORequest.html#config_responseData", "access": "", "host": "IORequest", "type": "config", "name": "responseData"}, {"url": "IORequest.html#event_responseDataChange", "access": "", "host": "IORequest", "type": "event", "name": "responseDataChange"}, {"url": "A.Plugin.IO.html#config_section", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "section"}, {"url": "A.Plugin.IO.html#event_sectionChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "sectionChange"}, {"url": "A.Plugin.IO.html#method_setContent", "access": "", "host": "A.Plugin.IO", "type": "method", "name": "setContent"}, {"url": "IORequest.html#method__setResponseData", "access": "protected", "host": "IORequest", "type": "method", "name": "_setResponseData"}, {"url": "A.Plugin.IO.html#method_showLoading", "access": "", "host": "A.Plugin.IO", "type": "method", "name": "showLoading"}, {"url": "A.Plugin.IO.html#config_showLoading", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "showLoading"}, {"url": "A.Plugin.IO.html#event_showLoadingChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "showLoadingChange"}, {"url": "IORequest.html#method_start", "access": "", "host": "IORequest", "type": "method", "name": "start"}, {"url": "IORequest.html#method_stop", "access": "", "host": "IORequest", "type": "method", "name": "stop"}, {"url": "IORequest.html#method__success", "access": "protected", "host": "IORequest", "type": "method", "name": "_success"}, {"url": "A.Plugin.IO.html#method__successHandler", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_successHandler"}, {"url": "IORequest.html#config_sync", "access": "", "host": "IORequest", "type": "config", "name": "sync"}, {"url": "IORequest.html#event_syncChange", "access": "", "host": "IORequest", "type": "event", "name": "syncChange"}, {"url": "A.Plugin.IO.html#method__syncLoadingMaskUI", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_syncLoadingMaskUI"}, {"url": "IORequest.html#config_timeout", "access": "", "host": "IORequest", "type": "config", "name": "timeout"}, {"url": "IORequest.html#event_timeoutChange", "access": "", "host": "IORequest", "type": "event", "name": "timeoutChange"}, {"url": "IORequest.html#config_transaction", "access": "", "host": "IORequest", "type": "config", "name": "transaction"}, {"url": "IORequest.html#event_transactionChange", "access": "", "host": "IORequest", "type": "event", "name": "transactionChange"}, {"url": "A.Plugin.IO.html#config_type", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "type"}, {"url": "A.Plugin.IO.html#event_typeChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "typeChange"}, {"url": "IORequest.html#config_uri", "access": "", "host": "IORequest", "type": "config", "name": "uri"}, {"url": "IORequest.html#event_uriChange", "access": "", "host": "IORequest", "type": "event", "name": "uriChange"}, {"url": "A.Plugin.IO.html#config_where", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "where"}, {"url": "A.Plugin.IO.html#event_whereChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "whereChange"}, {"url": "IORequest.html#config_xdr", "access": "", "host": "IORequest", "type": "config", "name": "xdr"}, {"url": "IORequest.html#event_xdrChange", "access": "", "host": "IORequest", "type": "event", "name": "xdrChange"}];
+    var ALL_YUI_PROPS = [{"url": "IORequest.html#config_active", "access": "", "host": "IORequest", "type": "config", "name": "active"}, {"url": "IORequest.html#event_activeChange", "access": "", "host": "IORequest", "type": "event", "name": "activeChange"}, {"url": "A.io.html#method_A.io.request", "access": "", "host": "A.io", "type": "method", "name": "A.io.request"}, {"url": "A.Plugin.IO.html#property_A.Plugin.IO.ATTRS", "access": "", "host": "A.Plugin.IO", "type": "property", "name": "A.Plugin.IO.ATTRS"}, {"url": "A.Plugin.IO.html#property_A.Plugin.IO.NAME", "access": "", "host": "A.Plugin.IO", "type": "property", "name": "A.Plugin.IO.NAME"}, {"url": "A.Plugin.IO.html#property_A.Plugin.IO.NS", "access": "", "host": "A.Plugin.IO", "type": "property", "name": "A.Plugin.IO.NS"}, {"url": "IORequest.html#config_arguments", "access": "", "host": "IORequest", "type": "config", "name": "arguments"}, {"url": "IORequest.html#event_argumentsChange", "access": "", "host": "IORequest", "type": "event", "name": "argumentsChange"}, {"url": "IORequest.html#config_autoLoad", "access": "", "host": "IORequest", "type": "config", "name": "autoLoad"}, {"url": "IORequest.html#event_autoLoadChange", "access": "", "host": "IORequest", "type": "event", "name": "autoLoadChange"}, {"url": "IORequest.html#method__autoStart", "access": "protected", "host": "IORequest", "type": "method", "name": "_autoStart"}, {"url": "A.Plugin.IO.html#method__autoStart", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_autoStart"}, {"url": "A.Plugin.IO.html#method__bindParseContent", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_bindParseContent"}, {"url": "A.Plugin.IO.html#method_bindUI", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "bindUI"}, {"url": "IORequest.html#config_cache", "access": "", "host": "IORequest", "type": "config", "name": "cache"}, {"url": "IORequest.html#event_cacheChange", "access": "", "host": "IORequest", "type": "event", "name": "cacheChange"}, {"url": "IORequest.html#config_cfg", "access": "", "host": "IORequest", "type": "config", "name": "cfg"}, {"url": "IORequest.html#event_cfgChange", "access": "", "host": "IORequest", "type": "event", "name": "cfgChange"}, {"url": "IORequest.html#config_context", "access": "", "host": "IORequest", "type": "config", "name": "context"}, {"url": "IORequest.html#event_contextChange", "access": "", "host": "IORequest", "type": "event", "name": "contextChange"}, {"url": "IORequest.html#config_data", "access": "", "host": "IORequest", "type": "config", "name": "data"}, {"url": "IORequest.html#event_dataChange", "access": "", "host": "IORequest", "type": "event", "name": "dataChange"}, {"url": "IORequest.html#config_dataType", "access": "", "host": "IORequest", "type": "config", "name": "dataType"}, {"url": "IORequest.html#event_dataTypeChange", "access": "", "host": "IORequest", "type": "event", "name": "dataTypeChange"}, {"url": "IORequest.html#method_destructor", "access": "protected", "host": "IORequest", "type": "method", "name": "destructor"}, {"url": "IORequest.html#method__end", "access": "protected", "host": "IORequest", "type": "method", "name": "_end"}, {"url": "A.Plugin.IO.html#method__failureHandler", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_failureHandler"}, {"url": "A.Plugin.IO.html#config_failureMessage", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "failureMessage"}, {"url": "A.Plugin.IO.html#event_failureMessageChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "failureMessageChange"}, {"url": "IORequest.html#config_form", "access": "", "host": "IORequest", "type": "config", "name": "form"}, {"url": "IORequest.html#event_formChange", "access": "", "host": "IORequest", "type": "event", "name": "formChange"}, {"url": "A.Plugin.IO.html#method__getContentSetterByType", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_getContentSetterByType"}, {"url": "IORequest.html#config_headers", "access": "", "host": "IORequest", "type": "config", "name": "headers"}, {"url": "IORequest.html#event_headersChange", "access": "", "host": "IORequest", "type": "event", "name": "headersChange"}, {"url": "A.Plugin.IO.html#method_hideLoading", "access": "", "host": "A.Plugin.IO", "type": "method", "name": "hideLoading"}, {"url": "IORequest.html#method_initializer", "access": "protected", "host": "IORequest", "type": "method", "name": "initializer"}, {"url": "IORequest.html#property_IORequest.ATTRS", "access": "", "host": "IORequest", "type": "property", "name": "IORequest.ATTRS"}, {"url": "IORequest.html#property_IORequest.NAME", "access": "", "host": "IORequest", "type": "property", "name": "IORequest.NAME"}, {"url": "A.Plugin.IO.html#config_loadingMask", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "loadingMask"}, {"url": "A.Plugin.IO.html#event_loadingMaskChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "loadingMaskChange"}, {"url": "IORequest.html#config_method", "access": "", "host": "IORequest", "type": "config", "name": "method"}, {"url": "IORequest.html#event_methodChange", "access": "", "host": "IORequest", "type": "event", "name": "methodChange"}, {"url": "A.Plugin.IO.html#config_node", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "node"}, {"url": "A.Plugin.IO.html#event_nodeChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "nodeChange"}, {"url": "A.Plugin.IO.html#method__onActiveChange", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_onActiveChange"}, {"url": "A.Plugin.IO.html#config_parseContent", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "parseContent"}, {"url": "A.Plugin.IO.html#event_parseContentChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "parseContentChange"}, {"url": "IORequest.html#method__parseURL", "access": "protected", "host": "IORequest", "type": "method", "name": "_parseURL"}, {"url": "IORequest.html#config_responseData", "access": "", "host": "IORequest", "type": "config", "name": "responseData"}, {"url": "IORequest.html#event_responseDataChange", "access": "", "host": "IORequest", "type": "event", "name": "responseDataChange"}, {"url": "A.Plugin.IO.html#config_section", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "section"}, {"url": "A.Plugin.IO.html#event_sectionChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "sectionChange"}, {"url": "A.Plugin.IO.html#method_setContent", "access": "", "host": "A.Plugin.IO", "type": "method", "name": "setContent"}, {"url": "IORequest.html#method__setIOData", "access": "protected", "host": "IORequest", "type": "method", "name": "_setIOData"}, {"url": "A.Plugin.IO.html#method__setLoadingUI", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_setLoadingUI"}, {"url": "IORequest.html#method__setResponseData", "access": "protected", "host": "IORequest", "type": "method", "name": "_setResponseData"}, {"url": "A.Plugin.IO.html#method_showLoading", "access": "", "host": "A.Plugin.IO", "type": "method", "name": "showLoading"}, {"url": "A.Plugin.IO.html#config_showLoading", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "showLoading"}, {"url": "A.Plugin.IO.html#event_showLoadingChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "showLoadingChange"}, {"url": "IORequest.html#method_start", "access": "", "host": "IORequest", "type": "method", "name": "start"}, {"url": "A.Plugin.IO.html#method_start", "access": "", "host": "A.Plugin.IO", "type": "method", "name": "start"}, {"url": "IORequest.html#method_stop", "access": "", "host": "IORequest", "type": "method", "name": "stop"}, {"url": "IORequest.html#method__success", "access": "protected", "host": "IORequest", "type": "method", "name": "_success"}, {"url": "A.Plugin.IO.html#method__successHandler", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_successHandler"}, {"url": "IORequest.html#config_sync", "access": "", "host": "IORequest", "type": "config", "name": "sync"}, {"url": "IORequest.html#event_syncChange", "access": "", "host": "IORequest", "type": "event", "name": "syncChange"}, {"url": "A.Plugin.IO.html#method__syncLoadingMaskUI", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_syncLoadingMaskUI"}, {"url": "IORequest.html#config_timeout", "access": "", "host": "IORequest", "type": "config", "name": "timeout"}, {"url": "IORequest.html#event_timeoutChange", "access": "", "host": "IORequest", "type": "event", "name": "timeoutChange"}, {"url": "IORequest.html#config_transaction", "access": "", "host": "IORequest", "type": "config", "name": "transaction"}, {"url": "IORequest.html#event_transactionChange", "access": "", "host": "IORequest", "type": "event", "name": "transactionChange"}, {"url": "A.Plugin.IO.html#config_type", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "type"}, {"url": "A.Plugin.IO.html#event_typeChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "typeChange"}, {"url": "IORequest.html#config_uri", "access": "", "host": "IORequest", "type": "config", "name": "uri"}, {"url": "IORequest.html#event_uriChange", "access": "", "host": "IORequest", "type": "event", "name": "uriChange"}, {"url": "A.Plugin.IO.html#config_where", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "where"}, {"url": "A.Plugin.IO.html#event_whereChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "whereChange"}, {"url": "IORequest.html#config_xdr", "access": "", "host": "IORequest", "type": "config", "name": "xdr"}, {"url": "IORequest.html#event_xdrChange", "access": "", "host": "IORequest", "type": "event", "name": "xdrChange"}];
 </script>
 </body>
 </html>

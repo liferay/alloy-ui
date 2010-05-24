@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-tree   aui-tree-view-debug.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-tree&nbsp; <span class="subtitle">1.0pr</span>
+			aui-tree&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -555,9 +550,6 @@
 			                                <li class=""><a href="aui-tree-min.js.html" title="aui-tree-min.js">aui-tree-min.js</a></li>
 
 
-			                                <li class=""><a href="aui-tree-node-debug.js.html" title="aui-tree-node-debug.js">aui-tree-node-debug.js</a></li>
-
-
 			                                <li class=""><a href="aui-tree-node-min.js.html" title="aui-tree-node-min.js">aui-tree-node-min.js</a></li>
 
 
@@ -669,292 +661,293 @@
 <span class="cm"> * @constructor</span>
 <span class="cm"> * @extends TreeData</span>
 <span class="cm"> */</span>
-<span class="kd">function</span> <span class="nx">TreeView</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-	<span class="c1">// A.DD.DDM.set(&#39;throttleTime&#39;, -1);</span>
-
-	<span class="nx">TreeView</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">TreeView</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property provides a string to identify the class.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property TreeView.NAME</span>
-<span class="cm">	 * @type String</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">NAME</span><span class="o">:</span> <span class="nx">TREE_VIEW</span><span class="p">,</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property used to define the default attribute</span>
-<span class="cm">	 * configuration for the TreeView.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property TreeView.ATTRS</span>
-<span class="cm">	 * @type Object</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">TreeView</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+	<span class="p">{</span>
 		<span class="cm">/**</span>
-<span class="cm">		 * Type of the treeview (i.e. could be &#39;file&#39; or &#39;normal&#39;).</span>
+<span class="cm">		 * Static property provides a string to identify the class.</span>
 <span class="cm">		 *</span>
-<span class="cm">		 * @attribute type</span>
-<span class="cm">		 * @default &#39;file&#39;</span>
+<span class="cm">		 * @property TreeView.NAME</span>
 <span class="cm">		 * @type String</span>
+<span class="cm">		 * @static</span>
 <span class="cm">		 */</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="nx">FILE</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isString</span>
-		<span class="p">},</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="nx">TREE_VIEW</span><span class="p">,</span>
 
 		<span class="cm">/**</span>
-<span class="cm">		 * Last selected TreeNode.</span>
+<span class="cm">		 * Static property used to define the default attribute</span>
+<span class="cm">		 * configuration for the TreeView.</span>
 <span class="cm">		 *</span>
-<span class="cm">		 * @attribute lastSelected</span>
-<span class="cm">		 * @default null</span>
-<span class="cm">		 * @type TreeNode</span>
-<span class="cm">		 */</span>
-		<span class="nx">lastSelected</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isTreeNode</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * IO metadata for loading the children using ajax.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute io</span>
-<span class="cm">		 * @default null</span>
+<span class="cm">		 * @property TreeView.ATTRS</span>
 <span class="cm">		 * @type Object</span>
+<span class="cm">		 * @static</span>
 <span class="cm">		 */</span>
-		<span class="nx">io</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Type of the treeview (i.e. could be &#39;file&#39; or &#39;normal&#39;).</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute type</span>
+<span class="cm">			 * @default &#39;file&#39;</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
+			<span class="nx">type</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="nx">FILE</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isString</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Last selected TreeNode.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute lastSelected</span>
+<span class="cm">			 * @default null</span>
+<span class="cm">			 * @type TreeNode</span>
+<span class="cm">			 */</span>
+			<span class="nx">lastSelected</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isTreeNode</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * IO metadata for loading the children using ajax.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute io</span>
+<span class="cm">			 * @default null</span>
+<span class="cm">			 * @type Object</span>
+<span class="cm">			 */</span>
+			<span class="nx">io</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+			<span class="p">},</span>
+
+			<span class="nx">paginator</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="nx">EXTENDS</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeData</span><span class="p">,</span>
+
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">CONTENT_TEMPLATE</span><span class="o">:</span> <span class="s1">&#39;&lt;ul&gt;&lt;/ul&gt;&#39;</span><span class="p">,</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Bind the events on the TreeView UI. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method bindUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_delegateDOM</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Create the DOM structure for the TreeView. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method renderUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderElements</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Sync the TreeView UI. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method syncUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">refreshIndex</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="nx">registerNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="c1">// when the node is appended to the TreeView set the OWNER_TREE</span>
+				<span class="nx">node</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">OWNER_TREE</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+
+				<span class="nx">TreeView</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">registerNode</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Create TreeNode from HTML markup.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _createFromHTMLMarkup</span>
+<span class="cm">			 * @param {Node} container</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_createFromHTMLMarkup</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">container</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">container</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;&gt; li&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// use firstChild as label</span>
+					<span class="kd">var</span> <span class="nx">labelEl</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;&gt; *&#39;</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+					<span class="kd">var</span> <span class="nx">label</span> <span class="o">=</span> <span class="nx">labelEl</span><span class="p">.</span><span class="nx">outerHTML</span><span class="p">();</span>
+
+					<span class="c1">// avoid memory leak</span>
+					<span class="nx">docFrag</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+					<span class="kd">var</span> <span class="nx">treeNode</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span><span class="p">({</span>
+						<span class="nx">boundingBox</span><span class="o">:</span> <span class="nx">node</span><span class="p">,</span>
+						<span class="nx">label</span><span class="o">:</span> <span class="nx">label</span>
+					<span class="p">});</span>
+
+					<span class="kd">var</span> <span class="nx">deepContainer</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;&gt; ul&#39;</span><span class="p">);</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">deepContainer</span><span class="p">)</span> <span class="p">{</span>
+						<span class="c1">// if has deepContainer it&#39;s not a leaf</span>
+						<span class="nx">treeNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">LEAF</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+						<span class="nx">treeNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CONTAINER</span><span class="p">,</span> <span class="nx">deepContainer</span><span class="p">);</span>
+
+						<span class="c1">// render node before invoke the recursion</span>
+						<span class="nx">treeNode</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+
+						<span class="c1">// propagating markup recursion</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">_createFromHTMLMarkup</span><span class="p">(</span><span class="nx">deepContainer</span><span class="p">);</span>
+					<span class="p">}</span>
+					<span class="k">else</span> <span class="p">{</span>
+						<span class="nx">treeNode</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+					<span class="p">}</span>
+
+					<span class="c1">// find the parent TreeNode...</span>
+					<span class="kd">var</span> <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
+					<span class="kd">var</span> <span class="nx">parentTreeNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">getByNode</span><span class="p">(</span><span class="nx">parentNode</span><span class="p">);</span>
+
+					<span class="c1">// and simulate the appendChild.</span>
+					<span class="nx">parentTreeNode</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">treeNode</span><span class="p">);</span>
+				<span class="p">});</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Render elements.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _renderElements</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_renderElements</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">children</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CHILDREN</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TYPE</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">CSS_TREE_TYPE</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">TREE</span><span class="p">,</span> <span class="nx">type</span><span class="p">);</span>
+
+				<span class="nx">contentBox</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_VIEW_CONTENT</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CONTAINER</span><span class="p">,</span> <span class="nx">contentBox</span><span class="p">);</span>
+
+				<span class="nx">contentBox</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span>
+					<span class="nx">concat</span><span class="p">(</span><span class="nx">CSS_TREE_TYPE</span><span class="p">,</span> <span class="nx">CSS_TREE_ROOT_CONTAINER</span><span class="p">)</span>
+				<span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// if has children appendChild them</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">eachChildren</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+					<span class="p">});</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="p">{</span>
+					<span class="c1">// if children not specified try to create from markup</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_createFromHTMLMarkup</span><span class="p">(</span><span class="nx">contentBox</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Delegate events.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _delegateDOM</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_delegateDOM</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
+
+				<span class="c1">// expand/collapse delegations</span>
+				<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onClickHitArea</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_TREE_HITAREA</span><span class="p">);</span>
+				<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;dblclick&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onClickHitArea</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_TREE_ICON</span><span class="p">);</span>
+				<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;dblclick&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onClickHitArea</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_TREE_LABEL</span><span class="p">);</span>
+				<span class="c1">// other delegations</span>
+				<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onMouseEnterNodeEl</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_TREE_NODE_CONTENT</span><span class="p">);</span>
+				<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;mouseleave&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onMouseLeaveNodeEl</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_TREE_NODE_CONTENT</span><span class="p">);</span>
+				<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onClickNodeEl</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_TREE_NODE_CONTENT</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires on click the TreeView (i.e. set the select/unselect state).</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _onClickNodeEl</span>
+<span class="cm">			 * @param {EventFacade} event</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_onClickNodeEl</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">treeNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getNodeByChild</span><span class="p">(</span> <span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span> <span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">treeNode</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">treeNode</span><span class="p">.</span><span class="nx">isSelected</span><span class="p">())</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">lastSelected</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LAST_SELECTED</span><span class="p">);</span>
+
+					<span class="c1">// select drag node</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">lastSelected</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">lastSelected</span><span class="p">.</span><span class="nx">unselect</span><span class="p">();</span>
+					<span class="p">}</span>
+
+					<span class="nx">treeNode</span><span class="p">.</span><span class="nx">select</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires on &lt;code&gt;mouseeneter&lt;/code&gt; the TreeNode.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _onMouseEnterNodeEl</span>
+<span class="cm">			 * @param {EventFacade} event</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_onMouseEnterNodeEl</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">treeNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getNodeByChild</span><span class="p">(</span> <span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span> <span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">treeNode</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">treeNode</span><span class="p">.</span><span class="nx">over</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires on &lt;code&gt;mouseleave&lt;/code&gt; the TreeNode.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _onMouseLeaveNodeEl</span>
+<span class="cm">			 * @param {EventFacade} event</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_onMouseLeaveNodeEl</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">treeNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getNodeByChild</span><span class="p">(</span> <span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span> <span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">treeNode</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">treeNode</span><span class="p">.</span><span class="nx">out</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires on &lt;code&gt;click&lt;/code&gt; the TreeNode hitarea.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _onClickHitArea</span>
+<span class="cm">			 * @param {EventFacade} event</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_onClickHitArea</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">treeNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getNodeByChild</span><span class="p">(</span> <span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span> <span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">treeNode</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">treeNode</span><span class="p">.</span><span class="nx">toggle</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
-<span class="p">});</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">TreeView</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeData</span><span class="p">,</span> <span class="p">{</span>
-	<span class="nx">CONTENT_TEMPLATE</span><span class="o">:</span> <span class="s1">&#39;&lt;ul&gt;&lt;/ul&gt;&#39;</span><span class="p">,</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Bind the events on the TreeView UI. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method bindUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_delegateDOM</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Create the DOM structure for the TreeView. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method renderUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderElements</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Sync the TreeView UI. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method syncUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">refreshIndex</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="nx">registerNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="c1">// when the node is appended to the TreeView set the OWNER_TREE</span>
-		<span class="nx">node</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">OWNER_TREE</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
-
-		<span class="nx">TreeView</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">registerNode</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Create TreeNode from HTML markup.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _createFromHTMLMarkup</span>
-<span class="cm">	 * @param {Node} container</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_createFromHTMLMarkup</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">container</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">container</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;&gt; li&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// use firstChild as label</span>
-			<span class="kd">var</span> <span class="nx">labelEl</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;&gt; *&#39;</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
-			<span class="kd">var</span> <span class="nx">label</span> <span class="o">=</span> <span class="nx">labelEl</span><span class="p">.</span><span class="nx">outerHTML</span><span class="p">();</span>
-
-			<span class="c1">// avoid memory leak</span>
-			<span class="nx">docFrag</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">treeNode</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span><span class="p">({</span>
-				<span class="nx">boundingBox</span><span class="o">:</span> <span class="nx">node</span><span class="p">,</span>
-				<span class="nx">label</span><span class="o">:</span> <span class="nx">label</span>
-			<span class="p">});</span>
-
-			<span class="kd">var</span> <span class="nx">deepContainer</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;&gt; ul&#39;</span><span class="p">);</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">deepContainer</span><span class="p">)</span> <span class="p">{</span>
-				<span class="c1">// if has deepContainer it&#39;s not a leaf</span>
-				<span class="nx">treeNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">LEAF</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-				<span class="nx">treeNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CONTAINER</span><span class="p">,</span> <span class="nx">deepContainer</span><span class="p">);</span>
-
-				<span class="c1">// render node before invoke the recursion</span>
-				<span class="nx">treeNode</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
-
-				<span class="c1">// propagating markup recursion</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">_createFromHTMLMarkup</span><span class="p">(</span><span class="nx">deepContainer</span><span class="p">);</span>
-			<span class="p">}</span>
-			<span class="k">else</span> <span class="p">{</span>
-				<span class="nx">treeNode</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
-			<span class="p">}</span>
-
-			<span class="c1">// find the parent TreeNode...</span>
-			<span class="kd">var</span> <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">parentTreeNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">getByNode</span><span class="p">(</span><span class="nx">parentNode</span><span class="p">);</span>
-
-			<span class="c1">// and simulate the appendChild.</span>
-			<span class="nx">parentTreeNode</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">treeNode</span><span class="p">);</span>
-		<span class="p">});</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Render elements.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _renderElements</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_renderElements</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">children</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CHILDREN</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TYPE</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">CSS_TREE_TYPE</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">TREE</span><span class="p">,</span> <span class="nx">type</span><span class="p">);</span>
-
-		<span class="nx">contentBox</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_VIEW_CONTENT</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CONTAINER</span><span class="p">,</span> <span class="nx">contentBox</span><span class="p">);</span>
-
-		<span class="nx">contentBox</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span>
-			<span class="nx">concat</span><span class="p">(</span><span class="nx">CSS_TREE_TYPE</span><span class="p">,</span> <span class="nx">CSS_TREE_ROOT_CONTAINER</span><span class="p">)</span>
-		<span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// if has children appendChild them</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">eachChildren</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-			<span class="p">});</span>
-		<span class="p">}</span>
-		<span class="k">else</span> <span class="p">{</span>
-			<span class="c1">// if children not specified try to create from markup</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_createFromHTMLMarkup</span><span class="p">(</span><span class="nx">contentBox</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Delegate events.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _delegateDOM</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_delegateDOM</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
-
-		<span class="c1">// expand/collapse delegations</span>
-		<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onClickHitArea</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_TREE_HITAREA</span><span class="p">);</span>
-		<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;dblclick&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onClickHitArea</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_TREE_ICON</span><span class="p">);</span>
-		<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;dblclick&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onClickHitArea</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_TREE_LABEL</span><span class="p">);</span>
-		<span class="c1">// other delegations</span>
-		<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onMouseEnterNodeEl</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_TREE_NODE_CONTENT</span><span class="p">);</span>
-		<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;mouseleave&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onMouseLeaveNodeEl</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_TREE_NODE_CONTENT</span><span class="p">);</span>
-		<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onClickNodeEl</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_TREE_NODE_CONTENT</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires on click the TreeView (i.e. set the select/unselect state).</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _onClickNodeEl</span>
-<span class="cm">	 * @param {EventFacade} event</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_onClickNodeEl</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">treeNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getNodeByChild</span><span class="p">(</span> <span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span> <span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">treeNode</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">treeNode</span><span class="p">.</span><span class="nx">isSelected</span><span class="p">())</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">lastSelected</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LAST_SELECTED</span><span class="p">);</span>
-
-			<span class="c1">// select drag node</span>
-			<span class="k">if</span> <span class="p">(</span><span class="nx">lastSelected</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">lastSelected</span><span class="p">.</span><span class="nx">unselect</span><span class="p">();</span>
-			<span class="p">}</span>
-
-			<span class="nx">treeNode</span><span class="p">.</span><span class="nx">select</span><span class="p">();</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires on &lt;code&gt;mouseeneter&lt;/code&gt; the TreeNode.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _onMouseEnterNodeEl</span>
-<span class="cm">	 * @param {EventFacade} event</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_onMouseEnterNodeEl</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">treeNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getNodeByChild</span><span class="p">(</span> <span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span> <span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">treeNode</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">treeNode</span><span class="p">.</span><span class="nx">over</span><span class="p">();</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires on &lt;code&gt;mouseleave&lt;/code&gt; the TreeNode.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _onMouseLeaveNodeEl</span>
-<span class="cm">	 * @param {EventFacade} event</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_onMouseLeaveNodeEl</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">treeNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getNodeByChild</span><span class="p">(</span> <span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span> <span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">treeNode</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">treeNode</span><span class="p">.</span><span class="nx">out</span><span class="p">();</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires on &lt;code&gt;click&lt;/code&gt; the TreeNode hitarea.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _onClickHitArea</span>
-<span class="cm">	 * @param {EventFacade} event</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_onClickHitArea</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">treeNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getNodeByChild</span><span class="p">(</span> <span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span> <span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">treeNode</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">treeNode</span><span class="p">.</span><span class="nx">toggle</span><span class="p">();</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-<span class="p">});</span>
+<span class="p">);</span>
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">TreeView</span> <span class="o">=</span> <span class="nx">TreeView</span><span class="p">;</span>
-
 
 <span class="cm">/*</span>
 <span class="cm">* TreeViewDD - Drag &amp; Drop</span>
@@ -1023,500 +1016,500 @@
 <span class="cm"> * @constructor</span>
 <span class="cm"> * @extends TreeView</span>
 <span class="cm"> */</span>
-<span class="kd">function</span> <span class="nx">TreeViewDD</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">TreeViewDD</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">TreeViewDD</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property provides a string to identify the class.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property TreeViewDD.NAME</span>
-<span class="cm">	 * @type String</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">NAME</span><span class="o">:</span> <span class="nx">TREE_DRAG_DROP</span><span class="p">,</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property used to define the default attribute</span>
-<span class="cm">	 * configuration for the TreeViewDD.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property TreeViewDD.ATTRS</span>
-<span class="cm">	 * @type Object</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">TreeViewDD</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+	<span class="p">{</span>
 		<span class="cm">/**</span>
-<span class="cm">		 * Dragdrop helper element.</span>
+<span class="cm">		 * Static property provides a string to identify the class.</span>
 <span class="cm">		 *</span>
-<span class="cm">		 * @attribute helper</span>
-<span class="cm">		 * @default null</span>
-<span class="cm">		 * @type Node | String</span>
+<span class="cm">		 * @property TreeViewDD.NAME</span>
+<span class="cm">		 * @type String</span>
+<span class="cm">		 * @static</span>
 <span class="cm">		 */</span>
-		<span class="nx">helper</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="nx">TREE_DRAG_DROP</span><span class="p">,</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Static property used to define the default attribute</span>
+<span class="cm">		 * configuration for the TreeViewDD.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property TreeViewDD.ATTRS</span>
+<span class="cm">		 * @type Object</span>
+<span class="cm">		 * @static</span>
+<span class="cm">		 */</span>
+		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Dragdrop helper element.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute helper</span>
+<span class="cm">			 * @default null</span>
+<span class="cm">			 * @type Node | String</span>
+<span class="cm">			 */</span>
+			<span class="nx">helper</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Delay of the scroll while dragging the TreeNodes.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute scrollDelay</span>
+<span class="cm">			 * @default 100</span>
+<span class="cm">			 * @type Number</span>
+<span class="cm">			 */</span>
+			<span class="nx">scrollDelay</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNumber</span>
+			<span class="p">}</span>
 		<span class="p">},</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * Delay of the scroll while dragging the TreeNodes.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute scrollDelay</span>
-<span class="cm">		 * @default 100</span>
-<span class="cm">		 * @type Number</span>
-<span class="cm">		 */</span>
-		<span class="nx">scrollDelay</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNumber</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-<span class="p">});</span>
+		<span class="nx">EXTENDS</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeView</span><span class="p">,</span>
 
-<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">TreeViewDD</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeView</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Direction of the drag (i.e. could be &#39;up&#39; or &#39;down&#39;).</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property direction</span>
-<span class="cm">	 * @type String</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">direction</span><span class="o">:</span> <span class="nx">BELOW</span><span class="p">,</span>
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Direction of the drag (i.e. could be &#39;up&#39; or &#39;down&#39;).</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @property direction</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">direction</span><span class="o">:</span> <span class="nx">BELOW</span><span class="p">,</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Drop action (i.e. could be &#39;append&#39;, &#39;below&#39; or &#39;above&#39;).</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @attribute dropAction</span>
-<span class="cm">	 * @default null</span>
-<span class="cm">	 * @type String</span>
-<span class="cm">	 */</span>
-	<span class="nx">dropAction</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Drop action (i.e. could be &#39;append&#39;, &#39;below&#39; or &#39;above&#39;).</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute dropAction</span>
+<span class="cm">			 * @default null</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
+			<span class="nx">dropAction</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Last Y.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @attribute lastY</span>
-<span class="cm">	 * @default 0</span>
-<span class="cm">	 * @type Number</span>
-<span class="cm">	 */</span>
-	<span class="nx">lastY</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Last Y.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute lastY</span>
+<span class="cm">			 * @default 0</span>
+<span class="cm">			 * @type Number</span>
+<span class="cm">			 */</span>
+			<span class="nx">lastY</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
 
-	<span class="nx">node</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+			<span class="nx">node</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Reference for the current drop node.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @attribute nodeContent</span>
-<span class="cm">	 * @default null</span>
-<span class="cm">	 * @type Node</span>
-<span class="cm">	 */</span>
-	<span class="nx">nodeContent</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Reference for the current drop node.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute nodeContent</span>
+<span class="cm">			 * @default null</span>
+<span class="cm">			 * @type Node</span>
+<span class="cm">			 */</span>
+			<span class="nx">nodeContent</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Bind the events on the TreeViewDD UI. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method bindUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Bind the events on the TreeViewDD UI. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method bindUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-		<span class="nx">TreeViewDD</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+				<span class="nx">TreeViewDD</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindDragDrop</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Create the DOM structure for the TreeViewDD. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method renderUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">TreeViewDD</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-
-		<span class="c1">// creating drag helper and hiding it</span>
-		<span class="kd">var</span> <span class="nx">helper</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">HELPER_TPL</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
-
-		<span class="c1">// append helper to the body</span>
-		<span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BODY</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">helper</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">,</span> <span class="nx">helper</span><span class="p">);</span>
-
-		<span class="c1">// set DRAG_CURSOR to the default arrow</span>
-		<span class="nx">DDM</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">DRAG_CURSOR</span><span class="p">,</span> <span class="nx">DEFAULT</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Setup DragDrop on the TreeNodes.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _createDrag</span>
-<span class="cm">	 * @param {Node} node</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_createDrag</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">dragTimers</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">dragTimers</span> <span class="o">=</span> <span class="p">[];</span>
-		<span class="p">}</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">DDM</span><span class="p">.</span><span class="nx">getDrag</span><span class="p">(</span><span class="nx">node</span><span class="p">))</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">dragTimers</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">dragTimers</span><span class="p">;</span>
-			<span class="c1">// dragDelay is a incremental delay for create the drag instances</span>
-			<span class="kd">var</span> <span class="nx">dragDelay</span> <span class="o">=</span> <span class="mi">50</span> <span class="o">*</span> <span class="nx">dragTimers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
-
-			<span class="c1">// wrapping the _createDrag on a setTimeout for performance reasons</span>
-			<span class="kd">var</span> <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span>
-				<span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-					<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">DDM</span><span class="p">.</span><span class="nx">getDrag</span><span class="p">(</span><span class="nx">node</span><span class="p">))</span> <span class="p">{</span>
-						<span class="c1">// creating delayed drag instance</span>
-						<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DD</span><span class="p">.</span><span class="nx">Drag</span><span class="p">({</span>
-							<span class="nx">bubbleTargets</span><span class="o">:</span> <span class="nx">instance</span><span class="p">,</span>
-							<span class="nx">node</span><span class="o">:</span> <span class="nx">node</span><span class="p">,</span>
-							<span class="nx">target</span><span class="o">:</span> <span class="kc">true</span>
-						<span class="p">})</span>
-						<span class="p">.</span><span class="nx">plug</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDProxy</span><span class="p">,</span> <span class="p">{</span>
-							<span class="nx">moveOnEnd</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-							<span class="nx">positionProxy</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-							<span class="nx">borderStyle</span><span class="o">:</span> <span class="kc">null</span>
-						<span class="p">})</span>
-						<span class="p">.</span><span class="nx">plug</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDNodeScroll</span><span class="p">,</span> <span class="p">{</span>
-							<span class="nx">scrollDelay</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SCROLL_DELAY</span><span class="p">),</span>
-							<span class="nx">node</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">)</span>
-						<span class="p">});</span>
-					<span class="p">}</span>
-
-					<span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">removeItem</span><span class="p">(</span><span class="nx">dragTimers</span><span class="p">,</span> <span class="nx">timer</span><span class="p">);</span>
-				<span class="p">},</span>
-				<span class="nx">dragDelay</span>
-			<span class="p">);</span>
-
-			<span class="nx">dragTimers</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Bind DragDrop events.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _bindDragDrop</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_bindDragDrop</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_createDragInitHandler</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span>
-			<span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-				<span class="c1">// set init elements as draggable</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">eachChildren</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
-					<span class="k">if</span> <span class="p">(</span><span class="nx">child</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DRAGGABLE</span><span class="p">))</span> <span class="p">{</span>
-						<span class="nx">instance</span><span class="p">.</span><span class="nx">_createDrag</span><span class="p">(</span> <span class="nx">child</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">)</span> <span class="p">);</span>
-					<span class="p">}</span>
-				<span class="p">},</span> <span class="kc">true</span><span class="p">);</span>
-
-				<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">detach</span><span class="p">(</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_createDragInitHandler</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindDragDrop</span><span class="p">();</span>
 			<span class="p">},</span>
-			<span class="nx">instance</span>
-		<span class="p">);</span>
 
-		<span class="c1">// only create the drag on the init elements if the user mouseover the boundingBox for init performance reasons</span>
-		<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_createDragInitHandler</span><span class="p">);</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Create the DOM structure for the TreeViewDD. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method renderUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-		<span class="c1">// when append new nodes, make them draggable</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;insert&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_afterAppend</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;append&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_afterAppend</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+				<span class="nx">TreeViewDD</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 
-		<span class="c1">// drag &amp; drop listeners</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:align&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragAlign</span><span class="p">);</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:start&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragStart</span><span class="p">);</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drop:exit&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDropExit</span><span class="p">);</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drop:hit&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDropHit</span><span class="p">);</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drop:over&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDropOver</span><span class="p">);</span>
-	<span class="p">},</span>
+				<span class="c1">// creating drag helper and hiding it</span>
+				<span class="kd">var</span> <span class="nx">helper</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">HELPER_TPL</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Set the append CSS state on the passed &lt;code&gt;nodeContent&lt;/code&gt;.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _appendState</span>
-<span class="cm">	 * @param {Node} nodeContent</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_appendState</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">nodeContent</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="c1">// append helper to the body</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">BODY</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">helper</span><span class="p">);</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">dropAction</span> <span class="o">=</span> <span class="nx">APPEND</span><span class="p">;</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">,</span> <span class="nx">helper</span><span class="p">);</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_STATE_APPEND</span><span class="p">);</span>
+				<span class="c1">// set DRAG_CURSOR to the default arrow</span>
+				<span class="nx">DDM</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">DRAG_CURSOR</span><span class="p">,</span> <span class="nx">DEFAULT</span><span class="p">);</span>
+			<span class="p">},</span>
 
-		<span class="nx">nodeContent</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_INSERT_APPEND</span><span class="p">);</span>
-	<span class="p">},</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Setup DragDrop on the TreeNodes.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _createDrag</span>
+<span class="cm">			 * @param {Node} node</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_createDrag</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Set the going down CSS state on the passed &lt;code&gt;nodeContent&lt;/code&gt;.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _goingDownState</span>
-<span class="cm">	 * @param {Node} nodeContent</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_goingDownState</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">nodeContent</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">dropAction</span> <span class="o">=</span> <span class="nx">BELOW</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_STATE_INSERT_BELOW</span><span class="p">);</span>
-
-		<span class="nx">nodeContent</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_INSERT_BELOW</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Set the going up CSS state on the passed &lt;code&gt;nodeContent&lt;/code&gt;.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _goingUpState</span>
-<span class="cm">	 * @param {Node} nodeContent</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_goingUpState</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">nodeContent</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">dropAction</span> <span class="o">=</span> <span class="nx">ABOVE</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_STATE_INSERT_ABOVE</span><span class="p">);</span>
-
-		<span class="nx">nodeContent</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_INSERT_ABOVE</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Set the reset CSS state on the passed &lt;code&gt;nodeContent&lt;/code&gt;.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _resetState</span>
-<span class="cm">	 * @param {Node} nodeContent</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_resetState</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">nodeContent</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">helper</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">);</span>
-
-		<span class="nx">helper</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_STATE_APPEND</span><span class="p">);</span>
-		<span class="nx">helper</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_STATE_INSERT_ABOVE</span><span class="p">);</span>
-		<span class="nx">helper</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_STATE_INSERT_BELOW</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">nodeContent</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">nodeContent</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_INSERT_ABOVE</span><span class="p">);</span>
-			<span class="nx">nodeContent</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_INSERT_APPEND</span><span class="p">);</span>
-			<span class="nx">nodeContent</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_INSERT_BELOW</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Update the CSS node state (i.e. going down, going up, append etc).</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _updateNodeState</span>
-<span class="cm">	 * @param {EventFacade} event</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_updateNodeState</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">drag</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">drop</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">drop</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">nodeContent</span> <span class="o">=</span> <span class="nx">drop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">dropNode</span> <span class="o">=</span> <span class="nx">nodeContent</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">dropTreeNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">getByNode</span><span class="p">(</span><span class="nx">dropNode</span><span class="p">);</span>
-
-		<span class="c1">// reset the classNames from the last nodeContent</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_resetState</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">nodeContent</span><span class="p">);</span>
-
-		<span class="c1">// cannot drop the dragged element into any of its children</span>
-		<span class="c1">// using DOM contains method for performance reason</span>
-		<span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">dragNode</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">dropNode</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// nArea splits the height in 3 areas top/center/bottom</span>
-			<span class="c1">// these areas are responsible for defining the state when the mouse is over any of them</span>
-			<span class="kd">var</span> <span class="nx">nArea</span> <span class="o">=</span> <span class="nx">nodeContent</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_HEIGHT</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span><span class="p">;</span>
-			<span class="kd">var</span> <span class="nx">yTop</span> <span class="o">=</span> <span class="nx">nodeContent</span><span class="p">.</span><span class="nx">getY</span><span class="p">();</span>
-			<span class="kd">var</span> <span class="nx">yCenter</span> <span class="o">=</span> <span class="nx">yTop</span> <span class="o">+</span> <span class="nx">nArea</span><span class="o">*</span><span class="mi">1</span><span class="p">;</span>
-			<span class="kd">var</span> <span class="nx">yBottom</span> <span class="o">=</span> <span class="nx">yTop</span> <span class="o">+</span> <span class="nx">nArea</span><span class="o">*</span><span class="mi">2</span><span class="p">;</span>
-			<span class="kd">var</span> <span class="nx">mouseY</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">mouseXY</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-
-			<span class="c1">// UP: mouse on the top area of the node</span>
-			<span class="k">if</span> <span class="p">((</span><span class="nx">mouseY</span> <span class="o">&gt;</span> <span class="nx">yTop</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">mouseY</span> <span class="o">&lt;</span> <span class="nx">yCenter</span><span class="p">))</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">_goingUpState</span><span class="p">(</span><span class="nx">nodeContent</span><span class="p">);</span>
-			<span class="p">}</span>
-			<span class="c1">// DOWN: mouse on the bottom area of the node</span>
-			<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">mouseY</span> <span class="o">&gt;</span> <span class="nx">yBottom</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">_goingDownState</span><span class="p">(</span><span class="nx">nodeContent</span><span class="p">);</span>
-			<span class="p">}</span>
-			<span class="c1">// APPEND: mouse on the center area of the node</span>
-			<span class="k">else</span> <span class="k">if</span> <span class="p">((</span><span class="nx">mouseY</span> <span class="o">&gt;</span> <span class="nx">yCenter</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">mouseY</span> <span class="o">&lt;</span> <span class="nx">yBottom</span><span class="p">))</span> <span class="p">{</span>
-				<span class="c1">// if it&#39;s a folder set the state to append</span>
-				<span class="k">if</span> <span class="p">(</span><span class="nx">dropTreeNode</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">dropTreeNode</span><span class="p">.</span><span class="nx">isLeaf</span><span class="p">())</span> <span class="p">{</span>
-					<span class="nx">instance</span><span class="p">.</span><span class="nx">_appendState</span><span class="p">(</span><span class="nx">nodeContent</span><span class="p">);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">dragTimers</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">dragTimers</span> <span class="o">=</span> <span class="p">[];</span>
 				<span class="p">}</span>
-				<span class="c1">// if it&#39;s a leaf we need to set the ABOVE or BELOW state instead of append</span>
-				<span class="k">else</span> <span class="p">{</span>
-					<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">direction</span> <span class="o">==</span> <span class="nx">UP</span><span class="p">)</span> <span class="p">{</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">DDM</span><span class="p">.</span><span class="nx">getDrag</span><span class="p">(</span><span class="nx">node</span><span class="p">))</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">dragTimers</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">dragTimers</span><span class="p">;</span>
+					<span class="c1">// dragDelay is a incremental delay for create the drag instances</span>
+					<span class="kd">var</span> <span class="nx">dragDelay</span> <span class="o">=</span> <span class="mi">50</span> <span class="o">*</span> <span class="nx">dragTimers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+
+					<span class="c1">// wrapping the _createDrag on a setTimeout for performance reasons</span>
+					<span class="kd">var</span> <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span>
+						<span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+							<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">DDM</span><span class="p">.</span><span class="nx">getDrag</span><span class="p">(</span><span class="nx">node</span><span class="p">))</span> <span class="p">{</span>
+								<span class="c1">// creating delayed drag instance</span>
+								<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DD</span><span class="p">.</span><span class="nx">Drag</span><span class="p">({</span>
+									<span class="nx">bubbleTargets</span><span class="o">:</span> <span class="nx">instance</span><span class="p">,</span>
+									<span class="nx">node</span><span class="o">:</span> <span class="nx">node</span><span class="p">,</span>
+									<span class="nx">target</span><span class="o">:</span> <span class="kc">true</span>
+								<span class="p">})</span>
+								<span class="p">.</span><span class="nx">plug</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDProxy</span><span class="p">,</span> <span class="p">{</span>
+									<span class="nx">moveOnEnd</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+									<span class="nx">positionProxy</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+									<span class="nx">borderStyle</span><span class="o">:</span> <span class="kc">null</span>
+								<span class="p">})</span>
+								<span class="p">.</span><span class="nx">plug</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDNodeScroll</span><span class="p">,</span> <span class="p">{</span>
+									<span class="nx">scrollDelay</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SCROLL_DELAY</span><span class="p">),</span>
+									<span class="nx">node</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">)</span>
+								<span class="p">});</span>
+							<span class="p">}</span>
+
+							<span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">removeItem</span><span class="p">(</span><span class="nx">dragTimers</span><span class="p">,</span> <span class="nx">timer</span><span class="p">);</span>
+						<span class="p">},</span>
+						<span class="nx">dragDelay</span>
+					<span class="p">);</span>
+
+					<span class="nx">dragTimers</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Bind DragDrop events.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _bindDragDrop</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_bindDragDrop</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_createDragInitHandler</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span>
+					<span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+						<span class="c1">// set init elements as draggable</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">eachChildren</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
+							<span class="k">if</span> <span class="p">(</span><span class="nx">child</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DRAGGABLE</span><span class="p">))</span> <span class="p">{</span>
+								<span class="nx">instance</span><span class="p">.</span><span class="nx">_createDrag</span><span class="p">(</span> <span class="nx">child</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">)</span> <span class="p">);</span>
+							<span class="p">}</span>
+						<span class="p">},</span> <span class="kc">true</span><span class="p">);</span>
+
+						<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">detach</span><span class="p">(</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_createDragInitHandler</span><span class="p">);</span>
+					<span class="p">},</span>
+					<span class="nx">instance</span>
+				<span class="p">);</span>
+
+				<span class="c1">// only create the drag on the init elements if the user mouseover the boundingBox for init performance reasons</span>
+				<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_createDragInitHandler</span><span class="p">);</span>
+
+				<span class="c1">// when append new nodes, make them draggable</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;insert&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_afterAppend</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;append&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_afterAppend</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+
+				<span class="c1">// drag &amp; drop listeners</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:align&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragAlign</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:start&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragStart</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drop:exit&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDropExit</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drop:hit&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDropHit</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drop:over&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDropOver</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Set the append CSS state on the passed &lt;code&gt;nodeContent&lt;/code&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _appendState</span>
+<span class="cm">			 * @param {Node} nodeContent</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_appendState</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">nodeContent</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">dropAction</span> <span class="o">=</span> <span class="nx">APPEND</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_STATE_APPEND</span><span class="p">);</span>
+
+				<span class="nx">nodeContent</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_INSERT_APPEND</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Set the going down CSS state on the passed &lt;code&gt;nodeContent&lt;/code&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _goingDownState</span>
+<span class="cm">			 * @param {Node} nodeContent</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_goingDownState</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">nodeContent</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">dropAction</span> <span class="o">=</span> <span class="nx">BELOW</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_STATE_INSERT_BELOW</span><span class="p">);</span>
+
+				<span class="nx">nodeContent</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_INSERT_BELOW</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Set the going up CSS state on the passed &lt;code&gt;nodeContent&lt;/code&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _goingUpState</span>
+<span class="cm">			 * @param {Node} nodeContent</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_goingUpState</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">nodeContent</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">dropAction</span> <span class="o">=</span> <span class="nx">ABOVE</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_STATE_INSERT_ABOVE</span><span class="p">);</span>
+
+				<span class="nx">nodeContent</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_INSERT_ABOVE</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Set the reset CSS state on the passed &lt;code&gt;nodeContent&lt;/code&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _resetState</span>
+<span class="cm">			 * @param {Node} nodeContent</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_resetState</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">nodeContent</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">helper</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">);</span>
+
+				<span class="nx">helper</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_STATE_APPEND</span><span class="p">);</span>
+				<span class="nx">helper</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_STATE_INSERT_ABOVE</span><span class="p">);</span>
+				<span class="nx">helper</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_STATE_INSERT_BELOW</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">nodeContent</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">nodeContent</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_INSERT_ABOVE</span><span class="p">);</span>
+					<span class="nx">nodeContent</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_INSERT_APPEND</span><span class="p">);</span>
+					<span class="nx">nodeContent</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_DRAG_INSERT_BELOW</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Update the CSS node state (i.e. going down, going up, append etc).</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _updateNodeState</span>
+<span class="cm">			 * @param {EventFacade} event</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_updateNodeState</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">drag</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">drop</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">drop</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">nodeContent</span> <span class="o">=</span> <span class="nx">drop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">dropNode</span> <span class="o">=</span> <span class="nx">nodeContent</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">dropTreeNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">getByNode</span><span class="p">(</span><span class="nx">dropNode</span><span class="p">);</span>
+
+				<span class="c1">// reset the classNames from the last nodeContent</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_resetState</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">nodeContent</span><span class="p">);</span>
+
+				<span class="c1">// cannot drop the dragged element into any of its children</span>
+				<span class="c1">// using DOM contains method for performance reason</span>
+				<span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">dragNode</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">dropNode</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// nArea splits the height in 3 areas top/center/bottom</span>
+					<span class="c1">// these areas are responsible for defining the state when the mouse is over any of them</span>
+					<span class="kd">var</span> <span class="nx">nArea</span> <span class="o">=</span> <span class="nx">nodeContent</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_HEIGHT</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span><span class="p">;</span>
+					<span class="kd">var</span> <span class="nx">yTop</span> <span class="o">=</span> <span class="nx">nodeContent</span><span class="p">.</span><span class="nx">getY</span><span class="p">();</span>
+					<span class="kd">var</span> <span class="nx">yCenter</span> <span class="o">=</span> <span class="nx">yTop</span> <span class="o">+</span> <span class="nx">nArea</span><span class="o">*</span><span class="mi">1</span><span class="p">;</span>
+					<span class="kd">var</span> <span class="nx">yBottom</span> <span class="o">=</span> <span class="nx">yTop</span> <span class="o">+</span> <span class="nx">nArea</span><span class="o">*</span><span class="mi">2</span><span class="p">;</span>
+					<span class="kd">var</span> <span class="nx">mouseY</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">mouseXY</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+					<span class="c1">// UP: mouse on the top area of the node</span>
+					<span class="k">if</span> <span class="p">((</span><span class="nx">mouseY</span> <span class="o">&gt;</span> <span class="nx">yTop</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">mouseY</span> <span class="o">&lt;</span> <span class="nx">yCenter</span><span class="p">))</span> <span class="p">{</span>
 						<span class="nx">instance</span><span class="p">.</span><span class="nx">_goingUpState</span><span class="p">(</span><span class="nx">nodeContent</span><span class="p">);</span>
 					<span class="p">}</span>
-					<span class="k">else</span> <span class="p">{</span>
+					<span class="c1">// DOWN: mouse on the bottom area of the node</span>
+					<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">mouseY</span> <span class="o">&gt;</span> <span class="nx">yBottom</span><span class="p">)</span> <span class="p">{</span>
 						<span class="nx">instance</span><span class="p">.</span><span class="nx">_goingDownState</span><span class="p">(</span><span class="nx">nodeContent</span><span class="p">);</span>
 					<span class="p">}</span>
-				<span class="p">}</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">nodeContent</span> <span class="o">=</span> <span class="nx">nodeContent</span><span class="p">;</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires after the append event.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _handleEvent</span>
-<span class="cm">	 * @param {EventFacade} event append event facade</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_afterAppend</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">treeNode</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">tree</span><span class="p">.</span><span class="nx">node</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">treeNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DRAGGABLE</span><span class="p">))</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_createDrag</span><span class="p">(</span> <span class="nx">treeNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">)</span> <span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires on drag align event.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _onDragAlign</span>
-<span class="cm">	 * @param {EventFacade} event append event facade</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_onDragAlign</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">lastY</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastY</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">lastXY</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-
-		<span class="c1">// if the y change</span>
-		<span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">!=</span> <span class="nx">lastY</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// set the drag direction</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">direction</span> <span class="o">=</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="nx">lastY</span><span class="p">)</span> <span class="o">?</span> <span class="nx">UP</span> <span class="o">:</span> <span class="nx">DOWN</span><span class="p">;</span>
-		<span class="p">}</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">lastY</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires on drag start event.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _onDragStart</span>
-<span class="cm">	 * @param {EventFacade} event append event facade</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_onDragStart</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">dragTreeNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">getByNode</span><span class="p">(</span><span class="nx">dragNode</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">lastSelected</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LAST_SELECTED</span><span class="p">);</span>
-
-		<span class="c1">// select drag node</span>
-		<span class="k">if</span> <span class="p">(</span><span class="nx">lastSelected</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">lastSelected</span><span class="p">.</span><span class="nx">unselect</span><span class="p">();</span>
-		<span class="p">}</span>
-
-		<span class="nx">dragTreeNode</span><span class="p">.</span><span class="nx">select</span><span class="p">();</span>
-
-		<span class="c1">// initialize drag helper</span>
-		<span class="kd">var</span> <span class="nx">helper</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">helperLabel</span> <span class="o">=</span> <span class="nx">helper</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_TREE_DRAG_HELPER_LABEL</span><span class="p">);</span>
-
-		<span class="c1">// show helper, we need display block here, yui dd hide it with display none</span>
-		<span class="nx">helper</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">DISPLAY</span><span class="p">,</span> <span class="nx">BLOCK</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
-
-		<span class="c1">// set the CSS_TREE_DRAG_HELPER_LABEL html with the label of the dragged node</span>
-		<span class="nx">helperLabel</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span> <span class="nx">dragTreeNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LABEL</span><span class="p">)</span> <span class="p">);</span>
-
-		<span class="c1">// update the DRAG_NODE with the new helper</span>
-		<span class="nx">drag</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">DRAG_NODE</span><span class="p">,</span> <span class="nx">helper</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires on drop over event.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _onDropOver</span>
-<span class="cm">	 * @param {EventFacade} event append event facade</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_onDropOver</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_updateNodeState</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires on drop hit event.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _onDropHit</span>
-<span class="cm">	 * @param {EventFacade} event append event facade</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_onDropHit</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">dropAction</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">dropAction</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">dropNode</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">drop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
-
-		<span class="kd">var</span> <span class="nx">dropTreeNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">getByNode</span><span class="p">(</span><span class="nx">dropNode</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">dragTreeNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">getByNode</span><span class="p">(</span><span class="nx">dragNode</span><span class="p">);</span>
-
-		<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getEventOutputMap</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
-
-		<span class="nx">output</span><span class="p">.</span><span class="nx">tree</span><span class="p">.</span><span class="nx">dropNode</span> <span class="o">=</span> <span class="nx">dropTreeNode</span><span class="p">;</span>
-		<span class="nx">output</span><span class="p">.</span><span class="nx">tree</span><span class="p">.</span><span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">dragTreeNode</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">dropAction</span> <span class="o">==</span> <span class="nx">ABOVE</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">dropTreeNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">dragTreeNode</span><span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">bubbleEvent</span><span class="p">(</span><span class="s1">&#39;dropInsert&#39;</span><span class="p">,</span> <span class="nx">output</span><span class="p">);</span>
-		<span class="p">}</span>
-		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">dropAction</span> <span class="o">==</span> <span class="nx">BELOW</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">dropTreeNode</span><span class="p">.</span><span class="nx">insertAfter</span><span class="p">(</span><span class="nx">dragTreeNode</span><span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">bubbleEvent</span><span class="p">(</span><span class="s1">&#39;dropInsert&#39;</span><span class="p">,</span> <span class="nx">output</span><span class="p">);</span>
-		<span class="p">}</span>
-		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">dropAction</span> <span class="o">==</span> <span class="nx">APPEND</span><span class="p">)</span> <span class="p">{</span>
-			<span class="k">if</span> <span class="p">(</span><span class="nx">dropTreeNode</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">dropTreeNode</span><span class="p">.</span><span class="nx">isLeaf</span><span class="p">())</span> <span class="p">{</span>
-				<span class="nx">dropTreeNode</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">dragTreeNode</span><span class="p">);</span>
-
-				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">dropTreeNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">EXPANDED</span><span class="p">))</span> <span class="p">{</span>
-					<span class="c1">// expand node when drop a child on it</span>
-					<span class="nx">dropTreeNode</span><span class="p">.</span><span class="nx">expand</span><span class="p">();</span>
+					<span class="c1">// APPEND: mouse on the center area of the node</span>
+					<span class="k">else</span> <span class="k">if</span> <span class="p">((</span><span class="nx">mouseY</span> <span class="o">&gt;</span> <span class="nx">yCenter</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">mouseY</span> <span class="o">&lt;</span> <span class="nx">yBottom</span><span class="p">))</span> <span class="p">{</span>
+						<span class="c1">// if it&#39;s a folder set the state to append</span>
+						<span class="k">if</span> <span class="p">(</span><span class="nx">dropTreeNode</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">dropTreeNode</span><span class="p">.</span><span class="nx">isLeaf</span><span class="p">())</span> <span class="p">{</span>
+							<span class="nx">instance</span><span class="p">.</span><span class="nx">_appendState</span><span class="p">(</span><span class="nx">nodeContent</span><span class="p">);</span>
+						<span class="p">}</span>
+						<span class="c1">// if it&#39;s a leaf we need to set the ABOVE or BELOW state instead of append</span>
+						<span class="k">else</span> <span class="p">{</span>
+							<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">direction</span> <span class="o">==</span> <span class="nx">UP</span><span class="p">)</span> <span class="p">{</span>
+								<span class="nx">instance</span><span class="p">.</span><span class="nx">_goingUpState</span><span class="p">(</span><span class="nx">nodeContent</span><span class="p">);</span>
+							<span class="p">}</span>
+							<span class="k">else</span> <span class="p">{</span>
+								<span class="nx">instance</span><span class="p">.</span><span class="nx">_goingDownState</span><span class="p">(</span><span class="nx">nodeContent</span><span class="p">);</span>
+							<span class="p">}</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
 				<span class="p">}</span>
 
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">bubbleEvent</span><span class="p">(</span><span class="s1">&#39;dropAppend&#39;</span><span class="p">,</span> <span class="nx">output</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">nodeContent</span> <span class="o">=</span> <span class="nx">nodeContent</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires after the append event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _handleEvent</span>
+<span class="cm">			 * @param {EventFacade} event append event facade</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_afterAppend</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">treeNode</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">tree</span><span class="p">.</span><span class="nx">node</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">treeNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DRAGGABLE</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_createDrag</span><span class="p">(</span> <span class="nx">treeNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">)</span> <span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires on drag align event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _onDragAlign</span>
+<span class="cm">			 * @param {EventFacade} event append event facade</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_onDragAlign</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">lastY</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastY</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">lastXY</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+				<span class="c1">// if the y change</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">!=</span> <span class="nx">lastY</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// set the drag direction</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">direction</span> <span class="o">=</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="nx">lastY</span><span class="p">)</span> <span class="o">?</span> <span class="nx">UP</span> <span class="o">:</span> <span class="nx">DOWN</span><span class="p">;</span>
+				<span class="p">}</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">lastY</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires on drag start event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _onDragStart</span>
+<span class="cm">			 * @param {EventFacade} event append event facade</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_onDragStart</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">dragTreeNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">getByNode</span><span class="p">(</span><span class="nx">dragNode</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">lastSelected</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LAST_SELECTED</span><span class="p">);</span>
+
+				<span class="c1">// select drag node</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">lastSelected</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">lastSelected</span><span class="p">.</span><span class="nx">unselect</span><span class="p">();</span>
+				<span class="p">}</span>
+
+				<span class="nx">dragTreeNode</span><span class="p">.</span><span class="nx">select</span><span class="p">();</span>
+
+				<span class="c1">// initialize drag helper</span>
+				<span class="kd">var</span> <span class="nx">helper</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">helperLabel</span> <span class="o">=</span> <span class="nx">helper</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_TREE_DRAG_HELPER_LABEL</span><span class="p">);</span>
+
+				<span class="c1">// show helper, we need display block here, yui dd hide it with display none</span>
+				<span class="nx">helper</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">DISPLAY</span><span class="p">,</span> <span class="nx">BLOCK</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+
+				<span class="c1">// set the CSS_TREE_DRAG_HELPER_LABEL html with the label of the dragged node</span>
+				<span class="nx">helperLabel</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span> <span class="nx">dragTreeNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LABEL</span><span class="p">)</span> <span class="p">);</span>
+
+				<span class="c1">// update the DRAG_NODE with the new helper</span>
+				<span class="nx">drag</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">DRAG_NODE</span><span class="p">,</span> <span class="nx">helper</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires on drop over event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _onDropOver</span>
+<span class="cm">			 * @param {EventFacade} event append event facade</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_onDropOver</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_updateNodeState</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires on drop hit event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _onDropHit</span>
+<span class="cm">			 * @param {EventFacade} event append event facade</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_onDropHit</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">dropAction</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">dropAction</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">dropNode</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">drop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
+
+				<span class="kd">var</span> <span class="nx">dropTreeNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">getByNode</span><span class="p">(</span><span class="nx">dropNode</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">dragTreeNode</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">getByNode</span><span class="p">(</span><span class="nx">dragNode</span><span class="p">);</span>
+
+				<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getEventOutputMap</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
+
+				<span class="nx">output</span><span class="p">.</span><span class="nx">tree</span><span class="p">.</span><span class="nx">dropNode</span> <span class="o">=</span> <span class="nx">dropTreeNode</span><span class="p">;</span>
+				<span class="nx">output</span><span class="p">.</span><span class="nx">tree</span><span class="p">.</span><span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">dragTreeNode</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">dropAction</span> <span class="o">==</span> <span class="nx">ABOVE</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">dropTreeNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">dragTreeNode</span><span class="p">);</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">bubbleEvent</span><span class="p">(</span><span class="s1">&#39;dropInsert&#39;</span><span class="p">,</span> <span class="nx">output</span><span class="p">);</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">dropAction</span> <span class="o">==</span> <span class="nx">BELOW</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">dropTreeNode</span><span class="p">.</span><span class="nx">insertAfter</span><span class="p">(</span><span class="nx">dragTreeNode</span><span class="p">);</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">bubbleEvent</span><span class="p">(</span><span class="s1">&#39;dropInsert&#39;</span><span class="p">,</span> <span class="nx">output</span><span class="p">);</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">dropAction</span> <span class="o">==</span> <span class="nx">APPEND</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">dropTreeNode</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">dropTreeNode</span><span class="p">.</span><span class="nx">isLeaf</span><span class="p">())</span> <span class="p">{</span>
+						<span class="nx">dropTreeNode</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">dragTreeNode</span><span class="p">);</span>
+
+						<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">dropTreeNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">EXPANDED</span><span class="p">))</span> <span class="p">{</span>
+							<span class="c1">// expand node when drop a child on it</span>
+							<span class="nx">dropTreeNode</span><span class="p">.</span><span class="nx">expand</span><span class="p">();</span>
+						<span class="p">}</span>
+
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">bubbleEvent</span><span class="p">(</span><span class="s1">&#39;dropAppend&#39;</span><span class="p">,</span> <span class="nx">output</span><span class="p">);</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_resetState</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">nodeContent</span><span class="p">);</span>
+
+				<span class="c1">// bubbling drop event</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">bubbleEvent</span><span class="p">(</span><span class="s1">&#39;drop&#39;</span><span class="p">,</span> <span class="nx">output</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires on drop exit event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _onDropExit</span>
+<span class="cm">			 * @param {EventFacade} event append event facade</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_onDropExit</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">dropAction</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_resetState</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">nodeContent</span><span class="p">);</span>
 			<span class="p">}</span>
 		<span class="p">}</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_resetState</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">nodeContent</span><span class="p">);</span>
-
-		<span class="c1">// bubbling drop event</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">bubbleEvent</span><span class="p">(</span><span class="s1">&#39;drop&#39;</span><span class="p">,</span> <span class="nx">output</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires on drop exit event.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _onDropExit</span>
-<span class="cm">	 * @param {EventFacade} event append event facade</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_onDropExit</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">dropAction</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_resetState</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">nodeContent</span><span class="p">);</span>
 	<span class="p">}</span>
-<span class="p">});</span>
+<span class="p">);</span>
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">TreeViewDD</span> <span class="o">=</span> <span class="nx">TreeViewDD</span><span class="p">;</span>
 
@@ -1538,7 +1531,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "TreeNode.html#method__afterSetChildren", "access": "protected", "host": "TreeNode", "type": "method", "name": "_afterSetChildren"}, {"url": "TreeNode.html#config_alwaysShowHitArea", "access": "", "host": "TreeNode", "type": "config", "name": "alwaysShowHitArea"}, {"url": "TreeNode.html#event_alwaysShowHitAreaChange", "access": "", "host": "TreeNode", "type": "event", "name": "alwaysShowHitAreaChange"}, {"url": "TreeData.html#method__appendChild", "access": "protected", "host": "TreeData", "type": "method", "name": "_appendChild"}, {"url": "TreeData.html#method_appendChild", "access": "", "host": "TreeData", "type": "method", "name": "appendChild"}, {"url": "TreeViewDD.html#method__appendState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_appendState"}, {"url": "TreeNode.html#property_A.TreeNode.nodeTypes", "access": "", "host": "TreeNode", "type": "property", "name": "A.TreeNode.nodeTypes"}, {"url": "TreeViewDD.html#method__bindDragDrop", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_bindDragDrop"}, {"url": "TreeNode.html#method_bindUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "bindUI"}, {"url": "TreeView.html#method_bindUI", "access": "protected", "host": "TreeView", "type": "method", "name": "bindUI"}, {"url": "TreeViewDD.html#method_bindUI", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "bindUI"}, {"url": "TreeNode.html#property_BOUNDING_TEMPLATE", "access": "protected", "host": "TreeNode", "type": "property", "name": "BOUNDING_TEMPLATE"}, {"url": "TreeData.html#method_bubbleEvent", "access": "", "host": "TreeData", "type": "method", "name": "bubbleEvent"}, {"url": "TreeNodeIO.html#config_cache", "access": "", "host": "TreeNodeIO", "type": "config", "name": "cache"}, {"url": "TreeNodeIO.html#event_cacheChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "cacheChange"}, {"url": "TreeNodeCheck.html#method_check", "access": "", "host": "TreeNodeCheck", "type": "method", "name": "check"}, {"url": "TreeNodeCheck.html#config_checkContainerEl", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checkContainerEl"}, {"url": "TreeNodeCheck.html#event_checkContainerElChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkContainerElChange"}, {"url": "TreeNodeCheck.html#config_checked", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checked"}, {"url": "TreeNodeCheck.html#event_checkedChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkedChange"}, {"url": "TreeNodeCheck.html#config_checkEl", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checkEl"}, {"url": "TreeNodeCheck.html#event_checkElChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkElChange"}, {"url": "TreeNodeCheck.html#config_checkName", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checkName"}, {"url": "TreeNodeCheck.html#event_checkNameChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkNameChange"}, {"url": "TreeData.html#config_children", "access": "", "host": "TreeData", "type": "config", "name": "children"}, {"url": "TreeData.html#event_childrenChange", "access": "", "host": "TreeData", "type": "event", "name": "childrenChange"}, {"url": "TreeNode.html#method__collapse", "access": "protected", "host": "TreeNode", "type": "method", "name": "_collapse"}, {"url": "TreeNode.html#method_collapse", "access": "", "host": "TreeNode", "type": "method", "name": "collapse"}, {"url": "TreeData.html#method__collapseAll", "access": "protected", "host": "TreeData", "type": "method", "name": "_collapseAll"}, {"url": "TreeData.html#method_collapseAll", "access": "", "host": "TreeData", "type": "method", "name": "collapseAll"}, {"url": "TreeData.html#config_container", "access": "", "host": "TreeData", "type": "config", "name": "container"}, {"url": "TreeData.html#event_containerChange", "access": "", "host": "TreeData", "type": "event", "name": "containerChange"}, {"url": "TreeNode.html#method_contains", "access": "", "host": "TreeNode", "type": "method", "name": "contains"}, {"url": "TreeNode.html#property_CONTENT_TEMPLATE", "access": "protected", "host": "TreeNode", "type": "property", "name": "CONTENT_TEMPLATE"}, {"url": "TreeViewDD.html#method__createDrag", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_createDrag"}, {"url": "TreeView.html#method__createFromHTMLMarkup", "access": "protected", "host": "TreeView", "type": "method", "name": "_createFromHTMLMarkup"}, {"url": "TreeData.html#method_createNode", "access": "", "host": "TreeData", "type": "method", "name": "createNode"}, {"url": "TreeNode.html#method__createNodeContainer", "access": "protected", "host": "TreeNode", "type": "method", "name": "_createNodeContainer"}, {"url": "TreeView.html#method__delegateDOM", "access": "protected", "host": "TreeView", "type": "method", "name": "_delegateDOM"}, {"url": "TreeViewDD.html#property_direction", "access": "protected", "host": "TreeViewDD", "type": "property", "name": "direction"}, {"url": "TreeNode.html#config_draggable", "access": "", "host": "TreeNode", "type": "config", "name": "draggable"}, {"url": "TreeNode.html#event_draggableChange", "access": "", "host": "TreeNode", "type": "event", "name": "draggableChange"}, {"url": "TreeViewDD.html#config_dropAction", "access": "", "host": "TreeViewDD", "type": "config", "name": "dropAction"}, {"url": "TreeViewDD.html#event_dropActionChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "dropActionChange"}, {"url": "TreeData.html#method_eachChildren", "access": "", "host": "TreeData", "type": "method", "name": "eachChildren"}, {"url": "TreeData.html#method_empty", "access": "", "host": "TreeData", "type": "method", "name": "empty"}, {"url": "TreeNode.html#method__expand", "access": "", "host": "TreeNode", "type": "method", "name": "_expand"}, {"url": "TreeNode.html#method_expand", "access": "", "host": "TreeNode", "type": "method", "name": "expand"}, {"url": "TreeData.html#method__expandAll", "access": "protected", "host": "TreeData", "type": "method", "name": "_expandAll"}, {"url": "TreeData.html#method_expandAll", "access": "", "host": "TreeData", "type": "method", "name": "expandAll"}, {"url": "TreeNode.html#config_expanded", "access": "", "host": "TreeNode", "type": "config", "name": "expanded"}, {"url": "TreeNode.html#event_expandedChange", "access": "", "host": "TreeNode", "type": "event", "name": "expandedChange"}, {"url": "TreeData.html#method_getChildren", "access": "", "host": "TreeData", "type": "method", "name": "getChildren"}, {"url": "TreeNode.html#method_getDepth", "access": "", "host": "TreeNode", "type": "method", "name": "getDepth"}, {"url": "TreeData.html#method_getEventOutputMap", "access": "", "host": "TreeData", "type": "method", "name": "getEventOutputMap"}, {"url": "TreeData.html#method_getNodeByChild", "access": "", "host": "TreeData", "type": "method", "name": "getNodeByChild"}, {"url": "TreeData.html#method_getNodeById", "access": "", "host": "TreeData", "type": "method", "name": "getNodeById"}, {"url": "TreeViewDD.html#method__goingDownState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_goingDownState"}, {"url": "TreeViewDD.html#method__goingUpState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_goingUpState"}, {"url": "TreeViewDD.html#method__handleEvent", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_handleEvent"}, {"url": "TreeData.html#method_hasChildNodes", "access": "", "host": "TreeData", "type": "method", "name": "hasChildNodes"}, {"url": "TreeViewDD.html#config_helper", "access": "", "host": "TreeViewDD", "type": "config", "name": "helper"}, {"url": "TreeViewDD.html#event_helperChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "helperChange"}, {"url": "TreeNode.html#config_hitAreaEl", "access": "", "host": "TreeNode", "type": "config", "name": "hitAreaEl"}, {"url": "TreeNode.html#event_hitAreaElChange", "access": "", "host": "TreeNode", "type": "event", "name": "hitAreaElChange"}, {"url": "TreeNode.html#config_iconEl", "access": "", "host": "TreeNode", "type": "config", "name": "iconEl"}, {"url": "TreeNode.html#event_iconElChange", "access": "", "host": "TreeNode", "type": "event", "name": "iconElChange"}, {"url": "TreeNode.html#config_id", "access": "", "host": "TreeNode", "type": "config", "name": "id"}, {"url": "TreeNode.html#event_idChange", "access": "", "host": "TreeNode", "type": "event", "name": "idChange"}, {"url": "TreeData.html#config_index", "access": "", "host": "TreeData", "type": "config", "name": "index"}, {"url": "TreeData.html#event_indexChange", "access": "", "host": "TreeData", "type": "event", "name": "indexChange"}, {"url": "TreeData.html#method_indexOf", "access": "", "host": "TreeData", "type": "method", "name": "indexOf"}, {"url": "TreeData.html#method_initializer", "access": "protected", "host": "TreeData", "type": "method", "name": "initializer"}, {"url": "TreeNode.html#method_initializer", "access": "protected", "host": "TreeNode", "type": "method", "name": "initializer"}, {"url": "TreeData.html#method_insert", "access": "", "host": "TreeData", "type": "method", "name": "insert"}, {"url": "TreeData.html#method_insertAfter", "access": "", "host": "TreeData", "type": "method", "name": "insertAfter"}, {"url": "TreeData.html#method_insertBefore", "access": "", "host": "TreeData", "type": "method", "name": "insertBefore"}, {"url": "TreeNodeIO.html#config_io", "access": "", "host": "TreeNodeIO", "type": "config", "name": "io"}, {"url": "TreeView.html#config_io", "access": "", "host": "TreeView", "type": "config", "name": "io"}, {"url": "TreeNodeIO.html#event_ioChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "ioChange"}, {"url": "TreeView.html#event_ioChange", "access": "", "host": "TreeView", "type": "event", "name": "ioChange"}, {"url": "TreeNodeIO.html#method_ioCompleteHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioCompleteHandler"}, {"url": "TreeNodeIO.html#method_ioFailureHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioFailureHandler"}, {"url": "TreeNodeIO.html#method_ioStartHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioStartHandler"}, {"url": "TreeNodeIO.html#method_ioSuccessHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioSuccessHandler"}, {"url": "TreeNode.html#method_isLeaf", "access": "", "host": "TreeNode", "type": "method", "name": "isLeaf"}, {"url": "TreeData.html#method_isRegistered", "access": "", "host": "TreeData", "type": "method", "name": "isRegistered"}, {"url": "TreeNode.html#method_isSelected", "access": "", "host": "TreeNode", "type": "method", "name": "isSelected"}, {"url": "TreeData.html#method_item", "access": "", "host": "TreeData", "type": "method", "name": "item"}, {"url": "TreeNode.html#config_label", "access": "", "host": "TreeNode", "type": "config", "name": "label"}, {"url": "TreeNode.html#event_labelChange", "access": "", "host": "TreeNode", "type": "event", "name": "labelChange"}, {"url": "TreeNode.html#config_labelEl", "access": "", "host": "TreeNode", "type": "config", "name": "labelEl"}, {"url": "TreeNode.html#event_labelElChange", "access": "", "host": "TreeNode", "type": "event", "name": "labelElChange"}, {"url": "TreeView.html#config_lastSelected", "access": "", "host": "TreeView", "type": "config", "name": "lastSelected"}, {"url": "TreeView.html#event_lastSelectedChange", "access": "", "host": "TreeView", "type": "event", "name": "lastSelectedChange"}, {"url": "TreeViewDD.html#config_lastY", "access": "", "host": "TreeViewDD", "type": "config", "name": "lastY"}, {"url": "TreeViewDD.html#event_lastYChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "lastYChange"}, {"url": "TreeNode.html#config_leaf", "access": "", "host": "TreeNode", "type": "config", "name": "leaf"}, {"url": "TreeNode.html#event_leafChange", "access": "", "host": "TreeNode", "type": "event", "name": "leafChange"}, {"url": "TreeNodeIO.html#config_loaded", "access": "", "host": "TreeNodeIO", "type": "config", "name": "loaded"}, {"url": "TreeNodeIO.html#event_loadedChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "loadedChange"}, {"url": "TreeNodeIO.html#config_loading", "access": "", "host": "TreeNodeIO", "type": "config", "name": "loading"}, {"url": "TreeNodeIO.html#event_loadingChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "loadingChange"}, {"url": "TreeNode.html#config_nextSibling", "access": "", "host": "TreeNode", "type": "config", "name": "nextSibling"}, {"url": "TreeNode.html#event_nextSiblingChange", "access": "", "host": "TreeNode", "type": "event", "name": "nextSiblingChange"}, {"url": "TreeViewDD.html#config_nodeContent", "access": "", "host": "TreeViewDD", "type": "config", "name": "nodeContent"}, {"url": "TreeViewDD.html#event_nodeContentChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "nodeContentChange"}, {"url": "TreeView.html#method__onClickHitArea", "access": "protected", "host": "TreeView", "type": "method", "name": "_onClickHitArea"}, {"url": "TreeView.html#method__onClickNodeEl", "access": "protected", "host": "TreeView", "type": "method", "name": "_onClickNodeEl"}, {"url": "TreeViewDD.html#method__onDragAlign", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDragAlign"}, {"url": "TreeViewDD.html#method__onDragStart", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDragStart"}, {"url": "TreeViewDD.html#method__onDropExit", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDropExit"}, {"url": "TreeViewDD.html#method__onDropHit", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDropHit"}, {"url": "TreeViewDD.html#method__onDropOver", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDropOver"}, {"url": "TreeView.html#method__onMouseEnterNodeEl", "access": "protected", "host": "TreeView", "type": "method", "name": "_onMouseEnterNodeEl"}, {"url": "TreeView.html#method__onMouseLeaveNodeEl", "access": "protected", "host": "TreeView", "type": "method", "name": "_onMouseLeaveNodeEl"}, {"url": "TreeNode.html#config_ownerTree", "access": "", "host": "TreeNode", "type": "config", "name": "ownerTree"}, {"url": "TreeNode.html#event_ownerTreeChange", "access": "", "host": "TreeNode", "type": "event", "name": "ownerTreeChange"}, {"url": "TreeNode.html#config_parentNode", "access": "", "host": "TreeNode", "type": "config", "name": "parentNode"}, {"url": "TreeNode.html#event_parentNodeChange", "access": "", "host": "TreeNode", "type": "event", "name": "parentNodeChange"}, {"url": "TreeNode.html#config_prevSibling", "access": "", "host": "TreeNode", "type": "config", "name": "prevSibling"}, {"url": "TreeNode.html#event_prevSiblingChange", "access": "", "host": "TreeNode", "type": "event", "name": "prevSiblingChange"}, {"url": "TreeData.html#method_refreshIndex", "access": "", "host": "TreeData", "type": "method", "name": "refreshIndex"}, {"url": "TreeData.html#method_registerNode", "access": "", "host": "TreeData", "type": "method", "name": "registerNode"}, {"url": "TreeData.html#method__removeChild", "access": "", "host": "TreeData", "type": "method", "name": "_removeChild"}, {"url": "TreeData.html#method_removeChild", "access": "", "host": "TreeData", "type": "method", "name": "removeChild"}, {"url": "TreeNode.html#method__renderBoundingBox", "access": "protected", "host": "TreeNode", "type": "method", "name": "_renderBoundingBox"}, {"url": "TreeNode.html#method__renderContentBox", "access": "protected", "host": "TreeNode", "type": "method", "name": "_renderContentBox"}, {"url": "TreeView.html#method__renderElements", "access": "protected", "host": "TreeView", "type": "method", "name": "_renderElements"}, {"url": "TreeNode.html#method__renderUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "_renderUI"}, {"url": "TreeNode.html#method_renderUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "renderUI"}, {"url": "TreeView.html#method_renderUI", "access": "protected", "host": "TreeView", "type": "method", "name": "renderUI"}, {"url": "TreeViewDD.html#method_renderUI", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "renderUI"}, {"url": "TreeViewDD.html#method__resetState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_resetState"}, {"url": "TreeViewDD.html#config_scrollDelay", "access": "", "host": "TreeViewDD", "type": "config", "name": "scrollDelay"}, {"url": "TreeViewDD.html#event_scrollDelayChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "scrollDelayChange"}, {"url": "TreeData.html#method_selectAll", "access": "", "host": "TreeData", "type": "method", "name": "selectAll"}, {"url": "TreeData.html#method__setChildren", "access": "protected", "host": "TreeData", "type": "method", "name": "_setChildren"}, {"url": "TreeNodeIO.html#method__setIO", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_setIO"}, {"url": "TreeNode.html#method__syncHitArea", "access": "protected", "host": "TreeNode", "type": "method", "name": "_syncHitArea"}, {"url": "TreeNode.html#method__syncTreeNodeBBId", "access": "protected", "host": "TreeNode", "type": "method", "name": "_syncTreeNodeBBId"}, {"url": "TreeNode.html#method_syncUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "syncUI"}, {"url": "TreeView.html#method_syncUI", "access": "protected", "host": "TreeView", "type": "method", "name": "syncUI"}, {"url": "TreeNode.html#method_toggle", "access": "", "host": "TreeNode", "type": "method", "name": "toggle"}, {"url": "TreeNodeCheck.html#method_toggleCheck", "access": "", "host": "TreeNodeCheck", "type": "method", "name": "toggleCheck"}, {"url": "TreeData.html#property_TreeData.ATTRS", "access": "", "host": "TreeData", "type": "property", "name": "TreeData.ATTRS"}, {"url": "TreeData.html#property_TreeData.NAME", "access": "", "host": "TreeData", "type": "property", "name": "TreeData.NAME"}, {"url": "TreeNode.html#property_TreeNode.ATTRS", "access": "", "host": "TreeNode", "type": "property", "name": "TreeNode.ATTRS"}, {"url": "TreeNodeIO.html#property_TreeNode.ATTRS", "access": "", "host": "TreeNodeIO", "type": "property", "name": "TreeNode.ATTRS"}, {"url": "TreeNodeCheck.html#property_TreeNode.ATTRS", "access": "", "host": "TreeNodeCheck", "type": "property", "name": "TreeNode.ATTRS"}, {"url": "TreeNode.html#property_TreeNode.NAME", "access": "", "host": "TreeNode", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeNodeIO.html#property_TreeNode.NAME", "access": "", "host": "TreeNodeIO", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeNodeCheck.html#property_TreeNode.NAME", "access": "", "host": "TreeNodeCheck", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeNodeTask.html#property_TreeNode.NAME", "access": "", "host": "TreeNodeTask", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeView.html#property_TreeView.ATTRS", "access": "", "host": "TreeView", "type": "property", "name": "TreeView.ATTRS"}, {"url": "TreeViewDD.html#property_TreeViewDD.ATTRS", "access": "", "host": "TreeViewDD", "type": "property", "name": "TreeViewDD.ATTRS"}, {"url": "TreeViewDD.html#property_TreeViewDD.NAME", "access": "", "host": "TreeViewDD", "type": "property", "name": "TreeViewDD.NAME"}, {"url": "TreeView.html#property_TreeView.NAME", "access": "", "host": "TreeView", "type": "property", "name": "TreeView.NAME"}, {"url": "TreeView.html#config_type", "access": "", "host": "TreeView", "type": "config", "name": "type"}, {"url": "TreeView.html#event_typeChange", "access": "", "host": "TreeView", "type": "event", "name": "typeChange"}, {"url": "TreeData.html#property_UI_EVENTS", "access": "protected", "host": "TreeData", "type": "property", "name": "UI_EVENTS"}, {"url": "TreeNodeCheck.html#method_uncheck", "access": "", "host": "TreeNodeCheck", "type": "method", "name": "uncheck"}, {"url": "TreeData.html#method_unregisterNode", "access": "", "host": "TreeData", "type": "method", "name": "unregisterNode"}, {"url": "TreeData.html#method_updateIndex", "access": "", "host": "TreeData", "type": "method", "name": "updateIndex"}, {"url": "TreeViewDD.html#method__updateNodeState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_updateNodeState"}, {"url": "TreeData.html#method_updateReferences", "access": "", "host": "TreeData", "type": "method", "name": "updateReferences"}];
+    var ALL_YUI_PROPS = [{"url": "TreeNode.html#method__afterSetChildren", "access": "protected", "host": "TreeNode", "type": "method", "name": "_afterSetChildren"}, {"url": "TreeNode.html#config_alwaysShowHitArea", "access": "", "host": "TreeNode", "type": "config", "name": "alwaysShowHitArea"}, {"url": "TreeNode.html#event_alwaysShowHitAreaChange", "access": "", "host": "TreeNode", "type": "event", "name": "alwaysShowHitAreaChange"}, {"url": "TreeData.html#method__appendChild", "access": "protected", "host": "TreeData", "type": "method", "name": "_appendChild"}, {"url": "TreeData.html#method_appendChild", "access": "", "host": "TreeData", "type": "method", "name": "appendChild"}, {"url": "TreeViewDD.html#method__appendState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_appendState"}, {"url": "TreeNode.html#property_A.TreeNode.nodeTypes", "access": "", "host": "TreeNode", "type": "property", "name": "A.TreeNode.nodeTypes"}, {"url": "TreeViewDD.html#method__bindDragDrop", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_bindDragDrop"}, {"url": "TreeNodeIO.html#method__bindPaginatorUI", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_bindPaginatorUI"}, {"url": "TreeNode.html#method_bindUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "bindUI"}, {"url": "TreeNodeIO.html#method_bindUI", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "bindUI"}, {"url": "TreeView.html#method_bindUI", "access": "protected", "host": "TreeView", "type": "method", "name": "bindUI"}, {"url": "TreeViewDD.html#method_bindUI", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "bindUI"}, {"url": "TreeNode.html#property_BOUNDING_TEMPLATE", "access": "protected", "host": "TreeNode", "type": "property", "name": "BOUNDING_TEMPLATE"}, {"url": "TreeData.html#method_bubbleEvent", "access": "", "host": "TreeData", "type": "method", "name": "bubbleEvent"}, {"url": "TreeNodeIO.html#config_cache", "access": "", "host": "TreeNodeIO", "type": "config", "name": "cache"}, {"url": "TreeNodeIO.html#event_cacheChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "cacheChange"}, {"url": "TreeNodeCheck.html#method_check", "access": "", "host": "TreeNodeCheck", "type": "method", "name": "check"}, {"url": "TreeViewDD.html#method_check", "access": "", "host": "TreeViewDD", "type": "method", "name": "check"}, {"url": "TreeNodeCheck.html#config_checkContainerEl", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checkContainerEl"}, {"url": "TreeViewDD.html#config_checkContainerEl", "access": "", "host": "TreeViewDD", "type": "config", "name": "checkContainerEl"}, {"url": "TreeNodeCheck.html#event_checkContainerElChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkContainerElChange"}, {"url": "TreeViewDD.html#event_checkContainerElChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "checkContainerElChange"}, {"url": "TreeNodeCheck.html#config_checked", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checked"}, {"url": "TreeViewDD.html#config_checked", "access": "", "host": "TreeViewDD", "type": "config", "name": "checked"}, {"url": "TreeNodeCheck.html#event_checkedChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkedChange"}, {"url": "TreeViewDD.html#event_checkedChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "checkedChange"}, {"url": "TreeNodeCheck.html#config_checkEl", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checkEl"}, {"url": "TreeViewDD.html#config_checkEl", "access": "", "host": "TreeViewDD", "type": "config", "name": "checkEl"}, {"url": "TreeNodeCheck.html#event_checkElChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkElChange"}, {"url": "TreeViewDD.html#event_checkElChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "checkElChange"}, {"url": "TreeNodeCheck.html#config_checkName", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checkName"}, {"url": "TreeViewDD.html#config_checkName", "access": "", "host": "TreeViewDD", "type": "config", "name": "checkName"}, {"url": "TreeNodeCheck.html#event_checkNameChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkNameChange"}, {"url": "TreeViewDD.html#event_checkNameChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "checkNameChange"}, {"url": "TreeData.html#config_children", "access": "", "host": "TreeData", "type": "config", "name": "children"}, {"url": "TreeData.html#event_childrenChange", "access": "", "host": "TreeData", "type": "event", "name": "childrenChange"}, {"url": "TreeNode.html#method__collapse", "access": "protected", "host": "TreeNode", "type": "method", "name": "_collapse"}, {"url": "TreeNode.html#method_collapse", "access": "", "host": "TreeNode", "type": "method", "name": "collapse"}, {"url": "TreeData.html#method__collapseAll", "access": "protected", "host": "TreeData", "type": "method", "name": "_collapseAll"}, {"url": "TreeData.html#method_collapseAll", "access": "", "host": "TreeData", "type": "method", "name": "collapseAll"}, {"url": "TreeData.html#config_container", "access": "", "host": "TreeData", "type": "config", "name": "container"}, {"url": "TreeData.html#event_containerChange", "access": "", "host": "TreeData", "type": "event", "name": "containerChange"}, {"url": "TreeNode.html#method_contains", "access": "", "host": "TreeNode", "type": "method", "name": "contains"}, {"url": "TreeNode.html#property_CONTENT_TEMPLATE", "access": "protected", "host": "TreeNode", "type": "property", "name": "CONTENT_TEMPLATE"}, {"url": "TreeViewDD.html#method__createDrag", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_createDrag"}, {"url": "TreeView.html#method__createFromHTMLMarkup", "access": "protected", "host": "TreeView", "type": "method", "name": "_createFromHTMLMarkup"}, {"url": "TreeData.html#method_createNode", "access": "", "host": "TreeData", "type": "method", "name": "createNode"}, {"url": "TreeNode.html#method__createNodeContainer", "access": "protected", "host": "TreeNode", "type": "method", "name": "_createNodeContainer"}, {"url": "TreeNodeIO.html#method__defPaginatorClickFn", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_defPaginatorClickFn"}, {"url": "TreeView.html#method__delegateDOM", "access": "protected", "host": "TreeView", "type": "method", "name": "_delegateDOM"}, {"url": "TreeViewDD.html#property_direction", "access": "protected", "host": "TreeViewDD", "type": "property", "name": "direction"}, {"url": "TreeNode.html#config_draggable", "access": "", "host": "TreeNode", "type": "config", "name": "draggable"}, {"url": "TreeNode.html#event_draggableChange", "access": "", "host": "TreeNode", "type": "event", "name": "draggableChange"}, {"url": "TreeViewDD.html#config_dropAction", "access": "", "host": "TreeViewDD", "type": "config", "name": "dropAction"}, {"url": "TreeViewDD.html#event_dropActionChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "dropActionChange"}, {"url": "TreeData.html#method_eachChildren", "access": "", "host": "TreeData", "type": "method", "name": "eachChildren"}, {"url": "TreeData.html#method_empty", "access": "", "host": "TreeData", "type": "method", "name": "empty"}, {"url": "TreeNode.html#method__expand", "access": "", "host": "TreeNode", "type": "method", "name": "_expand"}, {"url": "TreeNode.html#method_expand", "access": "", "host": "TreeNode", "type": "method", "name": "expand"}, {"url": "TreeData.html#method__expandAll", "access": "protected", "host": "TreeData", "type": "method", "name": "_expandAll"}, {"url": "TreeData.html#method_expandAll", "access": "", "host": "TreeData", "type": "method", "name": "expandAll"}, {"url": "TreeNode.html#config_expanded", "access": "", "host": "TreeNode", "type": "config", "name": "expanded"}, {"url": "TreeNode.html#event_expandedChange", "access": "", "host": "TreeNode", "type": "event", "name": "expandedChange"}, {"url": "TreeData.html#method_getChildren", "access": "", "host": "TreeData", "type": "method", "name": "getChildren"}, {"url": "TreeNode.html#method_getDepth", "access": "", "host": "TreeNode", "type": "method", "name": "getDepth"}, {"url": "TreeData.html#method_getEventOutputMap", "access": "", "host": "TreeData", "type": "method", "name": "getEventOutputMap"}, {"url": "TreeData.html#method_getNodeByChild", "access": "", "host": "TreeData", "type": "method", "name": "getNodeByChild"}, {"url": "TreeData.html#method_getNodeById", "access": "", "host": "TreeData", "type": "method", "name": "getNodeById"}, {"url": "TreeViewDD.html#method__goingDownState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_goingDownState"}, {"url": "TreeViewDD.html#method__goingUpState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_goingUpState"}, {"url": "TreeViewDD.html#method__handleEvent", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_handleEvent"}, {"url": "TreeNodeIO.html#method__handlePaginatorClickEvent", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_handlePaginatorClickEvent"}, {"url": "TreeData.html#method_hasChildNodes", "access": "", "host": "TreeData", "type": "method", "name": "hasChildNodes"}, {"url": "TreeViewDD.html#config_helper", "access": "", "host": "TreeViewDD", "type": "config", "name": "helper"}, {"url": "TreeViewDD.html#event_helperChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "helperChange"}, {"url": "TreeNode.html#config_hitAreaEl", "access": "", "host": "TreeNode", "type": "config", "name": "hitAreaEl"}, {"url": "TreeNode.html#event_hitAreaElChange", "access": "", "host": "TreeNode", "type": "event", "name": "hitAreaElChange"}, {"url": "TreeNode.html#config_iconEl", "access": "", "host": "TreeNode", "type": "config", "name": "iconEl"}, {"url": "TreeNode.html#event_iconElChange", "access": "", "host": "TreeNode", "type": "event", "name": "iconElChange"}, {"url": "TreeNode.html#config_id", "access": "", "host": "TreeNode", "type": "config", "name": "id"}, {"url": "TreeNode.html#event_idChange", "access": "", "host": "TreeNode", "type": "event", "name": "idChange"}, {"url": "TreeData.html#config_index", "access": "", "host": "TreeData", "type": "config", "name": "index"}, {"url": "TreeData.html#event_indexChange", "access": "", "host": "TreeData", "type": "event", "name": "indexChange"}, {"url": "TreeData.html#method_indexOf", "access": "", "host": "TreeData", "type": "method", "name": "indexOf"}, {"url": "TreeNodeIO.html#method__inheritOwnerTreeAttrs", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_inheritOwnerTreeAttrs"}, {"url": "TreeData.html#method_initializer", "access": "protected", "host": "TreeData", "type": "method", "name": "initializer"}, {"url": "TreeNode.html#method_initializer", "access": "protected", "host": "TreeNode", "type": "method", "name": "initializer"}, {"url": "TreeNodeIO.html#method_initIO", "access": "", "host": "TreeNodeIO", "type": "method", "name": "initIO"}, {"url": "TreeData.html#method_insert", "access": "", "host": "TreeData", "type": "method", "name": "insert"}, {"url": "TreeData.html#method_insertAfter", "access": "", "host": "TreeData", "type": "method", "name": "insertAfter"}, {"url": "TreeData.html#method_insertBefore", "access": "", "host": "TreeData", "type": "method", "name": "insertBefore"}, {"url": "TreeNodeIO.html#config_io", "access": "", "host": "TreeNodeIO", "type": "config", "name": "io"}, {"url": "TreeView.html#config_io", "access": "", "host": "TreeView", "type": "config", "name": "io"}, {"url": "TreeNodeIO.html#event_ioChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "ioChange"}, {"url": "TreeView.html#event_ioChange", "access": "", "host": "TreeView", "type": "event", "name": "ioChange"}, {"url": "TreeNodeIO.html#method_ioCompleteHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioCompleteHandler"}, {"url": "TreeNodeIO.html#method_ioFailureHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioFailureHandler"}, {"url": "TreeNodeIO.html#method_ioStartHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioStartHandler"}, {"url": "TreeNodeIO.html#method_ioSuccessHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioSuccessHandler"}, {"url": "TreeNode.html#method_isLeaf", "access": "", "host": "TreeNode", "type": "method", "name": "isLeaf"}, {"url": "TreeData.html#method_isRegistered", "access": "", "host": "TreeData", "type": "method", "name": "isRegistered"}, {"url": "TreeNode.html#method_isSelected", "access": "", "host": "TreeNode", "type": "method", "name": "isSelected"}, {"url": "TreeData.html#method_item", "access": "", "host": "TreeData", "type": "method", "name": "item"}, {"url": "TreeNode.html#config_label", "access": "", "host": "TreeNode", "type": "config", "name": "label"}, {"url": "TreeNode.html#event_labelChange", "access": "", "host": "TreeNode", "type": "event", "name": "labelChange"}, {"url": "TreeNode.html#config_labelEl", "access": "", "host": "TreeNode", "type": "config", "name": "labelEl"}, {"url": "TreeNode.html#event_labelElChange", "access": "", "host": "TreeNode", "type": "event", "name": "labelElChange"}, {"url": "TreeView.html#config_lastSelected", "access": "", "host": "TreeView", "type": "config", "name": "lastSelected"}, {"url": "TreeView.html#event_lastSelectedChange", "access": "", "host": "TreeView", "type": "event", "name": "lastSelectedChange"}, {"url": "TreeViewDD.html#config_lastY", "access": "", "host": "TreeViewDD", "type": "config", "name": "lastY"}, {"url": "TreeViewDD.html#event_lastYChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "lastYChange"}, {"url": "TreeNode.html#config_leaf", "access": "", "host": "TreeNode", "type": "config", "name": "leaf"}, {"url": "TreeNode.html#event_leafChange", "access": "", "host": "TreeNode", "type": "event", "name": "leafChange"}, {"url": "TreeNodeIO.html#config_loaded", "access": "", "host": "TreeNodeIO", "type": "config", "name": "loaded"}, {"url": "TreeNodeIO.html#event_loadedChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "loadedChange"}, {"url": "TreeNodeIO.html#config_loading", "access": "", "host": "TreeNodeIO", "type": "config", "name": "loading"}, {"url": "TreeNodeIO.html#event_loadingChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "loadingChange"}, {"url": "TreeNode.html#config_nextSibling", "access": "", "host": "TreeNode", "type": "config", "name": "nextSibling"}, {"url": "TreeNode.html#event_nextSiblingChange", "access": "", "host": "TreeNode", "type": "event", "name": "nextSiblingChange"}, {"url": "TreeViewDD.html#config_nodeContent", "access": "", "host": "TreeViewDD", "type": "config", "name": "nodeContent"}, {"url": "TreeViewDD.html#event_nodeContentChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "nodeContentChange"}, {"url": "TreeView.html#method__onClickHitArea", "access": "protected", "host": "TreeView", "type": "method", "name": "_onClickHitArea"}, {"url": "TreeView.html#method__onClickNodeEl", "access": "protected", "host": "TreeView", "type": "method", "name": "_onClickNodeEl"}, {"url": "TreeViewDD.html#method__onDragAlign", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDragAlign"}, {"url": "TreeViewDD.html#method__onDragStart", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDragStart"}, {"url": "TreeViewDD.html#method__onDropExit", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDropExit"}, {"url": "TreeViewDD.html#method__onDropHit", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDropHit"}, {"url": "TreeViewDD.html#method__onDropOver", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDropOver"}, {"url": "TreeView.html#method__onMouseEnterNodeEl", "access": "protected", "host": "TreeView", "type": "method", "name": "_onMouseEnterNodeEl"}, {"url": "TreeView.html#method__onMouseLeaveNodeEl", "access": "protected", "host": "TreeView", "type": "method", "name": "_onMouseLeaveNodeEl"}, {"url": "TreeNode.html#config_ownerTree", "access": "", "host": "TreeNode", "type": "config", "name": "ownerTree"}, {"url": "TreeNode.html#event_ownerTreeChange", "access": "", "host": "TreeNode", "type": "event", "name": "ownerTreeChange"}, {"url": "TreeNode.html#config_parentNode", "access": "", "host": "TreeNode", "type": "config", "name": "parentNode"}, {"url": "TreeNode.html#event_parentNodeChange", "access": "", "host": "TreeNode", "type": "event", "name": "parentNodeChange"}, {"url": "TreeNode.html#config_prevSibling", "access": "", "host": "TreeNode", "type": "config", "name": "prevSibling"}, {"url": "TreeNode.html#event_prevSiblingChange", "access": "", "host": "TreeNode", "type": "event", "name": "prevSiblingChange"}, {"url": "TreeData.html#method_refreshIndex", "access": "", "host": "TreeData", "type": "method", "name": "refreshIndex"}, {"url": "TreeData.html#method_registerNode", "access": "", "host": "TreeData", "type": "method", "name": "registerNode"}, {"url": "TreeData.html#method__removeChild", "access": "", "host": "TreeData", "type": "method", "name": "_removeChild"}, {"url": "TreeData.html#method_removeChild", "access": "", "host": "TreeData", "type": "method", "name": "removeChild"}, {"url": "TreeNode.html#method__renderBoundingBox", "access": "protected", "host": "TreeNode", "type": "method", "name": "_renderBoundingBox"}, {"url": "TreeNode.html#method__renderContentBox", "access": "protected", "host": "TreeNode", "type": "method", "name": "_renderContentBox"}, {"url": "TreeView.html#method__renderElements", "access": "protected", "host": "TreeView", "type": "method", "name": "_renderElements"}, {"url": "TreeNode.html#method__renderUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "_renderUI"}, {"url": "TreeNode.html#method_renderUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "renderUI"}, {"url": "TreeNodeIO.html#method_renderUI", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "renderUI"}, {"url": "TreeView.html#method_renderUI", "access": "protected", "host": "TreeView", "type": "method", "name": "renderUI"}, {"url": "TreeViewDD.html#method_renderUI", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "renderUI"}, {"url": "TreeViewDD.html#method__resetState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_resetState"}, {"url": "TreeViewDD.html#config_scrollDelay", "access": "", "host": "TreeViewDD", "type": "config", "name": "scrollDelay"}, {"url": "TreeViewDD.html#event_scrollDelayChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "scrollDelayChange"}, {"url": "TreeData.html#method_selectAll", "access": "", "host": "TreeData", "type": "method", "name": "selectAll"}, {"url": "TreeData.html#method__setChildren", "access": "protected", "host": "TreeData", "type": "method", "name": "_setChildren"}, {"url": "TreeNodeIO.html#method__setIO", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_setIO"}, {"url": "TreeNode.html#method__syncHitArea", "access": "protected", "host": "TreeNode", "type": "method", "name": "_syncHitArea"}, {"url": "TreeNodeIO.html#method__syncPaginatorIOData", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_syncPaginatorIOData"}, {"url": "TreeNodeIO.html#method__syncPaginatorUI", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_syncPaginatorUI"}, {"url": "TreeNode.html#method__syncTreeNodeBBId", "access": "protected", "host": "TreeNode", "type": "method", "name": "_syncTreeNodeBBId"}, {"url": "TreeNode.html#method_syncUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "syncUI"}, {"url": "TreeView.html#method_syncUI", "access": "protected", "host": "TreeView", "type": "method", "name": "syncUI"}, {"url": "TreeNode.html#method_toggle", "access": "", "host": "TreeNode", "type": "method", "name": "toggle"}, {"url": "TreeNodeCheck.html#method_toggleCheck", "access": "", "host": "TreeNodeCheck", "type": "method", "name": "toggleCheck"}, {"url": "TreeViewDD.html#method_toggleCheck", "access": "", "host": "TreeViewDD", "type": "method", "name": "toggleCheck"}, {"url": "TreeData.html#property_TreeData.ATTRS", "access": "", "host": "TreeData", "type": "property", "name": "TreeData.ATTRS"}, {"url": "TreeData.html#property_TreeData.NAME", "access": "", "host": "TreeData", "type": "property", "name": "TreeData.NAME"}, {"url": "TreeNode.html#property_TreeNode.ATTRS", "access": "", "host": "TreeNode", "type": "property", "name": "TreeNode.ATTRS"}, {"url": "TreeNodeIO.html#property_TreeNode.ATTRS", "access": "", "host": "TreeNodeIO", "type": "property", "name": "TreeNode.ATTRS"}, {"url": "TreeNodeCheck.html#property_TreeNode.ATTRS", "access": "", "host": "TreeNodeCheck", "type": "property", "name": "TreeNode.ATTRS"}, {"url": "TreeViewDD.html#property_TreeNode.ATTRS", "access": "", "host": "TreeViewDD", "type": "property", "name": "TreeNode.ATTRS"}, {"url": "TreeNode.html#property_TreeNode.NAME", "access": "", "host": "TreeNode", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeNodeIO.html#property_TreeNode.NAME", "access": "", "host": "TreeNodeIO", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeNodeCheck.html#property_TreeNode.NAME", "access": "", "host": "TreeNodeCheck", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeNodeTask.html#property_TreeNode.NAME", "access": "", "host": "TreeNodeTask", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeViewDD.html#property_TreeNode.NAME", "access": "", "host": "TreeViewDD", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeView.html#property_TreeView.ATTRS", "access": "", "host": "TreeView", "type": "property", "name": "TreeView.ATTRS"}, {"url": "TreeViewDD.html#property_TreeViewDD.ATTRS", "access": "", "host": "TreeViewDD", "type": "property", "name": "TreeViewDD.ATTRS"}, {"url": "TreeViewDD.html#property_TreeViewDD.NAME", "access": "", "host": "TreeViewDD", "type": "property", "name": "TreeViewDD.NAME"}, {"url": "TreeView.html#property_TreeView.NAME", "access": "", "host": "TreeView", "type": "property", "name": "TreeView.NAME"}, {"url": "TreeView.html#config_type", "access": "", "host": "TreeView", "type": "config", "name": "type"}, {"url": "TreeView.html#event_typeChange", "access": "", "host": "TreeView", "type": "event", "name": "typeChange"}, {"url": "TreeData.html#property_UI_EVENTS", "access": "protected", "host": "TreeData", "type": "property", "name": "UI_EVENTS"}, {"url": "TreeNodeCheck.html#method_uncheck", "access": "", "host": "TreeNodeCheck", "type": "method", "name": "uncheck"}, {"url": "TreeViewDD.html#method_uncheck", "access": "", "host": "TreeViewDD", "type": "method", "name": "uncheck"}, {"url": "TreeData.html#method_unregisterNode", "access": "", "host": "TreeData", "type": "method", "name": "unregisterNode"}, {"url": "TreeData.html#method_updateIndex", "access": "", "host": "TreeData", "type": "method", "name": "updateIndex"}, {"url": "TreeViewDD.html#method__updateNodeState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_updateNodeState"}, {"url": "TreeData.html#method_updateReferences", "access": "", "host": "TreeData", "type": "method", "name": "updateReferences"}];
 </script>
 </body>
 </html>

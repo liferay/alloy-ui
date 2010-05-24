@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: datatype   datatype-debug.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			datatype&nbsp; <span class="subtitle">1.0pr</span>
+			datatype&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -1299,7 +1294,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.1.0</span>
+<span class="cm">version: 3.1.1</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-number-parse&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -1339,7 +1334,7 @@
 <span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;Parsers&quot;</span><span class="p">).</span><span class="nx">number</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DataType</span><span class="p">.</span><span class="nb">Number</span><span class="p">.</span><span class="nx">parse</span><span class="p">;</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">);</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">);</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-number-format&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -1444,10 +1439,10 @@
 <span class="p">});</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">);</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">);</span>
 
 
-<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-number&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datatype-number-parse&#39;</span><span class="p">,</span> <span class="s1">&#39;datatype-number-format&#39;</span><span class="p">]});</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-number&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datatype-number-parse&#39;</span><span class="p">,</span> <span class="s1">&#39;datatype-number-format&#39;</span><span class="p">]});</span>
 
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-date-parse&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
@@ -1494,7 +1489,7 @@
 <span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;Parsers&quot;</span><span class="p">).</span><span class="nx">date</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DataType</span><span class="p">.</span><span class="nb">Date</span><span class="p">.</span><span class="nx">parse</span><span class="p">;</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">);</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">);</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-date-format&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -1928,10 +1923,10 @@
 
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">lang</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;ar&#39;</span><span class="p">,</span><span class="s1">&#39;ar-JO&#39;</span><span class="p">,</span><span class="s1">&#39;ca&#39;</span><span class="p">,</span><span class="s1">&#39;ca-ES&#39;</span><span class="p">,</span><span class="s1">&#39;da&#39;</span><span class="p">,</span><span class="s1">&#39;da-DK&#39;</span><span class="p">,</span><span class="s1">&#39;de&#39;</span><span class="p">,</span><span class="s1">&#39;de-AT&#39;</span><span class="p">,</span><span class="s1">&#39;de-DE&#39;</span><span class="p">,</span><span class="s1">&#39;el&#39;</span><span class="p">,</span><span class="s1">&#39;el-GR&#39;</span><span class="p">,</span><span class="s1">&#39;en&#39;</span><span class="p">,</span><span class="s1">&#39;en-AU&#39;</span><span class="p">,</span><span class="s1">&#39;en-CA&#39;</span><span class="p">,</span><span class="s1">&#39;en-GB&#39;</span><span class="p">,</span><span class="s1">&#39;en-IE&#39;</span><span class="p">,</span><span class="s1">&#39;en-IN&#39;</span><span class="p">,</span><span class="s1">&#39;en-JO&#39;</span><span class="p">,</span><span class="s1">&#39;en-MY&#39;</span><span class="p">,</span><span class="s1">&#39;en-NZ&#39;</span><span class="p">,</span><span class="s1">&#39;en-PH&#39;</span><span class="p">,</span><span class="s1">&#39;en-SG&#39;</span><span class="p">,</span><span class="s1">&#39;en-US&#39;</span><span class="p">,</span><span class="s1">&#39;es&#39;</span><span class="p">,</span><span class="s1">&#39;es-AR&#39;</span><span class="p">,</span><span class="s1">&#39;es-BO&#39;</span><span class="p">,</span><span class="s1">&#39;es-CL&#39;</span><span class="p">,</span><span class="s1">&#39;es-CO&#39;</span><span class="p">,</span><span class="s1">&#39;es-EC&#39;</span><span class="p">,</span><span class="s1">&#39;es-ES&#39;</span><span class="p">,</span><span class="s1">&#39;es-MX&#39;</span><span class="p">,</span><span class="s1">&#39;es-PE&#39;</span><span class="p">,</span><span class="s1">&#39;es-PY&#39;</span><span class="p">,</span><span class="s1">&#39;es-US&#39;</span><span class="p">,</span><span class="s1">&#39;es-UY&#39;</span><span class="p">,</span><span class="s1">&#39;es-VE&#39;</span><span class="p">,</span><span class="s1">&#39;fi&#39;</span><span class="p">,</span><span class="s1">&#39;fi-FI&#39;</span><span class="p">,</span><span class="s1">&#39;fr&#39;</span><span class="p">,</span><span class="s1">&#39;fr-BE&#39;</span><span class="p">,</span><span class="s1">&#39;fr-CA&#39;</span><span class="p">,</span><span class="s1">&#39;fr-FR&#39;</span><span class="p">,</span><span class="s1">&#39;hi&#39;</span><span class="p">,</span><span class="s1">&#39;hi-IN&#39;</span><span class="p">,</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;id-ID&#39;</span><span class="p">,</span><span class="s1">&#39;it&#39;</span><span class="p">,</span><span class="s1">&#39;it-IT&#39;</span><span class="p">,</span><span class="s1">&#39;ja&#39;</span><span class="p">,</span><span class="s1">&#39;ja-JP&#39;</span><span class="p">,</span><span class="s1">&#39;ko&#39;</span><span class="p">,</span><span class="s1">&#39;ko-KR&#39;</span><span class="p">,</span><span class="s1">&#39;ms&#39;</span><span class="p">,</span><span class="s1">&#39;ms-MY&#39;</span><span class="p">,</span><span class="s1">&#39;nb&#39;</span><span class="p">,</span><span class="s1">&#39;nb-NO&#39;</span><span class="p">,</span><span class="s1">&#39;nl&#39;</span><span class="p">,</span><span class="s1">&#39;nl-BE&#39;</span><span class="p">,</span><span class="s1">&#39;nl-NL&#39;</span><span class="p">,</span><span class="s1">&#39;pl&#39;</span><span class="p">,</span><span class="s1">&#39;pl-PL&#39;</span><span class="p">,</span><span class="s1">&#39;pt&#39;</span><span class="p">,</span><span class="s1">&#39;pt-BR&#39;</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">,</span><span class="s1">&#39;ro-RO&#39;</span><span class="p">,</span><span class="s1">&#39;ru&#39;</span><span class="p">,</span><span class="s1">&#39;ru-RU&#39;</span><span class="p">,</span><span class="s1">&#39;sv&#39;</span><span class="p">,</span><span class="s1">&#39;sv-SE&#39;</span><span class="p">,</span><span class="s1">&#39;th&#39;</span><span class="p">,</span><span class="s1">&#39;th-TH&#39;</span><span class="p">,</span><span class="s1">&#39;tr&#39;</span><span class="p">,</span><span class="s1">&#39;tr-TR&#39;</span><span class="p">,</span><span class="s1">&#39;vi&#39;</span><span class="p">,</span><span class="s1">&#39;vi-VN&#39;</span><span class="p">,</span><span class="s1">&#39;zh-Hans&#39;</span><span class="p">,</span><span class="s1">&#39;zh-Hans-CN&#39;</span><span class="p">,</span><span class="s1">&#39;zh-Hant&#39;</span><span class="p">,</span><span class="s1">&#39;zh-Hant-HK&#39;</span><span class="p">,</span><span class="s1">&#39;zh-Hant-TW&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">lang</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;ar&#39;</span><span class="p">,</span><span class="s1">&#39;ar-JO&#39;</span><span class="p">,</span><span class="s1">&#39;ca&#39;</span><span class="p">,</span><span class="s1">&#39;ca-ES&#39;</span><span class="p">,</span><span class="s1">&#39;da&#39;</span><span class="p">,</span><span class="s1">&#39;da-DK&#39;</span><span class="p">,</span><span class="s1">&#39;de&#39;</span><span class="p">,</span><span class="s1">&#39;de-AT&#39;</span><span class="p">,</span><span class="s1">&#39;de-DE&#39;</span><span class="p">,</span><span class="s1">&#39;el&#39;</span><span class="p">,</span><span class="s1">&#39;el-GR&#39;</span><span class="p">,</span><span class="s1">&#39;en&#39;</span><span class="p">,</span><span class="s1">&#39;en-AU&#39;</span><span class="p">,</span><span class="s1">&#39;en-CA&#39;</span><span class="p">,</span><span class="s1">&#39;en-GB&#39;</span><span class="p">,</span><span class="s1">&#39;en-IE&#39;</span><span class="p">,</span><span class="s1">&#39;en-IN&#39;</span><span class="p">,</span><span class="s1">&#39;en-JO&#39;</span><span class="p">,</span><span class="s1">&#39;en-MY&#39;</span><span class="p">,</span><span class="s1">&#39;en-NZ&#39;</span><span class="p">,</span><span class="s1">&#39;en-PH&#39;</span><span class="p">,</span><span class="s1">&#39;en-SG&#39;</span><span class="p">,</span><span class="s1">&#39;en-US&#39;</span><span class="p">,</span><span class="s1">&#39;es&#39;</span><span class="p">,</span><span class="s1">&#39;es-AR&#39;</span><span class="p">,</span><span class="s1">&#39;es-BO&#39;</span><span class="p">,</span><span class="s1">&#39;es-CL&#39;</span><span class="p">,</span><span class="s1">&#39;es-CO&#39;</span><span class="p">,</span><span class="s1">&#39;es-EC&#39;</span><span class="p">,</span><span class="s1">&#39;es-ES&#39;</span><span class="p">,</span><span class="s1">&#39;es-MX&#39;</span><span class="p">,</span><span class="s1">&#39;es-PE&#39;</span><span class="p">,</span><span class="s1">&#39;es-PY&#39;</span><span class="p">,</span><span class="s1">&#39;es-US&#39;</span><span class="p">,</span><span class="s1">&#39;es-UY&#39;</span><span class="p">,</span><span class="s1">&#39;es-VE&#39;</span><span class="p">,</span><span class="s1">&#39;fi&#39;</span><span class="p">,</span><span class="s1">&#39;fi-FI&#39;</span><span class="p">,</span><span class="s1">&#39;fr&#39;</span><span class="p">,</span><span class="s1">&#39;fr-BE&#39;</span><span class="p">,</span><span class="s1">&#39;fr-CA&#39;</span><span class="p">,</span><span class="s1">&#39;fr-FR&#39;</span><span class="p">,</span><span class="s1">&#39;hi&#39;</span><span class="p">,</span><span class="s1">&#39;hi-IN&#39;</span><span class="p">,</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;id-ID&#39;</span><span class="p">,</span><span class="s1">&#39;it&#39;</span><span class="p">,</span><span class="s1">&#39;it-IT&#39;</span><span class="p">,</span><span class="s1">&#39;ja&#39;</span><span class="p">,</span><span class="s1">&#39;ja-JP&#39;</span><span class="p">,</span><span class="s1">&#39;ko&#39;</span><span class="p">,</span><span class="s1">&#39;ko-KR&#39;</span><span class="p">,</span><span class="s1">&#39;ms&#39;</span><span class="p">,</span><span class="s1">&#39;ms-MY&#39;</span><span class="p">,</span><span class="s1">&#39;nb&#39;</span><span class="p">,</span><span class="s1">&#39;nb-NO&#39;</span><span class="p">,</span><span class="s1">&#39;nl&#39;</span><span class="p">,</span><span class="s1">&#39;nl-BE&#39;</span><span class="p">,</span><span class="s1">&#39;nl-NL&#39;</span><span class="p">,</span><span class="s1">&#39;pl&#39;</span><span class="p">,</span><span class="s1">&#39;pl-PL&#39;</span><span class="p">,</span><span class="s1">&#39;pt&#39;</span><span class="p">,</span><span class="s1">&#39;pt-BR&#39;</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">,</span><span class="s1">&#39;ro-RO&#39;</span><span class="p">,</span><span class="s1">&#39;ru&#39;</span><span class="p">,</span><span class="s1">&#39;ru-RU&#39;</span><span class="p">,</span><span class="s1">&#39;sv&#39;</span><span class="p">,</span><span class="s1">&#39;sv-SE&#39;</span><span class="p">,</span><span class="s1">&#39;th&#39;</span><span class="p">,</span><span class="s1">&#39;th-TH&#39;</span><span class="p">,</span><span class="s1">&#39;tr&#39;</span><span class="p">,</span><span class="s1">&#39;tr-TR&#39;</span><span class="p">,</span><span class="s1">&#39;vi&#39;</span><span class="p">,</span><span class="s1">&#39;vi-VN&#39;</span><span class="p">,</span><span class="s1">&#39;zh-Hans&#39;</span><span class="p">,</span><span class="s1">&#39;zh-Hans-CN&#39;</span><span class="p">,</span><span class="s1">&#39;zh-Hant&#39;</span><span class="p">,</span><span class="s1">&#39;zh-Hant-HK&#39;</span><span class="p">,</span><span class="s1">&#39;zh-Hant-TW&#39;</span><span class="p">]});</span>
 
 
-<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-date&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datatype-date-parse&#39;</span><span class="p">,</span> <span class="s1">&#39;datatype-date-format&#39;</span><span class="p">]});</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-date&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datatype-date-parse&#39;</span><span class="p">,</span> <span class="s1">&#39;datatype-date-format&#39;</span><span class="p">]});</span>
 
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-xml-parse&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
@@ -1988,7 +1983,7 @@
 
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">);</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">);</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-xml-format&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -2041,14 +2036,14 @@
 
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">);</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">);</span>
 
 
-<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-xml&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datatype-xml-parse&#39;</span><span class="p">,</span> <span class="s1">&#39;datatype-xml-format&#39;</span><span class="p">]});</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype-xml&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datatype-xml-parse&#39;</span><span class="p">,</span> <span class="s1">&#39;datatype-xml-format&#39;</span><span class="p">]});</span>
 
 
 
-<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datatype-number&#39;</span><span class="p">,</span> <span class="s1">&#39;datatype-date&#39;</span><span class="p">,</span> <span class="s1">&#39;datatype-xml&#39;</span><span class="p">]});</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatype&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datatype-number&#39;</span><span class="p">,</span> <span class="s1">&#39;datatype-date&#39;</span><span class="p">,</span> <span class="s1">&#39;datatype-xml&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>

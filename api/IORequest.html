@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-io  IORequest   (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-io&nbsp; <span class="subtitle">1.0pr</span>
+			aui-io&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -571,6 +566,7 @@
 				                               <li class="protected"><a href="#method__autoStart" title="_autoStart">_autoStart</a></li>
 				                               <li class="protected"><a href="#method__end" title="_end">_end</a></li>
 				                               <li class="protected"><a href="#method__parseURL" title="_parseURL">_parseURL</a></li>
+				                               <li class="protected"><a href="#method__setIOData" title="_setIOData">_setIOData</a></li>
 				                               <li class="protected"><a href="#method__setResponseData" title="_setResponseData">_setResponseData</a></li>
 				                               <li class="protected"><a href="#method__success" title="_success">_success</a></li>
 				                               <li class="protected"><a href="#method_destructor" title="destructor">destructor</a></li>
@@ -886,7 +882,7 @@ Configuration</a>.
 
 
 													<div class="default">
-														Default Value: <strong>Value mapped on AUI.defaults.io.</strong>
+														Default Value: <strong>Value mapped on YUI.AUI.defaults.io.</strong>
 													</div>
 
 												</div>
@@ -969,7 +965,7 @@ Configuration</a>.
 
 
 													<div class="default">
-														Default Value: <strong>Value mapped on AUI.defaults.io.</strong>
+														Default Value: <strong>Value mapped on YUI.AUI.defaults.io.</strong>
 													</div>
 
 												</div>
@@ -989,7 +985,7 @@ Configuration</a>.
 
 
 													<div class="default">
-														Default Value: <strong>Value mapped on AUI.defaults.io.</strong>
+														Default Value: <strong>Value mapped on YUI.AUI.defaults.io.</strong>
 													</div>
 
 												</div>
@@ -1028,7 +1024,7 @@ Configuration</a>.
 
 
 													<div class="default">
-														Default Value: <strong>Value mapped on AUI.defaults.io.</strong>
+														Default Value: <strong>Value mapped on YUI.AUI.defaults.io.</strong>
 													</div>
 
 												</div>
@@ -1067,7 +1063,7 @@ Configuration</a>.
 
 
 													<div class="default">
-														Default Value: <strong>Value mapped on AUI.defaults.io.</strong>
+														Default Value: <strong>Value mapped on YUI.AUI.defaults.io.</strong>
 													</div>
 
 												</div>
@@ -1109,7 +1105,7 @@ Configuration</a>.
 
 
 													<div class="default">
-														Default Value: <strong>Value mapped on AUI.defaults.io.</strong>
+														Default Value: <strong>Value mapped on YUI.AUI.defaults.io.</strong>
 													</div>
 
 												</div>
@@ -1129,7 +1125,7 @@ Configuration</a>.
 
 
 													<div class="default">
-														Default Value: <strong>Value mapped on AUI.defaults.io.</strong>
+														Default Value: <strong>Value mapped on YUI.AUI.defaults.io.</strong>
 													</div>
 
 												</div>
@@ -1187,7 +1183,7 @@ Configuration</a>.
 
 
 													<div class="default">
-														Default Value: <strong>Value mapped on AUI.defaults.io.</strong>
+														Default Value: <strong>Value mapped on YUI.AUI.defaults.io.</strong>
 													</div>
 
 												</div>
@@ -1353,7 +1349,7 @@ Configuration</a>.
 															Parse the <a href="IORequest.html#config_uri">uri</a> to add a
 timestamp if <a href="IORequest.html#config_cache">cache</a> is
 <code>true</code>. Also applies the
-<code>AUI.defaults.io.uriFormatter</code>.
+<code>YUI.AUI.defaults.io.uriFormatter</code>.
 														</div>
 
 														<div class="description">
@@ -1363,6 +1359,52 @@ timestamp if <a href="IORequest.html#config_cache">cache</a> is
 																		<dd rel="yui:parameter">
 																		<code><span property="yui:name">url</span>
 																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__setIOData">
+
+													<h4>
+														<a name="method__setIOData">_setIOData</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														String
+															<strong property="yui:name">_setIOData</strong>
+														   (
+																
+																		
+																		 value
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Applies the <code>YUI.AUI.defaults.io.dataFormatter</code> if defined.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">value</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
 																		</code>
 																		<span property="yui:description"></span>
 																		</dd>
@@ -2836,7 +2878,7 @@ Purges events attached to the node (and all child nodes).
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "IORequest.html#config_active", "access": "", "host": "IORequest", "type": "config", "name": "active"}, {"url": "IORequest.html#event_activeChange", "access": "", "host": "IORequest", "type": "event", "name": "activeChange"}, {"url": "IORequest.html#config_arguments", "access": "", "host": "IORequest", "type": "config", "name": "arguments"}, {"url": "IORequest.html#event_argumentsChange", "access": "", "host": "IORequest", "type": "event", "name": "argumentsChange"}, {"url": "IORequest.html#config_autoLoad", "access": "", "host": "IORequest", "type": "config", "name": "autoLoad"}, {"url": "IORequest.html#event_autoLoadChange", "access": "", "host": "IORequest", "type": "event", "name": "autoLoadChange"}, {"url": "IORequest.html#method__autoStart", "access": "protected", "host": "IORequest", "type": "method", "name": "_autoStart"}, {"url": "IORequest.html#config_cache", "access": "", "host": "IORequest", "type": "config", "name": "cache"}, {"url": "IORequest.html#event_cacheChange", "access": "", "host": "IORequest", "type": "event", "name": "cacheChange"}, {"url": "IORequest.html#config_cfg", "access": "", "host": "IORequest", "type": "config", "name": "cfg"}, {"url": "IORequest.html#event_cfgChange", "access": "", "host": "IORequest", "type": "event", "name": "cfgChange"}, {"url": "IORequest.html#config_context", "access": "", "host": "IORequest", "type": "config", "name": "context"}, {"url": "IORequest.html#event_contextChange", "access": "", "host": "IORequest", "type": "event", "name": "contextChange"}, {"url": "IORequest.html#config_data", "access": "", "host": "IORequest", "type": "config", "name": "data"}, {"url": "IORequest.html#event_dataChange", "access": "", "host": "IORequest", "type": "event", "name": "dataChange"}, {"url": "IORequest.html#config_dataType", "access": "", "host": "IORequest", "type": "config", "name": "dataType"}, {"url": "IORequest.html#event_dataTypeChange", "access": "", "host": "IORequest", "type": "event", "name": "dataTypeChange"}, {"url": "IORequest.html#method_destructor", "access": "protected", "host": "IORequest", "type": "method", "name": "destructor"}, {"url": "IORequest.html#method__end", "access": "protected", "host": "IORequest", "type": "method", "name": "_end"}, {"url": "IORequest.html#config_form", "access": "", "host": "IORequest", "type": "config", "name": "form"}, {"url": "IORequest.html#event_formChange", "access": "", "host": "IORequest", "type": "event", "name": "formChange"}, {"url": "IORequest.html#config_headers", "access": "", "host": "IORequest", "type": "config", "name": "headers"}, {"url": "IORequest.html#event_headersChange", "access": "", "host": "IORequest", "type": "event", "name": "headersChange"}, {"url": "IORequest.html#method_initializer", "access": "protected", "host": "IORequest", "type": "method", "name": "initializer"}, {"url": "IORequest.html#property_IORequest.ATTRS", "access": "", "host": "IORequest", "type": "property", "name": "IORequest.ATTRS"}, {"url": "IORequest.html#property_IORequest.NAME", "access": "", "host": "IORequest", "type": "property", "name": "IORequest.NAME"}, {"url": "IORequest.html#config_method", "access": "", "host": "IORequest", "type": "config", "name": "method"}, {"url": "IORequest.html#event_methodChange", "access": "", "host": "IORequest", "type": "event", "name": "methodChange"}, {"url": "IORequest.html#method__parseURL", "access": "protected", "host": "IORequest", "type": "method", "name": "_parseURL"}, {"url": "IORequest.html#config_responseData", "access": "", "host": "IORequest", "type": "config", "name": "responseData"}, {"url": "IORequest.html#event_responseDataChange", "access": "", "host": "IORequest", "type": "event", "name": "responseDataChange"}, {"url": "IORequest.html#method__setResponseData", "access": "protected", "host": "IORequest", "type": "method", "name": "_setResponseData"}, {"url": "IORequest.html#method_start", "access": "", "host": "IORequest", "type": "method", "name": "start"}, {"url": "IORequest.html#method_stop", "access": "", "host": "IORequest", "type": "method", "name": "stop"}, {"url": "IORequest.html#method__success", "access": "protected", "host": "IORequest", "type": "method", "name": "_success"}, {"url": "IORequest.html#config_sync", "access": "", "host": "IORequest", "type": "config", "name": "sync"}, {"url": "IORequest.html#event_syncChange", "access": "", "host": "IORequest", "type": "event", "name": "syncChange"}, {"url": "IORequest.html#config_timeout", "access": "", "host": "IORequest", "type": "config", "name": "timeout"}, {"url": "IORequest.html#event_timeoutChange", "access": "", "host": "IORequest", "type": "event", "name": "timeoutChange"}, {"url": "IORequest.html#config_transaction", "access": "", "host": "IORequest", "type": "config", "name": "transaction"}, {"url": "IORequest.html#event_transactionChange", "access": "", "host": "IORequest", "type": "event", "name": "transactionChange"}, {"url": "IORequest.html#config_uri", "access": "", "host": "IORequest", "type": "config", "name": "uri"}, {"url": "IORequest.html#event_uriChange", "access": "", "host": "IORequest", "type": "event", "name": "uriChange"}, {"url": "IORequest.html#config_xdr", "access": "", "host": "IORequest", "type": "config", "name": "xdr"}, {"url": "IORequest.html#event_xdrChange", "access": "", "host": "IORequest", "type": "event", "name": "xdrChange"}];
+    var ALL_YUI_PROPS = [{"url": "IORequest.html#config_active", "access": "", "host": "IORequest", "type": "config", "name": "active"}, {"url": "IORequest.html#event_activeChange", "access": "", "host": "IORequest", "type": "event", "name": "activeChange"}, {"url": "IORequest.html#config_arguments", "access": "", "host": "IORequest", "type": "config", "name": "arguments"}, {"url": "IORequest.html#event_argumentsChange", "access": "", "host": "IORequest", "type": "event", "name": "argumentsChange"}, {"url": "IORequest.html#config_autoLoad", "access": "", "host": "IORequest", "type": "config", "name": "autoLoad"}, {"url": "IORequest.html#event_autoLoadChange", "access": "", "host": "IORequest", "type": "event", "name": "autoLoadChange"}, {"url": "IORequest.html#method__autoStart", "access": "protected", "host": "IORequest", "type": "method", "name": "_autoStart"}, {"url": "IORequest.html#config_cache", "access": "", "host": "IORequest", "type": "config", "name": "cache"}, {"url": "IORequest.html#event_cacheChange", "access": "", "host": "IORequest", "type": "event", "name": "cacheChange"}, {"url": "IORequest.html#config_cfg", "access": "", "host": "IORequest", "type": "config", "name": "cfg"}, {"url": "IORequest.html#event_cfgChange", "access": "", "host": "IORequest", "type": "event", "name": "cfgChange"}, {"url": "IORequest.html#config_context", "access": "", "host": "IORequest", "type": "config", "name": "context"}, {"url": "IORequest.html#event_contextChange", "access": "", "host": "IORequest", "type": "event", "name": "contextChange"}, {"url": "IORequest.html#config_data", "access": "", "host": "IORequest", "type": "config", "name": "data"}, {"url": "IORequest.html#event_dataChange", "access": "", "host": "IORequest", "type": "event", "name": "dataChange"}, {"url": "IORequest.html#config_dataType", "access": "", "host": "IORequest", "type": "config", "name": "dataType"}, {"url": "IORequest.html#event_dataTypeChange", "access": "", "host": "IORequest", "type": "event", "name": "dataTypeChange"}, {"url": "IORequest.html#method_destructor", "access": "protected", "host": "IORequest", "type": "method", "name": "destructor"}, {"url": "IORequest.html#method__end", "access": "protected", "host": "IORequest", "type": "method", "name": "_end"}, {"url": "IORequest.html#config_form", "access": "", "host": "IORequest", "type": "config", "name": "form"}, {"url": "IORequest.html#event_formChange", "access": "", "host": "IORequest", "type": "event", "name": "formChange"}, {"url": "IORequest.html#config_headers", "access": "", "host": "IORequest", "type": "config", "name": "headers"}, {"url": "IORequest.html#event_headersChange", "access": "", "host": "IORequest", "type": "event", "name": "headersChange"}, {"url": "IORequest.html#method_initializer", "access": "protected", "host": "IORequest", "type": "method", "name": "initializer"}, {"url": "IORequest.html#property_IORequest.ATTRS", "access": "", "host": "IORequest", "type": "property", "name": "IORequest.ATTRS"}, {"url": "IORequest.html#property_IORequest.NAME", "access": "", "host": "IORequest", "type": "property", "name": "IORequest.NAME"}, {"url": "IORequest.html#config_method", "access": "", "host": "IORequest", "type": "config", "name": "method"}, {"url": "IORequest.html#event_methodChange", "access": "", "host": "IORequest", "type": "event", "name": "methodChange"}, {"url": "IORequest.html#method__parseURL", "access": "protected", "host": "IORequest", "type": "method", "name": "_parseURL"}, {"url": "IORequest.html#config_responseData", "access": "", "host": "IORequest", "type": "config", "name": "responseData"}, {"url": "IORequest.html#event_responseDataChange", "access": "", "host": "IORequest", "type": "event", "name": "responseDataChange"}, {"url": "IORequest.html#method__setIOData", "access": "protected", "host": "IORequest", "type": "method", "name": "_setIOData"}, {"url": "IORequest.html#method__setResponseData", "access": "protected", "host": "IORequest", "type": "method", "name": "_setResponseData"}, {"url": "IORequest.html#method_start", "access": "", "host": "IORequest", "type": "method", "name": "start"}, {"url": "IORequest.html#method_stop", "access": "", "host": "IORequest", "type": "method", "name": "stop"}, {"url": "IORequest.html#method__success", "access": "protected", "host": "IORequest", "type": "method", "name": "_success"}, {"url": "IORequest.html#config_sync", "access": "", "host": "IORequest", "type": "config", "name": "sync"}, {"url": "IORequest.html#event_syncChange", "access": "", "host": "IORequest", "type": "event", "name": "syncChange"}, {"url": "IORequest.html#config_timeout", "access": "", "host": "IORequest", "type": "config", "name": "timeout"}, {"url": "IORequest.html#event_timeoutChange", "access": "", "host": "IORequest", "type": "event", "name": "timeoutChange"}, {"url": "IORequest.html#config_transaction", "access": "", "host": "IORequest", "type": "config", "name": "transaction"}, {"url": "IORequest.html#event_transactionChange", "access": "", "host": "IORequest", "type": "event", "name": "transactionChange"}, {"url": "IORequest.html#config_uri", "access": "", "host": "IORequest", "type": "config", "name": "uri"}, {"url": "IORequest.html#event_uriChange", "access": "", "host": "IORequest", "type": "event", "name": "uriChange"}, {"url": "IORequest.html#config_xdr", "access": "", "host": "IORequest", "type": "config", "name": "xdr"}, {"url": "IORequest.html#event_xdrChange", "access": "", "host": "IORequest", "type": "event", "name": "xdrChange"}];
 </script>
 </body>
 </html>

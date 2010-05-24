@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-loading-mask   aui-loading-mask.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-loading-mask&nbsp; <span class="subtitle">1.0pr</span>
+			aui-loading-mask&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -597,264 +592,263 @@
 <span class="cm"> * @constructor</span>
 <span class="cm"> * @extends Plugin.Base</span>
 <span class="cm"> */</span>
-<span class="kd">var</span> <span class="nx">LoadingMask</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">LoadingMask</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-<span class="p">};</span>
-
-<span class="cm">/**</span>
-<span class="cm"> * Static property provides a string to identify the class.</span>
-<span class="cm"> *</span>
-<span class="cm"> * @property LoadingMask.NAME</span>
-<span class="cm"> * @type String</span>
-<span class="cm"> * @static</span>
-<span class="cm"> */</span>
-<span class="nx">LoadingMask</span><span class="p">.</span><span class="nx">NAME</span> <span class="o">=</span> <span class="nx">NAME</span><span class="p">;</span>
-
-<span class="cm">/**</span>
-<span class="cm"> * Static property provides a string to identify the namespace.</span>
-<span class="cm"> *</span>
-<span class="cm"> * @property LoadingMask.NS</span>
-<span class="cm"> * @type String</span>
-<span class="cm"> * @static</span>
-<span class="cm"> */</span>
-<span class="nx">LoadingMask</span><span class="p">.</span><span class="nx">NS</span> <span class="o">=</span> <span class="nx">NAME</span><span class="p">;</span>
-
-<span class="cm">/**</span>
-<span class="cm"> * Static property used to define the default attribute</span>
-<span class="cm"> * configuration for the LoadingMask.</span>
-<span class="cm"> *</span>
-<span class="cm"> * @property LoadingMask.ATTRS</span>
-<span class="cm"> * @type Object</span>
-<span class="cm"> * @static</span>
-<span class="cm"> */</span>
-<span class="nx">LoadingMask</span><span class="p">.</span><span class="nx">ATTRS</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Node element to display the message.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @attribute messageEl</span>
-<span class="cm">	 * @default Generated HTML div element.</span>
-<span class="cm">	 * @type String</span>
-<span class="cm">	 */</span>
-	<span class="nx">messageEl</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-			<span class="kd">var</span> <span class="nx">strings</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">STRINGS</span><span class="p">);</span>
-
-			<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
-				<span class="nx">A</span><span class="p">.</span><span class="nx">substitute</span><span class="p">(</span><span class="nx">TPL_MESSAGE_LOADING</span><span class="p">,</span> <span class="p">[</span><span class="nx">strings</span><span class="p">.</span><span class="nx">loading</span><span class="p">])</span>
-			<span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Strings used on the LoadingMask. See</span>
-<span class="cm">     * &lt;a href=&quot;Widget.html#method_strings&quot;&gt;strings&lt;/a&gt;.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @attribute strings</span>
-<span class="cm">	 * @default { loading: &#39;Loading&amp;hellip;&#39; }</span>
-<span class="cm">	 * @type Object</span>
-<span class="cm">	 */</span>
-	<span class="nx">strings</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">loading</span><span class="o">:</span> <span class="s1">&#39;Loading&amp;hellip;&#39;</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Node where the mask will be positioned and re-dimensioned.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @attribute target</span>
-<span class="cm">	 * @default null</span>
-<span class="cm">	 * @type Node | Widget</span>
-<span class="cm">	 */</span>
-	<span class="nx">target</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-			<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">);</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">target</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">target</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
-			<span class="p">}</span>
-
-			<span class="k">return</span> <span class="nx">target</span><span class="p">;</span>
-		<span class="p">},</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
-	<span class="p">}</span>
-<span class="p">};</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
-	<span class="nx">LoadingMask</span><span class="p">,</span>
-	<span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span>
+<span class="kd">var</span> <span class="nx">LoadingMask</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
 	<span class="p">{</span>
-		<span class="cm">/**</span>
-<span class="cm">		 * Construction logic executed during LoadingMask instantiation. Lifecycle.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @method initializer</span>
-<span class="cm">		 * @protected</span>
-<span class="cm">		 */</span>
-		<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">IGNORED_ATTRS</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
-				<span class="p">{</span>
-					<span class="nx">host</span><span class="o">:</span> <span class="kc">true</span>
-				<span class="p">},</span>
-				<span class="nx">LoadingMask</span><span class="p">.</span><span class="nx">ATTRS</span>
-			<span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">();</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">();</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_createDynamicAttrs</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
-		<span class="p">},</span>
 
 		<span class="cm">/**</span>
-<span class="cm">		 * Create the DOM structure for the LoadingMask. Lifecycle.</span>
+<span class="cm">		 * Static property provides a string to identify the class.</span>
 <span class="cm">		 *</span>
-<span class="cm">		 * @method renderUI</span>
-<span class="cm">		 * @protected</span>
+<span class="cm">		 * @property LoadingMask.NAME</span>
+<span class="cm">		 * @type String</span>
+<span class="cm">		 * @static</span>
 <span class="cm">		 */</span>
-		<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-			<span class="kd">var</span> <span class="nx">strings</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">STRINGS</span><span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderOverlayMask</span><span class="p">();</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMask</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">MESSAGE_EL</span><span class="p">)</span>
-			<span class="p">);</span>
-		<span class="p">},</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="nx">NAME</span><span class="p">,</span>
 
 		<span class="cm">/**</span>
-<span class="cm">		 * Bind the events on the LoadingMask UI. Lifecycle.</span>
+<span class="cm">		 * Static property provides a string to identify the namespace.</span>
 <span class="cm">		 *</span>
-<span class="cm">		 * @method bindUI</span>
-<span class="cm">		 * @protected</span>
+<span class="cm">		 * @property LoadingMask.NS</span>
+<span class="cm">		 * @type String</span>
+<span class="cm">		 * @static</span>
 <span class="cm">		 */</span>
-		<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindOverlayMaskUI</span><span class="p">();</span>
-		<span class="p">},</span>
+		<span class="nx">NS</span><span class="o">:</span> <span class="nx">NAME</span><span class="p">,</span>
 
 		<span class="cm">/**</span>
-<span class="cm">		 * Bind events to the</span>
-<span class="cm">         * &lt;a href=&quot;LoadingMask.html#property_overlayMask&quot;&gt;overlayMask&lt;/a&gt;.</span>
+<span class="cm">		 * Static property used to define the default attribute</span>
+<span class="cm">		 * configuration for the LoadingMask.</span>
 <span class="cm">		 *</span>
-<span class="cm">		 * @method _bindOverlayMaskUI</span>
-<span class="cm">		 * @protected</span>
+<span class="cm">		 * @property LoadingMask.ATTRS</span>
+<span class="cm">		 * @type Object</span>
+<span class="cm">		 * @static</span>
 <span class="cm">		 */</span>
-		<span class="nx">_bindOverlayMaskUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Node element to display the message.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute messageEl</span>
+<span class="cm">			 * @default Generated HTML div element.</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
+			<span class="nx">messageEl</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+					<span class="kd">var</span> <span class="nx">strings</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">STRINGS</span><span class="p">);</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMask</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;visibleChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterVisibleChange</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Center the</span>
-<span class="cm">         * &lt;a href=&quot;LoadingMask.html#config_messageEl&quot;&gt;messageEl&lt;/a&gt; with the</span>
-<span class="cm">         * &lt;a href=&quot;LoadingMask.html#config_target&quot;&gt;target&lt;/a&gt; node.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @method centerMessage</span>
-<span class="cm">		 */</span>
-		<span class="nx">centerMessage</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">MESSAGE_EL</span><span class="p">).</span><span class="nx">center</span><span class="p">(</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMask</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">)</span>
-			<span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Invoke the</span>
-<span class="cm">         * &lt;a href=&quot;LoadingMask.html#property_overlayMask&quot;&gt;overlayMask&lt;/a&gt;</span>
-<span class="cm">         * &lt;code&gt;refreshMask&lt;/code&gt; method.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @method refreshMask</span>
-<span class="cm">		 */</span>
-		<span class="nx">refreshMask</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMask</span><span class="p">.</span><span class="nx">refreshMask</span><span class="p">();</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">centerMessage</span><span class="p">();</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Fires after the value of the</span>
-<span class="cm">		 * &lt;a href=&quot;LoadingMask.html#config_visible&quot;&gt;visible&lt;/a&gt; attribute change.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @method _afterVisibleChange</span>
-<span class="cm">		 * @param {EventFacade} event</span>
-<span class="cm">		 * @protected</span>
-<span class="cm">		 */</span>
-		<span class="nx">_afterVisibleChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-			<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TARGET</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">isStaticPositioned</span> <span class="o">=</span> <span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">getStyle</span><span class="p">(</span><span class="nx">POSITION</span><span class="p">)</span> <span class="o">==</span> <span class="nx">STATIC</span><span class="p">);</span>
-
-			<span class="nx">target</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">CSS_MASKED</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">));</span>
-			<span class="nx">target</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">CSS_MASKED_RELATIVE</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span> <span class="o">&amp;&amp;</span> <span class="nx">isStaticPositioned</span><span class="p">));</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">refreshMask</span><span class="p">();</span>
-			<span class="p">}</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Render</span>
-<span class="cm">         * &lt;a href=&quot;LoadingMask.html#property_overlayMask&quot;&gt;overlayMask&lt;/a&gt;</span>
-<span class="cm">         * instance.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @method _renderOverlayMask</span>
-<span class="cm">		 * @protected</span>
-<span class="cm">		 */</span>
-		<span class="nx">_renderOverlayMask</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-			<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TARGET</span><span class="p">);</span>
+					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+						<span class="nx">A</span><span class="p">.</span><span class="nx">substitute</span><span class="p">(</span><span class="nx">TPL_MESSAGE_LOADING</span><span class="p">,</span> <span class="p">[</span><span class="nx">strings</span><span class="p">.</span><span class="nx">loading</span><span class="p">])</span>
+					<span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
 
 			<span class="cm">/**</span>
-<span class="cm">			 * Stores the &lt;a href=&quot;OverlayMask.html&quot;&gt;OverlayMask&lt;/a&gt; used</span>
-<span class="cm">             * internally.</span>
+<span class="cm">			 * Strings used on the LoadingMask. See</span>
+<span class="cm">		     * &lt;a href=&quot;Widget.html#method_strings&quot;&gt;strings&lt;/a&gt;.</span>
 <span class="cm">			 *</span>
-<span class="cm">			 * @property overlayMask</span>
-<span class="cm">			 * @type OverlayMask</span>
-<span class="cm">			 * @protected</span>
+<span class="cm">			 * @attribute strings</span>
+<span class="cm">			 * @default { loading: &#39;Loading&amp;hellip;&#39; }</span>
+<span class="cm">			 * @type Object</span>
 <span class="cm">			 */</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMask</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">OverlayMask</span><span class="p">(</span>
-				<span class="p">{</span>
-					<span class="nx">target</span><span class="o">:</span> <span class="nx">target</span><span class="p">,</span>
-					<span class="nx">cssClass</span><span class="o">:</span> <span class="nx">CSS_LOADINGMASK</span>
+			<span class="nx">strings</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
+					<span class="nx">loading</span><span class="o">:</span> <span class="s1">&#39;Loading&amp;hellip;&#39;</span>
 				<span class="p">}</span>
-			<span class="p">).</span><span class="nx">render</span><span class="p">(</span><span class="nx">target</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Node where the mask will be positioned and re-dimensioned.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute target</span>
+<span class="cm">			 * @default null</span>
+<span class="cm">			 * @type Node | Widget</span>
+<span class="cm">			 */</span>
+			<span class="nx">target</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+					<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">);</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">target</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">target</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
+					<span class="p">}</span>
+
+					<span class="k">return</span> <span class="nx">target</span><span class="p">;</span>
+				<span class="p">},</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+			<span class="p">}</span>
 		<span class="p">},</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * Create dynamic attributes listeners to invoke the setter on</span>
-<span class="cm">         * &lt;a href=&quot;LoadingMask.html#property_overlayMask&quot;&gt;overlayMask&lt;/a&gt; after</span>
-<span class="cm">         * the attribute is set on the LoadingMask instance.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @method _createDynamicAttrs</span>
-<span class="cm">		 * @param {Object} config Object literal specifying widget configuration properties.</span>
-<span class="cm">		 * @protected</span>
-<span class="cm">		 */</span>
-		<span class="nx">_createDynamicAttrs</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="nx">EXTENDS</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span>
 
-			<span class="nx">A</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">ignoredAttr</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">IGNORED_ATTRS</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Construction logic executed during LoadingMask instantiation. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method initializer</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">ignoredAttr</span><span class="p">)</span> <span class="p">{</span>
-					<span class="nx">instance</span><span class="p">.</span><span class="nx">addAttr</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="p">{</span>
-						<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
-							<span class="k">this</span><span class="p">.</span><span class="nx">overlayMask</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">val</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">IGNORED_ATTRS</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
+					<span class="p">{</span>
+						<span class="nx">host</span><span class="o">:</span> <span class="kc">true</span>
+					<span class="p">},</span>
+					<span class="nx">LoadingMask</span><span class="p">.</span><span class="nx">ATTRS</span>
+				<span class="p">);</span>
 
-							<span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
-						<span class="p">},</span>
-						<span class="nx">value</span><span class="o">:</span> <span class="nx">value</span>
-					<span class="p">});</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">();</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">();</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_createDynamicAttrs</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Create the DOM structure for the LoadingMask. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method renderUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">strings</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">STRINGS</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderOverlayMask</span><span class="p">();</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMask</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">MESSAGE_EL</span><span class="p">)</span>
+				<span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Bind the events on the LoadingMask UI. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method bindUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindOverlayMaskUI</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Bind events to the</span>
+<span class="cm">	         * &lt;a href=&quot;LoadingMask.html#property_overlayMask&quot;&gt;overlayMask&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _bindOverlayMaskUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_bindOverlayMaskUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMask</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;visibleChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterVisibleChange</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Center the</span>
+<span class="cm">	         * &lt;a href=&quot;LoadingMask.html#config_messageEl&quot;&gt;messageEl&lt;/a&gt; with the</span>
+<span class="cm">	         * &lt;a href=&quot;LoadingMask.html#config_target&quot;&gt;target&lt;/a&gt; node.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method centerMessage</span>
+<span class="cm">			 */</span>
+			<span class="nx">centerMessage</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">MESSAGE_EL</span><span class="p">).</span><span class="nx">center</span><span class="p">(</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMask</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">)</span>
+				<span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Invoke the</span>
+<span class="cm">	         * &lt;a href=&quot;LoadingMask.html#property_overlayMask&quot;&gt;overlayMask&lt;/a&gt;</span>
+<span class="cm">	         * &lt;code&gt;refreshMask&lt;/code&gt; method.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method refreshMask</span>
+<span class="cm">			 */</span>
+			<span class="nx">refreshMask</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMask</span><span class="p">.</span><span class="nx">refreshMask</span><span class="p">();</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">centerMessage</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires after the value of the</span>
+<span class="cm">			 * &lt;a href=&quot;LoadingMask.html#config_visible&quot;&gt;visible&lt;/a&gt; attribute change.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _afterVisibleChange</span>
+<span class="cm">			 * @param {EventFacade} event</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_afterVisibleChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TARGET</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">isStaticPositioned</span> <span class="o">=</span> <span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">getStyle</span><span class="p">(</span><span class="nx">POSITION</span><span class="p">)</span> <span class="o">==</span> <span class="nx">STATIC</span><span class="p">);</span>
+
+				<span class="nx">target</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">CSS_MASKED</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">));</span>
+				<span class="nx">target</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">CSS_MASKED_RELATIVE</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span> <span class="o">&amp;&amp;</span> <span class="nx">isStaticPositioned</span><span class="p">));</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">refreshMask</span><span class="p">();</span>
 				<span class="p">}</span>
-			<span class="p">});</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Render</span>
+<span class="cm">	         * &lt;a href=&quot;LoadingMask.html#property_overlayMask&quot;&gt;overlayMask&lt;/a&gt;</span>
+<span class="cm">	         * instance.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _renderOverlayMask</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_renderOverlayMask</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TARGET</span><span class="p">);</span>
+
+				<span class="cm">/**</span>
+<span class="cm">				 * Stores the &lt;a href=&quot;OverlayMask.html&quot;&gt;OverlayMask&lt;/a&gt; used</span>
+<span class="cm">	             * internally.</span>
+<span class="cm">				 *</span>
+<span class="cm">				 * @property overlayMask</span>
+<span class="cm">				 * @type OverlayMask</span>
+<span class="cm">				 * @protected</span>
+<span class="cm">				 */</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">overlayMask</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">OverlayMask</span><span class="p">(</span>
+					<span class="p">{</span>
+						<span class="nx">target</span><span class="o">:</span> <span class="nx">target</span><span class="p">,</span>
+						<span class="nx">cssClass</span><span class="o">:</span> <span class="nx">CSS_LOADINGMASK</span>
+					<span class="p">}</span>
+				<span class="p">).</span><span class="nx">render</span><span class="p">(</span><span class="nx">target</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Create dynamic attributes listeners to invoke the setter on</span>
+<span class="cm">	         * &lt;a href=&quot;LoadingMask.html#property_overlayMask&quot;&gt;overlayMask&lt;/a&gt; after</span>
+<span class="cm">	         * the attribute is set on the LoadingMask instance.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _createDynamicAttrs</span>
+<span class="cm">			 * @param {Object} config Object literal specifying widget configuration properties.</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_createDynamicAttrs</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">A</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">ignoredAttr</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">IGNORED_ATTRS</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">ignoredAttr</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">addAttr</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="p">{</span>
+							<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+								<span class="k">this</span><span class="p">.</span><span class="nx">overlayMask</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">val</span><span class="p">);</span>
+
+								<span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
+							<span class="p">},</span>
+							<span class="nx">value</span><span class="o">:</span> <span class="nx">value</span>
+						<span class="p">});</span>
+					<span class="p">}</span>
+				<span class="p">});</span>
+			<span class="p">}</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
 <span class="p">);</span>

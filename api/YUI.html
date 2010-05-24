@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: yui  YUI   (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			yui&nbsp; <span class="subtitle">1.0pr</span>
+			yui&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -689,6 +684,12 @@
 									<ul class="content">
 
 
+			                                <li class=""><a href="aui-min.js.html" title="aui-min.js">aui-min.js</a></li>
+
+
+			                                <li class=""><a href="aui.js.html" title="aui.js">aui.js</a></li>
+
+
 			                                <li class=""><a href="get-debug.js.html" title="get-debug.js">get-debug.js</a></li>
 
 
@@ -812,8 +813,9 @@ is available.
 																&lt;<span property="yui:type">object</span>&gt;
 																</code>
 
-																<span property="yui:description"> Up to five optional configuration objects.  This object is stored
-in YUI.config.  See config for the list of supported properties.</span>
+																<span property="yui:description"> 0..n optional configuration objects.  these values
+are store in Y.config.  See config for the list of supported 
+properties.</span>
 															</dd>
 													</dl>
 
@@ -2027,7 +2029,11 @@ value is set to either min or max, depending on which is closer.
 														</code>
 
 														<div class="description" property="yui:description">
-															Register a module
+															Registers a module with the YUI global.  The easiest way to create a 
+first-class YUI module is to use the YUI component build tool.  
+http://yuilibrary.com/projects/builder 
+The build system will produce the YUI.add wrapper for you module, along
+with any configuration info required for the module.
 														</div>
 
 														<div class="description">
@@ -2058,12 +2064,16 @@ is used to bind module to the YUI instance</span>
 																		&lt;<span property="yui:type">object</span>&gt;
 																		</code>
 																		<span property="yui:description"> optional config data: 
-requires   - features that should be present before loading
-optional   - optional features that should be present if load optional defined
-use  - features that should be attached automatically
-skinnable  -
-rollup
-omit - features that should not be loaded if this module is present</span>
+requires: features that must be present before this module can be attached.
+optional: optional features that should be present if loadOptional is
+defined.  Note: modules are not often loaded this way in YUI 3,
+but this field is still useful to inform the user that certain
+features in the component will require additional dependencies.
+use:      features that are included within this module which need to be
+be attached automatically when this module is attached.  This
+supports the YUI 3 rollup system -- a module with submodules 
+defined will need to have the submodules listed in the 'use'
+config.  The YUI component build tool does this for you.</span>
 																		</dd>
 																</dl>
 
@@ -3497,9 +3507,10 @@ default(0): object to object
 																		</dd>
 																		<dd rel="yui:parameter">
 																		<code><span property="yui:name">merge</span>
-																		&lt;<span property="yui:type">boolean</span>&gt;
+																		&lt;<span property="yui:type">boolean/int</span>&gt;
 																		</code>
-																		<span property="yui:description">  merge objects instead of overwriting/ignoring
+																		<span property="yui:description">  merge objects instead of overwriting/ignoring.  A value of 2
+will skip array merge
 Used by Y.aggregate</span>
 																		</dd>
 																</dl>
@@ -4334,7 +4345,22 @@ globally with Y.config.throttleTime or by call. Passing a -1 will disable the th
 														</code>
 
 														<div class="description" property="yui:description">
-															Bind a module to a YUI instance
+															Attaches one or more modules to the YUI instance.  When this
+is executed, the requirements are analyzed, and one of 
+several things can happen:
+- All requirements are available on the page --  The modules
+are attached to the instance.  If supplied, the use callback
+is executed synchronously.  
+- Modules are missing, the Get utility is not available OR
+the 'bootstrap' config is false -- A warning is issued about
+the missing modules and all available modules are attached.
+- Modules are missing, the Loader is not available but the Get
+utility is and boostrap is not false -- The loader is bootstrapped
+before doing the following....
+- Modules are missing and the Loader is available -- The loader
+expands the dependency tree and fetches missing modules.  When
+the loader is finshed the callback supplied to use is executed
+asynchronously.
 														</div>
 
 														<div class="description">
@@ -4353,7 +4379,17 @@ globally with Y.config.throttleTime or by call. Passing a -1 will disable the th
 																		</code>
 																		<span property="yui:description">  callback function executed when 
 the instance has the required functionality.  If included, it
-must be the last parameter.</span>
+must be the last parameter.
+<code>
+// loads and attaches drag and drop and its dependencies
+YUI().use('dd', function(Y) &#123;&#125);
+// attaches all modules that are available on the page
+YUI().use('*', function(Y) &#123;&#125);
+// intrinsic YUI gallery support (since 3.1.0)
+YUI().use('gallery-yql', function(Y) &#123;&#125);
+// intrinsic YUI 2in3 support (since 3.1.0)
+YUI().use('yui2-datatable', function(Y) &#123;&#125);
+</code></span>
 																		</dd>
 																</dl>
 

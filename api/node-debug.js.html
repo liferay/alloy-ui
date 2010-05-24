@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: node   node-debug.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			node&nbsp; <span class="subtitle">1.0pr</span>
+			node&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -555,7 +550,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.1.0</span>
+<span class="cm">version: 3.1.1</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;node-base&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -576,6 +571,7 @@
 <span class="cm"> *</span>
 <span class="cm"> * @class Node</span>
 <span class="cm"> * @constructor</span>
+<span class="cm"> * @param {DOMNode} node the DOM node to be mapped to the Node instance.</span>
 <span class="cm"> * @for Node</span>
 <span class="cm"> */</span>
 
@@ -603,6 +599,11 @@
 
         <span class="k">this</span><span class="p">[</span><span class="nx">UID</span><span class="p">]</span> <span class="o">=</span> <span class="nx">uid</span><span class="p">;</span>
 
+        <span class="cm">/**</span>
+<span class="cm">         * The underlying DOM node bound to the Y.Node instance</span>
+<span class="cm">         * @property _node</span>
+<span class="cm">         * @private</span>
+<span class="cm">         */</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">_node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">;</span>
         <span class="nx">Y_Node</span><span class="p">.</span><span class="nx">_instances</span><span class="p">[</span><span class="nx">uid</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
@@ -630,9 +631,23 @@
     <span class="p">};</span>
 <span class="c1">// end &quot;globals&quot;</span>
 
-<span class="nx">Y_Node</span><span class="p">.</span><span class="nx">NAME</span> <span class="o">=</span> <span class="s1">&#39;Node&#39;</span><span class="p">;</span>
+<span class="cm">/**</span>
+<span class="cm"> * The name of the component </span>
+<span class="cm"> * @static</span>
+<span class="cm"> * @property NAME</span>
+<span class="cm"> */</span>    
+<span class="nx">Y_Node</span><span class="p">.</span><span class="nx">NAME</span> <span class="o">=</span> <span class="s1">&#39;node&#39;</span><span class="p">;</span>
 
+<span class="cm">/*</span>
+<span class="cm"> * The pattern used to identify ARIA attributes </span>
+<span class="cm"> */</span>    
 <span class="nx">Y_Node</span><span class="p">.</span><span class="nx">re_aria</span> <span class="o">=</span> <span class="sr">/^(?:role$|aria-)/</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * List of events that route to DOM events </span>
+<span class="cm"> * @static</span>
+<span class="cm"> * @property DOM_EVENTS</span>
+<span class="cm"> */</span>    
 
 <span class="nx">Y_Node</span><span class="p">.</span><span class="nx">DOM_EVENTS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">abort</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -689,11 +704,18 @@
 <span class="c1">// be available through Node.on</span>
 <span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Y_Node</span><span class="p">.</span><span class="nx">DOM_EVENTS</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Env</span><span class="p">.</span><span class="nx">evt</span><span class="p">.</span><span class="nx">plugins</span><span class="p">);</span>
 
+<span class="cm">/**</span>
+<span class="cm"> * A list of Node instances that have been created </span>
+<span class="cm"> * @private</span>
+<span class="cm"> * @property _instances</span>
+<span class="cm"> * @static</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span>
 <span class="nx">Y_Node</span><span class="p">.</span><span class="nx">_instances</span> <span class="o">=</span> <span class="p">{};</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Retrieves the DOM node bound to a Node instance</span>
-<span class="cm"> * @method Node.getDOMNode</span>
+<span class="cm"> * @method getDOMNode</span>
 <span class="cm"> * @static</span>
 <span class="cm"> *</span>
 <span class="cm"> * @param {Y.Node || HTMLNode} node The Node instance or an HTMLNode</span>
@@ -707,6 +729,17 @@
     <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
 <span class="p">};</span>
  
+<span class="cm">/**</span>
+<span class="cm"> * Checks Node return values and wraps DOM Nodes as Y.Node instances</span>
+<span class="cm"> * and DOM Collections / Arrays as Y.NodeList instances.</span>
+<span class="cm"> * Other return values just pass thru.  If undefined is returned (e.g. no return)</span>
+<span class="cm"> * then the Node instance is returned for chainability.</span>
+<span class="cm"> * @method scrubVal</span>
+<span class="cm"> * @static</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param {any} node The Node instance or an HTMLNode</span>
+<span class="cm"> * @return {Y.Node | Y.NodeList | any} Depends on what is returned from the DOM node.</span>
+<span class="cm"> */</span>
 <span class="nx">Y_Node</span><span class="p">.</span><span class="nx">scrubVal</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span> <span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">node</span> <span class="o">&amp;&amp;</span> <span class="nx">val</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// only truthy values are risky</span>
         <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">val</span> <span class="o">===</span> <span class="s1">&#39;object&#39;</span> <span class="o">||</span> <span class="k">typeof</span> <span class="nx">val</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// safari nodeList === function</span>
@@ -724,6 +757,17 @@
     <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
 <span class="p">};</span>
 
+<span class="cm">/**</span>
+<span class="cm"> * Adds methods to the Y.Node prototype, routing through scrubVal.</span>
+<span class="cm"> * @method addMethod</span>
+<span class="cm"> * @static</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param {String} name The name of the method to add </span>
+<span class="cm"> * @param {Function} fn The function that becomes the method </span>
+<span class="cm"> * @param {Object} context An optional context to call the method with</span>
+<span class="cm"> * (defaults to the Node instance)</span>
+<span class="cm"> * @return {any} Depends on what is returned from the DOM node.</span>
+<span class="cm"> */</span>
 <span class="nx">Y_Node</span><span class="p">.</span><span class="nx">addMethod</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">fn</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">name</span> <span class="o">&amp;&amp;</span> <span class="nx">fn</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">fn</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">Y_Node</span><span class="p">.</span><span class="nx">prototype</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -747,6 +791,16 @@
     <span class="p">}</span>
 <span class="p">};</span>
 
+<span class="cm">/**</span>
+<span class="cm"> * Imports utility methods to be added as Y.Node methods.</span>
+<span class="cm"> * @method importMethod</span>
+<span class="cm"> * @static</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param {Object} host The object that contains the method to import. </span>
+<span class="cm"> * @param {String} name The name of the method to import</span>
+<span class="cm"> * @param {String} altName An optional name to use in place of the host name </span>
+<span class="cm"> * @param {Object} context An optional context to call the method with</span>
+<span class="cm"> */</span>
 <span class="nx">Y_Node</span><span class="p">.</span><span class="nx">importMethod</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">host</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">altName</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">name</span> <span class="o">===</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">altName</span> <span class="o">=</span> <span class="nx">altName</span> <span class="o">||</span> <span class="nx">name</span><span class="p">;</span>
@@ -760,11 +814,13 @@
 
 <span class="cm">/**</span>
 <span class="cm"> * Returns a single Node instance bound to the node or the</span>
-<span class="cm"> * first element matching the given selector.</span>
+<span class="cm"> * first element matching the given selector. Returns null if no match found.</span>
+<span class="cm"> * &lt;strong&gt;Note:&lt;/strong&gt; For chaining purposes you may want to</span>
+<span class="cm"> * use &lt;code&gt;Y.all&lt;/code&gt;, which returns a NodeList when no match is found.</span>
 <span class="cm"> * @method Y.one</span>
 <span class="cm"> * @static</span>
 <span class="cm"> * @param {String | HTMLElement} node a node or Selector </span>
-<span class="cm"> * @param {Y.Node || HTMLElement} doc an optional document to scan. Defaults to Y.config.doc. </span>
+<span class="cm"> * @return {Y.Node | null} a Node instance or null if no match found.</span>
 <span class="cm"> */</span>
 <span class="nx">Y_Node</span><span class="p">.</span><span class="nx">one</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
@@ -823,6 +879,12 @@
     <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">Y_DOM</span><span class="p">.</span><span class="nx">create</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">Y_DOM</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">));</span>
 <span class="p">};</span>
 
+<span class="cm">/**</span>
+<span class="cm"> * Static collection of configuration attributes for special handling</span>
+<span class="cm"> * @property ATTRS</span>
+<span class="cm"> * @static</span>
+<span class="cm"> * @type object</span>
+<span class="cm"> */</span>
 <span class="nx">Y_Node</span><span class="p">.</span><span class="nx">ATTRS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="cm">/**</span>
 <span class="cm">     * Allows for getting and setting the text of an element.</span>
@@ -892,20 +954,35 @@
             <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
         <span class="p">}</span>
     <span class="p">},</span>
-
+    
+    
+    <span class="cm">/*</span>
+<span class="cm">     * Flat data store for off-DOM usage </span>
+<span class="cm">     * @config data</span>
+<span class="cm">     * @type any</span>
+<span class="cm">     * @deprecated Use getData/setData</span>
+<span class="cm">     */</span>
     <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">getter</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_data</span><span class="p">;</span>
+        <span class="nx">getter</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_dataVal</span><span class="p">;</span> 
         <span class="p">},</span>
-
-        <span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">_data</span> <span class="o">=</span> <span class="nx">val</span><span class="p">;</span>
+        <span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span> 
+            <span class="k">this</span><span class="p">.</span><span class="nx">_dataVal</span> <span class="o">=</span> <span class="nx">val</span><span class="p">;</span>
             <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
-        <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
     <span class="p">}</span>
 <span class="p">};</span>
 
-<span class="c1">// call with instance context</span>
+<span class="cm">/**</span>
+<span class="cm"> * The default setter for DOM properties </span>
+<span class="cm"> * Called with instance context (this === the Node instance)</span>
+<span class="cm"> * @method DEFAULT_SETTER</span>
+<span class="cm"> * @static</span>
+<span class="cm"> * @param {String} name The attribute/property being set </span>
+<span class="cm"> * @param {any} val The value to be set </span>
+<span class="cm"> * @return {any} The value</span>
+<span class="cm"> */</span>
 <span class="nx">Y_Node</span><span class="p">.</span><span class="nx">DEFAULT_SETTER</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_stateProxy</span><span class="p">,</span>
         <span class="nx">strPath</span><span class="p">;</span>
@@ -922,7 +999,14 @@
     <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
 <span class="p">};</span>
 
-<span class="c1">// call with instance context</span>
+<span class="cm">/**</span>
+<span class="cm"> * The default getter for DOM properties </span>
+<span class="cm"> * Called with instance context (this === the Node instance)</span>
+<span class="cm"> * @method DEFAULT_GETTER</span>
+<span class="cm"> * @static</span>
+<span class="cm"> * @param {String} name The attribute/property to look up </span>
+<span class="cm"> * @return {any} The current value</span>
+<span class="cm"> */</span>
 <span class="nx">Y_Node</span><span class="p">.</span><span class="nx">DEFAULT_GETTER</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_stateProxy</span><span class="p">,</span>
         <span class="nx">val</span><span class="p">;</span>
@@ -939,6 +1023,11 @@
 <span class="nx">Y</span><span class="p">.</span><span class="nx">augment</span><span class="p">(</span><span class="nx">Y_Node</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">Target</span><span class="p">);</span>
 
 <span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Y_Node</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="p">{</span>
+<span class="cm">/**</span>
+<span class="cm"> * The method called when outputting Node instances as strings</span>
+<span class="cm"> * @method toString</span>
+<span class="cm"> * @return {String} A string representation of the Node instance </span>
+<span class="cm"> */</span>
     <span class="nx">toString</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
             <span class="nx">errorMsg</span> <span class="o">=</span> <span class="k">this</span><span class="p">[</span><span class="nx">UID</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;: not bound to a node&#39;</span><span class="p">,</span>
@@ -962,9 +1051,12 @@
     <span class="p">},</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Returns an attribute value on the Node instance</span>
+<span class="cm">     * Returns an attribute value on the Node instance.</span>
+<span class="cm">     * Unless pre-configured (via Node.ATTRS), get hands </span>
+<span class="cm">     * off to the underlying DOM node.  Only valid</span>
+<span class="cm">     * attributes/properties for the node will be set.</span>
 <span class="cm">     * @method get</span>
-<span class="cm">     * @param {String} attr The attribute </span>
+<span class="cm">     * @param {String} attr The attribute</span>
 <span class="cm">     * @return {any} The current value of the attribute</span>
 <span class="cm">     */</span>
     <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">attr</span><span class="p">)</span> <span class="p">{</span>
@@ -982,6 +1074,13 @@
         <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
     <span class="p">},</span>
 
+    <span class="cm">/**</span>
+<span class="cm">     * Helper method for get.  </span>
+<span class="cm">     * @method _get</span>
+<span class="cm">     * @private</span>
+<span class="cm">     * @param {String} attr The attribute</span>
+<span class="cm">     * @return {any} The current value of the attribute</span>
+<span class="cm">     */</span>
     <span class="nx">_get</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">attr</span><span class="p">)</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">attrConfig</span> <span class="o">=</span> <span class="nx">Y_Node</span><span class="p">.</span><span class="nx">ATTRS</span><span class="p">[</span><span class="nx">attr</span><span class="p">],</span>
             <span class="nx">val</span><span class="p">;</span>
@@ -999,6 +1098,10 @@
 
     <span class="cm">/**</span>
 <span class="cm">     * Sets an attribute on the Node instance.</span>
+<span class="cm">     * Unless pre-configured (via Node.ATTRS), set hands </span>
+<span class="cm">     * off to the underlying DOM node.  Only valid</span>
+<span class="cm">     * attributes/properties for the node will be set.</span>
+<span class="cm">     * To set custom attributes use setAttribute.</span>
 <span class="cm">     * @method set</span>
 <span class="cm">     * @param {String} attr The attribute to be set.  </span>
 <span class="cm">     * @param {any} val The value to set the attribute to.  </span>
@@ -1459,6 +1562,65 @@
         <span class="p">},</span>
 
 
+    <span class="cm">/**</span>
+<span class="cm">    * @method getData</span>
+<span class="cm">    * @description Retrieves arbitrary data stored on a Node instance.</span>
+<span class="cm">    * This is not stored with the DOM node.</span>
+<span class="cm">    * @param {string} name Optional name of the data field to retrieve.</span>
+<span class="cm">    * If no name is given, all data is returned.</span>
+<span class="cm">    * @return {any | Object} Whatever is stored at the given field,</span>
+<span class="cm">    * or an object hash of all fields.</span>
+<span class="cm">    */</span>
+    <span class="nx">getData</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">ret</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_data</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_data</span> <span class="o">||</span> <span class="p">{};</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">ret</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_data</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">ret</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_data</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span>
+        
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    * @method setData</span>
+<span class="cm">    * @description Stores arbitrary data on a Node instance.</span>
+<span class="cm">    * This is not stored with the DOM node.</span>
+<span class="cm">    * @param {string} name The name of the field to set. If no name</span>
+<span class="cm">    * is given, name is treated as the data and overrides any existing data.</span>
+<span class="cm">    * @param {any} val The value to be assigned to the field.</span>
+<span class="cm">    * @chainable</span>
+<span class="cm">    */</span>
+    <span class="nx">setData</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_data</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_data</span> <span class="o">||</span> <span class="p">{};</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_data</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">val</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_data</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+        <span class="p">}</span>
+       
+       <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    * @method clearData</span>
+<span class="cm">    * @description Clears stored data. </span>
+<span class="cm">    * @param {string} name The name of the field to clear. If no name</span>
+<span class="cm">    * is given, all data is cleared..</span>
+<span class="cm">    * @chainable</span>
+<span class="cm">    */</span>
+    <span class="nx">clearData</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">_data</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_data</span> <span class="o">=</span> <span class="p">{};</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">},</span>
+
     <span class="nx">hasMethod</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">method</span><span class="p">)</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_node</span><span class="p">;</span>
         <span class="k">return</span> <span class="p">(</span><span class="nx">node</span> <span class="o">&amp;&amp;</span> <span class="nx">node</span><span class="p">[</span><span class="nx">method</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">node</span><span class="p">[</span><span class="nx">method</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">));</span>
@@ -1504,6 +1666,11 @@
     <span class="p">}</span>
 
     <span class="nx">NodeList</span><span class="p">.</span><span class="nx">_instances</span><span class="p">[</span><span class="nx">Y</span><span class="p">.</span><span class="nx">stamp</span><span class="p">(</span><span class="k">this</span><span class="p">)]</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="cm">/**</span>
+<span class="cm">     * The underlying array of DOM nodes bound to the Y.NodeList instance</span>
+<span class="cm">     * @property _nodes</span>
+<span class="cm">     * @private</span>
+<span class="cm">     */</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">_nodes</span> <span class="o">=</span> <span class="nx">nodes</span><span class="p">;</span>
 <span class="p">};</span>
 
@@ -1558,7 +1725,7 @@
             <span class="k">return</span> <span class="nx">ret</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> <span class="nx">ret</span> <span class="o">:</span> <span class="k">this</span><span class="p">;</span>
         <span class="p">};</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;unable to add method: &#39;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">,</span> <span class="s1">&#39;warn&#39;</span><span class="p">,</span> <span class="s1">&#39;Node&#39;</span><span class="p">);</span>
+        <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;unable to add method: &#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; to NodeList&#39;</span><span class="p">,</span> <span class="s1">&#39;warn&#39;</span><span class="p">,</span> <span class="s1">&#39;node&#39;</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">};</span>
 
@@ -2112,7 +2279,7 @@
 <span class="cm"> * @param {string} name The attribute name </span>
 <span class="cm"> * @return {string} The attribute value </span>
 <span class="cm"> */</span>
-<span class="nx">Y</span><span class="p">.</span><span class="nx">NodeList</span><span class="p">.</span><span class="nx">importMethod</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;getAttribute&#39;</span><span class="p">,</span> <span class="s1">&#39;setAttribute&#39;</span><span class="p">]);</span>
+<span class="nx">Y</span><span class="p">.</span><span class="nx">NodeList</span><span class="p">.</span><span class="nx">importMethod</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;getAttribute&#39;</span><span class="p">,</span> <span class="s1">&#39;setAttribute&#39;</span><span class="p">,</span> <span class="s1">&#39;removeAttribute&#39;</span><span class="p">]);</span>
 <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">methods</span> <span class="o">=</span> <span class="p">[</span>
     <span class="cm">/**</span>
@@ -2241,7 +2408,7 @@
 <span class="p">};</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dom-base&#39;</span><span class="p">,</span> <span class="s1">&#39;selector-css2&#39;</span><span class="p">,</span> <span class="s1">&#39;event-base&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dom-base&#39;</span><span class="p">,</span> <span class="s1">&#39;selector-css2&#39;</span><span class="p">,</span> <span class="s1">&#39;event-base&#39;</span><span class="p">]});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;node-style&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -2363,7 +2530,7 @@
 <span class="p">});</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dom-style&#39;</span><span class="p">,</span> <span class="s1">&#39;node-base&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dom-style&#39;</span><span class="p">,</span> <span class="s1">&#39;node-base&#39;</span><span class="p">]});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;node-screen&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -2598,7 +2765,7 @@
 <span class="p">};</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dom-screen&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dom-screen&#39;</span><span class="p">]});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;node-pluginhost&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -2652,7 +2819,7 @@
 <span class="p">};</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;node-base&#39;</span><span class="p">,</span> <span class="s1">&#39;pluginhost&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;node-base&#39;</span><span class="p">,</span> <span class="s1">&#39;pluginhost&#39;</span><span class="p">]});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;node-event-delegate&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -2680,10 +2847,10 @@
 <span class="p">};</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;node-base&#39;</span><span class="p">,</span> <span class="s1">&#39;event-delegate&#39;</span><span class="p">,</span> <span class="s1">&#39;pluginhost&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;node-base&#39;</span><span class="p">,</span> <span class="s1">&#39;event-delegate&#39;</span><span class="p">,</span> <span class="s1">&#39;pluginhost&#39;</span><span class="p">]});</span>
 
 
-<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dom&#39;</span><span class="p">,</span> <span class="s1">&#39;event-base&#39;</span><span class="p">,</span> <span class="s1">&#39;event-delegate&#39;</span><span class="p">,</span> <span class="s1">&#39;pluginhost&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span> <span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;node-base&#39;</span><span class="p">,</span> <span class="s1">&#39;node-style&#39;</span><span class="p">,</span> <span class="s1">&#39;node-screen&#39;</span><span class="p">,</span> <span class="s1">&#39;node-pluginhost&#39;</span><span class="p">,</span> <span class="s1">&#39;node-event-delegate&#39;</span><span class="p">]});</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dom&#39;</span><span class="p">,</span> <span class="s1">&#39;event-base&#39;</span><span class="p">,</span> <span class="s1">&#39;event-delegate&#39;</span><span class="p">,</span> <span class="s1">&#39;pluginhost&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span> <span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;node-base&#39;</span><span class="p">,</span> <span class="s1">&#39;node-style&#39;</span><span class="p">,</span> <span class="s1">&#39;node-screen&#39;</span><span class="p">,</span> <span class="s1">&#39;node-pluginhost&#39;</span><span class="p">,</span> <span class="s1">&#39;node-event-delegate&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>
@@ -2701,7 +2868,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Node.html#method_addClass", "access": "", "host": "Node", "type": "method", "name": "addClass"}, {"url": "NodeList.html#method_addClass", "access": "", "host": "NodeList", "type": "method", "name": "addClass"}, {"url": "NodeList.html#method_after", "access": "", "host": "NodeList", "type": "method", "name": "after"}, {"url": "Node.html#method_all", "access": "", "host": "Node", "type": "method", "name": "all"}, {"url": "Node.html#method_ancestor", "access": "", "host": "Node", "type": "method", "name": "ancestor"}, {"url": "Node.html#method_append", "access": "", "host": "Node", "type": "method", "name": "append"}, {"url": "NodeList.html#method_append", "access": "", "host": "NodeList", "type": "method", "name": "append"}, {"url": "Node.html#method_appendChild", "access": "", "host": "Node", "type": "method", "name": "appendChild"}, {"url": "Node.html#method_blur", "access": "", "host": "Node", "type": "method", "name": "blur"}, {"url": "Node.html#config_children", "access": "", "host": "Node", "type": "config", "name": "children"}, {"url": "Node.html#method_cloneNode", "access": "", "host": "Node", "type": "method", "name": "cloneNode"}, {"url": "Node.html#method_compareTo", "access": "", "host": "Node", "type": "method", "name": "compareTo"}, {"url": "Node.html#method_contains", "access": "", "host": "Node", "type": "method", "name": "contains"}, {"url": "Node.html#method_create", "access": "", "host": "Node", "type": "method", "name": "create"}, {"url": "Node.html#method_delegate", "access": "", "host": "Node", "type": "method", "name": "delegate"}, {"url": "Node.html#method_destroy", "access": "", "host": "Node", "type": "method", "name": "destroy"}, {"url": "NodeList.html#method_detach", "access": "", "host": "NodeList", "type": "method", "name": "detach"}, {"url": "NodeList.html#method_detachAll", "access": "", "host": "NodeList", "type": "method", "name": "detachAll"}, {"url": "Node.html#config_docHeight", "access": "", "host": "Node", "type": "config", "name": "docHeight"}, {"url": "Node.html#config_docScrollX", "access": "", "host": "Node", "type": "config", "name": "docScrollX"}, {"url": "Node.html#config_docScrollY", "access": "", "host": "Node", "type": "config", "name": "docScrollY"}, {"url": "Node.html#method_each", "access": "", "host": "Node", "type": "method", "name": "each"}, {"url": "NodeList.html#method_each", "access": "", "host": "NodeList", "type": "method", "name": "each"}, {"url": "NodeList.html#method_even", "access": "", "host": "NodeList", "type": "method", "name": "even"}, {"url": "NodeList.html#method_filter", "access": "", "host": "NodeList", "type": "method", "name": "filter"}, {"url": "Node.html#method_focus", "access": "", "host": "Node", "type": "method", "name": "focus"}, {"url": "Node.html#method_get", "access": "", "host": "Node", "type": "method", "name": "get"}, {"url": "NodeList.html#method_get", "access": "", "host": "NodeList", "type": "method", "name": "get"}, {"url": "Node.html#method_getAttribute", "access": "", "host": "Node", "type": "method", "name": "getAttribute"}, {"url": "NodeList.html#method_getAttribute", "access": "", "host": "NodeList", "type": "method", "name": "getAttribute"}, {"url": "Node.html#method_getAttrs", "access": "", "host": "Node", "type": "method", "name": "getAttrs"}, {"url": "Node.html#method_getComputedStyle", "access": "", "host": "Node", "type": "method", "name": "getComputedStyle"}, {"url": "NodeList.html#method_getComputedStyle", "access": "", "host": "NodeList", "type": "method", "name": "getComputedStyle"}, {"url": "Node.html#method_getElementsByTagName", "access": "", "host": "Node", "type": "method", "name": "getElementsByTagName"}, {"url": "Node.html#method_getStyle", "access": "", "host": "Node", "type": "method", "name": "getStyle"}, {"url": "NodeList.html#method_getStyle", "access": "", "host": "NodeList", "type": "method", "name": "getStyle"}, {"url": "Node.html#method_getX", "access": "", "host": "Node", "type": "method", "name": "getX"}, {"url": "Node.html#method_getXY", "access": "", "host": "Node", "type": "method", "name": "getXY"}, {"url": "Node.html#method_getY", "access": "", "host": "Node", "type": "method", "name": "getY"}, {"url": "Node.html#method_hasAttribute", "access": "", "host": "Node", "type": "method", "name": "hasAttribute"}, {"url": "Node.html#method_hasChildNodes", "access": "", "host": "Node", "type": "method", "name": "hasChildNodes"}, {"url": "Node.html#method_hasClass", "access": "", "host": "Node", "type": "method", "name": "hasClass"}, {"url": "NodeList.html#method_hasClass", "access": "", "host": "NodeList", "type": "method", "name": "hasClass"}, {"url": "NodeList.html#method_indexOf", "access": "", "host": "NodeList", "type": "method", "name": "indexOf"}, {"url": "Node.html#method_inDoc", "access": "", "host": "Node", "type": "method", "name": "inDoc"}, {"url": "Node.html#method_inRegion", "access": "", "host": "Node", "type": "method", "name": "inRegion"}, {"url": "Node.html#method_insert", "access": "", "host": "Node", "type": "method", "name": "insert"}, {"url": "NodeList.html#method_insert", "access": "", "host": "NodeList", "type": "method", "name": "insert"}, {"url": "Node.html#method_insertBefore", "access": "", "host": "Node", "type": "method", "name": "insertBefore"}, {"url": "Node.html#method_intersect", "access": "", "host": "Node", "type": "method", "name": "intersect"}, {"url": "Node.html#method_invoke", "access": "", "host": "Node", "type": "method", "name": "invoke"}, {"url": "NodeList.html#method_isEmpty", "access": "", "host": "NodeList", "type": "method", "name": "isEmpty"}, {"url": "Node.html#method_item", "access": "", "host": "Node", "type": "method", "name": "item"}, {"url": "NodeList.html#method_item", "access": "", "host": "NodeList", "type": "method", "name": "item"}, {"url": "NodeList.html#method_modulus", "access": "", "host": "NodeList", "type": "method", "name": "modulus"}, {"url": "Node.html#method_next", "access": "", "host": "Node", "type": "method", "name": "next"}, {"url": "Node.html#method_Node.getDOMNode", "access": "", "host": "Node", "type": "method", "name": "Node.getDOMNode"}, {"url": "NodeList.html#method_NodeList.getDOMNodes", "access": "", "host": "NodeList", "type": "method", "name": "NodeList.getDOMNodes"}, {"url": "Node.html#method_Node.plug", "access": "", "host": "Node", "type": "method", "name": "Node.plug"}, {"url": "Node.html#method_Node.unplug", "access": "", "host": "Node", "type": "method", "name": "Node.unplug"}, {"url": "NodeList.html#method_odd", "access": "", "host": "NodeList", "type": "method", "name": "odd"}, {"url": "NodeList.html#method_on", "access": "", "host": "NodeList", "type": "method", "name": "on"}, {"url": "Node.html#method_one", "access": "", "host": "Node", "type": "method", "name": "one"}, {"url": "Node.html#method_prepend", "access": "", "host": "Node", "type": "method", "name": "prepend"}, {"url": "NodeList.html#method_prepend", "access": "", "host": "NodeList", "type": "method", "name": "prepend"}, {"url": "Node.html#method_previous", "access": "", "host": "Node", "type": "method", "name": "previous"}, {"url": "Node.html#method_purge", "access": "", "host": "Node", "type": "method", "name": "purge"}, {"url": "Node.html#method_query", "access": "", "host": "Node", "type": "method", "name": "query"}, {"url": "Node.html#method_queryAll", "access": "", "host": "Node", "type": "method", "name": "queryAll"}, {"url": "NodeList.html#method_refresh", "access": "", "host": "NodeList", "type": "method", "name": "refresh"}, {"url": "Node.html#config_region", "access": "", "host": "Node", "type": "config", "name": "region"}, {"url": "Node.html#method_remove", "access": "", "host": "Node", "type": "method", "name": "remove"}, {"url": "NodeList.html#method_remove", "access": "", "host": "NodeList", "type": "method", "name": "remove"}, {"url": "Node.html#method_removeAttribute", "access": "", "host": "Node", "type": "method", "name": "removeAttribute"}, {"url": "NodeList.html#method_removeAttribute", "access": "", "host": "NodeList", "type": "method", "name": "removeAttribute"}, {"url": "Node.html#method_removeChild", "access": "", "host": "Node", "type": "method", "name": "removeChild"}, {"url": "Node.html#method_removeClass", "access": "", "host": "Node", "type": "method", "name": "removeClass"}, {"url": "NodeList.html#method_removeClass", "access": "", "host": "NodeList", "type": "method", "name": "removeClass"}, {"url": "Node.html#method_replace", "access": "", "host": "Node", "type": "method", "name": "replace"}, {"url": "Node.html#method_replaceChild", "access": "", "host": "Node", "type": "method", "name": "replaceChild"}, {"url": "Node.html#method_replaceClass", "access": "", "host": "Node", "type": "method", "name": "replaceClass"}, {"url": "NodeList.html#method_replaceClass", "access": "", "host": "NodeList", "type": "method", "name": "replaceClass"}, {"url": "Node.html#method_reset", "access": "", "host": "Node", "type": "method", "name": "reset"}, {"url": "Node.html#method_scrollIntoView", "access": "", "host": "Node", "type": "method", "name": "scrollIntoView"}, {"url": "Node.html#method_select", "access": "", "host": "Node", "type": "method", "name": "select"}, {"url": "Node.html#method_set", "access": "", "host": "Node", "type": "method", "name": "set"}, {"url": "NodeList.html#method_set", "access": "", "host": "NodeList", "type": "method", "name": "set"}, {"url": "Node.html#method_setAttribute", "access": "", "host": "Node", "type": "method", "name": "setAttribute"}, {"url": "NodeList.html#method_setAttribute", "access": "", "host": "NodeList", "type": "method", "name": "setAttribute"}, {"url": "Node.html#method_setAttrs", "access": "", "host": "Node", "type": "method", "name": "setAttrs"}, {"url": "Node.html#method_setContent", "access": "", "host": "Node", "type": "method", "name": "setContent"}, {"url": "NodeList.html#method_setContent", "access": "", "host": "NodeList", "type": "method", "name": "setContent"}, {"url": "Node.html#method_setStyle", "access": "", "host": "Node", "type": "method", "name": "setStyle"}, {"url": "NodeList.html#method_setStyle", "access": "", "host": "NodeList", "type": "method", "name": "setStyle"}, {"url": "Node.html#method_setStyles", "access": "", "host": "Node", "type": "method", "name": "setStyles"}, {"url": "NodeList.html#method_setStyles", "access": "", "host": "NodeList", "type": "method", "name": "setStyles"}, {"url": "Node.html#method_setX", "access": "", "host": "Node", "type": "method", "name": "setX"}, {"url": "Node.html#method_setXY", "access": "", "host": "Node", "type": "method", "name": "setXY"}, {"url": "Node.html#method_setY", "access": "", "host": "Node", "type": "method", "name": "setY"}, {"url": "Node.html#method_siblings", "access": "", "host": "Node", "type": "method", "name": "siblings"}, {"url": "Node.html#method_size", "access": "", "host": "Node", "type": "method", "name": "size"}, {"url": "NodeList.html#method_size", "access": "", "host": "NodeList", "type": "method", "name": "size"}, {"url": "NodeList.html#method_some", "access": "", "host": "NodeList", "type": "method", "name": "some"}, {"url": "Node.html#method_submit", "access": "", "host": "Node", "type": "method", "name": "submit"}, {"url": "Node.html#method_swap", "access": "", "host": "Node", "type": "method", "name": "swap"}, {"url": "Node.html#method_swapXY", "access": "", "host": "Node", "type": "method", "name": "swapXY"}, {"url": "Node.html#method_test", "access": "", "host": "Node", "type": "method", "name": "test"}, {"url": "Node.html#config_text", "access": "", "host": "Node", "type": "config", "name": "text"}, {"url": "NodeList.html#method_toFrag", "access": "", "host": "NodeList", "type": "method", "name": "toFrag"}, {"url": "Node.html#method_toggleClass", "access": "", "host": "Node", "type": "method", "name": "toggleClass"}, {"url": "NodeList.html#method_toggleClass", "access": "", "host": "NodeList", "type": "method", "name": "toggleClass"}, {"url": "Node.html#config_viewportRegion", "access": "", "host": "Node", "type": "config", "name": "viewportRegion"}, {"url": "Node.html#config_winHeight", "access": "", "host": "Node", "type": "config", "name": "winHeight"}, {"url": "Node.html#config_winWidth", "access": "", "host": "Node", "type": "config", "name": "winWidth"}, {"url": "Node.html#method_Y.get", "access": "", "host": "Node", "type": "method", "name": "Y.get"}, {"url": "Node.html#method_Y.one", "access": "", "host": "Node", "type": "method", "name": "Y.one"}];
+    var ALL_YUI_PROPS = [{"url": "Node.html#method_addClass", "access": "", "host": "Node", "type": "method", "name": "addClass"}, {"url": "NodeList.html#method_addClass", "access": "", "host": "NodeList", "type": "method", "name": "addClass"}, {"url": "Node.html#method_addMethod", "access": "", "host": "Node", "type": "method", "name": "addMethod"}, {"url": "NodeList.html#method_after", "access": "", "host": "NodeList", "type": "method", "name": "after"}, {"url": "Node.html#method_all", "access": "", "host": "Node", "type": "method", "name": "all"}, {"url": "Node.html#method_ancestor", "access": "", "host": "Node", "type": "method", "name": "ancestor"}, {"url": "Node.html#method_append", "access": "", "host": "Node", "type": "method", "name": "append"}, {"url": "NodeList.html#method_append", "access": "", "host": "NodeList", "type": "method", "name": "append"}, {"url": "Node.html#method_appendChild", "access": "", "host": "Node", "type": "method", "name": "appendChild"}, {"url": "Node.html#property_ATTRS", "access": "", "host": "Node", "type": "property", "name": "ATTRS"}, {"url": "Node.html#method_blur", "access": "", "host": "Node", "type": "method", "name": "blur"}, {"url": "Node.html#config_children", "access": "", "host": "Node", "type": "config", "name": "children"}, {"url": "Node.html#method_clearData", "access": "", "host": "Node", "type": "method", "name": "clearData"}, {"url": "Node.html#method_cloneNode", "access": "", "host": "Node", "type": "method", "name": "cloneNode"}, {"url": "Node.html#method_compareTo", "access": "", "host": "Node", "type": "method", "name": "compareTo"}, {"url": "Node.html#method_contains", "access": "", "host": "Node", "type": "method", "name": "contains"}, {"url": "Node.html#method_create", "access": "", "host": "Node", "type": "method", "name": "create"}, {"url": "Node.html#method_DEFAULT_GETTER", "access": "", "host": "Node", "type": "method", "name": "DEFAULT_GETTER"}, {"url": "Node.html#method_DEFAULT_SETTER", "access": "", "host": "Node", "type": "method", "name": "DEFAULT_SETTER"}, {"url": "Node.html#method_delegate", "access": "", "host": "Node", "type": "method", "name": "delegate"}, {"url": "Node.html#method_destroy", "access": "", "host": "Node", "type": "method", "name": "destroy"}, {"url": "NodeList.html#method_detach", "access": "", "host": "NodeList", "type": "method", "name": "detach"}, {"url": "NodeList.html#method_detachAll", "access": "", "host": "NodeList", "type": "method", "name": "detachAll"}, {"url": "Node.html#config_docHeight", "access": "", "host": "Node", "type": "config", "name": "docHeight"}, {"url": "Node.html#config_docScrollX", "access": "", "host": "Node", "type": "config", "name": "docScrollX"}, {"url": "Node.html#config_docScrollY", "access": "", "host": "Node", "type": "config", "name": "docScrollY"}, {"url": "Node.html#property_DOM_EVENTS", "access": "", "host": "Node", "type": "property", "name": "DOM_EVENTS"}, {"url": "Node.html#method_each", "access": "", "host": "Node", "type": "method", "name": "each"}, {"url": "NodeList.html#method_each", "access": "", "host": "NodeList", "type": "method", "name": "each"}, {"url": "NodeList.html#method_even", "access": "", "host": "NodeList", "type": "method", "name": "even"}, {"url": "NodeList.html#method_filter", "access": "", "host": "NodeList", "type": "method", "name": "filter"}, {"url": "Node.html#method_focus", "access": "", "host": "Node", "type": "method", "name": "focus"}, {"url": "Node.html#method_get", "access": "", "host": "Node", "type": "method", "name": "get"}, {"url": "NodeList.html#method_get", "access": "", "host": "NodeList", "type": "method", "name": "get"}, {"url": "Node.html#method_getAttribute", "access": "", "host": "Node", "type": "method", "name": "getAttribute"}, {"url": "NodeList.html#method_getAttribute", "access": "", "host": "NodeList", "type": "method", "name": "getAttribute"}, {"url": "Node.html#method_getAttrs", "access": "", "host": "Node", "type": "method", "name": "getAttrs"}, {"url": "Node.html#method_getComputedStyle", "access": "", "host": "Node", "type": "method", "name": "getComputedStyle"}, {"url": "NodeList.html#method_getComputedStyle", "access": "", "host": "NodeList", "type": "method", "name": "getComputedStyle"}, {"url": "Node.html#method_getData", "access": "", "host": "Node", "type": "method", "name": "getData"}, {"url": "Node.html#method_getDOMNode", "access": "", "host": "Node", "type": "method", "name": "getDOMNode"}, {"url": "Node.html#method_getElementsByTagName", "access": "", "host": "Node", "type": "method", "name": "getElementsByTagName"}, {"url": "Node.html#method_getStyle", "access": "", "host": "Node", "type": "method", "name": "getStyle"}, {"url": "NodeList.html#method_getStyle", "access": "", "host": "NodeList", "type": "method", "name": "getStyle"}, {"url": "Node.html#method_getX", "access": "", "host": "Node", "type": "method", "name": "getX"}, {"url": "Node.html#method_getXY", "access": "", "host": "Node", "type": "method", "name": "getXY"}, {"url": "Node.html#method_getY", "access": "", "host": "Node", "type": "method", "name": "getY"}, {"url": "Node.html#method_hasAttribute", "access": "", "host": "Node", "type": "method", "name": "hasAttribute"}, {"url": "Node.html#method_hasChildNodes", "access": "", "host": "Node", "type": "method", "name": "hasChildNodes"}, {"url": "Node.html#method_hasClass", "access": "", "host": "Node", "type": "method", "name": "hasClass"}, {"url": "NodeList.html#method_hasClass", "access": "", "host": "NodeList", "type": "method", "name": "hasClass"}, {"url": "Node.html#method_importMethod", "access": "", "host": "Node", "type": "method", "name": "importMethod"}, {"url": "NodeList.html#method_indexOf", "access": "", "host": "NodeList", "type": "method", "name": "indexOf"}, {"url": "Node.html#method_inDoc", "access": "", "host": "Node", "type": "method", "name": "inDoc"}, {"url": "Node.html#method_inRegion", "access": "", "host": "Node", "type": "method", "name": "inRegion"}, {"url": "Node.html#method_insert", "access": "", "host": "Node", "type": "method", "name": "insert"}, {"url": "NodeList.html#method_insert", "access": "", "host": "NodeList", "type": "method", "name": "insert"}, {"url": "Node.html#method_insertBefore", "access": "", "host": "Node", "type": "method", "name": "insertBefore"}, {"url": "Node.html#method_intersect", "access": "", "host": "Node", "type": "method", "name": "intersect"}, {"url": "Node.html#method_invoke", "access": "", "host": "Node", "type": "method", "name": "invoke"}, {"url": "NodeList.html#method_isEmpty", "access": "", "host": "NodeList", "type": "method", "name": "isEmpty"}, {"url": "Node.html#method_item", "access": "", "host": "Node", "type": "method", "name": "item"}, {"url": "NodeList.html#method_item", "access": "", "host": "NodeList", "type": "method", "name": "item"}, {"url": "NodeList.html#method_modulus", "access": "", "host": "NodeList", "type": "method", "name": "modulus"}, {"url": "Node.html#property_NAME", "access": "", "host": "Node", "type": "property", "name": "NAME"}, {"url": "Node.html#method_next", "access": "", "host": "Node", "type": "method", "name": "next"}, {"url": "NodeList.html#method_NodeList.getDOMNodes", "access": "", "host": "NodeList", "type": "method", "name": "NodeList.getDOMNodes"}, {"url": "Node.html#method_Node.plug", "access": "", "host": "Node", "type": "method", "name": "Node.plug"}, {"url": "Node.html#method_Node.unplug", "access": "", "host": "Node", "type": "method", "name": "Node.unplug"}, {"url": "NodeList.html#method_odd", "access": "", "host": "NodeList", "type": "method", "name": "odd"}, {"url": "NodeList.html#method_on", "access": "", "host": "NodeList", "type": "method", "name": "on"}, {"url": "Node.html#method_one", "access": "", "host": "Node", "type": "method", "name": "one"}, {"url": "Node.html#method_prepend", "access": "", "host": "Node", "type": "method", "name": "prepend"}, {"url": "NodeList.html#method_prepend", "access": "", "host": "NodeList", "type": "method", "name": "prepend"}, {"url": "Node.html#method_previous", "access": "", "host": "Node", "type": "method", "name": "previous"}, {"url": "Node.html#method_purge", "access": "", "host": "Node", "type": "method", "name": "purge"}, {"url": "Node.html#method_query", "access": "", "host": "Node", "type": "method", "name": "query"}, {"url": "Node.html#method_queryAll", "access": "", "host": "Node", "type": "method", "name": "queryAll"}, {"url": "NodeList.html#method_refresh", "access": "", "host": "NodeList", "type": "method", "name": "refresh"}, {"url": "Node.html#config_region", "access": "", "host": "Node", "type": "config", "name": "region"}, {"url": "Node.html#method_remove", "access": "", "host": "Node", "type": "method", "name": "remove"}, {"url": "NodeList.html#method_remove", "access": "", "host": "NodeList", "type": "method", "name": "remove"}, {"url": "Node.html#method_removeAttribute", "access": "", "host": "Node", "type": "method", "name": "removeAttribute"}, {"url": "NodeList.html#method_removeAttribute", "access": "", "host": "NodeList", "type": "method", "name": "removeAttribute"}, {"url": "Node.html#method_removeChild", "access": "", "host": "Node", "type": "method", "name": "removeChild"}, {"url": "Node.html#method_removeClass", "access": "", "host": "Node", "type": "method", "name": "removeClass"}, {"url": "NodeList.html#method_removeClass", "access": "", "host": "NodeList", "type": "method", "name": "removeClass"}, {"url": "Node.html#method_replace", "access": "", "host": "Node", "type": "method", "name": "replace"}, {"url": "Node.html#method_replaceChild", "access": "", "host": "Node", "type": "method", "name": "replaceChild"}, {"url": "Node.html#method_replaceClass", "access": "", "host": "Node", "type": "method", "name": "replaceClass"}, {"url": "NodeList.html#method_replaceClass", "access": "", "host": "NodeList", "type": "method", "name": "replaceClass"}, {"url": "Node.html#method_reset", "access": "", "host": "Node", "type": "method", "name": "reset"}, {"url": "Node.html#method_scrollIntoView", "access": "", "host": "Node", "type": "method", "name": "scrollIntoView"}, {"url": "Node.html#method_scrubVal", "access": "", "host": "Node", "type": "method", "name": "scrubVal"}, {"url": "Node.html#method_select", "access": "", "host": "Node", "type": "method", "name": "select"}, {"url": "Node.html#method_set", "access": "", "host": "Node", "type": "method", "name": "set"}, {"url": "NodeList.html#method_set", "access": "", "host": "NodeList", "type": "method", "name": "set"}, {"url": "Node.html#method_setAttribute", "access": "", "host": "Node", "type": "method", "name": "setAttribute"}, {"url": "NodeList.html#method_setAttribute", "access": "", "host": "NodeList", "type": "method", "name": "setAttribute"}, {"url": "Node.html#method_setAttrs", "access": "", "host": "Node", "type": "method", "name": "setAttrs"}, {"url": "Node.html#method_setContent", "access": "", "host": "Node", "type": "method", "name": "setContent"}, {"url": "NodeList.html#method_setContent", "access": "", "host": "NodeList", "type": "method", "name": "setContent"}, {"url": "Node.html#method_setData", "access": "", "host": "Node", "type": "method", "name": "setData"}, {"url": "Node.html#method_setStyle", "access": "", "host": "Node", "type": "method", "name": "setStyle"}, {"url": "NodeList.html#method_setStyle", "access": "", "host": "NodeList", "type": "method", "name": "setStyle"}, {"url": "Node.html#method_setStyles", "access": "", "host": "Node", "type": "method", "name": "setStyles"}, {"url": "NodeList.html#method_setStyles", "access": "", "host": "NodeList", "type": "method", "name": "setStyles"}, {"url": "Node.html#method_setX", "access": "", "host": "Node", "type": "method", "name": "setX"}, {"url": "Node.html#method_setXY", "access": "", "host": "Node", "type": "method", "name": "setXY"}, {"url": "Node.html#method_setY", "access": "", "host": "Node", "type": "method", "name": "setY"}, {"url": "Node.html#method_siblings", "access": "", "host": "Node", "type": "method", "name": "siblings"}, {"url": "Node.html#method_size", "access": "", "host": "Node", "type": "method", "name": "size"}, {"url": "NodeList.html#method_size", "access": "", "host": "NodeList", "type": "method", "name": "size"}, {"url": "NodeList.html#method_some", "access": "", "host": "NodeList", "type": "method", "name": "some"}, {"url": "Node.html#method_submit", "access": "", "host": "Node", "type": "method", "name": "submit"}, {"url": "Node.html#method_swap", "access": "", "host": "Node", "type": "method", "name": "swap"}, {"url": "Node.html#method_swapXY", "access": "", "host": "Node", "type": "method", "name": "swapXY"}, {"url": "Node.html#method_test", "access": "", "host": "Node", "type": "method", "name": "test"}, {"url": "Node.html#config_text", "access": "", "host": "Node", "type": "config", "name": "text"}, {"url": "NodeList.html#method_toFrag", "access": "", "host": "NodeList", "type": "method", "name": "toFrag"}, {"url": "Node.html#method_toggleClass", "access": "", "host": "Node", "type": "method", "name": "toggleClass"}, {"url": "NodeList.html#method_toggleClass", "access": "", "host": "NodeList", "type": "method", "name": "toggleClass"}, {"url": "Node.html#method_toString", "access": "", "host": "Node", "type": "method", "name": "toString"}, {"url": "Node.html#config_viewportRegion", "access": "", "host": "Node", "type": "config", "name": "viewportRegion"}, {"url": "Node.html#config_winHeight", "access": "", "host": "Node", "type": "config", "name": "winHeight"}, {"url": "Node.html#config_winWidth", "access": "", "host": "Node", "type": "config", "name": "winWidth"}, {"url": "Node.html#method_Y.get", "access": "", "host": "Node", "type": "method", "name": "Y.get"}, {"url": "Node.html#method_Y.one", "access": "", "host": "Node", "type": "method", "name": "Y.one"}];
 </script>
 </body>
 </html>

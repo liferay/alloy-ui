@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: loader  Loader   (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			loader&nbsp; <span class="subtitle">1.0pr</span>
+			loader&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -724,8 +719,6 @@ While the loader can be instantiated by the end user, it normally is not.
 <ul>
 <li>base:
 The base dir</li>
-<li>secureBase:
-The secure base dir (not implemented)</li>
 <li>comboBase:
 The YUI combo service base dir. Ex: http://yui.yahooapis.com/combo?</li>
 <li>root:
@@ -1214,7 +1207,7 @@ only take effect if lower than the default.
 Browsers:
 IE: 2048
 Other A-Grade Browsers: Higher that what is typically supported 
-'Capable' mobile browsers: @TODO
+'capable' mobile browsers: @TODO
 Servers:
 Apache: 8192
 												</div>
@@ -1340,12 +1333,6 @@ defaultSkin: 'sam',
 // the default root directory for a skin. ex:
 // http://yui.yahooapis.com/2.3.0/build/assets/skins/sam/
 base: 'assets/skins/',
-// The name of the rollup css file for the skin
-path: 'skin.css',
-// The number of skinnable components requested that are
-// required before using the rollup file rather than the
-// individual component css files
-rollup: 3,
 // Any component-specific overrides can be specified here,
 // making it possible to load different skins for different
 // components.  It is possible to load more than one skin
@@ -1520,7 +1507,7 @@ the object passed in did not provide all required attributes</dd>
 														
 														
 														
-														boolean
+														
 															<strong property="yui:name">addModule</strong>
 														   (
 																
@@ -1576,9 +1563,8 @@ e.g., ["en-GB","zh-Hans-CN"]</dd>
 																<dl>
 																	<dt>Returns:
 																	<code property="yui:return">
-																			boolean
 																	</code></dt>
-																	<dd property="yui:returnInfo">true if the module was added, false if 
+																	<dd property="yui:returnInfo">the module definition or null if 
 the object passed in did not provide all required attributes</dd>
 																</dl>
 

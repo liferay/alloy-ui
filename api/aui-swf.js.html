@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-resize   aui-swf.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-resize&nbsp; <span class="subtitle">1.0pr</span>
+			aui-resize&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -589,16 +584,16 @@
 	<span class="nx">ATTR_EXPRESS_INSTALL_URL</span> <span class="o">=</span> <span class="s1">&#39;http://fpdownload.macromedia.com/pub/flashplayer/update/current/swf/autoUpdater.swf?&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="o">+</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">),</span>
 	<span class="nx">ATTR_TYPE</span> <span class="o">=</span> <span class="s1">&#39;application/x-shockwave-flash&#39;</span><span class="p">,</span>
 	<span class="nx">ATTR_CLSID</span> <span class="o">=</span> <span class="s1">&#39;clsid:d27cdb6e-ae6d-11cf-96b8-444553540000&#39;</span><span class="p">,</span>
-	<span class="nx">ATTR_EVENT_HANDLER</span> <span class="o">=</span> <span class="s1">&#39;AUI._SWF.eventHandler&#39;</span><span class="p">,</span>
+	<span class="nx">ATTR_EVENT_HANDLER</span> <span class="o">=</span> <span class="s1">&#39;YUI.AUI._SWF.eventHandler&#39;</span><span class="p">,</span>
 
 	<span class="nx">SF</span> <span class="o">=</span> <span class="s1">&#39;ShockwaveFlash&#39;</span><span class="p">,</span>
 	<span class="nx">VERSION</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
 
-	<span class="nx">SWF_INSTANCES</span> <span class="o">=</span> <span class="nx">AUI</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;_SWF.instances&#39;</span><span class="p">),</span>
+	<span class="nx">SWF_INSTANCES</span> <span class="o">=</span> <span class="nx">YUI</span><span class="p">.</span><span class="nx">AUI</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;_SWF.instances&#39;</span><span class="p">),</span>
 
 	<span class="nx">CSS_SWF</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">);</span>
 
-<span class="nx">AUI</span><span class="p">.</span><span class="nx">_SWF</span><span class="p">.</span><span class="nx">eventHandler</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">AUI</span><span class="p">.</span><span class="nx">_SWF</span><span class="p">.</span><span class="nx">eventHandler</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">SWF_INSTANCES</span><span class="p">[</span><span class="nx">id</span><span class="p">].</span><span class="nx">_eventHandler</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
 <span class="p">};</span>
 
@@ -668,159 +663,150 @@
 
 <span class="nx">UA</span><span class="p">.</span><span class="nx">flash</span> <span class="o">=</span> <span class="nx">VERSION</span><span class="p">;</span>
 
-<span class="kd">var</span> <span class="nx">SWF</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">SWF</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-<span class="p">};</span>
-
-<span class="nx">SWF</span><span class="p">.</span><span class="nx">NAME</span> <span class="o">=</span> <span class="nx">NAME</span><span class="p">;</span>
-
-<span class="nx">SWF</span><span class="p">.</span><span class="nx">ATTRS</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="nx">url</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
-	<span class="p">},</span>
-	<span class="nx">version</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="nx">ATTR_VERSION</span>
-	<span class="p">},</span>
-	<span class="nx">useExpressInstall</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
-	<span class="p">},</span>
-	<span class="nx">fixedAttributes</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="p">{}</span>
-	<span class="p">},</span>
-	<span class="nx">flashVars</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="p">{}</span>
-	<span class="p">},</span>
-	<span class="nx">render</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span>
-	<span class="p">}</span>
-<span class="p">};</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span>
-	<span class="nx">SWF</span><span class="p">,</span>
+<span class="kd">var</span> <span class="nx">SWF</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
 	<span class="p">{</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="nx">NAME</span><span class="p">,</span>
+
+		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">url</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
+			<span class="p">},</span>
+			<span class="nx">version</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="nx">VERSION</span>
+			<span class="p">},</span>
+			<span class="nx">useExpressInstall</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+			<span class="p">},</span>
+			<span class="nx">fixedAttributes</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="p">{}</span>
+			<span class="p">},</span>
+			<span class="nx">flashVars</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="p">{}</span>
+			<span class="p">},</span>
+			<span class="nx">render</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
 		<span class="nx">getFlashVersion</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 			<span class="k">return</span> <span class="nx">VERSION</span><span class="p">;</span>
 		<span class="p">},</span>
 
 		<span class="nx">isFlashVersionAtLeast</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ver</span><span class="p">)</span> <span class="p">{</span>
 			<span class="k">return</span> <span class="nx">VERSION</span> <span class="o">&gt;=</span> <span class="nx">ver</span><span class="p">;</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-<span class="p">);</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
-	<span class="nx">SWF</span><span class="p">,</span>
-	<span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">,</span>
-	<span class="p">{</span>
-		<span class="nx">CONTENT_TEMPLATE</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-
-		<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">properFlashVersion</span> <span class="o">=</span> <span class="nx">SWF</span><span class="p">.</span><span class="nx">isFlashVersionAtLeast</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;version&#39;</span><span class="p">));</span>
-			<span class="kd">var</span> <span class="nx">canExpressInstall</span> <span class="o">=</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">flash</span> <span class="o">&gt;=</span> <span class="mf">8.0</span><span class="p">);</span>
-
-			<span class="kd">var</span> <span class="nx">shouldExpressInstall</span> <span class="o">=</span> <span class="nx">canExpressInstall</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">properFlashVersion</span> <span class="o">&amp;&amp;</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;useExpressInstall&#39;</span><span class="p">);</span>
-
-			<span class="kd">var</span> <span class="nx">flashURL</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">);</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">shouldExpressInstall</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">flashURL</span> <span class="o">=</span> <span class="nx">ATTR_EXPRESS_INSTALL_URL</span><span class="p">;</span>
-			<span class="p">}</span>
-
-			<span class="kd">var</span> <span class="nx">swfId</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">guid</span><span class="p">();</span>
-
-			<span class="nx">SWF_INSTANCES</span><span class="p">[</span><span class="nx">swfId</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_swfId</span> <span class="o">=</span> <span class="nx">swfId</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">flashVars</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;flashVars&#39;</span><span class="p">);</span>
-
-			<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span>
-				<span class="nx">flashVars</span><span class="p">,</span>
-				<span class="p">{</span>
-					<span class="nx">YUISwfId</span><span class="o">:</span> <span class="nx">swfId</span><span class="p">,</span>
-					<span class="nx">YUIBridgeCallback</span><span class="o">:</span> <span class="nx">ATTR_EVENT_HANDLER</span>
-				<span class="p">}</span>
-			<span class="p">);</span>
-
-			<span class="kd">var</span> <span class="nx">flashVarString</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">QueryString</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">flashVars</span><span class="p">);</span>
-
-			<span class="kd">var</span> <span class="nx">tplObj</span> <span class="o">=</span> <span class="s1">&#39;&lt;object &#39;</span><span class="p">;</span>
-
-			<span class="k">if</span> <span class="p">((</span><span class="nx">properFlashVersion</span> <span class="o">||</span> <span class="nx">shouldExpressInstall</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">flashURL</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">tplObj</span> <span class="o">+=</span> <span class="s1">&#39;id=&quot;&#39;</span> <span class="o">+</span> <span class="nx">swfId</span> <span class="o">+</span> <span class="s1">&#39;&quot; &#39;</span><span class="p">;</span>
-
-				<span class="k">if</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span><span class="p">)</span> <span class="p">{</span>
-					<span class="nx">tplObj</span> <span class="o">+=</span> <span class="s1">&#39;classid=&quot;&#39;</span> <span class="o">+</span> <span class="nx">ATTR_CLSID</span> <span class="o">+</span> <span class="s1">&#39;&quot; &#39;</span><span class="p">;</span>
-				<span class="p">}</span>
-				<span class="k">else</span> <span class="p">{</span>
-					<span class="nx">tplObj</span> <span class="o">+=</span> <span class="s1">&#39;type=&quot;&#39;</span> <span class="o">+</span> <span class="nx">ATTR_TYPE</span> <span class="o">+</span> <span class="s1">&#39;&quot; data=&quot;&#39;</span> <span class="o">+</span> <span class="nx">flashURL</span> <span class="o">+</span> <span class="s1">&#39;&quot; &#39;</span><span class="p">;</span>
-				<span class="p">}</span>
-
-				<span class="nx">tplObj</span> <span class="o">+=</span> <span class="s1">&#39;height=&quot;100%&quot; width=&quot;100%&quot;&gt;&#39;</span><span class="p">;</span>
-
-				<span class="k">if</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span><span class="p">)</span> <span class="p">{</span>
-					<span class="nx">tplObj</span> <span class="o">+=</span> <span class="s1">&#39;&lt;param name=&quot;movie&quot; value=&quot;&#39;</span> <span class="o">+</span> <span class="nx">flashURL</span> <span class="o">+</span> <span class="s1">&#39;&quot;/&gt;&#39;</span><span class="p">;</span>
-				<span class="p">}</span>
-
-				<span class="kd">var</span> <span class="nx">fixedAttributes</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;fixedAttributes&#39;</span><span class="p">);</span>
-
-				<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">fixedAttributes</span><span class="p">)</span> <span class="p">{</span>
-					<span class="nx">tplObj</span> <span class="o">+=</span> <span class="s1">&#39;&lt;param name=&quot;&#39;</span> <span class="o">+</span> <span class="nx">i</span> <span class="o">+</span> <span class="s1">&#39;&quot; value=&quot;&#39;</span> <span class="o">+</span> <span class="nx">fixedAttributes</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;&quot; /&gt;&#39;</span><span class="p">;</span>
-				<span class="p">}</span>
-
-				<span class="k">if</span> <span class="p">(</span><span class="nx">flashVarString</span><span class="p">)</span> <span class="p">{</span>
-					<span class="nx">tplObj</span> <span class="o">+=</span> <span class="s1">&#39;&lt;param name=&quot;flashVars&quot; value=&quot;&#39;</span> <span class="o">+</span> <span class="nx">flashVarString</span> <span class="o">+</span> <span class="s1">&#39;&quot; /&gt;&#39;</span><span class="p">;</span>
-				<span class="p">}</span>
-
-				<span class="nx">tplObj</span> <span class="o">+=</span> <span class="s1">&#39;&lt;/object&gt;&#39;</span><span class="p">;</span>
-
-				<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">,</span> <span class="nx">tplObj</span><span class="p">);</span>
-			<span class="p">}</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_swf</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">swfId</span><span class="p">);</span>
 		<span class="p">},</span>
 
-		<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">CONTENT_TEMPLATE</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
-				<span class="s1">&#39;swfReady&#39;</span><span class="p">,</span>
-				<span class="p">{</span>
-					<span class="nx">fireOnce</span><span class="o">:</span> <span class="kc">true</span>
+			<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">properFlashVersion</span> <span class="o">=</span> <span class="nx">SWF</span><span class="p">.</span><span class="nx">isFlashVersionAtLeast</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;version&#39;</span><span class="p">));</span>
+				<span class="kd">var</span> <span class="nx">canExpressInstall</span> <span class="o">=</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">flash</span> <span class="o">&gt;=</span> <span class="mf">8.0</span><span class="p">);</span>
+
+				<span class="kd">var</span> <span class="nx">shouldExpressInstall</span> <span class="o">=</span> <span class="nx">canExpressInstall</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">properFlashVersion</span> <span class="o">&amp;&amp;</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;useExpressInstall&#39;</span><span class="p">);</span>
+
+				<span class="kd">var</span> <span class="nx">flashURL</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">shouldExpressInstall</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">flashURL</span> <span class="o">=</span> <span class="nx">ATTR_EXPRESS_INSTALL_URL</span><span class="p">;</span>
 				<span class="p">}</span>
-			<span class="p">);</span>
-		<span class="p">},</span>
 
-		<span class="nx">callSWF</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">swfId</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">guid</span><span class="p">();</span>
 
-			<span class="nx">args</span> <span class="o">=</span> <span class="nx">args</span> <span class="o">||</span> <span class="p">[];</span>
+				<span class="nx">SWF_INSTANCES</span><span class="p">[</span><span class="nx">swfId</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-			<span class="kd">var</span> <span class="nx">swf</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_swf</span><span class="p">.</span><span class="nx">getDOM</span><span class="p">();</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_swfId</span> <span class="o">=</span> <span class="nx">swfId</span><span class="p">;</span>
 
-			<span class="k">if</span> <span class="p">(</span><span class="nx">swf</span><span class="p">[</span><span class="nx">fn</span><span class="p">])</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="nx">swf</span><span class="p">[</span><span class="nx">fn</span><span class="p">].</span><span class="nx">apply</span><span class="p">(</span><span class="nx">swf</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
-			<span class="p">}</span>
+				<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">flashVars</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;flashVars&#39;</span><span class="p">);</span>
 
-			<span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
-		<span class="p">},</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span>
+					<span class="nx">flashVars</span><span class="p">,</span>
+					<span class="p">{</span>
+						<span class="nx">YUISwfId</span><span class="o">:</span> <span class="nx">swfId</span><span class="p">,</span>
+						<span class="nx">YUIBridgeCallback</span><span class="o">:</span> <span class="nx">ATTR_EVENT_HANDLER</span>
+					<span class="p">}</span>
+				<span class="p">);</span>
 
-		<span class="nx">toString</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">flashVarString</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">QueryString</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">flashVars</span><span class="p">);</span>
 
-			<span class="k">return</span> <span class="s1">&#39;SWF&#39;</span> <span class="o">+</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_swfId</span><span class="p">;</span>
-		<span class="p">},</span>
+				<span class="kd">var</span> <span class="nx">tplObj</span> <span class="o">=</span> <span class="s1">&#39;&lt;object &#39;</span><span class="p">;</span>
 
-		<span class="nx">_eventHandler</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="k">if</span> <span class="p">((</span><span class="nx">properFlashVersion</span> <span class="o">||</span> <span class="nx">shouldExpressInstall</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">flashURL</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">tplObj</span> <span class="o">+=</span> <span class="s1">&#39;id=&quot;&#39;</span> <span class="o">+</span> <span class="nx">swfId</span> <span class="o">+</span> <span class="s1">&#39;&quot; &#39;</span><span class="p">;</span>
 
-			<span class="kd">var</span> <span class="nx">eventType</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">type</span><span class="p">;</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">tplObj</span> <span class="o">+=</span> <span class="s1">&#39;classid=&quot;&#39;</span> <span class="o">+</span> <span class="nx">ATTR_CLSID</span> <span class="o">+</span> <span class="s1">&#39;&quot; &#39;</span><span class="p">;</span>
+					<span class="p">}</span>
+					<span class="k">else</span> <span class="p">{</span>
+						<span class="nx">tplObj</span> <span class="o">+=</span> <span class="s1">&#39;type=&quot;&#39;</span> <span class="o">+</span> <span class="nx">ATTR_TYPE</span> <span class="o">+</span> <span class="s1">&#39;&quot; data=&quot;&#39;</span> <span class="o">+</span> <span class="nx">flashURL</span> <span class="o">+</span> <span class="s1">&#39;&quot; &#39;</span><span class="p">;</span>
+					<span class="p">}</span>
 
-			<span class="k">if</span> <span class="p">(</span><span class="nx">eventType</span> <span class="o">!=</span> <span class="s1">&#39;log&#39;</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">eventType</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
+					<span class="nx">tplObj</span> <span class="o">+=</span> <span class="s1">&#39;height=&quot;100%&quot; width=&quot;100%&quot;&gt;&#39;</span><span class="p">;</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">tplObj</span> <span class="o">+=</span> <span class="s1">&#39;&lt;param name=&quot;movie&quot; value=&quot;&#39;</span> <span class="o">+</span> <span class="nx">flashURL</span> <span class="o">+</span> <span class="s1">&#39;&quot;/&gt;&#39;</span><span class="p">;</span>
+					<span class="p">}</span>
+
+					<span class="kd">var</span> <span class="nx">fixedAttributes</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;fixedAttributes&#39;</span><span class="p">);</span>
+
+					<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">fixedAttributes</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">tplObj</span> <span class="o">+=</span> <span class="s1">&#39;&lt;param name=&quot;&#39;</span> <span class="o">+</span> <span class="nx">i</span> <span class="o">+</span> <span class="s1">&#39;&quot; value=&quot;&#39;</span> <span class="o">+</span> <span class="nx">fixedAttributes</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;&quot; /&gt;&#39;</span><span class="p">;</span>
+					<span class="p">}</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">flashVarString</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">tplObj</span> <span class="o">+=</span> <span class="s1">&#39;&lt;param name=&quot;flashVars&quot; value=&quot;&#39;</span> <span class="o">+</span> <span class="nx">flashVarString</span> <span class="o">+</span> <span class="s1">&#39;&quot; /&gt;&#39;</span><span class="p">;</span>
+					<span class="p">}</span>
+
+					<span class="nx">tplObj</span> <span class="o">+=</span> <span class="s1">&#39;&lt;/object&gt;&#39;</span><span class="p">;</span>
+
+					<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">,</span> <span class="nx">tplObj</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_swf</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">swfId</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
+					<span class="s1">&#39;swfReady&#39;</span><span class="p">,</span>
+					<span class="p">{</span>
+						<span class="nx">fireOnce</span><span class="o">:</span> <span class="kc">true</span>
+					<span class="p">}</span>
+				<span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">callSWF</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">args</span> <span class="o">=</span> <span class="nx">args</span> <span class="o">||</span> <span class="p">[];</span>
+
+				<span class="kd">var</span> <span class="nx">swf</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_swf</span><span class="p">.</span><span class="nx">getDOM</span><span class="p">();</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">swf</span><span class="p">[</span><span class="nx">fn</span><span class="p">])</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">swf</span><span class="p">[</span><span class="nx">fn</span><span class="p">].</span><span class="nx">apply</span><span class="p">(</span><span class="nx">swf</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="nx">toString</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">return</span> <span class="s1">&#39;SWF&#39;</span> <span class="o">+</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_swfId</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="nx">_eventHandler</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">eventType</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">type</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">eventType</span> <span class="o">!=</span> <span class="s1">&#39;log&#39;</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">eventType</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
+				<span class="p">}</span>
 			<span class="p">}</span>
 		<span class="p">}</span>
 	<span class="p">}</span>

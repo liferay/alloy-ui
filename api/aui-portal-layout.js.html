@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-portal-layout   aui-portal-layout.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-portal-layout&nbsp; <span class="subtitle">1.0pr</span>
+			aui-portal-layout&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -529,6 +524,15 @@
 
 
 			                                <li class="selected"><a href="aui-portal-layout.js.html" title="aui-portal-layout.js">aui-portal-layout.js</a></li>
+
+
+			                                <li class=""><a href="aui-progressbar-debug.js.html" title="aui-progressbar-debug.js">aui-progressbar-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-progressbar-min.js.html" title="aui-progressbar-min.js">aui-progressbar-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-progressbar.js.html" title="aui-progressbar.js">aui-progressbar.js</a></li>
 			                        </ul>
 								</div>
 							</div>
@@ -662,590 +666,590 @@
 <span class="cm"> * @constructor</span>
 <span class="cm"> * @extends Base</span>
 <span class="cm"> */</span>
-<span class="kd">function</span> <span class="nx">PortalLayout</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">PortalLayout</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">PortalLayout</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+	<span class="p">{</span>
+		<span class="cm">/**</span>
+<span class="cm">		 * Static property provides a string to identify the class.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property PortalLayout.NAME</span>
+<span class="cm">		 * @type String</span>
+<span class="cm">		 * @static</span>
+<span class="cm">		 */</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="nx">PORTAL_LAYOUT</span><span class="p">,</span>
 
-<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">PortalLayout</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property provides a string to identify the class.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property PortalLayout.NAME</span>
-<span class="cm">	 * @type String</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">NAME</span><span class="o">:</span> <span class="nx">PORTAL_LAYOUT</span><span class="p">,</span>
+		<span class="cm">/**</span>
+<span class="cm">		 * Static property used to define the default attribute</span>
+<span class="cm">		 * configuration for the PortalLayout.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property PortalLayout.ATTRS</span>
+<span class="cm">		 * @type Object</span>
+<span class="cm">		 * @static</span>
+<span class="cm">		 */</span>
+		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">dd</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property used to define the default attribute</span>
-<span class="cm">	 * configuration for the PortalLayout.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property PortalLayout.ATTRS</span>
-<span class="cm">	 * @type Object</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">dd</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
-					<span class="p">{</span>
-						<span class="nx">bubbleTargets</span><span class="o">:</span> <span class="nx">instance</span><span class="p">,</span>
-						<span class="nx">groups</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">GROUPS</span><span class="p">),</span>
-						<span class="nx">startCentered</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-						<span class="nx">target</span><span class="o">:</span> <span class="kc">true</span>
-					<span class="p">},</span>
-					<span class="nx">val</span>
-				<span class="p">);</span>
-			<span class="p">},</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isObject</span>
-		<span class="p">},</span>
-
-		<span class="nx">proxyNode</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="nx">isString</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="o">?</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="o">:</span> <span class="nx">val</span><span class="p">;</span>
-			<span class="p">}</span>
-		<span class="p">},</span>
-
-		<span class="nx">dragNodes</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-			<span class="nx">setter</span><span class="o">:</span> <span class="nx">nodeListSetter</span>
-		<span class="p">},</span>
-
-		<span class="nx">dropContainer</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dropNode</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="nx">dropNode</span><span class="p">;</span>
-			<span class="p">},</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isFunction</span>
-		<span class="p">},</span>
-
-		<span class="nx">dropNodes</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-			<span class="nx">setter</span><span class="o">:</span> <span class="nx">nodeListSetter</span>
-		<span class="p">},</span>
-
-		<span class="nx">groups</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="p">[</span><span class="nx">PORTAL_LAYOUT</span><span class="p">]</span>
-		<span class="p">},</span>
-
-		<span class="nx">lazyStart</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
-		<span class="p">},</span>
-
-		<span class="nx">placeholder</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="nx">TPL_PLACEHOLDER</span><span class="p">,</span>
-			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">isString</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="o">?</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="o">:</span> <span class="nx">val</span><span class="p">;</span>
-
-				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">placeholder</span><span class="p">.</span><span class="nx">inDoc</span><span class="p">())</span> <span class="p">{</span>
-					<span class="nx">A</span><span class="p">.</span><span class="nx">getBody</span><span class="p">().</span><span class="nx">append</span><span class="p">(</span>
-						<span class="nx">placeholder</span><span class="p">.</span><span class="nx">hide</span><span class="p">()</span>
-					<span class="p">);</span>
-				<span class="p">}</span>
-
-				<span class="nx">PLACEHOLDER_MARGIN_BOTTOM</span> <span class="o">=</span> <span class="nx">getNumStyle</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">,</span> <span class="nx">MARGIN_BOTTOM</span><span class="p">);</span>
-				<span class="nx">PLACEHOLDER_MARGIN_TOP</span> <span class="o">=</span> <span class="nx">getNumStyle</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">,</span> <span class="nx">MARGIN_TOP</span><span class="p">);</span>
-
-				<span class="nx">placeholder</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_DRAG_TARGET_INDICATOR</span><span class="p">);</span>
-
-				<span class="nx">PLACEHOLDER_TARGET_MARGIN_BOTTOM</span> <span class="o">=</span> <span class="nx">getNumStyle</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">,</span> <span class="nx">MARGIN_BOTTOM</span><span class="p">);</span>
-				<span class="nx">PLACEHOLDER_TARGET_MARGIN_TOP</span> <span class="o">=</span> <span class="nx">getNumStyle</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">,</span> <span class="nx">MARGIN_TOP</span><span class="p">);</span>
-
-				<span class="k">return</span> <span class="nx">placeholder</span><span class="p">;</span>
-			<span class="p">}</span>
-		<span class="p">},</span>
-
-		<span class="nx">proxy</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-				<span class="kd">var</span> <span class="nx">defaults</span> <span class="o">=</span> <span class="p">{</span>
-					<span class="nx">moveOnEnd</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-					<span class="nx">positionProxy</span><span class="o">:</span> <span class="kc">false</span>
-				<span class="p">};</span>
-
-				<span class="c1">// if proxyNode is set remove the border from the default proxy</span>
-				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PROXY_NODE</span><span class="p">))</span> <span class="p">{</span>
-					<span class="nx">defaults</span><span class="p">.</span><span class="nx">borderStyle</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-				<span class="p">}</span>
-
-				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span><span class="nx">defaults</span><span class="p">,</span> <span class="nx">val</span> <span class="o">||</span> <span class="p">{});</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-<span class="p">});</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">PortalLayout</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Construction logic executed during PortalLayout instantiation. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method initializer</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="c1">// publishing placeholderAlign event</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="nx">EV_PLACEHOLDER_ALIGN</span><span class="p">,</span> <span class="p">{</span>
-            <span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defPlaceholderAlign</span><span class="p">,</span>
-            <span class="nx">queuable</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-            <span class="nx">emitFacade</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-            <span class="nx">bubbles</span><span class="o">:</span> <span class="kc">true</span>
-        <span class="p">});</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindDDEvents</span><span class="p">();</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindDropZones</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="cm">/*</span>
-<span class="cm">	* Methods</span>
-<span class="cm">	*/</span>
-	<span class="nx">addDragTarget</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">DDM</span><span class="p">.</span><span class="nx">getDrag</span><span class="p">(</span><span class="nx">node</span><span class="p">))</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">dd</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DD</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">proxy</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PROXY</span><span class="p">);</span>
-
-			<span class="c1">// updating node reference on the default dd config</span>
-			<span class="nx">dd</span><span class="p">.</span><span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">;</span>
-
-			<span class="c1">// creating DD.Drag instance and plugging the DDProxy</span>
-			<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DD</span><span class="p">.</span><span class="nx">Drag</span><span class="p">(</span><span class="nx">dd</span><span class="p">).</span><span class="nx">plug</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDProxy</span><span class="p">,</span> <span class="nx">proxy</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">addDropNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">node</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">DDM</span><span class="p">.</span><span class="nx">getDrop</span><span class="p">(</span><span class="nx">node</span><span class="p">))</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">addDropTarget</span><span class="p">(</span>
-				<span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DD</span><span class="p">.</span><span class="nx">Drop</span><span class="p">(</span>
-					<span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
+					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
 						<span class="p">{</span>
 							<span class="nx">bubbleTargets</span><span class="o">:</span> <span class="nx">instance</span><span class="p">,</span>
-							<span class="nx">node</span><span class="o">:</span> <span class="nx">node</span>
+							<span class="nx">groups</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">GROUPS</span><span class="p">),</span>
+							<span class="nx">startCentered</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+							<span class="nx">target</span><span class="o">:</span> <span class="kc">true</span>
 						<span class="p">},</span>
-						<span class="nx">config</span>
-					<span class="p">)</span>
-				<span class="p">)</span>
-			<span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
+						<span class="nx">val</span>
+					<span class="p">);</span>
+				<span class="p">},</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isObject</span>
+			<span class="p">},</span>
 
-	<span class="nx">addDropTarget</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">drop</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="nx">proxyNode</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">isString</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="o">?</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="o">:</span> <span class="nx">val</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
 
-		<span class="nx">drop</span><span class="p">.</span><span class="nx">addToGroup</span><span class="p">(</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">GROUPS</span><span class="p">)</span>
-		<span class="p">);</span>
-	<span class="p">},</span>
+			<span class="nx">dragNodes</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="nx">nodeListSetter</span>
+			<span class="p">},</span>
 
-	<span class="nx">alignPlaceholder</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">region</span><span class="p">,</span> <span class="nx">isTarget</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLACEHOLDER</span><span class="p">);</span>
+			<span class="nx">dropContainer</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dropNode</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">dropNode</span><span class="p">;</span>
+				<span class="p">},</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isFunction</span>
+			<span class="p">},</span>
 
-		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">lazyEvents</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">placeholder</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
-		<span class="p">}</span>
+			<span class="nx">dropNodes</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="nx">nodeListSetter</span>
+			<span class="p">},</span>
 
-		<span class="c1">// sync placeholder size</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncPlaceholderSize</span><span class="p">();</span>
+			<span class="nx">groups</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="p">[</span><span class="nx">PORTAL_LAYOUT</span><span class="p">]</span>
+			<span class="p">},</span>
 
-		<span class="nx">placeholder</span><span class="p">.</span><span class="nx">setXY</span><span class="p">(</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">getPlaceholderXY</span><span class="p">(</span><span class="nx">region</span><span class="p">,</span> <span class="nx">isTarget</span><span class="p">)</span>
-		<span class="p">);</span>
-	<span class="p">},</span>
+			<span class="nx">lazyStart</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+			<span class="p">},</span>
 
-	<span class="nx">calculateDirections</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">drag</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">lastY</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastY</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">lastX</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastX</span><span class="p">;</span>
+			<span class="nx">placeholder</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="nx">TPL_PLACEHOLDER</span><span class="p">,</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">isString</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="o">?</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="o">:</span> <span class="nx">val</span><span class="p">;</span>
 
-		<span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">lastXY</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-		<span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">lastXY</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+					<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">placeholder</span><span class="p">.</span><span class="nx">inDoc</span><span class="p">())</span> <span class="p">{</span>
+						<span class="nx">A</span><span class="p">.</span><span class="nx">getBody</span><span class="p">().</span><span class="nx">append</span><span class="p">(</span>
+							<span class="nx">placeholder</span><span class="p">.</span><span class="nx">hide</span><span class="p">()</span>
+						<span class="p">);</span>
+					<span class="p">}</span>
 
-		<span class="c1">// if the x change</span>
-		<span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">!=</span> <span class="nx">lastX</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// set the drag direction</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">XDirection</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">lastX</span><span class="p">)</span> <span class="o">?</span> <span class="nx">LEFT</span> <span class="o">:</span> <span class="nx">RIGHT</span><span class="p">;</span>
-		<span class="p">}</span>
+					<span class="nx">PLACEHOLDER_MARGIN_BOTTOM</span> <span class="o">=</span> <span class="nx">getNumStyle</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">,</span> <span class="nx">MARGIN_BOTTOM</span><span class="p">);</span>
+					<span class="nx">PLACEHOLDER_MARGIN_TOP</span> <span class="o">=</span> <span class="nx">getNumStyle</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">,</span> <span class="nx">MARGIN_TOP</span><span class="p">);</span>
 
-		<span class="c1">// if the y change</span>
-		<span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">!=</span> <span class="nx">lastY</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// set the drag direction</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">YDirection</span> <span class="o">=</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="nx">lastY</span><span class="p">)</span> <span class="o">?</span> <span class="nx">UP</span> <span class="o">:</span> <span class="nx">DOWN</span><span class="p">;</span>
-		<span class="p">}</span>
+					<span class="nx">placeholder</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_DRAG_TARGET_INDICATOR</span><span class="p">);</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">lastX</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">lastY</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
-	<span class="p">},</span>
+					<span class="nx">PLACEHOLDER_TARGET_MARGIN_BOTTOM</span> <span class="o">=</span> <span class="nx">getNumStyle</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">,</span> <span class="nx">MARGIN_BOTTOM</span><span class="p">);</span>
+					<span class="nx">PLACEHOLDER_TARGET_MARGIN_TOP</span> <span class="o">=</span> <span class="nx">getNumStyle</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">,</span> <span class="nx">MARGIN_TOP</span><span class="p">);</span>
 
-	<span class="nx">calculateQuadrant</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">drag</span><span class="p">,</span> <span class="nx">drop</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">quadrant</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="nx">drop</span><span class="p">.</span><span class="nx">region</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">mouseXY</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">mouseXY</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">mouseX</span> <span class="o">=</span> <span class="nx">mouseXY</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-		<span class="kd">var</span> <span class="nx">mouseY</span> <span class="o">=</span> <span class="nx">mouseXY</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+					<span class="k">return</span> <span class="nx">placeholder</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
 
-		<span class="kd">var</span> <span class="nx">top</span> <span class="o">=</span> <span class="nx">region</span><span class="p">.</span><span class="nx">top</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">left</span> <span class="o">=</span> <span class="nx">region</span><span class="p">.</span><span class="nx">left</span><span class="p">;</span>
+			<span class="nx">proxy</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-		<span class="c1">// (region.bottom - top) finds the height of the region</span>
-		<span class="kd">var</span> <span class="nx">vCenter</span> <span class="o">=</span> <span class="nx">top</span> <span class="o">+</span> <span class="p">(</span><span class="nx">region</span><span class="p">.</span><span class="nx">bottom</span> <span class="o">-</span> <span class="nx">top</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-		<span class="c1">// (region.right - left) finds the width of the region</span>
-		<span class="kd">var</span> <span class="nx">hCenter</span> <span class="o">=</span> <span class="nx">left</span> <span class="o">+</span> <span class="p">(</span><span class="nx">region</span><span class="p">.</span><span class="nx">right</span> <span class="o">-</span> <span class="nx">left</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+					<span class="kd">var</span> <span class="nx">defaults</span> <span class="o">=</span> <span class="p">{</span>
+						<span class="nx">moveOnEnd</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+						<span class="nx">positionProxy</span><span class="o">:</span> <span class="kc">false</span>
+					<span class="p">};</span>
 
-		<span class="k">if</span> <span class="p">(</span><span class="nx">mouseY</span> <span class="o">&lt;</span> <span class="nx">vCenter</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">quadrant</span> <span class="o">=</span> <span class="p">(</span><span class="nx">mouseX</span> <span class="o">&gt;</span> <span class="nx">hCenter</span><span class="p">)</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">2</span><span class="p">;</span>
-		<span class="p">}</span>
-		<span class="k">else</span> <span class="p">{</span>
-			<span class="nx">quadrant</span> <span class="o">=</span> <span class="p">(</span><span class="nx">mouseX</span> <span class="o">&lt;</span> <span class="nx">hCenter</span><span class="p">)</span> <span class="o">?</span> <span class="mi">3</span> <span class="o">:</span> <span class="mi">4</span><span class="p">;</span>
-		<span class="p">}</span>
+					<span class="c1">// if proxyNode is set remove the border from the default proxy</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PROXY_NODE</span><span class="p">))</span> <span class="p">{</span>
+						<span class="nx">defaults</span><span class="p">.</span><span class="nx">borderStyle</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+					<span class="p">}</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">quadrant</span> <span class="o">=</span> <span class="nx">quadrant</span><span class="p">;</span>
-
-		<span class="k">return</span> <span class="nx">quadrant</span><span class="p">;</span>
-	<span class="p">},</span>
-
-	<span class="nx">getPlaceholderXY</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">region</span><span class="p">,</span> <span class="nx">isTarget</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLACEHOLDER</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">marginBottom</span> <span class="o">=</span> <span class="nx">PLACEHOLDER_MARGIN_BOTTOM</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">marginTop</span> <span class="o">=</span> <span class="nx">PLACEHOLDER_MARGIN_TOP</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">isTarget</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// update the margin values in case of the target placeholder has a different margin</span>
-			<span class="nx">marginBottom</span> <span class="o">=</span> <span class="nx">PLACEHOLDER_TARGET_MARGIN_BOTTOM</span><span class="p">;</span>
-			<span class="nx">marginTop</span> <span class="o">=</span> <span class="nx">PLACEHOLDER_TARGET_MARGIN_TOP</span><span class="p">;</span>
-		<span class="p">}</span>
-
-		<span class="c1">// update the className of the placeholder when interact with target (drag/drop) elements</span>
-		<span class="nx">placeholder</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">CSS_DRAG_TARGET_INDICATOR</span><span class="p">,</span> <span class="nx">isTarget</span><span class="p">);</span>
-
-		<span class="kd">var</span> <span class="nx">regionBottom</span> <span class="o">=</span> <span class="nx">ceil</span><span class="p">(</span><span class="nx">region</span><span class="p">.</span><span class="nx">bottom</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">regionLeft</span> <span class="o">=</span> <span class="nx">ceil</span><span class="p">(</span><span class="nx">region</span><span class="p">.</span><span class="nx">left</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">regionTop</span> <span class="o">=</span> <span class="nx">ceil</span><span class="p">(</span><span class="nx">region</span><span class="p">.</span><span class="nx">top</span><span class="p">);</span>
-
-		<span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">regionLeft</span><span class="p">;</span>
-
-		<span class="c1">// 1 and 2 quadrants are the top quadrants, so align to the region.top when quadrant &lt; 3</span>
-		<span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">quadrant</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">?</span>
-					<span class="p">(</span><span class="nx">regionTop</span> <span class="o">-</span> <span class="p">(</span><span class="nx">placeholder</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_HEIGHT</span><span class="p">)</span> <span class="o">+</span> <span class="nx">marginBottom</span><span class="p">))</span> <span class="o">:</span> <span class="p">(</span><span class="nx">regionBottom</span> <span class="o">+</span> <span class="nx">marginTop</span><span class="p">);</span>
-
-		<span class="k">return</span> <span class="p">[</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="p">];</span>
-	<span class="p">},</span>
-
-	<span class="nx">removeDropTarget</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">drop</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">drop</span><span class="p">.</span><span class="nx">removeFromGroup</span><span class="p">(</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">GROUPS</span><span class="p">)</span>
-		<span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="nx">_alignCondition</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">activeDrag</span> <span class="o">=</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrag</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">activeDrop</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">activeDrag</span> <span class="o">&amp;&amp;</span> <span class="nx">activeDrop</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">activeDrag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">dropNode</span> <span class="o">=</span> <span class="nx">activeDrop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
-
-			<span class="k">return</span> <span class="o">!</span><span class="nx">dragNode</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">dropNode</span><span class="p">);</span>
-		<span class="p">}</span>
-
-		<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-	<span class="p">},</span>
-
-	<span class="nx">_bindDDEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DRAG_NODES</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span>
-			<span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">addDragTarget</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span><span class="nx">defaults</span><span class="p">,</span> <span class="nx">val</span> <span class="o">||</span> <span class="p">{});</span>
+				<span class="p">}</span>
 			<span class="p">}</span>
-		<span class="p">);</span>
+		<span class="p">},</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:end&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragEnd</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:enter&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragEnter</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:exit&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragExit</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:over&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragOver</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:start&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragStart</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;drag:start&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_afterDragStart</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+		<span class="nx">EXTENDS</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">EV_QUADRANT_ENTER</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_syncPlaceholderUI</span><span class="p">);</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">EV_QUADRANT_EXIT</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_syncPlaceholderUI</span><span class="p">);</span>
-	<span class="p">},</span>
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Construction logic executed during PortalLayout instantiation. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method initializer</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-	<span class="nx">_bindDropZones</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">();</span>
+			<span class="p">},</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DROP_NODES</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">addDropNode</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
-		<span class="p">});</span>
-	<span class="p">},</span>
+			<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-	<span class="nx">_defPlaceholderAlign</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">activeDrop</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLACEHOLDER</span><span class="p">);</span>
+				<span class="c1">// publishing placeholderAlign event</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="nx">EV_PLACEHOLDER_ALIGN</span><span class="p">,</span> <span class="p">{</span>
+		            <span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defPlaceholderAlign</span><span class="p">,</span>
+		            <span class="nx">queuable</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+		            <span class="nx">emitFacade</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+		            <span class="nx">bubbles</span><span class="o">:</span> <span class="kc">true</span>
+		        <span class="p">});</span>
 
-		<span class="k">if</span> <span class="p">(</span><span class="nx">activeDrop</span> <span class="o">&amp;&amp;</span> <span class="nx">placeholder</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">activeDrop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">isTarget</span> <span class="o">=</span> <span class="o">!!</span><span class="nx">node</span><span class="p">.</span><span class="nx">dd</span><span class="p">;</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindDDEvents</span><span class="p">();</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindDropZones</span><span class="p">();</span>
+			<span class="p">},</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">lastAlignDrop</span> <span class="o">=</span> <span class="nx">activeDrop</span><span class="p">;</span>
+			<span class="cm">/*</span>
+<span class="cm">			* Methods</span>
+<span class="cm">			*/</span>
+			<span class="nx">addDragTarget</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">alignPlaceholder</span><span class="p">(</span><span class="nx">activeDrop</span><span class="p">.</span><span class="nx">region</span><span class="p">,</span> <span class="nx">isTarget</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">DDM</span><span class="p">.</span><span class="nx">getDrag</span><span class="p">(</span><span class="nx">node</span><span class="p">))</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">dd</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DD</span><span class="p">);</span>
+					<span class="kd">var</span> <span class="nx">proxy</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PROXY</span><span class="p">);</span>
 
-	<span class="nx">_evOutput</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+					<span class="c1">// updating node reference on the default dd config</span>
+					<span class="nx">dd</span><span class="p">.</span><span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">;</span>
 
-		<span class="k">return</span> <span class="p">{</span>
-			<span class="nx">drag</span><span class="o">:</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrag</span><span class="p">,</span>
-			<span class="nx">drop</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">,</span>
-			<span class="nx">quadrant</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">quadrant</span><span class="p">,</span>
-			<span class="nx">XDirection</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">XDirection</span><span class="p">,</span>
-			<span class="nx">YDirection</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">YDirection</span>
-		<span class="p">};</span>
-	<span class="p">},</span>
+					<span class="c1">// creating DD.Drag instance and plugging the DDProxy</span>
+					<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DD</span><span class="p">.</span><span class="nx">Drag</span><span class="p">(</span><span class="nx">dd</span><span class="p">).</span><span class="nx">plug</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDProxy</span><span class="p">,</span> <span class="nx">proxy</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
 
-	<span class="nx">_fireQuadrantEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">evOutput</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_evOutput</span><span class="p">();</span>
-		<span class="kd">var</span> <span class="nx">lastQuadrant</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastQuadrant</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">quadrant</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">quadrant</span><span class="p">;</span>
+			<span class="nx">addDropNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-		<span class="k">if</span> <span class="p">(</span><span class="nx">quadrant</span> <span class="o">!=</span> <span class="nx">lastQuadrant</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// only trigger exit if it has previously entered in any quadrant</span>
-			<span class="k">if</span> <span class="p">(</span><span class="nx">lastQuadrant</span><span class="p">)</span> <span class="p">{</span>
-				<span class="c1">// merging event with the &quot;last&quot; information</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span>
-					<span class="nx">EV_QUADRANT_EXIT</span><span class="p">,</span>
-					<span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
-						<span class="p">{</span>
-							<span class="nx">lastDrag</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastDrag</span><span class="p">,</span>
-							<span class="nx">lastDrop</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastDrop</span><span class="p">,</span>
-							<span class="nx">lastQuadrant</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastQuadrant</span><span class="p">,</span>
-							<span class="nx">lastXDirection</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastXDirection</span><span class="p">,</span>
-							<span class="nx">lastYDirection</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastYDirection</span>
-						<span class="p">},</span>
-						<span class="nx">evOutput</span>
-					<span class="p">)</span>
+				<span class="nx">node</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">DDM</span><span class="p">.</span><span class="nx">getDrop</span><span class="p">(</span><span class="nx">node</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">addDropTarget</span><span class="p">(</span>
+						<span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DD</span><span class="p">.</span><span class="nx">Drop</span><span class="p">(</span>
+							<span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
+								<span class="p">{</span>
+									<span class="nx">bubbleTargets</span><span class="o">:</span> <span class="nx">instance</span><span class="p">,</span>
+									<span class="nx">node</span><span class="o">:</span> <span class="nx">node</span>
+								<span class="p">},</span>
+								<span class="nx">config</span>
+							<span class="p">)</span>
+						<span class="p">)</span>
+					<span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">addDropTarget</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">drop</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">drop</span><span class="p">.</span><span class="nx">addToGroup</span><span class="p">(</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">GROUPS</span><span class="p">)</span>
 				<span class="p">);</span>
-			<span class="p">}</span>
+			<span class="p">},</span>
 
-			<span class="c1">// firing EV_QUADRANT_ENTER event</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">EV_QUADRANT_ENTER</span><span class="p">,</span> <span class="nx">evOutput</span><span class="p">);</span>
-		<span class="p">}</span>
+			<span class="nx">alignPlaceholder</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">region</span><span class="p">,</span> <span class="nx">isTarget</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLACEHOLDER</span><span class="p">);</span>
 
-		<span class="c1">// firing EV_QUADRANT_OVER, align event fires like the drag over without bubbling for performance reasons</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">EV_QUADRANT_OVER</span><span class="p">,</span> <span class="nx">evOutput</span><span class="p">);</span>
-
-		<span class="c1">// updating &quot;last&quot; information</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">lastDrag</span> <span class="o">=</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrag</span><span class="p">;</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">lastDrop</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">;</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">lastQuadrant</span> <span class="o">=</span> <span class="nx">quadrant</span><span class="p">;</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">lastXDirection</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">XDirection</span><span class="p">;</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">lastYDirection</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">YDirection</span><span class="p">;</span>
-	<span class="p">},</span>
-
-	<span class="nx">_getAppendNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="k">return</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="nx">_positionNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">activeDrop</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastAlignDrop</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">activeDrop</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getAppendNode</span><span class="p">();</span>
-			<span class="kd">var</span> <span class="nx">dropNode</span> <span class="o">=</span> <span class="nx">activeDrop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
-
-			<span class="c1">// detects if the activeDrop is a dd target (portlet) or a drop area only (column)</span>
-			<span class="kd">var</span> <span class="nx">isTarget</span> <span class="o">=</span> <span class="nx">isValue</span><span class="p">(</span><span class="nx">dropNode</span><span class="p">.</span><span class="nx">dd</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">topQuadrants</span> <span class="o">=</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">quadrant</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">);</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_alignCondition</span><span class="p">())</span> <span class="p">{</span>
-				<span class="k">if</span> <span class="p">(</span><span class="nx">isTarget</span><span class="p">)</span> <span class="p">{</span>
-					<span class="nx">dropNode</span><span class="p">[</span> <span class="nx">topQuadrants</span> <span class="o">?</span> <span class="nx">PLACE_BEFORE</span> <span class="o">:</span> <span class="nx">PLACE_AFTER</span> <span class="p">](</span><span class="nx">dragNode</span><span class="p">);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">lazyEvents</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">placeholder</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
 				<span class="p">}</span>
-				<span class="c1">// interacting with the columns (drop areas only)</span>
+
+				<span class="c1">// sync placeholder size</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncPlaceholderSize</span><span class="p">();</span>
+
+				<span class="nx">placeholder</span><span class="p">.</span><span class="nx">setXY</span><span class="p">(</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">getPlaceholderXY</span><span class="p">(</span><span class="nx">region</span><span class="p">,</span> <span class="nx">isTarget</span><span class="p">)</span>
+				<span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">calculateDirections</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">drag</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">lastY</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastY</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">lastX</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastX</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">lastXY</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+				<span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">lastXY</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+				<span class="c1">// if the x change</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">!=</span> <span class="nx">lastX</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// set the drag direction</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">XDirection</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">lastX</span><span class="p">)</span> <span class="o">?</span> <span class="nx">LEFT</span> <span class="o">:</span> <span class="nx">RIGHT</span><span class="p">;</span>
+				<span class="p">}</span>
+
+				<span class="c1">// if the y change</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">!=</span> <span class="nx">lastY</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// set the drag direction</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">YDirection</span> <span class="o">=</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="nx">lastY</span><span class="p">)</span> <span class="o">?</span> <span class="nx">UP</span> <span class="o">:</span> <span class="nx">DOWN</span><span class="p">;</span>
+				<span class="p">}</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">lastX</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">lastY</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="nx">calculateQuadrant</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">drag</span><span class="p">,</span> <span class="nx">drop</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">quadrant</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="nx">drop</span><span class="p">.</span><span class="nx">region</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">mouseXY</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">mouseXY</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">mouseX</span> <span class="o">=</span> <span class="nx">mouseXY</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+				<span class="kd">var</span> <span class="nx">mouseY</span> <span class="o">=</span> <span class="nx">mouseXY</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+				<span class="kd">var</span> <span class="nx">top</span> <span class="o">=</span> <span class="nx">region</span><span class="p">.</span><span class="nx">top</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">left</span> <span class="o">=</span> <span class="nx">region</span><span class="p">.</span><span class="nx">left</span><span class="p">;</span>
+
+				<span class="c1">// (region.bottom - top) finds the height of the region</span>
+				<span class="kd">var</span> <span class="nx">vCenter</span> <span class="o">=</span> <span class="nx">top</span> <span class="o">+</span> <span class="p">(</span><span class="nx">region</span><span class="p">.</span><span class="nx">bottom</span> <span class="o">-</span> <span class="nx">top</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+				<span class="c1">// (region.right - left) finds the width of the region</span>
+				<span class="kd">var</span> <span class="nx">hCenter</span> <span class="o">=</span> <span class="nx">left</span> <span class="o">+</span> <span class="p">(</span><span class="nx">region</span><span class="p">.</span><span class="nx">right</span> <span class="o">-</span> <span class="nx">left</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">mouseY</span> <span class="o">&lt;</span> <span class="nx">vCenter</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">quadrant</span> <span class="o">=</span> <span class="p">(</span><span class="nx">mouseX</span> <span class="o">&gt;</span> <span class="nx">hCenter</span><span class="p">)</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">2</span><span class="p">;</span>
+				<span class="p">}</span>
 				<span class="k">else</span> <span class="p">{</span>
-					<span class="c1">// find the dropContainer of the dropNode, the default DROP_CONTAINER function returns the dropNode</span>
-					<span class="kd">var</span> <span class="nx">dropContainer</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DROP_CONTAINER</span><span class="p">).</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="p">[</span><span class="nx">dropNode</span><span class="p">]);</span>
-
-					<span class="nx">dropContainer</span><span class="p">[</span> <span class="nx">topQuadrants</span> <span class="o">?</span> <span class="nx">PREPEND</span> <span class="o">:</span> <span class="nx">APPEND</span> <span class="p">](</span><span class="nx">dragNode</span><span class="p">);</span>
+					<span class="nx">quadrant</span> <span class="o">=</span> <span class="p">(</span><span class="nx">mouseX</span> <span class="o">&lt;</span> <span class="nx">hCenter</span><span class="p">)</span> <span class="o">?</span> <span class="mi">3</span> <span class="o">:</span> <span class="mi">4</span><span class="p">;</span>
 				<span class="p">}</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">quadrant</span> <span class="o">=</span> <span class="nx">quadrant</span><span class="p">;</span>
+
+				<span class="k">return</span> <span class="nx">quadrant</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="nx">getPlaceholderXY</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">region</span><span class="p">,</span> <span class="nx">isTarget</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLACEHOLDER</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">marginBottom</span> <span class="o">=</span> <span class="nx">PLACEHOLDER_MARGIN_BOTTOM</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">marginTop</span> <span class="o">=</span> <span class="nx">PLACEHOLDER_MARGIN_TOP</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">isTarget</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// update the margin values in case of the target placeholder has a different margin</span>
+					<span class="nx">marginBottom</span> <span class="o">=</span> <span class="nx">PLACEHOLDER_TARGET_MARGIN_BOTTOM</span><span class="p">;</span>
+					<span class="nx">marginTop</span> <span class="o">=</span> <span class="nx">PLACEHOLDER_TARGET_MARGIN_TOP</span><span class="p">;</span>
+				<span class="p">}</span>
+
+				<span class="c1">// update the className of the placeholder when interact with target (drag/drop) elements</span>
+				<span class="nx">placeholder</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">CSS_DRAG_TARGET_INDICATOR</span><span class="p">,</span> <span class="nx">isTarget</span><span class="p">);</span>
+
+				<span class="kd">var</span> <span class="nx">regionBottom</span> <span class="o">=</span> <span class="nx">ceil</span><span class="p">(</span><span class="nx">region</span><span class="p">.</span><span class="nx">bottom</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">regionLeft</span> <span class="o">=</span> <span class="nx">ceil</span><span class="p">(</span><span class="nx">region</span><span class="p">.</span><span class="nx">left</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">regionTop</span> <span class="o">=</span> <span class="nx">ceil</span><span class="p">(</span><span class="nx">region</span><span class="p">.</span><span class="nx">top</span><span class="p">);</span>
+
+				<span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">regionLeft</span><span class="p">;</span>
+
+				<span class="c1">// 1 and 2 quadrants are the top quadrants, so align to the region.top when quadrant &lt; 3</span>
+				<span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">quadrant</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">?</span>
+							<span class="p">(</span><span class="nx">regionTop</span> <span class="o">-</span> <span class="p">(</span><span class="nx">placeholder</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_HEIGHT</span><span class="p">)</span> <span class="o">+</span> <span class="nx">marginBottom</span><span class="p">))</span> <span class="o">:</span> <span class="p">(</span><span class="nx">regionBottom</span> <span class="o">+</span> <span class="nx">marginTop</span><span class="p">);</span>
+
+				<span class="k">return</span> <span class="p">[</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="p">];</span>
+			<span class="p">},</span>
+
+			<span class="nx">removeDropTarget</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">drop</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">drop</span><span class="p">.</span><span class="nx">removeFromGroup</span><span class="p">(</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">GROUPS</span><span class="p">)</span>
+				<span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_alignCondition</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">activeDrag</span> <span class="o">=</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrag</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">activeDrop</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">activeDrag</span> <span class="o">&amp;&amp;</span> <span class="nx">activeDrop</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">activeDrag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
+					<span class="kd">var</span> <span class="nx">dropNode</span> <span class="o">=</span> <span class="nx">activeDrop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
+
+					<span class="k">return</span> <span class="o">!</span><span class="nx">dragNode</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">dropNode</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="nx">_bindDDEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DRAG_NODES</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span>
+					<span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">addDragTarget</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+					<span class="p">}</span>
+				<span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:end&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragEnd</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:enter&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragEnter</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:exit&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragExit</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:over&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragOver</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:start&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragStart</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;drag:start&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_afterDragStart</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">EV_QUADRANT_ENTER</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_syncPlaceholderUI</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">EV_QUADRANT_EXIT</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_syncPlaceholderUI</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_bindDropZones</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DROP_NODES</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">addDropNode</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+				<span class="p">});</span>
+			<span class="p">},</span>
+
+			<span class="nx">_defPlaceholderAlign</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">activeDrop</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLACEHOLDER</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">activeDrop</span> <span class="o">&amp;&amp;</span> <span class="nx">placeholder</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">activeDrop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
+					<span class="kd">var</span> <span class="nx">isTarget</span> <span class="o">=</span> <span class="o">!!</span><span class="nx">node</span><span class="p">.</span><span class="nx">dd</span><span class="p">;</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">lastAlignDrop</span> <span class="o">=</span> <span class="nx">activeDrop</span><span class="p">;</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">alignPlaceholder</span><span class="p">(</span><span class="nx">activeDrop</span><span class="p">.</span><span class="nx">region</span><span class="p">,</span> <span class="nx">isTarget</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">_evOutput</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">return</span> <span class="p">{</span>
+					<span class="nx">drag</span><span class="o">:</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrag</span><span class="p">,</span>
+					<span class="nx">drop</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">,</span>
+					<span class="nx">quadrant</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">quadrant</span><span class="p">,</span>
+					<span class="nx">XDirection</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">XDirection</span><span class="p">,</span>
+					<span class="nx">YDirection</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">YDirection</span>
+				<span class="p">};</span>
+			<span class="p">},</span>
+
+			<span class="nx">_fireQuadrantEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">evOutput</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_evOutput</span><span class="p">();</span>
+				<span class="kd">var</span> <span class="nx">lastQuadrant</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastQuadrant</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">quadrant</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">quadrant</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">quadrant</span> <span class="o">!=</span> <span class="nx">lastQuadrant</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// only trigger exit if it has previously entered in any quadrant</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">lastQuadrant</span><span class="p">)</span> <span class="p">{</span>
+						<span class="c1">// merging event with the &quot;last&quot; information</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span>
+							<span class="nx">EV_QUADRANT_EXIT</span><span class="p">,</span>
+							<span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
+								<span class="p">{</span>
+									<span class="nx">lastDrag</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastDrag</span><span class="p">,</span>
+									<span class="nx">lastDrop</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastDrop</span><span class="p">,</span>
+									<span class="nx">lastQuadrant</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastQuadrant</span><span class="p">,</span>
+									<span class="nx">lastXDirection</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastXDirection</span><span class="p">,</span>
+									<span class="nx">lastYDirection</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastYDirection</span>
+								<span class="p">},</span>
+								<span class="nx">evOutput</span>
+							<span class="p">)</span>
+						<span class="p">);</span>
+					<span class="p">}</span>
+
+					<span class="c1">// firing EV_QUADRANT_ENTER event</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">EV_QUADRANT_ENTER</span><span class="p">,</span> <span class="nx">evOutput</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="c1">// firing EV_QUADRANT_OVER, align event fires like the drag over without bubbling for performance reasons</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">EV_QUADRANT_OVER</span><span class="p">,</span> <span class="nx">evOutput</span><span class="p">);</span>
+
+				<span class="c1">// updating &quot;last&quot; information</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">lastDrag</span> <span class="o">=</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrag</span><span class="p">;</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">lastDrop</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">;</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">lastQuadrant</span> <span class="o">=</span> <span class="nx">quadrant</span><span class="p">;</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">lastXDirection</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">XDirection</span><span class="p">;</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">lastYDirection</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">YDirection</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="nx">_getAppendNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_positionNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">activeDrop</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastAlignDrop</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">activeDrop</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getAppendNode</span><span class="p">();</span>
+					<span class="kd">var</span> <span class="nx">dropNode</span> <span class="o">=</span> <span class="nx">activeDrop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
+
+					<span class="c1">// detects if the activeDrop is a dd target (portlet) or a drop area only (column)</span>
+					<span class="kd">var</span> <span class="nx">isTarget</span> <span class="o">=</span> <span class="nx">isValue</span><span class="p">(</span><span class="nx">dropNode</span><span class="p">.</span><span class="nx">dd</span><span class="p">);</span>
+					<span class="kd">var</span> <span class="nx">topQuadrants</span> <span class="o">=</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">quadrant</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">);</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_alignCondition</span><span class="p">())</span> <span class="p">{</span>
+						<span class="k">if</span> <span class="p">(</span><span class="nx">isTarget</span><span class="p">)</span> <span class="p">{</span>
+							<span class="nx">dropNode</span><span class="p">[</span> <span class="nx">topQuadrants</span> <span class="o">?</span> <span class="nx">PLACE_BEFORE</span> <span class="o">:</span> <span class="nx">PLACE_AFTER</span> <span class="p">](</span><span class="nx">dragNode</span><span class="p">);</span>
+						<span class="p">}</span>
+						<span class="c1">// interacting with the columns (drop areas only)</span>
+						<span class="k">else</span> <span class="p">{</span>
+							<span class="c1">// find the dropContainer of the dropNode, the default DROP_CONTAINER function returns the dropNode</span>
+							<span class="kd">var</span> <span class="nx">dropContainer</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DROP_CONTAINER</span><span class="p">).</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="p">[</span><span class="nx">dropNode</span><span class="p">]);</span>
+
+							<span class="nx">dropContainer</span><span class="p">[</span> <span class="nx">topQuadrants</span> <span class="o">?</span> <span class="nx">PREPEND</span> <span class="o">:</span> <span class="nx">APPEND</span> <span class="p">](</span><span class="nx">dragNode</span><span class="p">);</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">_syncPlaceholderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_alignCondition</span><span class="p">())</span> <span class="p">{</span>
+					<span class="c1">// firing placeholderAlign event</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">EV_PLACEHOLDER_ALIGN</span><span class="p">,</span> <span class="p">{</span>
+						<span class="nx">drop</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">,</span>
+						<span class="nx">originalEvent</span><span class="o">:</span> <span class="nx">event</span>
+					<span class="p">});</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">_syncPlaceholderSize</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
+
+				<span class="kd">var</span> <span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLACEHOLDER</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">placeholder</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">placeholder</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span>
+						<span class="nx">OFFSET_WIDTH</span><span class="p">,</span>
+						<span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_WIDTH</span><span class="p">)</span>
+					<span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">_syncProxyNodeUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DRAG_NODE</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">proxyNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PROXY_NODE</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">proxyNode</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">proxyNode</span><span class="p">.</span><span class="nx">compareTo</span><span class="p">(</span><span class="nx">dragNode</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">dragNode</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">proxyNode</span><span class="p">);</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncProxyNodeSize</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">_syncProxyNodeSize</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">proxyNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PROXY_NODE</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">node</span> <span class="o">&amp;&amp;</span> <span class="nx">proxyNode</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">proxyNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span>
+						<span class="nx">OFFSET_HEIGHT</span><span class="p">,</span>
+						<span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_HEIGHT</span><span class="p">)</span>
+					<span class="p">);</span>
+
+					<span class="nx">proxyNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span>
+						<span class="nx">OFFSET_WIDTH</span><span class="p">,</span>
+						<span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_WIDTH</span><span class="p">)</span>
+					<span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/*</span>
+<span class="cm">			* Listeners</span>
+<span class="cm">			*/</span>
+			<span class="nx">_afterDragStart</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PROXY</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncProxyNodeUI</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">_onDragEnd</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLACEHOLDER</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">proxyNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PROXY_NODE</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">lazyEvents</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_positionNode</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">proxyNode</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">proxyNode</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+				<span class="p">}</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">placeholder</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">placeholder</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+				<span class="p">}</span>
+
+				<span class="c1">// reset the last information</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">lastQuadrant</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">lastXDirection</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">lastYDirection</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="c1">// fires after drag:start</span>
+			<span class="nx">_onDragEnter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span> <span class="o">=</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">;</span>
+
+				<span class="c1">// check if lazyEvents is true and if there is a lastActiveDrop</span>
+				<span class="c1">// the checking for lastActiveDrop prevents fire the _syncPlaceholderUI when quadrant* events fires</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">lazyEvents</span> <span class="o">&amp;&amp;</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastActiveDrop</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">lazyEvents</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncPlaceholderUI</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="c1">// lastActiveDrop is always updated by the drag exit,</span>
+				<span class="c1">// but if there is no lastActiveDrop update it on drag enter update it</span>
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">lastActiveDrop</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">lastActiveDrop</span> <span class="o">=</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">_onDragExit</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncPlaceholderUI</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span> <span class="o">=</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">lastActiveDrop</span> <span class="o">=</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="nx">_onDragOver</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">drag</span><span class="p">;</span>
+
+				<span class="c1">// prevent drag over bubbling, filtering the top most element</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span> <span class="o">==</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">calculateDirections</span><span class="p">(</span><span class="nx">drag</span><span class="p">);</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">calculateQuadrant</span><span class="p">(</span><span class="nx">drag</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">);</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_fireQuadrantEvents</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="c1">// fires before drag:enter</span>
+			<span class="nx">_onDragStart</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LAZY_START</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">lazyEvents</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+				<span class="p">}</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">lastActiveDrop</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span> <span class="o">=</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">;</span>
 			<span class="p">}</span>
 		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">_syncPlaceholderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_alignCondition</span><span class="p">())</span> <span class="p">{</span>
-			<span class="c1">// firing placeholderAlign event</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">EV_PLACEHOLDER_ALIGN</span><span class="p">,</span> <span class="p">{</span>
-				<span class="nx">drop</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">,</span>
-				<span class="nx">originalEvent</span><span class="o">:</span> <span class="nx">event</span>
-			<span class="p">});</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">_syncPlaceholderSize</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
-
-		<span class="kd">var</span> <span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLACEHOLDER</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">placeholder</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">placeholder</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span>
-				<span class="nx">OFFSET_WIDTH</span><span class="p">,</span>
-				<span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_WIDTH</span><span class="p">)</span>
-			<span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">_syncProxyNodeUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DRAG_NODE</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">proxyNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PROXY_NODE</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">proxyNode</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">proxyNode</span><span class="p">.</span><span class="nx">compareTo</span><span class="p">(</span><span class="nx">dragNode</span><span class="p">))</span> <span class="p">{</span>
-			<span class="nx">dragNode</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">proxyNode</span><span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncProxyNodeSize</span><span class="p">();</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">_syncProxyNodeSize</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">proxyNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PROXY_NODE</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">node</span> <span class="o">&amp;&amp;</span> <span class="nx">proxyNode</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">proxyNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span>
-				<span class="nx">OFFSET_HEIGHT</span><span class="p">,</span>
-				<span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_HEIGHT</span><span class="p">)</span>
-			<span class="p">);</span>
-
-			<span class="nx">proxyNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span>
-				<span class="nx">OFFSET_WIDTH</span><span class="p">,</span>
-				<span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_WIDTH</span><span class="p">)</span>
-			<span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/*</span>
-<span class="cm">	* Listeners</span>
-<span class="cm">	*/</span>
-	<span class="nx">_afterDragStart</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PROXY</span><span class="p">))</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncProxyNodeUI</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">_onDragEnd</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLACEHOLDER</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">proxyNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PROXY_NODE</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">lazyEvents</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_positionNode</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
-		<span class="p">}</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">proxyNode</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">proxyNode</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
-		<span class="p">}</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">placeholder</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">placeholder</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
-		<span class="p">}</span>
-
-		<span class="c1">// reset the last information</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">lastQuadrant</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">lastXDirection</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">lastYDirection</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-	<span class="p">},</span>
-
-	<span class="c1">// fires after drag:start</span>
-	<span class="nx">_onDragEnter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span> <span class="o">=</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">;</span>
-
-		<span class="c1">// check if lazyEvents is true and if there is a lastActiveDrop</span>
-		<span class="c1">// the checking for lastActiveDrop prevents fire the _syncPlaceholderUI when quadrant* events fires</span>
-		<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">lazyEvents</span> <span class="o">&amp;&amp;</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastActiveDrop</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">lazyEvents</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncPlaceholderUI</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
-		<span class="p">}</span>
-
-		<span class="c1">// lastActiveDrop is always updated by the drag exit,</span>
-		<span class="c1">// but if there is no lastActiveDrop update it on drag enter update it</span>
-		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">lastActiveDrop</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">lastActiveDrop</span> <span class="o">=</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">;</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">_onDragExit</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncPlaceholderUI</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span> <span class="o">=</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">lastActiveDrop</span> <span class="o">=</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">;</span>
-	<span class="p">},</span>
-
-	<span class="nx">_onDragOver</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">drag</span><span class="p">;</span>
-
-		<span class="c1">// prevent drag over bubbling, filtering the top most element</span>
-		<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span> <span class="o">==</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">calculateDirections</span><span class="p">(</span><span class="nx">drag</span><span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">calculateQuadrant</span><span class="p">(</span><span class="nx">drag</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_fireQuadrantEvents</span><span class="p">();</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="c1">// fires before drag:enter</span>
-	<span class="nx">_onDragStart</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LAZY_START</span><span class="p">))</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">lazyEvents</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-		<span class="p">}</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">lastActiveDrop</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">activeDrop</span> <span class="o">=</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">activeDrop</span><span class="p">;</span>
 	<span class="p">}</span>
-<span class="p">});</span>
+<span class="p">);</span>
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">PortalLayout</span> <span class="o">=</span> <span class="nx">PortalLayout</span><span class="p">;</span>
 

@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: widget-stdmod   widget.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			widget-stdmod&nbsp; <span class="subtitle">1.0pr</span>
+			widget-stdmod&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -546,7 +541,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.1.0</span>
+<span class="cm">version: 3.1.1</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;widget-base&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -1309,6 +1304,15 @@
         <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CONTENT_TEMPLATE</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="o">?</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">)</span> <span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setBox</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">node</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">CONTENT_TEMPLATE</span><span class="p">);</span>
     <span class="p">},</span>
 
+    <span class="cm">/**</span>
+<span class="cm">     * Returns the default value for the contentBox attribute. </span>
+<span class="cm">     *</span>
+<span class="cm">     * For the Widget class, this will be the srcNode if provided, otherwise null (resulting in</span>
+<span class="cm">     * a new contentBox node instance being created)</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _defaultCB</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
     <span class="nx">_defaultCB</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SRC_NODE</span><span class="p">)</span> <span class="o">||</span> <span class="kc">null</span><span class="p">;</span>
     <span class="p">},</span>
@@ -1827,14 +1831,12 @@
 
         <span class="k">if</span> <span class="p">(</span><span class="nx">sType</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">queue</span><span class="p">[</span><span class="nx">sType</span><span class="p">])</span> <span class="p">{</span>
 
+            <span class="k">this</span><span class="p">.</span><span class="nx">_uiEvtsInitQueue</span> <span class="o">=</span> <span class="nx">queue</span><span class="p">[</span><span class="nx">sType</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 
             <span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="nx">RENDER</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
                 <span class="k">this</span><span class="p">.</span><span class="nx">_createUIEvent</span><span class="p">(</span><span class="nx">sType</span><span class="p">);</span>
                 <span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">_uiEvtsInitQueue</span><span class="p">[</span><span class="nx">sType</span><span class="p">];</span>
             <span class="p">});</span>
-            
-            <span class="k">this</span><span class="p">.</span><span class="nx">_uiEvtsInitQueue</span> <span class="o">=</span> <span class="nx">queue</span><span class="p">[</span><span class="nx">sType</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-
         <span class="p">}</span>
     <span class="p">},</span>
 
@@ -1873,7 +1875,7 @@
 <span class="nx">Y</span><span class="p">.</span><span class="nx">Widget</span> <span class="o">=</span> <span class="nx">Widget</span><span class="p">;</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;attribute&#39;</span><span class="p">,</span> <span class="s1">&#39;event-focus&#39;</span><span class="p">,</span> <span class="s1">&#39;base&#39;</span><span class="p">,</span> <span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;classnamemanager&#39;</span><span class="p">,</span> <span class="s1">&#39;intl&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;attribute&#39;</span><span class="p">,</span> <span class="s1">&#39;event-focus&#39;</span><span class="p">,</span> <span class="s1">&#39;base&#39;</span><span class="p">,</span> <span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;classnamemanager&#39;</span><span class="p">,</span> <span class="s1">&#39;intl&#39;</span><span class="p">]});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;widget-htmlparser&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -1965,7 +1967,7 @@
 <span class="cm">     * @return {Object} The merged configuration literal</span>
 <span class="cm">     */</span>
     <span class="nx">_applyParsedConfig</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">cfg</span><span class="p">,</span> <span class="nx">parsedCfg</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="p">(</span><span class="nx">parsedCfg</span><span class="p">)</span> <span class="o">?</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">(</span><span class="nx">cfg</span><span class="p">,</span> <span class="nx">parsedCfg</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span> <span class="o">:</span> <span class="nx">cfg</span><span class="p">;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">parsedCfg</span><span class="p">)</span> <span class="o">?</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">cfg</span><span class="p">,</span> <span class="nx">parsedCfg</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span> <span class="o">:</span> <span class="nx">cfg</span><span class="p">;</span>
     <span class="p">},</span>
 
     <span class="cm">/**</span>
@@ -1973,7 +1975,7 @@
 <span class="cm">     * instance, to retrieve config data values.</span>
 <span class="cm">     *</span>
 <span class="cm">     * @method _applyParser</span>
-<span class="cm">     * @private</span>
+<span class="cm">     * @protected</span>
 <span class="cm">     * @param config {Object} User configuration object (will be populated with values from Node) </span>
 <span class="cm">     */</span>
     <span class="nx">_applyParser</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
@@ -2033,10 +2035,10 @@
 <span class="p">});</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;widget-base&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;widget-base&#39;</span><span class="p">]});</span>
 
 
-<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;widget&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;widget-base&#39;</span><span class="p">,</span> <span class="s1">&#39;widget-htmlparser&#39;</span> <span class="p">]});</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;widget&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;widget-base&#39;</span><span class="p">,</span> <span class="s1">&#39;widget-htmlparser&#39;</span> <span class="p">]});</span>
 </pre></div>
 
 							</div>

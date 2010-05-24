@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-toolbar  Toolbar   (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-toolbar&nbsp; <span class="subtitle">1.0pr</span>
+			aui-toolbar&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -315,11 +315,6 @@
 
 
 			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
 
 
@@ -519,6 +514,7 @@
 												<li class=""><a href="#config_defaultChildType" title="defaultChildType">defaultChildType</a></li>
 												<li class=""><a href="#config_defaultState" title="defaultState">defaultState</a></li>
 												<li class=""><a href="#config_hoverState" title="hoverState">hoverState</a></li>
+												<li class=""><a href="#config_orientation" title="orientation">orientation</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -536,6 +532,7 @@
 				                               <li class="protected"><a href="#method__addByIconId" title="_addByIconId">_addByIconId</a></li>
 				                               <li class="protected"><a href="#method__afterAddButton" title="_afterAddButton">_afterAddButton</a></li>
 				                               <li class="protected"><a href="#method__afterRemoveButton" title="_afterRemoveButton">_afterRemoveButton</a></li>
+				                               <li class="protected"><a href="#method__uiSetOrientation" title="_uiSetOrientation">_uiSetOrientation</a></li>
 				                               <li class="protected"><a href="#method_bindUI" title="bindUI">bindUI</a></li>
 				                               <li class="protected"><a href="#method_initializer" title="initializer">initializer</a></li>
 				                               <li class="protected"><a href="#method_syncUI" title="syncUI">syncUI</a></li>
@@ -556,6 +553,7 @@
 												<li class=""><a href="#event_defaultChildTypeChange" title="defaultChildTypeChange">defaultChildTypeChange</a></li>
 												<li class=""><a href="#event_defaultStateChange" title="defaultStateChange">defaultStateChange</a></li>
 												<li class=""><a href="#event_hoverStateChange" title="hoverStateChange">hoverStateChange</a></li>
+												<li class=""><a href="#event_orientationChange" title="orientationChange">orientationChange</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -619,7 +617,7 @@
 								A base class for Toolbar, providing:
 <ul>
 <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
-<li>The ability to manage multiple <a href="Button.html">Button</a> widgets as one group</li>
+<li>The ability to manage multiple <a href="ButtonItem.html">ButtonItem</a> widgets as one group</li>
 <li>Managed user interaction states (default, active, hover)</li>
 <li>Keyboard accessible</li>
 </ul>
@@ -824,7 +822,7 @@ Toolbar.
 
 
 													<div class="default">
-														Default Value: <strong>Button</strong>
+														Default Value: <strong>ButtonItem</strong>
 													</div>
 
 												</div>
@@ -859,6 +857,26 @@ Toolbar.
 													</div>
 
 
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_orientation">
+
+													<h4>
+														<a name="config_orientation">orientation</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Representing the orientation of the progress bar. Could be
+<code>horizontal</code> or <code>vertical</code>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>'horizontal'</strong>
+													</div>
 
 												</div>
 
@@ -1206,6 +1224,52 @@ object for it.
 													</div>
 												</div>
 
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__uiSetOrientation">
+
+													<h4>
+														<a name="method__uiSetOrientation">_uiSetOrientation</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_uiSetOrientation</strong>
+														   (
+																
+																		
+																		 newVal
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Updates the UI for the orientation attribute.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">newVal</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The new value</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
 												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_bindUI">
 
 													<h4>
@@ -1499,6 +1563,12 @@ object for it.
 
 														
 
+														<div class="protected" rel="yui:method" resource="Widget.html#method__applyParser">
+														<a href="Widget.html#method__applyParser" property="yui:name" title="_applyParser">_applyParser</a><span>,</span>
+														</div>
+
+														
+
 														<div class="protected" rel="yui:method" resource="Widget.html#method__bindDOM">
 														<a href="Widget.html#method__bindDOM" property="yui:name" title="_bindDOM">_bindDOM</a><span>,</span>
 														</div>
@@ -1507,6 +1577,12 @@ object for it.
 
 														<div class="protected" rel="yui:method" resource="Widget.html#method__bindUI">
 														<a href="Widget.html#method__bindUI" property="yui:name" title="_bindUI">_bindUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__defaultCB">
+														<a href="Widget.html#method__defaultCB" property="yui:name" title="_defaultCB">_defaultCB</a><span>,</span>
 														</div>
 
 														
@@ -2279,6 +2355,48 @@ object for it.
 														</div>
 													</div>
 												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_orientationChange">
+
+													<h4>
+														<a name="event_orientationChange">orientationChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">orientationChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'orientation' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
 										</div>
 									</div>
 
@@ -2300,14 +2418,8 @@ object for it.
 													
 														
 
-														<div class="" rel="yui:event" resource="WidgetParent.html#event_childAdded">
-														<a href="WidgetParent.html#event_childAdded" property="yui:name" title="childAdded">childAdded</a><span>,</span>
-														</div>
-													
-														
-
-														<div class="" rel="yui:event" resource="WidgetParent.html#event_childRemoved">
-														<a href="WidgetParent.html#event_childRemoved" property="yui:name" title="childRemoved">childRemoved</a><span>,</span>
+														<div class="" rel="yui:event" resource="WidgetParent.html#event_addChild">
+														<a href="WidgetParent.html#event_addChild" property="yui:name" title="addChild">addChild</a><span>,</span>
 														</div>
 													
 														
@@ -2320,6 +2432,12 @@ object for it.
 
 														<div class="" rel="yui:event" resource="WidgetParent.html#event_multipleChange">
 														<a href="WidgetParent.html#event_multipleChange" property="yui:name" title="multipleChange">multipleChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="WidgetParent.html#event_removeChild">
+														<a href="WidgetParent.html#event_removeChild" property="yui:name" title="removeChild">removeChild</a><span>,</span>
 														</div>
 													
 														
@@ -2525,7 +2643,7 @@ object for it.
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Toolbar.html#config_activeState", "access": "", "host": "Toolbar", "type": "config", "name": "activeState"}, {"url": "Toolbar.html#event_activeStateChange", "access": "", "host": "Toolbar", "type": "event", "name": "activeStateChange"}, {"url": "Toolbar.html#method__addByIconId", "access": "protected", "host": "Toolbar", "type": "method", "name": "_addByIconId"}, {"url": "Toolbar.html#method__afterAddButton", "access": "protected", "host": "Toolbar", "type": "method", "name": "_afterAddButton"}, {"url": "Toolbar.html#method__afterRemoveButton", "access": "protected", "host": "Toolbar", "type": "method", "name": "_afterRemoveButton"}, {"url": "Toolbar.html#method_bindUI", "access": "protected", "host": "Toolbar", "type": "method", "name": "bindUI"}, {"url": "Toolbar.html#config_defaultChildType", "access": "", "host": "Toolbar", "type": "config", "name": "defaultChildType"}, {"url": "Toolbar.html#event_defaultChildTypeChange", "access": "", "host": "Toolbar", "type": "event", "name": "defaultChildTypeChange"}, {"url": "Toolbar.html#config_defaultState", "access": "", "host": "Toolbar", "type": "config", "name": "defaultState"}, {"url": "Toolbar.html#event_defaultStateChange", "access": "", "host": "Toolbar", "type": "event", "name": "defaultStateChange"}, {"url": "Toolbar.html#config_hoverState", "access": "", "host": "Toolbar", "type": "config", "name": "hoverState"}, {"url": "Toolbar.html#event_hoverStateChange", "access": "", "host": "Toolbar", "type": "event", "name": "hoverStateChange"}, {"url": "Toolbar.html#method_initializer", "access": "protected", "host": "Toolbar", "type": "method", "name": "initializer"}, {"url": "Toolbar.html#method_syncUI", "access": "protected", "host": "Toolbar", "type": "method", "name": "syncUI"}];
+    var ALL_YUI_PROPS = [{"url": "Toolbar.html#config_activeState", "access": "", "host": "Toolbar", "type": "config", "name": "activeState"}, {"url": "Toolbar.html#event_activeStateChange", "access": "", "host": "Toolbar", "type": "event", "name": "activeStateChange"}, {"url": "Toolbar.html#method__addByIconId", "access": "protected", "host": "Toolbar", "type": "method", "name": "_addByIconId"}, {"url": "Toolbar.html#method__afterAddButton", "access": "protected", "host": "Toolbar", "type": "method", "name": "_afterAddButton"}, {"url": "Toolbar.html#method__afterRemoveButton", "access": "protected", "host": "Toolbar", "type": "method", "name": "_afterRemoveButton"}, {"url": "Toolbar.html#method_bindUI", "access": "protected", "host": "Toolbar", "type": "method", "name": "bindUI"}, {"url": "Toolbar.html#config_defaultChildType", "access": "", "host": "Toolbar", "type": "config", "name": "defaultChildType"}, {"url": "Toolbar.html#event_defaultChildTypeChange", "access": "", "host": "Toolbar", "type": "event", "name": "defaultChildTypeChange"}, {"url": "Toolbar.html#config_defaultState", "access": "", "host": "Toolbar", "type": "config", "name": "defaultState"}, {"url": "Toolbar.html#event_defaultStateChange", "access": "", "host": "Toolbar", "type": "event", "name": "defaultStateChange"}, {"url": "Toolbar.html#config_hoverState", "access": "", "host": "Toolbar", "type": "config", "name": "hoverState"}, {"url": "Toolbar.html#event_hoverStateChange", "access": "", "host": "Toolbar", "type": "event", "name": "hoverStateChange"}, {"url": "Toolbar.html#method_initializer", "access": "protected", "host": "Toolbar", "type": "method", "name": "initializer"}, {"url": "Toolbar.html#config_orientation", "access": "", "host": "Toolbar", "type": "config", "name": "orientation"}, {"url": "Toolbar.html#event_orientationChange", "access": "", "host": "Toolbar", "type": "event", "name": "orientationChange"}, {"url": "Toolbar.html#method_syncUI", "access": "protected", "host": "Toolbar", "type": "method", "name": "syncUI"}, {"url": "Toolbar.html#method__uiSetOrientation", "access": "protected", "host": "Toolbar", "type": "method", "name": "_uiSetOrientation"}];
 </script>
 </body>
 </html>

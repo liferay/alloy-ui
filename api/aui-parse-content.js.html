@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-parse-content   aui-parse-content.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-parse-content&nbsp; <span class="subtitle">1.0pr</span>
+			aui-parse-content&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -596,221 +591,221 @@
 <span class="cm"> * @constructor</span>
 <span class="cm"> * @extends Plugin.Base</span>
 <span class="cm"> */</span>
-<span class="kd">function</span> <span class="nx">ParseContent</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">ParseContent</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">ParseContent</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+	<span class="p">{</span>
+		<span class="cm">/**</span>
+<span class="cm">		 * Static property provides a string to identify the class.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property ParseContent.NAME</span>
+<span class="cm">		 * @type String</span>
+<span class="cm">		 * @static</span>
+<span class="cm">		 */</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="nx">PARSE_CONTENT</span><span class="p">,</span>
 
-<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">ParseContent</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property provides a string to identify the class.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property ParseContent.NAME</span>
-<span class="cm">	 * @type String</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">NAME</span><span class="o">:</span> <span class="nx">PARSE_CONTENT</span><span class="p">,</span>
+		<span class="cm">/**</span>
+<span class="cm">		 * Static property provides a string to identify the namespace.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property ParseContent.NS</span>
+<span class="cm">		 * @type String</span>
+<span class="cm">		 * @static</span>
+<span class="cm">		 */</span>
+		<span class="nx">NS</span><span class="o">:</span> <span class="nx">PARSE_CONTENT</span><span class="p">,</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property provides a string to identify the namespace.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property ParseContent.NS</span>
-<span class="cm">	 * @type String</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">NS</span><span class="o">:</span> <span class="nx">PARSE_CONTENT</span><span class="p">,</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property used to define the default attribute</span>
-<span class="cm">	 * configuration for the ParseContent.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property ParseContent.ATTRS</span>
-<span class="cm">	 * @type Object</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">queue</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-<span class="p">});</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">ParseContent</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Construction logic executed during ParseContent instantiation. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method initializer</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">ParseContent</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">initializer</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span>
-			<span class="nx">QUEUE</span><span class="p">,</span>
-			<span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">AsyncQueue</span><span class="p">()</span>
-		<span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindAOP</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Global eval the &lt;data&gt;data&lt;/data&gt; passed.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method globalEval</span>
-<span class="cm">	 * @param {String} data JavaScript String.</span>
-<span class="cm">	 */</span>
-	<span class="nx">globalEval</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">doc</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">getDoc</span><span class="p">();</span>
-		<span class="kd">var</span> <span class="nx">head</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">HEAD</span><span class="p">)</span> <span class="o">||</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DOCUMENT_ELEMENT</span><span class="p">);</span>
-
-		<span class="c1">// NOTE: A.Node.create(&#39;&lt;script&gt;&lt;/script&gt;&#39;) doesn&#39;t work correctly on Opera</span>
-		<span class="kd">var</span> <span class="nx">newScript</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">SCRIPT</span><span class="p">);</span>
-
-		<span class="nx">newScript</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// NOTE: newScript.set(TEXT, data) breaks on IE, YUI BUG.</span>
-			<span class="nx">newScript</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-		<span class="p">}</span>
-
-		<span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">newScript</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span> <span class="c1">//removes the script node immediately after executing it</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Extract the &lt;code&gt;script&lt;/code&gt; tags from the string content and</span>
-<span class="cm">	 * evaluate the chunks.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method parseContent</span>
-<span class="cm">	 * @param {String} content HTML string</span>
-<span class="cm">	 * @return {String}</span>
-<span class="cm">	 */</span>
-	<span class="nx">parseContent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_clean</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_dispatch</span><span class="p">(</span><span class="nx">output</span><span class="p">);</span>
-
-		<span class="k">return</span> <span class="nx">output</span><span class="p">;</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Bind listeners on the &lt;code&gt;insert&lt;/code&gt; and &lt;code&gt;setContent&lt;/code&gt;</span>
-<span class="cm">     * methods of the Node instance where you are plugging the ParseContent.</span>
-<span class="cm">     * These listeners are responsible for intercept the HTML passed and parse</span>
-<span class="cm">     * them.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _bindAOP</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_bindAOP</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="c1">// overloading node.insert() arguments, affects append/prepend methods</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">doBefore</span><span class="p">(</span><span class="s1">&#39;insert&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">parseContent</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
-
-			<span class="c1">// replace the first argument with the clean fragment</span>
-			<span class="nx">args</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">output</span><span class="p">.</span><span class="nx">fragment</span><span class="p">);</span>
-
-			<span class="k">return</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Do</span><span class="p">.</span><span class="nx">AlterArgs</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
-		<span class="p">});</span>
-
-		<span class="c1">// overloading node.setContent() arguments</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">doBefore</span><span class="p">(</span><span class="s1">&#39;setContent&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">parseContent</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
-
-			<span class="k">return</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Do</span><span class="p">.</span><span class="nx">AlterArgs</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">[</span><span class="nx">output</span><span class="p">.</span><span class="nx">fragment</span><span class="p">]);</span>
-		<span class="p">});</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Create an HTML fragment with the String passed, extract all the script</span>
-<span class="cm">     * tags and return an Object with a reference for the extracted scripts and</span>
-<span class="cm">     * the fragment.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method clean</span>
-<span class="cm">	 * @param {String} content HTML content.</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 * @return {Object}</span>
-<span class="cm">	 */</span>
-	<span class="nx">_clean</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="p">{};</span>
-		<span class="kd">var</span> <span class="nx">fragment</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">getDoc</span><span class="p">().</span><span class="nx">invoke</span><span class="p">(</span><span class="nx">CREATE_DOCUMENT_FRAGMENT</span><span class="p">);</span>
-
-		<span class="c1">// instead of fix all tags to &quot;XHTML&quot;-style, make the firstChild be a valid non-empty tag</span>
-		<span class="nx">fragment</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;div&gt;_&lt;/div&gt;&#39;</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">isString</span><span class="p">(</span><span class="nx">content</span><span class="p">))</span> <span class="p">{</span>
-			<span class="c1">// create fragment from {String}</span>
-			<span class="nx">A</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">addHTML</span><span class="p">(</span><span class="nx">fragment</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">APPEND</span><span class="p">);</span>
-		<span class="p">}</span>
-		<span class="k">else</span> <span class="p">{</span>
-			<span class="c1">// create fragment from {Y.Node | HTMLElement}</span>
-			<span class="nx">fragment</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
-		<span class="p">}</span>
-
-		<span class="nx">output</span><span class="p">.</span><span class="nx">js</span> <span class="o">=</span> <span class="nx">fragment</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">SCRIPT</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span>
-			<span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">node</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+		<span class="cm">/**</span>
+<span class="cm">		 * Static property used to define the default attribute</span>
+<span class="cm">		 * configuration for the ParseContent.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property ParseContent.ATTRS</span>
+<span class="cm">		 * @type Object</span>
+<span class="cm">		 * @static</span>
+<span class="cm">		 */</span>
+		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">queue</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
 			<span class="p">}</span>
-		<span class="p">);</span>
+		<span class="p">},</span>
 
-		<span class="c1">// remove padding node</span>
-		<span class="nx">fragment</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FIRST_CHILD</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+		<span class="nx">EXTENDS</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span>
 
-		<span class="nx">output</span><span class="p">.</span><span class="nx">fragment</span> <span class="o">=</span> <span class="nx">fragment</span><span class="p">;</span>
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Construction logic executed during ParseContent instantiation. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method initializer</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-		<span class="k">return</span> <span class="nx">output</span><span class="p">;</span>
-	<span class="p">},</span>
+				<span class="nx">ParseContent</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">initializer</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Loop trough all extracted &lt;code&gt;script&lt;/code&gt; tags and evaluate them.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _dispatch</span>
-<span class="cm">	 * @param {Object} output Object containing the reference for the fragment and the extracted &lt;code&gt;script&lt;/code&gt; tags.</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 * @return {String}</span>
-<span class="cm">	 */</span>
-	<span class="nx">_dispatch</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">output</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">queue</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">QUEUE</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span>
+					<span class="nx">QUEUE</span><span class="p">,</span>
+					<span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">AsyncQueue</span><span class="p">()</span>
+				<span class="p">);</span>
 
-		<span class="nx">output</span><span class="p">.</span><span class="nx">js</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">src</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SRC</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindAOP</span><span class="p">();</span>
+			<span class="p">},</span>
 
-			<span class="k">if</span> <span class="p">(</span><span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">queue</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span>
-					<span class="nx">autoContinue</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-					<span class="nx">fn</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-						<span class="nx">A</span><span class="p">.</span><span class="nx">Get</span><span class="p">.</span><span class="nx">script</span><span class="p">(</span><span class="nx">src</span><span class="p">,</span> <span class="p">{</span>
-							<span class="nx">onEnd</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
-								<span class="nx">o</span><span class="p">.</span><span class="nx">purge</span><span class="p">();</span> <span class="c1">//removes the script node immediately after executing it</span>
-								<span class="nx">queue</span><span class="p">.</span><span class="nx">run</span><span class="p">();</span>
-							<span class="p">}</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Global eval the &lt;data&gt;data&lt;/data&gt; passed.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method globalEval</span>
+<span class="cm">			 * @param {String} data JavaScript String.</span>
+<span class="cm">			 */</span>
+			<span class="nx">globalEval</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">doc</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">getDoc</span><span class="p">();</span>
+				<span class="kd">var</span> <span class="nx">head</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">HEAD</span><span class="p">)</span> <span class="o">||</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DOCUMENT_ELEMENT</span><span class="p">);</span>
+
+				<span class="c1">// NOTE: A.Node.create(&#39;&lt;script&gt;&lt;/script&gt;&#39;) doesn&#39;t work correctly on Opera</span>
+				<span class="kd">var</span> <span class="nx">newScript</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">SCRIPT</span><span class="p">);</span>
+
+				<span class="nx">newScript</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// NOTE: newScript.set(TEXT, data) breaks on IE, YUI BUG.</span>
+					<span class="nx">newScript</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">newScript</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span> <span class="c1">//removes the script node immediately after executing it</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Extract the &lt;code&gt;script&lt;/code&gt; tags from the string content and</span>
+<span class="cm">			 * evaluate the chunks.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method parseContent</span>
+<span class="cm">			 * @param {String} content HTML string</span>
+<span class="cm">			 * @return {String}</span>
+<span class="cm">			 */</span>
+			<span class="nx">parseContent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_clean</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_dispatch</span><span class="p">(</span><span class="nx">output</span><span class="p">);</span>
+
+				<span class="k">return</span> <span class="nx">output</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Bind listeners on the &lt;code&gt;insert&lt;/code&gt; and &lt;code&gt;setContent&lt;/code&gt;</span>
+<span class="cm">		     * methods of the Node instance where you are plugging the ParseContent.</span>
+<span class="cm">		     * These listeners are responsible for intercept the HTML passed and parse</span>
+<span class="cm">		     * them.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _bindAOP</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_bindAOP</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="c1">// overloading node.insert() arguments, affects append/prepend methods</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">doBefore</span><span class="p">(</span><span class="s1">&#39;insert&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+					<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">parseContent</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
+
+					<span class="c1">// replace the first argument with the clean fragment</span>
+					<span class="nx">args</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">output</span><span class="p">.</span><span class="nx">fragment</span><span class="p">);</span>
+
+					<span class="k">return</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Do</span><span class="p">.</span><span class="nx">AlterArgs</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+				<span class="p">});</span>
+
+				<span class="c1">// overloading node.setContent() arguments</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">doBefore</span><span class="p">(</span><span class="s1">&#39;setContent&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">parseContent</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
+
+					<span class="k">return</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Do</span><span class="p">.</span><span class="nx">AlterArgs</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">[</span><span class="nx">output</span><span class="p">.</span><span class="nx">fragment</span><span class="p">]);</span>
+				<span class="p">});</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Create an HTML fragment with the String passed, extract all the script</span>
+<span class="cm">		     * tags and return an Object with a reference for the extracted scripts and</span>
+<span class="cm">		     * the fragment.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method clean</span>
+<span class="cm">			 * @param {String} content HTML content.</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 * @return {Object}</span>
+<span class="cm">			 */</span>
+			<span class="nx">_clean</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="p">{};</span>
+				<span class="kd">var</span> <span class="nx">fragment</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">getDoc</span><span class="p">().</span><span class="nx">invoke</span><span class="p">(</span><span class="nx">CREATE_DOCUMENT_FRAGMENT</span><span class="p">);</span>
+
+				<span class="c1">// instead of fix all tags to &quot;XHTML&quot;-style, make the firstChild be a valid non-empty tag</span>
+				<span class="nx">fragment</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;div&gt;_&lt;/div&gt;&#39;</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">isString</span><span class="p">(</span><span class="nx">content</span><span class="p">))</span> <span class="p">{</span>
+					<span class="c1">// create fragment from {String}</span>
+					<span class="nx">A</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">addHTML</span><span class="p">(</span><span class="nx">fragment</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">APPEND</span><span class="p">);</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="p">{</span>
+					<span class="c1">// create fragment from {Y.Node | HTMLElement}</span>
+					<span class="nx">fragment</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="nx">output</span><span class="p">.</span><span class="nx">js</span> <span class="o">=</span> <span class="nx">fragment</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">SCRIPT</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span>
+					<span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">node</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+					<span class="p">}</span>
+				<span class="p">);</span>
+
+				<span class="c1">// remove padding node</span>
+				<span class="nx">fragment</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FIRST_CHILD</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+
+				<span class="nx">output</span><span class="p">.</span><span class="nx">fragment</span> <span class="o">=</span> <span class="nx">fragment</span><span class="p">;</span>
+
+				<span class="k">return</span> <span class="nx">output</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Loop trough all extracted &lt;code&gt;script&lt;/code&gt; tags and evaluate them.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _dispatch</span>
+<span class="cm">			 * @param {Object} output Object containing the reference for the fragment and the extracted &lt;code&gt;script&lt;/code&gt; tags.</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 * @return {String}</span>
+<span class="cm">			 */</span>
+			<span class="nx">_dispatch</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">output</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">queue</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">QUEUE</span><span class="p">);</span>
+
+				<span class="nx">output</span><span class="p">.</span><span class="nx">js</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">src</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SRC</span><span class="p">);</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">queue</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span>
+							<span class="nx">autoContinue</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+							<span class="nx">fn</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+								<span class="nx">A</span><span class="p">.</span><span class="nx">Get</span><span class="p">.</span><span class="nx">script</span><span class="p">(</span><span class="nx">src</span><span class="p">,</span> <span class="p">{</span>
+									<span class="nx">onEnd</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+										<span class="nx">o</span><span class="p">.</span><span class="nx">purge</span><span class="p">();</span> <span class="c1">//removes the script node immediately after executing it</span>
+										<span class="nx">queue</span><span class="p">.</span><span class="nx">run</span><span class="p">();</span>
+									<span class="p">}</span>
+								<span class="p">});</span>
+							<span class="p">},</span>
+							<span class="nx">timeout</span><span class="o">:</span> <span class="mi">0</span>
 						<span class="p">});</span>
-					<span class="p">},</span>
-					<span class="nx">timeout</span><span class="o">:</span> <span class="mi">0</span>
-				<span class="p">});</span>
-			<span class="p">}</span>
-			<span class="k">else</span> <span class="p">{</span>
-				<span class="nx">queue</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span>
-					<span class="nx">fn</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-						<span class="kd">var</span> <span class="nx">dom</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">_node</span><span class="p">;</span>
+					<span class="p">}</span>
+					<span class="k">else</span> <span class="p">{</span>
+						<span class="nx">queue</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span>
+							<span class="nx">fn</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+								<span class="kd">var</span> <span class="nx">dom</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">_node</span><span class="p">;</span>
 
-						<span class="nx">instance</span><span class="p">.</span><span class="nx">globalEval</span><span class="p">(</span>
-							<span class="nx">dom</span><span class="p">.</span><span class="nx">text</span> <span class="o">||</span> <span class="nx">dom</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">||</span> <span class="nx">dom</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span>
-						<span class="p">);</span>
-					<span class="p">},</span>
-					<span class="nx">timeout</span><span class="o">:</span> <span class="mi">0</span>
+								<span class="nx">instance</span><span class="p">.</span><span class="nx">globalEval</span><span class="p">(</span>
+									<span class="nx">dom</span><span class="p">.</span><span class="nx">text</span> <span class="o">||</span> <span class="nx">dom</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">||</span> <span class="nx">dom</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span>
+								<span class="p">);</span>
+							<span class="p">},</span>
+							<span class="nx">timeout</span><span class="o">:</span> <span class="mi">0</span>
+						<span class="p">});</span>
+					<span class="p">}</span>
 				<span class="p">});</span>
-			<span class="p">}</span>
-		<span class="p">});</span>
 
-		<span class="nx">queue</span><span class="p">.</span><span class="nx">run</span><span class="p">();</span>
+				<span class="nx">queue</span><span class="p">.</span><span class="nx">run</span><span class="p">();</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
 	<span class="p">}</span>
-<span class="p">});</span>
+<span class="p">);</span>
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;Plugin&#39;</span><span class="p">).</span><span class="nx">ParseContent</span> <span class="o">=</span> <span class="nx">ParseContent</span><span class="p">;</span>
 

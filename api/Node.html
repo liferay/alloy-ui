@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: node  Node   (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			node&nbsp; <span class="subtitle">1.0pr</span>
+			node&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -532,6 +527,24 @@
 								</div>
 							</div>
 
+							<div class="aui-widget aui-list aui-list-properties">
+								<div class="aui-widget-content">
+									<div class="aui-widget-hd aui-list-hd aui-list-properties-hd">
+										<span class="aui-widget-hd-text">Properties</span>
+									</div>
+
+									<div class="aui-widget-bd aui-list-bd">
+										<ul class="content">
+
+				                                <li class=""><a href="#property_ATTRS" title="ATTRS">ATTRS</a></li>
+
+				                                <li class=""><a href="#property_DOM_EVENTS" title="DOM_EVENTS">DOM_EVENTS</a></li>
+
+				                                <li class=""><a href="#property_NAME" title="NAME">NAME</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
 
 							<div class="aui-widget aui-list aui-list-methods">
 								<div class="aui-widget-content">
@@ -542,15 +555,19 @@
 									<div class="aui-widget-bd aui-list-bd">
 										<ul class="content">
 				                               <li class=""><a href="#method_addClass" title="addClass">addClass</a></li>
+				                               <li class=""><a href="#method_addMethod" title="addMethod">addMethod</a></li>
 				                               <li class=""><a href="#method_all" title="all">all</a></li>
 				                               <li class=""><a href="#method_ancestor" title="ancestor">ancestor</a></li>
 				                               <li class=""><a href="#method_append" title="append">append</a></li>
 				                               <li class=""><a href="#method_appendChild" title="appendChild">appendChild</a></li>
 				                               <li class=""><a href="#method_blur" title="blur">blur</a></li>
+				                               <li class=""><a href="#method_clearData" title="clearData">clearData</a></li>
 				                               <li class=""><a href="#method_cloneNode" title="cloneNode">cloneNode</a></li>
 				                               <li class=""><a href="#method_compareTo" title="compareTo">compareTo</a></li>
 				                               <li class=""><a href="#method_contains" title="contains">contains</a></li>
 				                               <li class=""><a href="#method_create" title="create">create</a></li>
+				                               <li class=""><a href="#method_DEFAULT_GETTER" title="DEFAULT_GETTER">DEFAULT_GETTER</a></li>
+				                               <li class=""><a href="#method_DEFAULT_SETTER" title="DEFAULT_SETTER">DEFAULT_SETTER</a></li>
 				                               <li class=""><a href="#method_delegate" title="delegate">delegate</a></li>
 				                               <li class=""><a href="#method_destroy" title="destroy">destroy</a></li>
 				                               <li class=" deprecated"><a href="#method_each" title="each">each</a></li>
@@ -559,6 +576,8 @@
 				                               <li class=""><a href="#method_getAttribute" title="getAttribute">getAttribute</a></li>
 				                               <li class=""><a href="#method_getAttrs" title="getAttrs">getAttrs</a></li>
 				                               <li class=""><a href="#method_getComputedStyle" title="getComputedStyle">getComputedStyle</a></li>
+				                               <li class=""><a href="#method_getData" title="getData">getData</a></li>
+				                               <li class=""><a href="#method_getDOMNode" title="getDOMNode">getDOMNode</a></li>
 				                               <li class=""><a href="#method_getElementsByTagName" title="getElementsByTagName">getElementsByTagName</a></li>
 				                               <li class=""><a href="#method_getStyle" title="getStyle">getStyle</a></li>
 				                               <li class=""><a href="#method_getX" title="getX">getX</a></li>
@@ -567,6 +586,7 @@
 				                               <li class=""><a href="#method_hasAttribute" title="hasAttribute">hasAttribute</a></li>
 				                               <li class=""><a href="#method_hasChildNodes" title="hasChildNodes">hasChildNodes</a></li>
 				                               <li class=""><a href="#method_hasClass" title="hasClass">hasClass</a></li>
+				                               <li class=""><a href="#method_importMethod" title="importMethod">importMethod</a></li>
 				                               <li class=""><a href="#method_inDoc" title="inDoc">inDoc</a></li>
 				                               <li class=""><a href="#method_inRegion" title="inRegion">inRegion</a></li>
 				                               <li class=""><a href="#method_insert" title="insert">insert</a></li>
@@ -575,7 +595,6 @@
 				                               <li class=""><a href="#method_invoke" title="invoke">invoke</a></li>
 				                               <li class=" deprecated"><a href="#method_item" title="item">item</a></li>
 				                               <li class=""><a href="#method_next" title="next">next</a></li>
-				                               <li class=""><a href="#method_Node.getDOMNode" title="Node.getDOMNode">Node.getDOMNode</a></li>
 				                               <li class=""><a href="#method_Node.plug" title="Node.plug">Node.plug</a></li>
 				                               <li class=""><a href="#method_Node.unplug" title="Node.unplug">Node.unplug</a></li>
 				                               <li class=""><a href="#method_one" title="one">one</a></li>
@@ -593,11 +612,13 @@
 				                               <li class=""><a href="#method_replaceClass" title="replaceClass">replaceClass</a></li>
 				                               <li class=""><a href="#method_reset" title="reset">reset</a></li>
 				                               <li class=""><a href="#method_scrollIntoView" title="scrollIntoView">scrollIntoView</a></li>
+				                               <li class=""><a href="#method_scrubVal" title="scrubVal">scrubVal</a></li>
 				                               <li class=""><a href="#method_select" title="select">select</a></li>
 				                               <li class=""><a href="#method_set" title="set">set</a></li>
 				                               <li class=""><a href="#method_setAttribute" title="setAttribute">setAttribute</a></li>
 				                               <li class=""><a href="#method_setAttrs" title="setAttrs">setAttrs</a></li>
 				                               <li class=""><a href="#method_setContent" title="setContent">setContent</a></li>
+				                               <li class=""><a href="#method_setData" title="setData">setData</a></li>
 				                               <li class=""><a href="#method_setStyle" title="setStyle">setStyle</a></li>
 				                               <li class=""><a href="#method_setStyles" title="setStyles">setStyles</a></li>
 				                               <li class=""><a href="#method_setX" title="setX">setX</a></li>
@@ -610,6 +631,7 @@
 				                               <li class=""><a href="#method_swapXY" title="swapXY">swapXY</a></li>
 				                               <li class=""><a href="#method_test" title="test">test</a></li>
 				                               <li class=""><a href="#method_toggleClass" title="toggleClass">toggleClass</a></li>
+				                               <li class=""><a href="#method_toString" title="toString">toString</a></li>
 				                               <li class=" deprecated"><a href="#method_Y.get" title="Y.get">Y.get</a></li>
 				                               <li class=""><a href="#method_Y.one" title="Y.one">Y.one</a></li>
 				                        </ul>
@@ -684,10 +706,24 @@ the <code>set</code> and <code>get</code> methods.
 
 											<code>
 												(
+
+													
+															
+															node
 												)
 											</code>
 
 											<div class="description">
+													<dl rel="yui:parameters">
+														<dt>Parameters:</dt>
+															<dd rel="yui:parameter">
+																<code><span property="yui:name">node</span>
+																&lt;<span property="yui:type">DOMNode</span>&gt;
+																</code>
+
+																<span property="yui:description"> the DOM node to be mapped to the Node instance.</span>
+															</dd>
+													</dl>
 
 
 											</div>
@@ -697,6 +733,65 @@ the <code>set</code> and <code>get</code> methods.
 
 							<div rel="yui:properties" resource="#properties">
 
+								<div class="section field details">
+
+									<h3 id="properties">Properties</h3>
+
+									<div class="content">
+
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_ATTRS">
+
+											<h4>
+												<a name="property_ATTRS" property="yui:name">ATTRS</a>
+												- <code>static <span property="yui:type">object</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Static collection of configuration attributes for special handling
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_DOM_EVENTS">
+
+											<h4>
+												<a name="property_DOM_EVENTS" property="yui:name">DOM_EVENTS</a>
+												- <code>static <span property="yui:type">object</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													List of events that route to DOM events
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_NAME">
+
+											<h4>
+												<a name="property_NAME" property="yui:name">NAME</a>
+												- <code>static <span property="yui:type">object</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													The name of the component
+												</div>
+											</div>
+
+
+
+
+											</div>
+									</div>
+								</div>
 
 							</div>
 
@@ -909,6 +1004,80 @@ Formatting is preserved and special characters are treated literally.
 																<div class="chainable">
 																	<strong>Chainable:</strong> This method is chainable.
 																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_addMethod">
+
+													<h4>
+														<a name="method_addMethod">addMethod</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														 static 
+														
+														any
+															<strong property="yui:name">addMethod</strong>
+														   (
+																
+																		
+																		 name
+																	
+																
+																		, 
+																		 fn
+																	
+																
+																		, 
+																		 context
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Adds methods to the Y.Node prototype, routing through scrubVal.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">name</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The name of the method to add</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">fn</span>
+																		&lt;<span property="yui:type">Function</span>&gt;
+																		</code>
+																		<span property="yui:description"> The function that becomes the method</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">context</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> An optional context to call the method with
+(defaults to the Node instance)</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			any
+																	</code></dt>
+																	<dd property="yui:returnInfo">Depends on what is returned from the DOM node.</dd>
+																</dl>
+
 
 
 
@@ -1170,6 +1339,56 @@ If a function is used, it receives the current node being tested as the only arg
 													</div>
 												</div>
 
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_clearData">
+
+													<h4>
+														<a name="method_clearData">clearData</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">clearData</strong>
+														   (
+																
+																		
+																		 name
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Clears stored data.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">name</span>
+																		&lt;<span property="yui:type">string</span>&gt;
+																		</code>
+																		<span property="yui:description"> The name of the field to clear. If no name
+is given, all data is cleared..</span>
+																		</dd>
+																</dl>
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
 												<div class="api-entry-row method-row " rel="yui:method" resource="#method_cloneNode">
 
 													<h4>
@@ -1385,6 +1604,124 @@ Node instances can be compared to each other and/or HTMLElements.
 																			Node
 																	</code></dt>
 																	<dd property="yui:returnInfo">A Node instance bound to a DOM node or fragment</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_DEFAULT_GETTER">
+
+													<h4>
+														<a name="method_DEFAULT_GETTER">DEFAULT_GETTER</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														 static 
+														
+														any
+															<strong property="yui:name">DEFAULT_GETTER</strong>
+														   (
+																
+																		
+																		 name
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															The default getter for DOM properties 
+Called with instance context (this === the Node instance)
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">name</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The attribute/property to look up</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			any
+																	</code></dt>
+																	<dd property="yui:returnInfo">The current value</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_DEFAULT_SETTER">
+
+													<h4>
+														<a name="method_DEFAULT_SETTER">DEFAULT_SETTER</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														 static 
+														
+														any
+															<strong property="yui:name">DEFAULT_SETTER</strong>
+														   (
+																
+																		
+																		 name
+																	
+																
+																		, 
+																		 val
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															The default setter for DOM properties 
+Called with instance context (this === the Node instance)
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">name</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The attribute/property being set</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">val</span>
+																		&lt;<span property="yui:type">any</span>&gt;
+																		</code>
+																		<span property="yui:description"> The value to be set</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			any
+																	</code></dt>
+																	<dd property="yui:returnInfo">The value</dd>
 																</dl>
 
 
@@ -1635,7 +1972,10 @@ Default context is the NodeList instance</span>
 														</code>
 
 														<div class="description" property="yui:description">
-															Returns an attribute value on the Node instance
+															Returns an attribute value on the Node instance.
+Unless pre-configured (via Node.ATTRS), get hands 
+off to the underlying DOM node.  Only valid
+attributes/properties for the node will be set.
 														</div>
 
 														<div class="description">
@@ -1816,6 +2156,116 @@ This passes through to the DOM node, allowing for custom attributes.
 																			String
 																	</code></dt>
 																	<dd property="yui:returnInfo">The computed value of the style property for the element.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getData">
+
+													<h4>
+														<a name="method_getData">getData</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														any | Object
+															<strong property="yui:name">getData</strong>
+														   (
+																
+																		
+																		 name
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Retrieves arbitrary data stored on a Node instance.
+This is not stored with the DOM node.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">name</span>
+																		&lt;<span property="yui:type">string</span>&gt;
+																		</code>
+																		<span property="yui:description"> Optional name of the data field to retrieve.
+If no name is given, all data is returned.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			any | Object
+																	</code></dt>
+																	<dd property="yui:returnInfo">Whatever is stored at the given field,
+or an object hash of all fields.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getDOMNode">
+
+													<h4>
+														<a name="method_getDOMNode">getDOMNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														 static 
+														
+														HTMLNode
+															<strong property="yui:name">getDOMNode</strong>
+														   (
+																
+																		
+																		 node
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Retrieves the DOM node bound to a Node instance
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">node</span>
+																		&lt;<span property="yui:type">Y.Node || HTMLNode</span>&gt;
+																		</code>
+																		<span property="yui:description"> The Node instance or an HTMLNode</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			HTMLNode
+																	</code></dt>
+																	<dd property="yui:returnInfo">The DOM node bound to the Node instance.  If a DOM node is passed
+as the node argument, it is simply returned.</dd>
 																</dl>
 
 
@@ -2185,6 +2635,82 @@ This passes through to the DOM node, allowing for custom attributes.
 																	</code></dt>
 																	<dd property="yui:returnInfo">An array of booleans for each node bound to the NodeList.</dd>
 																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_importMethod">
+
+													<h4>
+														<a name="method_importMethod">importMethod</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														 static 
+														
+														void
+															<strong property="yui:name">importMethod</strong>
+														   (
+																
+																		
+																		 host
+																	
+																
+																		, 
+																		 name
+																	
+																
+																		, 
+																		 altName
+																	
+																
+																		, 
+																		 context
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Imports utility methods to be added as Y.Node methods.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">host</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> The object that contains the method to import.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">name</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The name of the method to import</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">altName</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> An optional name to use in place of the host name</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">context</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> An optional context to call the method with</span>
+																		</dd>
+																</dl>
+
 
 
 
@@ -2671,60 +3197,6 @@ If a function is used, it receives the current node being tested as the only arg
 																			Node
 																	</code></dt>
 																	<dd property="yui:returnInfo">Node instance or null if not found</dd>
-																</dl>
-
-
-
-
-														</div>
-													</div>
-												</div>
-
-												<div class="api-entry-row method-row " rel="yui:method" resource="#method_Node.getDOMNode">
-
-													<h4>
-														<a name="method_Node.getDOMNode">Node.getDOMNode</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														
-														 static 
-														
-														HTMLNode
-															<strong property="yui:name">Node.getDOMNode</strong>
-														   (
-																
-																		
-																		 node
-																	
-																
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Retrieves the DOM node bound to a Node instance
-														</div>
-
-														<div class="description">
-
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">node</span>
-																		&lt;<span property="yui:type">Y.Node || HTMLNode</span>&gt;
-																		</code>
-																		<span property="yui:description"> The Node instance or an HTMLNode</span>
-																		</dd>
-																</dl>
-
-																<dl>
-																	<dt>Returns:
-																	<code property="yui:return">
-																			HTMLNode
-																	</code></dt>
-																	<dd property="yui:returnInfo">The DOM node bound to the Node instance.  If a DOM node is passed
-as the node argument, it is simply returned.</dd>
 																</dl>
 
 
@@ -3598,6 +4070,62 @@ Only valid on FORM elements
 													</div>
 												</div>
 
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_scrubVal">
+
+													<h4>
+														<a name="method_scrubVal">scrubVal</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														 static 
+														
+														Y.Node | Y.NodeList | any
+															<strong property="yui:name">scrubVal</strong>
+														   (
+																
+																		
+																		 node
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Checks Node return values and wraps DOM Nodes as Y.Node instances
+and DOM Collections / Arrays as Y.NodeList instances.
+Other return values just pass thru.  If undefined is returned (e.g. no return)
+then the Node instance is returned for chainability.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">node</span>
+																		&lt;<span property="yui:type">any</span>&gt;
+																		</code>
+																		<span property="yui:description"> The Node instance or an HTMLNode</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Y.Node | Y.NodeList | any
+																	</code></dt>
+																	<dd property="yui:returnInfo">Depends on what is returned from the DOM node.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
 												<div class="api-entry-row method-row " rel="yui:method" resource="#method_select">
 
 													<h4>
@@ -3661,6 +4189,10 @@ Only valid on FORM elements
 
 														<div class="description" property="yui:description">
 															Sets an attribute on the Node instance.
+Unless pre-configured (via Node.ATTRS), set hands 
+off to the underlying DOM node.  Only valid
+attributes/properties for the node will be set.
+To set custom attributes use setAttribute.
 														</div>
 
 														<div class="description">
@@ -3836,6 +4368,67 @@ This passes through to the DOM node, allowing for custom attributes.
 																		&lt;<span property="yui:type">String | Y.Node | HTMLElement</span>&gt;
 																		</code>
 																		<span property="yui:description"> The content to insert</span>
+																		</dd>
+																</dl>
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setData">
+
+													<h4>
+														<a name="method_setData">setData</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">setData</strong>
+														   (
+																
+																		
+																		 name
+																	
+																
+																		, 
+																		 val
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Stores arbitrary data on a Node instance.
+This is not stored with the DOM node.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">name</span>
+																		&lt;<span property="yui:type">string</span>&gt;
+																		</code>
+																		<span property="yui:description"> The name of the field to set. If no name
+is given, name is treated as the data and overrides any existing data.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">val</span>
+																		&lt;<span property="yui:type">any</span>&gt;
+																		</code>
+																		<span property="yui:description"> The value to be assigned to the field.</span>
 																		</dd>
 																</dl>
 
@@ -4439,6 +5032,45 @@ This does not change which DOM node each Node instance refers to.
 													</div>
 												</div>
 
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_toString">
+
+													<h4>
+														<a name="method_toString">toString</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														String
+															<strong property="yui:name">toString</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															The method called when outputting Node instances as strings
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			String
+																	</code></dt>
+																	<dd property="yui:returnInfo">A string representation of the Node instance</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
 												<div class="api-entry-row method-row  deprecated" rel="yui:method" resource="#method_Y.get">
 
 													<h4>
@@ -4510,7 +5142,7 @@ first element matching the given selector.
 														
 														 static 
 														
-														void
+														Y.Node | null
 															<strong property="yui:name">Y.one</strong>
 														   (
 																
@@ -4518,16 +5150,14 @@ first element matching the given selector.
 																		 node
 																	
 																
-																		, 
-																		 doc
-																	
-																
 															)
 														</code>
 
 														<div class="description" property="yui:description">
 															Returns a single Node instance bound to the node or the
-first element matching the given selector.
+first element matching the given selector. Returns null if no match found.
+<strong>Note:</strong> For chaining purposes you may want to
+use <code>Y.all</code>, which returns a NodeList when no match is found.
 														</div>
 
 														<div class="description">
@@ -4540,14 +5170,15 @@ first element matching the given selector.
 																		</code>
 																		<span property="yui:description"> a node or Selector</span>
 																		</dd>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">doc</span>
-																		&lt;<span property="yui:type">Y.Node || HTMLElement</span>&gt;
-																		</code>
-																		<span property="yui:description"> an optional document to scan. Defaults to Y.config.doc.</span>
-																		</dd>
 																</dl>
 
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Y.Node | null
+																	</code></dt>
+																	<dd property="yui:returnInfo">a Node instance or null if no match found.</dd>
+																</dl>
 
 
 
@@ -4577,7 +5208,7 @@ first element matching the given selector.
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Node.html#method_addClass", "access": "", "host": "Node", "type": "method", "name": "addClass"}, {"url": "Node.html#method_all", "access": "", "host": "Node", "type": "method", "name": "all"}, {"url": "Node.html#method_ancestor", "access": "", "host": "Node", "type": "method", "name": "ancestor"}, {"url": "Node.html#method_append", "access": "", "host": "Node", "type": "method", "name": "append"}, {"url": "Node.html#method_appendChild", "access": "", "host": "Node", "type": "method", "name": "appendChild"}, {"url": "Node.html#method_blur", "access": "", "host": "Node", "type": "method", "name": "blur"}, {"url": "Node.html#config_children", "access": "", "host": "Node", "type": "config", "name": "children"}, {"url": "Node.html#method_cloneNode", "access": "", "host": "Node", "type": "method", "name": "cloneNode"}, {"url": "Node.html#method_compareTo", "access": "", "host": "Node", "type": "method", "name": "compareTo"}, {"url": "Node.html#method_contains", "access": "", "host": "Node", "type": "method", "name": "contains"}, {"url": "Node.html#method_create", "access": "", "host": "Node", "type": "method", "name": "create"}, {"url": "Node.html#method_delegate", "access": "", "host": "Node", "type": "method", "name": "delegate"}, {"url": "Node.html#method_destroy", "access": "", "host": "Node", "type": "method", "name": "destroy"}, {"url": "Node.html#config_docHeight", "access": "", "host": "Node", "type": "config", "name": "docHeight"}, {"url": "Node.html#config_docScrollX", "access": "", "host": "Node", "type": "config", "name": "docScrollX"}, {"url": "Node.html#config_docScrollY", "access": "", "host": "Node", "type": "config", "name": "docScrollY"}, {"url": "Node.html#method_each", "access": "", "host": "Node", "type": "method", "name": "each"}, {"url": "Node.html#method_focus", "access": "", "host": "Node", "type": "method", "name": "focus"}, {"url": "Node.html#method_get", "access": "", "host": "Node", "type": "method", "name": "get"}, {"url": "Node.html#method_getAttribute", "access": "", "host": "Node", "type": "method", "name": "getAttribute"}, {"url": "Node.html#method_getAttrs", "access": "", "host": "Node", "type": "method", "name": "getAttrs"}, {"url": "Node.html#method_getComputedStyle", "access": "", "host": "Node", "type": "method", "name": "getComputedStyle"}, {"url": "Node.html#method_getElementsByTagName", "access": "", "host": "Node", "type": "method", "name": "getElementsByTagName"}, {"url": "Node.html#method_getStyle", "access": "", "host": "Node", "type": "method", "name": "getStyle"}, {"url": "Node.html#method_getX", "access": "", "host": "Node", "type": "method", "name": "getX"}, {"url": "Node.html#method_getXY", "access": "", "host": "Node", "type": "method", "name": "getXY"}, {"url": "Node.html#method_getY", "access": "", "host": "Node", "type": "method", "name": "getY"}, {"url": "Node.html#method_hasAttribute", "access": "", "host": "Node", "type": "method", "name": "hasAttribute"}, {"url": "Node.html#method_hasChildNodes", "access": "", "host": "Node", "type": "method", "name": "hasChildNodes"}, {"url": "Node.html#method_hasClass", "access": "", "host": "Node", "type": "method", "name": "hasClass"}, {"url": "Node.html#method_inDoc", "access": "", "host": "Node", "type": "method", "name": "inDoc"}, {"url": "Node.html#method_inRegion", "access": "", "host": "Node", "type": "method", "name": "inRegion"}, {"url": "Node.html#method_insert", "access": "", "host": "Node", "type": "method", "name": "insert"}, {"url": "Node.html#method_insertBefore", "access": "", "host": "Node", "type": "method", "name": "insertBefore"}, {"url": "Node.html#method_intersect", "access": "", "host": "Node", "type": "method", "name": "intersect"}, {"url": "Node.html#method_invoke", "access": "", "host": "Node", "type": "method", "name": "invoke"}, {"url": "Node.html#method_item", "access": "", "host": "Node", "type": "method", "name": "item"}, {"url": "Node.html#method_next", "access": "", "host": "Node", "type": "method", "name": "next"}, {"url": "Node.html#method_Node.getDOMNode", "access": "", "host": "Node", "type": "method", "name": "Node.getDOMNode"}, {"url": "Node.html#method_Node.plug", "access": "", "host": "Node", "type": "method", "name": "Node.plug"}, {"url": "Node.html#method_Node.unplug", "access": "", "host": "Node", "type": "method", "name": "Node.unplug"}, {"url": "Node.html#method_one", "access": "", "host": "Node", "type": "method", "name": "one"}, {"url": "Node.html#method_prepend", "access": "", "host": "Node", "type": "method", "name": "prepend"}, {"url": "Node.html#method_previous", "access": "", "host": "Node", "type": "method", "name": "previous"}, {"url": "Node.html#method_purge", "access": "", "host": "Node", "type": "method", "name": "purge"}, {"url": "Node.html#method_query", "access": "", "host": "Node", "type": "method", "name": "query"}, {"url": "Node.html#method_queryAll", "access": "", "host": "Node", "type": "method", "name": "queryAll"}, {"url": "Node.html#config_region", "access": "", "host": "Node", "type": "config", "name": "region"}, {"url": "Node.html#method_remove", "access": "", "host": "Node", "type": "method", "name": "remove"}, {"url": "Node.html#method_removeAttribute", "access": "", "host": "Node", "type": "method", "name": "removeAttribute"}, {"url": "Node.html#method_removeChild", "access": "", "host": "Node", "type": "method", "name": "removeChild"}, {"url": "Node.html#method_removeClass", "access": "", "host": "Node", "type": "method", "name": "removeClass"}, {"url": "Node.html#method_replace", "access": "", "host": "Node", "type": "method", "name": "replace"}, {"url": "Node.html#method_replaceChild", "access": "", "host": "Node", "type": "method", "name": "replaceChild"}, {"url": "Node.html#method_replaceClass", "access": "", "host": "Node", "type": "method", "name": "replaceClass"}, {"url": "Node.html#method_reset", "access": "", "host": "Node", "type": "method", "name": "reset"}, {"url": "Node.html#method_scrollIntoView", "access": "", "host": "Node", "type": "method", "name": "scrollIntoView"}, {"url": "Node.html#method_select", "access": "", "host": "Node", "type": "method", "name": "select"}, {"url": "Node.html#method_set", "access": "", "host": "Node", "type": "method", "name": "set"}, {"url": "Node.html#method_setAttribute", "access": "", "host": "Node", "type": "method", "name": "setAttribute"}, {"url": "Node.html#method_setAttrs", "access": "", "host": "Node", "type": "method", "name": "setAttrs"}, {"url": "Node.html#method_setContent", "access": "", "host": "Node", "type": "method", "name": "setContent"}, {"url": "Node.html#method_setStyle", "access": "", "host": "Node", "type": "method", "name": "setStyle"}, {"url": "Node.html#method_setStyles", "access": "", "host": "Node", "type": "method", "name": "setStyles"}, {"url": "Node.html#method_setX", "access": "", "host": "Node", "type": "method", "name": "setX"}, {"url": "Node.html#method_setXY", "access": "", "host": "Node", "type": "method", "name": "setXY"}, {"url": "Node.html#method_setY", "access": "", "host": "Node", "type": "method", "name": "setY"}, {"url": "Node.html#method_siblings", "access": "", "host": "Node", "type": "method", "name": "siblings"}, {"url": "Node.html#method_size", "access": "", "host": "Node", "type": "method", "name": "size"}, {"url": "Node.html#method_submit", "access": "", "host": "Node", "type": "method", "name": "submit"}, {"url": "Node.html#method_swap", "access": "", "host": "Node", "type": "method", "name": "swap"}, {"url": "Node.html#method_swapXY", "access": "", "host": "Node", "type": "method", "name": "swapXY"}, {"url": "Node.html#method_test", "access": "", "host": "Node", "type": "method", "name": "test"}, {"url": "Node.html#config_text", "access": "", "host": "Node", "type": "config", "name": "text"}, {"url": "Node.html#method_toggleClass", "access": "", "host": "Node", "type": "method", "name": "toggleClass"}, {"url": "Node.html#config_viewportRegion", "access": "", "host": "Node", "type": "config", "name": "viewportRegion"}, {"url": "Node.html#config_winHeight", "access": "", "host": "Node", "type": "config", "name": "winHeight"}, {"url": "Node.html#config_winWidth", "access": "", "host": "Node", "type": "config", "name": "winWidth"}, {"url": "Node.html#method_Y.get", "access": "", "host": "Node", "type": "method", "name": "Y.get"}, {"url": "Node.html#method_Y.one", "access": "", "host": "Node", "type": "method", "name": "Y.one"}];
+    var ALL_YUI_PROPS = [{"url": "Node.html#method_addClass", "access": "", "host": "Node", "type": "method", "name": "addClass"}, {"url": "Node.html#method_addMethod", "access": "", "host": "Node", "type": "method", "name": "addMethod"}, {"url": "Node.html#method_all", "access": "", "host": "Node", "type": "method", "name": "all"}, {"url": "Node.html#method_ancestor", "access": "", "host": "Node", "type": "method", "name": "ancestor"}, {"url": "Node.html#method_append", "access": "", "host": "Node", "type": "method", "name": "append"}, {"url": "Node.html#method_appendChild", "access": "", "host": "Node", "type": "method", "name": "appendChild"}, {"url": "Node.html#property_ATTRS", "access": "", "host": "Node", "type": "property", "name": "ATTRS"}, {"url": "Node.html#method_blur", "access": "", "host": "Node", "type": "method", "name": "blur"}, {"url": "Node.html#config_children", "access": "", "host": "Node", "type": "config", "name": "children"}, {"url": "Node.html#method_clearData", "access": "", "host": "Node", "type": "method", "name": "clearData"}, {"url": "Node.html#method_cloneNode", "access": "", "host": "Node", "type": "method", "name": "cloneNode"}, {"url": "Node.html#method_compareTo", "access": "", "host": "Node", "type": "method", "name": "compareTo"}, {"url": "Node.html#method_contains", "access": "", "host": "Node", "type": "method", "name": "contains"}, {"url": "Node.html#method_create", "access": "", "host": "Node", "type": "method", "name": "create"}, {"url": "Node.html#method_DEFAULT_GETTER", "access": "", "host": "Node", "type": "method", "name": "DEFAULT_GETTER"}, {"url": "Node.html#method_DEFAULT_SETTER", "access": "", "host": "Node", "type": "method", "name": "DEFAULT_SETTER"}, {"url": "Node.html#method_delegate", "access": "", "host": "Node", "type": "method", "name": "delegate"}, {"url": "Node.html#method_destroy", "access": "", "host": "Node", "type": "method", "name": "destroy"}, {"url": "Node.html#config_docHeight", "access": "", "host": "Node", "type": "config", "name": "docHeight"}, {"url": "Node.html#config_docScrollX", "access": "", "host": "Node", "type": "config", "name": "docScrollX"}, {"url": "Node.html#config_docScrollY", "access": "", "host": "Node", "type": "config", "name": "docScrollY"}, {"url": "Node.html#property_DOM_EVENTS", "access": "", "host": "Node", "type": "property", "name": "DOM_EVENTS"}, {"url": "Node.html#method_each", "access": "", "host": "Node", "type": "method", "name": "each"}, {"url": "Node.html#method_focus", "access": "", "host": "Node", "type": "method", "name": "focus"}, {"url": "Node.html#method_get", "access": "", "host": "Node", "type": "method", "name": "get"}, {"url": "Node.html#method_getAttribute", "access": "", "host": "Node", "type": "method", "name": "getAttribute"}, {"url": "Node.html#method_getAttrs", "access": "", "host": "Node", "type": "method", "name": "getAttrs"}, {"url": "Node.html#method_getComputedStyle", "access": "", "host": "Node", "type": "method", "name": "getComputedStyle"}, {"url": "Node.html#method_getData", "access": "", "host": "Node", "type": "method", "name": "getData"}, {"url": "Node.html#method_getDOMNode", "access": "", "host": "Node", "type": "method", "name": "getDOMNode"}, {"url": "Node.html#method_getElementsByTagName", "access": "", "host": "Node", "type": "method", "name": "getElementsByTagName"}, {"url": "Node.html#method_getStyle", "access": "", "host": "Node", "type": "method", "name": "getStyle"}, {"url": "Node.html#method_getX", "access": "", "host": "Node", "type": "method", "name": "getX"}, {"url": "Node.html#method_getXY", "access": "", "host": "Node", "type": "method", "name": "getXY"}, {"url": "Node.html#method_getY", "access": "", "host": "Node", "type": "method", "name": "getY"}, {"url": "Node.html#method_hasAttribute", "access": "", "host": "Node", "type": "method", "name": "hasAttribute"}, {"url": "Node.html#method_hasChildNodes", "access": "", "host": "Node", "type": "method", "name": "hasChildNodes"}, {"url": "Node.html#method_hasClass", "access": "", "host": "Node", "type": "method", "name": "hasClass"}, {"url": "Node.html#method_importMethod", "access": "", "host": "Node", "type": "method", "name": "importMethod"}, {"url": "Node.html#method_inDoc", "access": "", "host": "Node", "type": "method", "name": "inDoc"}, {"url": "Node.html#method_inRegion", "access": "", "host": "Node", "type": "method", "name": "inRegion"}, {"url": "Node.html#method_insert", "access": "", "host": "Node", "type": "method", "name": "insert"}, {"url": "Node.html#method_insertBefore", "access": "", "host": "Node", "type": "method", "name": "insertBefore"}, {"url": "Node.html#method_intersect", "access": "", "host": "Node", "type": "method", "name": "intersect"}, {"url": "Node.html#method_invoke", "access": "", "host": "Node", "type": "method", "name": "invoke"}, {"url": "Node.html#method_item", "access": "", "host": "Node", "type": "method", "name": "item"}, {"url": "Node.html#property_NAME", "access": "", "host": "Node", "type": "property", "name": "NAME"}, {"url": "Node.html#method_next", "access": "", "host": "Node", "type": "method", "name": "next"}, {"url": "Node.html#method_Node.plug", "access": "", "host": "Node", "type": "method", "name": "Node.plug"}, {"url": "Node.html#method_Node.unplug", "access": "", "host": "Node", "type": "method", "name": "Node.unplug"}, {"url": "Node.html#method_one", "access": "", "host": "Node", "type": "method", "name": "one"}, {"url": "Node.html#method_prepend", "access": "", "host": "Node", "type": "method", "name": "prepend"}, {"url": "Node.html#method_previous", "access": "", "host": "Node", "type": "method", "name": "previous"}, {"url": "Node.html#method_purge", "access": "", "host": "Node", "type": "method", "name": "purge"}, {"url": "Node.html#method_query", "access": "", "host": "Node", "type": "method", "name": "query"}, {"url": "Node.html#method_queryAll", "access": "", "host": "Node", "type": "method", "name": "queryAll"}, {"url": "Node.html#config_region", "access": "", "host": "Node", "type": "config", "name": "region"}, {"url": "Node.html#method_remove", "access": "", "host": "Node", "type": "method", "name": "remove"}, {"url": "Node.html#method_removeAttribute", "access": "", "host": "Node", "type": "method", "name": "removeAttribute"}, {"url": "Node.html#method_removeChild", "access": "", "host": "Node", "type": "method", "name": "removeChild"}, {"url": "Node.html#method_removeClass", "access": "", "host": "Node", "type": "method", "name": "removeClass"}, {"url": "Node.html#method_replace", "access": "", "host": "Node", "type": "method", "name": "replace"}, {"url": "Node.html#method_replaceChild", "access": "", "host": "Node", "type": "method", "name": "replaceChild"}, {"url": "Node.html#method_replaceClass", "access": "", "host": "Node", "type": "method", "name": "replaceClass"}, {"url": "Node.html#method_reset", "access": "", "host": "Node", "type": "method", "name": "reset"}, {"url": "Node.html#method_scrollIntoView", "access": "", "host": "Node", "type": "method", "name": "scrollIntoView"}, {"url": "Node.html#method_scrubVal", "access": "", "host": "Node", "type": "method", "name": "scrubVal"}, {"url": "Node.html#method_select", "access": "", "host": "Node", "type": "method", "name": "select"}, {"url": "Node.html#method_set", "access": "", "host": "Node", "type": "method", "name": "set"}, {"url": "Node.html#method_setAttribute", "access": "", "host": "Node", "type": "method", "name": "setAttribute"}, {"url": "Node.html#method_setAttrs", "access": "", "host": "Node", "type": "method", "name": "setAttrs"}, {"url": "Node.html#method_setContent", "access": "", "host": "Node", "type": "method", "name": "setContent"}, {"url": "Node.html#method_setData", "access": "", "host": "Node", "type": "method", "name": "setData"}, {"url": "Node.html#method_setStyle", "access": "", "host": "Node", "type": "method", "name": "setStyle"}, {"url": "Node.html#method_setStyles", "access": "", "host": "Node", "type": "method", "name": "setStyles"}, {"url": "Node.html#method_setX", "access": "", "host": "Node", "type": "method", "name": "setX"}, {"url": "Node.html#method_setXY", "access": "", "host": "Node", "type": "method", "name": "setXY"}, {"url": "Node.html#method_setY", "access": "", "host": "Node", "type": "method", "name": "setY"}, {"url": "Node.html#method_siblings", "access": "", "host": "Node", "type": "method", "name": "siblings"}, {"url": "Node.html#method_size", "access": "", "host": "Node", "type": "method", "name": "size"}, {"url": "Node.html#method_submit", "access": "", "host": "Node", "type": "method", "name": "submit"}, {"url": "Node.html#method_swap", "access": "", "host": "Node", "type": "method", "name": "swap"}, {"url": "Node.html#method_swapXY", "access": "", "host": "Node", "type": "method", "name": "swapXY"}, {"url": "Node.html#method_test", "access": "", "host": "Node", "type": "method", "name": "test"}, {"url": "Node.html#config_text", "access": "", "host": "Node", "type": "config", "name": "text"}, {"url": "Node.html#method_toggleClass", "access": "", "host": "Node", "type": "method", "name": "toggleClass"}, {"url": "Node.html#method_toString", "access": "", "host": "Node", "type": "method", "name": "toString"}, {"url": "Node.html#config_viewportRegion", "access": "", "host": "Node", "type": "config", "name": "viewportRegion"}, {"url": "Node.html#config_winHeight", "access": "", "host": "Node", "type": "config", "name": "winHeight"}, {"url": "Node.html#config_winWidth", "access": "", "host": "Node", "type": "config", "name": "winWidth"}, {"url": "Node.html#method_Y.get", "access": "", "host": "Node", "type": "method", "name": "Y.get"}, {"url": "Node.html#method_Y.one", "access": "", "host": "Node", "type": "method", "name": "Y.one"}];
 </script>
 </body>
 </html>

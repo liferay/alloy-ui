@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-component   aui-component.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-component&nbsp; <span class="subtitle">1.0pr</span>
+			aui-component&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -566,7 +561,8 @@
 
 	<span class="nx">CSS_COMPONENT</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">),</span>
 
-	<span class="nx">CSS_HELPER_HIDDEN</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="s1">&#39;helper&#39;</span><span class="p">,</span> <span class="s1">&#39;hidden&#39;</span><span class="p">);</span>
+	<span class="nx">CSS_HELPER_HIDDEN</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="s1">&#39;helper&#39;</span><span class="p">,</span> <span class="s1">&#39;hidden&#39;</span><span class="p">),</span>
+	<span class="nx">CONSTRUCTOR_OBJECT</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span><span class="p">;</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * A base class for Component, providing:</span>
@@ -590,7 +586,11 @@
 	<span class="nx">instance</span><span class="p">.</span><span class="nx">_originalConfig</span> <span class="o">=</span> <span class="nx">config</span><span class="p">;</span>
 
 	<span class="nx">Component</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+	<span class="nx">INSTANCES</span><span class="p">[</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">;</span>
 <span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">INSTANCES</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">.</span><span class="nx">_INSTANCES</span> <span class="o">=</span> <span class="p">{};</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Static property provides a string to identify the class.</span>
@@ -919,6 +919,49 @@
 		<span class="p">}</span>
 	<span class="p">}</span>
 <span class="p">);</span>
+
+<span class="nx">Component</span><span class="p">.</span><span class="nx">getById</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">INSTANCES</span><span class="p">[</span><span class="nx">id</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">COMP_PROTO</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+
+<span class="nx">Component</span><span class="p">.</span><span class="nx">create</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">config</span> <span class="o">=</span> <span class="nx">config</span> <span class="o">||</span> <span class="p">{};</span>
+
+	<span class="kd">var</span> <span class="nx">extendsClass</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">EXTENDS</span> <span class="o">||</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">;</span>
+
+	<span class="kd">var</span> <span class="nx">component</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">constructor</span><span class="p">;</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">component</span> <span class="o">||</span> <span class="nx">component</span> <span class="o">==</span> <span class="nx">CONSTRUCTOR_OBJECT</span><span class="p">){</span>
+		<span class="nx">component</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+			<span class="nx">component</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+		<span class="p">};</span>
+	<span class="p">}</span>
+
+	<span class="kd">var</span> <span class="nx">configProto</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">UI_ATTRS</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">configProto</span><span class="p">.</span><span class="nx">_BIND_UI_ATTRS</span> <span class="o">=</span> <span class="nx">COMP_PROTO</span><span class="p">.</span><span class="nx">_BIND_UI_ATTRS</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">UI_ATTRS</span><span class="p">);</span>
+		<span class="nx">configProto</span><span class="p">.</span><span class="nx">_SYNC_UI_ATTRS</span> <span class="o">=</span> <span class="nx">COMP_PROTO</span><span class="p">.</span><span class="nx">_SYNC_UI_ATTRS</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">UI_ATTRS</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">BIND_UI_ATTRS</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">configProto</span><span class="p">.</span><span class="nx">_BIND_UI_ATTRS</span> <span class="o">=</span> <span class="nx">COMP_PROTO</span><span class="p">.</span><span class="nx">_BIND_UI_ATTRS</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">BIND_UI_ATTRS</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">SYNC_UI_ATTRS</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">configProto</span><span class="p">.</span><span class="nx">_SYNC_UI_ATTRS</span> <span class="o">=</span> <span class="nx">COMP_PROTO</span><span class="p">.</span><span class="nx">_SYNC_UI_ATTRS</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">SYNC_UI_ATTRS</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">component</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+
+	<span class="k">delete</span> <span class="nx">component</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+
+	<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">component</span><span class="p">,</span> <span class="nx">extendsClass</span><span class="p">,</span> <span class="nx">configProto</span><span class="p">);</span>
+
+	<span class="k">return</span> <span class="nx">component</span><span class="p">;</span>
+<span class="p">};</span>
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">;</span>
 

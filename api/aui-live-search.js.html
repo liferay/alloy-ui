@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-live-search   aui-live-search.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-live-search&nbsp; <span class="subtitle">1.0pr</span>
+			aui-live-search&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -598,381 +593,381 @@
 <span class="cm"> * @constructor</span>
 <span class="cm"> * @extends Base</span>
 <span class="cm"> */</span>
-<span class="kd">function</span> <span class="nx">LiveSearch</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">LiveSearch</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">LiveSearch</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property provides a string to identify the class.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property LiveSearch.NAME</span>
-<span class="cm">	 * @type String</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">NAME</span><span class="o">:</span> <span class="nx">LIVE_SEARCH</span><span class="p">,</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property used to define the default attribute</span>
-<span class="cm">	 * configuration for the LiveSearch.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property LiveSearch.ATTRS</span>
-<span class="cm">	 * @type Object</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">LiveSearch</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+	<span class="p">{</span>
 		<span class="cm">/**</span>
-<span class="cm">		 * &lt;p&gt;Function to extract the content from the node for the indexing. The</span>
-<span class="cm">         * default uses the &lt;code&gt;node.html()&lt;/code&gt;. In case if you need to</span>
-<span class="cm">         * index the id of the nodes, here goes one example:&lt;/p&gt;</span>
+<span class="cm">		 * Static property provides a string to identify the class.</span>
 <span class="cm">		 *</span>
-<span class="cm">		 * Example indexing the id of the node instead of the HTML:</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * &lt;pre&gt;&lt;code&gt;function(node) {</span>
-<span class="cm">		 *  return node.attr(&#39;id&#39;);</span>
-<span class="cm">		 * }</span>
-<span class="cm">		 * &lt;/code&gt;&lt;/pre&gt;</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute data</span>
-<span class="cm">		 * @default function(node) { return node.html(); }</span>
-<span class="cm">		 * @type function</span>
+<span class="cm">		 * @property LiveSearch.NAME</span>
+<span class="cm">		 * @type String</span>
+<span class="cm">		 * @static</span>
 <span class="cm">		 */</span>
-		<span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="nx">node</span><span class="p">.</span><span class="nx">html</span><span class="p">();</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="nx">LIVE_SEARCH</span><span class="p">,</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Static property used to define the default attribute</span>
+<span class="cm">		 * configuration for the LiveSearch.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property LiveSearch.ATTRS</span>
+<span class="cm">		 * @type Object</span>
+<span class="cm">		 * @static</span>
+<span class="cm">		 */</span>
+		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * &lt;p&gt;Function to extract the content from the node for the indexing. The</span>
+<span class="cm">	         * default uses the &lt;code&gt;node.html()&lt;/code&gt;. In case if you need to</span>
+<span class="cm">	         * index the id of the nodes, here goes one example:&lt;/p&gt;</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * Example indexing the id of the node instead of the HTML:</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * &lt;pre&gt;&lt;code&gt;function(node) {</span>
+<span class="cm">			 *  return node.attr(&#39;id&#39;);</span>
+<span class="cm">			 * }</span>
+<span class="cm">			 * &lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute data</span>
+<span class="cm">			 * @default function(node) { return node.html(); }</span>
+<span class="cm">			 * @type function</span>
+<span class="cm">			 */</span>
+			<span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">node</span><span class="p">.</span><span class="nx">html</span><span class="p">();</span>
+				<span class="p">},</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isFunction</span>
 			<span class="p">},</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isFunction</span>
-		<span class="p">},</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * Number of milliseconds the filter will be applied to the node list</span>
-<span class="cm">         * after the user stop typing.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute delay</span>
-<span class="cm">		 * @default 250</span>
-<span class="cm">		 * @type Number</span>
-<span class="cm">		 */</span>
-		<span class="nx">delay</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="mi">250</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Function to be executed to hide the node when the data of that node</span>
-<span class="cm">         * not matches with the filter.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute hide</span>
-<span class="cm">		 * @default function(node) { return node.hide(); }</span>
-<span class="cm">		 * @type function</span>
-<span class="cm">		 */</span>
-		<span class="nx">hide</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="nx">node</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Number of milliseconds the filter will be applied to the node list</span>
+<span class="cm">	         * after the user stop typing.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute delay</span>
+<span class="cm">			 * @default 250</span>
+<span class="cm">			 * @type Number</span>
+<span class="cm">			 */</span>
+			<span class="nx">delay</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="mi">250</span>
 			<span class="p">},</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isFunction</span>
-		<span class="p">},</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * Index for the nodes content.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute index</span>
-<span class="cm">		 * @default []</span>
-<span class="cm">		 * @type Array</span>
-<span class="cm">		 */</span>
-		<span class="nx">index</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="p">[],</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isObject</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * The &lt;code&gt;value&lt;/code&gt; of this input node is used to filter the</span>
-<span class="cm">         * results.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute input</span>
-<span class="cm">		 * @type Node | String</span>
-<span class="cm">		 */</span>
-		<span class="nx">input</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
-			<span class="p">}</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * The input &lt;code&gt;value&lt;/code&gt; need to matches with this RegExp to be</span>
-<span class="cm">         * accept as a filter (i.e., in order to accept only digits you</span>
-<span class="cm">         * could use /\d+/g).</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute matchRegex</span>
-<span class="cm">		 * @default (.)*</span>
-<span class="cm">		 * @type RegExp</span>
-<span class="cm">		 */</span>
-		<span class="nx">matchRegex</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="p">(</span><span class="nx">v</span> <span class="k">instanceof</span> <span class="nb">RegExp</span><span class="p">);</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Function to be executed to hide the node when the data of that node</span>
+<span class="cm">	         * not matches with the filter.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute hide</span>
+<span class="cm">			 * @default function(node) { return node.hide(); }</span>
+<span class="cm">			 * @type function</span>
+<span class="cm">			 */</span>
+			<span class="nx">hide</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">node</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+				<span class="p">},</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isFunction</span>
 			<span class="p">},</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="sr">/(.)*/g</span>
-		<span class="p">},</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * Nodes to be indexed for the filtering.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute nodes</span>
-<span class="cm">		 * @type Node | NodeList</span>
-<span class="cm">		 */</span>
-		<span class="nx">nodes</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setNodes</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
-			<span class="p">}</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Function to be executed to show the node when the data of that node</span>
-<span class="cm">         * matches with the filter.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute show</span>
-<span class="cm">		 * @default function(node) { return node.show(); }</span>
-<span class="cm">		 * @type function</span>
-<span class="cm">		 */</span>
-		<span class="nx">show</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="nx">node</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Index for the nodes content.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute index</span>
+<span class="cm">			 * @default []</span>
+<span class="cm">			 * @type Array</span>
+<span class="cm">			 */</span>
+			<span class="nx">index</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="p">[],</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isObject</span>
 			<span class="p">},</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isFunction</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-<span class="p">});</span>
 
-<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">LiveSearch</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Stores the normalized query value given from</span>
-<span class="cm">     * &lt;a href=&quot;LiveSearch.html#config__normalizeQuery&quot;&gt;_normalizeQuery&lt;/a&gt;.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property normalizedQuery</span>
-<span class="cm">	 * @type String</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">normalizedQuery</span><span class="o">:</span> <span class="nx">BLANK</span><span class="p">,</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Stores the query value.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property query</span>
-<span class="cm">	 * @type String</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">query</span><span class="o">:</span> <span class="nx">BLANK</span><span class="p">,</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Handles the &lt;a href=&quot;YUI.html#method_later&quot;&gt;later&lt;/a&gt; Object.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property timer</span>
-<span class="cm">	 * @type Object</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">timer</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Construction logic executed during LiveSearch instantiation. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method initializer</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">refreshIndex</span><span class="p">();</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Bind the events on the LiveSearch UI. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method bindUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">INPUT</span><span class="p">);</span>
-
-		<span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_inputKeyUp</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">search</span> <span class="p">});</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Descructor lifecycle implementation for the LiveSearch class.</span>
-<span class="cm">	 * Purges events attached to the node (and all child nodes).</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method destroy</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">INPUT</span><span class="p">);</span>
-
-		<span class="nx">input</span><span class="p">.</span><span class="nx">detach</span><span class="p">(</span><span class="s1">&#39;keyup&#39;</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Filter the &lt;a href=&quot;LiveSearch.html#config_nodes&quot;&gt;nodes&lt;/a&gt; based on</span>
-<span class="cm">     * the input value.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method filter</span>
-<span class="cm">	 * @param {String} query Query to filter results</span>
-<span class="cm">	 * @return {Array} Matched results.</span>
-<span class="cm">	 */</span>
-	<span class="nx">filter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">results</span> <span class="o">=</span> <span class="p">[];</span>
-		<span class="kd">var</span> <span class="nx">nodes</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODES</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">INDEX</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">query</span> <span class="o">=</span> <span class="nx">query</span><span class="p">;</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">normalizedQuery</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_normalizeQuery</span><span class="p">(</span><span class="nx">query</span><span class="p">);</span>
-
-		<span class="kd">var</span> <span class="nx">regex</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">normalizedQuery</span>
-		<span class="p">);</span>
-
-		<span class="nx">A</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">nodes</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">index</span><span class="p">);</span>
-
-			<span class="nx">results</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
-				<span class="nx">content</span><span class="o">:</span> <span class="nx">content</span><span class="p">,</span>
-				<span class="nx">match</span><span class="o">:</span> <span class="nx">regex</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">content</span><span class="p">),</span>
-				<span class="nx">node</span><span class="o">:</span> <span class="nx">node</span>
-			<span class="p">});</span>
-		<span class="p">});</span>
-
-		<span class="k">return</span> <span class="nx">results</span><span class="p">;</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Refreshes the &lt;a href=&quot;LiveSearch.html#config_index&quot;&gt;index&lt;/a&gt;.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method refreshIndex</span>
-<span class="cm">	 */</span>
-	<span class="nx">refreshIndex</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="p">[];</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODES</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DATA</span><span class="p">).</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="p">[</span><span class="nx">node</span><span class="p">]).</span><span class="nx">toLowerCase</span><span class="p">()</span>
-			<span class="p">);</span>
-
-			<span class="nx">index</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
-		<span class="p">});</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">INDEX</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires the search event.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method search</span>
-<span class="cm">	 * @param {EventFacade} event search event facade</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">search</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">INPUT</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
-
-		<span class="kd">var</span> <span class="nx">results</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
-
-		<span class="nx">A</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">results</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">search</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">search</span><span class="p">.</span><span class="nx">node</span><span class="p">;</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">search</span><span class="p">.</span><span class="nx">match</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SHOW</span><span class="p">).</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="p">[</span><span class="nx">node</span><span class="p">]);</span>
-			<span class="p">}</span>
-			<span class="k">else</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HIDE</span><span class="p">).</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="p">[</span><span class="nx">node</span><span class="p">]);</span>
-			<span class="p">}</span>
-		<span class="p">});</span>
-
-		<span class="nx">event</span><span class="p">.</span><span class="nx">liveSearch</span><span class="p">.</span><span class="nx">results</span> <span class="o">=</span> <span class="nx">results</span><span class="p">;</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Normalize the input query. With &lt;code&gt;trim&lt;/code&gt;,</span>
-<span class="cm">     * &lt;code&gt;matchRegex&lt;/code&gt; and replace &#39;*&#39; to &#39;&#39; (on a regex empty match</span>
-<span class="cm">     * with everything like *).</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _normalizeQuery</span>
-<span class="cm">	 * @param {String} query Query to filter results</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 * @return {String}</span>
-<span class="cm">	 */</span>
-	<span class="nx">_normalizeQuery</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">matchRegex</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">MATCH_REGEX</span><span class="p">);</span>
-
-		<span class="c1">// trim the user query and lowercase it</span>
-		<span class="nx">query</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span> <span class="nx">query</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="p">);</span>
-
-		<span class="c1">// match with the matchRegex</span>
-		<span class="nx">query</span> <span class="o">=</span> <span class="nx">query</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">matchRegex</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="nx">BLANK</span><span class="p">);</span>
-
-		<span class="c1">// replace on the query &#39;*&#39; to &#39;&#39;, on a regex empty match with everything like *</span>
-		<span class="nx">query</span> <span class="o">=</span> <span class="nx">query</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">STAR</span><span class="p">,</span> <span class="nx">BLANK</span><span class="p">);</span>
-
-		<span class="nx">query</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">escapeRegEx</span><span class="p">(</span><span class="nx">query</span><span class="p">);</span>
-
-		<span class="k">return</span> <span class="nx">query</span><span class="p">;</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires the keyup event on</span>
-<span class="cm">     * &lt;a href=&quot;LiveSearch.html#config_input&quot;&gt;input&lt;/a&gt;.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _inputKeyUp</span>
-<span class="cm">	 * @param {EventFacade} event keyup event facade</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_inputKeyUp</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">delay</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DELAY</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">keyCode</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">keyCode</span> <span class="o">=</span> <span class="nx">KEY_ENTER</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">event</span><span class="p">.</span><span class="nx">halt</span><span class="p">();</span>
-		<span class="p">}</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">timer</span><span class="p">))</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">timer</span><span class="p">.</span><span class="nx">cancel</span><span class="p">();</span>
-		<span class="p">}</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">timer</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">later</span><span class="p">(</span><span class="nx">delay</span><span class="p">,</span> <span class="nx">instance</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="p">{</span>
-				<span class="nx">liveSearch</span><span class="o">:</span> <span class="p">{</span>
-					<span class="nx">inputEvent</span><span class="o">:</span> <span class="nx">event</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * The &lt;code&gt;value&lt;/code&gt; of this input node is used to filter the</span>
+<span class="cm">	         * results.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute input</span>
+<span class="cm">			 * @type Node | String</span>
+<span class="cm">			 */</span>
+			<span class="nx">input</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
 				<span class="p">}</span>
-			<span class="p">});</span>
-		<span class="p">});</span>
-	<span class="p">},</span>
+			<span class="p">},</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Setter for &lt;a href=&quot;LiveSearch.html#config_nodes&quot;&gt;nodes&lt;/a&gt;.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _setNodes</span>
-<span class="cm">	 * @param {Node | NodeList | String} v</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 * @return {Node | NodeList | String}</span>
-<span class="cm">	 */</span>
-	<span class="nx">_setNodes</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * The input &lt;code&gt;value&lt;/code&gt; need to matches with this RegExp to be</span>
+<span class="cm">	         * accept as a filter (i.e., in order to accept only digits you</span>
+<span class="cm">	         * could use /\d+/g).</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute matchRegex</span>
+<span class="cm">			 * @default (.)*</span>
+<span class="cm">			 * @type RegExp</span>
+<span class="cm">			 */</span>
+			<span class="nx">matchRegex</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="p">(</span><span class="nx">v</span> <span class="k">instanceof</span> <span class="nb">RegExp</span><span class="p">);</span>
+				<span class="p">},</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="sr">/(.)*/g</span>
+			<span class="p">},</span>
 
-		<span class="k">if</span> <span class="p">(</span><span class="nx">isNodeList</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span> <span class="p">{</span>
-			<span class="k">return</span> <span class="nx">v</span><span class="p">;</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Nodes to be indexed for the filtering.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute nodes</span>
+<span class="cm">			 * @type Node | NodeList</span>
+<span class="cm">			 */</span>
+			<span class="nx">nodes</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setNodes</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Function to be executed to show the node when the data of that node</span>
+<span class="cm">	         * matches with the filter.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute show</span>
+<span class="cm">			 * @default function(node) { return node.show(); }</span>
+<span class="cm">			 * @type function</span>
+<span class="cm">			 */</span>
+			<span class="nx">show</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">node</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+				<span class="p">},</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isFunction</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="nx">EXTENDS</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span>
+
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Stores the normalized query value given from</span>
+<span class="cm">		     * &lt;a href=&quot;LiveSearch.html#config__normalizeQuery&quot;&gt;_normalizeQuery&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @property normalizedQuery</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">normalizedQuery</span><span class="o">:</span> <span class="nx">BLANK</span><span class="p">,</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Stores the query value.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @property query</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">query</span><span class="o">:</span> <span class="nx">BLANK</span><span class="p">,</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Handles the &lt;a href=&quot;YUI.html#method_later&quot;&gt;later&lt;/a&gt; Object.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @property timer</span>
+<span class="cm">			 * @type Object</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">timer</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Construction logic executed during LiveSearch instantiation. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method initializer</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">refreshIndex</span><span class="p">();</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Bind the events on the LiveSearch UI. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method bindUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">INPUT</span><span class="p">);</span>
+
+				<span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_inputKeyUp</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">search</span> <span class="p">});</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Descructor lifecycle implementation for the LiveSearch class.</span>
+<span class="cm">			 * Purges events attached to the node (and all child nodes).</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method destroy</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">INPUT</span><span class="p">);</span>
+
+				<span class="nx">input</span><span class="p">.</span><span class="nx">detach</span><span class="p">(</span><span class="s1">&#39;keyup&#39;</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Filter the &lt;a href=&quot;LiveSearch.html#config_nodes&quot;&gt;nodes&lt;/a&gt; based on</span>
+<span class="cm">		     * the input value.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method filter</span>
+<span class="cm">			 * @param {String} query Query to filter results</span>
+<span class="cm">			 * @return {Array} Matched results.</span>
+<span class="cm">			 */</span>
+			<span class="nx">filter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">results</span> <span class="o">=</span> <span class="p">[];</span>
+				<span class="kd">var</span> <span class="nx">nodes</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODES</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">INDEX</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">query</span> <span class="o">=</span> <span class="nx">query</span><span class="p">;</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">normalizedQuery</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_normalizeQuery</span><span class="p">(</span><span class="nx">query</span><span class="p">);</span>
+
+				<span class="kd">var</span> <span class="nx">regex</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">normalizedQuery</span>
+				<span class="p">);</span>
+
+				<span class="nx">A</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">nodes</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">index</span><span class="p">);</span>
+
+					<span class="nx">results</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+						<span class="nx">content</span><span class="o">:</span> <span class="nx">content</span><span class="p">,</span>
+						<span class="nx">match</span><span class="o">:</span> <span class="nx">regex</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">content</span><span class="p">),</span>
+						<span class="nx">node</span><span class="o">:</span> <span class="nx">node</span>
+					<span class="p">});</span>
+				<span class="p">});</span>
+
+				<span class="k">return</span> <span class="nx">results</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Refreshes the &lt;a href=&quot;LiveSearch.html#config_index&quot;&gt;index&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method refreshIndex</span>
+<span class="cm">			 */</span>
+			<span class="nx">refreshIndex</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="p">[];</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODES</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DATA</span><span class="p">).</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="p">[</span><span class="nx">node</span><span class="p">]).</span><span class="nx">toLowerCase</span><span class="p">()</span>
+					<span class="p">);</span>
+
+					<span class="nx">index</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
+				<span class="p">});</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">INDEX</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires the search event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method search</span>
+<span class="cm">			 * @param {EventFacade} event search event facade</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">search</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">INPUT</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+
+				<span class="kd">var</span> <span class="nx">results</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+
+				<span class="nx">A</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">results</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">search</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">search</span><span class="p">.</span><span class="nx">node</span><span class="p">;</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">search</span><span class="p">.</span><span class="nx">match</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SHOW</span><span class="p">).</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="p">[</span><span class="nx">node</span><span class="p">]);</span>
+					<span class="p">}</span>
+					<span class="k">else</span> <span class="p">{</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HIDE</span><span class="p">).</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="p">[</span><span class="nx">node</span><span class="p">]);</span>
+					<span class="p">}</span>
+				<span class="p">});</span>
+
+				<span class="nx">event</span><span class="p">.</span><span class="nx">liveSearch</span><span class="p">.</span><span class="nx">results</span> <span class="o">=</span> <span class="nx">results</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Normalize the input query. With &lt;code&gt;trim&lt;/code&gt;,</span>
+<span class="cm">		     * &lt;code&gt;matchRegex&lt;/code&gt; and replace &#39;*&#39; to &#39;&#39; (on a regex empty match</span>
+<span class="cm">		     * with everything like *).</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _normalizeQuery</span>
+<span class="cm">			 * @param {String} query Query to filter results</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 * @return {String}</span>
+<span class="cm">			 */</span>
+			<span class="nx">_normalizeQuery</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">matchRegex</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">MATCH_REGEX</span><span class="p">);</span>
+
+				<span class="c1">// trim the user query and lowercase it</span>
+				<span class="nx">query</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span> <span class="nx">query</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="p">);</span>
+
+				<span class="c1">// match with the matchRegex</span>
+				<span class="nx">query</span> <span class="o">=</span> <span class="nx">query</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">matchRegex</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="nx">BLANK</span><span class="p">);</span>
+
+				<span class="c1">// replace on the query &#39;*&#39; to &#39;&#39;, on a regex empty match with everything like *</span>
+				<span class="nx">query</span> <span class="o">=</span> <span class="nx">query</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">STAR</span><span class="p">,</span> <span class="nx">BLANK</span><span class="p">);</span>
+
+				<span class="nx">query</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">escapeRegEx</span><span class="p">(</span><span class="nx">query</span><span class="p">);</span>
+
+				<span class="k">return</span> <span class="nx">query</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires the keyup event on</span>
+<span class="cm">		     * &lt;a href=&quot;LiveSearch.html#config_input&quot;&gt;input&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _inputKeyUp</span>
+<span class="cm">			 * @param {EventFacade} event keyup event facade</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_inputKeyUp</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">delay</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DELAY</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">keyCode</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">keyCode</span> <span class="o">=</span> <span class="nx">KEY_ENTER</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">event</span><span class="p">.</span><span class="nx">halt</span><span class="p">();</span>
+				<span class="p">}</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">timer</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">timer</span><span class="p">.</span><span class="nx">cancel</span><span class="p">();</span>
+				<span class="p">}</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">timer</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">later</span><span class="p">(</span><span class="nx">delay</span><span class="p">,</span> <span class="nx">instance</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="p">{</span>
+						<span class="nx">liveSearch</span><span class="o">:</span> <span class="p">{</span>
+							<span class="nx">inputEvent</span><span class="o">:</span> <span class="nx">event</span>
+						<span class="p">}</span>
+					<span class="p">});</span>
+				<span class="p">});</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Setter for &lt;a href=&quot;LiveSearch.html#config_nodes&quot;&gt;nodes&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _setNodes</span>
+<span class="cm">			 * @param {Node | NodeList | String} v</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 * @return {Node | NodeList | String}</span>
+<span class="cm">			 */</span>
+			<span class="nx">_setNodes</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">isNodeList</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">v</span><span class="p">;</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">isString</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="k">return</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">NodeList</span><span class="p">([</span><span class="nx">v</span><span class="p">]);</span>
+			<span class="p">}</span>
 		<span class="p">}</span>
-		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">isString</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span> <span class="p">{</span>
-			<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
-		<span class="p">}</span>
-
-		<span class="k">return</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">NodeList</span><span class="p">([</span><span class="nx">v</span><span class="p">]);</span>
 	<span class="p">}</span>
-<span class="p">});</span>
+<span class="p">);</span>
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">LiveSearch</span> <span class="o">=</span> <span class="nx">LiveSearch</span><span class="p">;</span>
 

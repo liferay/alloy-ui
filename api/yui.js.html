@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: yui   yui.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			yui&nbsp; <span class="subtitle">1.0pr</span>
+			yui&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -546,6 +541,12 @@
 									<ul class="content">
 
 
+			                                <li class=""><a href="aui-min.js.html" title="aui-min.js">aui-min.js</a></li>
+
+
+			                                <li class=""><a href="aui.js.html" title="aui.js">aui.js</a></li>
+
+
 			                                <li class=""><a href="get-debug.js.html" title="get-debug.js">get-debug.js</a></li>
 
 
@@ -618,7 +619,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.1.0</span>
+<span class="cm">version: 3.1.1</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="cm">/**</span>
@@ -642,19 +643,24 @@
 <span class="cm"> * @constructor</span>
 <span class="cm"> * @global</span>
 <span class="cm"> * @uses EventTarget</span>
-<span class="cm"> * @param o* Up to five optional configuration objects.  This object is stored</span>
-<span class="cm"> * in YUI.config.  See config for the list of supported properties.</span>
+<span class="cm"> * @param o* 0..n optional configuration objects.  these values</span>
+<span class="cm"> * are store in Y.config.  See config for the list of supported </span>
+<span class="cm"> * properties.</span>
 <span class="cm"> */</span>
     <span class="cm">/*global YUI*/</span>
     <span class="cm">/*global YUI_config*/</span>
-    <span class="kd">var</span> <span class="nx">YUI</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">o1</span><span class="p">,</span> <span class="nx">o2</span><span class="p">,</span> <span class="nx">o3</span><span class="p">,</span> <span class="nx">o4</span><span class="p">,</span> <span class="nx">o5</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">YUI</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
         <span class="kd">var</span> <span class="nx">Y</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
             <span class="nx">globalConfig</span> <span class="o">=</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">YUI_config</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">YUI_config</span><span class="p">;</span>
 
         <span class="c1">// Allow instantiation without the new operator</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">Y</span> <span class="k">instanceof</span> <span class="nx">YUI</span><span class="p">))</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nx">YUI</span><span class="p">(</span><span class="nx">o1</span><span class="p">,</span> <span class="nx">o2</span><span class="p">,</span> <span class="nx">o3</span><span class="p">,</span> <span class="nx">o4</span><span class="p">,</span> <span class="nx">o5</span><span class="p">);</span>
+            <span class="nx">Y</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YUI</span><span class="p">();</span>
+            <span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">l</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">Y</span><span class="p">.</span><span class="nx">_config</span><span class="p">(</span><span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nx">Y</span><span class="p">;</span> 
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
             <span class="c1">// set up the core environment</span>
             <span class="nx">Y</span><span class="p">.</span><span class="nx">_init</span><span class="p">();</span>
@@ -673,7 +679,7 @@
 
 <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">p</span><span class="p">,</span> <span class="nx">prop</span><span class="p">,</span>
-        <span class="nx">VERSION</span>       <span class="o">=</span> <span class="s1">&#39;3.1.0&#39;</span><span class="p">,</span> 
+        <span class="nx">VERSION</span>       <span class="o">=</span> <span class="s1">&#39;3.1.1&#39;</span><span class="p">,</span> 
         <span class="nx">BASE</span>          <span class="o">=</span> <span class="s1">&#39;http://yui.yahooapis.com/&#39;</span><span class="p">,</span>
         <span class="nx">DOC_LABEL</span>     <span class="o">=</span> <span class="s1">&#39;yui3-js-enabled&#39;</span><span class="p">,</span>
         <span class="nx">NOOP</span>          <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{},</span>
@@ -697,7 +703,10 @@
                         <span class="p">},</span>
         <span class="nx">remove</span>        <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">fn</span><span class="p">,</span> <span class="nx">capture</span><span class="p">)</span> <span class="p">{</span>
                             <span class="k">if</span> <span class="p">(</span><span class="nx">el</span> <span class="o">&amp;&amp;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">)</span> <span class="p">{</span>
-                                <span class="nx">el</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">fn</span><span class="p">,</span> <span class="nx">capture</span><span class="p">);</span>
+                                <span class="c1">// this can throw an uncaught exception in FF</span>
+                                <span class="k">try</span> <span class="p">{</span>
+                                    <span class="nx">el</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">fn</span><span class="p">,</span> <span class="nx">capture</span><span class="p">);</span>
+                                <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">ex</span><span class="p">){}</span>
                             <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">el</span> <span class="o">&amp;&amp;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">detachEvent</span><span class="p">)</span> <span class="p">{</span>
                                 <span class="nx">el</span><span class="p">.</span><span class="nx">detachEvent</span><span class="p">(</span><span class="s2">&quot;on&quot;</span> <span class="o">+</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">fn</span><span class="p">);</span>
                             <span class="p">}</span>
@@ -721,26 +730,33 @@
 <span class="p">}</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nx">VERSION</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;@&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">VERSION</span> <span class="o">=</span> <span class="s1">&#39;3.0.0&#39;</span><span class="p">;</span>
+    <span class="nx">VERSION</span> <span class="o">=</span> <span class="s1">&#39;3.0.0&#39;</span><span class="p">;</span> <span class="c1">// dev time hack for cdn test</span>
 <span class="p">}</span>
         
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">_config</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">o</span> <span class="o">=</span> <span class="nx">o</span> <span class="o">||</span> <span class="p">{};</span>
-        <span class="kd">var</span> <span class="nx">attr</span><span class="p">,</span> 
+        <span class="kd">var</span> <span class="nx">attr</span><span class="p">,</span>
+            <span class="nx">name</span><span class="p">,</span> 
+            <span class="nx">detail</span><span class="p">,</span>
             <span class="nx">config</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">,</span> 
             <span class="nx">mods</span>   <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">modules</span><span class="p">,</span>
             <span class="nx">groups</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">groups</span><span class="p">;</span>
-        <span class="k">for</span> <span class="p">(</span><span class="nx">attr</span> <span class="k">in</span> <span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="nx">mods</span> <span class="o">&amp;&amp;</span> <span class="nx">attr</span> <span class="o">==</span> <span class="s1">&#39;modules&#39;</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">this</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">mods</span><span class="p">,</span> <span class="nx">o</span><span class="p">[</span><span class="nx">attr</span><span class="p">],</span> <span class="kc">true</span><span class="p">);</span>
-            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">groups</span> <span class="o">&amp;&amp;</span> <span class="nx">attr</span> <span class="o">==</span> <span class="s1">&#39;groups&#39;</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">this</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">groups</span><span class="p">,</span> <span class="nx">o</span><span class="p">[</span><span class="nx">attr</span><span class="p">],</span> <span class="kc">true</span><span class="p">);</span>
-            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">attr</span> <span class="o">==</span> <span class="s1">&#39;win&#39;</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">config</span><span class="p">[</span><span class="nx">attr</span><span class="p">]</span> <span class="o">=</span> <span class="nx">o</span><span class="p">[</span><span class="nx">attr</span><span class="p">].</span><span class="nx">contentWindow</span> <span class="o">||</span> <span class="nx">o</span><span class="p">[</span><span class="nx">attr</span><span class="p">];</span>
-                <span class="nx">config</span><span class="p">.</span><span class="nx">doc</span> <span class="o">=</span> <span class="nx">config</span><span class="p">[</span><span class="nx">attr</span><span class="p">].</span><span class="nb">document</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">name</span> <span class="k">in</span> <span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">attr</span> <span class="o">=</span> <span class="nx">o</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">mods</span> <span class="o">&amp;&amp;</span> <span class="nx">name</span> <span class="o">==</span> <span class="s1">&#39;modules&#39;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">for</span> <span class="p">(</span><span class="nx">detail</span> <span class="k">in</span> <span class="nx">attr</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">mods</span><span class="p">[</span><span class="nx">detail</span><span class="p">]</span> <span class="o">=</span> <span class="nx">attr</span><span class="p">[</span><span class="nx">detail</span><span class="p">];</span>
+                <span class="p">}</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">groups</span> <span class="o">&amp;&amp;</span> <span class="nx">name</span> <span class="o">==</span> <span class="s1">&#39;groups&#39;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">for</span> <span class="p">(</span><span class="nx">detail</span> <span class="k">in</span> <span class="nx">attr</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">groups</span><span class="p">[</span><span class="nx">detail</span><span class="p">]</span> <span class="o">=</span> <span class="nx">attr</span><span class="p">[</span><span class="nx">detail</span><span class="p">];</span>
+                <span class="p">}</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">name</span> <span class="o">==</span> <span class="s1">&#39;win&#39;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">config</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">attr</span><span class="p">.</span><span class="nx">contentWindow</span> <span class="o">||</span> <span class="nx">attr</span><span class="p">;</span>
+                <span class="nx">config</span><span class="p">.</span><span class="nx">doc</span> <span class="o">=</span> <span class="nx">config</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nb">document</span><span class="p">;</span>
             <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                <span class="nx">config</span><span class="p">[</span><span class="nx">attr</span><span class="p">]</span> <span class="o">=</span> <span class="nx">o</span><span class="p">[</span><span class="nx">attr</span><span class="p">];</span>
+                <span class="nx">config</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">attr</span><span class="p">;</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">},</span>
@@ -899,27 +915,33 @@
     <span class="p">},</span> 
 
     <span class="cm">/**</span>
-<span class="cm">     * Register a module</span>
+<span class="cm">     * Registers a module with the YUI global.  The easiest way to create a </span>
+<span class="cm">     * first-class YUI module is to use the YUI component build tool.  </span>
+<span class="cm">     *</span>
+<span class="cm">     * http://yuilibrary.com/projects/builder </span>
+<span class="cm">     *</span>
+<span class="cm">     * The build system will produce the YUI.add wrapper for you module, along</span>
+<span class="cm">     * with any configuration info required for the module.</span>
 <span class="cm">     * @method add</span>
 <span class="cm">     * @param name {string} module name</span>
 <span class="cm">     * @param fn {Function} entry point into the module that</span>
 <span class="cm">     * is used to bind module to the YUI instance</span>
 <span class="cm">     * @param version {string} version string</span>
 <span class="cm">     * @param details optional config data: </span>
-<span class="cm">     * requires   - features that should be present before loading</span>
-<span class="cm">     * optional   - optional features that should be present if load optional defined</span>
-<span class="cm">     * use  - features that should be attached automatically</span>
-<span class="cm">     * skinnable  -</span>
-<span class="cm">     * rollup</span>
-<span class="cm">     * omit - features that should not be loaded if this module is present</span>
+<span class="cm">     * requires: features that must be present before this module can be attached.</span>
+<span class="cm">     * optional: optional features that should be present if loadOptional is</span>
+<span class="cm">     *           defined.  Note: modules are not often loaded this way in YUI 3,</span>
+<span class="cm">     *           but this field is still useful to inform the user that certain</span>
+<span class="cm">     *           features in the component will require additional dependencies.</span>
+<span class="cm">     * use:      features that are included within this module which need to be</span>
+<span class="cm">     *           be attached automatically when this module is attached.  This</span>
+<span class="cm">     *           supports the YUI 3 rollup system -- a module with submodules </span>
+<span class="cm">     *           defined will need to have the submodules listed in the &#39;use&#39;</span>
+<span class="cm">     *           config.  The YUI component build tool does this for you.</span>
 <span class="cm">     * @return {YUI} the YUI instance</span>
 <span class="cm">     *</span>
 <span class="cm">     */</span>
     <span class="nx">add</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">fn</span><span class="p">,</span> <span class="nx">version</span><span class="p">,</span> <span class="nx">details</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// this.log(&#39;Adding a new component &#39; + name);</span>
-        <span class="c1">// @todo expand this to include version mapping</span>
-        <span class="c1">// @todo may want to restore the build property</span>
-        <span class="c1">// @todo fire moduleAvailable event</span>
         <span class="nx">details</span> <span class="o">=</span> <span class="nx">details</span> <span class="o">||</span> <span class="p">{};</span>
 
         <span class="nx">YUI</span><span class="p">.</span><span class="nx">Env</span><span class="p">.</span><span class="nx">mods</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
@@ -932,6 +954,12 @@
         <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
     <span class="p">},</span>
 
+    <span class="cm">/**</span>
+<span class="cm">     * Executes the function associated with each required</span>
+<span class="cm">     * module, binding the module to the YUI instance.</span>
+<span class="cm">     * @method _attach</span>
+<span class="cm">     * @private</span>
+<span class="cm">     */</span>
     <span class="nx">_attach</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nx">fromLoader</span><span class="p">)</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">mod</span><span class="p">,</span> <span class="nx">details</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">use</span><span class="p">,</span>
             <span class="nx">mods</span> <span class="o">=</span> <span class="nx">YUI</span><span class="p">.</span><span class="nx">Env</span><span class="p">.</span><span class="nx">mods</span><span class="p">,</span>
@@ -948,7 +976,7 @@
                 <span class="nx">req</span>        <span class="o">=</span> <span class="nx">details</span><span class="p">.</span><span class="nx">requires</span><span class="p">;</span> 
                 <span class="nx">use</span>        <span class="o">=</span> <span class="nx">details</span><span class="p">.</span><span class="nx">use</span><span class="p">;</span>
 
-                <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">req</span> <span class="o">&amp;&amp;</span> <span class="nx">req</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
                     <span class="k">this</span><span class="p">.</span><span class="nx">_attach</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nb">Array</span><span class="p">(</span><span class="nx">req</span><span class="p">));</span>
                 <span class="p">}</span>
 
@@ -958,7 +986,7 @@
                     <span class="nx">mod</span><span class="p">.</span><span class="nx">fn</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
                 <span class="p">}</span>
 
-                <span class="k">if</span> <span class="p">(</span><span class="nx">use</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">use</span> <span class="o">&amp;&amp;</span> <span class="nx">use</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
                     <span class="k">this</span><span class="p">.</span><span class="nx">_attach</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nb">Array</span><span class="p">(</span><span class="nx">use</span><span class="p">));</span>
                 <span class="p">}</span>
             <span class="p">}</span>
@@ -966,25 +994,41 @@
     <span class="p">},</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Bind a module to a YUI instance</span>
+<span class="cm">     * Attaches one or more modules to the YUI instance.  When this</span>
+<span class="cm">     * is executed, the requirements are analyzed, and one of </span>
+<span class="cm">     * several things can happen:</span>
+<span class="cm">     *</span>
+<span class="cm">     * - All requirements are available on the page --  The modules</span>
+<span class="cm">     *   are attached to the instance.  If supplied, the use callback</span>
+<span class="cm">     *   is executed synchronously.  </span>
+<span class="cm">     *</span>
+<span class="cm">     * - Modules are missing, the Get utility is not available OR</span>
+<span class="cm">     *   the &#39;bootstrap&#39; config is false -- A warning is issued about</span>
+<span class="cm">     *   the missing modules and all available modules are attached.</span>
+<span class="cm">     *</span>
+<span class="cm">     * - Modules are missing, the Loader is not available but the Get</span>
+<span class="cm">     *   utility is and boostrap is not false -- The loader is bootstrapped</span>
+<span class="cm">     *   before doing the following....</span>
+<span class="cm">     *</span>
+<span class="cm">     * - Modules are missing and the Loader is available -- The loader</span>
+<span class="cm">     *   expands the dependency tree and fetches missing modules.  When</span>
+<span class="cm">     *   the loader is finshed the callback supplied to use is executed</span>
+<span class="cm">     *   asynchronously.</span>
+<span class="cm">     *</span>
 <span class="cm">     * @param modules* {string} 1-n modules to bind (uses arguments array)</span>
 <span class="cm">     * @param *callback {function} callback function executed when </span>
 <span class="cm">     * the instance has the required functionality.  If included, it</span>
 <span class="cm">     * must be the last parameter.</span>
-<span class="cm">     *</span>
-<span class="cm">     * @TODO </span>
-<span class="cm">     * Implement versioning?  loader can load different versions?</span>
-<span class="cm">     * Should sub-modules/plugins be normal modules, or do</span>
-<span class="cm">     * we add syntax for specifying these?</span>
-<span class="cm">     *</span>
-<span class="cm">     * YUI().use(&#39;dragdrop&#39;)</span>
-<span class="cm">     * YUI().use(&#39;dragdrop:2.4.0&#39;); // specific version</span>
-<span class="cm">     * YUI().use(&#39;dragdrop:2.4.0-&#39;); // at least this version</span>
-<span class="cm">     * YUI().use(&#39;dragdrop:2.4.0-2.9999.9999&#39;); // version range</span>
-<span class="cm">     * YUI().use(&#39;*&#39;); // use all available modules</span>
-<span class="cm">     * YUI().use(&#39;lang+dump+substitute&#39;); // use lang and some plugins</span>
-<span class="cm">     * YUI().use(&#39;lang+*&#39;); // use lang and all known plugins</span>
-<span class="cm">     *</span>
+<span class="cm">     * &lt;code&gt;</span>
+<span class="cm">     * // loads and attaches drag and drop and its dependencies</span>
+<span class="cm">     * YUI().use(&#39;dd&#39;, function(Y) &amp;#123;&amp;#125);</span>
+<span class="cm">     * // attaches all modules that are available on the page</span>
+<span class="cm">     * YUI().use(&#39;*&#39;, function(Y) &amp;#123;&amp;#125);</span>
+<span class="cm">     * // intrinsic YUI gallery support (since 3.1.0)</span>
+<span class="cm">     * YUI().use(&#39;gallery-yql&#39;, function(Y) &amp;#123;&amp;#125);</span>
+<span class="cm">     * // intrinsic YUI 2in3 support (since 3.1.0)</span>
+<span class="cm">     * YUI().use(&#39;yui2-datatable&#39;, function(Y) &amp;#123;&amp;#125);</span>
+<span class="cm">     * &lt;/code&gt;</span>
 <span class="cm">     *</span>
 <span class="cm">     * @return {YUI} the YUI instance</span>
 <span class="cm">     */</span>
@@ -1011,6 +1055,10 @@
             <span class="nx">r</span>        <span class="o">=</span> <span class="p">[],</span> 
             <span class="nx">fetchCSS</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">fetchCSS</span><span class="p">,</span>
             <span class="nx">process</span>  <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+
+                <span class="c1">// add this module to full list of things to attach</span>
+                <span class="nx">r</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+
                 <span class="c1">// only attach a module once</span>
                 <span class="k">if</span> <span class="p">(</span><span class="nx">used</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="p">{</span>
                     <span class="k">return</span><span class="p">;</span>
@@ -1039,8 +1087,6 @@
                     <span class="nx">YArray</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">YArray</span><span class="p">(</span><span class="nx">use</span><span class="p">),</span> <span class="nx">process</span><span class="p">);</span>
                 <span class="p">}</span>
 
-                <span class="c1">// add this module to full list of things to attach</span>
-                <span class="nx">r</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
 
             <span class="p">},</span>
 
@@ -1286,9 +1332,7 @@
 
     <span class="c1">// inheritance utilities are not available yet</span>
     <span class="k">for</span> <span class="p">(</span><span class="nx">prop</span> <span class="k">in</span> <span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// intenionally ignoring hasOwnProperty check</span>
-            <span class="nx">YUI</span><span class="p">[</span><span class="nx">prop</span><span class="p">]</span> <span class="o">=</span> <span class="nx">p</span><span class="p">[</span><span class="nx">prop</span><span class="p">];</span>
-        <span class="p">}</span>
+        <span class="nx">YUI</span><span class="p">[</span><span class="nx">prop</span><span class="p">]</span> <span class="o">=</span> <span class="nx">p</span><span class="p">[</span><span class="nx">prop</span><span class="p">];</span>
     <span class="p">}</span>
 
     <span class="c1">// set up the environment</span>
@@ -1457,7 +1501,7 @@
 <span class="cm"> * @type string</span>
 <span class="cm"> */</span>
 
-<span class="cm">/**</span>
+<span class="cm">/*</span>
 <span class="cm"> * The secure base dir (not implemented)</span>
 <span class="cm"> * For dynamic loading.</span>
 <span class="cm"> * @property secureBase</span>
@@ -1507,13 +1551,39 @@
 <span class="cm"> */</span>
 
 <span class="cm">/**</span>
+<span class="cm"> * The &#39;skin&#39; config let&#39;s you configure application level skin</span>
+<span class="cm"> * customizations.  It contains the following attributes which</span>
+<span class="cm"> * can be specified to override the defaults:</span>
+<span class="cm"> *</span>
+<span class="cm"> *      // The default skin, which is automatically applied if not</span>
+<span class="cm"> *      // overriden by a component-specific skin definition.</span>
+<span class="cm"> *      // Change this in to apply a different skin globally</span>
+<span class="cm"> *      defaultSkin: &#39;sam&#39;, </span>
+<span class="cm"> *</span>
+<span class="cm"> *      // This is combined with the loader base property to get</span>
+<span class="cm"> *      // the default root directory for a skin.</span>
+<span class="cm"> *      base: &#39;assets/skins/&#39;,</span>
+<span class="cm"> *</span>
+<span class="cm"> *      // Any component-specific overrides can be specified here,</span>
+<span class="cm"> *      // making it possible to load different skins for different</span>
+<span class="cm"> *      // components.  It is possible to load more than one skin</span>
+<span class="cm"> *      // for a given component as well.</span>
+<span class="cm"> *      overrides: {</span>
+<span class="cm"> *          slider: [&#39;capsule&#39;, &#39;round&#39;]</span>
+<span class="cm"> *      }</span>
+<span class="cm"> *</span>
+<span class="cm"> * For dynamic loading.</span>
+<span class="cm"> *</span>
+<span class="cm"> *  @property skin</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
 <span class="cm"> * Hash of per-component filter specification.  If specified for a given component, </span>
 <span class="cm"> * this overrides the filter config</span>
 <span class="cm"> *</span>
 <span class="cm"> * For dynamic loading.</span>
 <span class="cm"> *</span>
 <span class="cm"> * @property filters</span>
-<span class="cm"> * @type object</span>
 <span class="cm"> */</span>
 
 <span class="cm">/**</span>
@@ -1678,6 +1748,7 @@
 <span class="cm"> * The default gallery version to build gallery module urls</span>
 <span class="cm"> * @property gallery</span>
 <span class="cm"> * @type string</span>
+<span class="cm"> * @since 3.1.0</span>
 <span class="cm"> */</span>
 
 <span class="cm">/**</span>
@@ -1685,6 +1756,7 @@
 <span class="cm"> * intrinsic YUI 2 support via the 2in3 project.  Also @see the &#39;2in3&#39;</span>
 <span class="cm"> * config for pulling different revisions of the wrapped YUI 2 </span>
 <span class="cm"> * modules.</span>
+<span class="cm"> * @since 3.1.0</span>
 <span class="cm"> * @property yui2 </span>
 <span class="cm"> * @type string</span>
 <span class="cm"> * @default 2.8.0</span>
@@ -1693,8 +1765,10 @@
 <span class="cm">/**</span>
 <span class="cm"> * The 2in3 project is a deployment of the various versions of YUI 2</span>
 <span class="cm"> * deployed as first-class YUI 3 modules.  Eventually, the wrapper</span>
-<span class="cm"> * modules will change, and you can select a particular version of</span>
+<span class="cm"> * for the modules will change (but the underlying YUI 2 code will</span>
+<span class="cm"> * be the same), and you can select a particular version of</span>
 <span class="cm"> * the wrapper modules via this config.</span>
+<span class="cm"> * @since 3.1.0</span>
 <span class="cm"> * @property 2in3</span>
 <span class="cm"> * @type string</span>
 <span class="cm"> * @default 1</span>
@@ -1702,7 +1776,8 @@
 
 <span class="cm">/**</span>
 <span class="cm"> * Alternative console log function for use in environments without</span>
-<span class="cm"> * a supported native console</span>
+<span class="cm"> * a supported native console.</span>
+<span class="cm"> * @since 3.1.0</span>
 <span class="cm"> * @property logFn</span>
 <span class="cm"> * @type Function</span>
 <span class="cm"> */</span>
@@ -2292,7 +2367,8 @@
 <span class="cm"> *        2: prototype to prototype and object props (new augment)</span>
 <span class="cm"> *        3: prototype to object</span>
 <span class="cm"> *        4: object to prototype</span>
-<span class="cm"> * @param merge {boolean} merge objects instead of overwriting/ignoring</span>
+<span class="cm"> * @param merge {boolean/int} merge objects instead of overwriting/ignoring.  A value of 2</span>
+<span class="cm"> * will skip array merge</span>
 <span class="cm"> * Used by Y.aggregate</span>
 <span class="cm"> * @return {object} the augmented object</span>
 <span class="cm"> */</span>
@@ -2318,20 +2394,18 @@
     <span class="p">}</span>
 
     <span class="c1">// Maybe don&#39;t even need this wl &amp;&amp; wl.length check anymore??</span>
-    <span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nx">merge</span> <span class="o">&amp;&amp;</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">r</span><span class="p">),</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">p</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">p</span><span class="p">,</span> <span class="nx">type</span><span class="p">;</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="nx">wl</span> <span class="o">&amp;&amp;</span> <span class="nx">wl</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">wl</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">l</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
             <span class="nx">p</span> <span class="o">=</span> <span class="nx">wl</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
-            <span class="c1">// if (p in s) {</span>
+            <span class="nx">type</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="nx">r</span><span class="p">[</span><span class="nx">p</span><span class="p">]);</span>
             <span class="k">if</span> <span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">p</span><span class="p">))</span> <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="nx">merge</span> <span class="o">&amp;&amp;</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">r</span><span class="p">[</span><span class="nx">p</span><span class="p">],</span> <span class="kc">true</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">merge</span> <span class="o">&amp;&amp;</span> <span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;object&quot;</span><span class="p">)</span> <span class="p">{</span>
                     <span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">r</span><span class="p">[</span><span class="nx">p</span><span class="p">],</span> <span class="nx">s</span><span class="p">[</span><span class="nx">p</span><span class="p">]);</span>
-                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">arr</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">ov</span> <span class="o">||</span> <span class="o">!</span><span class="p">(</span><span class="nx">p</span> <span class="k">in</span> <span class="nx">r</span><span class="p">)))</span> <span class="p">{</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">ov</span> <span class="o">||</span> <span class="o">!</span><span class="p">(</span><span class="nx">p</span> <span class="k">in</span> <span class="nx">r</span><span class="p">))</span> <span class="p">{</span>
                     <span class="nx">r</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span> <span class="o">=</span> <span class="nx">s</span><span class="p">[</span><span class="nx">p</span><span class="p">];</span>
-                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="nx">r</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">s</span><span class="p">[</span><span class="nx">p</span><span class="p">]);</span>
-                <span class="p">}</span>
+                <span class="p">}</span>            
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -2345,13 +2419,14 @@
                     <span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">r</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">ov</span><span class="p">,</span> <span class="nx">wl</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span> <span class="c1">// recursive</span>
                 <span class="c1">// otherwise apply the property only if overwrite</span>
                 <span class="c1">// is specified or the receiver doesn&#39;t have one.</span>
-                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">arr</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">ov</span> <span class="o">||</span> <span class="o">!</span><span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">r</span><span class="p">)))</span> <span class="p">{</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">ov</span> <span class="o">||</span> <span class="o">!</span><span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">r</span><span class="p">))</span> <span class="p">{</span>
                     <span class="nx">r</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+                <span class="p">}</span>
                 <span class="c1">// if merge is specified and the receiver is an array,</span>
                 <span class="c1">// append the array item</span>
-                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="nx">r</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
-                <span class="p">}</span>
+                <span class="c1">// } else if (arr) {</span>
+                    <span class="c1">// r.push(s[i]);</span>
+                <span class="c1">// }</span>
             <span class="p">}</span>
         <span class="p">}</span>
     
@@ -2726,7 +2801,7 @@
 <span class="cm">         * Webkit nightly 1/2008:525+    &lt;-- Supports DOMContentLoaded event.</span>
 <span class="cm">         *                                   yahoo.com user agent hack removed.</span>
 <span class="cm">         * &lt;/pre&gt;</span>
-<span class="cm">         * http://en.wikipedia.org/wiki/Safari_(web_browser)#Version_history</span>
+<span class="cm">         * http://en.wikipedia.org/wiki/Safari_version_history</span>
 <span class="cm">         * @property webkit</span>
 <span class="cm">         * @type float</span>
 <span class="cm">         * @static</span>
@@ -2867,7 +2942,7 @@
 <span class="p">}();</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">);</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">);</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -3243,6 +3318,10 @@
 
         <span class="nx">q</span><span class="p">.</span><span class="nx">attributes</span> <span class="o">=</span> <span class="nx">q</span><span class="p">.</span><span class="nx">attributes</span> <span class="o">||</span> <span class="p">{};</span>
         <span class="nx">q</span><span class="p">.</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">charset</span> <span class="o">=</span> <span class="nx">opts</span><span class="p">.</span><span class="nx">charset</span> <span class="o">||</span> <span class="nx">q</span><span class="p">.</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">charset</span> <span class="o">||</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">;</span>
+        <span class="c1">// var charset = opts.charset || q.attributes.charset;</span>
+        <span class="c1">// if (charset) {</span>
+        <span class="c1">//     q.attributes.charset = charset;</span>
+        <span class="c1">// }</span>
 
         <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
             <span class="nx">_next</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
@@ -3582,7 +3661,7 @@
 <span class="p">})();</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">);</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">);</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;intl-base&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/** </span>
@@ -3615,6 +3694,7 @@
 <span class="cm">    *</span>
 <span class="cm">    * @return {String} The available language that best matches the</span>
 <span class="cm">    * preferred language list, or &quot;&quot;.</span>
+<span class="cm">    * @since 3.1.0</span>
 <span class="cm">    */</span>
     <span class="nx">lookupBestLang</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">preferredLanguages</span><span class="p">,</span> <span class="nx">availableLanguages</span><span class="p">)</span> <span class="p">{</span>
 
@@ -3665,7 +3745,7 @@
 <span class="p">});</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;yui-base&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;yui-base&#39;</span><span class="p">]});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;yui-log&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -3774,7 +3854,7 @@
 <span class="p">})();</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;yui-base&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;yui-base&#39;</span><span class="p">]});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;yui-later&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -3843,7 +3923,7 @@
 <span class="p">})();</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;yui-base&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;yui-base&#39;</span><span class="p">]});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;yui-throttle&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -3860,6 +3940,7 @@
 <span class="cm"> * @param ms {int} The number of milliseconds to throttle the method call. Can set</span>
 <span class="cm"> * globally with Y.config.throttleTime or by call. Passing a -1 will disable the throttle. Defaults to 150</span>
 <span class="cm"> * @return {function} Returns a wrapped function that calls fn throttled.</span>
+<span class="cm"> * @since 3.1.0</span>
 <span class="cm"> */</span>
 
 <span class="cm">/*! Based on work by Simon Willison: http://gist.github.com/292562 */</span>
@@ -3892,10 +3973,10 @@
 
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;yui-base&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;yui-base&#39;</span><span class="p">]});</span>
 
 
-<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;yui&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;yui-base&#39;</span><span class="p">,</span><span class="s1">&#39;get&#39;</span><span class="p">,</span><span class="s1">&#39;intl-base&#39;</span><span class="p">,</span><span class="s1">&#39;yui-log&#39;</span><span class="p">,</span><span class="s1">&#39;yui-later&#39;</span><span class="p">,</span><span class="s1">&#39;yui-throttle&#39;</span><span class="p">]});</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;yui&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;yui-base&#39;</span><span class="p">,</span><span class="s1">&#39;get&#39;</span><span class="p">,</span><span class="s1">&#39;intl-base&#39;</span><span class="p">,</span><span class="s1">&#39;yui-log&#39;</span><span class="p">,</span><span class="s1">&#39;yui-later&#39;</span><span class="p">,</span><span class="s1">&#39;yui-throttle&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>
@@ -3913,7 +3994,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Array.html#method_()", "access": "", "host": "Array", "type": "method", "name": "()"}, {"url": "Object.html#method_()", "access": "", "host": "Object", "type": "method", "name": "()"}, {"url": "config.html#property_2in3", "access": "", "host": "config", "type": "property", "name": "2in3"}, {"url": "Get.html#method_abort", "access": "", "host": "Get", "type": "method", "name": "abort"}, {"url": "Intl.html#method_add", "access": "", "host": "Intl", "type": "method", "name": "add"}, {"url": "YUI.html#method_add", "access": "", "host": "YUI", "type": "method", "name": "add"}, {"url": "Queue.html#method_add", "access": "", "host": "Queue", "type": "method", "name": "add"}, {"url": "YUI.html#method_addListener", "access": "", "host": "YUI", "type": "method", "name": "addListener"}, {"url": "YUI.html#method_after", "access": "", "host": "YUI", "type": "method", "name": "after"}, {"url": "YUI.html#method__afterAlign", "access": "protected", "host": "YUI", "type": "method", "name": "_afterAlign"}, {"url": "YUI.html#method__afterMaxChange", "access": "protected", "host": "YUI", "type": "method", "name": "_afterMaxChange"}, {"url": "YUI.html#method__afterMinChange", "access": "protected", "host": "YUI", "type": "method", "name": "_afterMinChange"}, {"url": "YUI.html#method__afterValueChange", "access": "protected", "host": "YUI", "type": "method", "name": "_afterValueChange"}, {"url": "UA.html#property_air", "access": "", "host": "UA", "type": "property", "name": "air"}, {"url": "YUI.html#method_applyTo", "access": "", "host": "YUI", "type": "method", "name": "applyTo"}, {"url": "YUI.html#property_ATTRS", "access": "protected", "host": "YUI", "type": "property", "name": "ATTRS"}, {"url": "YUI.html#event_available", "access": "", "host": "YUI", "type": "event", "name": "available"}, {"url": "YUI.html#config_axis", "access": "", "host": "YUI", "type": "config", "name": "axis"}, {"url": "YUI.html#event_axisChange", "access": "", "host": "YUI", "type": "event", "name": "axisChange"}, {"url": "config.html#property_base", "access": "", "host": "config", "type": "property", "name": "base"}, {"url": "YUI.html#event_blur", "access": "", "host": "YUI", "type": "event", "name": "blur"}, {"url": "config.html#property_bootstrap", "access": "", "host": "config", "type": "property", "name": "bootstrap"}, {"url": "YUI.html#method_cached", "access": "", "host": "YUI", "type": "method", "name": "cached"}, {"url": "YUI.html#method__cacheOffset", "access": "protected", "host": "YUI", "type": "method", "name": "_cacheOffset"}, {"url": "UA.html#property_caja", "access": "", "host": "UA", "type": "property", "name": "caja"}, {"url": "YUI.html#method__calculateFactor", "access": "protected", "host": "YUI", "type": "method", "name": "_calculateFactor"}, {"url": "config.html#property_charset", "access": "", "host": "config", "type": "property", "name": "charset"}, {"url": "UA.html#property_chrome", "access": "", "host": "UA", "type": "property", "name": "chrome"}, {"url": "config.html#property_combine", "access": "", "host": "config", "type": "property", "name": "combine"}, {"url": "config.html#property_comboBase", "access": "", "host": "config", "type": "property", "name": "comboBase"}, {"url": "YUI.html#event_contentready", "access": "", "host": "YUI", "type": "event", "name": "contentready"}, {"url": "config.html#property_core", "access": "", "host": "config", "type": "property", "name": "core"}, {"url": "Get.html#method_css", "access": "", "host": "Get", "type": "method", "name": "css"}, {"url": "config.html#property_cssAttributes", "access": "", "host": "config", "type": "property", "name": "cssAttributes"}, {"url": "config.html#property_dateFormat", "access": "", "host": "config", "type": "property", "name": "dateFormat"}, {"url": "YUI.html#property_DDValue._AXIS_KEYS", "access": "protected", "host": "YUI", "type": "property", "name": "DDValue._AXIS_KEYS"}, {"url": "YUI.html#property_DDValue.NAME", "access": "protected", "host": "YUI", "type": "property", "name": "DDValue.NAME"}, {"url": "YUI.html#method__defaultConstrain", "access": "protected", "host": "YUI", "type": "method", "name": "_defaultConstrain"}, {"url": "YUI.html#method_delegate", "access": "", "host": "YUI", "type": "method", "name": "delegate"}, {"url": "YUI.html#method_destructor", "access": "protected", "host": "YUI", "type": "method", "name": "destructor"}, {"url": "config.html#property_doc", "access": "", "host": "config", "type": "property", "name": "doc"}, {"url": "YUI.html#event_domready", "access": "", "host": "YUI", "type": "event", "name": "domready"}, {"url": "Array.html#method_each", "access": "", "host": "Array", "type": "method", "name": "each"}, {"url": "Object.html#method_each", "access": "", "host": "Object", "type": "method", "name": "each"}, {"url": "YUI.html#method_error", "access": "", "host": "YUI", "type": "method", "name": "error"}, {"url": "YUI.html#property__evtGuid", "access": "protected", "host": "YUI", "type": "property", "name": "_evtGuid"}, {"url": "YUI.html#property__factor", "access": "protected", "host": "YUI", "type": "property", "name": "_factor"}, {"url": "config.html#property_fetchCSS", "access": "", "host": "config", "type": "property", "name": "fetchCSS"}, {"url": "config.html#property_filter", "access": "", "host": "config", "type": "property", "name": "filter"}, {"url": "config.html#property_filters", "access": "", "host": "config", "type": "property", "name": "filters"}, {"url": "YUI.html#event_focus", "access": "", "host": "YUI", "type": "event", "name": "focus"}, {"url": "config.html#property_force", "access": "", "host": "config", "type": "property", "name": "force"}, {"url": "config.html#property_gallery", "access": "", "host": "config", "type": "property", "name": "gallery"}, {"url": "UA.html#property_gecko", "access": "", "host": "UA", "type": "property", "name": "gecko"}, {"url": "Intl.html#method_get", "access": "", "host": "Intl", "type": "method", "name": "get"}, {"url": "Intl.html#method_getAvailableLangs", "access": "", "host": "Intl", "type": "method", "name": "getAvailableLangs"}, {"url": "YUI.html#method_getCharCode", "access": "", "host": "YUI", "type": "method", "name": "getCharCode"}, {"url": "Intl.html#method_getLang", "access": "", "host": "Intl", "type": "method", "name": "getLang"}, {"url": "YUI.html#method_getPageX", "access": "", "host": "YUI", "type": "method", "name": "getPageX"}, {"url": "YUI.html#method_getPageY", "access": "", "host": "YUI", "type": "method", "name": "getPageY"}, {"url": "YUI.html#method_getRelatedTarget", "access": "", "host": "YUI", "type": "method", "name": "getRelatedTarget"}, {"url": "YUI.html#method_getTarget", "access": "", "host": "YUI", "type": "method", "name": "getTarget"}, {"url": "YUI.html#method_getTime", "access": "", "host": "YUI", "type": "method", "name": "getTime"}, {"url": "Object.html#method_getValue", "access": "", "host": "Object", "type": "method", "name": "getValue"}, {"url": "YUI.html#method__getValueFromPosition", "access": "protected", "host": "YUI", "type": "method", "name": "_getValueFromPosition"}, {"url": "YUI.html#method_getXY", "access": "", "host": "YUI", "type": "method", "name": "getXY"}, {"url": "YUI.html#property_Global", "access": "", "host": "YUI", "type": "property", "name": "Global"}, {"url": "YUI.html#method_guid", "access": "", "host": "YUI", "type": "method", "name": "guid"}, {"url": "Array.html#method_hash", "access": "", "host": "Array", "type": "method", "name": "hash"}, {"url": "Object.html#method_hasKey", "access": "", "host": "Object", "type": "method", "name": "hasKey"}, {"url": "Object.html#method_hasValue", "access": "", "host": "Object", "type": "method", "name": "hasValue"}, {"url": "YUI.html#config_host", "access": "", "host": "YUI", "type": "config", "name": "host"}, {"url": "YUI.html#event_hostChange", "access": "", "host": "YUI", "type": "event", "name": "hostChange"}, {"url": "UA.html#property_ie", "access": "", "host": "UA", "type": "property", "name": "ie"}, {"url": "config.html#property_ignore", "access": "", "host": "config", "type": "property", "name": "ignore"}, {"url": "Array.html#method_indexOf", "access": "", "host": "Array", "type": "method", "name": "indexOf"}, {"url": "Queue.html#method_indexOf", "access": "", "host": "Queue", "type": "method", "name": "indexOf"}, {"url": "Queue.html#method__init", "access": "protected", "host": "Queue", "type": "method", "name": "_init"}, {"url": "YUI.html#method__initAxis", "access": "protected", "host": "YUI", "type": "method", "name": "_initAxis"}, {"url": "YUI.html#method_initializer", "access": "protected", "host": "YUI", "type": "method", "name": "initializer"}, {"url": "config.html#property_injected", "access": "", "host": "config", "type": "property", "name": "injected"}, {"url": "config.html#property_insertBefore", "access": "", "host": "config", "type": "property", "name": "insertBefore"}, {"url": "Intl.html#event_intl:langChange", "access": "", "host": "Intl", "type": "event", "name": "intl:langChange"}, {"url": "Lang.html#method_isArray", "access": "", "host": "Lang", "type": "method", "name": "isArray"}, {"url": "Lang.html#method_isBoolean", "access": "", "host": "Lang", "type": "method", "name": "isBoolean"}, {"url": "Lang.html#method_isDate", "access": "", "host": "Lang", "type": "method", "name": "isDate"}, {"url": "Lang.html#method_isFunction", "access": "", "host": "Lang", "type": "method", "name": "isFunction"}, {"url": "Lang.html#method_isNull", "access": "", "host": "Lang", "type": "method", "name": "isNull"}, {"url": "Lang.html#method_isNumber", "access": "", "host": "Lang", "type": "method", "name": "isNumber"}, {"url": "Lang.html#method_isObject", "access": "", "host": "Lang", "type": "method", "name": "isObject"}, {"url": "Lang.html#method_isString", "access": "", "host": "Lang", "type": "method", "name": "isString"}, {"url": "Lang.html#method_isUndefined", "access": "", "host": "Lang", "type": "method", "name": "isUndefined"}, {"url": "Lang.html#method_isValue", "access": "", "host": "Lang", "type": "method", "name": "isValue"}, {"url": "config.html#property_jsAttributes", "access": "", "host": "config", "type": "property", "name": "jsAttributes"}, {"url": "YUI.html#property__key", "access": "protected", "host": "YUI", "type": "property", "name": "_key"}, {"url": "YUI.html#event_key", "access": "", "host": "YUI", "type": "event", "name": "key"}, {"url": "Object.html#method_keys", "access": "", "host": "Object", "type": "method", "name": "keys"}, {"url": "config.html#property_lang", "access": "", "host": "config", "type": "property", "name": "lang"}, {"url": "Queue.html#method_last", "access": "", "host": "Queue", "type": "method", "name": "last"}, {"url": "YUI.html#method_later", "access": "", "host": "YUI", "type": "method", "name": "later"}, {"url": "config.html#property_loaderPath", "access": "", "host": "config", "type": "property", "name": "loaderPath"}, {"url": "config.html#property_locale", "access": "", "host": "config", "type": "property", "name": "locale"}, {"url": "YUI.html#method_log", "access": "", "host": "YUI", "type": "method", "name": "log"}, {"url": "config.html#property_logExclude", "access": "", "host": "config", "type": "property", "name": "logExclude"}, {"url": "config.html#property_logFn", "access": "", "host": "config", "type": "property", "name": "logFn"}, {"url": "config.html#property_logInclude", "access": "", "host": "config", "type": "property", "name": "logInclude"}, {"url": "Intl.html#method_lookupBestLang", "access": "", "host": "Intl", "type": "method", "name": "lookupBestLang"}, {"url": "YUI.html#config_max", "access": "", "host": "YUI", "type": "config", "name": "max"}, {"url": "YUI.html#event_maxChange", "access": "", "host": "YUI", "type": "event", "name": "maxChange"}, {"url": "YUI.html#method_merge", "access": "", "host": "YUI", "type": "method", "name": "merge"}, {"url": "YUI.html#method_message", "access": "", "host": "YUI", "type": "method", "name": "message"}, {"url": "YUI.html#config_min", "access": "", "host": "YUI", "type": "config", "name": "min"}, {"url": "YUI.html#event_minChange", "access": "", "host": "YUI", "type": "event", "name": "minChange"}, {"url": "YUI.html#method_mix", "access": "", "host": "YUI", "type": "method", "name": "mix"}, {"url": "UA.html#property_mobile", "access": "", "host": "UA", "type": "property", "name": "mobile"}, {"url": "config.html#property_modules", "access": "", "host": "config", "type": "property", "name": "modules"}, {"url": "YUI.html#event_mouseenter", "access": "", "host": "YUI", "type": "event", "name": "mouseenter"}, {"url": "YUI.html#event_mouseleave", "access": "", "host": "YUI", "type": "event", "name": "mouseleave"}, {"url": "YUI.html#event_mousewheel", "access": "", "host": "YUI", "type": "event", "name": "mousewheel"}, {"url": "YUI.html#method_namespace", "access": "", "host": "YUI", "type": "method", "name": "namespace"}, {"url": "YUI.html#method__nearestValue", "access": "protected", "host": "YUI", "type": "method", "name": "_nearestValue"}, {"url": "Queue.html#method_next", "access": "", "host": "Queue", "type": "method", "name": "next"}, {"url": "YUI.html#property_NS", "access": "protected", "host": "YUI", "type": "property", "name": "NS"}, {"url": "Array.html#method_numericSort", "access": "", "host": "Array", "type": "method", "name": "numericSort"}, {"url": "YUI.html#method__offsetToValue", "access": "protected", "host": "YUI", "type": "method", "name": "_offsetToValue"}, {"url": "YUI.html#property__offsetXY", "access": "protected", "host": "YUI", "type": "property", "name": "_offsetXY"}, {"url": "YUI.html#method_on", "access": "", "host": "YUI", "type": "method", "name": "on"}, {"url": "YUI.html#method_once", "access": "", "host": "YUI", "type": "method", "name": "once"}, {"url": "config.html#property_onCSS", "access": "", "host": "config", "type": "property", "name": "onCSS"}, {"url": "UA.html#property_opera", "access": "", "host": "UA", "type": "property", "name": "opera"}, {"url": "UA.html#property_os", "access": "", "host": "UA", "type": "property", "name": "os"}, {"url": "Object.html#method_owns", "access": "", "host": "Object", "type": "method", "name": "owns"}, {"url": "config.html#property_pollInterval", "access": "", "host": "config", "type": "property", "name": "pollInterval"}, {"url": "YUI.html#method_preventDefault", "access": "", "host": "YUI", "type": "method", "name": "preventDefault"}, {"url": "Queue.html#method_promote", "access": "", "host": "Queue", "type": "method", "name": "promote"}, {"url": "config.html#property_purgethreshold", "access": "", "host": "config", "type": "property", "name": "purgethreshold"}, {"url": "Queue.html#property__q", "access": "protected", "host": "Queue", "type": "property", "name": "_q"}, {"url": "Queue.html#method_remove", "access": "", "host": "Queue", "type": "method", "name": "remove"}, {"url": "YUI.html#method_removeListener", "access": "", "host": "YUI", "type": "method", "name": "removeListener"}, {"url": "YUI.html#method_resolveTextNode", "access": "", "host": "YUI", "type": "method", "name": "resolveTextNode"}, {"url": "config.html#property_root", "access": "", "host": "config", "type": "property", "name": "root"}, {"url": "Get.html#method_script", "access": "", "host": "Get", "type": "method", "name": "script"}, {"url": "UA.html#property_secure", "access": "", "host": "UA", "type": "property", "name": "secure"}, {"url": "config.html#property_secureBase", "access": "", "host": "config", "type": "property", "name": "secureBase"}, {"url": "Intl.html#method_setLang", "access": "", "host": "Intl", "type": "method", "name": "setLang"}, {"url": "YUI.html#method__setPosition", "access": "protected", "host": "YUI", "type": "method", "name": "_setPosition"}, {"url": "Object.html#method_setValue", "access": "", "host": "Object", "type": "method", "name": "setValue"}, {"url": "YUI.html#method_simulate", "access": "", "host": "YUI", "type": "method", "name": "simulate"}, {"url": "Queue.html#method_size", "access": "", "host": "Queue", "type": "method", "name": "size"}, {"url": "Object.html#method_size", "access": "", "host": "Object", "type": "method", "name": "size"}, {"url": "Array.html#method_some", "access": "", "host": "Array", "type": "method", "name": "some"}, {"url": "YUI.html#method_stamp", "access": "", "host": "YUI", "type": "method", "name": "stamp"}, {"url": "YUI.html#method_stopEvent", "access": "", "host": "YUI", "type": "method", "name": "stopEvent"}, {"url": "YUI.html#method_stopPropagation", "access": "", "host": "YUI", "type": "method", "name": "stopPropagation"}, {"url": "YUI.html#method_syncDragNode", "access": "", "host": "YUI", "type": "method", "name": "syncDragNode"}, {"url": "Array.html#method_test", "access": "", "host": "Array", "type": "method", "name": "test"}, {"url": "YUI.html#method_throttle", "access": "", "host": "YUI", "type": "method", "name": "throttle"}, {"url": "config.html#property_throwFail", "access": "", "host": "config", "type": "property", "name": "throwFail"}, {"url": "config.html#property_timeout", "access": "", "host": "config", "type": "property", "name": "timeout"}, {"url": "Lang.html#method_trim", "access": "", "host": "Lang", "type": "method", "name": "trim"}, {"url": "Lang.html#method_type", "access": "", "host": "Lang", "type": "method", "name": "type"}, {"url": "YUI.html#method_use", "access": "", "host": "YUI", "type": "method", "name": "use"}, {"url": "config.html#property_useBrowserConsole", "access": "", "host": "config", "type": "property", "name": "useBrowserConsole"}, {"url": "YUI.html#method__validateNewAxis", "access": "protected", "host": "YUI", "type": "method", "name": "_validateNewAxis"}, {"url": "YUI.html#method__validateNewMax", "access": "protected", "host": "YUI", "type": "method", "name": "_validateNewMax"}, {"url": "YUI.html#method__validateNewMin", "access": "protected", "host": "YUI", "type": "method", "name": "_validateNewMin"}, {"url": "YUI.html#method__validateNewValue", "access": "protected", "host": "YUI", "type": "method", "name": "_validateNewValue"}, {"url": "YUI.html#config_value", "access": "", "host": "YUI", "type": "config", "name": "value"}, {"url": "YUI.html#event_valueChange", "access": "", "host": "YUI", "type": "event", "name": "valueChange"}, {"url": "Object.html#method_values", "access": "", "host": "Object", "type": "method", "name": "values"}, {"url": "YUI.html#method__valueToOffset", "access": "protected", "host": "YUI", "type": "method", "name": "_valueToOffset"}, {"url": "YUI.html#method__verifyValue", "access": "protected", "host": "YUI", "type": "method", "name": "_verifyValue"}, {"url": "UA.html#property_webkit", "access": "", "host": "UA", "type": "property", "name": "webkit"}, {"url": "config.html#property_win", "access": "", "host": "config", "type": "property", "name": "win"}, {"url": "YUI.html#event_windowresize", "access": "", "host": "YUI", "type": "event", "name": "windowresize"}, {"url": "config.html#property_windowResizeDelay", "access": "", "host": "config", "type": "property", "name": "windowResizeDelay"}, {"url": "YUI.html#property_YAHOO.util.CustomEvent.FLAT", "access": "", "host": "YUI", "type": "property", "name": "YAHOO.util.CustomEvent.FLAT"}, {"url": "YUI.html#property_YAHOO.util.CustomEvent.LIST", "access": "", "host": "YUI", "type": "property", "name": "YAHOO.util.CustomEvent.LIST"}, {"url": "config.html#property_yui2", "access": "", "host": "config", "type": "property", "name": "yui2"}];
+    var ALL_YUI_PROPS = [{"url": "Array.html#method_()", "access": "", "host": "Array", "type": "method", "name": "()"}, {"url": "Object.html#method_()", "access": "", "host": "Object", "type": "method", "name": "()"}, {"url": "config.html#property_2in3", "access": "", "host": "config", "type": "property", "name": "2in3"}, {"url": "Get.html#method_abort", "access": "", "host": "Get", "type": "method", "name": "abort"}, {"url": "Intl.html#method_add", "access": "", "host": "Intl", "type": "method", "name": "add"}, {"url": "YUI.html#method_add", "access": "", "host": "YUI", "type": "method", "name": "add"}, {"url": "Queue.html#method_add", "access": "", "host": "Queue", "type": "method", "name": "add"}, {"url": "YUI.html#method_addListener", "access": "", "host": "YUI", "type": "method", "name": "addListener"}, {"url": "YUI.html#method_after", "access": "", "host": "YUI", "type": "method", "name": "after"}, {"url": "YUI.html#method__afterAlign", "access": "protected", "host": "YUI", "type": "method", "name": "_afterAlign"}, {"url": "YUI.html#method__afterMaxChange", "access": "protected", "host": "YUI", "type": "method", "name": "_afterMaxChange"}, {"url": "YUI.html#method__afterMinChange", "access": "protected", "host": "YUI", "type": "method", "name": "_afterMinChange"}, {"url": "YUI.html#method__afterValueChange", "access": "protected", "host": "YUI", "type": "method", "name": "_afterValueChange"}, {"url": "UA.html#property_air", "access": "", "host": "UA", "type": "property", "name": "air"}, {"url": "YUI.html#method_applyTo", "access": "", "host": "YUI", "type": "method", "name": "applyTo"}, {"url": "YUI.html#property_ATTRS", "access": "protected", "host": "YUI", "type": "property", "name": "ATTRS"}, {"url": "YUI.html#event_available", "access": "", "host": "YUI", "type": "event", "name": "available"}, {"url": "YUI.html#config_axis", "access": "", "host": "YUI", "type": "config", "name": "axis"}, {"url": "YUI.html#event_axisChange", "access": "", "host": "YUI", "type": "event", "name": "axisChange"}, {"url": "config.html#property_base", "access": "", "host": "config", "type": "property", "name": "base"}, {"url": "YUI.html#event_blur", "access": "", "host": "YUI", "type": "event", "name": "blur"}, {"url": "config.html#property_bootstrap", "access": "", "host": "config", "type": "property", "name": "bootstrap"}, {"url": "YUI.html#method_cached", "access": "", "host": "YUI", "type": "method", "name": "cached"}, {"url": "YUI.html#method__cacheOffset", "access": "protected", "host": "YUI", "type": "method", "name": "_cacheOffset"}, {"url": "UA.html#property_caja", "access": "", "host": "UA", "type": "property", "name": "caja"}, {"url": "YUI.html#method__calculateFactor", "access": "protected", "host": "YUI", "type": "method", "name": "_calculateFactor"}, {"url": "config.html#property_charset", "access": "", "host": "config", "type": "property", "name": "charset"}, {"url": "UA.html#property_chrome", "access": "", "host": "UA", "type": "property", "name": "chrome"}, {"url": "config.html#property_combine", "access": "", "host": "config", "type": "property", "name": "combine"}, {"url": "config.html#property_comboBase", "access": "", "host": "config", "type": "property", "name": "comboBase"}, {"url": "YUI.html#event_contentready", "access": "", "host": "YUI", "type": "event", "name": "contentready"}, {"url": "config.html#property_core", "access": "", "host": "config", "type": "property", "name": "core"}, {"url": "Get.html#method_css", "access": "", "host": "Get", "type": "method", "name": "css"}, {"url": "config.html#property_cssAttributes", "access": "", "host": "config", "type": "property", "name": "cssAttributes"}, {"url": "config.html#property_dateFormat", "access": "", "host": "config", "type": "property", "name": "dateFormat"}, {"url": "YUI.html#property_DDValue._AXIS_KEYS", "access": "protected", "host": "YUI", "type": "property", "name": "DDValue._AXIS_KEYS"}, {"url": "YUI.html#property_DDValue.NAME", "access": "protected", "host": "YUI", "type": "property", "name": "DDValue.NAME"}, {"url": "YUI.html#method__defaultConstrain", "access": "protected", "host": "YUI", "type": "method", "name": "_defaultConstrain"}, {"url": "YUI.html#method_delegate", "access": "", "host": "YUI", "type": "method", "name": "delegate"}, {"url": "YUI.html#method_destructor", "access": "protected", "host": "YUI", "type": "method", "name": "destructor"}, {"url": "config.html#property_doc", "access": "", "host": "config", "type": "property", "name": "doc"}, {"url": "YUI.html#event_domready", "access": "", "host": "YUI", "type": "event", "name": "domready"}, {"url": "Array.html#method_each", "access": "", "host": "Array", "type": "method", "name": "each"}, {"url": "Object.html#method_each", "access": "", "host": "Object", "type": "method", "name": "each"}, {"url": "YUI.html#method_error", "access": "", "host": "YUI", "type": "method", "name": "error"}, {"url": "YUI.html#property__evtGuid", "access": "protected", "host": "YUI", "type": "property", "name": "_evtGuid"}, {"url": "YUI.html#property__factor", "access": "protected", "host": "YUI", "type": "property", "name": "_factor"}, {"url": "config.html#property_fetchCSS", "access": "", "host": "config", "type": "property", "name": "fetchCSS"}, {"url": "config.html#property_filter", "access": "", "host": "config", "type": "property", "name": "filter"}, {"url": "config.html#property_filters", "access": "", "host": "config", "type": "property", "name": "filters"}, {"url": "YUI.html#event_focus", "access": "", "host": "YUI", "type": "event", "name": "focus"}, {"url": "config.html#property_force", "access": "", "host": "config", "type": "property", "name": "force"}, {"url": "config.html#property_gallery", "access": "", "host": "config", "type": "property", "name": "gallery"}, {"url": "UA.html#property_gecko", "access": "", "host": "UA", "type": "property", "name": "gecko"}, {"url": "Intl.html#method_get", "access": "", "host": "Intl", "type": "method", "name": "get"}, {"url": "Intl.html#method_getAvailableLangs", "access": "", "host": "Intl", "type": "method", "name": "getAvailableLangs"}, {"url": "YUI.html#method_getCharCode", "access": "", "host": "YUI", "type": "method", "name": "getCharCode"}, {"url": "Intl.html#method_getLang", "access": "", "host": "Intl", "type": "method", "name": "getLang"}, {"url": "YUI.html#method_getPageX", "access": "", "host": "YUI", "type": "method", "name": "getPageX"}, {"url": "YUI.html#method_getPageY", "access": "", "host": "YUI", "type": "method", "name": "getPageY"}, {"url": "YUI.html#method_getRelatedTarget", "access": "", "host": "YUI", "type": "method", "name": "getRelatedTarget"}, {"url": "YUI.html#method_getTarget", "access": "", "host": "YUI", "type": "method", "name": "getTarget"}, {"url": "YUI.html#method_getTime", "access": "", "host": "YUI", "type": "method", "name": "getTime"}, {"url": "Object.html#method_getValue", "access": "", "host": "Object", "type": "method", "name": "getValue"}, {"url": "YUI.html#method__getValueFromPosition", "access": "protected", "host": "YUI", "type": "method", "name": "_getValueFromPosition"}, {"url": "YUI.html#method_getXY", "access": "", "host": "YUI", "type": "method", "name": "getXY"}, {"url": "YUI.html#property_Global", "access": "", "host": "YUI", "type": "property", "name": "Global"}, {"url": "YUI.html#method_guid", "access": "", "host": "YUI", "type": "method", "name": "guid"}, {"url": "Array.html#method_hash", "access": "", "host": "Array", "type": "method", "name": "hash"}, {"url": "Object.html#method_hasKey", "access": "", "host": "Object", "type": "method", "name": "hasKey"}, {"url": "Object.html#method_hasValue", "access": "", "host": "Object", "type": "method", "name": "hasValue"}, {"url": "YUI.html#config_host", "access": "", "host": "YUI", "type": "config", "name": "host"}, {"url": "YUI.html#event_hostChange", "access": "", "host": "YUI", "type": "event", "name": "hostChange"}, {"url": "UA.html#property_ie", "access": "", "host": "UA", "type": "property", "name": "ie"}, {"url": "config.html#property_ignore", "access": "", "host": "config", "type": "property", "name": "ignore"}, {"url": "Array.html#method_indexOf", "access": "", "host": "Array", "type": "method", "name": "indexOf"}, {"url": "Queue.html#method_indexOf", "access": "", "host": "Queue", "type": "method", "name": "indexOf"}, {"url": "Queue.html#method__init", "access": "protected", "host": "Queue", "type": "method", "name": "_init"}, {"url": "YUI.html#method__initAxis", "access": "protected", "host": "YUI", "type": "method", "name": "_initAxis"}, {"url": "YUI.html#method_initializer", "access": "protected", "host": "YUI", "type": "method", "name": "initializer"}, {"url": "config.html#property_injected", "access": "", "host": "config", "type": "property", "name": "injected"}, {"url": "config.html#property_insertBefore", "access": "", "host": "config", "type": "property", "name": "insertBefore"}, {"url": "Intl.html#event_intl:langChange", "access": "", "host": "Intl", "type": "event", "name": "intl:langChange"}, {"url": "Lang.html#method_isArray", "access": "", "host": "Lang", "type": "method", "name": "isArray"}, {"url": "Lang.html#method_isBoolean", "access": "", "host": "Lang", "type": "method", "name": "isBoolean"}, {"url": "Lang.html#method_isDate", "access": "", "host": "Lang", "type": "method", "name": "isDate"}, {"url": "Lang.html#method_isFunction", "access": "", "host": "Lang", "type": "method", "name": "isFunction"}, {"url": "Lang.html#method_isNull", "access": "", "host": "Lang", "type": "method", "name": "isNull"}, {"url": "Lang.html#method_isNumber", "access": "", "host": "Lang", "type": "method", "name": "isNumber"}, {"url": "Lang.html#method_isObject", "access": "", "host": "Lang", "type": "method", "name": "isObject"}, {"url": "Lang.html#method_isString", "access": "", "host": "Lang", "type": "method", "name": "isString"}, {"url": "Lang.html#method_isUndefined", "access": "", "host": "Lang", "type": "method", "name": "isUndefined"}, {"url": "Lang.html#method_isValue", "access": "", "host": "Lang", "type": "method", "name": "isValue"}, {"url": "config.html#property_jsAttributes", "access": "", "host": "config", "type": "property", "name": "jsAttributes"}, {"url": "YUI.html#property__key", "access": "protected", "host": "YUI", "type": "property", "name": "_key"}, {"url": "YUI.html#event_key", "access": "", "host": "YUI", "type": "event", "name": "key"}, {"url": "Object.html#method_keys", "access": "", "host": "Object", "type": "method", "name": "keys"}, {"url": "config.html#property_lang", "access": "", "host": "config", "type": "property", "name": "lang"}, {"url": "Queue.html#method_last", "access": "", "host": "Queue", "type": "method", "name": "last"}, {"url": "YUI.html#method_later", "access": "", "host": "YUI", "type": "method", "name": "later"}, {"url": "config.html#property_loaderPath", "access": "", "host": "config", "type": "property", "name": "loaderPath"}, {"url": "config.html#property_locale", "access": "", "host": "config", "type": "property", "name": "locale"}, {"url": "YUI.html#method_log", "access": "", "host": "YUI", "type": "method", "name": "log"}, {"url": "config.html#property_logExclude", "access": "", "host": "config", "type": "property", "name": "logExclude"}, {"url": "config.html#property_logFn", "access": "", "host": "config", "type": "property", "name": "logFn"}, {"url": "config.html#property_logInclude", "access": "", "host": "config", "type": "property", "name": "logInclude"}, {"url": "Intl.html#method_lookupBestLang", "access": "", "host": "Intl", "type": "method", "name": "lookupBestLang"}, {"url": "YUI.html#config_max", "access": "", "host": "YUI", "type": "config", "name": "max"}, {"url": "YUI.html#event_maxChange", "access": "", "host": "YUI", "type": "event", "name": "maxChange"}, {"url": "YUI.html#method_merge", "access": "", "host": "YUI", "type": "method", "name": "merge"}, {"url": "YUI.html#method_message", "access": "", "host": "YUI", "type": "method", "name": "message"}, {"url": "YUI.html#config_min", "access": "", "host": "YUI", "type": "config", "name": "min"}, {"url": "YUI.html#event_minChange", "access": "", "host": "YUI", "type": "event", "name": "minChange"}, {"url": "YUI.html#method_mix", "access": "", "host": "YUI", "type": "method", "name": "mix"}, {"url": "UA.html#property_mobile", "access": "", "host": "UA", "type": "property", "name": "mobile"}, {"url": "config.html#property_modules", "access": "", "host": "config", "type": "property", "name": "modules"}, {"url": "YUI.html#event_mouseenter", "access": "", "host": "YUI", "type": "event", "name": "mouseenter"}, {"url": "YUI.html#event_mouseleave", "access": "", "host": "YUI", "type": "event", "name": "mouseleave"}, {"url": "YUI.html#event_mousewheel", "access": "", "host": "YUI", "type": "event", "name": "mousewheel"}, {"url": "YUI.html#method_namespace", "access": "", "host": "YUI", "type": "method", "name": "namespace"}, {"url": "YUI.html#method__nearestValue", "access": "protected", "host": "YUI", "type": "method", "name": "_nearestValue"}, {"url": "Queue.html#method_next", "access": "", "host": "Queue", "type": "method", "name": "next"}, {"url": "YUI.html#property_NS", "access": "protected", "host": "YUI", "type": "property", "name": "NS"}, {"url": "Array.html#method_numericSort", "access": "", "host": "Array", "type": "method", "name": "numericSort"}, {"url": "YUI.html#method__offsetToValue", "access": "protected", "host": "YUI", "type": "method", "name": "_offsetToValue"}, {"url": "YUI.html#property__offsetXY", "access": "protected", "host": "YUI", "type": "property", "name": "_offsetXY"}, {"url": "YUI.html#method_on", "access": "", "host": "YUI", "type": "method", "name": "on"}, {"url": "YUI.html#method_once", "access": "", "host": "YUI", "type": "method", "name": "once"}, {"url": "config.html#property_onCSS", "access": "", "host": "config", "type": "property", "name": "onCSS"}, {"url": "UA.html#property_opera", "access": "", "host": "UA", "type": "property", "name": "opera"}, {"url": "UA.html#property_os", "access": "", "host": "UA", "type": "property", "name": "os"}, {"url": "Object.html#method_owns", "access": "", "host": "Object", "type": "method", "name": "owns"}, {"url": "config.html#property_pollInterval", "access": "", "host": "config", "type": "property", "name": "pollInterval"}, {"url": "YUI.html#method_preventDefault", "access": "", "host": "YUI", "type": "method", "name": "preventDefault"}, {"url": "Queue.html#method_promote", "access": "", "host": "Queue", "type": "method", "name": "promote"}, {"url": "config.html#property_purgethreshold", "access": "", "host": "config", "type": "property", "name": "purgethreshold"}, {"url": "Queue.html#property__q", "access": "protected", "host": "Queue", "type": "property", "name": "_q"}, {"url": "Queue.html#method_remove", "access": "", "host": "Queue", "type": "method", "name": "remove"}, {"url": "YUI.html#method_removeListener", "access": "", "host": "YUI", "type": "method", "name": "removeListener"}, {"url": "YUI.html#method_resolveTextNode", "access": "", "host": "YUI", "type": "method", "name": "resolveTextNode"}, {"url": "config.html#property_root", "access": "", "host": "config", "type": "property", "name": "root"}, {"url": "Get.html#method_script", "access": "", "host": "Get", "type": "method", "name": "script"}, {"url": "UA.html#property_secure", "access": "", "host": "UA", "type": "property", "name": "secure"}, {"url": "Intl.html#method_setLang", "access": "", "host": "Intl", "type": "method", "name": "setLang"}, {"url": "YUI.html#method__setPosition", "access": "protected", "host": "YUI", "type": "method", "name": "_setPosition"}, {"url": "Object.html#method_setValue", "access": "", "host": "Object", "type": "method", "name": "setValue"}, {"url": "YUI.html#method_simulate", "access": "", "host": "YUI", "type": "method", "name": "simulate"}, {"url": "Queue.html#method_size", "access": "", "host": "Queue", "type": "method", "name": "size"}, {"url": "Object.html#method_size", "access": "", "host": "Object", "type": "method", "name": "size"}, {"url": "config.html#property_skin", "access": "", "host": "config", "type": "property", "name": "skin"}, {"url": "Array.html#method_some", "access": "", "host": "Array", "type": "method", "name": "some"}, {"url": "YUI.html#method_stamp", "access": "", "host": "YUI", "type": "method", "name": "stamp"}, {"url": "YUI.html#method_stopEvent", "access": "", "host": "YUI", "type": "method", "name": "stopEvent"}, {"url": "YUI.html#method_stopPropagation", "access": "", "host": "YUI", "type": "method", "name": "stopPropagation"}, {"url": "YUI.html#method_syncDragNode", "access": "", "host": "YUI", "type": "method", "name": "syncDragNode"}, {"url": "Array.html#method_test", "access": "", "host": "Array", "type": "method", "name": "test"}, {"url": "YUI.html#method_throttle", "access": "", "host": "YUI", "type": "method", "name": "throttle"}, {"url": "config.html#property_throwFail", "access": "", "host": "config", "type": "property", "name": "throwFail"}, {"url": "config.html#property_timeout", "access": "", "host": "config", "type": "property", "name": "timeout"}, {"url": "Lang.html#method_trim", "access": "", "host": "Lang", "type": "method", "name": "trim"}, {"url": "Lang.html#method_type", "access": "", "host": "Lang", "type": "method", "name": "type"}, {"url": "YUI.html#method_use", "access": "", "host": "YUI", "type": "method", "name": "use"}, {"url": "config.html#property_useBrowserConsole", "access": "", "host": "config", "type": "property", "name": "useBrowserConsole"}, {"url": "YUI.html#method__validateNewAxis", "access": "protected", "host": "YUI", "type": "method", "name": "_validateNewAxis"}, {"url": "YUI.html#method__validateNewMax", "access": "protected", "host": "YUI", "type": "method", "name": "_validateNewMax"}, {"url": "YUI.html#method__validateNewMin", "access": "protected", "host": "YUI", "type": "method", "name": "_validateNewMin"}, {"url": "YUI.html#method__validateNewValue", "access": "protected", "host": "YUI", "type": "method", "name": "_validateNewValue"}, {"url": "YUI.html#config_value", "access": "", "host": "YUI", "type": "config", "name": "value"}, {"url": "YUI.html#event_valueChange", "access": "", "host": "YUI", "type": "event", "name": "valueChange"}, {"url": "Object.html#method_values", "access": "", "host": "Object", "type": "method", "name": "values"}, {"url": "YUI.html#method__valueToOffset", "access": "protected", "host": "YUI", "type": "method", "name": "_valueToOffset"}, {"url": "YUI.html#method__verifyValue", "access": "protected", "host": "YUI", "type": "method", "name": "_verifyValue"}, {"url": "UA.html#property_webkit", "access": "", "host": "UA", "type": "property", "name": "webkit"}, {"url": "config.html#property_win", "access": "", "host": "config", "type": "property", "name": "win"}, {"url": "YUI.html#event_windowresize", "access": "", "host": "YUI", "type": "event", "name": "windowresize"}, {"url": "config.html#property_windowResizeDelay", "access": "", "host": "config", "type": "property", "name": "windowResizeDelay"}, {"url": "YUI.html#property_YAHOO.util.CustomEvent.FLAT", "access": "", "host": "YUI", "type": "property", "name": "YAHOO.util.CustomEvent.FLAT"}, {"url": "YUI.html#property_YAHOO.util.CustomEvent.LIST", "access": "", "host": "YUI", "type": "property", "name": "YAHOO.util.CustomEvent.LIST"}, {"url": "config.html#property_yui2", "access": "", "host": "config", "type": "property", "name": "yui2"}];
 </script>
 </body>
 </html>

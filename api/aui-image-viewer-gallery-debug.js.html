@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-image-viewer   aui-image-viewer-gallery-debug.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-image-viewer&nbsp; <span class="subtitle">1.0pr</span>
+			aui-image-viewer&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -676,714 +671,714 @@
 <span class="cm"> * @constructor</span>
 <span class="cm"> * @extends ImageViewer</span>
 <span class="cm"> */</span>
-<span class="kd">function</span> <span class="nx">ImageGallery</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">ImageGallery</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">ImageGallery</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property provides a string to identify the class.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property ImageGallery.NAME</span>
-<span class="cm">	 * @type String</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">NAME</span><span class="o">:</span> <span class="nx">IMAGE_GALLERY</span><span class="p">,</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property used to define the default attribute</span>
-<span class="cm">	 * configuration for the ImageGallery.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property ImageGallery.ATTRS</span>
-<span class="cm">	 * @type Object</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">ImageGallery</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+	<span class="p">{</span>
 		<span class="cm">/**</span>
-<span class="cm">		 * If &lt;code&gt;true&lt;/code&gt; the slide show will be played when the</span>
-<span class="cm">         * ImageGallery is displayed.</span>
+<span class="cm">		 * Static property provides a string to identify the class.</span>
 <span class="cm">		 *</span>
-<span class="cm">		 * @attribute autoPlay</span>
-<span class="cm">		 * @default false</span>
-<span class="cm">		 * @type boolean</span>
+<span class="cm">		 * @property ImageGallery.NAME</span>
+<span class="cm">		 * @type String</span>
+<span class="cm">		 * @static</span>
 <span class="cm">		 */</span>
-		<span class="nx">autoPlay</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
-		<span class="p">},</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="nx">IMAGE_GALLERY</span><span class="p">,</span>
 
 		<span class="cm">/**</span>
-<span class="cm">		 * Delay in milliseconds to change to the next image.</span>
+<span class="cm">		 * Static property used to define the default attribute</span>
+<span class="cm">		 * configuration for the ImageGallery.</span>
 <span class="cm">		 *</span>
-<span class="cm">		 * @attribute delay</span>
-<span class="cm">		 * @default 7000</span>
-<span class="cm">		 * @type Number</span>
-<span class="cm">		 */</span>
-		<span class="nx">delay</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="mi">7000</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNumber</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * &lt;a href=&quot;Paginator.html&quot;&gt;Paginator&lt;/a&gt; configuration Object. The</span>
-<span class="cm">         * &lt;code&gt;Paginator&lt;/code&gt; handles the thumbnails control.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute paginator</span>
-<span class="cm">		 * @default &lt;a href=&quot;Paginator.html&quot;&gt;Paginator&lt;/a&gt; configuration Object.</span>
+<span class="cm">		 * @property ImageGallery.ATTRS</span>
 <span class="cm">		 * @type Object</span>
+<span class="cm">		 * @static</span>
 <span class="cm">		 */</span>
-		<span class="nx">paginator</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="p">{},</span>
-			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * If &lt;code&gt;true&lt;/code&gt; the slide show will be played when the</span>
+<span class="cm">	         * ImageGallery is displayed.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute autoPlay</span>
+<span class="cm">			 * @default false</span>
+<span class="cm">			 * @type boolean</span>
+<span class="cm">			 */</span>
+			<span class="nx">autoPlay</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Delay in milliseconds to change to the next image.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute delay</span>
+<span class="cm">			 * @default 7000</span>
+<span class="cm">			 * @type Number</span>
+<span class="cm">			 */</span>
+			<span class="nx">delay</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="mi">7000</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNumber</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * &lt;a href=&quot;Paginator.html&quot;&gt;Paginator&lt;/a&gt; configuration Object. The</span>
+<span class="cm">	         * &lt;code&gt;Paginator&lt;/code&gt; handles the thumbnails control.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute paginator</span>
+<span class="cm">			 * @default &lt;a href=&quot;Paginator.html&quot;&gt;Paginator&lt;/a&gt; configuration Object.</span>
+<span class="cm">			 * @type Object</span>
+<span class="cm">			 */</span>
+			<span class="nx">paginator</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="p">{},</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+					<span class="kd">var</span> <span class="nx">paginatorEl</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGINATOR_EL</span><span class="p">);</span>
+					<span class="kd">var</span> <span class="nx">totalLinks</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TOTAL_LINKS</span><span class="p">);</span>
+
+					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
+						<span class="p">{</span>
+							<span class="nx">containers</span><span class="o">:</span> <span class="nx">paginatorEl</span><span class="p">,</span>
+							<span class="nx">pageContainerTemplate</span><span class="o">:</span> <span class="nx">TPL_LINK_CONTAINER</span><span class="p">,</span>
+							<span class="nx">pageLinkContent</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_setThumbContent</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span>
+							<span class="nx">pageLinkTemplate</span><span class="o">:</span> <span class="nx">TPL_LINK</span><span class="p">,</span>
+							<span class="nx">template</span><span class="o">:</span> <span class="nx">TEMPLATE_PAGINATOR</span><span class="p">,</span>
+							<span class="nx">total</span><span class="o">:</span> <span class="nx">totalLinks</span><span class="p">,</span>
+							<span class="nx">on</span><span class="o">:</span> <span class="p">{</span>
+								<span class="nx">changeRequest</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+									<span class="c1">// fire changeRequest from ImageGallery passing the &quot;state&quot; object from Paginator</span>
+									<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;changeRequest&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">state</span><span class="o">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">state</span> <span class="p">})</span>
+								<span class="p">}</span>
+							<span class="p">}</span>
+						<span class="p">},</span>
+						<span class="nx">value</span>
+					<span class="p">);</span>
+				<span class="p">},</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isObject</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Element which contains the &lt;a href=&quot;Paginator.html&quot;&gt;Paginator&lt;/a&gt;</span>
+<span class="cm">	         * with the thumbnails.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute paginatorEl</span>
+<span class="cm">			 * @default Generated HTML div.</span>
+<span class="cm">			 * @readOnly</span>
+<span class="cm">			 * @type Node</span>
+<span class="cm">			 */</span>
+			<span class="nx">paginatorEl</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">readyOnly</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+				<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_PAGINATOR_CONTAINER</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Stores the &lt;a href=&quot;Paginator.html&quot;&gt;Paginator&lt;/a&gt; instance.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute paginatorInstance</span>
+<span class="cm">			 * @default null</span>
+<span class="cm">			 * @type Paginator</span>
+<span class="cm">			 */</span>
+			<span class="nx">paginatorInstance</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * If &lt;code&gt;true&lt;/code&gt; the slide show is paused.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute paused</span>
+<span class="cm">			 * @default false</span>
+<span class="cm">			 * @type boolean</span>
+<span class="cm">			 */</span>
+			<span class="nx">paused</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Label to display when the slide show is paused.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute pausedLabel</span>
+<span class="cm">			 * @default &#39;&#39;</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
+			<span class="nx">pausedLabel</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isString</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * If &lt;code&gt;true&lt;/code&gt; the slide show is playing.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute playing</span>
+<span class="cm">			 * @default false</span>
+<span class="cm">			 * @type boolean</span>
+<span class="cm">			 */</span>
+			<span class="nx">playing</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Label to display when the slide show is playing.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute playingLabel</span>
+<span class="cm">			 * @default &#39;(Playing)&#39;</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
+			<span class="nx">playingLabel</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="nx">TEMPLATE_PLAYING_LABEL</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isString</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Restart the navigation when reach the last element.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute repeat</span>
+<span class="cm">			 * @default true</span>
+<span class="cm">			 * @type boolean</span>
+<span class="cm">			 */</span>
+			<span class="nx">repeat</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Show the player controls (i.e., pause and show buttons).</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute showPlayer</span>
+<span class="cm">			 * @default true</span>
+<span class="cm">			 * @type boolean</span>
+<span class="cm">			 */</span>
+			<span class="nx">showPlayer</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * &lt;a href=&quot;Toolbar.html&quot;&gt;Toolbar&lt;/a&gt; with a play, and pause buttons.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute toolbar</span>
+<span class="cm">			 * @default Generated Toolbar with a play, and pause buttons.</span>
+<span class="cm">			 * @type Toolbar constructor.</span>
+<span class="cm">			 */</span>
+			<span class="nx">toolbar</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="p">{},</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
+						<span class="p">{</span>
+							<span class="nx">children</span><span class="o">:</span> <span class="p">[</span>
+								<span class="p">{</span>
+									<span class="nx">id</span><span class="o">:</span> <span class="nx">PLAY</span><span class="p">,</span>
+									<span class="nx">icon</span><span class="o">:</span> <span class="nx">PLAY</span>
+								<span class="p">},</span>
+								<span class="p">{</span>
+									<span class="nx">id</span><span class="o">:</span> <span class="nx">PAUSE</span><span class="p">,</span>
+									<span class="nx">icon</span><span class="o">:</span> <span class="nx">PAUSE</span>
+								<span class="p">}</span>
+							<span class="p">]</span>
+						<span class="p">},</span>
+						<span class="nx">value</span>
+					<span class="p">);</span>
+				<span class="p">},</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isObject</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * If &lt;code&gt;true&lt;/code&gt; will use the original image as thumbnails.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute useOriginalImage</span>
+<span class="cm">			 * @default false</span>
+<span class="cm">			 * @type boolean</span>
+<span class="cm">			 */</span>
+			<span class="nx">useOriginalImage</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="nx">EXTENDS</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">ImageViewer</span><span class="p">,</span>
+
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Toolbar instance reference.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @property toolbar</span>
+<span class="cm">			 * @type Toolbar</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">toolbar</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Stores the &lt;code&gt;A.later&lt;/code&gt; reference.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @property _timer</span>
+<span class="cm">			 * @type Number</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_timer</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Create the DOM structure for the ImageGallery. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method renderUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">ImageGallery</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderPaginator</span><span class="p">();</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SHOW_PLAYER</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderPlayer</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Bind the events on the ImageGallery UI. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method bindUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">ImageGallery</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindToolbarUI</span><span class="p">();</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;playingChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onPlayingChange</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;pausedChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onPausedChange</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;changeRequest&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">defaultFn</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_changeRequest</span> <span class="p">});</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Descructor lifecycle implementation for the ImageGallery class.</span>
+<span class="cm">			 * Purges events attached to the node (and all child nodes).</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method destroy</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">ImageGallery</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">destroy</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGINATOR_INSTANCE</span><span class="p">).</span><span class="nx">destroy</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Hide the &lt;a href=&quot;Paginator.html&quot;&gt;Paginator&lt;/a&gt; with the thumbnails</span>
+<span class="cm">		     * list.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method hidePaginator</span>
+<span class="cm">			 */</span>
+			<span class="nx">hidePaginator</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGINATOR_EL</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_OVERLAY_HIDDEN</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Pause the slide show.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method pause</span>
+<span class="cm">			 */</span>
+			<span class="nx">pause</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">PAUSED</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">PLAYING</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncInfoUI</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Play the slide show.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method play</span>
+<span class="cm">			 */</span>
+			<span class="nx">play</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">PAUSED</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">PLAYING</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncInfoUI</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * &lt;p&gt;Show the ImageGallery.&lt;/p&gt;</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * &lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt;Overloads the &lt;a</span>
+<span class="cm">		     * href=&quot;ImageViewer.html&quot;&gt;ImageViewer&lt;/a&gt; show method to not loadImage, the</span>
+<span class="cm">		     * changeRequest now is responsible to do that if we invoke the superclass</span>
+<span class="cm">		     * show method its loading the image, and the changeRequest loads again,</span>
+<span class="cm">		     * avoiding double request.&lt;/p&gt;</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method show</span>
+<span class="cm">			 */</span>
+			<span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">currentLink</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getCurrentLink</span><span class="p">();</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">currentLink</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">showMask</span><span class="p">();</span>
+
+					<span class="c1">// invoke the Overlay show method</span>
+					<span class="c1">// NODE: A.ImageViewer is the parent of ImageGallery, the A.ImageViewer.superclass is the Overlay</span>
+					<span class="nx">A</span><span class="p">.</span><span class="nx">ImageViewer</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">show</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+					<span class="c1">// changeRequest on paginatorInstance with the new page set</span>
+					<span class="kd">var</span> <span class="nx">paginatorInstance</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGINATOR_INSTANCE</span><span class="p">);</span>
+
+					<span class="c1">// page start on 1, index on 0, add +1 to the nextIndex to set the correct page on the paginator</span>
+					<span class="nx">paginatorInstance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span>
+						<span class="nx">PAGE</span><span class="p">,</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_INDEX</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+					<span class="p">);</span>
+
+					<span class="nx">paginatorInstance</span><span class="p">.</span><span class="nx">changeRequest</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Show the &lt;a href=&quot;Paginator.html&quot;&gt;Paginator&lt;/a&gt; with the thumbnails</span>
+<span class="cm">		     * list.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method showPaginator</span>
+<span class="cm">			 */</span>
+			<span class="nx">showPaginator</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGINATOR_EL</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_OVERLAY_HIDDEN</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Bind the Toolbar UI for the play and pause buttons.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _bindToolbarUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_bindToolbarUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SHOW_PLAYER</span><span class="p">))</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">toolbar</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">toolbar</span><span class="p">;</span>
+
+					<span class="kd">var</span> <span class="nx">play</span> <span class="o">=</span> <span class="nx">toolbar</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">PLAY</span><span class="p">);</span>
+					<span class="kd">var</span> <span class="nx">pause</span> <span class="o">=</span> <span class="nx">toolbar</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">PAUSE</span><span class="p">);</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">play</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">play</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">HANDLER</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">play</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+					<span class="p">}</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">pause</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">pause</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">HANDLER</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">pause</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Cancel the timer between slides.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _cancelTimer</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_cancelTimer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_timer</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_timer</span><span class="p">.</span><span class="nx">cancel</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Render the &lt;a href=&quot;Paginator.html&quot;&gt;Paginator&lt;/a&gt; with the thumbnails.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _renderPaginator</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_renderPaginator</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">paginatorEl</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGINATOR_EL</span><span class="p">);</span>
-				<span class="kd">var</span> <span class="nx">totalLinks</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TOTAL_LINKS</span><span class="p">);</span>
 
-				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
-					<span class="p">{</span>
-						<span class="nx">containers</span><span class="o">:</span> <span class="nx">paginatorEl</span><span class="p">,</span>
-						<span class="nx">pageContainerTemplate</span><span class="o">:</span> <span class="nx">TPL_LINK_CONTAINER</span><span class="p">,</span>
-						<span class="nx">pageLinkContent</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_setThumbContent</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span>
-						<span class="nx">pageLinkTemplate</span><span class="o">:</span> <span class="nx">TPL_LINK</span><span class="p">,</span>
-						<span class="nx">template</span><span class="o">:</span> <span class="nx">TEMPLATE_PAGINATOR</span><span class="p">,</span>
-						<span class="nx">total</span><span class="o">:</span> <span class="nx">totalLinks</span><span class="p">,</span>
-						<span class="nx">on</span><span class="o">:</span> <span class="p">{</span>
-							<span class="nx">changeRequest</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-								<span class="c1">// fire changeRequest from ImageGallery passing the &quot;state&quot; object from Paginator</span>
-								<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;changeRequest&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">state</span><span class="o">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">state</span> <span class="p">})</span>
-							<span class="p">}</span>
-						<span class="p">}</span>
-					<span class="p">},</span>
-					<span class="nx">value</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">BODY</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span>
+					<span class="nx">paginatorEl</span><span class="p">.</span><span class="nx">hide</span><span class="p">()</span>
 				<span class="p">);</span>
+
+				<span class="kd">var</span> <span class="nx">paginatorInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Paginator</span><span class="p">(</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGINATOR</span><span class="p">)</span>
+				<span class="p">)</span>
+				<span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">PAGINATOR_INSTANCE</span><span class="p">,</span> <span class="nx">paginatorInstance</span><span class="p">);</span>
 			<span class="p">},</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isObject</span>
-		<span class="p">},</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * Element which contains the &lt;a href=&quot;Paginator.html&quot;&gt;Paginator&lt;/a&gt;</span>
-<span class="cm">         * with the thumbnails.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute paginatorEl</span>
-<span class="cm">		 * @default Generated HTML div.</span>
-<span class="cm">		 * @readOnly</span>
-<span class="cm">		 * @type Node</span>
-<span class="cm">		 */</span>
-		<span class="nx">paginatorEl</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">readyOnly</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-			<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_PAGINATOR_CONTAINER</span><span class="p">);</span>
-			<span class="p">}</span>
-		<span class="p">},</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Render the player controls.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _renderPlayer</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_renderPlayer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">paginatorEl</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGINATOR_EL</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">playerContent</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_PLAYER_CONTENT</span><span class="p">);</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * Stores the &lt;a href=&quot;Paginator.html&quot;&gt;Paginator&lt;/a&gt; instance.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute paginatorInstance</span>
-<span class="cm">		 * @default null</span>
-<span class="cm">		 * @type Paginator</span>
-<span class="cm">		 */</span>
-		<span class="nx">paginatorInstance</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
-		<span class="p">},</span>
+				<span class="nx">paginatorEl</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span>
+					<span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_PLAYER_CONTAINER</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">playerContent</span><span class="p">)</span>
+				<span class="p">);</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * If &lt;code&gt;true&lt;/code&gt; the slide show is paused.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute paused</span>
-<span class="cm">		 * @default false</span>
-<span class="cm">		 * @type boolean</span>
-<span class="cm">		 */</span>
-		<span class="nx">paused</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
-		<span class="p">},</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">toolbar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Toolbar</span><span class="p">(</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TOOLBAR</span><span class="p">)</span>
+				<span class="p">)</span>
+				<span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">playerContent</span><span class="p">);</span>
+			<span class="p">},</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * Label to display when the slide show is paused.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute pausedLabel</span>
-<span class="cm">		 * @default &#39;&#39;</span>
-<span class="cm">		 * @type String</span>
-<span class="cm">		 */</span>
-		<span class="nx">pausedLabel</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isString</span>
-		<span class="p">},</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Start the timer between slides.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _startTimer</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_startTimer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">delay</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DELAY</span><span class="p">);</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * If &lt;code&gt;true&lt;/code&gt; the slide show is playing.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute playing</span>
-<span class="cm">		 * @default false</span>
-<span class="cm">		 * @type boolean</span>
-<span class="cm">		 */</span>
-		<span class="nx">playing</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
-		<span class="p">},</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_cancelTimer</span><span class="p">();</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * Label to display when the slide show is playing.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute playingLabel</span>
-<span class="cm">		 * @default &#39;(Playing)&#39;</span>
-<span class="cm">		 * @type String</span>
-<span class="cm">		 */</span>
-		<span class="nx">playingLabel</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="nx">TEMPLATE_PLAYING_LABEL</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isString</span>
-		<span class="p">},</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_timer</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">later</span><span class="p">(</span><span class="nx">delay</span><span class="p">,</span> <span class="nx">instance</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_syncSlideShow</span><span class="p">);</span>
+			<span class="p">},</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * Restart the navigation when reach the last element.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute repeat</span>
-<span class="cm">		 * @default true</span>
-<span class="cm">		 * @type boolean</span>
-<span class="cm">		 */</span>
-		<span class="nx">repeat</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Show the player controls (i.e., pause and show buttons).</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute showPlayer</span>
-<span class="cm">		 * @default true</span>
-<span class="cm">		 * @type boolean</span>
-<span class="cm">		 */</span>
-		<span class="nx">showPlayer</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * &lt;a href=&quot;Toolbar.html&quot;&gt;Toolbar&lt;/a&gt; with a play, and pause buttons.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute toolbar</span>
-<span class="cm">		 * @default Generated Toolbar with a play, and pause buttons.</span>
-<span class="cm">		 * @type Toolbar constructor.</span>
-<span class="cm">		 */</span>
-		<span class="nx">toolbar</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="p">{},</span>
-			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Sync the controls UI.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _syncControlsUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_syncControlsUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
-					<span class="p">{</span>
-						<span class="nx">children</span><span class="o">:</span> <span class="p">[</span>
-							<span class="p">{</span>
-								<span class="nx">id</span><span class="o">:</span> <span class="nx">PLAY</span><span class="p">,</span>
-								<span class="nx">icon</span><span class="o">:</span> <span class="nx">PLAY</span>
-							<span class="p">},</span>
-							<span class="p">{</span>
-								<span class="nx">id</span><span class="o">:</span> <span class="nx">PAUSE</span><span class="p">,</span>
-								<span class="nx">icon</span><span class="o">:</span> <span class="nx">PAUSE</span>
-							<span class="p">}</span>
-						<span class="p">]</span>
-					<span class="p">},</span>
-					<span class="nx">value</span>
+				<span class="nx">ImageGallery</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">_syncControlsUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">VISIBLE</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncSelectedThumbUI</span><span class="p">();</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">showPaginator</span><span class="p">();</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">hidePaginator</span><span class="p">();</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_cancelTimer</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Sync the selected thumb UI.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _syncSelectedThumbUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_syncSelectedThumbUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">currentIndex</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_INDEX</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">paginatorInstance</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGINATOR_INSTANCE</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">paginatorIndex</span> <span class="o">=</span> <span class="nx">paginatorInstance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGE</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+
+				<span class="c1">// when currentIndex != paginatorIndex we need to load the new image</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">currentIndex</span> <span class="o">!=</span> <span class="nx">paginatorIndex</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// originally the paginator changeRequest is only invoked when user interaction happens, forcing invoke changeRequest from paginator</span>
+					<span class="nx">paginatorInstance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">PAGE</span><span class="p">,</span> <span class="nx">currentIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+
+					<span class="nx">paginatorInstance</span><span class="p">.</span><span class="nx">changeRequest</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Sync the slide show UI.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _syncSlideShow</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_syncSlideShow</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">hasNext</span><span class="p">())</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">REPEAT</span><span class="p">))</span> <span class="p">{</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CURRENT_INDEX</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+					<span class="p">}</span>
+					<span class="k">else</span> <span class="p">{</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">_cancelTimer</span><span class="p">();</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Change the UI when click on a thumbnail.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _changeRequest</span>
+<span class="cm">			 * @param {EventFacade} event</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_changeRequest</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">paginatorInstance</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">paginator</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">newState</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">beforeState</span> <span class="o">=</span> <span class="nx">newState</span><span class="p">.</span><span class="nx">before</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">newState</span><span class="p">.</span><span class="nx">page</span><span class="p">;</span>
+
+				<span class="c1">// only update the paginator UI when the Overlay is visible</span>
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">VISIBLE</span><span class="p">))</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// NOTE: return</span>
+				<span class="p">}</span>
+
+				<span class="kd">var</span> <span class="nx">currentIndex</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_INDEX</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">paginatorIndex</span> <span class="o">=</span> <span class="nx">page</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+
+				<span class="c1">// check if the beforeState page number is different from the newState page number.</span>
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">beforeState</span> <span class="o">||</span> <span class="p">(</span><span class="nx">beforeState</span> <span class="o">&amp;&amp;</span> <span class="nx">beforeState</span><span class="p">.</span><span class="nx">page</span> <span class="o">!=</span> <span class="nx">page</span><span class="p">))</span> <span class="p">{</span>
+					<span class="c1">// updating currentIndex</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CURRENT_INDEX</span><span class="p">,</span> <span class="nx">paginatorIndex</span><span class="p">);</span>
+
+					<span class="c1">// loading current index image</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">loadImage</span><span class="p">(</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">getCurrentLink</span><span class="p">().</span><span class="nx">attr</span><span class="p">(</span><span class="nx">HREF</span><span class="p">)</span>
+					<span class="p">);</span>
+
+					<span class="c1">// updating the UI of the paginator</span>
+					<span class="nx">paginatorInstance</span><span class="p">.</span><span class="nx">setState</span><span class="p">(</span><span class="nx">newState</span><span class="p">);</span>
+
+					<span class="c1">// restart the timer if the user change the image, respecting the paused state</span>
+					<span class="kd">var</span> <span class="nx">paused</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAUSED</span><span class="p">);</span>
+					<span class="kd">var</span> <span class="nx">playing</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLAYING</span><span class="p">);</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">playing</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">paused</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">_startTimer</span><span class="p">();</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * See &lt;a href=&quot;Paginator.html#method_pageLinkContent&quot;&gt;pageLinkContent&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _setThumbContent</span>
+<span class="cm">			 * @param {Node} pageEl</span>
+<span class="cm">			 * @param {Number} pageNumber</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_setThumbContent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">pageEl</span><span class="p">,</span> <span class="nx">pageNumber</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">pageNumber</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">link</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getLink</span><span class="p">(</span><span class="nx">index</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">thumbEl</span> <span class="o">=</span> <span class="nx">pageEl</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_IMAGE_GALLERY_PAGINATOR_THUMB</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">thumbSrc</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">USE_ORIGINAL_IMAGE</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">thumbSrc</span> <span class="o">=</span> <span class="nx">link</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="nx">HREF</span><span class="p">);</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="p">{</span>
+					<span class="c1">// try to find a inner thumbnail image to show on the paginator</span>
+					<span class="kd">var</span> <span class="nx">innerImage</span> <span class="o">=</span> <span class="nx">link</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">IMG</span><span class="p">);</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">innerImage</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">thumbSrc</span> <span class="o">=</span> <span class="nx">innerImage</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="nx">SRC</span><span class="p">);</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">thumbSrc</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">thumbEl</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">({</span>
+						<span class="c1">// use background to show the thumbnails to take advantage of the background-position: 50% 50%</span>
+						<span class="nx">backgroundImage</span><span class="o">:</span> <span class="s1">&#39;url(&#39;</span> <span class="o">+</span> <span class="nx">thumbSrc</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
+					<span class="p">});</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Get the &lt;a href=&quot;ImageViewer.html#config_info&quot;&gt;info&lt;/a&gt; template.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _getInfoTemplate</span>
+<span class="cm">			 * @param {String} v template</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 * @return {String} Parsed string.</span>
+<span class="cm">			 */</span>
+			<span class="nx">_getInfoTemplate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">label</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">paused</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAUSED</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">playing</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLAYING</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">playing</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">label</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLAYING_LABEL</span><span class="p">);</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">paused</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">label</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAUSED_LABEL</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="k">return</span> <span class="nx">concat</span><span class="p">(</span>
+					<span class="nx">ImageGallery</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">_getInfoTemplate</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">),</span>
+					<span class="nx">label</span>
 				<span class="p">);</span>
 			<span class="p">},</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isObject</span>
-		<span class="p">},</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * If &lt;code&gt;true&lt;/code&gt; will use the original image as thumbnails.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute useOriginalImage</span>
-<span class="cm">		 * @default false</span>
-<span class="cm">		 * @type boolean</span>
-<span class="cm">		 */</span>
-		<span class="nx">useOriginalImage</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires after the value of the</span>
+<span class="cm">			 * &lt;a href=&quot;ImageViewer.html#config_visible&quot;&gt;visible&lt;/a&gt; attribute change.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _afterVisibleChange</span>
+<span class="cm">			 * @param {EventFacade} event</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_afterVisibleChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="c1">// invoke A.ImageViewer _afterVisibleChange method</span>
+				<span class="nx">ImageGallery</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">_afterVisibleChange</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// trigger autoPlay when overlay is visible</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">AUTO_PLAY</span><span class="p">))</span> <span class="p">{</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires before the value of the</span>
+<span class="cm">			 * &lt;a href=&quot;ImageGallery.html#config_paused&quot;&gt;paused&lt;/a&gt; attribute change.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _onPausedChange</span>
+<span class="cm">			 * @param {EventFacade} event</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_onPausedChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_cancelTimer</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires before the value of the</span>
+<span class="cm">			 * &lt;a href=&quot;ImageGallery.html#config_playing&quot;&gt;playing&lt;/a&gt; attribute change.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _onPlayingChange</span>
+<span class="cm">			 * @param {EventFacade} event</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_onPlayingChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_startTimer</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
-<span class="p">});</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">ImageGallery</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">ImageViewer</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Toolbar instance reference.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property toolbar</span>
-<span class="cm">	 * @type Toolbar</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">toolbar</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Stores the &lt;code&gt;A.later&lt;/code&gt; reference.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property _timer</span>
-<span class="cm">	 * @type Number</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_timer</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Create the DOM structure for the ImageGallery. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method renderUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">ImageGallery</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderPaginator</span><span class="p">();</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SHOW_PLAYER</span><span class="p">))</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderPlayer</span><span class="p">();</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Bind the events on the ImageGallery UI. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method bindUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">ImageGallery</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindToolbarUI</span><span class="p">();</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;playingChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onPlayingChange</span><span class="p">);</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;pausedChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onPausedChange</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;changeRequest&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">defaultFn</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_changeRequest</span> <span class="p">});</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Descructor lifecycle implementation for the ImageGallery class.</span>
-<span class="cm">	 * Purges events attached to the node (and all child nodes).</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method destroy</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">ImageGallery</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">destroy</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGINATOR_INSTANCE</span><span class="p">).</span><span class="nx">destroy</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Hide the &lt;a href=&quot;Paginator.html&quot;&gt;Paginator&lt;/a&gt; with the thumbnails</span>
-<span class="cm">     * list.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method hidePaginator</span>
-<span class="cm">	 */</span>
-	<span class="nx">hidePaginator</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGINATOR_EL</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_OVERLAY_HIDDEN</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Pause the slide show.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method pause</span>
-<span class="cm">	 */</span>
-	<span class="nx">pause</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">PAUSED</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">PLAYING</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncInfoUI</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Play the slide show.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method play</span>
-<span class="cm">	 */</span>
-	<span class="nx">play</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">PAUSED</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">PLAYING</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncInfoUI</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * &lt;p&gt;Show the ImageGallery.&lt;/p&gt;</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * &lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt;Overloads the &lt;a</span>
-<span class="cm">     * href=&quot;ImageViewer.html&quot;&gt;ImageViewer&lt;/a&gt; show method to not loadImage, the</span>
-<span class="cm">     * changeRequest now is responsible to do that if we invoke the superclass</span>
-<span class="cm">     * show method its loading the image, and the changeRequest loads again,</span>
-<span class="cm">     * avoiding double request.&lt;/p&gt;</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method show</span>
-<span class="cm">	 */</span>
-	<span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">currentLink</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getCurrentLink</span><span class="p">();</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">currentLink</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">showMask</span><span class="p">();</span>
-
-			<span class="c1">// invoke the Overlay show method</span>
-			<span class="c1">// NODE: A.ImageViewer is the parent of ImageGallery, the A.ImageViewer.superclass is the Overlay</span>
-			<span class="nx">A</span><span class="p">.</span><span class="nx">ImageViewer</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">show</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-
-			<span class="c1">// changeRequest on paginatorInstance with the new page set</span>
-			<span class="kd">var</span> <span class="nx">paginatorInstance</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGINATOR_INSTANCE</span><span class="p">);</span>
-
-			<span class="c1">// page start on 1, index on 0, add +1 to the nextIndex to set the correct page on the paginator</span>
-			<span class="nx">paginatorInstance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span>
-				<span class="nx">PAGE</span><span class="p">,</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_INDEX</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-			<span class="p">);</span>
-
-			<span class="nx">paginatorInstance</span><span class="p">.</span><span class="nx">changeRequest</span><span class="p">();</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Show the &lt;a href=&quot;Paginator.html&quot;&gt;Paginator&lt;/a&gt; with the thumbnails</span>
-<span class="cm">     * list.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method showPaginator</span>
-<span class="cm">	 */</span>
-	<span class="nx">showPaginator</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGINATOR_EL</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_OVERLAY_HIDDEN</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Bind the Toolbar UI for the play and pause buttons.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _bindToolbarUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_bindToolbarUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SHOW_PLAYER</span><span class="p">))</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">toolbar</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">toolbar</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">play</span> <span class="o">=</span> <span class="nx">toolbar</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">PLAY</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">pause</span> <span class="o">=</span> <span class="nx">toolbar</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">PAUSE</span><span class="p">);</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">play</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">play</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">HANDLER</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">play</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
-			<span class="p">}</span>
-			<span class="k">if</span> <span class="p">(</span><span class="nx">pause</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">pause</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">HANDLER</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">pause</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Cancel the timer between slides.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _cancelTimer</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_cancelTimer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_timer</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_timer</span><span class="p">.</span><span class="nx">cancel</span><span class="p">();</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Render the &lt;a href=&quot;Paginator.html&quot;&gt;Paginator&lt;/a&gt; with the thumbnails.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _renderPaginator</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_renderPaginator</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">paginatorEl</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGINATOR_EL</span><span class="p">);</span>
-
-		<span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">BODY</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span>
-			<span class="nx">paginatorEl</span><span class="p">.</span><span class="nx">hide</span><span class="p">()</span>
-		<span class="p">);</span>
-
-		<span class="kd">var</span> <span class="nx">paginatorInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Paginator</span><span class="p">(</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGINATOR</span><span class="p">)</span>
-		<span class="p">)</span>
-		<span class="p">.</span><span class="nx">render</span><span class="p">();</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">PAGINATOR_INSTANCE</span><span class="p">,</span> <span class="nx">paginatorInstance</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Render the player controls.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _renderPlayer</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_renderPlayer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">paginatorEl</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGINATOR_EL</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">playerContent</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_PLAYER_CONTENT</span><span class="p">);</span>
-
-		<span class="nx">paginatorEl</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span>
-			<span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_PLAYER_CONTAINER</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">playerContent</span><span class="p">)</span>
-		<span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">toolbar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Toolbar</span><span class="p">(</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TOOLBAR</span><span class="p">)</span>
-		<span class="p">)</span>
-		<span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">playerContent</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Start the timer between slides.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _startTimer</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_startTimer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">delay</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DELAY</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_cancelTimer</span><span class="p">();</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_timer</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">later</span><span class="p">(</span><span class="nx">delay</span><span class="p">,</span> <span class="nx">instance</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_syncSlideShow</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Sync the controls UI.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _syncControlsUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_syncControlsUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">ImageGallery</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">_syncControlsUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">VISIBLE</span><span class="p">))</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncSelectedThumbUI</span><span class="p">();</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">showPaginator</span><span class="p">();</span>
-		<span class="p">}</span>
-		<span class="k">else</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">hidePaginator</span><span class="p">();</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_cancelTimer</span><span class="p">();</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Sync the selected thumb UI.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _syncSelectedThumbUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_syncSelectedThumbUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">currentIndex</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_INDEX</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">paginatorInstance</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGINATOR_INSTANCE</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">paginatorIndex</span> <span class="o">=</span> <span class="nx">paginatorInstance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGE</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-
-		<span class="c1">// when currentIndex != paginatorIndex we need to load the new image</span>
-		<span class="k">if</span> <span class="p">(</span><span class="nx">currentIndex</span> <span class="o">!=</span> <span class="nx">paginatorIndex</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// originally the paginator changeRequest is only invoked when user interaction happens, forcing invoke changeRequest from paginator</span>
-			<span class="nx">paginatorInstance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">PAGE</span><span class="p">,</span> <span class="nx">currentIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-
-			<span class="nx">paginatorInstance</span><span class="p">.</span><span class="nx">changeRequest</span><span class="p">();</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Sync the slide show UI.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _syncSlideShow</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_syncSlideShow</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">hasNext</span><span class="p">())</span> <span class="p">{</span>
-			<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">REPEAT</span><span class="p">))</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CURRENT_INDEX</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-			<span class="p">}</span>
-			<span class="k">else</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">_cancelTimer</span><span class="p">();</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Change the UI when click on a thumbnail.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _changeRequest</span>
-<span class="cm">	 * @param {EventFacade} event</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_changeRequest</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">paginatorInstance</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">paginator</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">newState</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">beforeState</span> <span class="o">=</span> <span class="nx">newState</span><span class="p">.</span><span class="nx">before</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">newState</span><span class="p">.</span><span class="nx">page</span><span class="p">;</span>
-
-		<span class="c1">// only update the paginator UI when the Overlay is visible</span>
-		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">VISIBLE</span><span class="p">))</span> <span class="p">{</span>
-			<span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// NOTE: return</span>
-		<span class="p">}</span>
-
-		<span class="kd">var</span> <span class="nx">currentIndex</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_INDEX</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">paginatorIndex</span> <span class="o">=</span> <span class="nx">page</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-
-		<span class="c1">// check if the beforeState page number is different from the newState page number.</span>
-		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">beforeState</span> <span class="o">||</span> <span class="p">(</span><span class="nx">beforeState</span> <span class="o">&amp;&amp;</span> <span class="nx">beforeState</span><span class="p">.</span><span class="nx">page</span> <span class="o">!=</span> <span class="nx">page</span><span class="p">))</span> <span class="p">{</span>
-			<span class="c1">// updating currentIndex</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CURRENT_INDEX</span><span class="p">,</span> <span class="nx">paginatorIndex</span><span class="p">);</span>
-
-			<span class="c1">// loading current index image</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">loadImage</span><span class="p">(</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">getCurrentLink</span><span class="p">().</span><span class="nx">attr</span><span class="p">(</span><span class="nx">HREF</span><span class="p">)</span>
-			<span class="p">);</span>
-
-			<span class="c1">// updating the UI of the paginator</span>
-			<span class="nx">paginatorInstance</span><span class="p">.</span><span class="nx">setState</span><span class="p">(</span><span class="nx">newState</span><span class="p">);</span>
-
-			<span class="c1">// restart the timer if the user change the image, respecting the paused state</span>
-			<span class="kd">var</span> <span class="nx">paused</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAUSED</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">playing</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLAYING</span><span class="p">);</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">playing</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">paused</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">_startTimer</span><span class="p">();</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * See &lt;a href=&quot;Paginator.html#method_pageLinkContent&quot;&gt;pageLinkContent&lt;/a&gt;.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _setThumbContent</span>
-<span class="cm">	 * @param {Node} pageEl</span>
-<span class="cm">	 * @param {Number} pageNumber</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_setThumbContent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">pageEl</span><span class="p">,</span> <span class="nx">pageNumber</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">pageNumber</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">link</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getLink</span><span class="p">(</span><span class="nx">index</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">thumbEl</span> <span class="o">=</span> <span class="nx">pageEl</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_IMAGE_GALLERY_PAGINATOR_THUMB</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">thumbSrc</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">USE_ORIGINAL_IMAGE</span><span class="p">))</span> <span class="p">{</span>
-			<span class="nx">thumbSrc</span> <span class="o">=</span> <span class="nx">link</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="nx">HREF</span><span class="p">);</span>
-		<span class="p">}</span>
-		<span class="k">else</span> <span class="p">{</span>
-			<span class="c1">// try to find a inner thumbnail image to show on the paginator</span>
-			<span class="kd">var</span> <span class="nx">innerImage</span> <span class="o">=</span> <span class="nx">link</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">IMG</span><span class="p">);</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">innerImage</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">thumbSrc</span> <span class="o">=</span> <span class="nx">innerImage</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="nx">SRC</span><span class="p">);</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">thumbSrc</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">thumbEl</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">({</span>
-				<span class="c1">// use background to show the thumbnails to take advantage of the background-position: 50% 50%</span>
-				<span class="nx">backgroundImage</span><span class="o">:</span> <span class="s1">&#39;url(&#39;</span> <span class="o">+</span> <span class="nx">thumbSrc</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
-			<span class="p">});</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Get the &lt;a href=&quot;ImageViewer.html#config_info&quot;&gt;info&lt;/a&gt; template.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _getInfoTemplate</span>
-<span class="cm">	 * @param {String} v template</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 * @return {String} Parsed string.</span>
-<span class="cm">	 */</span>
-	<span class="nx">_getInfoTemplate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">label</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">paused</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAUSED</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">playing</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLAYING</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">playing</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">label</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLAYING_LABEL</span><span class="p">);</span>
-		<span class="p">}</span>
-		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">paused</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">label</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAUSED_LABEL</span><span class="p">);</span>
-		<span class="p">}</span>
-
-		<span class="k">return</span> <span class="nx">concat</span><span class="p">(</span>
-			<span class="nx">ImageGallery</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">_getInfoTemplate</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">),</span>
-			<span class="nx">label</span>
-		<span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires after the value of the</span>
-<span class="cm">	 * &lt;a href=&quot;ImageViewer.html#config_visible&quot;&gt;visible&lt;/a&gt; attribute change.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _afterVisibleChange</span>
-<span class="cm">	 * @param {EventFacade} event</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_afterVisibleChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="c1">// invoke A.ImageViewer _afterVisibleChange method</span>
-		<span class="nx">ImageGallery</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">_afterVisibleChange</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// trigger autoPlay when overlay is visible</span>
-			<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">AUTO_PLAY</span><span class="p">))</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires before the value of the</span>
-<span class="cm">	 * &lt;a href=&quot;ImageGallery.html#config_paused&quot;&gt;paused&lt;/a&gt; attribute change.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _onPausedChange</span>
-<span class="cm">	 * @param {EventFacade} event</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_onPausedChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_cancelTimer</span><span class="p">();</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires before the value of the</span>
-<span class="cm">	 * &lt;a href=&quot;ImageGallery.html#config_playing&quot;&gt;playing&lt;/a&gt; attribute change.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _onPlayingChange</span>
-<span class="cm">	 * @param {EventFacade} event</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_onPlayingChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_startTimer</span><span class="p">();</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-<span class="p">});</span>
+<span class="p">);</span>
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">ImageGallery</span> <span class="o">=</span> <span class="nx">ImageGallery</span><span class="p">;</span>
 

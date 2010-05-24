@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: node-focusmanager   node-focusmanager.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			node-focusmanager&nbsp; <span class="subtitle">1.0pr</span>
+			node-focusmanager&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -546,7 +541,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.1.0</span>
+<span class="cm">version: 3.1.1</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;node-focusmanager&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -856,81 +851,81 @@
 			<span class="nx">nDescendants</span> <span class="o">=</span> <span class="nx">descendants</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span>
 			
 
-			<span class="k">if</span> <span class="p">(</span><span class="nx">nDescendants</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">nDescendants</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 
-				<span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">nDescendants</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">oNode</span> <span class="o">=</span> <span class="nx">descendants</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
 
-					<span class="nx">oNode</span> <span class="o">=</span> <span class="nx">descendants</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
-
-					<span class="k">if</span> <span class="p">(</span><span class="nx">nFirstEnabled</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">oNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DISABLED</span><span class="p">))</span> <span class="p">{</span>
-						<span class="nx">nFirstEnabled</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
-					<span class="p">}</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">nFirstEnabled</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">oNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DISABLED</span><span class="p">))</span> <span class="p">{</span>
+                    <span class="nx">nFirstEnabled</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+                <span class="p">}</span>
 
 
-					<span class="c1">//	If the user didn&#39;t specify a value for the </span>
-					<span class="c1">//	&quot;activeDescendant&quot; attribute try to infer it from </span>
-					<span class="c1">//	the markup.</span>
+                <span class="c1">//	If the user didn&#39;t specify a value for the </span>
+                <span class="c1">//	&quot;activeDescendant&quot; attribute try to infer it from </span>
+                <span class="c1">//	the markup.</span>
 
-					<span class="c1">//	Need to pass &quot;2&quot; when using &quot;getAttribute&quot; for IE to get</span>
-					<span class="c1">//	the attribute value as it is set in the markup.</span>
-					<span class="c1">//	Need to use &quot;parseInt&quot; because IE always returns the </span>
-					<span class="c1">//	value as a number, whereas all other browsers return</span>
-					<span class="c1">//	the attribute as a string when accessed </span>
-					<span class="c1">//	via &quot;getAttribute&quot;.</span>
+                <span class="c1">//	Need to pass &quot;2&quot; when using &quot;getAttribute&quot; for IE to get</span>
+                <span class="c1">//	the attribute value as it is set in the markup.</span>
+                <span class="c1">//	Need to use &quot;parseInt&quot; because IE always returns the </span>
+                <span class="c1">//	value as a number, whereas all other browsers return</span>
+                <span class="c1">//	the attribute as a string when accessed </span>
+                <span class="c1">//	via &quot;getAttribute&quot;.</span>
 
-					<span class="k">if</span> <span class="p">(</span><span class="nx">nActiveDescendant</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> 
-							<span class="nb">parseInt</span><span class="p">(</span><span class="nx">oNode</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="nx">TAB_INDEX</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">nActiveDescendant</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> 
+                        <span class="nb">parseInt</span><span class="p">(</span><span class="nx">oNode</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="nx">TAB_INDEX</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
 
-						<span class="nx">nActiveDescendant</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+                    <span class="nx">nActiveDescendant</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
 
-					<span class="p">}</span>
+                <span class="p">}</span>
 
-					<span class="nx">oNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">TAB_INDEX</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">oNode</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">oNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">TAB_INDEX</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+                <span class="p">}</span>
 
-					<span class="nx">sID</span> <span class="o">=</span> <span class="nx">oNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ID</span><span class="p">);</span>
+                <span class="nx">sID</span> <span class="o">=</span> <span class="nx">oNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ID</span><span class="p">);</span>
 
-					<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">sID</span><span class="p">)</span> <span class="p">{</span>
-						<span class="nx">sID</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">guid</span><span class="p">();</span>
-						<span class="nx">oNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">ID</span><span class="p">,</span> <span class="nx">sID</span><span class="p">);</span>
-					<span class="p">}</span>
-					
-					<span class="nx">descendantsMap</span><span class="p">[</span><span class="nx">sID</span><span class="p">]</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
-					
-				<span class="p">}</span>
-				
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">sID</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">sID</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">guid</span><span class="p">();</span>
+                    <span class="nx">oNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">ID</span><span class="p">,</span> <span class="nx">sID</span><span class="p">);</span>
+                <span class="p">}</span>
+                
+                <span class="nx">descendantsMap</span><span class="p">[</span><span class="nx">sID</span><span class="p">]</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+                
+            <span class="p">}</span>
+            
 
-				<span class="c1">//	If the user didn&#39;t specify a value for the  </span>
-				<span class="c1">//	&quot;activeDescendant&quot; attribute and no default value could be </span>
-				<span class="c1">//	determined from the markup, then default to 0.</span>
-				
-				<span class="k">if</span> <span class="p">(</span><span class="nx">nActiveDescendant</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-					<span class="nx">nActiveDescendant</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-				<span class="p">}</span>
-				
+            <span class="c1">//	If the user didn&#39;t specify a value for the  </span>
+            <span class="c1">//	&quot;activeDescendant&quot; attribute and no default value could be </span>
+            <span class="c1">//	determined from the markup, then default to 0.</span>
+            
+            <span class="k">if</span> <span class="p">(</span><span class="nx">nActiveDescendant</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">nActiveDescendant</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+            
 
-				<span class="nx">oNode</span> <span class="o">=</span> <span class="nx">descendants</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">nActiveDescendant</span><span class="p">);</span>
+            <span class="nx">oNode</span> <span class="o">=</span> <span class="nx">descendants</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">nActiveDescendant</span><span class="p">);</span>
 
-				<span class="c1">//	Check to make sure the active descendant isn&#39;t disabled, </span>
-				<span class="c1">//	and fall back to the first enabled descendant if it is.</span>
+            <span class="c1">//	Check to make sure the active descendant isn&#39;t disabled, </span>
+            <span class="c1">//	and fall back to the first enabled descendant if it is.</span>
 
-				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">oNode</span> <span class="o">||</span> <span class="nx">oNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DISABLED</span><span class="p">))</span> <span class="p">{</span>
-					<span class="nx">oNode</span> <span class="o">=</span> <span class="nx">descendants</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">nFirstEnabled</span><span class="p">);</span>
-					<span class="nx">nActiveDescendant</span> <span class="o">=</span> <span class="nx">nFirstEnabled</span><span class="p">;</span>
-				<span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">oNode</span> <span class="o">||</span> <span class="nx">oNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DISABLED</span><span class="p">))</span> <span class="p">{</span>
+                <span class="nx">oNode</span> <span class="o">=</span> <span class="nx">descendants</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">nFirstEnabled</span><span class="p">);</span>
+                <span class="nx">nActiveDescendant</span> <span class="o">=</span> <span class="nx">nFirstEnabled</span><span class="p">;</span>
+            <span class="p">}</span>
 
-				<span class="k">this</span><span class="p">.</span><span class="nx">_lastNodeIndex</span> <span class="o">=</span> <span class="nx">nDescendants</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-				<span class="k">this</span><span class="p">.</span><span class="nx">_descendants</span> <span class="o">=</span> <span class="nx">descendants</span><span class="p">;</span>
-				<span class="k">this</span><span class="p">.</span><span class="nx">_descendantsMap</span> <span class="o">=</span> <span class="nx">descendantsMap</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_lastNodeIndex</span> <span class="o">=</span> <span class="nx">nDescendants</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_descendants</span> <span class="o">=</span> <span class="nx">descendants</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_descendantsMap</span> <span class="o">=</span> <span class="nx">descendantsMap</span><span class="p">;</span>
 
-				<span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">ACTIVE_DESCENDANT</span><span class="p">,</span> <span class="nx">nActiveDescendant</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">ACTIVE_DESCENDANT</span><span class="p">,</span> <span class="nx">nActiveDescendant</span><span class="p">);</span>
 
-				<span class="c1">//	Need to set the &quot;tabIndex&quot; attribute here, since the </span>
-				<span class="c1">//	&quot;activeDescendantChange&quot; event handler used to manage</span>
-				<span class="c1">//	the setting of the &quot;tabIndex&quot; attribute isn&#39;t wired up yet.</span>
+            <span class="c1">//	Need to set the &quot;tabIndex&quot; attribute here, since the </span>
+            <span class="c1">//	&quot;activeDescendantChange&quot; event handler used to manage</span>
+            <span class="c1">//	the setting of the &quot;tabIndex&quot; attribute isn&#39;t wired up yet.</span>
 
-				<span class="nx">oNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">TAB_INDEX</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-
-			<span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">oNode</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">oNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">TAB_INDEX</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+            <span class="p">}</span>
 			
 		<span class="p">}</span>
 
@@ -1122,7 +1117,7 @@
 			<span class="nx">oDocument</span><span class="p">,</span>
 			<span class="nx">handle</span><span class="p">;</span>
 
-		<span class="k">if</span> <span class="p">(</span><span class="nx">descendants</span> <span class="o">&amp;&amp;</span> <span class="nx">descendants</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">descendants</span> <span class="o">&amp;&amp;</span> <span class="nx">descendants</span><span class="p">.</span><span class="nx">size</span><span class="p">())</span> <span class="p">{</span>
 
 			<span class="nx">aHandlers</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_eventHandlers</span> <span class="o">||</span> <span class="p">[];</span>
 			<span class="nx">oDocument</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HOST</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;ownerDocument&quot;</span><span class="p">);</span>
@@ -1377,7 +1372,7 @@
 
 			<span class="nx">oNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_descendants</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">nActiveDescendant</span><span class="p">);</span>
 			
-			<span class="k">if</span> <span class="p">(</span><span class="nx">oNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DISABLED</span><span class="p">))</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">oNode</span> <span class="o">&amp;&amp;</span> <span class="nx">oNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DISABLED</span><span class="p">))</span> <span class="p">{</span>
 				<span class="k">this</span><span class="p">.</span><span class="nx">_focusNext</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">nActiveDescendant</span><span class="p">);</span>
 			<span class="p">}</span>
 			<span class="k">else</span> <span class="p">{</span>
@@ -1415,7 +1410,7 @@
 
 			<span class="nx">oNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_descendants</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">nActiveDescendant</span><span class="p">);</span>
 
-			<span class="k">if</span> <span class="p">(</span><span class="nx">oNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DISABLED</span><span class="p">))</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">oNode</span> <span class="o">&amp;&amp;</span> <span class="nx">oNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DISABLED</span><span class="p">))</span> <span class="p">{</span>
 				<span class="k">this</span><span class="p">.</span><span class="nx">_focusPrevious</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">nActiveDescendant</span><span class="p">);</span>
 			<span class="p">}</span>
 			<span class="k">else</span> <span class="p">{</span>
@@ -1605,7 +1600,7 @@
 <span class="nx">Y</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">NodeFocusManager</span> <span class="o">=</span> <span class="nx">NodeFocusManager</span><span class="p">;</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;attribute&#39;</span><span class="p">,</span> <span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;plugin&#39;</span><span class="p">,</span> <span class="s1">&#39;node-event-simulate&#39;</span><span class="p">,</span> <span class="s1">&#39;event-key&#39;</span><span class="p">,</span> <span class="s1">&#39;event-focus&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;attribute&#39;</span><span class="p">,</span> <span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;plugin&#39;</span><span class="p">,</span> <span class="s1">&#39;node-event-simulate&#39;</span><span class="p">,</span> <span class="s1">&#39;event-key&#39;</span><span class="p">,</span> <span class="s1">&#39;event-focus&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>

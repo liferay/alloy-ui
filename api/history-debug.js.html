@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: history   history-debug.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			history&nbsp; <span class="subtitle">1.0pr</span>
+			history&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -549,7 +544,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.1.0</span>
+<span class="cm">version: 3.1.1</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;history&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -617,26 +612,24 @@
         <span class="nx">EV_HISTORY_MODULE_STATE_CHANGE</span> <span class="o">=</span> <span class="s1">&#39;history:moduleStateChange&#39;</span><span class="p">;</span>
 
 
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">YUI</span><span class="p">.</span><span class="nx">Env</span><span class="p">.</span><span class="nx">history</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">G</span> <span class="o">=</span> <span class="nx">YUI</span><span class="p">.</span><span class="nx">Env</span><span class="p">.</span><span class="nx">history</span> <span class="o">||</span> <span class="p">{</span>
 
-        <span class="nx">YUI</span><span class="p">.</span><span class="nx">Env</span><span class="p">.</span><span class="nx">history</span> <span class="o">=</span> <span class="nx">G</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="c1">// Flag used to tell whether the history utility is ready to be used.</span>
+        <span class="nx">ready</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
 
-            <span class="c1">// Flag used to tell whether the history utility is ready to be used.</span>
-            <span class="nx">ready</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="c1">// List of registered modules.</span>
+        <span class="nx">_modules</span><span class="o">:</span> <span class="p">[],</span>
 
-            <span class="c1">// List of registered modules.</span>
-            <span class="nx">_modules</span><span class="o">:</span> <span class="p">[],</span>
+        <span class="c1">// INPUT field (with type=&quot;hidden&quot; or type=&quot;text&quot;) or TEXTAREA.</span>
+        <span class="c1">// This field keeps the value of the initial state, current state</span>
+        <span class="c1">// the list of all states across pages within a single browser session.</span>
+        <span class="nx">_stateField</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
 
-            <span class="c1">// INPUT field (with type=&quot;hidden&quot; or type=&quot;text&quot;) or TEXTAREA.</span>
-            <span class="c1">// This field keeps the value of the initial state, current state</span>
-            <span class="c1">// the list of all states across pages within a single browser session.</span>
-            <span class="nx">_stateField</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="c1">// Hidden IFrame used to store the browsing history on IE6/7.</span>
+        <span class="nx">_historyIFrame</span><span class="o">:</span> <span class="kc">null</span>
+    <span class="p">};</span>
 
-            <span class="c1">// Hidden IFrame used to store the browsing history on IE6/7.</span>
-            <span class="nx">_historyIFrame</span><span class="o">:</span> <span class="kc">null</span>
-        <span class="p">};</span>
-
-    <span class="p">}</span>
+    <span class="nx">YUI</span><span class="p">.</span><span class="nx">Env</span><span class="p">.</span><span class="nx">history</span> <span class="o">=</span> <span class="nx">G</span><span class="p">;</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * Returns the portion of the hash after the &#39;#&#39; symbol.</span>
@@ -726,7 +719,12 @@
     <span class="kd">function</span> <span class="nx">_updateIFrame</span><span class="p">(</span><span class="nx">fqstate</span><span class="p">)</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">html</span><span class="p">,</span> <span class="nx">doc</span><span class="p">;</span>
 
-        <span class="nx">html</span> <span class="o">=</span> <span class="s1">&#39;&lt;html&gt;&lt;body&gt;&#39;</span> <span class="o">+</span> <span class="nx">fqstate</span> <span class="o">+</span> <span class="s1">&#39;&lt;/body&gt;&lt;/html&gt;&#39;</span><span class="p">;</span>
+        <span class="nx">html</span> <span class="o">=</span> <span class="s1">&#39;&lt;html&gt;&lt;body&gt;&#39;</span> <span class="o">+</span>
+                   <span class="nx">fqstate</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&amp;/g</span><span class="p">,</span><span class="s1">&#39;&amp;amp;&#39;</span><span class="p">).</span>
+                           <span class="nx">replace</span><span class="p">(</span><span class="sr">/&lt;/g</span><span class="p">,</span><span class="s1">&#39;&amp;lt;&#39;</span><span class="p">).</span>
+                           <span class="nx">replace</span><span class="p">(</span><span class="sr">/&gt;/g</span><span class="p">,</span><span class="s1">&#39;&amp;gt;&#39;</span><span class="p">).</span>
+                           <span class="nx">replace</span><span class="p">(</span><span class="sr">/&quot;/g</span><span class="p">,</span><span class="s1">&#39;&amp;quot;&#39;</span><span class="p">)</span> <span class="o">+</span>
+               <span class="s1">&#39;&lt;/body&gt;&lt;/html&gt;&#39;</span><span class="p">;</span>
 
         <span class="k">try</span> <span class="p">{</span>
             <span class="nx">doc</span> <span class="o">=</span> <span class="nx">G</span><span class="p">.</span><span class="nx">_historyIFrame</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentWindow.document&#39;</span><span class="p">);</span>
@@ -864,6 +862,8 @@
             <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">documentMode</span><span class="p">)</span> <span class="o">||</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">documentMode</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">))</span> <span class="p">{</span>
 
             <span class="c1">// The HTML5 way of handling DHTML history...</span>
+            <span class="c1">// @TODO This is case-insensitive, at least in IE (WHY? spec, please actually specify things)</span>
+            <span class="c1">// bug #2528444</span>
             <span class="nx">win</span><span class="p">.</span><span class="nx">onhashchange</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
                 <span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="nx">_getHash</span><span class="p">();</span>
                 <span class="nx">_handleFQStateChange</span><span class="p">(</span><span class="nx">hash</span><span class="p">);</span>
@@ -1144,6 +1144,8 @@
 <span class="cm">         *     this method uses the URL in the address bar.</span>
 <span class="cm">         * @return {string} The value of the specified parameter, or null.</span>
 <span class="cm">         * @public</span>
+<span class="cm">         * @deprecated Use Y.QueryString.parse() in the querystring module.</span>
+<span class="cm">         * This will be removed in 3.2.0.</span>
 <span class="cm">         */</span>
         <span class="nx">getQueryStringParameter</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">paramName</span><span class="p">,</span> <span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
             <span class="kd">var</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">q</span><span class="p">,</span> <span class="nx">i</span><span class="p">;</span>
@@ -1215,7 +1217,7 @@
     <span class="nx">Y</span><span class="p">.</span><span class="nx">History</span> <span class="o">=</span> <span class="nx">H</span><span class="p">;</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span> <span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;node-base&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;node-base&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">});</span>
 </pre></div>
 
 							</div>

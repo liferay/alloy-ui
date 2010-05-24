@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-resize   aui-sortable.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-resize&nbsp; <span class="subtitle">1.0pr</span>
+			aui-resize&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -593,341 +588,337 @@
 	<span class="nx">CSS_NO_HANDLES</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="s1">&#39;no-handles&#39;</span><span class="p">),</span>
 	<span class="nx">CSS_PROXY</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="s1">&#39;proxy&#39;</span><span class="p">);</span>
 
-<span class="kd">var</span> <span class="nx">Sortable</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">Sortable</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">Sortable</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+	<span class="p">{</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="nx">NAME</span><span class="p">,</span>
 
-<span class="nx">Sortable</span><span class="p">.</span><span class="nx">NAME</span> <span class="o">=</span> <span class="nx">NAME</span><span class="p">;</span>
+		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">dd</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="p">{}</span>
+			<span class="p">},</span>
 
-<span class="nx">Sortable</span><span class="p">.</span><span class="nx">ATTRS</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="nx">dd</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="p">{}</span>
-	<span class="p">},</span>
+			<span class="nx">constrain</span><span class="o">:</span> <span class="p">{},</span>
 
-	<span class="nx">constrain</span><span class="o">:</span> <span class="p">{},</span>
+			<span class="nx">container</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+			<span class="p">},</span>
 
-	<span class="nx">container</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
-	<span class="p">},</span>
+			<span class="nx">groups</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-	<span class="nx">groups</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+					<span class="k">return</span> <span class="p">[</span><span class="nx">A</span><span class="p">.</span><span class="nx">guid</span><span class="p">()];</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
 
-			<span class="k">return</span> <span class="p">[</span><span class="nx">A</span><span class="p">.</span><span class="nx">guid</span><span class="p">()];</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
+			<span class="nx">nodes</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-	<span class="nx">nodes</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-		<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+					<span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;container&#39;</span><span class="p">);</span>
 
-			<span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;container&#39;</span><span class="p">);</span>
+					<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">value</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">NodeList</span><span class="p">))</span> <span class="p">{</span>
+						<span class="k">if</span><span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+							<span class="k">if</span> <span class="p">(</span><span class="nx">container</span><span class="p">)</span> <span class="p">{</span>
+								<span class="nx">value</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+							<span class="p">}</span>
+							<span class="k">else</span> <span class="p">{</span>
+								<span class="nx">value</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+							<span class="p">}</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
 
-			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">value</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">NodeList</span><span class="p">))</span> <span class="p">{</span>
-				<span class="k">if</span><span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
-					<span class="k">if</span> <span class="p">(</span><span class="nx">container</span><span class="p">)</span> <span class="p">{</span>
-						<span class="nx">value</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">queryAll</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">NodeList</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span><span class="p">.</span><span class="nx">size</span><span class="p">())</span> <span class="p">{</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;container&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">));</span>
 					<span class="p">}</span>
 					<span class="k">else</span> <span class="p">{</span>
-						<span class="nx">value</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+						<span class="nx">value</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Attribute</span><span class="p">.</span><span class="nx">INVALID_VALUE</span><span class="p">;</span>
 					<span class="p">}</span>
+
+					<span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
 				<span class="p">}</span>
-			<span class="p">}</span>
+			<span class="p">},</span>
 
-			<span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">NodeList</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span><span class="p">.</span><span class="nx">size</span><span class="p">())</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;container&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">));</span>
-			<span class="p">}</span>
-			<span class="k">else</span> <span class="p">{</span>
-				<span class="nx">value</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Attribute</span><span class="p">.</span><span class="nx">INVALID_VALUE</span><span class="p">;</span>
-			<span class="p">}</span>
+			<span class="nx">placeholder</span><span class="o">:</span> <span class="p">{},</span>
 
-			<span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
+			<span class="nx">proxy</span><span class="o">:</span> <span class="p">{}</span>
+		<span class="p">},</span>
+
+		<span class="nx">EXTENDS</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span>
+
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">nodes</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;nodes&#39;</span><span class="p">);</span>
+
+				<span class="kd">var</span> <span class="nx">constrain</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;constrain&#39;</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_useConstrain</span> <span class="o">=</span> <span class="o">!!</span><span class="nx">constrain</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">constrain</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_constrainConfig</span> <span class="o">=</span> <span class="nx">constrain</span><span class="p">;</span>
+				<span class="p">}</span>
+
+				<span class="kd">var</span> <span class="nx">proxy</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;proxy&#39;</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_useProxy</span> <span class="o">=</span> <span class="o">!!</span><span class="nx">proxy</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">proxy</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_proxyConfig</span> <span class="o">=</span> <span class="nx">proxy</span><span class="p">;</span>
+				<span class="p">}</span>
+
+				<span class="kd">var</span> <span class="nx">ddConfig</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;dd&#39;</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_ddConfig</span> <span class="o">=</span> <span class="nx">ddConfig</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_ddConfig</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_ddConfig</span><span class="p">,</span>
+					<span class="p">{</span>
+						<span class="nx">bubbleTargets</span><span class="o">:</span> <span class="nx">instance</span><span class="p">,</span>
+						<span class="nx">groups</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;groups&#39;</span><span class="p">),</span>
+						<span class="nx">placeholder</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;placeholder&#39;</span><span class="p">),</span>
+						<span class="nx">constrain</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;constrain&#39;</span><span class="p">),</span>
+						<span class="nx">proxy</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;proxy&#39;</span><span class="p">)</span>
+					<span class="p">}</span>
+				<span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">nodes</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">nodes</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">add</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;drag:drag&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDrag</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;drag:end&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragEnd</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;drag:over&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragOver</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;drag:start&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragStart</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">add</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">ddConfig</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_ddConfig</span><span class="p">;</span>
+
+					<span class="k">if</span> <span class="p">((</span><span class="nx">item</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">)</span> <span class="o">||</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="o">||</span> <span class="nx">item</span><span class="p">.</span><span class="nx">nodeName</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">item</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+
+						<span class="nx">ddConfig</span><span class="p">.</span><span class="nx">node</span> <span class="o">=</span> <span class="nx">item</span><span class="p">;</span>
+					<span class="p">}</span>
+					<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">item</span><span class="p">))</span> <span class="p">{</span>
+						<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">ddConfig</span><span class="p">);</span>
+
+						<span class="nx">ddConfig</span> <span class="o">=</span> <span class="nx">item</span><span class="p">;</span>
+					<span class="p">}</span>
+
+					<span class="kd">var</span> <span class="nx">sortableItem</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getSortableItem</span><span class="p">();</span>
+
+					<span class="kd">var</span> <span class="nx">dd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sortableItem</span><span class="p">(</span><span class="nx">ddConfig</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">getSortableItem</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">return</span> <span class="nx">SortableItem</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="nx">_onDrag</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">lastXY</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">lastXY</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">lastXY</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+				<span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">lastXY</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+				<span class="kd">var</span> <span class="nx">lastX</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_lastX</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">lastY</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_lastY</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">xToleranceMet</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">lastX</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">yToleranceMet</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">lastY</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_goingUp</span> <span class="o">=</span> <span class="p">((</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">lastX</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">xToleranceMet</span><span class="p">)</span> <span class="o">||</span> <span class="p">((</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="nx">lastY</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">yToleranceMet</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_lastX</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_lastY</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+
+				<span class="nx">A</span><span class="p">.</span><span class="nx">later</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="nx">DDM</span><span class="p">,</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">syncActiveShims</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_onDragEnd</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
+
+				<span class="nx">node</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_DRAGGING</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_onDragOver</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">midpoint</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">DDM</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DD</span><span class="p">.</span><span class="nx">DDM</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">drag</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">drop</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">drop</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">dropNode</span> <span class="o">=</span> <span class="nx">drop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
+
+				<span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;placeBefore&#39;</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_goingUp</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;placeAfter&#39;</span><span class="p">;</span>
+				<span class="p">}</span>
+
+				<span class="nx">dropNode</span><span class="p">[</span><span class="nx">action</span><span class="p">](</span><span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;placeholder&#39;</span><span class="p">));</span>
+
+				<span class="nx">drop</span><span class="p">.</span><span class="nx">sizeShim</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="nx">_onDragStart</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
+
+				<span class="nx">node</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_DRAGGING</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_lastX</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+			<span class="nx">_lastY</span><span class="o">:</span> <span class="mi">0</span>
 		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">placeholder</span><span class="o">:</span> <span class="p">{},</span>
-
-	<span class="nx">proxy</span><span class="o">:</span> <span class="p">{}</span>
-<span class="p">};</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
-	<span class="nx">Sortable</span><span class="p">,</span>
-	<span class="nx">A</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span>
-	<span class="p">{</span>
-		<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">nodes</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;nodes&#39;</span><span class="p">);</span>
-
-			<span class="kd">var</span> <span class="nx">constrain</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;constrain&#39;</span><span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_useConstrain</span> <span class="o">=</span> <span class="o">!!</span><span class="nx">constrain</span><span class="p">;</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">constrain</span><span class="p">))</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">_constrainConfig</span> <span class="o">=</span> <span class="nx">constrain</span><span class="p">;</span>
-			<span class="p">}</span>
-
-			<span class="kd">var</span> <span class="nx">proxy</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;proxy&#39;</span><span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_useProxy</span> <span class="o">=</span> <span class="o">!!</span><span class="nx">proxy</span><span class="p">;</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">proxy</span><span class="p">))</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">_proxyConfig</span> <span class="o">=</span> <span class="nx">proxy</span><span class="p">;</span>
-			<span class="p">}</span>
-
-			<span class="kd">var</span> <span class="nx">ddConfig</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;dd&#39;</span><span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_ddConfig</span> <span class="o">=</span> <span class="nx">ddConfig</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_ddConfig</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">_ddConfig</span><span class="p">,</span>
-				<span class="p">{</span>
-					<span class="nx">bubbleTargets</span><span class="o">:</span> <span class="nx">instance</span><span class="p">,</span>
-					<span class="nx">groups</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;groups&#39;</span><span class="p">),</span>
-					<span class="nx">placeholder</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;placeholder&#39;</span><span class="p">),</span>
-					<span class="nx">constrain</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;constrain&#39;</span><span class="p">),</span>
-					<span class="nx">proxy</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;proxy&#39;</span><span class="p">)</span>
-				<span class="p">}</span>
-			<span class="p">);</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">nodes</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">nodes</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">add</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
-			<span class="p">}</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;drag:drag&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDrag</span><span class="p">);</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;drag:end&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragEnd</span><span class="p">);</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;drag:over&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragOver</span><span class="p">);</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;drag:start&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragStart</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">add</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">ddConfig</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_ddConfig</span><span class="p">;</span>
-
-				<span class="k">if</span> <span class="p">((</span><span class="nx">item</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">)</span> <span class="o">||</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="o">||</span> <span class="nx">item</span><span class="p">.</span><span class="nx">nodeName</span><span class="p">)</span> <span class="p">{</span>
-					<span class="nx">item</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
-
-					<span class="nx">ddConfig</span><span class="p">.</span><span class="nx">node</span> <span class="o">=</span> <span class="nx">item</span><span class="p">;</span>
-				<span class="p">}</span>
-				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">item</span><span class="p">))</span> <span class="p">{</span>
-					<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">ddConfig</span><span class="p">);</span>
-
-					<span class="nx">ddConfig</span> <span class="o">=</span> <span class="nx">item</span><span class="p">;</span>
-				<span class="p">}</span>
-
-				<span class="kd">var</span> <span class="nx">sortableItem</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getSortableItem</span><span class="p">();</span>
-
-				<span class="kd">var</span> <span class="nx">dd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sortableItem</span><span class="p">(</span><span class="nx">ddConfig</span><span class="p">);</span>
-			<span class="p">}</span>
-		<span class="p">},</span>
-
-		<span class="nx">getSortableItem</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="k">return</span> <span class="nx">SortableItem</span><span class="p">;</span>
-		<span class="p">},</span>
-
-		<span class="nx">_onDrag</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">lastXY</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">lastXY</span><span class="p">;</span>
-			<span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">lastXY</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-			<span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">lastXY</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-
-			<span class="kd">var</span> <span class="nx">lastX</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_lastX</span><span class="p">;</span>
-			<span class="kd">var</span> <span class="nx">lastY</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_lastY</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">xToleranceMet</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">lastX</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">yToleranceMet</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">lastY</span><span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_goingUp</span> <span class="o">=</span> <span class="p">((</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">lastX</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">xToleranceMet</span><span class="p">)</span> <span class="o">||</span> <span class="p">((</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="nx">lastY</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">yToleranceMet</span><span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_lastX</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_lastY</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
-
-			<span class="nx">A</span><span class="p">.</span><span class="nx">later</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="nx">DDM</span><span class="p">,</span> <span class="nx">DDM</span><span class="p">.</span><span class="nx">syncActiveShims</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">_onDragEnd</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
-			<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
-
-			<span class="nx">node</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_DRAGGING</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">_onDragOver</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">midpoint</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">DDM</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DD</span><span class="p">.</span><span class="nx">DDM</span><span class="p">;</span>
-			<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">drag</span><span class="p">;</span>
-			<span class="kd">var</span> <span class="nx">drop</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">drop</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">dropNode</span> <span class="o">=</span> <span class="nx">drop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
-
-			<span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;placeBefore&#39;</span><span class="p">;</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_goingUp</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;placeAfter&#39;</span><span class="p">;</span>
-			<span class="p">}</span>
-
-			<span class="nx">dropNode</span><span class="p">[</span><span class="nx">action</span><span class="p">](</span><span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;placeholder&#39;</span><span class="p">));</span>
-
-			<span class="nx">drop</span><span class="p">.</span><span class="nx">sizeShim</span><span class="p">();</span>
-		<span class="p">},</span>
-
-		<span class="nx">_onDragStart</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
-
-			<span class="nx">node</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_DRAGGING</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">_lastX</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-		<span class="nx">_lastY</span><span class="o">:</span> <span class="mi">0</span>
 	<span class="p">}</span>
 <span class="p">);</span>
 
-<span class="kd">var</span> <span class="nx">SortableItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">SortableItem</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">dd</span> <span class="o">||</span> <span class="nx">config</span><span class="p">);</span>
-<span class="p">};</span>
-
-<span class="nx">SortableItem</span><span class="p">.</span><span class="nx">NAME</span> <span class="o">=</span> <span class="s1">&#39;sortableitem&#39;</span><span class="p">;</span>
-
-<span class="nx">SortableItem</span><span class="p">.</span><span class="nx">ATTRS</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="nx">constrain</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
-	<span class="p">},</span>
-
-	<span class="nx">placeholder</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">getter</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">proxy</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">borderStyle</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-			<span class="nx">moveOnEnd</span><span class="o">:</span> <span class="kc">false</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">target</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span>
-	<span class="p">},</span>
-
-	<span class="nx">syncPlaceholderSize</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span>
-	<span class="p">}</span>
-<span class="p">};</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
-	<span class="nx">SortableItem</span><span class="p">,</span>
-	<span class="nx">A</span><span class="p">.</span><span class="nx">DD</span><span class="p">.</span><span class="nx">Drag</span><span class="p">,</span>
+<span class="kd">var</span> <span class="nx">SortableItem</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
 	<span class="p">{</span>
-		<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="s1">&#39;sortableitem&#39;</span><span class="p">,</span>
 
-			<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
+		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">constrain</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+			<span class="p">},</span>
 
-			<span class="nx">node</span><span class="p">.</span><span class="nx">dd</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">;</span>
+			<span class="nx">placeholder</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">getter</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-			<span class="nx">node</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_ITEM</span><span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_useProxy</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;proxy&#39;</span><span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">();</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_initHandles</span><span class="p">();</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_initConstrain</span><span class="p">();</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_initProxy</span><span class="p">();</span>
-		<span class="p">},</span>
-
-		<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:end&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragEnd</span><span class="p">);</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:start&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragStart</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">_initHandles</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">handles</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;handles&#39;</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">handles</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">handles</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
-					<span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">handles</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
-
-					<span class="nx">node</span><span class="p">.</span><span class="nx">queryAll</span><span class="p">(</span><span class="nx">handle</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_HANDLE</span><span class="p">);</span>
+					<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
 				<span class="p">}</span>
-			<span class="p">}</span>
-			<span class="k">else</span> <span class="p">{</span>
-				<span class="nx">node</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_NO_HANDLES</span><span class="p">);</span>
-			<span class="p">}</span>
+			<span class="p">},</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">removeInvalid</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">);</span>
+			<span class="nx">proxy</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
+					<span class="nx">borderStyle</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+					<span class="nx">moveOnEnd</span><span class="o">:</span> <span class="kc">false</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">target</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span>
+			<span class="p">},</span>
+
+			<span class="nx">syncPlaceholderSize</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span>
+			<span class="p">}</span>
 		<span class="p">},</span>
 
-		<span class="nx">_initConstrain</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="nx">EXTENDS</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DD</span><span class="p">.</span><span class="nx">Drag</span><span class="p">,</span>
 
-			<span class="kd">var</span> <span class="nx">constrain</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;constrain&#39;</span><span class="p">);</span>
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-			<span class="k">if</span> <span class="p">(</span><span class="o">!!</span><span class="nx">constrain</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">constrain</span><span class="p">))</span> <span class="p">{</span>
-					<span class="nx">constrain</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
+
+				<span class="nx">node</span><span class="p">.</span><span class="nx">dd</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">;</span>
+
+				<span class="nx">node</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_ITEM</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_useProxy</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;proxy&#39;</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">();</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_initHandles</span><span class="p">();</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_initConstrain</span><span class="p">();</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_initProxy</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:end&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragEnd</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:start&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragStart</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_initHandles</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">handles</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;handles&#39;</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">handles</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">handles</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+						<span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">handles</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+						<span class="nx">node</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">handle</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_HANDLE</span><span class="p">);</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="p">{</span>
+					<span class="nx">node</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_NO_HANDLES</span><span class="p">);</span>
 				<span class="p">}</span>
 
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">plug</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDConstrained</span><span class="p">,</span> <span class="nx">constrain</span><span class="p">);</span>
-			<span class="p">}</span>
-		<span class="p">},</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">removeInvalid</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">);</span>
+			<span class="p">},</span>
 
-		<span class="nx">_initProxy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="nx">_initConstrain</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-			<span class="kd">var</span> <span class="nx">proxy</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;proxy&#39;</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">constrain</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;constrain&#39;</span><span class="p">);</span>
 
-			<span class="k">if</span> <span class="p">(</span><span class="o">!!</span><span class="nx">proxy</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">proxy</span><span class="p">))</span> <span class="p">{</span>
-					<span class="nx">proxy</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+				<span class="k">if</span> <span class="p">(</span><span class="o">!!</span><span class="nx">constrain</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">constrain</span><span class="p">))</span> <span class="p">{</span>
+						<span class="nx">constrain</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+					<span class="p">}</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">plug</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDConstrained</span><span class="p">,</span> <span class="nx">constrain</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">_initProxy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">proxy</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;proxy&#39;</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="o">!!</span><span class="nx">proxy</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">proxy</span><span class="p">))</span> <span class="p">{</span>
+						<span class="nx">proxy</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+					<span class="p">}</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">plug</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDProxy</span><span class="p">,</span> <span class="nx">proxy</span><span class="p">);</span>
 				<span class="p">}</span>
 
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">plug</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDProxy</span><span class="p">,</span> <span class="nx">proxy</span><span class="p">);</span>
-			<span class="p">}</span>
+			<span class="p">},</span>
 
-		<span class="p">},</span>
+			<span class="nx">_onDragEnd</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
 
-		<span class="nx">_onDragEnd</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-			<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_useProxy</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;dragNode&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_PROXY</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
 
-			<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_useProxy</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;dragNode&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_PROXY</span><span class="p">);</span>
-			<span class="p">}</span>
-		<span class="p">},</span>
+			<span class="nx">_onDragStart</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
 
-		<span class="nx">_onDragStart</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-			<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_useProxy</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;dragNode&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_PROXY</span><span class="p">);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_useProxy</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;dragNode&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_PROXY</span><span class="p">);</span>
+				<span class="p">}</span>
 			<span class="p">}</span>
 		<span class="p">}</span>
 	<span class="p">}</span>

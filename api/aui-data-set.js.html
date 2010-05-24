@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-component   aui-data-set.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-component&nbsp; <span class="subtitle">1.0pr</span>
+			aui-component&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -643,6 +638,41 @@
 			<span class="nx">instance</span><span class="p">.</span><span class="nx">values</span> <span class="o">=</span> <span class="p">[];</span>
 
 			<span class="nx">instance</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
+				<span class="s1">&#39;add&#39;</span><span class="p">,</span>
+				<span class="p">{</span>
+					<span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defaultAddFn</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
+				<span class="s1">&#39;clear&#39;</span><span class="p">,</span>
+				<span class="p">{</span>
+					<span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defaultClearFn</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
+				<span class="s1">&#39;remove&#39;</span><span class="p">,</span>
+				<span class="p">{</span>
+					<span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defaultRemoveFn</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
+				<span class="s1">&#39;replace&#39;</span><span class="p">,</span>
+				<span class="p">{</span>
+					<span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defaultReplaceFn</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span>
+				<span class="s1">&#39;sort&#39;</span><span class="p">,</span>
+				<span class="p">{</span>
+					<span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_defaultSortFn</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
 		<span class="p">},</span>
 
 		<span class="nx">add</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
@@ -653,29 +683,20 @@
 				<span class="nx">key</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getKey</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
 			<span class="p">}</span>
 
-			<span class="kd">var</span> <span class="nx">includeFunctions</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;includeFunctions&#39;</span><span class="p">);</span>
-
 			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isNull</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">key</span><span class="p">))</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">prevVal</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">collection</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
 
 				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">prevVal</span><span class="p">))</span> <span class="p">{</span>
 					<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">obj</span><span class="p">);</span>
 				<span class="p">}</span>
-
-				<span class="k">if</span> <span class="p">(</span><span class="nx">includeFunctions</span> <span class="o">||</span> <span class="o">!</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">obj</span><span class="p">))</span> <span class="p">{</span>
-					<span class="nx">instance</span><span class="p">.</span><span class="nx">collection</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">;</span>
-				<span class="p">}</span>
 			<span class="p">}</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">keys</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
-
-			<span class="kd">var</span> <span class="nx">length</span> <span class="o">=</span> <span class="p">(</span><span class="o">++</span><span class="nx">instance</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
 
 			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span>
 				<span class="s1">&#39;add&#39;</span><span class="p">,</span>
 				<span class="p">{</span>
-					<span class="nx">index</span><span class="o">:</span> <span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+					<span class="nx">index</span><span class="o">:</span> <span class="nx">length</span><span class="p">,</span>
 					<span class="nx">attrName</span><span class="o">:</span> <span class="nx">key</span><span class="p">,</span>
 					<span class="nx">item</span><span class="o">:</span> <span class="nx">obj</span><span class="p">,</span>
 					<span class="nx">newVal</span><span class="o">:</span> <span class="nx">obj</span>
@@ -712,11 +733,6 @@
 		<span class="nx">clear</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">collection</span> <span class="o">=</span> <span class="p">{};</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">keys</span> <span class="o">=</span> <span class="p">[];</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">values</span> <span class="o">=</span> <span class="p">[];</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
 			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;clear&#39;</span><span class="p">);</span>
 		<span class="p">},</span>
 
@@ -748,7 +764,7 @@
 		<span class="nx">containsKey</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
 			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-			<span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">collection</span><span class="p">[</span><span class="nx">key</span><span class="p">]))</span>
+			<span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">collection</span><span class="p">[</span><span class="nx">key</span><span class="p">]));</span>
 		<span class="p">},</span>
 
 		<span class="nx">each</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
@@ -887,19 +903,6 @@
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">removeKey</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
 			<span class="p">}</span>
 
-			<span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">&gt;=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">obj</span><span class="p">);</span>
-			<span class="p">}</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">keys</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">key</span><span class="p">);</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">obj</span><span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">length</span><span class="o">++</span><span class="p">;</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isNull</span><span class="p">(</span><span class="nx">key</span><span class="p">))</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">collection</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">;</span>
-			<span class="p">}</span>
-
 			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span>
 				<span class="s1">&#39;add&#39;</span><span class="p">,</span>
 				<span class="p">{</span>
@@ -956,7 +959,14 @@
 		<span class="nx">keySort</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">direction</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
 			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_sortBy</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="nx">direction</span><span class="p">,</span> <span class="nx">fn</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_keySorter</span><span class="p">);</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span>
+				<span class="s1">&#39;sort&#39;</span><span class="p">,</span>
+				<span class="p">{</span>
+					<span class="nx">direction</span><span class="o">:</span> <span class="nx">direction</span><span class="p">,</span>
+					<span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_keySorter</span><span class="p">,</span>
+					<span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;key&#39;</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
 		<span class="p">},</span>
 
 		<span class="nx">remove</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
@@ -971,23 +981,8 @@
 			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
 			<span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">&lt;</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;&amp;</span> <span class="nx">index</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">collection</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">collection</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">keys</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">values</span><span class="p">;</span>
-
-				<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">values</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
-
-				<span class="nx">values</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-
-				<span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="nx">keys</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
-
-				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">key</span><span class="p">))</span> <span class="p">{</span>
-					<span class="k">delete</span> <span class="nx">collection</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
-				<span class="p">}</span>
-
-				<span class="nx">keys</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">length</span><span class="o">--</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
+				<span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">keys</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
 
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span>
 					<span class="s1">&#39;remove&#39;</span><span class="p">,</span>
@@ -1025,8 +1020,6 @@
 
 			<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">indexOfKey</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">collection</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">;</span>
-
 			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span>
 				<span class="s1">&#39;replace&#39;</span><span class="p">,</span>
 				<span class="p">{</span>
@@ -1056,7 +1049,78 @@
 		<span class="nx">sort</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">direction</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
 			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_sortBy</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nx">direction</span><span class="p">,</span> <span class="nx">fn</span><span class="p">);</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span>
+				<span class="s1">&#39;sort&#39;</span><span class="p">,</span>
+				<span class="p">{</span>
+					<span class="nx">direction</span><span class="o">:</span> <span class="nx">direction</span><span class="p">,</span>
+					<span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span><span class="p">,</span>
+					<span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;value&#39;</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="nx">_defaultAddFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">attrName</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">item</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">index</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isNull</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">key</span><span class="p">))</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;includeFunctions&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">obj</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">collection</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">keys</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">key</span><span class="p">);</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">obj</span><span class="p">);</span>
+
+			<span class="o">++</span><span class="nx">instance</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+		<span class="p">},</span>
+
+		<span class="nx">_defaultClearFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">collection</span> <span class="o">=</span> <span class="p">{};</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">keys</span> <span class="o">=</span> <span class="p">[];</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">values</span> <span class="o">=</span> <span class="p">[];</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="p">},</span>
+
+		<span class="nx">_defaultRemoveFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">index</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">item</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">attrName</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">collection</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">collection</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">keys</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">key</span><span class="p">))</span> <span class="p">{</span>
+				<span class="k">delete</span> <span class="nx">collection</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+			<span class="p">}</span>
+
+			<span class="nx">keys</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">length</span><span class="o">--</span><span class="p">;</span>
+		<span class="p">},</span>
+
+		<span class="nx">_defaultReplaceFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">attrName</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">item</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">collection</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">;</span>
+		<span class="p">},</span>
+
+		<span class="nx">_defaultSortFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_sortBy</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">direction</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">fn</span><span class="p">);</span>
 		<span class="p">},</span>
 
 		<span class="nx">_each</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">fn</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
@@ -1183,8 +1247,6 @@
 			<span class="p">}</span>
 
 			<span class="nx">instance</span><span class="p">.</span><span class="nx">collection</span> <span class="o">=</span> <span class="nx">collection</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;sort&#39;</span><span class="p">);</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
 <span class="p">);</span>

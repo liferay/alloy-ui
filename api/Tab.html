@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: tabview  Tab   (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			tabview&nbsp; <span class="subtitle">1.0pr</span>
+			tabview&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -315,11 +315,6 @@
 
 
 			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
 
 
@@ -520,6 +515,7 @@
 										<ul class="content">
 												<li class=""><a href="#config_content" title="content">content</a></li>
 												<li class=""><a href="#config_label" title="label">label</a></li>
+												<li class=""><a href="#config_panelNode" title="panelNode">panelNode</a></li>
 												<li class=""><a href="#config_triggerEvent" title="triggerEvent">triggerEvent</a></li>
 				                        </ul>
 									</div>
@@ -538,6 +534,7 @@
 										<ul class="content">
 												<li class=""><a href="#event_contentChange" title="contentChange">contentChange</a></li>
 												<li class=""><a href="#event_labelChange" title="labelChange">labelChange</a></li>
+												<li class=""><a href="#event_panelNodeChange" title="panelNodeChange">panelNodeChange</a></li>
 												<li class=""><a href="#event_triggerEventChange" title="triggerEventChange">triggerEventChange</a></li>
 				                        </ul>
 									</div>
@@ -600,6 +597,16 @@
 
 									<span class="extends">- extends <a href="Widget.html" title="Widget">Widget</a></span>
 
+									<span class="extends" rel="yui:extends">
+										- uses
+
+										
+											<span rel="extend" resource="WidgetChild.html">
+												<a href="WidgetChild.html" property="yui:name" title="WidgetChild">WidgetChild</a>
+												
+											</span>
+										
+									</span>
 							</h2>
 
 							<!-- class tree goes here -->
@@ -758,6 +765,22 @@
 													<h4>
 														<a name="config_label">label</a>
 														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_panelNode">
+
+													<h4>
+														<a name="config_panelNode">panelNode</a>
+														<code>- <span property="yui:type">Y.Node</span></code>
 													</h4>
 
 													<div class="detail">
@@ -1152,6 +1175,12 @@
 
 														
 
+														<div class="protected" rel="yui:method" resource="Widget.html#method__applyParser">
+														<a href="Widget.html#method__applyParser" property="yui:name" title="_applyParser">_applyParser</a><span>,</span>
+														</div>
+
+														
+
 														<div class="protected" rel="yui:method" resource="Widget.html#method__bindDOM">
 														<a href="Widget.html#method__bindDOM" property="yui:name" title="_bindDOM">_bindDOM</a><span>,</span>
 														</div>
@@ -1160,6 +1189,12 @@
 
 														<div class="protected" rel="yui:method" resource="Widget.html#method__bindUI">
 														<a href="Widget.html#method__bindUI" property="yui:name" title="_bindUI">_bindUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__defaultCB">
+														<a href="Widget.html#method__defaultCB" property="yui:name" title="_defaultCB">_defaultCB</a><span>,</span>
 														</div>
 
 														
@@ -1575,6 +1610,48 @@
 														</div>
 													</div>
 												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_panelNodeChange">
+
+													<h4>
+														<a name="event_panelNodeChange">panelNodeChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">panelNodeChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'panelNode' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
 												<div class="api-entry-row event-row " rel="yui:event" resource="#event_triggerEventChange">
 
 													<h4>
@@ -1775,7 +1852,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Tab.html#config_content", "access": "", "host": "Tab", "type": "config", "name": "content"}, {"url": "Tab.html#event_contentChange", "access": "", "host": "Tab", "type": "event", "name": "contentChange"}, {"url": "Tab.html#config_label", "access": "", "host": "Tab", "type": "config", "name": "label"}, {"url": "Tab.html#event_labelChange", "access": "", "host": "Tab", "type": "event", "name": "labelChange"}, {"url": "Tab.html#config_triggerEvent", "access": "", "host": "Tab", "type": "config", "name": "triggerEvent"}, {"url": "Tab.html#event_triggerEventChange", "access": "", "host": "Tab", "type": "event", "name": "triggerEventChange"}];
+    var ALL_YUI_PROPS = [{"url": "Tab.html#config_content", "access": "", "host": "Tab", "type": "config", "name": "content"}, {"url": "Tab.html#event_contentChange", "access": "", "host": "Tab", "type": "event", "name": "contentChange"}, {"url": "Tab.html#config_label", "access": "", "host": "Tab", "type": "config", "name": "label"}, {"url": "Tab.html#event_labelChange", "access": "", "host": "Tab", "type": "event", "name": "labelChange"}, {"url": "Tab.html#config_panelNode", "access": "", "host": "Tab", "type": "config", "name": "panelNode"}, {"url": "Tab.html#event_panelNodeChange", "access": "", "host": "Tab", "type": "event", "name": "panelNodeChange"}, {"url": "Tab.html#config_triggerEvent", "access": "", "host": "Tab", "type": "config", "name": "triggerEvent"}, {"url": "Tab.html#event_triggerEventChange", "access": "", "host": "Tab", "type": "event", "name": "triggerEventChange"}];
 </script>
 </body>
 </html>

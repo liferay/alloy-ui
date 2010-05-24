@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-tooltip   aui-tooltip-debug.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-tooltip&nbsp; <span class="subtitle">1.0pr</span>
+			aui-tooltip&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -592,175 +587,175 @@
 <span class="cm"> * @constructor</span>
 <span class="cm"> * @extends OverlayContextPanel</span>
 <span class="cm"> */</span>
-<span class="kd">function</span> <span class="nx">Tooltip</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">Tooltip</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Tooltip</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property provides a string to identify the class.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property Tooltip.NAME</span>
-<span class="cm">	 * @type String</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">NAME</span><span class="o">:</span> <span class="nx">TOOLTIP</span><span class="p">,</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property used to define the default attribute</span>
-<span class="cm">	 * configuration for the Tooltip.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property Tooltip.ATTRS</span>
-<span class="cm">	 * @type Object</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">Tooltip</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+	<span class="p">{</span>
 		<span class="cm">/**</span>
-<span class="cm">		 * See &lt;a href=&quot;OverlayContextPanel.html#config_anim&quot;&gt;OverlayContextPanel anim&lt;/a&gt;.</span>
+<span class="cm">		 * Static property provides a string to identify the class.</span>
 <span class="cm">		 *</span>
-<span class="cm">		 * @attribute anim</span>
-<span class="cm">		 * @default { show: false }</span>
-<span class="cm">		 * @type Object</span>
+<span class="cm">		 * @property Tooltip.NAME</span>
+<span class="cm">		 * @type String</span>
+<span class="cm">		 * @static</span>
 <span class="cm">		 */</span>
-		<span class="nx">anim</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">show</span><span class="o">:</span> <span class="kc">false</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="nx">TOOLTIP</span><span class="p">,</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Static property used to define the default attribute</span>
+<span class="cm">		 * configuration for the Tooltip.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property Tooltip.ATTRS</span>
+<span class="cm">		 * @type Object</span>
+<span class="cm">		 * @static</span>
+<span class="cm">		 */</span>
+		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * See &lt;a href=&quot;OverlayContextPanel.html#config_anim&quot;&gt;OverlayContextPanel anim&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute anim</span>
+<span class="cm">			 * @default { show: false }</span>
+<span class="cm">			 * @type Object</span>
+<span class="cm">			 */</span>
+			<span class="nx">anim</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
+					<span class="nx">show</span><span class="o">:</span> <span class="kc">false</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * See &lt;a href=&quot;Overlay.html#config_align&quot;&gt;OverlayContextPanel align&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute align</span>
+<span class="cm">			 * @default { node: null, points: [ BL, TR ] }</span>
+<span class="cm">			 * @type Object</span>
+<span class="cm">			 */</span>
+			<span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="p">{</span> <span class="nx">node</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">points</span><span class="o">:</span> <span class="p">[</span> <span class="nx">BL</span><span class="p">,</span> <span class="nx">TR</span> <span class="p">]</span> <span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * See &lt;a href=&quot;OverlayContext.html#config_showOn&quot;&gt;OverlayContext showOn&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute showOn</span>
+<span class="cm">			 * @default mouseover</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
+			<span class="nx">showOn</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;mouseover&#39;</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * See &lt;a href=&quot;OverlayContext.html#config_showOn&quot;&gt;OverlayContext showOn&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute hideOn</span>
+<span class="cm">			 * @default mouseout</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
+			<span class="nx">hideOn</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;mouseout&#39;</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * See &lt;a href=&quot;OverlayContext.html#config_hideDelay&quot;&gt;OverlayContext hideDelay&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute hideDelay</span>
+<span class="cm">			 * @default 500</span>
+<span class="cm">			 * @type Number</span>
+<span class="cm">			 */</span>
+			<span class="nx">hideDelay</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="mi">500</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Use the content of the &lt;code&gt;title&lt;/code&gt; attribute as the Tooltip</span>
+<span class="cm">	         * content.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute title</span>
+<span class="cm">			 * @default false</span>
+<span class="cm">			 * @type boolean</span>
+<span class="cm">			 */</span>
+			<span class="nx">title</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
 			<span class="p">}</span>
 		<span class="p">},</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * See &lt;a href=&quot;Overlay.html#config_align&quot;&gt;OverlayContextPanel align&lt;/a&gt;.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute align</span>
-<span class="cm">		 * @default { node: null, points: [ BL, TR ] }</span>
-<span class="cm">		 * @type Object</span>
-<span class="cm">		 */</span>
-		<span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="p">{</span> <span class="nx">node</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">points</span><span class="o">:</span> <span class="p">[</span> <span class="nx">BL</span><span class="p">,</span> <span class="nx">TR</span> <span class="p">]</span> <span class="p">}</span>
-		<span class="p">},</span>
+		<span class="nx">EXTENDS</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">OverlayContextPanel</span><span class="p">,</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * See &lt;a href=&quot;OverlayContext.html#config_showOn&quot;&gt;OverlayContext showOn&lt;/a&gt;.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute showOn</span>
-<span class="cm">		 * @default mouseover</span>
-<span class="cm">		 * @type String</span>
-<span class="cm">		 */</span>
-		<span class="nx">showOn</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;mouseover&#39;</span>
-		<span class="p">},</span>
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Bind the events on the Tooltip UI. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method bindUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * See &lt;a href=&quot;OverlayContext.html#config_showOn&quot;&gt;OverlayContext showOn&lt;/a&gt;.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute hideOn</span>
-<span class="cm">		 * @default mouseout</span>
-<span class="cm">		 * @type String</span>
-<span class="cm">		 */</span>
-		<span class="nx">hideOn</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;mouseout&#39;</span>
-		<span class="p">},</span>
+				<span class="nx">Tooltip</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+			<span class="p">},</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * See &lt;a href=&quot;OverlayContext.html#config_hideDelay&quot;&gt;OverlayContext hideDelay&lt;/a&gt;.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute hideDelay</span>
-<span class="cm">		 * @default 500</span>
-<span class="cm">		 * @type Number</span>
-<span class="cm">		 */</span>
-		<span class="nx">hideDelay</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="mi">500</span>
-		<span class="p">},</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Over-ride the &lt;code&gt;show&lt;/code&gt; to invoke the</span>
+<span class="cm">		     * &lt;a href=&quot;Tooltip.html#method__loadBodyContentFromTitle&quot;&gt;_loadBodyContentFromTitle&lt;/a&gt;.</span>
+<span class="cm">		     * See &lt;a href=&quot;OverlayContext.html#config_show&quot;&gt;OverlayContext show&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method show</span>
+<span class="cm">			 */</span>
+			<span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">bodyContent</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BODY_CONTENT</span><span class="p">);</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * Use the content of the &lt;code&gt;title&lt;/code&gt; attribute as the Tooltip</span>
-<span class="cm">         * content.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute title</span>
-<span class="cm">		 * @default false</span>
-<span class="cm">		 * @type boolean</span>
-<span class="cm">		 */</span>
-		<span class="nx">title</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+				<span class="nx">Tooltip</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">show</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_loadBodyContentFromTitle</span><span class="p">(</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_NODE</span><span class="p">)</span> <span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Use the &lt;code&gt;title&lt;/code&gt; content of the &lt;code&gt;currentNode&lt;/code&gt; as</span>
+<span class="cm">		     * the content of the Tooltip.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _loadBodyContentFromTitle</span>
+<span class="cm">			 * @param {Node} currentNode Current node being used by the Tooltip</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_loadBodyContentFromTitle</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">currentNode</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">trigger</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TRIGGER</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_titles</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_titles</span> <span class="o">=</span> <span class="nx">trigger</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">);</span>
+
+					<span class="c1">// prevent default browser tooltip for title</span>
+					<span class="nx">trigger</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">,</span> <span class="nx">BLANK</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">currentNode</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">trigger</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">currentNode</span><span class="p">);</span>
+					<span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_titles</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">BODY_CONTENT</span><span class="p">,</span> <span class="nx">title</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires after the attribute &lt;code&gt;bodyContent&lt;/code&gt; change.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _afterBodyChange</span>
+<span class="cm">			 * @param {EventFacade} e</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_afterBodyChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">Tooltip</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">_afterBodyChange</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+				<span class="c1">// need to refreshAlign() after body change</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">refreshAlign</span><span class="p">();</span>
+			<span class="p">}</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
-<span class="p">});</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">Tooltip</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">OverlayContextPanel</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Bind the events on the Tooltip UI. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method bindUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">Tooltip</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Over-ride the &lt;code&gt;show&lt;/code&gt; to invoke the</span>
-<span class="cm">     * &lt;a href=&quot;Tooltip.html#method__loadBodyContentFromTitle&quot;&gt;_loadBodyContentFromTitle&lt;/a&gt;.</span>
-<span class="cm">     * See &lt;a href=&quot;OverlayContext.html#config_show&quot;&gt;OverlayContext show&lt;/a&gt;.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method show</span>
-<span class="cm">	 */</span>
-	<span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">bodyContent</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BODY_CONTENT</span><span class="p">);</span>
-
-		<span class="nx">Tooltip</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">show</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">))</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_loadBodyContentFromTitle</span><span class="p">(</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CURRENT_NODE</span><span class="p">)</span> <span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Use the &lt;code&gt;title&lt;/code&gt; content of the &lt;code&gt;currentNode&lt;/code&gt; as</span>
-<span class="cm">     * the content of the Tooltip.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _loadBodyContentFromTitle</span>
-<span class="cm">	 * @param {Node} currentNode Current node being used by the Tooltip</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_loadBodyContentFromTitle</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">currentNode</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">trigger</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TRIGGER</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_titles</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_titles</span> <span class="o">=</span> <span class="nx">trigger</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">);</span>
-
-			<span class="c1">// prevent default browser tooltip for title</span>
-			<span class="nx">trigger</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">,</span> <span class="nx">BLANK</span><span class="p">);</span>
-		<span class="p">}</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">currentNode</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">trigger</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">currentNode</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_titles</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">BODY_CONTENT</span><span class="p">,</span> <span class="nx">title</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires after the attribute &lt;code&gt;bodyContent&lt;/code&gt; change.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _afterBodyChange</span>
-<span class="cm">	 * @param {EventFacade} e</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_afterBodyChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">Tooltip</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">_afterBodyChange</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-
-		<span class="c1">// need to refreshAlign() after body change</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">refreshAlign</span><span class="p">();</span>
-	<span class="p">}</span>
-<span class="p">});</span>
+<span class="p">);</span>
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">Tooltip</span> <span class="o">=</span> <span class="nx">Tooltip</span><span class="p">;</span>
 

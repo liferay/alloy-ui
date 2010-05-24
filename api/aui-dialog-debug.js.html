@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-dialog   aui-dialog-debug.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-dialog&nbsp; <span class="subtitle">1.0pr</span>
+			aui-dialog&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -568,6 +563,7 @@
 	<span class="nx">BUTTON</span> <span class="o">=</span> <span class="s1">&#39;button&#39;</span><span class="p">,</span>
 	<span class="nx">BUTTONS</span> <span class="o">=</span> <span class="s1">&#39;buttons&#39;</span><span class="p">,</span>
 	<span class="nx">CLOSE</span> <span class="o">=</span> <span class="s1">&#39;close&#39;</span><span class="p">,</span>
+	<span class="nx">CLOSETHICK</span> <span class="o">=</span> <span class="s1">&#39;closethick&#39;</span><span class="p">,</span>
 	<span class="nx">CONSTRAIN_TO_VIEWPORT</span> <span class="o">=</span> <span class="s1">&#39;constrain2view&#39;</span><span class="p">,</span>
 	<span class="nx">CONTAINER</span> <span class="o">=</span> <span class="s1">&#39;container&#39;</span><span class="p">,</span>
 	<span class="nx">DD</span> <span class="o">=</span> <span class="s1">&#39;dd&#39;</span><span class="p">,</span>
@@ -596,6 +592,7 @@
 
 	<span class="nx">getCN</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">ClassNameManager</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">,</span>
 
+	<span class="nx">CSS_DIALOG</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">DIALOG</span><span class="p">),</span>
 	<span class="nx">CSS_DIALOG_BUTTON</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">DIALOG</span><span class="p">,</span> <span class="nx">BUTTON</span><span class="p">),</span>
 	<span class="nx">CSS_DIALOG_BUTTON_CONTAINER</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">DIALOG</span><span class="p">,</span> <span class="nx">BUTTON</span><span class="p">,</span> <span class="nx">CONTAINER</span><span class="p">),</span>
 	<span class="nx">CSS_DIALOG_BUTTON_DEFAULT</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">DIALOG</span><span class="p">,</span> <span class="nx">BUTTON</span><span class="p">,</span> <span class="nx">DEFAULT</span><span class="p">),</span>
@@ -857,8 +854,8 @@
 
 		<span class="k">if</span> <span class="p">(</span><span class="nx">close</span><span class="p">)</span> <span class="p">{</span>
 			<span class="kd">var</span> <span class="nx">closeConfig</span> <span class="o">=</span> <span class="p">{</span>
-				<span class="nx">icon</span><span class="o">:</span> <span class="nx">CLOSE</span><span class="p">,</span>
-				<span class="nx">id</span><span class="o">:</span> <span class="nx">CLOSE</span><span class="p">,</span>
+				<span class="nx">icon</span><span class="o">:</span> <span class="nx">CLOSETHICK</span><span class="p">,</span>
+				<span class="nx">id</span><span class="o">:</span> <span class="nx">CLOSETHICK</span><span class="p">,</span>
 				<span class="nx">handler</span><span class="o">:</span> <span class="p">{</span>
 					<span class="nx">fn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">close</span><span class="p">,</span>
 					<span class="nx">context</span><span class="o">:</span> <span class="nx">instance</span>
@@ -1215,7 +1212,7 @@
 	<span class="p">}</span>
 <span class="p">};</span>
 
-<span class="nx">A</span><span class="p">.</span><span class="nx">Dialog</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Base</span><span class="p">.</span><span class="nx">build</span><span class="p">(</span><span class="nx">DIALOG</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Panel</span><span class="p">,</span> <span class="p">[</span><span class="nx">Dialog</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">WidgetPosition</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">WidgetStack</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">WidgetPositionAlign</span><span class="p">]);</span>
+<span class="nx">A</span><span class="p">.</span><span class="nx">Dialog</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Base</span><span class="p">.</span><span class="nx">build</span><span class="p">(</span><span class="nx">DIALOG</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Panel</span><span class="p">,</span> <span class="p">[</span><span class="nx">Dialog</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">WidgetPosition</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">WidgetStack</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">WidgetPositionAlign</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">WidgetPositionConstrain</span><span class="p">]);</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * A base class for DialogManager:</span>
@@ -1246,7 +1243,9 @@
 <span class="cm">		 * @return {Widget}</span>
 <span class="cm">		 */</span>
 		<span class="nx">findByChild</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
-			<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">getByNode</span><span class="p">(</span><span class="nx">child</span><span class="p">);</span>
+			<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">getByNode</span><span class="p">(</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">child</span><span class="p">).</span><span class="nx">ancestor</span><span class="p">(</span><span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_DIALOG</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+			<span class="p">);</span>
 		<span class="p">},</span>
 
 		<span class="cm">/**</span>
@@ -1299,7 +1298,7 @@
 <span class="cm"> * @static</span>
 <span class="cm"> */</span>
 
-<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-panel&#39;</span><span class="p">,</span><span class="s1">&#39;dd-constrain&#39;</span><span class="p">,</span><span class="s1">&#39;aui-button&#39;</span><span class="p">,</span><span class="s1">&#39;aui-overlay-manager&#39;</span><span class="p">,</span><span class="s1">&#39;aui-overlay-mask&#39;</span><span class="p">,</span><span class="s1">&#39;aui-io-plugin&#39;</span><span class="p">,</span><span class="s1">&#39;aui-resize&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-panel&#39;</span><span class="p">,</span><span class="s1">&#39;dd-constrain&#39;</span><span class="p">,</span><span class="s1">&#39;aui-button-item&#39;</span><span class="p">,</span><span class="s1">&#39;aui-overlay-manager&#39;</span><span class="p">,</span><span class="s1">&#39;aui-overlay-mask&#39;</span><span class="p">,</span><span class="s1">&#39;aui-io-plugin&#39;</span><span class="p">,</span><span class="s1">&#39;aui-resize&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
 </pre></div>
 
 							</div>

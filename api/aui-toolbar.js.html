@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-toolbar   aui-toolbar.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-toolbar&nbsp; <span class="subtitle">1.0pr</span>
+			aui-toolbar&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -552,16 +547,19 @@
 <span class="kd">var</span> <span class="nx">Lang</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
 	<span class="nx">isString</span> <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">,</span>
 
+	<span class="nx">HORIZONTAL</span> <span class="o">=</span> <span class="s1">&#39;horizontal&#39;</span><span class="p">,</span>
 	<span class="nx">NAME</span> <span class="o">=</span> <span class="s1">&#39;toolbar&#39;</span><span class="p">,</span>
+	<span class="nx">ORIENTATION</span> <span class="o">=</span> <span class="s1">&#39;orientation&#39;</span><span class="p">,</span>
+	<span class="nx">VERTICAL</span> <span class="o">=</span> <span class="s1">&#39;vertical&#39;</span><span class="p">,</span>
 
 	<span class="nx">getClassName</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">ClassNameManager</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">,</span>
 
-	<span class="nx">CSS_TOOLBAR</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">),</span>
 	<span class="nx">CSS_FIRST</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="s1">&#39;first&#39;</span><span class="p">),</span>
+	<span class="nx">CSS_HORIZONTAL</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="nx">HORIZONTAL</span><span class="p">),</span>
 	<span class="nx">CSS_ITEM</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="s1">&#39;item&#39;</span><span class="p">),</span>
 	<span class="nx">CSS_ITEM_CONTENT</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="s1">&#39;item&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">),</span>
 	<span class="nx">CSS_LAST</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="s1">&#39;last&#39;</span><span class="p">),</span>
-	<span class="nx">CSS_TOOLSET</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">),</span>
+	<span class="nx">CSS_VERTICAL</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="nx">VERTICAL</span><span class="p">),</span>
 
 	<span class="nx">TPL_GENERIC</span> <span class="o">=</span> <span class="s1">&#39;&lt;span&gt;&lt;/span&gt;&#39;</span><span class="p">;</span>
 
@@ -569,13 +567,13 @@
 <span class="cm">	 * A base class for Toolbar, providing:</span>
 <span class="cm">	 * &lt;ul&gt;</span>
 <span class="cm">	 *    &lt;li&gt;Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)&lt;/li&gt;</span>
-<span class="cm">	 *    &lt;li&gt;The ability to manage multiple &lt;a href=&quot;Button.html&quot;&gt;Button&lt;/a&gt; widgets as one group&lt;/li&gt;</span>
+<span class="cm">	 *    &lt;li&gt;The ability to manage multiple &lt;a href=&quot;ButtonItem.html&quot;&gt;ButtonItem&lt;/a&gt; widgets as one group&lt;/li&gt;</span>
 <span class="cm">	 *    &lt;li&gt;Managed user interaction states (default, active, hover)&lt;/li&gt;</span>
 <span class="cm">	 *    &lt;li&gt;Keyboard accessible&lt;/li&gt;</span>
 <span class="cm">	 * &lt;/ul&gt;</span>
 <span class="cm">	 *</span>
 <span class="cm">	 * Quick Example:&lt;br/&gt;</span>
-<span class="cm">	 * </span>
+<span class="cm">	 *</span>
 <span class="cm">	 * &lt;pre&gt;&lt;code&gt;var instance = new A.Toolbar({</span>
 <span class="cm">	 *	children: [</span>
 <span class="cm">	 * 	{icon: &#39;plus&#39;, label: &#39;Add&#39;},</span>
@@ -595,164 +593,195 @@
 <span class="cm">	 * @uses WidgetParent</span>
 <span class="cm">	 */</span>
 
-<span class="kd">function</span> <span class="nx">Toolbar</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">Toolbar</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">Toolbar</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+	<span class="p">{</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="nx">NAME</span><span class="p">,</span>
 
-<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Toolbar</span><span class="p">,</span> <span class="p">{</span>
-	<span class="nx">NAME</span><span class="o">:</span> <span class="nx">NAME</span><span class="p">,</span>
+		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Receives an interaction state of active when the user clicks on it.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute activeState</span>
+<span class="cm">			 * @type boolean</span>
+<span class="cm">			 */</span>
+			<span class="nx">activeState</span><span class="o">:</span> <span class="p">{},</span>
 
-	<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
-		<span class="cm">/**</span>
-<span class="cm">		 * Receives an interaction state of active when the user clicks on it.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute activeState</span>
-<span class="cm">		 * @type boolean</span>
-<span class="cm">		 */</span>
-		<span class="nx">activeState</span><span class="o">:</span> <span class="p">{},</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Receives a default interaction state.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute defaultState</span>
+<span class="cm">			 * @type boolean</span>
+<span class="cm">			 */</span>
+			<span class="nx">defaultState</span><span class="o">:</span> <span class="p">{},</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * Receives a default interaction state.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute defaultState</span>
-<span class="cm">		 * @type boolean</span>
-<span class="cm">		 */</span>
-		<span class="nx">defaultState</span><span class="o">:</span> <span class="p">{},</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Receives an interaction state of hover during the</span>
+<span class="cm">		     * &lt;code&gt;mouseover&lt;/code&gt; event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute hoverState</span>
+<span class="cm">			 * @type boolean</span>
+<span class="cm">			 */</span>
+			<span class="nx">hoverState</span><span class="o">:</span> <span class="p">{},</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * Receives an interaction state of hover during the</span>
-<span class="cm">	     * &lt;code&gt;mouseover&lt;/code&gt; event.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute hoverState</span>
-<span class="cm">		 * @type boolean</span>
-<span class="cm">		 */</span>
-		<span class="nx">hoverState</span><span class="o">:</span> <span class="p">{},</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * The default type of child widget to render into the Element</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute defaultChildType</span>
+<span class="cm">			 * @default ButtonItem</span>
+<span class="cm">			 * @type String | Object</span>
+<span class="cm">			 */</span>
+			<span class="nx">defaultChildType</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;ButtonItem&#39;</span>
+			<span class="p">},</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * The default type of child widget to render into the Element</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute defaultChildType</span>
-<span class="cm">		 * @default Button</span>
-<span class="cm">		 * @type String | Object</span>
-<span class="cm">		 */</span>
-		<span class="nx">defaultChildType</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;Button&#39;</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-<span class="p">});</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">Toolbar</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">,</span> <span class="p">{</span>
-	<span class="nx">BOUNDING_TEMPLATE</span><span class="o">:</span> <span class="nx">TPL_GENERIC</span><span class="p">,</span>
-	<span class="nx">CONTENT_TEMPLATE</span><span class="o">:</span> <span class="nx">TPL_GENERIC</span><span class="p">,</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Construction logic executed during Toolbar instantiation. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method initializer</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">A</span><span class="p">.</span><span class="nx">Do</span><span class="p">.</span><span class="nx">before</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_addByIconId</span><span class="p">,</span> <span class="nx">instance</span><span class="p">,</span> <span class="s1">&#39;add&#39;</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/*</span>
-<span class="cm">	* Lifecycle</span>
-<span class="cm">	*/</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Bind the events on the Toolbar UI. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method bindUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;addChild&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onAddButton</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;addChild&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterAddButton</span><span class="p">);</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;removeChild&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterRemoveButton</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Sync the Toolbar UI. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method syncUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="kd">var</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span>
-			<span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">collection</span><span class="p">)</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">itemBoundingBox</span> <span class="o">=</span> <span class="nx">item</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">);</span>
-
-				<span class="nx">itemBoundingBox</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">CSS_FIRST</span><span class="p">,</span> <span class="nx">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
-				<span class="nx">itemBoundingBox</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">CSS_LAST</span><span class="p">,</span> <span class="nx">index</span> <span class="o">==</span> <span class="nx">length</span><span class="p">);</span>
-
-				<span class="nx">itemBoundingBox</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_ITEM</span><span class="p">);</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Representing the orientation of the progress bar. Could be</span>
+<span class="cm">	         * &lt;code&gt;horizontal&lt;/code&gt; or &lt;code&gt;vertical&lt;/code&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute orientation</span>
+<span class="cm">			 * @default &#39;horizontal&#39;</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
+			<span class="nx">orientation</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="nx">HORIZONTAL</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">isString</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">val</span> <span class="o">===</span> <span class="nx">HORIZONTAL</span> <span class="o">||</span> <span class="nx">val</span> <span class="o">===</span> <span class="nx">VERTICAL</span><span class="p">);</span>
+				<span class="p">}</span>
 			<span class="p">}</span>
-		<span class="p">);</span>
-	<span class="p">},</span>
+		<span class="p">},</span>
 
-	<span class="cm">/*</span>
-<span class="cm">	* Methods</span>
-<span class="cm">	*/</span>
+		<span class="nx">UI_ATTRS</span><span class="o">:</span> <span class="p">[</span><span class="nx">ORIENTATION</span><span class="p">],</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Overloads the add method so that if only a string is passed in, it will be</span>
-<span class="cm">	 * assumed to be the icon, and will automatically create a configuration</span>
-<span class="cm">	 * object for it.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _addByIconId</span>
-<span class="cm">	 * @param {String} icon the icon name or object or array of objects to add to the toolbar</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 * @return {String}</span>
-<span class="cm">	 */</span>
-	<span class="nx">_addByIconId</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">icon</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">BOUNDING_TEMPLATE</span><span class="o">:</span> <span class="nx">TPL_GENERIC</span><span class="p">,</span>
+			<span class="nx">CONTENT_TEMPLATE</span><span class="o">:</span> <span class="nx">TPL_GENERIC</span><span class="p">,</span>
 
-		<span class="k">if</span> <span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">icon</span><span class="p">))</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">item</span> <span class="o">=</span> <span class="p">{</span>
-				<span class="nx">icon</span><span class="o">:</span> <span class="nx">icon</span>
-			<span class="p">};</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Construction logic executed during Toolbar instantiation. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method initializer</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-			<span class="k">return</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Do</span><span class="p">.</span><span class="nx">AlterArgs</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">[</span><span class="nx">item</span><span class="p">]);</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">Do</span><span class="p">.</span><span class="nx">before</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_addByIconId</span><span class="p">,</span> <span class="nx">instance</span><span class="p">,</span> <span class="s1">&#39;add&#39;</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/*</span>
+<span class="cm">			* Lifecycle</span>
+<span class="cm">			*/</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Bind the events on the Toolbar UI. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method bindUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;addChild&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onAddButton</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;addChild&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterAddButton</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;removeChild&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterRemoveButton</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Sync the Toolbar UI. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method syncUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span>
+					<span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">collection</span><span class="p">)</span> <span class="p">{</span>
+						<span class="kd">var</span> <span class="nx">itemBoundingBox</span> <span class="o">=</span> <span class="nx">item</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">);</span>
+
+						<span class="nx">itemBoundingBox</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">CSS_FIRST</span><span class="p">,</span> <span class="nx">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+						<span class="nx">itemBoundingBox</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">CSS_LAST</span><span class="p">,</span> <span class="nx">index</span> <span class="o">==</span> <span class="nx">length</span><span class="p">);</span>
+
+						<span class="nx">itemBoundingBox</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_ITEM</span><span class="p">);</span>
+					<span class="p">}</span>
+				<span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/*</span>
+<span class="cm">			* Methods</span>
+<span class="cm">			*/</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Overloads the add method so that if only a string is passed in, it will be</span>
+<span class="cm">			 * assumed to be the icon, and will automatically create a configuration</span>
+<span class="cm">			 * object for it.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _addByIconId</span>
+<span class="cm">			 * @param {String} icon the icon name or object or array of objects to add to the toolbar</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 * @return {String}</span>
+<span class="cm">			 */</span>
+			<span class="nx">_addByIconId</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">icon</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">icon</span><span class="p">))</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">item</span> <span class="o">=</span> <span class="p">{</span>
+						<span class="nx">icon</span><span class="o">:</span> <span class="nx">icon</span>
+					<span class="p">};</span>
+
+					<span class="k">return</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Do</span><span class="p">.</span><span class="nx">AlterArgs</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">[</span><span class="nx">item</span><span class="p">]);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Syncs the UI after a button is added.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _afterAddButton</span>
+<span class="cm">			 * @param {EventFacade} event</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_afterAddButton</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">syncUI</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Syncs the UI after a button is removed.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _afterRemoveButton</span>
+<span class="cm">			 * @param {EventFacade} event</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_afterRemoveButton</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">event</span><span class="p">.</span><span class="nx">child</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">syncUI</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Updates the UI for the orientation attribute.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _uiSetOrientation</span>
+<span class="cm">			 * @param {String} newVal The new value</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_uiSetOrientation</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">horizontal</span> <span class="o">=</span> <span class="p">(</span><span class="nx">val</span> <span class="o">==</span> <span class="nx">HORIZONTAL</span><span class="p">);</span>
+
+				<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">CSS_HORIZONTAL</span><span class="p">,</span> <span class="nx">horizontal</span><span class="p">);</span>
+				<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">CSS_VERTICAL</span><span class="p">,</span> <span class="o">!</span><span class="nx">horizontal</span><span class="p">);</span>
+			<span class="p">}</span>
 		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Syncs the UI after a button is added.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _afterAddButton</span>
-<span class="cm">	 * @param {EventFacade} event</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_afterAddButton</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">syncUI</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Syncs the UI after a button is removed.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _afterRemoveButton</span>
-<span class="cm">	 * @param {EventFacade} event</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_afterRemoveButton</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">event</span><span class="p">.</span><span class="nx">child</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">syncUI</span><span class="p">();</span>
 	<span class="p">}</span>
-<span class="p">});</span>
+<span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">WidgetParentId</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 	<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
@@ -820,7 +849,7 @@
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">Toolbar</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Base</span><span class="p">.</span><span class="nx">build</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="nx">Toolbar</span><span class="p">,</span> <span class="p">[</span><span class="nx">A</span><span class="p">.</span><span class="nx">WidgetParent</span><span class="p">,</span> <span class="nx">WidgetParentId</span><span class="p">],</span> <span class="p">{</span> <span class="nx">dynamic</span><span class="o">:</span> <span class="kc">false</span> <span class="p">});</span>
 
-<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;aui-button&#39;</span><span class="p">,</span><span class="s1">&#39;aui-data-set&#39;</span><span class="p">,</span><span class="s1">&#39;widget-parent&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;aui-button-item&#39;</span><span class="p">,</span><span class="s1">&#39;aui-data-set&#39;</span><span class="p">,</span><span class="s1">&#39;widget-parent&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
 </pre></div>
 
 							</div>
@@ -838,7 +867,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Toolbar.html#config_activeState", "access": "", "host": "Toolbar", "type": "config", "name": "activeState"}, {"url": "Toolbar.html#event_activeStateChange", "access": "", "host": "Toolbar", "type": "event", "name": "activeStateChange"}, {"url": "Toolbar.html#method__addByIconId", "access": "protected", "host": "Toolbar", "type": "method", "name": "_addByIconId"}, {"url": "Toolbar.html#method__afterAddButton", "access": "protected", "host": "Toolbar", "type": "method", "name": "_afterAddButton"}, {"url": "Toolbar.html#method__afterRemoveButton", "access": "protected", "host": "Toolbar", "type": "method", "name": "_afterRemoveButton"}, {"url": "Toolbar.html#method_bindUI", "access": "protected", "host": "Toolbar", "type": "method", "name": "bindUI"}, {"url": "Toolbar.html#config_defaultChildType", "access": "", "host": "Toolbar", "type": "config", "name": "defaultChildType"}, {"url": "Toolbar.html#event_defaultChildTypeChange", "access": "", "host": "Toolbar", "type": "event", "name": "defaultChildTypeChange"}, {"url": "Toolbar.html#config_defaultState", "access": "", "host": "Toolbar", "type": "config", "name": "defaultState"}, {"url": "Toolbar.html#event_defaultStateChange", "access": "", "host": "Toolbar", "type": "event", "name": "defaultStateChange"}, {"url": "Toolbar.html#config_hoverState", "access": "", "host": "Toolbar", "type": "config", "name": "hoverState"}, {"url": "Toolbar.html#event_hoverStateChange", "access": "", "host": "Toolbar", "type": "event", "name": "hoverStateChange"}, {"url": "Toolbar.html#method_initializer", "access": "protected", "host": "Toolbar", "type": "method", "name": "initializer"}, {"url": "Toolbar.html#method_syncUI", "access": "protected", "host": "Toolbar", "type": "method", "name": "syncUI"}];
+    var ALL_YUI_PROPS = [{"url": "Toolbar.html#config_activeState", "access": "", "host": "Toolbar", "type": "config", "name": "activeState"}, {"url": "Toolbar.html#event_activeStateChange", "access": "", "host": "Toolbar", "type": "event", "name": "activeStateChange"}, {"url": "Toolbar.html#method__addByIconId", "access": "protected", "host": "Toolbar", "type": "method", "name": "_addByIconId"}, {"url": "Toolbar.html#method__afterAddButton", "access": "protected", "host": "Toolbar", "type": "method", "name": "_afterAddButton"}, {"url": "Toolbar.html#method__afterRemoveButton", "access": "protected", "host": "Toolbar", "type": "method", "name": "_afterRemoveButton"}, {"url": "Toolbar.html#method_bindUI", "access": "protected", "host": "Toolbar", "type": "method", "name": "bindUI"}, {"url": "Toolbar.html#config_defaultChildType", "access": "", "host": "Toolbar", "type": "config", "name": "defaultChildType"}, {"url": "Toolbar.html#event_defaultChildTypeChange", "access": "", "host": "Toolbar", "type": "event", "name": "defaultChildTypeChange"}, {"url": "Toolbar.html#config_defaultState", "access": "", "host": "Toolbar", "type": "config", "name": "defaultState"}, {"url": "Toolbar.html#event_defaultStateChange", "access": "", "host": "Toolbar", "type": "event", "name": "defaultStateChange"}, {"url": "Toolbar.html#config_hoverState", "access": "", "host": "Toolbar", "type": "config", "name": "hoverState"}, {"url": "Toolbar.html#event_hoverStateChange", "access": "", "host": "Toolbar", "type": "event", "name": "hoverStateChange"}, {"url": "Toolbar.html#method_initializer", "access": "protected", "host": "Toolbar", "type": "method", "name": "initializer"}, {"url": "Toolbar.html#config_orientation", "access": "", "host": "Toolbar", "type": "config", "name": "orientation"}, {"url": "Toolbar.html#event_orientationChange", "access": "", "host": "Toolbar", "type": "event", "name": "orientationChange"}, {"url": "Toolbar.html#method_syncUI", "access": "protected", "host": "Toolbar", "type": "method", "name": "syncUI"}, {"url": "Toolbar.html#method__uiSetOrientation", "access": "protected", "host": "Toolbar", "type": "method", "name": "_uiSetOrientation"}];
 </script>
 </body>
 </html>

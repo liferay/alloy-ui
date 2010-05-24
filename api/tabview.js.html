@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: tabview   tabview.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			tabview&nbsp; <span class="subtitle">1.0pr</span>
+			tabview&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -567,7 +562,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.1.0</span>
+<span class="cm">version: 3.1.1</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;tabview&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -720,7 +715,6 @@
 <span class="kd">var</span> <span class="nx">_queries</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">TabviewBase</span><span class="p">.</span><span class="nx">_queries</span><span class="p">,</span>
     <span class="nx">_classNames</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">TabviewBase</span><span class="p">.</span><span class="nx">_classNames</span><span class="p">,</span>
     <span class="nx">DOT</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span>
-    <span class="nx">_isGeckoIEWin</span> <span class="o">=</span> <span class="p">((</span><span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">gecko</span> <span class="o">||</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;Windows&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
     <span class="nx">getClassName</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">ClassNameManager</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">,</span>
 
     <span class="cm">/**</span>
@@ -730,8 +724,13 @@
 <span class="cm">     * @class TabView</span>
 <span class="cm">     * @constructor</span>
 <span class="cm">     * @extends Widget</span>
+<span class="cm">     * @uses WidgetParent</span>
 <span class="cm">     */</span>
     <span class="nx">TabView</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;tabView&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Widget</span><span class="p">,</span> <span class="p">[</span><span class="nx">Y</span><span class="p">.</span><span class="nx">WidgetParent</span><span class="p">],</span> <span class="p">{</span>
+    <span class="nx">_afterChildAdded</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentBox&#39;</span><span class="p">).</span><span class="nx">focusManager</span><span class="p">.</span><span class="nx">refresh</span><span class="p">();</span>
+    <span class="p">},</span>
+
     <span class="nx">_afterChildRemoved</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// update the selected tab when removed</span>
         <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">index</span><span class="p">,</span>
             <span class="nx">selection</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;selection&#39;</span><span class="p">);</span>
@@ -742,6 +741,8 @@
                 <span class="nx">selection</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;selected&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
             <span class="p">}</span>
         <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentBox&#39;</span><span class="p">).</span><span class="nx">focusManager</span><span class="p">.</span><span class="nx">refresh</span><span class="p">();</span>
     <span class="p">},</span>
 
     <span class="nx">_initAria</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -754,22 +755,6 @@
                 <span class="nx">role</span><span class="o">:</span> <span class="nx">tablist</span>
             <span class="p">});</span>
         <span class="p">}</span>
-
-        <span class="c1">//  Since the anchor&#39;s &quot;href&quot; attribute has been removed, the</span>
-        <span class="c1">//  element will not fire the click event in Firefox when the</span>
-        <span class="c1">//  user presses the enter key.  To fix this, dispatch the</span>
-        <span class="c1">//  &quot;click&quot; event to the anchor when the user presses the</span>
-        <span class="c1">//  enter key.</span>
-     
-        <span class="k">if</span> <span class="p">(</span><span class="nx">_isGeckoIEWin</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">tabView</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;keydown&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">charCode</span> <span class="o">===</span> <span class="mi">13</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="k">this</span><span class="p">.</span><span class="nx">simulate</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">);</span>
-                <span class="p">}</span>
-     
-            <span class="p">},</span> <span class="s2">&quot;&gt;ul&gt;li&gt;a&quot;</span><span class="p">);</span>
-     
-        <span class="p">}</span>
     <span class="p">},</span>
 
     <span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -777,12 +762,13 @@
         <span class="c1">//  Pressing the left and right arrow keys will move focus</span>
         <span class="c1">//  among each of the tabs.</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentBox&#39;</span><span class="p">).</span><span class="nx">plug</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">NodeFocusManager</span><span class="p">,</span> <span class="p">{</span>
-                        <span class="nx">descendants</span><span class="o">:</span> <span class="nx">_queries</span><span class="p">.</span><span class="nx">tabLabel</span><span class="p">,</span>
+                        <span class="nx">descendants</span><span class="o">:</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">_classNames</span><span class="p">.</span><span class="nx">tabLabel</span><span class="p">,</span>
                         <span class="nx">keys</span><span class="o">:</span> <span class="p">{</span> <span class="nx">next</span><span class="o">:</span> <span class="s1">&#39;down:39&#39;</span><span class="p">,</span> <span class="c1">// Right arrow</span>
                                 <span class="nx">previous</span><span class="o">:</span> <span class="s1">&#39;down:37&#39;</span> <span class="p">},</span>  <span class="c1">// Left arrow</span>
                         <span class="nx">circular</span><span class="o">:</span> <span class="kc">true</span>
                     <span class="p">});</span>
 
+        <span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;addChild&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterChildAdded</span><span class="p">);</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;removeChild&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterChildRemoved</span><span class="p">);</span>
     <span class="p">},</span>
     
@@ -795,11 +781,18 @@
 
     <span class="p">},</span>
 
-    <span class="nx">_setDefSelection</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">_setDefSelection</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">contentBox</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">//  If no tab is selected, select the first tab.</span>
-        <span class="kd">var</span> <span class="nx">firstItem</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;selection&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">firstItem</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">firstItem</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;selected&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">selection</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;selection&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">some</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">tab</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">tab</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;selected&#39;</span><span class="p">))</span> <span class="p">{</span>
+                <span class="nx">selection</span> <span class="o">=</span> <span class="nx">tab</span><span class="p">;</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">selection</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">selection</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;selected&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">},</span>
 
@@ -839,7 +832,7 @@
                     <span class="nx">boundingBox</span><span class="o">:</span> <span class="nx">node</span><span class="p">,</span>
                     <span class="nx">contentBox</span><span class="o">:</span> <span class="nx">node</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">DOT</span> <span class="o">+</span> <span class="nx">_classNames</span><span class="p">.</span><span class="nx">tabLabel</span><span class="p">),</span>
                     <span class="nx">label</span><span class="o">:</span> <span class="nx">node</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">DOT</span> <span class="o">+</span> <span class="nx">_classNames</span><span class="p">.</span><span class="nx">tabLabel</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">),</span>
-                    <span class="nx">content</span><span class="o">:</span> <span class="nx">panelNode</span> <span class="o">?</span> <span class="nx">panelNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">)</span> <span class="o">:</span> <span class="kc">null</span>
+                    <span class="nx">panelNode</span><span class="o">:</span> <span class="nx">panelNode</span>
                 <span class="p">});</span>
             <span class="p">});</span>
         <span class="p">}</span>
@@ -866,7 +859,6 @@
 <span class="kd">var</span> <span class="nx">Lang</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
     <span class="nx">_queries</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">TabviewBase</span><span class="p">.</span><span class="nx">_queries</span><span class="p">,</span>
     <span class="nx">_classNames</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">TabviewBase</span><span class="p">.</span><span class="nx">_classNames</span><span class="p">,</span>
-    <span class="nx">_isGeckoIEWin</span> <span class="o">=</span> <span class="p">((</span><span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">gecko</span> <span class="o">||</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;Windows&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
     <span class="nx">getClassName</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">ClassNameManager</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">;</span>
 
 <span class="cm">/**</span>
@@ -876,6 +868,7 @@
 <span class="cm"> * @class Tab</span>
 <span class="cm"> * @constructor</span>
 <span class="cm"> * @extends Widget</span>
+<span class="cm"> * @uses WidgetChild</span>
 <span class="cm"> */</span>
 <span class="nx">Y</span><span class="p">.</span><span class="nx">Tab</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;tab&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Widget</span><span class="p">,</span> <span class="p">[</span><span class="nx">Y</span><span class="p">.</span><span class="nx">WidgetChild</span><span class="p">],</span> <span class="p">{</span>
     <span class="nx">BOUNDING_TEMPLATE</span><span class="o">:</span> <span class="s1">&#39;&lt;li class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">_classNames</span><span class="p">.</span><span class="nx">tab</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/li&gt;&#39;</span><span class="p">,</span>
@@ -912,16 +905,7 @@
         <span class="nx">anchor</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;role&#39;</span><span class="p">,</span> <span class="s1">&#39;presentation&#39;</span><span class="p">);</span>
  
  
-        <span class="c1">//  Remove the &quot;href&quot; attribute from the anchor element to</span>
-        <span class="c1">//  prevent JAWS and NVDA from reading the value of the &quot;href&quot;</span>
-        <span class="c1">//  attribute when the anchor is focused</span>
- 
-        <span class="k">if</span> <span class="p">(</span><span class="nx">_isGeckoIEWin</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">anchor</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">);</span>
-        <span class="p">}</span>
- 
         <span class="c1">//  Apply the ARIA roles, states and properties to each panel</span>
- 
         <span class="nx">panel</span><span class="p">.</span><span class="nx">setAttrs</span><span class="p">({</span>
             <span class="nx">role</span><span class="o">:</span> <span class="s1">&#39;tabpanel&#39;</span><span class="p">,</span>
             <span class="s1">&#39;aria-labelledby&#39;</span><span class="o">:</span> <span class="nx">id</span>
@@ -1039,9 +1023,12 @@
             <span class="nx">validator</span><span class="o">:</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isString</span>
         <span class="p">},</span>
 
+        <span class="cm">/**</span>
+<span class="cm">         * @attribute panelNode</span>
+<span class="cm">         * @type Y.Node</span>
+<span class="cm">         */</span>
         <span class="nx">panelNode</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">valueFn</span><span class="o">:</span> <span class="s1">&#39;_defPanelNodeValueFn&#39;</span><span class="p">,</span>
-            <span class="nx">readOnly</span><span class="o">:</span> <span class="kc">true</span>
+            <span class="nx">valueFn</span><span class="o">:</span> <span class="s1">&#39;_defPanelNodeValueFn&#39;</span>
         <span class="p">},</span>
         
         <span class="nx">tabIndex</span><span class="o">:</span> <span class="p">{</span>
@@ -1060,7 +1047,7 @@
 <span class="p">});</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;substitute&#39;</span><span class="p">,</span> <span class="s1">&#39;node-focusmanager&#39;</span><span class="p">,</span> <span class="s1">&#39;tabview-base&#39;</span><span class="p">,</span> <span class="s1">&#39;widget&#39;</span><span class="p">,</span> <span class="s1">&#39;widget-parent&#39;</span><span class="p">,</span> <span class="s1">&#39;widget-child&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;substitute&#39;</span><span class="p">,</span> <span class="s1">&#39;node-focusmanager&#39;</span><span class="p">,</span> <span class="s1">&#39;tabview-base&#39;</span><span class="p">,</span> <span class="s1">&#39;widget&#39;</span><span class="p">,</span> <span class="s1">&#39;widget-parent&#39;</span><span class="p">,</span> <span class="s1">&#39;widget-child&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>
@@ -1078,7 +1065,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Tab.html#config_content", "access": "", "host": "Tab", "type": "config", "name": "content"}, {"url": "Tab.html#event_contentChange", "access": "", "host": "Tab", "type": "event", "name": "contentChange"}, {"url": "Tab.html#config_label", "access": "", "host": "Tab", "type": "config", "name": "label"}, {"url": "Tab.html#event_labelChange", "access": "", "host": "Tab", "type": "event", "name": "labelChange"}, {"url": "Tab.html#config_triggerEvent", "access": "", "host": "Tab", "type": "config", "name": "triggerEvent"}, {"url": "Tab.html#event_triggerEventChange", "access": "", "host": "Tab", "type": "event", "name": "triggerEventChange"}];
+    var ALL_YUI_PROPS = [{"url": "Tab.html#config_content", "access": "", "host": "Tab", "type": "config", "name": "content"}, {"url": "Tab.html#event_contentChange", "access": "", "host": "Tab", "type": "event", "name": "contentChange"}, {"url": "Tab.html#config_label", "access": "", "host": "Tab", "type": "config", "name": "label"}, {"url": "Tab.html#event_labelChange", "access": "", "host": "Tab", "type": "event", "name": "labelChange"}, {"url": "Tab.html#config_panelNode", "access": "", "host": "Tab", "type": "config", "name": "panelNode"}, {"url": "Tab.html#event_panelNodeChange", "access": "", "host": "Tab", "type": "event", "name": "panelNodeChange"}, {"url": "Tab.html#config_triggerEvent", "access": "", "host": "Tab", "type": "config", "name": "triggerEvent"}, {"url": "Tab.html#event_triggerEventChange", "access": "", "host": "Tab", "type": "event", "name": "triggerEventChange"}];
 </script>
 </body>
 </html>

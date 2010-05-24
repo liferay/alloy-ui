@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-overlay  OverlayContext   (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-overlay&nbsp; <span class="subtitle">1.0pr</span>
+			aui-overlay&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -581,6 +576,7 @@
 				                               <li class="protected"><a href="#method__beforeTriggerChange" title="_beforeTriggerChange">_beforeTriggerChange</a></li>
 				                               <li class="protected"><a href="#method__cancelAutoHide" title="_cancelAutoHide">_cancelAutoHide</a></li>
 				                               <li class="protected"><a href="#method__invokeHideTaskOnInteraction" title="_invokeHideTaskOnInteraction">_invokeHideTaskOnInteraction</a></li>
+				                               <li class="protected"><a href="#method__onVisibleChangeOverlayContext" title="_onVisibleChangeOverlayContext">_onVisibleChangeOverlayContext</a></li>
 				                               <li class="protected"><a href="#method__setHideOn" title="_setHideOn">_setHideOn</a></li>
 				                               <li class="protected"><a href="#method__setShowOn" title="_setShowOn">_setShowOn</a></li>
 				                               <li class="protected"><a href="#method__stopTriggerEventPropagation" title="_stopTriggerEventPropagation">_stopTriggerEventPropagation</a></li>
@@ -1858,6 +1854,53 @@ OverlayContext (focus, click or mouseover).
 													</div>
 												</div>
 
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__onVisibleChangeOverlayContext">
+
+													<h4>
+														<a name="method__onVisibleChangeOverlayContext">_onVisibleChangeOverlayContext</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_onVisibleChangeOverlayContext</strong>
+														   (
+																
+																		
+																		 event
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the <a href="OverlayContext.html#config_visible">visible</a>
+attribute changes.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">event</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
 												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__setHideOn">
 
 													<h4>
@@ -2359,6 +2402,12 @@ event.currentTarget and in last case with the first item of the
 
 														
 
+														<div class="protected" rel="yui:method" resource="Widget.html#method__applyParser">
+														<a href="Widget.html#method__applyParser" property="yui:name" title="_applyParser">_applyParser</a><span>,</span>
+														</div>
+
+														
+
 														<div class="protected" rel="yui:method" resource="Widget.html#method__bindDOM">
 														<a href="Widget.html#method__bindDOM" property="yui:name" title="_bindDOM">_bindDOM</a><span>,</span>
 														</div>
@@ -2367,6 +2416,12 @@ event.currentTarget and in last case with the first item of the
 
 														<div class="protected" rel="yui:method" resource="Widget.html#method__bindUI">
 														<a href="Widget.html#method__bindUI" property="yui:name" title="_bindUI">_bindUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__defaultCB">
+														<a href="Widget.html#method__defaultCB" property="yui:name" title="_defaultCB">_defaultCB</a><span>,</span>
 														</div>
 
 														
@@ -4089,7 +4144,7 @@ event.currentTarget and in last case with the first item of the
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "OverlayContext.html#method__afterHideOnChange", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_afterHideOnChange"}, {"url": "OverlayContext.html#method__afterShowOnChange", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_afterShowOnChange"}, {"url": "OverlayContext.html#method__afterTriggerChange", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_afterTriggerChange"}, {"url": "OverlayContext.html#config_align", "access": "", "host": "OverlayContext", "type": "config", "name": "align"}, {"url": "OverlayContext.html#event_alignChange", "access": "", "host": "OverlayContext", "type": "event", "name": "alignChange"}, {"url": "OverlayContext.html#method__beforeHideOnChange", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_beforeHideOnChange"}, {"url": "OverlayContext.html#method__beforeShowOnChange", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_beforeShowOnChange"}, {"url": "OverlayContext.html#method__beforeTriggerChange", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_beforeTriggerChange"}, {"url": "OverlayContext.html#method_bindUI", "access": "protected", "host": "OverlayContext", "type": "method", "name": "bindUI"}, {"url": "OverlayContext.html#method__cancelAutoHide", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_cancelAutoHide"}, {"url": "OverlayContext.html#config_cancellableHide", "access": "", "host": "OverlayContext", "type": "config", "name": "cancellableHide"}, {"url": "OverlayContext.html#event_cancellableHideChange", "access": "", "host": "OverlayContext", "type": "event", "name": "cancellableHideChange"}, {"url": "OverlayContext.html#method_clearIntervals", "access": "", "host": "OverlayContext", "type": "method", "name": "clearIntervals"}, {"url": "OverlayContext.html#config_currentNode", "access": "", "host": "OverlayContext", "type": "config", "name": "currentNode"}, {"url": "OverlayContext.html#event_currentNodeChange", "access": "", "host": "OverlayContext", "type": "event", "name": "currentNodeChange"}, {"url": "OverlayContext.html#method_destructor", "access": "protected", "host": "OverlayContext", "type": "method", "name": "destructor"}, {"url": "OverlayContext.html#method_hide", "access": "", "host": "OverlayContext", "type": "method", "name": "hide"}, {"url": "OverlayContext.html#config_hideDelay", "access": "", "host": "OverlayContext", "type": "config", "name": "hideDelay"}, {"url": "OverlayContext.html#event_hideDelayChange", "access": "", "host": "OverlayContext", "type": "event", "name": "hideDelayChange"}, {"url": "OverlayContext.html#config_hideOn", "access": "", "host": "OverlayContext", "type": "config", "name": "hideOn"}, {"url": "OverlayContext.html#event_hideOnChange", "access": "", "host": "OverlayContext", "type": "event", "name": "hideOnChange"}, {"url": "OverlayContext.html#config_hideOnDocumentClick", "access": "", "host": "OverlayContext", "type": "config", "name": "hideOnDocumentClick"}, {"url": "OverlayContext.html#event_hideOnDocumentClickChange", "access": "", "host": "OverlayContext", "type": "event", "name": "hideOnDocumentClickChange"}, {"url": "OverlayContext.html#method__invokeHideTaskOnInteraction", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_invokeHideTaskOnInteraction"}, {"url": "OverlayContext.html#property_OverlayContext.ATTRS", "access": "", "host": "OverlayContext", "type": "property", "name": "OverlayContext.ATTRS"}, {"url": "OverlayContext.html#property_OverlayContext.NAME", "access": "", "host": "OverlayContext", "type": "property", "name": "OverlayContext.NAME"}, {"url": "OverlayContext.html#method_refreshAlign", "access": "", "host": "OverlayContext", "type": "method", "name": "refreshAlign"}, {"url": "OverlayContext.html#method__setHideOn", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_setHideOn"}, {"url": "OverlayContext.html#method__setShowOn", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_setShowOn"}, {"url": "OverlayContext.html#config_showDelay", "access": "", "host": "OverlayContext", "type": "config", "name": "showDelay"}, {"url": "OverlayContext.html#event_showDelayChange", "access": "", "host": "OverlayContext", "type": "event", "name": "showDelayChange"}, {"url": "OverlayContext.html#config_showOn", "access": "", "host": "OverlayContext", "type": "config", "name": "showOn"}, {"url": "OverlayContext.html#event_showOnChange", "access": "", "host": "OverlayContext", "type": "event", "name": "showOnChange"}, {"url": "OverlayContext.html#method__stopTriggerEventPropagation", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_stopTriggerEventPropagation"}, {"url": "OverlayContext.html#method__toggle", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_toggle"}, {"url": "OverlayContext.html#method_toggle", "access": "", "host": "OverlayContext", "type": "method", "name": "toggle"}, {"url": "OverlayContext.html#config_trigger", "access": "", "host": "OverlayContext", "type": "config", "name": "trigger"}, {"url": "OverlayContext.html#event_triggerChange", "access": "", "host": "OverlayContext", "type": "event", "name": "triggerChange"}, {"url": "OverlayContext.html#method_updateCurrentNode", "access": "", "host": "OverlayContext", "type": "method", "name": "updateCurrentNode"}, {"url": "OverlayContext.html#config_visible", "access": "", "host": "OverlayContext", "type": "config", "name": "visible"}, {"url": "OverlayContext.html#event_visibleChange", "access": "", "host": "OverlayContext", "type": "event", "name": "visibleChange"}];
+    var ALL_YUI_PROPS = [{"url": "OverlayContext.html#method__afterHideOnChange", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_afterHideOnChange"}, {"url": "OverlayContext.html#method__afterShowOnChange", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_afterShowOnChange"}, {"url": "OverlayContext.html#method__afterTriggerChange", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_afterTriggerChange"}, {"url": "OverlayContext.html#config_align", "access": "", "host": "OverlayContext", "type": "config", "name": "align"}, {"url": "OverlayContext.html#event_alignChange", "access": "", "host": "OverlayContext", "type": "event", "name": "alignChange"}, {"url": "OverlayContext.html#method__beforeHideOnChange", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_beforeHideOnChange"}, {"url": "OverlayContext.html#method__beforeShowOnChange", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_beforeShowOnChange"}, {"url": "OverlayContext.html#method__beforeTriggerChange", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_beforeTriggerChange"}, {"url": "OverlayContext.html#method_bindUI", "access": "protected", "host": "OverlayContext", "type": "method", "name": "bindUI"}, {"url": "OverlayContext.html#method__cancelAutoHide", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_cancelAutoHide"}, {"url": "OverlayContext.html#config_cancellableHide", "access": "", "host": "OverlayContext", "type": "config", "name": "cancellableHide"}, {"url": "OverlayContext.html#event_cancellableHideChange", "access": "", "host": "OverlayContext", "type": "event", "name": "cancellableHideChange"}, {"url": "OverlayContext.html#method_clearIntervals", "access": "", "host": "OverlayContext", "type": "method", "name": "clearIntervals"}, {"url": "OverlayContext.html#config_currentNode", "access": "", "host": "OverlayContext", "type": "config", "name": "currentNode"}, {"url": "OverlayContext.html#event_currentNodeChange", "access": "", "host": "OverlayContext", "type": "event", "name": "currentNodeChange"}, {"url": "OverlayContext.html#method_destructor", "access": "protected", "host": "OverlayContext", "type": "method", "name": "destructor"}, {"url": "OverlayContext.html#method_hide", "access": "", "host": "OverlayContext", "type": "method", "name": "hide"}, {"url": "OverlayContext.html#config_hideDelay", "access": "", "host": "OverlayContext", "type": "config", "name": "hideDelay"}, {"url": "OverlayContext.html#event_hideDelayChange", "access": "", "host": "OverlayContext", "type": "event", "name": "hideDelayChange"}, {"url": "OverlayContext.html#config_hideOn", "access": "", "host": "OverlayContext", "type": "config", "name": "hideOn"}, {"url": "OverlayContext.html#event_hideOnChange", "access": "", "host": "OverlayContext", "type": "event", "name": "hideOnChange"}, {"url": "OverlayContext.html#config_hideOnDocumentClick", "access": "", "host": "OverlayContext", "type": "config", "name": "hideOnDocumentClick"}, {"url": "OverlayContext.html#event_hideOnDocumentClickChange", "access": "", "host": "OverlayContext", "type": "event", "name": "hideOnDocumentClickChange"}, {"url": "OverlayContext.html#method__invokeHideTaskOnInteraction", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_invokeHideTaskOnInteraction"}, {"url": "OverlayContext.html#method__onVisibleChangeOverlayContext", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_onVisibleChangeOverlayContext"}, {"url": "OverlayContext.html#property_OverlayContext.ATTRS", "access": "", "host": "OverlayContext", "type": "property", "name": "OverlayContext.ATTRS"}, {"url": "OverlayContext.html#property_OverlayContext.NAME", "access": "", "host": "OverlayContext", "type": "property", "name": "OverlayContext.NAME"}, {"url": "OverlayContext.html#method_refreshAlign", "access": "", "host": "OverlayContext", "type": "method", "name": "refreshAlign"}, {"url": "OverlayContext.html#method__setHideOn", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_setHideOn"}, {"url": "OverlayContext.html#method__setShowOn", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_setShowOn"}, {"url": "OverlayContext.html#config_showDelay", "access": "", "host": "OverlayContext", "type": "config", "name": "showDelay"}, {"url": "OverlayContext.html#event_showDelayChange", "access": "", "host": "OverlayContext", "type": "event", "name": "showDelayChange"}, {"url": "OverlayContext.html#config_showOn", "access": "", "host": "OverlayContext", "type": "config", "name": "showOn"}, {"url": "OverlayContext.html#event_showOnChange", "access": "", "host": "OverlayContext", "type": "event", "name": "showOnChange"}, {"url": "OverlayContext.html#method__stopTriggerEventPropagation", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_stopTriggerEventPropagation"}, {"url": "OverlayContext.html#method__toggle", "access": "protected", "host": "OverlayContext", "type": "method", "name": "_toggle"}, {"url": "OverlayContext.html#method_toggle", "access": "", "host": "OverlayContext", "type": "method", "name": "toggle"}, {"url": "OverlayContext.html#config_trigger", "access": "", "host": "OverlayContext", "type": "config", "name": "trigger"}, {"url": "OverlayContext.html#event_triggerChange", "access": "", "host": "OverlayContext", "type": "event", "name": "triggerChange"}, {"url": "OverlayContext.html#method_updateCurrentNode", "access": "", "host": "OverlayContext", "type": "method", "name": "updateCurrentNode"}, {"url": "OverlayContext.html#config_visible", "access": "", "host": "OverlayContext", "type": "config", "name": "visible"}, {"url": "OverlayContext.html#event_visibleChange", "access": "", "host": "OverlayContext", "type": "event", "name": "visibleChange"}];
 </script>
 </body>
 </html>

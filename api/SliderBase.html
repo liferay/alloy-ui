@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: slider  SliderBase   (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			slider&nbsp; <span class="subtitle">1.0pr</span>
+			slider&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -575,8 +570,8 @@
 
 									<div class="aui-widget-bd aui-list-bd">
 										<ul class="content">
-				                               <li class="protected"><a href="#method__afterAlign" title="_afterAlign">_afterAlign</a></li>
 				                               <li class="protected"><a href="#method__afterDisabledChange" title="_afterDisabledChange">_afterDisabledChange</a></li>
+				                               <li class="protected"><a href="#method__afterDrag" title="_afterDrag">_afterDrag</a></li>
 				                               <li class="protected"><a href="#method__afterLengthChange" title="_afterLengthChange">_afterLengthChange</a></li>
 				                               <li class="protected"><a href="#method__bindThumbDD" title="_bindThumbDD">_bindThumbDD</a></li>
 				                               <li class="protected"><a href="#method__bindValueLogic" title="_bindValueLogic">_bindValueLogic</a></li>
@@ -586,6 +581,7 @@
 				                               <li class="protected"><a href="#method__setAxis" title="_setAxis">_setAxis</a></li>
 				                               <li class="protected"><a href="#method__setLength" title="_setLength">_setLength</a></li>
 				                               <li class="protected"><a href="#method__syncThumbPosition" title="_syncThumbPosition">_syncThumbPosition</a></li>
+				                               <li class="protected"><a href="#method__uiMoveThumb" title="_uiMoveThumb">_uiMoveThumb</a></li>
 				                               <li class="protected"><a href="#method__uiSetRailLength" title="_uiSetRailLength">_uiSetRailLength</a></li>
 				                               <li class="protected"><a href="#method_bindUI" title="bindUI">bindUI</a></li>
 				                               <li class="protected"><a href="#method_initializer" title="initializer">initializer</a></li>
@@ -708,7 +704,7 @@
 								Create a slider to represent an input control capable of representing a
 series of intermediate states based on the position of the slider's thumb.
 These states are typically aligned to a value algorithm whereby the thumb
-position corresponds to a given value. Sliders may be aligned vertically or
+position corresponds to a given value. Sliders may be oriented vertically or
 horizontally, based on the <code>axis</code> configuration.
 							</div>
 
@@ -1254,52 +1250,6 @@ current build path for Slider</strong>
 										<div class="content">
 
 
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterAlign">
-
-													<h4>
-														<a name="method__afterAlign">_afterAlign</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														 protected 
-														
-														
-														void
-															<strong property="yui:name">_afterAlign</strong>
-														   (
-																
-																		
-																		 e
-																	
-																
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Dispatches the <code>thumbMove</code> event.
-														</div>
-
-														<div class="description">
-
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">e</span>
-																		&lt;<span property="yui:type">Event</span>&gt;
-																		</code>
-																		<span property="yui:description">  the <code>drag:align</code> event from the thumb</span>
-																		</dd>
-																</dl>
-
-
-
-
-
-														</div>
-													</div>
-												</div>
-
 												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterDisabledChange">
 
 													<h4>
@@ -1335,6 +1285,52 @@ current build path for Slider</strong>
 																		&lt;<span property="yui:type">Event</span>&gt;
 																		</code>
 																		<span property="yui:description">  The disabledChange event object</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterDrag">
+
+													<h4>
+														<a name="method__afterDrag">_afterDrag</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_afterDrag</strong>
+														   (
+																
+																		
+																		 e
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Dispatches the <code>thumbMove</code> event.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">e</span>
+																		&lt;<span property="yui:type">Event</span>&gt;
+																		</code>
+																		<span property="yui:description">  the <code>drag:drag</code> event from the thumb</span>
 																		</dd>
 																</dl>
 
@@ -1724,6 +1720,52 @@ instance.
 
 														<div class="description">
 
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__uiMoveThumb">
+
+													<h4>
+														<a name="method__uiMoveThumb">_uiMoveThumb</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_uiMoveThumb</strong>
+														   (
+																
+																		
+																		 offset
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Moves the thumb to pixel offset position along the rail.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">offset</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description">  the pixel offset to set as left or top style</span>
+																		</dd>
+																</dl>
 
 
 
@@ -2232,6 +2274,12 @@ rail.  Override this method if you want to provide the thumb element
 
 														
 
+														<div class="protected" rel="yui:method" resource="Widget.html#method__applyParser">
+														<a href="Widget.html#method__applyParser" property="yui:name" title="_applyParser">_applyParser</a><span>,</span>
+														</div>
+
+														
+
 														<div class="protected" rel="yui:method" resource="Widget.html#method__bindDOM">
 														<a href="Widget.html#method__bindDOM" property="yui:name" title="_bindDOM">_bindDOM</a><span>,</span>
 														</div>
@@ -2240,6 +2288,12 @@ rail.  Override this method if you want to provide the thumb element
 
 														<div class="protected" rel="yui:method" resource="Widget.html#method__bindUI">
 														<a href="Widget.html#method__bindUI" property="yui:name" title="_bindUI">_bindUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__defaultCB">
+														<a href="Widget.html#method__defaultCB" property="yui:name" title="_defaultCB">_defaultCB</a><span>,</span>
 														</div>
 
 														
@@ -2728,7 +2782,8 @@ following extra properties:
 
 														<div class="description" property="yui:description">
 															Signals that the thumb has moved.  Payload includes the thumb's
-<code>drag:align</code>.
+pixel offset from the top/left edge of the rail, and if triggered by
+dragging the thumb, the <code>drag:drag</code> event.
 														</div>
 
 														<div class="description">
@@ -2739,8 +2794,11 @@ following extra properties:
 																			<span property="yui:description">  The event object for the thumbMove with the
 following extra properties:
 <dl>
+<dt>offset</dt>
+<dd>Pixel offset from top/left of the slider to the new
+thumb position</dd>
 <dt>ddEvent</dt>
-<dd><code>drag:align</code> event from the thumb</dd>
+<dd><code>drag:drag</code> event from the thumb</dd>
 </dl></span>
 																		</dd>
 
@@ -2951,7 +3009,7 @@ following extra properties:
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "SliderBase.html#method__afterAlign", "access": "protected", "host": "SliderBase", "type": "method", "name": "_afterAlign"}, {"url": "SliderBase.html#method__afterDisabledChange", "access": "protected", "host": "SliderBase", "type": "method", "name": "_afterDisabledChange"}, {"url": "SliderBase.html#method__afterLengthChange", "access": "protected", "host": "SliderBase", "type": "method", "name": "_afterLengthChange"}, {"url": "SliderBase.html#property_axis", "access": "protected", "host": "SliderBase", "type": "property", "name": "axis"}, {"url": "SliderBase.html#config_axis", "access": "", "host": "SliderBase", "type": "config", "name": "axis"}, {"url": "SliderBase.html#event_axisChange", "access": "", "host": "SliderBase", "type": "event", "name": "axisChange"}, {"url": "ClickableRail.html#method__bindClickableRail", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_bindClickableRail"}, {"url": "SliderBase.html#method__bindThumbDD", "access": "protected", "host": "SliderBase", "type": "method", "name": "_bindThumbDD"}, {"url": "SliderBase.html#method_bindUI", "access": "protected", "host": "SliderBase", "type": "method", "name": "bindUI"}, {"url": "SliderBase.html#method__bindValueLogic", "access": "protected", "host": "SliderBase", "type": "method", "name": "_bindValueLogic"}, {"url": "SliderBase.html#property_BOUNDING_TEMPLATE", "access": "", "host": "SliderBase", "type": "property", "name": "BOUNDING_TEMPLATE"}, {"url": "ClickableRail.html#config_clickableRail", "access": "", "host": "ClickableRail", "type": "config", "name": "clickableRail"}, {"url": "ClickableRail.html#event_clickableRailChange", "access": "", "host": "ClickableRail", "type": "event", "name": "clickableRailChange"}, {"url": "SliderBase.html#property_CONTENT_TEMPLATE", "access": "", "host": "SliderBase", "type": "property", "name": "CONTENT_TEMPLATE"}, {"url": "SliderBase.html#property__dd", "access": "protected", "host": "SliderBase", "type": "property", "name": "_dd"}, {"url": "ClickableRail.html#method__defRailMouseDownFn", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_defRailMouseDownFn"}, {"url": "ClickableRail.html#method__getThumbDestination", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_getThumbDestination"}, {"url": "ClickableRail.html#method__initClickableRail", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_initClickableRail"}, {"url": "SliderBase.html#method_initializer", "access": "protected", "host": "SliderBase", "type": "method", "name": "initializer"}, {"url": "SliderBase.html#method__initThumbUrl", "access": "protected", "host": "SliderBase", "type": "method", "name": "_initThumbUrl"}, {"url": "SliderBase.html#property__key", "access": "protected", "host": "SliderBase", "type": "property", "name": "_key"}, {"url": "SliderBase.html#config_length", "access": "", "host": "SliderBase", "type": "config", "name": "length"}, {"url": "SliderBase.html#event_lengthChange", "access": "", "host": "SliderBase", "type": "event", "name": "lengthChange"}, {"url": "SliderBase.html#method__onDragEnd", "access": "protected", "host": "SliderBase", "type": "method", "name": "_onDragEnd"}, {"url": "SliderBase.html#method__onDragStart", "access": "protected", "host": "SliderBase", "type": "method", "name": "_onDragStart"}, {"url": "ClickableRail.html#method__onRailMouseDown", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_onRailMouseDown"}, {"url": "SliderBase.html#property_rail", "access": "", "host": "SliderBase", "type": "property", "name": "rail"}, {"url": "ClickableRail.html#event_railMouseDown", "access": "", "host": "ClickableRail", "type": "event", "name": "railMouseDown"}, {"url": "SliderBase.html#property_RAIL_TEMPLATE", "access": "", "host": "SliderBase", "type": "property", "name": "RAIL_TEMPLATE"}, {"url": "SliderBase.html#method_renderRail", "access": "", "host": "SliderBase", "type": "method", "name": "renderRail"}, {"url": "SliderBase.html#method_renderThumb", "access": "", "host": "SliderBase", "type": "method", "name": "renderThumb"}, {"url": "SliderBase.html#method_renderUI", "access": "protected", "host": "SliderBase", "type": "method", "name": "renderUI"}, {"url": "ClickableRail.html#method__resolveThumb", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_resolveThumb"}, {"url": "SliderBase.html#method__setAxis", "access": "protected", "host": "SliderBase", "type": "method", "name": "_setAxis"}, {"url": "SliderBase.html#method__setLength", "access": "protected", "host": "SliderBase", "type": "method", "name": "_setLength"}, {"url": "SliderBase.html#property_SliderBase.ATTRS", "access": "protected", "host": "SliderBase", "type": "property", "name": "SliderBase.ATTRS"}, {"url": "SliderBase.html#property_SliderBase.NAME", "access": "protected", "host": "SliderBase", "type": "property", "name": "SliderBase.NAME"}, {"url": "SliderBase.html#event_slideStart", "access": "", "host": "SliderBase", "type": "event", "name": "slideStart"}, {"url": "SliderBase.html#method__syncThumbPosition", "access": "protected", "host": "SliderBase", "type": "method", "name": "_syncThumbPosition"}, {"url": "SliderBase.html#method_syncUI", "access": "", "host": "SliderBase", "type": "method", "name": "syncUI"}, {"url": "SliderBase.html#property_thumb", "access": "", "host": "SliderBase", "type": "property", "name": "thumb"}, {"url": "SliderBase.html#event_thumbMove", "access": "", "host": "SliderBase", "type": "event", "name": "thumbMove"}, {"url": "SliderBase.html#property_THUMB_TEMPLATE", "access": "", "host": "SliderBase", "type": "property", "name": "THUMB_TEMPLATE"}, {"url": "SliderBase.html#config_thumbUrl", "access": "", "host": "SliderBase", "type": "config", "name": "thumbUrl"}, {"url": "SliderBase.html#event_thumbUrlChange", "access": "", "host": "SliderBase", "type": "event", "name": "thumbUrlChange"}, {"url": "SliderBase.html#method__uiSetRailLength", "access": "protected", "host": "SliderBase", "type": "method", "name": "_uiSetRailLength"}, {"url": "ClickableRail.html#method__unbindClickableRail", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_unbindClickableRail"}];
+    var ALL_YUI_PROPS = [{"url": "SliderBase.html#method__afterDisabledChange", "access": "protected", "host": "SliderBase", "type": "method", "name": "_afterDisabledChange"}, {"url": "SliderBase.html#method__afterDrag", "access": "protected", "host": "SliderBase", "type": "method", "name": "_afterDrag"}, {"url": "SliderBase.html#method__afterLengthChange", "access": "protected", "host": "SliderBase", "type": "method", "name": "_afterLengthChange"}, {"url": "SliderBase.html#property_axis", "access": "protected", "host": "SliderBase", "type": "property", "name": "axis"}, {"url": "SliderBase.html#config_axis", "access": "", "host": "SliderBase", "type": "config", "name": "axis"}, {"url": "SliderBase.html#event_axisChange", "access": "", "host": "SliderBase", "type": "event", "name": "axisChange"}, {"url": "ClickableRail.html#method__bindClickableRail", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_bindClickableRail"}, {"url": "SliderBase.html#method__bindThumbDD", "access": "protected", "host": "SliderBase", "type": "method", "name": "_bindThumbDD"}, {"url": "SliderBase.html#method_bindUI", "access": "protected", "host": "SliderBase", "type": "method", "name": "bindUI"}, {"url": "SliderBase.html#method__bindValueLogic", "access": "protected", "host": "SliderBase", "type": "method", "name": "_bindValueLogic"}, {"url": "SliderBase.html#property_BOUNDING_TEMPLATE", "access": "", "host": "SliderBase", "type": "property", "name": "BOUNDING_TEMPLATE"}, {"url": "ClickableRail.html#config_clickableRail", "access": "", "host": "ClickableRail", "type": "config", "name": "clickableRail"}, {"url": "ClickableRail.html#event_clickableRailChange", "access": "", "host": "ClickableRail", "type": "event", "name": "clickableRailChange"}, {"url": "SliderBase.html#property_CONTENT_TEMPLATE", "access": "", "host": "SliderBase", "type": "property", "name": "CONTENT_TEMPLATE"}, {"url": "SliderBase.html#property__dd", "access": "protected", "host": "SliderBase", "type": "property", "name": "_dd"}, {"url": "ClickableRail.html#method__defRailMouseDownFn", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_defRailMouseDownFn"}, {"url": "ClickableRail.html#method__getThumbDestination", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_getThumbDestination"}, {"url": "ClickableRail.html#method__initClickableRail", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_initClickableRail"}, {"url": "SliderBase.html#method_initializer", "access": "protected", "host": "SliderBase", "type": "method", "name": "initializer"}, {"url": "SliderBase.html#method__initThumbUrl", "access": "protected", "host": "SliderBase", "type": "method", "name": "_initThumbUrl"}, {"url": "SliderBase.html#property__key", "access": "protected", "host": "SliderBase", "type": "property", "name": "_key"}, {"url": "SliderBase.html#config_length", "access": "", "host": "SliderBase", "type": "config", "name": "length"}, {"url": "SliderBase.html#event_lengthChange", "access": "", "host": "SliderBase", "type": "event", "name": "lengthChange"}, {"url": "SliderBase.html#method__onDragEnd", "access": "protected", "host": "SliderBase", "type": "method", "name": "_onDragEnd"}, {"url": "SliderBase.html#method__onDragStart", "access": "protected", "host": "SliderBase", "type": "method", "name": "_onDragStart"}, {"url": "ClickableRail.html#method__onRailMouseDown", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_onRailMouseDown"}, {"url": "SliderBase.html#property_rail", "access": "", "host": "SliderBase", "type": "property", "name": "rail"}, {"url": "ClickableRail.html#event_railMouseDown", "access": "", "host": "ClickableRail", "type": "event", "name": "railMouseDown"}, {"url": "SliderBase.html#property_RAIL_TEMPLATE", "access": "", "host": "SliderBase", "type": "property", "name": "RAIL_TEMPLATE"}, {"url": "SliderBase.html#method_renderRail", "access": "", "host": "SliderBase", "type": "method", "name": "renderRail"}, {"url": "SliderBase.html#method_renderThumb", "access": "", "host": "SliderBase", "type": "method", "name": "renderThumb"}, {"url": "SliderBase.html#method_renderUI", "access": "protected", "host": "SliderBase", "type": "method", "name": "renderUI"}, {"url": "ClickableRail.html#method__resolveThumb", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_resolveThumb"}, {"url": "SliderBase.html#method__setAxis", "access": "protected", "host": "SliderBase", "type": "method", "name": "_setAxis"}, {"url": "SliderBase.html#method__setLength", "access": "protected", "host": "SliderBase", "type": "method", "name": "_setLength"}, {"url": "SliderBase.html#property_SliderBase.ATTRS", "access": "protected", "host": "SliderBase", "type": "property", "name": "SliderBase.ATTRS"}, {"url": "SliderBase.html#property_SliderBase.NAME", "access": "protected", "host": "SliderBase", "type": "property", "name": "SliderBase.NAME"}, {"url": "SliderBase.html#event_slideStart", "access": "", "host": "SliderBase", "type": "event", "name": "slideStart"}, {"url": "SliderBase.html#method__syncThumbPosition", "access": "protected", "host": "SliderBase", "type": "method", "name": "_syncThumbPosition"}, {"url": "SliderBase.html#method_syncUI", "access": "", "host": "SliderBase", "type": "method", "name": "syncUI"}, {"url": "SliderBase.html#property_thumb", "access": "", "host": "SliderBase", "type": "property", "name": "thumb"}, {"url": "SliderBase.html#event_thumbMove", "access": "", "host": "SliderBase", "type": "event", "name": "thumbMove"}, {"url": "SliderBase.html#property_THUMB_TEMPLATE", "access": "", "host": "SliderBase", "type": "property", "name": "THUMB_TEMPLATE"}, {"url": "SliderBase.html#config_thumbUrl", "access": "", "host": "SliderBase", "type": "config", "name": "thumbUrl"}, {"url": "SliderBase.html#event_thumbUrlChange", "access": "", "host": "SliderBase", "type": "event", "name": "thumbUrlChange"}, {"url": "SliderBase.html#method__uiMoveThumb", "access": "protected", "host": "SliderBase", "type": "method", "name": "_uiMoveThumb"}, {"url": "SliderBase.html#method__uiSetRailLength", "access": "protected", "host": "SliderBase", "type": "method", "name": "_uiSetRailLength"}, {"url": "ClickableRail.html#method__unbindClickableRail", "access": "protected", "host": "ClickableRail", "type": "method", "name": "_unbindClickableRail"}];
 </script>
 </body>
 </html>

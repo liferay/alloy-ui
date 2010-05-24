@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-io  A.Plugin.IO   (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-io&nbsp; <span class="subtitle">1.0pr</span>
+			aui-io&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -562,16 +557,18 @@
 									<div class="aui-widget-bd aui-list-bd">
 										<ul class="content">
 				                               <li class="protected"><a href="#method__autoStart" title="_autoStart">_autoStart</a></li>
-				                               <li class="protected"><a href="#method__bindPlugins" title="_bindPlugins">_bindPlugins</a></li>
+				                               <li class="protected"><a href="#method__bindParseContent" title="_bindParseContent">_bindParseContent</a></li>
 				                               <li class="protected"><a href="#method__failureHandler" title="_failureHandler">_failureHandler</a></li>
 				                               <li class="protected"><a href="#method__getContentSetterByType" title="_getContentSetterByType">_getContentSetterByType</a></li>
 				                               <li class="protected"><a href="#method__onActiveChange" title="_onActiveChange">_onActiveChange</a></li>
+				                               <li class="protected"><a href="#method__setLoadingUI" title="_setLoadingUI">_setLoadingUI</a></li>
 				                               <li class="protected"><a href="#method__successHandler" title="_successHandler">_successHandler</a></li>
 				                               <li class="protected"><a href="#method__syncLoadingMaskUI" title="_syncLoadingMaskUI">_syncLoadingMaskUI</a></li>
 				                               <li class="protected"><a href="#method_bindUI" title="bindUI">bindUI</a></li>
 				                               <li class=""><a href="#method_hideLoading" title="hideLoading">hideLoading</a></li>
 				                               <li class=""><a href="#method_setContent" title="setContent">setContent</a></li>
 				                               <li class=""><a href="#method_showLoading" title="showLoading">showLoading</a></li>
+				                               <li class=""><a href="#method_start" title="start">start</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -1207,10 +1204,10 @@ Could be a Node, or a Widget.
 													</div>
 												</div>
 
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__bindPlugins">
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__bindParseContent">
 
 													<h4>
-														<a name="method__bindPlugins">_bindPlugins</a>
+														<a name="method__bindParseContent">_bindParseContent</a>
 													</h4>
 
 													<div class="detail">
@@ -1219,13 +1216,13 @@ Could be a Node, or a Widget.
 														
 														
 														void
-															<strong property="yui:name">_bindPlugins</strong>
+															<strong property="yui:name">_bindParseContent</strong>
 														   (
 															)
 														</code>
 
 														<div class="description" property="yui:description">
-															Bind the plugins on the <code>instance</code>.
+															Bind the ParseContent plugin on the <code>instance</code>.
 														</div>
 
 														<div class="description">
@@ -1373,6 +1370,52 @@ implementation for each <a href="A.Plugin.IO.html#config_type">type</a>.
 																		<dd rel="yui:parameter">
 																		<code><span property="yui:name">event</span>
 																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__setLoadingUI">
+
+													<h4>
+														<a name="method__setLoadingUI">_setLoadingUI</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_setLoadingUI</strong>
+														   (
+																
+																		
+																		 show
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Whether the <code>show</code> is true show the LoadingMask.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">show</span>
+																		&lt;<span property="yui:type">boolean</span>&gt;
 																		</code>
 																		<span property="yui:description"></span>
 																		</dd>
@@ -1599,6 +1642,40 @@ implementation for each <a href="A.Plugin.IO.html#config_type">type</a>.
 
 														<div class="description" property="yui:description">
 															Invoke the <a href="OverlayMask.html#method_show">OverlayMask show</a> method.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_start">
+
+													<h4>
+														<a name="method_start">start</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">start</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Overload to the <a href="IORequest.html#method_start">IORequest
+start</a> method. Check if the <code>host</code> is already rendered,
+otherwise wait to after render phase and to show the LoadingMask.
 														</div>
 
 														<div class="description">
@@ -2024,6 +2101,12 @@ implementation for each <a href="A.Plugin.IO.html#config_type">type</a>.
 
 														<div class="protected" rel="yui:method" resource="IORequest.html#method__parseURL">
 														<a href="IORequest.html#method__parseURL" property="yui:name" title="_parseURL">_parseURL</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="IORequest.html#method__setIOData">
+														<a href="IORequest.html#method__setIOData" property="yui:name" title="_setIOData">_setIOData</a><span>,</span>
 														</div>
 
 														
@@ -2642,7 +2725,7 @@ implementation for each <a href="A.Plugin.IO.html#config_type">type</a>.
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "IORequest.html#config_active", "access": "", "host": "IORequest", "type": "config", "name": "active"}, {"url": "IORequest.html#event_activeChange", "access": "", "host": "IORequest", "type": "event", "name": "activeChange"}, {"url": "A.io.html#method_A.io.request", "access": "", "host": "A.io", "type": "method", "name": "A.io.request"}, {"url": "A.Plugin.IO.html#property_A.Plugin.IO.ATTRS", "access": "", "host": "A.Plugin.IO", "type": "property", "name": "A.Plugin.IO.ATTRS"}, {"url": "A.Plugin.IO.html#property_A.Plugin.IO.NAME", "access": "", "host": "A.Plugin.IO", "type": "property", "name": "A.Plugin.IO.NAME"}, {"url": "A.Plugin.IO.html#property_A.Plugin.IO.NS", "access": "", "host": "A.Plugin.IO", "type": "property", "name": "A.Plugin.IO.NS"}, {"url": "IORequest.html#config_arguments", "access": "", "host": "IORequest", "type": "config", "name": "arguments"}, {"url": "IORequest.html#event_argumentsChange", "access": "", "host": "IORequest", "type": "event", "name": "argumentsChange"}, {"url": "IORequest.html#config_autoLoad", "access": "", "host": "IORequest", "type": "config", "name": "autoLoad"}, {"url": "IORequest.html#event_autoLoadChange", "access": "", "host": "IORequest", "type": "event", "name": "autoLoadChange"}, {"url": "IORequest.html#method__autoStart", "access": "protected", "host": "IORequest", "type": "method", "name": "_autoStart"}, {"url": "A.Plugin.IO.html#method__autoStart", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_autoStart"}, {"url": "A.Plugin.IO.html#method__bindPlugins", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_bindPlugins"}, {"url": "A.Plugin.IO.html#method_bindUI", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "bindUI"}, {"url": "IORequest.html#config_cache", "access": "", "host": "IORequest", "type": "config", "name": "cache"}, {"url": "IORequest.html#event_cacheChange", "access": "", "host": "IORequest", "type": "event", "name": "cacheChange"}, {"url": "IORequest.html#config_cfg", "access": "", "host": "IORequest", "type": "config", "name": "cfg"}, {"url": "IORequest.html#event_cfgChange", "access": "", "host": "IORequest", "type": "event", "name": "cfgChange"}, {"url": "IORequest.html#config_context", "access": "", "host": "IORequest", "type": "config", "name": "context"}, {"url": "IORequest.html#event_contextChange", "access": "", "host": "IORequest", "type": "event", "name": "contextChange"}, {"url": "IORequest.html#config_data", "access": "", "host": "IORequest", "type": "config", "name": "data"}, {"url": "IORequest.html#event_dataChange", "access": "", "host": "IORequest", "type": "event", "name": "dataChange"}, {"url": "IORequest.html#config_dataType", "access": "", "host": "IORequest", "type": "config", "name": "dataType"}, {"url": "IORequest.html#event_dataTypeChange", "access": "", "host": "IORequest", "type": "event", "name": "dataTypeChange"}, {"url": "IORequest.html#method_destructor", "access": "protected", "host": "IORequest", "type": "method", "name": "destructor"}, {"url": "IORequest.html#method__end", "access": "protected", "host": "IORequest", "type": "method", "name": "_end"}, {"url": "A.Plugin.IO.html#method__failureHandler", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_failureHandler"}, {"url": "A.Plugin.IO.html#config_failureMessage", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "failureMessage"}, {"url": "A.Plugin.IO.html#event_failureMessageChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "failureMessageChange"}, {"url": "IORequest.html#config_form", "access": "", "host": "IORequest", "type": "config", "name": "form"}, {"url": "IORequest.html#event_formChange", "access": "", "host": "IORequest", "type": "event", "name": "formChange"}, {"url": "A.Plugin.IO.html#method__getContentSetterByType", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_getContentSetterByType"}, {"url": "IORequest.html#config_headers", "access": "", "host": "IORequest", "type": "config", "name": "headers"}, {"url": "IORequest.html#event_headersChange", "access": "", "host": "IORequest", "type": "event", "name": "headersChange"}, {"url": "A.Plugin.IO.html#method_hideLoading", "access": "", "host": "A.Plugin.IO", "type": "method", "name": "hideLoading"}, {"url": "IORequest.html#method_initializer", "access": "protected", "host": "IORequest", "type": "method", "name": "initializer"}, {"url": "IORequest.html#property_IORequest.ATTRS", "access": "", "host": "IORequest", "type": "property", "name": "IORequest.ATTRS"}, {"url": "IORequest.html#property_IORequest.NAME", "access": "", "host": "IORequest", "type": "property", "name": "IORequest.NAME"}, {"url": "A.Plugin.IO.html#config_loadingMask", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "loadingMask"}, {"url": "A.Plugin.IO.html#event_loadingMaskChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "loadingMaskChange"}, {"url": "IORequest.html#config_method", "access": "", "host": "IORequest", "type": "config", "name": "method"}, {"url": "IORequest.html#event_methodChange", "access": "", "host": "IORequest", "type": "event", "name": "methodChange"}, {"url": "A.Plugin.IO.html#config_node", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "node"}, {"url": "A.Plugin.IO.html#event_nodeChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "nodeChange"}, {"url": "A.Plugin.IO.html#method__onActiveChange", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_onActiveChange"}, {"url": "A.Plugin.IO.html#config_parseContent", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "parseContent"}, {"url": "A.Plugin.IO.html#event_parseContentChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "parseContentChange"}, {"url": "IORequest.html#method__parseURL", "access": "protected", "host": "IORequest", "type": "method", "name": "_parseURL"}, {"url": "IORequest.html#config_responseData", "access": "", "host": "IORequest", "type": "config", "name": "responseData"}, {"url": "IORequest.html#event_responseDataChange", "access": "", "host": "IORequest", "type": "event", "name": "responseDataChange"}, {"url": "A.Plugin.IO.html#config_section", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "section"}, {"url": "A.Plugin.IO.html#event_sectionChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "sectionChange"}, {"url": "A.Plugin.IO.html#method_setContent", "access": "", "host": "A.Plugin.IO", "type": "method", "name": "setContent"}, {"url": "IORequest.html#method__setResponseData", "access": "protected", "host": "IORequest", "type": "method", "name": "_setResponseData"}, {"url": "A.Plugin.IO.html#method_showLoading", "access": "", "host": "A.Plugin.IO", "type": "method", "name": "showLoading"}, {"url": "A.Plugin.IO.html#config_showLoading", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "showLoading"}, {"url": "A.Plugin.IO.html#event_showLoadingChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "showLoadingChange"}, {"url": "IORequest.html#method_start", "access": "", "host": "IORequest", "type": "method", "name": "start"}, {"url": "IORequest.html#method_stop", "access": "", "host": "IORequest", "type": "method", "name": "stop"}, {"url": "IORequest.html#method__success", "access": "protected", "host": "IORequest", "type": "method", "name": "_success"}, {"url": "A.Plugin.IO.html#method__successHandler", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_successHandler"}, {"url": "IORequest.html#config_sync", "access": "", "host": "IORequest", "type": "config", "name": "sync"}, {"url": "IORequest.html#event_syncChange", "access": "", "host": "IORequest", "type": "event", "name": "syncChange"}, {"url": "A.Plugin.IO.html#method__syncLoadingMaskUI", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_syncLoadingMaskUI"}, {"url": "IORequest.html#config_timeout", "access": "", "host": "IORequest", "type": "config", "name": "timeout"}, {"url": "IORequest.html#event_timeoutChange", "access": "", "host": "IORequest", "type": "event", "name": "timeoutChange"}, {"url": "IORequest.html#config_transaction", "access": "", "host": "IORequest", "type": "config", "name": "transaction"}, {"url": "IORequest.html#event_transactionChange", "access": "", "host": "IORequest", "type": "event", "name": "transactionChange"}, {"url": "A.Plugin.IO.html#config_type", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "type"}, {"url": "A.Plugin.IO.html#event_typeChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "typeChange"}, {"url": "IORequest.html#config_uri", "access": "", "host": "IORequest", "type": "config", "name": "uri"}, {"url": "IORequest.html#event_uriChange", "access": "", "host": "IORequest", "type": "event", "name": "uriChange"}, {"url": "A.Plugin.IO.html#config_where", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "where"}, {"url": "A.Plugin.IO.html#event_whereChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "whereChange"}, {"url": "IORequest.html#config_xdr", "access": "", "host": "IORequest", "type": "config", "name": "xdr"}, {"url": "IORequest.html#event_xdrChange", "access": "", "host": "IORequest", "type": "event", "name": "xdrChange"}];
+    var ALL_YUI_PROPS = [{"url": "IORequest.html#config_active", "access": "", "host": "IORequest", "type": "config", "name": "active"}, {"url": "IORequest.html#event_activeChange", "access": "", "host": "IORequest", "type": "event", "name": "activeChange"}, {"url": "A.io.html#method_A.io.request", "access": "", "host": "A.io", "type": "method", "name": "A.io.request"}, {"url": "A.Plugin.IO.html#property_A.Plugin.IO.ATTRS", "access": "", "host": "A.Plugin.IO", "type": "property", "name": "A.Plugin.IO.ATTRS"}, {"url": "A.Plugin.IO.html#property_A.Plugin.IO.NAME", "access": "", "host": "A.Plugin.IO", "type": "property", "name": "A.Plugin.IO.NAME"}, {"url": "A.Plugin.IO.html#property_A.Plugin.IO.NS", "access": "", "host": "A.Plugin.IO", "type": "property", "name": "A.Plugin.IO.NS"}, {"url": "IORequest.html#config_arguments", "access": "", "host": "IORequest", "type": "config", "name": "arguments"}, {"url": "IORequest.html#event_argumentsChange", "access": "", "host": "IORequest", "type": "event", "name": "argumentsChange"}, {"url": "IORequest.html#config_autoLoad", "access": "", "host": "IORequest", "type": "config", "name": "autoLoad"}, {"url": "IORequest.html#event_autoLoadChange", "access": "", "host": "IORequest", "type": "event", "name": "autoLoadChange"}, {"url": "IORequest.html#method__autoStart", "access": "protected", "host": "IORequest", "type": "method", "name": "_autoStart"}, {"url": "A.Plugin.IO.html#method__autoStart", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_autoStart"}, {"url": "A.Plugin.IO.html#method__bindParseContent", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_bindParseContent"}, {"url": "A.Plugin.IO.html#method_bindUI", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "bindUI"}, {"url": "IORequest.html#config_cache", "access": "", "host": "IORequest", "type": "config", "name": "cache"}, {"url": "IORequest.html#event_cacheChange", "access": "", "host": "IORequest", "type": "event", "name": "cacheChange"}, {"url": "IORequest.html#config_cfg", "access": "", "host": "IORequest", "type": "config", "name": "cfg"}, {"url": "IORequest.html#event_cfgChange", "access": "", "host": "IORequest", "type": "event", "name": "cfgChange"}, {"url": "IORequest.html#config_context", "access": "", "host": "IORequest", "type": "config", "name": "context"}, {"url": "IORequest.html#event_contextChange", "access": "", "host": "IORequest", "type": "event", "name": "contextChange"}, {"url": "IORequest.html#config_data", "access": "", "host": "IORequest", "type": "config", "name": "data"}, {"url": "IORequest.html#event_dataChange", "access": "", "host": "IORequest", "type": "event", "name": "dataChange"}, {"url": "IORequest.html#config_dataType", "access": "", "host": "IORequest", "type": "config", "name": "dataType"}, {"url": "IORequest.html#event_dataTypeChange", "access": "", "host": "IORequest", "type": "event", "name": "dataTypeChange"}, {"url": "IORequest.html#method_destructor", "access": "protected", "host": "IORequest", "type": "method", "name": "destructor"}, {"url": "IORequest.html#method__end", "access": "protected", "host": "IORequest", "type": "method", "name": "_end"}, {"url": "A.Plugin.IO.html#method__failureHandler", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_failureHandler"}, {"url": "A.Plugin.IO.html#config_failureMessage", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "failureMessage"}, {"url": "A.Plugin.IO.html#event_failureMessageChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "failureMessageChange"}, {"url": "IORequest.html#config_form", "access": "", "host": "IORequest", "type": "config", "name": "form"}, {"url": "IORequest.html#event_formChange", "access": "", "host": "IORequest", "type": "event", "name": "formChange"}, {"url": "A.Plugin.IO.html#method__getContentSetterByType", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_getContentSetterByType"}, {"url": "IORequest.html#config_headers", "access": "", "host": "IORequest", "type": "config", "name": "headers"}, {"url": "IORequest.html#event_headersChange", "access": "", "host": "IORequest", "type": "event", "name": "headersChange"}, {"url": "A.Plugin.IO.html#method_hideLoading", "access": "", "host": "A.Plugin.IO", "type": "method", "name": "hideLoading"}, {"url": "IORequest.html#method_initializer", "access": "protected", "host": "IORequest", "type": "method", "name": "initializer"}, {"url": "IORequest.html#property_IORequest.ATTRS", "access": "", "host": "IORequest", "type": "property", "name": "IORequest.ATTRS"}, {"url": "IORequest.html#property_IORequest.NAME", "access": "", "host": "IORequest", "type": "property", "name": "IORequest.NAME"}, {"url": "A.Plugin.IO.html#config_loadingMask", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "loadingMask"}, {"url": "A.Plugin.IO.html#event_loadingMaskChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "loadingMaskChange"}, {"url": "IORequest.html#config_method", "access": "", "host": "IORequest", "type": "config", "name": "method"}, {"url": "IORequest.html#event_methodChange", "access": "", "host": "IORequest", "type": "event", "name": "methodChange"}, {"url": "A.Plugin.IO.html#config_node", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "node"}, {"url": "A.Plugin.IO.html#event_nodeChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "nodeChange"}, {"url": "A.Plugin.IO.html#method__onActiveChange", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_onActiveChange"}, {"url": "A.Plugin.IO.html#config_parseContent", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "parseContent"}, {"url": "A.Plugin.IO.html#event_parseContentChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "parseContentChange"}, {"url": "IORequest.html#method__parseURL", "access": "protected", "host": "IORequest", "type": "method", "name": "_parseURL"}, {"url": "IORequest.html#config_responseData", "access": "", "host": "IORequest", "type": "config", "name": "responseData"}, {"url": "IORequest.html#event_responseDataChange", "access": "", "host": "IORequest", "type": "event", "name": "responseDataChange"}, {"url": "A.Plugin.IO.html#config_section", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "section"}, {"url": "A.Plugin.IO.html#event_sectionChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "sectionChange"}, {"url": "A.Plugin.IO.html#method_setContent", "access": "", "host": "A.Plugin.IO", "type": "method", "name": "setContent"}, {"url": "IORequest.html#method__setIOData", "access": "protected", "host": "IORequest", "type": "method", "name": "_setIOData"}, {"url": "A.Plugin.IO.html#method__setLoadingUI", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_setLoadingUI"}, {"url": "IORequest.html#method__setResponseData", "access": "protected", "host": "IORequest", "type": "method", "name": "_setResponseData"}, {"url": "A.Plugin.IO.html#method_showLoading", "access": "", "host": "A.Plugin.IO", "type": "method", "name": "showLoading"}, {"url": "A.Plugin.IO.html#config_showLoading", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "showLoading"}, {"url": "A.Plugin.IO.html#event_showLoadingChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "showLoadingChange"}, {"url": "IORequest.html#method_start", "access": "", "host": "IORequest", "type": "method", "name": "start"}, {"url": "A.Plugin.IO.html#method_start", "access": "", "host": "A.Plugin.IO", "type": "method", "name": "start"}, {"url": "IORequest.html#method_stop", "access": "", "host": "IORequest", "type": "method", "name": "stop"}, {"url": "IORequest.html#method__success", "access": "protected", "host": "IORequest", "type": "method", "name": "_success"}, {"url": "A.Plugin.IO.html#method__successHandler", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_successHandler"}, {"url": "IORequest.html#config_sync", "access": "", "host": "IORequest", "type": "config", "name": "sync"}, {"url": "IORequest.html#event_syncChange", "access": "", "host": "IORequest", "type": "event", "name": "syncChange"}, {"url": "A.Plugin.IO.html#method__syncLoadingMaskUI", "access": "protected", "host": "A.Plugin.IO", "type": "method", "name": "_syncLoadingMaskUI"}, {"url": "IORequest.html#config_timeout", "access": "", "host": "IORequest", "type": "config", "name": "timeout"}, {"url": "IORequest.html#event_timeoutChange", "access": "", "host": "IORequest", "type": "event", "name": "timeoutChange"}, {"url": "IORequest.html#config_transaction", "access": "", "host": "IORequest", "type": "config", "name": "transaction"}, {"url": "IORequest.html#event_transactionChange", "access": "", "host": "IORequest", "type": "event", "name": "transactionChange"}, {"url": "A.Plugin.IO.html#config_type", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "type"}, {"url": "A.Plugin.IO.html#event_typeChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "typeChange"}, {"url": "IORequest.html#config_uri", "access": "", "host": "IORequest", "type": "config", "name": "uri"}, {"url": "IORequest.html#event_uriChange", "access": "", "host": "IORequest", "type": "event", "name": "uriChange"}, {"url": "A.Plugin.IO.html#config_where", "access": "", "host": "A.Plugin.IO", "type": "config", "name": "where"}, {"url": "A.Plugin.IO.html#event_whereChange", "access": "", "host": "A.Plugin.IO", "type": "event", "name": "whereChange"}, {"url": "IORequest.html#config_xdr", "access": "", "host": "IORequest", "type": "config", "name": "xdr"}, {"url": "IORequest.html#event_xdrChange", "access": "", "host": "IORequest", "type": "event", "name": "xdrChange"}];
 </script>
 </body>
 </html>

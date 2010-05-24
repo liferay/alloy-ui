@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-char-counter   aui-char-counter.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-char-counter&nbsp; <span class="subtitle">1.0pr</span>
+			aui-char-counter&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -595,223 +590,223 @@
 <span class="cm"> * @constructor</span>
 <span class="cm"> * @extends Base</span>
 <span class="cm"> */</span>
-<span class="kd">function</span> <span class="nx">CharCounter</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">CharCounter</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">CharCounter</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property provides a string to identify the class.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property CharCounter.NAME</span>
-<span class="cm">	 * @type String</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">NAME</span><span class="o">:</span> <span class="nx">CHAR_COUNTER</span><span class="p">,</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property used to define the default attribute</span>
-<span class="cm">	 * configuration for the CharCounter.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property CharCounter.ATTRS</span>
-<span class="cm">	 * @type Object</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">CharCounter</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+	<span class="p">{</span>
 		<span class="cm">/**</span>
-<span class="cm">		 * Node or Selector to display the information of the counter.</span>
+<span class="cm">		 * Static property provides a string to identify the class.</span>
 <span class="cm">		 *</span>
-<span class="cm">		 * @attribute counter</span>
-<span class="cm">		 * @default null</span>
-<span class="cm">		 * @type {Node | String}</span>
+<span class="cm">		 * @property CharCounter.NAME</span>
+<span class="cm">		 * @type String</span>
+<span class="cm">		 * @static</span>
 <span class="cm">		 */</span>
-		<span class="nx">counter</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
-			<span class="p">}</span>
-		<span class="p">},</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="nx">CHAR_COUNTER</span><span class="p">,</span>
 
 		<span class="cm">/**</span>
-<span class="cm">		 * Max number of characters the &lt;a</span>
-<span class="cm">         * href=&quot;CharCounter.html#config_input&quot;&gt;input&lt;/a&gt; can have.</span>
+<span class="cm">		 * Static property used to define the default attribute</span>
+<span class="cm">		 * configuration for the CharCounter.</span>
 <span class="cm">		 *</span>
-<span class="cm">		 * @attribute maxLength</span>
-<span class="cm">		 * @default Infinity</span>
-<span class="cm">		 * @type Number</span>
+<span class="cm">		 * @property CharCounter.ATTRS</span>
+<span class="cm">		 * @type Object</span>
+<span class="cm">		 * @static</span>
 <span class="cm">		 */</span>
-		<span class="nx">maxLength</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">lazyAdd</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setMaxLength</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Node or Selector to display the information of the counter.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute counter</span>
+<span class="cm">			 * @default null</span>
+<span class="cm">			 * @type {Node | String}</span>
+<span class="cm">			 */</span>
+			<span class="nx">counter</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+				<span class="p">}</span>
 			<span class="p">},</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">Infinity</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNumber</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Max number of characters the &lt;a</span>
+<span class="cm">	         * href=&quot;CharCounter.html#config_input&quot;&gt;input&lt;/a&gt; can have.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute maxLength</span>
+<span class="cm">			 * @default Infinity</span>
+<span class="cm">			 * @type Number</span>
+<span class="cm">			 */</span>
+			<span class="nx">maxLength</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">lazyAdd</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setMaxLength</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+				<span class="p">},</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">Infinity</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNumber</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Node or Selector for the input field. Required.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute input</span>
+<span class="cm">			 * @default null</span>
+<span class="cm">			 * @type {Node | String}</span>
+<span class="cm">			 */</span>
+			<span class="nx">input</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
 		<span class="p">},</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * Node or Selector for the input field. Required.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute input</span>
-<span class="cm">		 * @default null</span>
-<span class="cm">		 * @type {Node | String}</span>
-<span class="cm">		 */</span>
-		<span class="nx">input</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+		<span class="nx">EXTENDS</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span>
+
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Event handler for the input &lt;a</span>
+<span class="cm">		     * href=&quot;module_aui-event.html&quot;&gt;aui-event&lt;/a&gt; event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @property handler</span>
+<span class="cm">			 * @type EventHandle</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">handler</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Construction logic executed during CharCounter instantiation. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method initializer</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">();</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">checkLength</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Bind the events on the CharCounter UI. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method bindUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">INPUT</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;maxLength&#39;</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;maxLengthChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">checkLength</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// use cross browser input-handler event</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">handler</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">INPUT</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onInputChange</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Sync the CharCounter UI. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method syncUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">counter</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">COUNTER</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">counter</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">INPUT</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+
+					<span class="nx">counter</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">MAX_LENGTH</span><span class="p">)</span> <span class="o">-</span> <span class="nx">value</span><span class="p">.</span><span class="nx">length</span>
+					<span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Descructor lifecycle implementation for the CharCounter class.</span>
+<span class="cm">			 * Purges events attached to the node (and all child nodes).</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method destroy</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">handler</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">handler</span><span class="p">.</span><span class="nx">detach</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Check the current value of the &lt;a</span>
+<span class="cm">		     * href=&quot;CharCounter.html#config_input&quot;&gt;input&lt;/a&gt;, truncate the data if</span>
+<span class="cm">		     * needed, and re-sync the UI. Fired from &lt;a</span>
+<span class="cm">		     *  href=&quot;CharCounter.html#method__onInputChange&quot;&gt;_onInputChange&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method checkLength</span>
+<span class="cm">			 */</span>
+			<span class="nx">checkLength</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">INPUT</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">maxLength</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">MAX_LENGTH</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// NOTE: return</span>
+				<span class="p">}</span>
+
+				<span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">val</span><span class="p">();</span>
+				<span class="kd">var</span> <span class="nx">scrollTop</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SCROLL_TOP</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">scrollLeft</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SCROLL_LEFT</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="nx">maxLength</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">input</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span>
+						<span class="nx">value</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">maxLength</span><span class="p">)</span>
+					<span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="nx">maxLength</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;maxLength&#39;</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="nx">input</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">SCROLL_TOP</span><span class="p">,</span> <span class="nx">scrollTop</span><span class="p">);</span>
+				<span class="nx">input</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">SCROLL_LEFT</span><span class="p">,</span> <span class="nx">scrollLeft</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">syncUI</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fired on input value change.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _onInputChange</span>
+<span class="cm">			 * @param {EventFacade} event</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_onInputChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">checkLength</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Setter for &lt;a href=&quot;CharCounter.html#config_maxLength&quot;&gt;maxLength&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _setMaxLength</span>
+<span class="cm">			 * @param {Number} v Value of the new &lt;a</span>
+<span class="cm">		     * href=&quot;CharCounter.html#config_maxLenght&quot;&gt;maxLenght&lt;/a&gt;.</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 * @return {Number}</span>
+<span class="cm">			 */</span>
+			<span class="nx">_setMaxLength</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">INPUT</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">input</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">v</span> <span class="o">&lt;</span> <span class="kc">Infinity</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">input</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">MAX_LENGTH</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="k">return</span> <span class="nx">v</span><span class="p">;</span>
 			<span class="p">}</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
-<span class="p">});</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">CharCounter</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Event handler for the input &lt;a</span>
-<span class="cm">     * href=&quot;module_aui-event.html&quot;&gt;aui-event&lt;/a&gt; event.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property handler</span>
-<span class="cm">	 * @type EventHandle</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">handler</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Construction logic executed during CharCounter instantiation. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method initializer</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">();</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">checkLength</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Bind the events on the CharCounter UI. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method bindUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">INPUT</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;maxLength&#39;</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;maxLengthChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">checkLength</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// use cross browser input-handler event</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">handler</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">INPUT</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onInputChange</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Sync the CharCounter UI. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method syncUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">counter</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">COUNTER</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">counter</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">INPUT</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
-
-			<span class="nx">counter</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">MAX_LENGTH</span><span class="p">)</span> <span class="o">-</span> <span class="nx">value</span><span class="p">.</span><span class="nx">length</span>
-			<span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Descructor lifecycle implementation for the CharCounter class.</span>
-<span class="cm">	 * Purges events attached to the node (and all child nodes).</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method destroy</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">handler</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">handler</span><span class="p">.</span><span class="nx">detach</span><span class="p">();</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Check the current value of the &lt;a</span>
-<span class="cm">     * href=&quot;CharCounter.html#config_input&quot;&gt;input&lt;/a&gt;, truncate the data if</span>
-<span class="cm">     * needed, and re-sync the UI. Fired from &lt;a</span>
-<span class="cm">     *  href=&quot;CharCounter.html#method__onInputChange&quot;&gt;_onInputChange&lt;/a&gt;.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method checkLength</span>
-<span class="cm">	 */</span>
-	<span class="nx">checkLength</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">INPUT</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">maxLength</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">MAX_LENGTH</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
-			<span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// NOTE: return</span>
-		<span class="p">}</span>
-
-		<span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">val</span><span class="p">();</span>
-		<span class="kd">var</span> <span class="nx">scrollTop</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SCROLL_TOP</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">scrollLeft</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SCROLL_LEFT</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="nx">maxLength</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">input</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span>
-				<span class="nx">value</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">maxLength</span><span class="p">)</span>
-			<span class="p">);</span>
-		<span class="p">}</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="nx">maxLength</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;maxLength&#39;</span><span class="p">);</span>
-		<span class="p">}</span>
-
-		<span class="nx">input</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">SCROLL_TOP</span><span class="p">,</span> <span class="nx">scrollTop</span><span class="p">);</span>
-		<span class="nx">input</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">SCROLL_LEFT</span><span class="p">,</span> <span class="nx">scrollLeft</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">syncUI</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fired on input value change.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _onInputChange</span>
-<span class="cm">	 * @param {EventFacade} event</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_onInputChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">checkLength</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Setter for &lt;a href=&quot;CharCounter.html#config_maxLength&quot;&gt;maxLength&lt;/a&gt;.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _setMaxLength</span>
-<span class="cm">	 * @param {Number} v Value of the new &lt;a</span>
-<span class="cm">     * href=&quot;CharCounter.html#config_maxLenght&quot;&gt;maxLenght&lt;/a&gt;.</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 * @return {Number}</span>
-<span class="cm">	 */</span>
-	<span class="nx">_setMaxLength</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">INPUT</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">input</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">v</span> <span class="o">&lt;</span> <span class="kc">Infinity</span><span class="p">))</span> <span class="p">{</span>
-			<span class="nx">input</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">MAX_LENGTH</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
-		<span class="p">}</span>
-
-		<span class="k">return</span> <span class="nx">v</span><span class="p">;</span>
-	<span class="p">}</span>
-<span class="p">});</span>
+<span class="p">);</span>
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">CharCounter</span> <span class="o">=</span> <span class="nx">CharCounter</span><span class="p">;</span>
 

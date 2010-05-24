@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-rating   aui-rating-debug.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-rating&nbsp; <span class="subtitle">1.0pr</span>
+			aui-rating&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -639,726 +634,725 @@
 <span class="cm"> * @constructor</span>
 <span class="cm"> * @extends Component</span>
 <span class="cm"> */</span>
-<span class="kd">function</span> <span class="nx">Rating</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">Rating</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Rating</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property provides a string to identify the class.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property Rating.NAME</span>
-<span class="cm">	 * @type String</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">NAME</span><span class="o">:</span> <span class="s1">&#39;rating&#39;</span><span class="p">,</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property used to define the default attribute</span>
-<span class="cm">	 * configuration for the Rating.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property Rating.ATTRS</span>
-<span class="cm">	 * @type Object</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">Rating</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+	<span class="p">{</span>
 		<span class="cm">/**</span>
-<span class="cm">		 * Whether the Rating is disabled or not. Disabled Ratings don&#39;t allow</span>
-<span class="cm">         * hover or click, just display selected stars.</span>
+<span class="cm">		 * Static property provides a string to identify the class.</span>
 <span class="cm">		 *</span>
-<span class="cm">		 * @attribute disabled</span>
-<span class="cm">		 * @default false</span>
-<span class="cm">		 * @type boolean</span>
-<span class="cm">		 */</span>
-		<span class="nx">disabled</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * If &lt;code&gt;true&lt;/code&gt; could be reseted (i.e., have no values</span>
-<span class="cm">         * selected).</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute canReset</span>
-<span class="cm">		 * @default true</span>
-<span class="cm">		 * @type boolean</span>
-<span class="cm">		 */</span>
-		<span class="nx">canReset</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * The number of selected starts when the Rating render.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute defaultSelected</span>
-<span class="cm">		 * @default 0</span>
-<span class="cm">		 * @writeOnce</span>
-<span class="cm">		 * @type Number</span>
-<span class="cm">		 */</span>
-		<span class="nx">defaultSelected</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-			<span class="nx">writeOnce</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNumber</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * &lt;a href=&quot;NodeList.html&quot;&gt;NodeList&lt;/a&gt; of elements used on the</span>
-<span class="cm">         * Rating. Each element is one Star.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute elements</span>
-<span class="cm">		 * @writeOnce</span>
-<span class="cm">		 * @readOnly</span>
-<span class="cm">		 * @type NodeList</span>
-<span class="cm">		 */</span>
-		<span class="nx">elements</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">writeOnce</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-			<span class="nx">readOnly</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNodeList</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Hidden input to handle the selected value. This hidden input</span>
-<span class="cm">         * replace the radio elements and keep the same name.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute hiddenInput</span>
-<span class="cm">		 * @type Node</span>
-<span class="cm">		 */</span>
-		<span class="nx">hiddenInput</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNode</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Reference for the element which will contain the</span>
-<span class="cm">         * &lt;a href=&quot;Rating.html#config_label&quot;&gt;label&lt;/a&gt;.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute labelElement</span>
-<span class="cm">		 * @type Node</span>
-<span class="cm">		 */</span>
-		<span class="nx">labelElement</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNode</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Name of the &lt;a</span>
-<span class="cm">         * href=&quot;Rating.html#config_hiddenInput&quot;&gt;hiddenInput&lt;/a&gt; element. If</span>
-<span class="cm">         * not specified will use the name of the replaced radio.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute inputName</span>
-<span class="cm">		 * @default &#39;&#39;</span>
+<span class="cm">		 * @property Rating.NAME</span>
 <span class="cm">		 * @type String</span>
+<span class="cm">		 * @static</span>
 <span class="cm">		 */</span>
-		<span class="nx">inputName</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="nx">BLANK</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isString</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="s1">&#39;rating&#39;</span><span class="p">,</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Static property used to define the default attribute</span>
+<span class="cm">		 * configuration for the Rating.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property Rating.ATTRS</span>
+<span class="cm">		 * @type Object</span>
+<span class="cm">		 * @static</span>
+<span class="cm">		 */</span>
+		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Whether the Rating is disabled or not. Disabled Ratings don&#39;t allow</span>
+<span class="cm">	         * hover or click, just display selected stars.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute disabled</span>
+<span class="cm">			 * @default false</span>
+<span class="cm">			 * @type boolean</span>
+<span class="cm">			 */</span>
+			<span class="nx">disabled</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * If &lt;code&gt;true&lt;/code&gt; could be reseted (i.e., have no values</span>
+<span class="cm">	         * selected).</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute canReset</span>
+<span class="cm">			 * @default true</span>
+<span class="cm">			 * @type boolean</span>
+<span class="cm">			 */</span>
+			<span class="nx">canReset</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * The number of selected starts when the Rating render.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute defaultSelected</span>
+<span class="cm">			 * @default 0</span>
+<span class="cm">			 * @writeOnce</span>
+<span class="cm">			 * @type Number</span>
+<span class="cm">			 */</span>
+			<span class="nx">defaultSelected</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+				<span class="nx">writeOnce</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNumber</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * &lt;a href=&quot;NodeList.html&quot;&gt;NodeList&lt;/a&gt; of elements used on the</span>
+<span class="cm">	         * Rating. Each element is one Star.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute elements</span>
+<span class="cm">			 * @writeOnce</span>
+<span class="cm">			 * @readOnly</span>
+<span class="cm">			 * @type NodeList</span>
+<span class="cm">			 */</span>
+			<span class="nx">elements</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">writeOnce</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+				<span class="nx">readOnly</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNodeList</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Hidden input to handle the selected value. This hidden input</span>
+<span class="cm">	         * replace the radio elements and keep the same name.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute hiddenInput</span>
+<span class="cm">			 * @type Node</span>
+<span class="cm">			 */</span>
+			<span class="nx">hiddenInput</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNode</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Reference for the element which will contain the</span>
+<span class="cm">	         * &lt;a href=&quot;Rating.html#config_label&quot;&gt;label&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute labelElement</span>
+<span class="cm">			 * @type Node</span>
+<span class="cm">			 */</span>
+			<span class="nx">labelElement</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNode</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Name of the &lt;a</span>
+<span class="cm">	         * href=&quot;Rating.html#config_hiddenInput&quot;&gt;hiddenInput&lt;/a&gt; element. If</span>
+<span class="cm">	         * not specified will use the name of the replaced radio.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute inputName</span>
+<span class="cm">			 * @default &#39;&#39;</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
+			<span class="nx">inputName</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="nx">BLANK</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isString</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Label to be displayed with the Rating elements.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute label</span>
+<span class="cm">			 * @default &#39;&#39;</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
+			<span class="nx">label</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="nx">BLANK</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isString</span>
+			<span class="p">},</span>
+
+			<span class="nx">render</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Stores the index of the selected element.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute selectedIndex</span>
+<span class="cm">			 * @default -1</span>
+<span class="cm">			 * @type Number</span>
+<span class="cm">			 */</span>
+			<span class="nx">selectedIndex</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNumber</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * If &lt;code&gt;true&lt;/code&gt; will extract the value of the</span>
+<span class="cm">	         * &lt;code&gt;title&lt;/code&gt; attribute on the radio, and use it on the</span>
+<span class="cm">	         * generated Rating elements.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute showTitle</span>
+<span class="cm">			 * @default true</span>
+<span class="cm">			 * @type boolean</span>
+<span class="cm">			 */</span>
+			<span class="nx">showTitle</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Number of Rating elements to be displayed.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute size</span>
+<span class="cm">			 * @default 5</span>
+<span class="cm">			 * @type Number</span>
+<span class="cm">			 */</span>
+			<span class="nx">size</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">isNumber</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">v</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * If set, will be used when there is no DOM &lt;code&gt;title&lt;/code&gt; on the</span>
+<span class="cm">	         * radio elements.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute title</span>
+<span class="cm">			 * @default null</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
+			<span class="nx">title</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Stores the value of the current selected Rating element.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute value</span>
+<span class="cm">			 * @default null</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
 		<span class="p">},</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * Label to be displayed with the Rating elements.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute label</span>
-<span class="cm">		 * @default &#39;&#39;</span>
-<span class="cm">		 * @type String</span>
-<span class="cm">		 */</span>
-		<span class="nx">label</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="nx">BLANK</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isString</span>
-		<span class="p">},</span>
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Construction logic executed during Rating instantiation. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method initializer</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-		<span class="nx">render</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span>
-		<span class="p">},</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">inputElementsData</span> <span class="o">=</span> <span class="p">{};</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * Stores the index of the selected element.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute selectedIndex</span>
-<span class="cm">		 * @default -1</span>
-<span class="cm">		 * @type Number</span>
-<span class="cm">		 */</span>
-		<span class="nx">selectedIndex</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNumber</span>
-		<span class="p">},</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;labelChange&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterSetLabel</span><span class="p">);</span>
+			<span class="p">},</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * If &lt;code&gt;true&lt;/code&gt; will extract the value of the</span>
-<span class="cm">         * &lt;code&gt;title&lt;/code&gt; attribute on the radio, and use it on the</span>
-<span class="cm">         * generated Rating elements.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute showTitle</span>
-<span class="cm">		 * @default true</span>
-<span class="cm">		 * @type boolean</span>
-<span class="cm">		 */</span>
-		<span class="nx">showTitle</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
-		<span class="p">},</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Create the DOM structure for the Rating. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method renderUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * Number of Rating elements to be displayed.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute size</span>
-<span class="cm">		 * @default 5</span>
-<span class="cm">		 * @type Number</span>
-<span class="cm">		 */</span>
-		<span class="nx">size</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="nx">isNumber</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">v</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span>
-			<span class="p">}</span>
-		<span class="p">},</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_parseInputElements</span><span class="p">();</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderElements</span><span class="p">();</span>
+			<span class="p">},</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * If set, will be used when there is no DOM &lt;code&gt;title&lt;/code&gt; on the</span>
-<span class="cm">         * radio elements.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute title</span>
-<span class="cm">		 * @default null</span>
-<span class="cm">		 * @type String</span>
-<span class="cm">		 */</span>
-		<span class="nx">title</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Bind the events on the Rating UI. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method bindUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-		<span class="cm">/**</span>
-<span class="cm">		 * Stores the value of the current selected Rating element.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @attribute value</span>
-<span class="cm">		 * @default null</span>
-<span class="cm">		 * @type String</span>
-<span class="cm">		 */</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
-	<span class="p">}</span>
-<span class="p">});</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_createEvents</span><span class="p">();</span>
 
-<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">Rating</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Construction logic executed during Rating instantiation. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method initializer</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_handleClickEvent</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_handleMouseOverEvent</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseout&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_handleMouseOutEvent</span><span class="p">);</span>
+			<span class="p">},</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">inputElementsData</span> <span class="o">=</span> <span class="p">{};</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Sync the Rating UI. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method syncUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;labelChange&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterSetLabel</span><span class="p">);</span>
-	<span class="p">},</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncElements</span><span class="p">();</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncLabelUI</span><span class="p">();</span>
+			<span class="p">},</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Create the DOM structure for the Rating. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method renderUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Descructor lifecycle implementation for the Rating class.</span>
+<span class="cm">			 * Purges events attached to the node (and all child nodes).</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method destructor</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">destructor</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span>	<span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_parseInputElements</span><span class="p">();</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderElements</span><span class="p">();</span>
-	<span class="p">},</span>
+				<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">detachAll</span><span class="p">();</span>
+				<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+			<span class="p">},</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Bind the events on the Rating UI. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method bindUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Clear all selected starts to the default state.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method clearSelection</span>
+<span class="cm">			 */</span>
+			<span class="nx">clearSelection</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_createEvents</span><span class="p">();</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ELEMENTS</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">node</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_RATING_EL_ON</span><span class="p">);</span>
+					<span class="nx">node</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_RATING_EL_HOVER</span><span class="p">);</span>
+				<span class="p">});</span>
+			<span class="p">},</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_handleClickEvent</span><span class="p">);</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_handleMouseOverEvent</span><span class="p">);</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseout&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_handleMouseOutEvent</span><span class="p">);</span>
-	<span class="p">},</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Selects the &lt;code&gt;index&lt;/code&gt; Rating element.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method select</span>
+<span class="cm">			 * @param {Number} index Index to be selected</span>
+<span class="cm">			 */</span>
+			<span class="nx">select</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">oldIndex</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SELECTED_INDEX</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">canReset</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CAN_RESET</span><span class="p">);</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Sync the Rating UI. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method syncUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncElements</span><span class="p">();</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncLabelUI</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Descructor lifecycle implementation for the Rating class.</span>
-<span class="cm">	 * Purges events attached to the node (and all child nodes).</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method destructor</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">destructor</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span>	<span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
-
-		<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">detachAll</span><span class="p">();</span>
-		<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Clear all selected starts to the default state.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method clearSelection</span>
-<span class="cm">	 */</span>
-	<span class="nx">clearSelection</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ELEMENTS</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">node</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_RATING_EL_ON</span><span class="p">);</span>
-			<span class="nx">node</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_RATING_EL_HOVER</span><span class="p">);</span>
-		<span class="p">});</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Selects the &lt;code&gt;index&lt;/code&gt; Rating element.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method select</span>
-<span class="cm">	 * @param {Number} index Index to be selected</span>
-<span class="cm">	 */</span>
-	<span class="nx">select</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">oldIndex</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SELECTED_INDEX</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">canReset</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CAN_RESET</span><span class="p">);</span>
-
-		<span class="c1">// clear selection when the selected element is clicked</span>
-		<span class="k">if</span> <span class="p">(</span><span class="nx">canReset</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">oldIndex</span> <span class="o">==</span> <span class="nx">index</span><span class="p">))</span> <span class="p">{</span>
-			<span class="nx">index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-		<span class="p">}</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">SELECTED_INDEX</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
-
-		<span class="kd">var</span> <span class="nx">selectedIndex</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SELECTED_INDEX</span><span class="p">);</span>
-		<span class="kd">var</span>	<span class="nx">data</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getInputData</span><span class="p">(</span><span class="nx">selectedIndex</span><span class="p">);</span>
-
-		<span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="p">(</span><span class="nx">TITLE</span> <span class="k">in</span> <span class="nx">data</span><span class="p">)</span> <span class="o">?</span> <span class="nx">data</span><span class="p">.</span><span class="nx">title</span> <span class="o">:</span> <span class="nx">BLANK</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="p">(</span><span class="nx">VALUE</span> <span class="k">in</span> <span class="nx">data</span><span class="p">)</span> <span class="o">?</span> <span class="nx">data</span><span class="p">.</span><span class="nx">value</span> <span class="o">:</span> <span class="nx">selectedIndex</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">fillTo</span><span class="p">(</span><span class="nx">selectedIndex</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">,</span> <span class="nx">title</span><span class="p">);</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">VALUE</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
-
-		<span class="kd">var</span> <span class="nx">hiddenInput</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;hiddenInput&#39;</span><span class="p">);</span>
-
-		<span class="nx">hiddenInput</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">,</span> <span class="nx">title</span><span class="p">);</span>
-		<span class="nx">hiddenInput</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="nx">VALUE</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Add the &lt;code&gt;className&lt;/code&gt; on the the &lt;code&gt;index&lt;/code&gt; element</span>
-<span class="cm">     * and all the previous Rating elements.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method fillTo</span>
-<span class="cm">	 * @param {Number} index Index to be selected</span>
-<span class="cm">	 * @param {String} className Class name to be applied when fill the Rating elements</span>
-<span class="cm">	 */</span>
-	<span class="nx">fillTo</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">className</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">clearSelection</span><span class="p">();</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ELEMENTS</span><span class="p">).</span><span class="nx">some</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">node</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">className</span> <span class="o">||</span> <span class="nx">CSS_RATING_EL_ON</span><span class="p">);</span>
-
-				<span class="c1">// stop loop when return true</span>
-				<span class="k">return</span> <span class="p">(</span><span class="nx">i</span> <span class="o">==</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">index</span><span class="p">));</span>
-			<span class="p">});</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Finds the index of the &lt;code&gt;elem&lt;/code&gt;.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method indexOf</span>
-<span class="cm">	 * @param {Node} elem Rating element</span>
-<span class="cm">	 * @return {Number}</span>
-<span class="cm">	 */</span>
-	<span class="nx">indexOf</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">elem</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ELEMENTS</span><span class="p">).</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">elem</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Check if the Rating element can fire the custom events. Disabled</span>
-<span class="cm">     * elements won&#39;t fire nothing.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _canFireCustomEvent</span>
-<span class="cm">	 * @param {EventFacade} event</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 * @return {Boolean}</span>
-<span class="cm">	 */</span>
-	<span class="nx">_canFireCustomEvent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">domTarget</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">domEvent</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
-
-		<span class="c1">// checks if the widget is not disabled and if the dom event is firing with a item as target</span>
-		<span class="c1">// do not fire custom events for other elements into the boundingBox</span>
-		<span class="k">return</span> <span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DISABLED</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">domTarget</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">CSS_RATING_EL</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Create the custom events.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _createEvents</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_createEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="c1">// create publish function for kweight optimization</span>
-		<span class="kd">var</span> <span class="nx">publish</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="p">{</span>
-	            <span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">fn</span><span class="p">,</span>
-	            <span class="nx">queuable</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-	            <span class="nx">emitFacade</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-	            <span class="nx">bubbles</span><span class="o">:</span> <span class="kc">true</span>
-	        <span class="p">});</span>
-		<span class="p">};</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Handles the itemClick event.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @event itemClick</span>
-<span class="cm">		 * @preventable _defRatingItemClickFn</span>
-<span class="cm">		 * @param {Event.Facade} event The itemClick event.</span>
-<span class="cm">		 * @type {Event.Custom}</span>
-<span class="cm">		 */</span>
-		<span class="nx">publish</span><span class="p">(</span>
-			<span class="nx">EV_RATING_ITEM_CLICK</span><span class="p">,</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_defRatingItemClickFn</span>
-		<span class="p">);</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Handles the itemSelect event.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @event itemSelect</span>
-<span class="cm">		 * @preventable _defRatingItemSelectFn</span>
-<span class="cm">		 * @param {Event.Facade} event The itemSelect event.</span>
-<span class="cm">		 * @type {Event.Custom}</span>
-<span class="cm">		 */</span>
-		<span class="nx">publish</span><span class="p">(</span>
-			<span class="nx">EV_RATING_ITEM_SELECT</span><span class="p">,</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_defRatingItemSelectFn</span>
-		<span class="p">);</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Handles the itemOver event.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @event itemSelect</span>
-<span class="cm">		 * @preventable _defRatingItemOverFn</span>
-<span class="cm">		 * @param {Event.Facade} event The itemOver event.</span>
-<span class="cm">		 * @type {Event.Custom}</span>
-<span class="cm">		 */</span>
-		<span class="nx">publish</span><span class="p">(</span>
-			<span class="nx">EV_RATING_ITEM_OVER</span><span class="p">,</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_defRatingItemOverFn</span>
-		<span class="p">);</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Handles the itemOut event.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @event itemOut</span>
-<span class="cm">		 * @preventable _defRatingItemOutFn</span>
-<span class="cm">		 * @param {Event.Facade} event The itemOut event.</span>
-<span class="cm">		 * @type {Event.Custom}</span>
-<span class="cm">		 */</span>
-		<span class="nx">publish</span><span class="p">(</span>
-			<span class="nx">EV_RATING_ITEM_OUT</span><span class="p">,</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_defRatingItemOutFn</span>
-		<span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires the itemClick event.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _defRatingItemClickFn</span>
-<span class="cm">	 * @param {EventFacade} event itemClick event facade</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_defRatingItemClickFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">domEvent</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">domEvent</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">EV_RATING_ITEM_SELECT</span><span class="p">,</span> <span class="p">{</span>
-			<span class="nx">delegateEvent</span><span class="o">:</span> <span class="nx">event</span><span class="p">,</span>
-			<span class="nx">domEvent</span><span class="o">:</span> <span class="nx">domEvent</span><span class="p">,</span>
-			<span class="nx">ratingItem</span><span class="o">:</span> <span class="nx">domEvent</span><span class="p">.</span><span class="nx">target</span>
-		<span class="p">});</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires the itemSelect event.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _defRatingItemSelectFn</span>
-<span class="cm">	 * @param {EventFacade} event itemSelect event facade</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_defRatingItemSelectFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">domTarget</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">domEvent</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">domTarget</span><span class="p">)</span>
-		<span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires the itemOut event.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _defRatingItemOutFn</span>
-<span class="cm">	 * @param {EventFacade} event itemOut event facade</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_defRatingItemOutFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">fillTo</span><span class="p">(</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SELECTED_INDEX</span><span class="p">)</span>
-		<span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires the itemOver event.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _defRatingItemOverFn</span>
-<span class="cm">	 * @param {EventFacade} event itemOver event facade</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_defRatingItemOverFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">domEvent</span><span class="p">.</span><span class="nx">target</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">fillTo</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">CSS_RATING_EL_HOVER</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Parse the HTML radio elements from the markup to be Rating elements.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _parseInputElements</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_parseInputElements</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">inputs</span> <span class="o">=</span> <span class="nx">boundingBox</span><span class="p">.</span><span class="nx">queryAll</span><span class="p">(</span><span class="nx">INPUT</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">size</span> <span class="o">=</span> <span class="nx">inputs</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span>
-		<span class="kd">var</span> <span class="nx">inputName</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">INPUT_NAME</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">hiddenInput</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;&lt;input type=&quot;hidden&quot; /&gt;&#39;</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">inputName</span> <span class="o">=</span> <span class="nx">inputName</span> <span class="o">||</span> <span class="nx">inputs</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">getAttribute</span><span class="p">(</span><span class="nx">NAME</span><span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">SIZE</span><span class="p">,</span> <span class="nx">size</span><span class="p">);</span>
-
-			<span class="kd">var</span> <span class="nx">labels</span> <span class="o">=</span> <span class="nx">boundingBox</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">);</span>
-
-			<span class="nx">inputs</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ID</span><span class="p">);</span>
-				<span class="kd">var</span> <span class="nx">label</span> <span class="o">=</span> <span class="nx">EMPTY_STR</span><span class="p">;</span>
-
-				<span class="k">if</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-					<span class="c1">// for a11y parse the &lt;label&gt; elments information</span>
-					<span class="c1">// checking if the node has a &lt;label&gt;</span>
-					<span class="kd">var</span> <span class="nx">labelEl</span> <span class="o">=</span> <span class="nx">labels</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="s1">&#39;[for=&quot;&#39;</span><span class="o">+</span><span class="nx">id</span><span class="o">+</span><span class="s1">&#39;&quot;]&#39;</span><span class="p">);</span>
-
-					<span class="k">if</span> <span class="p">(</span><span class="nx">labelEl</span><span class="p">.</span><span class="nx">size</span><span class="p">())</span> <span class="p">{</span>
-						<span class="c1">// if there is, extract the content of the label to use as content of the anchors...</span>
-						<span class="nx">label</span> <span class="o">=</span> <span class="nx">labelEl</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">html</span><span class="p">();</span>
-					<span class="p">}</span>
+				<span class="c1">// clear selection when the selected element is clicked</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">canReset</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">oldIndex</span> <span class="o">==</span> <span class="nx">index</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 				<span class="p">}</span>
 
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">inputElementsData</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-					<span class="nx">content</span><span class="o">:</span> <span class="nx">label</span><span class="p">,</span>
-					<span class="nx">value</span><span class="o">:</span> <span class="nx">node</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="nx">VALUE</span><span class="p">)</span> <span class="o">||</span> <span class="nx">index</span><span class="p">,</span>
-					<span class="nx">title</span><span class="o">:</span> <span class="nx">node</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">)</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">SELECTED_INDEX</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
+
+				<span class="kd">var</span> <span class="nx">selectedIndex</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SELECTED_INDEX</span><span class="p">);</span>
+				<span class="kd">var</span>	<span class="nx">data</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getInputData</span><span class="p">(</span><span class="nx">selectedIndex</span><span class="p">);</span>
+
+				<span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="p">(</span><span class="nx">TITLE</span> <span class="k">in</span> <span class="nx">data</span><span class="p">)</span> <span class="o">?</span> <span class="nx">data</span><span class="p">.</span><span class="nx">title</span> <span class="o">:</span> <span class="nx">BLANK</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="p">(</span><span class="nx">VALUE</span> <span class="k">in</span> <span class="nx">data</span><span class="p">)</span> <span class="o">?</span> <span class="nx">data</span><span class="p">.</span><span class="nx">value</span> <span class="o">:</span> <span class="nx">selectedIndex</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">fillTo</span><span class="p">(</span><span class="nx">selectedIndex</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">,</span> <span class="nx">title</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">VALUE</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+
+				<span class="kd">var</span> <span class="nx">hiddenInput</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;hiddenInput&#39;</span><span class="p">);</span>
+
+				<span class="nx">hiddenInput</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">,</span> <span class="nx">title</span><span class="p">);</span>
+				<span class="nx">hiddenInput</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="nx">VALUE</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Add the &lt;code&gt;className&lt;/code&gt; on the the &lt;code&gt;index&lt;/code&gt; element</span>
+<span class="cm">		     * and all the previous Rating elements.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method fillTo</span>
+<span class="cm">			 * @param {Number} index Index to be selected</span>
+<span class="cm">			 * @param {String} className Class name to be applied when fill the Rating elements</span>
+<span class="cm">			 */</span>
+			<span class="nx">fillTo</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">className</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">clearSelection</span><span class="p">();</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ELEMENTS</span><span class="p">).</span><span class="nx">some</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">node</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">className</span> <span class="o">||</span> <span class="nx">CSS_RATING_EL_ON</span><span class="p">);</span>
+
+						<span class="c1">// stop loop when return true</span>
+						<span class="k">return</span> <span class="p">(</span><span class="nx">i</span> <span class="o">==</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">index</span><span class="p">));</span>
+					<span class="p">});</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Finds the index of the &lt;code&gt;elem&lt;/code&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method indexOf</span>
+<span class="cm">			 * @param {Node} elem Rating element</span>
+<span class="cm">			 * @return {Number}</span>
+<span class="cm">			 */</span>
+			<span class="nx">indexOf</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">elem</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ELEMENTS</span><span class="p">).</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">elem</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Check if the Rating element can fire the custom events. Disabled</span>
+<span class="cm">		     * elements won&#39;t fire nothing.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _canFireCustomEvent</span>
+<span class="cm">			 * @param {EventFacade} event</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 * @return {Boolean}</span>
+<span class="cm">			 */</span>
+			<span class="nx">_canFireCustomEvent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">domTarget</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">domEvent</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+
+				<span class="c1">// checks if the widget is not disabled and if the dom event is firing with a item as target</span>
+				<span class="c1">// do not fire custom events for other elements into the boundingBox</span>
+				<span class="k">return</span> <span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DISABLED</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">domTarget</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">CSS_RATING_EL</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Create the custom events.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _createEvents</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_createEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="c1">// create publish function for kweight optimization</span>
+				<span class="kd">var</span> <span class="nx">publish</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="p">{</span>
+			            <span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">fn</span><span class="p">,</span>
+			            <span class="nx">queuable</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+			            <span class="nx">emitFacade</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+			            <span class="nx">bubbles</span><span class="o">:</span> <span class="kc">true</span>
+			        <span class="p">});</span>
 				<span class="p">};</span>
-			<span class="p">});</span>
 
-			<span class="nx">labels</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
-			<span class="nx">inputs</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
-		<span class="p">}</span>
+				<span class="cm">/**</span>
+<span class="cm">				 * Handles the itemClick event.</span>
+<span class="cm">				 *</span>
+<span class="cm">				 * @event itemClick</span>
+<span class="cm">				 * @preventable _defRatingItemClickFn</span>
+<span class="cm">				 * @param {Event.Facade} event The itemClick event.</span>
+<span class="cm">				 * @type {Event.Custom}</span>
+<span class="cm">				 */</span>
+				<span class="nx">publish</span><span class="p">(</span>
+					<span class="nx">EV_RATING_ITEM_CLICK</span><span class="p">,</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">_defRatingItemClickFn</span>
+				<span class="p">);</span>
 
-		<span class="nx">hiddenInput</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="nx">inputName</span><span class="p">);</span>
+				<span class="cm">/**</span>
+<span class="cm">				 * Handles the itemSelect event.</span>
+<span class="cm">				 *</span>
+<span class="cm">				 * @event itemSelect</span>
+<span class="cm">				 * @preventable _defRatingItemSelectFn</span>
+<span class="cm">				 * @param {Event.Facade} event The itemSelect event.</span>
+<span class="cm">				 * @type {Event.Custom}</span>
+<span class="cm">				 */</span>
+				<span class="nx">publish</span><span class="p">(</span>
+					<span class="nx">EV_RATING_ITEM_SELECT</span><span class="p">,</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">_defRatingItemSelectFn</span>
+				<span class="p">);</span>
 
-		<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">hiddenInput</span><span class="p">);</span>
+				<span class="cm">/**</span>
+<span class="cm">				 * Handles the itemOver event.</span>
+<span class="cm">				 *</span>
+<span class="cm">				 * @event itemSelect</span>
+<span class="cm">				 * @preventable _defRatingItemOverFn</span>
+<span class="cm">				 * @param {Event.Facade} event The itemOver event.</span>
+<span class="cm">				 * @type {Event.Custom}</span>
+<span class="cm">				 */</span>
+				<span class="nx">publish</span><span class="p">(</span>
+					<span class="nx">EV_RATING_ITEM_OVER</span><span class="p">,</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">_defRatingItemOverFn</span>
+				<span class="p">);</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;hiddenInput&#39;</span><span class="p">,</span> <span class="nx">hiddenInput</span><span class="p">);</span>
-	<span class="p">},</span>
+				<span class="cm">/**</span>
+<span class="cm">				 * Handles the itemOut event.</span>
+<span class="cm">				 *</span>
+<span class="cm">				 * @event itemOut</span>
+<span class="cm">				 * @preventable _defRatingItemOutFn</span>
+<span class="cm">				 * @param {Event.Facade} event The itemOut event.</span>
+<span class="cm">				 * @type {Event.Custom}</span>
+<span class="cm">				 */</span>
+				<span class="nx">publish</span><span class="p">(</span>
+					<span class="nx">EV_RATING_ITEM_OUT</span><span class="p">,</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">_defRatingItemOutFn</span>
+				<span class="p">);</span>
+			<span class="p">},</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Render the Rating elements.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _renderElements</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_renderElements</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">disabled</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DISABLED</span><span class="p">);</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires the itemClick event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _defRatingItemClickFn</span>
+<span class="cm">			 * @param {EventFacade} event itemClick event facade</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_defRatingItemClickFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">domEvent</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">domEvent</span><span class="p">;</span>
 
-		<span class="kd">var</span> <span class="nx">ratingElement</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-		<span class="k">if</span> <span class="p">(</span><span class="nx">disabled</span><span class="p">){</span>
-			<span class="nx">ratingElement</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;&lt;span&gt;&lt;/span&gt;&#39;</span><span class="p">);</span>
-		<span class="p">}</span>
-		<span class="k">else</span> <span class="p">{</span>
-			<span class="nx">ratingElement</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;&lt;a href=&quot;javascript:;&quot;&gt;&lt;/a&gt;&#39;</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">EV_RATING_ITEM_SELECT</span><span class="p">,</span> <span class="p">{</span>
+					<span class="nx">delegateEvent</span><span class="o">:</span> <span class="nx">event</span><span class="p">,</span>
+					<span class="nx">domEvent</span><span class="o">:</span> <span class="nx">domEvent</span><span class="p">,</span>
+					<span class="nx">ratingItem</span><span class="o">:</span> <span class="nx">domEvent</span><span class="p">.</span><span class="nx">target</span>
+				<span class="p">});</span>
+			<span class="p">},</span>
 
-		<span class="p">}</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires the itemSelect event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _defRatingItemSelectFn</span>
+<span class="cm">			 * @param {EventFacade} event itemSelect event facade</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_defRatingItemSelectFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">domTarget</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">domEvent</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
 
-		<span class="kd">var</span> <span class="nx">labelElement</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;&lt;div&gt;&lt;/div&gt;&#39;</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">domTarget</span><span class="p">)</span>
+				<span class="p">);</span>
+			<span class="p">},</span>
 
-		<span class="nx">contentBox</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_CLEAR_FIX</span><span class="p">);</span>
-		<span class="nx">ratingElement</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_RATING_EL</span><span class="p">);</span>
-		<span class="nx">labelElement</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_RATING_LABEL_EL</span><span class="p">);</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires the itemOut event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _defRatingItemOutFn</span>
+<span class="cm">			 * @param {EventFacade} event itemOut event facade</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_defRatingItemOutFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-		<span class="nx">contentBox</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">labelElement</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">fillTo</span><span class="p">(</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SELECTED_INDEX</span><span class="p">)</span>
+				<span class="p">);</span>
+			<span class="p">},</span>
 
-		<span class="c1">// creating rating elements</span>
-		<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">size</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SIZE</span><span class="p">);</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">size</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span>	<span class="nx">data</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getInputData</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nx">ratingElement</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">();</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires the itemOver event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _defRatingItemOverFn</span>
+<span class="cm">			 * @param {EventFacade} event itemOver event facade</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_defRatingItemOverFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">domEvent</span><span class="p">.</span><span class="nx">target</span><span class="p">);</span>
 
-			<span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">content</span><span class="p">;</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">fillTo</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">CSS_RATING_EL_HOVER</span><span class="p">);</span>
+			<span class="p">},</span>
 
-			<span class="c1">// try to use the pulled title data from the dom, otherwise use the TITLE attr, in the last case use the content</span>
-			<span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">title</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">)</span> <span class="o">||</span> <span class="nx">content</span><span class="p">;</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Parse the HTML radio elements from the markup to be Rating elements.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _parseInputElements</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_parseInputElements</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">inputs</span> <span class="o">=</span> <span class="nx">boundingBox</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">INPUT</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">size</span> <span class="o">=</span> <span class="nx">inputs</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span>
+				<span class="kd">var</span> <span class="nx">inputName</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">INPUT_NAME</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">hiddenInput</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;&lt;input type=&quot;hidden&quot; /&gt;&#39;</span><span class="p">);</span>
 
-			<span class="c1">// setting the content</span>
-			<span class="k">if</span> <span class="p">(</span><span class="nx">content</span> <span class="o">||</span> <span class="nx">title</span><span class="p">)</span> <span class="p">{</span>
-				<span class="c1">// if there is no content use the title as content</span>
-				<span class="nx">element</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">content</span> <span class="o">||</span> <span class="nx">title</span><span class="p">);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">inputName</span> <span class="o">=</span> <span class="nx">inputName</span> <span class="o">||</span> <span class="nx">inputs</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">getAttribute</span><span class="p">(</span><span class="nx">NAME</span><span class="p">);</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">SIZE</span><span class="p">,</span> <span class="nx">size</span><span class="p">);</span>
+
+					<span class="kd">var</span> <span class="nx">labels</span> <span class="o">=</span> <span class="nx">boundingBox</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">);</span>
+
+					<span class="nx">inputs</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+						<span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ID</span><span class="p">);</span>
+						<span class="kd">var</span> <span class="nx">label</span> <span class="o">=</span> <span class="nx">EMPTY_STR</span><span class="p">;</span>
+
+						<span class="k">if</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+							<span class="c1">// for a11y parse the &lt;label&gt; elments information</span>
+							<span class="c1">// checking if the node has a &lt;label&gt;</span>
+							<span class="kd">var</span> <span class="nx">labelEl</span> <span class="o">=</span> <span class="nx">labels</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="s1">&#39;[for=&quot;&#39;</span><span class="o">+</span><span class="nx">id</span><span class="o">+</span><span class="s1">&#39;&quot;]&#39;</span><span class="p">);</span>
+
+							<span class="k">if</span> <span class="p">(</span><span class="nx">labelEl</span><span class="p">.</span><span class="nx">size</span><span class="p">())</span> <span class="p">{</span>
+								<span class="c1">// if there is, extract the content of the label to use as content of the anchors...</span>
+								<span class="nx">label</span> <span class="o">=</span> <span class="nx">labelEl</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">html</span><span class="p">();</span>
+							<span class="p">}</span>
+						<span class="p">}</span>
+
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">inputElementsData</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+							<span class="nx">content</span><span class="o">:</span> <span class="nx">label</span><span class="p">,</span>
+							<span class="nx">value</span><span class="o">:</span> <span class="nx">node</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="nx">VALUE</span><span class="p">)</span> <span class="o">||</span> <span class="nx">index</span><span class="p">,</span>
+							<span class="nx">title</span><span class="o">:</span> <span class="nx">node</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">)</span>
+						<span class="p">};</span>
+					<span class="p">});</span>
+
+					<span class="nx">labels</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+					<span class="nx">inputs</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+				<span class="p">}</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">inputName</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">hiddenInput</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="nx">NAME</span><span class="p">,</span> <span class="nx">inputName</span><span class="p">);</span>
+
+					<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">hiddenInput</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;hiddenInput&#39;</span><span class="p">,</span> <span class="nx">hiddenInput</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Render the Rating elements.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _renderElements</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_renderElements</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">disabled</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DISABLED</span><span class="p">);</span>
+
+				<span class="kd">var</span> <span class="nx">ratingElement</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">disabled</span><span class="p">){</span>
+					<span class="nx">ratingElement</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;&lt;span&gt;&lt;/span&gt;&#39;</span><span class="p">);</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="p">{</span>
+					<span class="nx">ratingElement</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;&lt;a href=&quot;javascript:;&quot;&gt;&lt;/a&gt;&#39;</span><span class="p">);</span>
+
+				<span class="p">}</span>
+
+				<span class="kd">var</span> <span class="nx">labelElement</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;&lt;div&gt;&lt;/div&gt;&#39;</span><span class="p">);</span>
+
+				<span class="nx">contentBox</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_CLEAR_FIX</span><span class="p">);</span>
+				<span class="nx">ratingElement</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_RATING_EL</span><span class="p">);</span>
+				<span class="nx">labelElement</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_RATING_LABEL_EL</span><span class="p">);</span>
+
+				<span class="nx">contentBox</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">labelElement</span><span class="p">);</span>
+
+				<span class="c1">// creating rating elements</span>
+				<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">size</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SIZE</span><span class="p">);</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">size</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span>	<span class="nx">data</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getInputData</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+					<span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nx">ratingElement</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">();</span>
+
+					<span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">content</span><span class="p">;</span>
+
+					<span class="c1">// try to use the pulled title data from the dom, otherwise use the TITLE attr, in the last case use the content</span>
+					<span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">title</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">)</span> <span class="o">||</span> <span class="nx">content</span><span class="p">;</span>
+
+					<span class="c1">// setting the content</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">content</span> <span class="o">||</span> <span class="nx">title</span><span class="p">)</span> <span class="p">{</span>
+						<span class="c1">// if there is no content use the title as content</span>
+						<span class="nx">element</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">content</span> <span class="o">||</span> <span class="nx">title</span><span class="p">);</span>
+					<span class="p">}</span>
+
+					<span class="c1">// setting the title</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">title</span> <span class="o">&amp;&amp;</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SHOW_TITLE</span><span class="p">))</span> <span class="p">{</span>
+						<span class="nx">element</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">,</span> <span class="nx">title</span><span class="p">);</span>
+					<span class="p">}</span>
+
+					<span class="nx">contentBox</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">LABEL_ELEMENT</span><span class="p">,</span> <span class="nx">labelElement</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">ELEMENTS</span><span class="p">,</span> <span class="nx">contentBox</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_RATING_EL</span><span class="p">));</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Sync the Rating elements.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _syncElements</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_syncElements</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">selectedIndex</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DEFAULT_SELECTED</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">SELECTED_INDEX</span><span class="p">,</span> <span class="nx">selectedIndex</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">select</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Sync the Rating label UI.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _syncLabelUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_syncLabelUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">labelText</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LABEL</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LABEL_ELEMENT</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">labelText</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Get the &lt;code&gt;index&lt;/code&gt; element input data stored on &lt;a</span>
+<span class="cm">		     * href=&quot;Rating.html#property_inputElementsData&quot;&gt;inputElementsData&lt;/a&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _getInputData</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_getInputData</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">inputElementsData</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">||</span> <span class="p">{};</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires the click event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _handleClickEvent</span>
+<span class="cm">			 * @param {EventFacade} event click event facade</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_handleClickEvent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">domTarget</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">domEvent</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_canFireCustomEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">EV_RATING_ITEM_CLICK</span><span class="p">,</span> <span class="p">{</span>
+						<span class="nx">delegateEvent</span><span class="o">:</span> <span class="nx">event</span><span class="p">,</span>
+						<span class="nx">domEvent</span><span class="o">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">domEvent</span>
+					<span class="p">});</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires the mouseOut event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _handleMouseOutEvent</span>
+<span class="cm">			 * @param {EventFacade} event mouseOut event facade</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_handleMouseOutEvent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_canFireCustomEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">EV_RATING_ITEM_OUT</span><span class="p">,</span> <span class="p">{</span>
+						<span class="nx">delegateEvent</span><span class="o">:</span> <span class="nx">event</span><span class="p">,</span>
+						<span class="nx">domEvent</span><span class="o">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">domEvent</span>
+					<span class="p">});</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires the mouseOver event.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _handleMouseOverEvent</span>
+<span class="cm">			 * @param {EventFacade} event mouseOver event facade</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_handleMouseOverEvent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_canFireCustomEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">EV_RATING_ITEM_OVER</span><span class="p">,</span> <span class="p">{</span>
+						<span class="nx">delegateEvent</span><span class="o">:</span> <span class="nx">event</span><span class="p">,</span>
+						<span class="nx">domEvent</span><span class="o">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">domEvent</span>
+					<span class="p">});</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Fires after the value of the</span>
+<span class="cm">			 * &lt;a href=&quot;Rating.html#config_label&quot;&gt;label&lt;/a&gt; attribute change.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _afterSetLabel</span>
+<span class="cm">			 * @param {EventFacade} event</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_afterSetLabel</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">_syncLabelUI</span><span class="p">();</span>
 			<span class="p">}</span>
-
-			<span class="c1">// setting the title</span>
-			<span class="k">if</span> <span class="p">(</span><span class="nx">title</span> <span class="o">&amp;&amp;</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SHOW_TITLE</span><span class="p">))</span> <span class="p">{</span>
-				<span class="nx">element</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">,</span> <span class="nx">title</span><span class="p">);</span>
-			<span class="p">}</span>
-
-			<span class="nx">contentBox</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
 		<span class="p">}</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">LABEL_ELEMENT</span><span class="p">,</span> <span class="nx">labelElement</span><span class="p">);</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">ELEMENTS</span><span class="p">,</span> <span class="nx">contentBox</span><span class="p">.</span><span class="nx">queryAll</span><span class="p">(</span><span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_RATING_EL</span><span class="p">));</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Sync the Rating elements.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _syncElements</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_syncElements</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">selectedIndex</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DEFAULT_SELECTED</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">SELECTED_INDEX</span><span class="p">,</span> <span class="nx">selectedIndex</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">select</span><span class="p">();</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Sync the Rating label UI.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _syncLabelUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_syncLabelUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">labelText</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LABEL</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LABEL_ELEMENT</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">labelText</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Get the &lt;code&gt;index&lt;/code&gt; element input data stored on &lt;a</span>
-<span class="cm">     * href=&quot;Rating.html#property_inputElementsData&quot;&gt;inputElementsData&lt;/a&gt;.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _getInputData</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_getInputData</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">inputElementsData</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">||</span> <span class="p">{};</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires the click event.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _handleClickEvent</span>
-<span class="cm">	 * @param {EventFacade} event click event facade</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_handleClickEvent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">domTarget</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">domEvent</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_canFireCustomEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">))</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">EV_RATING_ITEM_CLICK</span><span class="p">,</span> <span class="p">{</span>
-				<span class="nx">delegateEvent</span><span class="o">:</span> <span class="nx">event</span><span class="p">,</span>
-				<span class="nx">domEvent</span><span class="o">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">domEvent</span>
-			<span class="p">});</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires the mouseOut event.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _handleMouseOutEvent</span>
-<span class="cm">	 * @param {EventFacade} event mouseOut event facade</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_handleMouseOutEvent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_canFireCustomEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">))</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">EV_RATING_ITEM_OUT</span><span class="p">,</span> <span class="p">{</span>
-				<span class="nx">delegateEvent</span><span class="o">:</span> <span class="nx">event</span><span class="p">,</span>
-				<span class="nx">domEvent</span><span class="o">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">domEvent</span>
-			<span class="p">});</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires the mouseOver event.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _handleMouseOverEvent</span>
-<span class="cm">	 * @param {EventFacade} event mouseOver event facade</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_handleMouseOverEvent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_canFireCustomEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">))</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">EV_RATING_ITEM_OVER</span><span class="p">,</span> <span class="p">{</span>
-				<span class="nx">delegateEvent</span><span class="o">:</span> <span class="nx">event</span><span class="p">,</span>
-				<span class="nx">domEvent</span><span class="o">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">domEvent</span>
-			<span class="p">});</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Fires after the value of the</span>
-<span class="cm">	 * &lt;a href=&quot;Rating.html#config_label&quot;&gt;label&lt;/a&gt; attribute change.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _afterSetLabel</span>
-<span class="cm">	 * @param {EventFacade} event</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_afterSetLabel</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_syncLabelUI</span><span class="p">();</span>
 	<span class="p">}</span>
-<span class="p">});</span>
-
+<span class="p">);</span>
 
 <span class="cm">/*</span>
 <span class="cm">* ThumbRating</span>
@@ -1399,87 +1393,87 @@
 <span class="cm"> * @constructor</span>
 <span class="cm"> * @extends Rating</span>
 <span class="cm"> */</span>
-<span class="kd">function</span> <span class="nx">ThumbRating</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">ThumbRating</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">ThumbRating</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property provides a string to identify the class.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property ThumbRating.NAME</span>
-<span class="cm">	 * @type String</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">NAME</span><span class="o">:</span> <span class="nx">THUMB_RATING</span><span class="p">,</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property used to define the default attribute</span>
-<span class="cm">	 * configuration for the ThumbRating.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property ThumbRating.ATTRS</span>
-<span class="cm">	 * @type Object</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">ThumbRating</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+	<span class="p">{</span>
 		<span class="cm">/**</span>
-<span class="cm">		 * The size on ThumbRating is always 2 (i.e., thumb up and thumb down).</span>
+<span class="cm">		 * Static property provides a string to identify the class.</span>
 <span class="cm">		 *</span>
-<span class="cm">		 * @attribute size</span>
-<span class="cm">		 * @default 2</span>
-<span class="cm">		 * @readOnly</span>
-<span class="cm">		 * @type Number</span>
+<span class="cm">		 * @property ThumbRating.NAME</span>
+<span class="cm">		 * @type String</span>
+<span class="cm">		 * @static</span>
 <span class="cm">		 */</span>
-		<span class="nx">size</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
-			<span class="nx">readOnly</span><span class="o">:</span> <span class="kc">true</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="nx">THUMB_RATING</span><span class="p">,</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Static property used to define the default attribute</span>
+<span class="cm">		 * configuration for the ThumbRating.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property ThumbRating.ATTRS</span>
+<span class="cm">		 * @type Object</span>
+<span class="cm">		 * @static</span>
+<span class="cm">		 */</span>
+		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * The size on ThumbRating is always 2 (i.e., thumb up and thumb down).</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute size</span>
+<span class="cm">			 * @default 2</span>
+<span class="cm">			 * @readOnly</span>
+<span class="cm">			 * @type Number</span>
+<span class="cm">			 */</span>
+			<span class="nx">size</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+				<span class="nx">readOnly</span><span class="o">:</span> <span class="kc">true</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="nx">EXTENDS</span><span class="o">:</span> <span class="nx">Rating</span><span class="p">,</span>
+
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Create the DOM structure for the ThumbRating. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method renderUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">ThumbRating</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+				<span class="kd">var</span> <span class="nx">elements</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ELEMENTS</span><span class="p">);</span>
+
+				<span class="nx">elements</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_RATING_EL_OFF</span><span class="p">);</span>
+				<span class="nx">elements</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_RATING_THUMB_UP</span><span class="p">);</span>
+				<span class="nx">elements</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_RATING_THUMB_DOWN</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Add the &lt;code&gt;className&lt;/code&gt; on the the &lt;code&gt;index&lt;/code&gt; element</span>
+<span class="cm">		     * and all the previous Rating elements.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method fillTo</span>
+<span class="cm">			 * @param {Number} index Index to be selected</span>
+<span class="cm">			 * @param {String} className Class name to be applied when fill the Rating elements</span>
+<span class="cm">			 */</span>
+			<span class="nx">fillTo</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">className</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">clearSelection</span><span class="p">();</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ELEMENTS</span><span class="p">).</span><span class="nx">item</span><span class="p">(</span><span class="nx">index</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">className</span> <span class="o">||</span> <span class="nx">CSS_RATING_EL_ON</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Empty method, no logic needed on this method on ThumbRating.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _syncElements</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_syncElements</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
-<span class="p">});</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">ThumbRating</span><span class="p">,</span> <span class="nx">Rating</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Create the DOM structure for the ThumbRating. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method renderUI</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">ThumbRating</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-
-		<span class="kd">var</span> <span class="nx">elements</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ELEMENTS</span><span class="p">);</span>
-
-		<span class="nx">elements</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_RATING_EL_OFF</span><span class="p">);</span>
-		<span class="nx">elements</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_RATING_THUMB_UP</span><span class="p">);</span>
-		<span class="nx">elements</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_RATING_THUMB_DOWN</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Add the &lt;code&gt;className&lt;/code&gt; on the the &lt;code&gt;index&lt;/code&gt; element</span>
-<span class="cm">     * and all the previous Rating elements.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method fillTo</span>
-<span class="cm">	 * @param {Number} index Index to be selected</span>
-<span class="cm">	 * @param {String} className Class name to be applied when fill the Rating elements</span>
-<span class="cm">	 */</span>
-	<span class="nx">fillTo</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">className</span><span class="p">)</span> <span class="p">{</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">clearSelection</span><span class="p">();</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ELEMENTS</span><span class="p">).</span><span class="nx">item</span><span class="p">(</span><span class="nx">index</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">className</span> <span class="o">||</span> <span class="nx">CSS_RATING_EL_ON</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * Empty method, no logic needed on this method on ThumbRating.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _syncElements</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">_syncElements</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span>
-<span class="p">});</span>
+<span class="p">);</span>
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">Rating</span> <span class="o">=</span> <span class="nx">Rating</span><span class="p">;</span>
 <span class="nx">A</span><span class="p">.</span><span class="nx">StarRating</span> <span class="o">=</span> <span class="nx">Rating</span><span class="p">;</span>

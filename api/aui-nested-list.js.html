@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-nested-list   aui-nested-list.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-nested-list&nbsp; <span class="subtitle">1.0pr</span>
+			aui-nested-list&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -611,354 +606,354 @@
 <span class="cm"> * @constructor</span>
 <span class="cm"> * @extends Base</span>
 <span class="cm"> */</span>
-<span class="kd">function</span> <span class="nx">NestedList</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">NestedList</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">NestedList</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+	<span class="p">{</span>
+		<span class="cm">/**</span>
+<span class="cm">		 * Static property provides a string to identify the class.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property NestedList.NAME</span>
+<span class="cm">		 * @type String</span>
+<span class="cm">		 * @static</span>
+<span class="cm">		 */</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="nx">NESTED_LIST</span><span class="p">,</span>
 
-<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">NestedList</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property provides a string to identify the class.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property NestedList.NAME</span>
-<span class="cm">	 * @type String</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">NAME</span><span class="o">:</span> <span class="nx">NESTED_LIST</span><span class="p">,</span>
+		<span class="cm">/**</span>
+<span class="cm">		 * Static property used to define the default attribute</span>
+<span class="cm">		 * configuration for the NestedList.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property NestedList.ATTRS</span>
+<span class="cm">		 * @type Object</span>
+<span class="cm">		 * @static</span>
+<span class="cm">		 */</span>
+		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">dd</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+			<span class="p">},</span>
 
-	<span class="cm">/**</span>
-<span class="cm">	 * Static property used to define the default attribute</span>
-<span class="cm">	 * configuration for the NestedList.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @property NestedList.ATTRS</span>
-<span class="cm">	 * @type Object</span>
-<span class="cm">	 * @static</span>
-<span class="cm">	 */</span>
-	<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">dd</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+			<span class="nx">dropCondition</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+				<span class="p">},</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+				<span class="p">},</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isFunction</span>
+			<span class="p">},</span>
+
+			<span class="nx">dropContainer</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+					<span class="kd">var</span> <span class="nx">drop</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">drop</span><span class="p">;</span>
+					<span class="kd">var</span> <span class="nx">dropNode</span> <span class="o">=</span> <span class="nx">drop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
+					<span class="kd">var</span> <span class="nx">dropOn</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DROP_ON</span><span class="p">);</span>
+
+					<span class="k">return</span> <span class="nx">dropNode</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">dropOn</span><span class="p">);</span>
+				<span class="p">},</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isFunction</span>
+			<span class="p">},</span>
+
+			<span class="nx">dropOn</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isString</span>
+			<span class="p">},</span>
+
+			<span class="nx">helper</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+			<span class="p">},</span>
+
+			<span class="nx">nodes</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setNodes</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">placeholder</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+			<span class="p">},</span>
+
+			<span class="nx">proxy</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
+						<span class="p">{</span>
+							<span class="nx">moveOnEnd</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+							<span class="nx">positionProxy</span><span class="o">:</span> <span class="kc">false</span>
+						<span class="p">},</span>
+						<span class="nx">val</span> <span class="o">||</span> <span class="p">{}</span>
+					<span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">sortCondition</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+				<span class="p">},</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+				<span class="p">},</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isFunction</span>
+			<span class="p">}</span>
 		<span class="p">},</span>
 
-		<span class="nx">dropCondition</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-			<span class="p">},</span>
-			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-			<span class="p">},</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isFunction</span>
-		<span class="p">},</span>
+		<span class="nx">EXTENDS</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span>
 
-		<span class="nx">dropContainer</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Construction logic executed during NestedList instantiation. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method initializer</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">nodes</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODES</span><span class="p">);</span>
+
+				<span class="c1">// drag &amp; drop listeners</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:align&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragAlign</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:end&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragEnd</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:exit&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragExit</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:mouseDown&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragMouseDown</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:over&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragOver</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:start&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragStart</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_createHelper</span><span class="p">();</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">nodes</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">addAll</span><span class="p">(</span><span class="nx">nodes</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/*</span>
+<span class="cm">			* Methods</span>
+<span class="cm">			*/</span>
+			<span class="nx">add</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_createDrag</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">addAll</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">nodes</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">nodes</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+				<span class="p">});</span>
+			<span class="p">},</span>
+
+			<span class="nx">_createDrag</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">helper</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">DDM</span><span class="p">.</span><span class="nx">getDrag</span><span class="p">(</span><span class="nx">node</span><span class="p">))</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">dragOptions</span> <span class="o">=</span> <span class="p">{</span>
+						<span class="nx">bubbleTargets</span><span class="o">:</span> <span class="nx">instance</span><span class="p">,</span>
+						<span class="nx">node</span><span class="o">:</span> <span class="nx">node</span><span class="p">,</span>
+						<span class="nx">target</span><span class="o">:</span> <span class="kc">true</span>
+					<span class="p">};</span>
+
+					<span class="kd">var</span> <span class="nx">proxyOptions</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PROXY</span><span class="p">);</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">helper</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">proxyOptions</span><span class="p">.</span><span class="nx">borderStyle</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+					<span class="p">}</span>
+
+					<span class="c1">// creating delayed drag instance</span>
+					<span class="kd">var</span> <span class="nx">dd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DD</span><span class="p">.</span><span class="nx">Drag</span><span class="p">(</span>
+						<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">dragOptions</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DD</span><span class="p">))</span>
+					<span class="p">)</span>
+					<span class="p">.</span><span class="nx">plug</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDProxy</span><span class="p">,</span> <span class="nx">proxyOptions</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">_createHelper</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">helper</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">helper</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// append helper to the body</span>
+					<span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">BODY</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span> <span class="nx">helper</span><span class="p">.</span><span class="nx">hide</span><span class="p">()</span> <span class="p">);</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">,</span> <span class="nx">helper</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">_updatePlaceholder</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">cancelAppend</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">drop</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">drop</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
 				<span class="kd">var</span> <span class="nx">dropNode</span> <span class="o">=</span> <span class="nx">drop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
 				<span class="kd">var</span> <span class="nx">dropOn</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DROP_ON</span><span class="p">);</span>
 
-				<span class="k">return</span> <span class="nx">dropNode</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">dropOn</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">dropContainer</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DROP_CONTAINER</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">dropContainer</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">dropContainer</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="kd">var</span> <span class="nx">floating</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">xDirection</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">XDirection</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">yDirection</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">YDirection</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">dropNode</span><span class="p">.</span><span class="nx">getStyle</span><span class="p">(</span><span class="nx">FLOAT</span><span class="p">)</span> <span class="o">!=</span> <span class="nx">NONE</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">floating</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+				<span class="p">}</span>
+
+				<span class="kd">var</span> <span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLACEHOLDER</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">placeholder</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// if no placeholder use the dragNode instead</span>
+					<span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">dragNode</span><span class="p">;</span>
+				<span class="p">}</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">placeholder</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">dropNode</span><span class="p">))</span> <span class="p">{</span>
+					<span class="c1">// check for the user dropCondition</span>
+					<span class="kd">var</span> <span class="nx">dropCondition</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DROP_CONDITION</span><span class="p">);</span>
+
+					<span class="c1">// if there is a container waiting for nodes to be appended it&#39;s priority</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">container</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">cancelAppend</span> <span class="o">&amp;&amp;</span> <span class="nx">dropCondition</span><span class="p">(</span><span class="nx">event</span><span class="p">))</span> <span class="p">{</span>
+						<span class="c1">// this checking avoid the parent bubbling drag:over</span>
+						<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">container</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+							<span class="o">!</span><span class="nx">placeholder</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">container</span><span class="p">))</span> <span class="p">{</span>
+								<span class="c1">// append placeholder on the found container</span>
+								<span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">);</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+					<span class="c1">// otherwise, check if it&#39;s floating and the xDirection</span>
+					<span class="c1">// or if it&#39;s not floating and the yDirection</span>
+					<span class="k">else</span> <span class="p">{</span>
+						<span class="k">if</span> <span class="p">(</span><span class="nx">floating</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">xDirection</span> <span class="o">==</span> <span class="nx">LEFT</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="nx">floating</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">yDirection</span> <span class="o">==</span> <span class="nx">UP</span><span class="p">))</span> <span class="p">{</span>
+							<span class="c1">// LEFT or UP directions means to place the placeholder before</span>
+							<span class="nx">dropNode</span><span class="p">.</span><span class="nx">placeBefore</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">);</span>
+						<span class="p">}</span>
+						<span class="k">else</span> <span class="p">{</span>
+							<span class="c1">// RIGHT or DOWN directions means to place the placeholder after</span>
+							<span class="nx">dropNode</span><span class="p">.</span><span class="nx">placeAfter</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">);</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
 			<span class="p">},</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isFunction</span>
-		<span class="p">},</span>
 
-		<span class="nx">dropOn</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isString</span>
-		<span class="p">},</span>
+			<span class="cm">/*</span>
+<span class="cm">			* Listeners</span>
+<span class="cm">			*/</span>
+			<span class="nx">_onDragAlign</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">lastX</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastX</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">lastY</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastY</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">xy</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">lastXY</span><span class="p">;</span>
 
-		<span class="nx">helper</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
-		<span class="p">},</span>
+				<span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+				<span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 
-		<span class="nx">nodes</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setNodes</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+				<span class="c1">// if the y change</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">!=</span> <span class="nx">lastY</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// set the drag vertical direction</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">YDirection</span> <span class="o">=</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="nx">lastY</span><span class="p">)</span> <span class="o">?</span> <span class="nx">UP</span> <span class="o">:</span> <span class="nx">DOWN</span><span class="p">;</span>
+				<span class="p">}</span>
+
+				<span class="c1">// if the x change</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">!=</span> <span class="nx">lastX</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// set the drag horizontal direction</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">XDirection</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">lastX</span><span class="p">)</span> <span class="o">?</span> <span class="nx">LEFT</span> <span class="o">:</span> <span class="nx">RIGHT</span><span class="p">;</span>
+				<span class="p">}</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">lastX</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">lastY</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="nx">_onDragEnd</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLACEHOLDER</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">placeholder</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">dragNode</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+					<span class="nx">placeholder</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">dragNode</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">))</span> <span class="p">{</span>
+						<span class="c1">// position dragNode after the placeholder</span>
+						<span class="nx">placeholder</span><span class="p">.</span><span class="nx">placeAfter</span><span class="p">(</span><span class="nx">dragNode</span><span class="p">);</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">_onDragExit</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">sortCondition</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SORT_CONDITION</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">sortCondition</span><span class="p">(</span><span class="nx">event</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_updatePlaceholder</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">_onDragMouseDown</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">helper</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">helper</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// update the DRAG_NODE with the new helper</span>
+					<span class="nx">drag</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">DRAG_NODE</span><span class="p">,</span> <span class="nx">helper</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">_onDragStart</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+		 		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">helper</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLACEHOLDER</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">placeholder</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// update placeholder height</span>
+					<span class="nx">placeholder</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span>
+						<span class="nx">HEIGHT</span><span class="p">,</span>
+						<span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_HEIGHT</span><span class="p">)</span> <span class="o">+</span> <span class="nx">PX</span>
+					<span class="p">);</span>
+
+					<span class="nx">node</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+					<span class="nx">placeholder</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+					<span class="c1">// position placeholder after the node</span>
+					<span class="nx">node</span><span class="p">.</span><span class="nx">placeAfter</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">);</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">helper</span><span class="p">)</span> <span class="p">{</span>
+						<span class="c1">// show helper, we need display block here, yui dd hide it with display none</span>
+						<span class="nx">helper</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">({</span>
+							<span class="nx">display</span><span class="o">:</span> <span class="nx">BLOCK</span><span class="p">,</span>
+							<span class="nx">visibility</span><span class="o">:</span> <span class="nx">VISIBLE</span>
+						<span class="p">}).</span><span class="nx">show</span><span class="p">();</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+		 	<span class="p">},</span>
+
+			<span class="nx">_onDragOver</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">sortCondition</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SORT_CONDITION</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">sortCondition</span><span class="p">(</span><span class="nx">event</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_updatePlaceholder</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/*</span>
+<span class="cm">			* Setters</span>
+<span class="cm">			*/</span>
+			<span class="nx">_setNodes</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">isNodeList</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">v</span><span class="p">;</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">isString</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="k">return</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">NodeList</span><span class="p">([</span><span class="nx">v</span><span class="p">]);</span>
 			<span class="p">}</span>
-		<span class="p">},</span>
-
-		<span class="nx">placeholder</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
-		<span class="p">},</span>
-
-		<span class="nx">proxy</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
-					<span class="p">{</span>
-						<span class="nx">moveOnEnd</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-						<span class="nx">positionProxy</span><span class="o">:</span> <span class="kc">false</span>
-					<span class="p">},</span>
-					<span class="nx">val</span> <span class="o">||</span> <span class="p">{}</span>
-				<span class="p">);</span>
-			<span class="p">}</span>
-		<span class="p">},</span>
-
-		<span class="nx">sortCondition</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-			<span class="p">},</span>
-			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-			<span class="p">},</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isFunction</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
-<span class="p">});</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">NestedList</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">{</span>
-	<span class="cm">/**</span>
-<span class="cm">	 * Construction logic executed during NestedList instantiation. Lifecycle.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method initializer</span>
-<span class="cm">	 * @protected</span>
-<span class="cm">	 */</span>
-	<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">nodes</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODES</span><span class="p">);</span>
-
-		<span class="c1">// drag &amp; drop listeners</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:align&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragAlign</span><span class="p">);</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:end&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragEnd</span><span class="p">);</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:exit&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragExit</span><span class="p">);</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:mouseDown&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragMouseDown</span><span class="p">);</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:over&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragOver</span><span class="p">);</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:start&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragStart</span><span class="p">);</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_createHelper</span><span class="p">();</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">nodes</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">addAll</span><span class="p">(</span><span class="nx">nodes</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/*</span>
-<span class="cm">	* Methods</span>
-<span class="cm">	*/</span>
-	<span class="nx">add</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">_createDrag</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="nx">addAll</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">nodes</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="nx">nodes</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
-		<span class="p">});</span>
-	<span class="p">},</span>
-
-	<span class="nx">_createDrag</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">helper</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">DDM</span><span class="p">.</span><span class="nx">getDrag</span><span class="p">(</span><span class="nx">node</span><span class="p">))</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">dragOptions</span> <span class="o">=</span> <span class="p">{</span>
-				<span class="nx">bubbleTargets</span><span class="o">:</span> <span class="nx">instance</span><span class="p">,</span>
-				<span class="nx">node</span><span class="o">:</span> <span class="nx">node</span><span class="p">,</span>
-				<span class="nx">target</span><span class="o">:</span> <span class="kc">true</span>
-			<span class="p">};</span>
-
-			<span class="kd">var</span> <span class="nx">proxyOptions</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PROXY</span><span class="p">);</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">helper</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">proxyOptions</span><span class="p">.</span><span class="nx">borderStyle</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-			<span class="p">}</span>
-
-			<span class="c1">// creating delayed drag instance</span>
-			<span class="kd">var</span> <span class="nx">dd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DD</span><span class="p">.</span><span class="nx">Drag</span><span class="p">(</span>
-				<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">dragOptions</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DD</span><span class="p">))</span>
-			<span class="p">)</span>
-			<span class="p">.</span><span class="nx">plug</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDProxy</span><span class="p">,</span> <span class="nx">proxyOptions</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">_createHelper</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">helper</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">helper</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// append helper to the body</span>
-			<span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BODY</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span> <span class="nx">helper</span><span class="p">.</span><span class="nx">hide</span><span class="p">()</span> <span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">,</span> <span class="nx">helper</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">_updatePlaceholder</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">cancelAppend</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">drop</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">drop</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">dropNode</span> <span class="o">=</span> <span class="nx">drop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">dropOn</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DROP_ON</span><span class="p">);</span>
-
-		<span class="kd">var</span> <span class="nx">dropContainer</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DROP_CONTAINER</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">dropContainer</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">dropContainer</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-		<span class="p">}</span>
-
-		<span class="kd">var</span> <span class="nx">floating</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">xDirection</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">XDirection</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">yDirection</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">YDirection</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">dropNode</span><span class="p">.</span><span class="nx">getStyle</span><span class="p">(</span><span class="nx">FLOAT</span><span class="p">)</span> <span class="o">!=</span> <span class="nx">NONE</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">floating</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-		<span class="p">}</span>
-
-		<span class="kd">var</span> <span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLACEHOLDER</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">placeholder</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// if no placeholder use the dragNode instead</span>
-			<span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">dragNode</span><span class="p">;</span>
-		<span class="p">}</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">placeholder</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">dropNode</span><span class="p">))</span> <span class="p">{</span>
-			<span class="c1">// check for the user dropCondition</span>
-			<span class="kd">var</span> <span class="nx">dropCondition</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DROP_CONDITION</span><span class="p">);</span>
-
-			<span class="c1">// if there is a container waiting for nodes to be appended it&#39;s priority</span>
-			<span class="k">if</span> <span class="p">(</span><span class="nx">container</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">cancelAppend</span> <span class="o">&amp;&amp;</span> <span class="nx">dropCondition</span><span class="p">(</span><span class="nx">event</span><span class="p">))</span> <span class="p">{</span>
-				<span class="c1">// this checking avoid the parent bubbling drag:over</span>
-				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">container</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
-					<span class="o">!</span><span class="nx">placeholder</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">container</span><span class="p">))</span> <span class="p">{</span>
-						<span class="c1">// append placeholder on the found container</span>
-						<span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">);</span>
-				<span class="p">}</span>
-			<span class="p">}</span>
-			<span class="c1">// otherwise, check if it&#39;s floating and the xDirection</span>
-			<span class="c1">// or if it&#39;s not floating and the yDirection</span>
-			<span class="k">else</span> <span class="p">{</span>
-				<span class="k">if</span> <span class="p">(</span><span class="nx">floating</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">xDirection</span> <span class="o">==</span> <span class="nx">LEFT</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="nx">floating</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">yDirection</span> <span class="o">==</span> <span class="nx">UP</span><span class="p">))</span> <span class="p">{</span>
-					<span class="c1">// LEFT or UP directions means to place the placeholder before</span>
-					<span class="nx">dropNode</span><span class="p">.</span><span class="nx">placeBefore</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">);</span>
-				<span class="p">}</span>
-				<span class="k">else</span> <span class="p">{</span>
-					<span class="c1">// RIGHT or DOWN directions means to place the placeholder after</span>
-					<span class="nx">dropNode</span><span class="p">.</span><span class="nx">placeAfter</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">);</span>
-				<span class="p">}</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/*</span>
-<span class="cm">	* Listeners</span>
-<span class="cm">	*/</span>
-	<span class="nx">_onDragAlign</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">lastX</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastX</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">lastY</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">lastY</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">xy</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">lastXY</span><span class="p">;</span>
-
-		<span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-		<span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-
-		<span class="c1">// if the y change</span>
-		<span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">!=</span> <span class="nx">lastY</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// set the drag vertical direction</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">YDirection</span> <span class="o">=</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="nx">lastY</span><span class="p">)</span> <span class="o">?</span> <span class="nx">UP</span> <span class="o">:</span> <span class="nx">DOWN</span><span class="p">;</span>
-		<span class="p">}</span>
-
-		<span class="c1">// if the x change</span>
-		<span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">!=</span> <span class="nx">lastX</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// set the drag horizontal direction</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">XDirection</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">lastX</span><span class="p">)</span> <span class="o">?</span> <span class="nx">LEFT</span> <span class="o">:</span> <span class="nx">RIGHT</span><span class="p">;</span>
-		<span class="p">}</span>
-
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">lastX</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">lastY</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
-	<span class="p">},</span>
-
-	<span class="nx">_onDragEnd</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLACEHOLDER</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">placeholder</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">dragNode</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
-			<span class="nx">placeholder</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">dragNode</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">))</span> <span class="p">{</span>
-				<span class="c1">// position dragNode after the placeholder</span>
-				<span class="nx">placeholder</span><span class="p">.</span><span class="nx">placeAfter</span><span class="p">(</span><span class="nx">dragNode</span><span class="p">);</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">_onDragExit</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">sortCondition</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SORT_CONDITION</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">sortCondition</span><span class="p">(</span><span class="nx">event</span><span class="p">))</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_updatePlaceholder</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">_onDragMouseDown</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">helper</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">helper</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// update the DRAG_NODE with the new helper</span>
-			<span class="nx">drag</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">DRAG_NODE</span><span class="p">,</span> <span class="nx">helper</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">_onDragStart</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
- 		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">helper</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">);</span>
-		<span class="kd">var</span> <span class="nx">placeholder</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PLACEHOLDER</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">placeholder</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// update placeholder height</span>
-			<span class="nx">placeholder</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span>
-				<span class="nx">HEIGHT</span><span class="p">,</span>
-				<span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_HEIGHT</span><span class="p">)</span> <span class="o">+</span> <span class="nx">PX</span>
-			<span class="p">);</span>
-
-			<span class="nx">node</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
-			<span class="nx">placeholder</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
-			<span class="c1">// position placeholder after the node</span>
-			<span class="nx">node</span><span class="p">.</span><span class="nx">placeAfter</span><span class="p">(</span><span class="nx">placeholder</span><span class="p">);</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">helper</span><span class="p">)</span> <span class="p">{</span>
-				<span class="c1">// show helper, we need display block here, yui dd hide it with display none</span>
-				<span class="nx">helper</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">({</span>
-					<span class="nx">display</span><span class="o">:</span> <span class="nx">BLOCK</span><span class="p">,</span>
-					<span class="nx">visibility</span><span class="o">:</span> <span class="nx">VISIBLE</span>
-				<span class="p">}).</span><span class="nx">show</span><span class="p">();</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
- 	<span class="p">},</span>
-
-	<span class="nx">_onDragOver</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">sortCondition</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SORT_CONDITION</span><span class="p">);</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">sortCondition</span><span class="p">(</span><span class="nx">event</span><span class="p">))</span> <span class="p">{</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_updatePlaceholder</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/*</span>
-<span class="cm">	* Setters</span>
-<span class="cm">	*/</span>
-	<span class="nx">_setNodes</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="nx">isNodeList</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span> <span class="p">{</span>
-			<span class="k">return</span> <span class="nx">v</span><span class="p">;</span>
-		<span class="p">}</span>
-		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">isString</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span> <span class="p">{</span>
-			<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
-		<span class="p">}</span>
-
-		<span class="k">return</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">NodeList</span><span class="p">([</span><span class="nx">v</span><span class="p">]);</span>
-	<span class="p">}</span>
-<span class="p">});</span>
+<span class="p">);</span>
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">NestedList</span> <span class="o">=</span> <span class="nx">NestedList</span><span class="p">;</span>
 

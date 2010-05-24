@@ -2,9 +2,9 @@
 <html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<title>API: gallery-formmgr   aui-form-field-debug.js  (YUI Library)</title>
+	<title>API: aui-event   aui-form-field-debug.js  (YUI Library)</title>
 
-	<link rel="stylesheet" href="../build/aui-skins/core/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
 
     <script type="text/javascript" src="assets/api-js"></script>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			gallery-formmgr&nbsp; <span class="subtitle">1.0pr</span>
+			aui-event&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -28,7 +28,7 @@
 
 	            <span class="separator">&gt;</span>
 
-				<a class="modulename" href="./module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a>
+				<a class="modulename" href="./module_aui-event.html" title="aui-event">aui-event</a>
 
 	                
 
@@ -102,7 +102,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-button.html" title="aui-button">aui-button</a></li>
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
 
 
 
@@ -138,7 +138,7 @@
 
 
 
-				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+				                                <li class="selected"><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
 
 
 
@@ -311,11 +311,6 @@
 
 			                                
 													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
-
-
-
-			                                
-													<li class="selected"><a href="module_gallery-formmgr.html" title="gallery-formmgr">gallery-formmgr</a></li>
 
 
 
@@ -501,7 +496,7 @@
 										<ul class="content">
 
 
-				                                <li class=""><a href="FormManager.html" title="FormManager">FormManager</a></li>
+				                                <li class=""><a href="AUI~event~input.html" title="AUI~event~input">AUI~event~input</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -520,6 +515,24 @@
 
 								<div class="aui-widget-bd aui-list-bd">
 									<ul class="content">
+
+
+			                                <li class=""><a href="aui-event-debug.js.html" title="aui-event-debug.js">aui-event-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-event-input-debug.js.html" title="aui-event-input-debug.js">aui-event-input-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-event-input-min.js.html" title="aui-event-input-min.js">aui-event-input-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-event-input.js.html" title="aui-event-input.js">aui-event-input.js</a></li>
+
+
+			                                <li class=""><a href="aui-event-min.js.html" title="aui-event-min.js">aui-event-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-event.js.html" title="aui-event.js">aui-event.js</a></li>
 
 
 			                                <li class=""><a href="aui-form-base-debug.js.html" title="aui-form-base-debug.js">aui-form-base-debug.js</a></li>
@@ -552,15 +565,6 @@
 			                                <li class=""><a href="aui-form-field.js.html" title="aui-form-field.js">aui-form-field.js</a></li>
 
 
-			                                <li class=""><a href="aui-form-manager-debug.js.html" title="aui-form-manager-debug.js">aui-form-manager-debug.js</a></li>
-
-
-			                                <li class=""><a href="aui-form-manager-min.js.html" title="aui-form-manager-min.js">aui-form-manager-min.js</a></li>
-
-
-			                                <li class=""><a href="aui-form-manager.js.html" title="aui-form-manager.js">aui-form-manager.js</a></li>
-
-
 			                                <li class=""><a href="aui-form-min.js.html" title="aui-form-min.js">aui-form-min.js</a></li>
 
 
@@ -580,6 +584,15 @@
 
 
 			                                <li class=""><a href="aui-form-textfield.js.html" title="aui-form-textfield.js">aui-form-textfield.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-validator-debug.js.html" title="aui-form-validator-debug.js">aui-form-validator-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-validator-min.js.html" title="aui-form-validator-min.js">aui-form-validator-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-validator.js.html" title="aui-form-validator.js">aui-form-validator.js</a></li>
 
 
 			                                <li class=""><a href="aui-form.js.html" title="aui-form.js">aui-form.js</a></li>
@@ -649,484 +662,473 @@
 
 	<span class="nx">_FIELD_INSTANCES</span> <span class="o">=</span> <span class="p">{};</span>
 
-<span class="kd">var</span> <span class="nx">Field</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">Field</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-<span class="p">};</span>
-
-<span class="kd">var</span> <span class="nx">fieldPrototype</span> <span class="o">=</span> <span class="nx">Field</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
-
-<span class="nx">Field</span><span class="p">.</span><span class="nx">NAME</span> <span class="o">=</span> <span class="nx">NAME</span><span class="p">;</span>
-
-<span class="nx">Field</span><span class="p">.</span><span class="nx">ATTRS</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="nx">readOnly</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
-	<span class="p">},</span>
-
-	<span class="nx">name</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-		<span class="nx">getter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="k">return</span> <span class="nx">value</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">id</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">getter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">value</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
-			<span class="p">}</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">value</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">guid</span><span class="p">();</span>
-			<span class="p">}</span>
-
-			<span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">type</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span>
-		<span class="nx">writeOnce</span><span class="o">:</span> <span class="kc">true</span>
-	<span class="p">},</span>
-
-	<span class="nx">labelAlign</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
-	<span class="p">},</span>
-
-	<span class="nx">labelNode</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_LABEL</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">labelText</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;labelNode&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;labelNode&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
-
-			<span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">node</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-		<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_createFieldNode</span><span class="p">();</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">fieldHint</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
-	<span class="p">},</span>
-
-	<span class="nx">fieldHintNode</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-		<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_createFieldHint</span><span class="p">();</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">prevVal</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
-	<span class="p">},</span>
-
-	<span class="nx">valid</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-		<span class="nx">getter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">validator</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;validator&#39;</span><span class="p">);</span>
-
-			<span class="kd">var</span> <span class="nx">valid</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="nx">validator</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">));</span>
-
-			<span class="k">return</span> <span class="nx">valid</span><span class="p">;</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">dirty</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-		<span class="nx">getter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">))</span> <span class="p">{</span>
-				<span class="nx">value</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-			<span class="p">}</span>
-			<span class="k">else</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">currentVal</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">));</span>
-				<span class="kd">var</span> <span class="nx">prevVal</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;prevVal&#39;</span><span class="p">));</span>
-
-				<span class="nx">value</span> <span class="o">=</span> <span class="p">(</span><span class="nx">currentVal</span> <span class="o">!==</span> <span class="nx">prevVal</span><span class="p">);</span>
-			<span class="p">}</span>
-
-			<span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="nx">size</span><span class="o">:</span> <span class="p">{},</span>
-
-	<span class="nx">validator</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">fieldValidator</span><span class="p">;</span>
-		<span class="p">},</span>
-		<span class="nx">validator</span><span class="o">:</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isFunction</span>
-	<span class="p">},</span>
-
-	<span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">getter</span><span class="o">:</span> <span class="s1">&#39;_getNodeValue&#39;</span><span class="p">,</span>
-		<span class="nx">setter</span><span class="o">:</span> <span class="s1">&#39;_setNodeValue&#39;</span><span class="p">,</span>
-		<span class="nx">validator</span><span class="o">:</span> <span class="nx">Field</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">fieldValidator</span>
-	<span class="p">}</span>
-<span class="p">};</span>
-
-<span class="nx">Field</span><span class="p">.</span><span class="nx">HTML_PARSER</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="nx">labelNode</span><span class="o">:</span> <span class="s1">&#39;label&#39;</span><span class="p">,</span>
-	<span class="nx">node</span><span class="o">:</span> <span class="s1">&#39;input, textarea, select&#39;</span>
-<span class="p">};</span>
-
-<span class="nx">Field</span><span class="p">.</span><span class="nx">getTypeClassName</span> <span class="o">=</span> <span class="nx">getTypeClassName</span><span class="p">;</span>
-
-<span class="kd">var</span> <span class="nx">UI_ATTRS</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">_BIND_UI_ATTRS</span><span class="p">;</span>
-
-<span class="nx">UI_ATTRS</span> <span class="o">=</span> <span class="nx">UI_ATTRS</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span>
-	<span class="p">[</span>
-		<span class="s1">&#39;id&#39;</span><span class="p">,</span>
-		<span class="s1">&#39;readOnly&#39;</span><span class="p">,</span>
-		<span class="s1">&#39;name&#39;</span><span class="p">,</span>
-		<span class="s1">&#39;size&#39;</span><span class="p">,</span>
-		<span class="s1">&#39;tabIndex&#39;</span><span class="p">,</span>
-		<span class="s1">&#39;type&#39;</span><span class="p">,</span>
-		<span class="s1">&#39;value&#39;</span>
-	<span class="p">]</span>
-<span class="p">);</span>
-
-<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
-	<span class="nx">Field</span><span class="p">,</span>
-	<span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">,</span>
+<span class="kd">var</span> <span class="nx">Field</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
 	<span class="p">{</span>
-		<span class="nx">_BIND_UI_ATTRS</span><span class="o">:</span> <span class="nx">UI_ATTRS</span><span class="p">,</span>
-		<span class="nx">BOUNDING_TEMPLATE</span><span class="o">:</span> <span class="nx">TPL_BOUNDING_BOX</span><span class="p">,</span>
-		<span class="nx">CONTENT_TEMPLATE</span><span class="o">:</span> <span class="nx">TPL_CONTENT_BOX</span><span class="p">,</span>
-		<span class="nx">FIELD_TEMPLATE</span><span class="o">:</span> <span class="nx">TPL_INPUT</span><span class="p">,</span>
-		<span class="nx">FIELD_TYPE</span><span class="o">:</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="nx">NAME</span><span class="p">,</span>
 
-		<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">readOnly</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+			<span class="p">},</span>
 
-			<span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">guid</span><span class="p">();</span>
+			<span class="nx">name</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+				<span class="nx">getter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-			<span class="nx">_FIELD_INSTANCES</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">;</span>
+					<span class="k">return</span> <span class="nx">value</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">id</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">getter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+					<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">value</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+					<span class="p">}</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">value</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">guid</span><span class="p">();</span>
+					<span class="p">}</span>
+
+					<span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">type</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span>
+				<span class="nx">writeOnce</span><span class="o">:</span> <span class="kc">true</span>
+			<span class="p">},</span>
+
+			<span class="nx">labelAlign</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
+			<span class="p">},</span>
+
+			<span class="nx">labelNode</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_LABEL</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">labelText</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+					<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;labelNode&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">);</span>
+				<span class="p">},</span>
+
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;labelNode&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+
+					<span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">node</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_createFieldNode</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">fieldHint</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
+			<span class="p">},</span>
+
+			<span class="nx">fieldHintNode</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_createFieldHint</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">prevVal</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
+			<span class="p">},</span>
+
+			<span class="nx">valid</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+				<span class="nx">getter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+					<span class="kd">var</span> <span class="nx">validator</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;validator&#39;</span><span class="p">);</span>
+
+					<span class="kd">var</span> <span class="nx">valid</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="nx">validator</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">));</span>
+
+					<span class="k">return</span> <span class="nx">valid</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">dirty</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+				<span class="nx">getter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">))</span> <span class="p">{</span>
+						<span class="nx">value</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+					<span class="p">}</span>
+					<span class="k">else</span> <span class="p">{</span>
+						<span class="kd">var</span> <span class="nx">currentVal</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">));</span>
+						<span class="kd">var</span> <span class="nx">prevVal</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;prevVal&#39;</span><span class="p">));</span>
+
+						<span class="nx">value</span> <span class="o">=</span> <span class="p">(</span><span class="nx">currentVal</span> <span class="o">!==</span> <span class="nx">prevVal</span><span class="p">);</span>
+					<span class="p">}</span>
+
+					<span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">size</span><span class="o">:</span> <span class="p">{},</span>
+
+			<span class="nx">validator</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+					<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">fieldValidator</span><span class="p">;</span>
+				<span class="p">},</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isFunction</span>
+			<span class="p">},</span>
+
+			<span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">getter</span><span class="o">:</span> <span class="s1">&#39;_getNodeValue&#39;</span><span class="p">,</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="s1">&#39;_setNodeValue&#39;</span><span class="p">,</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="s1">&#39;fieldValidator&#39;</span>
+			<span class="p">}</span>
 		<span class="p">},</span>
 
-		<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderField</span><span class="p">();</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderLabel</span><span class="p">();</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderFieldHint</span><span class="p">();</span>
+		<span class="nx">HTML_PARSER</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">labelNode</span><span class="o">:</span> <span class="s1">&#39;label&#39;</span><span class="p">,</span>
+			<span class="nx">node</span><span class="o">:</span> <span class="s1">&#39;input, textarea, select&#39;</span>
 		<span class="p">},</span>
 
-		<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="nx">BIND_UI_ATTRS</span><span class="o">:</span> <span class="p">[</span>
+			<span class="s1">&#39;id&#39;</span><span class="p">,</span>
+			<span class="s1">&#39;readOnly&#39;</span><span class="p">,</span>
+			<span class="s1">&#39;name&#39;</span><span class="p">,</span>
+			<span class="s1">&#39;size&#39;</span><span class="p">,</span>
+			<span class="s1">&#39;tabIndex&#39;</span><span class="p">,</span>
+			<span class="s1">&#39;type&#39;</span><span class="p">,</span>
+			<span class="s1">&#39;value&#39;</span>
+		<span class="p">],</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;labelAlignChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterLabelAlignChange</span><span class="p">);</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;fieldHintChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterFieldHintChange</span><span class="p">);</span>
-		<span class="p">},</span>
+		<span class="nx">getTypeClassName</span><span class="o">:</span> <span class="nx">getTypeClassName</span><span class="p">,</span>
 
-		<span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="nx">getField</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">fieldWidget</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;prevVal&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">));</span>
-		<span class="p">},</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">field</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Field</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">fieldWidget</span> <span class="o">=</span> <span class="nx">field</span><span class="p">;</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">field</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="o">||</span> <span class="nx">field</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span> <span class="o">||</span> <span class="nx">field</span><span class="p">.</span><span class="nx">nodeName</span><span class="p">))</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">fieldId</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">field</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
 
-		<span class="nx">fieldValidator</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="nx">fieldWidget</span> <span class="o">=</span> <span class="nx">_FIELD_INSTANCES</span><span class="p">[</span><span class="nx">fieldId</span><span class="p">];</span>
 
-			<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-		<span class="p">},</span>
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">fieldWidget</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">ancestor</span><span class="p">(</span><span class="s1">&#39;.aui-field&#39;</span><span class="p">);</span>
+					<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">ancestor</span><span class="p">(</span><span class="s1">&#39;.aui-field-content&#39;</span><span class="p">);</span>
 
-		<span class="nx">isValid</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;valid&#39;</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">isDirty</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;dirty&#39;</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">resetValue</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;prevVal&#39;</span><span class="p">));</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">clearInvalid</span><span class="p">();</span>
-		<span class="p">},</span>
-
-		<span class="nx">markInvalid</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;fieldHint&#39;</span><span class="p">,</span> <span class="nx">message</span><span class="p">);</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;fieldHintNode&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_FIELD_INVALID</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">clearInvalid</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">reset</span><span class="p">(</span><span class="s1">&#39;fieldHint&#39;</span><span class="p">);</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;fieldHint&#39;</span><span class="p">))</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;fieldHintNode&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+					<span class="nx">fieldWidget</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Field</span><span class="p">(</span>
+						<span class="p">{</span>
+							<span class="nx">boundingBox</span><span class="o">:</span> <span class="nx">boundingBox</span><span class="p">,</span>
+							<span class="nx">contentBox</span><span class="o">:</span> <span class="nx">contentBox</span><span class="p">,</span>
+							<span class="nx">node</span><span class="o">:</span> <span class="nx">field</span>
+						<span class="p">}</span>
+					<span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">field</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">fieldWidget</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Field</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
 			<span class="p">}</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_FIELD_INVALID</span><span class="p">);</span>
+			<span class="k">return</span> <span class="nx">fieldWidget</span><span class="p">;</span>
 		<span class="p">},</span>
 
-		<span class="nx">validate</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">BOUNDING_TEMPLATE</span><span class="o">:</span> <span class="nx">TPL_BOUNDING_BOX</span><span class="p">,</span>
+			<span class="nx">CONTENT_TEMPLATE</span><span class="o">:</span> <span class="nx">TPL_CONTENT_BOX</span><span class="p">,</span>
+			<span class="nx">FIELD_TEMPLATE</span><span class="o">:</span> <span class="nx">TPL_INPUT</span><span class="p">,</span>
+			<span class="nx">FIELD_TYPE</span><span class="o">:</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span>
 
-			<span class="kd">var</span> <span class="nx">valid</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;valid&#39;</span><span class="p">);</span>
+			<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-			<span class="k">if</span> <span class="p">(</span><span class="nx">valid</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">guid</span><span class="p">();</span>
+
+				<span class="nx">_FIELD_INSTANCES</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderField</span><span class="p">();</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderLabel</span><span class="p">();</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderFieldHint</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;labelAlignChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterLabelAlignChange</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;fieldHintChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterFieldHintChange</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;prevVal&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">));</span>
+			<span class="p">},</span>
+
+			<span class="nx">fieldValidator</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="nx">isValid</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;valid&#39;</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">isDirty</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;dirty&#39;</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">resetValue</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;prevVal&#39;</span><span class="p">));</span>
+
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">clearInvalid</span><span class="p">();</span>
-			<span class="p">}</span>
+			<span class="p">},</span>
 
-			<span class="k">return</span> <span class="nx">valid</span><span class="p">;</span>
-		<span class="p">},</span>
+			<span class="nx">markInvalid</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-		<span class="nx">_afterFieldHintChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;fieldHint&#39;</span><span class="p">,</span> <span class="nx">message</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;fieldHintNode&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetFieldHint</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">);</span>
-		<span class="p">},</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_FIELD_INVALID</span><span class="p">);</span>
+			<span class="p">},</span>
 
-		<span class="nx">_afterLabelAlignChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="nx">clearInvalid</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetLabelAlign</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">);</span>
-		<span class="p">},</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">reset</span><span class="p">(</span><span class="s1">&#39;fieldHint&#39;</span><span class="p">);</span>
 
-		<span class="nx">_createFieldHint</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">fieldHint</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_FIELD_HINT</span><span class="p">);</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentBox&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">fieldHint</span><span class="p">);</span>
-
-			<span class="k">return</span> <span class="nx">fieldHint</span><span class="p">;</span>
-		<span class="p">},</span>
-
-		<span class="nx">_createFieldNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">fieldTemplate</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">FIELD_TEMPLATE</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">FIELD_TEMPLATE</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">substitute</span><span class="p">(</span>
-				<span class="nx">fieldTemplate</span><span class="p">,</span>
-				<span class="p">{</span>
-					<span class="nx">cssClass</span><span class="o">:</span> <span class="nx">CSS_FIELD_INPUT</span><span class="p">,</span>
-					<span class="nx">id</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">),</span>
-					<span class="nx">name</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span>
-					<span class="nx">type</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span>
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;fieldHint&#39;</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;fieldHintNode&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
 				<span class="p">}</span>
-			<span class="p">);</span>
 
-			<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">FIELD_TEMPLATE</span><span class="p">);</span>
-		<span class="p">},</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_FIELD_INVALID</span><span class="p">);</span>
+			<span class="p">},</span>
 
-		<span class="nx">_getNodeValue</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="nx">validate</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
-		<span class="p">},</span>
+				<span class="kd">var</span> <span class="nx">valid</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;valid&#39;</span><span class="p">);</span>
 
-		<span class="nx">_renderField</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
-
-			<span class="nx">node</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">));</span>
-
-			<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentBox&#39;</span><span class="p">);</span>
-
-			<span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">);</span>
-
-			<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">getTypeClassName</span><span class="p">(</span><span class="nx">type</span><span class="p">));</span>
-			<span class="nx">node</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">getTypeClassName</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="s1">&#39;input&#39;</span><span class="p">));</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">contentBox</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">node</span><span class="p">))</span> <span class="p">{</span>
-				<span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">inDoc</span><span class="p">())</span> <span class="p">{</span>
-					<span class="nx">node</span><span class="p">.</span><span class="nx">placeBefore</span><span class="p">(</span><span class="nx">boundingBox</span><span class="p">);</span>
-
-					<span class="nx">contentBox</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">valid</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">clearInvalid</span><span class="p">();</span>
 				<span class="p">}</span>
-				<span class="k">else</span> <span class="p">{</span>
-					<span class="nx">contentBox</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
-				<span class="p">}</span>
-			<span class="p">}</span>
 
-			<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="s1">&#39;tabIndex&#39;</span><span class="p">);</span>
-		<span class="p">},</span>
+				<span class="k">return</span> <span class="nx">valid</span><span class="p">;</span>
+			<span class="p">},</span>
 
-		<span class="nx">_renderFieldHint</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="nx">_afterFieldHintChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-			<span class="kd">var</span> <span class="nx">fieldHint</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;fieldHint&#39;</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetFieldHint</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">);</span>
+			<span class="p">},</span>
 
-			<span class="k">if</span> <span class="p">(</span><span class="nx">fieldHint</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetFieldHint</span><span class="p">(</span><span class="nx">fieldHint</span><span class="p">);</span>
-			<span class="p">}</span>
-		<span class="p">},</span>
+			<span class="nx">_afterLabelAlignChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-		<span class="nx">_renderLabel</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetLabelAlign</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">);</span>
+			<span class="p">},</span>
 
-			<span class="kd">var</span> <span class="nx">labelText</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;labelText&#39;</span><span class="p">);</span>
+			<span class="nx">_createFieldHint</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-			<span class="k">if</span> <span class="p">(</span><span class="nx">labelText</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">fieldHint</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_FIELD_HINT</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentBox&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">fieldHint</span><span class="p">);</span>
+
+				<span class="k">return</span> <span class="nx">fieldHint</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="nx">_createFieldNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">fieldTemplate</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">FIELD_TEMPLATE</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">FIELD_TEMPLATE</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">substitute</span><span class="p">(</span>
+					<span class="nx">fieldTemplate</span><span class="p">,</span>
+					<span class="p">{</span>
+						<span class="nx">cssClass</span><span class="o">:</span> <span class="nx">CSS_FIELD_INPUT</span><span class="p">,</span>
+						<span class="nx">id</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">),</span>
+						<span class="nx">name</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span>
+						<span class="nx">type</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span>
+					<span class="p">}</span>
+				<span class="p">);</span>
+
+				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">FIELD_TEMPLATE</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_getNodeValue</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="nx">_renderField</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
 				<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
-				<span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">guid</span><span class="p">();</span>
 
-				<span class="nx">labelText</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;labelText&#39;</span><span class="p">);</span>
+				<span class="nx">node</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">));</span>
 
-				<span class="kd">var</span> <span class="nx">labelNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;labelNode&#39;</span><span class="p">);</span>
-
-				<span class="nx">labelNode</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">getClassName</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">));</span>
-				<span class="nx">labelNode</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;for&#39;</span><span class="p">,</span> <span class="nx">id</span><span class="p">);</span>
-				<span class="nx">labelNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">,</span> <span class="nx">labelText</span><span class="p">);</span>
-
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetLabelAlign</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;labelAlign&#39;</span><span class="p">));</span>
-
+				<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">);</span>
 				<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentBox&#39;</span><span class="p">);</span>
 
-				<span class="nx">contentBox</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="nx">labelNode</span><span class="p">);</span>
-			<span class="p">}</span>
-		<span class="p">},</span>
+				<span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">);</span>
 
-		<span class="nx">_setNodeValue</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">getTypeClassName</span><span class="p">(</span><span class="nx">type</span><span class="p">));</span>
+				<span class="nx">node</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">getTypeClassName</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="s1">&#39;input&#39;</span><span class="p">));</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetValue</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">contentBox</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">node</span><span class="p">))</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">inDoc</span><span class="p">())</span> <span class="p">{</span>
+						<span class="nx">node</span><span class="p">.</span><span class="nx">placeBefore</span><span class="p">(</span><span class="nx">boundingBox</span><span class="p">);</span>
 
-			<span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
-		<span class="p">},</span>
-
-		<span class="nx">_uiSetFieldHint</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">prevVal</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;fieldHintNode&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">,</span> <span class="nx">newVal</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">_uiSetId</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nx">newVal</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">_uiSetLabelAlign</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">prevVal</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">);</span>
-
-			<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">replaceClass</span><span class="p">(</span><span class="nx">CSS_LABEL_ALIGN</span><span class="p">[</span><span class="nx">prevVal</span><span class="p">],</span> <span class="nx">CSS_LABEL_ALIGN</span><span class="p">[</span><span class="nx">newVal</span><span class="p">]);</span>
-
-			<span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;removeClass&#39;</span><span class="p">;</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">REGEX_INLINE_LABEL</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">newVal</span><span class="p">))</span> <span class="p">{</span>
-				<span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;addClass&#39;</span><span class="p">;</span>
-			<span class="p">}</span>
-
-			<span class="nx">boundingBox</span><span class="p">[</span><span class="nx">action</span><span class="p">](</span><span class="nx">CSS_LABELS_INLINE</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">_uiSetName</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nx">newVal</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">_uiSetReadOnly</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;readOnly&#39;</span><span class="p">,</span> <span class="nx">newVal</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">_uiSetSize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="nx">newVal</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">_uiSetTabIndex</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;tabIndex&#39;</span><span class="p">,</span> <span class="nx">newVal</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">_uiSetValue</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">newVal</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="nx">_requireAddAttr</span><span class="o">:</span> <span class="kc">false</span>
-	<span class="p">}</span>
-<span class="p">);</span>
-
-<span class="nx">Field</span><span class="p">.</span><span class="nx">getField</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">fieldWidget</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-
-	<span class="k">if</span> <span class="p">(</span><span class="nx">field</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Field</span><span class="p">)</span> <span class="p">{</span>
-		<span class="nx">fieldWidget</span> <span class="o">=</span> <span class="nx">field</span><span class="p">;</span>
-	<span class="p">}</span>
-	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">field</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="o">||</span> <span class="nx">field</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span> <span class="o">||</span> <span class="nx">field</span><span class="p">.</span><span class="nx">nodeName</span><span class="p">))</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">fieldId</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">field</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
-
-		<span class="nx">fieldWidget</span> <span class="o">=</span> <span class="nx">_FIELD_INSTANCES</span><span class="p">[</span><span class="nx">fieldId</span><span class="p">];</span>
-
-		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">fieldWidget</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">ancestor</span><span class="p">(</span><span class="s1">&#39;.aui-field&#39;</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">ancestor</span><span class="p">(</span><span class="s1">&#39;.aui-field-content&#39;</span><span class="p">);</span>
-
-			<span class="nx">fieldWidget</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Field</span><span class="p">(</span>
-				<span class="p">{</span>
-					<span class="nx">boundingBox</span><span class="o">:</span> <span class="nx">boundingBox</span><span class="p">,</span>
-					<span class="nx">contentBox</span><span class="o">:</span> <span class="nx">contentBox</span><span class="p">,</span>
-					<span class="nx">node</span><span class="o">:</span> <span class="nx">field</span>
+						<span class="nx">contentBox</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+					<span class="p">}</span>
+					<span class="k">else</span> <span class="p">{</span>
+						<span class="nx">contentBox</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+					<span class="p">}</span>
 				<span class="p">}</span>
-			<span class="p">);</span>
+
+				<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="s1">&#39;tabIndex&#39;</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_renderFieldHint</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">fieldHint</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;fieldHint&#39;</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">fieldHint</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetFieldHint</span><span class="p">(</span><span class="nx">fieldHint</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">_renderLabel</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">labelText</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;labelText&#39;</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">labelText</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
+					<span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">guid</span><span class="p">();</span>
+
+					<span class="nx">labelText</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;labelText&#39;</span><span class="p">);</span>
+
+					<span class="kd">var</span> <span class="nx">labelNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;labelNode&#39;</span><span class="p">);</span>
+
+					<span class="nx">labelNode</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">getClassName</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">));</span>
+					<span class="nx">labelNode</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;for&#39;</span><span class="p">,</span> <span class="nx">id</span><span class="p">);</span>
+					<span class="nx">labelNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">,</span> <span class="nx">labelText</span><span class="p">);</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetLabelAlign</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;labelAlign&#39;</span><span class="p">));</span>
+
+					<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentBox&#39;</span><span class="p">);</span>
+
+					<span class="nx">contentBox</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="nx">labelNode</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">_setNodeValue</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetValue</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+
+				<span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
+			<span class="p">},</span>
+
+			<span class="nx">_uiSetFieldHint</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">prevVal</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;fieldHintNode&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">,</span> <span class="nx">newVal</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_uiSetId</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nx">newVal</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_uiSetLabelAlign</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">prevVal</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">);</span>
+
+				<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">replaceClass</span><span class="p">(</span><span class="nx">CSS_LABEL_ALIGN</span><span class="p">[</span><span class="nx">prevVal</span><span class="p">],</span> <span class="nx">CSS_LABEL_ALIGN</span><span class="p">[</span><span class="nx">newVal</span><span class="p">]);</span>
+
+				<span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;removeClass&#39;</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">REGEX_INLINE_LABEL</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">newVal</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">action</span> <span class="o">=</span> <span class="s1">&#39;addClass&#39;</span><span class="p">;</span>
+				<span class="p">}</span>
+
+				<span class="nx">boundingBox</span><span class="p">[</span><span class="nx">action</span><span class="p">](</span><span class="nx">CSS_LABELS_INLINE</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_uiSetName</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nx">newVal</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_uiSetReadOnly</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;readOnly&#39;</span><span class="p">,</span> <span class="nx">newVal</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_uiSetSize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="nx">newVal</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_uiSetTabIndex</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;tabIndex&#39;</span><span class="p">,</span> <span class="nx">newVal</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_uiSetValue</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">,</span> <span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">newVal</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_requireAddAttr</span><span class="o">:</span> <span class="kc">false</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
-	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">field</span><span class="p">))</span> <span class="p">{</span>
-		<span class="nx">fieldWidget</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Field</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
-	<span class="p">}</span>
-
-	<span class="k">return</span> <span class="nx">fieldWidget</span><span class="p">;</span>
-<span class="p">};</span>
+<span class="p">);</span>
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">Field</span> <span class="o">=</span> <span class="nx">Field</span><span class="p">;</span>
 
@@ -1148,7 +1150,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "FormManager.html#method_addErrorMessage", "access": "", "host": "FormManager", "type": "method", "name": "addErrorMessage"}, {"url": "FormManager.html#config_A.FormManager.decimal_value_re", "access": "", "host": "FormManager", "type": "config", "name": "A.FormManager.decimal_value_re"}, {"url": "FormManager.html#method_A.FormManager.getElementStatus", "access": "", "host": "FormManager", "type": "method", "name": "A.FormManager.getElementStatus"}, {"url": "FormManager.html#method_A.FormManager.getStatusPrecedence", "access": "", "host": "FormManager", "type": "method", "name": "A.FormManager.getStatusPrecedence"}, {"url": "FormManager.html#config_A.FormManager.integer_value_re", "access": "", "host": "FormManager", "type": "config", "name": "A.FormManager.integer_value_re"}, {"url": "FormManager.html#property_A.FormManager.row_marker_class", "access": "", "host": "FormManager", "type": "property", "name": "A.FormManager.row_marker_class"}, {"url": "FormManager.html#property_A.FormManager.row_status_prefix", "access": "", "host": "FormManager", "type": "property", "name": "A.FormManager.row_status_prefix"}, {"url": "FormManager.html#property_A.FormManager.status_failure_class", "access": "", "host": "FormManager", "type": "property", "name": "A.FormManager.status_failure_class"}, {"url": "FormManager.html#property_A.FormManager.status_marker_class", "access": "", "host": "FormManager", "type": "property", "name": "A.FormManager.status_marker_class"}, {"url": "FormManager.html#property_A.FormManager.status_none_class", "access": "", "host": "FormManager", "type": "property", "name": "A.FormManager.status_none_class"}, {"url": "FormManager.html#config_A.FormManager.status_order", "access": "", "host": "FormManager", "type": "config", "name": "A.FormManager.status_order"}, {"url": "FormManager.html#property_A.FormManager.status_success_class", "access": "", "host": "FormManager", "type": "property", "name": "A.FormManager.status_success_class"}, {"url": "FormManager.html#method_A.FormManager.statusTakesPrecendence", "access": "", "host": "FormManager", "type": "method", "name": "A.FormManager.statusTakesPrecendence"}, {"url": "FormManager.html#config_A.FormManager.Strings", "access": "", "host": "FormManager", "type": "config", "name": "A.FormManager.Strings"}, {"url": "FormManager.html#method_clearForm", "access": "", "host": "FormManager", "type": "method", "name": "clearForm"}, {"url": "FormManager.html#method_clearMessages", "access": "", "host": "FormManager", "type": "method", "name": "clearMessages"}, {"url": "FormManager.html#method_disableForm", "access": "", "host": "FormManager", "type": "method", "name": "disableForm"}, {"url": "FormManager.html#method_displayFormMessage", "access": "", "host": "FormManager", "type": "method", "name": "displayFormMessage"}, {"url": "FormManager.html#method_displayMessage", "access": "", "host": "FormManager", "type": "method", "name": "displayMessage"}, {"url": "FormManager.html#method_enableForm", "access": "", "host": "FormManager", "type": "method", "name": "enableForm"}, {"url": "FormManager.html#method_getForm", "access": "", "host": "FormManager", "type": "method", "name": "getForm"}, {"url": "FormManager.html#method_getRowStatus", "access": "", "host": "FormManager", "type": "method", "name": "getRowStatus"}, {"url": "FormManager.html#method_hasErrors", "access": "", "host": "FormManager", "type": "method", "name": "hasErrors"}, {"url": "FormManager.html#method_hasFileInputs", "access": "", "host": "FormManager", "type": "method", "name": "hasFileInputs"}, {"url": "FormManager.html#method_hasMessages", "access": "", "host": "FormManager", "type": "method", "name": "hasMessages"}, {"url": "FormManager.html#method_initFocus", "access": "", "host": "FormManager", "type": "method", "name": "initFocus"}, {"url": "FormManager.html#method_isChanged", "access": "", "host": "FormManager", "type": "method", "name": "isChanged"}, {"url": "FormManager.html#method_notifyErrors", "access": "", "host": "FormManager", "type": "method", "name": "notifyErrors"}, {"url": "FormManager.html#method_populateForm", "access": "", "host": "FormManager", "type": "method", "name": "populateForm"}, {"url": "FormManager.html#method_postPopulateForm", "access": "", "host": "FormManager", "type": "method", "name": "postPopulateForm"}, {"url": "FormManager.html#method_postPrepareForm", "access": "", "host": "FormManager", "type": "method", "name": "postPrepareForm"}, {"url": "FormManager.html#method_postValidateForm", "access": "", "host": "FormManager", "type": "method", "name": "postValidateForm"}, {"url": "FormManager.html#method_prepareForm", "access": "", "host": "FormManager", "type": "method", "name": "prepareForm"}, {"url": "FormManager.html#method_prePrepareForm", "access": "", "host": "FormManager", "type": "method", "name": "prePrepareForm"}, {"url": "FormManager.html#method_registerButton", "access": "", "host": "FormManager", "type": "method", "name": "registerButton"}, {"url": "FormManager.html#method_saveCurrentValuesAsDefault", "access": "", "host": "FormManager", "type": "method", "name": "saveCurrentValuesAsDefault"}, {"url": "FormManager.html#method_setDefaultValue", "access": "", "host": "FormManager", "type": "method", "name": "setDefaultValue"}, {"url": "FormManager.html#method_setDefaultValues", "access": "", "host": "FormManager", "type": "method", "name": "setDefaultValues"}, {"url": "FormManager.html#method_setErrorMessages", "access": "", "host": "FormManager", "type": "method", "name": "setErrorMessages"}, {"url": "FormManager.html#method_setFormEnabled", "access": "", "host": "FormManager", "type": "method", "name": "setFormEnabled"}, {"url": "FormManager.html#method_setFunction", "access": "", "host": "FormManager", "type": "method", "name": "setFunction"}, {"url": "FormManager.html#method_setRegex", "access": "", "host": "FormManager", "type": "method", "name": "setRegex"}, {"url": "FormManager.html#method_validateForm", "access": "", "host": "FormManager", "type": "method", "name": "validateForm"}];
+    var ALL_YUI_PROPS = [{"url": "AUI~event~input.html#property_A.Node.DOM_EVENTS.input", "access": "", "host": "AUI~event~input", "type": "property", "name": "A.Node.DOM_EVENTS.input"}, {"url": "AUI~event~input.html#event_input", "access": "", "host": "AUI~event~input", "type": "event", "name": "input"}, {"url": "AUI~event~input.html#method_void();", "access": "", "host": "AUI~event~input", "type": "method", "name": "void();"}];
 </script>
 </body>
 </html>
