@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.0
+version: 3.1.1
 build: nightly
 */
 /**
@@ -62,7 +62,7 @@ if (typeof YUI === 'undefined') {
 
 (function() {
     var p, prop,
-        VERSION       = '3.1.0', 
+        VERSION       = '3.1.1', 
         BASE          = 'http://yui.yahooapis.com/',
         DOC_LABEL     = 'yui3-js-enabled',
         NOOP          = function() {},
@@ -2325,7 +2325,7 @@ Y.UA = function() {
 }();
 
 
-}, '3.1.0' );
+}, '3.1.1' );
 YUI.add('get', function(Y) {
 
 (function() {
@@ -3044,7 +3044,7 @@ Y.Get = function() {
 })();
 
 
-}, '3.1.0' );
+}, '3.1.1' );
 YUI.add('intl-base', function(Y) {
 
 /** 
@@ -3128,7 +3128,7 @@ Y.mix(Y.namespace("Intl"), {
 });
 
 
-}, '3.1.0' ,{requires:['yui-base']});
+}, '3.1.1' ,{requires:['yui-base']});
 YUI.add('yui-log', function(Y) {
 
 /**
@@ -3237,7 +3237,7 @@ INSTANCE.message = function() {
 })();
 
 
-}, '3.1.0' ,{requires:['yui-base']});
+}, '3.1.1' ,{requires:['yui-base']});
 YUI.add('yui-later', function(Y) {
 
 /**
@@ -3306,7 +3306,7 @@ YUI.add('yui-later', function(Y) {
 })();
 
 
-}, '3.1.0' ,{requires:['yui-base']});
+}, '3.1.1' ,{requires:['yui-base']});
 YUI.add('yui-throttle', function(Y) {
 
 /**
@@ -3356,10 +3356,10 @@ Y.throttle = throttle;
 
 
 
-}, '3.1.0' ,{requires:['yui-base']});
+}, '3.1.1' ,{requires:['yui-base']});
 
 
-YUI.add('yui', function(Y){}, '3.1.0' ,{use:['yui-base','get','intl-base','yui-log','yui-later','yui-throttle']});
+YUI.add('yui', function(Y){}, '3.1.1' ,{use:['yui-base','get','intl-base','yui-log','yui-later','yui-throttle']});
 
 ;(function() {
 	var PATH_BASE = YUI.config.base;
@@ -3387,38 +3387,38 @@ YUI.add('yui', function(Y){}, '3.1.0' ,{use:['yui-base','get','intl-base','yui-l
 	            combine: false,
                 modules: {
 						'aui-autocomplete': {requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox'], skinnable:true},
-						'aui-base': {requires:['aui-node','aui-component','aui-delayed-task','event','oop','widget-css'], skinnable:false},
-						'aui-button-item': {requires:['aui-base','aui-state-interaction','widget-child'], skinnable:true},
-						'aui-calendar': {submodules: {'aui-calendar-datepicker-select': {requires:['aui-calendar-base','aui-button-item'], skinnable:true}, 'aui-calendar-base': {requires:['aui-overlay-context','datatype-date','widget-locale'], skinnable:true} }, skinnable:true, use:['aui-calendar-base','aui-calendar-datepicker-select']},
-						'aui-carousel': {requires:['aui-base','anim'], skinnable:true},
-						'aui-char-counter': {requires:['aui-base','aui-event-input'], skinnable:false},
-						'aui-chart': {requires:['datasource','aui-swf','json'], skinnable:false},
-						'aui-color-picker': {requires:['aui-overlay-context','dd','slider','substitute','aui-button-item','aui-form','aui-panel'], skinnable:true},
-						'aui-component': {requires:['widget'], skinnable:false},
-						'aui-data-set': {requires:['oop','collection','base'], skinnable:false},
-						'aui-datatype': {requires:['aui-base'], skinnable:false},
+						'aui-base': {skinnable:false, requires:['aui-node','aui-component','aui-delayed-task','event','oop','widget-css']},
+						'aui-button-item': {skinnable:true, requires:['aui-base','aui-state-interaction','widget-child']},
+						'aui-calendar': {submodules: {'aui-calendar-datepicker-select': {skinnable:true, requires:['aui-calendar-base','aui-button-item']}, 'aui-calendar-base': {skinnable:true, requires:['aui-overlay-context','datatype-date','widget-locale']} }, skinnable:true, use:['aui-calendar-base','aui-calendar-datepicker-select']},
+						'aui-carousel': {skinnable:true, requires:['aui-base','anim']},
+						'aui-char-counter': {skinnable:false, requires:['aui-base','aui-event-input']},
+						'aui-chart': {skinnable:false, requires:['datasource','aui-swf','json']},
+						'aui-color-picker': {skinnable:true, requires:['aui-overlay-context','dd','slider','substitute','aui-button-item','aui-form','aui-panel']},
+						'aui-component': {skinnable:false, requires:['widget']},
+						'aui-data-set': {skinnable:false, requires:['oop','collection','base']},
+						'aui-datatype': {skinnable:false, requires:['aui-base']},
 						'aui-delayed-task': {skinnable:false},
-						'aui-dialog': {requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize'], skinnable:true},
-						'aui-editable': {requires:['aui-base','aui-form-combobox'], skinnable:true},
-						'aui-event': {submodules: {'aui-event-input': {requires:['aui-base']} }, skinnable:false, use:['aui-event-input']},
-						'aui-form': {submodules: {'aui-form-validator': {requires:['aui-base','aui-event-input','selector-css3','substitute']}, 'aui-form-textfield': {requires:['aui-form-field']}, 'aui-form-textarea': {requires:['aui-form-textfield'], skinnable:true}, 'aui-form-field': {requires:['aui-base','aui-component','substitute']}, 'aui-form-combobox': {requires:['aui-form-textarea','aui-toolbar'], skinnable:true}, 'aui-form-base': {requires:['aui-base','aui-data-set','aui-form-field','querystring-parse']} }, skinnable:false, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-textarea','aui-form-textfield','aui-form-validator']},
-						'aui-image-viewer': {submodules: {'aui-image-viewer-gallery': {requires:['aui-image-viewer-base','aui-paginator','aui-toolbar'], skinnable:true}, 'aui-image-viewer-base': {requires:['anim','aui-overlay-mask','substitute'], skinnable:true} }, skinnable:true, use:['aui-image-viewer-base','aui-image-viewer-gallery']},
-						'aui-io': {submodules: {'aui-io-plugin': {requires:['aui-overlay-base','aui-parse-content','aui-io-request','aui-loading-mask']}, 'aui-io-request': {requires:['aui-base','io','json','plugin','querystring-stringify']} }, skinnable:false, use:['aui-io-request','aui-io-plugin']},
-						'aui-live-search': {requires:['aui-base'], skinnable:false},
-						'aui-loading-mask': {requires:['aui-overlay-mask','plugin','substitute'], skinnable:true},
-						'aui-nested-list': {requires:['aui-base','dd'], skinnable:false},
-						'aui-node': {submodules: {'aui-node-fx': {requires:['aui-base','anim','anim-node-plugin']}, 'aui-node-html5-print': {requires:['aui-node-html5']}, 'aui-node-html5': {requires:['collection','aui-base']}, 'aui-node-base': {requires:['aui-base']} }, skinnable:false, use:['aui-node-base','aui-node-html5','aui-node-html5-print','aui-node-fx']},
-						'aui-overlay': {submodules: {'aui-overlay-mask': {requires:['aui-base','aui-overlay-base','event-resize'], skinnable:true}, 'aui-overlay-manager': {requires:['aui-base','aui-overlay-base','overlay','plugin']}, 'aui-overlay-context-panel': {requires:['aui-overlay-context','anim'], skinnable:true}, 'aui-overlay-context': {requires:['aui-overlay-manager','aui-delayed-task']}, 'aui-overlay-base': {requires:['aui-component','widget-position','widget-stack','widget-position-align','widget-position-constrain','widget-stdmod']} }, skinnable:true, use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-manager','aui-overlay-mask']},
-						'aui-paginator': {requires:['aui-base','substitute'], skinnable:true},
-						'aui-panel': {requires:['aui-component','widget-stdmod','aui-toolbar'], skinnable:true},
-						'aui-parse-content': {requires:['async-queue','aui-base','io','plugin'], skinnable:false},
-						'aui-portal-layout': {requires:['aui-base','dd'], skinnable:true},
-						'aui-progressbar': {requires:['aui-base'], skinnable:true},
-						'aui-rating': {requires:['aui-base'], skinnable:true},
-						'aui-resize': {requires:['aui-base','dd','substitute'], skinnable:true},
-						'aui-skin-base': {type: 'css', path: 'aui-skin-base/css/aui-skin-base.css'},
-						'aui-skin-classic-all': {type: 'css', path: 'aui-skin-classic/css/aui-skin-classic-all.css'},
-						'aui-skin-classic': {after: ['aui-skin-base'], type: 'css', path: 'aui-skin-classic/css/aui-skin-classic.css'},
+						'aui-dialog': {skinnable:true, requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize']},
+						'aui-editable': {skinnable:true, requires:['aui-base','aui-form-combobox']},
+						'aui-event': {submodules: {'aui-event-input': {requires:['aui-base']} }, use:['aui-event-input'], skinnable:false},
+						'aui-form': {submodules: {'aui-form-validator': {requires:['aui-base','aui-event-input','selector-css3','substitute']}, 'aui-form-textfield': {requires:['aui-form-field']}, 'aui-form-textarea': {skinnable:true, requires:['aui-form-textfield']}, 'aui-form-field': {requires:['aui-base','aui-component','substitute']}, 'aui-form-combobox': {skinnable:true, requires:['aui-form-textarea','aui-toolbar']}, 'aui-form-base': {requires:['aui-base','aui-data-set','aui-form-field','querystring-parse']} }, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-textarea','aui-form-textfield','aui-form-validator'], skinnable:false},
+						'aui-image-viewer': {submodules: {'aui-image-viewer-gallery': {skinnable:true, requires:['aui-image-viewer-base','aui-paginator','aui-toolbar']}, 'aui-image-viewer-base': {skinnable:true, requires:['anim','aui-overlay-mask','substitute']} }, use:['aui-image-viewer-base','aui-image-viewer-gallery'], skinnable:true},
+						'aui-io': {submodules: {'aui-io-plugin': {requires:['aui-overlay-base','aui-parse-content','aui-io-request','aui-loading-mask']}, 'aui-io-request': {requires:['aui-base','io','json','plugin','querystring-stringify']} }, use:['aui-io-request','aui-io-plugin'], skinnable:false},
+						'aui-live-search': {skinnable:false, requires:['aui-base']},
+						'aui-loading-mask': {skinnable:true, requires:['aui-overlay-mask','plugin','substitute']},
+						'aui-nested-list': {skinnable:false, requires:['aui-base','dd']},
+						'aui-node': {submodules: {'aui-node-fx': {requires:['aui-base','anim','anim-node-plugin']}, 'aui-node-html5-print': {requires:['aui-node-html5']}, 'aui-node-html5': {requires:['collection','aui-base']}, 'aui-node-base': {requires:['aui-base']} }, use:['aui-node-base','aui-node-html5','aui-node-html5-print','aui-node-fx'], skinnable:false},
+						'aui-overlay': {submodules: {'aui-overlay-mask': {skinnable:true, requires:['aui-base','aui-overlay-base','event-resize']}, 'aui-overlay-manager': {requires:['aui-base','aui-overlay-base','overlay','plugin']}, 'aui-overlay-context-panel': {skinnable:true, requires:['aui-overlay-context','anim']}, 'aui-overlay-context': {requires:['aui-overlay-manager','aui-delayed-task']}, 'aui-overlay-base': {requires:['aui-component','widget-position','widget-stack','widget-position-align','widget-position-constrain','widget-stdmod']} }, use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-manager','aui-overlay-mask'], skinnable:true},
+						'aui-paginator': {skinnable:true, requires:['aui-base','substitute']},
+						'aui-panel': {skinnable:true, requires:['aui-component','widget-stdmod','aui-toolbar']},
+						'aui-parse-content': {skinnable:false, requires:['async-queue','aui-base','io','plugin']},
+						'aui-portal-layout': {skinnable:true, requires:['aui-base','dd']},
+						'aui-progressbar': {skinnable:true, requires:['aui-base']},
+						'aui-rating': {skinnable:true, requires:['aui-base']},
+						'aui-resize': {skinnable:true, requires:['aui-base','dd','substitute']},
+						'aui-skin-base': {path: 'aui-skin-base/css/aui-skin-base.css', type: 'css'},
+						'aui-skin-classic-all': {path: 'aui-skin-classic/css/aui-skin-classic-all.css', type: 'css'},
+						'aui-skin-classic': {type: 'css', after: ['aui-skin-base'], path: 'aui-skin-classic/css/aui-skin-classic.css'},
 						'aui-sortable': {skinnable:true, requires:['aui-base','dd']},
 						'aui-state-interaction': {skinnable:false, requires:['aui-base','plugin']},
 						'aui-swf': {skinnable:false, requires:['aui-base','querystring-stringify-simple']},
@@ -3558,8 +3558,8 @@ YUI.add('yui', function(Y){}, '3.1.0' ,{use:['yui-base','get','intl-base','yui-l
 
 	var p = navigator.platform;
 	var u = navigator.userAgent;
-	var b = /(Firefox|Opera|Safari|KDE|iCab|Flock|IE)/.exec(u);
-	var os = /(Win|Mac|Linux|iPhone|Sun|Solaris)/.exec(p);
+	var b = /(Firefox|Opera|Chrome|Safari|KDE|iCab|Flock|IE)/.exec(u);
+	var os = /(Win|Mac|Linux|iPhone|iPad|Sun|Solaris)/.exec(p);
 	var versionDefaults = [0,0];
 
 	b = (!b || !b.length) ? (/(Mozilla)/.exec(u) || ['']) : b;
@@ -3581,13 +3581,15 @@ YUI.add('yui', function(Y){}, '3.1.0' ,{use:['yui-base','get','intl-base','yui-l
 			ie: /MSIE/.test(u),
 			netscape: /Netscape/.test(u),
 			opera: /Opera/.test(u),
-			safari: /Safari/.test(u),
+			chrome: /Chrome/.test(u),
+			safari: /Safari/.test(u) && !(/Chrome/.test(u)),
 			browser: b[0].toLowerCase(),
 
 			win: /Win/.test(p),
 			mac: /Mac/.test(p),
 			linux: /Linux/.test(p),
-			iphone: /iPhone/.test(p),
+			iphone: (p == 'iPhone'),
+			ipad: (p == 'iPad'),
 			sun: /Solaris|SunOS/.test(p),
 			os: os[0].toLowerCase(),
 

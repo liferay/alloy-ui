@@ -120,8 +120,8 @@
 
 	var p = navigator.platform;
 	var u = navigator.userAgent;
-	var b = /(Firefox|Opera|Safari|KDE|iCab|Flock|IE)/.exec(u);
-	var os = /(Win|Mac|Linux|iPhone|Sun|Solaris)/.exec(p);
+	var b = /(Firefox|Opera|Chrome|Safari|KDE|iCab|Flock|IE)/.exec(u);
+	var os = /(Win|Mac|Linux|iPhone|iPad|Sun|Solaris)/.exec(p);
 	var versionDefaults = [0,0];
 
 	b = (!b || !b.length) ? (/(Mozilla)/.exec(u) || ['']) : b;
@@ -143,13 +143,15 @@
 			ie: /MSIE/.test(u),
 			netscape: /Netscape/.test(u),
 			opera: /Opera/.test(u),
-			safari: /Safari/.test(u),
+			chrome: /Chrome/.test(u),
+			safari: /Safari/.test(u) && !(/Chrome/.test(u)),
 			browser: b[0].toLowerCase(),
 
 			win: /Win/.test(p),
 			mac: /Mac/.test(p),
 			linux: /Linux/.test(p),
-			iphone: /iPhone/.test(p),
+			iphone: (p == 'iPhone'),
+			ipad: (p == 'iPad'),
 			sun: /Solaris|SunOS/.test(p),
 			os: os[0].toLowerCase(),
 
