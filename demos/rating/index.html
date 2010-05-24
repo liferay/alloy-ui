@@ -3,7 +3,6 @@
 <html>
 <head>
 	<script src="../../build/aui/aui.js" type="text/javascript"></script>
-	<script src="http://localhost/alloy/build/../lib/yui-combo/combo.php?./../../build/oop/oop-min.js&./../../build/event-custom/event-custom-min.js&./../../build/pluginhost/pluginhost-min.js&./../../build/attribute/attribute-min.js&./../../build/base/base-min.js&./../../build/dom/dom-min.js&./../../build/node/node-min.js&./../../build/event/event-min.js&./../../build/anim/anim-min.js&./../../build/collection/collection-min.js&./../../build/classnamemanager/classnamemanager-min.js&./../../build/widget/widget-min.js&./../../build/aui-component/aui-component-min.js&./../../build/aui-delayed-task/aui-delayed-task-min.js&./../../build/aui-node/aui-node-min.js&./../../build/aui-rating/aui-rating-min.js" type="text/javascript"></script>
 
 	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 </head>
@@ -46,28 +45,9 @@
 <br/>
 
 <script type="text/javascript" charset="utf-8">
-console.time('test');
-AUI().use('overlay', function(A) {
-	var baseClass = A.EventTarget;
-	var renderMethod = baseClass == A.Widget ? 'render' : 'fire';
-	var renderArg = renderMethod == 'fire' ? 'render' : null;
-	var renderCallback = function(event) {
-		console.timeEnd('test');
-	};
 
-	var obj = new baseClass({
-		boundingBox: '#rating1',
-		on: {
-			render: renderCallback
-		}
-	});
+AUI().ready('aui-rating', function(A) {
 
-	// obj[renderMethod](renderArg);
-
-	obj.on('render', renderCallback);
-
-	obj[renderMethod](renderArg);
-return;
 	var rating1 = new A.StarRating({
 		//size: 8,
 		//autoRender: false,
@@ -79,9 +59,6 @@ return;
 		//showTitle: false,
 		//inputName: 'name',
 		on: {
-			render: function(event) {
-				console.timeEnd('test');
-			},
 			itemOver: function() {
 				console.log('itemOver 1', arguments);
 			},
