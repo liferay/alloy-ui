@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.0
+version: 3.1.1
 build: nightly
 */
 YUI.add('yui-log', function(Y) {
@@ -113,4 +113,4 @@ INSTANCE.message = function() {
 })();
 
 
-}, '3.1.0' ,{requires:['yui-base']});
+}, '3.1.1' ,{requires:['yui-base']});

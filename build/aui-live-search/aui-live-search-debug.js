@@ -432,4 +432,4 @@ var LiveSearch = A.Component.create(
 
 A.LiveSearch = LiveSearch;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
+}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});

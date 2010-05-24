@@ -733,4 +733,4 @@ var DatePickerSelect = A.Component.create(
 
 A.DatePickerSelect = DatePickerSelect;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-calendar-base','aui-button-item']});
+}, '@VERSION@' ,{requires:['aui-calendar-base','aui-button-item'], skinnable:true});

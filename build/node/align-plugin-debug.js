@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.0
+version: 3.1.1
 build: nightly
 */
 YUI.add('align-plugin', function(Y) {
@@ -207,4 +207,4 @@ YUI.add('align-plugin', function(Y) {
 
 
 
-}, '3.1.0' ,{requires:['node-region']});
+}, '3.1.1' ,{requires:['node-region']});

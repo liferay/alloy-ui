@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.0
+version: 3.1.1
 build: nightly
 */
 YUI.add('dom-base', function(Y) {
@@ -813,7 +813,7 @@ addClass = Y.DOM.addClass;
 
 
 
-}, '3.1.0' ,{requires:['oop']});
+}, '3.1.1' ,{requires:['oop']});
 YUI.add('dom-style', function(Y) {
 
 (function(Y) {
@@ -1370,7 +1370,7 @@ Y.mix(Y.DOM, {
 });
 
 
-}, '3.1.0' ,{requires:['dom-base']});
+}, '3.1.1' ,{requires:['dom-base']});
 YUI.add('dom-screen', function(Y) {
 
 (function(Y) {
@@ -1958,7 +1958,7 @@ Y.mix(DOM, {
 })(Y);
 
 
-}, '3.1.0' ,{requires:['dom-base', 'dom-style', 'event-base']});
+}, '3.1.1' ,{requires:['dom-base', 'dom-style', 'event-base']});
 YUI.add('selector-native', function(Y) {
 
 (function(Y) {
@@ -2223,7 +2223,7 @@ Y.mix(Y.Selector, Selector, true);
 })(Y);
 
 
-}, '3.1.0' ,{requires:['dom-base']});
+}, '3.1.1' ,{requires:['dom-base']});
 YUI.add('selector-css2', function(Y) {
 
 /**
@@ -2659,12 +2659,12 @@ if (Y.Selector.useNative && document.querySelector) {
 
 
 
-}, '3.1.0' ,{requires:['selector-native']});
+}, '3.1.1' ,{requires:['selector-native']});
 
 
-YUI.add('selector', function(Y){}, '3.1.0' ,{use:['selector-native', 'selector-css2']});
+YUI.add('selector', function(Y){}, '3.1.1' ,{use:['selector-native', 'selector-css2']});
 
 
 
-YUI.add('dom', function(Y){}, '3.1.0' ,{use:['dom-base', 'dom-style', 'dom-screen', 'selector']});
+YUI.add('dom', function(Y){}, '3.1.1' ,{use:['dom-base', 'dom-style', 'dom-screen', 'selector']});
 

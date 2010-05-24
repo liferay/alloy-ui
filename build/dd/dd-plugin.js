@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.0
+version: 3.1.1
 build: nightly
 */
 YUI.add('dd-plugin', function(Y) {
@@ -50,4 +50,4 @@ YUI.add('dd-plugin', function(Y) {
 
 
 
-}, '3.1.0' ,{requires:['dd-drag'], optional:['dd-constrain', 'dd-proxy'], skinnable:false});
+}, '3.1.1' ,{requires:['dd-drag'], optional:['dd-constrain', 'dd-proxy'], skinnable:false});

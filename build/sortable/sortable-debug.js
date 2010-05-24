@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.0
+version: 3.1.1
 build: nightly
 */
 YUI.add('sortable', function(Y) {
@@ -400,4 +400,4 @@ YUI.add('sortable', function(Y) {
 
 
 
-}, '3.1.0' ,{requires:['dd-delegate', 'dd-drop-plugin', 'dd-proxy']});
+}, '3.1.1' ,{requires:['dd-delegate', 'dd-drop-plugin', 'dd-proxy']});

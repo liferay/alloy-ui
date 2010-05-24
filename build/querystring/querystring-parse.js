@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.0
+version: 3.1.1
 build: nightly
 */
 YUI.add('querystring-parse', function(Y) {
@@ -137,4 +137,4 @@ function mergeObjects (params, addition) {
 };
 
 
-}, '3.1.0' ,{requires:['collection']});
+}, '3.1.1' ,{requires:['collection']});

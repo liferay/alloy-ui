@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.0
+version: 3.1.1
 build: nightly
 */
 /*
@@ -1385,4 +1385,4 @@ Y.Env.evt.plugins.contentready = {
 };
 
 
-}, '3.1.0' ,{requires:['event-custom-base']});
+}, '3.1.1' ,{requires:['event-custom-base']});

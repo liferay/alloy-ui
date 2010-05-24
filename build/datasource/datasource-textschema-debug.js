@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.0
+version: 3.1.1
 build: nightly
 */
 YUI.add('datasource-textschema', function(Y) {
@@ -109,4 +109,4 @@ Y.extend(DataSourceTextSchema, Y.Plugin.Base, {
 Y.namespace('Plugin').DataSourceTextSchema = DataSourceTextSchema;
 
 
-}, '3.1.0' ,{requires:['plugin', 'datasource-local', 'dataschema-text']});
+}, '3.1.1' ,{requires:['plugin', 'datasource-local', 'dataschema-text']});

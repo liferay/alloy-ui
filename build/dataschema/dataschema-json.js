@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.0
+version: 3.1.1
 build: nightly
 */
 YUI.add('dataschema-json', function(Y) {
@@ -302,4 +302,4 @@ Y.DataSchema.JSON = Y.mix(SchemaJSON, Y.DataSchema.Base);
 
 
 
-}, '3.1.0' ,{requires:['json', 'dataschema-base']});
+}, '3.1.1' ,{requires:['json', 'dataschema-base']});

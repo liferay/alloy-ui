@@ -819,4 +819,4 @@ var ImageGallery = A.Component.create(
 
 A.ImageGallery = ImageGallery;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-image-viewer-base','aui-paginator','aui-toolbar']});
+}, '@VERSION@' ,{requires:['aui-image-viewer-base','aui-paginator','aui-toolbar'], skinnable:true});

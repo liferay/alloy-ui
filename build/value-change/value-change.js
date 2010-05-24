@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.0
+version: 3.1.1
 build: nightly
 */
 YUI.add('value-change', function(Y) {
@@ -195,4 +195,4 @@ Y.Env.evt.plugins[eventName] = event;
 if (Y.Node) Y.Node.DOM_EVENTS[eventName] = event;
 
 
-}, '3.1.0' ,{optional:['event-custom'], requires:['node-base', 'event-focus']});
+}, '3.1.1' ,{optional:['event-custom'], requires:['node-base', 'event-focus']});

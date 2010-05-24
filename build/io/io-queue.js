@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.0
+version: 3.1.1
 build: nightly
 */
 YUI.add('io-queue', function(Y) {
@@ -219,4 +219,4 @@ YUI.add('io-queue', function(Y) {
 
 
 
-}, '3.1.0' ,{requires:['io-base','queue-promote']});
+}, '3.1.1' ,{requires:['io-base','queue-promote']});

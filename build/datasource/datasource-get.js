@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.0
+version: 3.1.1
 build: nightly
 */
 YUI.add('datasource-get', function(Y) {
@@ -198,4 +198,4 @@ Y.DataSource.Get = Y.extend(DSGet, Y.DataSource.Local, {
 YUI.namespace("Env.DataSource.callbacks");
 
 
-}, '3.1.0' ,{requires:['datasource-local', 'get']});
+}, '3.1.1' ,{requires:['datasource-local', 'get']});
