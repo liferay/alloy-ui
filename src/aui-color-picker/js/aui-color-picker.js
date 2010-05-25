@@ -1013,4 +1013,5 @@ var ColorPicker = A.Component.create(
 	}
 );
 
+ColorPicker.Color = Color;
 A.ColorPicker = ColorPicker;
