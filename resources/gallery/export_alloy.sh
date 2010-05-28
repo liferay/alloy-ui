@@ -20,6 +20,7 @@ parentDir=`dirname $toDir`
 srcDir=${toDir}/src
 demosDir=${toDir}/demos
 buildDir=${toDir}/build
+resourcesDir=${toDir}/resources
 
 rm -rf $toDir
 cp -R $fromDir $toDir
@@ -28,9 +29,15 @@ find $toDir -type d -name ".svn" | xargs rm -rf
 
 find ${toDir} -type f -name "build.xml" | xargs perl -pi -e 's/<property name="build\.aui\.prefix" value=""\/>/<property name="build.aui.prefix" value="gallery-"\/>/g;'
 
-find $demosDir/* -type f -name "*.html" | xargs perl -pi -e 's/<script src="\.\.\/\.\.\/build\/aui\/aui\.js" type="text\/javascript"><\/script>/<script src="..\/..\/build\/yui\/yui.js" type="text\/javascript"><\/script><script src="..\/..\/build\/aui-base\/aui-base.js" type="text\/javascript"><\/script>/g;'
+find $demosDir/* -type f -name "*.html" | xargs perl -pi -e 's/<script src="\.\.\/\.\.\/build\/aui\/aui\.js" type="text\/javascript"><\/script>/<script src="..\/..\/build\/yui\/yui.js" type="text\/javascript"><\/script><script src="..\/..\/build\/gallery-aui\/defaults.js" type="text\/javascript"><\/script><script src="..\/..\/build\/aui-base\/aui-base.js" type="text\/javascript"><\/script>/g;'
 
-find $srcDir/aui-base -type f -name "build.properties" | xargs perl -pi -e 's/(,widget-css)/$1,aui-skin-base/g;'
+perl -pi -e 's/\${project\.dir}\/resources\/temp\/defaults\.js/\${project.dir}\/build\/gallery-aui\/defaults.js/' ${resourcesDir}/builder/macrolib.xml
+
+perl -pi -e 's/(,widget-css)/$1,aui-skin-base/g;' ${srcDir}/aui-base/build.properties
+perl -pi -e "s/^(component\.prependfiles).*$//" ${srcDir}/aui-base/build.properties
+perl -pi -e "s/^(component\.jsfiles=).*$/\$1aui-base.js,aui-core.js/" ${srcDir}/aui-base/build.properties
+
+perl -pi -e 's/template="\$\{project\.dir\}\/resources\/builder\/templates\//template="\${project.dir}\/lib\/builder\/componentbuild\/files\//g;' $resourcesDir/builder/macrolib.xml
 
 find $srcDir/* -type f \( -name "build*.xml" -or -name "build*.properties" \) | xargs perl -pi -e 's/aui-/gallery-aui-/g;'
 find $srcDir/* -type f -name "*.css" | xargs perl -pi -e 's/\.aui-/.yui3-/g;'
@@ -91,26 +98,26 @@ do
 	perl -pi -e "s/^component.use=/component.requires=/g;" $oldModuleDir/build.properties
 done
 
-find ${toDir} -type f -name "build.xml" | xargs perl -pi -e 's/<import file="\.\.\/\.\.\/resources\/builder\/bootstrap\.xml" \/>/<import file="\${builddir}\/3.x\/bootstrap.xml" \/>/g;'
-
 find ${toDir} -type f -name "build.properties" | xargs perl -pi -e "s/^(component=)/lint.skip=true\n\$1/"
-find ${toDir} -type f -name "build.properties" | xargs perl -pi -e "s/^(component=)/builddir=..\/..\/..\/builder\/componentbuild\n\$1/"
 find ${toDir} -type f -name "build.properties" | xargs perl -pi -e "s/^(component=)/yui.variable=A\n\$1/"
 
 #Uncomment the following lines to move the builder to it's default location
 #above the project directory
-# perl -pi -e 's/<import file="resources\/builder\/bootstrap\.xml"\/>//' ${toDir}/build.xml
-# 
-# if [[ ! -d ${parentDir}/builder ]]; then
-# 	cp -R ${toDir}/lib/builder ${parentDir}/builder
-# fi
+find ${toDir} -type f -name "build.xml" | xargs perl -pi -e 's/<import file="\.\.\/\.\.\/resources\/builder\/bootstrap\.xml" \/>/<import file="\${builddir}\/3.x\/bootstrap.xml" \/>/g;'
+find ${toDir} -type f -name "build.properties" | xargs perl -pi -e "s/^(component=)/builddir=..\/..\/..\/builder\/componentbuild\n\$1/"
+
+if [[ ! -d ${parentDir}/builder ]]; then
+	cp -R ${toDir}/lib/builder ${parentDir}/builder
+fi
 
 cd $toDir
 
 ant build-gallery
+
 ant generate-skin-src
 
 if [[ $? = 0 ]]; then
-	find ${toDir}/src -type d -name "_diffs" | xargs rm -rf
-	find ${toDir}/src -type f -name "build.all-css.*" | xargs rm
+	find $srcDir -type d -name "_diffs" | xargs rm -rf
+	find $srcDir -type f -name "build.all-css.*" | xargs rm
+	find $buildDir -type f -name "gallery-aui-skin-*-all*.css" | xargs rm
 fi

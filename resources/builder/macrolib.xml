@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 <project name="AlloyMacrolib">
-	<property name="regex.clean.vars" value="^component\.details\..*|details\.list|details|component\.(rollup|use|supersedes|requires|optional|lang|skinnable)$"/>
+	<property name="regex.clean.vars" value="^component\.details\..*|details\.list|details|component\.(rollup|use|supersedes|requires|optional|lang|skinnable)|component.*$"/>
+	<property name="aui.default.moduledefaultstemplate" value="${project.dir}/resources/builder/templates/moduledeftemplate.txt"/>
+	<property name="aui.default.defaultstemplate" value="${project.dir}/resources/builder/templates/moduledefaults.txt"/>
+	<property name="aui.default.defaultsfile" value="${project.dir}/resources/temp/defaults.js"/>
+	<property name="aui.default.prependdefaults" value="true"/>
 
 	<!-- Overwriting default YUI tasks -->
 	<presetdef name="addlang">
@@ -58,12 +62,14 @@
 	</macrodef>
 
 	<macrodef name="create-module-details">
+		<attribute name="moduledefaultstemplate" default="${aui.default.moduledefaultstemplate}"/>
+		<attribute name="defaultsfile" default="${aui.default.defaultsfile}"/>
 		<sequential>
 			<var name="submodule.module.name" value="${component}"/>
 			<var name="submodule.module.details.hash" value="${component.details.hash}"/>
 
 			<loadfile
-				srcFile="${project.dir}/resources/builder/templates/moduledeftemplate.txt"
+				srcFile="@{moduledefaultstemplate}"
 				property="module.deftemplate.content"
 			/>
 
@@ -93,10 +99,10 @@
 			</if>
 
 			<replaceregexp match="([\s\t\n]+)(@MODULES@)" replace="\1${module.deftemplate.content}\2" flags="g" byline="false">
-				<fileset dir="${project.dir}/resources/temp/" includes="defaults.js"/>
+				<fileset file="@{defaultsfile}"/>
 			</replaceregexp>
 
-			<replace file="${project.dir}/resources/temp/defaults.js">
+			<replace file="@{defaultsfile}">
 				<replacefilter token="@MODULE@" value="${submodule.module.name}"/>
 				<replacefilter token="@DETAILS@" value="${component.details.hash}"/>
 			</replace>
@@ -104,122 +110,145 @@
 	</macrodef>
 
 	<macrodef name="create-module-list">
+		<attribute name="defaultstemplate" default="${aui.default.defaultstemplate}"/>
+		<attribute name="defaultsfile" default="${aui.default.defaultsfile}"/>
+		<attribute name="prependdefaults" default="${aui.default.prependdefaults}"/>
 		<sequential>
 			<clean-variables regex="${regex.clean.vars}"/>
 
+			<copy
+				file="@{defaultstemplate}"
+				tofile="@{defaultsfile}"
+				overwrite="true"
+			/>
+
+			<antcall target="generate-skin-src"/>
+
+			<for param="file">
+				<path>
+					<fileset dir="${project.dir}/src" includes="**/build.properties,**/build.all-css.properties" excludes="**/_diffs/build.properties"/>
+				</path>
+				<sequential>
+					<var file="@{file}"/>
+					<createdetails />
+					<create-module-details/>
+					<clean-variables regex="${regex.clean.vars}"/>
+				</sequential>
+			</for>
+
+			<format-module-list defaultsfile="@{defaultsfile}"/>
+
 			<if>
-				<available file="${project.dir}/src/${build.aui.prefix}aui-base/build_tmp/" />
+				<equals arg1="@{prependdefaults}" arg2="true"/>
 				<then>
-					<copy
-						file="${project.dir}/resources/builder/templates/moduledefaults.txt"
-						tofile="${project.dir}/resources/temp/defaults.js"
-						overwrite="true"
-					/>
-
-					<for param="file">
-						<path>
-							<fileset dir="${project.dir}/src" includes="**/build.properties,**/build.all-css.properties" excludes="**/_diffs/build.properties"/>
-						</path>
-						<sequential>
-							<var file="@{file}"/>
-							<createdetails />
-							<create-module-details/>
-							<clean-variables regex="${regex.clean.vars}"/>
-						</sequential>
-					</for>
-
-					<format-module-list/>
-
-					<property name="aui.base.component.dir" value="${global.build.base}/${build.aui.prefix}aui-base/" />
-					<property name="aui.base.component.tmp.dir" value="${project.dir}/src/${build.aui.prefix}aui-base/build_tmp/" />
-					<property name="aui.temp.dir" value="${project.dir}/resources/temp/" />
-
-					<delete file="${aui.base.component.dir}/defaults.js"/>
-					<concat destfile="${aui.base.component.dir}/${build.aui.prefix}aui-base.js" fixlastline="yes">
-						<header file="${aui.temp.dir}/defaults.js"/>
-						<fileset dir="${aui.base.component.tmp.dir}" includes="${build.aui.prefix}aui-base.js"/>
-					</concat>
-					<concat destfile="${aui.base.component.dir}/${build.aui.prefix}aui-base-debug.js" fixlastline="yes">
-						<header file="${aui.temp.dir}/defaults.js"/>
-						<fileset dir="${aui.base.component.tmp.dir}" includes="${build.aui.prefix}aui-base-debug.js"/>
-					</concat>
-					<concat destfile="${aui.base.component.dir}/${build.aui.prefix}aui-base-min.js" fixlastline="yes">
-						<header file="${aui.temp.dir}/defaults.js"/>
-						<fileset dir="${aui.base.component.tmp.dir}" includes="${build.aui.prefix}aui-base-min.js"/>
-					</concat>
-
-					<yuicompress
-						args="${yuicompressor.js.args.internal}"
-						dest="${project.dir}/build/${build.aui.prefix}aui-base/${build.aui.prefix}aui-base-min.js"
-						src="${aui.base.component.dir}/${build.aui.prefix}aui-base.js"
-					/>
-
-					<mkdir dir="${global.build.base}/${build.aui.prefix}aui" />
-
-					<var name="aui.combined.dir" value="${global.build.base}/${build.aui.prefix}aui/" />
-					<var name="aui.combined.file" value="${aui.combined.dir}/${build.aui.prefix}aui.js" />
-					<var name="aui.combined.min.file" value="${aui.combined.dir}/${build.aui.prefix}aui-min.js" />
-
-					<delete>
-						<fileset dir="${aui.combined.dir}" includes="aui*.js"/>
-					</delete>
-
-					<concat destfile="${aui.combined.file}" fixlastline="yes">
-						<header file="${global.build.base}/yui/yui.js"/>
-						<fileset dir="${global.build.base}/${build.aui.prefix}aui-base" includes="${build.aui.prefix}aui-base.js"/>
-					</concat>
-					<concat destfile="${aui.combined.min.file}" fixlastline="yes">
-						<header file="${global.build.base}/yui/yui-min.js"/>
-						<fileset dir="${global.build.base}/${build.aui.prefix}aui-base" includes="${build.aui.prefix}aui-base-min.js"/>
-					</concat>
-
-					<var name="aui.detect.path.regex.from" value="/^(.*)yui\/yui([\.\-].*)js(\?.*)?$/"/>
-					<var name="aui.detect.path.regex.to" value="/^(.*)[ay]ui\/[ay]ui([\.\-].*)js(\?.*)?$/"/>
-
-					<var name="aui.detect.path.combo.regex.from" value="/^(.*\?)(.*\&amp;)(.*)yui\/yui[\.\-].*js(\?.*)?$/"/>
-					<var name="aui.detect.path.combo.regex.to" value="/^(.*\?)(.*\&amp;)(.*)[ay]ui\/[ay]ui[\.\-].*js(\?.*)?$/"/>
-
-					<replace file="${aui.combined.file}">
-						<replacefilter token="${aui.detect.path.regex.from}" value="${aui.detect.path.regex.to}" />
-					</replace>
-
-					<replace file="${aui.combined.file}">
-						<replacefilter token="${aui.detect.path.combo.regex.from}" value="${aui.detect.path.combo.regex.to}" />
-					</replace>
-
-					<replace file="${aui.combined.min.file}">
-						<replacefilter token="${aui.detect.path.regex.from}" value="${aui.detect.path.regex.to}" />
-					</replace>
-
-					<replace file="${aui.combined.min.file}">
-						<replacefilter token="${aui.detect.path.combo.regex.from}" value="${aui.detect.path.combo.regex.to}" />
-					</replace>
-
-					<delete dir="${aui.temp.dir}"/>
+					<concat-module-list defaultsfile="@{defaultsfile}"/>
 				</then>
-				<else>
+			</if>
+
+			<create-combined-file/>
+
+			<antcall target="clean-skin-src"/>
+
+			<delete dir="${aui.temp.dir}"/>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="create-combined-file">
+		<sequential>
+			<mkdir dir="${global.build.base}/${build.aui.prefix}aui" />
+
+			<var name="aui.combined.dir" value="${global.build.base}/${build.aui.prefix}aui/" />
+			<var name="aui.combined.file" value="${aui.combined.dir}/${build.aui.prefix}aui.js" />
+			<var name="aui.combined.min.file" value="${aui.combined.dir}/${build.aui.prefix}aui-min.js" />
+
+			<delete>
+				<fileset dir="${aui.combined.dir}" includes="aui*.js"/>
+			</delete>
+
+			<concat destfile="${aui.combined.file}" fixlastline="yes">
+				<header file="${global.build.base}/yui/yui.js"/>
+				<fileset dir="${global.build.base}/${build.aui.prefix}aui-base" includes="${build.aui.prefix}aui-base.js"/>
+			</concat>
+			<concat destfile="${aui.combined.min.file}" fixlastline="yes">
+				<header file="${global.build.base}/yui/yui-min.js"/>
+				<fileset dir="${global.build.base}/${build.aui.prefix}aui-base" includes="${build.aui.prefix}aui-base-min.js"/>
+			</concat>
+
+			<var name="aui.detect.path.regex.from" value="/^(.*)yui\/yui([\.\-].*)js(\?.*)?$/"/>
+			<var name="aui.detect.path.regex.to" value="/^(.*)[ay]ui\/[ay]ui([\.\-].*)js(\?.*)?$/"/>
+
+			<var name="aui.detect.path.combo.regex.from" value="/^(.*\?)(.*\&amp;)(.*)yui\/yui[\.\-].*js(\?.*)?$/"/>
+			<var name="aui.detect.path.combo.regex.to" value="/^(.*\?)(.*\&amp;)(.*)[ay]ui\/[ay]ui[\.\-].*js(\?.*)?$/"/>
+
+			<replace file="${aui.combined.file}">
+				<replacefilter token="${aui.detect.path.regex.from}" value="${aui.detect.path.regex.to}" />
+			</replace>
+
+			<replace file="${aui.combined.file}">
+				<replacefilter token="${aui.detect.path.combo.regex.from}" value="${aui.detect.path.combo.regex.to}" />
+			</replace>
+
+			<replace file="${aui.combined.min.file}">
+				<replacefilter token="${aui.detect.path.regex.from}" value="${aui.detect.path.regex.to}" />
+			</replace>
+
+			<replace file="${aui.combined.min.file}">
+				<replacefilter token="${aui.detect.path.combo.regex.from}" value="${aui.detect.path.combo.regex.to}" />
+			</replace>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="concat-module-list">
+		<attribute name="defaultsfile" default="${aui.default.defaultsfile}"/>
+		<sequential>
+			<property name="aui.base.component.dir" value="${global.build.base}/${build.aui.prefix}aui-base/" />
+			<property name="aui.base.component.tmp.dir" value="${project.dir}/src/${build.aui.prefix}aui-base/build_tmp/" />
+
+			<if>
+				<not>
+					<available file="${aui.base.component.tmp.dir}" />
+				</not>
+				<then>
 					<subant target="local">
 						<fileset dir="${project.dir}/src/${build.aui.prefix}aui-base/">
 							<include name="build.xml"/>
 						</fileset>
 					</subant>
-
-					<create-module-list/>
-				</else>
+				</then>
 			</if>
+
+			<concat destfile="${aui.base.component.dir}/${build.aui.prefix}aui-base.js" fixlastline="yes">
+				<header file="@{defaultsfile}"/>
+				<fileset dir="${aui.base.component.tmp.dir}" includes="${build.aui.prefix}aui-base.js"/>
+			</concat>
+			<concat destfile="${aui.base.component.dir}/${build.aui.prefix}aui-base-debug.js" fixlastline="yes">
+				<header file="@{defaultsfile}"/>
+				<fileset dir="${aui.base.component.tmp.dir}" includes="${build.aui.prefix}aui-base-debug.js"/>
+			</concat>
+			<concat destfile="${aui.base.component.dir}/${build.aui.prefix}aui-base-min.js" fixlastline="yes">
+				<header file="@{defaultsfile}"/>
+				<fileset dir="${aui.base.component.tmp.dir}" includes="${build.aui.prefix}aui-base-min.js"/>
+			</concat>
+
+			<yuicompress
+				args="${yuicompressor.js.args.internal}"
+				dest="${project.dir}/build/${build.aui.prefix}aui-base/${build.aui.prefix}aui-base-min.js"
+				src="${aui.base.component.dir}/${build.aui.prefix}aui-base.js"
+			/>
 		</sequential>
 	</macrodef>
 
 	<macrodef name="format-module-list">
+		<attribute name="defaultsfile" default="${aui.default.defaultsfile}"/>
 		<sequential>
-			<replace file="${project.dir}/resources/temp/defaults.js">
+			<replace file="@{defaultsfile}">
 				<replacefilter token=": ," value=": "/>
 			</replace>
 			<replaceregexp match="@MODULES@[\r\n]" replace="" flags="g" byline="false">
-				<fileset dir="${project.dir}/resources/temp/" includes="defaults.js"/>
+				<fileset file="@{defaultsfile}"/>
 			</replaceregexp>
 			<replaceregexp match="\},([\s\t\n]+)}" replace="}\1}" flags="g" byline="false">
-				<fileset dir="${project.dir}/resources/temp/" includes="defaults.js"/>
+				<fileset file="@{defaultsfile}"/>
 			</replaceregexp>
 		</sequential>
 	</macrodef>

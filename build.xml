@@ -16,17 +16,13 @@
 
 	<target name="build-aui" depends="build-components, build-modules, build-skins, clean"/>
 
-	<target name="build-gallery" depends="build-gallery-templates, build-gallery-components, build-gallery-modules, build-gallery-skins, clean-gallery-templates" />
+	<target name="build-gallery" depends="build-gallery-templates, build-gallery-components, build-gallery-skins, build-gallery-modules, clean-gallery-templates" />
 
 	<target name="build-gallery-templates">
 		<echo>Backing up templates</echo>
 
 		<copy todir="${project.dir}/resources/builder/_new_templates">
 			<fileset dir="${project.dir}/resources/builder/templates"/>
-
-			<filterset begintoken="(@" endtoken="@)">
-				<filter token="YUIVAR" value="(A)"/>
-			</filterset>
 		</copy>
 
 		<replace file="${project.dir}/resources/builder/_new_templates/moduledefaults.txt">
@@ -52,8 +48,6 @@
 
 	<target name="build-gallery-components" depends="remove-whitespace">
 		<subant target="all">
-			<property name="yui.variable" value="Y"/>
-
 			<fileset dir="${project.dir}/src/">
 				<exclude name="build.xml" />
 				<exclude name="${build.aui.prefix}aui-skin-*/build.xml" />
@@ -63,24 +57,11 @@
 	</target>
 
 	<target name="build-gallery-modules">
-		<subant target="all">
-			<property name="yui.variable" value="Y"/>
-			<property name="component.jsfiles" value="${build.aui.prefix}aui-core.js, ${build.aui.prefix}aui-base.js" />
-			<property name="component.prependfiles" value="" />
-
-			<fileset
-				dir="${project.dir}/src/${build.aui.prefix}aui-base/"
-				includes="**/build.xml"
-			/>
-		</subant>
-
-		<var name="yui.variable" value="Y"/>
-		
-		<create-module-list/>
+		<create-module-list prependdefaults="false"/>
 	</target>
 
 	<target name="build-gallery-skins">
-		<antcall target="build-skins" />
+		<antcall target="build-skins-core" />
 	</target>
 
 	<target name="build-components" depends="remove-whitespace">
@@ -108,14 +89,12 @@
 		<create-module-list/>
 	</target>
 
-	<target name="build-skins">
-		<clean-variables regex="${regex.clean.vars}|component\.cssfiles|component"/>
-
+	<target name="build-skins-core">
 		<antcall target="generate-skin-src" />
 
 		<delete dir="${project.dir}/src/${build.aui.prefix}aui-skin-*/build_tmp" />
 
-		 <subant target="local">
+		<subant target="local">
 			<property name="clean.skip" value="true"/>
 
 			<fileset dir="${project.dir}/src">
@@ -155,6 +134,10 @@
 				<include name="${build.aui.prefix}aui-skin-*/build_tmp"/>
 			</fileset>
 		</delete>
+	</target>
+
+	<target name="build-skins">
+		<antcall target="build-skins-core"/>
 
 		<create-module-list/>		
 	</target>
@@ -227,9 +210,7 @@
 
 				<replace file="@{dir}/build.all-css.properties">
 					<replacefilter token="${build.aui.prefix}aui-skin-base" value="${skin.name}-all" />
-				</replace>
-
-				<replace file="@{dir}/build.all-css.properties">
+					<replacefilter token="global.build.component.assets=$${srcdir}/build/$${component}" value="global.build.component.assets=$${srcdir}/build/${skin.name}" />
 					<replacefilter token="${skin.name}-all/" value="${skin.name}/" />
 				</replace>
 
