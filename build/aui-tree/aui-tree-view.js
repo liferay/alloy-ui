@@ -910,6 +910,8 @@ var TreeViewDD = A.Component.create(
 
 				// bubbling drop event
 				instance.bubbleEvent('drop', output);
+
+				instance.dropAction = null;
 			},
 
 			/**
