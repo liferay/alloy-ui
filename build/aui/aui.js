@@ -3482,7 +3482,11 @@ YUI.add('yui', function(Y){}, '3.1.1' ,{use:['yui-base','get','intl-base','yui-l
 		ALLOY = YUI(defaults);
 	}
 
-	ALLOY.Env._guidp = ['aui', ALLOY.version, ALLOY.Env._yidx].join('-').replace(/\./g, '-');
+	var guidExtensions = function(A) {
+		A.Env._guidp = ['aui', A.version, A.Env._yidx].join('-').replace(/\./g, '-');
+	};
+
+	guidExtensions(ALLOY);
 
 	var originalConfig = ALLOY.config;
 
@@ -3499,6 +3503,7 @@ YUI.add('yui', function(Y){}, '3.1.1' ,{use:['yui-base','get','intl-base','yui-l
 			var newInstance = YUI.apply(ALLOY.config.win, args);
 
 			AUI._uaExtensions(newInstance);
+			AUI._guidExtensions(newInstance);
 
 			return newInstance;
 		}
@@ -3507,6 +3512,8 @@ YUI.add('yui', function(Y){}, '3.1.1' ,{use:['yui-base','get','intl-base','yui-l
 	};
 
 	var AUI = YUI.AUI;
+
+	AUI._guidExtensions = guidExtensions;
 
 	window.AUI = AUI;
 
