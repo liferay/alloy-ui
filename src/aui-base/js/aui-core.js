@@ -67,7 +67,11 @@
 		var instance = this;
 
 		if (o || instance instanceof AUI) {
-			var newInstance = YUI(ALLOY.merge(ALLOY.config, o));
+			var args = ALLOY.Array(arguments);
+
+			args.unshift(ALLOY.config);
+
+			var newInstance = YUI.apply(ALLOY.config.win, args);
 
 			AUI._uaExtensions(newInstance);
 
