@@ -1,14 +1,5 @@
 ;(function() {
-	var PATH_BASE = YUI.config.base;
-	var PATH_JAVASCRIPT = PATH_BASE;
-	var PATH_THEME_ROOT = PATH_BASE + 'themes/base/css/';
-	var PATH_THEME_IMAGES = PATH_THEME_ROOT + '../images/';
-
 	YUI.AUI_config = {
-		chart: {
-			swfURL: 'assets/chart.swf'
-		},
-
 		classNamePrefix: 'aui',
 
 		filter: 'raw',
@@ -66,10 +57,6 @@
 						'aui-tree': {submodules: {'aui-tree-view': {requires:['aui-tree-node','dd'], skinnable:true}, 'aui-tree-node': {requires:['aui-tree-data','io','json','querystring-stringify'], skinnable:false}, 'aui-tree-data': {requires:['aui-base'], skinnable:false} }, skinnable:true, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view']}
 				}
 		    }
-		},
-
-		paths: {
-			images: PATH_THEME_IMAGES
 		}
 	}
 })();

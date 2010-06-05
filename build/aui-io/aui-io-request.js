@@ -12,7 +12,7 @@ var L = A.Lang,
 	isFunction = L.isFunction,
 	isString = L.isString,
 
-	defaults = YUI.AUI.defaults.io,
+	defaults = YUI.AUI.namespace('defaults.io'),
 
 	getDefault = function(attr) {
 		return function() {

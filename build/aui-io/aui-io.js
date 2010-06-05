@@ -12,7 +12,7 @@ var L = A.Lang,
 	isFunction = L.isFunction,
 	isString = L.isString,
 
-	defaults = YUI.AUI.defaults.io,
+	defaults = YUI.AUI.namespace('defaults.io'),
 
 	getDefault = function(attr) {
 		return function() {
@@ -1122,5 +1122,5 @@ A.namespace('Plugin').IO = IOPlugin;
 }, '@VERSION@' ,{requires:['aui-overlay-base','aui-parse-content','aui-io-request','aui-loading-mask']});
 
 
-AUI.add('aui-io', function(A){}, '@VERSION@' ,{use:['aui-io-request','aui-io-plugin'], skinnable:false});
+AUI.add('aui-io', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-io-request','aui-io-plugin']});
 

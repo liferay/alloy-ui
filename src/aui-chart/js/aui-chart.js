@@ -4,9 +4,12 @@ var Lang = A.Lang,
 
 	NAME = 'chart',
 
-	CSS_CHART = getClassName(NAME);
+	CSS_CHART = getClassName(NAME),
+
+	DEFAULT_SWF_PATH = A.config.base + 'aui-chart/assets/chart.swf';
 
 YUI.AUI.namespace('_CHART');
+YUI.AUI.namespace('defaults.chart');
 
 var Chart = A.Component.create(
 	{
@@ -25,7 +28,7 @@ var Chart = A.Component.create(
 			},
 			swfURL: {
 				valueFn: function() {
-					return YUI.AUI.defaults.chart.swfURL;
+					return YUI.AUI.defaults.chart.swfURL || DEFAULT_SWF_PATH;
 				}
 			},
 			swfCfg: {
