@@ -85,6 +85,20 @@ var Form = A.Component.create(
 			}
 		},
 
+		HTML_PARSER: {
+			action: function(contentBox) {
+				var instance = this;
+
+				return instance._attributeGetter(null, 'action');
+			},
+
+			method: function(contentBox) {
+				var instance = this;
+
+				return instance._attributeGetter(null, 'method');
+			}
+		},
+
 		prototype: {
 			CONTENT_TEMPLATE: '<form></form>',
 
