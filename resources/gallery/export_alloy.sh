@@ -27,7 +27,7 @@ cp -R $fromDir $toDir
 
 find $toDir -type d -name ".svn" | xargs rm -rf
 
-find ${toDir} -type f -name "build.xml" | xargs perl -pi -e 's/<property name="build\.aui\.prefix" value=""\/>/<property name="build.aui.prefix" value="gallery-"\/>/g;'
+perl -pi -e "s/^(build\.aui\.prefix=)/\$1gallery-/g;" ${toDir}/build.properties
 
 find $demosDir/* -type f -name "*.html" | xargs perl -pi -e 's/<script src="\.\.\/\.\.\/build\/aui\/aui\.js" type="text\/javascript"><\/script>/<script src="..\/..\/build\/yui\/yui.js" type="text\/javascript"><\/script><script src="..\/..\/build\/gallery-aui\/defaults.js" type="text\/javascript"><\/script><script src="..\/..\/build\/aui-base\/aui-base.js" type="text\/javascript"><\/script>/g;'
 
@@ -42,6 +42,10 @@ perl -pi -e 's/template="\$\{project\.dir\}\/resources\/builder\/templates\//tem
 find $srcDir/* -type f \( -name "build*.xml" -or -name "build*.properties" \) | xargs perl -pi -e 's/aui-/gallery-aui-/g;'
 find $srcDir/* -type f -name "*.css" | xargs perl -pi -e 's/\.aui-/.yui3-/g;'
 find $srcDir/* -type f -name "*.css" | xargs perl -pi -e 's/\/aui-/\/gallery-aui-/g;'
+
+#replace all 'aui that is not like addClass('aui- or 'aui-helper or 'aui-state with 'gallery-aui
+find $srcDir/* -type f -name "*.js" | xargs perl -pi -e "s/(?<!\()(')aui-(?!helper|state)/\$1gallery-aui-/g;"
+
 find $demosDir/* -type f -name "*.html" | xargs perl -pi -e "s/(\/|')aui-/\$1gallery-aui-/g;"
 find $demosDir/* -type f -name "*.html" | xargs perl -pi -e "s/([^gallery-])aui-/\$1yui3-/g;"
 find $demosDir/* -type f -name "*.html" | xargs perl -pi -e "s/\.ready\(/.use(/g;"
@@ -113,11 +117,3 @@ fi
 cd $toDir
 
 ant build-gallery
-
-ant generate-skin-src
-
-if [[ $? = 0 ]]; then
-	find $srcDir -type d -name "_diffs" | xargs rm -rf
-	find $srcDir -type f -name "build.all-css.*" | xargs rm
-	find $buildDir -type f -name "gallery-aui-skin-*-all*.css" | xargs rm
-fi

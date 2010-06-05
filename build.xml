@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <project name="Alloy" basedir="." default="release">
 	<property name="project.dir" value="."/>
-	<property name="release.name" value="alloy" />
-	<property name="release.temp.dir" value="${project.dir}/resources/temp/alloy/" />
-	<property name="release.version" value="1.0.0"/>
-	<property name="yui3.build.version" value="nightly"/>
-	<property name="yui3.dir" value="${project.dir}/lib/yui3/" />
-	<property name="yui3.file" value="yui3.zip" />
-	<property name="yui3.version" value="3.1.1"/>
-	<property name="build.aui.prefix" value=""/>
+
+	<property environment="env" />
+
+	<property file="${project.dir}/build.${user.name}.properties" />
+	<property file="${project.dir}/build.${env.COMPUTERNAME}.properties" />
+	<property file="${project.dir}/build.${env.HOST}.properties" />
+	<property file="${project.dir}/build.${env.HOSTNAME}.properties" />
+	<property file="${project.dir}/build.properties" />
 
 	<import file="resources/builder/bootstrap.xml"/>
 
@@ -16,7 +16,7 @@
 
 	<target name="build-aui" depends="build-components, build-modules, build-skins, clean"/>
 
-	<target name="build-gallery" depends="build-gallery-templates, build-gallery-components, build-gallery-skins, build-gallery-modules, clean-gallery-templates" />
+	<target name="build-gallery" depends="build-gallery-templates, build-gallery-components, build-gallery-skins, build-gallery-modules, generate-skin-src, clean-module-src, clean-gallery-templates, export-gallery" />
 
 	<target name="build-gallery-templates">
 		<echo>Backing up templates</echo>
@@ -83,6 +83,49 @@
 		</subant>
 
 		<create-module-list/>
+	</target>
+
+	<target name="export-gallery">
+		<if>
+			<isset property="github.gallery.directory" />
+			<then>
+				<for param="file">
+					<path>
+						<fileset dir="${project.dir}/src">
+							<include name="**/build_*"/>
+							<include name="**/_diffs/*"/>
+							<include name="**/build.all-css.*"/>
+						</fileset>
+					</path>
+					<sequential>
+						<echo>@{file}</echo>
+					</sequential>
+				</for>
+				<!-- <copy todir="${github.gallery.directory}/src" overwrite="true">
+					<fileset dir="${project.dir}/src">
+						<exclude name="**/build_*"/>
+						<exclude name="**/_diffs/*"/>
+						<exclude name="**/build.all-css.*"/>
+					</fileset>
+				</copy>
+
+				<copy todir="${github.gallery.directory}/build" overwrite="true">
+					<fileset dir="${project.dir}/build">
+						<include name="*/gallery-*/**"/>
+						<exclude name="**/gallery-aui-skin-*-all*.css"/>
+					</fileset>
+				</copy> -->
+			</then>
+		</if>
+	</target>
+
+	<target name="clean-module-src">
+		<delete includeemptydirs="true">
+			<fileset dir="${project.dir}/src/" defaultexcludes="false">
+				<include name="**/*build_tmp*/**" />
+				<include name="**/*build_rollup_tmp*/**" />
+			</fileset>
+		</delete>
 	</target>
 
 	<target name="create-module-list">
@@ -247,12 +290,7 @@
 	</target>
 
 	<target name="clean">
-		<delete includeemptydirs="true">
-			<fileset dir="${project.dir}/src/" defaultexcludes="false">
-				<include name="**/*build_tmp*/**" />
-				<include name="**/*build_rollup_tmp*/**" />
-			</fileset>
-		</delete>
+		<antcall target="clean-module-src"/>		
 
 		<antcall target="clean-skin-src"/>
 	</target>
