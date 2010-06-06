@@ -427,4 +427,4 @@ Panel.prototype = {
 
 A.Panel = A.Base.build(PANEL, A.Component, [Panel, A.WidgetStdMod]);
 
-}, '@VERSION@' ,{requires:['aui-component','widget-stdmod','aui-toolbar'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-component','widget-stdmod','aui-toolbar']});

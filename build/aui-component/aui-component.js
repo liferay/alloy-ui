@@ -417,4 +417,4 @@ Component.create = function(config) {
 
 A.Component = Component;
 
-}, '@VERSION@' ,{requires:['widget'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['widget']});

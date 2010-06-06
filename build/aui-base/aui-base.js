@@ -14,8 +14,8 @@
             alloy: {
 	            combine: false,
                 modules: {
-						'aui-autocomplete': {requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox'], skinnable:true},
-						'aui-base': {requires:['aui-node','aui-component','aui-delayed-task','event','oop','widget-css'], skinnable:false},
+						'aui-autocomplete': {skinnable:true, requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox']},
+						'aui-base': {skinnable:false, requires:['aui-node','aui-component','aui-delayed-task','event','oop','widget-css']},
 						'aui-button-item': {skinnable:true, requires:['aui-base','aui-state-interaction','widget-child']},
 						'aui-calendar': {submodules: {'aui-calendar-datepicker-select': {skinnable:true, requires:['aui-calendar-base','aui-button-item']}, 'aui-calendar-base': {skinnable:true, requires:['aui-overlay-context','datatype-date','widget-locale']} }, skinnable:true, use:['aui-calendar-base','aui-calendar-datepicker-select']},
 						'aui-carousel': {skinnable:true, requires:['aui-base','anim']},
@@ -44,9 +44,9 @@
 						'aui-progressbar': {skinnable:true, requires:['aui-base']},
 						'aui-rating': {skinnable:true, requires:['aui-base']},
 						'aui-resize': {skinnable:true, requires:['aui-base','dd','substitute']},
-						'aui-skin-base': {path: 'aui-skin-base/css/aui-skin-base.css', type: 'css'},
-						'aui-skin-classic-all': {path: 'aui-skin-classic/css/aui-skin-classic-all.css', type: 'css'},
-						'aui-skin-classic': {type: 'css', after: ['aui-skin-base'], path: 'aui-skin-classic/css/aui-skin-classic.css'},
+						'aui-skin-base': {type: 'css', path: 'aui-skin-base/css/aui-skin-base.css'},
+						'aui-skin-classic-all': {type: 'css', path: 'aui-skin-classic/css/aui-skin-classic-all.css'},
+						'aui-skin-classic': {requires:['aui-skin-base'], path: 'aui-skin-classic/css/aui-skin-classic.css', type: 'css'},
 						'aui-sortable': {skinnable:true, requires:['aui-base','dd']},
 						'aui-state-interaction': {skinnable:false, requires:['aui-base','plugin']},
 						'aui-swf': {skinnable:false, requires:['aui-base','querystring-stringify-simple']},

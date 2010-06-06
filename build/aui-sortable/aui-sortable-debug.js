@@ -352,4 +352,4 @@ var SortableItem = A.Component.create(
 A.Sortable = Sortable;
 A.SortableItem = SortableItem;
 
-}, '@VERSION@' ,{requires:['aui-base','dd'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','dd']});

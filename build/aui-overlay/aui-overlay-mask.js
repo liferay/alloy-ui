@@ -357,4 +357,4 @@ var OverlayMask = A.Component.create(
 
 A.OverlayMask = OverlayMask;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-overlay-base','event-resize'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-overlay-base','event-resize']});

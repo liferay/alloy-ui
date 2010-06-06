@@ -1271,4 +1271,4 @@ A.ImageViewer = ImageViewer;
  */
 A.ImageViewerMask = new A.OverlayMask().render();
 
-}, '@VERSION@' ,{requires:['anim','aui-overlay-mask','substitute'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['anim','aui-overlay-mask','substitute']});

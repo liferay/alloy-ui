@@ -72,4 +72,4 @@ DS.evaluate = function(data) {
 	return data;
 };
 
-}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});

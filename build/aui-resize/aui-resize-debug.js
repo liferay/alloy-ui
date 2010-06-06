@@ -1647,4 +1647,4 @@ A.each(ALL_HANDLES, function(handle, i) {
 
 A.Resize = Resize;
 
-}, '@VERSION@' ,{requires:['aui-base','dd','substitute'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','dd','substitute']});

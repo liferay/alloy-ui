@@ -1222,4 +1222,4 @@ var Paginator = A.Component.create(
 
 A.Paginator = Paginator;
 
-}, '@VERSION@' ,{requires:['aui-base','substitute'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','substitute']});

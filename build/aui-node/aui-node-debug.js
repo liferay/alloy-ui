@@ -1484,5 +1484,5 @@ A.mix(
 }, '@VERSION@' ,{requires:['aui-base','anim','anim-node-plugin']});
 
 
-AUI.add('aui-node', function(A){}, '@VERSION@' ,{use:['aui-node-base','aui-node-html5','aui-node-html5-print','aui-node-fx'], skinnable:false});
+AUI.add('aui-node', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-node-base','aui-node-html5','aui-node-html5-print','aui-node-fx']});
 

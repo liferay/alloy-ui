@@ -550,4 +550,4 @@ var ButtonItem = A.Component.create(
 
 A.ButtonItem = A.Base.build(NAME, ButtonItem, [A.WidgetChild], { dynamic: false });
 
-}, '@VERSION@' ,{requires:['aui-base','aui-state-interaction','widget-child'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-state-interaction','widget-child']});

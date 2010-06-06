@@ -239,4 +239,4 @@ var SWF = A.Component.create(
 
 A.SWF = SWF;
 
-}, '@VERSION@' ,{requires:['aui-base','querystring-stringify-simple'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base','querystring-stringify-simple']});
