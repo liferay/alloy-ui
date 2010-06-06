@@ -89,32 +89,13 @@
 		<if>
 			<isset property="github.gallery.directory" />
 			<then>
-				<for param="file">
-					<path>
-						<fileset dir="${project.dir}/src">
-							<include name="**/build_*"/>
-							<include name="**/_diffs/*"/>
-							<include name="**/build.all-css.*"/>
-						</fileset>
-					</path>
-					<sequential>
-						<echo>@{file}</echo>
-					</sequential>
-				</for>
-				<!-- <copy todir="${github.gallery.directory}/src" overwrite="true">
+				<copy todir="${github.gallery.directory}/src" overwrite="true">
 					<fileset dir="${project.dir}/src">
 						<exclude name="**/build_*"/>
-						<exclude name="**/_diffs/*"/>
+						<exclude name="**/_diffs/**"/>
 						<exclude name="**/build.all-css.*"/>
 					</fileset>
 				</copy>
-
-				<copy todir="${github.gallery.directory}/build" overwrite="true">
-					<fileset dir="${project.dir}/build">
-						<include name="*/gallery-*/**"/>
-						<exclude name="**/gallery-aui-skin-*-all*.css"/>
-					</fileset>
-				</copy> -->
 			</then>
 		</if>
 	</target>
