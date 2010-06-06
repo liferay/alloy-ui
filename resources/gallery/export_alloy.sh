@@ -61,6 +61,12 @@ done
 rm -rf `find $srcDir -name 'aui-*' -or -name 'build.aui-*'`
 rm -rf `find $buildDir -type d -name 'aui-*'`
 
+skinDir=assets/skins/sam
+skinPngPath=${skinDir}/*.png
+skinGifPath=${skinDir}/*.gif
+skinJpgPath=${skinDir}/*.jpg
+imagePattern="png\|gif\|jpg"
+
 #flatten rollups
 for f in `find $srcDir -name 'build.gallery-aui-*.properties'` ;
 do
@@ -81,7 +87,7 @@ do
 	mv $oldModuleDir/js/$moduleName.js $newModuleDir/js/$moduleName.js
 
 	coreCSSFile=assets/${moduleName}-core.css
-	skinCSSFile=assets/skins/sam/${moduleName}-skin.css
+	skinCSSFile=${skinDir}/${moduleName}-skin.css
 
 	if [[ -f $oldModuleDir/$coreCSSFile ]]; then
 		mkdir -p $newModuleDir/assets
@@ -91,6 +97,13 @@ do
 	if [[ -f $oldModuleDir/$skinCSSFile ]]; then
 		mkdir -p $newModuleDir/assets/skins/sam
 		mv $oldModuleDir/$skinCSSFile $newModuleDir/$skinCSSFile
+	fi
+
+	if grep $imagePattern $newModuleDir/$coreCSSFile >/dev/null 2>&1 || grep $imagePattern $newModuleDir/$skinCSSFile >/dev/null 2>&1
+	then
+		cp $oldModuleDir/$skinPngPath $newModuleDir/$skinDir 2>/dev/null
+		cp $oldModuleDir/$skinGifPath $newModuleDir/$skinDir 2>/dev/null
+		cp $oldModuleDir/$skinJpgPath $newModuleDir/$skinDir 2>/dev/null
 	fi
 
 	perl -pi -e 's/^(srcdir|global\.)/#$1/g;' $newModuleDir/build.properties
