@@ -68,7 +68,7 @@ var L = A.Lang,
  *
  * Quick Example:<br/>
  * 
- * <pre><code>var pb2 = new A.ProgressBar({
+ * <pre><code>var progress = new A.ProgressBar({
  *	boundingBox: '#boudingBox',
  * 	orientation: 'horizontal',
  * 	width: 300
