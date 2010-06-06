@@ -186,6 +186,10 @@
 
 
 
+				                                <li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
 				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
 
 
@@ -553,9 +557,12 @@
 
 	<span class="nx">NAME</span> <span class="o">=</span> <span class="s1">&#39;chart&#39;</span><span class="p">,</span>
 
-	<span class="nx">CSS_CHART</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">);</span>
+	<span class="nx">CSS_CHART</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">),</span>
+
+	<span class="nx">DEFAULT_SWF_PATH</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">base</span> <span class="o">+</span> <span class="s1">&#39;aui-chart/assets/chart.swf&#39;</span><span class="p">;</span>
 
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">AUI</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;_CHART&#39;</span><span class="p">);</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">AUI</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;defaults.chart&#39;</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">Chart</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
 	<span class="p">{</span>
@@ -574,7 +581,7 @@
 			<span class="p">},</span>
 			<span class="nx">swfURL</span><span class="o">:</span> <span class="p">{</span>
 				<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-					<span class="k">return</span> <span class="nx">YUI</span><span class="p">.</span><span class="nx">AUI</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">chart</span><span class="p">.</span><span class="nx">swfURL</span><span class="p">;</span>
+					<span class="k">return</span> <span class="nx">YUI</span><span class="p">.</span><span class="nx">AUI</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">chart</span><span class="p">.</span><span class="nx">swfURL</span> <span class="o">||</span> <span class="nx">DEFAULT_SWF_PATH</span><span class="p">;</span>
 				<span class="p">}</span>
 			<span class="p">},</span>
 			<span class="nx">swfCfg</span><span class="o">:</span> <span class="p">{</span>

@@ -2,7 +2,7 @@
 <html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<title>API: aui-portal-layout   aui-progressbar-debug.js  (YUI Library)</title>
+	<title>API: aui-progressbar   aui-progressbar-debug.js  (YUI Library)</title>
 
 	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-portal-layout&nbsp; <span class="subtitle">1.0.0</span>
+			aui-progressbar&nbsp; <span class="subtitle">1.0.0</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -28,7 +28,7 @@
 
 	            <span class="separator">&gt;</span>
 
-				<a class="modulename" href="./module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a>
+				<a class="modulename" href="./module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a>
 
 	                
 
@@ -182,7 +182,11 @@
 
 
 
-				                                <li class="selected"><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+				                                <li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+				                                <li class="selected"><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
 
 
 
@@ -496,7 +500,7 @@
 										<ul class="content">
 
 
-				                                <li class=""><a href="PortalLayout.html" title="PortalLayout">PortalLayout</a></li>
+				                                <li class=""><a href="ProgressBar.html" title="ProgressBar">ProgressBar</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -515,15 +519,6 @@
 
 								<div class="aui-widget-bd aui-list-bd">
 									<ul class="content">
-
-
-			                                <li class=""><a href="aui-portal-layout-debug.js.html" title="aui-portal-layout-debug.js">aui-portal-layout-debug.js</a></li>
-
-
-			                                <li class=""><a href="aui-portal-layout-min.js.html" title="aui-portal-layout-min.js">aui-portal-layout-min.js</a></li>
-
-
-			                                <li class=""><a href="aui-portal-layout.js.html" title="aui-portal-layout.js">aui-portal-layout.js</a></li>
 
 
 			                                <li class="selected"><a href="aui-progressbar-debug.js.html" title="aui-progressbar-debug.js">aui-progressbar-debug.js</a></li>
@@ -547,6 +542,15 @@
 									#doc3 .classopts { display:none; }
 								</style>
 								<div class="highlight"><pre><span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-progressbar&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span> <span class="p">{</span>
+<span class="cm">/**</span>
+<span class="cm"> * The ProgressBar Utility provides a visual means of showing progress of an</span>
+<span class="cm"> * ongoing operation. The ProgressBar can be enhanced via CSS styles to provide</span>
+<span class="cm"> * different colors, shapes and textures. The bar can move horizontally or</span>
+<span class="cm"> * vertically. The movement can be enhanced by using the Animation utility.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module aui-progressbar</span>
+<span class="cm"> */</span>
+
 <span class="kd">var</span> <span class="nx">L</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
 	<span class="nx">isNumber</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">,</span>
 	<span class="nx">isString</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isString</span><span class="p">,</span>
@@ -593,31 +597,120 @@
 	<span class="nx">TPL_STATUS</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span><span class="o">+</span><span class="nx">CSS_STATUS</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
 	<span class="nx">TPL_TEXT</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span><span class="o">+</span><span class="nx">CSS_TEXT</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">;</span>
 
+<span class="cm">/**</span>
+<span class="cm"> * &lt;p&gt;&lt;img src=&quot;assets/images/aui-progressbar/main.png&quot;/&gt;&lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * A base class for Progressbar, providing:</span>
+<span class="cm"> * &lt;ul&gt;</span>
+<span class="cm"> *    &lt;li&gt;Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)&lt;/li&gt;</span>
+<span class="cm"> *    &lt;li&gt;A visual means of showing progress of an ongoing operation&lt;/li&gt;</span>
+<span class="cm"> *    &lt;li&gt;Can be enhanced via CSS styles to provide different colors, shapes and textures&lt;/li&gt;</span>
+<span class="cm"> *    &lt;li&gt;The bar can move horizontally or vertically&lt;/li&gt;</span>
+<span class="cm"> *    &lt;li&gt;The movement can be enhanced by using the Animation utility&lt;/li&gt;</span>
+<span class="cm"> * &lt;/ul&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * Quick Example:&lt;br/&gt;</span>
+<span class="cm"> * </span>
+<span class="cm"> * &lt;pre&gt;&lt;code&gt;var pb2 = new A.ProgressBar({</span>
+<span class="cm"> *	boundingBox: &#39;#boudingBox&#39;,</span>
+<span class="cm"> * 	orientation: &#39;horizontal&#39;,</span>
+<span class="cm"> * 	width: 300</span>
+<span class="cm"> * })</span>
+<span class="cm"> * .render();</span>
+<span class="cm"> * &lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * Check the list of &lt;a href=&quot;ProgressBar.html#configattributes&quot;&gt;Configuration Attributes&lt;/a&gt; available for</span>
+<span class="cm"> * ProgressBar.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param config {Object} Object literal specifying widget configuration properties.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class ProgressBar</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @extends Base</span>
+<span class="cm"> */</span>
 <span class="kd">var</span> <span class="nx">ProgressBar</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
 	<span class="p">{</span>
+		<span class="cm">/**</span>
+<span class="cm">		 * Static property provides a string to identify the class.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property ProgressBar.NAME</span>
+<span class="cm">		 * @type String</span>
+<span class="cm">		 * @static</span>
+<span class="cm">		 */</span>
 		<span class="nx">NAME</span><span class="o">:</span> <span class="nx">PROGRESS_BAR</span><span class="p">,</span>
 
+		<span class="cm">/**</span>
+<span class="cm">		 * Static property used to define the default attribute</span>
+<span class="cm">		 * configuration for the ProgressBar.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property ProgressBar.ATTRS</span>
+<span class="cm">		 * @type Object</span>
+<span class="cm">		 * @static</span>
+<span class="cm">		 */</span>
 		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Display height of the progressbar.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute height</span>
+<span class="cm">			 * @default 25</span>
+<span class="cm">			 * @type int | String</span>
+<span class="cm">			 */</span>
 			<span class="nx">height</span><span class="o">:</span> <span class="p">{</span>
 				<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 					<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_HEIGHT</span><span class="p">)</span> <span class="o">||</span> <span class="mi">25</span><span class="p">;</span>
 				<span class="p">}</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * Display label of the progressbar. If not specified try to query</span>
+<span class="cm">             * using HTML_PARSER an element inside contentBox which matches</span>
+<span class="cm">             * &lt;code&gt;aui-progressbar-text&lt;/code&gt; and get its innerHTML to be</span>
+<span class="cm">             * used as label.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute label</span>
+<span class="cm">			 * @default &#39;&#39;</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
 			<span class="nx">label</span><span class="o">:</span> <span class="p">{</span>
 				<span class="nx">value</span><span class="o">:</span> <span class="nx">BLANK</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * Represents the top value for the bar. The bar will be fully</span>
+<span class="cm">             * extended when reaching this value. Values higher than this will</span>
+<span class="cm">             * be ignored.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute max</span>
+<span class="cm">			 * @default 100</span>
+<span class="cm">			 * @type int</span>
+<span class="cm">			 */</span>
 			<span class="nx">max</span><span class="o">:</span> <span class="p">{</span>
 				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNumber</span><span class="p">,</span>
 				<span class="nx">value</span><span class="o">:</span> <span class="mi">100</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * Represents the lowest value for the bar. The bar will be</span>
+<span class="cm">             * totally collapsed when reaching this value. Values lower than</span>
+<span class="cm">             * this will be ignored.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute min</span>
+<span class="cm">			 * @default 0</span>
+<span class="cm">			 * @type int</span>
+<span class="cm">			 */</span>
 			<span class="nx">min</span><span class="o">:</span> <span class="p">{</span>
 				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNumber</span><span class="p">,</span>
 				<span class="nx">value</span><span class="o">:</span> <span class="mi">0</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * Display orientation of the progressbar (i.e. vertical or</span>
+<span class="cm">             * horizontal).</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute orientation</span>
+<span class="cm">			 * @default &#39;horizontal&#39;</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
 			<span class="nx">orientation</span><span class="o">:</span> <span class="p">{</span>
 				<span class="nx">value</span><span class="o">:</span> <span class="nx">HORIZONTAL</span><span class="p">,</span>
 				<span class="nx">validator</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
@@ -625,28 +718,70 @@
 				<span class="p">}</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * Calculate the ratio based on &lt;code&gt;max&lt;/code&gt; and</span>
+<span class="cm">             * &lt;code&gt;min&lt;/code&gt; values.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute ratio</span>
+<span class="cm">			 * @readOnly</span>
+<span class="cm">			 * @type number</span>
+<span class="cm">			 */</span>
 			<span class="nx">ratio</span><span class="o">:</span> <span class="p">{</span>
 				<span class="nx">getter</span><span class="o">:</span> <span class="s1">&#39;_getRatio&#39;</span><span class="p">,</span>
 				<span class="nx">readOnly</span><span class="o">:</span> <span class="kc">true</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * Calculate the progressbar step based on &lt;code&gt;ratio&lt;/code&gt;</span>
+<span class="cm">             * value.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute step</span>
+<span class="cm">			 * @readOnly</span>
+<span class="cm">			 * @type number</span>
+<span class="cm">			 */</span>
 			<span class="nx">step</span><span class="o">:</span> <span class="p">{</span>
 				<span class="nx">getter</span><span class="o">:</span> <span class="s1">&#39;_getStep&#39;</span><span class="p">,</span>
 				<span class="nx">readOnly</span><span class="o">:</span> <span class="kc">true</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * DOM Node to display the satus bar of the progressbar. If not</span>
+<span class="cm">             * specified try to query using HTML_PARSER an element inside</span>
+<span class="cm">             * contentBox which matches &lt;code&gt;aui-progressbar-status&lt;/code&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute statusNode</span>
+<span class="cm">			 * @default Generated div element.</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
 			<span class="nx">statusNode</span><span class="o">:</span> <span class="p">{</span>
 				<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_STATUS</span><span class="p">);</span>
 				<span class="p">}</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * DOM Node to display the text of the progressbar. If not</span>
+<span class="cm">             * specified try to query using HTML_PARSER an element inside</span>
+<span class="cm">             * contentBox which matches &lt;code&gt;aui-progressbar-text&lt;/code&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute textNode</span>
+<span class="cm">			 * @default Generated div element.</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
 			<span class="nx">textNode</span><span class="o">:</span> <span class="p">{</span>
 				<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_TEXT</span><span class="p">);</span>
 				<span class="p">}</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * The value for the bar. Valid values are in between the minValue</span>
+<span class="cm">             * and maxValue attributes.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute value</span>
+<span class="cm">			 * @default 0</span>
+<span class="cm">			 * @type int | String</span>
+<span class="cm">			 */</span>
 			<span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
 				<span class="nx">setter</span><span class="o">:</span> <span class="nx">toNumber</span><span class="p">,</span>
 				<span class="nx">validator</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
@@ -656,6 +791,14 @@
 			<span class="p">}</span>
 		<span class="p">},</span>
 
+		<span class="cm">/**</span>
+<span class="cm">		 * Object hash, defining how attribute values are to be parsed from</span>
+<span class="cm">		 * markup contained in the widget&#39;s content box.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property ProgressBar.HTML_PARSER</span>
+<span class="cm">		 * @type Object</span>
+<span class="cm">		 * @static</span>
+<span class="cm">		 */</span>
 		<span class="nx">HTML_PARSER</span><span class="o">:</span> <span class="p">{</span>
 			<span class="nx">label</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">contentBox</span><span class="p">)</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">textNode</span> <span class="o">=</span> <span class="nx">contentBox</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_TEXT</span><span class="p">);</span>
@@ -673,9 +816,12 @@
 		<span class="nx">UI_ATTRS</span><span class="o">:</span> <span class="p">[</span><span class="nx">LABEL</span><span class="p">,</span> <span class="nx">ORIENTATION</span><span class="p">,</span> <span class="nx">VALUE</span><span class="p">],</span>
 
 		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
-			<span class="cm">/*</span>
-<span class="cm">			* Lifecycle</span>
-<span class="cm">			*/</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Create the DOM structure for the ProgressBar. Lifecycle.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method renderUI</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
 			<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
@@ -683,6 +829,16 @@
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderTextNode</span><span class="p">();</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * Calculate the contentBox size based on the</span>
+<span class="cm">             * &lt;code&gt;orientation&lt;/code&gt; of the progressbar. If the orientation</span>
+<span class="cm">             * is HORIZONTAL get the width, if the orientation is VERTICAL get</span>
+<span class="cm">             * the height.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _getContentBoxSize</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 * @return {number}</span>
+<span class="cm">			 */</span>
 			<span class="nx">_getContentBoxSize</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
@@ -694,12 +850,27 @@
 				<span class="p">);</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * Calculate the number of pixels to set the &lt;code&gt;statusNode&lt;/code&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _getPixelStep</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 * @return {number}</span>
+<span class="cm">			 */</span>
 			<span class="nx">_getPixelStep</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
 				<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getContentBoxSize</span><span class="p">()</span> <span class="o">*</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">RATIO</span><span class="p">);</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * Calculate the ratio based on &lt;code&gt;max&lt;/code&gt; and</span>
+<span class="cm">             * &lt;code&gt;min&lt;/code&gt; values.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _getRatio</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 * @return {number}</span>
+<span class="cm">			 */</span>
 			<span class="nx">_getRatio</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">min</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">MIN</span><span class="p">);</span>
@@ -708,10 +879,24 @@
 				<span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">ratio</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * Calculate the progressbar step based on &lt;code&gt;ratio&lt;/code&gt;</span>
+<span class="cm">             * value.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _getStep</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 * @return {number}</span>
+<span class="cm">			 */</span>
 			<span class="nx">_getStep</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">RATIO</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">;</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * Render the &lt;code&gt;statusNode&lt;/code&gt; of the progressbar.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _renderStatusNode</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
 			<span class="nx">_renderStatusNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
@@ -720,6 +905,12 @@
 				<span class="p">);</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * Render the &lt;code&gt;textNode&lt;/code&gt; of the progressbar.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _renderStatusNode</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
 			<span class="nx">_renderTextNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
@@ -728,10 +919,26 @@
 				<span class="p">);</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * Invoked automatically by the UI_ATTRS Widget API when bind or sync the</span>
+<span class="cm">             * &lt;code&gt;label&lt;/code&gt; attribute.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _uiSetLabel</span>
+<span class="cm">			 * @param {String} val Display label</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
 			<span class="nx">_uiSetLabel</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
 				<span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TEXT_NODE</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * Invoked automatically by the UI_ATTRS Widget API when bind or sync the</span>
+<span class="cm">             * &lt;code&gt;orientation&lt;/code&gt; attribute.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _uiSetOrientation</span>
+<span class="cm">			 * @param {String} val Orientation</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
 			<span class="nx">_uiSetOrientation</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
@@ -743,6 +950,14 @@
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSizeTextNode</span><span class="p">();</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * Invoked automatically by the UI_ATTRS Widget API when bind or sync the</span>
+<span class="cm">             * &lt;code&gt;value&lt;/code&gt; attribute.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _uiSetValue</span>
+<span class="cm">			 * @param {String} val Progress value</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
 			<span class="nx">_uiSetValue</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">statusNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">STATUS_NODE</span><span class="p">);</span>
@@ -772,6 +987,12 @@
 				<span class="nx">statusNode</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">(</span><span class="nx">styles</span><span class="p">);</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * Sync the size of the ProgressBar when some UI attribute change.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _uiSizeTextNode</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
 			<span class="nx">_uiSizeTextNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
@@ -806,7 +1027,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "PortalLayout.html#method_initializer", "access": "protected", "host": "PortalLayout", "type": "method", "name": "initializer"}, {"url": "PortalLayout.html#property_PortalLayout.ATTRS", "access": "", "host": "PortalLayout", "type": "property", "name": "PortalLayout.ATTRS"}, {"url": "PortalLayout.html#property_PortalLayout.NAME", "access": "", "host": "PortalLayout", "type": "property", "name": "PortalLayout.NAME"}];
+    var ALL_YUI_PROPS = [{"url": "ProgressBar.html#method__getContentBoxSize", "access": "protected", "host": "ProgressBar", "type": "method", "name": "_getContentBoxSize"}, {"url": "ProgressBar.html#method__getPixelStep", "access": "protected", "host": "ProgressBar", "type": "method", "name": "_getPixelStep"}, {"url": "ProgressBar.html#method__getRatio", "access": "protected", "host": "ProgressBar", "type": "method", "name": "_getRatio"}, {"url": "ProgressBar.html#method__getStep", "access": "protected", "host": "ProgressBar", "type": "method", "name": "_getStep"}, {"url": "ProgressBar.html#config_height", "access": "", "host": "ProgressBar", "type": "config", "name": "height"}, {"url": "ProgressBar.html#event_heightChange", "access": "", "host": "ProgressBar", "type": "event", "name": "heightChange"}, {"url": "ProgressBar.html#config_label", "access": "", "host": "ProgressBar", "type": "config", "name": "label"}, {"url": "ProgressBar.html#event_labelChange", "access": "", "host": "ProgressBar", "type": "event", "name": "labelChange"}, {"url": "ProgressBar.html#config_max", "access": "", "host": "ProgressBar", "type": "config", "name": "max"}, {"url": "ProgressBar.html#event_maxChange", "access": "", "host": "ProgressBar", "type": "event", "name": "maxChange"}, {"url": "ProgressBar.html#config_min", "access": "", "host": "ProgressBar", "type": "config", "name": "min"}, {"url": "ProgressBar.html#event_minChange", "access": "", "host": "ProgressBar", "type": "event", "name": "minChange"}, {"url": "ProgressBar.html#config_orientation", "access": "", "host": "ProgressBar", "type": "config", "name": "orientation"}, {"url": "ProgressBar.html#event_orientationChange", "access": "", "host": "ProgressBar", "type": "event", "name": "orientationChange"}, {"url": "ProgressBar.html#property_ProgressBar.ATTRS", "access": "", "host": "ProgressBar", "type": "property", "name": "ProgressBar.ATTRS"}, {"url": "ProgressBar.html#property_ProgressBar.HTML_PARSER", "access": "", "host": "ProgressBar", "type": "property", "name": "ProgressBar.HTML_PARSER"}, {"url": "ProgressBar.html#property_ProgressBar.NAME", "access": "", "host": "ProgressBar", "type": "property", "name": "ProgressBar.NAME"}, {"url": "ProgressBar.html#config_ratio", "access": "", "host": "ProgressBar", "type": "config", "name": "ratio"}, {"url": "ProgressBar.html#event_ratioChange", "access": "", "host": "ProgressBar", "type": "event", "name": "ratioChange"}, {"url": "ProgressBar.html#method__renderStatusNode", "access": "protected", "host": "ProgressBar", "type": "method", "name": "_renderStatusNode"}, {"url": "ProgressBar.html#method_renderUI", "access": "protected", "host": "ProgressBar", "type": "method", "name": "renderUI"}, {"url": "ProgressBar.html#config_statusNode", "access": "", "host": "ProgressBar", "type": "config", "name": "statusNode"}, {"url": "ProgressBar.html#event_statusNodeChange", "access": "", "host": "ProgressBar", "type": "event", "name": "statusNodeChange"}, {"url": "ProgressBar.html#config_step", "access": "", "host": "ProgressBar", "type": "config", "name": "step"}, {"url": "ProgressBar.html#event_stepChange", "access": "", "host": "ProgressBar", "type": "event", "name": "stepChange"}, {"url": "ProgressBar.html#config_textNode", "access": "", "host": "ProgressBar", "type": "config", "name": "textNode"}, {"url": "ProgressBar.html#event_textNodeChange", "access": "", "host": "ProgressBar", "type": "event", "name": "textNodeChange"}, {"url": "ProgressBar.html#method__uiSetLabel", "access": "protected", "host": "ProgressBar", "type": "method", "name": "_uiSetLabel"}, {"url": "ProgressBar.html#method__uiSetOrientation", "access": "protected", "host": "ProgressBar", "type": "method", "name": "_uiSetOrientation"}, {"url": "ProgressBar.html#method__uiSetValue", "access": "protected", "host": "ProgressBar", "type": "method", "name": "_uiSetValue"}, {"url": "ProgressBar.html#method__uiSizeTextNode", "access": "protected", "host": "ProgressBar", "type": "method", "name": "_uiSizeTextNode"}, {"url": "ProgressBar.html#config_value", "access": "", "host": "ProgressBar", "type": "config", "name": "value"}, {"url": "ProgressBar.html#event_valueChange", "access": "", "host": "ProgressBar", "type": "event", "name": "valueChange"}];
 </script>
 </body>
 </html>
