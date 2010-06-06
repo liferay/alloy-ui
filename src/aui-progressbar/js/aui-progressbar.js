@@ -75,8 +75,8 @@ var L = A.Lang,
  * .render();
  * </code></pre>
  *
- * Check the list of <a href="Progressbar.html#configattributes">Configuration Attributes</a> available for
- * Progressbar.
+ * Check the list of <a href="ProgressBar.html#configattributes">Configuration Attributes</a> available for
+ * ProgressBar.
  *
  * @param config {Object} Object literal specifying widget configuration properties.
  *
@@ -89,7 +89,7 @@ var ProgressBar = A.Component.create(
 		/**
 		 * Static property provides a string to identify the class.
 		 *
-		 * @property Progressbar.NAME
+		 * @property ProgressBar.NAME
 		 * @type String
 		 * @static
 		 */
@@ -97,9 +97,9 @@ var ProgressBar = A.Component.create(
 
 		/**
 		 * Static property used to define the default attribute
-		 * configuration for the Progressbar.
+		 * configuration for the ProgressBar.
 		 *
-		 * @property Progressbar.ATTRS
+		 * @property ProgressBar.ATTRS
 		 * @type Object
 		 * @static
 		 */
@@ -251,7 +251,7 @@ var ProgressBar = A.Component.create(
 		 * Object hash, defining how attribute values are to be parsed from
 		 * markup contained in the widget's content box.
 		 *
-		 * @property Progressbar.HTML_PARSER
+		 * @property ProgressBar.HTML_PARSER
 		 * @type Object
 		 * @static
 		 */
@@ -273,7 +273,7 @@ var ProgressBar = A.Component.create(
 
 		prototype: {
 			/**
-			 * Create the DOM structure for the Progressbar. Lifecycle.
+			 * Create the DOM structure for the ProgressBar. Lifecycle.
 			 *
 			 * @method renderUI
 			 * @protected
