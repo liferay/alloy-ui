@@ -221,7 +221,7 @@
 
 				<replace file="@{dir}/build.properties">
 					<replacefilter token="${build.aui.prefix}aui-skin-base" value="${skin.name}" />
-					<replacefilter token="#component.details.auiafter=" value="component.details.auiafter=after: ['${build.aui.prefix}aui-skin-base']" />
+					<replacefilter token="#component.requires=" value="component.requires=${build.aui.prefix}aui-skin-base" />
 				</replace>
 
 				<!-- Remove all component.cssfiles *except* the custom.css one -->
