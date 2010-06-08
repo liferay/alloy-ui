@@ -907,7 +907,7 @@ Y.Loader.prototype = {
             }
         }
 
-        this.dirty = true;
+        //this.dirty = true;
 
         if (o.configFn) {
             ret = o.configFn(o);

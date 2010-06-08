@@ -163,7 +163,7 @@
 	<target name="build-skins">
 		<antcall target="build-skins-core"/>
 
-		<create-module-list/>		
+		<create-module-list/>
 	</target>
 
 	<target name="clean-skin-src">
@@ -254,7 +254,7 @@
 						</copy>
 					</then>
 				</if>
-				
+
 			</sequential>
 		</for>
 	</target>
@@ -271,7 +271,7 @@
 	</target>
 
 	<target name="clean">
-		<antcall target="clean-module-src"/>		
+		<antcall target="clean-module-src"/>
 
 		<antcall target="clean-skin-src"/>
 	</target>
@@ -288,6 +288,20 @@
 		<unzip src="${project.dir}/lib/${yui3.file}" dest="${project.dir}/lib/" />
 
 		<echo>Adding patches to [${project.dir}/lib/yui3/build]</echo>
+
+		<!-- Loader Patch for AUI-91 -->
+		<replaceregexp match="this.dirty = true;" replace="//this.dirty = true;">
+			<fileset dir="${project.dir}/lib/yui3/src/loader/js/" includes="loader.js"/>
+        </replaceregexp>
+
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/loader"
+				includes="build.xml"
+			/>
+		</subant>
+		<!-- /End Loader Patch -->
 
 		<echo>Copying files from [${project.dir}/lib/yui3/build] to [${project.dir}/build].</echo>
 		<copy todir="${project.dir}/build" overwrite="true">
