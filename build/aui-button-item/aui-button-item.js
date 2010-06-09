@@ -19,6 +19,7 @@ var Lang = A.Lang,
 	LABEL_NODE = 'labelNode',
 	ONLY = 'only',
 	STATE = 'state',
+	TITLE = 'title',
 
 	CSS_BUTTON = getClassName(NAME),
 	CSS_BUTTON_ICON = getClassName(NAME, ICON),
@@ -258,6 +259,8 @@ var ButtonItem = A.Component.create(
 			ButtonItem.superclass.constructor.call(this, config);
 		},
 
+		UI_ATTRS: [ICON, LABEL, TITLE],
+
 		prototype: {
 			BOUNDING_TEMPLATE: TPL_BUTTON,
 			CONTENT_TEMPLATE: null,
@@ -274,20 +277,6 @@ var ButtonItem = A.Component.create(
 				instance._renderStates();
 				instance._renderIconNode();
 				instance._renderLabelNode();
-			},
-
-			/**
-			 * Bind the events on the ButtonItem UI. Lifecycle.
-			 *
-			 * @method bindUI
-			 * @protected
-			 */
-			bindUI: function() {
-				var instance = this;
-
-				instance.after('iconChange', instance._afterIconChange);
-				instance.after('labelChange', instance._afterLabelChange);
-				instance.after('titleChange', instance._afterTitleChange);
 			},
 
 			/**
@@ -314,48 +303,6 @@ var ButtonItem = A.Component.create(
 				if (title) {
 					instance._uiSetTitle(title);
 				}
-			},
-
-			/**
-			 * Fires after the value of the
-			 * <a href="ButtonItem.html#config_icon">icon</a> attribute change.
-			 *
-			 * @method
-			 * @param {EventFacade} event
-			 * @protected
-			 */
-			_afterIconChange: function(event) {
-				var instance = this;
-
-				instance._uiSetIcon(event.newVal, event.prevVal);
-			},
-
-			/**
-			 * Fires after the value of the
-			 * <a href="ButtonItem.html#config_label">label</a> attribute change.
-			 *
-			 * @method
-			 * @param {EventFacade} event
-			 * @protected
-			 */
-			_afterLabelChange: function(event) {
-				var instance = this;
-
-				instance._uiSetLabel(event.newVal);
-			},
-
-			/**
-			 * Fires after the value of the
-			 * <a href="ButtonItem.html#config_title">title</a> attribute change.
-			 *
-			 * @method
-			 * @param {EventFacade} event
-			 * @protected
-			 */
-			_afterTitleChange: function(event) {
-				var instance = this;
-
-				instance._uiSetTitle(event.newVal);
 			},
 
 			/**
@@ -490,53 +437,50 @@ var ButtonItem = A.Component.create(
 			 * Updates the UI for the icon in response to the <a href="ButtonItem.html#event_iconChange">iconChange</a> event.
 			 *
 			 * @method _uiSetIcon
-			 * @param {String} newVal The new value
-			 * @param {String} prevVal The previous value
+			 * @param {String} val Icon name
 			 * @protected
 			 */
-			_uiSetIcon: function(newVal, prevVal) {
+			_uiSetIcon: function(val) {
 				var instance = this;
 
 				var iconNode = instance.get(ICON_NODE);
 
 				var action = 'show';
 
-				if (!newVal) {
+				if (!val) {
 					action = 'hide';
 				}
 
-				newVal = getClassName(ICON, newVal);
+				val = getClassName(ICON, val);
 
-				if (prevVal) {
-					prevVal = getClassName(ICON, prevVal);
-				}
-
-				iconNode.replaceClass(prevVal, newVal);
+				iconNode.replaceClass(instance._iconPrevVal, val);
 
 				iconNode[action]();
 
 				instance._syncChildrenStates();
+
+				instance._iconPrevVal = val;
 			},
 
 			/**
 			 * Updates the UI for the label in response to the <a href="ButtonItem.html#event_labelChange">labelChange</a> event.
 			 *
 			 * @method _uiSetLabel
-			 * @param {String} newVal The new value
+			 * @param {String} val The new value
 			 * @protected
 			 */
-			_uiSetLabel: function(newVal) {
+			_uiSetLabel: function(val) {
 				var instance = this;
 
 				var labelNode = instance.get(LABEL_NODE);
 
 				var action = 'show';
 
-				if (!newVal) {
+				if (!val) {
 					action = 'hide';
 				}
 
-				labelNode.text(newVal);
+				labelNode.text(val);
 
 				labelNode[action]();
 
@@ -547,15 +491,15 @@ var ButtonItem = A.Component.create(
 			 * Updates the UI for the title in response to the <a href="ButtonItem.html#event_titleChange">titleChange</a> event.
 			 *
 			 * @method _uiSetTitle
-			 * @param {String} newVal The new value
+			 * @param {String} val The new value
 			 * @protected
 			 */
-			_uiSetTitle: function(newVal) {
+			_uiSetTitle: function(val) {
 				var instance = this;
 
 				var boundingBox = instance.get('boundingBox');
 
-				boundingBox.setAttribute('title', newVal);
+				boundingBox.setAttribute('title', val);
 			}
 		}
 	}
