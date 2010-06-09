@@ -10,8 +10,12 @@ var Lang = A.Lang,
 
 	NAME = 'buttonitem',
 
+	BOUNDING_BOX = 'boundingBox',
+	DOT = '.',
 	ICON = 'icon',
+	ICON_NODE = 'iconNode',
 	LABEL = 'label',
+	LABEL_NODE = 'labelNode',
 	ONLY = 'only',
 	STATE = 'state',
 
@@ -39,7 +43,7 @@ var Lang = A.Lang,
  * </ul>
  *
  * Quick Example:<br/>
- * 
+ *
  * <pre><code>var instance = new A.ButtonItem({
  *	icon: 'gear',
  * label: 'Configuration'
@@ -81,7 +85,7 @@ var ButtonItem = A.Component.create(
 		ATTRS: {
 			/**
 			 * Whether to track the active state of the button.
-			 * 
+			 *
 			 * @attribute activeState
 			 * @default false
 			 * @type Boolean
@@ -92,7 +96,7 @@ var ButtonItem = A.Component.create(
 
 			/**
 			 * An object map of the CSS class names to use for the different interaction states.
-			 * 
+			 *
 			 * @attribute classNames
 			 * @type Object
 			 */
@@ -100,7 +104,7 @@ var ButtonItem = A.Component.create(
 
 			/**
 			 * Whether to apply the default interaction state to the button
-			 * 
+			 *
 			 * @attribute defaultState
 			 * @default true
 			 * @type Boolean
@@ -109,13 +113,13 @@ var ButtonItem = A.Component.create(
 
 			/**
 			 * An event callback to handle when a user interacts with the button.
-			 * This can either be a function that will be attached on click, or 
+			 * This can either be a function that will be attached on click, or
 			 * an object map that accepts the following keys:
 			 * <code>{fn: // The function to execute
 			 * context: // The context to execute the function in
 			 * type: // The type of event to listen for (defaults to "click")
 			 * }</code>
-			 * 
+			 *
 			 * @attribute handler
 			 * @default false
 			 * @type Function | Object
@@ -149,7 +153,7 @@ var ButtonItem = A.Component.create(
 
 			/**
 			 * Whether to track the hover interaction state of the button.
-			 * 
+			 *
 			 * @attribute hoverState
 			 * @default true
 			 * @type Boolean
@@ -157,8 +161,8 @@ var ButtonItem = A.Component.create(
 			hoverState: {},
 
 			/**
-			 * The icon to use inside of the button. Possible values are: 
-			 * 
+			 * The icon to use inside of the button. Possible values are:
+			 *
 			 * @attribute icon
 			 * @type String
 			 */
@@ -167,8 +171,23 @@ var ButtonItem = A.Component.create(
 			},
 
 			/**
+			 * DOM Node to display the icon of the ButtonItem. If not
+             * specified try to query using HTML_PARSER an element inside
+             * boundingBox which matches <code>aui-button-icon</code>.
+			 *
+			 * @attribute iconNode
+			 * @default Generated div element.
+			 * @type String
+			 */
+			iconNode: {
+				valueFn: function() {
+					return A.Node.create(TPL_ICON);
+				}
+			},
+
+			/**
 			 * An id that can be used to identify a button.
-			 * 
+			 *
 			 * @attribute hoverState
 			 * @type Boolean
 			 */
@@ -180,7 +199,7 @@ var ButtonItem = A.Component.create(
 
 			/**
 			 * Text to use inside of the button.
-			 * 
+			 *
 			 * @attribute label
 			 * @type String
 			 */
@@ -189,8 +208,23 @@ var ButtonItem = A.Component.create(
 			},
 
 			/**
+			 * DOM Node to display the text of the ButtonItem. If not
+             * specified try to query using HTML_PARSER an element inside
+             * boundingBox which matches <code>aui-button-label</code>.
+			 *
+			 * @attribute labelNode
+			 * @default Generated div element.
+			 * @type String
+			 */
+			labelNode: {
+				valueFn: function() {
+					return A.Node.create(TPL_LABEL);
+				}
+			},
+
+			/**
 			 * Text to use as the title attribute of the button.
-			 * 
+			 *
 			 * @attribute title
 			 * @type String
 			 */
@@ -198,6 +232,19 @@ var ButtonItem = A.Component.create(
 				setter: '_setTitle',
 				value: false
 			}
+		},
+
+		/**
+		 * Object hash, defining how attribute values are to be parsed from
+		 * markup contained in the widget's content box.
+		 *
+		 * @property ButtonItem.HTML_PARSER
+		 * @type Object
+		 * @static
+		 */
+		HTML_PARSER: {
+			iconNode: DOT+CSS_BUTTON_ICON,
+			labelNode: DOT+CSS_BUTTON_LABEL
 		},
 
 		constructor: function(config) {
@@ -224,6 +271,8 @@ var ButtonItem = A.Component.create(
 				var instance = this;
 
 				instance._renderStates();
+				instance._renderIconNode();
+				instance._renderLabelNode();
 			},
 
 			/**
@@ -270,7 +319,7 @@ var ButtonItem = A.Component.create(
 			 * Fires after the value of the
 			 * <a href="ButtonItem.html#config_icon">icon</a> attribute change.
 			 *
-			 * @method 
+			 * @method
 			 * @param {EventFacade} event
 			 * @protected
 			 */
@@ -284,7 +333,7 @@ var ButtonItem = A.Component.create(
 			 * Fires after the value of the
 			 * <a href="ButtonItem.html#config_label">label</a> attribute change.
 			 *
-			 * @method 
+			 * @method
 			 * @param {EventFacade} event
 			 * @protected
 			 */
@@ -298,7 +347,7 @@ var ButtonItem = A.Component.create(
 			 * Fires after the value of the
 			 * <a href="ButtonItem.html#config_title">title</a> attribute change.
 			 *
-			 * @method 
+			 * @method
 			 * @param {EventFacade} event
 			 * @protected
 			 */
@@ -309,69 +358,33 @@ var ButtonItem = A.Component.create(
 			},
 
 			/**
-			 * Get's a reference to the private icon node, or if not created,
-			 * renders its and returns it.
-			 *
-			 * @method _getIconNode
-			 * @protected
-			 * @return {Node}
-			 */
-			_getIconNode: function() {
-				var instance = this;
-
-				return instance._iconNode || instance._renderIcon();
-			},
-
-			/**
-			 * Get's a reference to the private label node, or if not created,
-			 * renders its and returns it.
-			 *
-			 * @method _getLabelNode
-			 * @protected
-			 * @return {Node}
-			 */
-			_getLabelNode: function() {
-				var instance = this;
-
-				return instance._labelNode || instance._renderLabel();
-			},
-
-			/**
 			 * Renders the underlying markup for the <a href="ButtonItem.html#config_icon">icon</a>.
 			 *
-			 * @method _renderIcon
+			 * @method _renderIconNode
 			 * @protected
 			 * @return {Node}
 			 */
-			_renderIcon: function() {
+			_renderIconNode: function() {
 				var instance = this;
 
-				var iconNode = A.Node.create(TPL_ICON);
-
-				instance._iconNode = iconNode;
-
-				instance.get('boundingBox').appendChild(iconNode);
-
-				return iconNode;
+				instance.get(BOUNDING_BOX).append(
+					instance.get(ICON_NODE)
+				);
 			},
 
 			/**
 			 * Renders the underlying markup for the <a href="ButtonItem.html#config_label">label</a>.
 			 *
-			 * @method _renderLabel
+			 * @method _renderLabelNode
 			 * @protected
 			 * @return {Node}
 			 */
-			_renderLabel: function() {
+			_renderLabelNode: function() {
 				var instance = this;
 
-				var labelNode = A.Node.create(TPL_LABEL);
-
-				instance._labelNode = labelNode;
-
-				instance.get('boundingBox').appendChild(labelNode);
-
-				return labelNode;
+				instance.get(BOUNDING_BOX).append(
+					instance.get(LABEL_NODE)
+				);
 			},
 
 			/**
@@ -483,7 +496,7 @@ var ButtonItem = A.Component.create(
 			_uiSetIcon: function(newVal, prevVal) {
 				var instance = this;
 
-				var iconNode = instance._getIconNode();
+				var iconNode = instance.get(ICON_NODE);
 
 				var action = 'show';
 
@@ -514,7 +527,7 @@ var ButtonItem = A.Component.create(
 			_uiSetLabel: function(newVal) {
 				var instance = this;
 
-				var labelNode = instance._getLabelNode();
+				var labelNode = instance.get(LABEL_NODE);
 
 				var action = 'show';
 
