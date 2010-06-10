@@ -1838,7 +1838,7 @@ var DatePickerSelect = A.Component.create(
 				);
 
 				selectWrapper.append(orderedFields[0]);
-				selectWrapper.append( textNode.clone() );
+				selectWrapper.append( textNode.cloneNode(true) );
 				selectWrapper.append(orderedFields[1]);
 				selectWrapper.append( textNode );
 				selectWrapper.append(orderedFields[2]);
