@@ -7,6 +7,8 @@
 	<script src="../../src/javascript/i18n/calendar-pt-br.js" type="text/javascript" charset="utf-8"></script>
 
 	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../build/aui-calendar/assets/skins/sam/aui-calendar.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../build/aui-button-item/assets/skins/sam/aui-button-item.css" type="text/css" media="screen" />
 </head>
 
 <style type="text/css" media="screen">
@@ -24,52 +26,68 @@
 <body>
 <h1>Alloy - DatePicker</h1>
 
-<div id="displayBoundingBox"></div>
+<h1>Creating from HTML Markup</h1>
+<div id="srcNode" class="aui-datepicker aui-datepicker-display aui-helper-clearfix">
+	<div class="aui-datepicker-select-wrapper">
+		<select id="yearNode" class="custom-field aui-datepicker-year">
+			<option value="2010">2010</option>
+		</select>
+		<select id="monthNode" class="custom-field aui-datepicker-month">
+		    <option value="0">January</option>
+		    <option value="1">February</option>
+		    <option value="2">March</option>
+		    <option value="3">April</option>
+		    <option value="4">May</option>
+		    <option value="5" selected>June</option>
+		    <option value="6">July</option>
+		    <option value="7">August</option>
+		    <option value="8">September</option>
+		    <option value="9">October</option>
+		    <option value="10">November</option>
+		    <option value="11">December</option>
+		</select>
+		<select id="dayNode" class="custom-field aui-datepicker-day">
+			<option value="9">9</option>
+		</select>
+	</div>
+	<div class="aui-datepicker-button-wrapper">
+		<button type="button" id="buttonTest" class="aui-buttonitem-content aui-widget aui-component aui-buttonitem aui-state-default aui-buttonitem-icon-only">
+			<span class="aui-buttonitem-icon aui-icon aui-icon-calendar"></span>
+		</button>
+	</div>
+</div>
 
-<select id="dayField" class="custom-field"></select>
-<select id="monthField" class="custom-field"></select>
-<select id="yearField" class="custom-field"></select>
+<br/><br/>
+
+<h1>Creating dinamically</h1>
 
 <script type="text/javascript" charset="utf-8">
 
 AUI().ready('aui-calendar-datepicker-select', function(A) {
 
-	// default displayBoundingBox being rendered on the body
 	var datepicker1 = new A.DatePickerSelect().render();
 
-	// using displayBoundingBox
+	// using srcNode
 	var datepicker2 = new A.DatePickerSelect({
-		displayBoundingBox: '#displayBoundingBox',
-		// all A.Calendar options available ...
-		// locale: 'pt-br',
+		srcNode: '#srcNode',
 
 		appendOrder: [ 'y', 'm', 'd' ],
 
 		dateFormat: '%m/%d/%y',
 
-		dayField: '#dayField',
-		monthField: '#monthField',
-		yearField: '#yearField',
+		// dayNode: '#dayNode',
+		// monthNode: '#monthNode',
+		// yearNode: '#yearNode',
 
-		dayFieldName: 'dayField',
-		monthFieldName: 'monthField',
-		yearFieldName: 'yearField',
+		// dayNodeName: 'dayNode',
+		// monthNodeName: 'monthNode',
+		// yearNodeName: 'yearNode',
 
-		yearRange: [ 1970, 2009 ],
+		populateMonth: false,
+		populateDay: false,
+		populateYear: false,
 
-		// populateDay: false,
-		// populateMonth: false,
-		// populateYear: false,
-
-		on: {
-			select: function(event) {
-				var normal = event.date.normal;
-				var detailed = event.date.detailed;
-				var formatted = event.date.formatted;
-
-				// alert(formatted);
-			}
-		}
+		yearRange: [ 1980, 2010 ]
 	})
 	.render();
 
