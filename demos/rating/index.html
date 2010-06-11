@@ -22,7 +22,21 @@
 
 <br/>
 
-<div id="rating2"></div>
+<div id="rating2">
+	<div class="aui-rating-label-element">Created from HTML markup</div>
+	<a href="javascript:;" class="aui-rating-element"></a>
+	<a href="javascript:;" class="aui-rating-element"></a>
+	<a href="javascript:;" class="aui-rating-element"></a>
+
+	<div style="display:none;">
+		<label for="ratingLabeled1">Rate this as 1</label>
+		<input type="radio" id="ratingLabeled1" name="ratingLabeled1" title="Rate this as 1 using title dom attr" value="1" />
+		<label for="ratingLabeled2">Rate this as 2</label>
+		<input type="radio" id="ratingLabeled2" name="ratingLabeled2" value="2" />
+		<label for="ratingLabeled3">Rate this as 3</label>
+		<input type="radio" id="ratingLabeled3" name="ratingLabeled3" value="3" />
+	</div>
+</div>
 
 <br/>
 
@@ -74,13 +88,14 @@ AUI().ready('aui-rating', function(A) {
 				console.log('itemSelect 1', arguments);
 			}
 		}
-	});
+	})
+	.render();
 
 	var rating2 = new A.StarRating({
-		boundingBox: '#rating2',
-		label: 'abc',
-		title: 'testing..',
-		disabled: true,
+		srcNode: '#rating2',
+		label: 'Created from HTML markup',
+		// title: 'testing..',
+		// disabled: true,
 		defaultSelected: 3,
 		canReset: false,
 		on: {
@@ -99,17 +114,19 @@ AUI().ready('aui-rating', function(A) {
 				console.log('itemSelect 2', arguments);
 			}
 		}
-	});
+	})
+	.render();
 
 	//rating2.enable();
-	rating2.set('label', 'New Label')
+	// rating2.set('label', 'New Label')
 	// rating2.set('disabled', false)
-	rating2.set('disabled', true)
+	// rating2.set('disabled', true)
 
 	var rating3 = new A.StarRating({
 		boundingBox: '#rating3',
 		defaultSelected: 4
-	});
+	})
+	.render();
 
 	var ratingThumb1 = new A.ThumbRating({
 		boundingBox: '#ratingThumbs1',
@@ -120,11 +137,13 @@ AUI().ready('aui-rating', function(A) {
 				this.set('label', 'test' + (new Date()).getTime())
 			}
 		}
-	});
+	})
+	.render();
 
 	var ratingLabeled = new A.StarRating({
 		boundingBox: '#ratingLabeled1'
-	});
+	})
+	.render();
 
 	// public methods
 	// rating1.select(index);
