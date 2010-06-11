@@ -305,6 +305,14 @@ var Rating = A.Component.create(
 				return srcNode.all(DOT+CSS_RATING_EL);
 			},
 
+			label: function(srcNode) {
+				var labelNode = srcNode.one(DOT+CSS_RATING_LABEL_EL);
+
+				if (labelNode) {
+					return labelNode.html();
+				}
+			},
+
 			labelNode: DOT+CSS_RATING_LABEL_EL
 		},
 
