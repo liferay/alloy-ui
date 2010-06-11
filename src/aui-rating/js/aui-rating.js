@@ -764,7 +764,7 @@ var Rating = A.Component.create(
 							element.setAttribute(TITLE, title);
 						}
 
-						if (element.get(NODE_NAME).toLowerCase() == ANCHOR) {
+						if (!element.attr(HREF) && (element.get(NODE_NAME).toLowerCase() == ANCHOR)) {
 							element.setAttribute(HREF, HREF_JAVASCRIPT);
 						}
 
