@@ -19,6 +19,7 @@ var L = A.Lang,
 		return (v instanceof A.Node);
 	},
 
+	ANCHOR = 'a',
 	BLANK = '',
 	BOUNDING_BOX = 'boundingBox',
 	CAN_RESET = 'canReset',
@@ -32,12 +33,15 @@ var L = A.Lang,
 	EMPTY_STR = '',
 	HELPER = 'helper',
 	HOVER = 'hover',
+	HREF = 'href',
+	HREF_JAVASCRIPT = 'javascript:;',
 	ID = 'id',
 	INPUT = 'input',
 	INPUT_NAME = 'inputName',
 	LABEL = 'label',
 	LABEL_NODE = 'labelNode',
 	NAME = 'name',
+	NODE_NAME = 'nodeName',
 	OFF = 'off',
 	ON = 'on',
 	RATING = 'rating',
@@ -63,7 +67,7 @@ var L = A.Lang,
 	CSS_RATING_EL_ON = getCN(RATING, ELEMENT, ON),
 
 	TPL_LABEL = '<div class="'+CSS_RATING_LABEL_EL+'"></div>',
-	TPL_RATING_EL = '<a href="javascript:;"></a>',
+	TPL_RATING_EL = '<a href="'+HREF_JAVASCRIPT+'"></a>',
 	TPL_RATING_EL_DISABLED = '<span></span>';
 
 /**
@@ -759,6 +763,10 @@ var Rating = A.Component.create(
 						// setting the title
 						if (title && instance.get(SHOW_TITLE)) {
 							element.setAttribute(TITLE, title);
+						}
+
+						if (element.get(NODE_NAME).toLowerCase() == ANCHOR) {
+							element.setAttribute(HREF, HREF_JAVASCRIPT);
 						}
 
 						contentBox.appendChild(element);
