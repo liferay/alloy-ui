@@ -724,11 +724,13 @@ var ImageGallery = A.Component.create(
 					}
 				}
 
-				if (thumbSrc) {
+				if (thumbSrc && thumbEl.getData('thumbSrc') != thumbSrc) {
 					thumbEl.setStyles({
 						// use background to show the thumbnails to take advantage of the background-position: 50% 50%
 						backgroundImage: 'url(' + thumbSrc + ')'
 					});
+
+					thumbEl.setData('thumbSrc', thumbSrc);
 				}
 			},
 

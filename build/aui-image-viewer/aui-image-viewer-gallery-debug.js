@@ -725,11 +725,13 @@ var ImageGallery = A.Component.create(
 					}
 				}
 
-				if (thumbSrc) {
+				if (thumbSrc && thumbEl.getData('thumbSrc') != thumbSrc) {
 					thumbEl.setStyles({
 						// use background to show the thumbnails to take advantage of the background-position: 50% 50%
 						backgroundImage: 'url(' + thumbSrc + ')'
 					});
+
+					thumbEl.setData('thumbSrc', thumbSrc);
 				}
 			},
 
@@ -819,4 +821,4 @@ var ImageGallery = A.Component.create(
 
 A.ImageGallery = ImageGallery;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-image-viewer-base','aui-paginator','aui-toolbar']});
+}, '@VERSION@' ,{requires:['aui-image-viewer-base','aui-paginator','aui-toolbar'], skinnable:true});
