@@ -7,6 +7,7 @@
 
 var Lang = A.Lang,
 	isArray = Lang.isArray,
+	isObject = Lang.isObject,
 	isString = Lang.isString,
 	isUndefined = Lang.isUndefined,
 	isValue = Lang.isValue,
@@ -173,9 +174,23 @@ A.mix(A.Node.prototype, {
 		var instance = this;
 
 		if (!isUndefined(value)) {
-			return instance.set(name, value);
+			var el = instance.getDOM();
+
+			if (name in el) {
+				instance.set(name, value);
+			}
+
+			return instance.setAttribute(name, value);
 		}
 		else {
+			if (isObject(name)) {
+				for (var i in name) {
+					instance.attr(i, name[i]);
+				}
+
+				return instance;
+			}
+
 			return instance.get(name) || instance.getAttribute(name);
 		}
 	},
