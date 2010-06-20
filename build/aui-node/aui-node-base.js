@@ -878,6 +878,18 @@ A.mix(
 		},
 
 		/**
+		 * Returns the first element in the node list collection.
+		 *
+		 * @method first
+		 * @return {Node}
+		 */
+		first: function() {
+			var instance = this;
+
+			return instacne.item(0);
+		},
+
+		/**
 	     * See <a href="Node.html#method_getDOM">Node getDOM</a>.
 	     *
 	     * @method getDOM
@@ -886,6 +898,18 @@ A.mix(
 			var instance = this;
 
 			return A.NodeList.getDOMNodes(this);
+		},
+
+		/**
+		 * Returns the last element in the node list collection.
+		 *
+		 * @method first
+		 * @return {Node}
+		 */
+		last: function() {
+			var instance = this;
+
+			return instance.item(instance._nodes.length - 1);
 		},
 
 		/**
