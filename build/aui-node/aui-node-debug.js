@@ -903,7 +903,7 @@ A.mix(
 		/**
 		 * Returns the last element in the node list collection.
 		 *
-		 * @method first
+		 * @method last
 		 * @return {Node}
 		 */
 		last: function() {
