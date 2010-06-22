@@ -207,6 +207,10 @@
 
 		UA.renderer = '';
 
+		var documentElement = document.documentElement;
+
+		UA.dir = documentElement.getAttribute('dir') || 'ltr';
+
 		if (UA.ie) {
 			UA.renderer = 'trident';
 		}
@@ -231,6 +235,7 @@
 			UA.browser,
 			UA.browser + UA.version.major,
 			UA.os,
+			UA.dir,
 			'js'
 		];
 
@@ -250,8 +255,6 @@
 		}
 
 		UA.selectors = selectors.join(' ');
-
-		var documentElement = document.documentElement;
 
 		if (!documentElement._yuid) {
 			documentElement.className += ' ' + UA.selectors;
