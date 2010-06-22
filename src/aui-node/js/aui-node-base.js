@@ -533,6 +533,10 @@ A.mix(A.Node.prototype, {
 			else {
 				textField.select();
 			}
+
+			if (textField != document.activeElement) {
+				textField.focus();
+			}
 		}
 		catch(e) {}
 
