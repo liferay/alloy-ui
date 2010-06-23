@@ -405,11 +405,21 @@ Component.create = function(config) {
 		configProto._SYNC_UI_ATTRS = COMP_PROTO._SYNC_UI_ATTRS.concat(config.SYNC_UI_ATTRS);
 	}
 
+	var augmentsClasses = config.AUGMENTS;
+
+	if (augmentsClasses && !Lang.isArray(augmentsClasses)) {
+		augmentsClasses = [augmentsClasses];
+	}
+
 	A.mix(component, config);
 
 	delete component.prototype;
 
 	A.extend(component, extendsClass, configProto);
+
+	if (augmentsClasses) {
+		component = A.Base.build(config.NAME, component, augmentsClasses, { dynamic: false });
+	}
 
 	return component;
 };
