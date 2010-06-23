@@ -179,8 +179,11 @@ A.mix(A.Node.prototype, {
 			if (name in el) {
 				instance.set(name, value);
 			}
+			else {
+				instance.setAttribute(name, value);
+			}
 
-			return instance.setAttribute(name, value);
+			return instance;
 		}
 		else {
 			if (isObject(name)) {
