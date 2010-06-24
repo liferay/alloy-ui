@@ -38,6 +38,8 @@ var L = A.Lang,
  * @return {boolean} Parsed value
  */
 DB.parse = function(data) {
+	data = A.Lang.trim(data);
+
 	return (data == FALSE) ? false : !!data;
 };
 
@@ -52,16 +54,18 @@ DB.parse = function(data) {
  * @return {boolean | null | number | String | undefined} Parsed value
  */
 DS.evaluate = function(data) {
+	var trimmedData = A.Lang.trim(data);
+
 	// booleans
-	if (data == TRUE || data == FALSE) {
+	if (trimmedData == TRUE || trimmedData == FALSE) {
 		return DB.parse(data);
 	}
 
 	// Handle positive & negative numbers (integer or float)
 	// Handle hexadecimal numbers: 0xFF -> 255
 	// Handle exponential notation: 1e5 -> 100000
-	if (data && L.isString(data)) {
-		var number = +data;
+	if (trimmedData && L.isString(trimmedData)) {
+		var number = +trimmedData;
 
 		if (!isNaN(number)) {
 			return number;
