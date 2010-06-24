@@ -29,6 +29,8 @@ find $toDir -type d -name ".svn" | xargs rm -rf
 
 perl -pi -e "s/^(build\.aui\.prefix=)/\$1gallery-/g;" ${toDir}/build.properties
 
+perl -pi -e "s/window\.AUI = AUI;//g;" ${srcDir}/aui-base/js/aui-core.js
+
 find $demosDir/* -type f -name "*.html" | xargs perl -pi -e 's/<script src="\.\.\/\.\.\/build\/aui\/aui\.js" type="text\/javascript"><\/script>/<script src="..\/..\/build\/yui\/yui.js" type="text\/javascript"><\/script><script src="..\/..\/build\/gallery-aui\/defaults.js" type="text\/javascript"><\/script><script src="..\/..\/build\/aui-base\/aui-base.js" type="text\/javascript"><\/script>/g;'
 
 perl -pi -e 's/\${project\.dir}\/resources\/temp\/defaults\.js/\${project.dir}\/build\/gallery-aui\/defaults.js/' ${resourcesDir}/builder/macrolib.xml
