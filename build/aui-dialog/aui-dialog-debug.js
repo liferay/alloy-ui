@@ -385,6 +385,20 @@ Dialog.prototype = {
 	},
 
 	/**
+	 * Fires after the value of the
+	 * <a href="Dialog.html#config_constrain2view">constrain2view</a> attribute change.
+	 *
+	 * @method 
+	 * @param {EventFacade} event
+	 * @protected
+	 */
+	_afterConstrain2viewChange: function(event) {
+		var instance = this;
+
+		instance._setConstrain2view(event.newVal);
+	},
+
+	/**
 	 * Fires after the render phase. Invoke
      * <a href="Dialog.html#method__initButtons">_initButtons</a>.
 	 *
@@ -481,6 +495,35 @@ Dialog.prototype = {
 	},
 
 	/**
+	 * Setter for the <a href="Dialog.html#config_constrain2view">constrain2view</a>
+     * attributte. Plugs or unplugs the DDConstrained plugin on the drag instance.
+	 *
+	 * @method _setConstrain2view
+	 * @param {Object} value Object to be passed to the A.DD.Drag constructor.
+	 * @protected
+	 * @return {Object}
+	 */
+	_setConstrain2view: function(value) {
+		var instance = this;
+
+		var dragInstance = instance.get(DRAG_INSTANCE);
+
+		if (dragInstance) {
+			if (value) {
+				dragInstance.plug(
+					A.Plugin.DDConstrained,
+					{
+						constrain2view: instance.get(CONSTRAIN_TO_VIEWPORT)
+					}
+				);
+			}
+			else {
+				dragInstance.unplug(A.Plugin.DDConstrained);
+			}
+		}
+	},
+
+	/**
 	 * Setter for the <a href="Dialog.html#config_draggable">draggable</a>
      * attributte. Initialize the A.DD.Drag on the Dialog.
 	 *
@@ -527,14 +570,11 @@ Dialog.prototype = {
 
 			var dragInstance = new A.DD.Drag(dragOptions);
 
-			dragInstance.plug(
-				A.Plugin.DDConstrained,
-				{
-					constrain2view: instance.get(CONSTRAIN_TO_VIEWPORT)
-				}
-			);
-
 			instance.set(DRAG_INSTANCE, dragInstance);
+
+			instance.after('constrain2viewChange', instance._afterConstrain2viewChange, instance);
+
+			instance._setConstrain2view(instance.get('constrain2view'));
 		}
 		else {
 			destroy();
@@ -753,4 +793,4 @@ A.mix(
  * @static
  */
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize']});
+}, '@VERSION@' ,{requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize'], skinnable:true});
