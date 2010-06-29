@@ -3632,6 +3632,10 @@ YUI.add('yui', function(Y){}, '3.1.1' ,{use:['yui-base','get','intl-base','yui-l
 
 		UA.renderer = '';
 
+		var documentElement = document.documentElement;
+
+		UA.dir = documentElement.getAttribute('dir') || 'ltr';
+
 		if (UA.ie) {
 			UA.renderer = 'trident';
 		}
@@ -3656,6 +3660,7 @@ YUI.add('yui', function(Y){}, '3.1.1' ,{use:['yui-base','get','intl-base','yui-l
 			UA.browser,
 			UA.browser + UA.version.major,
 			UA.os,
+			UA.dir,
 			'js'
 		];
 
@@ -3675,8 +3680,6 @@ YUI.add('yui', function(Y){}, '3.1.1' ,{use:['yui-base','get','intl-base','yui-l
 		}
 
 		UA.selectors = selectors.join(' ');
-
-		var documentElement = document.documentElement;
 
 		if (!documentElement._yuid) {
 			documentElement.className += ' ' + UA.selectors;
