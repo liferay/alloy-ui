@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			margin: 20px auto;
+			width: 960px;
+		}
+	</style>
+</head>
+
+<body>
+<div id="wrapper">
+	<h1>Alloy - form Demo</h1>
+
+	<div id="demo">
+		<input id="field2a">
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+AUI().ready(
+	'aui-form', 'aui-io-request',
+	function(A) {
+
+		// Creating a basic field from script
+		var field1 = new A.Field({
+			id: 'field1'
+		}).render('#demo');
+
+		// Creating a basic field from markup
+		var field2 = new A.Field({
+			node: '#field2a'
+		}).render('#demo');
+
+		// Updating the attributes
+		field1.set('value', 'new value');
+		field1.set('size', 55);
+
+		// Resetting the value
+
+		field1.resetValue();
+
+		// Setting a validator
+
+		field1.set('validator', function(value) {
+			return /^\d+$/.test(value); //allow only numbers
+		});
+
+		field1.set('value', 'abc1');
+
+		field1.isValid(); // returns false
+
+		field1.markInvalid('This field must contain numbers');
+
+		// Clear an invalid message
+
+		field1.clearInvalid();
+
+		// Creating a basic textarea
+		var textarea1 = new A.Textarea({
+			labelText: 'Textarea'
+		}).render('#demo');
+
+		// Creating a textarea with a minHeight/maxHeight
+		var textarea2 = new A.Textarea({
+			autoSize: true,
+			labelText: 'Textarea with minHeight/maxHeight',
+			minHeight: 100,
+			maxHeight: 200
+		}).render('#demo');
+
+		// Creating a basic text field
+
+		var textfield1 = new A.Textfield({
+			labelText: 'Text field 1'
+		}).render('#demo');
+
+		// Creating a text field that selects its content on focus
+
+		var textfield2 = new A.Textfield({
+			labelText: 'Text field 2',
+			selectOnFocus: true,
+			value: 'Select on focus'
+		}).render('#demo');
+
+		// Creating a text field that only allows numbers
+
+		var textfield3 = new A.Textfield({
+			labelText: 'Text field 3 (only allow numbers)',
+			allowOnly: /\d/
+		}).render('#demo');
+
+		// Creating a basic form
+
+		var form = new A.Form().render('#demo');
+
+		// Adding fields to the form via script
+
+		form.add([
+			{ id: 'field1', labelText: 'Label 1', value: 'field 1' },
+			{ id: 'field2', labelText: 'Label 2', value: 'field 2' },
+			{ id: 'field3', labelText: 'Label 3', value: 'field 3' },
+			{ id: 'field4', labelText: 'Label 4', value: 'field 4' },
+			{ id: 'field5', labelText: 'Label 5', value: 'field 5' },
+			{ id: 'field6', labelText: 'Label 6', value: 'field 6' },
+			{ id: 'field7', labelText: 'Label 7', value: 'field 7' }
+		],
+		true);
+
+		// Setting values on the form
+
+		form.set('values', {
+			field1: 'This is field 1',
+			field2: 'This is field 2',
+			field3: 'This is field 3'
+		});
+
+		// Checking if the form fields have been changed
+
+		form.isDirty(); // returns true
+
+		// Resetting the values to their original values
+
+		form.resetValues();
+
+		var formContentBox = form.get('contentBox')
+
+		window.myField = new A.Textfield(
+			{
+				labelText: 'label 7',
+				value: 'orgiinal',
+				name: 'fieldX',
+				fieldHint: 'Please enter your username',
+				labelAlign: 'left',
+				render: formContentBox
+			}
+		);
+
+		form.add(myField);
+
+		window.myForm = form;
+
+		ta = new A.Textarea({
+			autoSize: true,
+			maxHeight: 250
+		}).render(formContentBox);
+
+		new A.Combobox(
+			{
+				labelText: 'Combo Field'
+			}
+		).render(formContentBox);
+	}
+);
+
+</script>
+
+</body>
+</html>
