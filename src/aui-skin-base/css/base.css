@@ -61,9 +61,8 @@
 .aui-tooltip-hidden,
 .aui-image-viewer-hidden,
 .aui-image-gallery-hidden {
-	left: -99999px !important;
-	position: absolute !important;
-	top: -99999px !important;
+	clip: rect(0 0 0 0);
+	position: absolute;
 }
 
 .aui-helper-reset {
