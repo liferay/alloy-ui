@@ -938,6 +938,19 @@ var Resize = A.Component.create(
 						info.top = originalInfo.top + originalInfo.height - minHeight;
 					}
 				}
+
+				if (instance.get(CONSTRAIN2NODE)) {
+					var handleEl = instance.get(ACTIVE_HANDLE_EL);
+					var constrain = handleEl.dd.con;
+					var region = constrain.getRegion();
+
+					var bottom = info.nodeY + info.height;
+					var constrainBottom = region.bottom;
+
+					if (bottom >= constrainBottom) {
+						info.height -= bottom - constrainBottom;
+					}
+				}
 			},
 
 		    /**
@@ -1003,6 +1016,15 @@ var Resize = A.Component.create(
 					info.left = oLeft + (oWidth - info.width);
 				}
 			},
+			
+			_checkRegion: function() {
+				var instance = this;
+				var handle = instance.get(ACTIVE_HANDLE_EL);
+				var constrain = handle.dd.con;
+				var region = constrain.getRegion();
+				
+				return A.DOM.inRegion(null, region, true, instance.info);
+			},
 
 		    /**
 		     * Update the current values on <a href="Resize.html#property_info">info</a>
@@ -1042,6 +1064,19 @@ var Resize = A.Component.create(
 						// predicting, based on the original information, the last left valid in case of reach the min/max dimension
 						// this calculation avoid browser event leaks when user interact very fast with their mouse
 						info.left = originalInfo.left + originalInfo.width - minWidth;
+					}
+				}
+
+				if (instance.get(CONSTRAIN2NODE)) {
+					var handleEl = instance.get(ACTIVE_HANDLE_EL);
+					var constrain = handleEl.dd.con;
+					var region = constrain.getRegion();
+
+					var right = info.nodeX + info.width;
+					var constrainRight = region.right;
+
+					if (right >= constrainRight) {
+						info.width -= right - constrainRight;
 					}
 				}
 			},
@@ -1160,14 +1195,19 @@ var Resize = A.Component.create(
 						top = offsetTop;
 					}
 				}
+				
+				var height = node.get(OFFSET_HEIGHT);
+				var width = node.get(OFFSET_WIDTH);
 
 				return {
 					left: left,
 					top: top,
+					right: left + width,
+					bottom: top + height,
 					offsetLeft: offsetLeft,
 					offsetTop: offsetTop,
-					height: node.get(OFFSET_HEIGHT),
-					width: node.get(OFFSET_WIDTH),
+					height: height,
+					width: width,
 					lastXY: lastXY,
 					nodeX: nodeXY[0],
 					nodeY: nodeXY[1]
@@ -1272,8 +1312,6 @@ var Resize = A.Component.create(
 					A.Plugin.DDConstrained,
 					{
 						constrain2node: instance.get(CONSTRAIN2NODE),
-						constrain2region: instance.get(CONSTRAIN2REGION),
-						constrain2view: instance.get(CONSTRAIN2VIEW),
 						stickX: (handle == R || handle == L),
 						stickY: (handle == T || handle == B),
 						tickX: instance.get(TICK_X),
@@ -1295,22 +1333,20 @@ var Resize = A.Component.create(
 				var wrapper = instance.get(WRAPPER);
 				var node = instance.get(NODE);
 
-				var size = {
-					height: info.height + PX,
-					width: info.width + PX
-				};
-
 				var dimension = {
 					top: info.top + PX,
 					left: info.left + PX
 				};
 
-				wrapper.setStyles(size);
+				wrapper.set(OFFSET_HEIGHT, info.height);
+				wrapper.set(OFFSET_WIDTH, info.width);
+				
 				wrapper.setStyles(dimension);
 
 				// if wrapper is different from node
 				if (!wrapper.compareTo(node)) {
-					node.setStyles(size);
+					node.set(OFFSET_HEIGHT, info.height);
+					node.set(OFFSET_WIDTH, info.width);
 				}
 
 				// prevent webkit textarea resize
@@ -1431,6 +1467,7 @@ var Resize = A.Component.create(
 		     */
 			_defResizeFn: function(event) {
 				var instance = this;
+				var infoBefore = instance.info;
 
 				// update the instance.info values (top, left, offsetTop, offsetTop, height, width, nodeX, nodeY, lastXY)
 				instance._updateInfo(event);
@@ -1452,6 +1489,10 @@ var Resize = A.Component.create(
 				// nodeX and nodeY information need to be updated based on the new top/left
 				// nodeY/nodeY is used to position the proxyEl
 				instance._recalculateXY();
+
+				if (!instance._checkRegion()) {
+					instance.info = infoBefore;
+				}
 			},
 
 		    /**
