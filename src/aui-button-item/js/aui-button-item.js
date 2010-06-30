@@ -10,7 +10,7 @@ var Lang = A.Lang,
 
 	NAME = 'buttonitem',
 
-	BOUNDING_BOX = 'boundingBox',
+	CONTENT_BOX = 'contentBox',
 	DOT = '.',
 	ICON = 'icon',
 	ICON_NODE = 'iconNode',
@@ -314,7 +314,7 @@ var ButtonItem = A.Component.create(
 			_renderIconNode: function() {
 				var instance = this;
 
-				instance.get(BOUNDING_BOX).append(
+				instance.get(CONTENT_BOX).append(
 					instance.get(ICON_NODE)
 				);
 			},
@@ -329,7 +329,7 @@ var ButtonItem = A.Component.create(
 			_renderLabelNode: function() {
 				var instance = this;
 
-				instance.get(BOUNDING_BOX).append(
+				instance.get(CONTENT_BOX).append(
 					instance.get(LABEL_NODE)
 				);
 			},
