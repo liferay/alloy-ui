@@ -36,6 +36,7 @@
 }
 
 .aui-colorpicker-controls .aui-field-content {
+	clear: both;
 	padding: 3px 0;
 }
 
