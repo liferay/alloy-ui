@@ -13,8 +13,13 @@
 	}
 
 	.gallery .picture {
-		border: 5px solid #222;
+		background: #eee url(../../build/aui-skin-classic/images/loading_indicator.gif) no-repeat 50%;
+		border: 1px solid;
+		border-color: #bbb #888 #888 #bbb;
 		margin: 3px;
+		width: 65px;
+		height: 65px;
+		padding: 5px;
 	}
 
 	.gallery a {
@@ -25,180 +30,38 @@
 
 <body>
 
-<h1>Alloy - ImageGallery</h1>
-
-<h1 id="log">Loading...</h1>
-
 <div id="gallery1" class="gallery">
-	
+	<h1>Alloy - ImageGallery</h1>
 </div>
 
-<div style="height: 1000px;"></div>
-
 <script type="text/javascript">
-AUI().add(
-	'aui-image-viewer-gallery-flickr-plugin',
+AUI().use(
+	'aui-image-viewer-gallery',
+	'gallery-yql',
 	function(A) {
-		var Lang = A.Lang,
+		var container = A.one('#gallery1');
 
-			getClassName = A.ClassNameManager.getClassName,
+		new A.yql(
+			'select * from flickr.photos.search(10) where user_id="80317441@N00"',
+			function(response) {
+				A.each(
+					response.query.results.photo,
+					function(item) {
 
-			NAME = 'flickr',
+						var url = 'http://farm' + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret;
 
-			CSS_FLICKR = getClassName(NAME),
-			CSS_IMAGE_VIEWER_LINK = getClassName('image-viewer', 'link'),
+						container.append('<a href="' + url + '.jpg" title="' + item.title + '"><img class="picture" src="' + url + '_s.jpg" /></a>');
 
-			TPL_IMAGE_URL = 'http://static.flickr.com/{server}',
-			TPL_IMAGE = '<a class="' + CSS_IMAGE_VIEWER_LINK + '" href="' + TPL_IMAGE_URL + '/{id}_{secret}_m.jpg" title="{title}"><img class="picture" src="' + TPL_IMAGE_URL + '/{id}_{secret}_s.jpg" /></a>';
-
-		var Flickr = function() {
-			Flickr.superclass.constructor.apply(this, arguments);
-		};
-
-		Flickr.NAME = NAME;
-		Flickr.NS = NAME;
-
-		Flickr.ATTRS = {
-			container: {
-				setter: '_setContainer'
-			},
-			limit: {
-				value: 10
-			},
-			query: {
-			},
-			tags: {
-			},
-			user: {
-			}
-		};
-
-		A.extend(
-			Flickr,
-			A.Plugin.Base,
-			{
-				initializer: function() {
-					var instance = this;
-
-					instance._beforeRenderHandler = instance.beforeHostMethod('render', instance._beforeRenderFn);
-				},
-
-				_beforeRenderFn: function() {
-					var instance = this;
-
-					var container = instance.get('container');
-
-					if (!container) {
-						var links = instance.get('host').get('links').item(0);
-
-						if (links) {
-							container = links.get('parentNode');
-						}
 					}
+				);
 
-					if (container) {
-						container.plug(A.LoadingMask).loadingmask.show();
-
-						instance.container = container;
-
-						var query = instance._prepareQuery();
-
-						var request = new A.yql(query, A.bind(instance._handleResponse, instance));
-
-						return new A.Do.Halt(null, null);
-					}
-				},
-
-				_handleResponse: function(response) {
-					var instance = this;
-
-					if (response.query && response.query.results) {
-						var container = instance.container;
-
-						A.each(
-							response.query.results.photo,
-							function(item, index, collection) {
-								container.append(A.substitute(TPL_IMAGE, item));
-							}
-						);
-
-						instance._beforeRenderHandler.detach();
-
-						var host = instance.get('host');
-
-						host.set('links', container.all('a'));
-
-						host.render();
-
-						container.loadingmask.hide();
-					}
-				},
-
-				_prepareQuery: function() {
-					var instance = this;
-
-					var user = instance.get('user');
-					var tags = instance.get('tags');
-					var limit = instance.get('limit');
-
-					var query = 'select * from flickr.photos.search({limit}) where ';
-
-					if (user) {
-						query += 'user_id = "{user}"';
-					}
-
-					if (user && tags) {
-						query += " AND ";
-					}
-
-					if (tags) {
-						query += 'tags = "{tags}"'
-					}
-
-					query = A.substitute(
-						query,
-						{
-							limit: limit,
-							tags: tags,
-							user: user
-						}
-					);
-
-					return query;
-				},
-
-				_setContainer: function(value) {
-					var instance = this;
-
-					return A.one(value) || A.Attribute.INVALID_VALUE;
-				}
+				window.flickrGallery = new A.ImageGallery({
+					links: container.all('a')
+				}).render();
 			}
 		);
-
-		A.Plugin.FlickrGallery = Flickr;
-	},
-	'0.1a',
-	{
-		requires: ['aui-image-viewer-gallery', 'gallery-yql', 'substitute', 'aui-loading-mask'],
-		use: []
 	}
 );
-
-AUI().ready('aui-image-viewer-gallery-flickr-plugin', function(A) {
-
-	var imageGallery1 = new A.ImageGallery({
-		delay: 2000
-	}).
-	plug(A.Plugin.FlickrGallery, {
-		user: '80317441@N00',
-		// tags: 'dogs',
-		limit: 20,
-		container: '#gallery1'
-	})
-	.render();
-
-});
-
 </script>
 
 </body>
