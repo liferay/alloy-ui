@@ -1299,7 +1299,7 @@ A.CalendarManager = new A.OverlayManager({
 	zIndexBase: 1000
 });
 
-}, '@VERSION@' ,{requires:['aui-overlay-context','datatype-date','widget-locale'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-context','datatype-date','widget-locale']});
 AUI.add('aui-calendar-datepicker-select', function(A) {
 /**
  * The DatePickerSelect Utility
@@ -2108,8 +2108,8 @@ var DatePickerSelect = A.Component.create(
 
 A.DatePickerSelect = DatePickerSelect;
 
-}, '@VERSION@' ,{requires:['aui-calendar-base','aui-button-item'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-calendar-base','aui-button-item']});
 
 
-AUI.add('aui-calendar', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-calendar-base','aui-calendar-datepicker-select']});
+AUI.add('aui-calendar', function(A){}, '@VERSION@' ,{use:['aui-calendar-base','aui-calendar-datepicker-select'], skinnable:true});
 

@@ -144,7 +144,7 @@ var SWF = A.Component.create(
 
 				instance._swfId = swfId;
 
-				var boundingBox = instance.get('boundingBox');
+				var contentBox = instance.get('contentBox');
 				var flashVars = instance.get('flashVars');
 
 				A.mix(
@@ -187,7 +187,7 @@ var SWF = A.Component.create(
 
 					tplObj += '</object>';
 
-					boundingBox.set('innerHTML', tplObj);
+					contentBox.set('innerHTML', tplObj);
 				}
 
 				instance._swf = A.one('#' + swfId);

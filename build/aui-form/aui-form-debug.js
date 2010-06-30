@@ -1512,11 +1512,11 @@ var L = A.Lang,
 	PIPE = '|',
 
 	BLUR_HANDLERS = 'blurHandlers',
-	BOUNDING_BOX = 'boundingBox',
 	CHECKBOX = 'checkbox',
 	CONTAINER = 'container',
 	CONTAINER_ERROR_CLASS = 'containerErrorClass',
 	CONTAINER_VALID_CLASS = 'containerValidClass',
+	CONTENT_BOX = 'contentBox',
 	ERROR = 'error',
 	ERROR_CLASS = 'errorClass',
 	EXTRACT_CSS_PREFIX = 'extractCssPrefix',
@@ -1847,8 +1847,8 @@ var FormValidator = A.Component.create({
 
 		focusInvalidField: function() {
 			var instance = this;
-			var boundingBox = instance.get(BOUNDING_BOX);
-			var field = boundingBox.one(DOT+CSS_ERROR);
+			var contentBox = instance.get(CONTENT_BOX);
+			var field = contentBox.one(DOT+CSS_ERROR);
 
 			if (field) {
 				if (instance.get(SELECT_TEXT)) {
@@ -1862,7 +1862,7 @@ var FormValidator = A.Component.create({
 		getElementsByName: function(name) {
 			var instance = this;
 
-			return instance.get(BOUNDING_BOX).all('[name="' + name + '"]');
+			return instance.get(CONTENT_BOX).all('[name="' + name + '"]');
 		},
 
 		getField: function(field) {
@@ -2055,7 +2055,7 @@ var FormValidator = A.Component.create({
 
 		_bindValidation: function() {
 			var instance = this;
-			var form = instance.get(BOUNDING_BOX);
+			var form = instance.get(CONTENT_BOX);
 
 			form.on(EV_RESET, A.bind(instance._onFormReset, instance));
 			form.on(EV_SUBMIT, A.bind(instance._onFormSubmit, instance));
@@ -2228,7 +2228,7 @@ var FormValidator = A.Component.create({
 			var instance = this;
 
 			if (val) {
-				var form = instance.get(BOUNDING_BOX);
+				var form = instance.get(CONTENT_BOX);
 				var rules = instance.get(RULES);
 				var extractCssPrefix = instance.get(EXTRACT_CSS_PREFIX);
 
