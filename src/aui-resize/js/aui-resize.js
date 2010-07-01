@@ -1016,14 +1016,22 @@ var Resize = A.Component.create(
 					info.left = oLeft + (oWidth - info.width);
 				}
 			},
-			
+
 			_checkRegion: function() {
 				var instance = this;
 				var handle = instance.get(ACTIVE_HANDLE_EL);
 				var constrain = handle.dd.con;
 				var region = constrain.getRegion();
-				
-				return A.DOM.inRegion(null, region, true, instance.info);
+				var info = instance.info;
+
+				var infoRegion = {
+					left: info.nodeX,
+					top: info.nodeY,
+					right: info.nodeX + info.width,
+					bottom: info.nodeY + info.height
+				};
+
+				return A.DOM.inRegion(null, region, true, infoRegion);
 			},
 
 		    /**
@@ -1195,7 +1203,7 @@ var Resize = A.Component.create(
 						top = offsetTop;
 					}
 				}
-				
+
 				var height = node.get(OFFSET_HEIGHT);
 				var width = node.get(OFFSET_WIDTH);
 
@@ -1340,7 +1348,7 @@ var Resize = A.Component.create(
 
 				wrapper.set(OFFSET_HEIGHT, info.height);
 				wrapper.set(OFFSET_WIDTH, info.width);
-				
+
 				wrapper.setStyles(dimension);
 
 				// if wrapper is different from node
@@ -1490,8 +1498,10 @@ var Resize = A.Component.create(
 				// nodeY/nodeY is used to position the proxyEl
 				instance._recalculateXY();
 
-				if (!instance._checkRegion()) {
-					instance.info = infoBefore;
+				if (instance.get(CONSTRAIN2NODE)) {
+					if (!instance._checkRegion()) {
+						instance.info = infoBefore;
+					}
 				}
 			},
 
