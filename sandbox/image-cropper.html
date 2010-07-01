@@ -69,46 +69,47 @@
 AUI().ready(
 	'aui-resize',
 	function(A) {
+		var cropEl = A.one('#cropper');
+		var imageEl = A.one('#image');
 	
-		var updateBackground = function(event) {
-			var info = event.info;
-			var left = info.left;
-			var top = info.top;
-			
-			if (info.xy) {
-				left = info.xy[0];
-				top = info.xy[1];
-			}
-			
-			var imageEl = A.one('#image');
-			
+		var updateBackground = function(left, top) {
 			left = (left - imageEl.getX())  * -1 + 'px';
 			top = (top - imageEl.getY()) * -1 + 'px';
 			
 			var url = 'url(' + imageEl.get('src') + ')';
 			var background = url + ' no-repeat ' + left + ' ' + top;
 			
-			var cropEl = A.one('#cropper');
 			cropEl.setStyle('background', background);
 		};
 
 		var cropper = new A.Resize({
-			node: '#cropper',
-			constrain2node: '#image'
+			node: cropEl,
+			constrain2node: imageEl,
+			proxy: true
 		});
 		
-		cropper.on('resize', updateBackground);
-
 		var drag = new A.DD.Drag({
-			node: A.one('#cropper')
+			node: cropEl
 		}).plug(
 			A.Plugin.DDConstrained,
 			{
-				constrain2node: '#image'
+				constrain2node: imageEl
 			}
 		);
 		
-		drag.on('drag:drag', updateBackground);
+		cropper.on('resize', function(event){
+			var info = event.info;
+			
+			updateBackground(info.left, info.top);
+		});
+		
+		drag.on('drag:drag', function(event){
+			var info = event.info;
+			
+			updateBackground(info.xy[0], info.xy[1]);
+		});
+		
+		updateBackground(cropEl.getX(), cropEl.getY());
 	}
 );
 

@@ -1023,8 +1023,16 @@ var Resize = A.Component.create(
 				var handle = instance.get(ACTIVE_HANDLE_EL);
 				var constrain = handle.dd.con;
 				var region = constrain.getRegion();
+				var info = instance.info;
 				
-				return A.DOM.inRegion(null, region, true, instance.info);
+				var infoRegion = {
+					left: info.nodeX,
+					top: info.nodeY,
+					right: info.nodeX + info.width,
+					bottom: info.nodeY + info.height
+				};
+				
+				return A.DOM.inRegion(null, region, true, infoRegion);
 			},
 
 		    /**
@@ -1490,9 +1498,11 @@ var Resize = A.Component.create(
 				// nodeX and nodeY information need to be updated based on the new top/left
 				// nodeY/nodeY is used to position the proxyEl
 				instance._recalculateXY();
-
-				if (!instance._checkRegion()) {
-					instance.info = infoBefore;
+				
+				if (instance.get(CONSTRAIN2NODE)) {
+					if (!instance._checkRegion()) {
+						instance.info = infoBefore;
+					}
 				}
 			},
 
