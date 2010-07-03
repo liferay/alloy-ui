@@ -1352,7 +1352,9 @@ var Resize = A.Component.create(
 
 				instance._setOffset(wrapper, info.offsetWidth, info.offsetHeight);
 
-				wrapper.setXY([info.left, info.top]);
+				if (instance.changeLeftHandles || instance.changeTopHandles) {
+					wrapper.setXY([info.left, info.top]);
+				}
 
 				// if wrapper is different from node
 				if (!wrapper.compareTo(node)) {
