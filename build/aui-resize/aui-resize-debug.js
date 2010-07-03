@@ -5,8 +5,6 @@ AUI.add('aui-resize', function(A) {
  * @module aui-resize
  */
 
-// TODO: Containment with proxy enabled and fix containment handles locking.
-// To fix the Containment #2528540 need to be fixed.
 var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isBoolean = Lang.isBoolean,
