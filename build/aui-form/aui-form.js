@@ -7,7 +7,7 @@ var Lang = A.Lang,
 
 	CSS_FORM = getClassName(NAME),
 	CSS_LABELS = getClassName('field', 'labels'),
-	CSS_LABELS_INLINE = getClassName('field', 'labels', 'inline')
+	CSS_LABELS_INLINE = getClassName('field', 'labels', 'inline'),
 
 	CSS_LABEL_ALIGN = {
 		left: [CSS_LABELS, 'left'].join('-'),
@@ -613,7 +613,7 @@ var Combobox = A.Component.create(
 
 A.Combobox = Combobox;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-form-textarea','aui-toolbar']});
+}, '@VERSION@' ,{requires:['aui-form-textarea','aui-toolbar'], skinnable:true});
 AUI.add('aui-form-field', function(A) {
 var Lang = A.Lang,
 
@@ -1366,7 +1366,7 @@ var Textarea = A.Component.create(
 
 A.Textarea = Textarea;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-form-textfield']});
+}, '@VERSION@' ,{requires:['aui-form-textfield'], skinnable:true});
 AUI.add('aui-form-textfield', function(A) {
 var Lang = A.Lang,
 
@@ -2298,5 +2298,5 @@ A.FormValidator = FormValidator;
 }, '@VERSION@' ,{requires:['aui-base','aui-event-input','selector-css3','substitute']});
 
 
-AUI.add('aui-form', function(A){}, '@VERSION@' ,{use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-textarea','aui-form-textfield','aui-form-validator'], skinnable:false});
+AUI.add('aui-form', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-textarea','aui-form-textfield','aui-form-validator']});
 
