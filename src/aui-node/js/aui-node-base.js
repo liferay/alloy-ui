@@ -343,6 +343,51 @@ A.mix(A.Node.prototype, {
 		return instance;
 	},
 
+    /**
+     * Create a hover interaction.
+     *
+     * @method hover
+     * @param {string} overFn
+     * @param {string} outFn
+     * @return {Node} The current Node instance
+     */
+	hover: function(overFn, outFn) {
+		var instance = this;
+
+		var hoverOptions;
+		var defaultHoverOptions = instance._defaultHoverOptions;
+
+		if (isObject(overFn, true)) {
+			hoverOptions = overFn;
+
+			hoverOptions = A.mix(hoverOptions, defaultHoverOptions);
+
+			overFn = hoverOptions.over;
+			outFn = hoverOptions.out;
+		}
+		else {
+			hoverOptions = A.mix(
+				{
+					over: overFn,
+					out: outFn
+				},
+				defaultHoverOptions
+			);
+		}
+
+		instance._hoverOptions = hoverOptions;
+
+		var overTask = new A.DelayedTask(instance._hoverOverTaskFn, instance);
+
+		var outTask = new A.DelayedTask(instance._hoverOutTaskFn, instance);
+
+		hoverOptions.overTask = overTask;
+		hoverOptions.outTask = outTask;
+
+		instance.on(hoverOptions.overEventType, instance._hoverOverHandler, instance);
+		instance.on(hoverOptions.outEventType, instance._hoverOutHandler, instance);
+	},
+
 	/**
      * <p>Get or Set the HTML contents of the node. If the <code>value</code>
      * is passed it's set the content of the element, otherwise it works as a
@@ -780,6 +825,70 @@ A.mix(A.Node.prototype, {
 	},
 
 	/**
+     * The event handler for the "out" function that is fired for events attached via the hover method.
+	 *
+     * @method _hoverOutHandler
+     * @private
+     * @param {EventFacade} event
+     */
+	_hoverOutHandler: function(event) {
+		var instance = this;
+
+		var hoverOptions = instance._hoverOptions;
+
+		hoverOptions.outTask.delay(hoverOptions.outDelay, null, null, [event]);
+	},
+
+	/**
+     * The event handler for the "over" function that is fired for events attached via the hover method.
+	 *
+     * @method _hoverOverHandler
+     * @private
+     * @param {EventFacade} event
+     */
+	_hoverOverHandler: function(event) {
+		var instance = this;
+
+		var hoverOptions = instance._hoverOptions;
+
+		hoverOptions.overTask.delay(hoverOptions.overDelay, null, null, [event]);
+	},
+
+	/**
+     * Cancels the over task, and fires the users custom "out" function for the hover method
+	 *
+     * @method _hoverOverHandler
+     * @private
+     * @param {EventFacade} event
+     */
+	_hoverOutTaskFn: function(event) {
+		var instance = this;
+
+		var hoverOptions = instance._hoverOptions;
+
+		hoverOptions.overTask.cancel();
+
+		hoverOptions.out.apply(hoverOptions.context || event.currentTarget, arguments);
+	},
+
+	/**
+     * Cancels the out task, and fires the users custom "over" function for the hover method
+	 *
+     * @method _hoverOverHandler
+     * @private
+     * @param {EventFacade} event
+     */
+	_hoverOverTaskFn: function(event) {
+		var instance = this;
+
+		var hoverOptions = instance._hoverOptions;
+
+		hoverOptions.outTask.cancel();
+
+		hoverOptions.over.apply(hoverOptions.context || event.currentTarget, arguments);
+	},
+
+	/**
      * Place a node or html string at a specific location
 	 *
      * @method _place
@@ -801,6 +910,15 @@ A.mix(A.Node.prototype, {
 		}
 
 		return instance;
+	},
+
+	_defaultHoverOptions: {
+		overEventType: 'mouseenter',
+		outEventType: 'mouseleave',
+		overDelay: 0,
+		outDelay: 0,
+		over: Lang.emptyFn,
+		out: Lang.emptyFn
 	}
 }, true);
 
@@ -828,6 +946,8 @@ A.NodeList.importMethod(
 		'empty',
 
 		'hide',
+
+		'hover',
 
 		'html',
 
