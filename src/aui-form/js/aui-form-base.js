@@ -6,7 +6,7 @@ var Lang = A.Lang,
 
 	CSS_FORM = getClassName(NAME),
 	CSS_LABELS = getClassName('field', 'labels'),
-	CSS_LABELS_INLINE = getClassName('field', 'labels', 'inline')
+	CSS_LABELS_INLINE = getClassName('field', 'labels', 'inline'),
 
 	CSS_LABEL_ALIGN = {
 		left: [CSS_LABELS, 'left'].join('-'),
