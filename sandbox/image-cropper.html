@@ -25,91 +25,136 @@
 			height: 6px;
 			width: 6px;
 		}
-		
+
 		.aui-resize .aui-resize-handle-b,
 		.aui-resize .aui-resize-handle-t {
 			left: 45%;
 		}
-		
+
 		.aui-resize .aui-resize-handle-l,
 		.aui-resize .aui-resize-handle-r {
 			top: 45%;
 		}
-		
+
+		.aui-resize .aui-resize-handle-t,
+		.aui-resize .aui-resize-handle-tr,
+		.aui-resize .aui-resize-handle-tl {
+			top: -4px;
+		}
+
+		.aui-resize .aui-resize-handle-b,
+		.aui-resize .aui-resize-handle-br,
+		.aui-resize .aui-resize-handle-bl {
+			bottom: -4px;
+		}
+
+		.aui-resize .aui-resize-handle-l,
+		.aui-resize .aui-resize-handle-bl,
+		.aui-resize .aui-resize-handle-tl {
+			left: -4px;
+		}
+
+		.aui-resize .aui-resize-handle-r,
+		.aui-resize .aui-resize-handle-br,
+		.aui-resize .aui-resize-handle-tr {
+			right: -4px;
+		}
+
 		.aui-resize-handle-inner {
 			background: none;
 			height: 6px;
 			width: 6px;
 		}
-		
+
+		#container {
+			width: 333px;
+			height: 500px;
+			position: relative;
+		}
+
 		#cropper {
 			position: absolute;
-			top: 100px;
-			left: 120px;
-			height: 50px;
-			width: 50px;
-			border: 1px dashed #CCCCCC;
+			top: 0;
+			left: 0;
+			width: 100px;
+			height: 100px;
+			border: 1px dashed #fff;
+			background: url(../demos/image-viewer/assets/lfr-soccer-4.jpg) no-repeat;
 		}
-		
+
 		#image {
-			opacity: .5;
+			opacity: 0.6;
+			-ms-filter: alpha(opacity=60);
+			filter: alpha(opacity=60);
 		}
 	</style>
 </head>
 
 <body>
 
-<h1>Alloy - Resize Demo</h1>
+<h1>Alloy - ImageCropper Demo</h1>
 
-<img src="assets/cream.jpg" id="image" />
-
-<div id="cropper"></div>
+<div id="container">
+	<img src="../demos/image-viewer/assets/lfr-soccer-4.jpg" id="image" />
+	<div id="cropper"></div>
+</div>
 
 <script type="text/javascript" charset="utf-8">
 AUI().ready(
 	'aui-resize',
 	function(A) {
-		var cropEl = A.one('#cropper');
-		var imageEl = A.one('#image');
-	
-		var updateBackground = function(left, top) {
-			left = (left - imageEl.getX())  * -1 + 'px';
-			top = (top - imageEl.getY()) * -1 + 'px';
-			
-			var url = 'url(' + imageEl.get('src') + ')';
-			var background = url + ' no-repeat ' + left + ' ' + top;
-			
-			cropEl.setStyle('background', background);
+		var cropper = A.one('#cropper');
+		var imageXY = A.one('#image').getXY();
+
+		var syncBackground = function(x, y) {
+			var dx = (x - imageXY[0]);
+			var dy = (y - imageXY[1]);
+
+			if ((dx >= 0) || (dy >= 0)) {
+				var bgPosition = [ '-', dx, 'px', ' -', dy, 'px' ].join('');
+
+				cropper.setStyle('backgroundPosition', bgPosition);
+			}
 		};
 
-		var cropper = new A.Resize({
-			node: cropEl,
-			constrain2node: imageEl,
-			proxy: true
+		var resize = new A.Resize({
+			node: cropper,
+			// proxy: true,
+			minWidth: 100,
+			minHeight: 100,
+			constrain2node: '#container'
 		});
-		
-		var drag = new A.DD.Drag({
-			node: cropEl
-		}).plug(
-			A.Plugin.DDConstrained,
-			{
-				constrain2node: imageEl
+
+		resize.on('resize', function(event) {
+			var info = event.info;
+
+			if (!this.get('proxy')) {
+				syncBackground(info.left, info.top);
 			}
-		);
-		
-		cropper.on('resize', function(event){
-			var info = event.info;
-			
-			updateBackground(info.left, info.top);
 		});
-		
+
+		resize.on('resize:end', function(event) {
+			var info = event.info;
+
+			if (this.get('proxy')) {
+				syncBackground(info.left, info.top);
+			}
+		});
+
+		var drag = new A.DD.Drag({
+			node: cropper
+		})
+		.plug(A.Plugin.DDConstrained, {
+			constrain2node: '#container'
+		});
+
 		drag.on('drag:drag', function(event){
-			var info = event.info;
-			
-			updateBackground(info.xy[0], info.xy[1]);
+			var xy = event.info.xy;
+
+			syncBackground(xy[0], xy[1]);
 		});
-		
-		updateBackground(cropEl.getX(), cropEl.getY());
+
+		syncBackground(0, 0);
 	}
 );
 
