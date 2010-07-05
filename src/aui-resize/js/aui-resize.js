@@ -107,11 +107,6 @@ var Lang = A.Lang,
 		}
 	),
 
-	CHANGE_HEIGHT_REGEX = /^(t|b)$/i,
-	CHANGE_LEFT_REGEX = /^(tl|l|bl)$/i,
-	CHANGE_TOP_REGEX = /^(tl|t|tr)$/i,
-	CHANGE_WIDTH_REGEX = /^(bl|br|l|r|tl|tr)$/i,
-
 	getCN = A.ClassNameManager.getClassName,
 
 	CSS_ICON = getCN(ICON),
@@ -131,6 +126,11 @@ var Lang = A.Lang,
 	CSS_ICON_DIAGONAL = concat(CSS_ICON, CSS_ICON_GRIPSMALL_DIAGONAL_BR),
 	CSS_ICON_HORIZONTAL = concat(CSS_ICON, CSS_ICON_GRIP_DOTTED_HORIZONTAL),
 	CSS_ICON_VERTICAL = concat(CSS_ICON, CSS_ICON_GRIP_DOTTED_VERTICAL),
+
+	REGEX_CHANGE_HEIGHT = /^(t|b)$/i,
+	REGEX_CHANGE_LEFT = /^(tl|l|bl)$/i,
+	REGEX_CHANGE_TOP = /^(tl|t|tr)$/i,
+	REGEX_CHANGE_WIDTH = /^(bl|br|l|r|tl|tr)$/i,
 
 	TPL_HANDLE = '<div class="'+concat(CSS_RESIZE_HANDLE, CSS_RESIZE_HANDLE_PLACEHOLDER)+'">' +
 					'<div class="'+concat(CSS_RESIZE_HANDLE_INNER, CSS_RESIZE_HANDLE_INNER_PLACEHOLDER)+'"></div>' +
@@ -1393,10 +1393,10 @@ var Resize = A.Component.create(
 			_updateChangeHandleInfo: function(handle) {
 				var instance = this;
 
-				instance.changeHeightHandles = CHANGE_HEIGHT_REGEX.test(handle);
-				instance.changeLeftHandles = CHANGE_LEFT_REGEX.test(handle);
-				instance.changeTopHandles = CHANGE_TOP_REGEX.test(handle);
-				instance.changeWidthHandles = CHANGE_WIDTH_REGEX.test(handle);
+				instance.changeHeightHandles = REGEX_CHANGE_HEIGHT.test(handle);
+				instance.changeLeftHandles = REGEX_CHANGE_LEFT.test(handle);
+				instance.changeTopHandles = REGEX_CHANGE_TOP.test(handle);
+				instance.changeWidthHandles = REGEX_CHANGE_WIDTH.test(handle);
 			},
 
 			/**
