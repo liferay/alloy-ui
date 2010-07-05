@@ -947,19 +947,19 @@ var Resize = A.Component.create(
 				if (constrain) {
 					var region = constrain.get(REGION);
 
-					var p1 = info[axis] + info[offset];
-					var p1Constrain = region[axisConstrain];
+					var point1 = info[axis] + info[offset];
+					var point1Constrain = region[axisConstrain];
 
-					if (p1 >= p1Constrain) {
-						info[offset] -= (p1 - p1Constrain);
+					if (point1 >= point1Constrain) {
+						info[offset] -= (point1 - point1Constrain);
 					}
 
-					var p2 = info[axis];
-					var p2Constrain = region[axis];
+					var point2 = info[axis];
+					var point2Constrain = region[axis];
 
-					if (p2 <= p2Constrain) {
-						info[axis] += (p2Constrain - p2);
-						info[offset] -= (p2Constrain - p2);
+					if (point2 <= point2Constrain) {
+						info[axis] += (point2Constrain - point2);
+						info[offset] -= (point2Constrain - point2);
 					}
 				}
 			},
@@ -1206,13 +1206,13 @@ var Resize = A.Component.create(
 				var offsetWidth = node.get(OFFSET_WIDTH);
 
 				return {
-					bottom: (nodeY + offsetHeight),
 					actXY: actXY,
+					bottom: (nodeY + offsetHeight),
 					left: nodeX,
-					top: nodeY,
 					offsetHeight: offsetHeight,
 					offsetWidth: offsetWidth,
-					right: (nodeX + offsetWidth)
+					right: (nodeX + offsetWidth),
+					top: nodeY
 				};
 			},
 
