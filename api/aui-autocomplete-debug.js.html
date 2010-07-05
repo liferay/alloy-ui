@@ -1408,6 +1408,8 @@
 			<span class="nx">_createDataSource</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_queryTask</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DelayedTask</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">sendQuery</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+
 				<span class="kd">var</span> <span class="nx">dataSource</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;dataSource&#39;</span><span class="p">);</span>
 				<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">dataSource</span><span class="p">;</span>
 
@@ -2126,16 +2128,7 @@
 					<span class="k">return</span><span class="p">;</span>
 				<span class="p">}</span>
 
-				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_delayId</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-					<span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_delayId</span><span class="p">);</span>
-				<span class="p">}</span>
-
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">_delayId</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span>
-					<span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-						<span class="nx">instance</span><span class="p">.</span><span class="nx">_sendQuery</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
-					<span class="p">},</span>
-					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;queryDelay&#39;</span><span class="p">)</span>
-				<span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_queryTask</span><span class="p">.</span><span class="nx">delay</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;queryDelay&#39;</span><span class="p">),</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="p">[</span><span class="nx">value</span><span class="p">]);</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
@@ -2438,9 +2431,7 @@
 				<span class="p">}</span>
 
 				<span class="k">if</span> <span class="p">((</span><span class="nx">query</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">query</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="nx">minQueryLength</span><span class="p">))</span> <span class="o">||</span> <span class="p">(</span><span class="o">!</span><span class="nx">query</span> <span class="o">&amp;&amp;</span> <span class="nx">minQueryLength</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
-					<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_delayId</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-						<span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_delayId</span><span class="p">);</span>
-					<span class="p">}</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_queryTask</span><span class="p">.</span><span class="nx">cancel</span><span class="p">();</span>
 
 					<span class="nx">instance</span><span class="p">.</span><span class="nx">_toggleContainer</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
 
@@ -2448,8 +2439,6 @@
 				<span class="p">}</span>
 
 				<span class="nx">query</span> <span class="o">=</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">query</span><span class="p">);</span>
-
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">_delayId</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 
 				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;applyLocalFilter&#39;</span><span class="p">))</span> <span class="p">{</span>
 					<span class="nx">instance</span><span class="p">.</span><span class="nx">dataSource</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;response&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">filterResults</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
@@ -2639,7 +2628,6 @@
 			<span class="p">},</span>
 
 			<span class="nx">_currentQuery</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-			<span class="nx">_delayId</span><span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
 			<span class="nx">_displayedItems</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
 			<span class="nx">_elCurListItem</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
 			<span class="nx">_initInputValue</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
@@ -2655,7 +2643,7 @@
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">AutoComplete</span> <span class="o">=</span> <span class="nx">AutoComplete</span><span class="p">;</span>
 
-<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;aui-overlay-base&#39;</span><span class="p">,</span><span class="s1">&#39;datasource&#39;</span><span class="p">,</span><span class="s1">&#39;dataschema&#39;</span><span class="p">,</span><span class="s1">&#39;aui-form-combobox&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;aui-overlay-base&#39;</span><span class="p">,</span><span class="s1">&#39;datasource&#39;</span><span class="p">,</span><span class="s1">&#39;dataschema&#39;</span><span class="p">,</span><span class="s1">&#39;aui-form-combobox&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
 </pre></div>
 
 							</div>

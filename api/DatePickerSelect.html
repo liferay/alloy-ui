@@ -522,19 +522,20 @@
 										<ul class="content">
 												<li class=""><a href="#config_appendOrder" title="appendOrder">appendOrder</a></li>
 												<li class=""><a href="#config_baseName" title="baseName">baseName</a></li>
-												<li class=""><a href="#config_dayField" title="dayField">dayField</a></li>
-												<li class=""><a href="#config_dayFieldName" title="dayFieldName">dayFieldName</a></li>
-												<li class=""><a href="#config_displayBoundingBox" title="displayBoundingBox">displayBoundingBox</a></li>
-												<li class=""><a href="#config_monthField" title="monthField">monthField</a></li>
-												<li class=""><a href="#config_monthFieldName" title="monthFieldName">monthFieldName</a></li>
+												<li class=""><a href="#config_buttonNode" title="buttonNode">buttonNode</a></li>
+												<li class=""><a href="#config_dayNode" title="dayNode">dayNode</a></li>
+												<li class=""><a href="#config_dayNodeName" title="dayNodeName">dayNodeName</a></li>
+												<li class=""><a href="#config_monthNode" title="monthNode">monthNode</a></li>
+												<li class=""><a href="#config_monthNodeName" title="monthNodeName">monthNodeName</a></li>
 												<li class=""><a href="#config_populateDay" title="populateDay">populateDay</a></li>
 												<li class=""><a href="#config_populateMonth" title="populateMonth">populateMonth</a></li>
 												<li class=""><a href="#config_populateYear" title="populateYear">populateYear</a></li>
+												<li class=""><a href="#config_selectWrapperNode" title="selectWrapperNode">selectWrapperNode</a></li>
 												<li class=""><a href="#config_setValue" title="setValue">setValue</a></li>
 												<li class=""><a href="#config_trigger" title="trigger">trigger</a></li>
 												<li class=""><a href="#config_visible" title="visible">visible</a></li>
-												<li class=""><a href="#config_yearField" title="yearField">yearField</a></li>
-												<li class=""><a href="#config_yearFieldName" title="yearFieldName">yearFieldName</a></li>
+												<li class=""><a href="#config_yearNode" title="yearNode">yearNode</a></li>
+												<li class=""><a href="#config_yearNodeName" title="yearNodeName">yearNodeName</a></li>
 												<li class=""><a href="#config_yearRange" title="yearRange">yearRange</a></li>
 				                        </ul>
 									</div>
@@ -551,6 +552,8 @@
 										<ul class="content">
 
 				                                <li class=""><a href="#property_DatePickerSelect.ATTRS" title="DatePickerSelect.ATTRS">DatePickerSelect.ATTRS</a></li>
+
+				                                <li class=""><a href="#property_DatePickerSelect.HTML_PARSER" title="DatePickerSelect.HTML_PARSER">DatePickerSelect.HTML_PARSER</a></li>
 
 				                                <li class=""><a href="#property_DatePickerSelect.NAME" title="DatePickerSelect.NAME">DatePickerSelect.NAME</a></li>
 				                        </ul>
@@ -600,19 +603,20 @@
 										<ul class="content">
 												<li class=""><a href="#event_appendOrderChange" title="appendOrderChange">appendOrderChange</a></li>
 												<li class=""><a href="#event_baseNameChange" title="baseNameChange">baseNameChange</a></li>
-												<li class=""><a href="#event_dayFieldChange" title="dayFieldChange">dayFieldChange</a></li>
-												<li class=""><a href="#event_dayFieldNameChange" title="dayFieldNameChange">dayFieldNameChange</a></li>
-												<li class=""><a href="#event_displayBoundingBoxChange" title="displayBoundingBoxChange">displayBoundingBoxChange</a></li>
-												<li class=""><a href="#event_monthFieldChange" title="monthFieldChange">monthFieldChange</a></li>
-												<li class=""><a href="#event_monthFieldNameChange" title="monthFieldNameChange">monthFieldNameChange</a></li>
+												<li class=""><a href="#event_buttonNodeChange" title="buttonNodeChange">buttonNodeChange</a></li>
+												<li class=""><a href="#event_dayNodeChange" title="dayNodeChange">dayNodeChange</a></li>
+												<li class=""><a href="#event_dayNodeNameChange" title="dayNodeNameChange">dayNodeNameChange</a></li>
+												<li class=""><a href="#event_monthNodeChange" title="monthNodeChange">monthNodeChange</a></li>
+												<li class=""><a href="#event_monthNodeNameChange" title="monthNodeNameChange">monthNodeNameChange</a></li>
 												<li class=""><a href="#event_populateDayChange" title="populateDayChange">populateDayChange</a></li>
 												<li class=""><a href="#event_populateMonthChange" title="populateMonthChange">populateMonthChange</a></li>
 												<li class=""><a href="#event_populateYearChange" title="populateYearChange">populateYearChange</a></li>
+												<li class=""><a href="#event_selectWrapperNodeChange" title="selectWrapperNodeChange">selectWrapperNodeChange</a></li>
 												<li class=""><a href="#event_setValueChange" title="setValueChange">setValueChange</a></li>
 												<li class=""><a href="#event_triggerChange" title="triggerChange">triggerChange</a></li>
 												<li class=""><a href="#event_visibleChange" title="visibleChange">visibleChange</a></li>
-												<li class=""><a href="#event_yearFieldChange" title="yearFieldChange">yearFieldChange</a></li>
-												<li class=""><a href="#event_yearFieldNameChange" title="yearFieldNameChange">yearFieldNameChange</a></li>
+												<li class=""><a href="#event_yearNodeChange" title="yearNodeChange">yearNodeChange</a></li>
+												<li class=""><a href="#event_yearNodeNameChange" title="yearNodeNameChange">yearNodeNameChange</a></li>
 												<li class=""><a href="#event_yearRangeChange" title="yearRangeChange">yearRangeChange</a></li>
 				                        </ul>
 									</div>
@@ -699,7 +703,7 @@ A base class for DatePickerSelect, providing:
 </ul>
 Quick Example:<br/>
 <pre><code>var instance = new A.DatePickerSelect({
-displayBoundingBox: '#displayBoundingBoxId',
+srcNode: '#srcNodeId',
 // locale: 'pt-br',
 dateFormat: '%m/%d/%y',
 yearRange: [ 1970, 2009 ]
@@ -762,6 +766,24 @@ DatePickerSelect.
 												<div class="description" property="yui:description">
 													Static property used to define the default attribute
 configuration for the DatePickerSelect.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_DatePickerSelect.HTML_PARSER">
+
+											<h4>
+												<a name="property_DatePickerSelect.HTML_PARSER" property="yui:name">DatePickerSelect.HTML_PARSER</a>
+												- <code>static <span property="yui:type">Object</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Object hash, defining how attribute values are to be parsed from
+markup contained in the widget's content box.
 												</div>
 											</div>
 
@@ -1013,7 +1035,7 @@ configuration for the DatePickerSelect.
 													<div class="detail">
 														<div class="description" property="yui:description">
 															The order the selects elements are appended to the
-<a href="DatePickerSelect.html#config_displayBoundingBox">displayBoundingBox</a>.
+<a href="DatePickerSelect.html#config_srcNode">srcNode</a>.
 														</div>
 													</div>
 
@@ -1043,36 +1065,59 @@ DatePickerSelect.
 													</div>
 
 												</div>
-												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_dayField">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_buttonNode">
 
 													<h4>
-														<a name="config_dayField">dayField</a>
-														<code>- <span property="yui:type">{Node | String}</span></code>
+														<a name="config_buttonNode">buttonNode</a>
+														<code>- <span property="yui:type">String</span></code>
 													</h4>
 
 													<div class="detail">
 														<div class="description" property="yui:description">
-															HTML element to receive the day value when a date is selected.
+															DOM Node to display the button of the DatePickerSelect. If not
+specified try to query using HTML_PARSER an element inside
+contentBox which matches <code>aui-buttonitem</code>.
 														</div>
 													</div>
 
 
 													<div class="default">
-														Default Value: <strong>Generated HTML select element</strong>
+														Default Value: <strong>Generated div element.</strong>
 													</div>
 
 												</div>
-												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_dayFieldName">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_dayNode">
 
 													<h4>
-														<a name="config_dayFieldName">dayFieldName</a>
+														<a name="config_dayNode">dayNode</a>
+														<code>- <span property="yui:type">String | Node</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															DOM Node to display the day of the DatePickerSelect. If not
+specified try to query using HTML_PARSER an element inside
+contentBox which matches <code>aui-datepicker-year</code>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Generated div element.</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_dayNodeName">
+
+													<h4>
+														<a name="config_dayNodeName">dayNodeName</a>
 														<code>- <span property="yui:type">String</span></code>
 													</h4>
 
 													<div class="detail">
 														<div class="description" property="yui:description">
 															Name attribute used on the
-<a href="DatePickerSelect.html#config_dayField">dayField</a>.
+<a href="DatePickerSelect.html#config_dayNode">dayNode</a>.
 														</div>
 													</div>
 
@@ -1082,59 +1127,38 @@ DatePickerSelect.
 													</div>
 
 												</div>
-												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_displayBoundingBox">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_monthNode">
 
 													<h4>
-														<a name="config_displayBoundingBox">displayBoundingBox</a>
-														<code>- <span property="yui:type">{Node | String}</span></code>
+														<a name="config_monthNode">monthNode</a>
+														<code>- <span property="yui:type">String | Node</span></code>
 													</h4>
 
 													<div class="detail">
 														<div class="description" property="yui:description">
-															The container
-<a href="Widget.html#config_boundingBox">boundingBox</a> to house the
-selects and button. The
-<a href="Widget.html#config_boundingBox">boundingBox</a> attribute is
-used on the Calendar Overlay.
+															DOM Node to display the month of the DatePickerSelect. If not
+specified try to query using HTML_PARSER an element inside
+contentBox which matches <code>aui-datepicker-year</code>.
 														</div>
 													</div>
 
 
 													<div class="default">
-														Default Value: <strong>null</strong>
+														Default Value: <strong>Generated div element.</strong>
 													</div>
 
 												</div>
-												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_monthField">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_monthNodeName">
 
 													<h4>
-														<a name="config_monthField">monthField</a>
-														<code>- <span property="yui:type">{Node | String}</span></code>
-													</h4>
-
-													<div class="detail">
-														<div class="description" property="yui:description">
-															HTML element to receive the month value when a date is selected.
-														</div>
-													</div>
-
-
-													<div class="default">
-														Default Value: <strong>Generated HTML select element</strong>
-													</div>
-
-												</div>
-												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_monthFieldName">
-
-													<h4>
-														<a name="config_monthFieldName">monthFieldName</a>
+														<a name="config_monthNodeName">monthNodeName</a>
 														<code>- <span property="yui:type">String</span></code>
 													</h4>
 
 													<div class="detail">
 														<div class="description" property="yui:description">
 															Name attribute used on the
-<a href="DatePickerSelect.html#config_monthField">monthField</a>.
+<a href="DatePickerSelect.html#config_monthNode">monthNode</a>.
 														</div>
 													</div>
 
@@ -1204,6 +1228,27 @@ populated.
 													</div>
 
 												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_selectWrapperNode">
+
+													<h4>
+														<a name="config_selectWrapperNode">selectWrapperNode</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															DOM Node to display the selects of the DatePickerSelect. If not
+specified try to query using HTML_PARSER an element inside
+contentBox which matches <code>aui-datepicker-select-wrapper</code>.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Generated div element.</strong>
+													</div>
+
+												</div>
 												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_setValue">
 
 													<h4>
@@ -1265,36 +1310,38 @@ Inherited from
 													</div>
 
 												</div>
-												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_yearField">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_yearNode">
 
 													<h4>
-														<a name="config_yearField">yearField</a>
-														<code>- <span property="yui:type">{Node | String}</span></code>
+														<a name="config_yearNode">yearNode</a>
+														<code>- <span property="yui:type">String | Node</span></code>
 													</h4>
 
 													<div class="detail">
 														<div class="description" property="yui:description">
-															HTML element to receive the year value when a date is selected.
+															DOM Node to display the year of the DatePickerSelect. If not
+specified try to query using HTML_PARSER an element inside
+contentBox which matches <code>aui-datepicker-year</code>.
 														</div>
 													</div>
 
 
 													<div class="default">
-														Default Value: <strong>Generated HTML select element</strong>
+														Default Value: <strong>Generated div element.</strong>
 													</div>
 
 												</div>
-												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_yearFieldName">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_yearNodeName">
 
 													<h4>
-														<a name="config_yearFieldName">yearFieldName</a>
+														<a name="config_yearNodeName">yearNodeName</a>
 														<code>- <span property="yui:type">String</span></code>
 													</h4>
 
 													<div class="detail">
 														<div class="description" property="yui:description">
 															Name attribute used on the
-<a href="DatePickerSelect.html#config_yearField">yearField</a>.
+<a href="DatePickerSelect.html#config_yearNode">yearNode</a>.
 														</div>
 													</div>
 
@@ -4010,10 +4057,10 @@ input field.
 														</div>
 													</div>
 												</div>
-												<div class="api-entry-row event-row " rel="yui:event" resource="#event_dayFieldChange">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_buttonNodeChange">
 
 													<h4>
-														<a name="event_dayFieldChange">dayFieldChange</a>
+														<a name="event_buttonNodeChange">buttonNodeChange</a>
 													</h4>
 
 													<div class="detail">
@@ -4021,7 +4068,7 @@ input field.
 														
 														
 														
-															<strong property="yui:name">dayFieldChange</strong>
+															<strong property="yui:name">buttonNodeChange</strong>
 
 															(
 																
@@ -4034,7 +4081,7 @@ input field.
 														</code>
 
 														<div class="description" property="yui:description">
-															Fires when the value for the configuration attribute 'dayField' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+															Fires when the value for the configuration attribute 'buttonNode' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
 														</div>
 
 														<div class="description">
@@ -4052,10 +4099,10 @@ input field.
 														</div>
 													</div>
 												</div>
-												<div class="api-entry-row event-row " rel="yui:event" resource="#event_dayFieldNameChange">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_dayNodeChange">
 
 													<h4>
-														<a name="event_dayFieldNameChange">dayFieldNameChange</a>
+														<a name="event_dayNodeChange">dayNodeChange</a>
 													</h4>
 
 													<div class="detail">
@@ -4063,7 +4110,7 @@ input field.
 														
 														
 														
-															<strong property="yui:name">dayFieldNameChange</strong>
+															<strong property="yui:name">dayNodeChange</strong>
 
 															(
 																
@@ -4076,7 +4123,7 @@ input field.
 														</code>
 
 														<div class="description" property="yui:description">
-															Fires when the value for the configuration attribute 'dayFieldName' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+															Fires when the value for the configuration attribute 'dayNode' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
 														</div>
 
 														<div class="description">
@@ -4094,10 +4141,10 @@ input field.
 														</div>
 													</div>
 												</div>
-												<div class="api-entry-row event-row " rel="yui:event" resource="#event_displayBoundingBoxChange">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_dayNodeNameChange">
 
 													<h4>
-														<a name="event_displayBoundingBoxChange">displayBoundingBoxChange</a>
+														<a name="event_dayNodeNameChange">dayNodeNameChange</a>
 													</h4>
 
 													<div class="detail">
@@ -4105,7 +4152,7 @@ input field.
 														
 														
 														
-															<strong property="yui:name">displayBoundingBoxChange</strong>
+															<strong property="yui:name">dayNodeNameChange</strong>
 
 															(
 																
@@ -4118,7 +4165,7 @@ input field.
 														</code>
 
 														<div class="description" property="yui:description">
-															Fires when the value for the configuration attribute 'displayBoundingBox' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+															Fires when the value for the configuration attribute 'dayNodeName' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
 														</div>
 
 														<div class="description">
@@ -4136,10 +4183,10 @@ input field.
 														</div>
 													</div>
 												</div>
-												<div class="api-entry-row event-row " rel="yui:event" resource="#event_monthFieldChange">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_monthNodeChange">
 
 													<h4>
-														<a name="event_monthFieldChange">monthFieldChange</a>
+														<a name="event_monthNodeChange">monthNodeChange</a>
 													</h4>
 
 													<div class="detail">
@@ -4147,7 +4194,7 @@ input field.
 														
 														
 														
-															<strong property="yui:name">monthFieldChange</strong>
+															<strong property="yui:name">monthNodeChange</strong>
 
 															(
 																
@@ -4160,7 +4207,7 @@ input field.
 														</code>
 
 														<div class="description" property="yui:description">
-															Fires when the value for the configuration attribute 'monthField' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+															Fires when the value for the configuration attribute 'monthNode' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
 														</div>
 
 														<div class="description">
@@ -4178,10 +4225,10 @@ input field.
 														</div>
 													</div>
 												</div>
-												<div class="api-entry-row event-row " rel="yui:event" resource="#event_monthFieldNameChange">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_monthNodeNameChange">
 
 													<h4>
-														<a name="event_monthFieldNameChange">monthFieldNameChange</a>
+														<a name="event_monthNodeNameChange">monthNodeNameChange</a>
 													</h4>
 
 													<div class="detail">
@@ -4189,7 +4236,7 @@ input field.
 														
 														
 														
-															<strong property="yui:name">monthFieldNameChange</strong>
+															<strong property="yui:name">monthNodeNameChange</strong>
 
 															(
 																
@@ -4202,7 +4249,7 @@ input field.
 														</code>
 
 														<div class="description" property="yui:description">
-															Fires when the value for the configuration attribute 'monthFieldName' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+															Fires when the value for the configuration attribute 'monthNodeName' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
 														</div>
 
 														<div class="description">
@@ -4346,6 +4393,48 @@ input field.
 														</div>
 													</div>
 												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_selectWrapperNodeChange">
+
+													<h4>
+														<a name="event_selectWrapperNodeChange">selectWrapperNodeChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">selectWrapperNodeChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'selectWrapperNode' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
 												<div class="api-entry-row event-row " rel="yui:event" resource="#event_setValueChange">
 
 													<h4>
@@ -4472,10 +4561,10 @@ input field.
 														</div>
 													</div>
 												</div>
-												<div class="api-entry-row event-row " rel="yui:event" resource="#event_yearFieldChange">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_yearNodeChange">
 
 													<h4>
-														<a name="event_yearFieldChange">yearFieldChange</a>
+														<a name="event_yearNodeChange">yearNodeChange</a>
 													</h4>
 
 													<div class="detail">
@@ -4483,7 +4572,7 @@ input field.
 														
 														
 														
-															<strong property="yui:name">yearFieldChange</strong>
+															<strong property="yui:name">yearNodeChange</strong>
 
 															(
 																
@@ -4496,7 +4585,7 @@ input field.
 														</code>
 
 														<div class="description" property="yui:description">
-															Fires when the value for the configuration attribute 'yearField' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+															Fires when the value for the configuration attribute 'yearNode' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
 														</div>
 
 														<div class="description">
@@ -4514,10 +4603,10 @@ input field.
 														</div>
 													</div>
 												</div>
-												<div class="api-entry-row event-row " rel="yui:event" resource="#event_yearFieldNameChange">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_yearNodeNameChange">
 
 													<h4>
-														<a name="event_yearFieldNameChange">yearFieldNameChange</a>
+														<a name="event_yearNodeNameChange">yearNodeNameChange</a>
 													</h4>
 
 													<div class="detail">
@@ -4525,7 +4614,7 @@ input field.
 														
 														
 														
-															<strong property="yui:name">yearFieldNameChange</strong>
+															<strong property="yui:name">yearNodeNameChange</strong>
 
 															(
 																
@@ -4538,7 +4627,7 @@ input field.
 														</code>
 
 														<div class="description" property="yui:description">
-															Fires when the value for the configuration attribute 'yearFieldName' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+															Fires when the value for the configuration attribute 'yearNodeName' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
 														</div>
 
 														<div class="description">
@@ -5078,7 +5167,7 @@ input field.
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "DatePickerSelect.html#method__afterDisabledChangeDatePicker", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_afterDisabledChangeDatePicker"}, {"url": "DatePickerSelect.html#method__afterSetCurrentMonth", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_afterSetCurrentMonth"}, {"url": "Calendar.html#method__afterSetDates", "access": "protected", "host": "Calendar", "type": "method", "name": "_afterSetDates"}, {"url": "Calendar.html#method_alreadySelected", "access": "", "host": "Calendar", "type": "method", "name": "alreadySelected"}, {"url": "DatePickerSelect.html#config_appendOrder", "access": "", "host": "DatePickerSelect", "type": "config", "name": "appendOrder"}, {"url": "DatePickerSelect.html#event_appendOrderChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "appendOrderChange"}, {"url": "DatePickerSelect.html#config_baseName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "baseName"}, {"url": "DatePickerSelect.html#event_baseNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "baseNameChange"}, {"url": "DatePickerSelect.html#method__bindSelectEvents", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_bindSelectEvents"}, {"url": "Calendar.html#method_bindUI", "access": "protected", "host": "Calendar", "type": "method", "name": "bindUI"}, {"url": "DatePickerSelect.html#method_bindUI", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "bindUI"}, {"url": "Calendar.html#property_Calendar.ATTRS", "access": "", "host": "Calendar", "type": "property", "name": "Calendar.ATTRS"}, {"url": "Calendar.html#property_Calendar.NAME", "access": "", "host": "Calendar", "type": "property", "name": "Calendar.NAME"}, {"url": "Calendar.html#method__compareDates", "access": "protected", "host": "Calendar", "type": "method", "name": "_compareDates"}, {"url": "Calendar.html#config_currentDay", "access": "", "host": "Calendar", "type": "config", "name": "currentDay"}, {"url": "Calendar.html#event_currentDayChange", "access": "", "host": "Calendar", "type": "event", "name": "currentDayChange"}, {"url": "Calendar.html#config_currentMonth", "access": "", "host": "Calendar", "type": "config", "name": "currentMonth"}, {"url": "Calendar.html#event_currentMonthChange", "access": "", "host": "Calendar", "type": "event", "name": "currentMonthChange"}, {"url": "Calendar.html#config_currentYear", "access": "", "host": "Calendar", "type": "config", "name": "currentYear"}, {"url": "Calendar.html#event_currentYearChange", "access": "", "host": "Calendar", "type": "event", "name": "currentYearChange"}, {"url": "Calendar.html#config_dateFormat", "access": "", "host": "Calendar", "type": "config", "name": "dateFormat"}, {"url": "Calendar.html#event_dateFormatChange", "access": "", "host": "Calendar", "type": "event", "name": "dateFormatChange"}, {"url": "DatePickerSelect.html#property_DatePickerSelect.ATTRS", "access": "", "host": "DatePickerSelect", "type": "property", "name": "DatePickerSelect.ATTRS"}, {"url": "DatePickerSelect.html#property_DatePickerSelect.NAME", "access": "", "host": "DatePickerSelect", "type": "property", "name": "DatePickerSelect.NAME"}, {"url": "Calendar.html#config_dates", "access": "", "host": "Calendar", "type": "config", "name": "dates"}, {"url": "Calendar.html#event_datesChange", "access": "", "host": "Calendar", "type": "event", "name": "datesChange"}, {"url": "DatePickerSelect.html#config_dayField", "access": "", "host": "DatePickerSelect", "type": "config", "name": "dayField"}, {"url": "DatePickerSelect.html#event_dayFieldChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "dayFieldChange"}, {"url": "DatePickerSelect.html#config_dayFieldName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "dayFieldName"}, {"url": "DatePickerSelect.html#event_dayFieldNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "dayFieldNameChange"}, {"url": "DatePickerSelect.html#config_displayBoundingBox", "access": "", "host": "DatePickerSelect", "type": "config", "name": "displayBoundingBox"}, {"url": "DatePickerSelect.html#event_displayBoundingBoxChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "displayBoundingBoxChange"}, {"url": "Calendar.html#method__eachSelectedDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_eachSelectedDate"}, {"url": "Calendar.html#config_firstDayOfWeek", "access": "", "host": "Calendar", "type": "config", "name": "firstDayOfWeek"}, {"url": "Calendar.html#event_firstDayOfWeekChange", "access": "", "host": "Calendar", "type": "event", "name": "firstDayOfWeekChange"}, {"url": "Calendar.html#method_formatDate", "access": "", "host": "Calendar", "type": "method", "name": "formatDate"}, {"url": "DatePickerSelect.html#method__getAppendOrder", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_getAppendOrder"}, {"url": "Calendar.html#method_getCurrentDate", "access": "", "host": "Calendar", "type": "method", "name": "getCurrentDate"}, {"url": "Calendar.html#method__getDayName", "access": "protected", "host": "Calendar", "type": "method", "name": "_getDayName"}, {"url": "Calendar.html#method__getDayNameMin", "access": "protected", "host": "Calendar", "type": "method", "name": "_getDayNameMin"}, {"url": "Calendar.html#method__getDayNameShort", "access": "protected", "host": "Calendar", "type": "method", "name": "_getDayNameShort"}, {"url": "Calendar.html#method_getDaysInMonth", "access": "", "host": "Calendar", "type": "method", "name": "getDaysInMonth"}, {"url": "Calendar.html#method_getDetailedSelectedDates", "access": "", "host": "Calendar", "type": "method", "name": "getDetailedSelectedDates"}, {"url": "Calendar.html#method_getFirstDate", "access": "", "host": "Calendar", "type": "method", "name": "getFirstDate"}, {"url": "Calendar.html#method_getFirstDayOfWeek", "access": "", "host": "Calendar", "type": "method", "name": "getFirstDayOfWeek"}, {"url": "Calendar.html#method_getFormattedSelectedDates", "access": "", "host": "Calendar", "type": "method", "name": "getFormattedSelectedDates"}, {"url": "Calendar.html#method_getLastDate", "access": "", "host": "Calendar", "type": "method", "name": "getLastDate"}, {"url": "Calendar.html#method__getLocaleMap", "access": "protected", "host": "Calendar", "type": "method", "name": "_getLocaleMap"}, {"url": "Calendar.html#method__getMonthName", "access": "protected", "host": "Calendar", "type": "method", "name": "_getMonthName"}, {"url": "Calendar.html#method__getMonthNameShort", "access": "protected", "host": "Calendar", "type": "method", "name": "_getMonthNameShort"}, {"url": "Calendar.html#method_getSelectedDates", "access": "", "host": "Calendar", "type": "method", "name": "getSelectedDates"}, {"url": "Calendar.html#property_headerContentNode", "access": "protected", "host": "Calendar", "type": "property", "name": "headerContentNode"}, {"url": "Calendar.html#property_headerTitleNode", "access": "protected", "host": "Calendar", "type": "property", "name": "headerTitleNode"}, {"url": "Calendar.html#method_initializer", "access": "protected", "host": "Calendar", "type": "method", "name": "initializer"}, {"url": "Calendar.html#config_maxDate", "access": "", "host": "Calendar", "type": "config", "name": "maxDate"}, {"url": "Calendar.html#event_maxDateChange", "access": "", "host": "Calendar", "type": "event", "name": "maxDateChange"}, {"url": "Calendar.html#config_minDate", "access": "", "host": "Calendar", "type": "config", "name": "minDate"}, {"url": "Calendar.html#event_minDateChange", "access": "", "host": "Calendar", "type": "event", "name": "minDateChange"}, {"url": "Calendar.html#property_monthDaysNode", "access": "protected", "host": "Calendar", "type": "property", "name": "monthDaysNode"}, {"url": "DatePickerSelect.html#config_monthField", "access": "", "host": "DatePickerSelect", "type": "config", "name": "monthField"}, {"url": "DatePickerSelect.html#event_monthFieldChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "monthFieldChange"}, {"url": "DatePickerSelect.html#config_monthFieldName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "monthFieldName"}, {"url": "DatePickerSelect.html#event_monthFieldNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "monthFieldNameChange"}, {"url": "Calendar.html#method__navigateMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_navigateMonth"}, {"url": "Calendar.html#method__normalizeYearMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_normalizeYearMonth"}, {"url": "Calendar.html#method__onClickDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_onClickDays"}, {"url": "Calendar.html#method__onMouseEnterDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_onMouseEnterDays"}, {"url": "Calendar.html#method__onMouseLeaveDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_onMouseLeaveDays"}, {"url": "DatePickerSelect.html#method__onSelectChange", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_onSelectChange"}, {"url": "Calendar.html#method_parseDate", "access": "", "host": "Calendar", "type": "method", "name": "parseDate"}, {"url": "DatePickerSelect.html#config_populateDay", "access": "", "host": "DatePickerSelect", "type": "config", "name": "populateDay"}, {"url": "DatePickerSelect.html#event_populateDayChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "populateDayChange"}, {"url": "DatePickerSelect.html#method__populateDays", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateDays"}, {"url": "DatePickerSelect.html#config_populateMonth", "access": "", "host": "DatePickerSelect", "type": "config", "name": "populateMonth"}, {"url": "DatePickerSelect.html#event_populateMonthChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "populateMonthChange"}, {"url": "DatePickerSelect.html#method__populateMonths", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateMonths"}, {"url": "DatePickerSelect.html#method__populateSelect", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateSelect"}, {"url": "DatePickerSelect.html#config_populateYear", "access": "", "host": "DatePickerSelect", "type": "config", "name": "populateYear"}, {"url": "DatePickerSelect.html#event_populateYearChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "populateYearChange"}, {"url": "DatePickerSelect.html#method__populateYears", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateYears"}, {"url": "DatePickerSelect.html#method__pupulateSelects", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_pupulateSelects"}, {"url": "Calendar.html#method__removeDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_removeDate"}, {"url": "Calendar.html#method__renderBlankDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderBlankDays"}, {"url": "Calendar.html#method__renderCalendar", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderCalendar"}, {"url": "DatePickerSelect.html#method__renderElements", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_renderElements"}, {"url": "Calendar.html#method__renderMonthDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderMonthDays"}, {"url": "DatePickerSelect.html#method__renderTriggerButton", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_renderTriggerButton"}, {"url": "Calendar.html#method_renderUI", "access": "protected", "host": "Calendar", "type": "method", "name": "renderUI"}, {"url": "DatePickerSelect.html#method_renderUI", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "renderUI"}, {"url": "Calendar.html#method__renderWeekDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderWeekDays"}, {"url": "Calendar.html#method__restrictDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_restrictDate"}, {"url": "DatePickerSelect.html#method__selectCurrentDay", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentDay"}, {"url": "DatePickerSelect.html#method__selectCurrentMonth", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentMonth"}, {"url": "DatePickerSelect.html#method__selectCurrentValues", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentValues"}, {"url": "DatePickerSelect.html#method__selectCurrentYear", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentYear"}, {"url": "Calendar.html#method__selectDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_selectDate"}, {"url": "Calendar.html#config_selectMultipleDates", "access": "", "host": "Calendar", "type": "config", "name": "selectMultipleDates"}, {"url": "Calendar.html#event_selectMultipleDatesChange", "access": "", "host": "Calendar", "type": "event", "name": "selectMultipleDatesChange"}, {"url": "Calendar.html#method__selectNextMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_selectNextMonth"}, {"url": "Calendar.html#method__selectPrevMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_selectPrevMonth"}, {"url": "Calendar.html#method__setDates", "access": "protected", "host": "Calendar", "type": "method", "name": "_setDates"}, {"url": "Calendar.html#method__setMinMaxDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_setMinMaxDate"}, {"url": "Calendar.html#method__setStack", "access": "protected", "host": "Calendar", "type": "method", "name": "_setStack"}, {"url": "Calendar.html#config_setValue", "access": "", "host": "Calendar", "type": "config", "name": "setValue"}, {"url": "DatePickerSelect.html#config_setValue", "access": "", "host": "DatePickerSelect", "type": "config", "name": "setValue"}, {"url": "Calendar.html#event_setValueChange", "access": "", "host": "Calendar", "type": "event", "name": "setValueChange"}, {"url": "DatePickerSelect.html#event_setValueChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "setValueChange"}, {"url": "Calendar.html#config_stack", "access": "", "host": "Calendar", "type": "config", "name": "stack"}, {"url": "Calendar.html#event_stackChange", "access": "", "host": "Calendar", "type": "event", "name": "stackChange"}, {"url": "Calendar.html#method__syncDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncDays"}, {"url": "Calendar.html#method__syncHeader", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncHeader"}, {"url": "Calendar.html#method__syncSelectedDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncSelectedDays"}, {"url": "Calendar.html#method_syncUI", "access": "protected", "host": "Calendar", "type": "method", "name": "syncUI"}, {"url": "DatePickerSelect.html#method_syncUI", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "syncUI"}, {"url": "Calendar.html#method__syncView", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncView"}, {"url": "DatePickerSelect.html#config_trigger", "access": "", "host": "DatePickerSelect", "type": "config", "name": "trigger"}, {"url": "DatePickerSelect.html#event_triggerChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "triggerChange"}, {"url": "DatePickerSelect.html#config_visible", "access": "", "host": "DatePickerSelect", "type": "config", "name": "visible"}, {"url": "DatePickerSelect.html#event_visibleChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "visibleChange"}, {"url": "Calendar.html#property_weekDaysNode", "access": "protected", "host": "Calendar", "type": "property", "name": "weekDaysNode"}, {"url": "DatePickerSelect.html#config_yearField", "access": "", "host": "DatePickerSelect", "type": "config", "name": "yearField"}, {"url": "DatePickerSelect.html#event_yearFieldChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "yearFieldChange"}, {"url": "DatePickerSelect.html#config_yearFieldName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "yearFieldName"}, {"url": "DatePickerSelect.html#event_yearFieldNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "yearFieldNameChange"}, {"url": "DatePickerSelect.html#config_yearRange", "access": "", "host": "DatePickerSelect", "type": "config", "name": "yearRange"}, {"url": "DatePickerSelect.html#event_yearRangeChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "yearRangeChange"}, {"url": "CalendarManager.html#config_zIndexBase", "access": "", "host": "CalendarManager", "type": "config", "name": "zIndexBase"}, {"url": "CalendarManager.html#event_zIndexBaseChange", "access": "", "host": "CalendarManager", "type": "event", "name": "zIndexBaseChange"}];
+    var ALL_YUI_PROPS = [{"url": "DatePickerSelect.html#method__afterDisabledChangeDatePicker", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_afterDisabledChangeDatePicker"}, {"url": "DatePickerSelect.html#method__afterSetCurrentMonth", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_afterSetCurrentMonth"}, {"url": "Calendar.html#method__afterSetDates", "access": "protected", "host": "Calendar", "type": "method", "name": "_afterSetDates"}, {"url": "Calendar.html#method_alreadySelected", "access": "", "host": "Calendar", "type": "method", "name": "alreadySelected"}, {"url": "DatePickerSelect.html#config_appendOrder", "access": "", "host": "DatePickerSelect", "type": "config", "name": "appendOrder"}, {"url": "DatePickerSelect.html#event_appendOrderChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "appendOrderChange"}, {"url": "DatePickerSelect.html#config_baseName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "baseName"}, {"url": "DatePickerSelect.html#event_baseNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "baseNameChange"}, {"url": "DatePickerSelect.html#method__bindSelectEvents", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_bindSelectEvents"}, {"url": "Calendar.html#method_bindUI", "access": "protected", "host": "Calendar", "type": "method", "name": "bindUI"}, {"url": "DatePickerSelect.html#method_bindUI", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "bindUI"}, {"url": "DatePickerSelect.html#config_buttonNode", "access": "", "host": "DatePickerSelect", "type": "config", "name": "buttonNode"}, {"url": "DatePickerSelect.html#event_buttonNodeChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "buttonNodeChange"}, {"url": "Calendar.html#property_Calendar.ATTRS", "access": "", "host": "Calendar", "type": "property", "name": "Calendar.ATTRS"}, {"url": "Calendar.html#property_Calendar.NAME", "access": "", "host": "Calendar", "type": "property", "name": "Calendar.NAME"}, {"url": "Calendar.html#method__compareDates", "access": "protected", "host": "Calendar", "type": "method", "name": "_compareDates"}, {"url": "Calendar.html#config_currentDay", "access": "", "host": "Calendar", "type": "config", "name": "currentDay"}, {"url": "Calendar.html#event_currentDayChange", "access": "", "host": "Calendar", "type": "event", "name": "currentDayChange"}, {"url": "Calendar.html#config_currentMonth", "access": "", "host": "Calendar", "type": "config", "name": "currentMonth"}, {"url": "Calendar.html#event_currentMonthChange", "access": "", "host": "Calendar", "type": "event", "name": "currentMonthChange"}, {"url": "Calendar.html#config_currentYear", "access": "", "host": "Calendar", "type": "config", "name": "currentYear"}, {"url": "Calendar.html#event_currentYearChange", "access": "", "host": "Calendar", "type": "event", "name": "currentYearChange"}, {"url": "Calendar.html#config_dateFormat", "access": "", "host": "Calendar", "type": "config", "name": "dateFormat"}, {"url": "Calendar.html#event_dateFormatChange", "access": "", "host": "Calendar", "type": "event", "name": "dateFormatChange"}, {"url": "DatePickerSelect.html#property_DatePickerSelect.ATTRS", "access": "", "host": "DatePickerSelect", "type": "property", "name": "DatePickerSelect.ATTRS"}, {"url": "DatePickerSelect.html#property_DatePickerSelect.HTML_PARSER", "access": "", "host": "DatePickerSelect", "type": "property", "name": "DatePickerSelect.HTML_PARSER"}, {"url": "DatePickerSelect.html#property_DatePickerSelect.NAME", "access": "", "host": "DatePickerSelect", "type": "property", "name": "DatePickerSelect.NAME"}, {"url": "Calendar.html#config_dates", "access": "", "host": "Calendar", "type": "config", "name": "dates"}, {"url": "Calendar.html#event_datesChange", "access": "", "host": "Calendar", "type": "event", "name": "datesChange"}, {"url": "DatePickerSelect.html#config_dayNode", "access": "", "host": "DatePickerSelect", "type": "config", "name": "dayNode"}, {"url": "DatePickerSelect.html#event_dayNodeChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "dayNodeChange"}, {"url": "DatePickerSelect.html#config_dayNodeName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "dayNodeName"}, {"url": "DatePickerSelect.html#event_dayNodeNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "dayNodeNameChange"}, {"url": "Calendar.html#method__eachSelectedDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_eachSelectedDate"}, {"url": "Calendar.html#config_firstDayOfWeek", "access": "", "host": "Calendar", "type": "config", "name": "firstDayOfWeek"}, {"url": "Calendar.html#event_firstDayOfWeekChange", "access": "", "host": "Calendar", "type": "event", "name": "firstDayOfWeekChange"}, {"url": "Calendar.html#method_formatDate", "access": "", "host": "Calendar", "type": "method", "name": "formatDate"}, {"url": "DatePickerSelect.html#method__getAppendOrder", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_getAppendOrder"}, {"url": "Calendar.html#method_getCurrentDate", "access": "", "host": "Calendar", "type": "method", "name": "getCurrentDate"}, {"url": "Calendar.html#method__getDayName", "access": "protected", "host": "Calendar", "type": "method", "name": "_getDayName"}, {"url": "Calendar.html#method__getDayNameMin", "access": "protected", "host": "Calendar", "type": "method", "name": "_getDayNameMin"}, {"url": "Calendar.html#method__getDayNameShort", "access": "protected", "host": "Calendar", "type": "method", "name": "_getDayNameShort"}, {"url": "Calendar.html#method_getDaysInMonth", "access": "", "host": "Calendar", "type": "method", "name": "getDaysInMonth"}, {"url": "Calendar.html#method_getDetailedSelectedDates", "access": "", "host": "Calendar", "type": "method", "name": "getDetailedSelectedDates"}, {"url": "Calendar.html#method_getFirstDate", "access": "", "host": "Calendar", "type": "method", "name": "getFirstDate"}, {"url": "Calendar.html#method_getFirstDayOfWeek", "access": "", "host": "Calendar", "type": "method", "name": "getFirstDayOfWeek"}, {"url": "Calendar.html#method_getFormattedSelectedDates", "access": "", "host": "Calendar", "type": "method", "name": "getFormattedSelectedDates"}, {"url": "Calendar.html#method_getLastDate", "access": "", "host": "Calendar", "type": "method", "name": "getLastDate"}, {"url": "Calendar.html#method__getLocaleMap", "access": "protected", "host": "Calendar", "type": "method", "name": "_getLocaleMap"}, {"url": "Calendar.html#method__getMonthName", "access": "protected", "host": "Calendar", "type": "method", "name": "_getMonthName"}, {"url": "Calendar.html#method__getMonthNameShort", "access": "protected", "host": "Calendar", "type": "method", "name": "_getMonthNameShort"}, {"url": "Calendar.html#method_getSelectedDates", "access": "", "host": "Calendar", "type": "method", "name": "getSelectedDates"}, {"url": "Calendar.html#property_headerContentNode", "access": "protected", "host": "Calendar", "type": "property", "name": "headerContentNode"}, {"url": "Calendar.html#property_headerTitleNode", "access": "protected", "host": "Calendar", "type": "property", "name": "headerTitleNode"}, {"url": "Calendar.html#method_initializer", "access": "protected", "host": "Calendar", "type": "method", "name": "initializer"}, {"url": "Calendar.html#config_maxDate", "access": "", "host": "Calendar", "type": "config", "name": "maxDate"}, {"url": "Calendar.html#event_maxDateChange", "access": "", "host": "Calendar", "type": "event", "name": "maxDateChange"}, {"url": "Calendar.html#config_minDate", "access": "", "host": "Calendar", "type": "config", "name": "minDate"}, {"url": "Calendar.html#event_minDateChange", "access": "", "host": "Calendar", "type": "event", "name": "minDateChange"}, {"url": "Calendar.html#property_monthDaysNode", "access": "protected", "host": "Calendar", "type": "property", "name": "monthDaysNode"}, {"url": "DatePickerSelect.html#config_monthNode", "access": "", "host": "DatePickerSelect", "type": "config", "name": "monthNode"}, {"url": "DatePickerSelect.html#event_monthNodeChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "monthNodeChange"}, {"url": "DatePickerSelect.html#config_monthNodeName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "monthNodeName"}, {"url": "DatePickerSelect.html#event_monthNodeNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "monthNodeNameChange"}, {"url": "Calendar.html#method__navigateMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_navigateMonth"}, {"url": "Calendar.html#method__normalizeYearMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_normalizeYearMonth"}, {"url": "Calendar.html#method__onClickDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_onClickDays"}, {"url": "Calendar.html#method__onMouseEnterDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_onMouseEnterDays"}, {"url": "Calendar.html#method__onMouseLeaveDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_onMouseLeaveDays"}, {"url": "DatePickerSelect.html#method__onSelectChange", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_onSelectChange"}, {"url": "Calendar.html#method_parseDate", "access": "", "host": "Calendar", "type": "method", "name": "parseDate"}, {"url": "DatePickerSelect.html#config_populateDay", "access": "", "host": "DatePickerSelect", "type": "config", "name": "populateDay"}, {"url": "DatePickerSelect.html#event_populateDayChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "populateDayChange"}, {"url": "DatePickerSelect.html#method__populateDays", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateDays"}, {"url": "DatePickerSelect.html#config_populateMonth", "access": "", "host": "DatePickerSelect", "type": "config", "name": "populateMonth"}, {"url": "DatePickerSelect.html#event_populateMonthChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "populateMonthChange"}, {"url": "DatePickerSelect.html#method__populateMonths", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateMonths"}, {"url": "DatePickerSelect.html#method__populateSelect", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateSelect"}, {"url": "DatePickerSelect.html#config_populateYear", "access": "", "host": "DatePickerSelect", "type": "config", "name": "populateYear"}, {"url": "DatePickerSelect.html#event_populateYearChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "populateYearChange"}, {"url": "DatePickerSelect.html#method__populateYears", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_populateYears"}, {"url": "DatePickerSelect.html#method__pupulateSelects", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_pupulateSelects"}, {"url": "Calendar.html#method__removeDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_removeDate"}, {"url": "Calendar.html#method__renderBlankDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderBlankDays"}, {"url": "Calendar.html#method__renderCalendar", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderCalendar"}, {"url": "DatePickerSelect.html#method__renderElements", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_renderElements"}, {"url": "Calendar.html#method__renderMonthDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderMonthDays"}, {"url": "DatePickerSelect.html#method__renderTriggerButton", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_renderTriggerButton"}, {"url": "Calendar.html#method_renderUI", "access": "protected", "host": "Calendar", "type": "method", "name": "renderUI"}, {"url": "DatePickerSelect.html#method_renderUI", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "renderUI"}, {"url": "Calendar.html#method__renderWeekDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_renderWeekDays"}, {"url": "Calendar.html#method__restrictDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_restrictDate"}, {"url": "DatePickerSelect.html#method__selectCurrentDay", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentDay"}, {"url": "DatePickerSelect.html#method__selectCurrentMonth", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentMonth"}, {"url": "DatePickerSelect.html#method__selectCurrentValues", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentValues"}, {"url": "DatePickerSelect.html#method__selectCurrentYear", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "_selectCurrentYear"}, {"url": "Calendar.html#method__selectDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_selectDate"}, {"url": "Calendar.html#config_selectMultipleDates", "access": "", "host": "Calendar", "type": "config", "name": "selectMultipleDates"}, {"url": "Calendar.html#event_selectMultipleDatesChange", "access": "", "host": "Calendar", "type": "event", "name": "selectMultipleDatesChange"}, {"url": "Calendar.html#method__selectNextMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_selectNextMonth"}, {"url": "Calendar.html#method__selectPrevMonth", "access": "protected", "host": "Calendar", "type": "method", "name": "_selectPrevMonth"}, {"url": "DatePickerSelect.html#config_selectWrapperNode", "access": "", "host": "DatePickerSelect", "type": "config", "name": "selectWrapperNode"}, {"url": "DatePickerSelect.html#event_selectWrapperNodeChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "selectWrapperNodeChange"}, {"url": "Calendar.html#method__setDates", "access": "protected", "host": "Calendar", "type": "method", "name": "_setDates"}, {"url": "Calendar.html#method__setMinMaxDate", "access": "protected", "host": "Calendar", "type": "method", "name": "_setMinMaxDate"}, {"url": "Calendar.html#method__setStack", "access": "protected", "host": "Calendar", "type": "method", "name": "_setStack"}, {"url": "Calendar.html#config_setValue", "access": "", "host": "Calendar", "type": "config", "name": "setValue"}, {"url": "DatePickerSelect.html#config_setValue", "access": "", "host": "DatePickerSelect", "type": "config", "name": "setValue"}, {"url": "Calendar.html#event_setValueChange", "access": "", "host": "Calendar", "type": "event", "name": "setValueChange"}, {"url": "DatePickerSelect.html#event_setValueChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "setValueChange"}, {"url": "Calendar.html#config_stack", "access": "", "host": "Calendar", "type": "config", "name": "stack"}, {"url": "Calendar.html#event_stackChange", "access": "", "host": "Calendar", "type": "event", "name": "stackChange"}, {"url": "Calendar.html#method__syncDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncDays"}, {"url": "Calendar.html#method__syncHeader", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncHeader"}, {"url": "Calendar.html#method__syncSelectedDays", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncSelectedDays"}, {"url": "Calendar.html#method_syncUI", "access": "protected", "host": "Calendar", "type": "method", "name": "syncUI"}, {"url": "DatePickerSelect.html#method_syncUI", "access": "protected", "host": "DatePickerSelect", "type": "method", "name": "syncUI"}, {"url": "Calendar.html#method__syncView", "access": "protected", "host": "Calendar", "type": "method", "name": "_syncView"}, {"url": "DatePickerSelect.html#config_trigger", "access": "", "host": "DatePickerSelect", "type": "config", "name": "trigger"}, {"url": "DatePickerSelect.html#event_triggerChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "triggerChange"}, {"url": "DatePickerSelect.html#config_visible", "access": "", "host": "DatePickerSelect", "type": "config", "name": "visible"}, {"url": "DatePickerSelect.html#event_visibleChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "visibleChange"}, {"url": "Calendar.html#property_weekDaysNode", "access": "protected", "host": "Calendar", "type": "property", "name": "weekDaysNode"}, {"url": "DatePickerSelect.html#config_yearNode", "access": "", "host": "DatePickerSelect", "type": "config", "name": "yearNode"}, {"url": "DatePickerSelect.html#event_yearNodeChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "yearNodeChange"}, {"url": "DatePickerSelect.html#config_yearNodeName", "access": "", "host": "DatePickerSelect", "type": "config", "name": "yearNodeName"}, {"url": "DatePickerSelect.html#event_yearNodeNameChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "yearNodeNameChange"}, {"url": "DatePickerSelect.html#config_yearRange", "access": "", "host": "DatePickerSelect", "type": "config", "name": "yearRange"}, {"url": "DatePickerSelect.html#event_yearRangeChange", "access": "", "host": "DatePickerSelect", "type": "event", "name": "yearRangeChange"}, {"url": "CalendarManager.html#config_zIndexBase", "access": "", "host": "CalendarManager", "type": "config", "name": "zIndexBase"}, {"url": "CalendarManager.html#event_zIndexBaseChange", "access": "", "host": "CalendarManager", "type": "event", "name": "zIndexBaseChange"}];
 </script>
 </body>
 </html>

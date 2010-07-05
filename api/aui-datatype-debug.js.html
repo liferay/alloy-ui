@@ -585,6 +585,8 @@
 <span class="cm"> * @return {boolean} Parsed value</span>
 <span class="cm"> */</span>
 <span class="nx">DB</span><span class="p">.</span><span class="nx">parse</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">data</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+
 	<span class="k">return</span> <span class="p">(</span><span class="nx">data</span> <span class="o">==</span> <span class="nx">FALSE</span><span class="p">)</span> <span class="o">?</span> <span class="kc">false</span> <span class="o">:</span> <span class="o">!!</span><span class="nx">data</span><span class="p">;</span>
 <span class="p">};</span>
 
@@ -599,16 +601,18 @@
 <span class="cm"> * @return {boolean | null | number | String | undefined} Parsed value</span>
 <span class="cm"> */</span>
 <span class="nx">DS</span><span class="p">.</span><span class="nx">evaluate</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">trimmedData</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+
 	<span class="c1">// booleans</span>
-	<span class="k">if</span> <span class="p">(</span><span class="nx">data</span> <span class="o">==</span> <span class="nx">TRUE</span> <span class="o">||</span> <span class="nx">data</span> <span class="o">==</span> <span class="nx">FALSE</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nx">trimmedData</span> <span class="o">==</span> <span class="nx">TRUE</span> <span class="o">||</span> <span class="nx">trimmedData</span> <span class="o">==</span> <span class="nx">FALSE</span><span class="p">)</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="nx">DB</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
 	<span class="p">}</span>
 
 	<span class="c1">// Handle positive &amp; negative numbers (integer or float)</span>
 	<span class="c1">// Handle hexadecimal numbers: 0xFF -&gt; 255</span>
 	<span class="c1">// Handle exponential notation: 1e5 -&gt; 100000</span>
-	<span class="k">if</span> <span class="p">(</span><span class="nx">data</span> <span class="o">&amp;&amp;</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">number</span> <span class="o">=</span> <span class="o">+</span><span class="nx">data</span><span class="p">;</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nx">trimmedData</span> <span class="o">&amp;&amp;</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">trimmedData</span><span class="p">))</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">number</span> <span class="o">=</span> <span class="o">+</span><span class="nx">trimmedData</span><span class="p">;</span>
 
 		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">number</span><span class="p">))</span> <span class="p">{</span>
 			<span class="k">return</span> <span class="nx">number</span><span class="p">;</span>

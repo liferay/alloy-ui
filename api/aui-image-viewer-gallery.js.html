@@ -1292,11 +1292,13 @@
 					<span class="p">}</span>
 				<span class="p">}</span>
 
-				<span class="k">if</span> <span class="p">(</span><span class="nx">thumbSrc</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">thumbSrc</span> <span class="o">&amp;&amp;</span> <span class="nx">thumbEl</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="s1">&#39;thumbSrc&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="nx">thumbSrc</span><span class="p">)</span> <span class="p">{</span>
 					<span class="nx">thumbEl</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">({</span>
 						<span class="c1">// use background to show the thumbnails to take advantage of the background-position: 50% 50%</span>
 						<span class="nx">backgroundImage</span><span class="o">:</span> <span class="s1">&#39;url(&#39;</span> <span class="o">+</span> <span class="nx">thumbSrc</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
 					<span class="p">});</span>
+
+					<span class="nx">thumbEl</span><span class="p">.</span><span class="nx">setData</span><span class="p">(</span><span class="s1">&#39;thumbSrc&#39;</span><span class="p">,</span> <span class="nx">thumbSrc</span><span class="p">);</span>
 				<span class="p">}</span>
 			<span class="p">},</span>
 

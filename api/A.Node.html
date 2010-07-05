@@ -531,6 +531,7 @@
 				                               <li class=""><a href="#method_getDOM" title="getDOM">getDOM</a></li>
 				                               <li class=""><a href="#method_guid" title="guid">guid</a></li>
 				                               <li class=""><a href="#method_hide" title="hide">hide</a></li>
+				                               <li class=""><a href="#method_hover" title="hover">hover</a></li>
 				                               <li class=""><a href="#method_html" title="html">html</a></li>
 				                               <li class=""><a href="#method_outerHTML" title="outerHTML">outerHTML</a></li>
 				                               <li class=""><a href="#method_placeAfter" title="placeAfter">placeAfter</a></li>
@@ -1219,6 +1220,69 @@ manipulate the inline <code>style.display</code> property.</p>
 																<div class="chainable">
 																	<strong>Chainable:</strong> This method is chainable.
 																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_hover">
+
+													<h4>
+														<a name="method_hover">hover</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Node
+															<strong property="yui:name">hover</strong>
+														   (
+																
+																		
+																		 overFn
+																	
+																
+																		, 
+																		 outFn
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Create a hover interaction.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">overFn</span>
+																		&lt;<span property="yui:type">string</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">outFn</span>
+																		&lt;<span property="yui:type">string</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Node
+																	</code></dt>
+																	<dd property="yui:returnInfo">The current Node instance</dd>
+																</dl>
+
 
 
 
@@ -2450,7 +2514,7 @@ alert( input.val() );
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "A.Node.html#method_ancestors", "access": "", "host": "A.Node", "type": "method", "name": "ancestors"}, {"url": "A.Node.html#method_appendTo", "access": "", "host": "A.Node", "type": "method", "name": "appendTo"}, {"url": "A.Node.html#method_attr", "access": "", "host": "A.Node", "type": "method", "name": "attr"}, {"url": "A.Node.html#method_center", "access": "", "host": "A.Node", "type": "method", "name": "center"}, {"url": "A.Node.html#method_clone", "access": "", "host": "A.Node", "type": "method", "name": "clone"}, {"url": "A.Node.html#method_empty", "access": "", "host": "A.Node", "type": "method", "name": "empty"}, {"url": "A.Node.html#method_getDOM", "access": "", "host": "A.Node", "type": "method", "name": "getDOM"}, {"url": "A.Node.html#method_guid", "access": "", "host": "A.Node", "type": "method", "name": "guid"}, {"url": "A.Node.html#method_hide", "access": "", "host": "A.Node", "type": "method", "name": "hide"}, {"url": "A.Node.html#method_html", "access": "", "host": "A.Node", "type": "method", "name": "html"}, {"url": "A.Node.html#method_outerHTML", "access": "", "host": "A.Node", "type": "method", "name": "outerHTML"}, {"url": "A.Node.html#method_placeAfter", "access": "", "host": "A.Node", "type": "method", "name": "placeAfter"}, {"url": "A.Node.html#method_placeBefore", "access": "", "host": "A.Node", "type": "method", "name": "placeBefore"}, {"url": "A.Node.html#method_prependTo", "access": "", "host": "A.Node", "type": "method", "name": "prependTo"}, {"url": "A.Node.html#method_radioClass", "access": "", "host": "A.Node", "type": "method", "name": "radioClass"}, {"url": "A.Node.html#method_resetId", "access": "", "host": "A.Node", "type": "method", "name": "resetId"}, {"url": "A.Node.html#method_selectable", "access": "", "host": "A.Node", "type": "method", "name": "selectable"}, {"url": "A.Node.html#method_selectText", "access": "", "host": "A.Node", "type": "method", "name": "selectText"}, {"url": "A.Node.html#method_show", "access": "", "host": "A.Node", "type": "method", "name": "show"}, {"url": "A.Node.html#method_swallowEvent", "access": "", "host": "A.Node", "type": "method", "name": "swallowEvent"}, {"url": "A.Node.html#method_text", "access": "", "host": "A.Node", "type": "method", "name": "text"}, {"url": "A.Node.html#method_toggle", "access": "", "host": "A.Node", "type": "method", "name": "toggle"}, {"url": "A.Node.html#method_unselectable", "access": "", "host": "A.Node", "type": "method", "name": "unselectable"}, {"url": "A.Node.html#method_val", "access": "", "host": "A.Node", "type": "method", "name": "val"}];
+    var ALL_YUI_PROPS = [{"url": "A.Node.html#method_ancestors", "access": "", "host": "A.Node", "type": "method", "name": "ancestors"}, {"url": "A.Node.html#method_appendTo", "access": "", "host": "A.Node", "type": "method", "name": "appendTo"}, {"url": "A.Node.html#method_attr", "access": "", "host": "A.Node", "type": "method", "name": "attr"}, {"url": "A.Node.html#method_center", "access": "", "host": "A.Node", "type": "method", "name": "center"}, {"url": "A.Node.html#method_clone", "access": "", "host": "A.Node", "type": "method", "name": "clone"}, {"url": "A.Node.html#method_empty", "access": "", "host": "A.Node", "type": "method", "name": "empty"}, {"url": "A.Node.html#method_getDOM", "access": "", "host": "A.Node", "type": "method", "name": "getDOM"}, {"url": "A.Node.html#method_guid", "access": "", "host": "A.Node", "type": "method", "name": "guid"}, {"url": "A.Node.html#method_hide", "access": "", "host": "A.Node", "type": "method", "name": "hide"}, {"url": "A.Node.html#method_hover", "access": "", "host": "A.Node", "type": "method", "name": "hover"}, {"url": "A.Node.html#method_html", "access": "", "host": "A.Node", "type": "method", "name": "html"}, {"url": "A.Node.html#method_outerHTML", "access": "", "host": "A.Node", "type": "method", "name": "outerHTML"}, {"url": "A.Node.html#method_placeAfter", "access": "", "host": "A.Node", "type": "method", "name": "placeAfter"}, {"url": "A.Node.html#method_placeBefore", "access": "", "host": "A.Node", "type": "method", "name": "placeBefore"}, {"url": "A.Node.html#method_prependTo", "access": "", "host": "A.Node", "type": "method", "name": "prependTo"}, {"url": "A.Node.html#method_radioClass", "access": "", "host": "A.Node", "type": "method", "name": "radioClass"}, {"url": "A.Node.html#method_resetId", "access": "", "host": "A.Node", "type": "method", "name": "resetId"}, {"url": "A.Node.html#method_selectable", "access": "", "host": "A.Node", "type": "method", "name": "selectable"}, {"url": "A.Node.html#method_selectText", "access": "", "host": "A.Node", "type": "method", "name": "selectText"}, {"url": "A.Node.html#method_show", "access": "", "host": "A.Node", "type": "method", "name": "show"}, {"url": "A.Node.html#method_swallowEvent", "access": "", "host": "A.Node", "type": "method", "name": "swallowEvent"}, {"url": "A.Node.html#method_text", "access": "", "host": "A.Node", "type": "method", "name": "text"}, {"url": "A.Node.html#method_toggle", "access": "", "host": "A.Node", "type": "method", "name": "toggle"}, {"url": "A.Node.html#method_unselectable", "access": "", "host": "A.Node", "type": "method", "name": "unselectable"}, {"url": "A.Node.html#method_val", "access": "", "host": "A.Node", "type": "method", "name": "val"}];
 </script>
 </body>
 </html>

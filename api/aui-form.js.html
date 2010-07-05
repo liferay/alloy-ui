@@ -622,7 +622,7 @@
 
 	<span class="nx">CSS_FORM</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="nx">NAME</span><span class="p">),</span>
 	<span class="nx">CSS_LABELS</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="s1">&#39;field&#39;</span><span class="p">,</span> <span class="s1">&#39;labels&#39;</span><span class="p">),</span>
-	<span class="nx">CSS_LABELS_INLINE</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="s1">&#39;field&#39;</span><span class="p">,</span> <span class="s1">&#39;labels&#39;</span><span class="p">,</span> <span class="s1">&#39;inline&#39;</span><span class="p">)</span>
+	<span class="nx">CSS_LABELS_INLINE</span> <span class="o">=</span> <span class="nx">getClassName</span><span class="p">(</span><span class="s1">&#39;field&#39;</span><span class="p">,</span> <span class="s1">&#39;labels&#39;</span><span class="p">,</span> <span class="s1">&#39;inline&#39;</span><span class="p">),</span>
 
 	<span class="nx">CSS_LABEL_ALIGN</span> <span class="o">=</span> <span class="p">{</span>
 		<span class="nx">left</span><span class="o">:</span> <span class="p">[</span><span class="nx">CSS_LABELS</span><span class="p">,</span> <span class="s1">&#39;left&#39;</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">),</span>
@@ -1228,7 +1228,7 @@
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">Combobox</span> <span class="o">=</span> <span class="nx">Combobox</span><span class="p">;</span>
 
-<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-form-textarea&#39;</span><span class="p">,</span><span class="s1">&#39;aui-toolbar&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-form-textarea&#39;</span><span class="p">,</span><span class="s1">&#39;aui-toolbar&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
 <span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-form-field&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span> <span class="p">{</span>
 <span class="kd">var</span> <span class="nx">Lang</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
 
@@ -1981,7 +1981,7 @@
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">Textarea</span> <span class="o">=</span> <span class="nx">Textarea</span><span class="p">;</span>
 
-<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-form-textfield&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-form-textfield&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
 <span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-form-textfield&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span> <span class="p">{</span>
 <span class="kd">var</span> <span class="nx">Lang</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
 
@@ -2127,11 +2127,11 @@
 	<span class="nx">PIPE</span> <span class="o">=</span> <span class="s1">&#39;|&#39;</span><span class="p">,</span>
 
 	<span class="nx">BLUR_HANDLERS</span> <span class="o">=</span> <span class="s1">&#39;blurHandlers&#39;</span><span class="p">,</span>
-	<span class="nx">BOUNDING_BOX</span> <span class="o">=</span> <span class="s1">&#39;boundingBox&#39;</span><span class="p">,</span>
 	<span class="nx">CHECKBOX</span> <span class="o">=</span> <span class="s1">&#39;checkbox&#39;</span><span class="p">,</span>
 	<span class="nx">CONTAINER</span> <span class="o">=</span> <span class="s1">&#39;container&#39;</span><span class="p">,</span>
 	<span class="nx">CONTAINER_ERROR_CLASS</span> <span class="o">=</span> <span class="s1">&#39;containerErrorClass&#39;</span><span class="p">,</span>
 	<span class="nx">CONTAINER_VALID_CLASS</span> <span class="o">=</span> <span class="s1">&#39;containerValidClass&#39;</span><span class="p">,</span>
+	<span class="nx">CONTENT_BOX</span> <span class="o">=</span> <span class="s1">&#39;contentBox&#39;</span><span class="p">,</span>
 	<span class="nx">ERROR</span> <span class="o">=</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span>
 	<span class="nx">ERROR_CLASS</span> <span class="o">=</span> <span class="s1">&#39;errorClass&#39;</span><span class="p">,</span>
 	<span class="nx">EXTRACT_CSS_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;extractCssPrefix&#39;</span><span class="p">,</span>
@@ -2462,8 +2462,8 @@
 
 		<span class="nx">focusInvalidField</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-			<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">boundingBox</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_ERROR</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">contentBox</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_ERROR</span><span class="p">);</span>
 
 			<span class="k">if</span> <span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
 				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SELECT_TEXT</span><span class="p">))</span> <span class="p">{</span>
@@ -2477,7 +2477,7 @@
 		<span class="nx">getElementsByName</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
 			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">).</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;[name=&quot;&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;&quot;]&#39;</span><span class="p">);</span>
+			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">).</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;[name=&quot;&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;&quot;]&#39;</span><span class="p">);</span>
 		<span class="p">},</span>
 
 		<span class="nx">getField</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
@@ -2670,7 +2670,7 @@
 
 		<span class="nx">_bindValidation</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-			<span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
 
 			<span class="nx">form</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">EV_RESET</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onFormReset</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
 			<span class="nx">form</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">EV_SUBMIT</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onFormSubmit</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
@@ -2843,7 +2843,7 @@
 			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
 			<span class="k">if</span> <span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
 				<span class="kd">var</span> <span class="nx">rules</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">RULES</span><span class="p">);</span>
 				<span class="kd">var</span> <span class="nx">extractCssPrefix</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">EXTRACT_CSS_PREFIX</span><span class="p">);</span>
 
@@ -2913,7 +2913,7 @@
 <span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;aui-event-input&#39;</span><span class="p">,</span><span class="s1">&#39;selector-css3&#39;</span><span class="p">,</span><span class="s1">&#39;substitute&#39;</span><span class="p">]});</span>
 
 
-<span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-form&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">){},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-form-base&#39;</span><span class="p">,</span><span class="s1">&#39;aui-form-combobox&#39;</span><span class="p">,</span><span class="s1">&#39;aui-form-field&#39;</span><span class="p">,</span><span class="s1">&#39;aui-form-textarea&#39;</span><span class="p">,</span><span class="s1">&#39;aui-form-textfield&#39;</span><span class="p">,</span><span class="s1">&#39;aui-form-validator&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">});</span>
+<span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-form&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">){},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span> <span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-form-base&#39;</span><span class="p">,</span><span class="s1">&#39;aui-form-combobox&#39;</span><span class="p">,</span><span class="s1">&#39;aui-form-field&#39;</span><span class="p">,</span><span class="s1">&#39;aui-form-textarea&#39;</span><span class="p">,</span><span class="s1">&#39;aui-form-textfield&#39;</span><span class="p">,</span><span class="s1">&#39;aui-form-validator&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>

@@ -515,6 +515,10 @@
 									<div class="aui-widget-bd aui-list-bd">
 										<ul class="content">
 												<li class=""><a href="#config_autoHide" title="autoHide">autoHide</a></li>
+												<li class=""><a href="#config_changeHeightHandles" title="changeHeightHandles">changeHeightHandles</a></li>
+												<li class=""><a href="#config_changeLeftHandles" title="changeLeftHandles">changeLeftHandles</a></li>
+												<li class=""><a href="#config_changeTopHandles" title="changeTopHandles">changeTopHandles</a></li>
+												<li class=""><a href="#config_changeWidthHandles" title="changeWidthHandles">changeWidthHandles</a></li>
 												<li class=""><a href="#config_constrain2node" title="constrain2node">constrain2node</a></li>
 												<li class=""><a href="#config_constrain2region" title="constrain2region">constrain2region</a></li>
 												<li class=""><a href="#config_constrain2view" title="constrain2view">constrain2view</a></li>
@@ -569,8 +573,10 @@
 										<ul class="content">
 				                               <li class="protected"><a href="#method__afterResize" title="_afterResize">_afterResize</a></li>
 				                               <li class="protected"><a href="#method__buildHandle" title="_buildHandle">_buildHandle</a></li>
+				                               <li class="protected"><a href="#method__checkConstrain" title="_checkConstrain">_checkConstrain</a></li>
 				                               <li class="protected"><a href="#method__checkHeight" title="_checkHeight">_checkHeight</a></li>
 				                               <li class="protected"><a href="#method__checkRatio" title="_checkRatio">_checkRatio</a></li>
+				                               <li class="protected"><a href="#method__checkRegion" title="_checkRegion">_checkRegion</a></li>
 				                               <li class="protected"><a href="#method__checkWidth" title="_checkWidth">_checkWidth</a></li>
 				                               <li class="protected"><a href="#method__copyStyles" title="_copyStyles">_copyStyles</a></li>
 				                               <li class="protected"><a href="#method__defMouseUpFn" title="_defMouseUpFn">_defMouseUpFn</a></li>
@@ -590,6 +596,7 @@
 				                               <li class="protected"><a href="#method__resize" title="_resize">_resize</a></li>
 				                               <li class="protected"><a href="#method__setActiveHandlesUI" title="_setActiveHandlesUI">_setActiveHandlesUI</a></li>
 				                               <li class="protected"><a href="#method__setHideHandlesUI" title="_setHideHandlesUI">_setHideHandlesUI</a></li>
+				                               <li class="protected"><a href="#method__setOffset" title="_setOffset">_setOffset</a></li>
 				                               <li class="protected"><a href="#method__syncProxyUI" title="_syncProxyUI">_syncProxyUI</a></li>
 				                               <li class="protected"><a href="#method__syncUI" title="_syncUI">_syncUI</a></li>
 				                               <li class="protected"><a href="#method_bindUI" title="bindUI">bindUI</a></li>
@@ -615,6 +622,10 @@
 												<li class=""><a href="#event_activeHandleChange" title="activeHandleChange">activeHandleChange</a></li>
 												<li class=""><a href="#event_activeHandleElChange" title="activeHandleElChange">activeHandleElChange</a></li>
 												<li class=""><a href="#event_autoHideChange" title="autoHideChange">autoHideChange</a></li>
+												<li class=""><a href="#event_changeHeightHandlesChange" title="changeHeightHandlesChange">changeHeightHandlesChange</a></li>
+												<li class=""><a href="#event_changeLeftHandlesChange" title="changeLeftHandlesChange">changeLeftHandlesChange</a></li>
+												<li class=""><a href="#event_changeTopHandlesChange" title="changeTopHandlesChange">changeTopHandlesChange</a></li>
+												<li class=""><a href="#event_changeWidthHandlesChange" title="changeWidthHandlesChange">changeWidthHandlesChange</a></li>
 												<li class=""><a href="#event_constrain2nodeChange" title="constrain2nodeChange">constrain2nodeChange</a></li>
 												<li class=""><a href="#event_constrain2regionChange" title="constrain2regionChange">constrain2regionChange</a></li>
 												<li class=""><a href="#event_constrain2viewChange" title="constrain2viewChange">constrain2viewChange</a></li>
@@ -923,6 +934,82 @@ configuration for the Resize.
 														<div class="description" property="yui:description">
 															False to ensure that the resize handles are always visible, true to
 display them only when the user mouses over the resizable borders.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_changeHeightHandles">
+
+													<h4>
+														<a name="config_changeHeightHandles">changeHeightHandles</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Whether the handle being dragged can change the height.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_changeLeftHandles">
+
+													<h4>
+														<a name="config_changeLeftHandles">changeLeftHandles</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Whether the handle being dragged can change the left.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_changeTopHandles">
+
+													<h4>
+														<a name="config_changeTopHandles">changeTopHandles</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Whether the handle being dragged can change the top.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_changeWidthHandles">
+
+													<h4>
+														<a name="config_changeWidthHandles">changeWidthHandles</a>
+														<code>- <span property="yui:type">boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Whether the handle being dragged can change the width.
 														</div>
 													</div>
 
@@ -1413,6 +1500,74 @@ DragDrop on it.
 													</div>
 												</div>
 
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__checkConstrain">
+
+													<h4>
+														<a name="method__checkConstrain">_checkConstrain</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_checkConstrain</strong>
+														   (
+																
+																		
+																		 axis
+																	
+																
+																		, 
+																		 axisConstrain
+																	
+																
+																		, 
+																		 offset
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Helper method to update the current values on
+<a href="Resize.html#property_info">info</a> to respect the
+constrain node.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">axis</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> 'top' or 'left'</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">axisConstrain</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> 'bottom' or 'right'</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">offset</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> 'offsetHeight' or 'offsetWidth'</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
 												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__checkHeight">
 
 													<h4>
@@ -1466,6 +1621,38 @@ to respect the maxHeight and minHeight.
 														<div class="description" property="yui:description">
 															Update the current values on <a href="Resize.html#property_info">info</a>
 calculating the correct ratio for the other values.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__checkRegion">
+
+													<h4>
+														<a name="method__checkRegion">_checkRegion</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														boolean
+															<strong property="yui:name">_checkRegion</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Check whether the resizable node is inside the constrain region.
 														</div>
 
 														<div class="description">
@@ -2310,6 +2497,72 @@ make it sibling of the <a href="Resize.html#config_node">node</a>.
 													</div>
 												</div>
 
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__setOffset">
+
+													<h4>
+														<a name="method__setOffset">_setOffset</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_setOffset</strong>
+														   (
+																
+																		
+																		 node
+																	
+																
+																		, 
+																		 offsetWidth
+																	
+																
+																		, 
+																		 offsetHeight
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Set offsetWidth and offsetHeight of the passed node.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">node</span>
+																		&lt;<span property="yui:type">Node</span>&gt;
+																		</code>
+																		<span property="yui:description"> Node</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">offsetWidth</span>
+																		&lt;<span property="yui:type">number</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">offsetHeight</span>
+																		&lt;<span property="yui:type">number</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
 												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__syncProxyUI">
 
 													<h4>
@@ -3052,6 +3305,174 @@ subclasses if required.
 
 														<div class="description" property="yui:description">
 															Fires when the value for the configuration attribute 'autoHide' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_changeHeightHandlesChange">
+
+													<h4>
+														<a name="event_changeHeightHandlesChange">changeHeightHandlesChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">changeHeightHandlesChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'changeHeightHandles' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_changeLeftHandlesChange">
+
+													<h4>
+														<a name="event_changeLeftHandlesChange">changeLeftHandlesChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">changeLeftHandlesChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'changeLeftHandles' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_changeTopHandlesChange">
+
+													<h4>
+														<a name="event_changeTopHandlesChange">changeTopHandlesChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">changeTopHandlesChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'changeTopHandles' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_changeWidthHandlesChange">
+
+													<h4>
+														<a name="event_changeWidthHandlesChange">changeWidthHandlesChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">changeWidthHandlesChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'changeWidthHandles' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
 														</div>
 
 														<div class="description">
@@ -4086,7 +4507,7 @@ dragged.
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Resize.html#event_activeHandleChange", "access": "", "host": "Resize", "type": "event", "name": "activeHandleChange"}, {"url": "Resize.html#event_activeHandleElChange", "access": "", "host": "Resize", "type": "event", "name": "activeHandleElChange"}, {"url": "Resize.html#method__afterResize", "access": "protected", "host": "Resize", "type": "method", "name": "_afterResize"}, {"url": "Resize.html#config_autoHide", "access": "", "host": "Resize", "type": "config", "name": "autoHide"}, {"url": "Resize.html#event_autoHideChange", "access": "", "host": "Resize", "type": "event", "name": "autoHideChange"}, {"url": "Resize.html#method_bindUI", "access": "protected", "host": "Resize", "type": "method", "name": "bindUI"}, {"url": "Resize.html#method__buildHandle", "access": "protected", "host": "Resize", "type": "method", "name": "_buildHandle"}, {"url": "Resize.html#method__checkHeight", "access": "protected", "host": "Resize", "type": "method", "name": "_checkHeight"}, {"url": "Resize.html#method__checkRatio", "access": "protected", "host": "Resize", "type": "method", "name": "_checkRatio"}, {"url": "Resize.html#method__checkWidth", "access": "protected", "host": "Resize", "type": "method", "name": "_checkWidth"}, {"url": "Resize.html#config_constrain2node", "access": "", "host": "Resize", "type": "config", "name": "constrain2node"}, {"url": "Resize.html#event_constrain2nodeChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2nodeChange"}, {"url": "Resize.html#config_constrain2region", "access": "", "host": "Resize", "type": "config", "name": "constrain2region"}, {"url": "Resize.html#event_constrain2regionChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2regionChange"}, {"url": "Resize.html#config_constrain2view", "access": "", "host": "Resize", "type": "config", "name": "constrain2view"}, {"url": "Resize.html#event_constrain2viewChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2viewChange"}, {"url": "Resize.html#method__copyStyles", "access": "protected", "host": "Resize", "type": "method", "name": "_copyStyles"}, {"url": "Resize.html#method__defMouseUpFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defMouseUpFn"}, {"url": "Resize.html#method__defResizeEndFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeEndFn"}, {"url": "Resize.html#method__defResizeFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeFn"}, {"url": "Resize.html#method__defResizeStartFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeStartFn"}, {"url": "Resize.html#method_destructor", "access": "protected", "host": "Resize", "type": "method", "name": "destructor"}, {"url": "Resize.html#method_eachHandle", "access": "", "host": "Resize", "type": "method", "name": "eachHandle"}, {"url": "Resize.html#method__handleMouseUpEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleMouseUpEvent"}, {"url": "Resize.html#method__handleResizeEndEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeEndEvent"}, {"url": "Resize.html#method__handleResizeEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeEvent"}, {"url": "Resize.html#method__handleResizeStartEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeStartEvent"}, {"url": "Resize.html#config_handles", "access": "", "host": "Resize", "type": "config", "name": "handles"}, {"url": "Resize.html#event_handlesChange", "access": "", "host": "Resize", "type": "event", "name": "handlesChange"}, {"url": "Resize.html#property_info", "access": "protected", "host": "Resize", "type": "property", "name": "info"}, {"url": "Resize.html#method_initializer", "access": "protected", "host": "Resize", "type": "method", "name": "initializer"}, {"url": "Resize.html#config_maxHeight", "access": "", "host": "Resize", "type": "config", "name": "maxHeight"}, {"url": "Resize.html#event_maxHeightChange", "access": "", "host": "Resize", "type": "event", "name": "maxHeightChange"}, {"url": "Resize.html#config_maxWidth", "access": "", "host": "Resize", "type": "config", "name": "maxWidth"}, {"url": "Resize.html#event_maxWidthChange", "access": "", "host": "Resize", "type": "event", "name": "maxWidthChange"}, {"url": "Resize.html#config_minHeight", "access": "", "host": "Resize", "type": "config", "name": "minHeight"}, {"url": "Resize.html#event_minHeightChange", "access": "", "host": "Resize", "type": "event", "name": "minHeightChange"}, {"url": "Resize.html#config_minWidth", "access": "", "host": "Resize", "type": "config", "name": "minWidth"}, {"url": "Resize.html#event_minWidthChange", "access": "", "host": "Resize", "type": "event", "name": "minWidthChange"}, {"url": "Resize.html#config_node", "access": "", "host": "Resize", "type": "config", "name": "node"}, {"url": "Resize.html#event_nodeChange", "access": "", "host": "Resize", "type": "event", "name": "nodeChange"}, {"url": "Resize.html#method__onHandleMouseOut", "access": "protected", "host": "Resize", "type": "method", "name": "_onHandleMouseOut"}, {"url": "Resize.html#method__onHandleMouseOver", "access": "protected", "host": "Resize", "type": "method", "name": "_onHandleMouseOver"}, {"url": "Resize.html#method__onWrapperMouseEnter", "access": "protected", "host": "Resize", "type": "method", "name": "_onWrapperMouseEnter"}, {"url": "Resize.html#method__onWrapperMouseLeave", "access": "protected", "host": "Resize", "type": "method", "name": "_onWrapperMouseLeave"}, {"url": "Resize.html#property_originalInfo", "access": "protected", "host": "Resize", "type": "property", "name": "originalInfo"}, {"url": "Resize.html#config_preserveRatio", "access": "", "host": "Resize", "type": "config", "name": "preserveRatio"}, {"url": "Resize.html#event_preserveRatioChange", "access": "", "host": "Resize", "type": "event", "name": "preserveRatioChange"}, {"url": "Resize.html#config_proxy", "access": "", "host": "Resize", "type": "config", "name": "proxy"}, {"url": "Resize.html#event_proxyChange", "access": "", "host": "Resize", "type": "event", "name": "proxyChange"}, {"url": "Resize.html#config_proxyEl", "access": "", "host": "Resize", "type": "config", "name": "proxyEl"}, {"url": "Resize.html#event_proxyElChange", "access": "", "host": "Resize", "type": "event", "name": "proxyElChange"}, {"url": "Resize.html#method_renderer", "access": "protected", "host": "Resize", "type": "method", "name": "renderer"}, {"url": "Resize.html#method__renderHandles", "access": "protected", "host": "Resize", "type": "method", "name": "_renderHandles"}, {"url": "Resize.html#method__renderProxy", "access": "protected", "host": "Resize", "type": "method", "name": "_renderProxy"}, {"url": "Resize.html#method_renderUI", "access": "protected", "host": "Resize", "type": "method", "name": "renderUI"}, {"url": "Resize.html#method__resize", "access": "protected", "host": "Resize", "type": "method", "name": "_resize"}, {"url": "Resize.html#event_resize:end", "access": "", "host": "Resize", "type": "event", "name": "resize:end"}, {"url": "Resize.html#event_resize:mouseUp", "access": "", "host": "Resize", "type": "event", "name": "resize:mouseUp"}, {"url": "Resize.html#event_resize:resize", "access": "", "host": "Resize", "type": "event", "name": "resize:resize"}, {"url": "Resize.html#event_resize:start", "access": "", "host": "Resize", "type": "event", "name": "resize:start"}, {"url": "Resize.html#property_Resize.ATTRS", "access": "", "host": "Resize", "type": "property", "name": "Resize.ATTRS"}, {"url": "Resize.html#property_Resize.NAME", "access": "", "host": "Resize", "type": "property", "name": "Resize.NAME"}, {"url": "Resize.html#config_resizing", "access": "", "host": "Resize", "type": "config", "name": "resizing"}, {"url": "Resize.html#event_resizingChange", "access": "", "host": "Resize", "type": "event", "name": "resizingChange"}, {"url": "Resize.html#method__setActiveHandlesUI", "access": "protected", "host": "Resize", "type": "method", "name": "_setActiveHandlesUI"}, {"url": "Resize.html#method__setHideHandlesUI", "access": "protected", "host": "Resize", "type": "method", "name": "_setHideHandlesUI"}, {"url": "Resize.html#method__syncProxyUI", "access": "protected", "host": "Resize", "type": "method", "name": "_syncProxyUI"}, {"url": "Resize.html#method__syncUI", "access": "protected", "host": "Resize", "type": "method", "name": "_syncUI"}, {"url": "Resize.html#method_syncUI", "access": "protected", "host": "Resize", "type": "method", "name": "syncUI"}, {"url": "Resize.html#config_tickX", "access": "", "host": "Resize", "type": "config", "name": "tickX"}, {"url": "Resize.html#event_tickXChange", "access": "", "host": "Resize", "type": "event", "name": "tickXChange"}, {"url": "Resize.html#config_tickY", "access": "", "host": "Resize", "type": "config", "name": "tickY"}, {"url": "Resize.html#event_tickYChange", "access": "", "host": "Resize", "type": "event", "name": "tickYChange"}, {"url": "Resize.html#config_wrap", "access": "", "host": "Resize", "type": "config", "name": "wrap"}, {"url": "Resize.html#event_wrapChange", "access": "", "host": "Resize", "type": "event", "name": "wrapChange"}, {"url": "Resize.html#config_wrapper", "access": "", "host": "Resize", "type": "config", "name": "wrapper"}, {"url": "Resize.html#event_wrapperChange", "access": "", "host": "Resize", "type": "event", "name": "wrapperChange"}, {"url": "Resize.html#config_wrapTypes", "access": "", "host": "Resize", "type": "config", "name": "wrapTypes"}, {"url": "Resize.html#event_wrapTypesChange", "access": "", "host": "Resize", "type": "event", "name": "wrapTypesChange"}];
+    var ALL_YUI_PROPS = [{"url": "Resize.html#event_activeHandleChange", "access": "", "host": "Resize", "type": "event", "name": "activeHandleChange"}, {"url": "Resize.html#event_activeHandleElChange", "access": "", "host": "Resize", "type": "event", "name": "activeHandleElChange"}, {"url": "Resize.html#method__afterResize", "access": "protected", "host": "Resize", "type": "method", "name": "_afterResize"}, {"url": "Resize.html#config_autoHide", "access": "", "host": "Resize", "type": "config", "name": "autoHide"}, {"url": "Resize.html#event_autoHideChange", "access": "", "host": "Resize", "type": "event", "name": "autoHideChange"}, {"url": "Resize.html#method_bindUI", "access": "protected", "host": "Resize", "type": "method", "name": "bindUI"}, {"url": "Resize.html#method__buildHandle", "access": "protected", "host": "Resize", "type": "method", "name": "_buildHandle"}, {"url": "Resize.html#config_changeHeightHandles", "access": "", "host": "Resize", "type": "config", "name": "changeHeightHandles"}, {"url": "Resize.html#event_changeHeightHandlesChange", "access": "", "host": "Resize", "type": "event", "name": "changeHeightHandlesChange"}, {"url": "Resize.html#config_changeLeftHandles", "access": "", "host": "Resize", "type": "config", "name": "changeLeftHandles"}, {"url": "Resize.html#event_changeLeftHandlesChange", "access": "", "host": "Resize", "type": "event", "name": "changeLeftHandlesChange"}, {"url": "Resize.html#config_changeTopHandles", "access": "", "host": "Resize", "type": "config", "name": "changeTopHandles"}, {"url": "Resize.html#event_changeTopHandlesChange", "access": "", "host": "Resize", "type": "event", "name": "changeTopHandlesChange"}, {"url": "Resize.html#config_changeWidthHandles", "access": "", "host": "Resize", "type": "config", "name": "changeWidthHandles"}, {"url": "Resize.html#event_changeWidthHandlesChange", "access": "", "host": "Resize", "type": "event", "name": "changeWidthHandlesChange"}, {"url": "Resize.html#method__checkConstrain", "access": "protected", "host": "Resize", "type": "method", "name": "_checkConstrain"}, {"url": "Resize.html#method__checkHeight", "access": "protected", "host": "Resize", "type": "method", "name": "_checkHeight"}, {"url": "Resize.html#method__checkRatio", "access": "protected", "host": "Resize", "type": "method", "name": "_checkRatio"}, {"url": "Resize.html#method__checkRegion", "access": "protected", "host": "Resize", "type": "method", "name": "_checkRegion"}, {"url": "Resize.html#method__checkWidth", "access": "protected", "host": "Resize", "type": "method", "name": "_checkWidth"}, {"url": "Resize.html#config_constrain2node", "access": "", "host": "Resize", "type": "config", "name": "constrain2node"}, {"url": "Resize.html#event_constrain2nodeChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2nodeChange"}, {"url": "Resize.html#config_constrain2region", "access": "", "host": "Resize", "type": "config", "name": "constrain2region"}, {"url": "Resize.html#event_constrain2regionChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2regionChange"}, {"url": "Resize.html#config_constrain2view", "access": "", "host": "Resize", "type": "config", "name": "constrain2view"}, {"url": "Resize.html#event_constrain2viewChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2viewChange"}, {"url": "Resize.html#method__copyStyles", "access": "protected", "host": "Resize", "type": "method", "name": "_copyStyles"}, {"url": "Resize.html#method__defMouseUpFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defMouseUpFn"}, {"url": "Resize.html#method__defResizeEndFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeEndFn"}, {"url": "Resize.html#method__defResizeFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeFn"}, {"url": "Resize.html#method__defResizeStartFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeStartFn"}, {"url": "Resize.html#method_destructor", "access": "protected", "host": "Resize", "type": "method", "name": "destructor"}, {"url": "Resize.html#method_eachHandle", "access": "", "host": "Resize", "type": "method", "name": "eachHandle"}, {"url": "Resize.html#method__handleMouseUpEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleMouseUpEvent"}, {"url": "Resize.html#method__handleResizeEndEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeEndEvent"}, {"url": "Resize.html#method__handleResizeEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeEvent"}, {"url": "Resize.html#method__handleResizeStartEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeStartEvent"}, {"url": "Resize.html#config_handles", "access": "", "host": "Resize", "type": "config", "name": "handles"}, {"url": "Resize.html#event_handlesChange", "access": "", "host": "Resize", "type": "event", "name": "handlesChange"}, {"url": "Resize.html#property_info", "access": "protected", "host": "Resize", "type": "property", "name": "info"}, {"url": "Resize.html#method_initializer", "access": "protected", "host": "Resize", "type": "method", "name": "initializer"}, {"url": "Resize.html#config_maxHeight", "access": "", "host": "Resize", "type": "config", "name": "maxHeight"}, {"url": "Resize.html#event_maxHeightChange", "access": "", "host": "Resize", "type": "event", "name": "maxHeightChange"}, {"url": "Resize.html#config_maxWidth", "access": "", "host": "Resize", "type": "config", "name": "maxWidth"}, {"url": "Resize.html#event_maxWidthChange", "access": "", "host": "Resize", "type": "event", "name": "maxWidthChange"}, {"url": "Resize.html#config_minHeight", "access": "", "host": "Resize", "type": "config", "name": "minHeight"}, {"url": "Resize.html#event_minHeightChange", "access": "", "host": "Resize", "type": "event", "name": "minHeightChange"}, {"url": "Resize.html#config_minWidth", "access": "", "host": "Resize", "type": "config", "name": "minWidth"}, {"url": "Resize.html#event_minWidthChange", "access": "", "host": "Resize", "type": "event", "name": "minWidthChange"}, {"url": "Resize.html#config_node", "access": "", "host": "Resize", "type": "config", "name": "node"}, {"url": "Resize.html#event_nodeChange", "access": "", "host": "Resize", "type": "event", "name": "nodeChange"}, {"url": "Resize.html#method__onHandleMouseOut", "access": "protected", "host": "Resize", "type": "method", "name": "_onHandleMouseOut"}, {"url": "Resize.html#method__onHandleMouseOver", "access": "protected", "host": "Resize", "type": "method", "name": "_onHandleMouseOver"}, {"url": "Resize.html#method__onWrapperMouseEnter", "access": "protected", "host": "Resize", "type": "method", "name": "_onWrapperMouseEnter"}, {"url": "Resize.html#method__onWrapperMouseLeave", "access": "protected", "host": "Resize", "type": "method", "name": "_onWrapperMouseLeave"}, {"url": "Resize.html#property_originalInfo", "access": "protected", "host": "Resize", "type": "property", "name": "originalInfo"}, {"url": "Resize.html#config_preserveRatio", "access": "", "host": "Resize", "type": "config", "name": "preserveRatio"}, {"url": "Resize.html#event_preserveRatioChange", "access": "", "host": "Resize", "type": "event", "name": "preserveRatioChange"}, {"url": "Resize.html#config_proxy", "access": "", "host": "Resize", "type": "config", "name": "proxy"}, {"url": "Resize.html#event_proxyChange", "access": "", "host": "Resize", "type": "event", "name": "proxyChange"}, {"url": "Resize.html#config_proxyEl", "access": "", "host": "Resize", "type": "config", "name": "proxyEl"}, {"url": "Resize.html#event_proxyElChange", "access": "", "host": "Resize", "type": "event", "name": "proxyElChange"}, {"url": "Resize.html#method_renderer", "access": "protected", "host": "Resize", "type": "method", "name": "renderer"}, {"url": "Resize.html#method__renderHandles", "access": "protected", "host": "Resize", "type": "method", "name": "_renderHandles"}, {"url": "Resize.html#method__renderProxy", "access": "protected", "host": "Resize", "type": "method", "name": "_renderProxy"}, {"url": "Resize.html#method_renderUI", "access": "protected", "host": "Resize", "type": "method", "name": "renderUI"}, {"url": "Resize.html#method__resize", "access": "protected", "host": "Resize", "type": "method", "name": "_resize"}, {"url": "Resize.html#event_resize:end", "access": "", "host": "Resize", "type": "event", "name": "resize:end"}, {"url": "Resize.html#event_resize:mouseUp", "access": "", "host": "Resize", "type": "event", "name": "resize:mouseUp"}, {"url": "Resize.html#event_resize:resize", "access": "", "host": "Resize", "type": "event", "name": "resize:resize"}, {"url": "Resize.html#event_resize:start", "access": "", "host": "Resize", "type": "event", "name": "resize:start"}, {"url": "Resize.html#property_Resize.ATTRS", "access": "", "host": "Resize", "type": "property", "name": "Resize.ATTRS"}, {"url": "Resize.html#property_Resize.NAME", "access": "", "host": "Resize", "type": "property", "name": "Resize.NAME"}, {"url": "Resize.html#config_resizing", "access": "", "host": "Resize", "type": "config", "name": "resizing"}, {"url": "Resize.html#event_resizingChange", "access": "", "host": "Resize", "type": "event", "name": "resizingChange"}, {"url": "Resize.html#method__setActiveHandlesUI", "access": "protected", "host": "Resize", "type": "method", "name": "_setActiveHandlesUI"}, {"url": "Resize.html#method__setHideHandlesUI", "access": "protected", "host": "Resize", "type": "method", "name": "_setHideHandlesUI"}, {"url": "Resize.html#method__setOffset", "access": "protected", "host": "Resize", "type": "method", "name": "_setOffset"}, {"url": "Resize.html#method__syncProxyUI", "access": "protected", "host": "Resize", "type": "method", "name": "_syncProxyUI"}, {"url": "Resize.html#method__syncUI", "access": "protected", "host": "Resize", "type": "method", "name": "_syncUI"}, {"url": "Resize.html#method_syncUI", "access": "protected", "host": "Resize", "type": "method", "name": "syncUI"}, {"url": "Resize.html#config_tickX", "access": "", "host": "Resize", "type": "config", "name": "tickX"}, {"url": "Resize.html#event_tickXChange", "access": "", "host": "Resize", "type": "event", "name": "tickXChange"}, {"url": "Resize.html#config_tickY", "access": "", "host": "Resize", "type": "config", "name": "tickY"}, {"url": "Resize.html#event_tickYChange", "access": "", "host": "Resize", "type": "event", "name": "tickYChange"}, {"url": "Resize.html#config_wrap", "access": "", "host": "Resize", "type": "config", "name": "wrap"}, {"url": "Resize.html#event_wrapChange", "access": "", "host": "Resize", "type": "event", "name": "wrapChange"}, {"url": "Resize.html#config_wrapper", "access": "", "host": "Resize", "type": "config", "name": "wrapper"}, {"url": "Resize.html#event_wrapperChange", "access": "", "host": "Resize", "type": "event", "name": "wrapperChange"}, {"url": "Resize.html#config_wrapTypes", "access": "", "host": "Resize", "type": "config", "name": "wrapTypes"}, {"url": "Resize.html#event_wrapTypesChange", "access": "", "host": "Resize", "type": "event", "name": "wrapTypesChange"}];
 </script>
 </body>
 </html>

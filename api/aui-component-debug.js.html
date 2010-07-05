@@ -958,11 +958,21 @@
 		<span class="nx">configProto</span><span class="p">.</span><span class="nx">_SYNC_UI_ATTRS</span> <span class="o">=</span> <span class="nx">COMP_PROTO</span><span class="p">.</span><span class="nx">_SYNC_UI_ATTRS</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">SYNC_UI_ATTRS</span><span class="p">);</span>
 	<span class="p">}</span>
 
+	<span class="kd">var</span> <span class="nx">augmentsClasses</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">AUGMENTS</span><span class="p">;</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="nx">augmentsClasses</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">augmentsClasses</span><span class="p">))</span> <span class="p">{</span>
+		<span class="nx">augmentsClasses</span> <span class="o">=</span> <span class="p">[</span><span class="nx">augmentsClasses</span><span class="p">];</span>
+	<span class="p">}</span>
+
 	<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">component</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
 
 	<span class="k">delete</span> <span class="nx">component</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 
 	<span class="nx">A</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">component</span><span class="p">,</span> <span class="nx">extendsClass</span><span class="p">,</span> <span class="nx">configProto</span><span class="p">);</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="nx">augmentsClasses</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">component</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Base</span><span class="p">.</span><span class="nx">build</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">NAME</span><span class="p">,</span> <span class="nx">component</span><span class="p">,</span> <span class="nx">augmentsClasses</span><span class="p">,</span> <span class="p">{</span> <span class="nx">dynamic</span><span class="o">:</span> <span class="kc">false</span> <span class="p">});</span>
+	<span class="p">}</span>
 
 	<span class="k">return</span> <span class="nx">component</span><span class="p">;</span>
 <span class="p">};</span>

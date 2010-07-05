@@ -565,13 +565,13 @@
 		<span class="k">return</span> <span class="p">(</span><span class="nx">v</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">);</span>
 	<span class="p">},</span>
 
+	<span class="nx">ANCHOR</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span>
 	<span class="nx">BLANK</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
 	<span class="nx">BOUNDING_BOX</span> <span class="o">=</span> <span class="s1">&#39;boundingBox&#39;</span><span class="p">,</span>
 	<span class="nx">CAN_RESET</span> <span class="o">=</span> <span class="s1">&#39;canReset&#39;</span><span class="p">,</span>
 	<span class="nx">CLEARFIX</span> <span class="o">=</span> <span class="s1">&#39;clearfix&#39;</span><span class="p">,</span>
 	<span class="nx">CONTENT_BOX</span> <span class="o">=</span> <span class="s1">&#39;contentBox&#39;</span><span class="p">,</span>
 	<span class="nx">DEFAULT_SELECTED</span> <span class="o">=</span> <span class="s1">&#39;defaultSelected&#39;</span><span class="p">,</span>
-	<span class="nx">DESTROY</span> <span class="o">=</span> <span class="s1">&#39;destroy&#39;</span><span class="p">,</span>
 	<span class="nx">DISABLED</span> <span class="o">=</span> <span class="s1">&#39;disabled&#39;</span><span class="p">,</span>
 	<span class="nx">DOT</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span>
 	<span class="nx">ELEMENT</span> <span class="o">=</span> <span class="s1">&#39;element&#39;</span><span class="p">,</span>
@@ -579,17 +579,19 @@
 	<span class="nx">EMPTY_STR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
 	<span class="nx">HELPER</span> <span class="o">=</span> <span class="s1">&#39;helper&#39;</span><span class="p">,</span>
 	<span class="nx">HOVER</span> <span class="o">=</span> <span class="s1">&#39;hover&#39;</span><span class="p">,</span>
+	<span class="nx">HREF</span> <span class="o">=</span> <span class="s1">&#39;href&#39;</span><span class="p">,</span>
+	<span class="nx">HREF_JAVASCRIPT</span> <span class="o">=</span> <span class="s1">&#39;javascript:;&#39;</span><span class="p">,</span>
 	<span class="nx">ID</span> <span class="o">=</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span>
-	<span class="nx">INNER_HTML</span> <span class="o">=</span> <span class="s1">&#39;innerHTML&#39;</span><span class="p">,</span>
 	<span class="nx">INPUT</span> <span class="o">=</span> <span class="s1">&#39;input&#39;</span><span class="p">,</span>
 	<span class="nx">INPUT_NAME</span> <span class="o">=</span> <span class="s1">&#39;inputName&#39;</span><span class="p">,</span>
 	<span class="nx">LABEL</span> <span class="o">=</span> <span class="s1">&#39;label&#39;</span><span class="p">,</span>
-	<span class="nx">LABEL_ELEMENT</span> <span class="o">=</span> <span class="s1">&#39;labelElement&#39;</span><span class="p">,</span>
+	<span class="nx">LABEL_NODE</span> <span class="o">=</span> <span class="s1">&#39;labelNode&#39;</span><span class="p">,</span>
 	<span class="nx">NAME</span> <span class="o">=</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span>
 	<span class="nx">NODE_NAME</span> <span class="o">=</span> <span class="s1">&#39;nodeName&#39;</span><span class="p">,</span>
 	<span class="nx">OFF</span> <span class="o">=</span> <span class="s1">&#39;off&#39;</span><span class="p">,</span>
 	<span class="nx">ON</span> <span class="o">=</span> <span class="s1">&#39;on&#39;</span><span class="p">,</span>
 	<span class="nx">RATING</span> <span class="o">=</span> <span class="s1">&#39;rating&#39;</span><span class="p">,</span>
+	<span class="nx">RATING_ELEMENT</span> <span class="o">=</span> <span class="s1">&#39;ratingElement&#39;</span><span class="p">,</span>
 	<span class="nx">SELECTED_INDEX</span> <span class="o">=</span> <span class="s1">&#39;selectedIndex&#39;</span><span class="p">,</span>
 	<span class="nx">SHOW_TITLE</span> <span class="o">=</span> <span class="s1">&#39;showTitle&#39;</span><span class="p">,</span>
 	<span class="nx">SIZE</span> <span class="o">=</span> <span class="s1">&#39;size&#39;</span><span class="p">,</span>
@@ -608,7 +610,11 @@
 	<span class="nx">CSS_RATING_EL</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">RATING</span><span class="p">,</span> <span class="nx">ELEMENT</span><span class="p">),</span>
 	<span class="nx">CSS_RATING_EL_HOVER</span>  <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">RATING</span><span class="p">,</span> <span class="nx">ELEMENT</span><span class="p">,</span> <span class="nx">HOVER</span><span class="p">),</span>
 	<span class="nx">CSS_RATING_EL_OFF</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">RATING</span><span class="p">,</span> <span class="nx">ELEMENT</span><span class="p">,</span> <span class="nx">OFF</span><span class="p">),</span>
-	<span class="nx">CSS_RATING_EL_ON</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">RATING</span><span class="p">,</span> <span class="nx">ELEMENT</span><span class="p">,</span> <span class="nx">ON</span><span class="p">);</span>
+	<span class="nx">CSS_RATING_EL_ON</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">RATING</span><span class="p">,</span> <span class="nx">ELEMENT</span><span class="p">,</span> <span class="nx">ON</span><span class="p">),</span>
+
+	<span class="nx">TPL_LABEL</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span><span class="o">+</span><span class="nx">CSS_RATING_LABEL_EL</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
+	<span class="nx">TPL_RATING_EL</span> <span class="o">=</span> <span class="s1">&#39;&lt;a href=&quot;&#39;</span><span class="o">+</span><span class="nx">HREF_JAVASCRIPT</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&lt;/a&gt;&#39;</span><span class="p">,</span>
+	<span class="nx">TPL_RATING_EL_DISABLED</span> <span class="o">=</span> <span class="s1">&#39;&lt;span&gt;&lt;/span&gt;&#39;</span><span class="p">;</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * &lt;p&gt;&lt;img src=&quot;assets/images/aui-rating/main.png&quot;/&gt;&lt;/p&gt;</span>
@@ -708,8 +714,6 @@
 <span class="cm">			 * @type NodeList</span>
 <span class="cm">			 */</span>
 			<span class="nx">elements</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">writeOnce</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-				<span class="nx">readOnly</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
 				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNodeList</span>
 			<span class="p">},</span>
 
@@ -721,17 +725,6 @@
 <span class="cm">			 * @type Node</span>
 <span class="cm">			 */</span>
 			<span class="nx">hiddenInput</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNode</span>
-			<span class="p">},</span>
-
-			<span class="cm">/**</span>
-<span class="cm">			 * Reference for the element which will contain the</span>
-<span class="cm">	         * &lt;a href=&quot;Rating.html#config_label&quot;&gt;label&lt;/a&gt;.</span>
-<span class="cm">			 *</span>
-<span class="cm">			 * @attribute labelElement</span>
-<span class="cm">			 * @type Node</span>
-<span class="cm">			 */</span>
-			<span class="nx">labelElement</span><span class="o">:</span> <span class="p">{</span>
 				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNode</span>
 			<span class="p">},</span>
 
@@ -761,8 +754,32 @@
 				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isString</span>
 			<span class="p">},</span>
 
-			<span class="nx">render</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * DOM Node to display the text of the StarRating. If not</span>
+<span class="cm">             * specified try to query using HTML_PARSER an element inside</span>
+<span class="cm">             * boundingBox which matches &lt;code&gt;aui-rating-label-element&lt;/code&gt;.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute labelNode</span>
+<span class="cm">			 * @default Generated div element.</span>
+<span class="cm">			 * @type String</span>
+<span class="cm">			 */</span>
+			<span class="nx">labelNode</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_LABEL</span><span class="p">);</span>
+				<span class="p">},</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isNode</span>
+			<span class="p">},</span>
+
+			<span class="nx">ratingElement</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+					<span class="kd">var</span> <span class="nx">ratingElement</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DISABLED</span><span class="p">)</span> <span class="o">?</span> <span class="nx">TPL_RATING_EL_DISABLED</span> <span class="o">:</span> <span class="nx">TPL_RATING_EL</span>
+					<span class="p">);</span>
+
+					<span class="k">return</span> <span class="nx">ratingElement</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_RATING_EL</span><span class="p">);</span>
+				<span class="p">}</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
@@ -825,6 +842,30 @@
 			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
 		<span class="p">},</span>
 
+		<span class="cm">/**</span>
+<span class="cm">		 * Object hash, defining how attribute values are to be parsed from</span>
+<span class="cm">		 * markup contained in the widget&#39;s content box.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property StarRating.HTML_PARSER</span>
+<span class="cm">		 * @type Object</span>
+<span class="cm">		 * @static</span>
+<span class="cm">		 */</span>
+		<span class="nx">HTML_PARSER</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">elements</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">srcNode</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="nx">srcNode</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_RATING_EL</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">label</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">srcNode</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">labelNode</span> <span class="o">=</span> <span class="nx">srcNode</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_RATING_LABEL_EL</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">labelNode</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">labelNode</span><span class="p">.</span><span class="nx">html</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">labelNode</span><span class="o">:</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_RATING_LABEL_EL</span>
+		<span class="p">},</span>
+
 		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
 			<span class="cm">/**</span>
 <span class="cm">			 * Construction logic executed during Rating instantiation. Lifecycle.</span>
@@ -848,8 +889,12 @@
 <span class="cm">			 */</span>
 			<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
+
+				<span class="nx">contentBox</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_CLEAR_FIX</span><span class="p">);</span>
 
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">_parseInputElements</span><span class="p">();</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderLabel</span><span class="p">();</span>
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">_renderElements</span><span class="p">();</span>
 			<span class="p">},</span>
 
@@ -998,6 +1043,29 @@
 				<span class="c1">// checks if the widget is not disabled and if the dom event is firing with a item as target</span>
 				<span class="c1">// do not fire custom events for other elements into the boundingBox</span>
 				<span class="k">return</span> <span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DISABLED</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">domTarget</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">CSS_RATING_EL</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Create rating elements based on the &lt;code&gt;size&lt;/code&gt;</span>
+<span class="cm">             * attribute. It&#39;s only invoked when the HTML_PARSER does not find</span>
+<span class="cm">             * nothing.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _createElements</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 * @return {NodeList}</span>
+<span class="cm">			 */</span>
+			<span class="nx">_createElements</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">elements</span> <span class="o">=</span> <span class="p">[];</span>
+				<span class="kd">var</span> <span class="nx">ratingElement</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">RATING_ELEMENT</span><span class="p">);</span>
+
+				<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">size</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SIZE</span><span class="p">);</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">size</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">elements</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span>
+						<span class="nx">ratingElement</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+					<span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="k">return</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">NodeList</span><span class="p">(</span><span class="nx">elements</span><span class="p">);</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
@@ -1192,59 +1260,64 @@
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
+<span class="cm">			 * Render the Rating label.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _renderLabel</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_renderLabel</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LABEL_NODE</span><span class="p">)</span>
+				<span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
 <span class="cm">			 * Render the Rating elements.</span>
 <span class="cm">			 *</span>
 <span class="cm">			 * @method _renderElements</span>
 <span class="cm">			 * @protected</span>
 <span class="cm">			 */</span>
-			<span class="nx">_renderElements</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="nx">_renderElements</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">elements</span><span class="p">)</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
-				<span class="kd">var</span> <span class="nx">disabled</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DISABLED</span><span class="p">);</span>
 
-				<span class="kd">var</span> <span class="nx">ratingElement</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-				<span class="k">if</span> <span class="p">(</span><span class="nx">disabled</span><span class="p">){</span>
-					<span class="nx">ratingElement</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;&lt;span&gt;&lt;/span&gt;&#39;</span><span class="p">);</span>
-				<span class="p">}</span>
-				<span class="k">else</span> <span class="p">{</span>
-					<span class="nx">ratingElement</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;&lt;a href=&quot;javascript:;&quot;&gt;&lt;/a&gt;&#39;</span><span class="p">);</span>
-
+				<span class="c1">// if not found any elements from the HTML_PARSER create them based on the size attribute</span>
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ELEMENTS</span><span class="p">).</span><span class="nx">size</span><span class="p">())</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span>
+						<span class="nx">ELEMENTS</span><span class="p">,</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">_createElements</span><span class="p">()</span>
+					<span class="p">);</span>
 				<span class="p">}</span>
 
-				<span class="kd">var</span> <span class="nx">labelElement</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;&lt;div&gt;&lt;/div&gt;&#39;</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ELEMENTS</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span>
+					<span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+						<span class="kd">var</span>	<span class="nx">data</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getInputData</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
 
-				<span class="nx">contentBox</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_CLEAR_FIX</span><span class="p">);</span>
-				<span class="nx">ratingElement</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_RATING_EL</span><span class="p">);</span>
-				<span class="nx">labelElement</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_RATING_LABEL_EL</span><span class="p">);</span>
+						<span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">content</span><span class="p">;</span>
 
-				<span class="nx">contentBox</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">labelElement</span><span class="p">);</span>
+						<span class="c1">// try to use the pulled title data from the dom, otherwise use the TITLE attr, in the last case use the content</span>
+						<span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">title</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">)</span> <span class="o">||</span> <span class="nx">content</span><span class="p">;</span>
 
-				<span class="c1">// creating rating elements</span>
-				<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">size</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SIZE</span><span class="p">);</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">size</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-					<span class="kd">var</span>	<span class="nx">data</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getInputData</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
-					<span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nx">ratingElement</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">();</span>
+						<span class="c1">// setting the content</span>
+						<span class="k">if</span> <span class="p">(</span><span class="nx">content</span> <span class="o">||</span> <span class="nx">title</span><span class="p">)</span> <span class="p">{</span>
+							<span class="c1">// if there is no content use the title as content</span>
+							<span class="nx">element</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">content</span> <span class="o">||</span> <span class="nx">title</span><span class="p">);</span>
+						<span class="p">}</span>
 
-					<span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">content</span><span class="p">;</span>
+						<span class="c1">// setting the title</span>
+						<span class="k">if</span> <span class="p">(</span><span class="nx">title</span> <span class="o">&amp;&amp;</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SHOW_TITLE</span><span class="p">))</span> <span class="p">{</span>
+							<span class="nx">element</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">,</span> <span class="nx">title</span><span class="p">);</span>
+						<span class="p">}</span>
 
-					<span class="c1">// try to use the pulled title data from the dom, otherwise use the TITLE attr, in the last case use the content</span>
-					<span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">title</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">)</span> <span class="o">||</span> <span class="nx">content</span><span class="p">;</span>
+						<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">element</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="nx">HREF</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE_NAME</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">==</span> <span class="nx">ANCHOR</span><span class="p">))</span> <span class="p">{</span>
+							<span class="nx">element</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="nx">HREF</span><span class="p">,</span> <span class="nx">HREF_JAVASCRIPT</span><span class="p">);</span>
+						<span class="p">}</span>
 
-					<span class="c1">// setting the content</span>
-					<span class="k">if</span> <span class="p">(</span><span class="nx">content</span> <span class="o">||</span> <span class="nx">title</span><span class="p">)</span> <span class="p">{</span>
-						<span class="c1">// if there is no content use the title as content</span>
-						<span class="nx">element</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">content</span> <span class="o">||</span> <span class="nx">title</span><span class="p">);</span>
+						<span class="nx">contentBox</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
 					<span class="p">}</span>
-
-					<span class="c1">// setting the title</span>
-					<span class="k">if</span> <span class="p">(</span><span class="nx">title</span> <span class="o">&amp;&amp;</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SHOW_TITLE</span><span class="p">))</span> <span class="p">{</span>
-						<span class="nx">element</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="nx">TITLE</span><span class="p">,</span> <span class="nx">title</span><span class="p">);</span>
-					<span class="p">}</span>
-
-					<span class="nx">contentBox</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
-				<span class="p">}</span>
-
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">LABEL_ELEMENT</span><span class="p">,</span> <span class="nx">labelElement</span><span class="p">);</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">ELEMENTS</span><span class="p">,</span> <span class="nx">contentBox</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_RATING_EL</span><span class="p">));</span>
+				<span class="p">);</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
@@ -1272,7 +1345,7 @@
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">labelText</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LABEL</span><span class="p">);</span>
 
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LABEL_ELEMENT</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">labelText</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LABEL_NODE</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">labelText</span><span class="p">);</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
@@ -1297,7 +1370,6 @@
 <span class="cm">			 */</span>
 			<span class="nx">_handleClickEvent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">domTarget</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">domEvent</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
 
 				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_canFireCustomEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">))</span> <span class="p">{</span>
 					<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">EV_RATING_ITEM_CLICK</span><span class="p">,</span> <span class="p">{</span>
@@ -1379,7 +1451,7 @@
 <span class="cm"> * &lt;/ul&gt;</span>
 <span class="cm"> *</span>
 <span class="cm"> * Quick Example:&lt;br/&gt;</span>
-<span class="cm"> * </span>
+<span class="cm"> *</span>
 <span class="cm"> * &lt;pre&gt;&lt;code&gt;var instance = new A.ThumbRating({</span>
 <span class="cm"> *   boundingBox: &#39;#rating&#39;,</span>
 <span class="cm"> *   defaultSelected: 3,</span>
@@ -1501,7 +1573,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Rating.html#method__afterSetLabel", "access": "protected", "host": "Rating", "type": "method", "name": "_afterSetLabel"}, {"url": "Rating.html#method_bindUI", "access": "protected", "host": "Rating", "type": "method", "name": "bindUI"}, {"url": "Rating.html#method__canFireCustomEvent", "access": "protected", "host": "Rating", "type": "method", "name": "_canFireCustomEvent"}, {"url": "Rating.html#config_canReset", "access": "", "host": "Rating", "type": "config", "name": "canReset"}, {"url": "Rating.html#event_canResetChange", "access": "", "host": "Rating", "type": "event", "name": "canResetChange"}, {"url": "Rating.html#method_clearSelection", "access": "", "host": "Rating", "type": "method", "name": "clearSelection"}, {"url": "Rating.html#method__createEvents", "access": "protected", "host": "Rating", "type": "method", "name": "_createEvents"}, {"url": "Rating.html#config_defaultSelected", "access": "", "host": "Rating", "type": "config", "name": "defaultSelected"}, {"url": "Rating.html#event_defaultSelectedChange", "access": "", "host": "Rating", "type": "event", "name": "defaultSelectedChange"}, {"url": "Rating.html#method__defRatingItemClickFn", "access": "protected", "host": "Rating", "type": "method", "name": "_defRatingItemClickFn"}, {"url": "Rating.html#method__defRatingItemOutFn", "access": "protected", "host": "Rating", "type": "method", "name": "_defRatingItemOutFn"}, {"url": "Rating.html#method__defRatingItemOverFn", "access": "protected", "host": "Rating", "type": "method", "name": "_defRatingItemOverFn"}, {"url": "Rating.html#method__defRatingItemSelectFn", "access": "protected", "host": "Rating", "type": "method", "name": "_defRatingItemSelectFn"}, {"url": "Rating.html#method_destructor", "access": "protected", "host": "Rating", "type": "method", "name": "destructor"}, {"url": "Rating.html#config_disabled", "access": "", "host": "Rating", "type": "config", "name": "disabled"}, {"url": "Rating.html#event_disabledChange", "access": "", "host": "Rating", "type": "event", "name": "disabledChange"}, {"url": "Rating.html#config_elements", "access": "", "host": "Rating", "type": "config", "name": "elements"}, {"url": "Rating.html#event_elementsChange", "access": "", "host": "Rating", "type": "event", "name": "elementsChange"}, {"url": "Rating.html#method_fillTo", "access": "", "host": "Rating", "type": "method", "name": "fillTo"}, {"url": "ThumbRating.html#method_fillTo", "access": "", "host": "ThumbRating", "type": "method", "name": "fillTo"}, {"url": "Rating.html#method__getInputData", "access": "protected", "host": "Rating", "type": "method", "name": "_getInputData"}, {"url": "Rating.html#method__handleClickEvent", "access": "protected", "host": "Rating", "type": "method", "name": "_handleClickEvent"}, {"url": "Rating.html#method__handleMouseOutEvent", "access": "protected", "host": "Rating", "type": "method", "name": "_handleMouseOutEvent"}, {"url": "Rating.html#method__handleMouseOverEvent", "access": "protected", "host": "Rating", "type": "method", "name": "_handleMouseOverEvent"}, {"url": "Rating.html#config_hiddenInput", "access": "", "host": "Rating", "type": "config", "name": "hiddenInput"}, {"url": "Rating.html#event_hiddenInputChange", "access": "", "host": "Rating", "type": "event", "name": "hiddenInputChange"}, {"url": "Rating.html#method_indexOf", "access": "", "host": "Rating", "type": "method", "name": "indexOf"}, {"url": "Rating.html#method_initializer", "access": "protected", "host": "Rating", "type": "method", "name": "initializer"}, {"url": "Rating.html#config_inputName", "access": "", "host": "Rating", "type": "config", "name": "inputName"}, {"url": "Rating.html#event_inputNameChange", "access": "", "host": "Rating", "type": "event", "name": "inputNameChange"}, {"url": "Rating.html#event_itemClick", "access": "", "host": "Rating", "type": "event", "name": "itemClick"}, {"url": "Rating.html#event_itemOut", "access": "", "host": "Rating", "type": "event", "name": "itemOut"}, {"url": "Rating.html#event_itemSelect", "access": "", "host": "Rating", "type": "event", "name": "itemSelect"}, {"url": "Rating.html#config_label", "access": "", "host": "Rating", "type": "config", "name": "label"}, {"url": "Rating.html#event_labelChange", "access": "", "host": "Rating", "type": "event", "name": "labelChange"}, {"url": "Rating.html#config_labelElement", "access": "", "host": "Rating", "type": "config", "name": "labelElement"}, {"url": "Rating.html#event_labelElementChange", "access": "", "host": "Rating", "type": "event", "name": "labelElementChange"}, {"url": "Rating.html#method__parseInputElements", "access": "protected", "host": "Rating", "type": "method", "name": "_parseInputElements"}, {"url": "Rating.html#property_Rating.ATTRS", "access": "", "host": "Rating", "type": "property", "name": "Rating.ATTRS"}, {"url": "Rating.html#property_Rating.NAME", "access": "", "host": "Rating", "type": "property", "name": "Rating.NAME"}, {"url": "Rating.html#method__renderElements", "access": "protected", "host": "Rating", "type": "method", "name": "_renderElements"}, {"url": "Rating.html#method_renderUI", "access": "protected", "host": "Rating", "type": "method", "name": "renderUI"}, {"url": "ThumbRating.html#method_renderUI", "access": "protected", "host": "ThumbRating", "type": "method", "name": "renderUI"}, {"url": "Rating.html#method_select", "access": "", "host": "Rating", "type": "method", "name": "select"}, {"url": "Rating.html#config_selectedIndex", "access": "", "host": "Rating", "type": "config", "name": "selectedIndex"}, {"url": "Rating.html#event_selectedIndexChange", "access": "", "host": "Rating", "type": "event", "name": "selectedIndexChange"}, {"url": "Rating.html#config_showTitle", "access": "", "host": "Rating", "type": "config", "name": "showTitle"}, {"url": "Rating.html#event_showTitleChange", "access": "", "host": "Rating", "type": "event", "name": "showTitleChange"}, {"url": "Rating.html#config_size", "access": "", "host": "Rating", "type": "config", "name": "size"}, {"url": "ThumbRating.html#config_size", "access": "", "host": "ThumbRating", "type": "config", "name": "size"}, {"url": "Rating.html#event_sizeChange", "access": "", "host": "Rating", "type": "event", "name": "sizeChange"}, {"url": "ThumbRating.html#event_sizeChange", "access": "", "host": "ThumbRating", "type": "event", "name": "sizeChange"}, {"url": "Rating.html#method__syncElements", "access": "protected", "host": "Rating", "type": "method", "name": "_syncElements"}, {"url": "ThumbRating.html#method__syncElements", "access": "protected", "host": "ThumbRating", "type": "method", "name": "_syncElements"}, {"url": "Rating.html#method__syncLabelUI", "access": "protected", "host": "Rating", "type": "method", "name": "_syncLabelUI"}, {"url": "Rating.html#method_syncUI", "access": "protected", "host": "Rating", "type": "method", "name": "syncUI"}, {"url": "ThumbRating.html#property_ThumbRating.ATTRS", "access": "", "host": "ThumbRating", "type": "property", "name": "ThumbRating.ATTRS"}, {"url": "ThumbRating.html#property_ThumbRating.NAME", "access": "", "host": "ThumbRating", "type": "property", "name": "ThumbRating.NAME"}, {"url": "Rating.html#config_title", "access": "", "host": "Rating", "type": "config", "name": "title"}, {"url": "Rating.html#event_titleChange", "access": "", "host": "Rating", "type": "event", "name": "titleChange"}, {"url": "Rating.html#config_value", "access": "", "host": "Rating", "type": "config", "name": "value"}, {"url": "Rating.html#event_valueChange", "access": "", "host": "Rating", "type": "event", "name": "valueChange"}];
+    var ALL_YUI_PROPS = [{"url": "Rating.html#method__afterSetLabel", "access": "protected", "host": "Rating", "type": "method", "name": "_afterSetLabel"}, {"url": "Rating.html#method_bindUI", "access": "protected", "host": "Rating", "type": "method", "name": "bindUI"}, {"url": "Rating.html#method__canFireCustomEvent", "access": "protected", "host": "Rating", "type": "method", "name": "_canFireCustomEvent"}, {"url": "Rating.html#config_canReset", "access": "", "host": "Rating", "type": "config", "name": "canReset"}, {"url": "Rating.html#event_canResetChange", "access": "", "host": "Rating", "type": "event", "name": "canResetChange"}, {"url": "Rating.html#method_clearSelection", "access": "", "host": "Rating", "type": "method", "name": "clearSelection"}, {"url": "Rating.html#method__createElements", "access": "protected", "host": "Rating", "type": "method", "name": "_createElements"}, {"url": "Rating.html#method__createEvents", "access": "protected", "host": "Rating", "type": "method", "name": "_createEvents"}, {"url": "Rating.html#config_defaultSelected", "access": "", "host": "Rating", "type": "config", "name": "defaultSelected"}, {"url": "Rating.html#event_defaultSelectedChange", "access": "", "host": "Rating", "type": "event", "name": "defaultSelectedChange"}, {"url": "Rating.html#method__defRatingItemClickFn", "access": "protected", "host": "Rating", "type": "method", "name": "_defRatingItemClickFn"}, {"url": "Rating.html#method__defRatingItemOutFn", "access": "protected", "host": "Rating", "type": "method", "name": "_defRatingItemOutFn"}, {"url": "Rating.html#method__defRatingItemOverFn", "access": "protected", "host": "Rating", "type": "method", "name": "_defRatingItemOverFn"}, {"url": "Rating.html#method__defRatingItemSelectFn", "access": "protected", "host": "Rating", "type": "method", "name": "_defRatingItemSelectFn"}, {"url": "Rating.html#method_destructor", "access": "protected", "host": "Rating", "type": "method", "name": "destructor"}, {"url": "Rating.html#config_disabled", "access": "", "host": "Rating", "type": "config", "name": "disabled"}, {"url": "Rating.html#event_disabledChange", "access": "", "host": "Rating", "type": "event", "name": "disabledChange"}, {"url": "Rating.html#config_elements", "access": "", "host": "Rating", "type": "config", "name": "elements"}, {"url": "Rating.html#event_elementsChange", "access": "", "host": "Rating", "type": "event", "name": "elementsChange"}, {"url": "Rating.html#method_fillTo", "access": "", "host": "Rating", "type": "method", "name": "fillTo"}, {"url": "ThumbRating.html#method_fillTo", "access": "", "host": "ThumbRating", "type": "method", "name": "fillTo"}, {"url": "Rating.html#method__getInputData", "access": "protected", "host": "Rating", "type": "method", "name": "_getInputData"}, {"url": "Rating.html#method__handleClickEvent", "access": "protected", "host": "Rating", "type": "method", "name": "_handleClickEvent"}, {"url": "Rating.html#method__handleMouseOutEvent", "access": "protected", "host": "Rating", "type": "method", "name": "_handleMouseOutEvent"}, {"url": "Rating.html#method__handleMouseOverEvent", "access": "protected", "host": "Rating", "type": "method", "name": "_handleMouseOverEvent"}, {"url": "Rating.html#config_hiddenInput", "access": "", "host": "Rating", "type": "config", "name": "hiddenInput"}, {"url": "Rating.html#event_hiddenInputChange", "access": "", "host": "Rating", "type": "event", "name": "hiddenInputChange"}, {"url": "Rating.html#method_indexOf", "access": "", "host": "Rating", "type": "method", "name": "indexOf"}, {"url": "Rating.html#method_initializer", "access": "protected", "host": "Rating", "type": "method", "name": "initializer"}, {"url": "Rating.html#config_inputName", "access": "", "host": "Rating", "type": "config", "name": "inputName"}, {"url": "Rating.html#event_inputNameChange", "access": "", "host": "Rating", "type": "event", "name": "inputNameChange"}, {"url": "Rating.html#event_itemClick", "access": "", "host": "Rating", "type": "event", "name": "itemClick"}, {"url": "Rating.html#event_itemOut", "access": "", "host": "Rating", "type": "event", "name": "itemOut"}, {"url": "Rating.html#event_itemSelect", "access": "", "host": "Rating", "type": "event", "name": "itemSelect"}, {"url": "Rating.html#config_label", "access": "", "host": "Rating", "type": "config", "name": "label"}, {"url": "Rating.html#event_labelChange", "access": "", "host": "Rating", "type": "event", "name": "labelChange"}, {"url": "Rating.html#config_labelNode", "access": "", "host": "Rating", "type": "config", "name": "labelNode"}, {"url": "Rating.html#event_labelNodeChange", "access": "", "host": "Rating", "type": "event", "name": "labelNodeChange"}, {"url": "Rating.html#method__parseInputElements", "access": "protected", "host": "Rating", "type": "method", "name": "_parseInputElements"}, {"url": "Rating.html#property_Rating.ATTRS", "access": "", "host": "Rating", "type": "property", "name": "Rating.ATTRS"}, {"url": "Rating.html#property_Rating.NAME", "access": "", "host": "Rating", "type": "property", "name": "Rating.NAME"}, {"url": "Rating.html#method__renderElements", "access": "protected", "host": "Rating", "type": "method", "name": "_renderElements"}, {"url": "Rating.html#method__renderLabel", "access": "protected", "host": "Rating", "type": "method", "name": "_renderLabel"}, {"url": "Rating.html#method_renderUI", "access": "protected", "host": "Rating", "type": "method", "name": "renderUI"}, {"url": "ThumbRating.html#method_renderUI", "access": "protected", "host": "ThumbRating", "type": "method", "name": "renderUI"}, {"url": "Rating.html#method_select", "access": "", "host": "Rating", "type": "method", "name": "select"}, {"url": "Rating.html#config_selectedIndex", "access": "", "host": "Rating", "type": "config", "name": "selectedIndex"}, {"url": "Rating.html#event_selectedIndexChange", "access": "", "host": "Rating", "type": "event", "name": "selectedIndexChange"}, {"url": "Rating.html#config_showTitle", "access": "", "host": "Rating", "type": "config", "name": "showTitle"}, {"url": "Rating.html#event_showTitleChange", "access": "", "host": "Rating", "type": "event", "name": "showTitleChange"}, {"url": "Rating.html#config_size", "access": "", "host": "Rating", "type": "config", "name": "size"}, {"url": "ThumbRating.html#config_size", "access": "", "host": "ThumbRating", "type": "config", "name": "size"}, {"url": "Rating.html#event_sizeChange", "access": "", "host": "Rating", "type": "event", "name": "sizeChange"}, {"url": "ThumbRating.html#event_sizeChange", "access": "", "host": "ThumbRating", "type": "event", "name": "sizeChange"}, {"url": "Rating.html#property_StarRating.HTML_PARSER", "access": "", "host": "Rating", "type": "property", "name": "StarRating.HTML_PARSER"}, {"url": "Rating.html#method__syncElements", "access": "protected", "host": "Rating", "type": "method", "name": "_syncElements"}, {"url": "ThumbRating.html#method__syncElements", "access": "protected", "host": "ThumbRating", "type": "method", "name": "_syncElements"}, {"url": "Rating.html#method__syncLabelUI", "access": "protected", "host": "Rating", "type": "method", "name": "_syncLabelUI"}, {"url": "Rating.html#method_syncUI", "access": "protected", "host": "Rating", "type": "method", "name": "syncUI"}, {"url": "ThumbRating.html#property_ThumbRating.ATTRS", "access": "", "host": "ThumbRating", "type": "property", "name": "ThumbRating.ATTRS"}, {"url": "ThumbRating.html#property_ThumbRating.NAME", "access": "", "host": "ThumbRating", "type": "property", "name": "ThumbRating.NAME"}, {"url": "Rating.html#config_title", "access": "", "host": "Rating", "type": "config", "name": "title"}, {"url": "Rating.html#event_titleChange", "access": "", "host": "Rating", "type": "event", "name": "titleChange"}, {"url": "Rating.html#config_value", "access": "", "host": "Rating", "type": "config", "name": "value"}, {"url": "Rating.html#event_valueChange", "access": "", "host": "Rating", "type": "event", "name": "valueChange"}];
 </script>
 </body>
 </html>

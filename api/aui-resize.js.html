@@ -584,22 +584,19 @@
 <span class="cm"> * @module aui-resize</span>
 <span class="cm"> */</span>
 
-<span class="c1">// TODO: Containment with proxy enabled and fix containment handles locking.</span>
-<span class="c1">// To fix the Containment #2528540 need to be fixed.</span>
-<span class="kd">var</span> <span class="nx">L</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
-	<span class="nx">isArray</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isArray</span><span class="p">,</span>
-	<span class="nx">isBoolean</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isBoolean</span><span class="p">,</span>
-	<span class="nx">isNumber</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">,</span>
-	<span class="nx">isString</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isString</span><span class="p">,</span>
+<span class="kd">var</span> <span class="nx">Lang</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+	<span class="nx">isArray</span> <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">,</span>
+	<span class="nx">isBoolean</span> <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isBoolean</span><span class="p">,</span>
+	<span class="nx">isNumber</span> <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">,</span>
+	<span class="nx">isString</span> <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">,</span>
 
-	<span class="nx">trim</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">trim</span><span class="p">,</span>
+	<span class="nx">trim</span> <span class="o">=</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">trim</span><span class="p">,</span>
 	<span class="nx">indexOf</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">,</span>
 
 	<span class="nx">DOT</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span>
 	<span class="nx">COMMA</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span>
 	<span class="nx">SPACE</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="p">,</span>
 
-	<span class="nx">ABSOLUTE</span> <span class="o">=</span> <span class="s1">&#39;absolute&#39;</span><span class="p">,</span>
 	<span class="nx">ACTIVE</span> <span class="o">=</span> <span class="s1">&#39;active&#39;</span><span class="p">,</span>
 	<span class="nx">ACTIVE_HANDLE</span> <span class="o">=</span> <span class="s1">&#39;activeHandle&#39;</span><span class="p">,</span>
 	<span class="nx">ACTIVE_HANDLE_EL</span> <span class="o">=</span> <span class="s1">&#39;activeHandleEl&#39;</span><span class="p">,</span>
@@ -612,17 +609,13 @@
 	<span class="nx">CONSTRAIN2REGION</span> <span class="o">=</span> <span class="s1">&#39;constrain2region&#39;</span><span class="p">,</span>
 	<span class="nx">CONSTRAIN2VIEW</span> <span class="o">=</span> <span class="s1">&#39;constrain2view&#39;</span><span class="p">,</span>
 	<span class="nx">CURSOR</span> <span class="o">=</span> <span class="s1">&#39;cursor&#39;</span><span class="p">,</span>
-	<span class="nx">DATA</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span>
 	<span class="nx">DIAGONAL</span> <span class="o">=</span> <span class="s1">&#39;diagonal&#39;</span><span class="p">,</span>
 	<span class="nx">DOTTED</span> <span class="o">=</span> <span class="s1">&#39;dotted&#39;</span><span class="p">,</span>
-	<span class="nx">DRAGGING</span> <span class="o">=</span> <span class="s1">&#39;dragging&#39;</span><span class="p">,</span>
 	<span class="nx">DRAG_CURSOR</span> <span class="o">=</span> <span class="s1">&#39;dragCursor&#39;</span><span class="p">,</span>
-	<span class="nx">FIXED</span> <span class="o">=</span> <span class="s1">&#39;fixed&#39;</span><span class="p">,</span>
 	<span class="nx">GRIP</span> <span class="o">=</span> <span class="s1">&#39;grip&#39;</span><span class="p">,</span>
 	<span class="nx">GRIPSMALL</span> <span class="o">=</span> <span class="s1">&#39;gripsmall&#39;</span><span class="p">,</span>
 	<span class="nx">HANDLE</span> <span class="o">=</span> <span class="s1">&#39;handle&#39;</span><span class="p">,</span>
 	<span class="nx">HANDLES</span> <span class="o">=</span> <span class="s1">&#39;handles&#39;</span><span class="p">,</span>
-	<span class="nx">HEIGHT</span> <span class="o">=</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span>
 	<span class="nx">HIDDEN</span> <span class="o">=</span> <span class="s1">&#39;hidden&#39;</span><span class="p">,</span>
 	<span class="nx">HORIZONTAL</span> <span class="o">=</span> <span class="s1">&#39;horizontal&#39;</span><span class="p">,</span>
 	<span class="nx">ICON</span> <span class="o">=</span> <span class="s1">&#39;icon&#39;</span><span class="p">,</span>
@@ -637,8 +630,6 @@
 	<span class="nx">NODE_NAME</span> <span class="o">=</span> <span class="s1">&#39;nodeName&#39;</span><span class="p">,</span>
 	<span class="nx">NONE</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">,</span>
 	<span class="nx">OFFSET_HEIGHT</span> <span class="o">=</span> <span class="s1">&#39;offsetHeight&#39;</span><span class="p">,</span>
-	<span class="nx">OFFSET_LEFT</span> <span class="o">=</span> <span class="s1">&#39;offsetLeft&#39;</span><span class="p">,</span>
-	<span class="nx">OFFSET_TOP</span> <span class="o">=</span> <span class="s1">&#39;offsetTop&#39;</span><span class="p">,</span>
 	<span class="nx">OFFSET_WIDTH</span> <span class="o">=</span> <span class="s1">&#39;offsetWidth&#39;</span><span class="p">,</span>
 	<span class="nx">PARENT_NODE</span> <span class="o">=</span> <span class="s1">&#39;parentNode&#39;</span><span class="p">,</span>
 	<span class="nx">POSITION</span> <span class="o">=</span> <span class="s1">&#39;position&#39;</span><span class="p">,</span>
@@ -646,6 +637,7 @@
 	<span class="nx">PROXY</span> <span class="o">=</span> <span class="s1">&#39;proxy&#39;</span><span class="p">,</span>
 	<span class="nx">PROXY_EL</span> <span class="o">=</span> <span class="s1">&#39;proxyEl&#39;</span><span class="p">,</span>
 	<span class="nx">PX</span> <span class="o">=</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span>
+	<span class="nx">REGION</span> <span class="o">=</span> <span class="s1">&#39;region&#39;</span><span class="p">,</span>
 	<span class="nx">RELATIVE</span> <span class="o">=</span> <span class="s1">&#39;relative&#39;</span><span class="p">,</span>
 	<span class="nx">RESIZE</span> <span class="o">=</span> <span class="s1">&#39;resize&#39;</span><span class="p">,</span>
 	<span class="nx">RESIZING</span> <span class="o">=</span> <span class="s1">&#39;resizing&#39;</span><span class="p">,</span>
@@ -655,7 +647,6 @@
 	<span class="nx">TICK_Y</span> <span class="o">=</span> <span class="s1">&#39;tickY&#39;</span><span class="p">,</span>
 	<span class="nx">TOP</span> <span class="o">=</span> <span class="s1">&#39;top&#39;</span><span class="p">,</span>
 	<span class="nx">VERTICAL</span> <span class="o">=</span> <span class="s1">&#39;vertical&#39;</span><span class="p">,</span>
-	<span class="nx">WIDTH</span> <span class="o">=</span> <span class="s1">&#39;width&#39;</span><span class="p">,</span>
 	<span class="nx">WRAP</span> <span class="o">=</span> <span class="s1">&#39;wrap&#39;</span><span class="p">,</span>
 	<span class="nx">WRAPPER</span> <span class="o">=</span> <span class="s1">&#39;wrapper&#39;</span><span class="p">,</span>
 	<span class="nx">WRAP_TYPES</span> <span class="o">=</span> <span class="s1">&#39;wrapTypes&#39;</span><span class="p">,</span>
@@ -673,10 +664,6 @@
 	<span class="nx">BL</span> <span class="o">=</span> <span class="s1">&#39;bl&#39;</span><span class="p">,</span>
 	<span class="nx">L</span> <span class="o">=</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span>
 	<span class="nx">TL</span> <span class="o">=</span> <span class="s1">&#39;tl&#39;</span><span class="p">,</span>
-
-	<span class="nx">num</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-		<span class="k">return</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>
-	<span class="p">},</span>
 
 	<span class="nx">isNode</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="p">(</span><span class="nx">v</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">);</span>
@@ -719,6 +706,11 @@
 	<span class="nx">CSS_ICON_DIAGONAL</span> <span class="o">=</span> <span class="nx">concat</span><span class="p">(</span><span class="nx">CSS_ICON</span><span class="p">,</span> <span class="nx">CSS_ICON_GRIPSMALL_DIAGONAL_BR</span><span class="p">),</span>
 	<span class="nx">CSS_ICON_HORIZONTAL</span> <span class="o">=</span> <span class="nx">concat</span><span class="p">(</span><span class="nx">CSS_ICON</span><span class="p">,</span> <span class="nx">CSS_ICON_GRIP_DOTTED_HORIZONTAL</span><span class="p">),</span>
 	<span class="nx">CSS_ICON_VERTICAL</span> <span class="o">=</span> <span class="nx">concat</span><span class="p">(</span><span class="nx">CSS_ICON</span><span class="p">,</span> <span class="nx">CSS_ICON_GRIP_DOTTED_VERTICAL</span><span class="p">),</span>
+
+	<span class="nx">REGEX_CHANGE_HEIGHT</span> <span class="o">=</span> <span class="sr">/^(t|b)$/i</span><span class="p">,</span>
+	<span class="nx">REGEX_CHANGE_LEFT</span> <span class="o">=</span> <span class="sr">/^(tl|l|bl)$/i</span><span class="p">,</span>
+	<span class="nx">REGEX_CHANGE_TOP</span> <span class="o">=</span> <span class="sr">/^(tl|t|tr)$/i</span><span class="p">,</span>
+	<span class="nx">REGEX_CHANGE_WIDTH</span> <span class="o">=</span> <span class="sr">/^(bl|br|l|r|tl|tr)$/i</span><span class="p">,</span>
 
 	<span class="nx">TPL_HANDLE</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span><span class="o">+</span><span class="nx">concat</span><span class="p">(</span><span class="nx">CSS_RESIZE_HANDLE</span><span class="p">,</span> <span class="nx">CSS_RESIZE_HANDLE_PLACEHOLDER</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&#39;</span> <span class="o">+</span>
 					<span class="s1">&#39;&lt;div class=&quot;&#39;</span><span class="o">+</span><span class="nx">concat</span><span class="p">(</span><span class="nx">CSS_RESIZE_HANDLE_INNER</span><span class="p">,</span> <span class="nx">CSS_RESIZE_HANDLE_INNER_PLACEHOLDER</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span> <span class="o">+</span>
@@ -836,6 +828,7 @@
 <span class="cm">			 * @type String | Node</span>
 <span class="cm">			 */</span>
 			<span class="nx">constrain2node</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">,</span>
 				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
 			<span class="p">},</span>
 
@@ -1130,6 +1123,42 @@
 				<span class="nx">b</span><span class="o">:</span> <span class="nx">CSS_ICON_HORIZONTAL</span><span class="p">,</span>
 				<span class="nx">br</span><span class="o">:</span> <span class="nx">CSS_ICON_DIAGONAL</span>
 			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Whether the handle being dragged can change the height.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute changeHeightHandles</span>
+<span class="cm">			 * @default false</span>
+<span class="cm">			 * @type boolean</span>
+<span class="cm">			 */</span>
+			<span class="nx">changeHeightHandles</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Whether the handle being dragged can change the left.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute changeLeftHandles</span>
+<span class="cm">			 * @default false</span>
+<span class="cm">			 * @type boolean</span>
+<span class="cm">			 */</span>
+			<span class="nx">changeLeftHandles</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Whether the handle being dragged can change the top.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute changeTopHandles</span>
+<span class="cm">			 * @default false</span>
+<span class="cm">			 * @type boolean</span>
+<span class="cm">			 */</span>
+			<span class="nx">changeTopHandles</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Whether the handle being dragged can change the width.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute changeWidthHandles</span>
+<span class="cm">			 * @default false</span>
+<span class="cm">			 * @type boolean</span>
+<span class="cm">			 */</span>
+			<span class="nx">changeWidthHandles</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
 
 		    <span class="cm">/**</span>
 <span class="cm">		     * Stores the current values for the height, width, top and left. You are</span>
@@ -1478,6 +1507,42 @@
 				<span class="k">return</span> <span class="nx">node</span><span class="p">;</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">		     * Helper method to update the current values on</span>
+<span class="cm">		     * &lt;a href=&quot;Resize.html#property_info&quot;&gt;info&lt;/a&gt; to respect the</span>
+<span class="cm">             * constrain node.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _checkConstrain</span>
+<span class="cm">			 * @param {String} axis &#39;top&#39; or &#39;left&#39;</span>
+<span class="cm">			 * @param {String} axisConstrain &#39;bottom&#39; or &#39;right&#39;</span>
+<span class="cm">			 * @param {String} offset &#39;offsetHeight&#39; or &#39;offsetWidth&#39;</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_checkConstrain</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">axis</span><span class="p">,</span> <span class="nx">axisConstrain</span><span class="p">,</span> <span class="nx">offset</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">info</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">info</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">constrain</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONSTRAIN2NODE</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">constrain</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="nx">constrain</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">REGION</span><span class="p">);</span>
+
+					<span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="nx">info</span><span class="p">[</span><span class="nx">axis</span><span class="p">]</span> <span class="o">+</span> <span class="nx">info</span><span class="p">[</span><span class="nx">offset</span><span class="p">];</span>
+					<span class="kd">var</span> <span class="nx">p1Constrain</span> <span class="o">=</span> <span class="nx">region</span><span class="p">[</span><span class="nx">axisConstrain</span><span class="p">];</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">p1</span> <span class="o">&gt;=</span> <span class="nx">p1Constrain</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">info</span><span class="p">[</span><span class="nx">offset</span><span class="p">]</span> <span class="o">-=</span> <span class="p">(</span><span class="nx">p1</span> <span class="o">-</span> <span class="nx">p1Constrain</span><span class="p">);</span>
+					<span class="p">}</span>
+
+					<span class="kd">var</span> <span class="nx">p2</span> <span class="o">=</span> <span class="nx">info</span><span class="p">[</span><span class="nx">axis</span><span class="p">];</span>
+					<span class="kd">var</span> <span class="nx">p2Constrain</span> <span class="o">=</span> <span class="nx">region</span><span class="p">[</span><span class="nx">axis</span><span class="p">];</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">p2</span> <span class="o">&lt;=</span> <span class="nx">p2Constrain</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">info</span><span class="p">[</span><span class="nx">axis</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">p2Constrain</span> <span class="o">-</span> <span class="nx">p2</span><span class="p">);</span>
+						<span class="nx">info</span><span class="p">[</span><span class="nx">offset</span><span class="p">]</span> <span class="o">-=</span> <span class="p">(</span><span class="nx">p2Constrain</span> <span class="o">-</span> <span class="nx">p2</span><span class="p">);</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
 		    <span class="cm">/**</span>
 <span class="cm">		     * Update the current values on &lt;a href=&quot;Resize.html#property_info&quot;&gt;info&lt;/a&gt;</span>
 <span class="cm">		     * to respect the maxHeight and minHeight.</span>
@@ -1489,33 +1554,31 @@
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">info</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">info</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">originalInfo</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">originalInfo</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ACTIVE_HANDLE</span><span class="p">);</span>
 				<span class="kd">var</span> <span class="nx">maxHeight</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">MAX_HEIGHT</span><span class="p">);</span>
 				<span class="kd">var</span> <span class="nx">minHeight</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">MIN_HEIGHT</span><span class="p">);</span>
 
-				<span class="c1">// if the handles being dragged could change the top info</span>
-				<span class="kd">var</span> <span class="nx">changeTopHandles</span> <span class="o">=</span> <span class="sr">/^(tl|t|tr)$/i</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">handle</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_checkConstrain</span><span class="p">(</span><span class="nx">TOP</span><span class="p">,</span> <span class="nx">BOTTOM</span><span class="p">,</span> <span class="nx">OFFSET_HEIGHT</span><span class="p">);</span>
 
-				<span class="kd">var</span> <span class="nx">isMaxHeight</span> <span class="o">=</span> <span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">height</span> <span class="o">&gt;</span> <span class="nx">maxHeight</span><span class="p">);</span>
-				<span class="kd">var</span> <span class="nx">isMinHeight</span> <span class="o">=</span> <span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">height</span> <span class="o">&lt;</span> <span class="nx">minHeight</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">isMaxHeight</span> <span class="o">=</span> <span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">offsetHeight</span> <span class="o">&gt;</span> <span class="nx">maxHeight</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">isMinHeight</span> <span class="o">=</span> <span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">offsetHeight</span> <span class="o">&lt;</span> <span class="nx">minHeight</span><span class="p">);</span>
 
 				<span class="k">if</span> <span class="p">(</span><span class="nx">isMaxHeight</span><span class="p">)</span> <span class="p">{</span>
-					<span class="nx">info</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">maxHeight</span><span class="p">;</span>
+					<span class="nx">info</span><span class="p">.</span><span class="nx">offsetHeight</span> <span class="o">=</span> <span class="nx">maxHeight</span><span class="p">;</span>
 
-					<span class="k">if</span> <span class="p">(</span><span class="nx">changeTopHandles</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">changeTopHandles</span><span class="p">)</span> <span class="p">{</span>
 						<span class="c1">// predicting, based on the original information, the last top valid in case of reach the min/max dimension</span>
 						<span class="c1">// this calculation avoid browser event leaks when user interact very fast with their mouse</span>
-						<span class="nx">info</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">height</span> <span class="o">-</span> <span class="nx">maxHeight</span><span class="p">;</span>
+						<span class="nx">info</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">offsetHeight</span> <span class="o">-</span> <span class="nx">maxHeight</span><span class="p">;</span>
 					<span class="p">}</span>
 				<span class="p">}</span>
 
 				<span class="k">if</span> <span class="p">(</span><span class="nx">isMinHeight</span><span class="p">)</span> <span class="p">{</span>
-					<span class="nx">info</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">minHeight</span><span class="p">;</span>
+					<span class="nx">info</span><span class="p">.</span><span class="nx">offsetHeight</span> <span class="o">=</span> <span class="nx">minHeight</span><span class="p">;</span>
 
-					<span class="k">if</span> <span class="p">(</span><span class="nx">changeTopHandles</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">changeTopHandles</span><span class="p">)</span> <span class="p">{</span>
 						<span class="c1">// predicting, based on the original information, the last top valid in case of reach the min/max dimension</span>
 						<span class="c1">// this calculation avoid browser event leaks when user interact very fast with their mouse</span>
-						<span class="nx">info</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">height</span> <span class="o">-</span> <span class="nx">minHeight</span><span class="p">;</span>
+						<span class="nx">info</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">offsetHeight</span> <span class="o">-</span> <span class="nx">minHeight</span><span class="p">;</span>
 					<span class="p">}</span>
 				<span class="p">}</span>
 			<span class="p">},</span>
@@ -1532,56 +1595,61 @@
 
 				<span class="kd">var</span> <span class="nx">info</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">info</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">originalInfo</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">originalInfo</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ACTIVE_HANDLE</span><span class="p">);</span>
-				<span class="kd">var</span> <span class="nx">oWidth</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">oHeight</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">oWidth</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">offsetWidth</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">oHeight</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">oTop</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">top</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">oLeft</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">left</span><span class="p">;</span>
 
 				<span class="c1">// wRatio/hRatio functions keep the ratio information always synced with the current info information</span>
 				<span class="c1">// RETURN: percentage how much width/height has changed from the original width/height</span>
 				<span class="kd">var</span> <span class="nx">wRatio</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-					<span class="k">return</span> <span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">width</span><span class="o">/</span><span class="nx">oWidth</span><span class="p">);</span>
+					<span class="k">return</span> <span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">offsetWidth</span><span class="o">/</span><span class="nx">oWidth</span><span class="p">);</span>
 				<span class="p">};</span>
 
 				<span class="kd">var</span> <span class="nx">hRatio</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-					<span class="k">return</span> <span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">height</span><span class="o">/</span><span class="nx">oHeight</span><span class="p">);</span>
+					<span class="k">return</span> <span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="o">/</span><span class="nx">oHeight</span><span class="p">);</span>
 				<span class="p">};</span>
-
-				<span class="c1">// regex to detect the handles</span>
-				<span class="kd">var</span> <span class="nx">changeHeightHandles</span> <span class="o">=</span> <span class="sr">/^(t|b)$/i</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">changeWidthHandles</span> <span class="o">=</span> <span class="sr">/^(bl|br|l|r|tl|tr)$/i</span><span class="p">;</span>
 
 				<span class="c1">// handles which only change the height, need to vary the width first</span>
 				<span class="c1">// and then check width to constrain to max/min dimensions</span>
-				<span class="k">if</span> <span class="p">(</span><span class="nx">changeHeightHandles</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">handle</span><span class="p">))</span> <span class="p">{</span>
-					<span class="nx">info</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">oWidth</span><span class="o">*</span><span class="nx">hRatio</span><span class="p">();</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">changeHeightHandles</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">info</span><span class="p">.</span><span class="nx">offsetWidth</span> <span class="o">=</span> <span class="nx">oWidth</span><span class="o">*</span><span class="nx">hRatio</span><span class="p">();</span>
 					<span class="nx">instance</span><span class="p">.</span><span class="nx">_checkWidth</span><span class="p">();</span>
-					<span class="nx">info</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">oHeight</span><span class="o">*</span><span class="nx">wRatio</span><span class="p">();</span>
+					<span class="nx">info</span><span class="p">.</span><span class="nx">offsetHeight</span> <span class="o">=</span> <span class="nx">oHeight</span><span class="o">*</span><span class="nx">wRatio</span><span class="p">();</span>
 				<span class="p">}</span>
 				<span class="c1">// handles which are able to change the width need to vary the height first</span>
 				<span class="c1">// and then check height to constrain to max/min dimensions</span>
-				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">changeWidthHandles</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">handle</span><span class="p">))</span> <span class="p">{</span>
-					<span class="nx">info</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">oHeight</span><span class="o">*</span><span class="nx">wRatio</span><span class="p">();</span>
+				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">changeWidthHandles</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">info</span><span class="p">.</span><span class="nx">offsetHeight</span> <span class="o">=</span> <span class="nx">oHeight</span><span class="o">*</span><span class="nx">wRatio</span><span class="p">();</span>
 					<span class="nx">instance</span><span class="p">.</span><span class="nx">_checkHeight</span><span class="p">();</span>
-					<span class="nx">info</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">oWidth</span><span class="o">*</span><span class="nx">hRatio</span><span class="p">();</span>
+					<span class="nx">info</span><span class="p">.</span><span class="nx">offsetWidth</span> <span class="o">=</span> <span class="nx">oWidth</span><span class="o">*</span><span class="nx">hRatio</span><span class="p">();</span>
 				<span class="p">}</span>
-
-				<span class="c1">// regex to detect the handles</span>
-				<span class="kd">var</span> <span class="nx">changeTopHandles</span> <span class="o">=</span> <span class="sr">/^(tl|t|tr)$/i</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">changeLeftHandles</span> <span class="o">=</span> <span class="sr">/^(tl|l|bl)$/i</span><span class="p">;</span>
 
 				<span class="c1">// fixing the top on handles which are able to change top</span>
 				<span class="c1">// the idea here is change the top based on how much the height has changed instead of follow the dy</span>
-				<span class="k">if</span> <span class="p">(</span><span class="nx">changeTopHandles</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">handle</span><span class="p">))</span> <span class="p">{</span>
-					<span class="nx">info</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">oTop</span> <span class="o">+</span> <span class="p">(</span><span class="nx">oHeight</span> <span class="o">-</span> <span class="nx">info</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">changeTopHandles</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">info</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">oTop</span> <span class="o">+</span> <span class="p">(</span><span class="nx">oHeight</span> <span class="o">-</span> <span class="nx">info</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">);</span>
 				<span class="p">}</span>
 
 				<span class="c1">// fixing the left on handles which are able to change left</span>
 				<span class="c1">// the idea here is change the left based on how much the width has changed instead of follow the dx</span>
-				<span class="k">if</span> <span class="p">(</span><span class="nx">changeLeftHandles</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">handle</span><span class="p">))</span> <span class="p">{</span>
-					<span class="nx">info</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">oLeft</span> <span class="o">+</span> <span class="p">(</span><span class="nx">oWidth</span> <span class="o">-</span> <span class="nx">info</span><span class="p">.</span><span class="nx">width</span><span class="p">);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">changeLeftHandles</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">info</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">oLeft</span> <span class="o">+</span> <span class="p">(</span><span class="nx">oWidth</span> <span class="o">-</span> <span class="nx">info</span><span class="p">.</span><span class="nx">offsetWidth</span><span class="p">);</span>
 				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Check whether the resizable node is inside the constrain region.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _checkRegion</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 * @return {boolean}</span>
+<span class="cm">			 */</span>
+			<span class="nx">_checkRegion</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONSTRAIN2NODE</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">REGION</span><span class="p">);</span>
+
+				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">inRegion</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">region</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">info</span><span class="p">);</span>
 			<span class="p">},</span>
 
 		    <span class="cm">/**</span>
@@ -1595,33 +1663,31 @@
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">info</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">info</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">originalInfo</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">originalInfo</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ACTIVE_HANDLE</span><span class="p">);</span>
 				<span class="kd">var</span> <span class="nx">maxWidth</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">MAX_WIDTH</span><span class="p">);</span>
 				<span class="kd">var</span> <span class="nx">minWidth</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">MIN_WIDTH</span><span class="p">);</span>
 
-				<span class="c1">// if the handles being dragged could change the left info</span>
-				<span class="kd">var</span> <span class="nx">changeLeftHandles</span> <span class="o">=</span> <span class="sr">/^(tl|l|bl)$/i</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">handle</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_checkConstrain</span><span class="p">(</span><span class="nx">LEFT</span><span class="p">,</span> <span class="nx">RIGHT</span><span class="p">,</span> <span class="nx">OFFSET_WIDTH</span><span class="p">);</span>
 
-				<span class="kd">var</span> <span class="nx">isMaxWidth</span> <span class="o">=</span> <span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">width</span> <span class="o">&gt;</span> <span class="nx">maxWidth</span><span class="p">);</span>
-				<span class="kd">var</span> <span class="nx">isMinWidth</span> <span class="o">=</span> <span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">width</span> <span class="o">&lt;</span> <span class="nx">minWidth</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">isMaxWidth</span> <span class="o">=</span> <span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">offsetWidth</span> <span class="o">&gt;</span> <span class="nx">maxWidth</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">isMinWidth</span> <span class="o">=</span> <span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">offsetWidth</span> <span class="o">&lt;</span> <span class="nx">minWidth</span><span class="p">);</span>
 
 				<span class="k">if</span> <span class="p">(</span><span class="nx">isMaxWidth</span><span class="p">)</span> <span class="p">{</span>
-					<span class="nx">info</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">maxWidth</span><span class="p">;</span>
+					<span class="nx">info</span><span class="p">.</span><span class="nx">offsetWidth</span> <span class="o">=</span> <span class="nx">maxWidth</span><span class="p">;</span>
 
-					<span class="k">if</span> <span class="p">(</span><span class="nx">changeLeftHandles</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">changeLeftHandles</span><span class="p">)</span> <span class="p">{</span>
 						<span class="c1">// predicting, based on the original information, the last left valid in case of reach the min/max dimension</span>
 						<span class="c1">// this calculation avoid browser event leaks when user interact very fast with their mouse</span>
-						<span class="nx">info</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">width</span> <span class="o">-</span> <span class="nx">maxWidth</span><span class="p">;</span>
+						<span class="nx">info</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">offsetWidth</span> <span class="o">-</span> <span class="nx">maxWidth</span><span class="p">;</span>
 					<span class="p">}</span>
 				<span class="p">}</span>
 
 				<span class="k">if</span> <span class="p">(</span><span class="nx">isMinWidth</span><span class="p">)</span> <span class="p">{</span>
-					<span class="nx">info</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">minWidth</span><span class="p">;</span>
+					<span class="nx">info</span><span class="p">.</span><span class="nx">offsetWidth</span> <span class="o">=</span> <span class="nx">minWidth</span><span class="p">;</span>
 
-					<span class="k">if</span> <span class="p">(</span><span class="nx">changeLeftHandles</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">changeLeftHandles</span><span class="p">)</span> <span class="p">{</span>
 						<span class="c1">// predicting, based on the original information, the last left valid in case of reach the min/max dimension</span>
 						<span class="c1">// this calculation avoid browser event leaks when user interact very fast with their mouse</span>
-						<span class="nx">info</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">width</span> <span class="o">-</span> <span class="nx">minWidth</span><span class="p">;</span>
+						<span class="nx">info</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">offsetWidth</span> <span class="o">-</span> <span class="nx">minWidth</span><span class="p">;</span>
 					<span class="p">}</span>
 				<span class="p">}</span>
 			<span class="p">},</span>
@@ -1696,7 +1762,7 @@
 		    <span class="cm">/**</span>
 <span class="cm">		     * &lt;p&gt;Generates metadata to the &lt;a href=&quot;Resize.html#property_info&quot;&gt;info&lt;/a&gt;</span>
 <span class="cm">		     * and &lt;a href=&quot;Resize.html#property_originalInfo&quot;&gt;originalInfo&lt;/a&gt;&lt;/p&gt;</span>
-<span class="cm">		     * &lt;pre&gt;&lt;code&gt;left, top, offsetLeft, offsetTop, height, width, lastXY, nodeX, nodeY&lt;/code&gt;&lt;/pre&gt;</span>
+<span class="cm">		     * &lt;pre&gt;&lt;code&gt;bottom, actXY, left, top, offsetHeight, offsetWidth, right&lt;/code&gt;&lt;/pre&gt;</span>
 <span class="cm">		     *</span>
 <span class="cm">		     * @method _getInfo</span>
 <span class="cm">		     * @param {Node} node</span>
@@ -1704,58 +1770,33 @@
 <span class="cm">		     * @private</span>
 <span class="cm">		     */</span>
 			<span class="nx">_getInfo</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">wrapper</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">WRAPPER</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span> <span class="nx">actXY</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">dragEvent</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
 
 				<span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-					<span class="kd">var</span> <span class="nx">lastXY</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">dragEvent</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">lastXY</span><span class="p">;</span>
+					<span class="c1">// the xy that the node will be set to. Changing this will alter the position as it&#39;s dragged.</span>
+					<span class="nx">actXY</span> <span class="o">=</span> <span class="p">(</span><span class="nx">drag</span><span class="p">.</span><span class="nx">actXY</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">actXY</span> <span class="o">:</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">lastXY</span><span class="p">);</span>
 				<span class="p">}</span>
 
 				<span class="kd">var</span> <span class="nx">nodeXY</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">getXY</span><span class="p">();</span>
-				<span class="kd">var</span> <span class="nx">top</span> <span class="o">=</span> <span class="nx">num</span><span class="p">(</span> <span class="nx">node</span><span class="p">.</span><span class="nx">getStyle</span><span class="p">(</span><span class="nx">TOP</span><span class="p">)</span> <span class="p">);</span>
-				<span class="kd">var</span> <span class="nx">left</span> <span class="o">=</span> <span class="nx">num</span><span class="p">(</span> <span class="nx">node</span><span class="p">.</span><span class="nx">getStyle</span><span class="p">(</span><span class="nx">LEFT</span><span class="p">)</span> <span class="p">);</span>
-				<span class="kd">var</span> <span class="nx">offsetTop</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_TOP</span><span class="p">);</span>
-				<span class="kd">var</span> <span class="nx">offsetLeft</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_LEFT</span><span class="p">);</span>
-
-				<span class="kd">var</span> <span class="nx">position</span> <span class="o">=</span> <span class="nx">wrapper</span><span class="p">.</span><span class="nx">getStyle</span><span class="p">(</span><span class="nx">POSITION</span><span class="p">);</span>
-
-				<span class="c1">// if top|left isNaN, it means that top|left was auto</span>
-				<span class="c1">// if position == RELATIVE auto means top/left 0</span>
-				<span class="k">if</span> <span class="p">(</span><span class="nx">position</span> <span class="o">==</span> <span class="nx">RELATIVE</span><span class="p">)</span> <span class="p">{</span>
-					<span class="k">if</span> <span class="p">(</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">left</span><span class="p">))</span> <span class="p">{</span>
-						<span class="nx">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-					<span class="p">}</span>
-					<span class="k">if</span> <span class="p">(</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">top</span><span class="p">))</span> <span class="p">{</span>
-						<span class="nx">top</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-					<span class="p">}</span>
-				<span class="p">}</span>
-
-				<span class="c1">// if top|left isNaN, it means that top|left was auto</span>
-				<span class="c1">// if position == ABSOLUTE|FIXED auto means top/left = offsetTop/offsetLeft</span>
-				<span class="k">if</span> <span class="p">((</span><span class="nx">position</span> <span class="o">==</span> <span class="nx">ABSOLUTE</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="nx">position</span> <span class="o">==</span> <span class="nx">FIXED</span><span class="p">))</span> <span class="p">{</span>
-					<span class="k">if</span> <span class="p">(</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">left</span><span class="p">))</span> <span class="p">{</span>
-						<span class="nx">left</span> <span class="o">=</span> <span class="nx">offsetLeft</span><span class="p">;</span>
-					<span class="p">}</span>
-					<span class="k">if</span> <span class="p">(</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">top</span><span class="p">))</span> <span class="p">{</span>
-						<span class="nx">top</span> <span class="o">=</span> <span class="nx">offsetTop</span><span class="p">;</span>
-					<span class="p">}</span>
-				<span class="p">}</span>
+				<span class="kd">var</span> <span class="nx">nodeX</span> <span class="o">=</span> <span class="nx">nodeXY</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+				<span class="kd">var</span> <span class="nx">nodeY</span> <span class="o">=</span> <span class="nx">nodeXY</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+				<span class="kd">var</span> <span class="nx">offsetHeight</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_HEIGHT</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">offsetWidth</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_WIDTH</span><span class="p">);</span>
 
 				<span class="k">return</span> <span class="p">{</span>
-					<span class="nx">left</span><span class="o">:</span> <span class="nx">left</span><span class="p">,</span>
-					<span class="nx">top</span><span class="o">:</span> <span class="nx">top</span><span class="p">,</span>
-					<span class="nx">offsetLeft</span><span class="o">:</span> <span class="nx">offsetLeft</span><span class="p">,</span>
-					<span class="nx">offsetTop</span><span class="o">:</span> <span class="nx">offsetTop</span><span class="p">,</span>
-					<span class="nx">height</span><span class="o">:</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_HEIGHT</span><span class="p">),</span>
-					<span class="nx">width</span><span class="o">:</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_WIDTH</span><span class="p">),</span>
-					<span class="nx">lastXY</span><span class="o">:</span> <span class="nx">lastXY</span><span class="p">,</span>
-					<span class="nx">nodeX</span><span class="o">:</span> <span class="nx">nodeXY</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-					<span class="nx">nodeY</span><span class="o">:</span> <span class="nx">nodeXY</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+					<span class="nx">bottom</span><span class="o">:</span> <span class="p">(</span><span class="nx">nodeY</span> <span class="o">+</span> <span class="nx">offsetHeight</span><span class="p">),</span>
+					<span class="nx">actXY</span><span class="o">:</span> <span class="nx">actXY</span><span class="p">,</span>
+					<span class="nx">left</span><span class="o">:</span> <span class="nx">nodeX</span><span class="p">,</span>
+					<span class="nx">top</span><span class="o">:</span> <span class="nx">nodeY</span><span class="p">,</span>
+					<span class="nx">offsetHeight</span><span class="o">:</span> <span class="nx">offsetHeight</span><span class="p">,</span>
+					<span class="nx">offsetWidth</span><span class="o">:</span> <span class="nx">offsetWidth</span><span class="p">,</span>
+					<span class="nx">right</span><span class="o">:</span> <span class="p">(</span><span class="nx">nodeX</span> <span class="o">+</span> <span class="nx">offsetWidth</span><span class="p">)</span>
 				<span class="p">};</span>
 			<span class="p">},</span>
 
 		    <span class="cm">/**</span>
-<span class="cm">		     * Update nodeX and nodeY information on</span>
+<span class="cm">		     * Update left and top information on</span>
 <span class="cm">		     * &lt;a href=&quot;Resize.html#property_info&quot;&gt;info&lt;/a&gt; based on the new top and left.</span>
 <span class="cm">		     *</span>
 <span class="cm">		     * @method _recalculateXY</span>
@@ -1766,8 +1807,8 @@
 				<span class="kd">var</span> <span class="nx">info</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">info</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">originalInfo</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">originalInfo</span><span class="p">;</span>
 
-				<span class="nx">info</span><span class="p">.</span><span class="nx">nodeX</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">nodeX</span> <span class="o">+</span> <span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">left</span> <span class="o">-</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">left</span><span class="p">);</span>
-				<span class="nx">info</span><span class="p">.</span><span class="nx">nodeY</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">nodeY</span> <span class="o">+</span> <span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">top</span><span class="p">);</span>
+				<span class="nx">info</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">left</span> <span class="o">-</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">left</span><span class="p">);</span>
+				<span class="nx">info</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">top</span><span class="p">);</span>
 			<span class="p">},</span>
 
 		    <span class="cm">/**</span>
@@ -1783,23 +1824,23 @@
 				<span class="kd">var</span> <span class="nx">info</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">info</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">originalInfo</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">originalInfo</span><span class="p">;</span>
 
-				<span class="kd">var</span> <span class="nx">dx</span> <span class="o">=</span> <span class="nx">info</span><span class="p">.</span><span class="nx">lastXY</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">lastXY</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-				<span class="kd">var</span> <span class="nx">dy</span> <span class="o">=</span> <span class="nx">info</span><span class="p">.</span><span class="nx">lastXY</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">lastXY</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+				<span class="kd">var</span> <span class="nx">dx</span> <span class="o">=</span> <span class="nx">info</span><span class="p">.</span><span class="nx">actXY</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">actXY</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+				<span class="kd">var</span> <span class="nx">dy</span> <span class="o">=</span> <span class="nx">info</span><span class="p">.</span><span class="nx">actXY</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">actXY</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 
 				<span class="kd">var</span> <span class="nx">rules</span> <span class="o">=</span> <span class="p">{</span>
 					<span class="nx">t</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 						<span class="nx">info</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="nx">dy</span><span class="p">;</span>
-						<span class="nx">info</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">height</span> <span class="o">-</span> <span class="nx">dy</span><span class="p">;</span>
+						<span class="nx">info</span><span class="p">.</span><span class="nx">offsetHeight</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">offsetHeight</span> <span class="o">-</span> <span class="nx">dy</span><span class="p">;</span>
 					<span class="p">},</span>
 					<span class="nx">r</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-						<span class="nx">info</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">width</span> <span class="o">+</span> <span class="nx">dx</span><span class="p">;</span>
+						<span class="nx">info</span><span class="p">.</span><span class="nx">offsetWidth</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">offsetWidth</span> <span class="o">+</span> <span class="nx">dx</span><span class="p">;</span>
 					<span class="p">},</span>
 					<span class="nx">l</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 						<span class="nx">info</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="nx">dx</span><span class="p">;</span>
-						<span class="nx">info</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">width</span> <span class="o">-</span> <span class="nx">dx</span><span class="p">;</span>
+						<span class="nx">info</span><span class="p">.</span><span class="nx">offsetWidth</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">offsetWidth</span> <span class="o">-</span> <span class="nx">dx</span><span class="p">;</span>
 					<span class="p">},</span>
 					<span class="nx">b</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-						<span class="nx">info</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">height</span> <span class="o">+</span> <span class="nx">dy</span><span class="p">;</span>
+						<span class="nx">info</span><span class="p">.</span><span class="nx">offsetHeight</span> <span class="o">=</span> <span class="nx">originalInfo</span><span class="p">.</span><span class="nx">offsetHeight</span> <span class="o">+</span> <span class="nx">dy</span><span class="p">;</span>
 					<span class="p">},</span>
 					<span class="nx">tr</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 						<span class="k">this</span><span class="p">.</span><span class="nx">t</span><span class="p">();</span>
@@ -1851,15 +1892,26 @@
 				<span class="nx">dd</span><span class="p">.</span><span class="nx">plug</span><span class="p">(</span>
 					<span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDConstrained</span><span class="p">,</span>
 					<span class="p">{</span>
-						<span class="nx">constrain2node</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONSTRAIN2NODE</span><span class="p">),</span>
-						<span class="nx">constrain2region</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONSTRAIN2REGION</span><span class="p">),</span>
-						<span class="nx">constrain2view</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONSTRAIN2VIEW</span><span class="p">),</span>
 						<span class="nx">stickX</span><span class="o">:</span> <span class="p">(</span><span class="nx">handle</span> <span class="o">==</span> <span class="nx">R</span> <span class="o">||</span> <span class="nx">handle</span> <span class="o">==</span> <span class="nx">L</span><span class="p">),</span>
 						<span class="nx">stickY</span><span class="o">:</span> <span class="p">(</span><span class="nx">handle</span> <span class="o">==</span> <span class="nx">T</span> <span class="o">||</span> <span class="nx">handle</span> <span class="o">==</span> <span class="nx">B</span><span class="p">),</span>
 						<span class="nx">tickX</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TICK_X</span><span class="p">),</span>
 						<span class="nx">tickY</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TICK_Y</span><span class="p">)</span>
 					<span class="p">}</span>
 				<span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">			 * Set offsetWidth and offsetHeight of the passed node.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _setOffset</span>
+<span class="cm">			 * @param {Node} node Node</span>
+<span class="cm">			 * @param {number} offsetWidth</span>
+<span class="cm">			 * @param {number} offsetHeight</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 */</span>
+			<span class="nx">_setOffset</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">offsetWidth</span><span class="p">,</span> <span class="nx">offsetHeight</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">node</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">OFFSET_WIDTH</span><span class="p">,</span> <span class="nx">offsetWidth</span><span class="p">);</span>
+				<span class="nx">node</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">OFFSET_HEIGHT</span><span class="p">,</span> <span class="nx">offsetHeight</span><span class="p">);</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
@@ -1875,22 +1927,15 @@
 				<span class="kd">var</span> <span class="nx">wrapper</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">WRAPPER</span><span class="p">);</span>
 				<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
 
-				<span class="kd">var</span> <span class="nx">size</span> <span class="o">=</span> <span class="p">{</span>
-					<span class="nx">height</span><span class="o">:</span> <span class="nx">info</span><span class="p">.</span><span class="nx">height</span> <span class="o">+</span> <span class="nx">PX</span><span class="p">,</span>
-					<span class="nx">width</span><span class="o">:</span> <span class="nx">info</span><span class="p">.</span><span class="nx">width</span> <span class="o">+</span> <span class="nx">PX</span>
-				<span class="p">};</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_setOffset</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">,</span> <span class="nx">info</span><span class="p">.</span><span class="nx">offsetWidth</span><span class="p">,</span> <span class="nx">info</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">);</span>
 
-				<span class="kd">var</span> <span class="nx">dimension</span> <span class="o">=</span> <span class="p">{</span>
-					<span class="nx">top</span><span class="o">:</span> <span class="nx">info</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="nx">PX</span><span class="p">,</span>
-					<span class="nx">left</span><span class="o">:</span> <span class="nx">info</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="nx">PX</span>
-				<span class="p">};</span>
-
-				<span class="nx">wrapper</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">(</span><span class="nx">size</span><span class="p">);</span>
-				<span class="nx">wrapper</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">(</span><span class="nx">dimension</span><span class="p">);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">changeLeftHandles</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">changeTopHandles</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">wrapper</span><span class="p">.</span><span class="nx">setXY</span><span class="p">([</span><span class="nx">info</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">info</span><span class="p">.</span><span class="nx">top</span><span class="p">]);</span>
+				<span class="p">}</span>
 
 				<span class="c1">// if wrapper is different from node</span>
 				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">compareTo</span><span class="p">(</span><span class="nx">node</span><span class="p">))</span> <span class="p">{</span>
-					<span class="nx">node</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">(</span><span class="nx">size</span><span class="p">);</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_setOffset</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">info</span><span class="p">.</span><span class="nx">offsetWidth</span><span class="p">,</span> <span class="nx">info</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">);</span>
 				<span class="p">}</span>
 
 				<span class="c1">// prevent webkit textarea resize</span>
@@ -1916,17 +1961,26 @@
 
 				<span class="nx">proxyEl</span><span class="p">.</span><span class="nx">show</span><span class="p">().</span><span class="nx">setStyles</span><span class="p">({</span>
 					<span class="nx">cursor</span><span class="o">:</span> <span class="nx">cursor</span><span class="p">,</span>
-					<span class="nx">height</span><span class="o">:</span> <span class="nx">info</span><span class="p">.</span><span class="nx">height</span> <span class="o">+</span> <span class="nx">PX</span><span class="p">,</span>
-					<span class="nx">width</span><span class="o">:</span> <span class="nx">info</span><span class="p">.</span><span class="nx">width</span> <span class="o">+</span> <span class="nx">PX</span>
+					<span class="nx">height</span><span class="o">:</span> <span class="nx">info</span><span class="p">.</span><span class="nx">offsetHeight</span> <span class="o">+</span> <span class="nx">PX</span><span class="p">,</span>
+					<span class="nx">width</span><span class="o">:</span> <span class="nx">info</span><span class="p">.</span><span class="nx">offsetWidth</span> <span class="o">+</span> <span class="nx">PX</span>
 				<span class="p">});</span>
 
 				<span class="nx">activeHandleEl</span><span class="p">.</span><span class="nx">dd</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">DRAG_CURSOR</span><span class="p">,</span> <span class="nx">cursor</span><span class="p">);</span>
 
-				<span class="nx">proxyEl</span><span class="p">.</span><span class="nx">setXY</span><span class="p">([</span> <span class="nx">info</span><span class="p">.</span><span class="nx">nodeX</span><span class="p">,</span> <span class="nx">info</span><span class="p">.</span><span class="nx">nodeY</span> <span class="p">]);</span>
+				<span class="nx">proxyEl</span><span class="p">.</span><span class="nx">setXY</span><span class="p">([</span> <span class="nx">info</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">info</span><span class="p">.</span><span class="nx">top</span> <span class="p">]);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_updateChangeHandleInfo</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">handle</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">changeHeightHandles</span> <span class="o">=</span> <span class="nx">REGEX_CHANGE_HEIGHT</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">handle</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">changeLeftHandles</span> <span class="o">=</span> <span class="nx">REGEX_CHANGE_LEFT</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">handle</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">changeTopHandles</span> <span class="o">=</span> <span class="nx">REGEX_CHANGE_TOP</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">handle</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">changeWidthHandles</span> <span class="o">=</span> <span class="nx">REGEX_CHANGE_WIDTH</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">handle</span><span class="p">);</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
-<span class="cm">		     * Update &lt;a href=&quot;Resize.html#property_info&quot;&gt;info&lt;/a&gt; values (top, left, offsetTop, offsetTop, height, width, nodeX, nodeY, lastXY).</span>
+<span class="cm">		     * Update &lt;a href=&quot;Resize.html#property_info&quot;&gt;info&lt;/a&gt; values (bottom, actXY, left, top, offsetHeight, offsetWidth, right).</span>
 <span class="cm">		     *</span>
 <span class="cm">		     * @method _updateInfo</span>
 <span class="cm">		     * @private</span>
@@ -2011,8 +2065,9 @@
 <span class="cm">		     */</span>
 			<span class="nx">_defResizeFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">infoBefore</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">info</span><span class="p">;</span>
 
-				<span class="c1">// update the instance.info values (top, left, offsetTop, offsetTop, height, width, nodeX, nodeY, lastXY)</span>
+				<span class="c1">// update the instance.info values</span>
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">_updateInfo</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
 
 				<span class="c1">// basic resize calculations</span>
@@ -2029,9 +2084,13 @@
 					<span class="nx">instance</span><span class="p">.</span><span class="nx">_checkRatio</span><span class="p">();</span>
 				<span class="p">}</span>
 
-				<span class="c1">// nodeX and nodeY information need to be updated based on the new top/left</span>
-				<span class="c1">// nodeY/nodeY is used to position the proxyEl</span>
+				<span class="c1">// left and top information need to be updated based on the new top/left</span>
+				<span class="c1">// top/top is used to position the proxyEl</span>
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">_recalculateXY</span><span class="p">();</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONSTRAIN2NODE</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_checkRegion</span><span class="p">())</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">info</span> <span class="o">=</span> <span class="nx">infoBefore</span><span class="p">;</span>
+				<span class="p">}</span>
 			<span class="p">},</span>
 
 		    <span class="cm">/**</span>
@@ -2043,6 +2102,10 @@
 <span class="cm">		     */</span>
 			<span class="nx">_defResizeEndFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">dragEvent</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+
+				<span class="c1">// reseting actXY from drag when drag end</span>
+				<span class="nx">drag</span><span class="p">.</span><span class="nx">actXY</span> <span class="o">=</span> <span class="p">[];</span>
 
 				<span class="c1">// if proxy is true, hide it on resize end</span>
 				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PROXY</span><span class="p">))</span> <span class="p">{</span>
@@ -2192,6 +2255,7 @@
 					<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">ACTIVE_HANDLE_EL</span><span class="p">,</span> <span class="nx">node</span><span class="p">);</span>
 
 					<span class="nx">instance</span><span class="p">.</span><span class="nx">_setActiveHandlesUI</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_updateChangeHandleInfo</span><span class="p">(</span><span class="nx">handle</span><span class="p">);</span>
 				<span class="p">}</span>
 			<span class="p">},</span>
 
@@ -2226,7 +2290,7 @@
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">Resize</span> <span class="o">=</span> <span class="nx">Resize</span><span class="p">;</span>
 
-<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;dd&#39;</span><span class="p">,</span><span class="s1">&#39;substitute&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;dd&#39;</span><span class="p">,</span><span class="s1">&#39;substitute&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
 </pre></div>
 
 							</div>
@@ -2244,7 +2308,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Resize.html#event_activeHandleChange", "access": "", "host": "Resize", "type": "event", "name": "activeHandleChange"}, {"url": "Resize.html#event_activeHandleElChange", "access": "", "host": "Resize", "type": "event", "name": "activeHandleElChange"}, {"url": "Resize.html#method__afterResize", "access": "protected", "host": "Resize", "type": "method", "name": "_afterResize"}, {"url": "Resize.html#config_autoHide", "access": "", "host": "Resize", "type": "config", "name": "autoHide"}, {"url": "Resize.html#event_autoHideChange", "access": "", "host": "Resize", "type": "event", "name": "autoHideChange"}, {"url": "Resize.html#method_bindUI", "access": "protected", "host": "Resize", "type": "method", "name": "bindUI"}, {"url": "Resize.html#method__buildHandle", "access": "protected", "host": "Resize", "type": "method", "name": "_buildHandle"}, {"url": "Resize.html#method__checkHeight", "access": "protected", "host": "Resize", "type": "method", "name": "_checkHeight"}, {"url": "Resize.html#method__checkRatio", "access": "protected", "host": "Resize", "type": "method", "name": "_checkRatio"}, {"url": "Resize.html#method__checkWidth", "access": "protected", "host": "Resize", "type": "method", "name": "_checkWidth"}, {"url": "Resize.html#config_constrain2node", "access": "", "host": "Resize", "type": "config", "name": "constrain2node"}, {"url": "Resize.html#event_constrain2nodeChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2nodeChange"}, {"url": "Resize.html#config_constrain2region", "access": "", "host": "Resize", "type": "config", "name": "constrain2region"}, {"url": "Resize.html#event_constrain2regionChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2regionChange"}, {"url": "Resize.html#config_constrain2view", "access": "", "host": "Resize", "type": "config", "name": "constrain2view"}, {"url": "Resize.html#event_constrain2viewChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2viewChange"}, {"url": "Resize.html#method__copyStyles", "access": "protected", "host": "Resize", "type": "method", "name": "_copyStyles"}, {"url": "Resize.html#method__defMouseUpFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defMouseUpFn"}, {"url": "Resize.html#method__defResizeEndFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeEndFn"}, {"url": "Resize.html#method__defResizeFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeFn"}, {"url": "Resize.html#method__defResizeStartFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeStartFn"}, {"url": "Resize.html#method_destructor", "access": "protected", "host": "Resize", "type": "method", "name": "destructor"}, {"url": "Resize.html#method_eachHandle", "access": "", "host": "Resize", "type": "method", "name": "eachHandle"}, {"url": "Resize.html#method__handleMouseUpEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleMouseUpEvent"}, {"url": "Resize.html#method__handleResizeEndEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeEndEvent"}, {"url": "Resize.html#method__handleResizeEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeEvent"}, {"url": "Resize.html#method__handleResizeStartEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeStartEvent"}, {"url": "Resize.html#config_handles", "access": "", "host": "Resize", "type": "config", "name": "handles"}, {"url": "Resize.html#event_handlesChange", "access": "", "host": "Resize", "type": "event", "name": "handlesChange"}, {"url": "Resize.html#property_info", "access": "protected", "host": "Resize", "type": "property", "name": "info"}, {"url": "Resize.html#method_initializer", "access": "protected", "host": "Resize", "type": "method", "name": "initializer"}, {"url": "Resize.html#config_maxHeight", "access": "", "host": "Resize", "type": "config", "name": "maxHeight"}, {"url": "Resize.html#event_maxHeightChange", "access": "", "host": "Resize", "type": "event", "name": "maxHeightChange"}, {"url": "Resize.html#config_maxWidth", "access": "", "host": "Resize", "type": "config", "name": "maxWidth"}, {"url": "Resize.html#event_maxWidthChange", "access": "", "host": "Resize", "type": "event", "name": "maxWidthChange"}, {"url": "Resize.html#config_minHeight", "access": "", "host": "Resize", "type": "config", "name": "minHeight"}, {"url": "Resize.html#event_minHeightChange", "access": "", "host": "Resize", "type": "event", "name": "minHeightChange"}, {"url": "Resize.html#config_minWidth", "access": "", "host": "Resize", "type": "config", "name": "minWidth"}, {"url": "Resize.html#event_minWidthChange", "access": "", "host": "Resize", "type": "event", "name": "minWidthChange"}, {"url": "Resize.html#config_node", "access": "", "host": "Resize", "type": "config", "name": "node"}, {"url": "Resize.html#event_nodeChange", "access": "", "host": "Resize", "type": "event", "name": "nodeChange"}, {"url": "Resize.html#method__onHandleMouseOut", "access": "protected", "host": "Resize", "type": "method", "name": "_onHandleMouseOut"}, {"url": "Resize.html#method__onHandleMouseOver", "access": "protected", "host": "Resize", "type": "method", "name": "_onHandleMouseOver"}, {"url": "Resize.html#method__onWrapperMouseEnter", "access": "protected", "host": "Resize", "type": "method", "name": "_onWrapperMouseEnter"}, {"url": "Resize.html#method__onWrapperMouseLeave", "access": "protected", "host": "Resize", "type": "method", "name": "_onWrapperMouseLeave"}, {"url": "Resize.html#property_originalInfo", "access": "protected", "host": "Resize", "type": "property", "name": "originalInfo"}, {"url": "Resize.html#config_preserveRatio", "access": "", "host": "Resize", "type": "config", "name": "preserveRatio"}, {"url": "Resize.html#event_preserveRatioChange", "access": "", "host": "Resize", "type": "event", "name": "preserveRatioChange"}, {"url": "Resize.html#config_proxy", "access": "", "host": "Resize", "type": "config", "name": "proxy"}, {"url": "Resize.html#event_proxyChange", "access": "", "host": "Resize", "type": "event", "name": "proxyChange"}, {"url": "Resize.html#config_proxyEl", "access": "", "host": "Resize", "type": "config", "name": "proxyEl"}, {"url": "Resize.html#event_proxyElChange", "access": "", "host": "Resize", "type": "event", "name": "proxyElChange"}, {"url": "Resize.html#method_renderer", "access": "protected", "host": "Resize", "type": "method", "name": "renderer"}, {"url": "Resize.html#method__renderHandles", "access": "protected", "host": "Resize", "type": "method", "name": "_renderHandles"}, {"url": "Resize.html#method__renderProxy", "access": "protected", "host": "Resize", "type": "method", "name": "_renderProxy"}, {"url": "Resize.html#method_renderUI", "access": "protected", "host": "Resize", "type": "method", "name": "renderUI"}, {"url": "Resize.html#method__resize", "access": "protected", "host": "Resize", "type": "method", "name": "_resize"}, {"url": "Resize.html#event_resize:end", "access": "", "host": "Resize", "type": "event", "name": "resize:end"}, {"url": "Resize.html#event_resize:mouseUp", "access": "", "host": "Resize", "type": "event", "name": "resize:mouseUp"}, {"url": "Resize.html#event_resize:resize", "access": "", "host": "Resize", "type": "event", "name": "resize:resize"}, {"url": "Resize.html#event_resize:start", "access": "", "host": "Resize", "type": "event", "name": "resize:start"}, {"url": "Resize.html#property_Resize.ATTRS", "access": "", "host": "Resize", "type": "property", "name": "Resize.ATTRS"}, {"url": "Resize.html#property_Resize.NAME", "access": "", "host": "Resize", "type": "property", "name": "Resize.NAME"}, {"url": "Resize.html#config_resizing", "access": "", "host": "Resize", "type": "config", "name": "resizing"}, {"url": "Resize.html#event_resizingChange", "access": "", "host": "Resize", "type": "event", "name": "resizingChange"}, {"url": "Resize.html#method__setActiveHandlesUI", "access": "protected", "host": "Resize", "type": "method", "name": "_setActiveHandlesUI"}, {"url": "Resize.html#method__setHideHandlesUI", "access": "protected", "host": "Resize", "type": "method", "name": "_setHideHandlesUI"}, {"url": "Resize.html#method__syncProxyUI", "access": "protected", "host": "Resize", "type": "method", "name": "_syncProxyUI"}, {"url": "Resize.html#method__syncUI", "access": "protected", "host": "Resize", "type": "method", "name": "_syncUI"}, {"url": "Resize.html#method_syncUI", "access": "protected", "host": "Resize", "type": "method", "name": "syncUI"}, {"url": "Resize.html#config_tickX", "access": "", "host": "Resize", "type": "config", "name": "tickX"}, {"url": "Resize.html#event_tickXChange", "access": "", "host": "Resize", "type": "event", "name": "tickXChange"}, {"url": "Resize.html#config_tickY", "access": "", "host": "Resize", "type": "config", "name": "tickY"}, {"url": "Resize.html#event_tickYChange", "access": "", "host": "Resize", "type": "event", "name": "tickYChange"}, {"url": "Resize.html#config_wrap", "access": "", "host": "Resize", "type": "config", "name": "wrap"}, {"url": "Resize.html#event_wrapChange", "access": "", "host": "Resize", "type": "event", "name": "wrapChange"}, {"url": "Resize.html#config_wrapper", "access": "", "host": "Resize", "type": "config", "name": "wrapper"}, {"url": "Resize.html#event_wrapperChange", "access": "", "host": "Resize", "type": "event", "name": "wrapperChange"}, {"url": "Resize.html#config_wrapTypes", "access": "", "host": "Resize", "type": "config", "name": "wrapTypes"}, {"url": "Resize.html#event_wrapTypesChange", "access": "", "host": "Resize", "type": "event", "name": "wrapTypesChange"}];
+    var ALL_YUI_PROPS = [{"url": "Resize.html#event_activeHandleChange", "access": "", "host": "Resize", "type": "event", "name": "activeHandleChange"}, {"url": "Resize.html#event_activeHandleElChange", "access": "", "host": "Resize", "type": "event", "name": "activeHandleElChange"}, {"url": "Resize.html#method__afterResize", "access": "protected", "host": "Resize", "type": "method", "name": "_afterResize"}, {"url": "Resize.html#config_autoHide", "access": "", "host": "Resize", "type": "config", "name": "autoHide"}, {"url": "Resize.html#event_autoHideChange", "access": "", "host": "Resize", "type": "event", "name": "autoHideChange"}, {"url": "Resize.html#method_bindUI", "access": "protected", "host": "Resize", "type": "method", "name": "bindUI"}, {"url": "Resize.html#method__buildHandle", "access": "protected", "host": "Resize", "type": "method", "name": "_buildHandle"}, {"url": "Resize.html#config_changeHeightHandles", "access": "", "host": "Resize", "type": "config", "name": "changeHeightHandles"}, {"url": "Resize.html#event_changeHeightHandlesChange", "access": "", "host": "Resize", "type": "event", "name": "changeHeightHandlesChange"}, {"url": "Resize.html#config_changeLeftHandles", "access": "", "host": "Resize", "type": "config", "name": "changeLeftHandles"}, {"url": "Resize.html#event_changeLeftHandlesChange", "access": "", "host": "Resize", "type": "event", "name": "changeLeftHandlesChange"}, {"url": "Resize.html#config_changeTopHandles", "access": "", "host": "Resize", "type": "config", "name": "changeTopHandles"}, {"url": "Resize.html#event_changeTopHandlesChange", "access": "", "host": "Resize", "type": "event", "name": "changeTopHandlesChange"}, {"url": "Resize.html#config_changeWidthHandles", "access": "", "host": "Resize", "type": "config", "name": "changeWidthHandles"}, {"url": "Resize.html#event_changeWidthHandlesChange", "access": "", "host": "Resize", "type": "event", "name": "changeWidthHandlesChange"}, {"url": "Resize.html#method__checkConstrain", "access": "protected", "host": "Resize", "type": "method", "name": "_checkConstrain"}, {"url": "Resize.html#method__checkHeight", "access": "protected", "host": "Resize", "type": "method", "name": "_checkHeight"}, {"url": "Resize.html#method__checkRatio", "access": "protected", "host": "Resize", "type": "method", "name": "_checkRatio"}, {"url": "Resize.html#method__checkRegion", "access": "protected", "host": "Resize", "type": "method", "name": "_checkRegion"}, {"url": "Resize.html#method__checkWidth", "access": "protected", "host": "Resize", "type": "method", "name": "_checkWidth"}, {"url": "Resize.html#config_constrain2node", "access": "", "host": "Resize", "type": "config", "name": "constrain2node"}, {"url": "Resize.html#event_constrain2nodeChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2nodeChange"}, {"url": "Resize.html#config_constrain2region", "access": "", "host": "Resize", "type": "config", "name": "constrain2region"}, {"url": "Resize.html#event_constrain2regionChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2regionChange"}, {"url": "Resize.html#config_constrain2view", "access": "", "host": "Resize", "type": "config", "name": "constrain2view"}, {"url": "Resize.html#event_constrain2viewChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2viewChange"}, {"url": "Resize.html#method__copyStyles", "access": "protected", "host": "Resize", "type": "method", "name": "_copyStyles"}, {"url": "Resize.html#method__defMouseUpFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defMouseUpFn"}, {"url": "Resize.html#method__defResizeEndFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeEndFn"}, {"url": "Resize.html#method__defResizeFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeFn"}, {"url": "Resize.html#method__defResizeStartFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeStartFn"}, {"url": "Resize.html#method_destructor", "access": "protected", "host": "Resize", "type": "method", "name": "destructor"}, {"url": "Resize.html#method_eachHandle", "access": "", "host": "Resize", "type": "method", "name": "eachHandle"}, {"url": "Resize.html#method__handleMouseUpEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleMouseUpEvent"}, {"url": "Resize.html#method__handleResizeEndEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeEndEvent"}, {"url": "Resize.html#method__handleResizeEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeEvent"}, {"url": "Resize.html#method__handleResizeStartEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeStartEvent"}, {"url": "Resize.html#config_handles", "access": "", "host": "Resize", "type": "config", "name": "handles"}, {"url": "Resize.html#event_handlesChange", "access": "", "host": "Resize", "type": "event", "name": "handlesChange"}, {"url": "Resize.html#property_info", "access": "protected", "host": "Resize", "type": "property", "name": "info"}, {"url": "Resize.html#method_initializer", "access": "protected", "host": "Resize", "type": "method", "name": "initializer"}, {"url": "Resize.html#config_maxHeight", "access": "", "host": "Resize", "type": "config", "name": "maxHeight"}, {"url": "Resize.html#event_maxHeightChange", "access": "", "host": "Resize", "type": "event", "name": "maxHeightChange"}, {"url": "Resize.html#config_maxWidth", "access": "", "host": "Resize", "type": "config", "name": "maxWidth"}, {"url": "Resize.html#event_maxWidthChange", "access": "", "host": "Resize", "type": "event", "name": "maxWidthChange"}, {"url": "Resize.html#config_minHeight", "access": "", "host": "Resize", "type": "config", "name": "minHeight"}, {"url": "Resize.html#event_minHeightChange", "access": "", "host": "Resize", "type": "event", "name": "minHeightChange"}, {"url": "Resize.html#config_minWidth", "access": "", "host": "Resize", "type": "config", "name": "minWidth"}, {"url": "Resize.html#event_minWidthChange", "access": "", "host": "Resize", "type": "event", "name": "minWidthChange"}, {"url": "Resize.html#config_node", "access": "", "host": "Resize", "type": "config", "name": "node"}, {"url": "Resize.html#event_nodeChange", "access": "", "host": "Resize", "type": "event", "name": "nodeChange"}, {"url": "Resize.html#method__onHandleMouseOut", "access": "protected", "host": "Resize", "type": "method", "name": "_onHandleMouseOut"}, {"url": "Resize.html#method__onHandleMouseOver", "access": "protected", "host": "Resize", "type": "method", "name": "_onHandleMouseOver"}, {"url": "Resize.html#method__onWrapperMouseEnter", "access": "protected", "host": "Resize", "type": "method", "name": "_onWrapperMouseEnter"}, {"url": "Resize.html#method__onWrapperMouseLeave", "access": "protected", "host": "Resize", "type": "method", "name": "_onWrapperMouseLeave"}, {"url": "Resize.html#property_originalInfo", "access": "protected", "host": "Resize", "type": "property", "name": "originalInfo"}, {"url": "Resize.html#config_preserveRatio", "access": "", "host": "Resize", "type": "config", "name": "preserveRatio"}, {"url": "Resize.html#event_preserveRatioChange", "access": "", "host": "Resize", "type": "event", "name": "preserveRatioChange"}, {"url": "Resize.html#config_proxy", "access": "", "host": "Resize", "type": "config", "name": "proxy"}, {"url": "Resize.html#event_proxyChange", "access": "", "host": "Resize", "type": "event", "name": "proxyChange"}, {"url": "Resize.html#config_proxyEl", "access": "", "host": "Resize", "type": "config", "name": "proxyEl"}, {"url": "Resize.html#event_proxyElChange", "access": "", "host": "Resize", "type": "event", "name": "proxyElChange"}, {"url": "Resize.html#method_renderer", "access": "protected", "host": "Resize", "type": "method", "name": "renderer"}, {"url": "Resize.html#method__renderHandles", "access": "protected", "host": "Resize", "type": "method", "name": "_renderHandles"}, {"url": "Resize.html#method__renderProxy", "access": "protected", "host": "Resize", "type": "method", "name": "_renderProxy"}, {"url": "Resize.html#method_renderUI", "access": "protected", "host": "Resize", "type": "method", "name": "renderUI"}, {"url": "Resize.html#method__resize", "access": "protected", "host": "Resize", "type": "method", "name": "_resize"}, {"url": "Resize.html#event_resize:end", "access": "", "host": "Resize", "type": "event", "name": "resize:end"}, {"url": "Resize.html#event_resize:mouseUp", "access": "", "host": "Resize", "type": "event", "name": "resize:mouseUp"}, {"url": "Resize.html#event_resize:resize", "access": "", "host": "Resize", "type": "event", "name": "resize:resize"}, {"url": "Resize.html#event_resize:start", "access": "", "host": "Resize", "type": "event", "name": "resize:start"}, {"url": "Resize.html#property_Resize.ATTRS", "access": "", "host": "Resize", "type": "property", "name": "Resize.ATTRS"}, {"url": "Resize.html#property_Resize.NAME", "access": "", "host": "Resize", "type": "property", "name": "Resize.NAME"}, {"url": "Resize.html#config_resizing", "access": "", "host": "Resize", "type": "config", "name": "resizing"}, {"url": "Resize.html#event_resizingChange", "access": "", "host": "Resize", "type": "event", "name": "resizingChange"}, {"url": "Resize.html#method__setActiveHandlesUI", "access": "protected", "host": "Resize", "type": "method", "name": "_setActiveHandlesUI"}, {"url": "Resize.html#method__setHideHandlesUI", "access": "protected", "host": "Resize", "type": "method", "name": "_setHideHandlesUI"}, {"url": "Resize.html#method__setOffset", "access": "protected", "host": "Resize", "type": "method", "name": "_setOffset"}, {"url": "Resize.html#method__syncProxyUI", "access": "protected", "host": "Resize", "type": "method", "name": "_syncProxyUI"}, {"url": "Resize.html#method__syncUI", "access": "protected", "host": "Resize", "type": "method", "name": "_syncUI"}, {"url": "Resize.html#method_syncUI", "access": "protected", "host": "Resize", "type": "method", "name": "syncUI"}, {"url": "Resize.html#config_tickX", "access": "", "host": "Resize", "type": "config", "name": "tickX"}, {"url": "Resize.html#event_tickXChange", "access": "", "host": "Resize", "type": "event", "name": "tickXChange"}, {"url": "Resize.html#config_tickY", "access": "", "host": "Resize", "type": "config", "name": "tickY"}, {"url": "Resize.html#event_tickYChange", "access": "", "host": "Resize", "type": "event", "name": "tickYChange"}, {"url": "Resize.html#config_wrap", "access": "", "host": "Resize", "type": "config", "name": "wrap"}, {"url": "Resize.html#event_wrapChange", "access": "", "host": "Resize", "type": "event", "name": "wrapChange"}, {"url": "Resize.html#config_wrapper", "access": "", "host": "Resize", "type": "config", "name": "wrapper"}, {"url": "Resize.html#event_wrapperChange", "access": "", "host": "Resize", "type": "event", "name": "wrapperChange"}, {"url": "Resize.html#config_wrapTypes", "access": "", "host": "Resize", "type": "config", "name": "wrapTypes"}, {"url": "Resize.html#event_wrapTypesChange", "access": "", "host": "Resize", "type": "event", "name": "wrapTypesChange"}];
 </script>
 </body>
 </html>

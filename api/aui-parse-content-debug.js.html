@@ -543,9 +543,10 @@
 								</style>
 								<div class="highlight"><pre><span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-parse-content&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span> <span class="p">{</span>
 <span class="cm">/**</span>
-<span class="cm"> * The ParseContent Utility - Parse a content in a way of all the javascripts</span>
-<span class="cm"> * within a content will be executed according to the order of apparition.</span>
-<span class="cm"> *</span>
+<span class="cm"> * The ParseContent Utility - Parse the content of a Node so that all of the </span>
+<span class="cm"> * javascript contained in that Node will be executed according to the order</span>
+<span class="cm"> * that it appears.</span>
+<span class="cm"> * </span>
 <span class="cm"> * @module aui-parse-content</span>
 <span class="cm"> */</span>
 
@@ -813,7 +814,7 @@
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;Plugin&#39;</span><span class="p">).</span><span class="nx">ParseContent</span> <span class="o">=</span> <span class="nx">ParseContent</span><span class="p">;</span>
 
-<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span> <span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;async-queue&#39;</span><span class="p">,</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;io&#39;</span><span class="p">,</span><span class="s1">&#39;plugin&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;async-queue&#39;</span><span class="p">,</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;io&#39;</span><span class="p">,</span><span class="s1">&#39;plugin&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">});</span>
 </pre></div>
 
 							</div>

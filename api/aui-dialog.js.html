@@ -934,6 +934,20 @@
 	<span class="p">},</span>
 
 	<span class="cm">/**</span>
+<span class="cm">	 * Fires after the value of the</span>
+<span class="cm">	 * &lt;a href=&quot;Dialog.html#config_constrain2view&quot;&gt;constrain2view&lt;/a&gt; attribute change.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method </span>
+<span class="cm">	 * @param {EventFacade} event</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 */</span>
+	<span class="nx">_afterConstrain2viewChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">_setConstrain2view</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
 <span class="cm">	 * Fires after the render phase. Invoke</span>
 <span class="cm">     * &lt;a href=&quot;Dialog.html#method__initButtons&quot;&gt;_initButtons&lt;/a&gt;.</span>
 <span class="cm">	 *</span>
@@ -1030,6 +1044,35 @@
 	<span class="p">},</span>
 
 	<span class="cm">/**</span>
+<span class="cm">	 * Setter for the &lt;a href=&quot;Dialog.html#config_constrain2view&quot;&gt;constrain2view&lt;/a&gt;</span>
+<span class="cm">     * attributte. Plugs or unplugs the DDConstrained plugin on the drag instance.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method _setConstrain2view</span>
+<span class="cm">	 * @param {Object} value Object to be passed to the A.DD.Drag constructor.</span>
+<span class="cm">	 * @protected</span>
+<span class="cm">	 * @return {Object}</span>
+<span class="cm">	 */</span>
+	<span class="nx">_setConstrain2view</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="kd">var</span> <span class="nx">dragInstance</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DRAG_INSTANCE</span><span class="p">);</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">dragInstance</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">dragInstance</span><span class="p">.</span><span class="nx">plug</span><span class="p">(</span>
+					<span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDConstrained</span><span class="p">,</span>
+					<span class="p">{</span>
+						<span class="nx">constrain2view</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONSTRAIN_TO_VIEWPORT</span><span class="p">)</span>
+					<span class="p">}</span>
+				<span class="p">);</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="p">{</span>
+				<span class="nx">dragInstance</span><span class="p">.</span><span class="nx">unplug</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDConstrained</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
 <span class="cm">	 * Setter for the &lt;a href=&quot;Dialog.html#config_draggable&quot;&gt;draggable&lt;/a&gt;</span>
 <span class="cm">     * attributte. Initialize the A.DD.Drag on the Dialog.</span>
 <span class="cm">	 *</span>
@@ -1076,14 +1119,11 @@
 
 			<span class="kd">var</span> <span class="nx">dragInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DD</span><span class="p">.</span><span class="nx">Drag</span><span class="p">(</span><span class="nx">dragOptions</span><span class="p">);</span>
 
-			<span class="nx">dragInstance</span><span class="p">.</span><span class="nx">plug</span><span class="p">(</span>
-				<span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDConstrained</span><span class="p">,</span>
-				<span class="p">{</span>
-					<span class="nx">constrain2view</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONSTRAIN_TO_VIEWPORT</span><span class="p">)</span>
-				<span class="p">}</span>
-			<span class="p">);</span>
-
 			<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">DRAG_INSTANCE</span><span class="p">,</span> <span class="nx">dragInstance</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;constrain2viewChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterConstrain2viewChange</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_setConstrain2view</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;constrain2view&#39;</span><span class="p">));</span>
 		<span class="p">}</span>
 		<span class="k">else</span> <span class="p">{</span>
 			<span class="nx">destroy</span><span class="p">();</span>
@@ -1320,7 +1360,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Dialog.html#method__afterRenderer", "access": "protected", "host": "Dialog", "type": "method", "name": "_afterRenderer"}, {"url": "Dialog.html#method__afterSetVisible", "access": "protected", "host": "Dialog", "type": "method", "name": "_afterSetVisible"}, {"url": "Dialog.html#method_bindUI", "access": "protected", "host": "Dialog", "type": "method", "name": "bindUI"}, {"url": "Dialog.html#config_bodyContent", "access": "", "host": "Dialog", "type": "config", "name": "bodyContent"}, {"url": "Dialog.html#event_bodyContentChange", "access": "", "host": "Dialog", "type": "event", "name": "bodyContentChange"}, {"url": "Dialog.html#config_buttons", "access": "", "host": "Dialog", "type": "config", "name": "buttons"}, {"url": "Dialog.html#event_buttonsChange", "access": "", "host": "Dialog", "type": "event", "name": "buttonsChange"}, {"url": "Dialog.html#method_close", "access": "", "host": "Dialog", "type": "method", "name": "close"}, {"url": "Dialog.html#config_close", "access": "", "host": "Dialog", "type": "config", "name": "close"}, {"url": "DialogManager.html#method_closeByChild", "access": "", "host": "DialogManager", "type": "method", "name": "closeByChild"}, {"url": "Dialog.html#event_closeChange", "access": "", "host": "Dialog", "type": "event", "name": "closeChange"}, {"url": "Dialog.html#config_constrain2view", "access": "", "host": "Dialog", "type": "config", "name": "constrain2view"}, {"url": "Dialog.html#event_constrain2viewChange", "access": "", "host": "Dialog", "type": "event", "name": "constrain2viewChange"}, {"url": "Dialog.html#config_destroyOnClose", "access": "", "host": "Dialog", "type": "config", "name": "destroyOnClose"}, {"url": "Dialog.html#event_destroyOnCloseChange", "access": "", "host": "Dialog", "type": "event", "name": "destroyOnCloseChange"}, {"url": "Dialog.html#method_destructor", "access": "protected", "host": "Dialog", "type": "method", "name": "destructor"}, {"url": "Dialog.html#property_Dialog.ATTRS", "access": "", "host": "Dialog", "type": "property", "name": "Dialog.ATTRS"}, {"url": "Dialog.html#property_Dialog.NAME", "access": "", "host": "Dialog", "type": "property", "name": "Dialog.NAME"}, {"url": "Dialog.html#config_draggable", "access": "", "host": "Dialog", "type": "config", "name": "draggable"}, {"url": "Dialog.html#event_draggableChange", "access": "", "host": "Dialog", "type": "event", "name": "draggableChange"}, {"url": "Dialog.html#config_dragInstance", "access": "", "host": "Dialog", "type": "config", "name": "dragInstance"}, {"url": "Dialog.html#event_dragInstanceChange", "access": "", "host": "Dialog", "type": "event", "name": "dragInstanceChange"}, {"url": "DialogManager.html#method_findByChild", "access": "", "host": "DialogManager", "type": "method", "name": "findByChild"}, {"url": "Dialog.html#method__handleEvent", "access": "protected", "host": "Dialog", "type": "method", "name": "_handleEvent"}, {"url": "Dialog.html#method__initButtons", "access": "protected", "host": "Dialog", "type": "method", "name": "_initButtons"}, {"url": "Dialog.html#method_initializer", "access": "protected", "host": "Dialog", "type": "method", "name": "initializer"}, {"url": "Dialog.html#config_modal", "access": "", "host": "Dialog", "type": "config", "name": "modal"}, {"url": "Dialog.html#event_modalChange", "access": "", "host": "Dialog", "type": "event", "name": "modalChange"}, {"url": "DialogManager.html#method_refreshByChild", "access": "", "host": "DialogManager", "type": "method", "name": "refreshByChild"}, {"url": "Dialog.html#config_resizable", "access": "", "host": "Dialog", "type": "config", "name": "resizable"}, {"url": "Dialog.html#event_resizableChange", "access": "", "host": "Dialog", "type": "event", "name": "resizableChange"}, {"url": "Dialog.html#config_resizableInstance", "access": "", "host": "Dialog", "type": "config", "name": "resizableInstance"}, {"url": "Dialog.html#event_resizableInstanceChange", "access": "", "host": "Dialog", "type": "event", "name": "resizableInstanceChange"}, {"url": "Dialog.html#method__setDraggable", "access": "protected", "host": "Dialog", "type": "method", "name": "_setDraggable"}, {"url": "Dialog.html#method__setModal", "access": "protected", "host": "Dialog", "type": "method", "name": "_setModal"}, {"url": "Dialog.html#method__setResizable", "access": "protected", "host": "Dialog", "type": "method", "name": "_setResizable"}, {"url": "Dialog.html#method__setStack", "access": "protected", "host": "Dialog", "type": "method", "name": "_setStack"}, {"url": "Dialog.html#config_stack", "access": "", "host": "Dialog", "type": "config", "name": "stack"}, {"url": "Dialog.html#event_stackChange", "access": "", "host": "Dialog", "type": "event", "name": "stackChange"}];
+    var ALL_YUI_PROPS = [{"url": "Dialog.html#method_", "access": "protected", "host": "Dialog", "type": "method", "name": ""}, {"url": "Dialog.html#method__afterRenderer", "access": "protected", "host": "Dialog", "type": "method", "name": "_afterRenderer"}, {"url": "Dialog.html#method__afterSetVisible", "access": "protected", "host": "Dialog", "type": "method", "name": "_afterSetVisible"}, {"url": "Dialog.html#method_bindUI", "access": "protected", "host": "Dialog", "type": "method", "name": "bindUI"}, {"url": "Dialog.html#config_bodyContent", "access": "", "host": "Dialog", "type": "config", "name": "bodyContent"}, {"url": "Dialog.html#event_bodyContentChange", "access": "", "host": "Dialog", "type": "event", "name": "bodyContentChange"}, {"url": "Dialog.html#config_buttons", "access": "", "host": "Dialog", "type": "config", "name": "buttons"}, {"url": "Dialog.html#event_buttonsChange", "access": "", "host": "Dialog", "type": "event", "name": "buttonsChange"}, {"url": "Dialog.html#method_close", "access": "", "host": "Dialog", "type": "method", "name": "close"}, {"url": "Dialog.html#config_close", "access": "", "host": "Dialog", "type": "config", "name": "close"}, {"url": "DialogManager.html#method_closeByChild", "access": "", "host": "DialogManager", "type": "method", "name": "closeByChild"}, {"url": "Dialog.html#event_closeChange", "access": "", "host": "Dialog", "type": "event", "name": "closeChange"}, {"url": "Dialog.html#config_constrain2view", "access": "", "host": "Dialog", "type": "config", "name": "constrain2view"}, {"url": "Dialog.html#event_constrain2viewChange", "access": "", "host": "Dialog", "type": "event", "name": "constrain2viewChange"}, {"url": "Dialog.html#config_destroyOnClose", "access": "", "host": "Dialog", "type": "config", "name": "destroyOnClose"}, {"url": "Dialog.html#event_destroyOnCloseChange", "access": "", "host": "Dialog", "type": "event", "name": "destroyOnCloseChange"}, {"url": "Dialog.html#method_destructor", "access": "protected", "host": "Dialog", "type": "method", "name": "destructor"}, {"url": "Dialog.html#property_Dialog.ATTRS", "access": "", "host": "Dialog", "type": "property", "name": "Dialog.ATTRS"}, {"url": "Dialog.html#property_Dialog.NAME", "access": "", "host": "Dialog", "type": "property", "name": "Dialog.NAME"}, {"url": "Dialog.html#config_draggable", "access": "", "host": "Dialog", "type": "config", "name": "draggable"}, {"url": "Dialog.html#event_draggableChange", "access": "", "host": "Dialog", "type": "event", "name": "draggableChange"}, {"url": "Dialog.html#config_dragInstance", "access": "", "host": "Dialog", "type": "config", "name": "dragInstance"}, {"url": "Dialog.html#event_dragInstanceChange", "access": "", "host": "Dialog", "type": "event", "name": "dragInstanceChange"}, {"url": "DialogManager.html#method_findByChild", "access": "", "host": "DialogManager", "type": "method", "name": "findByChild"}, {"url": "Dialog.html#method__handleEvent", "access": "protected", "host": "Dialog", "type": "method", "name": "_handleEvent"}, {"url": "Dialog.html#method__initButtons", "access": "protected", "host": "Dialog", "type": "method", "name": "_initButtons"}, {"url": "Dialog.html#method_initializer", "access": "protected", "host": "Dialog", "type": "method", "name": "initializer"}, {"url": "Dialog.html#config_modal", "access": "", "host": "Dialog", "type": "config", "name": "modal"}, {"url": "Dialog.html#event_modalChange", "access": "", "host": "Dialog", "type": "event", "name": "modalChange"}, {"url": "DialogManager.html#method_refreshByChild", "access": "", "host": "DialogManager", "type": "method", "name": "refreshByChild"}, {"url": "Dialog.html#config_resizable", "access": "", "host": "Dialog", "type": "config", "name": "resizable"}, {"url": "Dialog.html#event_resizableChange", "access": "", "host": "Dialog", "type": "event", "name": "resizableChange"}, {"url": "Dialog.html#config_resizableInstance", "access": "", "host": "Dialog", "type": "config", "name": "resizableInstance"}, {"url": "Dialog.html#event_resizableInstanceChange", "access": "", "host": "Dialog", "type": "event", "name": "resizableInstanceChange"}, {"url": "Dialog.html#method__setConstrain2view", "access": "protected", "host": "Dialog", "type": "method", "name": "_setConstrain2view"}, {"url": "Dialog.html#method__setDraggable", "access": "protected", "host": "Dialog", "type": "method", "name": "_setDraggable"}, {"url": "Dialog.html#method__setModal", "access": "protected", "host": "Dialog", "type": "method", "name": "_setModal"}, {"url": "Dialog.html#method__setResizable", "access": "protected", "host": "Dialog", "type": "method", "name": "_setResizable"}, {"url": "Dialog.html#method__setStack", "access": "protected", "host": "Dialog", "type": "method", "name": "_setStack"}, {"url": "Dialog.html#config_stack", "access": "", "host": "Dialog", "type": "config", "name": "stack"}, {"url": "Dialog.html#event_stackChange", "access": "", "host": "Dialog", "type": "event", "name": "stackChange"}];
 </script>
 </body>
 </html>
