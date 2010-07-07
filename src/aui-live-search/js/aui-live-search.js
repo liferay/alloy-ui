@@ -143,9 +143,7 @@ var LiveSearch = A.Component.create(
 			 * @type Node | String
 			 */
 			input: {
-				setter: function(v) {
-					return A.one(v);
-				}
+				setter: A.one
 			},
 
 			/**

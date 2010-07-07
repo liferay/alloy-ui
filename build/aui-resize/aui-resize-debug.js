@@ -98,10 +98,6 @@ var Lang = A.Lang,
 		return Array.prototype.slice.call(arguments).join(SPACE);
 	},
 
-	nodeSetter = function(val) {
-		return A.one(val);
-	},
-
 	toInitialCap = A.cached(
 		function(str) {
 			return str.substring(0, 1).toUpperCase() + str.substring(1);
@@ -375,7 +371,7 @@ var Resize = A.Component.create(
 	         * @type Node
 	         */
 			node: {
-				setter: nodeSetter
+				setter: A.one
 			},
 
 			/**
@@ -410,7 +406,7 @@ var Resize = A.Component.create(
 	         * @type String | Node
 	         */
 			proxyEl: {
-				setter: nodeSetter,
+				setter: A.one,
 				valueFn: function() {
 					return A.Node.create(TPL_PROXY_EL);
 				}

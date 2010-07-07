@@ -56,10 +56,6 @@ var L = A.Lang,
 	TOTAL_LABEL = 'totalLabel',
 	TOTAL_PAGES = 'totalPages',
 
-	nodeSetter = function(v) {
-		return A.one(v);
-	},
-
 	concat = function() {
 		return Array.prototype.slice.call(arguments).join(SPACE);
 	},
@@ -203,7 +199,7 @@ var Paginator = A.Component.create(
 			 * @type Node | String
 			 */
 			firstPageLink: {
-				setter: nodeSetter,
+				setter: A.one,
 				valueFn: function() {
 					var label = this.get(FIRST_PAGE_LINK_LABEL);
 
@@ -233,7 +229,7 @@ var Paginator = A.Component.create(
 			 * @type Node | String
 			 */
 			lastPageLink: {
-				setter: nodeSetter,
+				setter: A.one,
 				valueFn: function() {
 					var label = this.get(LAST_PAGE_LINK_LABEL);
 
@@ -283,7 +279,7 @@ var Paginator = A.Component.create(
 			 * @type Node | String
 			 */
 			nextPageLink: {
-				setter: nodeSetter,
+				setter: A.one,
 				valueFn: function() {
 					var label = this.get(NEXT_PAGE_LINK_LABEL);
 
@@ -382,7 +378,7 @@ var Paginator = A.Component.create(
 			 * @type String
 			 */
 			pageReportEl: {
-				setter: nodeSetter,
+				setter: A.one,
 				valueFn: function() {
 					var label = this.get(PAGE_REPORT_LABEL_TEMPLATE);
 
@@ -421,7 +417,7 @@ var Paginator = A.Component.create(
 			 * @type Node | String
 			 */
 			prevPageLink: {
-				setter: nodeSetter,
+				setter: A.one,
 				valueFn: function() {
 					var label = this.get(PREV_PAGE_LINK_LABEL);
 
@@ -480,7 +476,7 @@ var Paginator = A.Component.create(
 			 * @type Node | String
 			 */
 			rowsPerPageEl: {
-				setter: nodeSetter,
+				setter: A.one,
 				valueFn: function() {
 					return A.Node.create(ROWS_PER_PAGE_TPL);
 				}
@@ -547,7 +543,7 @@ var Paginator = A.Component.create(
 			 * @type String
 			 */
 			totalEl: {
-				setter: nodeSetter,
+				setter: A.one,
 				valueFn: function() {
 					var label = this.get(TOTAL_LABEL);
 
@@ -1222,4 +1218,4 @@ var Paginator = A.Component.create(
 
 A.Paginator = Paginator;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','substitute']});
+}, '@VERSION@' ,{requires:['aui-base','substitute'], skinnable:true});

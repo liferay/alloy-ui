@@ -70,9 +70,7 @@ var CharCounter = A.Component.create(
 			 * @type {Node | String}
 			 */
 			counter: {
-				setter: function(v) {
-					return A.one(v);
-				}
+				setter: A.one
 			},
 
 			/**
@@ -100,9 +98,7 @@ var CharCounter = A.Component.create(
 			 * @type {Node | String}
 			 */
 			input: {
-				setter: function(v) {
-					return A.one(v);
-				}
+				setter: A.one
 			}
 		},
 
@@ -262,4 +258,4 @@ var CharCounter = A.Component.create(
 
 A.CharCounter = CharCounter;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base','aui-event-input']});
+}, '@VERSION@' ,{requires:['aui-base','aui-event-input'], skinnable:false});

@@ -40,10 +40,6 @@ var L = A.Lang,
 	TREE = 'tree',
 	TREE_NODE = 'tree-node',
 
-	nodeSetter = function(v) {
-		return A.one(v);
-	},
-
 	concat = function() {
 		return Array.prototype.slice.call(arguments).join(SPACE);
 	},
@@ -248,7 +244,7 @@ var TreeNode = A.Component.create(
 			 * @type Node | String
 			 */
 			labelEl: {
-				setter: nodeSetter,
+				setter: A.one,
 				valueFn: function() {
 					var label = this.get(LABEL);
 
@@ -264,7 +260,7 @@ var TreeNode = A.Component.create(
 			 * @type Node | String
 			 */
 			hitAreaEl: {
-				setter: nodeSetter,
+				setter: A.one,
 				valueFn: function() {
 					return A.Node.create(HIT_AREA_TPL);
 				}
@@ -289,7 +285,7 @@ var TreeNode = A.Component.create(
 			 * @type Node | String
 			 */
 			iconEl: {
-				setter: nodeSetter,
+				setter: A.one,
 				valueFn: function() {
 					return A.Node.create(ICON_TPL);
 				}
@@ -1472,7 +1468,7 @@ var TreeNodeCheck = A.Component.create(
 			 * @type Node | String
 			 */
 			checkContainerEl: {
-				setter: nodeSetter,
+				setter: A.one,
 				valueFn: function() {
 					return A.Node.create(CHECKBOX_CONTAINER_TPL);
 				}
@@ -1486,7 +1482,7 @@ var TreeNodeCheck = A.Component.create(
 			 * @type Node | String
 			 */
 			checkEl: {
-				setter: nodeSetter,
+				setter: A.one,
 				valueFn: function() {
 					var checkName = this.get(CHECK_NAME);
 

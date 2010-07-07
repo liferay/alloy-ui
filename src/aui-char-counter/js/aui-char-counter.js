@@ -69,9 +69,7 @@ var CharCounter = A.Component.create(
 			 * @type {Node | String}
 			 */
 			counter: {
-				setter: function(v) {
-					return A.one(v);
-				}
+				setter: A.one
 			},
 
 			/**
@@ -99,9 +97,7 @@ var CharCounter = A.Component.create(
 			 * @type {Node | String}
 			 */
 			input: {
-				setter: function(v) {
-					return A.one(v);
-				}
+				setter: A.one
 			}
 		},
 
