@@ -26,10 +26,6 @@ var L = A.Lang,
 	TREE = 'tree',
 	TREE_DATA = 'tree-data',
 
-	nodeSetter = function(v) {
-		return A.one(v);
-	},
-
 	isTreeNode = function(v) {
 		return ( v instanceof A.TreeNode );
 	},
@@ -84,7 +80,7 @@ var TreeData = A.Component.create(
 			 * @type Node | String
 			 */
 			container: {
-				setter: nodeSetter
+				setter: A.one
 			},
 
 			/**
