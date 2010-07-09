@@ -705,4 +705,4 @@ var PortalLayout = A.Component.create(
 
 A.PortalLayout = PortalLayout;
 
-}, '@VERSION@' ,{requires:['aui-base','dd-drag','dd-drop'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-base','dd-drag','dd-drop','dd-proxy'], skinnable:true});

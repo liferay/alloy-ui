@@ -3521,7 +3521,7 @@ var TreeViewDD = A.Component.create(
 
 A.TreeViewDD = TreeViewDD;
 
-}, '@VERSION@' ,{requires:['aui-tree-node','dd-drag','dd-drop'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-tree-node','dd-drag','dd-drop','dd-proxy'], skinnable:true});
 
 
 AUI.add('aui-tree', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view']});

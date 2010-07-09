@@ -418,4 +418,4 @@ var NestedList = A.Component.create(
 
 A.NestedList = NestedList;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base','dd-drag','dd-drop']});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base','dd-drag','dd-drop','dd-proxy']});
