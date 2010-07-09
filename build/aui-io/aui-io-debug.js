@@ -623,7 +623,7 @@ A.io.request = function(uri, config) {
 	);
 };
 
-}, '@VERSION@' ,{requires:['aui-base','io','json','plugin','querystring-stringify']});
+}, '@VERSION@' ,{requires:['aui-base','io-base','json','plugin','querystring-stringify']});
 AUI.add('aui-io-plugin', function(A) {
 /**
  * The IOPlugin Utility - When plugged to a Node or Widget loads the content

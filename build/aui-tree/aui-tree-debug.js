@@ -2584,7 +2584,7 @@ A.TreeNode.nodeTypes = {
 	io: A.TreeNodeIO
 };
 
-}, '@VERSION@' ,{requires:['aui-tree-data','io','json','querystring-stringify'], skinnable:false});
+}, '@VERSION@' ,{requires:['aui-tree-data','io-base','json','querystring-stringify'], skinnable:false});
 AUI.add('aui-tree-view', function(A) {
 /**
  * The TreeView Utility

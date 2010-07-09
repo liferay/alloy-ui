@@ -3394,7 +3394,7 @@ YUI.add('yui', function(Y){}, '3.1.1' ,{use:['yui-base','get','intl-base','yui-l
 						'aui-event': {submodules: {'aui-event-input': {requires:['aui-base']} }, use:['aui-event-input'], skinnable:false},
 						'aui-form': {submodules: {'aui-form-validator': {requires:['aui-base','aui-event-input','selector-css3','substitute']}, 'aui-form-textfield': {requires:['aui-form-field']}, 'aui-form-textarea': {requires:['aui-form-textfield'], skinnable:true}, 'aui-form-field': {requires:['aui-base','aui-component','substitute']}, 'aui-form-combobox': {requires:['aui-form-textarea','aui-toolbar'], skinnable:true}, 'aui-form-base': {requires:['aui-base','aui-data-set','aui-form-field','querystring-parse']} }, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-textarea','aui-form-textfield','aui-form-validator'], skinnable:false},
 						'aui-image-viewer': {submodules: {'aui-image-viewer-gallery': {requires:['aui-image-viewer-base','aui-paginator','aui-toolbar'], skinnable:true}, 'aui-image-viewer-base': {requires:['anim','aui-overlay-mask','substitute'], skinnable:true} }, use:['aui-image-viewer-base','aui-image-viewer-gallery'], skinnable:true},
-						'aui-io': {submodules: {'aui-io-plugin': {requires:['aui-overlay-base','aui-parse-content','aui-io-request','aui-loading-mask']}, 'aui-io-request': {requires:['aui-base','io','json','plugin','querystring-stringify']} }, use:['aui-io-request','aui-io-plugin'], skinnable:false},
+						'aui-io': {submodules: {'aui-io-plugin': {requires:['aui-overlay-base','aui-parse-content','aui-io-request','aui-loading-mask']}, 'aui-io-request': {requires:['aui-base','io-base','json','plugin','querystring-stringify']} }, use:['aui-io-request','aui-io-plugin'], skinnable:false},
 						'aui-live-search': {requires:['aui-base'], skinnable:false},
 						'aui-loading-mask': {requires:['aui-overlay-mask','plugin','substitute'], skinnable:true},
 						'aui-nested-list': {requires:['aui-base','dd-drag','dd-drop'], skinnable:false},
@@ -3402,7 +3402,7 @@ YUI.add('yui', function(Y){}, '3.1.1' ,{use:['yui-base','get','intl-base','yui-l
 						'aui-overlay': {submodules: {'aui-overlay-mask': {requires:['aui-base','aui-overlay-base','event-resize'], skinnable:true}, 'aui-overlay-manager': {requires:['aui-base','aui-overlay-base','overlay','plugin']}, 'aui-overlay-context-panel': {requires:['aui-overlay-context','anim'], skinnable:true}, 'aui-overlay-context': {requires:['aui-overlay-manager','aui-delayed-task']}, 'aui-overlay-base': {requires:['aui-component','widget-position','widget-stack','widget-position-align','widget-position-constrain','widget-stdmod']} }, use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-manager','aui-overlay-mask'], skinnable:true},
 						'aui-paginator': {requires:['aui-base','substitute'], skinnable:true},
 						'aui-panel': {requires:['aui-component','widget-stdmod','aui-toolbar'], skinnable:true},
-						'aui-parse-content': {requires:['async-queue','aui-base','io','plugin'], skinnable:false},
+						'aui-parse-content': {requires:['async-queue','aui-base','plugin'], skinnable:false},
 						'aui-portal-layout': {requires:['aui-base','dd-drag','dd-drop'], skinnable:true},
 						'aui-progressbar': {requires:['aui-base'], skinnable:true},
 						'aui-rating': {requires:['aui-base'], skinnable:true},
@@ -3417,7 +3417,7 @@ YUI.add('yui', function(Y){}, '3.1.1' ,{use:['yui-base','get','intl-base','yui-l
 						'aui-textboxlist': {requires:['anim-node-plugin','aui-autocomplete','node-focusmanager'], skinnable:true},
 						'aui-toolbar': {requires:['aui-base','aui-button-item','aui-data-set','widget-parent'], skinnable:true},
 						'aui-tooltip': {requires:['aui-overlay-context-panel'], skinnable:true},
-						'aui-tree': {submodules: {'aui-tree-view': {requires:['aui-tree-node','dd-drag','dd-drop'], skinnable:true}, 'aui-tree-node': {requires:['aui-tree-data','io','json','querystring-stringify'], skinnable:false}, 'aui-tree-data': {requires:['aui-base'], skinnable:false} }, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true}
+						'aui-tree': {submodules: {'aui-tree-view': {requires:['aui-tree-node','dd-drag','dd-drop'], skinnable:true}, 'aui-tree-node': {requires:['aui-tree-data','io-base','json','querystring-stringify'], skinnable:false}, 'aui-tree-data': {requires:['aui-base'], skinnable:false} }, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true}
 				}
 		    }
 		}

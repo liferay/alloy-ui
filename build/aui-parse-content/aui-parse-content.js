@@ -271,4 +271,4 @@ var ParseContent = A.Component.create(
 
 A.namespace('Plugin').ParseContent = ParseContent;
 
-}, '@VERSION@' ,{requires:['async-queue','aui-base','io','plugin'], skinnable:false});
+}, '@VERSION@' ,{requires:['async-queue','aui-base','plugin'], skinnable:false});

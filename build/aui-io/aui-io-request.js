@@ -623,4 +623,4 @@ A.io.request = function(uri, config) {
 	);
 };
 
-}, '@VERSION@' ,{requires:['aui-base','io','json','plugin','querystring-stringify']});
+}, '@VERSION@' ,{requires:['aui-base','io-base','json','plugin','querystring-stringify']});
