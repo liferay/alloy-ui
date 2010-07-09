@@ -1010,4 +1010,4 @@ var ColorPicker = A.Component.create(
 ColorPicker.Color = Color;
 A.ColorPicker = ColorPicker;
 
-}, '@VERSION@' ,{requires:['aui-overlay-context','dd-drag','slider','substitute','aui-button-item','aui-form','aui-panel'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-overlay-context','dd-drag','slider','substitute','aui-button-item','aui-form-base','aui-panel'], skinnable:true});

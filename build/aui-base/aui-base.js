@@ -21,7 +21,7 @@
 						'aui-carousel': {requires:['aui-base','anim'], skinnable:true},
 						'aui-char-counter': {requires:['aui-base','aui-event-input'], skinnable:false},
 						'aui-chart': {requires:['datasource','aui-swf','json'], skinnable:false},
-						'aui-color-picker': {requires:['aui-overlay-context','dd-drag','slider','substitute','aui-button-item','aui-form','aui-panel'], skinnable:true},
+						'aui-color-picker': {requires:['aui-overlay-context','dd-drag','slider','substitute','aui-button-item','aui-form-base','aui-panel'], skinnable:true},
 						'aui-component': {requires:['widget'], skinnable:false},
 						'aui-data-set': {requires:['oop','collection','base'], skinnable:false},
 						'aui-datatype': {requires:['aui-base'], skinnable:false},
