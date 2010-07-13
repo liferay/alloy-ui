@@ -267,7 +267,12 @@
 				includes="**/build.xml"
 			/>
 		</subant>
-		<subant target="init-yui"/>
+
+		<antcall target="patch-yui" />
+
+		<antcall target="export-yui" />
+
+		<antcall target="copyright-yui" />
 	</target>
 
 	<target name="clean">
@@ -284,32 +289,33 @@
 	<target name="init-yui">
 		<echo>Initializing YUI Library.</echo>
 
+		<antcall target="generate-yui" />
+
+		<antcall target="patch-yui" />
+
+		<antcall target="export-yui" />
+
+		<antcall target="copyright-yui" />		
+	</target>
+
+	<target name="generate-yui">
 		<delete dir="${yui3.dir}" />
 		<unzip src="${project.dir}/lib/${yui3.file}" dest="${project.dir}/lib/" />
+	</target>
 
-		<echo>Adding patches to [${project.dir}/lib/yui3/build]</echo>
-
-		<!-- Loader Patch for AUI-91 -->
-		<replaceregexp match="this.dirty = true;" replace="//this.dirty = true;">
-			<fileset dir="${project.dir}/lib/yui3/src/loader/js/" includes="loader.js"/>
-        </replaceregexp>
-
-		<subant target="all" failonerror="false">
-			<property name="lint.skip" value="true"/>
-			<fileset
-				dir="${project.dir}/lib/yui3/src/loader"
-				includes="build.xml"
-			/>
-		</subant>
-		<!-- /End Loader Patch -->
-
+	<target name="export-yui">
 		<echo>Copying files from [${project.dir}/lib/yui3/build] to [${project.dir}/build].</echo>
+
 		<copy todir="${project.dir}/build" overwrite="true">
 			<fileset dir="${project.dir}/lib/yui3/build">
 				<include name="**/*"/>
 			</fileset>
 		</copy>
+	</target>
+
+	<target name="copyright-yui">
 		<echo>Adding YUI Copyright information</echo>
+
 		<copy todir="${project.dir}/build" includeEmptyDirs="false" overwrite="true" encoding="UTF-8">
 			<fileset dir="${project.dir}/lib/yui3/build">
 				<or>
@@ -325,6 +331,24 @@
 				</replacetokens>
 			</filterchain>
 		</copy>
+	</target>
+
+	<target name="patch-yui">
+		<echo>Adding patches to [${project.dir}/lib/yui3/build]</echo>
+
+		<!-- Loader Patch for AUI-91 -->
+		<replaceregexp match="this.dirty = true;" replace="//this.dirty = true;">
+			<fileset dir="${project.dir}/lib/yui3/src/loader/js/" includes="loader.js"/>
+        </replaceregexp>
+
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/loader"
+				includes="build.xml"
+			/>
+		</subant>
+		<!-- /End Loader Patch -->
 	</target>
 
 	<target name="release" depends="clean-release">
