@@ -630,8 +630,8 @@ Dialog.prototype = {
 
 				if ((type == EV_RESIZE_END) ||
 					((type == EV_RESIZE) && !event.currentTarget.get(PROXY))) {
-						instance.set(HEIGHT, info.height);
-						instance.set(WIDTH, info.width);
+						instance.set(HEIGHT, info.offsetHeight);
+						instance.set(WIDTH, info.offsetWidth);
 				}
 			};
 
@@ -793,4 +793,4 @@ A.mix(
  * @static
  */
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize']});
+}, '@VERSION@' ,{requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize'], skinnable:true});

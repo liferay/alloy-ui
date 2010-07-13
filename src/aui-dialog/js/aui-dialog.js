@@ -629,8 +629,8 @@ Dialog.prototype = {
 
 				if ((type == EV_RESIZE_END) ||
 					((type == EV_RESIZE) && !event.currentTarget.get(PROXY))) {
-						instance.set(HEIGHT, info.height);
-						instance.set(WIDTH, info.width);
+						instance.set(HEIGHT, info.offsetHeight);
+						instance.set(WIDTH, info.offsetWidth);
 				}
 			};
 
