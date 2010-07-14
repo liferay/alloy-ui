@@ -1259,7 +1259,7 @@ var TreeNodeIO = A.Component.create(
 
 						// make sure we are not using the same element passed to the ownerTree on the TreeNode
 						if (otPaginator && otPaginator.element) {
-							otPaginator.element = otPaginator.element.cloneNode(true);
+							otPaginator.element = otPaginator.element.clone();
 						}
 
 						instance.set(PAGINATOR, otPaginator);

@@ -2082,7 +2082,7 @@ var TreeNodeIO = A.Component.create(
 
 						// make sure we are not using the same element passed to the ownerTree on the TreeNode
 						if (otPaginator && otPaginator.element) {
-							otPaginator.element = otPaginator.element.cloneNode(true);
+							otPaginator.element = otPaginator.element.clone();
 						}
 
 						instance.set(PAGINATOR, otPaginator);
@@ -3521,8 +3521,8 @@ var TreeViewDD = A.Component.create(
 
 A.TreeViewDD = TreeViewDD;
 
-}, '@VERSION@' ,{requires:['aui-tree-node','dd-drag','dd-drop','dd-proxy'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-tree-node','dd-drag','dd-drop','dd-proxy']});
 
 
-AUI.add('aui-tree', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view']});
+AUI.add('aui-tree', function(A){}, '@VERSION@' ,{use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true});
 

@@ -454,7 +454,7 @@ Dialog.prototype = {
 		A.each(
 			buttons,
 			function(button, i) {
-				var node = nodeModel.cloneNode();
+				var node = nodeModel.clone();
 
 				if (button.isDefault) {
 					node.addClass(CSS_DIALOG_BUTTON_DEFAULT);
@@ -793,4 +793,4 @@ A.mix(
  * @static
  */
 
-}, '@VERSION@' ,{requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize']});

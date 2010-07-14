@@ -613,7 +613,7 @@ var Combobox = A.Component.create(
 
 A.Combobox = Combobox;
 
-}, '@VERSION@' ,{requires:['aui-form-textarea','aui-toolbar'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-form-textarea','aui-toolbar']});
 AUI.add('aui-form-field', function(A) {
 var Lang = A.Lang,
 
@@ -1366,7 +1366,7 @@ var Textarea = A.Component.create(
 
 A.Textarea = Textarea;
 
-}, '@VERSION@' ,{requires:['aui-form-textfield'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-form-textfield']});
 AUI.add('aui-form-textfield', function(A) {
 var Lang = A.Lang,
 
@@ -1713,7 +1713,7 @@ var FormValidator = A.Component.create({
 
 		messageContainer: {
 			getter: function(val) {
-				return A.Node.create(val).cloneNode(true);
+				return A.Node.create(val).clone();
 			},
 			value: TPL_MESSAGE
 		},
@@ -1750,7 +1750,7 @@ var FormValidator = A.Component.create({
 
 		stackErrorContainer: {
 			getter: function(val) {
-				return A.Node.create(val).cloneNode(true);
+				return A.Node.create(val).clone();
 			},
 			value: TPL_STACK_ERROR
 		},
@@ -2298,5 +2298,5 @@ A.FormValidator = FormValidator;
 }, '@VERSION@' ,{requires:['aui-base','aui-event-input','selector-css3','substitute']});
 
 
-AUI.add('aui-form', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-textarea','aui-form-textfield','aui-form-validator']});
+AUI.add('aui-form', function(A){}, '@VERSION@' ,{use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-textarea','aui-form-textfield','aui-form-validator'], skinnable:false});
 

@@ -434,7 +434,7 @@ A.mix(A.Node.prototype, {
 		}
 
 		var temp = A.Node.create('<div></div>').append(
-			this.cloneNode(true)
+			this.clone()
 		);
 
 		try {
