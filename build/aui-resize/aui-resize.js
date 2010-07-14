@@ -72,6 +72,11 @@ var Lang = A.Lang,
 	WRAPPER = 'wrapper',
 	WRAP_TYPES = 'wrapTypes',
 
+	BORDER_BOTTOM_WIDTH = 'borderBottomWidth',
+	BORDER_LEFT_WIDTH = 'borderLeftWidth',
+	BORDER_RIGHT_WIDTH = 'borderRightWidth',
+	BORDER_TOP_WIDTH = 'borderTopWidth',
+
 	EV_MOUSE_UP = 'resize:mouseUp',
 	EV_RESIZE = 'resize:resize',
 	EV_RESIZE_END = 'resize:end',
@@ -577,6 +582,16 @@ var Resize = A.Component.create(
 			 */
 			changeWidthHandles: false,
 
+			/**
+			 * Cache the border widths of the contrain node if constrain
+             * option is being used.
+			 *
+			 * @attribute constrainBorders
+			 * @default {}
+			 * @type Object
+			 */
+			constrainBorders: null,
+
 		    /**
 		     * Stores the current values for the height, width, top and left. You are
 		     * able to manipulate these values on resize in order to change the resize
@@ -610,6 +625,8 @@ var Resize = A.Component.create(
 				instance.info = {};
 
 				instance.originalInfo = {};
+
+				instance.constrainBorders = {};
 
 				instance.get(NODE).addClass(CSS_RESIZE);
 
@@ -944,14 +961,14 @@ var Resize = A.Component.create(
 					var region = constrain.get(REGION);
 
 					var point1 = info[axis] + info[offset];
-					var point1Constrain = region[axisConstrain];
+					var point1Constrain = region[axisConstrain] - instance.constrainBorders[axisConstrain];
 
 					if (point1 >= point1Constrain) {
 						info[offset] -= (point1 - point1Constrain);
 					}
 
 					var point2 = info[axis];
-					var point2Constrain = region[axis];
+					var point2Constrain = region[axis] + instance.constrainBorders[axis];
 
 					if (point2 <= point2Constrain) {
 						info[axis] += (point2Constrain - point2);
@@ -1376,17 +1393,23 @@ var Resize = A.Component.create(
 
 				var cursor = activeHandleEl.getStyle(CURSOR);
 
-				proxyEl.show().setStyles({
-					cursor: cursor,
-					height: info.offsetHeight + PX,
-					width: info.offsetWidth + PX
-				});
+				proxyEl.show().setStyle(CURSOR, cursor);
 
 				activeHandleEl.dd.set(DRAG_CURSOR, cursor);
+
+				instance._setOffset(proxyEl, info.offsetWidth, info.offsetHeight);
 
 				proxyEl.setXY([ info.left, info.top ]);
 			},
 
+			/**
+		     * Update <code>instance.changeHeightHandles,
+             * instance.changeLeftHandles, instance.changeTopHandles,
+             * instance.changeWidthHandles</code> information.
+		     *
+		     * @method _updateChangeHandleInfo
+		     * @private
+		     */
 			_updateChangeHandleInfo: function(handle) {
 				var instance = this;
 
@@ -1394,6 +1417,29 @@ var Resize = A.Component.create(
 				instance.changeLeftHandles = REGEX_CHANGE_LEFT.test(handle);
 				instance.changeTopHandles = REGEX_CHANGE_TOP.test(handle);
 				instance.changeWidthHandles = REGEX_CHANGE_WIDTH.test(handle);
+			},
+
+			/**
+		     * Update <code>instance.constrainBorders</code> values (bottom,
+             * left, top, right).
+		     *
+		     * @method _updateConstrainBorderInfo
+		     * @private
+		     */
+			_updateConstrainBorderInfo: function() {
+				var instance = this;
+				var constrain = instance.get(CONSTRAIN2NODE);
+
+				if (constrain) {
+					var getStyle = function(val) {
+						return parseFloat(constrain.getStyle(val)) || 0;
+					};
+
+					instance.constrainBorders.bottom = getStyle(BORDER_BOTTOM_WIDTH);
+					instance.constrainBorders.left = getStyle(BORDER_LEFT_WIDTH);
+					instance.constrainBorders.right = getStyle(BORDER_RIGHT_WIDTH);
+					instance.constrainBorders.top = getStyle(BORDER_TOP_WIDTH);
+				}
 			},
 
 			/**
@@ -1559,6 +1605,7 @@ var Resize = A.Component.create(
 				);
 
 				instance._updateInfo(event);
+				instance._updateConstrainBorderInfo();
 			},
 
 		    /**
@@ -1707,4 +1754,4 @@ A.each(ALL_HANDLES, function(handle, i) {
 
 A.Resize = Resize;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','dd-constrain','dd-drag','dd-drop','substitute']});
+}, '@VERSION@' ,{requires:['aui-base','dd-constrain','dd-drag','dd-drop','substitute'], skinnable:true});
