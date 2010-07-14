@@ -453,7 +453,7 @@ Dialog.prototype = {
 		A.each(
 			buttons,
 			function(button, i) {
-				var node = nodeModel.cloneNode();
+				var node = nodeModel.clone();
 
 				if (button.isDefault) {
 					node.addClass(CSS_DIALOG_BUTTON_DEFAULT);

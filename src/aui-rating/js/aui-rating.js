@@ -514,7 +514,7 @@ var Rating = A.Component.create(
 
 				for (var i = 0, size = this.get(SIZE); i < size; i++) {
 					elements.push(
-						ratingElement.cloneNode(true)
+						ratingElement.clone()
 					);
 				}
 
