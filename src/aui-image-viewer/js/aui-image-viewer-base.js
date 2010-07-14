@@ -714,7 +714,7 @@ var ImageViewer = A.Component.create(
 				}
 
 				// creating the placeholder image
-				instance.activeImage = instance.get(IMAGE).cloneNode(true);
+				instance.activeImage = instance.get(IMAGE).clone();
 
 				var image = instance.activeImage;
 
@@ -840,7 +840,7 @@ var ImageViewer = A.Component.create(
 				if (link) {
 					var src = link.attr(HREF);
 
-					instance.get(IMAGE).cloneNode(true).attr(SRC, src);
+					instance.get(IMAGE).clone().attr(SRC, src);
 				}
 			},
 

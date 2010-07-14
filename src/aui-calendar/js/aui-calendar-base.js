@@ -548,7 +548,7 @@ var Calendar = A.Component.create(
 					var dayName = instance._getDayNameMin(fixedDay);
 
 					instance.weekDaysNode.append(
-						weekDay.cloneNode().html(dayName)
+						weekDay.clone().html(dayName)
 					);
 
 					day++;
@@ -569,7 +569,7 @@ var Calendar = A.Component.create(
 
 				while (day++ < 7) {
 					instance.monthDaysNode.append(
-						blankDay.cloneNode()
+						blankDay.clone()
 					);
 				}
 
@@ -589,7 +589,7 @@ var Calendar = A.Component.create(
 
 				while (day++ < 31) {
 					instance.monthDaysNode.append(
-						monthDay.cloneNode().html(day)
+						monthDay.clone().html(day)
 					);
 				}
 

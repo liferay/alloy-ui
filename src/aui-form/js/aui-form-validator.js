@@ -219,7 +219,7 @@ var FormValidator = A.Component.create({
 
 		messageContainer: {
 			getter: function(val) {
-				return A.Node.create(val).cloneNode(true);
+				return A.Node.create(val).clone();
 			},
 			value: TPL_MESSAGE
 		},
@@ -256,7 +256,7 @@ var FormValidator = A.Component.create({
 
 		stackErrorContainer: {
 			getter: function(val) {
-				return A.Node.create(val).cloneNode(true);
+				return A.Node.create(val).clone();
 			},
 			value: TPL_STACK_ERROR
 		},
