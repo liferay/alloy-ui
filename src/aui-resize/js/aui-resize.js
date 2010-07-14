@@ -585,11 +585,11 @@ var Resize = A.Component.create(
 			 * Cache the border widths of the contrain node if constrain
              * option is being used.
 			 *
-			 * @attribute constrainBorders
+			 * @attribute constrainBorderInfo
 			 * @default {}
 			 * @type Object
 			 */
-			constrainBorders: null,
+			constrainBorderInfo: null,
 
 		    /**
 		     * Stores the current values for the height, width, top and left. You are
@@ -625,7 +625,7 @@ var Resize = A.Component.create(
 
 				instance.originalInfo = {};
 
-				instance.constrainBorders = {};
+				instance.constrainBorderInfo = {};
 
 				instance.get(NODE).addClass(CSS_RESIZE);
 
@@ -960,14 +960,14 @@ var Resize = A.Component.create(
 					var region = constrain.get(REGION);
 
 					var point1 = info[axis] + info[offset];
-					var point1Constrain = region[axisConstrain] - instance.constrainBorders[axisConstrain];
+					var point1Constrain = region[axisConstrain] - instance.constrainBorderInfo[axisConstrain];
 
 					if (point1 >= point1Constrain) {
 						info[offset] -= (point1 - point1Constrain);
 					}
 
 					var point2 = info[axis];
-					var point2Constrain = region[axis] + instance.constrainBorders[axis];
+					var point2Constrain = region[axis] + instance.constrainBorderInfo[axis];
 
 					if (point2 <= point2Constrain) {
 						info[axis] += (point2Constrain - point2);
@@ -1419,7 +1419,7 @@ var Resize = A.Component.create(
 			},
 
 			/**
-		     * Update <code>instance.constrainBorders</code> values (bottom,
+		     * Update <code>instance.constrainBorderInfo</code> values (bottom,
              * left, top, right).
 		     *
 		     * @method _updateConstrainBorderInfo
@@ -1434,10 +1434,10 @@ var Resize = A.Component.create(
 						return parseFloat(constrain.getStyle(val)) || 0;
 					};
 
-					instance.constrainBorders.bottom = getStyle(BORDER_BOTTOM_WIDTH);
-					instance.constrainBorders.left = getStyle(BORDER_LEFT_WIDTH);
-					instance.constrainBorders.right = getStyle(BORDER_RIGHT_WIDTH);
-					instance.constrainBorders.top = getStyle(BORDER_TOP_WIDTH);
+					instance.constrainBorderInfo.bottom = getStyle(BORDER_BOTTOM_WIDTH);
+					instance.constrainBorderInfo.left = getStyle(BORDER_LEFT_WIDTH);
+					instance.constrainBorderInfo.right = getStyle(BORDER_RIGHT_WIDTH);
+					instance.constrainBorderInfo.top = getStyle(BORDER_TOP_WIDTH);
 				}
 			},
 
