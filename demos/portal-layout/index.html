@@ -158,6 +158,10 @@ AUI().ready('aui-portal-layout', function(A) {
 	var proxyNode = A.Node.create('<div class="aui-portal-layout-proxy"></div>');
 
 	var portalLayout = new A.PortalLayout({
+		// delegateConfig: {
+		// 	container: '#grid'
+		// },
+
 		dragNodes: '.portlet',
 		dropNodes: '.column',
 		proxyNode: proxyNode,
@@ -237,7 +241,7 @@ AUI().ready('aui-portal-layout', function(A) {
 		_getAppendNode: function() {
 			var instance = this;
 
-			instance.appendNode = DDM.activeDrag.get('node').cloneNode(true);
+			instance.appendNode = DDM.activeDrag.get('node').clone();
 
 			return instance.appendNode;
 		}
@@ -254,8 +258,6 @@ AUI().ready('aui-portal-layout', function(A) {
 			portletList.appendNode.replace(
 				newPorlet
 			);
-
-			portalLayout.addDragTarget(newPorlet);
 		}
 	});
 

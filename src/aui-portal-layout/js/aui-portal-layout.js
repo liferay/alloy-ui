@@ -17,7 +17,7 @@ var Lang = A.Lang,
 
 	APPEND = 'append',
 	CIRCLE = 'circle',
-	DD = 'dd',
+	DELEGATE_CONFIG = 'delegateConfig',
 	DOWN = 'down',
 	DRAG = 'drag',
 	DRAG_NODE = 'dragNode',
@@ -43,6 +43,7 @@ var Lang = A.Lang,
 	PROXY = 'proxy',
 	PROXY_NODE = 'proxyNode',
 	R = 'r',
+	REGION = 'region',
 	RIGHT = 'right',
 	SPACE = ' ',
 	TARGET = 'target',
@@ -100,7 +101,7 @@ var Lang = A.Lang,
  * </ul>
  *
  * Quick Example:<br/>
- * 
+ *
  * <pre><code>var portalLayout = new A.PortalLayout({
  *  	dragNodes: '.portlet',
  *  	dropNodes: '.column',
@@ -137,20 +138,27 @@ var PortalLayout = A.Component.create(
 		 * @static
 		 */
 		ATTRS: {
-			dd: {
+			delegateConfig: {
 				value: null,
 				setter: function(val) {
 					var instance = this;
 
-					return A.merge(
+					var config = A.merge(
 						{
 							bubbleTargets: instance,
-							groups: instance.get(GROUPS),
-							startCentered: true,
+							dragConfig: {},
+							nodes: instance.get(DRAG_NODES),
 							target: true
 						},
 						val
 					);
+
+					A.mix(config.dragConfig, {
+						groups: instance.get(GROUPS),
+						startCentered: true
+					});
+
+					return config;
 				},
 				validator: isObject
 			},
@@ -162,8 +170,7 @@ var PortalLayout = A.Component.create(
 			},
 
 			dragNodes: {
-				value: false,
-				setter: nodeListSetter
+				validator: isString
 			},
 
 			dropContainer: {
@@ -263,21 +270,6 @@ var PortalLayout = A.Component.create(
 			/*
 			* Methods
 			*/
-			addDragTarget: function(node) {
-				var instance = this;
-
-				if (!DDM.getDrag(node)) {
-					var dd = instance.get(DD);
-					var proxy = instance.get(PROXY);
-
-					// updating node reference on the default dd config
-					dd.node = node;
-
-					// creating DD.Drag instance and plugging the DDProxy
-					var drag = new A.DD.Drag(dd).plug(A.Plugin.DDProxy, proxy);
-				}
-			},
-
 			addDropNode: function(node, config) {
 				var instance = this;
 
@@ -285,6 +277,9 @@ var PortalLayout = A.Component.create(
 
 				if (!DDM.getDrop(node)) {
 					instance.addDropTarget(
+						// Do not use DropPlugin to create the DropZones on
+                        // this component, the ".drop" namespace is used to check
+                        // for the DD.Delegate target nodes
 						new A.DD.Drop(
 							A.merge(
 								{
@@ -349,7 +344,7 @@ var PortalLayout = A.Component.create(
 			calculateQuadrant: function(drag, drop) {
 				var instance = this;
 				var quadrant = 1;
-				var region = drop.region;
+				var region = drop.get(NODE).get(REGION);
 				var mouseXY = drag.mouseXY;
 				var mouseX = mouseXY[0];
 				var mouseY = mouseXY[1];
@@ -427,12 +422,14 @@ var PortalLayout = A.Component.create(
 
 			_bindDDEvents: function() {
 				var instance = this;
+				var delegateConfig = instance.get(DELEGATE_CONFIG);
+				var proxy = instance.get(PROXY);
 
-				instance.get(DRAG_NODES).each(
-					function(node, i) {
-						instance.addDragTarget(node);
-					}
-				);
+				// creating DD.Delegate instance
+				instance.delegate = new A.DD.Delegate(delegateConfig);
+
+				// plugging the DDProxy
+				instance.delegate.dd.plug(A.Plugin.DDProxy, proxy);
 
 				instance.on('drag:end', A.bind(instance._onDragEnd, instance));
 				instance.on('drag:enter', A.bind(instance._onDragEnter, instance));
@@ -460,11 +457,16 @@ var PortalLayout = A.Component.create(
 
 				if (activeDrop && placeholder) {
 					var node = activeDrop.get('node');
-					var isTarget = !!node.dd;
+					// DD.Delegate use the Drop Plugin on its "target" items. Using Drop Plugin a "node.drop" namespace is created.
+					// Using the .drop namespace to detect when the node is also a "target" DD.Delegate node
+					var isTarget = !!node.drop;
 
 					instance.lastAlignDrop = activeDrop;
 
-					instance.alignPlaceholder(activeDrop.region, isTarget);
+					instance.alignPlaceholder(
+						activeDrop.get(NODE).get(REGION),
+						isTarget
+					);
 				}
 			},
 
@@ -533,7 +535,9 @@ var PortalLayout = A.Component.create(
 					var dropNode = activeDrop.get(NODE);
 
 					// detects if the activeDrop is a dd target (portlet) or a drop area only (column)
-					var isTarget = isValue(dropNode.dd);
+					// DD.Delegate use the Drop Plugin on its "target" items. Using Drop Plugin a "node.drop" namespace is created.
+					// Using the .drop namespace to detect when the node is also a "target" DD.Delegate node
+					var isTarget = isValue(dropNode.drop);
 					var topQuadrants = (instance.quadrant < 3);
 
 					if (instance._alignCondition()) {
