@@ -760,8 +760,8 @@ var Resize = A.Component.create(
 
 				wrapper.on('mouseenter', A.bind(instance._onWrapperMouseEnter, instance));
 				wrapper.on('mouseleave', A.bind(instance._onWrapperMouseLeave, instance));
-				wrapper.delegate('mouseenter', A.bind(instance._onHandleMouseOver, instance), DOT+CSS_RESIZE_HANDLE);
-				wrapper.delegate('mouseleave', A.bind(instance._onHandleMouseOut, instance), DOT+CSS_RESIZE_HANDLE);
+				wrapper.delegate('mouseout', A.bind(instance._onHandleMouseOut, instance), DOT+CSS_RESIZE_HANDLE);
+				wrapper.delegate('mouseover', A.bind(instance._onHandleMouseOver, instance), DOT+CSS_RESIZE_HANDLE);
 			},
 
 		    /**
@@ -1754,4 +1754,4 @@ A.each(ALL_HANDLES, function(handle, i) {
 
 A.Resize = Resize;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','dd-constrain','dd-drag','dd-drop','substitute']});
+}, '@VERSION@' ,{requires:['aui-base','dd-constrain','dd-drag','dd-drop','substitute'], skinnable:true});
