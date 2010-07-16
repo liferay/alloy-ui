@@ -277,7 +277,7 @@ A.mix(A.Node.prototype, {
 	empty: function() {
 		var instance = this;
 
-		instance.all('>*').remove();
+		instance.all('>*').remove().purge();
 
 		var el = A.Node.getDOMNode(instance);
 
@@ -957,6 +957,8 @@ A.NodeList.importMethod(
 		'prepend',
 
 		'prependTo',
+
+		'purge',
 
 		'selectText',
 

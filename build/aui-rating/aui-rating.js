@@ -382,21 +382,6 @@ var Rating = A.Component.create(
 			},
 
 			/**
-			 * Descructor lifecycle implementation for the Rating class.
-			 * Purges events attached to the node (and all child nodes).
-			 *
-			 * @method destructor
-			 * @protected
-			 */
-			destructor: function(){
-				var instance = this;
-				var	boundingBox = instance.get(BOUNDING_BOX);
-
-				boundingBox.detachAll();
-				boundingBox.remove();
-			},
-
-			/**
 			 * Clear all selected starts to the default state.
 			 *
 			 * @method clearSelection
@@ -700,8 +685,8 @@ var Rating = A.Component.create(
 						};
 					});
 
-					labels.remove();
-					inputs.remove();
+					labels.remove(true);
+					inputs.remove(true);
 				}
 
 				if (inputName) {
