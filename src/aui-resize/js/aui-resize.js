@@ -699,7 +699,7 @@ var Resize = A.Component.create(
 					}
 
 					// remove handle
-					handleEl.remove();
+					handleEl.remove(true);
 				});
 
 				// unwrap node
@@ -711,7 +711,7 @@ var Resize = A.Component.create(
 
 					wrapper.placeBefore(node);
 
-					wrapper.remove();
+					wrapper.remove(true);
 				}
 
 				node.removeClass(CSS_RESIZE);

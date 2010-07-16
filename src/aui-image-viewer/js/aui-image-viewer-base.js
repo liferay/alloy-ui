@@ -630,12 +630,12 @@ var ImageViewer = A.Component.create(
 			 * Descructor lifecycle implementation for the ImageViewer class.
 			 * Purges events attached to the node (and all child nodes).
 			 *
-			 * @method destroy
+			 * @method destructor
 			 * @protected
 			 */
-			destroy: function() {
+			destructor: function() {
 				var instance = this;
-				var boundingBox = instance.get(BOUNDING_BOX);
+
 				var links = instance.get(LINKS);
 
 				instance.close();
@@ -646,12 +646,10 @@ var ImageViewer = A.Component.create(
 				// detach key global listener from the document
 				A.getDoc().detach('keydown', instance._keyHandler);
 
-				instance.get(ARROW_LEFT_EL).remove();
-				instance.get(ARROW_RIGHT_EL).remove();
-				instance.get(CLOSE_EL).remove();
-				instance.get(LOADER).remove();
-
-				boundingBox.remove();
+				instance.get(ARROW_LEFT_EL).remove(true);
+				instance.get(ARROW_RIGHT_EL).remove(true);
+				instance.get(CLOSE_EL).remove(true);
+				instance.get(LOADER).remove(true);
 			},
 
 			/**
