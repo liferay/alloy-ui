@@ -279,19 +279,6 @@ var OverlayContext = A.Component.create(
 			},
 
 			/**
-			 * Descructor lifecycle implementation for the OverlayContext class.
-			 * Purges events attached to the node (and all child nodes).
-			 *
-			 * @method destructor
-			 * @protected
-			 */
-			destructor: function() {
-				var instance = this;
-
-				instance.get(BOUNDING_BOX).remove();
-			},
-
-			/**
 			 * Hides the OverlayContext.
 			 *
 			 * @method hide
