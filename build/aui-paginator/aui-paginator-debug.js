@@ -665,14 +665,13 @@ var Paginator = A.Component.create(
 			 * Descructor lifecycle implementation for the Paginator class.
 			 * Purges events attached to the node (and all child nodes).
 			 *
-			 * @method destroy
+			 * @method destructor
 			 * @protected
 			 */
-			destroy: function() {
+			destructor: function() {
 				var instance = this;
 
-				instance.get(BOUNDING_BOX).remove();
-				instance.get(CONTAINERS).remove();
+				instance.get(CONTAINERS).remove(true);
 			},
 
 			/**

@@ -126,13 +126,13 @@ var Lang = A.Lang,
 				 * Descructor lifecycle implementation for the OverlayManager class.
 				 * Purges events attached to the node (and all child nodes).
 				 *
-				 * @method destroy
+				 * @method destructor
 				 * @protected
 				 */
-				destroy: function() {
+				destructor: function() {
 					var instance = this;
 
-					instance.remove();
+					instance._overlays = [];
 				},
 
 				/**
