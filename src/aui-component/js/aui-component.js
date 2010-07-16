@@ -87,33 +87,6 @@ Component.ATTRS = {
 	},
 
 	/**
-	 * A Component that will fire the same events as the current Component.
-	 *
-	 * @attribute owner
-	 * @deprecated See <a href="WidgetParent.html">WidgetParent</a>.
-	 * @type Widget
-	 */
-	owner: {
-		validator: function(value) {
-			var instance = this;
-
-			return value instanceof A.Widget || value === null;
-		}
-	},
-
-	/**
-	 * When set to <code>true</code> the events on this Component are also
-     * fired on the <a href="Component.html#config_owner">owner</a> Component.
-	 *
-	 * @attribute relayEvents
-	 * @default true
-	 * @type boolean
-	 */
-	relayEvents: {
-		value: true
-	},
-
-	/**
 	 * If <code>true</code> the render phase will be autimatically invoked
      * preventing the <code>.render()</code> manual call.
 	 *
@@ -144,15 +117,9 @@ A.extend(
 				instance._uiSetCssClass(config.cssClass);
 			}
 
-			instance._setOwnerComponent(instance.get('ownerComponent'));
-			instance._setRelayEvents(instance.get('relayEvents'));
-
 			instance._setComponentClassNames();
 
 			instance.after('cssClassChange', instance._afterCssClassChange);
-			instance.after('destroy', instance._afterComponentDestroy);
-			instance.after('ownerChange', instance._afterComponentOwnerChange);
-			instance.after('relayEventsChange', instance._afterComponentRelayEventsChange);
 			instance.after('visibleChange', instance._afterComponentVisibleChange);
 		},
 
@@ -185,51 +152,6 @@ A.extend(
 			var instance = this;
 
 			return instance.set('visible', !instance.get('visible'));
-		},
-
-		/**
-		 * Invoked after the destroy phase. Removes the
-         * <code>boundingBox</code> from the DOM.
-		 *
-		 * @method _afterComponentDestroy
-		 * @param {EventFacade} event
-		 * @protected
-		 */
-		_afterComponentDestroy: function(event) {
-			var instance = this;
-
-			try {
-				instance.get('boundingBox').remove();
-			}
-			catch (e) {}
-		},
-
-		/**
-		 * Fires after the value of the
-		 * <a href="Component.html#config_owner">owner</a> attribute change.
-		 *
-		 * @method _afterComponentOwnerChange
-		 * @param {EventFacade} event
-		 * @protected
-		 */
-		_afterComponentOwnerChange: function(event) {
-			var instance = this;
-
-			instance._setOwnerComponent(event.newVal);
-		},
-
-		/**
-		 * Fires after the value of the
-		 * <a href="Component.html#config_relayEvents">relayEvents</a> attribute change.
-		 *
-		 * @method _afterComponentRelayEventsChange
-		 * @param {EventFacade} event
-		 * @protected
-		 */
-		_afterComponentRelayEventsChange: function(event) {
-			var instance = this;
-
-			instance._setRelayEvents(event.newVal);
 		},
 
 		/**
@@ -273,25 +195,6 @@ A.extend(
 		},
 
 		/**
-		 * Fires the events onthe
-         * <a href="Component.html#config_owner">owner</a>.
-		 *
-		 * @method _relayEvents
-		 * @protected
-		 */
-		_relayEvents: function() {
-			var instance = this;
-
-			Component.superclass.fire.apply(instance, arguments);
-
-			var ownerComponent = instance._ownerComponent;
-
-			if (ownerComponent) {
-				ownerComponent.fire.apply(ownerComponent, arguments);
-			}
-		},
-
-		/**
 		 * Set the class names on the Component <code>contentBox</code>.
 		 *
 		 * @method _setComponentClassNames
@@ -311,39 +214,6 @@ A.extend(
 			}
 
 			instance.get('contentBox').addClass(buffer.join(' '));
-		},
-
-		/**
-		 * Setter for <a href="Component.html#config_relayEvents">relayEvents</a>.
-		 *
-		 * @method _setRelayEvents
-		 * @protected
-		 * @param {boolean} relayEvents
-		 */
-		_setRelayEvents: function(relayEvents) {
-			var instance = this;
-
-			if (relayEvents) {
-				instance.fire = instance._relayEvents;
-			}
-			else {
-				instance.fire = Component.superclass.fire;
-			}
-		},
-
-		/**
-		 * Setter for
-         * <a href="Component.html#property__ownerComponent">_ownerComponent</a>
-         * property.
-		 *
-		 * @method _setOwnerComponent
-		 * @private
-		 * @param {Widget} ownerComponent
-		 */
-		_setOwnerComponent: function(ownerComponent) {
-			var instance = this;
-
-			instance._ownerComponent = ownerComponent;
 		},
 
 		/**
