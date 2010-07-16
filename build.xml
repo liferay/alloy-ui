@@ -349,6 +349,20 @@
 			/>
 		</subant>
 		<!-- /End Loader Patch -->
+		
+		<!-- Loader Patch for dd -->
+		<replace file="${project.dir}/lib/yui3/src/dd/js/drop.js">
+			<replacefilter token="this.shim.get('parentNode').removeChild(this.shim);" value="this.shim.remove();" />
+		</replace>
+
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/dd"
+				includes="build.xml"
+			/>
+		</subant>
+		<!-- /End Loader Patch -->
 	</target>
 
 	<target name="release" depends="clean-release">
