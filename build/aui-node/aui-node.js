@@ -217,7 +217,17 @@ A.mix(A.Node.prototype, {
 
 		if (CLONED_EVENTS) {
 			clone = function() {
-				return A.Node.create(this.outerHTML());
+				var el = this.getDOM();
+				var clone;
+
+				if (el.nodeType != 3) {
+					clone = A.Node.create(this.outerHTML())
+				}
+				else {
+					clone = A.one(el.cloneNode());
+				}
+
+				return clone;
 			};
 		}
 		else {
