@@ -221,9 +221,8 @@ var Calendar = A.Component.create(
 			},
 
 			/**
-			 * Minimum allowable date. Accepts String in the same format of
-	         * <a href="Calendar.html#config_dateFormat">dateFormat</a> or a Date
-	         * object.
+			 * Minimum allowable date. Values supported by the Date
+             * constructor are supported.
 			 *
 			 * @attribute minDate
 			 * @default null
@@ -237,9 +236,8 @@ var Calendar = A.Component.create(
 			},
 
 			/**
-			 * Maximum allowable date. Accepts String in the same format of
-	         * <a href="Calendar.html#config_dateFormat">dateFormat</a> or a Date
-	         * object.
+			 * Maximum allowable date. Values supported by the Date
+             * constructor are supported.
 			 *
 			 * @attribute maxDate
 			 * @default null

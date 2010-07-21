@@ -222,9 +222,8 @@ var Calendar = A.Component.create(
 			},
 
 			/**
-			 * Minimum allowable date. Accepts String in the same format of
-	         * <a href="Calendar.html#config_dateFormat">dateFormat</a> or a Date
-	         * object.
+			 * Minimum allowable date. Values supported by the Date
+             * constructor are supported.
 			 *
 			 * @attribute minDate
 			 * @default null
@@ -238,9 +237,8 @@ var Calendar = A.Component.create(
 			},
 
 			/**
-			 * Maximum allowable date. Accepts String in the same format of
-	         * <a href="Calendar.html#config_dateFormat">dateFormat</a> or a Date
-	         * object.
+			 * Maximum allowable date. Values supported by the Date
+             * constructor are supported.
 			 *
 			 * @attribute maxDate
 			 * @default null
@@ -1299,7 +1297,7 @@ A.CalendarManager = new A.OverlayManager({
 	zIndexBase: 1000
 });
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-context','datatype-date','widget-locale']});
+}, '@VERSION@' ,{requires:['aui-overlay-context','datatype-date','widget-locale'], skinnable:true});
 AUI.add('aui-calendar-datepicker-select', function(A) {
 /**
  * The DatePickerSelect Utility
@@ -2108,8 +2106,8 @@ var DatePickerSelect = A.Component.create(
 
 A.DatePickerSelect = DatePickerSelect;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-calendar-base','aui-button-item']});
+}, '@VERSION@' ,{requires:['aui-calendar-base','aui-button-item'], skinnable:true});
 
 
-AUI.add('aui-calendar', function(A){}, '@VERSION@' ,{use:['aui-calendar-base','aui-calendar-datepicker-select'], skinnable:true});
+AUI.add('aui-calendar', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-calendar-base','aui-calendar-datepicker-select']});
 
