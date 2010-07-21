@@ -1179,6 +1179,14 @@ var Resize = A.Component.create(
 				}
 			),
 
+			/**
+			 * Get the constrain region based on the <code>constrain</code>
+             * attribute.
+			 *
+			 * @method _getConstrainRegion
+			 * @protected
+			 * @return {Object Region}
+			 */
 			_getConstrainRegion: function() {
 				var instance = this;
 				var node = instance.get(NODE);
