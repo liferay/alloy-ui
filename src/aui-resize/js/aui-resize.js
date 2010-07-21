@@ -25,9 +25,7 @@ var Lang = A.Lang,
 	AUTO_HIDE = 'autoHide',
 	BOTTOM = 'bottom',
 	CLASS_NAME = 'className',
-	CONSTRAIN2NODE = 'constrain2node',
-	CONSTRAIN2REGION = 'constrain2region',
-	CONSTRAIN2VIEW = 'constrain2view',
+	CONSTRAIN = 'constrain',
 	CURSOR = 'cursor',
 	DIAGONAL = 'diagonal',
 	DOTTED = 'dotted',
@@ -67,6 +65,8 @@ var Lang = A.Lang,
 	TICK_Y = 'tickY',
 	TOP = 'top',
 	VERTICAL = 'vertical',
+	VIEW = 'view',
+	VIEWPORT_REGION = 'viewportRegion',
 	WRAP = 'wrap',
 	WRAPPER = 'wrapper',
 	WRAP_TYPES = 'wrapTypes',
@@ -240,41 +240,23 @@ var Resize = A.Component.create(
 				validator: isBoolean
 			},
 
-			/**
-			 * Constrain the resize to a particular node. Will attempt to
-	         * constrain the drag node to the boundaries of this node.
-			 *
-			 * @attribute constrain2node
-			 * @default null
-			 * @type String | Node
-			 */
-			constrain2node: {
-				setter: A.one,
-				value: null
-			},
-
-			/**
-			 * Constrain the resize to a particular region. An Object Literal
-	         * containing a valid region (top, right, bottom, left) of page
-	         * positions to constrain the drag node to.
-			 *
-			 * @attribute constrain2region
-			 * @default null
-			 * @type Object
-			 */
-			constrain2region: {
-				value: null
-			},
-
 	        /**
-	         * Will attempt to constrain the drag node to the boundaries of the
-	         * viewport region.
-	         *
-	         * @attribute constrain2view
-	         * @type Object
-	         */
-			constrain2view: {
-				value: false
+	        * Will attempt to constrain the resize node to the boundaries. Arguments:<br>
+	        * 'view': Contrain to Viewport<br>
+	        * '#selector_string': Constrain to this node<br>
+	        * '{Region Object}': An Object Literal containing a valid region (top, right, bottom, left) of page positions
+	        *
+	        * @attribute constrain
+	        * @type {String/Object/Node}
+	        */
+			constrain: {
+				setter: function(v) {
+					if (v && (isNode(v) || isString(v) || v.nodeType)) {
+						v = A.one(v);
+					}
+
+					return v;
+				}
 			},
 
 	        /**
@@ -625,7 +607,12 @@ var Resize = A.Component.create(
 
 				instance.originalInfo = {};
 
-				instance.constrainBorderInfo = {};
+				instance.constrainBorderInfo = {
+					bottom: 0,
+					left: 0,
+					right: 0,
+					top: 0
+				};
 
 				instance.get(NODE).addClass(CSS_RESIZE);
 
@@ -954,11 +941,10 @@ var Resize = A.Component.create(
 			_checkConstrain: function(axis, axisConstrain, offset) {
 				var instance = this;
 				var info = instance.info;
-				var constrain = instance.get(CONSTRAIN2NODE);
 
-				if (constrain) {
-					var region = constrain.get(REGION);
+				var region = instance._getConstrainRegion();
 
+				if (region) {
 					var point1 = info[axis] + info[offset];
 					var point1Constrain = region[axisConstrain] - instance.constrainBorderInfo[axisConstrain];
 
@@ -1080,7 +1066,7 @@ var Resize = A.Component.create(
 			 */
 			_checkRegion: function() {
 				var instance = this;
-				var region = instance.get(CONSTRAIN2NODE).get(REGION);
+				var region = instance._getConstrainRegion();
 
 				return A.DOM.inRegion(null, region, true, instance.info);
 			},
@@ -1191,6 +1177,28 @@ var Resize = A.Component.create(
 					return match ? match[1] : null;
 				}
 			),
+
+			_getConstrainRegion: function() {
+				var instance = this;
+				var node = instance.get(NODE);
+				var constrain = instance.get(CONSTRAIN);
+
+				var region = null;
+
+				if (constrain) {
+					if (constrain == VIEW) {
+						region = node.get(VIEWPORT_REGION);
+					}
+					else if (isNode(constrain)) {
+						region = constrain.get(REGION);
+					}
+					else {
+						region = constrain;
+					}
+				}
+
+				return region;
+			},
 
 		    /**
 		     * <p>Generates metadata to the <a href="Resize.html#property_info">info</a>
@@ -1427,9 +1435,9 @@ var Resize = A.Component.create(
 		     */
 			_updateConstrainBorderInfo: function() {
 				var instance = this;
-				var constrain = instance.get(CONSTRAIN2NODE);
+				var constrain = instance.get(CONSTRAIN);
 
-				if (constrain) {
+				if (isNode(constrain)) {
 					var getStyle = function(val) {
 						return parseFloat(constrain.getStyle(val)) || 0;
 					};
@@ -1550,7 +1558,7 @@ var Resize = A.Component.create(
 				// top/top is used to position the proxyEl
 				instance._recalculateXY();
 
-				if (instance.get(CONSTRAIN2NODE) && !instance._checkRegion()) {
+				if (instance.get(CONSTRAIN) && !instance._checkRegion()) {
 					instance.info = infoBefore;
 				}
 			},
