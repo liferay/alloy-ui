@@ -1,5 +1,5 @@
 <!DOCTYPE>
-<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-tree   aui-tree-debug.js  (YUI Library)</title>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-tree&nbsp; <span class="subtitle">1.0.0</span>
+			aui-tree&nbsp; <span class="subtitle">1.0.1</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -612,10 +612,6 @@
 	<span class="nx">TREE</span> <span class="o">=</span> <span class="s1">&#39;tree&#39;</span><span class="p">,</span>
 	<span class="nx">TREE_DATA</span> <span class="o">=</span> <span class="s1">&#39;tree-data&#39;</span><span class="p">,</span>
 
-	<span class="nx">nodeSetter</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-		<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
-	<span class="p">},</span>
-
 	<span class="nx">isTreeNode</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="p">(</span> <span class="nx">v</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span> <span class="p">);</span>
 	<span class="p">},</span>
@@ -670,7 +666,7 @@
 <span class="cm">			 * @type Node | String</span>
 <span class="cm">			 */</span>
 			<span class="nx">container</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">setter</span><span class="o">:</span> <span class="nx">nodeSetter</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
@@ -1452,10 +1448,6 @@
 	<span class="nx">TREE</span> <span class="o">=</span> <span class="s1">&#39;tree&#39;</span><span class="p">,</span>
 	<span class="nx">TREE_NODE</span> <span class="o">=</span> <span class="s1">&#39;tree-node&#39;</span><span class="p">,</span>
 
-	<span class="nx">nodeSetter</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-		<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
-	<span class="p">},</span>
-
 	<span class="nx">concat</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="nx">SPACE</span><span class="p">);</span>
 	<span class="p">},</span>
@@ -1660,7 +1652,7 @@
 <span class="cm">			 * @type Node | String</span>
 <span class="cm">			 */</span>
 			<span class="nx">labelEl</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">setter</span><span class="o">:</span> <span class="nx">nodeSetter</span><span class="p">,</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">,</span>
 				<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 					<span class="kd">var</span> <span class="nx">label</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LABEL</span><span class="p">);</span>
 
@@ -1676,7 +1668,7 @@
 <span class="cm">			 * @type Node | String</span>
 <span class="cm">			 */</span>
 			<span class="nx">hitAreaEl</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">setter</span><span class="o">:</span> <span class="nx">nodeSetter</span><span class="p">,</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">,</span>
 				<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">HIT_AREA_TPL</span><span class="p">);</span>
 				<span class="p">}</span>
@@ -1701,7 +1693,7 @@
 <span class="cm">			 * @type Node | String</span>
 <span class="cm">			 */</span>
 			<span class="nx">iconEl</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">setter</span><span class="o">:</span> <span class="nx">nodeSetter</span><span class="p">,</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">,</span>
 				<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">ICON_TPL</span><span class="p">);</span>
 				<span class="p">}</span>
@@ -2675,7 +2667,7 @@
 
 						<span class="c1">// make sure we are not using the same element passed to the ownerTree on the TreeNode</span>
 						<span class="k">if</span> <span class="p">(</span><span class="nx">otPaginator</span> <span class="o">&amp;&amp;</span> <span class="nx">otPaginator</span><span class="p">.</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
-							<span class="nx">otPaginator</span><span class="p">.</span><span class="nx">element</span> <span class="o">=</span> <span class="nx">otPaginator</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+							<span class="nx">otPaginator</span><span class="p">.</span><span class="nx">element</span> <span class="o">=</span> <span class="nx">otPaginator</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">clone</span><span class="p">();</span>
 						<span class="p">}</span>
 
 						<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">PAGINATOR</span><span class="p">,</span> <span class="nx">otPaginator</span><span class="p">);</span>
@@ -2884,7 +2876,7 @@
 <span class="cm">			 * @type Node | String</span>
 <span class="cm">			 */</span>
 			<span class="nx">checkContainerEl</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">setter</span><span class="o">:</span> <span class="nx">nodeSetter</span><span class="p">,</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">,</span>
 				<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">CHECKBOX_CONTAINER_TPL</span><span class="p">);</span>
 				<span class="p">}</span>
@@ -2898,7 +2890,7 @@
 <span class="cm">			 * @type Node | String</span>
 <span class="cm">			 */</span>
 			<span class="nx">checkEl</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">setter</span><span class="o">:</span> <span class="nx">nodeSetter</span><span class="p">,</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">,</span>
 				<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 					<span class="kd">var</span> <span class="nx">checkName</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CHECK_NAME</span><span class="p">);</span>
 
@@ -3177,7 +3169,7 @@
 	<span class="nx">io</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeIO</span>
 <span class="p">};</span>
 
-<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-tree-data&#39;</span><span class="p">,</span><span class="s1">&#39;io&#39;</span><span class="p">,</span><span class="s1">&#39;json&#39;</span><span class="p">,</span><span class="s1">&#39;querystring-stringify&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">});</span>
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-tree-data&#39;</span><span class="p">,</span><span class="s1">&#39;io-base&#39;</span><span class="p">,</span><span class="s1">&#39;json&#39;</span><span class="p">,</span><span class="s1">&#39;querystring-stringify&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">});</span>
 <span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-tree-view&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span> <span class="p">{</span>
 <span class="cm">/**</span>
 <span class="cm"> * The TreeView Utility</span>
@@ -4114,7 +4106,7 @@
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">TreeViewDD</span> <span class="o">=</span> <span class="nx">TreeViewDD</span><span class="p">;</span>
 
-<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-tree-node&#39;</span><span class="p">,</span><span class="s1">&#39;dd&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-tree-node&#39;</span><span class="p">,</span><span class="s1">&#39;dd-drag&#39;</span><span class="p">,</span><span class="s1">&#39;dd-drop&#39;</span><span class="p">,</span><span class="s1">&#39;dd-proxy&#39;</span><span class="p">]});</span>
 
 
 <span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-tree&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">){},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-tree-data&#39;</span><span class="p">,</span> <span class="s1">&#39;aui-tree-node&#39;</span><span class="p">,</span> <span class="s1">&#39;aui-tree-view&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>

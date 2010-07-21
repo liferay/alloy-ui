@@ -1,5 +1,5 @@
 <!DOCTYPE>
-<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: dd   dd-debug.js  (YUI Library)</title>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			dd&nbsp; <span class="subtitle">1.0.0</span>
+			dd&nbsp; <span class="subtitle">1.0.1</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -1602,7 +1602,8 @@
 <span class="cm">        * @event drag:mouseDown</span>
 <span class="cm">        * @description Handles the mousedown DOM event, checks to see if you have a valid handle then starts the drag timers.</span>
 <span class="cm">        * @preventable _defMouseDownFn</span>
-<span class="cm">        * @param {Event.Facade} ev The mousedown event.</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;&lt;dt&gt;ev&lt;/dt&gt;&lt;dd&gt;The original mousedown event.&lt;/dd&gt;&lt;/dl&gt;</span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
@@ -1610,7 +1611,8 @@
         <span class="cm">/**</span>
 <span class="cm">        * @event drag:afterMouseDown</span>
 <span class="cm">        * @description Fires after the mousedown event has been cleared.</span>
-<span class="cm">        * @param {Event.Facade} ev The mousedown event.</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;&lt;dt&gt;ev&lt;/dt&gt;&lt;dd&gt;The original mousedown event.&lt;/dd&gt;&lt;/dl&gt;</span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
@@ -1618,6 +1620,8 @@
         <span class="cm">/**</span>
 <span class="cm">        * @event drag:removeHandle</span>
 <span class="cm">        * @description Fires after a handle is removed.</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;&lt;dt&gt;handle&lt;/dt&gt;&lt;dd&gt;The handle that was removed.&lt;/dd&gt;&lt;/dl&gt;</span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
@@ -1625,6 +1629,8 @@
         <span class="cm">/**</span>
 <span class="cm">        * @event drag:addHandle</span>
 <span class="cm">        * @description Fires after a handle is added.</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;&lt;dt&gt;handle&lt;/dt&gt;&lt;dd&gt;The handle that was added.&lt;/dd&gt;&lt;/dl&gt;</span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
@@ -1632,6 +1638,8 @@
         <span class="cm">/**</span>
 <span class="cm">        * @event drag:removeInvalid</span>
 <span class="cm">        * @description Fires after an invalid selector is removed.</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;&lt;dt&gt;handle&lt;/dt&gt;&lt;dd&gt;The handle that was removed.&lt;/dd&gt;&lt;/dl&gt;</span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
@@ -1639,6 +1647,8 @@
         <span class="cm">/**</span>
 <span class="cm">        * @event drag:addInvalid</span>
 <span class="cm">        * @description Fires after an invalid selector is added.</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;&lt;dt&gt;handle&lt;/dt&gt;&lt;dd&gt;The handle that was added.&lt;/dd&gt;&lt;/dl&gt;</span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
@@ -1646,6 +1656,12 @@
         <span class="cm">/**</span>
 <span class="cm">        * @event drag:start</span>
 <span class="cm">        * @description Fires at the start of a drag operation.</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;</span>
+<span class="cm">        * &lt;dt&gt;pageX&lt;/dt&gt;&lt;dd&gt;The original node position X.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;pageY&lt;/dt&gt;&lt;dd&gt;The original node position Y.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;startTime&lt;/dt&gt;&lt;dd&gt;The startTime of the event. getTime on the current Date object.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;/dl&gt;</span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
@@ -1653,6 +1669,13 @@
         <span class="cm">/**</span>
 <span class="cm">        * @event drag:end</span>
 <span class="cm">        * @description Fires at the end of a drag operation.</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;</span>
+<span class="cm">        * &lt;dt&gt;pageX&lt;/dt&gt;&lt;dd&gt;The current node position X.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;pageY&lt;/dt&gt;&lt;dd&gt;The current node position Y.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;startTime&lt;/dt&gt;&lt;dd&gt;The startTime of the event, from the start event.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;endTime&lt;/dt&gt;&lt;dd&gt;The endTime of the event. getTime on the current Date object.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;/dl&gt;</span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
@@ -1660,6 +1683,13 @@
         <span class="cm">/**</span>
 <span class="cm">        * @event drag:drag</span>
 <span class="cm">        * @description Fires every mousemove during a drag operation.</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;</span>
+<span class="cm">        * &lt;dt&gt;pageX&lt;/dt&gt;&lt;dd&gt;The current node position X.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;pageY&lt;/dt&gt;&lt;dd&gt;The current node position Y.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;scroll&lt;/dt&gt;&lt;dd&gt;Should a scroll action occur.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;info&lt;/dt&gt;&lt;dd&gt;Object hash containing calculated XY arrays: start, xy, delta, offset&lt;/dd&gt;</span>
+<span class="cm">        * &lt;/dl&gt;</span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
@@ -1668,6 +1698,11 @@
 <span class="cm">        * @event drag:align</span>
 <span class="cm">        * @preventable _defAlignFn</span>
 <span class="cm">        * @description Fires when this node is aligned.</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;</span>
+<span class="cm">        * &lt;dt&gt;pageX&lt;/dt&gt;&lt;dd&gt;The current node position X.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;pageY&lt;/dt&gt;&lt;dd&gt;The current node position Y.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;/dl&gt;</span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
@@ -1675,30 +1710,55 @@
         <span class="cm">/**</span>
 <span class="cm">        * @event drag:over</span>
 <span class="cm">        * @description Fires when this node is over a Drop Target. (Fired from dd-drop)</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;</span>
+<span class="cm">        * &lt;dt&gt;drop&lt;/dt&gt;&lt;dd&gt;The drop object at the time of the event.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;drag&lt;/dt&gt;&lt;dd&gt;The drag object at the time of the event.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;/dl&gt;</span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
         <span class="cm">/**</span>
 <span class="cm">        * @event drag:enter</span>
 <span class="cm">        * @description Fires when this node enters a Drop Target. (Fired from dd-drop)</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;</span>
+<span class="cm">        * &lt;dt&gt;drop&lt;/dt&gt;&lt;dd&gt;The drop object at the time of the event.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;drag&lt;/dt&gt;&lt;dd&gt;The drag object at the time of the event.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;/dl&gt;</span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
         <span class="cm">/**</span>
 <span class="cm">        * @event drag:exit</span>
 <span class="cm">        * @description Fires when this node exits a Drop Target. (Fired from dd-drop)</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;</span>
+<span class="cm">        * &lt;dt&gt;drop&lt;/dt&gt;&lt;dd&gt;The drop object at the time of the event.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;/dl&gt;</span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
         <span class="cm">/**</span>
 <span class="cm">        * @event drag:drophit</span>
 <span class="cm">        * @description Fires when this node is dropped on a valid Drop Target. (Fired from dd-ddm-drop)</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;</span>
+<span class="cm">        * &lt;dt&gt;drop&lt;/dt&gt;&lt;dd&gt;The best guess on what was dropped on.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;drag&lt;/dt&gt;&lt;dd&gt;The drag object at the time of the event.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;others&lt;/dt&gt;&lt;dd&gt;An array of all the other drop targets that was dropped on.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;/dl&gt;</span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
         <span class="cm">/**</span>
 <span class="cm">        * @event drag:dropmiss</span>
 <span class="cm">        * @description Fires when this node is dropped on an invalid Drop Target. (Fired from dd-ddm-drop)</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;</span>
+<span class="cm">        * &lt;dt&gt;pageX&lt;/dt&gt;&lt;dd&gt;The current node position X.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;pageY&lt;/dt&gt;&lt;dd&gt;The current node position Y.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;/dl&gt;</span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
@@ -3831,7 +3891,7 @@
 
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dd-drag&#39;</span><span class="p">],</span> <span class="nx">optional</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dd-proxy&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">});</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">optional</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dd-proxy&#39;</span><span class="p">],</span> <span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dd-drag&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;dd-plugin&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 
@@ -3877,7 +3937,7 @@
 
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dd-drag&#39;</span><span class="p">],</span> <span class="nx">optional</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dd-constrain&#39;</span><span class="p">,</span> <span class="s1">&#39;dd-proxy&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">});</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">optional</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dd-constrain&#39;</span><span class="p">,</span> <span class="s1">&#39;dd-proxy&#39;</span><span class="p">],</span> <span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dd-drag&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;dd-drop&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 
@@ -3901,6 +3961,11 @@
         <span class="cm">/**</span>
 <span class="cm">        * @event drop:over</span>
 <span class="cm">        * @description Fires when a drag element is over this target.</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;</span>
+<span class="cm">        * &lt;dt&gt;drop&lt;/dt&gt;&lt;dd&gt;The drop object at the time of the event.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;drag&lt;/dt&gt;&lt;dd&gt;The drag object at the time of the event.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;/dl&gt;        </span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
@@ -3908,6 +3973,11 @@
         <span class="cm">/**</span>
 <span class="cm">        * @event drop:enter</span>
 <span class="cm">        * @description Fires when a drag element enters this target.</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;</span>
+<span class="cm">        * &lt;dt&gt;drop&lt;/dt&gt;&lt;dd&gt;The drop object at the time of the event.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;drag&lt;/dt&gt;&lt;dd&gt;The drag object at the time of the event.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;/dl&gt;        </span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
@@ -3915,6 +3985,7 @@
         <span class="cm">/**</span>
 <span class="cm">        * @event drop:exit</span>
 <span class="cm">        * @description Fires when a drag element exits this target.</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object</span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
@@ -3923,6 +3994,12 @@
         <span class="cm">/**</span>
 <span class="cm">        * @event drop:hit</span>
 <span class="cm">        * @description Fires when a draggable node is dropped on this Drop Target. (Fired from dd-ddm-drop)</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;</span>
+<span class="cm">        * &lt;dt&gt;drop&lt;/dt&gt;&lt;dd&gt;The best guess on what was dropped on.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;drag&lt;/dt&gt;&lt;dd&gt;The drag object at the time of the event.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;others&lt;/dt&gt;&lt;dd&gt;An array of all the other drop targets that was dropped on.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;/dl&gt;        </span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
@@ -4164,7 +4241,7 @@
             <span class="nx">DDM</span><span class="p">.</span><span class="nx">_unregTarget</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
             <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">shim</span><span class="p">)</span> <span class="p">{</span>
                 <span class="k">this</span><span class="p">.</span><span class="nx">shim</span><span class="p">.</span><span class="nx">detachAll</span><span class="p">();</span>
-                <span class="k">this</span><span class="p">.</span><span class="nx">shim</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">).</span><span class="nx">removeChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">shim</span><span class="p">);</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">shim</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
                 <span class="k">this</span><span class="p">.</span><span class="nx">shim</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
             <span class="p">}</span>
             <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">DDM</span><span class="p">.</span><span class="nx">CSS_PREFIX</span> <span class="o">+</span> <span class="s1">&#39;-drop&#39;</span><span class="p">);</span>
@@ -4772,7 +4849,7 @@
 
 
 
-<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dd-drag&#39;</span><span class="p">,</span> <span class="s1">&#39;event-mouseenter&#39;</span><span class="p">],</span> <span class="nx">optional</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dd-drop-plugin&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">});</span>
+<span class="p">},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">optional</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dd-drop-plugin&#39;</span><span class="p">],</span> <span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dd-drag&#39;</span><span class="p">,</span> <span class="s1">&#39;event-mouseenter&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">});</span>
 
 
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;dd&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.1.1&#39;</span> <span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span> <span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;dd-ddm-base&#39;</span><span class="p">,</span> <span class="s1">&#39;dd-ddm&#39;</span><span class="p">,</span> <span class="s1">&#39;dd-ddm-drop&#39;</span><span class="p">,</span> <span class="s1">&#39;dd-drag&#39;</span><span class="p">,</span> <span class="s1">&#39;dd-proxy&#39;</span><span class="p">,</span> <span class="s1">&#39;dd-constrain&#39;</span><span class="p">,</span> <span class="s1">&#39;dd-plugin&#39;</span><span class="p">,</span> <span class="s1">&#39;dd-drop&#39;</span><span class="p">,</span> <span class="s1">&#39;dd-drop-plugin&#39;</span><span class="p">,</span> <span class="s1">&#39;dd-scroll&#39;</span><span class="p">,</span> <span class="s1">&#39;dd-delegate&#39;</span><span class="p">]});</span>

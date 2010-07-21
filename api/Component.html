@@ -1,5 +1,5 @@
 <!DOCTYPE>
-<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-component  Component   (YUI Library)</title>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-component&nbsp; <span class="subtitle">1.0.0</span>
+			aui-component&nbsp; <span class="subtitle">1.0.1</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -516,8 +516,6 @@
 										<ul class="content">
 												<li class=""><a href="#config_cssClass" title="cssClass">cssClass</a></li>
 												<li class=""><a href="#config_hideClass" title="hideClass">hideClass</a></li>
-												<li class=" deprecated"><a href="#config_owner" title="owner">owner</a></li>
-												<li class=""><a href="#config_relayEvents" title="relayEvents">relayEvents</a></li>
 												<li class=""><a href="#config_render" title="render">render</a></li>
 				                        </ul>
 									</div>
@@ -549,14 +547,9 @@
 
 									<div class="aui-widget-bd aui-list-bd">
 										<ul class="content">
-				                               <li class="protected"><a href="#method__afterComponentDestroy" title="_afterComponentDestroy">_afterComponentDestroy</a></li>
-				                               <li class="protected"><a href="#method__afterComponentOwnerChange" title="_afterComponentOwnerChange">_afterComponentOwnerChange</a></li>
-				                               <li class="protected"><a href="#method__afterComponentRelayEventsChange" title="_afterComponentRelayEventsChange">_afterComponentRelayEventsChange</a></li>
 				                               <li class="protected"><a href="#method__afterComponentVisibleChange" title="_afterComponentVisibleChange">_afterComponentVisibleChange</a></li>
 				                               <li class="protected"><a href="#method__afterCssClassChange" title="_afterCssClassChange">_afterCssClassChange</a></li>
-				                               <li class="protected"><a href="#method__relayEvents" title="_relayEvents">_relayEvents</a></li>
 				                               <li class="protected"><a href="#method__setComponentClassNames" title="_setComponentClassNames">_setComponentClassNames</a></li>
-				                               <li class="protected"><a href="#method__setRelayEvents" title="_setRelayEvents">_setRelayEvents</a></li>
 				                               <li class="protected"><a href="#method__uiSetCssClass" title="_uiSetCssClass">_uiSetCssClass</a></li>
 				                               <li class=""><a href="#method_clone" title="clone">clone</a></li>
 				                               <li class="protected"><a href="#method_initializer" title="initializer">initializer</a></li>
@@ -576,8 +569,6 @@
 										<ul class="content">
 												<li class=""><a href="#event_cssClassChange" title="cssClassChange">cssClassChange</a></li>
 												<li class=""><a href="#event_hideClassChange" title="hideClassChange">hideClassChange</a></li>
-												<li class=""><a href="#event_ownerChange" title="ownerChange">ownerChange</a></li>
-												<li class=""><a href="#event_relayEventsChange" title="relayEventsChange">relayEventsChange</a></li>
 												<li class=""><a href="#event_renderChange" title="renderChange">renderChange</a></li>
 				                        </ul>
 									</div>
@@ -883,45 +874,6 @@ configuration for the Component.
 													</div>
 
 												</div>
-												<div class="api-entry-row configuration-row  deprecated" rel="yui:attribute" resource="#config_owner">
-
-													<h4>
-														<a name="config_owner">owner</a>
-														<code>- <span property="yui:type">Widget</span></code>
-													</h4>
-
-													<div class="detail">
-														<div class="description" property="yui:description">
-															A Component that will fire the same events as the current Component.
-														</div>
-													</div>
-
-													<div class="deprecated">
-														<strong>Deprecated</strong> See <a href="WidgetParent.html">WidgetParent</a>.
-													</div>
-
-
-												</div>
-												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_relayEvents">
-
-													<h4>
-														<a name="config_relayEvents">relayEvents</a>
-														<code>- <span property="yui:type">boolean</span></code>
-													</h4>
-
-													<div class="detail">
-														<div class="description" property="yui:description">
-															When set to <code>true</code> the events on this Component are also
-fired on the <a href="Component.html#config_owner">owner</a> Component.
-														</div>
-													</div>
-
-
-													<div class="default">
-														Default Value: <strong>true</strong>
-													</div>
-
-												</div>
 												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_render">
 
 													<h4>
@@ -1072,147 +1024,6 @@ preventing the <code>.render()</code> manual call.
 										<div class="content">
 
 
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterComponentDestroy">
-
-													<h4>
-														<a name="method__afterComponentDestroy">_afterComponentDestroy</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														 protected 
-														
-														
-														void
-															<strong property="yui:name">_afterComponentDestroy</strong>
-														   (
-																
-																		
-																		 event
-																	
-																
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Invoked after the destroy phase. Removes the
-<code>boundingBox</code> from the DOM.
-														</div>
-
-														<div class="description">
-
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">event</span>
-																		&lt;<span property="yui:type">EventFacade</span>&gt;
-																		</code>
-																		<span property="yui:description"></span>
-																		</dd>
-																</dl>
-
-
-
-
-
-														</div>
-													</div>
-												</div>
-
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterComponentOwnerChange">
-
-													<h4>
-														<a name="method__afterComponentOwnerChange">_afterComponentOwnerChange</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														 protected 
-														
-														
-														void
-															<strong property="yui:name">_afterComponentOwnerChange</strong>
-														   (
-																
-																		
-																		 event
-																	
-																
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Fires after the value of the
-<a href="Component.html#config_owner">owner</a> attribute change.
-														</div>
-
-														<div class="description">
-
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">event</span>
-																		&lt;<span property="yui:type">EventFacade</span>&gt;
-																		</code>
-																		<span property="yui:description"></span>
-																		</dd>
-																</dl>
-
-
-
-
-
-														</div>
-													</div>
-												</div>
-
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterComponentRelayEventsChange">
-
-													<h4>
-														<a name="method__afterComponentRelayEventsChange">_afterComponentRelayEventsChange</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														 protected 
-														
-														
-														void
-															<strong property="yui:name">_afterComponentRelayEventsChange</strong>
-														   (
-																
-																		
-																		 event
-																	
-																
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Fires after the value of the
-<a href="Component.html#config_relayEvents">relayEvents</a> attribute change.
-														</div>
-
-														<div class="description">
-
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">event</span>
-																		&lt;<span property="yui:type">EventFacade</span>&gt;
-																		</code>
-																		<span property="yui:description"></span>
-																		</dd>
-																</dl>
-
-
-
-
-
-														</div>
-													</div>
-												</div>
-
 												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterComponentVisibleChange">
 
 													<h4>
@@ -1307,39 +1118,6 @@ preventing the <code>.render()</code> manual call.
 													</div>
 												</div>
 
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__relayEvents">
-
-													<h4>
-														<a name="method__relayEvents">_relayEvents</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														 protected 
-														
-														
-														void
-															<strong property="yui:name">_relayEvents</strong>
-														   (
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Fires the events onthe
-<a href="Component.html#config_owner">owner</a>.
-														</div>
-
-														<div class="description">
-
-
-
-
-
-
-														</div>
-													</div>
-												</div>
-
 												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__setComponentClassNames">
 
 													<h4>
@@ -1363,52 +1141,6 @@ preventing the <code>.render()</code> manual call.
 
 														<div class="description">
 
-
-
-
-
-
-														</div>
-													</div>
-												</div>
-
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__setRelayEvents">
-
-													<h4>
-														<a name="method__setRelayEvents">_setRelayEvents</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														 protected 
-														
-														
-														void
-															<strong property="yui:name">_setRelayEvents</strong>
-														   (
-																
-																		
-																		 relayEvents
-																	
-																
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Setter for <a href="Component.html#config_relayEvents">relayEvents</a>.
-														</div>
-
-														<div class="description">
-
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">relayEvents</span>
-																		&lt;<span property="yui:type">boolean</span>&gt;
-																		</code>
-																		<span property="yui:description"></span>
-																		</dd>
-																</dl>
 
 
 
@@ -2270,90 +2002,6 @@ preventing the <code>.render()</code> manual call.
 														</div>
 													</div>
 												</div>
-												<div class="api-entry-row event-row " rel="yui:event" resource="#event_ownerChange">
-
-													<h4>
-														<a name="event_ownerChange">ownerChange</a>
-													</h4>
-
-													<div class="detail">
-														<code class="event-detail">
-														
-														
-														
-															<strong property="yui:name">ownerChange</strong>
-
-															(
-																
-																		
-																		 event
-																	
-																
-															)
-
-														</code>
-
-														<div class="description" property="yui:description">
-															Fires when the value for the configuration attribute 'owner' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
-														</div>
-
-														<div class="description">
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
-																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
-																		</dd>
-
-																</dl>
-
-
-
-														</div>
-													</div>
-												</div>
-												<div class="api-entry-row event-row " rel="yui:event" resource="#event_relayEventsChange">
-
-													<h4>
-														<a name="event_relayEventsChange">relayEventsChange</a>
-													</h4>
-
-													<div class="detail">
-														<code class="event-detail">
-														
-														
-														
-															<strong property="yui:name">relayEventsChange</strong>
-
-															(
-																
-																		
-																		 event
-																	
-																
-															)
-
-														</code>
-
-														<div class="description" property="yui:description">
-															Fires when the value for the configuration attribute 'relayEvents' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
-														</div>
-
-														<div class="description">
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
-																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
-																		</dd>
-
-																</dl>
-
-
-
-														</div>
-													</div>
-												</div>
 												<div class="api-entry-row event-row " rel="yui:event" resource="#event_renderChange">
 
 													<h4>
@@ -2554,7 +2202,7 @@ preventing the <code>.render()</code> manual call.
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Component.html#method__afterComponentDestroy", "access": "protected", "host": "Component", "type": "method", "name": "_afterComponentDestroy"}, {"url": "Component.html#method__afterComponentOwnerChange", "access": "protected", "host": "Component", "type": "method", "name": "_afterComponentOwnerChange"}, {"url": "Component.html#method__afterComponentRelayEventsChange", "access": "protected", "host": "Component", "type": "method", "name": "_afterComponentRelayEventsChange"}, {"url": "Component.html#method__afterComponentVisibleChange", "access": "protected", "host": "Component", "type": "method", "name": "_afterComponentVisibleChange"}, {"url": "Component.html#method__afterCssClassChange", "access": "protected", "host": "Component", "type": "method", "name": "_afterCssClassChange"}, {"url": "Component.html#method_clone", "access": "", "host": "Component", "type": "method", "name": "clone"}, {"url": "Component.html#property_Component.ATTRS", "access": "", "host": "Component", "type": "property", "name": "Component.ATTRS"}, {"url": "Component.html#property_Component.NAME", "access": "", "host": "Component", "type": "property", "name": "Component.NAME"}, {"url": "Component.html#config_cssClass", "access": "", "host": "Component", "type": "config", "name": "cssClass"}, {"url": "Component.html#event_cssClassChange", "access": "", "host": "Component", "type": "event", "name": "cssClassChange"}, {"url": "Component.html#config_hideClass", "access": "", "host": "Component", "type": "config", "name": "hideClass"}, {"url": "Component.html#event_hideClassChange", "access": "", "host": "Component", "type": "event", "name": "hideClassChange"}, {"url": "Component.html#method_initializer", "access": "protected", "host": "Component", "type": "method", "name": "initializer"}, {"url": "Component.html#config_owner", "access": "", "host": "Component", "type": "config", "name": "owner"}, {"url": "Component.html#event_ownerChange", "access": "", "host": "Component", "type": "event", "name": "ownerChange"}, {"url": "Component.html#method__relayEvents", "access": "protected", "host": "Component", "type": "method", "name": "_relayEvents"}, {"url": "Component.html#config_relayEvents", "access": "", "host": "Component", "type": "config", "name": "relayEvents"}, {"url": "Component.html#event_relayEventsChange", "access": "", "host": "Component", "type": "event", "name": "relayEventsChange"}, {"url": "Component.html#config_render", "access": "", "host": "Component", "type": "config", "name": "render"}, {"url": "Component.html#event_renderChange", "access": "", "host": "Component", "type": "event", "name": "renderChange"}, {"url": "Component.html#method__setComponentClassNames", "access": "protected", "host": "Component", "type": "method", "name": "_setComponentClassNames"}, {"url": "Component.html#method__setRelayEvents", "access": "protected", "host": "Component", "type": "method", "name": "_setRelayEvents"}, {"url": "Component.html#method_toggle", "access": "", "host": "Component", "type": "method", "name": "toggle"}, {"url": "Component.html#method__uiSetCssClass", "access": "protected", "host": "Component", "type": "method", "name": "_uiSetCssClass"}];
+    var ALL_YUI_PROPS = [{"url": "Component.html#method__afterComponentVisibleChange", "access": "protected", "host": "Component", "type": "method", "name": "_afterComponentVisibleChange"}, {"url": "Component.html#method__afterCssClassChange", "access": "protected", "host": "Component", "type": "method", "name": "_afterCssClassChange"}, {"url": "Component.html#method_clone", "access": "", "host": "Component", "type": "method", "name": "clone"}, {"url": "Component.html#property_Component.ATTRS", "access": "", "host": "Component", "type": "property", "name": "Component.ATTRS"}, {"url": "Component.html#property_Component.NAME", "access": "", "host": "Component", "type": "property", "name": "Component.NAME"}, {"url": "Component.html#config_cssClass", "access": "", "host": "Component", "type": "config", "name": "cssClass"}, {"url": "Component.html#event_cssClassChange", "access": "", "host": "Component", "type": "event", "name": "cssClassChange"}, {"url": "Component.html#config_hideClass", "access": "", "host": "Component", "type": "config", "name": "hideClass"}, {"url": "Component.html#event_hideClassChange", "access": "", "host": "Component", "type": "event", "name": "hideClassChange"}, {"url": "Component.html#method_initializer", "access": "protected", "host": "Component", "type": "method", "name": "initializer"}, {"url": "Component.html#config_render", "access": "", "host": "Component", "type": "config", "name": "render"}, {"url": "Component.html#event_renderChange", "access": "", "host": "Component", "type": "event", "name": "renderChange"}, {"url": "Component.html#method__setComponentClassNames", "access": "protected", "host": "Component", "type": "method", "name": "_setComponentClassNames"}, {"url": "Component.html#method_toggle", "access": "", "host": "Component", "type": "method", "name": "toggle"}, {"url": "Component.html#method__uiSetCssClass", "access": "protected", "host": "Component", "type": "method", "name": "_uiSetCssClass"}];
 </script>
 </body>
 </html>

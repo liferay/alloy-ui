@@ -1,5 +1,5 @@
 <!DOCTYPE>
-<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-calendar  Calendar   (YUI Library)</title>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-calendar&nbsp; <span class="subtitle">1.0.0</span>
+			aui-calendar&nbsp; <span class="subtitle">1.0.1</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -1194,9 +1194,8 @@ localization support. The format must be valid according to
 
 													<div class="detail">
 														<div class="description" property="yui:description">
-															Maximum allowable date. Accepts String in the same format of
-<a href="Calendar.html#config_dateFormat">dateFormat</a> or a Date
-object.
+															Maximum allowable date. Values supported by the Date
+constructor are supported.
 														</div>
 													</div>
 
@@ -1215,9 +1214,8 @@ object.
 
 													<div class="detail">
 														<div class="description" property="yui:description">
-															Minimum allowable date. Accepts String in the same format of
-<a href="Calendar.html#config_dateFormat">dateFormat</a> or a Date
-object.
+															Minimum allowable date. Values supported by the Date
+constructor are supported.
 														</div>
 													</div>
 
@@ -1440,19 +1438,6 @@ value of the input field which is hosting the Calendar.
 
 															<div class="" rel="yui:attribute" resource="Component.html#config_hideClass">
 															<a href="Component.html#config_hideClass" property="yui:name" title="hideClass">hideClass</a><span>,</span>
-															</div>
-														
-															
-															
-
-															<div class="deprecated" rel="yui:attribute" resource="Component.html#config_owner">
-															<a href="Component.html#config_owner" property="yui:name" title="owner">owner</a><span>,</span>
-															</div>
-														
-															
-
-															<div class="" rel="yui:attribute" resource="Component.html#config_relayEvents">
-															<a href="Component.html#config_relayEvents" property="yui:name" title="relayEvents">relayEvents</a><span>,</span>
 															</div>
 														
 															
@@ -4158,24 +4143,6 @@ day: date.getDate()
 
 														
 
-														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentDestroy">
-														<a href="Component.html#method__afterComponentDestroy" property="yui:name" title="_afterComponentDestroy">_afterComponentDestroy</a><span>,</span>
-														</div>
-
-														
-
-														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentOwnerChange">
-														<a href="Component.html#method__afterComponentOwnerChange" property="yui:name" title="_afterComponentOwnerChange">_afterComponentOwnerChange</a><span>,</span>
-														</div>
-
-														
-
-														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentRelayEventsChange">
-														<a href="Component.html#method__afterComponentRelayEventsChange" property="yui:name" title="_afterComponentRelayEventsChange">_afterComponentRelayEventsChange</a><span>,</span>
-														</div>
-
-														
-
 														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentVisibleChange">
 														<a href="Component.html#method__afterComponentVisibleChange" property="yui:name" title="_afterComponentVisibleChange">_afterComponentVisibleChange</a><span>,</span>
 														</div>
@@ -4188,20 +4155,8 @@ day: date.getDate()
 
 														
 
-														<div class="protected" rel="yui:method" resource="Component.html#method__relayEvents">
-														<a href="Component.html#method__relayEvents" property="yui:name" title="_relayEvents">_relayEvents</a><span>,</span>
-														</div>
-
-														
-
 														<div class="protected" rel="yui:method" resource="Component.html#method__setComponentClassNames">
 														<a href="Component.html#method__setComponentClassNames" property="yui:name" title="_setComponentClassNames">_setComponentClassNames</a><span>,</span>
-														</div>
-
-														
-
-														<div class="protected" rel="yui:method" resource="Component.html#method__setRelayEvents">
-														<a href="Component.html#method__setRelayEvents" property="yui:name" title="_setRelayEvents">_setRelayEvents</a><span>,</span>
 														</div>
 
 														
@@ -4739,12 +4694,6 @@ day: date.getDate()
 
 														<div class="" rel="yui:method" resource="OverlayContext.html#method_clearIntervals">
 														<a href="OverlayContext.html#method_clearIntervals" property="yui:name" title="clearIntervals">clearIntervals</a><span>,</span>
-														</div>
-
-														
-
-														<div class="protected" rel="yui:method" resource="OverlayContext.html#method_destructor">
-														<a href="OverlayContext.html#method_destructor" property="yui:name" title="destructor">destructor</a><span>,</span>
 														</div>
 
 														
@@ -5413,18 +5362,6 @@ day: date.getDate()
 
 														<div class="" rel="yui:event" resource="Component.html#event_hideClassChange">
 														<a href="Component.html#event_hideClassChange" property="yui:name" title="hideClassChange">hideClassChange</a><span>,</span>
-														</div>
-													
-														
-
-														<div class="" rel="yui:event" resource="Component.html#event_ownerChange">
-														<a href="Component.html#event_ownerChange" property="yui:name" title="ownerChange">ownerChange</a><span>,</span>
-														</div>
-													
-														
-
-														<div class="" rel="yui:event" resource="Component.html#event_relayEventsChange">
-														<a href="Component.html#event_relayEventsChange" property="yui:name" title="relayEventsChange">relayEventsChange</a><span>,</span>
 														</div>
 													
 														

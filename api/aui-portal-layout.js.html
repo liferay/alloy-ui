@@ -1,5 +1,5 @@
 <!DOCTYPE>
-<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-portal-layout   aui-portal-layout.js  (YUI Library)</title>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-portal-layout&nbsp; <span class="subtitle">1.0.0</span>
+			aui-portal-layout&nbsp; <span class="subtitle">1.0.1</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -561,7 +561,7 @@
 
 	<span class="nx">APPEND</span> <span class="o">=</span> <span class="s1">&#39;append&#39;</span><span class="p">,</span>
 	<span class="nx">CIRCLE</span> <span class="o">=</span> <span class="s1">&#39;circle&#39;</span><span class="p">,</span>
-	<span class="nx">DD</span> <span class="o">=</span> <span class="s1">&#39;dd&#39;</span><span class="p">,</span>
+	<span class="nx">DELEGATE_CONFIG</span> <span class="o">=</span> <span class="s1">&#39;delegateConfig&#39;</span><span class="p">,</span>
 	<span class="nx">DOWN</span> <span class="o">=</span> <span class="s1">&#39;down&#39;</span><span class="p">,</span>
 	<span class="nx">DRAG</span> <span class="o">=</span> <span class="s1">&#39;drag&#39;</span><span class="p">,</span>
 	<span class="nx">DRAG_NODE</span> <span class="o">=</span> <span class="s1">&#39;dragNode&#39;</span><span class="p">,</span>
@@ -587,6 +587,7 @@
 	<span class="nx">PROXY</span> <span class="o">=</span> <span class="s1">&#39;proxy&#39;</span><span class="p">,</span>
 	<span class="nx">PROXY_NODE</span> <span class="o">=</span> <span class="s1">&#39;proxyNode&#39;</span><span class="p">,</span>
 	<span class="nx">R</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span>
+	<span class="nx">REGION</span> <span class="o">=</span> <span class="s1">&#39;region&#39;</span><span class="p">,</span>
 	<span class="nx">RIGHT</span> <span class="o">=</span> <span class="s1">&#39;right&#39;</span><span class="p">,</span>
 	<span class="nx">SPACE</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="p">,</span>
 	<span class="nx">TARGET</span> <span class="o">=</span> <span class="s1">&#39;target&#39;</span><span class="p">,</span>
@@ -644,7 +645,7 @@
 <span class="cm"> * &lt;/ul&gt;</span>
 <span class="cm"> *</span>
 <span class="cm"> * Quick Example:&lt;br/&gt;</span>
-<span class="cm"> * </span>
+<span class="cm"> *</span>
 <span class="cm"> * &lt;pre&gt;&lt;code&gt;var portalLayout = new A.PortalLayout({</span>
 <span class="cm"> *  	dragNodes: &#39;.portlet&#39;,</span>
 <span class="cm"> *  	dropNodes: &#39;.column&#39;,</span>
@@ -681,20 +682,27 @@
 <span class="cm">		 * @static</span>
 <span class="cm">		 */</span>
 		<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">dd</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">delegateConfig</span><span class="o">:</span> <span class="p">{</span>
 				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
 				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
 					<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
+					<span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
 						<span class="p">{</span>
 							<span class="nx">bubbleTargets</span><span class="o">:</span> <span class="nx">instance</span><span class="p">,</span>
-							<span class="nx">groups</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">GROUPS</span><span class="p">),</span>
-							<span class="nx">startCentered</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+							<span class="nx">dragConfig</span><span class="o">:</span> <span class="p">{},</span>
+							<span class="nx">nodes</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DRAG_NODES</span><span class="p">),</span>
 							<span class="nx">target</span><span class="o">:</span> <span class="kc">true</span>
 						<span class="p">},</span>
 						<span class="nx">val</span>
 					<span class="p">);</span>
+
+					<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">dragConfig</span><span class="p">,</span> <span class="p">{</span>
+						<span class="nx">groups</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">GROUPS</span><span class="p">),</span>
+						<span class="nx">startCentered</span><span class="o">:</span> <span class="kc">true</span>
+					<span class="p">});</span>
+
+					<span class="k">return</span> <span class="nx">config</span><span class="p">;</span>
 				<span class="p">},</span>
 				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isObject</span>
 			<span class="p">},</span>
@@ -706,8 +714,7 @@
 			<span class="p">},</span>
 
 			<span class="nx">dragNodes</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-				<span class="nx">setter</span><span class="o">:</span> <span class="nx">nodeListSetter</span>
+				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isString</span>
 			<span class="p">},</span>
 
 			<span class="nx">dropContainer</span><span class="o">:</span> <span class="p">{</span>
@@ -807,21 +814,6 @@
 			<span class="cm">/*</span>
 <span class="cm">			* Methods</span>
 <span class="cm">			*/</span>
-			<span class="nx">addDragTarget</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">DDM</span><span class="p">.</span><span class="nx">getDrag</span><span class="p">(</span><span class="nx">node</span><span class="p">))</span> <span class="p">{</span>
-					<span class="kd">var</span> <span class="nx">dd</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DD</span><span class="p">);</span>
-					<span class="kd">var</span> <span class="nx">proxy</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PROXY</span><span class="p">);</span>
-
-					<span class="c1">// updating node reference on the default dd config</span>
-					<span class="nx">dd</span><span class="p">.</span><span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">;</span>
-
-					<span class="c1">// creating DD.Drag instance and plugging the DDProxy</span>
-					<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DD</span><span class="p">.</span><span class="nx">Drag</span><span class="p">(</span><span class="nx">dd</span><span class="p">).</span><span class="nx">plug</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDProxy</span><span class="p">,</span> <span class="nx">proxy</span><span class="p">);</span>
-				<span class="p">}</span>
-			<span class="p">},</span>
-
 			<span class="nx">addDropNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
@@ -829,6 +821,9 @@
 
 				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">DDM</span><span class="p">.</span><span class="nx">getDrop</span><span class="p">(</span><span class="nx">node</span><span class="p">))</span> <span class="p">{</span>
 					<span class="nx">instance</span><span class="p">.</span><span class="nx">addDropTarget</span><span class="p">(</span>
+						<span class="c1">// Do not use DropPlugin to create the DropZones on</span>
+                        <span class="c1">// this component, the &quot;.drop&quot; namespace is used to check</span>
+                        <span class="c1">// for the DD.Delegate target nodes</span>
 						<span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DD</span><span class="p">.</span><span class="nx">Drop</span><span class="p">(</span>
 							<span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
 								<span class="p">{</span>
@@ -893,7 +888,7 @@
 			<span class="nx">calculateQuadrant</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">drag</span><span class="p">,</span> <span class="nx">drop</span><span class="p">)</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">quadrant</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="nx">drop</span><span class="p">.</span><span class="nx">region</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="nx">drop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">REGION</span><span class="p">);</span>
 				<span class="kd">var</span> <span class="nx">mouseXY</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">mouseXY</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">mouseX</span> <span class="o">=</span> <span class="nx">mouseXY</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 				<span class="kd">var</span> <span class="nx">mouseY</span> <span class="o">=</span> <span class="nx">mouseXY</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
@@ -971,12 +966,14 @@
 
 			<span class="nx">_bindDDEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">delegateConfig</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DELEGATE_CONFIG</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">proxy</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PROXY</span><span class="p">);</span>
 
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DRAG_NODES</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span>
-					<span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
-						<span class="nx">instance</span><span class="p">.</span><span class="nx">addDragTarget</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
-					<span class="p">}</span>
-				<span class="p">);</span>
+				<span class="c1">// creating DD.Delegate instance</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">delegate</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DD</span><span class="p">.</span><span class="nx">Delegate</span><span class="p">(</span><span class="nx">delegateConfig</span><span class="p">);</span>
+
+				<span class="c1">// plugging the DDProxy</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">delegate</span><span class="p">.</span><span class="nx">dd</span><span class="p">.</span><span class="nx">plug</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDProxy</span><span class="p">,</span> <span class="nx">proxy</span><span class="p">);</span>
 
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:end&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragEnd</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:enter&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragEnter</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
@@ -1004,11 +1001,16 @@
 
 				<span class="k">if</span> <span class="p">(</span><span class="nx">activeDrop</span> <span class="o">&amp;&amp;</span> <span class="nx">placeholder</span><span class="p">)</span> <span class="p">{</span>
 					<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">activeDrop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">);</span>
-					<span class="kd">var</span> <span class="nx">isTarget</span> <span class="o">=</span> <span class="o">!!</span><span class="nx">node</span><span class="p">.</span><span class="nx">dd</span><span class="p">;</span>
+					<span class="c1">// DD.Delegate use the Drop Plugin on its &quot;target&quot; items. Using Drop Plugin a &quot;node.drop&quot; namespace is created.</span>
+					<span class="c1">// Using the .drop namespace to detect when the node is also a &quot;target&quot; DD.Delegate node</span>
+					<span class="kd">var</span> <span class="nx">isTarget</span> <span class="o">=</span> <span class="o">!!</span><span class="nx">node</span><span class="p">.</span><span class="nx">drop</span><span class="p">;</span>
 
 					<span class="nx">instance</span><span class="p">.</span><span class="nx">lastAlignDrop</span> <span class="o">=</span> <span class="nx">activeDrop</span><span class="p">;</span>
 
-					<span class="nx">instance</span><span class="p">.</span><span class="nx">alignPlaceholder</span><span class="p">(</span><span class="nx">activeDrop</span><span class="p">.</span><span class="nx">region</span><span class="p">,</span> <span class="nx">isTarget</span><span class="p">);</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">alignPlaceholder</span><span class="p">(</span>
+						<span class="nx">activeDrop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">REGION</span><span class="p">),</span>
+						<span class="nx">isTarget</span>
+					<span class="p">);</span>
 				<span class="p">}</span>
 			<span class="p">},</span>
 
@@ -1077,7 +1079,9 @@
 					<span class="kd">var</span> <span class="nx">dropNode</span> <span class="o">=</span> <span class="nx">activeDrop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
 
 					<span class="c1">// detects if the activeDrop is a dd target (portlet) or a drop area only (column)</span>
-					<span class="kd">var</span> <span class="nx">isTarget</span> <span class="o">=</span> <span class="nx">isValue</span><span class="p">(</span><span class="nx">dropNode</span><span class="p">.</span><span class="nx">dd</span><span class="p">);</span>
+					<span class="c1">// DD.Delegate use the Drop Plugin on its &quot;target&quot; items. Using Drop Plugin a &quot;node.drop&quot; namespace is created.</span>
+					<span class="c1">// Using the .drop namespace to detect when the node is also a &quot;target&quot; DD.Delegate node</span>
+					<span class="kd">var</span> <span class="nx">isTarget</span> <span class="o">=</span> <span class="nx">isValue</span><span class="p">(</span><span class="nx">dropNode</span><span class="p">.</span><span class="nx">drop</span><span class="p">);</span>
 					<span class="kd">var</span> <span class="nx">topQuadrants</span> <span class="o">=</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">quadrant</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">);</span>
 
 					<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_alignCondition</span><span class="p">())</span> <span class="p">{</span>
@@ -1248,7 +1252,7 @@
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">PortalLayout</span> <span class="o">=</span> <span class="nx">PortalLayout</span><span class="p">;</span>
 
-<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;dd&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;dd-drag&#39;</span><span class="p">,</span><span class="s1">&#39;dd-delegate&#39;</span><span class="p">,</span><span class="s1">&#39;dd-drop&#39;</span><span class="p">,</span><span class="s1">&#39;dd-proxy&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>

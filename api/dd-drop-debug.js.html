@@ -1,5 +1,5 @@
 <!DOCTYPE>
-<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: dd   dd-drop-debug.js  (YUI Library)</title>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			dd&nbsp; <span class="subtitle">1.0.0</span>
+			dd&nbsp; <span class="subtitle">1.0.1</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -709,6 +709,11 @@
         <span class="cm">/**</span>
 <span class="cm">        * @event drop:over</span>
 <span class="cm">        * @description Fires when a drag element is over this target.</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;</span>
+<span class="cm">        * &lt;dt&gt;drop&lt;/dt&gt;&lt;dd&gt;The drop object at the time of the event.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;drag&lt;/dt&gt;&lt;dd&gt;The drag object at the time of the event.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;/dl&gt;        </span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
@@ -716,6 +721,11 @@
         <span class="cm">/**</span>
 <span class="cm">        * @event drop:enter</span>
 <span class="cm">        * @description Fires when a drag element enters this target.</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;</span>
+<span class="cm">        * &lt;dt&gt;drop&lt;/dt&gt;&lt;dd&gt;The drop object at the time of the event.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;drag&lt;/dt&gt;&lt;dd&gt;The drag object at the time of the event.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;/dl&gt;        </span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
@@ -723,6 +733,7 @@
         <span class="cm">/**</span>
 <span class="cm">        * @event drop:exit</span>
 <span class="cm">        * @description Fires when a drag element exits this target.</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object</span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
@@ -731,6 +742,12 @@
         <span class="cm">/**</span>
 <span class="cm">        * @event drop:hit</span>
 <span class="cm">        * @description Fires when a draggable node is dropped on this Drop Target. (Fired from dd-ddm-drop)</span>
+<span class="cm">        * @param {Event.Facade} event An Event Facade object with the following specific property added:</span>
+<span class="cm">        * &lt;dl&gt;</span>
+<span class="cm">        * &lt;dt&gt;drop&lt;/dt&gt;&lt;dd&gt;The best guess on what was dropped on.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;drag&lt;/dt&gt;&lt;dd&gt;The drag object at the time of the event.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;dt&gt;others&lt;/dt&gt;&lt;dd&gt;An array of all the other drop targets that was dropped on.&lt;/dd&gt;</span>
+<span class="cm">        * &lt;/dl&gt;        </span>
 <span class="cm">        * @bubbles DDM</span>
 <span class="cm">        * @type {Event.Custom}</span>
 <span class="cm">        */</span>
@@ -972,7 +989,7 @@
             <span class="nx">DDM</span><span class="p">.</span><span class="nx">_unregTarget</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
             <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">shim</span><span class="p">)</span> <span class="p">{</span>
                 <span class="k">this</span><span class="p">.</span><span class="nx">shim</span><span class="p">.</span><span class="nx">detachAll</span><span class="p">();</span>
-                <span class="k">this</span><span class="p">.</span><span class="nx">shim</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">).</span><span class="nx">removeChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">shim</span><span class="p">);</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">shim</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
                 <span class="k">this</span><span class="p">.</span><span class="nx">shim</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
             <span class="p">}</span>
             <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">DDM</span><span class="p">.</span><span class="nx">CSS_PREFIX</span> <span class="o">+</span> <span class="s1">&#39;-drop&#39;</span><span class="p">);</span>

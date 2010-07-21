@@ -1,5 +1,5 @@
 <!DOCTYPE>
-<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-resize   aui-resize-debug.js  (YUI Library)</title>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-resize&nbsp; <span class="subtitle">1.0.0</span>
+			aui-resize&nbsp; <span class="subtitle">1.0.1</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -605,9 +605,7 @@
 	<span class="nx">AUTO_HIDE</span> <span class="o">=</span> <span class="s1">&#39;autoHide&#39;</span><span class="p">,</span>
 	<span class="nx">BOTTOM</span> <span class="o">=</span> <span class="s1">&#39;bottom&#39;</span><span class="p">,</span>
 	<span class="nx">CLASS_NAME</span> <span class="o">=</span> <span class="s1">&#39;className&#39;</span><span class="p">,</span>
-	<span class="nx">CONSTRAIN2NODE</span> <span class="o">=</span> <span class="s1">&#39;constrain2node&#39;</span><span class="p">,</span>
-	<span class="nx">CONSTRAIN2REGION</span> <span class="o">=</span> <span class="s1">&#39;constrain2region&#39;</span><span class="p">,</span>
-	<span class="nx">CONSTRAIN2VIEW</span> <span class="o">=</span> <span class="s1">&#39;constrain2view&#39;</span><span class="p">,</span>
+	<span class="nx">CONSTRAIN</span> <span class="o">=</span> <span class="s1">&#39;constrain&#39;</span><span class="p">,</span>
 	<span class="nx">CURSOR</span> <span class="o">=</span> <span class="s1">&#39;cursor&#39;</span><span class="p">,</span>
 	<span class="nx">DIAGONAL</span> <span class="o">=</span> <span class="s1">&#39;diagonal&#39;</span><span class="p">,</span>
 	<span class="nx">DOTTED</span> <span class="o">=</span> <span class="s1">&#39;dotted&#39;</span><span class="p">,</span>
@@ -647,9 +645,16 @@
 	<span class="nx">TICK_Y</span> <span class="o">=</span> <span class="s1">&#39;tickY&#39;</span><span class="p">,</span>
 	<span class="nx">TOP</span> <span class="o">=</span> <span class="s1">&#39;top&#39;</span><span class="p">,</span>
 	<span class="nx">VERTICAL</span> <span class="o">=</span> <span class="s1">&#39;vertical&#39;</span><span class="p">,</span>
+	<span class="nx">VIEW</span> <span class="o">=</span> <span class="s1">&#39;view&#39;</span><span class="p">,</span>
+	<span class="nx">VIEWPORT_REGION</span> <span class="o">=</span> <span class="s1">&#39;viewportRegion&#39;</span><span class="p">,</span>
 	<span class="nx">WRAP</span> <span class="o">=</span> <span class="s1">&#39;wrap&#39;</span><span class="p">,</span>
 	<span class="nx">WRAPPER</span> <span class="o">=</span> <span class="s1">&#39;wrapper&#39;</span><span class="p">,</span>
 	<span class="nx">WRAP_TYPES</span> <span class="o">=</span> <span class="s1">&#39;wrapTypes&#39;</span><span class="p">,</span>
+
+	<span class="nx">BORDER_BOTTOM_WIDTH</span> <span class="o">=</span> <span class="s1">&#39;borderBottomWidth&#39;</span><span class="p">,</span>
+	<span class="nx">BORDER_LEFT_WIDTH</span> <span class="o">=</span> <span class="s1">&#39;borderLeftWidth&#39;</span><span class="p">,</span>
+	<span class="nx">BORDER_RIGHT_WIDTH</span> <span class="o">=</span> <span class="s1">&#39;borderRightWidth&#39;</span><span class="p">,</span>
+	<span class="nx">BORDER_TOP_WIDTH</span> <span class="o">=</span> <span class="s1">&#39;borderTopWidth&#39;</span><span class="p">,</span>
 
 	<span class="nx">EV_MOUSE_UP</span> <span class="o">=</span> <span class="s1">&#39;resize:mouseUp&#39;</span><span class="p">,</span>
 	<span class="nx">EV_RESIZE</span> <span class="o">=</span> <span class="s1">&#39;resize:resize&#39;</span><span class="p">,</span>
@@ -675,10 +680,6 @@
 
 	<span class="nx">concat</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="nx">SPACE</span><span class="p">);</span>
-	<span class="p">},</span>
-
-	<span class="nx">nodeSetter</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
-		<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
 	<span class="p">},</span>
 
 	<span class="nx">toInitialCap</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">cached</span><span class="p">(</span>
@@ -819,41 +820,23 @@
 				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isBoolean</span>
 			<span class="p">},</span>
 
-			<span class="cm">/**</span>
-<span class="cm">			 * Constrain the resize to a particular node. Will attempt to</span>
-<span class="cm">	         * constrain the drag node to the boundaries of this node.</span>
-<span class="cm">			 *</span>
-<span class="cm">			 * @attribute constrain2node</span>
-<span class="cm">			 * @default null</span>
-<span class="cm">			 * @type String | Node</span>
-<span class="cm">			 */</span>
-			<span class="nx">constrain2node</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">setter</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">,</span>
-				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
-			<span class="p">},</span>
-
-			<span class="cm">/**</span>
-<span class="cm">			 * Constrain the resize to a particular region. An Object Literal</span>
-<span class="cm">	         * containing a valid region (top, right, bottom, left) of page</span>
-<span class="cm">	         * positions to constrain the drag node to.</span>
-<span class="cm">			 *</span>
-<span class="cm">			 * @attribute constrain2region</span>
-<span class="cm">			 * @default null</span>
-<span class="cm">			 * @type Object</span>
-<span class="cm">			 */</span>
-			<span class="nx">constrain2region</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
-			<span class="p">},</span>
-
 	        <span class="cm">/**</span>
-<span class="cm">	         * Will attempt to constrain the drag node to the boundaries of the</span>
-<span class="cm">	         * viewport region.</span>
-<span class="cm">	         *</span>
-<span class="cm">	         * @attribute constrain2view</span>
-<span class="cm">	         * @type Object</span>
-<span class="cm">	         */</span>
-			<span class="nx">constrain2view</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+<span class="cm">	        * Will attempt to constrain the resize node to the boundaries. Arguments:&lt;br&gt;</span>
+<span class="cm">	        * &#39;view&#39;: Contrain to Viewport&lt;br&gt;</span>
+<span class="cm">	        * &#39;#selector_string&#39;: Constrain to this node&lt;br&gt;</span>
+<span class="cm">	        * &#39;{Region Object}&#39;: An Object Literal containing a valid region (top, right, bottom, left) of page positions</span>
+<span class="cm">	        *</span>
+<span class="cm">	        * @attribute constrain</span>
+<span class="cm">	        * @type {String/Object/Node}</span>
+<span class="cm">	        */</span>
+			<span class="nx">constrain</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">v</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">isNode</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="o">||</span> <span class="nx">isString</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="o">||</span> <span class="nx">v</span><span class="p">.</span><span class="nx">nodeType</span><span class="p">))</span> <span class="p">{</span>
+						<span class="nx">v</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+					<span class="p">}</span>
+
+					<span class="k">return</span> <span class="nx">v</span><span class="p">;</span>
+				<span class="p">}</span>
 			<span class="p">},</span>
 
 	        <span class="cm">/**</span>
@@ -954,7 +937,7 @@
 <span class="cm">	         * @type Node</span>
 <span class="cm">	         */</span>
 			<span class="nx">node</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">setter</span><span class="o">:</span> <span class="nx">nodeSetter</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
@@ -989,7 +972,7 @@
 <span class="cm">	         * @type String | Node</span>
 <span class="cm">	         */</span>
 			<span class="nx">proxyEl</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">setter</span><span class="o">:</span> <span class="nx">nodeSetter</span><span class="p">,</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">,</span>
 				<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 					<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_PROXY_EL</span><span class="p">);</span>
 				<span class="p">}</span>
@@ -1160,6 +1143,16 @@
 <span class="cm">			 */</span>
 			<span class="nx">changeWidthHandles</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * Cache the border widths of the contrain node if constrain</span>
+<span class="cm">             * option is being used.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @attribute constrainBorderInfo</span>
+<span class="cm">			 * @default {}</span>
+<span class="cm">			 * @type Object</span>
+<span class="cm">			 */</span>
+			<span class="nx">constrainBorderInfo</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+
 		    <span class="cm">/**</span>
 <span class="cm">		     * Stores the current values for the height, width, top and left. You are</span>
 <span class="cm">		     * able to manipulate these values on resize in order to change the resize</span>
@@ -1193,6 +1186,13 @@
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">info</span> <span class="o">=</span> <span class="p">{};</span>
 
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">originalInfo</span> <span class="o">=</span> <span class="p">{};</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">constrainBorderInfo</span> <span class="o">=</span> <span class="p">{</span>
+					<span class="nx">bottom</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+					<span class="nx">left</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+					<span class="nx">right</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+					<span class="nx">top</span><span class="o">:</span> <span class="mi">0</span>
+				<span class="p">};</span>
 
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_RESIZE</span><span class="p">);</span>
 
@@ -1266,7 +1266,7 @@
 					<span class="p">}</span>
 
 					<span class="c1">// remove handle</span>
-					<span class="nx">handleEl</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+					<span class="nx">handleEl</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 				<span class="p">});</span>
 
 				<span class="c1">// unwrap node</span>
@@ -1278,7 +1278,7 @@
 
 					<span class="nx">wrapper</span><span class="p">.</span><span class="nx">placeBefore</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
 
-					<span class="nx">wrapper</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+					<span class="nx">wrapper</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 				<span class="p">}</span>
 
 				<span class="nx">node</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_RESIZE</span><span class="p">);</span>
@@ -1326,8 +1326,8 @@
 
 				<span class="nx">wrapper</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onWrapperMouseEnter</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
 				<span class="nx">wrapper</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseleave&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onWrapperMouseLeave</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
-				<span class="nx">wrapper</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onHandleMouseOver</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_RESIZE_HANDLE</span><span class="p">);</span>
-				<span class="nx">wrapper</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;mouseleave&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onHandleMouseOut</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_RESIZE_HANDLE</span><span class="p">);</span>
+				<span class="nx">wrapper</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;mouseout&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onHandleMouseOut</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_RESIZE_HANDLE</span><span class="p">);</span>
+				<span class="nx">wrapper</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onHandleMouseOver</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_RESIZE_HANDLE</span><span class="p">);</span>
 			<span class="p">},</span>
 
 		    <span class="cm">/**</span>
@@ -1521,24 +1521,23 @@
 			<span class="nx">_checkConstrain</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">axis</span><span class="p">,</span> <span class="nx">axisConstrain</span><span class="p">,</span> <span class="nx">offset</span><span class="p">)</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">info</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">info</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">constrain</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONSTRAIN2NODE</span><span class="p">);</span>
 
-				<span class="k">if</span> <span class="p">(</span><span class="nx">constrain</span><span class="p">)</span> <span class="p">{</span>
-					<span class="kd">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="nx">constrain</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">REGION</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getConstrainRegion</span><span class="p">();</span>
 
-					<span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="nx">info</span><span class="p">[</span><span class="nx">axis</span><span class="p">]</span> <span class="o">+</span> <span class="nx">info</span><span class="p">[</span><span class="nx">offset</span><span class="p">];</span>
-					<span class="kd">var</span> <span class="nx">p1Constrain</span> <span class="o">=</span> <span class="nx">region</span><span class="p">[</span><span class="nx">axisConstrain</span><span class="p">];</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">region</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">point1</span> <span class="o">=</span> <span class="nx">info</span><span class="p">[</span><span class="nx">axis</span><span class="p">]</span> <span class="o">+</span> <span class="nx">info</span><span class="p">[</span><span class="nx">offset</span><span class="p">];</span>
+					<span class="kd">var</span> <span class="nx">point1Constrain</span> <span class="o">=</span> <span class="nx">region</span><span class="p">[</span><span class="nx">axisConstrain</span><span class="p">]</span> <span class="o">-</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">constrainBorderInfo</span><span class="p">[</span><span class="nx">axisConstrain</span><span class="p">];</span>
 
-					<span class="k">if</span> <span class="p">(</span><span class="nx">p1</span> <span class="o">&gt;=</span> <span class="nx">p1Constrain</span><span class="p">)</span> <span class="p">{</span>
-						<span class="nx">info</span><span class="p">[</span><span class="nx">offset</span><span class="p">]</span> <span class="o">-=</span> <span class="p">(</span><span class="nx">p1</span> <span class="o">-</span> <span class="nx">p1Constrain</span><span class="p">);</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">point1</span> <span class="o">&gt;=</span> <span class="nx">point1Constrain</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">info</span><span class="p">[</span><span class="nx">offset</span><span class="p">]</span> <span class="o">-=</span> <span class="p">(</span><span class="nx">point1</span> <span class="o">-</span> <span class="nx">point1Constrain</span><span class="p">);</span>
 					<span class="p">}</span>
 
-					<span class="kd">var</span> <span class="nx">p2</span> <span class="o">=</span> <span class="nx">info</span><span class="p">[</span><span class="nx">axis</span><span class="p">];</span>
-					<span class="kd">var</span> <span class="nx">p2Constrain</span> <span class="o">=</span> <span class="nx">region</span><span class="p">[</span><span class="nx">axis</span><span class="p">];</span>
+					<span class="kd">var</span> <span class="nx">point2</span> <span class="o">=</span> <span class="nx">info</span><span class="p">[</span><span class="nx">axis</span><span class="p">];</span>
+					<span class="kd">var</span> <span class="nx">point2Constrain</span> <span class="o">=</span> <span class="nx">region</span><span class="p">[</span><span class="nx">axis</span><span class="p">]</span> <span class="o">+</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">constrainBorderInfo</span><span class="p">[</span><span class="nx">axis</span><span class="p">];</span>
 
-					<span class="k">if</span> <span class="p">(</span><span class="nx">p2</span> <span class="o">&lt;=</span> <span class="nx">p2Constrain</span><span class="p">)</span> <span class="p">{</span>
-						<span class="nx">info</span><span class="p">[</span><span class="nx">axis</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">p2Constrain</span> <span class="o">-</span> <span class="nx">p2</span><span class="p">);</span>
-						<span class="nx">info</span><span class="p">[</span><span class="nx">offset</span><span class="p">]</span> <span class="o">-=</span> <span class="p">(</span><span class="nx">p2Constrain</span> <span class="o">-</span> <span class="nx">p2</span><span class="p">);</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">point2</span> <span class="o">&lt;=</span> <span class="nx">point2Constrain</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">info</span><span class="p">[</span><span class="nx">axis</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">point2Constrain</span> <span class="o">-</span> <span class="nx">point2</span><span class="p">);</span>
+						<span class="nx">info</span><span class="p">[</span><span class="nx">offset</span><span class="p">]</span> <span class="o">-=</span> <span class="p">(</span><span class="nx">point2Constrain</span> <span class="o">-</span> <span class="nx">point2</span><span class="p">);</span>
 					<span class="p">}</span>
 				<span class="p">}</span>
 			<span class="p">},</span>
@@ -1647,7 +1646,7 @@
 <span class="cm">			 */</span>
 			<span class="nx">_checkRegion</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONSTRAIN2NODE</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">REGION</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getConstrainRegion</span><span class="p">();</span>
 
 				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">inRegion</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">region</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">info</span><span class="p">);</span>
 			<span class="p">},</span>
@@ -1759,6 +1758,36 @@
 				<span class="p">}</span>
 			<span class="p">),</span>
 
+			<span class="cm">/**</span>
+<span class="cm">			 * Get the constrain region based on the &lt;code&gt;constrain&lt;/code&gt;</span>
+<span class="cm">             * attribute.</span>
+<span class="cm">			 *</span>
+<span class="cm">			 * @method _getConstrainRegion</span>
+<span class="cm">			 * @protected</span>
+<span class="cm">			 * @return {Object Region}</span>
+<span class="cm">			 */</span>
+			<span class="nx">_getConstrainRegion</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">constrain</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONSTRAIN</span><span class="p">);</span>
+
+				<span class="kd">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">constrain</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">constrain</span> <span class="o">==</span> <span class="nx">VIEW</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">region</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">VIEWPORT_REGION</span><span class="p">);</span>
+					<span class="p">}</span>
+					<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">isNode</span><span class="p">(</span><span class="nx">constrain</span><span class="p">))</span> <span class="p">{</span>
+						<span class="nx">region</span> <span class="o">=</span> <span class="nx">constrain</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">REGION</span><span class="p">);</span>
+					<span class="p">}</span>
+					<span class="k">else</span> <span class="p">{</span>
+						<span class="nx">region</span> <span class="o">=</span> <span class="nx">constrain</span><span class="p">;</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+
+				<span class="k">return</span> <span class="nx">region</span><span class="p">;</span>
+			<span class="p">},</span>
+
 		    <span class="cm">/**</span>
 <span class="cm">		     * &lt;p&gt;Generates metadata to the &lt;a href=&quot;Resize.html#property_info&quot;&gt;info&lt;/a&gt;</span>
 <span class="cm">		     * and &lt;a href=&quot;Resize.html#property_originalInfo&quot;&gt;originalInfo&lt;/a&gt;&lt;/p&gt;</span>
@@ -1785,13 +1814,13 @@
 				<span class="kd">var</span> <span class="nx">offsetWidth</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_WIDTH</span><span class="p">);</span>
 
 				<span class="k">return</span> <span class="p">{</span>
-					<span class="nx">bottom</span><span class="o">:</span> <span class="p">(</span><span class="nx">nodeY</span> <span class="o">+</span> <span class="nx">offsetHeight</span><span class="p">),</span>
 					<span class="nx">actXY</span><span class="o">:</span> <span class="nx">actXY</span><span class="p">,</span>
+					<span class="nx">bottom</span><span class="o">:</span> <span class="p">(</span><span class="nx">nodeY</span> <span class="o">+</span> <span class="nx">offsetHeight</span><span class="p">),</span>
 					<span class="nx">left</span><span class="o">:</span> <span class="nx">nodeX</span><span class="p">,</span>
-					<span class="nx">top</span><span class="o">:</span> <span class="nx">nodeY</span><span class="p">,</span>
 					<span class="nx">offsetHeight</span><span class="o">:</span> <span class="nx">offsetHeight</span><span class="p">,</span>
 					<span class="nx">offsetWidth</span><span class="o">:</span> <span class="nx">offsetWidth</span><span class="p">,</span>
-					<span class="nx">right</span><span class="o">:</span> <span class="p">(</span><span class="nx">nodeX</span> <span class="o">+</span> <span class="nx">offsetWidth</span><span class="p">)</span>
+					<span class="nx">right</span><span class="o">:</span> <span class="p">(</span><span class="nx">nodeX</span> <span class="o">+</span> <span class="nx">offsetWidth</span><span class="p">),</span>
+					<span class="nx">top</span><span class="o">:</span> <span class="nx">nodeY</span>
 				<span class="p">};</span>
 			<span class="p">},</span>
 
@@ -1959,17 +1988,23 @@
 
 				<span class="kd">var</span> <span class="nx">cursor</span> <span class="o">=</span> <span class="nx">activeHandleEl</span><span class="p">.</span><span class="nx">getStyle</span><span class="p">(</span><span class="nx">CURSOR</span><span class="p">);</span>
 
-				<span class="nx">proxyEl</span><span class="p">.</span><span class="nx">show</span><span class="p">().</span><span class="nx">setStyles</span><span class="p">({</span>
-					<span class="nx">cursor</span><span class="o">:</span> <span class="nx">cursor</span><span class="p">,</span>
-					<span class="nx">height</span><span class="o">:</span> <span class="nx">info</span><span class="p">.</span><span class="nx">offsetHeight</span> <span class="o">+</span> <span class="nx">PX</span><span class="p">,</span>
-					<span class="nx">width</span><span class="o">:</span> <span class="nx">info</span><span class="p">.</span><span class="nx">offsetWidth</span> <span class="o">+</span> <span class="nx">PX</span>
-				<span class="p">});</span>
+				<span class="nx">proxyEl</span><span class="p">.</span><span class="nx">show</span><span class="p">().</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">CURSOR</span><span class="p">,</span> <span class="nx">cursor</span><span class="p">);</span>
 
 				<span class="nx">activeHandleEl</span><span class="p">.</span><span class="nx">dd</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">DRAG_CURSOR</span><span class="p">,</span> <span class="nx">cursor</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_setOffset</span><span class="p">(</span><span class="nx">proxyEl</span><span class="p">,</span> <span class="nx">info</span><span class="p">.</span><span class="nx">offsetWidth</span><span class="p">,</span> <span class="nx">info</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">);</span>
 
 				<span class="nx">proxyEl</span><span class="p">.</span><span class="nx">setXY</span><span class="p">([</span> <span class="nx">info</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">info</span><span class="p">.</span><span class="nx">top</span> <span class="p">]);</span>
 			<span class="p">},</span>
 
+			<span class="cm">/**</span>
+<span class="cm">		     * Update &lt;code&gt;instance.changeHeightHandles,</span>
+<span class="cm">             * instance.changeLeftHandles, instance.changeTopHandles,</span>
+<span class="cm">             * instance.changeWidthHandles&lt;/code&gt; information.</span>
+<span class="cm">		     *</span>
+<span class="cm">		     * @method _updateChangeHandleInfo</span>
+<span class="cm">		     * @private</span>
+<span class="cm">		     */</span>
 			<span class="nx">_updateChangeHandleInfo</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">handle</span><span class="p">)</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
@@ -1977,6 +2012,29 @@
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">changeLeftHandles</span> <span class="o">=</span> <span class="nx">REGEX_CHANGE_LEFT</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">handle</span><span class="p">);</span>
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">changeTopHandles</span> <span class="o">=</span> <span class="nx">REGEX_CHANGE_TOP</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">handle</span><span class="p">);</span>
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">changeWidthHandles</span> <span class="o">=</span> <span class="nx">REGEX_CHANGE_WIDTH</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">handle</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="cm">/**</span>
+<span class="cm">		     * Update &lt;code&gt;instance.constrainBorderInfo&lt;/code&gt; values (bottom,</span>
+<span class="cm">             * left, top, right).</span>
+<span class="cm">		     *</span>
+<span class="cm">		     * @method _updateConstrainBorderInfo</span>
+<span class="cm">		     * @private</span>
+<span class="cm">		     */</span>
+			<span class="nx">_updateConstrainBorderInfo</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">constrain</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONSTRAIN</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">isNode</span><span class="p">(</span><span class="nx">constrain</span><span class="p">))</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">getStyle</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+						<span class="k">return</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">constrain</span><span class="p">.</span><span class="nx">getStyle</span><span class="p">(</span><span class="nx">val</span><span class="p">))</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+					<span class="p">};</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">constrainBorderInfo</span><span class="p">.</span><span class="nx">bottom</span> <span class="o">=</span> <span class="nx">getStyle</span><span class="p">(</span><span class="nx">BORDER_BOTTOM_WIDTH</span><span class="p">);</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">constrainBorderInfo</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">getStyle</span><span class="p">(</span><span class="nx">BORDER_LEFT_WIDTH</span><span class="p">);</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">constrainBorderInfo</span><span class="p">.</span><span class="nx">right</span> <span class="o">=</span> <span class="nx">getStyle</span><span class="p">(</span><span class="nx">BORDER_RIGHT_WIDTH</span><span class="p">);</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">constrainBorderInfo</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">getStyle</span><span class="p">(</span><span class="nx">BORDER_TOP_WIDTH</span><span class="p">);</span>
+				<span class="p">}</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
@@ -2088,7 +2146,7 @@
 				<span class="c1">// top/top is used to position the proxyEl</span>
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">_recalculateXY</span><span class="p">();</span>
 
-				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONSTRAIN2NODE</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_checkRegion</span><span class="p">())</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONSTRAIN</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_checkRegion</span><span class="p">())</span> <span class="p">{</span>
 					<span class="nx">instance</span><span class="p">.</span><span class="nx">info</span> <span class="o">=</span> <span class="nx">infoBefore</span><span class="p">;</span>
 				<span class="p">}</span>
 			<span class="p">},</span>
@@ -2142,6 +2200,7 @@
 				<span class="p">);</span>
 
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">_updateInfo</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_updateConstrainBorderInfo</span><span class="p">();</span>
 			<span class="p">},</span>
 
 		    <span class="cm">/**</span>
@@ -2290,7 +2349,7 @@
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">Resize</span> <span class="o">=</span> <span class="nx">Resize</span><span class="p">;</span>
 
-<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;dd&#39;</span><span class="p">,</span><span class="s1">&#39;substitute&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;dd-constrain&#39;</span><span class="p">,</span><span class="s1">&#39;dd-drag&#39;</span><span class="p">,</span><span class="s1">&#39;dd-drop&#39;</span><span class="p">,</span><span class="s1">&#39;substitute&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
 </pre></div>
 
 							</div>
@@ -2308,7 +2367,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Resize.html#event_activeHandleChange", "access": "", "host": "Resize", "type": "event", "name": "activeHandleChange"}, {"url": "Resize.html#event_activeHandleElChange", "access": "", "host": "Resize", "type": "event", "name": "activeHandleElChange"}, {"url": "Resize.html#method__afterResize", "access": "protected", "host": "Resize", "type": "method", "name": "_afterResize"}, {"url": "Resize.html#config_autoHide", "access": "", "host": "Resize", "type": "config", "name": "autoHide"}, {"url": "Resize.html#event_autoHideChange", "access": "", "host": "Resize", "type": "event", "name": "autoHideChange"}, {"url": "Resize.html#method_bindUI", "access": "protected", "host": "Resize", "type": "method", "name": "bindUI"}, {"url": "Resize.html#method__buildHandle", "access": "protected", "host": "Resize", "type": "method", "name": "_buildHandle"}, {"url": "Resize.html#config_changeHeightHandles", "access": "", "host": "Resize", "type": "config", "name": "changeHeightHandles"}, {"url": "Resize.html#event_changeHeightHandlesChange", "access": "", "host": "Resize", "type": "event", "name": "changeHeightHandlesChange"}, {"url": "Resize.html#config_changeLeftHandles", "access": "", "host": "Resize", "type": "config", "name": "changeLeftHandles"}, {"url": "Resize.html#event_changeLeftHandlesChange", "access": "", "host": "Resize", "type": "event", "name": "changeLeftHandlesChange"}, {"url": "Resize.html#config_changeTopHandles", "access": "", "host": "Resize", "type": "config", "name": "changeTopHandles"}, {"url": "Resize.html#event_changeTopHandlesChange", "access": "", "host": "Resize", "type": "event", "name": "changeTopHandlesChange"}, {"url": "Resize.html#config_changeWidthHandles", "access": "", "host": "Resize", "type": "config", "name": "changeWidthHandles"}, {"url": "Resize.html#event_changeWidthHandlesChange", "access": "", "host": "Resize", "type": "event", "name": "changeWidthHandlesChange"}, {"url": "Resize.html#method__checkConstrain", "access": "protected", "host": "Resize", "type": "method", "name": "_checkConstrain"}, {"url": "Resize.html#method__checkHeight", "access": "protected", "host": "Resize", "type": "method", "name": "_checkHeight"}, {"url": "Resize.html#method__checkRatio", "access": "protected", "host": "Resize", "type": "method", "name": "_checkRatio"}, {"url": "Resize.html#method__checkRegion", "access": "protected", "host": "Resize", "type": "method", "name": "_checkRegion"}, {"url": "Resize.html#method__checkWidth", "access": "protected", "host": "Resize", "type": "method", "name": "_checkWidth"}, {"url": "Resize.html#config_constrain2node", "access": "", "host": "Resize", "type": "config", "name": "constrain2node"}, {"url": "Resize.html#event_constrain2nodeChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2nodeChange"}, {"url": "Resize.html#config_constrain2region", "access": "", "host": "Resize", "type": "config", "name": "constrain2region"}, {"url": "Resize.html#event_constrain2regionChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2regionChange"}, {"url": "Resize.html#config_constrain2view", "access": "", "host": "Resize", "type": "config", "name": "constrain2view"}, {"url": "Resize.html#event_constrain2viewChange", "access": "", "host": "Resize", "type": "event", "name": "constrain2viewChange"}, {"url": "Resize.html#method__copyStyles", "access": "protected", "host": "Resize", "type": "method", "name": "_copyStyles"}, {"url": "Resize.html#method__defMouseUpFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defMouseUpFn"}, {"url": "Resize.html#method__defResizeEndFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeEndFn"}, {"url": "Resize.html#method__defResizeFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeFn"}, {"url": "Resize.html#method__defResizeStartFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeStartFn"}, {"url": "Resize.html#method_destructor", "access": "protected", "host": "Resize", "type": "method", "name": "destructor"}, {"url": "Resize.html#method_eachHandle", "access": "", "host": "Resize", "type": "method", "name": "eachHandle"}, {"url": "Resize.html#method__handleMouseUpEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleMouseUpEvent"}, {"url": "Resize.html#method__handleResizeEndEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeEndEvent"}, {"url": "Resize.html#method__handleResizeEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeEvent"}, {"url": "Resize.html#method__handleResizeStartEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeStartEvent"}, {"url": "Resize.html#config_handles", "access": "", "host": "Resize", "type": "config", "name": "handles"}, {"url": "Resize.html#event_handlesChange", "access": "", "host": "Resize", "type": "event", "name": "handlesChange"}, {"url": "Resize.html#property_info", "access": "protected", "host": "Resize", "type": "property", "name": "info"}, {"url": "Resize.html#method_initializer", "access": "protected", "host": "Resize", "type": "method", "name": "initializer"}, {"url": "Resize.html#config_maxHeight", "access": "", "host": "Resize", "type": "config", "name": "maxHeight"}, {"url": "Resize.html#event_maxHeightChange", "access": "", "host": "Resize", "type": "event", "name": "maxHeightChange"}, {"url": "Resize.html#config_maxWidth", "access": "", "host": "Resize", "type": "config", "name": "maxWidth"}, {"url": "Resize.html#event_maxWidthChange", "access": "", "host": "Resize", "type": "event", "name": "maxWidthChange"}, {"url": "Resize.html#config_minHeight", "access": "", "host": "Resize", "type": "config", "name": "minHeight"}, {"url": "Resize.html#event_minHeightChange", "access": "", "host": "Resize", "type": "event", "name": "minHeightChange"}, {"url": "Resize.html#config_minWidth", "access": "", "host": "Resize", "type": "config", "name": "minWidth"}, {"url": "Resize.html#event_minWidthChange", "access": "", "host": "Resize", "type": "event", "name": "minWidthChange"}, {"url": "Resize.html#config_node", "access": "", "host": "Resize", "type": "config", "name": "node"}, {"url": "Resize.html#event_nodeChange", "access": "", "host": "Resize", "type": "event", "name": "nodeChange"}, {"url": "Resize.html#method__onHandleMouseOut", "access": "protected", "host": "Resize", "type": "method", "name": "_onHandleMouseOut"}, {"url": "Resize.html#method__onHandleMouseOver", "access": "protected", "host": "Resize", "type": "method", "name": "_onHandleMouseOver"}, {"url": "Resize.html#method__onWrapperMouseEnter", "access": "protected", "host": "Resize", "type": "method", "name": "_onWrapperMouseEnter"}, {"url": "Resize.html#method__onWrapperMouseLeave", "access": "protected", "host": "Resize", "type": "method", "name": "_onWrapperMouseLeave"}, {"url": "Resize.html#property_originalInfo", "access": "protected", "host": "Resize", "type": "property", "name": "originalInfo"}, {"url": "Resize.html#config_preserveRatio", "access": "", "host": "Resize", "type": "config", "name": "preserveRatio"}, {"url": "Resize.html#event_preserveRatioChange", "access": "", "host": "Resize", "type": "event", "name": "preserveRatioChange"}, {"url": "Resize.html#config_proxy", "access": "", "host": "Resize", "type": "config", "name": "proxy"}, {"url": "Resize.html#event_proxyChange", "access": "", "host": "Resize", "type": "event", "name": "proxyChange"}, {"url": "Resize.html#config_proxyEl", "access": "", "host": "Resize", "type": "config", "name": "proxyEl"}, {"url": "Resize.html#event_proxyElChange", "access": "", "host": "Resize", "type": "event", "name": "proxyElChange"}, {"url": "Resize.html#method_renderer", "access": "protected", "host": "Resize", "type": "method", "name": "renderer"}, {"url": "Resize.html#method__renderHandles", "access": "protected", "host": "Resize", "type": "method", "name": "_renderHandles"}, {"url": "Resize.html#method__renderProxy", "access": "protected", "host": "Resize", "type": "method", "name": "_renderProxy"}, {"url": "Resize.html#method_renderUI", "access": "protected", "host": "Resize", "type": "method", "name": "renderUI"}, {"url": "Resize.html#method__resize", "access": "protected", "host": "Resize", "type": "method", "name": "_resize"}, {"url": "Resize.html#event_resize:end", "access": "", "host": "Resize", "type": "event", "name": "resize:end"}, {"url": "Resize.html#event_resize:mouseUp", "access": "", "host": "Resize", "type": "event", "name": "resize:mouseUp"}, {"url": "Resize.html#event_resize:resize", "access": "", "host": "Resize", "type": "event", "name": "resize:resize"}, {"url": "Resize.html#event_resize:start", "access": "", "host": "Resize", "type": "event", "name": "resize:start"}, {"url": "Resize.html#property_Resize.ATTRS", "access": "", "host": "Resize", "type": "property", "name": "Resize.ATTRS"}, {"url": "Resize.html#property_Resize.NAME", "access": "", "host": "Resize", "type": "property", "name": "Resize.NAME"}, {"url": "Resize.html#config_resizing", "access": "", "host": "Resize", "type": "config", "name": "resizing"}, {"url": "Resize.html#event_resizingChange", "access": "", "host": "Resize", "type": "event", "name": "resizingChange"}, {"url": "Resize.html#method__setActiveHandlesUI", "access": "protected", "host": "Resize", "type": "method", "name": "_setActiveHandlesUI"}, {"url": "Resize.html#method__setHideHandlesUI", "access": "protected", "host": "Resize", "type": "method", "name": "_setHideHandlesUI"}, {"url": "Resize.html#method__setOffset", "access": "protected", "host": "Resize", "type": "method", "name": "_setOffset"}, {"url": "Resize.html#method__syncProxyUI", "access": "protected", "host": "Resize", "type": "method", "name": "_syncProxyUI"}, {"url": "Resize.html#method__syncUI", "access": "protected", "host": "Resize", "type": "method", "name": "_syncUI"}, {"url": "Resize.html#method_syncUI", "access": "protected", "host": "Resize", "type": "method", "name": "syncUI"}, {"url": "Resize.html#config_tickX", "access": "", "host": "Resize", "type": "config", "name": "tickX"}, {"url": "Resize.html#event_tickXChange", "access": "", "host": "Resize", "type": "event", "name": "tickXChange"}, {"url": "Resize.html#config_tickY", "access": "", "host": "Resize", "type": "config", "name": "tickY"}, {"url": "Resize.html#event_tickYChange", "access": "", "host": "Resize", "type": "event", "name": "tickYChange"}, {"url": "Resize.html#config_wrap", "access": "", "host": "Resize", "type": "config", "name": "wrap"}, {"url": "Resize.html#event_wrapChange", "access": "", "host": "Resize", "type": "event", "name": "wrapChange"}, {"url": "Resize.html#config_wrapper", "access": "", "host": "Resize", "type": "config", "name": "wrapper"}, {"url": "Resize.html#event_wrapperChange", "access": "", "host": "Resize", "type": "event", "name": "wrapperChange"}, {"url": "Resize.html#config_wrapTypes", "access": "", "host": "Resize", "type": "config", "name": "wrapTypes"}, {"url": "Resize.html#event_wrapTypesChange", "access": "", "host": "Resize", "type": "event", "name": "wrapTypesChange"}];
+    var ALL_YUI_PROPS = [{"url": "Resize.html#event_activeHandleChange", "access": "", "host": "Resize", "type": "event", "name": "activeHandleChange"}, {"url": "Resize.html#event_activeHandleElChange", "access": "", "host": "Resize", "type": "event", "name": "activeHandleElChange"}, {"url": "Resize.html#method__afterResize", "access": "protected", "host": "Resize", "type": "method", "name": "_afterResize"}, {"url": "Resize.html#config_autoHide", "access": "", "host": "Resize", "type": "config", "name": "autoHide"}, {"url": "Resize.html#event_autoHideChange", "access": "", "host": "Resize", "type": "event", "name": "autoHideChange"}, {"url": "Resize.html#method_bindUI", "access": "protected", "host": "Resize", "type": "method", "name": "bindUI"}, {"url": "Resize.html#method__buildHandle", "access": "protected", "host": "Resize", "type": "method", "name": "_buildHandle"}, {"url": "Resize.html#config_changeHeightHandles", "access": "", "host": "Resize", "type": "config", "name": "changeHeightHandles"}, {"url": "Resize.html#event_changeHeightHandlesChange", "access": "", "host": "Resize", "type": "event", "name": "changeHeightHandlesChange"}, {"url": "Resize.html#config_changeLeftHandles", "access": "", "host": "Resize", "type": "config", "name": "changeLeftHandles"}, {"url": "Resize.html#event_changeLeftHandlesChange", "access": "", "host": "Resize", "type": "event", "name": "changeLeftHandlesChange"}, {"url": "Resize.html#config_changeTopHandles", "access": "", "host": "Resize", "type": "config", "name": "changeTopHandles"}, {"url": "Resize.html#event_changeTopHandlesChange", "access": "", "host": "Resize", "type": "event", "name": "changeTopHandlesChange"}, {"url": "Resize.html#config_changeWidthHandles", "access": "", "host": "Resize", "type": "config", "name": "changeWidthHandles"}, {"url": "Resize.html#event_changeWidthHandlesChange", "access": "", "host": "Resize", "type": "event", "name": "changeWidthHandlesChange"}, {"url": "Resize.html#method__checkConstrain", "access": "protected", "host": "Resize", "type": "method", "name": "_checkConstrain"}, {"url": "Resize.html#method__checkHeight", "access": "protected", "host": "Resize", "type": "method", "name": "_checkHeight"}, {"url": "Resize.html#method__checkRatio", "access": "protected", "host": "Resize", "type": "method", "name": "_checkRatio"}, {"url": "Resize.html#method__checkRegion", "access": "protected", "host": "Resize", "type": "method", "name": "_checkRegion"}, {"url": "Resize.html#method__checkWidth", "access": "protected", "host": "Resize", "type": "method", "name": "_checkWidth"}, {"url": "Resize.html#config_constrain", "access": "", "host": "Resize", "type": "config", "name": "constrain"}, {"url": "Resize.html#config_constrainBorderInfo", "access": "", "host": "Resize", "type": "config", "name": "constrainBorderInfo"}, {"url": "Resize.html#event_constrainBorderInfoChange", "access": "", "host": "Resize", "type": "event", "name": "constrainBorderInfoChange"}, {"url": "Resize.html#event_constrainChange", "access": "", "host": "Resize", "type": "event", "name": "constrainChange"}, {"url": "Resize.html#method__copyStyles", "access": "protected", "host": "Resize", "type": "method", "name": "_copyStyles"}, {"url": "Resize.html#method__defMouseUpFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defMouseUpFn"}, {"url": "Resize.html#method__defResizeEndFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeEndFn"}, {"url": "Resize.html#method__defResizeFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeFn"}, {"url": "Resize.html#method__defResizeStartFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeStartFn"}, {"url": "Resize.html#method_destructor", "access": "protected", "host": "Resize", "type": "method", "name": "destructor"}, {"url": "Resize.html#method_eachHandle", "access": "", "host": "Resize", "type": "method", "name": "eachHandle"}, {"url": "Resize.html#method__getConstrainRegion", "access": "protected", "host": "Resize", "type": "method", "name": "_getConstrainRegion"}, {"url": "Resize.html#method__handleMouseUpEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleMouseUpEvent"}, {"url": "Resize.html#method__handleResizeEndEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeEndEvent"}, {"url": "Resize.html#method__handleResizeEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeEvent"}, {"url": "Resize.html#method__handleResizeStartEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeStartEvent"}, {"url": "Resize.html#config_handles", "access": "", "host": "Resize", "type": "config", "name": "handles"}, {"url": "Resize.html#event_handlesChange", "access": "", "host": "Resize", "type": "event", "name": "handlesChange"}, {"url": "Resize.html#property_info", "access": "protected", "host": "Resize", "type": "property", "name": "info"}, {"url": "Resize.html#method_initializer", "access": "protected", "host": "Resize", "type": "method", "name": "initializer"}, {"url": "Resize.html#config_maxHeight", "access": "", "host": "Resize", "type": "config", "name": "maxHeight"}, {"url": "Resize.html#event_maxHeightChange", "access": "", "host": "Resize", "type": "event", "name": "maxHeightChange"}, {"url": "Resize.html#config_maxWidth", "access": "", "host": "Resize", "type": "config", "name": "maxWidth"}, {"url": "Resize.html#event_maxWidthChange", "access": "", "host": "Resize", "type": "event", "name": "maxWidthChange"}, {"url": "Resize.html#config_minHeight", "access": "", "host": "Resize", "type": "config", "name": "minHeight"}, {"url": "Resize.html#event_minHeightChange", "access": "", "host": "Resize", "type": "event", "name": "minHeightChange"}, {"url": "Resize.html#config_minWidth", "access": "", "host": "Resize", "type": "config", "name": "minWidth"}, {"url": "Resize.html#event_minWidthChange", "access": "", "host": "Resize", "type": "event", "name": "minWidthChange"}, {"url": "Resize.html#config_node", "access": "", "host": "Resize", "type": "config", "name": "node"}, {"url": "Resize.html#event_nodeChange", "access": "", "host": "Resize", "type": "event", "name": "nodeChange"}, {"url": "Resize.html#method__onHandleMouseOut", "access": "protected", "host": "Resize", "type": "method", "name": "_onHandleMouseOut"}, {"url": "Resize.html#method__onHandleMouseOver", "access": "protected", "host": "Resize", "type": "method", "name": "_onHandleMouseOver"}, {"url": "Resize.html#method__onWrapperMouseEnter", "access": "protected", "host": "Resize", "type": "method", "name": "_onWrapperMouseEnter"}, {"url": "Resize.html#method__onWrapperMouseLeave", "access": "protected", "host": "Resize", "type": "method", "name": "_onWrapperMouseLeave"}, {"url": "Resize.html#property_originalInfo", "access": "protected", "host": "Resize", "type": "property", "name": "originalInfo"}, {"url": "Resize.html#config_preserveRatio", "access": "", "host": "Resize", "type": "config", "name": "preserveRatio"}, {"url": "Resize.html#event_preserveRatioChange", "access": "", "host": "Resize", "type": "event", "name": "preserveRatioChange"}, {"url": "Resize.html#config_proxy", "access": "", "host": "Resize", "type": "config", "name": "proxy"}, {"url": "Resize.html#event_proxyChange", "access": "", "host": "Resize", "type": "event", "name": "proxyChange"}, {"url": "Resize.html#config_proxyEl", "access": "", "host": "Resize", "type": "config", "name": "proxyEl"}, {"url": "Resize.html#event_proxyElChange", "access": "", "host": "Resize", "type": "event", "name": "proxyElChange"}, {"url": "Resize.html#method_renderer", "access": "protected", "host": "Resize", "type": "method", "name": "renderer"}, {"url": "Resize.html#method__renderHandles", "access": "protected", "host": "Resize", "type": "method", "name": "_renderHandles"}, {"url": "Resize.html#method__renderProxy", "access": "protected", "host": "Resize", "type": "method", "name": "_renderProxy"}, {"url": "Resize.html#method_renderUI", "access": "protected", "host": "Resize", "type": "method", "name": "renderUI"}, {"url": "Resize.html#method__resize", "access": "protected", "host": "Resize", "type": "method", "name": "_resize"}, {"url": "Resize.html#event_resize:end", "access": "", "host": "Resize", "type": "event", "name": "resize:end"}, {"url": "Resize.html#event_resize:mouseUp", "access": "", "host": "Resize", "type": "event", "name": "resize:mouseUp"}, {"url": "Resize.html#event_resize:resize", "access": "", "host": "Resize", "type": "event", "name": "resize:resize"}, {"url": "Resize.html#event_resize:start", "access": "", "host": "Resize", "type": "event", "name": "resize:start"}, {"url": "Resize.html#property_Resize.ATTRS", "access": "", "host": "Resize", "type": "property", "name": "Resize.ATTRS"}, {"url": "Resize.html#property_Resize.NAME", "access": "", "host": "Resize", "type": "property", "name": "Resize.NAME"}, {"url": "Resize.html#config_resizing", "access": "", "host": "Resize", "type": "config", "name": "resizing"}, {"url": "Resize.html#event_resizingChange", "access": "", "host": "Resize", "type": "event", "name": "resizingChange"}, {"url": "Resize.html#method__setActiveHandlesUI", "access": "protected", "host": "Resize", "type": "method", "name": "_setActiveHandlesUI"}, {"url": "Resize.html#method__setHideHandlesUI", "access": "protected", "host": "Resize", "type": "method", "name": "_setHideHandlesUI"}, {"url": "Resize.html#method__setOffset", "access": "protected", "host": "Resize", "type": "method", "name": "_setOffset"}, {"url": "Resize.html#method__syncProxyUI", "access": "protected", "host": "Resize", "type": "method", "name": "_syncProxyUI"}, {"url": "Resize.html#method__syncUI", "access": "protected", "host": "Resize", "type": "method", "name": "_syncUI"}, {"url": "Resize.html#method_syncUI", "access": "protected", "host": "Resize", "type": "method", "name": "syncUI"}, {"url": "Resize.html#config_tickX", "access": "", "host": "Resize", "type": "config", "name": "tickX"}, {"url": "Resize.html#event_tickXChange", "access": "", "host": "Resize", "type": "event", "name": "tickXChange"}, {"url": "Resize.html#config_tickY", "access": "", "host": "Resize", "type": "config", "name": "tickY"}, {"url": "Resize.html#event_tickYChange", "access": "", "host": "Resize", "type": "event", "name": "tickYChange"}, {"url": "Resize.html#config_wrap", "access": "", "host": "Resize", "type": "config", "name": "wrap"}, {"url": "Resize.html#event_wrapChange", "access": "", "host": "Resize", "type": "event", "name": "wrapChange"}, {"url": "Resize.html#config_wrapper", "access": "", "host": "Resize", "type": "config", "name": "wrapper"}, {"url": "Resize.html#event_wrapperChange", "access": "", "host": "Resize", "type": "event", "name": "wrapperChange"}, {"url": "Resize.html#config_wrapTypes", "access": "", "host": "Resize", "type": "config", "name": "wrapTypes"}, {"url": "Resize.html#event_wrapTypesChange", "access": "", "host": "Resize", "type": "event", "name": "wrapTypesChange"}];
 </script>
 </body>
 </html>

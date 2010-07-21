@@ -1,5 +1,5 @@
 <!DOCTYPE>
-<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-node   aui-node.js  (YUI Library)</title>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-node&nbsp; <span class="subtitle">1.0.0</span>
+			aui-node&nbsp; <span class="subtitle">1.0.1</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -802,7 +802,17 @@
 
 		<span class="k">if</span> <span class="p">(</span><span class="nx">CLONED_EVENTS</span><span class="p">)</span> <span class="p">{</span>
 			<span class="nx">clone</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">outerHTML</span><span class="p">());</span>
+				<span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getDOM</span><span class="p">();</span>
+				<span class="kd">var</span> <span class="nx">clone</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">nodeType</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">clone</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">outerHTML</span><span class="p">())</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="p">{</span>
+					<span class="nx">clone</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">());</span>
+				<span class="p">}</span>
+
+				<span class="k">return</span> <span class="nx">clone</span><span class="p">;</span>
 			<span class="p">};</span>
 		<span class="p">}</span>
 		<span class="k">else</span> <span class="p">{</span>
@@ -862,7 +872,7 @@
 	<span class="nx">empty</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-		<span class="nx">instance</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;&gt;*&#39;</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;&gt;*&#39;</span><span class="p">).</span><span class="nx">remove</span><span class="p">().</span><span class="nx">purge</span><span class="p">();</span>
 
 		<span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">getDOMNode</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
 
@@ -1019,7 +1029,7 @@
 		<span class="p">}</span>
 
 		<span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;&lt;div&gt;&lt;/div&gt;&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">clone</span><span class="p">()</span>
 		<span class="p">);</span>
 
 		<span class="k">try</span> <span class="p">{</span>
@@ -1542,6 +1552,8 @@
 		<span class="s1">&#39;prepend&#39;</span><span class="p">,</span>
 
 		<span class="s1">&#39;prependTo&#39;</span><span class="p">,</span>
+
+		<span class="s1">&#39;purge&#39;</span><span class="p">,</span>
 
 		<span class="s1">&#39;selectText&#39;</span><span class="p">,</span>
 

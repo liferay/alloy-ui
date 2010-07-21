@@ -1,5 +1,5 @@
 <!DOCTYPE>
-<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-tree   aui-tree-data.js  (YUI Library)</title>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-tree&nbsp; <span class="subtitle">1.0.0</span>
+			aui-tree&nbsp; <span class="subtitle">1.0.1</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -612,10 +612,6 @@
 	<span class="nx">TREE</span> <span class="o">=</span> <span class="s1">&#39;tree&#39;</span><span class="p">,</span>
 	<span class="nx">TREE_DATA</span> <span class="o">=</span> <span class="s1">&#39;tree-data&#39;</span><span class="p">,</span>
 
-	<span class="nx">nodeSetter</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-		<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
-	<span class="p">},</span>
-
 	<span class="nx">isTreeNode</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="p">(</span> <span class="nx">v</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span> <span class="p">);</span>
 	<span class="p">},</span>
@@ -670,7 +666,7 @@
 <span class="cm">			 * @type Node | String</span>
 <span class="cm">			 */</span>
 			<span class="nx">container</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">setter</span><span class="o">:</span> <span class="nx">nodeSetter</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">one</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>

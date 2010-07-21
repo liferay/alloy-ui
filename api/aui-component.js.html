@@ -1,5 +1,5 @@
 <!DOCTYPE>
-<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-component   aui-component.js  (YUI Library)</title>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-component&nbsp; <span class="subtitle">1.0.0</span>
+			aui-component&nbsp; <span class="subtitle">1.0.1</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -640,33 +640,6 @@
 	<span class="p">},</span>
 
 	<span class="cm">/**</span>
-<span class="cm">	 * A Component that will fire the same events as the current Component.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @attribute owner</span>
-<span class="cm">	 * @deprecated See &lt;a href=&quot;WidgetParent.html&quot;&gt;WidgetParent&lt;/a&gt;.</span>
-<span class="cm">	 * @type Widget</span>
-<span class="cm">	 */</span>
-	<span class="nx">owner</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">validator</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="k">return</span> <span class="nx">value</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span> <span class="o">||</span> <span class="nx">value</span> <span class="o">===</span> <span class="kc">null</span><span class="p">;</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
-<span class="cm">	 * When set to &lt;code&gt;true&lt;/code&gt; the events on this Component are also</span>
-<span class="cm">     * fired on the &lt;a href=&quot;Component.html#config_owner&quot;&gt;owner&lt;/a&gt; Component.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @attribute relayEvents</span>
-<span class="cm">	 * @default true</span>
-<span class="cm">	 * @type boolean</span>
-<span class="cm">	 */</span>
-	<span class="nx">relayEvents</span><span class="o">:</span> <span class="p">{</span>
-		<span class="nx">value</span><span class="o">:</span> <span class="kc">true</span>
-	<span class="p">},</span>
-
-	<span class="cm">/**</span>
 <span class="cm">	 * If &lt;code&gt;true&lt;/code&gt; the render phase will be autimatically invoked</span>
 <span class="cm">     * preventing the &lt;code&gt;.render()&lt;/code&gt; manual call.</span>
 <span class="cm">	 *</span>
@@ -697,15 +670,9 @@
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">_uiSetCssClass</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">cssClass</span><span class="p">);</span>
 			<span class="p">}</span>
 
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_setOwnerComponent</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;ownerComponent&#39;</span><span class="p">));</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_setRelayEvents</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;relayEvents&#39;</span><span class="p">));</span>
-
 			<span class="nx">instance</span><span class="p">.</span><span class="nx">_setComponentClassNames</span><span class="p">();</span>
 
 			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;cssClassChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterCssClassChange</span><span class="p">);</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;destroy&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterComponentDestroy</span><span class="p">);</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;ownerChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterComponentOwnerChange</span><span class="p">);</span>
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;relayEventsChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterComponentRelayEventsChange</span><span class="p">);</span>
 			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;visibleChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterComponentVisibleChange</span><span class="p">);</span>
 		<span class="p">},</span>
 
@@ -738,51 +705,6 @@
 			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
 			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;visible&#39;</span><span class="p">,</span> <span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;visible&#39;</span><span class="p">));</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Invoked after the destroy phase. Removes the</span>
-<span class="cm">         * &lt;code&gt;boundingBox&lt;/code&gt; from the DOM.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @method _afterComponentDestroy</span>
-<span class="cm">		 * @param {EventFacade} event</span>
-<span class="cm">		 * @protected</span>
-<span class="cm">		 */</span>
-		<span class="nx">_afterComponentDestroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="k">try</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
-			<span class="p">}</span>
-			<span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{}</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Fires after the value of the</span>
-<span class="cm">		 * &lt;a href=&quot;Component.html#config_owner&quot;&gt;owner&lt;/a&gt; attribute change.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @method _afterComponentOwnerChange</span>
-<span class="cm">		 * @param {EventFacade} event</span>
-<span class="cm">		 * @protected</span>
-<span class="cm">		 */</span>
-		<span class="nx">_afterComponentOwnerChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_setOwnerComponent</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">);</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Fires after the value of the</span>
-<span class="cm">		 * &lt;a href=&quot;Component.html#config_relayEvents&quot;&gt;relayEvents&lt;/a&gt; attribute change.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @method _afterComponentRelayEventsChange</span>
-<span class="cm">		 * @param {EventFacade} event</span>
-<span class="cm">		 * @protected</span>
-<span class="cm">		 */</span>
-		<span class="nx">_afterComponentRelayEventsChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_setRelayEvents</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">);</span>
 		<span class="p">},</span>
 
 		<span class="cm">/**</span>
@@ -826,25 +748,6 @@
 		<span class="p">},</span>
 
 		<span class="cm">/**</span>
-<span class="cm">		 * Fires the events onthe</span>
-<span class="cm">         * &lt;a href=&quot;Component.html#config_owner&quot;&gt;owner&lt;/a&gt;.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @method _relayEvents</span>
-<span class="cm">		 * @protected</span>
-<span class="cm">		 */</span>
-		<span class="nx">_relayEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">Component</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">fire</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-
-			<span class="kd">var</span> <span class="nx">ownerComponent</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_ownerComponent</span><span class="p">;</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">ownerComponent</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">ownerComponent</span><span class="p">.</span><span class="nx">fire</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">ownerComponent</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-			<span class="p">}</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
 <span class="cm">		 * Set the class names on the Component &lt;code&gt;contentBox&lt;/code&gt;.</span>
 <span class="cm">		 *</span>
 <span class="cm">		 * @method _setComponentClassNames</span>
@@ -864,39 +767,6 @@
 			<span class="p">}</span>
 
 			<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentBox&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">buffer</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">));</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Setter for &lt;a href=&quot;Component.html#config_relayEvents&quot;&gt;relayEvents&lt;/a&gt;.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @method _setRelayEvents</span>
-<span class="cm">		 * @protected</span>
-<span class="cm">		 * @param {boolean} relayEvents</span>
-<span class="cm">		 */</span>
-		<span class="nx">_setRelayEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">relayEvents</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="k">if</span> <span class="p">(</span><span class="nx">relayEvents</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_relayEvents</span><span class="p">;</span>
-			<span class="p">}</span>
-			<span class="k">else</span> <span class="p">{</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">fire</span><span class="p">;</span>
-			<span class="p">}</span>
-		<span class="p">},</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		 * Setter for</span>
-<span class="cm">         * &lt;a href=&quot;Component.html#property__ownerComponent&quot;&gt;_ownerComponent&lt;/a&gt;</span>
-<span class="cm">         * property.</span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @method _setOwnerComponent</span>
-<span class="cm">		 * @private</span>
-<span class="cm">		 * @param {Widget} ownerComponent</span>
-<span class="cm">		 */</span>
-		<span class="nx">_setOwnerComponent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ownerComponent</span><span class="p">)</span> <span class="p">{</span>
-			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-			<span class="nx">instance</span><span class="p">.</span><span class="nx">_ownerComponent</span> <span class="o">=</span> <span class="nx">ownerComponent</span><span class="p">;</span>
 		<span class="p">},</span>
 
 		<span class="cm">/**</span>
@@ -997,7 +867,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Component.html#method__afterComponentDestroy", "access": "protected", "host": "Component", "type": "method", "name": "_afterComponentDestroy"}, {"url": "Component.html#method__afterComponentOwnerChange", "access": "protected", "host": "Component", "type": "method", "name": "_afterComponentOwnerChange"}, {"url": "Component.html#method__afterComponentRelayEventsChange", "access": "protected", "host": "Component", "type": "method", "name": "_afterComponentRelayEventsChange"}, {"url": "Component.html#method__afterComponentVisibleChange", "access": "protected", "host": "Component", "type": "method", "name": "_afterComponentVisibleChange"}, {"url": "Component.html#method__afterCssClassChange", "access": "protected", "host": "Component", "type": "method", "name": "_afterCssClassChange"}, {"url": "Component.html#method_clone", "access": "", "host": "Component", "type": "method", "name": "clone"}, {"url": "Component.html#property_Component.ATTRS", "access": "", "host": "Component", "type": "property", "name": "Component.ATTRS"}, {"url": "Component.html#property_Component.NAME", "access": "", "host": "Component", "type": "property", "name": "Component.NAME"}, {"url": "Component.html#config_cssClass", "access": "", "host": "Component", "type": "config", "name": "cssClass"}, {"url": "Component.html#event_cssClassChange", "access": "", "host": "Component", "type": "event", "name": "cssClassChange"}, {"url": "Component.html#config_hideClass", "access": "", "host": "Component", "type": "config", "name": "hideClass"}, {"url": "Component.html#event_hideClassChange", "access": "", "host": "Component", "type": "event", "name": "hideClassChange"}, {"url": "Component.html#method_initializer", "access": "protected", "host": "Component", "type": "method", "name": "initializer"}, {"url": "Component.html#config_owner", "access": "", "host": "Component", "type": "config", "name": "owner"}, {"url": "Component.html#event_ownerChange", "access": "", "host": "Component", "type": "event", "name": "ownerChange"}, {"url": "Component.html#method__relayEvents", "access": "protected", "host": "Component", "type": "method", "name": "_relayEvents"}, {"url": "Component.html#config_relayEvents", "access": "", "host": "Component", "type": "config", "name": "relayEvents"}, {"url": "Component.html#event_relayEventsChange", "access": "", "host": "Component", "type": "event", "name": "relayEventsChange"}, {"url": "Component.html#config_render", "access": "", "host": "Component", "type": "config", "name": "render"}, {"url": "Component.html#event_renderChange", "access": "", "host": "Component", "type": "event", "name": "renderChange"}, {"url": "Component.html#method__setComponentClassNames", "access": "protected", "host": "Component", "type": "method", "name": "_setComponentClassNames"}, {"url": "Component.html#method__setRelayEvents", "access": "protected", "host": "Component", "type": "method", "name": "_setRelayEvents"}, {"url": "Component.html#method_toggle", "access": "", "host": "Component", "type": "method", "name": "toggle"}, {"url": "Component.html#method__uiSetCssClass", "access": "protected", "host": "Component", "type": "method", "name": "_uiSetCssClass"}];
+    var ALL_YUI_PROPS = [{"url": "Component.html#method__afterComponentVisibleChange", "access": "protected", "host": "Component", "type": "method", "name": "_afterComponentVisibleChange"}, {"url": "Component.html#method__afterCssClassChange", "access": "protected", "host": "Component", "type": "method", "name": "_afterCssClassChange"}, {"url": "Component.html#method_clone", "access": "", "host": "Component", "type": "method", "name": "clone"}, {"url": "Component.html#property_Component.ATTRS", "access": "", "host": "Component", "type": "property", "name": "Component.ATTRS"}, {"url": "Component.html#property_Component.NAME", "access": "", "host": "Component", "type": "property", "name": "Component.NAME"}, {"url": "Component.html#config_cssClass", "access": "", "host": "Component", "type": "config", "name": "cssClass"}, {"url": "Component.html#event_cssClassChange", "access": "", "host": "Component", "type": "event", "name": "cssClassChange"}, {"url": "Component.html#config_hideClass", "access": "", "host": "Component", "type": "config", "name": "hideClass"}, {"url": "Component.html#event_hideClassChange", "access": "", "host": "Component", "type": "event", "name": "hideClassChange"}, {"url": "Component.html#method_initializer", "access": "protected", "host": "Component", "type": "method", "name": "initializer"}, {"url": "Component.html#config_render", "access": "", "host": "Component", "type": "config", "name": "render"}, {"url": "Component.html#event_renderChange", "access": "", "host": "Component", "type": "event", "name": "renderChange"}, {"url": "Component.html#method__setComponentClassNames", "access": "protected", "host": "Component", "type": "method", "name": "_setComponentClassNames"}, {"url": "Component.html#method_toggle", "access": "", "host": "Component", "type": "method", "name": "toggle"}, {"url": "Component.html#method__uiSetCssClass", "access": "protected", "host": "Component", "type": "method", "name": "_uiSetCssClass"}];
 </script>
 </body>
 </html>

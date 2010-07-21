@@ -1,5 +1,5 @@
 <!DOCTYPE>
-<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: aui-image-viewer  ImageViewer   (YUI Library)</title>
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			aui-image-viewer&nbsp; <span class="subtitle">1.0.0</span>
+			aui-image-viewer&nbsp; <span class="subtitle">1.0.1</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -537,6 +537,8 @@
 												<li class=""><a href="#config_loader" title="loader">loader</a></li>
 												<li class=""><a href="#config_loading" title="loading">loading</a></li>
 												<li class=""><a href="#config_loadingEl" title="loadingEl">loadingEl</a></li>
+												<li class=""><a href="#config_maxHeight" title="maxHeight">maxHeight</a></li>
+												<li class=""><a href="#config_maxWidth" title="maxWidth">maxWidth</a></li>
 												<li class=""><a href="#config_modal" title="modal">modal</a></li>
 												<li class=""><a href="#config_preloadAllImages" title="preloadAllImages">preloadAllImages</a></li>
 												<li class=""><a href="#config_showArrows" title="showArrows">showArrows</a></li>
@@ -580,6 +582,7 @@
 				                               <li class="protected"><a href="#method__afterRender" title="_afterRender">_afterRender</a></li>
 				                               <li class="protected"><a href="#method__afterVisibleChange" title="_afterVisibleChange">_afterVisibleChange</a></li>
 				                               <li class="protected"><a href="#method__getInfoTemplate" title="_getInfoTemplate">_getInfoTemplate</a></li>
+				                               <li class="protected"><a href="#method__getRatio" title="_getRatio">_getRatio</a></li>
 				                               <li class="protected"><a href="#method__onClickCloseEl" title="_onClickCloseEl">_onClickCloseEl</a></li>
 				                               <li class="protected"><a href="#method__onClickLeftArrow" title="_onClickLeftArrow">_onClickLeftArrow</a></li>
 				                               <li class="protected"><a href="#method__onClickLinks" title="_onClickLinks">_onClickLinks</a></li>
@@ -592,9 +595,10 @@
 				                               <li class="protected"><a href="#method__syncControlsUI" title="_syncControlsUI">_syncControlsUI</a></li>
 				                               <li class="protected"><a href="#method__syncImageViewerUI" title="_syncImageViewerUI">_syncImageViewerUI</a></li>
 				                               <li class="protected"><a href="#method__syncInfoUI" title="_syncInfoUI">_syncInfoUI</a></li>
+				                               <li class="protected"><a href="#method__uiSetImageSize" title="_uiSetImageSize">_uiSetImageSize</a></li>
 				                               <li class="protected"><a href="#method_bindUI" title="bindUI">bindUI</a></li>
 				                               <li class=""><a href="#method_close" title="close">close</a></li>
-				                               <li class="protected"><a href="#method_destroy" title="destroy">destroy</a></li>
+				                               <li class="protected"><a href="#method_destructor" title="destructor">destructor</a></li>
 				                               <li class=""><a href="#method_getCurrentLink" title="getCurrentLink">getCurrentLink</a></li>
 				                               <li class=""><a href="#method_getLink" title="getLink">getLink</a></li>
 				                               <li class=""><a href="#method_hasLink" title="hasLink">hasLink</a></li>
@@ -642,6 +646,8 @@
 												<li class=""><a href="#event_loaderChange" title="loaderChange">loaderChange</a></li>
 												<li class=""><a href="#event_loadingChange" title="loadingChange">loadingChange</a></li>
 												<li class=""><a href="#event_loadingElChange" title="loadingElChange">loadingElChange</a></li>
+												<li class=""><a href="#event_maxHeightChange" title="maxHeightChange">maxHeightChange</a></li>
+												<li class=""><a href="#event_maxWidthChange" title="maxWidthChange">maxWidthChange</a></li>
 												<li class=""><a href="#event_modalChange" title="modalChange">modalChange</a></li>
 												<li class=""><a href="#event_preloadAllImagesChange" title="preloadAllImagesChange">preloadAllImagesChange</a></li>
 												<li class=""><a href="#event_request" title="request">request</a></li>
@@ -1346,6 +1352,44 @@ extracts the information to generate the thumbnails.
 													</div>
 
 												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_maxHeight">
+
+													<h4>
+														<a name="config_maxHeight">maxHeight</a>
+														<code>- <span property="yui:type">Number</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The maximum height of the element
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Infinity</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_maxWidth">
+
+													<h4>
+														<a name="config_maxWidth">maxWidth</a>
+														<code>- <span property="yui:type">Number</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															The maximum width of the element
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>Infinity</strong>
+													</div>
+
+												</div>
 												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_modal">
 
 													<h4>
@@ -1576,19 +1620,6 @@ href="ImageViewer.html#config_links">links</a> NodeList.
 
 															<div class="" rel="yui:attribute" resource="Component.html#config_hideClass">
 															<a href="Component.html#config_hideClass" property="yui:name" title="hideClass">hideClass</a><span>,</span>
-															</div>
-														
-															
-															
-
-															<div class="deprecated" rel="yui:attribute" resource="Component.html#config_owner">
-															<a href="Component.html#config_owner" property="yui:name" title="owner">owner</a><span>,</span>
-															</div>
-														
-															
-
-															<div class="" rel="yui:attribute" resource="Component.html#config_relayEvents">
-															<a href="Component.html#config_relayEvents" property="yui:name" title="relayEvents">relayEvents</a><span>,</span>
 															</div>
 														
 															
@@ -1928,6 +1959,62 @@ href="ImageViewer.html#config_links">links</a> NodeList.
 																	</code></dt>
 																	<dd property="yui:returnInfo">Parsed string.</dd>
 																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__getRatio">
+
+													<h4>
+														<a name="method__getRatio">_getRatio</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														Number
+															<strong property="yui:name">_getRatio</strong>
+														   (
+																
+																		
+																		 width
+																	
+																
+																		, 
+																		 height
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Calculate the resize ratio for the loaded image.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">width</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> Image width</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">height</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> Image height</span>
+																		</dd>
+																</dl>
+
 
 
 
@@ -2404,6 +2491,53 @@ href="ImageViewer.html#config_links">links</a> NodeList.
 													</div>
 												</div>
 
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__uiSetImageSize">
+
+													<h4>
+														<a name="method__uiSetImageSize">_uiSetImageSize</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_uiSetImageSize</strong>
+														   (
+																
+																		
+																		 image
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Set the size of the image and the overlay respecting the
+maxHeight/maxWidth ratio.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">image</span>
+																		&lt;<span property="yui:type">HTMLImage</span>&gt;
+																		</code>
+																		<span property="yui:description"> Image</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
 												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_bindUI">
 
 													<h4>
@@ -2468,10 +2602,10 @@ href="ImageViewer.html#config_links">links</a> NodeList.
 													</div>
 												</div>
 
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_destroy">
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_destructor">
 
 													<h4>
-														<a name="method_destroy">destroy</a>
+														<a name="method_destructor">destructor</a>
 													</h4>
 
 													<div class="detail">
@@ -2480,7 +2614,7 @@ href="ImageViewer.html#config_links">links</a> NodeList.
 														
 														
 														void
-															<strong property="yui:name">destroy</strong>
+															<strong property="yui:name">destructor</strong>
 														   (
 															)
 														</code>
@@ -3532,24 +3666,6 @@ href="ImageViewer.html#config_modal">modal</a>.
 
 														
 
-														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentDestroy">
-														<a href="Component.html#method__afterComponentDestroy" property="yui:name" title="_afterComponentDestroy">_afterComponentDestroy</a><span>,</span>
-														</div>
-
-														
-
-														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentOwnerChange">
-														<a href="Component.html#method__afterComponentOwnerChange" property="yui:name" title="_afterComponentOwnerChange">_afterComponentOwnerChange</a><span>,</span>
-														</div>
-
-														
-
-														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentRelayEventsChange">
-														<a href="Component.html#method__afterComponentRelayEventsChange" property="yui:name" title="_afterComponentRelayEventsChange">_afterComponentRelayEventsChange</a><span>,</span>
-														</div>
-
-														
-
 														<div class="protected" rel="yui:method" resource="Component.html#method__afterComponentVisibleChange">
 														<a href="Component.html#method__afterComponentVisibleChange" property="yui:name" title="_afterComponentVisibleChange">_afterComponentVisibleChange</a><span>,</span>
 														</div>
@@ -3562,20 +3678,8 @@ href="ImageViewer.html#config_modal">modal</a>.
 
 														
 
-														<div class="protected" rel="yui:method" resource="Component.html#method__relayEvents">
-														<a href="Component.html#method__relayEvents" property="yui:name" title="_relayEvents">_relayEvents</a><span>,</span>
-														</div>
-
-														
-
 														<div class="protected" rel="yui:method" resource="Component.html#method__setComponentClassNames">
 														<a href="Component.html#method__setComponentClassNames" property="yui:name" title="_setComponentClassNames">_setComponentClassNames</a><span>,</span>
-														</div>
-
-														
-
-														<div class="protected" rel="yui:method" resource="Component.html#method__setRelayEvents">
-														<a href="Component.html#method__setRelayEvents" property="yui:name" title="_setRelayEvents">_setRelayEvents</a><span>,</span>
 														</div>
 
 														
@@ -4881,6 +4985,90 @@ href="ImageViewer.html#config_modal">modal</a>.
 														</div>
 													</div>
 												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_maxHeightChange">
+
+													<h4>
+														<a name="event_maxHeightChange">maxHeightChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">maxHeightChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'maxHeight' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_maxWidthChange">
+
+													<h4>
+														<a name="event_maxWidthChange">maxWidthChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">maxWidthChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'maxWidth' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
 												<div class="api-entry-row event-row " rel="yui:event" resource="#event_modalChange">
 
 													<h4>
@@ -5284,18 +5472,6 @@ href="ImageViewer.html#config_modal">modal</a>.
 													
 														
 
-														<div class="" rel="yui:event" resource="Component.html#event_ownerChange">
-														<a href="Component.html#event_ownerChange" property="yui:name" title="ownerChange">ownerChange</a><span>,</span>
-														</div>
-													
-														
-
-														<div class="" rel="yui:event" resource="Component.html#event_relayEventsChange">
-														<a href="Component.html#event_relayEventsChange" property="yui:name" title="relayEventsChange">relayEventsChange</a><span>,</span>
-														</div>
-													
-														
-
 														<div class="" rel="yui:event" resource="Component.html#event_renderChange">
 														<a href="Component.html#event_renderChange" property="yui:name" title="renderChange">renderChange</a>
 														</div>
@@ -5465,7 +5641,7 @@ href="ImageViewer.html#config_modal">modal</a>.
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "ImageViewer.html#property_activeImage", "access": "protected", "host": "ImageViewer", "type": "property", "name": "activeImage"}, {"url": "ImageViewer.html#method__afterLoadingChange", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_afterLoadingChange"}, {"url": "ImageViewer.html#method__afterRender", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_afterRender"}, {"url": "ImageViewer.html#method__afterVisibleChange", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_afterVisibleChange"}, {"url": "ImageViewer.html#event_anim", "access": "", "host": "ImageViewer", "type": "event", "name": "anim"}, {"url": "ImageViewer.html#config_anim", "access": "", "host": "ImageViewer", "type": "config", "name": "anim"}, {"url": "ImageViewer.html#event_animChange", "access": "", "host": "ImageViewer", "type": "event", "name": "animChange"}, {"url": "ImageViewer.html#config_arrowLeftEl", "access": "", "host": "ImageViewer", "type": "config", "name": "arrowLeftEl"}, {"url": "ImageViewer.html#event_arrowLeftElChange", "access": "", "host": "ImageViewer", "type": "event", "name": "arrowLeftElChange"}, {"url": "ImageViewer.html#config_arrowRightEl", "access": "", "host": "ImageViewer", "type": "config", "name": "arrowRightEl"}, {"url": "ImageViewer.html#event_arrowRightElChange", "access": "", "host": "ImageViewer", "type": "event", "name": "arrowRightElChange"}, {"url": "ImageViewer.html#method_bindUI", "access": "protected", "host": "ImageViewer", "type": "method", "name": "bindUI"}, {"url": "ImageViewer.html#config_caption", "access": "", "host": "ImageViewer", "type": "config", "name": "caption"}, {"url": "ImageViewer.html#event_captionChange", "access": "", "host": "ImageViewer", "type": "event", "name": "captionChange"}, {"url": "ImageViewer.html#config_captionEl", "access": "", "host": "ImageViewer", "type": "config", "name": "captionEl"}, {"url": "ImageViewer.html#event_captionElChange", "access": "", "host": "ImageViewer", "type": "event", "name": "captionElChange"}, {"url": "ImageViewer.html#config_captionFromTitle", "access": "", "host": "ImageViewer", "type": "config", "name": "captionFromTitle"}, {"url": "ImageViewer.html#event_captionFromTitleChange", "access": "", "host": "ImageViewer", "type": "event", "name": "captionFromTitleChange"}, {"url": "ImageViewer.html#config_centered", "access": "", "host": "ImageViewer", "type": "config", "name": "centered"}, {"url": "ImageViewer.html#event_centeredChange", "access": "", "host": "ImageViewer", "type": "event", "name": "centeredChange"}, {"url": "ImageViewer.html#method_close", "access": "", "host": "ImageViewer", "type": "method", "name": "close"}, {"url": "ImageViewer.html#config_closeEl", "access": "", "host": "ImageViewer", "type": "config", "name": "closeEl"}, {"url": "ImageViewer.html#event_closeElChange", "access": "", "host": "ImageViewer", "type": "event", "name": "closeElChange"}, {"url": "ImageViewer.html#config_currentIndex", "access": "", "host": "ImageViewer", "type": "config", "name": "currentIndex"}, {"url": "ImageViewer.html#event_currentIndexChange", "access": "", "host": "ImageViewer", "type": "event", "name": "currentIndexChange"}, {"url": "ImageViewer.html#method_destroy", "access": "protected", "host": "ImageViewer", "type": "method", "name": "destroy"}, {"url": "ImageViewer.html#method_getCurrentLink", "access": "", "host": "ImageViewer", "type": "method", "name": "getCurrentLink"}, {"url": "ImageViewer.html#method__getInfoTemplate", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_getInfoTemplate"}, {"url": "ImageViewer.html#method_getLink", "access": "", "host": "ImageViewer", "type": "method", "name": "getLink"}, {"url": "ImageViewer.html#method_hasLink", "access": "", "host": "ImageViewer", "type": "method", "name": "hasLink"}, {"url": "ImageViewer.html#method_hasNext", "access": "", "host": "ImageViewer", "type": "method", "name": "hasNext"}, {"url": "ImageViewer.html#method_hasPrev", "access": "", "host": "ImageViewer", "type": "method", "name": "hasPrev"}, {"url": "ImageViewer.html#method_hideControls", "access": "", "host": "ImageViewer", "type": "method", "name": "hideControls"}, {"url": "ImageViewer.html#method_hideMask", "access": "", "host": "ImageViewer", "type": "method", "name": "hideMask"}, {"url": "ImageViewer.html#config_image", "access": "", "host": "ImageViewer", "type": "config", "name": "image"}, {"url": "ImageViewer.html#config_imageAnim", "access": "", "host": "ImageViewer", "type": "config", "name": "imageAnim"}, {"url": "ImageViewer.html#event_imageAnimChange", "access": "", "host": "ImageViewer", "type": "event", "name": "imageAnimChange"}, {"url": "ImageViewer.html#event_imageChange", "access": "", "host": "ImageViewer", "type": "event", "name": "imageChange"}, {"url": "ImageViewer.html#property_ImageViewer.ATTRS", "access": "", "host": "ImageViewer", "type": "property", "name": "ImageViewer.ATTRS"}, {"url": "ImageViewer.html#property_ImageViewer.NAME", "access": "", "host": "ImageViewer", "type": "property", "name": "ImageViewer.NAME"}, {"url": "ImageViewer.html#config_infoEl", "access": "", "host": "ImageViewer", "type": "config", "name": "infoEl"}, {"url": "ImageViewer.html#event_infoElChange", "access": "", "host": "ImageViewer", "type": "event", "name": "infoElChange"}, {"url": "ImageViewer.html#config_infoTemplate", "access": "", "host": "ImageViewer", "type": "config", "name": "infoTemplate"}, {"url": "ImageViewer.html#event_infoTemplateChange", "access": "", "host": "ImageViewer", "type": "event", "name": "infoTemplateChange"}, {"url": "ImageViewer.html#property__keyHandler", "access": "protected", "host": "ImageViewer", "type": "property", "name": "_keyHandler"}, {"url": "ImageViewer.html#config_links", "access": "", "host": "ImageViewer", "type": "config", "name": "links"}, {"url": "ImageViewer.html#event_linksChange", "access": "", "host": "ImageViewer", "type": "event", "name": "linksChange"}, {"url": "ImageViewer.html#event_load", "access": "", "host": "ImageViewer", "type": "event", "name": "load"}, {"url": "ImageViewer.html#config_loader", "access": "", "host": "ImageViewer", "type": "config", "name": "loader"}, {"url": "ImageViewer.html#event_loaderChange", "access": "", "host": "ImageViewer", "type": "event", "name": "loaderChange"}, {"url": "ImageViewer.html#method_loadImage", "access": "", "host": "ImageViewer", "type": "method", "name": "loadImage"}, {"url": "ImageViewer.html#config_loading", "access": "", "host": "ImageViewer", "type": "config", "name": "loading"}, {"url": "ImageViewer.html#event_loadingChange", "access": "", "host": "ImageViewer", "type": "event", "name": "loadingChange"}, {"url": "ImageViewer.html#config_loadingEl", "access": "", "host": "ImageViewer", "type": "config", "name": "loadingEl"}, {"url": "ImageViewer.html#event_loadingElChange", "access": "", "host": "ImageViewer", "type": "event", "name": "loadingElChange"}, {"url": "ImageViewer.html#config_modal", "access": "", "host": "ImageViewer", "type": "config", "name": "modal"}, {"url": "ImageViewer.html#event_modalChange", "access": "", "host": "ImageViewer", "type": "event", "name": "modalChange"}, {"url": "ImageViewer.html#method_next", "access": "", "host": "ImageViewer", "type": "method", "name": "next"}, {"url": "ImageViewer.html#method__onClickCloseEl", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_onClickCloseEl"}, {"url": "ImageViewer.html#method__onClickLeftArrow", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_onClickLeftArrow"}, {"url": "ImageViewer.html#method__onClickLinks", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_onClickLinks"}, {"url": "ImageViewer.html#method__onClickRightArrow", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_onClickRightArrow"}, {"url": "ImageViewer.html#method__onKeyInteraction", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_onKeyInteraction"}, {"url": "ImageViewer.html#method__onLoadImage", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_onLoadImage"}, {"url": "ImageViewer.html#method_preloadAllImages", "access": "", "host": "ImageViewer", "type": "method", "name": "preloadAllImages"}, {"url": "ImageViewer.html#config_preloadAllImages", "access": "", "host": "ImageViewer", "type": "config", "name": "preloadAllImages"}, {"url": "ImageViewer.html#event_preloadAllImagesChange", "access": "", "host": "ImageViewer", "type": "event", "name": "preloadAllImagesChange"}, {"url": "ImageViewer.html#method_preloadImage", "access": "", "host": "ImageViewer", "type": "method", "name": "preloadImage"}, {"url": "ImageViewer.html#method__renderControls", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_renderControls"}, {"url": "ImageViewer.html#method__renderFooter", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_renderFooter"}, {"url": "ImageViewer.html#method_renderUI", "access": "protected", "host": "ImageViewer", "type": "method", "name": "renderUI"}, {"url": "ImageViewer.html#event_request", "access": "", "host": "ImageViewer", "type": "event", "name": "request"}, {"url": "ImageViewer.html#method_show", "access": "", "host": "ImageViewer", "type": "method", "name": "show"}, {"url": "ImageViewer.html#config_showArrows", "access": "", "host": "ImageViewer", "type": "config", "name": "showArrows"}, {"url": "ImageViewer.html#event_showArrowsChange", "access": "", "host": "ImageViewer", "type": "event", "name": "showArrowsChange"}, {"url": "ImageViewer.html#config_showClose", "access": "", "host": "ImageViewer", "type": "config", "name": "showClose"}, {"url": "ImageViewer.html#event_showCloseChange", "access": "", "host": "ImageViewer", "type": "event", "name": "showCloseChange"}, {"url": "ImageViewer.html#method_showLoading", "access": "", "host": "ImageViewer", "type": "method", "name": "showLoading"}, {"url": "ImageViewer.html#method_showMask", "access": "", "host": "ImageViewer", "type": "method", "name": "showMask"}, {"url": "ImageViewer.html#method__syncCaptionUI", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_syncCaptionUI"}, {"url": "ImageViewer.html#method__syncControlsUI", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_syncControlsUI"}, {"url": "ImageViewer.html#method__syncImageViewerUI", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_syncImageViewerUI"}, {"url": "ImageViewer.html#method__syncInfoUI", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_syncInfoUI"}, {"url": "ImageViewer.html#config_totalLinks", "access": "", "host": "ImageViewer", "type": "config", "name": "totalLinks"}, {"url": "ImageViewer.html#event_totalLinksChange", "access": "", "host": "ImageViewer", "type": "event", "name": "totalLinksChange"}];
+    var ALL_YUI_PROPS = [{"url": "ImageViewer.html#property_activeImage", "access": "protected", "host": "ImageViewer", "type": "property", "name": "activeImage"}, {"url": "ImageViewer.html#method__afterLoadingChange", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_afterLoadingChange"}, {"url": "ImageViewer.html#method__afterRender", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_afterRender"}, {"url": "ImageViewer.html#method__afterVisibleChange", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_afterVisibleChange"}, {"url": "ImageViewer.html#event_anim", "access": "", "host": "ImageViewer", "type": "event", "name": "anim"}, {"url": "ImageViewer.html#config_anim", "access": "", "host": "ImageViewer", "type": "config", "name": "anim"}, {"url": "ImageViewer.html#event_animChange", "access": "", "host": "ImageViewer", "type": "event", "name": "animChange"}, {"url": "ImageViewer.html#config_arrowLeftEl", "access": "", "host": "ImageViewer", "type": "config", "name": "arrowLeftEl"}, {"url": "ImageViewer.html#event_arrowLeftElChange", "access": "", "host": "ImageViewer", "type": "event", "name": "arrowLeftElChange"}, {"url": "ImageViewer.html#config_arrowRightEl", "access": "", "host": "ImageViewer", "type": "config", "name": "arrowRightEl"}, {"url": "ImageViewer.html#event_arrowRightElChange", "access": "", "host": "ImageViewer", "type": "event", "name": "arrowRightElChange"}, {"url": "ImageViewer.html#method_bindUI", "access": "protected", "host": "ImageViewer", "type": "method", "name": "bindUI"}, {"url": "ImageViewer.html#config_caption", "access": "", "host": "ImageViewer", "type": "config", "name": "caption"}, {"url": "ImageViewer.html#event_captionChange", "access": "", "host": "ImageViewer", "type": "event", "name": "captionChange"}, {"url": "ImageViewer.html#config_captionEl", "access": "", "host": "ImageViewer", "type": "config", "name": "captionEl"}, {"url": "ImageViewer.html#event_captionElChange", "access": "", "host": "ImageViewer", "type": "event", "name": "captionElChange"}, {"url": "ImageViewer.html#config_captionFromTitle", "access": "", "host": "ImageViewer", "type": "config", "name": "captionFromTitle"}, {"url": "ImageViewer.html#event_captionFromTitleChange", "access": "", "host": "ImageViewer", "type": "event", "name": "captionFromTitleChange"}, {"url": "ImageViewer.html#config_centered", "access": "", "host": "ImageViewer", "type": "config", "name": "centered"}, {"url": "ImageViewer.html#event_centeredChange", "access": "", "host": "ImageViewer", "type": "event", "name": "centeredChange"}, {"url": "ImageViewer.html#method_close", "access": "", "host": "ImageViewer", "type": "method", "name": "close"}, {"url": "ImageViewer.html#config_closeEl", "access": "", "host": "ImageViewer", "type": "config", "name": "closeEl"}, {"url": "ImageViewer.html#event_closeElChange", "access": "", "host": "ImageViewer", "type": "event", "name": "closeElChange"}, {"url": "ImageViewer.html#config_currentIndex", "access": "", "host": "ImageViewer", "type": "config", "name": "currentIndex"}, {"url": "ImageViewer.html#event_currentIndexChange", "access": "", "host": "ImageViewer", "type": "event", "name": "currentIndexChange"}, {"url": "ImageViewer.html#method_destructor", "access": "protected", "host": "ImageViewer", "type": "method", "name": "destructor"}, {"url": "ImageViewer.html#method_getCurrentLink", "access": "", "host": "ImageViewer", "type": "method", "name": "getCurrentLink"}, {"url": "ImageViewer.html#method__getInfoTemplate", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_getInfoTemplate"}, {"url": "ImageViewer.html#method_getLink", "access": "", "host": "ImageViewer", "type": "method", "name": "getLink"}, {"url": "ImageViewer.html#method__getRatio", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_getRatio"}, {"url": "ImageViewer.html#method_hasLink", "access": "", "host": "ImageViewer", "type": "method", "name": "hasLink"}, {"url": "ImageViewer.html#method_hasNext", "access": "", "host": "ImageViewer", "type": "method", "name": "hasNext"}, {"url": "ImageViewer.html#method_hasPrev", "access": "", "host": "ImageViewer", "type": "method", "name": "hasPrev"}, {"url": "ImageViewer.html#method_hideControls", "access": "", "host": "ImageViewer", "type": "method", "name": "hideControls"}, {"url": "ImageViewer.html#method_hideMask", "access": "", "host": "ImageViewer", "type": "method", "name": "hideMask"}, {"url": "ImageViewer.html#config_image", "access": "", "host": "ImageViewer", "type": "config", "name": "image"}, {"url": "ImageViewer.html#config_imageAnim", "access": "", "host": "ImageViewer", "type": "config", "name": "imageAnim"}, {"url": "ImageViewer.html#event_imageAnimChange", "access": "", "host": "ImageViewer", "type": "event", "name": "imageAnimChange"}, {"url": "ImageViewer.html#event_imageChange", "access": "", "host": "ImageViewer", "type": "event", "name": "imageChange"}, {"url": "ImageViewer.html#property_ImageViewer.ATTRS", "access": "", "host": "ImageViewer", "type": "property", "name": "ImageViewer.ATTRS"}, {"url": "ImageViewer.html#property_ImageViewer.NAME", "access": "", "host": "ImageViewer", "type": "property", "name": "ImageViewer.NAME"}, {"url": "ImageViewer.html#config_infoEl", "access": "", "host": "ImageViewer", "type": "config", "name": "infoEl"}, {"url": "ImageViewer.html#event_infoElChange", "access": "", "host": "ImageViewer", "type": "event", "name": "infoElChange"}, {"url": "ImageViewer.html#config_infoTemplate", "access": "", "host": "ImageViewer", "type": "config", "name": "infoTemplate"}, {"url": "ImageViewer.html#event_infoTemplateChange", "access": "", "host": "ImageViewer", "type": "event", "name": "infoTemplateChange"}, {"url": "ImageViewer.html#property__keyHandler", "access": "protected", "host": "ImageViewer", "type": "property", "name": "_keyHandler"}, {"url": "ImageViewer.html#config_links", "access": "", "host": "ImageViewer", "type": "config", "name": "links"}, {"url": "ImageViewer.html#event_linksChange", "access": "", "host": "ImageViewer", "type": "event", "name": "linksChange"}, {"url": "ImageViewer.html#event_load", "access": "", "host": "ImageViewer", "type": "event", "name": "load"}, {"url": "ImageViewer.html#config_loader", "access": "", "host": "ImageViewer", "type": "config", "name": "loader"}, {"url": "ImageViewer.html#event_loaderChange", "access": "", "host": "ImageViewer", "type": "event", "name": "loaderChange"}, {"url": "ImageViewer.html#method_loadImage", "access": "", "host": "ImageViewer", "type": "method", "name": "loadImage"}, {"url": "ImageViewer.html#config_loading", "access": "", "host": "ImageViewer", "type": "config", "name": "loading"}, {"url": "ImageViewer.html#event_loadingChange", "access": "", "host": "ImageViewer", "type": "event", "name": "loadingChange"}, {"url": "ImageViewer.html#config_loadingEl", "access": "", "host": "ImageViewer", "type": "config", "name": "loadingEl"}, {"url": "ImageViewer.html#event_loadingElChange", "access": "", "host": "ImageViewer", "type": "event", "name": "loadingElChange"}, {"url": "ImageViewer.html#config_maxHeight", "access": "", "host": "ImageViewer", "type": "config", "name": "maxHeight"}, {"url": "ImageViewer.html#event_maxHeightChange", "access": "", "host": "ImageViewer", "type": "event", "name": "maxHeightChange"}, {"url": "ImageViewer.html#config_maxWidth", "access": "", "host": "ImageViewer", "type": "config", "name": "maxWidth"}, {"url": "ImageViewer.html#event_maxWidthChange", "access": "", "host": "ImageViewer", "type": "event", "name": "maxWidthChange"}, {"url": "ImageViewer.html#config_modal", "access": "", "host": "ImageViewer", "type": "config", "name": "modal"}, {"url": "ImageViewer.html#event_modalChange", "access": "", "host": "ImageViewer", "type": "event", "name": "modalChange"}, {"url": "ImageViewer.html#method_next", "access": "", "host": "ImageViewer", "type": "method", "name": "next"}, {"url": "ImageViewer.html#method__onClickCloseEl", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_onClickCloseEl"}, {"url": "ImageViewer.html#method__onClickLeftArrow", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_onClickLeftArrow"}, {"url": "ImageViewer.html#method__onClickLinks", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_onClickLinks"}, {"url": "ImageViewer.html#method__onClickRightArrow", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_onClickRightArrow"}, {"url": "ImageViewer.html#method__onKeyInteraction", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_onKeyInteraction"}, {"url": "ImageViewer.html#method__onLoadImage", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_onLoadImage"}, {"url": "ImageViewer.html#method_preloadAllImages", "access": "", "host": "ImageViewer", "type": "method", "name": "preloadAllImages"}, {"url": "ImageViewer.html#config_preloadAllImages", "access": "", "host": "ImageViewer", "type": "config", "name": "preloadAllImages"}, {"url": "ImageViewer.html#event_preloadAllImagesChange", "access": "", "host": "ImageViewer", "type": "event", "name": "preloadAllImagesChange"}, {"url": "ImageViewer.html#method_preloadImage", "access": "", "host": "ImageViewer", "type": "method", "name": "preloadImage"}, {"url": "ImageViewer.html#method__renderControls", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_renderControls"}, {"url": "ImageViewer.html#method__renderFooter", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_renderFooter"}, {"url": "ImageViewer.html#method_renderUI", "access": "protected", "host": "ImageViewer", "type": "method", "name": "renderUI"}, {"url": "ImageViewer.html#event_request", "access": "", "host": "ImageViewer", "type": "event", "name": "request"}, {"url": "ImageViewer.html#method_show", "access": "", "host": "ImageViewer", "type": "method", "name": "show"}, {"url": "ImageViewer.html#config_showArrows", "access": "", "host": "ImageViewer", "type": "config", "name": "showArrows"}, {"url": "ImageViewer.html#event_showArrowsChange", "access": "", "host": "ImageViewer", "type": "event", "name": "showArrowsChange"}, {"url": "ImageViewer.html#config_showClose", "access": "", "host": "ImageViewer", "type": "config", "name": "showClose"}, {"url": "ImageViewer.html#event_showCloseChange", "access": "", "host": "ImageViewer", "type": "event", "name": "showCloseChange"}, {"url": "ImageViewer.html#method_showLoading", "access": "", "host": "ImageViewer", "type": "method", "name": "showLoading"}, {"url": "ImageViewer.html#method_showMask", "access": "", "host": "ImageViewer", "type": "method", "name": "showMask"}, {"url": "ImageViewer.html#method__syncCaptionUI", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_syncCaptionUI"}, {"url": "ImageViewer.html#method__syncControlsUI", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_syncControlsUI"}, {"url": "ImageViewer.html#method__syncImageViewerUI", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_syncImageViewerUI"}, {"url": "ImageViewer.html#method__syncInfoUI", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_syncInfoUI"}, {"url": "ImageViewer.html#config_totalLinks", "access": "", "host": "ImageViewer", "type": "config", "name": "totalLinks"}, {"url": "ImageViewer.html#event_totalLinksChange", "access": "", "host": "ImageViewer", "type": "event", "name": "totalLinksChange"}, {"url": "ImageViewer.html#method__uiSetImageSize", "access": "protected", "host": "ImageViewer", "type": "method", "name": "_uiSetImageSize"}];
 </script>
 </body>
 </html>
