@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<project name="Alloy Tags" basedir="." default="deploy">
+	<property name="project.dir" value="."/>
+
+	<property environment="env" />
+
+	<property file="${project.dir}/build.${user.name}.properties" />
+	<property file="${project.dir}/build.properties" />
+	
+	<target name="deploy" depends="remove-whitespace">
+		<echo>Copying files.</echo>
+		
+		<copy todir="${alloy.deploy.docroot}/WEB-INF/tags/aui" overwrite="true">
+			<fileset dir="${project.dir}/aui/" includes="**/*" />
+		</copy>
+		
+		<copy todir="${alloy.demos.dir}" overwrite="true">
+			<fileset dir="${project.dir}/demos/" includes="**/*" />
+		</copy>
+		
+		<antcall target="replace-alloy-build-path" />
+	</target>
+	
+	<target name="remove-whitespace">
+		<echo>Removing trailing spaces of the source files.</echo>
+
+		<replaceregexp match="[\t ]+$" replace="" flags="g" byline="true">
+			<fileset dir="${project.dir}/aui" includes="*.tag"/>
+		</replaceregexp>
+	</target>
+	
+	<target name="replace-alloy-build-path">
+		<echo>Replacing demos alloy build dir.</echo>
+
+		<replaceregexp match="\$\{alloy.build.path\}" replace="${alloy.build.path}" flags="g" byline="true">
+			<fileset dir="${alloy.demos.dir}" includes="*.jsp"/>
+		</replaceregexp>
+	</target>
+</project>
