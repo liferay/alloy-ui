@@ -26,6 +26,7 @@
 		<alloy:rating
 			boundingBox="#rating1"
 			label="Sample Rating"
+			render="true"
 		/>
 
 	</alloy:use>
