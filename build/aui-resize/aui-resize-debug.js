@@ -531,7 +531,7 @@ var Resize = A.Component.create(
 			/**
 			 * Whether the handle being dragged can change the height.
 			 *
-			 * @attribute changeHeightHandles
+			 * @property changeHeightHandles
 			 * @default false
 			 * @type boolean
 			 */
@@ -540,7 +540,7 @@ var Resize = A.Component.create(
 			/**
 			 * Whether the handle being dragged can change the left.
 			 *
-			 * @attribute changeLeftHandles
+			 * @property changeLeftHandles
 			 * @default false
 			 * @type boolean
 			 */
@@ -549,7 +549,7 @@ var Resize = A.Component.create(
 			/**
 			 * Whether the handle being dragged can change the top.
 			 *
-			 * @attribute changeTopHandles
+			 * @property changeTopHandles
 			 * @default false
 			 * @type boolean
 			 */
@@ -558,7 +558,7 @@ var Resize = A.Component.create(
 			/**
 			 * Whether the handle being dragged can change the width.
 			 *
-			 * @attribute changeWidthHandles
+			 * @property changeWidthHandles
 			 * @default false
 			 * @type boolean
 			 */
@@ -568,7 +568,7 @@ var Resize = A.Component.create(
 			 * Cache the border widths of the contrain node if constrain
              * option is being used.
 			 *
-			 * @attribute constrainBorderInfo
+			 * @property constrainBorderInfo
 			 * @default {}
 			 * @type Object
 			 */
