@@ -31,6 +31,8 @@ var Lang = A.Lang,
 
 	CSS_ICON = getClassName(ICON),
 
+	REGEX_ICON = new RegExp(CSS_ICON + '-([a-zA-Z0-9-]+)'),
+
 	TPL_BUTTON = '<button type="button"></button>',
 	TPL_ICON = '<span class="' + [CSS_BUTTON_ICON, CSS_ICON].join(' ') + '"></span>',
 	TPL_LABEL = '<span class="' + CSS_BUTTON_LABEL + '"></span>';
@@ -245,8 +247,33 @@ var ButtonItem = A.Component.create(
 		 * @static
 		 */
 		HTML_PARSER: {
-			iconNode: DOT+CSS_BUTTON_ICON,
-			labelNode: DOT+CSS_BUTTON_LABEL
+			iconNode: function(srcNode) {
+				return srcNode.one(DOT+CSS_BUTTON_ICON);
+			},
+			labelNode: function(srcNode) {
+				return srcNode.one(DOT+CSS_BUTTON_LABEL);
+			},
+			icon: function(srcNode) {
+				var iconNode = srcNode.one(DOT+CSS_BUTTON_ICON);
+
+				if (iconNode) {
+					this.set(ICON_NODE, iconNode);
+					var cssClass = iconNode.attr('class');
+
+					var match = cssClass.match(REGEX_ICON);
+
+					return match && match[1];
+				}
+			},
+			label: function(srcNode) {
+				var labelNode = srcNode.one(DOT+CSS_BUTTON_LABEL);
+
+				if (labelNode) {
+					this.set(LABEL_NODE, labelNode);
+
+					return labelNode.text();
+				}
+			}
 		},
 
 		constructor: function(config) {
@@ -507,4 +534,4 @@ var ButtonItem = A.Component.create(
 
 A.ButtonItem = A.Base.build(NAME, ButtonItem, [A.WidgetChild], { dynamic: false });
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-state-interaction','widget-child']});
+}, '@VERSION@' ,{requires:['aui-base','aui-state-interaction','widget-child'], skinnable:true});
