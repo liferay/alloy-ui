@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('selector-css2', function(Y) {
@@ -95,6 +95,7 @@ var PARENT_NODE = 'parentNode',
                 tokens = Selector._tokenize(selector),
                 token = tokens[tokens.length - 1],
                 rootDoc = Y.DOM._getDoc(root),
+                child,
                 id,
                 className,
                 tagName;
@@ -115,16 +116,28 @@ var PARENT_NODE = 'parentNode',
                 className = token.className;
                 tagName = token.tagName || '*';
 
-                // try ID first
-                if (id) {
-                    nodes = Y.DOM.allById(id, root);
-                // try className
-                } else if (className) {
-                    nodes = root.getElementsByClassName(className);
-                } else { // default to tagName
-                    nodes = root.getElementsByTagName(tagName);
-                }
+                if (root.getElementsByTagName) { // non-IE lacks DOM api on doc frags
+                    // try ID first, unless no root.all && root not in document
+                    // (root.all works off document, but not getElementById)
+                    // TODO: move to allById?
+                    if (id && (root.all || (root.nodeType === 9 || Y.DOM.inDoc(root)))) {
+                        nodes = Y.DOM.allById(id, root);
+                    // try className
+                    } else if (className) {
+                        nodes = root.getElementsByClassName(className);
+                    } else { // default to tagName
+                        nodes = root.getElementsByTagName(tagName);
+                    }
 
+                } else { // brute getElementsByTagName('*')
+                    child = root.firstChild;
+                    while (child) {
+                        if (child.tagName) { // only collect HTMLElements
+                            nodes.push(child);
+                        }
+                        child = child.nextSilbing || child.firstChild;
+                    }
+                }
                 if (nodes.length) {
                     ret = Selector._filterNodes(nodes, tokens, firstOnly);
                 }
@@ -178,7 +191,8 @@ var PARENT_NODE = 'parentNode',
                             if ((operator === '=' && value !== test[2]) ||  // fast path for equality
                                 (typeof operator !== 'string' && // protect against String.test monkey-patch (Moo)
                                 operator.test && !operator.test(value)) ||  // regex test
-                                (typeof operator === 'function' && !operator(tmpNode, test[0]))) { // function test
+                                (!operator.test && // protect against RegExp as function (webkit)
+                                        typeof operator === 'function' && !operator(tmpNode, test[0]))) { // function test
 
                                 // skip non element nodes or non-matching tags
                                 if ((tmpNode = tmpNode[path])) {
@@ -251,7 +265,7 @@ var PARENT_NODE = 'parentNode',
                     // add prefiltering for ID and CLASS
                     if ((match[1] === 'id' && operator === '=') ||
                             (match[1] === 'className' &&
-                            document.documentElement.getElementsByClassName &&
+                            Y.config.doc.documentElement.getElementsByClassName &&
                             (operator === '~=' || operator === '='))) {
                         token.prefilter = match[1];
                         token[match[1]] = match[3];
@@ -434,10 +448,10 @@ Y.mix(Y.Selector, SelectorCSS2, true);
 Y.Selector.getters.src = Y.Selector.getters.rel = Y.Selector.getters.href;
 
 // IE wants class with native queries
-if (Y.Selector.useNative && document.querySelector) {
+if (Y.Selector.useNative && Y.config.doc.querySelector) {
     Y.Selector.shorthand['\\.(-?[_a-z]+[-\\w]*)'] = '[class~=$1]';
 }
 
 
 
-}, '3.1.1' ,{requires:['selector-native']});
+}, '3.2.0PR1' ,{requires:['selector-native']});

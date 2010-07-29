@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('node-base', function(Y) {
@@ -38,13 +38,13 @@ var DOT = '.',
     Y_DOM = Y.DOM,
 
     Y_Node = function(node) {
-        var uid = node[UID];
+        var uid = (node.nodeType !== 9) ? node.uniqueID : node[UID];
 
         if (uid && Y_Node._instances[uid] && Y_Node._instances[uid]._node !== node) {
             node[UID] = null; // unset existing uid to prevent collision (via clone or hack)
         }
 
-        uid = Y.stamp(node);
+        uid = uid || Y.stamp(node);
         if (!uid) { // stamp failed; likely IE non-HTMLElement
             uid = Y.guid();
         }
@@ -60,6 +60,8 @@ var DOT = '.',
         Y_Node._instances[uid] = this;
 
         this._stateProxy = node; // when augmented with Attribute
+
+        Y.EventTarget.call(this, {emitFacade:true});
 
         if (this._initPlugins) { // when augmented with Plugin.Host
             this._initPlugins();
@@ -106,7 +108,6 @@ Y_Node.DOM_EVENTS = {
     beforeunload: 1,
     blur: 1,
     change: 1,
-    changedTouches: 1, // iphone
     click: 1,
     close: 1,
     command: 1,
@@ -122,7 +123,6 @@ Y_Node.DOM_EVENTS = {
     drop: 1,
     error: 1,
     focus: 1,
-    identifier: 1, // iphone
     key: 1,
     keydown: 1,
     keypress: 1,
@@ -140,14 +140,10 @@ Y_Node.DOM_EVENTS = {
     mousewheel: 1,
     reset: 1,
     resize: 1,
-    rotation: 1, // iphone
-    scale: 1, // iphone
     select: 1,
     submit: 1,
     scroll: 1,
-    targetTouches: 1, // iphone
     textInput: 1,
-    touches: 1, // iphone
     unload: 1
 };
 
@@ -194,7 +190,7 @@ Y_Node.getDOMNode = function(node) {
  */
 Y_Node.scrubVal = function(val, node) {
     if (node && val) { // only truthy values are risky
-        if (typeof val === 'object' || typeof val === 'function') { // safari nodeList === function
+         if (typeof val === 'object' || typeof val === 'function') { // safari nodeList === function
             if (NODE_TYPE in val || Y_DOM.isWindow(val)) {// node || window
                 val = Y.one(val);
             } else if ((val.item && !val._nodes) || // dom collection or Node instance
@@ -204,6 +200,8 @@ Y_Node.scrubVal = function(val, node) {
         }
     } else if (val === undefined) {
         val = node; // for chaining
+    } else if (val === null) {
+        val = null; // IE: DOM null not the same as null
     }
 
     return val;
@@ -294,7 +292,7 @@ Y_Node.one = function(node) {
             return node; // NOTE: return
         }
 
-        uid = node._yuid;
+        uid = (node.uniqueID && node.nodeType !== 9) ? node.uniqueID : node._yuid;
         instance = Y_Node._instances[uid]; // reuse exising instances
         cachedNode = instance ? instance._node : null;
         if (!instance || (cachedNode && node !== cachedNode)) { // new Node when nodes don't match
@@ -356,15 +354,6 @@ Y_Node.ATTRS = {
     'options': {
         getter: function() {
             return this._node.getElementsByTagName('option');
-        }
-    },
-
-     // IE: elements collection is also FORM node which trips up scrubVal.
-     // preconverting to NodeList
-     // TODO: break out for IE only
-    'elements': {
-        getter: function() {
-            return Y.all(this._node.elements);
         }
     },
 
@@ -470,7 +459,8 @@ Y_Node.DEFAULT_GETTER = function(name) {
     return val;
 };
 
-Y.augment(Y_Node, Y.Event.Target);
+// Basic prototype augment - no lazy constructor invocation.
+Y.mix(Y_Node, Y.EventTarget, false, null, 1);
 
 Y.mix(Y_Node.prototype, {
 /**
@@ -479,25 +469,28 @@ Y.mix(Y_Node.prototype, {
  * @return {String} A string representation of the Node instance 
  */
     toString: function() {
-        var str = '',
-            errorMsg = this[UID] + ': not bound to a node',
+        var str = this[UID] + ': not bound to a node',
             node = this._node,
-            id = node.getAttribute('id'); // form.id may be a field name
+            attrs, id, className;
 
         if (node) {
-            str += node[NODE_NAME];
+            attrs = node.attributes;
+            id = (attrs && attrs.id) ? node.getAttribute('id') : null;
+            className = (attrs && attrs.className) ? node.getAttribute('className') : null;
+            str = node[NODE_NAME];
+
             if (id) {
                 str += '#' + id; 
             }
 
-            if (node.className) {
-                str += '.' + node.className.replace(' ', '.'); 
+            if (className) {
+                str += '.' + className.replace(' ', '.'); 
             }
 
             // TODO: add yuid?
             str += ' ' + this[UID];
         }
-        return str || errorMsg;
+        return str;
     },
 
     /**
@@ -520,6 +513,8 @@ Y.mix(Y_Node.prototype, {
 
         if (val) {
             val = Y_Node.scrubVal(val, this);
+        } else if (val === null) {
+            val = null; // IE: DOM null is not true null (even though they ===)
         }
         return val;
     },
@@ -630,6 +625,7 @@ Y.mix(Y_Node.prototype, {
      */
     compareTo: function(refNode) {
         var node = this._node;
+
         if (refNode instanceof Y_Node) { 
             refNode = refNode._node;
         }
@@ -907,6 +903,23 @@ Y.mix(Y_Node.prototype, {
      * @method insert
      * @param {String | Y.Node | HTMLElement} content The content to insert 
      * @param {Int | Y.Node | HTMLElement | String} where The position to insert at.
+     * Possible "where" arguments
+     * <dl>
+     * <dt>Y.Node</dt>
+     * <dd>The Node to insert before</dd>
+     * <dt>HTMLElement</dt>
+     * <dd>The element to insert before</dd>
+     * <dt>Int</dt>
+     * <dd>The index of the child element to insert before</dd>
+     * <dt>"replace"</dt>
+     * <dd>Replaces the existing HTML</dd>
+     * <dt>"before"</dt>
+     * <dd>Inserts before the existing HTML</dd>
+     * <dt>"before"</dt>
+     * <dd>Inserts content before the node</dd>
+     * <dt>"after"</dt>
+     * <dd>Inserts content after the node</dd>
+     * </dl>
      * @chainable
      */
     insert: function(content, where) {
@@ -968,7 +981,7 @@ Y.mix(Y_Node.prototype, {
             if (content._node) { // map to DOMNode
                 content = content._node;
             } else if (content._nodes) { // convert DOMNodeList to documentFragment
-                content = Y_DOM._nl2Frag(content._nodes);
+                content = Y_DOM._nl2frag(content._nodes);
             }
 
         }
@@ -984,7 +997,7 @@ Y.mix(Y_Node.prototype, {
     * @param {Node} otherNode The node to swap with
      * @chainable
     */
-    swap: document.documentElement.swapNode ? 
+    swap: Y.config.doc.documentElement.swapNode ? 
         function(otherNode) {
             this._node.swapNode(Y_Node.getDOMNode(otherNode));
         } :
@@ -1056,7 +1069,7 @@ Y.mix(Y_Node.prototype, {
     * @chainable
     */
     clearData: function(name) {
-        if (arguments.length) {
+        if (this._data && arguments.length) {
             delete this._data[name];
         } else {
             this._data = {};
@@ -1067,7 +1080,10 @@ Y.mix(Y_Node.prototype, {
 
     hasMethod: function(method) {
         var node = this._node;
-        return (node && node[method] && (typeof node[method] === 'function'));
+        return !!(node && method in node &&
+                typeof node[method] !== 'unknown' &&
+            (typeof node[method] === 'function' ||
+                String(node[method]).indexOf('function') === 1)); // IE reports as object, prepends space
     }
 }, true);
 
@@ -1094,7 +1110,7 @@ var NodeList = function(nodes) {
     if (typeof nodes === 'string') { // selector query
         this._query = nodes;
         nodes = Y.Selector.query(nodes);
-    } else if (nodes.nodeType) { // domNode
+    } else if (nodes.nodeType || Y_DOM.isWindow(nodes)) { // domNode || window
         nodes = [nodes];
     } else if (nodes instanceof Y.Node) {
         nodes = [nodes._node];
@@ -1109,7 +1125,6 @@ var NodeList = function(nodes) {
         nodes = Y.Array(nodes, 0, true);
     }
 
-    NodeList._instances[Y.stamp(this)] = this;
     /**
      * The underlying array of DOM nodes bound to the Y.NodeList instance
      * @property _nodes
@@ -1132,8 +1147,6 @@ NodeList.getDOMNodes = function(nodeList) {
     return nodeList._nodes;
 };
 
-NodeList._instances = [];
-
 NodeList.each = function(instance, fn, context) {
     var nodes = instance._nodes;
     if (nodes && nodes.length) {
@@ -1149,7 +1162,7 @@ NodeList.addMethod = function(name, fn, context) {
                 args = arguments;
 
             Y.Array.each(this._nodes, function(node) {
-                var UID = '_yuid',
+                var UID = (node.uniqueID && node.nodeType !== 9 ) ? 'uniqueID' : '_yuid',
                     instance = Y.Node._instances[node[UID]],
                     ctx,
                     result;
@@ -1330,7 +1343,6 @@ Y.mix(NodeList.prototype, {
     },
 
     destructor: function() {
-        delete NodeList._instances[this[UID]];
     },
 
     /**
@@ -1357,6 +1369,21 @@ Y.mix(NodeList.prototype, {
         return this;
     },
 
+    _prepEvtArgs: function(type, fn, context) {
+        // map to Y.on/after signature (type, fn, nodes, context, arg1, arg2, etc)
+        var args = Y.Array(arguments, 0, true);
+
+        if (args.length < 2) { // type only (event hash) just add nodes
+            args[2] = this._nodes;
+        } else {
+            args.splice(2, 0, this._nodes);
+        }
+
+        args[3] = context || this; // default to NodeList instance as context
+
+        return args;
+    },
+
     /**
      * Applies an event listener to each Node bound to the NodeList. 
      * @method on
@@ -1368,10 +1395,7 @@ Y.mix(NodeList.prototype, {
      * @see Event.on
      */
     on: function(type, fn, context) {
-        var args = Y.Array(arguments, 0, true);
-        args.splice(2, 0, this._nodes);
-        args[3] = context || this;
-        return Y.on.apply(Y, args);
+        return Y.on.apply(Y, this._prepEvtArgs.apply(this, arguments));
     },
 
     /**
@@ -1387,10 +1411,7 @@ Y.mix(NodeList.prototype, {
      * @see Event.on
      */
     after: function(type, fn, context) {
-        var args = Y.Array(arguments, 0, true);
-        args.splice(2, 0, this._nodes);
-        args[3] = context || this;
-        return Y.after.apply(Y, args);
+        return Y.after.apply(Y, this._prepEvtArgs.apply(this, arguments));
     },
 
     /**
@@ -1476,12 +1497,6 @@ NodeList.importMethod(Y.Node.prototype, [
       * @see Node.remove
       */
     'remove',
-
-    /** Called on each Node instance
-      * @method removeAttribute
-      * @see Node.removeAttribute
-      */
-    'removeAttribute',
 
     /** Called on each Node instance
       * @method set
@@ -1721,6 +1736,15 @@ Y.Node.importMethod(Y.DOM, [
  * @param {string} name The attribute name 
  * @return {string} The attribute value 
  */
+
+/**
+ * Allows for removing attributes on DOM nodes.
+ * This passes through to the DOM node, allowing for custom attributes.
+ * @method removeAttribute
+ * @see Node
+ * @for NodeList
+ * @param {string} name The attribute to remove 
+ */
 Y.NodeList.importMethod(Y.Node.prototype, ['getAttribute', 'setAttribute', 'removeAttribute']);
 (function(Y) {
     var methods = [
@@ -1814,8 +1838,13 @@ Y.NodeList.importMethod(Y.Node.prototype, ['getAttribute', 'setAttribute', 'remo
     Y.NodeList.importMethod(Y.Node.prototype, methods);
 })(Y);
 
-if (!document.documentElement.hasAttribute) { // IE < 8
+if (!Y.config.doc.documentElement.hasAttribute) { // IE < 8
     Y.Node.prototype.hasAttribute = function(attr) {
+        if (attr === 'value') {
+            if (this.get('value') !== "") { // IE < 8 fails to populate specified when set in HTML
+                return true;
+            }
+        }
         return !!(this._node.attributes[attr] &&
                 this._node.attributes[attr].specified);
     };
@@ -1848,5 +1877,54 @@ Y.Node.ATTRS.type = {
     _bypassProxy: true // don't update DOM when using with Attribute
 };
 
+if (Y.config.doc.createElement('form').elements.nodeType) {
+    // IE: elements collection is also FORM node which trips up scrubVal.
+    Y.Node.ATTRS.elements = {
+            getter: function() {
+                return this.all('input, textarea, button, select');
+            }
+    };
+}
 
-}, '3.1.1' ,{requires:['dom-base', 'selector-css2', 'event-base']});
+Y.mix(Y.Node.ATTRS, {
+    offsetHeight: {
+        setter: function(h) {
+            Y.DOM.setHeight(this._node, h);
+            return h;
+        },
+
+        getter: function() {
+            return this._node.offsetHeight;
+        }
+    },
+
+    offsetWidth: {
+        setter: function(w) {
+            Y.DOM.setWidth(this._node, w);
+            return w;
+        },
+
+        getter: function() {
+            return this._node.offsetWidth;
+        }
+    }
+});
+
+Y.mix(Y.Node.prototype, {
+    sizeTo: function(w, h) {
+        var node;
+        if (arguments.length < 2) {
+            node = Y.one(w);
+            w = node.get('offsetWidth');
+            h = node.get('offsetHeight');
+        }
+
+        this.setAttrs({
+            offsetWidth: w,
+            offsetHeight: h
+        });
+    }
+});
+
+
+}, '3.2.0PR1' ,{requires:['dom-base', 'selector-css2', 'event-base']});

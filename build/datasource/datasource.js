@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('datasource-local', function(Y) {
@@ -82,17 +82,30 @@ Y.mix(DSLocal, {
     _tId: 0,
 
     /**
-     * Executes a given callback.  The third param determines whether to execute
+     * Global in-progress transaction objects.
      *
-     * @method DataSource.issueCallback
-     * @param callback {Object} The callback object.
-     * @param params {Array} params to be passed to the callback method
-     * @param error {Boolean} whether an error occurred
+     * @property DataSource.transactions
+     * @type Object
      * @static
      */
-    issueCallback: function (e) {
+    transactions: {},
+
+    /**
+     * Returns data to callback.
+     *
+     * @method DataSource.issueCallback
+     * @param e {EventFacade} Event Facade.
+     * @param caller {DataSource} Calling DataSource instance.
+     * @static
+     */
+    issueCallback: function (e, caller) {
+        var error = (e.error || e.response.error);
+        if(error) {
+            e.error = e.error || e.response.error;
+            caller.fire("error", e);
+        }
         if(e.callback) {
-            var callbackFunc = (e.error && e.callback.failure) || e.callback.success;
+            var callbackFunc = (error && e.callback.failure) || e.callback.success;
             if (callbackFunc) {
                 callbackFunc(e);
             }
@@ -237,9 +250,6 @@ Y.extend(DSLocal, Y.Base, {
         if(LANG.isUndefined(data)) {
             e.error = new Error("Local source undefined");
         }
-        if(e.error) {
-            this.fire("error", e);
-        }
 
         this.fire("data", Y.mix({data:data}, e));
     },
@@ -302,7 +312,7 @@ Y.extend(DSLocal, Y.Base, {
      */
     _defResponseFn: function(e) {
         // Send the response back to the callback
-        DSLocal.issueCallback(e);
+        DSLocal.issueCallback(e, this);
     },
     
     /**
@@ -340,7 +350,9 @@ Y.extend(DSLocal, Y.Base, {
 Y.namespace("DataSource").Local = DSLocal;
 
 
-}, '3.1.1' ,{requires:['base']});
+
+}, '3.2.0PR1' ,{requires:['base']});
+
 YUI.add('datasource-io', function(Y) {
 
 /**
@@ -396,7 +408,18 @@ Y.mix(DSIO, {
         io: {
             value: Y.io,
             cloneDefaultValue: false
-        }
+        },
+        
+        /**
+         * Default IO Config.
+         *
+         * @attribute ioConfig
+         * @type Object
+         * @default null
+         */
+         ioConfig: {
+         	value: null
+         }
     }
 });
     
@@ -452,20 +475,30 @@ Y.extend(DSIO, Y.DataSource.Local, {
     _defRequestFn: function(e) {
         var uri = this.get("source"),
             io = this.get("io"),
+            defIOConfig = this.get("ioConfig"),
             request = e.request,
-            cfg = Y.mix(e.cfg, {
-                on: {
+            cfg = Y.merge(defIOConfig, e.cfg, {
+                on: Y.merge(defIOConfig, {
                     success: function (id, response, e) {
+                        delete Y.DataSource.Local.transactions[e.tId];
+
                         this.fire("data", Y.mix({data:response}, e));
+                        if (defIOConfig && defIOConfig.on && defIOConfig.on.success) {
+                        	defIOConfig.on.success.apply(defIOConfig.context || Y, arguments);
+                        }
                     },
                     failure: function (id, response, e) {
+                        delete Y.DataSource.Local.transactions[e.tId];
+
                         e.error = new Error("IO data failure");
-                        this.fire("error", Y.mix({data:response}, e));
                         this.fire("data", Y.mix({data:response}, e));
+                        if (defIOConfig && defIOConfig.on && defIOConfig.on.failure) {
+                        	defIOConfig.on.failure.apply(defIOConfig.context || Y, arguments);
+                        }
                     }
-                },
+                }),
                 context: this,
-                arguments: e
+                "arguments": e
             });
         
         // Support for POST transactions
@@ -477,16 +510,17 @@ Y.extend(DSIO, Y.DataSource.Local, {
                 uri += request;
             }
         }
-        io(uri, cfg);
+        Y.DataSource.Local.transactions[e.tId] = io(uri, cfg);
         return e.tId;
     }
 });
   
 Y.DataSource.IO = DSIO;
-    
 
 
-}, '3.1.1' ,{requires:['datasource-local', 'io']});
+
+}, '3.2.0PR1' ,{requires:['datasource-local', 'io']});
+
 YUI.add('datasource-get', function(Y) {
 
 /**
@@ -508,9 +542,6 @@ var DSGet = function() {
     
     
 Y.DataSource.Get = Y.extend(DSGet, Y.DataSource.Local, {
-
-// Y.DataSouce.Get.prototype
-
     /**
      * Passes query string to Get Utility. Fires <code>response</code> event when
      * response is received asynchronously.
@@ -534,7 +565,8 @@ Y.DataSource.Get = Y.extend(DSGet, Y.DataSource.Local, {
         var uri  = this.get("source"),
             get  = this.get("get"),
             guid = Y.guid().replace(/\-/g, '_'),
-            generateRequest = this.get( "generateRequestCallback" );
+            generateRequest = this.get( "generateRequestCallback" ),
+            o;
 
         /**
          * Stores the most recent request id for validation against stale
@@ -549,6 +581,7 @@ Y.DataSource.Get = Y.extend(DSGet, Y.DataSource.Local, {
         // Dynamically add handler function with a closure to the callback stack
         YUI.Env.DataSource.callbacks[guid] = Y.bind(function(response) {
             delete YUI.Env.DataSource.callbacks[guid];
+            delete Y.DataSource.Local.transactions[e.tId];
 
             var process = this.get('asyncMode') !== "ignoreStaleResponses" ||
                           this._last === guid;
@@ -564,12 +597,22 @@ Y.DataSource.Get = Y.extend(DSGet, Y.DataSource.Local, {
         uri += e.request + generateRequest.call( this, guid );
 
 
-        get.script(uri, {
+        Y.DataSource.Local.transactions[e.tId] = get.script(uri, {
             autopurge: true,
             // Works in Firefox only....
-            onFailure: Y.bind(function(e) {
-                e.error = new Error("Script node data failure");
-                this.fire("error", e);
+            onFailure: Y.bind(function(e, o) {
+                delete YUI.Env.DataSource.callbacks[guid];
+                delete Y.DataSource.Local.transactions[e.tId];
+
+                e.error = new Error(o.msg || "Script node data failure");
+                this.fire("data", e);
+            }, this, e),
+            onTimeout: Y.bind(function(e, o) {
+                delete YUI.Env.DataSource.callbacks[guid];
+                delete Y.DataSource.Local.transactions[e.tId];
+
+                e.error = new Error(o.msg || "Script node data timeout");
+                this.fire("data", e);
             }, this, e)
         });
 
@@ -591,8 +634,6 @@ Y.DataSource.Get = Y.extend(DSGet, Y.DataSource.Local, {
     }
 
 }, {
-
-// Y.DataSouce.Get static properties
 
     /**
      * Class name.
@@ -680,7 +721,9 @@ Y.DataSource.Get = Y.extend(DSGet, Y.DataSource.Local, {
 YUI.namespace("Env.DataSource.callbacks");
 
 
-}, '3.1.1' ,{requires:['datasource-local', 'get']});
+
+}, '3.2.0PR1' ,{requires:['datasource-local', 'get']});
+
 YUI.add('datasource-function', function(Y) {
 
 /**
@@ -771,12 +814,12 @@ Y.extend(DSFn, Y.DataSource.Local, {
                 }
                 catch(error) {
                     e.error = error;
-                    this.fire("error", e);
+                    this.fire("data", e);
                 }
             }
             else {
                 e.error = new Error("Function data failure");
-                this.fire("error", e);
+                this.fire("data", e);
             }
             
         return e.tId;
@@ -787,26 +830,26 @@ Y.DataSource.Function = DSFn;
     
 
 
-}, '3.1.1' ,{requires:['datasource-local']});
+
+}, '3.2.0PR1' ,{requires:['datasource-local']});
+
 YUI.add('datasource-cache', function(Y) {
 
 /**
- * Extends DataSource with caching functionality.
+ * Plugs DataSource with caching functionality.
  *
  * @module datasource
  * @submodule datasource-cache
  */
 
 /**
- * Adds cacheability to the DataSource Utility.
- * @class DataSourceCache
- * @extends Cache
- */    
-var DataSourceCache = function() {
-    DataSourceCache.superclass.constructor.apply(this, arguments);
+ * DataSourceCache extension binds Cache to DataSource.
+ * @class DataSourceCacheExtension
+ */
+var DataSourceCacheExtension = function() {
 };
 
-Y.mix(DataSourceCache, {
+Y.mix(DataSourceCacheExtension, {
     /**
      * The namespace for the plugin. This will be the property on the host which
      * references the plugin instance.
@@ -826,22 +869,12 @@ Y.mix(DataSourceCache, {
      * @type String
      * @static
      * @final
-     * @value "dataSourceCache"
+     * @value "dataSourceCacheExtension"
      */
-    NAME: "dataSourceCache",
-
-    /////////////////////////////////////////////////////////////////////////////
-    //
-    // DataSourceCache Attributes
-    //
-    /////////////////////////////////////////////////////////////////////////////
-
-    ATTRS: {
-
-    }
+    NAME: "dataSourceCacheExtension"
 });
 
-Y.extend(DataSourceCache, Y.Cache, {
+DataSourceCacheExtension.prototype = {
     /**
     * Internal init() handler.
     *
@@ -871,11 +904,11 @@ Y.extend(DataSourceCache, Y.Cache, {
         // Is response already in the Cache?
         var entry = (this.retrieve(e.request)) || null;
         if(entry && entry.response) {
-            this.get("host").fire("response", Y.mix({response: entry.response}, e));
-            return new Y.Do.Halt("DataSourceCache plugin halted _defRequestFn");
+            this.get("host").fire("response", Y.mix(entry, e));
+            return new Y.Do.Halt("DataSourceCache extension halted _defRequestFn");
         }
     },
-    
+
     /**
      * Adds data to cache before returning data.
      *
@@ -905,17 +938,62 @@ Y.extend(DataSourceCache, Y.Cache, {
      */
      _beforeDefResponseFn: function(e) {
         // Add to Cache before returning
-        if(e.response && !e.response.cached) {
-            e.response.cached = true;
-            this.add(e.request, e.response, (e.callback && e.callback.argument));
+        if(e.response && !e.cached) {
+            this.add(e.request, e.response);
         }
      }
+};
+
+Y.namespace("Plugin").DataSourceCacheExtension = DataSourceCacheExtension;
+
+
+
+/**
+ * DataSource plugin adds cache functionality.
+ * @class DataSourceCache
+ * @extends Cache
+ * @uses Plugin.Base, DataSourceCachePlugin
+ */
+function DataSourceCache(config) {
+    var cache = config && config.cache ? config.cache : Y.Cache,
+        tmpclass = Y.Base.create("dataSourceCache", cache, [Y.Plugin.Base, Y.Plugin.DataSourceCacheExtension]),
+        tmpinstance = new tmpclass(config);
+    tmpclass.NS = "tmpClass";
+    return tmpinstance;
+}
+
+Y.mix(DataSourceCache, {
+    /**
+     * The namespace for the plugin. This will be the property on the host which
+     * references the plugin instance.
+     *
+     * @property NS
+     * @type String
+     * @static
+     * @final
+     * @value "cache"
+     */
+    NS: "cache",
+
+    /**
+     * Class name.
+     *
+     * @property NAME
+     * @type String
+     * @static
+     * @final
+     * @value "dataSourceCache"
+     */
+    NAME: "dataSourceCache"
 });
 
-Y.namespace('Plugin').DataSourceCache = DataSourceCache;
+
+Y.namespace("Plugin").DataSourceCache = DataSourceCache;
 
 
-}, '3.1.1' ,{requires:['datasource-local', 'cache']});
+
+}, '3.2.0PR1' ,{requires:['datasource-local']});
+
 YUI.add('datasource-jsonschema', function(Y) {
 
 /**
@@ -984,7 +1062,9 @@ Y.extend(DataSourceJSONSchema, Y.Plugin.Base, {
     },
 
     /**
-     * Parses raw data into a normalized response.
+     * Parses raw data into a normalized response. To accommodate XHR responses,
+     * will first look for data in data.responseText. Otherwise will just work
+     * with data.
      *
      * @method _beforeDefDataFn
      * <dl>
@@ -1001,8 +1081,8 @@ Y.extend(DataSourceJSONSchema, Y.Plugin.Base, {
      * @protected
      */
     _beforeDefDataFn: function(e) {
-        var data = (Y.DataSource.IO && (this.get("host") instanceof Y.DataSource.IO) && Y.Lang.isString(e.data.responseText)) ? e.data.responseText : e.data,
-            response = Y.DataSchema.JSON.apply(this.get("schema"), data);
+        var data = e.data ? (e.data.responseText ?  e.data.responseText : e.data) : e.data,
+            response = Y.DataSchema.JSON.apply.call(this, this.get("schema"), data);
             
         // Default
         if(!response) {
@@ -1020,7 +1100,9 @@ Y.extend(DataSourceJSONSchema, Y.Plugin.Base, {
 Y.namespace('Plugin').DataSourceJSONSchema = DataSourceJSONSchema;
 
 
-}, '3.1.1' ,{requires:['plugin', 'datasource-local', 'dataschema-json']});
+
+}, '3.2.0PR1' ,{requires:['plugin', 'datasource-local', 'dataschema-json']});
+
 YUI.add('datasource-xmlschema', function(Y) {
 
 /**
@@ -1107,7 +1189,7 @@ Y.extend(DataSourceXMLSchema, Y.Plugin.Base, {
      */
     _beforeDefDataFn: function(e) {
         var data = (Y.DataSource.IO && (this.get("host") instanceof Y.DataSource.IO) && e.data.responseXML && (e.data.responseXML.nodeType === 9)) ? e.data.responseXML : e.data,
-            response = Y.DataSchema.XML.apply(this.get("schema"), data);
+            response = Y.DataSchema.XML.apply.call(this, this.get("schema"), data);
             
         // Default
         if(!response) {
@@ -1125,7 +1207,9 @@ Y.extend(DataSourceXMLSchema, Y.Plugin.Base, {
 Y.namespace('Plugin').DataSourceXMLSchema = DataSourceXMLSchema;
 
 
-}, '3.1.1' ,{requires:['plugin', 'datasource-local', 'dataschema-xml']});
+
+}, '3.2.0PR1' ,{requires:['plugin', 'datasource-local', 'dataschema-xml']});
+
 YUI.add('datasource-arrayschema', function(Y) {
 
 /**
@@ -1212,7 +1296,7 @@ Y.extend(DataSourceArraySchema, Y.Plugin.Base, {
      */
     _beforeDefDataFn: function(e) {
         var data = (Y.DataSource.IO && (this.get("host") instanceof Y.DataSource.IO) && Y.Lang.isString(e.data.responseText)) ? e.data.responseText : e.data,
-            response = Y.DataSchema.Array.apply(this.get("schema"), data);
+            response = Y.DataSchema.Array.apply.call(this, this.get("schema"), data);
             
         // Default
         if(!response) {
@@ -1230,7 +1314,9 @@ Y.extend(DataSourceArraySchema, Y.Plugin.Base, {
 Y.namespace('Plugin').DataSourceArraySchema = DataSourceArraySchema;
 
 
-}, '3.1.1' ,{requires:['plugin', 'datasource-local', 'dataschema-array']});
+
+}, '3.2.0PR1' ,{requires:['plugin', 'datasource-local', 'dataschema-array']});
+
 YUI.add('datasource-textschema', function(Y) {
 
 /**
@@ -1317,7 +1403,7 @@ Y.extend(DataSourceTextSchema, Y.Plugin.Base, {
      */
     _beforeDefDataFn: function(e) {
         var data = (Y.DataSource.IO && (this.get("host") instanceof Y.DataSource.IO) && Y.Lang.isString(e.data.responseText)) ? e.data.responseText : e.data,
-            response = Y.DataSchema.Text.apply(this.get("schema"), data);
+            response = Y.DataSchema.Text.apply.call(this, this.get("schema"), data);
             
         // Default
         if(!response) {
@@ -1335,7 +1421,9 @@ Y.extend(DataSourceTextSchema, Y.Plugin.Base, {
 Y.namespace('Plugin').DataSourceTextSchema = DataSourceTextSchema;
 
 
-}, '3.1.1' ,{requires:['plugin', 'datasource-local', 'dataschema-text']});
+
+}, '3.2.0PR1' ,{requires:['plugin', 'datasource-local', 'dataschema-text']});
+
 YUI.add('datasource-polling', function(Y) {
 
 /**
@@ -1426,8 +1514,10 @@ Pollable.prototype = {
 Y.augment(Y.DataSource.Local, Pollable);
 
 
-}, '3.1.1' ,{requires:['datasource-local']});
+
+}, '3.2.0PR1' ,{requires:['datasource-local']});
 
 
-YUI.add('datasource', function(Y){}, '3.1.1' ,{use:['datasource-local','datasource-io','datasource-get','datasource-function','datasource-cache','datasource-jsonschema','datasource-xmlschema','datasource-arrayschema','datasource-textschema','datasource-polling']});
+
+YUI.add('datasource', function(Y){}, '3.2.0PR1' ,{use:['datasource-local','datasource-io','datasource-get','datasource-function','datasource-cache','datasource-jsonschema','datasource-xmlschema','datasource-arrayschema','datasource-textschema','datasource-polling']});
 

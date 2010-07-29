@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('widget-stdmod', function(Y) {
@@ -467,8 +467,10 @@ YUI.add('widget-stdmod', function(Y) {
                     this._addNodeHTML(node, content, where);
                 }
                 this.set(section + CONTENT_SUFFIX, this._getStdModContent(section), {src:UI});
-                this.fire(ContentUpdate);
+            } else {
+                this._eraseStdMod(section);
             }
+            this.fire(ContentUpdate);
         },
 
         /**
@@ -492,6 +494,21 @@ YUI.add('widget-stdmod', function(Y) {
 
             this[section + NODE_SUFFIX] = sectionNode;
             return this[section + NODE_SUFFIX];
+        },
+
+        /**
+         * Removes the DOM node for the given section.
+         *
+         * @method _eraseStdMod
+         * @protected
+         * @param {String} section The section to remove. Either WidgetStdMod.HEADER, WidgetStdMod.BODY or WidgetStdMod.FOOTER.
+         */
+        _eraseStdMod : function(section) {
+            var sectionNode = this.getStdModNode(section);
+            if (sectionNode) {
+                sectionNode.remove(true);
+                delete this[section + NODE_SUFFIX];
+            }
         },
 
         /**
@@ -788,4 +805,4 @@ YUI.add('widget-stdmod', function(Y) {
     Y.WidgetStdMod = StdMod;
 
 
-}, '3.1.1' ,{requires:['widget']});
+}, '3.2.0PR1' ,{requires:['base-build', 'widget']});

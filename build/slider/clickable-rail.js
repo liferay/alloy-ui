@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('clickable-rail', function(Y) {
@@ -66,8 +66,9 @@ Y.ClickableRail = Y.mix( ClickableRail, {
         _bindClickableRail: function () {
             this._dd.addHandle( this.rail );
 
-            this.rail.on( this._evtGuid + 'mousedown',
-                this._onRailMouseDown, this );
+            this.rail.on( this._evtGuid + 'gesturemovestart',
+                this._onRailMouseDown, {}, this);
+                
         },
 
         /**
@@ -153,10 +154,13 @@ Y.ClickableRail = Y.mix( ClickableRail, {
          * @protected
          */
         _resolveThumb: function ( e ) {
+            /* Temporary workaround
             var primaryOnly = this._dd.get( 'primaryButtonOnly' ),
                 validClick  = !primaryOnly || e.button <= 1;
 
             return ( validClick ) ? this._dd : null;
+             */
+            return this._dd;
         },
 
         /**
@@ -200,4 +204,4 @@ Y.ClickableRail = Y.mix( ClickableRail, {
 }, true );
 
 
-}, '3.1.1' ,{requires:['slider-base']});
+}, '3.2.0PR1' ,{requires:['slider-base']});

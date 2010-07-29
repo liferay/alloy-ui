@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('datatype-xml-parse', function(Y) {
@@ -60,7 +60,7 @@ Y.namespace("Parsers").xml = Y.DataType.XML.parse;
 
 
 
-}, '3.1.1' );
+}, '3.2.0PR1' );
 YUI.add('datatype-xml-format', function(Y) {
 
 /**
@@ -113,8 +113,8 @@ Y.mix(Y.namespace("DataType.XML"), {
 
 
 
-}, '3.1.1' );
+}, '3.2.0PR1' );
 
 
-YUI.add('datatype-xml', function(Y){}, '3.1.1' ,{use:['datatype-xml-parse', 'datatype-xml-format']});
+YUI.add('datatype-xml', function(Y){}, '3.2.0PR1' ,{use:['datatype-xml-parse', 'datatype-xml-format']});
 

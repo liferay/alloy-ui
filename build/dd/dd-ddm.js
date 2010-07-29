@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('dd-ddm', function(Y) {
@@ -34,7 +34,7 @@ YUI.add('dd-ddm', function(Y) {
         _activateTargets: function() { },
         _deactivateTargets: function() {},
         _startDrag: function() {
-            if (this.activeDrag.get('useShim')) {
+            if (this.activeDrag && this.activeDrag.get('useShim')) {
                 this._pg_activate();
                 this._activateTargets();
             }
@@ -110,17 +110,14 @@ YUI.add('dd-ddm', function(Y) {
                 width: '5px'
             });
             pg.set('id', Y.stamp(pg));
-            pg.addClass('yui3-dd-shim');
-            if (bd.get('firstChild')) {
-                bd.insertBefore(pg, bd.get('firstChild'));
-            } else {
-                bd.appendChild(pg);
-            }
+            pg.addClass(Y.DD.DDM.CSS_PREFIX + '-shim');
+            bd.prepend(pg);
             this._pg = pg;
-            this._pg.on('mouseup', Y.bind(this._end, this));
+            //this._pg.on(GESTURE_MOVE, Y.throttle(Y.bind(this._move, this), this.get('throttleTime')));
             this._pg.on('mousemove', Y.throttle(Y.bind(this._move, this), this.get('throttleTime')));
+            this._pg.on('gesturemoveend', Y.bind(this._end, this));
             
-            win = Y.one(window);
+            win = Y.one('win');
             Y.on('window:resize', Y.bind(this._pg_size, this));
             win.on('scroll', Y.bind(this._pg_size, this));
         }   
@@ -129,4 +126,4 @@ YUI.add('dd-ddm', function(Y) {
 
 
 
-}, '3.1.1' ,{requires:['dd-ddm-base', 'event-resize'], skinnable:false});
+}, '3.2.0PR1' ,{requires:['dd-ddm-base', 'event-resize'], skinnable:false});

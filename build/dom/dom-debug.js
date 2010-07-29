@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('dom-base', function(Y) {
@@ -14,6 +14,7 @@ YUI.add('dom-base', function(Y) {
  * for other common tasks. 
  * @module dom
  * @submodule dom-base
+ * @for DOM
  *
  */
 
@@ -35,7 +36,7 @@ var NODE_TYPE = 'nodeType',
     COMPARE_DOCUMENT_POSITION = 'compareDocumentPosition',
     EMPTY_STRING = '',
 
-    documentElement = document.documentElement,
+    documentElement = Y.config.doc.documentElement,
 
     re_tag = /<([a-z]+)/i;
 
@@ -280,6 +281,7 @@ Y.DOM = {
     create: function(html, doc) {
         if (typeof html === 'string') {
             html = Y.Lang.trim(html); // match IE which trims whitespace from innerHTML
+
         }
 
         doc = doc || Y.config.doc;
@@ -289,20 +291,29 @@ Y.DOM = {
             ret = null,
             tag, nodes;
 
-        if (m && custom[m[1]]) {
-            if (typeof custom[m[1]] === 'function') {
-                create = custom[m[1]];
-            } else {
-                tag = custom[m[1]];
+        if (html != undefined) { // not undefined or null
+            if (m && custom[m[1]]) {
+                if (typeof custom[m[1]] === 'function') {
+                    create = custom[m[1]];
+                } else {
+                    tag = custom[m[1]];
+                }
             }
-        }
 
-        nodes = create(html, doc, tag).childNodes;
+            nodes = create(html, doc, tag).childNodes;
 
-        if (nodes.length === 1) { // return single node, breaking parentNode ref from "fragment"
-            ret = nodes[0].parentNode.removeChild(nodes[0]);
-        } else { // return multiple nodes as a fragment
-             ret = Y.DOM._nl2frag(nodes, doc);
+            if (nodes.length === 1) { // return single node, breaking parentNode ref from "fragment"
+                ret = nodes[0].parentNode.removeChild(nodes[0]);
+            } else if (nodes[0] && nodes[0].className === 'yui3-big-dummy') { // using dummy node to preserve some attributes (e.g. OPTION not selected)
+                if (nodes.length === 2) {
+                    ret = nodes[0].nextSibling;
+                } else {
+                    nodes[0].parentNode.removeChild(nodes[0]); 
+                     ret = Y.DOM._nl2frag(nodes, doc);
+                }
+            } else { // return multiple nodes as a fragment
+                 ret = Y.DOM._nl2frag(nodes, doc);
+            }
         }
 
         return ret;
@@ -402,18 +413,28 @@ Y.DOM = {
      * Inserts content in a node at the given location 
      * @method addHTML
      * @param {HTMLElement} node The node to insert into
-     * @param {String} content The content to be inserted 
-     * @param {String} where Where to insert the content; default is after lastChild 
+     * @param {String | HTMLElement} content The content to be inserted 
+     * @param {String | HTMLElement} where Where to insert the content
+     * If no "where" is given, content is appended to the node
+     * Possible values for "where"
+     * <dl>
+     * <dt>HTMLElement</dt>
+     * <dd>The element to insert before</dd>
+     * <dt>"replace"</dt>
+     * <dd>Replaces the existing HTML</dd>
+     * <dt>"before"</dt>
+     * <dd>Inserts before the existing HTML</dd>
+     * <dt>"before"</dt>
+     * <dd>Inserts content before the node</dd>
+     * <dt>"after"</dt>
+     * <dd>Inserts content after the node</dd>
+     * </dl>
      */
     addHTML: function(node, content, where) {
-        if (typeof content === 'string') {
-            content = Y.Lang.trim(content); // match IE which trims whitespace from innerHTML
-        }
-
         var nodeParent = node.parentNode,
             newNode;
             
-        if (content) {
+        if (content !== undefined && content !== null) {
             if (content.nodeType) { // domNode
                 newNode = content;
             } else { // create from string and cache
@@ -671,12 +692,14 @@ Y.DOM = {
                 }
             }
         });
+
+        Y.DOM.creators.style = Y.DOM.creators.script;
     }
 
     if (Y.UA.gecko || Y.UA.ie) {
         Y.mix(creators, {
             option: function(html, doc) {
-                return create('<select>' + html + '</select>', doc);
+                return create('<select><option class="yui3-big-dummy" selected></option>' + html + '</select>', doc);
             },
 
             tr: function(html, doc) {
@@ -735,6 +758,7 @@ Y.mix(Y.DOM, {
     /**
      * Determines whether a DOM element has the given className.
      * @method hasClass
+     * @for DOM
      * @param {HTMLElement} element The DOM element. 
      * @param {String} className the class name to search for
      * @return {Boolean} Whether or not the element has the given class. 
@@ -747,6 +771,7 @@ Y.mix(Y.DOM, {
     /**
      * Adds a class name to a given DOM element.
      * @method addClass         
+     * @for DOM
      * @param {HTMLElement} element The DOM element. 
      * @param {String} className the class name to add to the class attribute
      */
@@ -759,6 +784,7 @@ Y.mix(Y.DOM, {
     /**
      * Removes a class name from a given element.
      * @method removeClass         
+     * @for DOM
      * @param {HTMLElement} element The DOM element. 
      * @param {String} className the class name to remove from the class attribute
      */
@@ -777,6 +803,7 @@ Y.mix(Y.DOM, {
      * Replace a class with another class for a given element.
      * If no oldClassName is present, the newClassName is simply added.
      * @method replaceClass  
+     * @for DOM
      * @param {HTMLElement} element The DOM element 
      * @param {String} oldClassName the class name to be replaced
      * @param {String} newClassName the class name that will be replacing the old class name
@@ -790,6 +817,7 @@ Y.mix(Y.DOM, {
     /**
      * If the className exists on the node it is removed, if it doesn't exist it is added.
      * @method toggleClass  
+     * @for DOM
      * @param {HTMLElement} element The DOM element
      * @param {String} className the class name to be toggled
      * @param {Boolean} addClass optional boolean to indicate whether class
@@ -811,9 +839,52 @@ hasClass = Y.DOM.hasClass;
 removeClass = Y.DOM.removeClass;
 addClass = Y.DOM.addClass;
 
+Y.mix(Y.DOM, {
+    /**
+     * Sets the width of the element to the given size, regardless
+     * of box model, border, padding, etc.
+     * @method setWidth
+     * @param {HTMLElement} element The DOM element. 
+     * @param {String|Int} size The pixel height to size to
+     */
+
+    setWidth: function(node, size) {
+        Y.DOM._setSize(node, 'width', size);
+    },
+
+    /**
+     * Sets the height of the element to the given size, regardless
+     * of box model, border, padding, etc.
+     * @method setHeight
+     * @param {HTMLElement} element The DOM element. 
+     * @param {String|Int} size The pixel height to size to
+     */
+
+    setHeight: function(node, size) {
+        Y.DOM._setSize(node, 'height', size);
+    },
+
+    _setSize: function(node, prop, val) {
+        val = (val > 0) ? val : 0;
+        var size = 0;
+
+        node.style[prop] = val + 'px';
+        size = (prop === 'height') ? node.offsetHeight : node.offsetWidth;
+
+        if (size > val) {
+            val = val - (size - val);
+
+            if (val < 0) {
+                val = 0;
+            }
+
+            node.style[prop] = val + 'px';
+        }
+    }
+});
 
 
-}, '3.1.1' ,{requires:['oop']});
+}, '3.2.0PR1' ,{requires:['oop']});
 YUI.add('dom-style', function(Y) {
 
 (function(Y) {
@@ -839,9 +910,22 @@ var DOCUMENT_ELEMENT = 'documentElement',
 
     Y_DOM = Y.DOM,
 
+    TRANSFORM = 'transform',
+    VENDOR_TRANSFORM = [
+        'WebkitTransform',
+        'MozTransform',
+        'OTransform'
+    ],
+
     re_color = /color$/i,
     re_unit = /width|height|top|left|right|bottom|margin|padding/i;
 
+
+Y.Array.each(VENDOR_TRANSFORM, function(val) {
+    if (val in DOCUMENT[DOCUMENT_ELEMENT].style) {
+        TRANSFORM = val;
+    }
+});
 
 Y.mix(Y_DOM, {
     DEFAULT_UNIT: 'px',
@@ -976,6 +1060,27 @@ if (Y.UA.webkit) {
     };
 
 }
+
+Y_DOM._multiplyMatrix = function(a, b) {
+    var c = [
+        a[0][0] * b[0][0] + a[0][1] * b[1][0],
+        a[0][0] * a[0][1] + a[0][1] * b[1][1],
+        a[1][0] * b[0][0] + a[1][1] * b[1][0],
+        a[1][0] * b[0][1] + b[1][1] * b[1][1]
+    ];
+
+    return c;
+};
+
+Y_DOM.CUSTOM_STYLES.transform = {
+    set: function(node, val, style) {
+        style[TRANSFORM] = val;
+    },
+
+    get: function(node, style) {
+        return Y_DOM.getComputedStyle(node, TRANSFORM);
+    }
+};
 })(Y);
 (function(Y) {
 var PARSE_INT = parseInt,
@@ -1051,6 +1156,11 @@ Y.Color = {
 };
 })(Y);
 
+
+
+}, '3.2.0PR1' ,{requires:['dom-base']});
+YUI.add('dom-style-ie', function(Y) {
+
 (function(Y) {
 var HAS_LAYOUT = 'hasLayout',
     PX = 'px',
@@ -1070,10 +1180,12 @@ var HAS_LAYOUT = 'hasLayout',
     VISIBLE = 'visible',
     GET_COMPUTED_STYLE = 'getComputedStyle',
     UNDEFINED = undefined,
-    documentElement = document.documentElement,
+    documentElement = Y.config.doc.documentElement,
 
     // TODO: unit-less lineHeight (e.g. 1.22)
     re_unit = /^(\d[.\d]*)+(em|ex|px|gd|rem|vw|vh|vm|ch|mm|cm|in|pt|pc|deg|rad|ms|s|hz|khz|%){1}?/i,
+
+    isIE8 = (Y.UA.ie >= 8),
 
     _getStyleObj = function(node) {
         return node.currentStyle || node.style;
@@ -1118,6 +1230,7 @@ var HAS_LAYOUT = 'hasLayout',
                 offset = 'offset' + capped,                             // "offsetWidth", "offsetTop", etc.
                 pixel = 'pixel' + capped,                               // "pixelWidth", "pixelTop", etc.
                 sizeOffsets = ComputedStyle.sizeOffsets[prop], 
+                mode = el.ownerDocument.compatMode,
                 value = '';
 
             // IE pixelWidth incorrect for percent
@@ -1127,14 +1240,16 @@ var HAS_LAYOUT = 'hasLayout',
             if (current === AUTO || current.indexOf('%') > -1) {
                 value = el['offset' + capped];
 
-                if (sizeOffsets[0]) {
-                    value -= ComputedStyle.getPixel(el, 'padding' + sizeOffsets[0]);
-                    value -= ComputedStyle.getBorderWidth(el, 'border' + sizeOffsets[0] + 'Width', 1);
-                }
+                if (mode !== 'BackCompat') {
+                    if (sizeOffsets[0]) {
+                        value -= ComputedStyle.getPixel(el, 'padding' + sizeOffsets[0]);
+                        value -= ComputedStyle.getBorderWidth(el, 'border' + sizeOffsets[0] + 'Width', 1);
+                    }
 
-                if (sizeOffsets[1]) {
-                    value -= ComputedStyle.getPixel(el, 'padding' + sizeOffsets[1]);
-                    value -= ComputedStyle.getBorderWidth(el, 'border' + sizeOffsets[1] + 'Width', 1);
+                    if (sizeOffsets[1]) {
+                        value -= ComputedStyle.getPixel(el, 'padding' + sizeOffsets[1]);
+                        value -= ComputedStyle.getBorderWidth(el, 'border' + sizeOffsets[1] + 'Width', 1);
+                    }
                 }
 
             } else { // use style.pixelWidth, etc. to convert to pixels
@@ -1149,9 +1264,9 @@ var HAS_LAYOUT = 'hasLayout',
         },
 
         borderMap: {
-            thin: '2px', 
-            medium: '4px', 
-            thick: '6px'
+            thin: (isIE8) ? '1px' : '2px',
+            medium: (isIE8) ? '3px': '4px', 
+            thick: (isIE8) ? '5px' : '6px'
         },
 
         getBorderWidth: function(el, property, omitUnit) {
@@ -1230,51 +1345,46 @@ var HAS_LAYOUT = 'hasLayout',
     IEComputed = {};
 
 // use alpha filter for IE opacity
-try {
-    if (documentElement.style[OPACITY] === UNDEFINED &&
-            documentElement[FILTERS]) {
-        Y.DOM.CUSTOM_STYLES[OPACITY] = {
-            get: function(node) {
-                var val = 100;
-                try { // will error if no DXImageTransform
-                    val = node[FILTERS]['DXImageTransform.Microsoft.Alpha'][OPACITY];
+if (Y.UA.ie) {
+    Y.DOM.CUSTOM_STYLES[OPACITY] = {
+        get: function(node) {
+            var val = 100;
+            try { // will error if no DXImageTransform
+                val = node[FILTERS]['DXImageTransform.Microsoft.Alpha'][OPACITY];
 
-                } catch(e) {
-                    try { // make sure its in the document
-                        val = node[FILTERS]('alpha')[OPACITY];
-                    } catch(err) {
-                        Y.log('getStyle: IE opacity filter not found; returning 1', 'warn', 'dom-style');
-                    }
-                }
-                return val / 100;
-            },
-
-            set: function(node, val, style) {
-                var current,
-                    styleObj;
-
-                if (val === '') { // normalize inline style behavior
-                    styleObj = _getStyleObj(node);
-                    current = (OPACITY in styleObj) ? styleObj[OPACITY] : 1; // revert to original opacity
-                    val = current;
-                }
-
-                if (typeof style[FILTER] == 'string') { // in case not appended
-                    style[FILTER] = 'alpha(' + OPACITY + '=' + val * 100 + ')';
-                    
-                    if (!node.currentStyle || !node.currentStyle[HAS_LAYOUT]) {
-                        style.zoom = 1; // needs layout 
-                    }
+            } catch(e) {
+                try { // make sure its in the document
+                    val = node[FILTERS]('alpha')[OPACITY];
+                } catch(err) {
+                    Y.log('getStyle: IE opacity filter not found; returning 1', 'warn', 'dom-style');
                 }
             }
-        };
-    }
-} catch(e) {
-    Y.log('document.documentElement.filters error (activeX disabled)', 'warn', 'dom-style');
+            return val / 100;
+        },
+
+        set: function(node, val, style) {
+            var current,
+                styleObj;
+
+            if (val === '') { // normalize inline style behavior
+                styleObj = _getStyleObj(node);
+                current = (OPACITY in styleObj) ? styleObj[OPACITY] : 1; // revert to original opacity
+                val = current;
+            }
+
+            if (typeof style[FILTER] == 'string') { // in case not appended
+                style[FILTER] = 'alpha(' + OPACITY + '=' + val * 100 + ')';
+                
+                if (!node.currentStyle || !node.currentStyle[HAS_LAYOUT]) {
+                    style.zoom = 1; // needs layout 
+                }
+            }
+        }
+    };
 }
 
 try {
-    document.createElement('div').style.height = '-1px';
+    Y.config.doc.createElement('div').style.height = '-1px';
 } catch(e) { // IE throws error on invalid style set; trap common cases
     Y.DOM.CUSTOM_STYLES.height = {
         set: function(node, val, style) {
@@ -1325,52 +1435,9 @@ Y.DOM.IE.COMPUTED = IEComputed;
 Y.DOM.IE.ComputedStyle = ComputedStyle;
 
 })(Y);
-Y.mix(Y.DOM, {
-    /**
-     * Sets the width of the element to the given size, regardless
-     * of box model, border, padding, etc.
-     * @method setWidth
-     * @param {HTMLElement} element The DOM element. 
-     * @param {String|Int} size The pixel height to size to
-     */
-
-    setWidth: function(node, size) {
-        Y.DOM._setSize(node, 'width', size);
-    },
-
-    /**
-     * Sets the height of the element to the given size, regardless
-     * of box model, border, padding, etc.
-     * @method setHeight
-     * @param {HTMLElement} element The DOM element. 
-     * @param {String|Int} size The pixel height to size to
-     */
-
-    setHeight: function(node, size) {
-        Y.DOM._setSize(node, 'height', size);
-    },
-
-    _getOffsetProp: function(node, prop) {
-        return 'offset' + prop.charAt(0).toUpperCase() + prop.substr(1);
-    },
-
-    _setSize: function(node, prop, val) {
-        var offset;
-
-        Y.DOM.setStyle(node, prop, val + 'px');
-        offset = node[Y.DOM._getOffsetProp(node, prop)];
-        val = val - (offset - val);
-
-        // TODO: handle size less than border/padding (add class?)
-        if (val < 0) {
-            val = 0; // no negative sizes
-        }
-        Y.DOM.setStyle(node, prop, val + 'px');
-    }
-});
 
 
-}, '3.1.1' ,{requires:['dom-base']});
+}, '3.2.0PR1' ,{requires:['dom-style']});
 YUI.add('dom-screen', function(Y) {
 
 (function(Y) {
@@ -1482,7 +1549,7 @@ Y.mix(Y_DOM, {
      TODO: test inDocument/display?
      */
     getXY: function() {
-        if (document[DOCUMENT_ELEMENT][GET_BOUNDING_CLIENT_RECT]) {
+        if (Y.config.doc[DOCUMENT_ELEMENT][GET_BOUNDING_CLIENT_RECT]) {
             return function(node) {
                 var xy = null,
                     scrollLeft,
@@ -1530,8 +1597,11 @@ Y.mix(Y_DOM, {
                             }
 
                         if ((scrollTop || scrollLeft)) {
-                            xy[0] += scrollLeft;
-                            xy[1] += scrollTop;
+                            if (!Y.UA.ios) {
+                                xy[0] += scrollLeft;
+                                xy[1] += scrollTop;
+                            }
+                            
                         }
                     } else { // default to current offsets
                         xy = Y_DOM._getOffset(node);
@@ -1812,6 +1882,7 @@ var TOP = 'top',
 Y.mix(DOM, {
     /**
      * Returns an Object literal containing the following about this element: (top, right, bottom, left)
+     * @for DOM
      * @method region
      * @param {HTMLElement} element The DOM element. 
      @return {Object} Object literal containing the following about this element: (top, right, bottom, left)
@@ -1835,6 +1906,7 @@ Y.mix(DOM, {
     /**
      * Find the intersect information for the passes nodes.
      * @method intersect
+     * @for DOM
      * @param {HTMLElement} element The first element 
      * @param {HTMLElement | Object} element2 The element or region to check the interect with
      * @param {Object} altRegion An object literal containing the region for the first element if we already have the data (for performance i.e. DragDrop)
@@ -1869,6 +1941,7 @@ Y.mix(DOM, {
     /**
      * Check if any part of this node is in the passed region
      * @method inRegion
+     * @for DOM
      * @param {Object} node2 The node to get the region from or an Object literal of the region
      * $param {Boolean} all Should all of the node be inside the region
      * @param {Object} altRegion An object literal containing the region for this node if we already have the data (for performance i.e. DragDrop)
@@ -1908,6 +1981,7 @@ Y.mix(DOM, {
     /**
      * Check if any part of this element is in the viewport
      * @method inViewportRegion
+     * @for DOM
      * @param {HTMLElement} element The DOM element. 
      * @param {Boolean} all Should all of the node be inside the region
      * @param {Object} altRegion An object literal containing the region for this node if we already have the data (for performance i.e. DragDrop)
@@ -1934,7 +2008,8 @@ Y.mix(DOM, {
     /**
      * Returns an Object literal containing the following about the visible region of viewport: (top, right, bottom, left)
      * @method viewportRegion
-     @return {Object} Object literal containing the following about the visible region of the viewport: (top, right, bottom, left)
+     * @for DOM
+     * @return {Object} Object literal containing the following about the visible region of the viewport: (top, right, bottom, left)
      */
     viewportRegion: function(node) {
         node = node || Y.config.doc.documentElement;
@@ -1958,7 +2033,7 @@ Y.mix(DOM, {
 })(Y);
 
 
-}, '3.1.1' ,{requires:['dom-base', 'dom-style', 'event-base']});
+}, '3.2.0PR1' ,{requires:['dom-base', 'dom-style', 'event-base']});
 YUI.add('selector-native', function(Y) {
 
 (function(Y) {
@@ -1986,7 +2061,7 @@ var Selector = {
 
     useNative: true,
 
-    _compare: ('sourceIndex' in document.documentElement) ?
+    _compare: ('sourceIndex' in Y.config.doc.documentElement) ?
         function(nodeA, nodeB) {
             var a = nodeA.sourceIndex,
                 b = nodeB.sourceIndex;
@@ -1999,7 +2074,7 @@ var Selector = {
 
             return -1;
 
-        } : (document.documentElement[COMPARE_DOCUMENT_POSITION] ?
+        } : (Y.config.doc.documentElement[COMPARE_DOCUMENT_POSITION] ?
         function(nodeA, nodeB) {
             if (nodeA[COMPARE_DOCUMENT_POSITION](nodeB) & 4) {
                 return -1;
@@ -2064,7 +2139,7 @@ var Selector = {
     query: function(selector, root, firstOnly, skipNative) {
         root = root || Y.config.doc;
         var ret = [],
-            useNative = (Y.Selector.useNative && document.querySelector && !skipNative),
+            useNative = (Y.Selector.useNative && Y.config.doc.querySelector && !skipNative),
             queries = [[selector, root]],
             query,
             result,
@@ -2123,6 +2198,9 @@ var Selector = {
     },
 
     _nativeQuery: function(selector, root, one) {
+        if (Y.UA.webkit && selector.indexOf(':checked') > -1) { // webkit (chrome, safari) fails to find "selected"
+            return Y.Selector.query(selector, root, one, true); // redo with skipNative true to try brute query
+        }
         try {
             //Y.log('trying native query with: ' + selector, 'info', 'selector-native');
             return root['querySelector' + (one ? '' : 'All')](selector);
@@ -2223,7 +2301,7 @@ Y.mix(Y.Selector, Selector, true);
 })(Y);
 
 
-}, '3.1.1' ,{requires:['dom-base']});
+}, '3.2.0PR1' ,{requires:['dom-base']});
 YUI.add('selector-css2', function(Y) {
 
 /**
@@ -2314,6 +2392,7 @@ var PARENT_NODE = 'parentNode',
                 tokens = Selector._tokenize(selector),
                 token = tokens[tokens.length - 1],
                 rootDoc = Y.DOM._getDoc(root),
+                child,
                 id,
                 className,
                 tagName;
@@ -2334,16 +2413,28 @@ var PARENT_NODE = 'parentNode',
                 className = token.className;
                 tagName = token.tagName || '*';
 
-                // try ID first
-                if (id) {
-                    nodes = Y.DOM.allById(id, root);
-                // try className
-                } else if (className) {
-                    nodes = root.getElementsByClassName(className);
-                } else { // default to tagName
-                    nodes = root.getElementsByTagName(tagName);
-                }
+                if (root.getElementsByTagName) { // non-IE lacks DOM api on doc frags
+                    // try ID first, unless no root.all && root not in document
+                    // (root.all works off document, but not getElementById)
+                    // TODO: move to allById?
+                    if (id && (root.all || (root.nodeType === 9 || Y.DOM.inDoc(root)))) {
+                        nodes = Y.DOM.allById(id, root);
+                    // try className
+                    } else if (className) {
+                        nodes = root.getElementsByClassName(className);
+                    } else { // default to tagName
+                        nodes = root.getElementsByTagName(tagName);
+                    }
 
+                } else { // brute getElementsByTagName('*')
+                    child = root.firstChild;
+                    while (child) {
+                        if (child.tagName) { // only collect HTMLElements
+                            nodes.push(child);
+                        }
+                        child = child.nextSilbing || child.firstChild;
+                    }
+                }
                 if (nodes.length) {
                     ret = Selector._filterNodes(nodes, tokens, firstOnly);
                 }
@@ -2397,7 +2488,8 @@ var PARENT_NODE = 'parentNode',
                             if ((operator === '=' && value !== test[2]) ||  // fast path for equality
                                 (typeof operator !== 'string' && // protect against String.test monkey-patch (Moo)
                                 operator.test && !operator.test(value)) ||  // regex test
-                                (typeof operator === 'function' && !operator(tmpNode, test[0]))) { // function test
+                                (!operator.test && // protect against RegExp as function (webkit)
+                                        typeof operator === 'function' && !operator(tmpNode, test[0]))) { // function test
 
                                 // skip non element nodes or non-matching tags
                                 if ((tmpNode = tmpNode[path])) {
@@ -2470,7 +2562,7 @@ var PARENT_NODE = 'parentNode',
                     // add prefiltering for ID and CLASS
                     if ((match[1] === 'id' && operator === '=') ||
                             (match[1] === 'className' &&
-                            document.documentElement.getElementsByClassName &&
+                            Y.config.doc.documentElement.getElementsByClassName &&
                             (operator === '~=' || operator === '='))) {
                         token.prefilter = match[1];
                         token[match[1]] = match[3];
@@ -2653,18 +2745,18 @@ Y.mix(Y.Selector, SelectorCSS2, true);
 Y.Selector.getters.src = Y.Selector.getters.rel = Y.Selector.getters.href;
 
 // IE wants class with native queries
-if (Y.Selector.useNative && document.querySelector) {
+if (Y.Selector.useNative && Y.config.doc.querySelector) {
     Y.Selector.shorthand['\\.(-?[_a-z]+[-\\w]*)'] = '[class~=$1]';
 }
 
 
 
-}, '3.1.1' ,{requires:['selector-native']});
+}, '3.2.0PR1' ,{requires:['selector-native']});
 
 
-YUI.add('selector', function(Y){}, '3.1.1' ,{use:['selector-native', 'selector-css2']});
+YUI.add('selector', function(Y){}, '3.2.0PR1' ,{use:['selector-native', 'selector-css2']});
 
 
 
-YUI.add('dom', function(Y){}, '3.1.1' ,{use:['dom-base', 'dom-style', 'dom-screen', 'selector']});
+YUI.add('dom', function(Y){}, '3.2.0PR1' ,{use:['dom-base', 'dom-style', 'dom-style-ie', 'dom-screen', 'selector']});
 

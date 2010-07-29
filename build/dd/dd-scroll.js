@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('dd-scroll', function(Y) {
@@ -169,7 +169,7 @@ YUI.add('dd-scroll', function(Y) {
             h.on('drag:align', Y.bind(this.align, this));
 
             //TODO - This doesn't work yet??
-            Y.one(window).on('scroll', Y.bind(function() {
+            Y.one('win').on('scroll', Y.bind(function() {
                 this._vpRegionCache = null;
             }, this));
         },
@@ -351,7 +351,7 @@ YUI.add('dd-scroll', function(Y) {
             value: true,
             setter: function(scroll) {
                 if (scroll) {
-                    this.set(PARENT_SCROLL, Y.one(window));
+                    this.set(PARENT_SCROLL, Y.one('win'));
                 }
                 return scroll;
             }
@@ -431,4 +431,4 @@ YUI.add('dd-scroll', function(Y) {
 
 
 
-}, '3.1.1' ,{optional:['dd-proxy'], requires:['dd-drag'], skinnable:false});
+}, '3.2.0PR1' ,{optional:['dd-proxy'], requires:['dd-drag'], skinnable:false});

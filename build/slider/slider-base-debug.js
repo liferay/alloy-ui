@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('slider-base', function(Y) {
@@ -563,4 +563,4 @@ Y.SliderBase = Y.extend( SliderBase, Y.Widget, {
 });
 
 
-}, '3.1.1' ,{requires:['widget', 'substitute', 'dd-constrain']});
+}, '3.2.0PR1' ,{requires:['widget', 'substitute', 'dd-constrain']});

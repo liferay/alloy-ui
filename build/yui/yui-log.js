@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('yui-log', function(Y) {
@@ -15,8 +15,7 @@ YUI.add('yui-log', function(Y) {
  */
 (function() {
 
-var _published,
-    INSTANCE  = Y,
+var INSTANCE  = Y,
     LOGEVENT  = 'yui:log',
     UNDEFINED = 'undefined',
     LEVELS    = { debug: 1, 
@@ -45,8 +44,9 @@ var _published,
  */
 INSTANCE.log = function(msg, cat, src, silent) {
     var bail, excl, incl, m, f,
-        Y = INSTANCE, 
-        c = Y.config;
+        Y         = INSTANCE, 
+        c         = Y.config,
+        publisher = (Y.fire) ? Y : YUI.Env.globalEvents;
     // suppress log message if the config is off or the event stack
     // or the event call stack contains a consumer of the yui:log event
     if (c.debug) {
@@ -72,16 +72,16 @@ INSTANCE.log = function(msg, cat, src, silent) {
                     opera.postError(m);
                 }
             }
-            if (Y.fire && !silent) {
-                if (!_published) {
-                    Y.publish(LOGEVENT, {
+
+            if (publisher && !silent) {
+
+                if (publisher == Y && (!publisher.getEvent(LOGEVENT))) {
+                    publisher.publish(LOGEVENT, {
                         broadcast: 2
                     });
-
-                    _published = 1;
-
                 }
-                Y.fire(LOGEVENT, {
+
+                publisher.fire(LOGEVENT, {
                     msg: msg, 
                     cat: cat, 
                     src: src
@@ -113,4 +113,4 @@ INSTANCE.message = function() {
 })();
 
 
-}, '3.1.1' ,{requires:['yui-base']});
+}, '3.2.0PR1' ,{requires:['yui-base']});

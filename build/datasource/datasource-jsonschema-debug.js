@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('datasource-jsonschema', function(Y) {
@@ -73,7 +73,9 @@ Y.extend(DataSourceJSONSchema, Y.Plugin.Base, {
     },
 
     /**
-     * Parses raw data into a normalized response.
+     * Parses raw data into a normalized response. To accommodate XHR responses,
+     * will first look for data in data.responseText. Otherwise will just work
+     * with data.
      *
      * @method _beforeDefDataFn
      * <dl>
@@ -90,8 +92,8 @@ Y.extend(DataSourceJSONSchema, Y.Plugin.Base, {
      * @protected
      */
     _beforeDefDataFn: function(e) {
-        var data = (Y.DataSource.IO && (this.get("host") instanceof Y.DataSource.IO) && Y.Lang.isString(e.data.responseText)) ? e.data.responseText : e.data,
-            response = Y.DataSchema.JSON.apply(this.get("schema"), data);
+        var data = e.data ? (e.data.responseText ?  e.data.responseText : e.data) : e.data,
+            response = Y.DataSchema.JSON.apply.call(this, this.get("schema"), data);
             
         // Default
         if(!response) {
@@ -109,4 +111,5 @@ Y.extend(DataSourceJSONSchema, Y.Plugin.Base, {
 Y.namespace('Plugin').DataSourceJSONSchema = DataSourceJSONSchema;
 
 
-}, '3.1.1' ,{requires:['plugin', 'datasource-local', 'dataschema-json']});
+
+}, '3.2.0PR1' ,{requires:['plugin', 'datasource-local', 'dataschema-json']});

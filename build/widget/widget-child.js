@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('widget-child', function(Y) {
@@ -193,13 +193,13 @@ Child.prototype = {
     },
 
 
-	/**
-	* @method next
-	* @description Returns the Widget's next sibling.
+    /**
+    * @method next
+    * @description Returns the Widget's next sibling.
     * @param {Boolean} circular Boolean indicating if the parent's first child 
-    * should be returned if the child has no next sibling.	
-	* @return {Widget} Widget instance. 
-	*/
+    * should be returned if the child has no next sibling.  
+    * @return {Widget} Widget instance. 
+    */
     next: function (circular) {
 
         var parent = this.get("parent"),
@@ -218,13 +218,13 @@ Child.prototype = {
     },
 
 
-	/**
+    /**
     * @method previous
-	* @description Returns the Widget's previous sibling.
+    * @description Returns the Widget's previous sibling.
     * @param {Boolean} circular Boolean indicating if the parent's last child 
     * should be returned if the child has no previous sibling.
-	* @return {Widget} Widget instance. 
-	*/
+    * @return {Widget} Widget instance. 
+    */
     previous: function (circular) {
 
         var parent = this.get("parent"),
@@ -269,24 +269,24 @@ Child.prototype = {
     },
 
 
-	/**
-	* @method isRoot
-	* @description Determines if the Widget is the root Widget in the 
-	* object hierarchy.
-	* @return {Boolean} Boolean indicating if Widget is the root Widget in the 
-	* object hierarchy.
-	*/
+    /**
+    * @method isRoot
+    * @description Determines if the Widget is the root Widget in the 
+    * object hierarchy.
+    * @return {Boolean} Boolean indicating if Widget is the root Widget in the 
+    * object hierarchy.
+    */
     isRoot: function () {
         return (this == this.get("root"));
     },
 
 
-	/**
-	* @method ancestor
-	* @description Returns the Widget instance at the specified depth.
+    /**
+    * @method ancestor
+    * @description Returns the Widget instance at the specified depth.
     * @param {number} depth Number representing the depth of the ancestor.
-	* @return {Widget} Widget instance.
-	*/
+    * @return {Widget} Widget instance.
+    */
     ancestor: function (depth) {
 
         var root = this.get("root"),
@@ -377,4 +377,4 @@ Child.prototype = {
 Y.WidgetChild = Child;
 
 
-}, '3.1.1' ,{requires:['widget']});
+}, '3.2.0PR1' ,{requires:['base-build', 'widget']});

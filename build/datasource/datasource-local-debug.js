@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('datasource-local', function(Y) {
@@ -82,17 +82,30 @@ Y.mix(DSLocal, {
     _tId: 0,
 
     /**
-     * Executes a given callback.  The third param determines whether to execute
+     * Global in-progress transaction objects.
      *
-     * @method DataSource.issueCallback
-     * @param callback {Object} The callback object.
-     * @param params {Array} params to be passed to the callback method
-     * @param error {Boolean} whether an error occurred
+     * @property DataSource.transactions
+     * @type Object
      * @static
      */
-    issueCallback: function (e) {
+    transactions: {},
+
+    /**
+     * Returns data to callback.
+     *
+     * @method DataSource.issueCallback
+     * @param e {EventFacade} Event Facade.
+     * @param caller {DataSource} Calling DataSource instance.
+     * @static
+     */
+    issueCallback: function (e, caller) {
+        var error = (e.error || e.response.error);
+        if(error) {
+            e.error = e.error || e.response.error;
+            caller.fire("error", e);
+        }
         if(e.callback) {
-            var callbackFunc = (e.error && e.callback.failure) || e.callback.success;
+            var callbackFunc = (error && e.callback.failure) || e.callback.success;
             if (callbackFunc) {
                 callbackFunc(e);
             }
@@ -236,10 +249,7 @@ Y.extend(DSLocal, Y.Base, {
         // Problematic data
         if(LANG.isUndefined(data)) {
             e.error = new Error("Local source undefined");
-        }
-        if(e.error) {
-            this.fire("error", e);
-            Y.log("Error in response", "error", "datasource-local");
+            Y.log("Local source undefined", "error", "datasource-local");
         }
 
         this.fire("data", Y.mix({data:data}, e));
@@ -305,7 +315,7 @@ Y.extend(DSLocal, Y.Base, {
      */
     _defResponseFn: function(e) {
         // Send the response back to the callback
-        DSLocal.issueCallback(e);
+        DSLocal.issueCallback(e, this);
     },
     
     /**
@@ -344,4 +354,5 @@ Y.extend(DSLocal, Y.Base, {
 Y.namespace("DataSource").Local = DSLocal;
 
 
-}, '3.1.1' ,{requires:['base']});
+
+}, '3.2.0PR1' ,{requires:['base']});

@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('dataschema-text', function(Y) {
@@ -45,7 +45,7 @@ var LANG = Y.Lang,
 
             if(LANG.isString(data_in) && LANG.isString(schema.resultDelimiter)) {
                 // Parse results data
-                data_out = SchemaText._parseResults(schema, data_in, data_out);
+                data_out = SchemaText._parseResults.call(this, schema, data_in, data_out);
             }
             else {
                 data_out.error = new Error("Text schema parse failure");
@@ -92,7 +92,7 @@ var LANG = Y.Lang,
                             field = fields[j];
                             key = (!LANG.isUndefined(field.key)) ? field.key : field;
                             value = (!LANG.isUndefined(fields_in[key])) ? fields_in[key] : fields_in[j];
-                            result[key] = Y.DataSchema.Base.parse(value, field);
+                            result[key] = Y.DataSchema.Base.parse.call(this, value, field);
                         }
                     }
 
@@ -113,4 +113,4 @@ Y.DataSchema.Text = Y.mix(SchemaText, Y.DataSchema.Base);
 
 
 
-}, '3.1.1' ,{requires:['dataschema-base']});
+}, '3.2.0PR1' ,{requires:['dataschema-base']});

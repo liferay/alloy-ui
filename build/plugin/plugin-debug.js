@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('plugin', function(Y) {
@@ -21,7 +21,11 @@ YUI.add('plugin', function(Y) {
      * @param {Object} config Configuration object with property name/value pairs.
      */
     function Plugin(config) {
-        Plugin.superclass.constructor.apply(this, arguments);
+        if (! (this.hasImpl && this.hasImpl(Y.Plugin.Base)) ) {
+            Plugin.superclass.constructor.apply(this, arguments);
+        } else {
+            Plugin.prototype.initializer.apply(this, arguments);
+        }
     }
 
     /**
@@ -165,7 +169,7 @@ YUI.add('plugin', function(Y) {
          * @return handle {EventHandle} The detach handle for the listener. 
          */
         onHostEvent : function(type, fn, context) {
-            var handle = this.get("host").after(type, fn, context || this);
+            var handle = this.get("host").on(type, fn, context || this);
             this._handles.push(handle);
             return handle;
         },
@@ -229,4 +233,4 @@ YUI.add('plugin', function(Y) {
     Y.namespace("Plugin").Base = Plugin;
 
 
-}, '3.1.1' ,{requires:['base-base']});
+}, '3.2.0PR1' ,{requires:['base-base']});

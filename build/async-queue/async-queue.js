@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('async-queue', function(Y) {
@@ -526,4 +526,4 @@ Y.extend(Queue, Y.EventTarget, {
 
 
 
-}, '3.1.1' ,{requires:['event-custom']});
+}, '3.2.0PR1' ,{requires:['event-custom']});

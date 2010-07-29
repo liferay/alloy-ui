@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('dd-constrain', function(Y) {
@@ -222,7 +222,7 @@ YUI.add('dd-constrain', function(Y) {
             if (con) {
                 if (con instanceof Y.Node) {
                     if (!this._regionCache) {
-                        Y.on('resize', Y.bind(this._cacheRegion, this), window);
+                        Y.on('resize', Y.bind(this._cacheRegion, this), Y.config.win);
                         this._cacheRegion();
                     }
                     region = Y.clone(this._regionCache);
@@ -455,4 +455,4 @@ YUI.add('dd-constrain', function(Y) {
 
 
 
-}, '3.1.1' ,{requires:['dd-drag'], skinnable:false});
+}, '3.2.0PR1' ,{requires:['dd-drag'], skinnable:false});

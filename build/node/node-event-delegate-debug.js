@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('node-event-delegate', function(Y) {
@@ -24,12 +24,12 @@ YUI.add('node-event-delegate', function(Y) {
  */
 Y.Node.prototype.delegate = function(type, fn, selector) {
 
-    var args = Array.prototype.slice.call(arguments, 3),
-        a = [type, fn, Y.Node.getDOMNode(this), selector];
-    a = a.concat(args);
+    var args = Y.Array(arguments, 0, true);
 
-    return Y.delegate.apply(Y, a);
+    args.splice(2, 0, this._node);
+
+    return Y.delegate.apply(Y, args);
 };
 
 
-}, '3.1.1' ,{requires:['node-base', 'event-delegate', 'pluginhost']});
+}, '3.2.0PR1' ,{requires:['node-base', 'event-delegate', 'pluginhost']});

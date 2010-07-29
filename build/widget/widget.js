@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('widget-base', function(Y) {
@@ -458,7 +458,7 @@ Y.extend(Widget, Y.Base, {
             delete _instances[bbGuid];
         }
 
-        Y.each(_delegates, function (info) {
+        Y.each(_delegates, function (info, key) {
             if (info.instances[widgetGuid]) {
                 //  Unregister this Widget instance as needing this delegated
                 //  event listener.
@@ -466,8 +466,13 @@ Y.extend(Widget, Y.Base, {
 
                 //  There are no more Widget instances using this delegated 
                 //  event listener, so detach it.
-                if (Y.Object.size(info.instances) === 0) {
+
+                if (Y.Object.isEmpty(info.instances)) {
                     info.handle.detach();
+
+                    if (_delegates[key]) {
+                        delete _delegates[key];
+                    }
                 }
             }
         });
@@ -1231,16 +1236,14 @@ Y.extend(Widget, Y.Base, {
             info = _delegates[key],
             handle;
 
-        //  For each Node instance: Ensure that there is only one delegated 
+        //  For each Node instance: Ensure that there is only one delegated
         //  event listener used to fire Widget UI events.
 
         if (!info) {
 
-
             handle = parentNode.delegate(type, function (evt) {
 
                 var widget = Widget.getByNode(this);
-
                 //  Make the DOM event a property of the custom event
                 //  so that developers still have access to it.
                 widget.fire(evt.type, { domEvent: evt });
@@ -1248,12 +1251,10 @@ Y.extend(Widget, Y.Base, {
             }, "." + _getWidgetClassName());
 
             _delegates[key] = info = { instances: {}, handle: handle };
-
         }
 
         //  Register this Widget as using this Node as a delegation container.
         info.instances[Y.stamp(this)] = 1;
-
     },
 
     /**
@@ -1336,7 +1337,7 @@ Y.extend(Widget, Y.Base, {
 Y.Widget = Widget;
 
 
-}, '3.1.1' ,{requires:['attribute', 'event-focus', 'base', 'node', 'classnamemanager', 'intl']});
+}, '3.2.0PR1' ,{requires:['attribute', 'event-focus', 'base-base', 'base-pluginhost', 'node-base', 'node-style', 'node-event-delegate', 'classnamemanager']});
 YUI.add('widget-htmlparser', function(Y) {
 
 /**
@@ -1496,8 +1497,8 @@ Y.mix(Widget.prototype, {
 });
 
 
-}, '3.1.1' ,{requires:['widget-base']});
+}, '3.2.0PR1' ,{requires:['widget-base']});
 
 
-YUI.add('widget', function(Y){}, '3.1.1' ,{use:['widget-base', 'widget-htmlparser' ]});
+YUI.add('widget', function(Y){}, '3.2.0PR1' ,{use:['widget-base', 'widget-htmlparser' ]});
 

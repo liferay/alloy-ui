@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('json-parse', function(Y) {
@@ -44,6 +44,9 @@ YUI.add('json-parse', function(Y) {
 
 
 // All internals kept private for security reasons
+function fromGlobal(ref) {
+    return (Y.config.win || this || {})[ref];
+}
 
 
     /**
@@ -53,7 +56,9 @@ YUI.add('json-parse', function(Y) {
      * @type {Object}
      * @private
      */
-var _JSON  = (Y.config.win || {}).JSON,
+var _JSON  = fromGlobal('JSON'),
+    // Create an indirect reference to eval to allow for minification
+    _eval  = fromGlobal('eval'),
     Native = (Object.prototype.toString.call(_JSON) === '[object JSON]' && _JSON),
     useNative = !!Native,
 
@@ -173,29 +178,31 @@ var _JSON  = (Y.config.win || {}).JSON,
     // JavaScript implementation in lieu of native browser support.  Based on
     // the json2.js library from http://json.org
     _parse = function (s,reviver) {
-        if (typeof s === 'string') {
-            // Replace certain Unicode characters that are otherwise handled
-            // incorrectly by some browser implementations.
-            // NOTE: This modifies the input if such characters are found!
-            s = s.replace(_UNICODE_EXCEPTIONS, _escapeException);
-            
-            // Test for any remaining invalid characters
-            if (!_UNSAFE.test(s.replace(_ESCAPES,'@').
-                                replace(_VALUES,']').
-                                replace(_BRACKETS,''))) {
+        // Replace certain Unicode characters that are otherwise handled
+        // incorrectly by some browser implementations.
+        // NOTE: This modifies the input if such characters are found!
+        s = s.replace(_UNICODE_EXCEPTIONS, _escapeException);
+        
+        // Test for any remaining invalid characters
+        if (!_UNSAFE.test(s.replace(_ESCAPES,'@').
+                            replace(_VALUES,']').
+                            replace(_BRACKETS,''))) {
 
-                // Eval the text into a JavaScript data structure, apply any
-                // reviver function, and return
-                return _revive( eval('(' + s + ')'), reviver );
-            }
+            // Eval the text into a JavaScript data structure, apply any
+            // reviver function, and return
+            return _revive( _eval('(' + s + ')'), reviver );
         }
 
         throw new SyntaxError('JSON.parse');
     };
     
 Y.namespace('JSON').parse = function (s,reviver) {
-    return Native && Y.JSON.useNativeParse ?
-        Native.parse(s,reviver) : _parse(s,reviver);
+        if (typeof s !== 'string') {
+            s += '';
+        }
+
+        return Native && Y.JSON.useNativeParse ?
+            Native.parse(s,reviver) : _parse(s,reviver);
 };
 
 function workingNative( k, v ) {
@@ -227,7 +234,7 @@ if ( Native ) {
 Y.JSON.useNativeParse = useNative;
 
 
-}, '3.1.1' );
+}, '3.2.0PR1' );
 YUI.add('json-stringify', function(Y) {
 
 /**
@@ -518,8 +525,8 @@ Y.mix(Y.namespace('JSON'),{
 });
 
 
-}, '3.1.1' );
+}, '3.2.0PR1' );
 
 
-YUI.add('json', function(Y){}, '3.1.1' ,{use:['json-parse', 'json-stringify']});
+YUI.add('json', function(Y){}, '3.2.0PR1' ,{use:['json-parse', 'json-stringify']});
 

@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('get', function(Y) {
@@ -236,7 +236,8 @@ Y.Get = function() {
      * @private
      */
     _next = function(id, loaded) {
-        var q = queues[id], msg, w, d, h, n, url, s;
+        var q = queues[id], msg, w, d, h, n, url, s,
+            insertBefore;
 
         if (q.timer) {
             // q.timer.cancel();
@@ -299,9 +300,13 @@ Y.Get = function() {
         // add the node to the queue so we can return it to the user supplied callback
         q.nodes.push(n);
 
-        // add it to the head or insert it before 'insertBefore'
-        if (q.insertBefore) {
-            s = _get(q.insertBefore, id);
+        // add it to the head or insert it before 'insertBefore'.  Work around IE
+        // bug if there is a base tag.
+        insertBefore = q.insertBefore || 
+                       d.getElementsByTagName('base')[0];
+
+        if (insertBefore) {
+            s = _get(insertBefore, id);
             if (s) {
                 s.parentNode.insertBefore(n, s);
             }
@@ -380,14 +385,8 @@ Y.Get = function() {
 
         q.attributes = q.attributes || {};
         q.attributes.charset = opts.charset || q.attributes.charset || 'utf-8';
-        // var charset = opts.charset || q.attributes.charset;
-        // if (charset) {
-        //     q.attributes.charset = charset;
-        // }
 
-        setTimeout(function() {
-            _next(id);
-        }, 0);
+        _next(id);
 
         return {
             tId: id
@@ -466,16 +465,20 @@ Y.Get = function() {
      * @private
      */
     _purge = function(tId) {
-        var n, l, d, h, s, i, node, attr,
+        var n, l, d, h, s, i, node, attr, insertBefore,
             q = queues[tId];
+            
         if (q) {
             n = q.nodes; 
             l = n.length;
             d = q.win.document;
             h = d.getElementsByTagName("head")[0];
 
-            if (q.insertBefore) {
-                s = _get(q.insertBefore, tId);
+            insertBefore = q.insertBefore || 
+                           d.getElementsByTagName('base')[0];
+
+            if (insertBefore) {
+                s = _get(insertBefore, tId);
                 if (s) {
                     h = s.parentNode;
                 }
@@ -627,7 +630,9 @@ Y.Get = function() {
          * loaded.
          * </dd>
          * <dt>insertBefore</dt>
-         * <dd>node or node id that will become the new node's nextSibling</dd>
+         * <dd>node or node id that will become the new node's nextSibling.  If this
+         * is not specified, nodes will be inserted before a base tag should it exist.
+         * Otherwise, the nodes will be appended to the end of the document head.</dd>
          * </dl>
          * <dt>charset</dt>
          * <dd>Node charset, default utf-8 (deprecated, use the attributes config)</dd>
@@ -723,4 +728,4 @@ Y.Get = function() {
 })();
 
 
-}, '3.1.1' );
+}, '3.2.0PR1' );

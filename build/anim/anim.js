@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('anim-base', function(Y) {
@@ -62,15 +62,16 @@ YUI.add('anim-base', function(Y) {
         NUM = Number;
 
     var _running = {},
-        _instances = {},
         _timer;
 
     Y.Anim = function() {
         Y.Anim.superclass.constructor.apply(this, arguments);
-        _instances[Y.stamp(this)] = this;
+        Y.Anim._instances[Y.stamp(this)] = this;
     };
 
     Y.Anim.NAME = 'anim';
+
+    Y.Anim._instances = {};
 
     /**
      * Regex of properties that should use the default unit.
@@ -124,8 +125,17 @@ YUI.add('anim-base', function(Y) {
      * @static
      */
     Y.Anim.DEFAULT_SETTER = function(anim, att, from, to, elapsed, duration, fn, unit) {
-        unit = unit || '';
-        anim._node.setStyle(att, fn(elapsed, NUM(from), NUM(to) - NUM(from), duration) + unit);
+        var node = anim._node,
+            val = fn(elapsed, NUM(from), NUM(to) - NUM(from), duration);
+
+        if (att in node._node.style || att in Y.DOM.CUSTOM_STYLES) {
+            unit = unit || '';
+            node.setStyle(att, val + unit);
+        } else if (node._node.attributes[att]) {
+            node.setAttribute(att, val);
+        } else {
+            node.set(att, val);
+        }
     };
 
     /**
@@ -134,8 +144,19 @@ YUI.add('anim-base', function(Y) {
      * @property DEFAULT_GETTER
      * @static
      */
-    Y.Anim.DEFAULT_GETTER = function(anim, prop) {
-        return anim._node.getComputedStyle(prop);
+    Y.Anim.DEFAULT_GETTER = function(anim, att) {
+        var node = anim._node,
+            val = '';
+
+        if (att in node._node.style || att in Y.DOM.CUSTOM_STYLES) {
+            val = node.getComputedStyle(att);
+        } else if (node._node.attributes[att]) {
+            val = node.getAttribute(att);
+        } else {
+            val = node.get(att);
+        }
+
+        return val;
     };
 
     Y.Anim.ATTRS = {
@@ -313,9 +334,10 @@ YUI.add('anim-base', function(Y) {
      * @static
      */    
     Y.Anim.run = function() {
-        for (var i in _instances) {
-            if (_instances[i].run) {
-                _instances[i].run();
+        var instances = Y.Anim._instances;
+        for (var i in instances) {
+            if (instances[i].run) {
+                instances[i].run();
             }
         }
     };
@@ -331,6 +353,7 @@ YUI.add('anim-base', function(Y) {
                 _running[i].pause();
             }
         }
+
         Y.Anim._stopTimer();
     };
 
@@ -453,6 +476,8 @@ YUI.add('anim-base', function(Y) {
         _resume: function() {
             this._set(PAUSED, false);
             _running[Y.stamp(this)] = this;
+            this._set(START_TIME, new Date() - this.get(ELAPSED_TIME));
+            Y.Anim._startTimer();
 
             /**
             * @event resume
@@ -621,13 +646,17 @@ YUI.add('anim-base', function(Y) {
             }
 
             return val;
+        },
+
+        destructor: function() {
+            delete Y.Anim._instances[Y.stamp(this)];
         }
     };
 
     Y.extend(Y.Anim, Y.Base, proto);
 
 
-}, '3.1.1' ,{requires:['base-base', 'node-style']});
+}, '3.2.0PR1' ,{requires:['base-base', 'node-style']});
 YUI.add('anim-color', function(Y) {
 
 /**
@@ -675,7 +704,7 @@ Y.each(['backgroundColor',
 );
 
 
-}, '3.1.1' ,{requires:['anim-base']});
+}, '3.2.0PR1' ,{requires:['anim-base']});
 YUI.add('anim-curve', function(Y) {
 
 /**
@@ -732,7 +761,7 @@ Y.Anim.getBezier = function(points, t) {
 };
 
 
-}, '3.1.1' ,{requires:['anim-xy']});
+}, '3.2.0PR1' ,{requires:['anim-xy']});
 YUI.add('anim-easing', function(Y) {
 
 /*
@@ -757,7 +786,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
  * @submodule anim-easing
  */
 
-Y.Easing = {
+var Easing = {
 
     /**
      * Uniform speed between points.
@@ -1079,8 +1108,17 @@ Y.Easing = {
     }
 };
 
+// mappings for native css timing functions
+Easing.ease = Easing.easeBoth;
+Easing.linear = Easing.none;
+Easing['ease-in'] = Easing.easeIn;
+Easing['ease-out'] = Easing.easeOut;
+Easing['ease-in-out'] = Easing.easeBothStrong;
 
-}, '3.1.1' ,{requires:['anim-base']});
+Y.Easing = Easing;
+
+
+}, '3.2.0PR1' );
 YUI.add('anim-node-plugin', function(Y) {
 
 /**
@@ -1106,7 +1144,7 @@ Y.namespace('Plugin');
 Y.Plugin.NodeFX = NodeFX;
 
 
-}, '3.1.1' ,{requires:['node-pluginhost', 'anim-base']});
+}, '3.2.0PR1' ,{requires:['node-pluginhost', 'anim-base']});
 YUI.add('anim-scroll', function(Y) {
 
 /**
@@ -1144,7 +1182,7 @@ Y.Anim.behaviors.scroll = {
 
 
 
-}, '3.1.1' ,{requires:['anim-base']});
+}, '3.2.0PR1' ,{requires:['anim-base']});
 YUI.add('anim-xy', function(Y) {
 
 /**
@@ -1170,8 +1208,8 @@ Y.Anim.behaviors.xy = {
 
 
 
-}, '3.1.1' ,{requires:['anim-base', 'node-screen']});
+}, '3.2.0PR1' ,{requires:['anim-base', 'node-screen']});
 
 
-YUI.add('anim', function(Y){}, '3.1.1' ,{use:['anim-base', 'anim-color', 'anim-curve', 'anim-easing', 'anim-node-plugin', 'anim-scroll', 'anim-xy'], skinnable:false});
+YUI.add('anim', function(Y){}, '3.2.0PR1' ,{skinnable:false, use:['anim-base', 'anim-color', 'anim-curve', 'anim-easing', 'anim-node-plugin', 'anim-scroll', 'anim-xy']});
 

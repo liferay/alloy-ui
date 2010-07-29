@@ -1,0 +1,2847 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.2.0PR1
+build: nightly
+*/
+YUI.add('frame', function(Y) {
+
+    /**
+     * Creates a wrapper around an iframe. It loads the content either from a local
+     * file or from script and creates a local YUI instance bound to that new window and document.
+     * @module editor
+     * @submodule frame
+     */     
+    /**
+     * Creates a wrapper around an iframe. It loads the content either from a local
+     * file or from script and creates a local YUI instance bound to that new window and document.
+     * @class Frame
+     * @for Frame
+     * @extends Base
+     * @constructor
+     */
+
+    var Frame = function() {
+        Frame.superclass.constructor.apply(this, arguments);
+    };
+
+    Y.extend(Frame, Y.Base, {
+        /**
+        * @private
+        * @property _ready
+        * @description Internal reference set when the content is ready.
+        * @type Boolean
+        */
+        _ready: null,
+        /**
+        * @private
+        * @property _rendered
+        * @description Internal reference set when render is called.
+        * @type Boolean
+        */
+        _rendered: null,
+        /**
+        * @private
+        * @property _iframe
+        * @description Internal Node reference to the iFrame or the window
+        * @type Node
+        */
+        _iframe: null,
+        /**
+        * @private
+        * @property _instance
+        * @description Internal reference to the YUI instance bound to the iFrame or window
+        * @type YUI
+        */
+        _instance: null,
+        /**
+        * @private
+        * @method _create
+        * @description Create the iframe or Window and get references to the Document & Window
+        * @return {Object} Hash table containing references to the new Document & Window
+        */
+        _create: function() {
+            var win, doc, res;
+
+            this._iframe = Y.Node.create(Frame.HTML);
+            this._iframe.setStyle('visibility', 'hidden');
+            this._iframe.set('src', this.get('src'));
+            this.get('container').append(this._iframe);
+            res = this._resolveWinDoc();
+            win = res.win;
+            doc = res.doc;
+
+            return {
+                win: win,
+                doc: doc
+            };
+        },
+        /**
+        * @private
+        * @method _resolveWinDoc
+        * @description Resolves the document and window from an iframe or window instance
+        * @param {Object} c The YUI Config to add the window and document to
+        * @return {Object} Object hash of window and document references, if a YUI config was passed, it is returned.
+        */
+        _resolveWinDoc: function(c) {
+            var config = (c) ? c : {};
+            config.win = Y.Node.getDOMNode(this._iframe.get('contentWindow'));
+            config.doc = Y.Node.getDOMNode(this._iframe.get('contentWindow.document'));
+            if (!config.doc) {
+                config.doc = Y.config.doc;
+            }
+            if (!config.win) {
+                config.win = Y.config.win;
+            }
+            return config;
+        },
+        /**
+        * @private
+        * @method _onDomEvent
+        * @description Generic handler for all DOM events fired by the iframe or window. This handler
+        * takes the current EventFacade and augments it to fire on the Frame host. It adds two new properties
+        * to the EventFacade called frameX and frameY which adds the scroll and xy position of the iframe
+        * to the original pageX and pageY of the event so external nodes can be positioned over the frame.
+        * @param {Event.Facade} e
+        */
+        _onDomEvent: function(e) {
+            var xy = this._iframe.getXY(),
+                node = this._instance.one('win');
+
+            //Y.log('onDOMEvent: ' + e.type, 'info', 'frame');
+            e.frameX = xy[0] + e.pageX - node.get('scrollLeft');
+            e.frameY = xy[1] + e.pageY - node.get('scrollTop');
+
+            e.frameTarget = e.target;
+            e.frameCurrentTarget = e.currentTarget;
+            e.frameEvent = e;
+            
+            //TODO: Not sure why this stopped working!!!
+            this.publish(e.type, {
+                emitFacade: true,
+                stoppedFn: Y.bind(function(ev, domev) {
+                    ev.halt();
+                }, this, e),
+                preventedFn: Y.bind(function(ev, domev) {
+                    ev.preventDefault();
+                }, this, e)
+            });
+            this.fire(e.type, e);
+        },
+        initializer: function() {
+            this.publish('ready', {
+                emitFacade: true,
+                defaultFn: this._defReadyFn
+            });
+        },
+        destructor: function() {
+            var inst = this.getInstance();
+
+            inst.one('doc').detachAll();
+            inst = null;
+            this._iframe.remove();
+        },
+        /**
+        * @private
+        * @method _defReadyFn
+        * @description Binds DOM events, sets the iframe to visible and fires the ready event
+        */
+        _defReadyFn: function() {
+            var inst = this.getInstance(),
+                fn = Y.bind(this._onDomEvent, this);
+            
+            Y.each(Y.Node.DOM_EVENTS, function(v, k) {
+                if (v === 1) {
+                    inst.on(k, fn, inst.config.doc);
+                }
+            });
+            inst._use = inst.use;
+            inst.use = Y.bind(this.use, this);
+
+            this._iframe.setStyles({
+                visibility: 'inherit'
+            });
+            inst.one('body').setStyle('display', 'block');
+        },
+        /**
+        * @private
+        * @method _onContentReady
+        * @description Called once the content is available in the frame/window and calls the final use call
+        * on the internal instance so that the modules are loaded properly.
+        */
+        _onContentReady: function(e) {
+            if (!this._ready) {
+                this._ready = true;
+                var inst = this.getInstance(),
+                    args = Y.clone(this.get('use'));
+                
+                this.fire('contentready');
+
+                Y.log('On available for body of iframe', 'info', 'frame');
+                if (e) {
+                    inst.config.doc = Y.Node.getDOMNode(e.target);
+                }
+                //TODO Circle around and deal with CSS loading...
+                args.push(Y.bind(function() {
+                    Y.log('Callback from final internal use call', 'info', 'frame');
+                    this.fire('ready');
+                }, this));
+                Y.log('Calling use on internal instance: ', 'info', 'frame');
+                inst.use.apply(inst, args);
+
+                inst.one('doc').get('documentElement').addClass('yui-js-enabled');
+            }
+        },
+        /**
+        * @private
+        * @method _resolveBaseHref
+        * @description Resolves the basehref of the page the frame is created on. Only applies to dynamic content.
+        * @param {String} href The new value to use, if empty it will be resolved from the current url.
+        * @return {String}
+        */
+        _resolveBaseHref: function(href) {
+            if (!href || href === '') {
+                href = Y.config.doc.location.href;
+                if (href.indexOf('?') !== -1) { //Remove the query string
+                    href = href.substring(0, href.indexOf('?'));
+                }
+                href = href.substring(0, href.lastIndexOf('/')) + '/';
+            }
+            return href;
+        },
+        /**
+        * @private
+        * @method _getHTML
+        * @description Get the content from the iframe
+        * @param {String} html The raw HTML from the body of the iframe.
+        * @return {String}
+        */
+        _getHTML: function(html) {
+            if (this._ready) {
+                var inst = this.getInstance();
+                html = inst.one('body').get('innerHTML');
+            }
+            return html;
+        },
+        /**
+        * @private
+        * @method _setHTML
+        * @description Set the content of the iframe
+        * @param {String} html The raw HTML to set the body of the iframe to.
+        * @return {String}
+        */
+        _setHTML: function(html) {
+            if (this._ready) {
+                var inst = this.getInstance();
+                inst.one('body').set('innerHTML', html);
+            } else {
+                //This needs to be wrapped in a contentready callback for the !_ready state
+                this.on('contentready', Y.bind(function(html, e) {
+                    var inst = this.getInstance();
+                    inst.one('body').set('innerHTML', html);
+                }, this, html));
+            }
+            return html;
+        },
+        /**
+        * @private
+        * @method _setExtraCSS
+        * @description Set's the extra CSS on the instance..
+        */
+        _setExtraCSS: function(css) {
+            if (this._ready) {
+                var inst = this.getInstance(),
+                    node = inst.get('#extra_css');
+                
+                node.remove();
+                inst.one('head').append('<style id="extra_css">' + css + '</style>');
+            }
+            return css;
+        },
+        /**
+        * @private
+        * @method _instanceLoaded
+        * @description Called from the first YUI instance that sets up the internal instance.
+        * This loads the content into the window/frame and attaches the contentready event.
+        * @param {YUI} inst The internal YUI instance bound to the frame/window
+        */
+        _instanceLoaded: function(inst) {
+            this._instance = inst;
+            this._instance.on('contentready', Y.bind(this._onContentReady, this), 'body');
+
+            var html = '',
+                extra_css = ((this.get('extracss')) ? '<style id="extra_css">' + this.get('extracss') + '</style>' : ''),
+                doc = this._instance.config.doc;
+
+            Y.log('Creating the document from javascript', 'info', 'frame');
+            html = Y.substitute(Frame.PAGE_HTML, {
+                DIR: this.get('dir'),
+                LANG: this.get('lang'),
+                TITLE: this.get('title'),
+                META: Frame.META,
+                CONTENT: this.get('content'),
+                BASE_HREF: this.get('basehref'),
+                DEFAULT_CSS: Frame.DEFAULT_CSS,
+                EXTRA_CSS: extra_css
+            });
+            if (Y.config.doc.compatMode != 'BackCompat') {
+                Y.log('Adding Doctype to frame', 'info', 'frame');
+                html = Frame.DOC_TYPE + "\n" + html;
+            } else {
+                Y.log('DocType skipped because we are in BackCompat Mode.', 'warn', 'frame');
+            }
+
+            Y.log('Injecting content into iframe', 'info', 'frame');
+            doc.open();
+            doc.write(html);
+            doc.close();
+            if (this.get('designMode')) {
+                doc.designMode = 'on';
+                if (!Y.UA.ie) {
+                    this._instance.on('domready', function(e) {
+                        try {
+                            //Force other browsers into non CSS styling
+                            doc.execCommand('styleWithCSS', false, false);
+                            doc.execCommand('insertbronreturn', false, false);
+                        } catch (err) {}
+                    });
+                }
+            }
+        },
+        //BEGIN PUBLIC METHODS
+        /**
+        * @method use
+        * @description This is a scoped version of the normal YUI.use method & is bound to this frame/window.
+        * At setup, the inst.use method is mapped to this method.
+        */
+        use: function() {
+            Y.log('Calling augmented use after ready', 'info', 'frame');
+            var inst = this.getInstance(),
+                args = Y.Array(arguments),
+                cb = false;
+
+            if (Y.Lang.isFunction(args[args.length - 1])) {
+                cb = args.pop();
+            }
+            if (cb) {
+                args.push(function() {
+                    Y.log('Internal callback from augmented use', 'info', 'frame');
+                    cb.apply(inst, arguments);
+
+                });
+            }
+            inst._use.apply(inst, args);
+        },
+        /**
+        * @method delegate
+        * @description A delegate method passed to the instance's delegate method
+        * @param {String} type The type of event to listen for
+        * @param {Function} fn The method to attach
+        * @param {String} cont The container to act as a delegate, if no "sel" passed, the body is assumed as the container.
+        * @param {String} sel The selector to match in the event (optional)
+        * @return {EventHandle} The Event handle returned from Y.delegate
+        */
+        delegate: function(type, fn, cont, sel) {
+            var inst = this.getInstance();
+            if (!inst) {
+                Y.log('Delegate events can not be attached until after the ready event has fired.', 'error', 'iframe');
+                return false;
+            }
+            if (!sel) {
+                sel = cont;
+                cont = 'body';
+            }
+            return inst.delegate(type, fn, cont, sel);
+        },
+        /**
+        * @method getInstance
+        * @description Get a reference to the internal YUI instance.
+        * @return {YUI} The internal YUI instance
+        */
+        getInstance: function() {
+            return this._instance;
+        },
+        /**
+        * @method render
+        * @description Render the iframe into the container config option or open the window.
+        * @param {String/HTMLElement/Node} node The node to render to
+        * @return {Y.Frame}
+        * @chainable
+        */
+        render: function(node) {
+            if (this._rendered) {
+                Y.log('Frame already rendered.', 'warn', 'frame');
+                return this;
+            }
+            this._rendered = true;
+            if (node) {
+                this.set('container', node);
+            }
+            var inst, timer,
+                res = this._create(),
+                cb = Y.bind(function(i) {
+                    Y.log('Internal instance loaded with node', 'info', 'frame');
+                    this._instanceLoaded(i);
+                }, this),
+                args = Y.clone(this.get('use')),
+                config = {
+                    debug: false,
+                    bootstrap: false,
+                    win: res.win,
+                    doc: res.doc
+                },
+                fn = Y.bind(function() {
+                    Y.log('New Modules Loaded into main instance', 'info', 'frame');
+                    config = this._resolveWinDoc(config);
+                    inst = YUI(config);
+                    inst.log = Y.log; //Dump the instance logs to the parent instance.
+                    Y.log('Creating new internal instance with node only', 'info', 'frame');
+                    try {
+                        inst.use('node-base', cb);
+                        if (timer) {
+                            clearInterval(timer);
+                        }
+                    } catch (e) {
+                        timer = setInterval(function() {
+                            Y.log('[TIMER] Internal use call failed, retrying', 'info', 'frame');
+                            fn();
+                        }, 350);
+                        Y.log('Internal use call failed, retrying', 'info', 'frame');
+                    }
+                }, this);
+
+            args.push(fn);
+
+            Y.log('Adding new modules to main instance', 'info', 'frame');
+            Y.use.apply(Y, args);
+            return this;
+        },
+        /**
+        * @method focus
+        * @description Set the focus to the iframe
+        * @return {Frame}
+        * @chainable        
+        */
+        focus: function() {
+            if (Y.UA.ie || Y.UA.gecko) {
+                this.getInstance().one('win').focus();
+            } else {
+                try {
+                    Y.one('win').focus();
+                    Y.later(100, this, function() {
+                        this.getInstance().one('win').focus();
+                    });
+                } catch (ferr) {
+                    Y.log('Frame focus failed', 'warn', 'frame');
+                }
+            }
+            return this;
+        },
+        /**
+        * @method show
+        * @description Show the iframe instance
+        * @return {Frame}
+        * @chainable        
+        */
+        show: function() {
+            this._iframe.setStyles({
+                position: 'static',
+                left: ''
+            });
+            if (Y.UA.gecko) {
+                try {
+                    this._instance.config.doc.designMode = 'on';
+                } catch (e) { }
+                this.focus();
+            }           
+            return this;
+        },
+        /**
+        * @method hide
+        * @description Hide the iframe instance
+        * @return {Frame}
+        * @chainable        
+        */
+        hide: function() {
+            this._iframe.setStyles({
+                position: 'absolute',
+                left: '-999999px'
+            });
+            return this;
+        }
+    }, {
+
+        DEFAULT_CSS: 'html { height: 95%; } body { padding: 7px; background-color: #fff; font: 13px/1.22 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small; } a, a:visited, a:hover { color: blue !important; text-decoration: underline !important; cursor: text !important; } img { cursor: pointer !important; border: none; }',
+        
+        //DEFAULT_CSS: 'html { } body { margin: -15px 0 0 -15px; padding: 7px 0 0 15px; display: block; background-color: #fff; font: 13px/1.22 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small; }',
+        //DEFAULT_CSS: 'html { height: 95%; } body { height: 100%; padding: 7px; margin: 0 0 0 -7px; postion: relative; background-color: #fff; font: 13px/1.22 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small; } a, a:visited, a:hover { color: blue !important; text-decoration: underline !important; cursor: text !important; } img { cursor: pointer !important; border: none; }',
+        //DEFAULT_CSS: 'html { margin: 0; padding: 0; border: none; border-size: 0; } body { height: 97%; margin: 0; padding: 0; display: block; background-color: gray; font: 13px/1.22 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small; }',
+        /**
+        * @static
+        * @property HTML
+        * @description The template string used to create the iframe
+        * @type String
+        */
+        HTML: '<iframe border="0" frameBorder="0" marginWidth="0" marginHeight="0" leftMargin="0" topMargin="0" allowTransparency="true" width="100%" height="99%"></iframe>',
+        //HTML: '<iframe border="0" frameBorder="0" width="100%" height="99%"></iframe>',
+        /**
+        * @static
+        * @property PAGE_HTML
+        * @description The template used to create the page when created dynamically.
+        * @type String
+        */
+        PAGE_HTML: '<html dir="{DIR}" lang="{LANG}"><head><title>{TITLE}</title>{META}<base href="{BASE_HREF}"/><style id="editor_css">{DEFAULT_CSS}</style>{EXTRA_CSS}</head><body>{CONTENT}</body></html>',
+        /**
+        * @static
+        * @property DOC_TYPE
+        * @description The DOCTYPE to prepend to the new document when created. Should match the one on the page being served.
+        * @type String
+        */
+        DOC_TYPE: '<!DOCTYPE HTML PUBLIC "-/'+'/W3C/'+'/DTD HTML 4.01/'+'/EN" "http:/'+'/www.w3.org/TR/html4/strict.dtd">',
+        /**
+        * @static
+        * @property META
+        * @description The meta-tag for Content-Type to add to the dynamic document
+        * @type String
+        */
+        META: '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">',
+        //META: '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>',
+        /**
+        * @static
+        * @property NAME
+        * @description The name of the class (frame)
+        * @type String
+        */
+        NAME: 'frame',
+        ATTRS: {
+            /**
+            * @attribute title
+            * @description The title to give the blank page.
+            * @type String
+            */
+            title: {
+                value: 'Blank Page'
+            },
+            /**
+            * @attribute dir
+            * @description The default text direction for this new frame. Default: ltr
+            * @type String
+            */
+            dir: {
+                value: 'ltr'
+            },
+            /**
+            * @attribute lang
+            * @description The default language. Default: en-US
+            * @type String
+            */
+            lang: {
+                value: 'en-US'
+            },
+            /**
+            * @attribute src
+            * @description The src of the iframe/window. Defaults to javascript:;
+            * @type String
+            */
+            src: {
+                //Hackish, IE needs the false in the Javascript URL
+                value: 'javascript' + ((Y.UA.ie) ? ':false' : ':') + ';'
+            },
+            /**
+            * @attribute designMode
+            * @description Should designMode be turned on after creation.
+            * @writeonce
+            * @type Boolean
+            */
+            designMode: {
+                writeOnce: true,
+                value: false
+            },
+            /**
+            * @attribute content
+            * @description The string to inject into the body of the new frame/window.
+            * @type String
+            */
+            content: {
+                value: '<br>',
+                setter: '_setHTML',
+                getter: '_getHTML'
+            },
+            /**
+            * @attribute basehref
+            * @description The base href to use in the iframe.
+            * @type String
+            */
+            basehref: {
+                value: false,
+                getter: '_resolveBaseHref'
+            },
+            /**
+            * @attribute use
+            * @description Array of modules to include in the scoped YUI instance at render time. Default: ['none', 'selector-css2']
+            * @writeonce
+            * @type Array
+            */
+            use: {
+                writeOnce: true,
+                value: ['substitute', 'node', 'selector-css3']
+            },
+            /**
+            * @attribute container
+            * @description The container to append the iFrame to on render.
+            * @type String/HTMLElement/Node
+            */
+            container: {
+                value: 'body',
+                setter: function(n) {
+                    return Y.one(n);
+                }
+            },
+            /**
+            * @attribute id
+            * @description Set the id of the new Node. (optional)
+            * @type String
+            * @writeonce
+            */
+            id: {
+                writeOnce: true,
+                getter: function(id) {
+                    if (!id) {
+                        id = 'iframe-' + Y.guid();
+                    }
+                    return id;
+                }
+            },
+            /**
+            * @attribute extracss
+            * @description A string of CSS to add to the Head of the Editor
+            * @type String
+            */
+            extracss: {
+                value: '',
+                setter: '_setExtraCSS'
+            },
+            /**
+            * @attribute host
+            * @description A reference to the Editor instance 
+            * @type Object
+            */
+            host: {
+                value: false
+            }
+        }
+    });
+
+
+    Y.Frame = Frame;
+
+
+
+}, '3.2.0PR1' ,{requires:['base', 'node', 'selector-css3', 'substitute'], skinnable:false});
+YUI.add('selection', function(Y) {
+
+    /**
+     * Wraps some common Selection/Range functionality into a simple object
+     * @module editor
+     * @submodule selection
+     */     
+    /**
+     * Wraps some common Selection/Range functionality into a simple object
+     * @class Selection
+     * @for Selection
+     * @constructor
+     */
+    
+    //TODO This shouldn't be there, Y.Node doesn't normalize getting textnode content.
+    var textContent = 'textContent',
+    INNER_HTML = 'innerHTML',
+    FONT_FAMILY = 'fontFamily';
+
+    Y.Selection = function() {
+        var sel, par, ieNode, nodes, rng, i;
+
+        if (Y.config.win.getSelection) {
+	        sel = Y.config.win.getSelection();
+        } else if (Y.config.doc.selection) {
+    	    sel = Y.config.doc.selection.createRange();
+        }
+        this._selection = sel;
+        
+        if (sel.pasteHTML) {
+            textContent = 'nodeValue';
+            this.isCollapsed = (sel.compareEndPoints('StartToEnd', sel)) ? false : true;
+
+            if (this.isCollapsed) {
+                this.anchorNode = this.focusNode = Y.one(sel.parentElement());
+                
+                par = sel.parentElement();
+                nodes = par.childNodes;
+                rng = sel.duplicate();
+
+                for (i = 0; i < nodes.length; i++) {
+                    rng.select(nodes[i]);
+                    if (rng.inRange(sel)) {
+                       ieNode = nodes[i]; 
+                    }
+                }
+
+                this.ieNode = ieNode;
+                
+                
+                if (ieNode) {
+                    if (ieNode.nodeType !== 3) {
+                        if (ieNode.firstChild) {
+                            ieNode = ieNode.firstChild;
+                        }
+                    }
+                    this.anchorNode = this.focusNode = Y.Selection.resolve(ieNode);
+                    
+                    this.anchorOffset = this.focusOffset = (this.anchorNode.nodeValue) ? this.anchorNode.nodeValue.length : 0 ;
+                    
+                    this.anchorTextNode = this.focusTextNode = Y.one(ieNode);
+                }
+                
+                
+            }
+
+            //var self = this;
+            //debugger;
+        } else {
+            this.isCollapsed = sel.isCollapsed;
+            this.anchorNode = Y.Selection.resolve(sel.anchorNode);
+            this.focusNode = Y.Selection.resolve(sel.focusNode);
+            this.anchorOffset = sel.anchorOffset;
+            this.focusOffset = sel.focusOffset;
+            
+            this.anchorTextNode = Y.one(sel.anchorNode);
+            this.focusTextNode = Y.one(sel.focusNode);
+        }
+        if (Y.Lang.isString(sel.text)) {
+            this.text = sel.text;
+        } else {
+            this.text = sel.toString();
+        }
+    };
+    
+    /**
+    * Performs a prefilter on all nodes in the editor. Looks for nodes with a style: fontFamily or font face
+    * It then creates a dynamic class assigns it and removed the property. This is so that we don't lose
+    * the fontFamily when selecting nodes.
+    * @static
+    * @method filter
+    */
+    Y.Selection.filter = function(blocks) {
+        var nodes = Y.all(Y.Selection.ALL),
+            baseNodes = Y.all('strong,em'),
+            ls;
+
+        Y.log('Filtering nodes', 'info', 'selection');
+        nodes.each(function(n) {
+            if (n.getStyle(FONT_FAMILY)) {
+                var sheet = new Y.StyleSheet('editor');
+                sheet.set('.' + n._yuid, {
+                    fontFamily: n.getStyle(FONT_FAMILY)
+                });
+                n.addClass(n._yuid);
+                n.removeAttribute('face');
+                n.setStyle(FONT_FAMILY, '');
+                if (n.getAttribute('style') === '') {
+                    n.removeAttribute('style');
+                }
+                //This is for IE
+                if (n.getAttribute('style').toLowerCase() === 'font-family: ') {
+                    n.removeAttribute('style');
+                }
+            }
+        });
+        
+        //Not sure about this one?
+        baseNodes.each(function(n, k) {
+            var t = n.get('tagName').toLowerCase(),
+                newTag = 'i';
+            if (t === 'strong') {
+                newTag = 'b';
+            }
+            Y.Selection.prototype._swap(baseNodes.item(k), newTag);
+        });
+
+        //Filter out all the empty UL/OL's
+        ls = Y.all('ol,ul');
+        ls.each(function(v, k) {
+            var lis = v.all('li');
+            if (!lis.size()) {
+                v.remove();
+            }
+        });
+        
+        if (blocks) {
+            Y.Selection.filterBlocks();
+        }
+    };
+
+    /**
+    * Method attempts to replace all "orphined" text nodes in the main body by wrapping them with a <p>. Called from filter.
+    * @static
+    * @method filterBlocks
+    */
+    Y.Selection.filterBlocks = function() {
+        var childs = Y.config.doc.body.childNodes, i, node, wrapped = false, doit = true,
+            sel, single, br;
+
+        if (childs) {
+            for (i = 0; i < childs.length; i++) {
+                node = Y.one(childs[i]);
+                if (!node.test(Y.Selection.BLOCKS)) {
+                    doit = true;
+                    if (childs[i].nodeType == 3) {
+                        if (childs[i].textContent == '\n') {
+                            doit = false;
+                        }
+                    }
+                    if (doit) {
+                        if (!wrapped) {
+                            wrapped = [];
+                        }
+                        wrapped.push(childs[i]);
+                    }
+                } else {
+                    wrapped = Y.Selection._wrapBlock(wrapped);
+                }
+            }
+            wrapped = Y.Selection._wrapBlock(wrapped);
+        }
+        single = Y.all('p');
+        if (single.size() === 1) {
+            Y.log('Only One Paragragh, focus it..', 'info', 'selection');
+            br = single.item(0).all('br');
+            if (br.size() === 1) {
+                br.item(0).remove();
+                var html = single.item(0).get('innerHTML');
+                if (html == '' || html == ' ') {
+                    single.set('innerHTML', '<span>&nbsp;</span>');
+                    sel = new Y.Selection();
+                    try {
+                        sel.selectNode(single.item(0).get('firstChild'), true);
+                    } catch (er) {}
+                    
+                }
+            }
+        }
+    };
+
+    Y.Selection._wrapBlock = function(wrapped) {
+        if (wrapped) {
+            var newChild = Y.Node.create('<p></p>'),
+                firstChild = Y.one(wrapped[0]), i;
+
+            for (i = 1; i < wrapped.length; i++) {
+                newChild.append(wrapped[i]);
+            }
+            firstChild.replace(newChild);
+            newChild.prepend(firstChild);
+        }
+        return false;
+    };
+
+    /**
+    * Undoes what filter does enough to return the HTML from the Editor, then re-applies the filter.
+    * @static
+    * @method unfilter
+    * @return {String} The filtered HTML
+    */
+    Y.Selection.unfilter = function() {
+        var nodes = Y.all('body [class]'),
+            html = '', nons, ids;
+        
+        Y.log('UnFiltering nodes', 'info', 'selection');
+        
+        nodes.each(function(n) {
+            if (n.hasClass(n._yuid)) {
+                //One of ours
+                n.setStyle(FONT_FAMILY, n.getStyle(FONT_FAMILY));
+                n.removeClass(n._yuid);
+                if (n.getAttribute('class') === '') {
+                    n.removeAttribute('class');
+                }
+            }
+        });
+
+        nons = Y.all('.yui-non');
+        nons.each(function(n) {
+            if (n.get('innerHTML') === '') {
+                n.remove();
+            } else {
+                n.removeClass('yui-non');
+            }
+        });
+
+        ids = Y.all('body [id]');
+        ids.each(function(n) {
+            if (n.get('id').indexOf('yui_3_') === 0) {
+                n.removeAttribute('id');
+                n.removeAttribute('_yuid');
+            }
+        });
+
+        html = Y.one('body').get('innerHTML');
+        
+        nodes.each(function(n) {
+            n.addClass(n._yuid);
+            n.setStyle(FONT_FAMILY, '');
+            if (n.getAttribute('style') === '') {
+                n.removeAttribute('style');
+            }
+        });
+        
+        return html;
+    };
+    /**
+    * Resolve a node from the selection object and return a Node instance
+    * @static
+    * @method resolve
+    * @param {HTMLElement} n The HTMLElement to resolve. Might be a TextNode, gives parentNode.
+    * @return {Node} The Resolved node
+    */
+    Y.Selection.resolve = function(n) {
+        if (n && n.nodeType === 3) {
+            n = n.parentNode;
+        }
+        return Y.one(n);
+    };
+
+    /**
+    * Returns the innerHTML of a node with all HTML tags removed.
+    * @static
+    * @method getText
+    * @param {Node} node The Node instance to remove the HTML from
+    * @return {String} The string of text
+    */
+    Y.Selection.getText = function(node) {
+        return node.get('innerHTML').replace(Y.Selection.STRIP_HTML, '');
+    };
+
+    /**
+    * The selector to use when looking for Nodes to cache the value of: [style],font[face]
+    * @static
+    * @property ALL
+    */
+    Y.Selection.ALL = '[style],font[face]';
+
+    /**
+    * RegExp used to strip HTML tags from a string
+    * @static
+    * @property STRIP_HTML
+    */
+    Y.Selection.STRIP_HTML = /<\S[^><]*>/g;
+
+    /**
+    * The selector to use when looking for block level items.
+    * @static
+    * @property BLOCKS
+    */
+    Y.Selection.BLOCKS = 'p,div,ul,ol,table,style';
+    /**
+    * The temporary fontname applied to a selection to retrieve their values: yui-tmp
+    * @static
+    * @property TMP
+    */
+    Y.Selection.TMP = 'yui-tmp';
+    /**
+    * The default tag to use when creating elements: span
+    * @static
+    * @property DEFAULT_TAG
+    */
+    Y.Selection.DEFAULT_TAG = 'span';
+
+    Y.Selection.CURID = 'yui-cursor';
+
+    Y.Selection.CURSOR = '<span id="' + Y.Selection.CURID + '">&nbsp;</span>';
+
+    Y.Selection.prototype = {
+        /**
+        * Range text value
+        * @property text
+        * @type String
+        */
+        text: null,
+        /**
+        * Flag to show if the range is collapsed or not
+        * @property isCollapsed
+        * @type Boolean
+        */
+        isCollapsed: null,
+        /**
+        * A Node instance of the parentNode of the anchorNode of the range
+        * @property anchorNode
+        * @type Node
+        */
+        anchorNode: null,
+        /**
+        * The offset from the range object
+        * @property anchorOffset
+        * @type Number
+        */
+        anchorOffset: null,
+        /**
+        * A Node instance of the actual textNode of the range.
+        * @property anchorTextNode
+        * @type Node
+        */
+        anchorTextNode: null,
+        /**
+        * A Node instance of the parentNode of the focusNode of the range
+        * @property focusNode
+        * @type Node
+        */
+        focusNode: null,
+        /**
+        * The offset from the range object
+        * @property focusOffset
+        * @type Number
+        */
+        focusOffset: null,
+        /**
+        * A Node instance of the actual textNode of the range.
+        * @property focusTextNode
+        * @type Node
+        */
+        focusTextNode: null,
+        /**
+        * The actual Selection/Range object
+        * @property _selection
+        * @private
+        */
+        _selection: null,
+        /**
+        * Wrap an element, with another element 
+        * @private
+        * @method _wrap
+        * @param {HTMLElement} n The node to wrap 
+        * @param {String} tag The tag to use when creating the new element.
+        * @return {HTMLElement} The wrapped node
+        */
+        _wrap: function(n, tag) {
+            var tmp = Y.Node.create('<' + tag + '></' + tag + '>');
+            tmp.set(INNER_HTML, n.get(INNER_HTML));
+            n.set(INNER_HTML, '');
+            n.append(tmp);
+            return Y.Node.getDOMNode(tmp);
+        },
+        /**
+        * Swap an element, with another element 
+        * @private
+        * @method _swap
+        * @param {HTMLElement} n The node to swap 
+        * @param {String} tag The tag to use when creating the new element.
+        * @return {HTMLElement} The new node
+        */
+        _swap: function(n, tag) {
+            var tmp = Y.Node.create('<' + tag + '></' + tag + '>');
+            tmp.set(INNER_HTML, n.get(INNER_HTML));
+            n.replace(tmp, n);
+            return Y.Node.getDOMNode(tmp);
+        },
+        /**
+        * Get all the nodes in the current selection. This method will actually perform a filter first.
+        * Then it calls doc.execCommand('fontname', null, 'yui-tmp') to touch all nodes in the selection.
+        * The it compiles a list of all nodes affected by the execCommand and builds a NodeList to return.
+        * @method getSelected
+        * @return {NodeList} A NodeList of all items in the selection.
+        */
+        getSelected: function() {
+            Y.Selection.filter();
+            Y.config.doc.execCommand('fontname', null, Y.Selection.TMP);
+            var nodes = Y.all(Y.Selection.ALL),
+                items = [];
+
+            nodes.each(function(n, k) {
+                if (n.getStyle(FONT_FAMILY, Y.Selection.TMP)) {
+                    n.setStyle(FONT_FAMILY, '');
+                    n.removeAttribute('face');
+                    if (n.getAttribute('style') === '') {
+                        n.removeAttribute('style');
+                    }
+                    items.push(Y.Node.getDOMNode(nodes.item(k)));
+                }
+            });
+            return Y.all(items);
+        },
+        /**
+        * Insert HTML at the current cursor position and return a Node instance of the newly inserted element.
+        * @method insertContent
+        * @param {String} html The HTML to insert.
+        * @return {Node} The inserted Node.
+        */
+        insertContent: function(html) {
+            return this.insertAtCursor(html, this.anchorTextNode, this.anchorOffset, true);
+        },
+        /**
+        * Insert HTML at the current cursor position, this method gives you control over the text node to insert into and the offset where to put it.
+        * @method insertAtCursor
+        * @param {String} html The HTML to insert.
+        * @param {Node} node The text node to break when inserting.
+        * @param {Number} offset The left offset of the text node to break and insert the new content.
+        * @param {Boolean} collapse Should the range be collapsed after insertion. default: false
+        * @return {Node} The inserted Node.
+        */
+        insertAtCursor: function(html, node, offset, collapse) {
+            var cur = Y.Node.create('<' + Y.Selection.DEFAULT_TAG + ' class="yui-non"></' + Y.Selection.DEFAULT_TAG + '>'),
+                inHTML, txt, txt2, newNode, range = this.createRange(), b;
+
+                if (node && node.test('body')) {
+                    b = Y.Node.create('<span></span>');
+                    node.append(b);
+                    node = b;
+                }
+
+            
+            if (range.pasteHTML) {
+                newNode = Y.Node.create(html);
+                range.pasteHTML('<span id="rte-insert"></span>');
+                inHTML = Y.one('#rte-insert');
+                if (inHTML) {
+                    inHTML.set('id', '');
+                    inHTML.replace(newNode);
+                    return newNode;
+                } else {
+                    Y.on('available', function() {
+                        inHTML.set('id', '');
+                        inHTML.replace(newNode);
+                    }, '#rte-insert');
+                }
+            } else {
+                //TODO using Y.Node.create here throws warnings & strips first white space character
+                //txt = Y.one(Y.Node.create(inHTML.substr(0, offset)));
+                //txt2 = Y.one(Y.Node.create(inHTML.substr(offset)));
+                if (offset > 0) {
+                    inHTML = node.get(textContent);
+                    txt = Y.one(Y.config.doc.createTextNode(inHTML.substr(0, offset)));
+                    txt2 = Y.one(Y.config.doc.createTextNode(inHTML.substr(offset)));
+                    
+                    node.replace(txt, node);
+                    newNode = Y.Node.create(html);
+                    txt.insert(newNode, 'after');
+                    if (txt2 && txt2.get('length')) {
+                        newNode.insert(cur, 'after');
+                        cur.insert(txt2, 'after');
+                        this.selectNode(cur, collapse);
+                    }
+                } else {
+                    newNode = Y.Node.create(html);
+                    node.append(newNode);
+                }
+            }
+            return newNode;
+        },
+        /**
+        * Get all elements inside a selection and wrap them with a new element and return a NodeList of all elements touched.
+        * @method wrapContent
+        * @param {String} tag The tag to wrap all selected items with.
+        * @return {NodeList} A NodeList of all items in the selection.
+        */
+        wrapContent: function(tag) {
+            tag = (tag) ? tag : Y.Selection.DEFAULT_TAG;
+
+            if (!this.isCollapsed) {
+                Y.log('Wrapping selection with: ' + tag, 'info', 'selection');
+                var items = this.getSelected(),
+                    changed = [], range, last, first, range2;
+
+                items.each(function(n, k) {
+                    var t = n.get('tagName').toLowerCase();
+                    if (t === 'font') {
+                        changed.push(this._swap(items.item(k), tag));
+                    } else {
+                        changed.push(this._wrap(items.item(k), tag));
+                    }
+                }, this);
+                
+		        range = this.createRange();
+                first = changed[0];
+                last = changed[changed.length - 1];
+                if (this._selection.removeAllRanges) {
+                    range.setStart(changed[0], 0);
+                    range.setEnd(last, last.childNodes.length);
+                    this._selection.removeAllRanges();
+                    this._selection.addRange(range);
+                } else {
+                    range.moveToElementText(Y.Node.getDOMNode(first));
+                    range2 = this.createRange();
+                    range2.moveToElementText(Y.Node.getDOMNode(last));
+                    range.setEndPoint('EndToEnd', range2);
+                    range.select();
+                }
+
+                changed = Y.all(changed);
+                Y.log('Returning NodeList with (' + changed.size() + ') item(s)' , 'info', 'selection');
+                return changed;
+
+
+            } else {
+                Y.log('Can not wrap a collapsed selection, use insertContent', 'error', 'selection');
+                return Y.all([]);
+            }
+        },
+        /**
+        * Find and replace a string inside a text node and replace it with HTML focusing the node after 
+        * to allow you to continue to type.
+        * @method replace
+        * @param {String} se The string to search for.
+        * @param {String} re The string of HTML to replace it with.
+        * @return {Node} The node inserted.
+        */
+        replace: function(se,re) {
+            Y.log('replacing (' + se + ') with (' + re + ')');
+            var range = this.createRange(), node, txt, index, newNode;
+
+            if (range.getBookmark) {
+                index = range.getBookmark();
+                txt = this.anchorNode.get('innerHTML').replace(se, re);
+                this.anchorNode.set('innerHTML', txt);
+                range.moveToBookmark(index);
+                newNode = Y.one(range.parentElement());
+            } else {
+                node = this.anchorTextNode;
+                txt = node.get(textContent);
+                index = txt.indexOf(se);
+
+                txt = txt.replace(se, '');
+                node.set(textContent, txt);
+                newNode = this.insertAtCursor(re, node, index, true);
+            }
+            return newNode;
+        },
+        /**
+        * Destroy the range.
+        * @method remove
+        * @chainable
+        * @return {Y.Selection}
+        */
+        remove: function() {
+            this._selection.removeAllRanges();
+            return this;
+        },
+        /**
+        * Wrapper for the different range creation methods.
+        * @method createRange
+        * @return {RangeObject}
+        */
+        createRange: function() {
+            if (Y.config.doc.selection) {
+                return Y.config.doc.selection.createRange();
+            } else {
+		        return Y.config.doc.createRange();
+            }
+        },
+        /**
+        * Select a Node (hilighting it).
+        * @method selectNode
+        * @param {Node} node The node to select
+        * @param {Boolean} collapse Should the range be collapsed after insertion. default: false
+        * @chainable
+        * @return {Y.Selection}
+        */
+        selectNode: function(node, collapse, end) {
+            end = end || 0;
+            node = Y.Node.getDOMNode(node);
+		    var range = this.createRange();
+            if (range.selectNode) {
+                range.selectNode(node);
+                this._selection.removeAllRanges();
+                this._selection.addRange(range);
+                if (collapse) {
+                    try {
+                        this._selection.collapse(node, end);
+                    } catch (e) {
+                        this._selection.collapse(node, 0);
+                    }
+                }
+            } else {
+                if (node.nodeType === 3) {
+                    node = node.parentNode;
+                }
+                range.moveToElementText(node);
+                if (collapse) {
+                    range.collapse(((end) ? false : true));
+                }
+                range.select();
+            }
+            return this;
+        },
+        /**
+        * Put a placeholder in the DOM at the current cursor position.
+        * @method setCursor
+        * @return {Node}
+        */
+        setCursor: function() {
+            return this.insertContent(Y.Selection.CURSOR);
+        },
+        /**
+        * Get the placeholder in the DOM at the current cursor position.
+        * @method getCursor
+        * @return {Node}
+        */
+        getCursor: function() {
+            return Y.one('#' + Y.Selection.CURID);
+        },
+        /**
+        * Remove the cursor placeholder from the DOM.
+        * @method removeCursor
+        * @param {Boolean} keep Setting this to true will keep the node, but remove the unique parts that make it the cursor.
+        * @return {Node}
+        */
+        removeCursor: function(keep) {
+            var cur = this.getCursor();
+            if (cur) {
+                if (keep) {
+                    cur.removeAttribute('id');
+                    cur.set('innerHTML', '&nbsp;');
+                } else {
+                    cur.remove();
+                }
+            }
+            return cur;
+        },
+        /**
+        * Gets a stored cursor and focuses it for editing, must be called sometime after setCursor
+        * @method focusCursor
+        * @return {Node}
+        */
+        focusCursor: function(collapse, end) {
+            if (collapse !== false) {
+                collapse = true;
+            }
+            if (end !== false) {
+                end = true;
+            }
+            var cur = this.removeCursor(true);
+            if (cur) {
+                this.selectNode(cur, collapse, end);
+            }
+        },
+        /**
+        * Generic toString for logging.
+        * @method toString
+        * @return {String}
+        */
+        toString: function() {
+            return 'Selection Object';
+        }
+    };
+
+
+}, '3.2.0PR1' ,{requires:['node'], skinnable:false});
+YUI.add('exec-command', function(Y) {
+
+
+    /**
+     * Plugin for the frame module to handle execCommands for Editor
+     * @module editor
+     * @submodule exec-command
+     */     
+    /**
+     * Plugin for the frame module to handle execCommands for Editor
+     * @class Plugin.ExecCommand
+     * @extends Base
+     * @constructor
+     */
+        var ExecCommand = function() {
+            ExecCommand.superclass.constructor.apply(this, arguments);
+        };
+
+        Y.extend(ExecCommand, Y.Base, {
+            /**
+            * An internal reference to the instance of the frame plugged into.
+            * @private
+            * @property _inst
+            */
+            _inst: null,
+            /**
+            * Execute a command on the frame's document.
+            * @method command
+            * @param {String} action The action to perform (bold, italic, fontname)
+            * @param {String} value The optional value (helvetica)
+            * @return {Node/NodeList} Should return the Node/Nodelist affected
+            */
+            command: function(action, value) {
+                var fn = ExecCommand.COMMANDS[action];
+
+                Y.log('execCommand(' + action + '): "' + value + '"', 'info', 'exec-command');
+                if (fn) {
+                    return fn.call(this, action, value);
+                } else {
+                    return this._command(action, value);
+                }
+            },
+            /**
+            * The private version of execCommand that doesn't filter for overrides.
+            * @private
+            * @method _command
+            * @param {String} action The action to perform (bold, italic, fontname)
+            * @param {String} value The optional value (helvetica)
+            */
+            _command: function(action, value) {
+                var inst = this.getInstance();
+                try {
+                    Y.log('Internal execCommand(' + action + '): "' + value + '"', 'info', 'exec-command');
+                    inst.config.doc.execCommand(action, false, value);
+                } catch (e) {
+                    Y.log(e.message, 'error', 'exec-command');
+                }
+            },
+            /**
+            * Get's the instance of YUI bound to the parent frame
+            * @method getInstance
+            * @return {YUI} The YUI instance bound to the parent frame
+            */
+            getInstance: function() {
+                if (!this._inst) {
+                    this._inst = this.get('host').getInstance();
+                }
+                return this._inst;
+            },
+            initializer: function() {
+                Y.mix(this.get('host'), {
+                    execCommand: function(action, value) {
+                        return this.exec.command(action, value);
+                    },
+                    _execCommand: function(action, value) {
+                        return this.exec._command(action, value);
+                    }
+                });
+            }
+        }, {
+            /**
+            * execCommand
+            * @property NAME
+            * @static
+            */
+            NAME: 'execCommand',
+            /**
+            * exec
+            * @property NS
+            * @static
+            */
+            NS: 'exec',
+            ATTRS: {
+                host: {
+                    value: false
+                }
+            },
+            /**
+            * Static object literal of execCommand overrides
+            * @property COMMANDS
+            * @static
+            */
+            COMMANDS: {
+                /**
+                * Wraps the content with a new element of type (tag)
+                * @method COMMANDS.wrap
+                * @static
+                * @param {String} cmd The command executed: wrap
+                * @param {String} tag The tag to wrap the selection with
+                * @return {NodeList} NodeList of the items touched by this command.
+                */
+                wrap: function(cmd, tag) {
+                    var inst = this.getInstance();
+                    return (new inst.Selection()).wrapContent(tag);
+                },
+                /**
+                * Inserts the provided HTML at the cursor, should be a single element.
+                * @method COMMANDS.inserthtml
+                * @static
+                * @param {String} cmd The command executed: inserthtml
+                * @param {String} html The html to insert
+                * @return {Node} Node instance of the item touched by this command.
+                */
+                inserthtml: function(cmd, html) {
+                    var inst = this.getInstance();
+                    return (new inst.Selection()).insertContent(html);
+                },
+                /**
+                * Inserts the provided HTML at the cursor, and focuses the cursor afterwards.
+                * @method COMMANDS.insertandfocus
+                * @static
+                * @param {String} cmd The command executed: insertandfocus
+                * @param {String} html The html to insert
+                * @return {Node} Node instance of the item touched by this command.
+                */
+                insertandfocus: function(cmd, html) {
+                    var inst = this.getInstance(), out, sel;
+                    html += inst.Selection.CURSOR;
+                    out = this.command('inserthtml', html);
+                    sel = new inst.Selection();
+                    sel.focusCursor(true, true);
+                    return out;
+                },
+                /**
+                * Inserts a BR at the current cursor position
+                * @method COMMANDS.insertbr
+                * @static
+                * @param {String} cmd The command executed: insertbr
+                */
+                insertbr: function(cmd) {
+                    var inst = this.getInstance(), cur,
+                        sel = new inst.Selection();
+
+                    sel.setCursor();
+                    cur = sel.getCursor();
+                    cur.insert('<br>', 'before');
+                    sel.focusCursor(true, false);
+                    return cur.previous();
+                },
+                /**
+                * Inserts an image at the cursor position
+                * @method COMMANDS.insertimage
+                * @static
+                * @param {String} cmd The command executed: insertimage
+                * @param {String} img The url of the image to be inserted
+                * @return {Node} Node instance of the item touched by this command.
+                */
+                insertimage: function(cmd, img) {
+                    return this.command('inserthtml', '<img src="' + img + '">');
+                },
+                /**
+                * Add a class to all of the elements in the selection
+                * @method COMMANDS.addclass
+                * @static
+                * @param {String} cmd The command executed: addclass
+                * @param {String} cls The className to add
+                * @return {NodeList} NodeList of the items touched by this command.
+                */
+                addclass: function(cmd, cls) {
+                    var inst = this.getInstance();
+                    return (new inst.Selection()).getSelected().addClass(cls);
+                },
+                /**
+                * Remove a class from all of the elements in the selection
+                * @method COMMANDS.removeclass
+                * @static
+                * @param {String} cmd The command executed: removeclass
+                * @param {String} cls The className to remove
+                * @return {NodeList} NodeList of the items touched by this command.
+                */
+                removeclass: function(cmd, cls) {
+                    var inst = this.getInstance();
+                    return (new inst.Selection()).getSelected().removeClass(cls);
+                },
+                /**
+                * Adds a background color to the current selection, or creates a new element and applies it
+                * @method COMMANDS.backcolor
+                * @static
+                * @param {String} cmd The command executed: backcolor
+                * @param {String} val The color value to apply
+                * @return {NodeList} NodeList of the items touched by this command.
+                */
+                backcolor: function(cmd, val) {
+                    var inst = this.getInstance(),
+                        sel = new inst.Selection(), n;
+
+                    if (Y.UA.gecko || Y.UA.opera) {
+                        cmd = 'hilitecolor';
+                    }
+                    if (!Y.UA.ie) {
+                        this._command('styleWithCSS', 'true');
+                    }
+                    if (sel.isCollapsed) {
+                        n = this.command('inserthtml', '<span style="background-color: ' + val + '"><span>&nbsp;</span>&nbsp;</span>');
+                        inst.Selection.filterBlocks();
+                        sel.selectNode(n.get('firstChild'));
+                        return n;
+                    } else {
+                        return this._command(cmd, val);
+                    }
+                    if (!Y.UA.ie) {
+                        this._command('styleWithCSS', false);
+                    }
+                },
+                /**
+                * Sugar method, calles backcolor
+                * @method COMMANDS.hilitecolor
+                * @static
+                * @param {String} cmd The command executed: backcolor
+                * @param {String} val The color value to apply
+                * @return {NodeList} NodeList of the items touched by this command.
+                */
+                hilitecolor: function() {
+                    return ExecCommand.COMMANDS.backcolor.apply(this, arguments);
+                },
+                /**
+                * Adds a font name to the current selection, or creates a new element and applies it
+                * @method COMMANDS.fontname
+                * @static
+                * @param {String} cmd The command executed: fontname
+                * @param {String} val The font name to apply
+                * @return {NodeList} NodeList of the items touched by this command.
+                */
+                fontname: function(cmd, val) {
+                    var inst = this.getInstance(),
+                        sel = new inst.Selection(), n;
+
+                    if (sel.isCollapsed) {
+                        n = this.command('inserthtml', '<span style="font-family: ' + val + '">&nbsp;</span>');
+                        sel.selectNode(n.get('firstChild'), true);
+                        return n;
+                    } else {
+                        return this._command('fontname', val);
+                    }
+                },
+                /**
+                * Adds a fontsize to the current selection, or creates a new element and applies it
+                * @method COMMANDS.fontsize
+                * @static
+                * @param {String} cmd The command executed: fontsize
+                * @param {String} val The font size to apply
+                * @return {NodeList} NodeList of the items touched by this command.
+                */
+                fontsize: function(cmd, val) {
+                    var inst = this.getInstance(),
+                        sel = new inst.Selection(), n;
+
+                    if (sel.isCollapsed) {
+                        n = this.command('inserthtml', '<font size="' + val + '">&nbsp;</font>');
+                        sel.selectNode(n.get('firstChild'), true);
+                        return n;
+                    } else {
+                        return this._command('fontsize', val);
+                    }
+                }
+            }
+        });
+
+        Y.namespace('Plugin');
+        Y.Plugin.ExecCommand = ExecCommand;
+
+
+
+}, '3.2.0PR1' ,{requires:['frame'], skinnable:false});
+YUI.add('editor-tab', function(Y) {
+
+    /**
+     * Handles tab and shift-tab indent/outdent support.
+     * @module editor
+     * @submodule editor-tab
+     */     
+    /**
+     * Handles tab and shift-tab indent/outdent support.
+     * @class Plugin.EditorTab
+     * @constructor
+     * @extends Base
+     */
+    
+    var EditorTab = function() {
+        EditorTab.superclass.constructor.apply(this, arguments);
+    }, HOST = 'host';
+
+    Y.extend(EditorTab, Y.Base, {
+        /**
+        * Listener for host's nodeChange event and captures the tabkey interaction.
+        * @private
+        * @method _onNodeChange
+        * @param {Event} e The Event facade passed from the host.
+        */
+        _onNodeChange: function(e) {
+            var action = 'indent';
+
+            if (e.changedType === 'tab') {
+                if (!e.changedNode.test('li, li *')) {
+                    e.changedEvent.halt();
+                    e.preventDefault();
+                    if (e.changedEvent.shiftKey) {
+                        action = 'outdent';
+                    }
+
+                    Y.log('Overriding TAB to ' + action, 'info', 'editorTab');
+                    this.get(HOST).execCommand(action, '');
+                }
+            }
+        },
+        initializer: function() {
+            this.get(HOST).on('nodeChange', Y.bind(this._onNodeChange, this));
+        }
+    }, {
+        /**
+        * editorTab
+        * @property NAME
+        * @static
+        */
+        NAME: 'editorTab',
+        /**
+        * tab
+        * @property NS
+        * @static
+        */
+        NS: 'tab',
+        ATTRS: {
+            host: {
+                value: false
+            }
+        }
+    });
+
+
+    Y.namespace('Plugin');
+
+    Y.Plugin.EditorTab = EditorTab;
+
+
+}, '3.2.0PR1' ,{requires:['editor-base'], skinnable:false});
+YUI.add('createlink-base', function(Y) {
+
+    /**
+     * Adds prompt style link creation. Adds an override for the <a href="Plugin.ExecCommand.html#method_COMMANDS.createlink">createlink execCommand</a>.
+     * @module editor
+     * @submodule createlink-base
+     */     
+    /**
+     * Adds prompt style link creation. Adds an override for the <a href="Plugin.ExecCommand.html#method_COMMANDS.createlink">createlink execCommand</a>.
+     * @class Plugin.CreateLinkBase
+     * @static
+     */
+    
+    var CreateLinkBase = {};
+    /**
+    * Strings used by the plugin
+    * @property STRINGS
+    * @static
+    */
+    CreateLinkBase.STRINGS = {
+            /**
+            * String used for the Prompt
+            * @property PROMPT
+            * @static
+            */
+            PROMPT: 'Please enter the URL for the link to point to:',
+            /**
+            * String used as the default value of the Prompt
+            * @property DEFAULT
+            * @static
+            */
+            DEFAULT: 'http://'
+    };
+
+    Y.namespace('Plugin');
+    Y.Plugin.CreateLinkBase = CreateLinkBase;
+
+    Y.mix(Y.Plugin.ExecCommand.COMMANDS, {
+        /**
+        * Override for the createlink method from the <a href="Plugin.CreateLinkBase.html">CreateLinkBase</a> plugin.
+        * @for ExecCommand
+        * @method COMMANDS.createlink
+        * @static
+        * @param {String} cmd The command executed: createlink
+        * @return {Node} Node instance of the item touched by this command.
+        */
+        createlink: function(cmd) {
+            var inst = this.get('host').getInstance(), out, a, sel,
+                url = prompt(CreateLinkBase.STRINGS.PROMPT, CreateLinkBase.STRINGS.DEFAULT);
+
+            if (url) {
+                Y.log('Adding link: ' + url, 'info', 'createLinkBase');
+                this.get('host')._execCommand(cmd, url);
+                sel = new inst.Selection();
+                out = sel.getSelected();
+                if (!sel.isCollapsed && out.size()) {
+                    //We have a selection
+                    a = out.item(0).one('a');
+                    out.item(0).replace(a);
+                } else {
+                    //No selection, insert a new node..
+                    this.get('host').execCommand('inserthtml', '<a href="' + url + '">' + url + '</a>');
+                }
+            }
+            return a;
+        }
+    });
+
+
+
+}, '3.2.0PR1' ,{requires:['editor-base'], skinnable:false});
+YUI.add('editor-base', function(Y) {
+
+
+    /**
+     * Base class for Editor. Handles the business logic of Editor, no GUI involved only utility methods and events.
+     * @module editor
+     * @submodule editor-base
+     */     
+    /**
+     * Base class for Editor. Handles the business logic of Editor, no GUI involved only utility methods and events.
+     * @class EditorBase
+     * @for EditorBase
+     * @extends Base
+     * @constructor
+     */
+    
+    var EditorBase = function() {
+        EditorBase.superclass.constructor.apply(this, arguments);
+    };
+
+    Y.extend(EditorBase, Y.Base, {
+        /**
+        * Internal reference to the Y.Frame instance
+        * @property frame
+        */
+        frame: null,
+        initializer: function() {
+            var frame = new Y.Frame({
+                designMode: true,
+                title: EditorBase.STRINGS.title,
+                use: EditorBase.USE,
+                dir: this.get('dir'),
+                extracss: this.get('extracss'),
+                host: this
+            }).plug(Y.Plugin.ExecCommand);
+
+            frame.after('ready', Y.bind(this._afterFrameReady, this));
+            frame.addTarget(this);
+            this.frame = frame;
+
+            this.publish('nodeChange', {
+                emitFacade: true,
+                bubbles: true,
+                defaultFn: this._defNodeChangeFn
+            });
+        },
+        destructor: function() {
+            this.frame.destroy();
+
+            this.detachAll();
+        },
+        /**
+        * Copy certain styles from one node instance to another (used for new paragraph creation mainly)
+        * @method copyStyles
+        * @param {Node} from The Node instance to copy the styles from 
+        * @param {Node} to The Node instance to copy the styles to
+        */
+        copyStyles: function(from, to) {
+            var styles = ['color', 'fontSize', 'fontFamily', 'backgroundColor', 'fontStyle' ],
+                newStyles = {};
+
+            Y.each(styles, function(v) {
+                newStyles[v] = from.getStyle(v);
+            });
+            if (from.ancestor('b,strong')) {
+                newStyles.fontWeight = 'bold';
+            }
+            to.setStyles(newStyles);
+        },
+        /**
+        * The default handler for the nodeChange event.
+        * @method _defNodeChangeFn
+        * @param {Event} e The event
+        * @private
+        */
+        _defNodeChangeFn: function(e) {
+            //Y.log('Default nodeChange function: ' + e.changedType, 'info', 'editor');
+            var inst = this.getInstance();
+
+            /*
+            * @TODO
+            * This whole method needs to be fixed and made more dynamic.
+            * Maybe static functions for the e.changeType and an object bag
+            * to walk through and filter to pass off the event to before firing..
+            */
+            
+            switch (e.changedType) {
+                case 'enter':
+                    if (Y.UA.webkit) {
+                        //Webkit doesn't support shift+enter as a BR, this fixes that.
+                        if (e.changedEvent.shiftKey) {
+                            this.execCommand('insertbr');
+                            e.changedEvent.preventDefault();
+                        }
+                    }
+                    break;
+                case 'tab':
+                    if (!e.changedNode.test('li, li *') && !e.changedEvent.shiftKey) {
+                        Y.log('Overriding TAB key to insert HTML', 'info', 'editor');
+                        var sel = new inst.Selection();
+                        sel.setCursor();
+                        var cur = sel.getCursor();
+                        cur.insert(EditorBase.TABKEY, 'before');
+                        sel.focusCursor();
+                        e.changedEvent.preventDefault();
+                    }
+                    break;
+                case 'enter-up':
+                    if (e.changedNode.test('p')) {
+                        var prev = e.changedNode.previous(), lc, lc2, found = false;
+                        if (prev) {
+                            lc = prev.one(':last-child');
+                            while (!found) {
+                                if (lc) {
+                                    lc2 = lc.one(':last-child');
+                                    if (lc2) {
+                                        lc = lc2;
+                                    } else {
+                                        found = true;
+                                    }
+                                } else {
+                                    found = true;
+                                }
+                            }
+                            if (lc) {
+                                this.copyStyles(lc, e.changedNode);
+                            }
+                        }
+                    }
+                    break;
+            }
+
+            var changed = this.getDomPath(e.changedNode),
+                cmds = {}, family, fsize, classes = [],
+                fColor = '', bColor = '';
+
+            if (e.commands) {
+                cmds = e.commands;
+            }
+
+            changed.each(function(n) {
+                var tag = n.get('tagName').toLowerCase(),
+                    cmd = EditorBase.TAG2CMD[tag],
+                    el = Y.Node.getDOMNode(n);
+
+                if (cmd) {
+                    cmds[cmd] = 1;
+                }
+
+                //Bold and Italic styles
+                var s = el.style;
+                if (s.fontWeight.toLowerCase() == 'bold') {
+                    cmds.bold = 1;
+                }
+                if (s.fontStyle.toLowerCase() == 'italic') {
+                    cmds.italic = 1;
+                }
+                if (s.textDecoration.toLowerCase() == 'underline') {
+                    cmds.underline = 1;
+                }
+                if (s.textDecoration.toLowerCase() == 'line-through') {
+                    cmds.strikethrough = 1;
+                }
+
+                var family2 = n.getStyle('fontFamily').split(',')[0].toLowerCase();
+                if (family2) {
+                    family = family2;
+                }
+                fsize = n.getStyle('fontSize');
+
+                var cls = n.get('className').split(' ');
+                Y.each(cls, function(v) {
+                    if (v !== '' && (v.substr(0, 4) !== 'yui_')) {
+                        classes.push(v);
+                    }
+                });
+
+                fColor = EditorBase.FILTER_RGB(n.getStyle('color'));
+                var bColor2 = EditorBase.FILTER_RGB(n.getStyle('backgroundColor'));
+                if (bColor2 !== 'transparent') {
+                    bColor = bColor2;
+                }
+                
+            });
+            
+            e.dompath = changed;
+            e.classNames = classes;
+            e.commands = cmds;
+
+            //TODO Dont' like this, not dynamic enough..
+            if (!e.fontFamily) {
+                e.fontFamily = family;
+            }
+            if (!e.fontSize) {
+                e.fontSize = fsize;
+            }
+            if (!e.fontColor) {
+                e.fontColor = fColor;
+            }
+            if (!e.backgroundColor) {
+                e.backgroundColor = bColor;
+            }
+        },
+        /**
+        * Walk the dom tree from this node up to body, returning a reversed array of parents.
+        * @method getDomPath
+        * @param {Node} node The Node to start from 
+        */
+        getDomPath: function(node) {
+            
+			var domPath = [],
+                inst = this.frame.getInstance();
+
+            while (node !== null) {
+                if (node.test('html') || node.test('doc') || !node.get('tagName')) {
+                    node = null;
+                    break;
+                }
+                if (!node.inDoc()) {
+                    node = null;
+                    break;
+                }
+                //Check to see if we get el.nodeName and nodeType
+                if (node.get('nodeName') && node.get('nodeType') && (node.get('nodeType') == 1)) {
+                    domPath.push(inst.Node.getDOMNode(node));
+                }
+
+                if (node.test('body')) {
+                    node = null;
+                    break;
+                }
+
+                node = node.get('parentNode');
+            }
+            if (domPath.length === 0) {
+                domPath[0] = inst.config.doc.body;
+            }
+            
+            return inst.all(domPath.reverse());
+
+        },
+        /**
+        * After frame ready, bind mousedown & keyup listeners
+        * @method _afterFrameReady
+        * @private
+        */
+        _afterFrameReady: function() {
+            var inst = this.frame.getInstance();
+            this.frame.on('mousedown', Y.bind(this._onFrameMouseDown, this));
+            this.frame.on('keyup', Y.bind(this._onFrameKeyUp, this));
+            this.frame.on('keydown', Y.bind(this._onFrameKeyDown, this));
+            this.frame.on('keypress', Y.bind(this._onFrameKeyPress, this));
+            inst.Selection.filter();
+            this.fire('ready');
+        },
+        /**
+        * Fires nodeChange event
+        * @method _onFrameMouseDown
+        * @private
+        */
+        _onFrameMouseDown: function(e) {
+            this.fire('nodeChange', { changedNode: e.frameTarget, changedType: 'mousedown', changedEvent: e  });
+        },
+        /**
+        * Fires nodeChange event for keyup on specific keys
+        * @method _onFrameKeyUp
+        * @private
+        */
+        _onFrameKeyUp: function(e) {
+            var inst = this.frame.getInstance(),
+                sel = new inst.Selection();
+            
+            if (sel.anchorNode) {
+                this.fire('nodeChange', { changedNode: sel.anchorNode, changedType: 'keyup', selection: sel, changedEvent: e  });
+                if (EditorBase.NC_KEYS[e.keyCode]) {
+                    this.fire('nodeChange', { changedNode: sel.anchorNode, changedType: EditorBase.NC_KEYS[e.keyCode] + '-up', selection: sel, changedEvent: e  });
+                }
+            }
+        },
+        /**
+        * Fires nodeChange event
+        * @method _onFrameKeyDown
+        * @private
+        */
+        _onFrameKeyDown: function(e) {
+            var inst = this.frame.getInstance(),
+                sel = new inst.Selection();
+
+            if (sel.anchorNode) {
+                this.fire('nodeChange', { changedNode: sel.anchorNode, changedType: 'keydown', changedEvent: e });
+                if (EditorBase.NC_KEYS[e.keyCode]) {
+                    this.fire('nodeChange', { changedNode: sel.anchorNode, changedType: EditorBase.NC_KEYS[e.keyCode], changedEvent: e });
+                    this.fire('nodeChange', { changedNode: sel.anchorNode, changedType: EditorBase.NC_KEYS[e.keyCode] + '-down', changedEvent: e });
+                }
+            }
+        },
+        /**
+        * Fires nodeChange event
+        * @method _onFrameKeyPress
+        * @private
+        */
+        _onFrameKeyPress: function(e) {
+            var inst = this.frame.getInstance(),
+                sel = new inst.Selection();
+
+            if (sel.anchorNode) {
+                this.fire('nodeChange', { changedNode: sel.anchorNode, changedType: 'keypress', changedEvent: e });
+                if (EditorBase.NC_KEYS[e.keyCode]) {
+                    this.fire('nodeChange', { changedNode: sel.anchorNode, changedType: EditorBase.NC_KEYS[e.keyCode] + '-press', changedEvent: e });
+                }
+            }
+        },
+        /**
+        * Pass through to the frame.execCommand method
+        * @method execCommand
+        * @param {String} cmd The command to pass: inserthtml, insertimage, bold
+        * @param {String} val The optional value of the command: Helvetica
+        * @return {Node/NodeList} The Node or Nodelist affected by the command. Only returns on override commands, not browser defined commands.
+        */
+        execCommand: function(cmd, val) {
+            var ret = this.frame.execCommand(cmd, val),
+                inst = this.frame.getInstance(),
+                sel = new inst.Selection(), cmds = {},
+                e = { changedNode: sel.anchorNode, changedType: 'execcommand', nodes: ret };
+
+            switch (cmd) {
+                case 'forecolor':
+                    e.fontColor = val;
+                    break;
+                case 'backcolor':
+                    e.backgroundColor = val;
+                    break;
+                case 'fontsize':
+                    e.fontSize = val;
+                    break;
+                case 'fontname':
+                    e.fontFamily = val;
+                    break;
+            }
+
+            cmds[cmd] = 1;
+            e.commands = cmds;
+
+            this.fire('nodeChange', e);
+
+            return ret;
+        },
+        /**
+        * Get the YUI instance of the frame
+        * @method getInstance
+        * @return {YUI} The YUI instance bound to the frame.
+        */
+        getInstance: function() {
+            return this.frame.getInstance();
+        },
+        /**
+        * Renders the Y.Frame to the passed node.
+        * @method render
+        * @param {Selector/HTMLElement/Node} node The node to append the Editor to
+        * @return {EditorBase}
+        * @chainable
+        */
+        render: function(node) {
+            this.frame.set('content', this.get('content'));
+            this.frame.render(node);
+            return this;
+        },
+        /**
+        * Focus the contentWindow of the iframe
+        * @method focus
+        * @return {EditorBase}
+        * @chainable
+        */
+        focus: function() {
+            this.frame.focus();
+            return this;
+        },
+        /**
+        * Handles the showing of the Editor instance. Currently only handles the iframe
+        * @method show
+        * @return {EditorBase}
+        * @chainable
+        */
+        show: function() {
+            this.frame.show();
+            return this;
+        },
+        /**
+        * Handles the hiding of the Editor instance. Currently only handles the iframe
+        * @method hide
+        * @return {EditorBase}
+        * @chainable
+        */
+        hide: function() {
+            this.frame.hide();
+            return this;
+        },
+        /**
+        * (Un)Filters the content of the Editor, cleaning YUI related code. //TODO better filtering
+        * @method getContent
+        * @return {String} The filtered content of the Editor
+        */
+        getContent: function() {
+            var html = '', inst = this.getInstance();
+            if (inst && inst.Selection) {
+                html = inst.Selection.unfilter();
+            }
+            //Removing the _yuid from the objects in IE
+            html = html.replace(/ _yuid="([^>]*)"/g, '');
+            return html;
+        }
+    }, {
+        /**
+        * @static
+        * @property TABKEY
+        * @description The HTML markup to use for the tabkey
+        */
+        TABKEY: '<span class="tab">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>',
+        /**
+        * @static
+        * @method FILTER_RGB
+        * @param String css The CSS string containing rgb(#,#,#);
+        * @description Converts an RGB color string to a hex color, example: rgb(0, 255, 0) converts to #00ff00
+        * @return String
+        */
+        FILTER_RGB: function(css) {
+            if (css.toLowerCase().indexOf('rgb') != -1) {
+                var exp = new RegExp("(.*?)rgb\\s*?\\(\\s*?([0-9]+).*?,\\s*?([0-9]+).*?,\\s*?([0-9]+).*?\\)(.*?)", "gi");
+                var rgb = css.replace(exp, "$1,$2,$3,$4,$5").split(',');
+            
+                if (rgb.length == 5) {
+                    var r = parseInt(rgb[1], 10).toString(16);
+                    var g = parseInt(rgb[2], 10).toString(16);
+                    var b = parseInt(rgb[3], 10).toString(16);
+
+                    r = r.length == 1 ? '0' + r : r;
+                    g = g.length == 1 ? '0' + g : g;
+                    b = b.length == 1 ? '0' + b : b;
+
+                    css = "#" + r + g + b;
+                }
+            }
+            return css;
+        },        
+        /**
+        * @static
+        * @property TAG2CMD
+        * @description A hash table of tags to their execcomand's
+        */
+        TAG2CMD: {
+            'b': 'bold',
+            'strong': 'bold',
+            'i': 'italic',
+            'em': 'italic',
+            'u': 'underline',
+            'sup': 'superscript',
+            'sub': 'subscript',
+            'img': 'insertimage',
+            'a' : 'createlink',
+            'ul' : 'insertunorderedlist',
+            'ol' : 'insertorderedlist'
+        },
+        /**
+        * Hash table of keys to fire a nodeChange event for.
+        * @static
+        * @property NC_KEYS
+        * @type Object
+        */
+        NC_KEYS: {
+            8: 'backspace',
+            9: 'tab',
+            13: 'enter',
+            32: 'space',
+            33: 'pageup',
+            34: 'pagedown',
+            35: 'end',
+            36: 'home',
+            37: 'left',
+            38: 'up',
+            39: 'right',
+            40: 'down',
+            46: 'delete'
+        },
+        /**
+        * The default modules to use inside the Frame
+        * @static
+        * @property USE
+        * @type Array
+        */
+        USE: ['substitute', 'node','selector-css3', 'selection', 'stylesheet'],
+        /**
+        * The Class Name: editorBase
+        * @static
+        * @property NAME
+        */
+        NAME: 'editorBase',
+        /**
+        * Editor Strings
+        * @static
+        * @property STRINGS
+        */
+        STRINGS: {
+            /**
+            * Title of frame document: Rich Text Editor
+            * @static
+            * @property STRINGS.title
+            */
+            title: 'Rich Text Editor'
+        },
+        ATTRS: {
+            /**
+            * The content to load into the Editor Frame
+            * @attribute content
+            */
+            content: {
+                value: '<br>',
+                setter: function(str) {
+                    if (str.substr(0, 1) === "\n") {
+                        Y.log('Stripping first carriage return from content before injecting', 'warn', 'editor');
+                        str = str.substr(1);
+                    }
+                    if (str === '') {
+                        str = '<br>';
+                    }
+                    return this.frame.set('content', str);
+                },
+                getter: function() {
+                    return this.frame.get('content');
+                }
+            },
+            /**
+            * The value of the dir attribute on the HTML element of the frame. Default: ltr
+            * @attribute dir
+            */
+            dir: {
+                writeOnce: true,
+                value: 'ltr'
+            },
+            /**
+            * @attribute extracss
+            * @description A string of CSS to add to the Head of the Editor
+            * @type String
+            */            
+            extracss: {
+                value: false,
+                setter: function(css) {
+                    if (this.frame) {
+                        this.frame.set('extracss', css);
+                    }
+                    return css;
+                }
+            }
+        }
+    });
+
+    Y.EditorBase = EditorBase;
+
+    /**
+    * @event nodeChange
+    * @description Fired from mouseup & keyup.
+    * @param {Event.Facade} event An Event Facade object with the following specific properties added:
+    * <dl>
+    *   <dt>changedEvent</dt><dd>The event that caused the nodeChange</dd>
+    *   <dt>changedNode</dt><dd>The node that was interacted with</dd>
+    *   <dt>changedType</dt><dd>The type of change: mousedown, mouseup, right, left, backspace, tab, enter, etc..</dd>
+    *   <dt>commands</dt><dd>The list of execCommands that belong to this change and the dompath that's associated with the changedNode</dd>
+    *   <dt>classNames</dt><dd>An array of classNames that are applied to the changedNode and all of it's parents</dd>
+    *   <dt>dompath</dt><dd>A sorted array of node instances that make up the DOM path from the changedNode to body.</dd>
+    *   <dt>backgroundColor</dt><dd>The cascaded backgroundColor of the changedNode</dd>
+    *   <dt>fontColor</dt><dd>The cascaded fontColor of the changedNode</dd>
+    *   <dt>fontFamily</dt><dd>The cascaded fontFamily of the changedNode</dd>
+    *   <dt>fontSize</dt><dd>The cascaded fontSize of the changedNode</dd>
+    * </dl>
+    * @type {Event.Custom}
+    */
+
+    /**
+    * @event ready
+    * @description Fired after the frame is ready.
+    * @param {Event.Facade} event An Event Facade object.
+    * @type {Event.Custom}
+    */
+
+
+
+
+
+}, '3.2.0PR1' ,{requires:['base', 'frame', 'node', 'exec-command'], skinnable:false});
+YUI.add('editor-lists', function(Y) {
+
+    /**
+     * Handles list manipulation inside the Editor. Adds keyboard manipulation and execCommand support. Adds overrides for the <a href="Plugin.ExecCommand.html#method_COMMANDS.insertorderedlist">insertorderedlist</a> and <a href="Plugin.ExecCommand.html#method_COMMANDS.insertunorderedlist">insertunorderedlist</a> execCommands.
+     * @module editor
+     * @submodule editor-lists
+     */     
+    /**
+     * Handles list manipulation inside the Editor. Adds keyboard manipulation and execCommand support. Adds overrides for the <a href="Plugin.ExecCommand.html#method_COMMANDS.insertorderedlist">insertorderedlist</a> and <a href="Plugin.ExecCommand.html#method_COMMANDS.insertunorderedlist">insertunorderedlist</a> execCommands.
+     * @class Plugin.EditorLists
+     * @constructor
+     * @extends Base
+     */
+    
+    var EditorLists = function() {
+        EditorLists.superclass.constructor.apply(this, arguments);
+    }, LI = 'li', OL = 'ol', UL = 'ul', HOST = 'host';
+
+    Y.extend(EditorLists, Y.Base, {
+        /**
+        * Listener for host's nodeChange event and captures the tabkey interaction only when inside a list node.
+        * @private
+        * @method _onNodeChange
+        * @param {Event} e The Event facade passed from the host.
+        */
+        _onNodeChange: function(e) {
+            var inst = this.get(HOST).getInstance(), sel, li, 
+            newLi, newList, sTab, par, moved = false, tag;
+
+            if (Y.UA.ie && e.changedType === 'enter') {
+                if (e.changedNode.test(LI + ', ' + LI + ' *')) {
+                    e.changedEvent.halt();
+                    e.preventDefault();
+                    li = e.changedNode;
+                    newLi = inst.Node.create('<' + LI + '>' + EditorLists.NON + '</' + LI + '>');
+                        
+                    if (!li.test(LI)) {
+                        li = li.ancestor(LI);
+                    }
+                    li.insert(newLi, 'after');
+                    
+                    sel = new inst.Selection();
+                    sel.selectNode(newLi.get('firstChild'));
+                }
+            }
+            if (e.changedType === 'tab') {
+                if (e.changedNode.test(LI + ', ' + LI + ' *')) {
+                    Y.log('Overriding TAB to move lists around', 'info', 'editorLists');
+                    e.changedEvent.halt();
+                    e.preventDefault();
+                    li = e.changedNode;
+                    sTab = e.changedEvent.shiftKey;
+                    par = li.ancestor(OL + ',' + UL);
+                    tag = UL;
+
+
+                    if (par.get('tagName').toLowerCase() === OL) {
+                        tag = OL;
+                    }
+                    Y.log('ShiftKey: ' + sTab, 'info', 'editorLists');
+                    
+                    if (!li.test(LI)) {
+                        li = li.ancestor(LI);
+                    }
+                    if (sTab) {
+                        if (li.ancestor(LI)) {
+                            Y.log('Shifting list up one level', 'info', 'editorLists');
+                            li.ancestor(LI).insert(li, 'after');
+                            moved = true;
+                        }
+                    } else {
+                        //li.setStyle('border', '1px solid red');
+                        if (li.previous(LI)) {
+                            Y.log('Shifting list down one level', 'info', 'editorLists');
+                            newList = inst.Node.create('<' + tag + '></' + tag + '>');
+                            li.previous(LI).append(newList);
+                            newList.append(li);
+                            moved = true;
+                        }
+                    }
+                }
+                if (moved) {
+                    li.all(EditorLists.REMOVE).remove();
+                    if (Y.UA.ie) {
+                        li = li.append(EditorLists.NON).one(EditorLists.NON_SEL);
+                    }
+                    //Selection here..
+                    Y.log('Selecting the new node', 'info', 'editorLists');
+                    (new inst.Selection()).selectNode(li, true, true);
+                }
+            }
+        },
+        initializer: function() {
+            this.get(HOST).on('nodeChange', Y.bind(this._onNodeChange, this));
+        }
+    }, {
+        NON: '<span class="yui-non">&nbsp;</span>',
+        NON_SEL: 'span.yui-non',
+        /**
+        * The items to removed from a list when a list item is moved, currently removes BR nodes
+        * @property REMOVE
+        * @static
+        */
+        REMOVE: 'br',
+        /**
+        * editorLists
+        * @property NAME
+        * @static
+        */
+        NAME: 'editorLists',
+        /**
+        * lists
+        * @property NS
+        * @static
+        */
+        NS: 'lists',
+        ATTRS: {
+            host: {
+                value: false
+            }
+        }
+    });
+
+
+    Y.namespace('Plugin');
+
+    Y.Plugin.EditorLists = EditorLists;
+
+    Y.mix(Y.Plugin.ExecCommand.COMMANDS, {
+        /**
+        * Override for the insertunorderedlist method from the <a href="Plugin.EditorLists.html">EditorLists</a> plugin.
+        * @for ExecCommand
+        * @method COMMANDS.insertunorderedlist
+        * @static
+        * @param {String} cmd The command executed: insertunorderedlist
+        * @return {Node} Node instance of the item touched by this command.
+        */
+        insertunorderedlist: function(cmd) {
+            var inst = this.get('host').getInstance(), out;
+            this.get('host')._execCommand(cmd, '');
+            out = (new inst.Selection()).getSelected();
+            return out;
+        },
+        /**
+        * Override for the insertorderedlist method from the <a href="Plugin.EditorLists.html">EditorLists</a> plugin.
+        * @for ExecCommand
+        * @method COMMANDS.insertorderedlist
+        * @static
+        * @param {String} cmd The command executed: insertorderedlist
+        * @return {Node} Node instance of the item touched by this command.
+        */
+        insertorderedlist: function(cmd) {
+            var inst = this.get('host').getInstance(), out;
+            this.get('host')._execCommand(cmd, '');
+            out = (new inst.Selection()).getSelected();
+            return out;   
+        }
+    });
+
+
+
+
+}, '3.2.0PR1' ,{requires:['editor-base'], skinnable:false});
+YUI.add('editor-bidi', function(Y) {
+
+
+
+    /**
+     * Plugin for Editor to support BiDirectional (bidi) text operations.
+     * @module editor
+     * @submodule editor-bidi
+     */     
+    /**
+     * Plugin for Editor to support BiDirectional (bidi) text operations.
+     * @class Plugin.EditorBidi
+     * @extends Base
+     * @constructor
+     */
+
+
+    var EditorBidi = function() {
+        EditorBidi.superclass.constructor.apply(this, arguments);
+    }, HOST = 'host', DIR = 'dir', BODY = 'BODY', NODE_CHANGE = 'nodeChange',
+    B_C_CHANGE = 'bidiContextChange', FIRST_P = BODY + ' > p';
+
+    Y.extend(EditorBidi, Y.Base, {
+        /**
+        * Place holder for the last direction when checking for a switch
+        * @private
+        * @property lastDirection
+        */
+        lastDirection: null,
+        /**
+        * Tells us that an initial bidi check has already been performed
+        * @private
+        * @property firstEvent
+        */
+        firstEvent: null,
+
+        /**
+        * Method checks to see if the direction of the text has changed based on a nodeChange event.
+        * @private
+        * @method _checkForChange
+        */
+        _checkForChange: function() {
+            var host = this.get(HOST),
+                inst = host.getInstance(),
+                sel = new inst.Selection(),
+                node, direction;
+
+            if (sel.isCollapsed) {
+                node = EditorBidi.blockParent(sel.focusNode);
+                direction = node.getStyle('direction');
+                if (direction !== this.lastDirection) {
+                    host.fire(B_C_CHANGE, { changedTo: direction });
+                    this.lastDirection = direction;
+                }
+            } else {
+                host.fire(B_C_CHANGE, { changedTo: 'select' });
+                this.lastDirection = null;
+            }
+        },
+
+        /**
+        * Checked for a change after a specific nodeChange event has been fired.
+        * @private
+        * @method _afterNodeChange
+        */
+        _afterNodeChange: function(e) { 
+            // If this is the first event ever, or an event that can result in a context change
+            if (this.firstEvent || EditorBidi.EVENTS[e.changedType]) {
+                this._checkForChange();
+                this.firstEvent = false;
+            }
+        },
+
+        /**
+        * Checks for a direction change after a mouseup occurs.
+        * @private
+        * @method _afterMouseUp
+        */
+        _afterMouseUp: function(e) {
+            this._checkForChange();
+            this.firstEvent = false;
+        },
+        /**
+        * Utility method to create an empty paragraph when the document is empty.
+        * @private
+        * @method _fixFirstPara
+        */
+        _fixFirstPara: function() {
+            var host = this.get(HOST), inst = host.getInstance(), sel;
+            inst.one('body').setContent('<p>&nbsp;</p>');
+            sel = new inst.Selection();
+            try {
+                sel.selectNode(inst.one(FIRST_P).get('firstChild'));
+            } catch (er) {}
+        },
+        /**
+        * nodeChange handler to handle fixing an empty document.
+        * @private
+        * @method _onNodeChange
+        */
+        _onNodeChange: function(e) {
+            var host = this.get(HOST), inst = host.getInstance();
+
+            switch (e.changedType) {
+                case 'keydown':
+                    var cont = inst.config.doc.body.innerHTML;
+                    if (cont && cont.toLowerCase() == '<br>') {
+                        this._fixFirstPara();
+                    }
+                    break;
+                case 'backspace-up':
+                case 'delete-up':
+                    var ps = inst.all(FIRST_P), br, p, sel, item;
+                    if (ps.size() < 2) {
+                        item = inst.one(BODY);
+                        if (ps.item(0)) {
+                            item = ps.item(0);
+                        }
+                        if (inst.Selection.getText(item) === '' && !item.test('p')) {
+                            this._fixFirstPara();
+                        } else if (item.test('p') && item.get('innerHTML').length === 0) {
+                            e.changedEvent.halt();
+                        }
+                    }
+                    break;
+            }
+            
+        },
+        /**
+        * Performs a block element filter when the Editor is first ready
+        * @private
+        * @method _afterEditorReady
+        */
+        _afterEditorReady: function() {
+            var host = this.get(HOST), inst = host.getInstance();
+            if (inst) {
+                inst.Selection.filterBlocks();
+            }
+        },
+
+        initializer: function() {
+            var host = this.get(HOST);
+
+            this.firstEvent = true;
+
+            host.after(NODE_CHANGE, Y.bind(this._afterNodeChange, this));
+            host.on(NODE_CHANGE, Y.bind(this._onNodeChange, this));
+            host.frame.after('mouseup', Y.bind(this._afterMouseUp, this));
+            host.after('ready', Y.bind(this._afterEditorReady, this));
+            
+        }    
+    }, {
+        /**
+        * The events to check for a direction change on
+        * @property EVENTS
+        * @static
+        */
+        EVENTS: {
+            'backspace-up': true,
+            'pageup-up': true,
+            'pagedown-down': true,
+            'end-up': true,
+            'home-up': true,
+            'left-up': true,
+            'up-up': true,
+            'right-up': true,
+            'down-up': true,
+            'delete-up': true
+        },
+
+        /**
+        * More elements may be needed. BODY *must* be in the list to take care of the special case.
+        * 
+        * blockParent could be changed to use inst.Selection.BLOCKS
+        * instead, but that would make Y.Plugin.EditorBidi.blockParent
+        * unusable in non-RTE contexts (it being usable is a nice
+        * side-effect).
+        * @property BLOCKS
+        * @static
+        */
+        BLOCKS: Y.Selection.BLOCKS+',LI,HR,' + BODY,
+        /**
+        * Template for creating a block element
+        * @static
+        * @property DIV_WRAPPER
+        */
+        DIV_WRAPPER: '<DIV></DIV>',
+        /**
+        * Returns a block parent for a given element
+        * @static
+        * @method blockParent
+        */
+        blockParent: function(node, wrap) {
+            var parent = node, divNode, firstChild;
+            
+            if (!parent.test(EditorBidi.BLOCKS)) {
+                parent = parent.ancestor(EditorBidi.BLOCKS);
+            }
+            if (wrap && parent.test(BODY)) {
+                // This shouldn't happen if the RTE handles everything
+                // according to spec: we should get to a P before BODY. But
+                // we don't want to set the direction of BODY even if that
+                // happens, so we wrap everything in a DIV.
+                
+                // The code is based on YUI3's Y.Selection._wrapBlock function.
+                divNode = Y.Node.create(EditorBidi.DIV_WRAPPER);
+                parent.get('children').each(function(node, index) {
+                    if (index === 0) {
+                        firstChild = node;
+                    } else {
+                        divNode.append(node);
+                    }
+                });
+                firstChild.replace(divNode);
+                divNode.prepend(firstChild);
+                parent = divNode;
+            }
+            return parent;
+        },
+        /**
+        * The data key to store on the node.
+        * @static
+        * @property _NODE_SELECTED
+        */
+        _NODE_SELECTED: 'bidiSelected',
+        /**
+        * Generates a list of all the block parents of the current NodeList
+        * @static
+        * @method addParents
+        */
+        addParents: function(nodeArray) {
+            var i, parent, addParent;
+
+            for (i = 0; i < nodeArray.length; i += 1) {
+                nodeArray[i].setData(EditorBidi._NODE_SELECTED, true);
+            }
+
+            // This works automagically, since new parents added get processed
+            // later themselves. So if there's a node early in the process that
+            // we haven't discovered some of its siblings yet, thus resulting in
+            // its parent not added, the parent will be added later, since those
+            // siblings will be added to the array and then get processed.
+            for (i = 0; i < nodeArray.length; i += 1) {
+                parent = nodeArray[i].get('parentNode');
+
+                // Don't add the parent if the parent is the BODY element.
+                // We don't want to change the direction of BODY. Also don't
+                // do it if the parent is already in the list.
+                if (!parent.test(BODY) && !parent.getData(EditorBidi._NODE_SELECTED)) {
+                    addParent = true;
+                    parent.get('children').some(function(sibling) {
+                        if (!sibling.getData(EditorBidi._NODE_SELECTED)) {
+                            addParent = false;
+                            return true; // stop more processing
+                        }
+                    });
+                    if (addParent) {
+                        nodeArray.push(parent);
+                        parent.setData(EditorBidi._NODE_SELECTED, true);
+                    }
+                }
+            }   
+
+            for (i = 0; i < nodeArray.length; i += 1) {
+                nodeArray[i].clearData(EditorBidi._NODE_SELECTED);
+            }
+
+            return nodeArray;
+        },
+
+
+        /**
+        * editorBidi
+        * @static
+        * @property NAME
+        */
+        NAME: 'editorBidi',
+        /**
+        * editorBidi
+        * @static
+        * @property NS
+        */
+        NS: 'editorBidi',
+        ATTRS: {
+            host: {
+                value: false
+            }
+        }
+    });
+    
+    Y.namespace('Plugin');
+    
+    Y.Plugin.EditorBidi = EditorBidi;
+
+    /**
+     * bidi execCommand override for setting the text direction of a node.
+     * @for Plugin.ExecCommand
+     * @property COMMANDS.bidi
+     */
+
+    Y.Plugin.ExecCommand.COMMANDS.bidi = function(cmd, direction) {
+        var inst = this.getInstance(),
+            sel = new inst.Selection(),
+            returnValue, block,
+            selected, selectedBlocks;
+
+        inst.Selection.filterBlocks();
+        if (sel.isCollapsed) { // No selection
+            block = EditorBidi.blockParent(sel.anchorNode);
+            block.setAttribute(DIR, direction);
+            returnValue = block;
+        } else { // some text is selected
+            selected = sel.getSelected();
+            selectedBlocks = [];
+            selected.each(function(node) {
+                if (!node.test(BODY)) { // workaround for a YUI bug
+                   selectedBlocks.push(EditorBidi.blockParent(node));
+                }
+            });
+            selectedBlocks = inst.all(EditorBidi.addParents(selectedBlocks));
+            selectedBlocks.setAttribute(DIR, direction);
+            returnValue = selectedBlocks;
+        }
+
+        this.get(HOST).get(HOST).editorBidi.checkForChange();
+        return returnValue;
+    };
+
+
+
+
+}, '3.2.0PR1' ,{requires:['editor-base', 'selection'], skinnable:false});
+
+
+YUI.add('editor', function(Y){}, '3.2.0PR1' ,{use:['frame', 'selection', 'exec-command', 'editor-base'], skinnable:false});
+

@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('dataschema-xml', function(Y) {
@@ -43,10 +43,10 @@ var LANG = Y.Lang,
 
             if(xmldoc && xmldoc.nodeType && (9 === xmldoc.nodeType || 1 === xmldoc.nodeType || 11 === xmldoc.nodeType) && schema) {
                 // Parse results data
-                data_out = SchemaXML._parseResults(schema, xmldoc, data_out);
+                data_out = SchemaXML._parseResults.call(this, schema, xmldoc, data_out);
 
                 // Parse meta data
-                data_out = SchemaXML._parseMeta(schema.metaFields, xmldoc, data_out);
+                data_out = SchemaXML._parseMeta.call(this, schema.metaFields, xmldoc, data_out);
             }
             else {
                 data_out.error = new Error("XML schema parse failure");
@@ -76,7 +76,7 @@ var LANG = Y.Lang,
                     value = res.textContent || res.value || res.text || res.innerHTML || null;
                 }
 
-                return Y.DataSchema.Base.parse(value, field);
+                return Y.DataSchema.Base.parse.call(this, value, field);
             }
             catch(e) {
             }
@@ -188,10 +188,10 @@ var LANG = Y.Lang,
          */
         _parseField: function(field, result, context) {
             if (field.schema) {
-                result[field.key] = SchemaXML._parseResults(field.schema, context, {results:[],meta:{}}).results;
+                result[field.key] = SchemaXML._parseResults.call(this, field.schema, context, {results:[],meta:{}}).results;
             }
             else {
-                result[field.key || field] = SchemaXML._getLocationValue(field, context);
+                result[field.key || field] = SchemaXML._getLocationValue.call(this, field, context);
             }
         },
 
@@ -212,7 +212,7 @@ var LANG = Y.Lang,
 
                 for(key in metaFields) {
                     if (metaFields.hasOwnProperty(key)) {
-                        data_out.meta[key] = SchemaXML._getLocationValue(metaFields[key], xmldoc);
+                        data_out.meta[key] = SchemaXML._getLocationValue.call(this, metaFields[key], xmldoc);
                     }
                 }
             }
@@ -234,7 +234,7 @@ var LANG = Y.Lang,
 
             // Find each field value
             for (j=fields.length-1; 0 <= j; j--) {
-                SchemaXML._parseField(fields[j], result, context);
+                SchemaXML._parseField.call(this, fields[j], result, context);
             }
 
             return result;
@@ -263,7 +263,7 @@ var LANG = Y.Lang,
                     
                     // loop through each result node
                     for (i=nodeList.length-1; 0 <= i; i--) {
-                        results[i] = SchemaXML._parseResult(fields, nodeList[i]);
+                        results[i] = SchemaXML._parseResult.call(this, fields, nodeList[i]);
                     }
                 }
                 else {
@@ -271,7 +271,7 @@ var LANG = Y.Lang,
 
                     // loop through the nodelist
                     while (node = nodeList.iterateNext()) {
-                        results[i] = SchemaXML._parseResult(fields, node);
+                        results[i] = SchemaXML._parseResult.call(this, fields, node);
                         i += 1;
                     }
                 }
@@ -291,4 +291,4 @@ Y.DataSchema.XML = Y.mix(SchemaXML, Y.DataSchema.Base);
 
 
 
-}, '3.1.1' ,{requires:['dataschema-base']});
+}, '3.2.0PR1' ,{requires:['dataschema-base']});

@@ -2,103 +2,111 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('event-synthetic', function(Y) {
 
 /**
- * Define new DOM events that can be subscribed from any Node.
+ * Define new DOM events that can be subscribed to from Nodes.
  *
  * @module event
  * @submodule event-synthetic
  */
-var Evt         = Y.Env.evt,
-    DOMWrappers = Evt.dom_wrappers,
-    DOMMap      = Evt.dom_map,
-    EvtPlugins  = Evt.plugins,
-    DOMEvents   = Y.Node.DOM_EVENTS,
-    isFunction  = Y.Lang.isFunction;
-
-/*
- * Adds the following method to CustomEvent's prototype.
- */
+var DOMMap   = Y.Env.evt.dom_map,
+    toArray  = Y.Array,
+    YLang    = Y.Lang,
+    isObject = YLang.isObject,
+    isString = YLang.isString,
+    query    = Y.Selector.query,
+    noop     = function () {};
 
 /**
- * Returns the first subscriber that matches the provided function and/or
- * context.  Both function and context parameters are optional.  Omitting
- * either will return the first match on the other parameter, and omitting both
- * will return the first subscriber.
+ * Triggering mechanism used by SyntheticEvents.  The logic defining the
+ * actions taken during each subscription receives a Notifier to fire when the
+ * conditions for firing are eventually met. Typically, this involves firing
+ * the notifier from the callback of other DOM subscriptions subscriptions.
  *
- * @method getSubscriber
- * @param fn {Function} Optional. The subscribed callback function
- * @param ctx {Object} Optional.  The context override for the callback
- * @return {Subscriber} or null
- * @for CustomEvent
- * @since 3.1.0
- * @in event-synthetic
+ * Implementers should probably not instantiate these directly.
+ *
+ * @class SyntheticEvent.Notifier
+ * @constructor
+ * @param handle {EventHandle} the detach handle for the subscription to an
+ *              internal custom event used to execute the callback passed to
+ *              on(..) or delegate(..)
+ * @param emitFacade {Boolean} take steps to ensure the first arg received by
+ *              the subscription callback is an event facade
  */
-Y.CustomEvent.prototype.getSubscriber = function (fn, ctx) {
-    var subs = this.getSubs(), // on, after subs and their *:type siblings
-        i, len, id, sub;
+function Notifier(handle, emitFacade) {
+    this.handle         = handle;
+    this.emitFacade     = emitFacade;
+}
 
-    for ( i = 0, len = subs.length; i < len; ++i ) {
-        for (id in subs[i]) {
-            if (subs[i].hasOwnProperty(id)) {
-                sub = subs[i][id];
-                if ((!fn || sub.fn === fn) && (!ctx || sub.context === ctx)) {
-                    return sub;
-                }
+/**
+ * <p>Executes the subscription callback, passing the firing arguments as the
+ * first parameters to that callback. For events that are configured with
+ * emitFacade=true, it is common practice to pass the triggering DOMEventFacade
+ * as the first parameter.  Barring a proper DOMEventFacade or EventFacade
+ * (from a CustomEvent), a new EventFacade will be generated.  In that case, if
+ * fire() is called with a simple object, it will be mixed into the facade.
+ * Otherwise, the facade will be prepended to the callback parameters.</p>
+ *
+ * <p>For notifiers provided to delegate logic, the first argument should be an
+ * object with a &quot;currentTarget&quot; property to identify what object to
+ * default as 'this' in the callback.  Typically this is gleaned from the
+ * DOMEventFacade or EventFacade, but if configured with emitFacade=false, an
+ * object must be provided.  In that case, the object will be removed from the
+ * callback parameters.</p>
+ *
+ * <p>Additional arguments passed during event subscription will be
+ * automatically added after those passed to fire().</p>
+ *
+ * @method fire
+ * @param e {EventFacade|DOMEventFacade|Object|any} (see description)
+ * @param arg* {any} additional arguments received by all subscriptions
+ */
+Notifier.prototype.fire = function (e) {
+    // first arg to delegate notifier should be an object with currentTarget
+    var args     = toArray(arguments, 0, true),
+        handle   = this.handle,
+        ce       = handle.evt,
+        sub      = handle.sub,
+        thisObj  = sub.context,
+        delegate = sub.filter,
+        event    = e || {};
+
+    if (this.emitFacade) {
+        if (!e || !e.preventDefault) {
+            event = ce._getFacade();
+
+            if (isObject(e) && !e.preventDefault) {
+                Y.mix(event, e, true);
+                args[0] = event;
+            } else {
+                args.unshift(event);
             }
         }
+
+        event.type    = ce.type;
+        event.details = args.slice();
+
+        if (delegate) {
+            event.container = ce.host;
+        }
+    } else if (delegate && isObject(e) && e.currentTarget) {
+        args.shift();
     }
 
-    return null;
+    sub.context = thisObj || event.currentTarget || ce.host;
+    ce.fire.apply(ce, args);
+    sub.context = thisObj; // reset for future firing
 };
+
 
 /**
  * <p>Wrapper class for the integration of new events into the YUI event
  * infrastructure.  Don't instantiate this object directly, use
- * <code>Y.Event.define( type, config )</code>.</p>
- *
- * <p>The configuration object must include the event <code>type</code>, and should include implementation methods for <code>on</code> and <code>detach</code>.  This is the full list of configuration properties:</p>
- * <dl>
- *   <dt><code>type</code></dt>
- *       <dd>REQUIRED.  The name of the synthetic event.  What goes
- *       <code>node.on(<strong>HERE</strong>, callback )</code>.</dd>
- *
- *   <dt><code>on</code></dt>
- *       <dd><code>function ( node, subscription, fireEvent )</code> The
- *       implementation logic for subscription.  Any special setup you need to
- *       do to create the environment for the event being fired.  E.g. native
- *       DOM event subscriptions.  Store subscription related objects and
- *       information on the <code>subscription</code> object.  When the
- *       criteria have been met to fire the synthetic event, call
- *       <code>fireEvent.fire()</code>.</dd>
- *
- *   <dt><code>detach</code></dt>
- *       <dd><code>function ( node, subscription, fireEvent )</code> The
- *       implementation logic for cleaning up a detached subscription. E.g.
- *       detach any DOM subscriptions done in <code>on</code>.</dd>
- *
- *   <dt><code>publishConfig</code></dt>
- *       <dd>(Object) The configuration object that will be used to instantiate
- *       the underlying CustomEvent.  By default, the event is defined with
- *       <code>emitFacade: true</code> so subscribers will receive a DOM-like
- *       event object.</dd>
- *
- *   <dt><code>processArgs</code></dt>
- *       <dd><code>function ( argArray )</code>  Optional method to extract any
- *       additional arguments from the subscription signature.  Using this
- *       allows <code>on</code> signatures like <code>node.on(
- *       &quot;hover&quot;, overCallback, outCallback )</code>.  Be sure that
- *       the args passed in is pruned of any additional arguments using, for
- *       example, <code>argArray.splice(2,1);</code>.  Data returned from the
- *       function will be stored on the <code>subscription</code> object passed
- *       to <code>on</code> and <code>detach</code> under
- *       <code>subscription._extra</code>.</dd>
- *   <dt>
- * </dl>
+ * <code>Y.Event.define(type, config)</code>.  See that method for details.</p>
  *
  * @class SyntheticEvent
  * @constructor
@@ -106,317 +114,601 @@ Y.CustomEvent.prototype.getSubscriber = function (fn, ctx) {
  * @since 3.1.0
  * @in event-synthetic
  */
-function SyntheticEvent(cfg) {
-    this._init(cfg);
+function SyntheticEvent() {
+    this._init.apply(this, arguments);
 }
 
-SyntheticEvent.prototype = {
-    /**
-     * Initializes the synthetic event.
-     *
-     * @method _init
-     * @param cfg {Object} The configuration object passed to the constructor
-     * @protected
-     */
-    _init: function (cfg) {
-        this.type = cfg.type;
-        this.impl = cfg;
-        this._publishConfig = cfg.publishConfig || { emitFacade: true };
-    },
+Y.mix(SyntheticEvent, {
+    Notifier: Notifier,
 
     /**
-     * Initial receiver of the event subscription.  Passes off control to the
-     * implementation <code>on</code> specified in the constructor
-     * configuration after setting up the boiler plate code necessary for clean
-     * detaching and destruction in the Event infrastructure.  Note that the
-     * implementation function specified in the configuration will be called
-     * once for each node passed in <code>el</code>, and each will be a Node
-     * instance.
+     * Returns the array of subscription handles for a node for the given event
+     * type.  Passing true as the third argument will create a registry entry
+     * in the event system's DOM map to host the array if one doesn't yet exist.
      *
-     * @method on
-     * @param type {String} the synthetic event name
-     * @param fn {Function} the callback function
-     * @param el {HTMLElement | Node | HTMLElement[] | NodeList} 
-     *                          subscription target(s)
+     * @method getRegistry
+     * @param node {Node} the node
+     * @param type {String} the event
+     * @param create {Boolean} create a registration entry to host a new array
+     *                  if one doesn't exist.
+     * @return {Array}
+     * @static
      * @protected
      */
-    on: function (type, fn, el) {
-        var args = Y.Array(arguments,0,true),
-            self = DOMEvents[type], // event system calls on.apply(Y, ...)
-            ce,       // Custom event published on node
-            node,     // Node wrapper for el
-            payload,  // extra info extracted from the args by implementation
-            key, domGuid, // Ids for registering as a DOM event
-            _handles, // Collection of detach handles for array subs
-            handle;   // The detach handle for this subscription
+    getRegistry: function (node, type, create) {
+        var el     = node._node,
+            yuid   = Y.stamp(el),
+            key    = 'event:' + yuid + type + '_synth_',
+            events = DOMMap[yuid] || (DOMMap[yuid] = {});
 
-        // Y.on normalizes Nodes to DOM nodes and NodeLists to an array of DOM
-        // nodes.  Other possible value is a selector string.
-        if (Y.Lang.isString(el)) {
-            args[2] = Y.Selector.query(el);
+        if (!events[key] && create) {
+            events[key] = {
+                type      : '_synth_',
+                fn        : noop,
+                capture   : false,
+                el        : el,
+                key       : key,
+                domkey    : yuid,
+                notifiers : [],
 
-            // If not found by query, trigger deferral.
-            if (args[2].length) {
-                el = args[2];
-            } else {
-                handle = Y.onAvailable(el, function () {
-                    Y.mix(handle, Y.on.apply(Y, args), true);
-                });
-            }
-        }
+                detachAll : function () {
+                    var notifiers = this.notifiers,
+                        i = notifiers.length;
 
-        // Array of elements get collection handle
-        if (Y.Lang.isArray(el)) {
-            _handles = [];
-            Y.Array.each(el, function (n) {
-                args[2] = n;
-                _handles.push(Y.on.apply(Y, args));
-            });
-
-            // EventHandle can be constructed with an array of other handles
-            handle = new Y.EventHandle(_handles);
-        }
-
-        // Single element subscription
-        if (!handle) {
-            // Allow the implementation to modify and/or extract extra data
-            // from the subscription args
-            payload = isFunction(self.impl.processArgs) ?
-                self.impl.processArgs(args) : self._processArgs(args);
-
-            args.shift(); // don't need type from here on out
-            node = args[1] = Y.one(el);
-
-            // Get or publish a custom event on the Node with the synthetic
-            // event's name.
-            ce = node._yuievt ? node._yuievt.events[self.type] : null;
-
-            if (!ce) {
-                ce = node.publish(self.type, self._publishConfig);
-
-                // node.detach() with type missing doesn't reach adapter fork
-                ce.detach = function (fn, context) {
-                    return self.detach.call(Y, type, fn, context);
-                };
-
-                // Decorate and register like a DOM ce to support purgeElement
-                domGuid = Y.stamp(el);
-                key = 'event:' + Y.stamp(el) + self.type;
-
-                // This will route through Y.Env.remove - the wrapper for
-                // removeEventListener/detachEvent.  To avoid cross browser
-                // issues, a real event name and dummy function are used to
-                // make the DOM detach a noop
-                Y.mix(ce, {
-                    el     : el,
-                    key    : key,
-                    domkey : domGuid,
-                    fn     : function () {},
-                    capture: false
-                });
-
-                DOMMap[domGuid]  = DOMMap[domGuid] || {};
-                DOMWrappers[key] = DOMMap[domGuid][key] = ce;
-            }
-
-            // Disallow duplicates.  
-            if (!ce.getSubscriber(fn, el)) {
-                // Subscribe to the hosted custom event
-                handle = ce.on.apply(ce, args);
-
-                handle.sub._extra = payload;
-
-                // Override the handle's detach method to pass through to the
-                // the this instance's detach method
-                handle.detach = function () {
-                    self.detach.call(Y, type, this.sub.fn, this.sub.context);
-                };
-
-                // Pass control to the implementation code
-                if (isFunction(self.impl.on)) {
-                    self.impl.on.call(self.impl, node, handle.sub, ce);
+                    while (--i >= 0) {
+                        notifiers[i].detach();
+                    }
                 }
-            }
+            };
         }
 
-        return handle;
+        return (events[key]) ? events[key].notifiers : null;
     },
 
     /**
-     * Initial receiver of the event detach.  Passes off control to the
-     * implementation <code>detach</code> specified in the constructor
-     * configuration after doing the necessary infrastructure cleanup.
-     * Note that the implementation function specified in the configuration
-     * will be called once for each node passed in <code>el</code>, and each
-     * will be a Node instance.
+     * Alternate <code>_delete()</code> method for the CustomEvent object
+     * created to manage SyntheticEvent subscriptions.
      *
-     * @method detach
-     * @param type { String } the synthetic event name
-     * @param fn {Function} the callback function
-     * @param el {HTMLElement | Node | HTMLElement[] | NodeList}
-     *                      subscription target(s)
-     * @protected
+     * @method _deleteSub
+     * @param sub {Subscription} the subscription to clean up
+     * @private
      */
-    detach: function (type, fn, el) {
-        var args = Y.Array(arguments, 0, true),
-            self = DOMEvents[type],
-            ret  = 1, // To aggregate return values from detach multiple
-            ce,       // The custom event published on the Node
-            sub;      // The subscription tied to this fn and el
+    _deleteSub: function (sub) {
+        if (sub && sub.fn) {
+            var synth = this.eventDef,
+                method = (sub.filter) ? 'detachDelegate' : 'detach';
 
-        // Detach doesn't normalize Node or NodeList
-        if (el instanceof Y.Node) {
-            el = el._node;
-        } else if (el instanceof Y.NodeList) {
-            el = el._nodes;
-        } else if (Y.Lang.isString(el)) {
-            el = Y.Selector.query(el);
-        } else if (el && !Y.Array.test(el) && !el.tagName) {
-            el = null;
+            this.subscribers = {};
+            this.subCount = 0;
+
+            synth[method](sub.node, sub, this.notifier, sub.filter);
+            synth._unregisterSub(sub);
+
+            delete sub.fn;
+            delete sub.node;
+            delete sub.context;
         }
+    },
 
-        if (el) {
-            // Iterate detach by looping back for each item
-            if (Y.Array.test(el)) {
-                Y.Array.each(el, function (n, idx) {
-                    args[2] = n;
-                    ret += Y.detach.apply(Y, args);
-                });
+    prototype: {
+        constructor: SyntheticEvent,
 
-                return ret;
+        /**
+         * Setup/construction logic for the event.
+         *
+         * @method _init
+         * @protected
+         */
+        _init: function () {
+            var config = this.publishConfig || (this.publishConfig = {});
+
+            // The notification mechanism handles facade creation
+            this.emitFacade = ('emitFacade' in config) ?
+                                config.emitFacade :
+                                true;
+            config.emitFacade  = false;
+        },
+
+        /**
+         * <p>Implementers may provide this method definition.</p>
+         *
+         * <p>Implement this function if the event supports a different
+         * subscription signature.  This function is used by both
+         * <code>on()</code> and <code>delegate()</code>.  The second parameter
+         * indicates that the event is being subscribed via
+         * <code>delegate()</code>.</p>
+         *
+         * <p>Implementations must remove extra arguments from the args list
+         * before returning.  The required args list order for <code>on()</code>
+         * subscriptions is</p>
+         * <pre><code>[type, callback, target, context, argN...]</code></pre>
+         *
+         * <p>The required args list order for <code>delegate()</code>
+         * subscriptions is</p>
+         *
+         * <pre><code>[type, callback, target, filter, context, argN...]</code></pre>
+         *
+         * <p>The return value from this function will be stored on the
+         * subscription in the '_extra' property for reference elsewhere.</p>
+         *
+         * @method processArgs
+         * @param args {Array} parmeters passed to Y.on(..) or Y.delegate(..)
+         * @param delegate {Boolean} true if the subscription is from Y.delegate
+         * @return {any}
+         */
+        processArgs: noop,
+
+        /**
+         * <p>Implementers may override this property.</p>
+         *
+         * <p>Whether to allow multiple subscriptions to this event that are
+         * classified as being the same.  By default, this means the subscribed
+         * callback is the same function.  See the <code>subMatch</code>
+         * method.  Setting this to true will help performance for high volume
+         * events.</p>
+         *
+         * @property allowDups
+         * @type {Boolean}
+         * @default false
+         */
+        //allowDups  : false,
+
+        /**
+         * <p>Implementers should provide this method definition.</p>
+         *
+         * Implementation logic for subscriptions done via <code>node.on(type,
+         * fn)</code> or <code>Y.delegate(type, fn, target)</code>.  This
+         * function should create the environment for the
+         * event being fired.  Typically this involves subscribing to at least
+         * one DOM event.  It is recommended to store detach handles from any
+         * DOM subscriptions on the <code>sub</code> object provided to
+         * facilitate simple detach in that implementation method.  Also for
+         * SyntheticEvents that leverage a single DOM subscription under the
+         * hood, it is recommended to pass the DOM event object to
+         * <code>notifier.fire(e)</code>.  (The event name on the object will
+         * be updated).
+         *
+         * @method on
+         * @param node {Node} the node the subscription is being applied to
+         * @param sub {Subscription} the object to track this subscription
+         * @param notifier {SyntheticEvent.Notifier} call notifier.fire(..) to
+         *              trigger the execution of the subscribers
+         */
+        on: noop,
+
+        /**
+         * <p>Implementers should provide this method definition.</p>
+         *
+         * Implementation logic for detaching subscriptions done via
+         * <code>node.on(type, fn)</code>.  This function should clean up any
+         * subscriptions made in the <code>on()</code> phase.
+         *
+         * @method detach
+         * @param node {Node} the node the subscription was applied to
+         * @param sub {Subscription} the object tracking this subscription
+         * @param notifier {SyntheticEvent.Notifier} the Notifier used to
+         *              trigger the execution of the subscribers
+         */
+        detach: noop,
+
+        /**
+         * <p>Implementers should provide this method definition.</p>
+         *
+         * <p>Implementation logic for subscriptions done via
+         * <code>node.delegate(type, fn, filter)</code> or
+         * <code>Y.delegate(type, fn, container, filter)</code>.  Like with
+         * <code>on()</code> above, this function should create the environment
+         * for the event being fired, and trigger subscription execution by
+         * calling <code>notifier.fire(e)</code>.</p>
+         *
+         * <p>This function receives a fourth argument, which is the filter
+         * used to identify which Node's are of interest to the subscription.
+         * The filter will be either a function that accepts an event object
+         * and returns an array of matching target nodes, or a selector string.
+         * To translate selector strings into filter functions, use
+         * <code>Y.delegate.compileFilter(filter)</code>.</p>
+         *
+         * @method delegate
+         * @param node {Node} the node the subscription is being applied to
+         * @param sub {Subscription} the object to track this subscription
+         * @param notifier {SyntheticEvent.Notifier} call notifier.fire(..) to
+         *              trigger the execution of the subscribers
+         * @param filter {String|Function} Selector string or function that
+         *              accepts an event object and returns null, a Node, or an
+         *              array of Nodes matching the criteria for processing.
+         */
+        delegate       : noop,
+
+        /**
+         * <p>Implementers should provide this method definition.</p>
+         *
+         * Implementation logic for detaching subscriptions done via
+         * <code>node.delegate(type, fn, filter)</code> or
+         * <code>Y.delegate(type, fn, container, filter)</code>.  This function
+         * should clean up any subscriptions made in the
+         * <code>delegate()</code> phase.
+         *
+         * @method detachDelegate
+         * @param node {Node} the node the subscription was applied to
+         * @param sub {Subscription} the object tracking this subscription
+         * @param notifier {SyntheticEvent.Notifier} the Notifier used to
+         *              trigger the execution of the subscribers
+         * @param filter {String|Function} Selector string or function that
+         *              accepts an event object and returns null, a Node, or an
+         *              array of Nodes matching the criteria for processing.
+         */
+        detachDelegate : noop,
+
+        /**
+         * Sets up the boilerplate for detaching the event and facilitating the
+         * execution of subscriber callbacks.
+         *
+         * @method _on
+         * @param args {Array} array of arguments passed to
+         *              <code>Y.on(...)</code> or <code>Y.delegate(...)</code>
+         * @param delegate {Boolean} true if called from
+         * <code>Y.delegate(...)</code>
+         * @return {EventHandle} the detach handle for this subscription
+         * @private
+         */
+        _on: function (args, delegate) {
+            var handles  = [],
+                selector = args[2],
+                method   = delegate ? 'delegate' : 'on',
+                nodes, handle;
+
+            // Can't just use Y.all because it doesn't support window (yet?)
+            nodes = (isString(selector)) ? query(selector) : toArray(selector);
+
+            if (!nodes.length && isString(selector)) {
+                handle = Y.on('available', function () {
+                    Y.mix(handle, Y[method].apply(Y, args), true);
+                }, selector);
+
+                return handle;
             }
 
-            // Single element subscription detach.  Wrap in a Node because
-            // that's how the subscription/context is enabled
-            el = Y.one(el);
+            Y.each(nodes, function (node) {
+                var subArgs = args.slice(),
+                    extra, filter;
 
-            // Get the custom event named for the synthetic event from the Node.
-            // Node uses Y.augment(Node, EventTarget), so _yuievt won't be
-            // present until an API method is called.
-            // @TODO: do I need to do the object default?
-            ce = (el._yuievt || {events:{}}).events[self.type];
+                node = Y.one(node);
 
-            // Get the Subscriber object for this fn and context
-            sub = ce ? ce.getSubscriber(fn, el) : null;
+                if (node) {
+                    extra = this.processArgs(subArgs, delegate);
 
-            if (sub) {
-                // detach called without a fn = detach all subs
-                // @TODO: this and the generic return should return an int
-                if (!fn) {
-                    while (sub) {
-                        args[1] = sub.fn;
-                        ret += Y.detach.apply(Y, args);
-                        sub = ce.getSubscriber(fn, el);
+                    if (delegate) {
+                        filter = subArgs.splice(3, 1)[0];
                     }
 
-                    return ret;
+                    // (type, fn, el, thisObj, ...) => (fn, thisObj, ...)
+                    subArgs.splice(0, 4, subArgs[1], subArgs[3]);
+
+                    if (this.allowDups || !this.getSubs(node, args,null,true)) {
+                        handle = this._getNotifier(node, subArgs, extra,filter);
+
+                        this[method](node, handle.sub, handle.notifier, filter);
+
+                        handles.push(handle);
+                    }
+                }
+            }, this);
+
+            return (handles.length === 1) ?
+                handles[0] :
+                new Y.EventHandle(handles);
+        },
+
+        /**
+         * Creates a new Notifier object for use by this event's <code>on(...)</code> or <code>delegate(...)</code> implementation.
+         *
+         * @method _getNotifier
+         * @param node {Node} the Node hosting the event
+         * @param args {Array} the subscription arguments passed to either
+         *              <code>Y.on(...)</code> or <code>Y.delegate(...)</code>
+         *              after running through <code>processArgs(args)</code> to
+         *              normalize the argument signature
+         * @param extra {any} Extra data parsed from
+         *              <code>processArgs(args)</code>
+         * @param filter {String|Function} the selector string or function
+         *              filter passed to <code>Y.delegate(...)</code> (not
+         *              present when called from <code>Y.on(...)</code>)
+         * @return {SyntheticEvent.Notifier}
+         * @private
+         */
+        _getNotifier: function (node, args, extra, filter) {
+            var dispatcher = new Y.CustomEvent(this.type, this.publishConfig),
+                handle     = dispatcher.on.apply(dispatcher, args),
+                notifier   = new Notifier(handle, this.emitFacade),
+                registry   = SyntheticEvent.getRegistry(node, this.type, true),
+                sub        = handle.sub;
+
+            handle.notifier   = notifier;
+
+            sub.node   = node;
+            sub.filter = filter;
+            sub._extra = extra;
+
+            Y.mix(dispatcher, {
+                eventDef     : this,
+                notifier     : notifier,
+                host         : node,       // I forget what this is for
+                currentTarget: node,       // for generating facades
+                target       : node,       // for generating facades
+                el           : node._node, // For category detach
+
+                _delete      : SyntheticEvent._deleteSub
+            }, true);
+
+            registry.push(handle);
+
+            return handle;
+        },
+
+        /**
+         * Removes the subscription from the Notifier registry.
+         *
+         * @method _unregisterSub
+         * @param sub {Subscription} the subscription
+         * @private
+         */
+        _unregisterSub: function (sub) {
+            var notifiers = SyntheticEvent.getRegistry(sub.node, this.type),
+                i;
+                
+            if (notifiers) {
+                for (i = notifiers.length - 1; i >= 0; --i) {
+                    if (notifiers[i].sub === sub) {
+                        notifiers.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+        },
+
+        /**
+         * Removes the subscription(s) from the internal subscription dispatch
+         * mechanism.  See <code>SyntheticEvent._deleteSub</code>.
+         *
+         * @method _detach
+         * @param args {Array} The arguments passed to
+         *                  <code>node.detach(...)</code>
+         * @private
+         */
+        _detach: function (args) {
+            // Can't use Y.all because it doesn't support window (yet?)
+            var target = args[2],
+                els    = (isString(target)) ?
+                            query(target) : toArray(target),
+                node, i, len, handles, j;
+            
+            // (type, fn, el, context, filter?) => (type, fn, context, filter?)
+            args.splice(2, 1);
+
+            for (i = 0, len = els.length; i < len; ++i) {
+                node = Y.one(els[i]);
+
+                if (node) {
+                    handles = this.getSubs(node, args);
+
+                    if (handles) {
+                        for (j = handles.length - 1; j >= 0; --j) {
+                            handles[j].detach();
+                        }
+                    }
+                }
+            }
+        },
+
+        /**
+         * Gets the detach handles of subscriptions on a node that satisfy a
+         * search/filter function.  By default, the filter used is the
+         * <code>subMatch</code> method.
+         *
+         * @method getSubs
+         * @param node {Node} the node hosting the event
+         * @param args {Array} the array of original subscription args passed
+         *              to <code>Y.on(...)</code> (before
+         *              <code>processArgs</code>
+         * @param filter {Function} function used to identify a subscription
+         *              for inclusion in the returned array
+         * @param first {Boolean} stop after the first match (used to check for
+         *              duplicate subscriptions)
+         * @return {Array} detach handles for the matching subscriptions
+         */
+        getSubs: function (node, args, filter, first) {
+            var notifiers = SyntheticEvent.getRegistry(node, this.type),
+                handles = [],
+                i, len, handle;
+
+            if (notifiers) {
+                if (!filter) {
+                    filter = this.subMatch;
                 }
 
-                if (isFunction(self.impl.detach)) {
-                    self.impl.detach.call(self.impl, el, sub, ce);
+                for (i = 0, len = notifiers.length; i < len; ++i) {
+                    handle = notifiers[i];
+                    if (filter.call(this, handle.sub, args)) {
+                        if (first) {
+                            return handle;
+                        } else {
+                            handles.push(notifiers[i]);
+                        }
+                    }
                 }
-
-                // Standard detach cleanup
-                ce._delete(sub);
-
-                ret = 1;
             }
 
+            return handles.length && handles;
+        },
+
+        /**
+         * <p>Implementers may override this to define what constitutes a
+         * &quot;same&quot; subscription.  Override implementations should
+         * consider the lack of a comparator as a match, so calling
+         * <code>getSubs()</code> with no arguments will return all subs.</p>
+         *
+         * <p>Compares a set of subscription arguments against a Subscription
+         * object to determine if they match.  The default implementation
+         * compares the callback function against the second argument passed to
+         * <code>Y.on(...)</code> or <code>node.detach(...)</code> etc.</p>
+         *
+         * @method subMatch
+         * @param sub {Subscription} the existing subscription
+         * @param args {Array} the calling arguments passed to
+         *                  <code>Y.on(...)</code> etc.
+         * @return {Boolean} true if the sub can be described by the args
+         *                  present
+         */
+        subMatch: function (sub, args) {
+            // Default detach cares only about the callback matching
+            return !args[1] || sub.fn === args[1];
         }
-
-        return ret;
-    },
-
-    /**
-     * Stub implementation.  Specify this in the configuration object passed to 
-     * the constructor (rather, passed to <code>Y.Event.define</code>).
-     *
-     * @method _processArgs
-     * @param args {Array} Array of arguments passed to <code>on</code>
-     * @return {MIXED} null by default, but override to return useful data
-     * @protected
-     */
-    _processArgs: function (args) {
-        return null;
     }
-};
+}, true);
 
 Y.SyntheticEvent = SyntheticEvent;
 
-/*
- * Static method added to <code>Y.Event</code>
- */
-
 /**
- * <p>Static method to register a synthetic event definition and implementation
- * in the DOM Event subsystem.</p>
+ * <p>Defines a new event in the DOM event system.  Implementers are
+ * responsible for creating a scenario whereby the event is fired.  A notifier
+ * object is provided to the functions identified below.  When the criteria
+ * defining the event are met, call notifier.fire( [args] ); to execute event
+ * subscribers.</p>
  *
- * <p>Pass either a string <code>type</code> and configuration object as
- * separate parameters or a configuration object that includes a
- * <code>type</code> property as a single parameter.</p>
+ * <p>The first parameter is the name of the event.  The second parameter is a
+ * configuration object which will serve as the prototype of a subclass
+ * implementation of SyntheticEvent.  That said, the methods that should be
+ * defined in this configuration object are <code>on</code>,
+ * <code>detach</code>, <code>delegate</code>, and <code>detachDelegate</code>.
+ * You are free to define any other methods or properties needed to define your
+ * event.  Be aware, however, that since the object is used to subclass
+ * SyntheticEvent, you should avoid method names used by SyntheticEvent unless
+ * your intention is to override the default behavior.</p>
  *
- * <p>The configuration object should include implementation methods for
- * <code>on</code> and <code>detach</code>.  This is the full list of
- * configuration properties:</p>
+ * <p>This is a list of properties and methods that you can or should specify
+ * in the configuration object:</p>
  *
  * <dl>
- *   <dt><code>type</code></dt>
- *       <dd>Required if using the <code>Y.Event.define( config )</code>
- *       signature.  The name of the synthetic event.  What goes
- *       <code>node.on(<strong>HERE</strong>, callback )</code>.</dd>
- *
  *   <dt><code>on</code></dt>
- *       <dd><code>function ( node, subscription, fireEvent )</code> The
+ *       <dd><code>function (node, subscription, notifier)</code> The
  *       implementation logic for subscription.  Any special setup you need to
- *       do to create the environment for the event being fired.  E.g. native
+ *       do to create the environment for the event being fired--E.g. native
  *       DOM event subscriptions.  Store subscription related objects and
- *       information on the <code>subscription</code> object.  When the
+ *       state on the <code>subscription</code> object.  When the
  *       criteria have been met to fire the synthetic event, call
- *       <code>fireEvent.fire()</code>.</dd>
+ *       <code>notifier.fire(e)</code>.  See Notifier's <code>fire()</code>
+ *       method for details about what to pass as parameters.</dd>
  *
  *   <dt><code>detach</code></dt>
- *       <dd><code>function ( node, subscription, fireEvent )</code> The
+ *       <dd><code>function (node, subscription, notifier)</code> The
  *       implementation logic for cleaning up a detached subscription. E.g.
- *       detach any DOM subscriptions done in <code>on</code>.</dd>
+ *       detach any DOM subscriptions added in <code>on</code>.</dd>
+ *
+ *   <dt><code>delegate</code></dt>
+ *       <dd><code>function (node, subscription, notifier, filter)</code> The
+ *       implementation logic for subscription via <code>Y.delegate</code> or
+ *       <code>node.delegate</code>.  The filter is typically either a selector
+ *       string or a function.  You can use
+ *       <code>Y.delegate.compileFilter(selectorString)</code> to create a
+ *       filter function from a selector string if needed.  The filter function
+ *       expects an event object as input and should output either null, a
+ *       matching Node, or an array of matching Nodes.  Otherwise, this acts
+ *       like <code>on</code> DOM event subscriptions.  Store subscription
+ *       related objects andu information on the <code>subscription</code>
+ *       object.  When the criteria have been met to fire the synthetic event,
+ *       call <code>fireEvent.fire(e)</code> as noted above.</dd>
+ *
+ *   <dt><code>detachDelegate</code></dt>
+ *       <dd><code>function (node, subscription, notifier)</code> The
+ *       implementation logic for cleaning up a detached delegate subscription.
+ *       E.g. detach any DOM delegate subscriptions added in
+ *       <code>delegate</code>.</dd>
  *
  *   <dt><code>publishConfig</code></dt>
  *       <dd>(Object) The configuration object that will be used to instantiate
  *       the underlying CustomEvent.  By default, the event is defined with
- *       <code>emitFacade: true</code> so subscribers will receive a DOM-like
- *       event object.</dd>
+ *       <code>emitFacade: true</code> which will guarantee the first argument
+ *       received by subscribers is an event facade.  See Notifier's
+ *       <code>fire</code> method for details.</dd>
  *
- *   <dt><code>processArgs</code></dt>
- *       <dd><code>function ( argArray )</code>  Optional method to extract any
- *       additional arguments from the subscription signature.  Using this
- *       allows <code>on</code> signatures like <code>node.on(
- *       &quot;hover&quot;, overCallback, outCallback )</code>.  Be sure that
- *       the args passed in is pruned of any additional arguments using, for
- *       example, <code>argArray.splice(2,1);</code>.  Data returned from the
- *       function will be stored on the <code>subscription</code> object passed
- *       to <code>on</code> and <code>detach</code> under
- *       <code>subscription._extra</code>.</dd>
+ *   <dt><code>processArgs</code></dt
+ *       <dd>
+ *          <p><code>function (argArray, fromDelegate)</code> Optional method
+ *          to extract any additional arguments from the subscription
+ *          signature.  Using this allows <code>on</code> or
+ *          <code>delegate</code> signatures like
+ *          <code>node.on(&quot;hover&quot;, overCallback,
+ *          outCallback)</code>.</p>
+ *          <p>When processing an atypical argument signature, make sure the
+ *          args array is returned to the normal signature before returning
+ *          from the function.  For example, in the &quot;hover&quot; example
+ *          above, the <code>outCallback</code> needs to be <code>splice</code>
+ *          out of the array.  The expected signature of the args array for
+ *          <code>on()</code> subscriptions is:</p>
+ *          <pre>
+ *              <code>[type, callback, target, contextOverride, argN...]</code>
+ *          </pre>
+ *          <p>And for <code>delegate()</code>:</p>
+ *          <pre>
+ *              <code>[type, callback, target, filter, contextOverride, argN...]</code>
+ *          </pre>
+ *          <p>Where <code>target</code> is the node the event is being
+ *          subscribed for.  You can see these signatures documented for
+ *          <code>Y.on()</code> and <code>Y.delegate()</code> respectively.</p>
+ *          <p>Whatever gets returned from the function will be stored on the
+ *          <code>subscription</code> object under
+ *          <code>subscription._extra</code>.</p></dd>
  *   <dt>
  * </dl>
  *
  * @method Event.define
- * @param type {String} Name given to the synthetic event
- * @param cfg {Object} configuration object.  Pass this as the first
- *                  parameter if it includes the <code>type</code> property.
+ * @param type {String} the name of the event
+ * @param config {Object} the prototype definition for the new event (see above)
+ * @param force {Boolean} override an existing event (use with caution)
  * @static
+ * @return {SyntheticEvent} the subclass implementation instance created to
+ *              handle event subscriptions of this type
  * @for Event
  * @since 3.1.0
  * @in event-synthetic
  */
-Y.Event.define = function (type, cfg) {
-    var e = Y.Lang.isObject(type) ?
-                type :
-                Y.mix(Y.Object(cfg || {}), { type: type });
-
-    // no redefinition allowed
-    if (!DOMEvents[e.type]) {
-        EvtPlugins[e.type] = DOMEvents[e.type] = new Y.SyntheticEvent(e);
+Y.Event.define = function (type, config, force) {
+    if (!config) {
+        config = {};
     }
+
+    var eventDef = (isObject(type)) ? type : Y.merge({ type: type }, config),
+        Impl, synth;
+
+    if (force || !Y.Node.DOM_EVENTS[eventDef.type]) {
+        Impl = function () {
+            SyntheticEvent.apply(this, arguments);
+        };
+        Y.extend(Impl, SyntheticEvent, eventDef);
+        synth = new Impl();
+
+        type = synth.type;
+
+        Y.Node.DOM_EVENTS[type] = Y.Env.evt.plugins[type] = {
+            eventDef: synth,
+
+            on: function () {
+                return synth._on(toArray(arguments));
+            },
+
+            delegate: function () {
+                return synth._on(toArray(arguments), true);
+            },
+
+            detach: function () {
+                return synth._detach(toArray(arguments));
+            }
+        };
+
+    }
+
+    return synth;
 };
 
 
-}, '3.1.1' ,{requires:['node-base', 'event-custom']});
+}, '3.2.0PR1' ,{requires:['node-base', 'event-custom']});

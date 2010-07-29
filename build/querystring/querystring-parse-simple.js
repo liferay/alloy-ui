@@ -2,10 +2,15 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('querystring-parse-simple', function(Y) {
+
+// @TODO this looks like we are requiring the user to extract the querystring
+// portion of the url, which isn't good.  The majority use case will be to
+// extract querystring from the document configured for this YUI instance.
+// This should be the default if qs is not supplied.
 
 /*global Y */
 /**
@@ -70,4 +75,4 @@ QueryString.unescape = function (s) {
 };
 
 
-}, '3.1.1' );
+}, '3.2.0PR1' );

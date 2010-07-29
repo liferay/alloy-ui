@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('array-extras', function(Y) {
@@ -127,6 +127,8 @@ A.reject = function(a, f, o) {
 
 /**
 * Executes the supplied function on each item in the array.
+* Iteration stops if the supplied function does not return
+* a truthy value.
 * @method Array.every
 * @param a {Array} the array to iterate
 * @param f {Function} the function to execute on each item
@@ -297,4 +299,4 @@ A.zip = function (a, a2) {
 A.forEach = A.each;
 
 
-}, '3.1.1' );
+}, '3.2.0PR1' );

@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('swf', function(Y) {
@@ -28,11 +28,10 @@ YUI.add('swf', function(Y) {
 		possibleAttributes = {align:"", allowFullScreen:"", allowNetworking:"", allowScriptAccess:"", base:"", bgcolor:"", menu:"", name:"", quality:"", salign:"", scale:"", tabindex:"", wmode:""};
 		
 		/**
-		 * The SWF utility is a tool for embedding Flash applications in HTMl pages.
+		 * The SWF utility is a tool for embedding Flash applications in HTML pages.
 		 * @module swf
 		 * @title SWF Utility
-		 * @requires yahoo, dom, event
-		 * @namespace YAHOO.widget
+		 * @requires event-custom, node, swfdetect
 		 */
 
 		/**
@@ -45,7 +44,15 @@ YUI.add('swf', function(Y) {
 		 *        The width and height of the SWF will be set to the width and height of this container element.
 		 * @param {String} swfURL The URL of the SWF to be embedded into the page.
 		 * @param {Object} p_oAttributes (optional) Configuration parameters for the Flash application and values for Flashvars
-		 *        to be passed to the SWF.
+		 *        to be passed to the SWF. The p_oAttributes object allows the following additional properties:
+		 *        <dl>
+         *          <dt>version : String</dt>
+         *          <dd>The minimum version of Flash required on the user's machine.</dd>
+         *          <dt>fixedAttributes : Object</dt>
+         *          <dd>An object literal containing one or more of the following String keys and their values: <code>align, 
+         *              allowFullScreen, allowNetworking, allowScriptAccess, base, bgcolor, menu, name, quality, salign, scale,
+         *              tabindex, wmode.</code> event from the thumb</dd>
+         *        </dl>
 		 */
 				
 function SWF (p_oElement /*:String*/, swfURL /*:String*/, p_oAttributes /*:Object*/ ) {
@@ -107,26 +114,34 @@ function SWF (p_oElement /*:String*/, swfURL /*:String*/, p_oAttributes /*:Objec
 				oElement.setContent(objstring);
 			
 				this._swf = Node.one("#" + _id);
-			}				
+			}
+	/**
+	* Fired when the Flash player version on the user's machine is below the required value.
+	*
+	* @event wrongflashversion
+    */
+	else {
+			this.publish("wrongflashversion", {fireOnce:true});
+	     	this.fire("wrongflashversion", event);
+		}		
 };
 
 /**
+ * @private
  * The static collection of all instances of the SWFs on the page.
  * @property _instances
- * @private
  * @type Object
  */
-
 
 SWF._instances = SWF._instances || {};
 
 /**
+ * @private
  * Handles an event coming from within the SWF and delegate it
  * to a specific instance of SWF.
  * @method eventHandler
  * @param swfid {String} the id of the SWF dispatching the event
  * @param event {Object} the event being transmitted.
- * @private
  */
 SWF.eventHandler = function (swfid, event) {
 	SWF._instances[swfid]._eventHandler(event);
@@ -178,38 +193,6 @@ SWF.prototype =
 	    }
 	},
 	
-	createInstance: function (instanceId, className, args) {
-		if (!args) {args = []};
-		if (this._swf._node["createInstance"]) {
-			this._swf._node.createInstance(instanceId, className, args);
-		}
-	},
-	
-	applyMethod: function (instanceId, methodName, args) {
-		if (!args) {args = []};
-		if (this._swf._node["applyMethod"]) {
-			this._swf._node.applyMethod(instanceId, methodName, args);
-		}
-	},
-	
-	exposeMethod: function (instanceId, methodName, exposedName) {
-		if (this._swf._node["exposeMethod"]) {
-			this._swf._node.exposeMethod(instanceId, methodName, exposedName);
-		}
-	},
-	
-	getProperty: function (instanceId, propertyName) {
-		if (this._swf._node["getProperty"]) {
-			this._swf._node.getProperty(instanceId, propertyName);
-		}
-	},
-	
-	setProperty: function (instanceId, propertyName, propertyValue) {
-		if (this._swf._node["setProperty"]) {
-			this._swf._node.setProperty(instanceId, propertyName, propertyValue);
-		}
-	},
-	
 	/**
 	 * Public accessor to the unique name of the SWF instance.
 	 *
@@ -222,10 +205,9 @@ SWF.prototype =
 	}
 };
 
-//
 Y.augment(SWF, Y.EventTarget);
 
 Y.SWF = SWF;
 
 
-}, '3.1.1' );
+}, '3.2.0PR1' );

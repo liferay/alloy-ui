@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 YUI.add('dataschema-base', function(Y) {
@@ -71,7 +71,7 @@ Y.namespace("Parsers");
 
 
 
-}, '3.1.1' ,{requires:['base']});
+}, '3.2.0PR1' ,{requires:['base']});
 
 YUI.add('dataschema-json', function(Y) {
 
@@ -189,7 +189,7 @@ var LANG = Y.Lang,
             if(LANG.isObject(data_in) && schema) {
                 // Parse results data
                 if(!LANG.isUndefined(schema.resultListLocator)) {
-                    data_out = SchemaJSON._parseResults(schema, data_in, data_out);
+                    data_out = SchemaJSON._parseResults.call(this, schema, data_in, data_out);
                 }
 
                 // Parse meta data
@@ -235,7 +235,7 @@ var LANG = Y.Lang,
                             // Sometimes you're getting an array of strings, or want the whole object,
                             // so resultFields don't make sense.
                             if (LANG.isArray(schema.resultFields)) {
-                                data_out = SchemaJSON._getFieldValues(schema.resultFields, results, data_out);
+                                data_out = SchemaJSON._getFieldValues.call(this, schema.resultFields, results, data_out);
                             }
                             else {
                                 data_out.results = results;
@@ -313,21 +313,21 @@ var LANG = Y.Lang,
                     // Cycle through simpleLocators
                     for (j=simplePaths.length-1; j>=0; --j) {
                         // Bug 1777850: The result might be an array instead of object
-                        record[simplePaths[j].key] = Y.DataSchema.Base.parse(
+                        record[simplePaths[j].key] = Y.DataSchema.Base.parse.call(this,
                                 (LANG.isUndefined(result[simplePaths[j].path]) ?
                                 result[j] : result[simplePaths[j].path]), simplePaths[j]);
                     }
 
                     // Cycle through complexLocators
                     for (j=complexPaths.length - 1; j>=0; --j) {
-                        record[complexPaths[j].key] = Y.DataSchema.Base.parse(
+                        record[complexPaths[j].key] = Y.DataSchema.Base.parse.call(this,
                             (SchemaJSON.getLocationValue(complexPaths[j].path, result)), complexPaths[j] );
                     }
 
                     // Cycle through fieldParsers
                     for (j=fieldParsers.length-1; j>=0; --j) {
                         key = fieldParsers[j].key;
-                        record[key] = fieldParsers[j].parser(record[key]);
+                        record[key] = fieldParsers[j].parser.call(this, record[key]);
                         // Safety net
                         if (LANG.isUndefined(record[key])) {
                             record[key] = null;
@@ -374,7 +374,7 @@ Y.DataSchema.JSON = Y.mix(SchemaJSON, Y.DataSchema.Base);
 
 
 
-}, '3.1.1' ,{requires:['json', 'dataschema-base']});
+}, '3.2.0PR1' ,{requires:['json', 'dataschema-base']});
 
 YUI.add('dataschema-xml', function(Y) {
 
@@ -414,10 +414,10 @@ var LANG = Y.Lang,
 
             if(xmldoc && xmldoc.nodeType && (9 === xmldoc.nodeType || 1 === xmldoc.nodeType || 11 === xmldoc.nodeType) && schema) {
                 // Parse results data
-                data_out = SchemaXML._parseResults(schema, xmldoc, data_out);
+                data_out = SchemaXML._parseResults.call(this, schema, xmldoc, data_out);
 
                 // Parse meta data
-                data_out = SchemaXML._parseMeta(schema.metaFields, xmldoc, data_out);
+                data_out = SchemaXML._parseMeta.call(this, schema.metaFields, xmldoc, data_out);
             }
             else {
                 Y.log("XML data could not be schema-parsed: " + Y.dump(data) + " " + Y.dump(data), "error", "dataschema-xml");
@@ -448,7 +448,7 @@ var LANG = Y.Lang,
                     value = res.textContent || res.value || res.text || res.innerHTML || null;
                 }
 
-                return Y.DataSchema.Base.parse(value, field);
+                return Y.DataSchema.Base.parse.call(this, value, field);
             }
             catch(e) {
                 Y.log('SchemaXML._getLocationValue failed: ' + e.message);
@@ -561,10 +561,10 @@ var LANG = Y.Lang,
          */
         _parseField: function(field, result, context) {
             if (field.schema) {
-                result[field.key] = SchemaXML._parseResults(field.schema, context, {results:[],meta:{}}).results;
+                result[field.key] = SchemaXML._parseResults.call(this, field.schema, context, {results:[],meta:{}}).results;
             }
             else {
-                result[field.key || field] = SchemaXML._getLocationValue(field, context);
+                result[field.key || field] = SchemaXML._getLocationValue.call(this, field, context);
             }
         },
 
@@ -585,7 +585,7 @@ var LANG = Y.Lang,
 
                 for(key in metaFields) {
                     if (metaFields.hasOwnProperty(key)) {
-                        data_out.meta[key] = SchemaXML._getLocationValue(metaFields[key], xmldoc);
+                        data_out.meta[key] = SchemaXML._getLocationValue.call(this, metaFields[key], xmldoc);
                     }
                 }
             }
@@ -607,7 +607,7 @@ var LANG = Y.Lang,
 
             // Find each field value
             for (j=fields.length-1; 0 <= j; j--) {
-                SchemaXML._parseField(fields[j], result, context);
+                SchemaXML._parseField.call(this, fields[j], result, context);
             }
 
             return result;
@@ -636,7 +636,7 @@ var LANG = Y.Lang,
                     
                     // loop through each result node
                     for (i=nodeList.length-1; 0 <= i; i--) {
-                        results[i] = SchemaXML._parseResult(fields, nodeList[i]);
+                        results[i] = SchemaXML._parseResult.call(this, fields, nodeList[i]);
                     }
                 }
                 else {
@@ -644,7 +644,7 @@ var LANG = Y.Lang,
 
                     // loop through the nodelist
                     while (node = nodeList.iterateNext()) {
-                        results[i] = SchemaXML._parseResult(fields, node);
+                        results[i] = SchemaXML._parseResult.call(this, fields, node);
                         i += 1;
                     }
                 }
@@ -664,7 +664,7 @@ Y.DataSchema.XML = Y.mix(SchemaXML, Y.DataSchema.Base);
 
 
 
-}, '3.1.1' ,{requires:['dataschema-base']});
+}, '3.2.0PR1' ,{requires:['dataschema-base']});
 
 YUI.add('dataschema-array', function(Y) {
 
@@ -706,7 +706,7 @@ var LANG = Y.Lang,
             if(LANG.isArray(data_in)) {
                 if(LANG.isArray(schema.resultFields)) {
                     // Parse results data
-                    data_out = SchemaArray._parseResults(schema.resultFields, data_in, data_out);
+                    data_out = SchemaArray._parseResults.call(this, schema.resultFields, data_in, data_out);
                 }
                 else {
                     data_out.results = data_in;
@@ -745,7 +745,7 @@ var LANG = Y.Lang,
                         field = fields[j];
                         key = (!LANG.isUndefined(field.key)) ? field.key : field;
                         value = (!LANG.isUndefined(item[key])) ? item[key] : item[j];
-                        result[key] = Y.DataSchema.Base.parse(value, field);
+                        result[key] = Y.DataSchema.Base.parse.call(this, value, field);
                     }
                 }
                 else if(type === 0) {
@@ -768,7 +768,7 @@ Y.DataSchema.Array = Y.mix(SchemaArray, Y.DataSchema.Base);
 
 
 
-}, '3.1.1' ,{requires:['dataschema-base']});
+}, '3.2.0PR1' ,{requires:['dataschema-base']});
 
 YUI.add('dataschema-text', function(Y) {
 
@@ -810,7 +810,7 @@ var LANG = Y.Lang,
 
             if(LANG.isString(data_in) && LANG.isString(schema.resultDelimiter)) {
                 // Parse results data
-                data_out = SchemaText._parseResults(schema, data_in, data_out);
+                data_out = SchemaText._parseResults.call(this, schema, data_in, data_out);
             }
             else {
                 Y.log("Text data could not be schema-parsed: " + Y.dump(data) + " " + Y.dump(data), "error", "dataschema-text");
@@ -858,7 +858,7 @@ var LANG = Y.Lang,
                             field = fields[j];
                             key = (!LANG.isUndefined(field.key)) ? field.key : field;
                             value = (!LANG.isUndefined(fields_in[key])) ? fields_in[key] : fields_in[j];
-                            result[key] = Y.DataSchema.Base.parse(value, field);
+                            result[key] = Y.DataSchema.Base.parse.call(this, value, field);
                         }
                     }
 
@@ -879,9 +879,9 @@ Y.DataSchema.Text = Y.mix(SchemaText, Y.DataSchema.Base);
 
 
 
-}, '3.1.1' ,{requires:['dataschema-base']});
+}, '3.2.0PR1' ,{requires:['dataschema-base']});
 
 
 
-YUI.add('dataschema', function(Y){}, '3.1.1' ,{use:['dataschema-base','dataschema-json','dataschema-xml','dataschema-array','dataschema-text']});
+YUI.add('dataschema', function(Y){}, '3.2.0PR1' ,{use:['dataschema-base','dataschema-json','dataschema-xml','dataschema-array','dataschema-text']});
 
