@@ -437,6 +437,7 @@ YUI.add('anim-base', function(Y) {
         /**
          * Stops the animation and resets its time.
          * @method stop
+         * @param {Boolean} finish If true, the animation will move to the last frame
          * @chainable
          */    
         stop: function(finish) {
@@ -1212,5 +1213,5 @@ Y.Anim.behaviors.xy = {
 }, '3.2.0PR1' ,{requires:['anim-base', 'node-screen']});
 
 
-YUI.add('anim', function(Y){}, '3.2.0PR1' ,{skinnable:false, use:['anim-base', 'anim-color', 'anim-curve', 'anim-easing', 'anim-node-plugin', 'anim-scroll', 'anim-xy']});
+YUI.add('anim', function(Y){}, '3.2.0PR1' ,{use:['anim-base', 'anim-color', 'anim-curve', 'anim-easing', 'anim-node-plugin', 'anim-scroll', 'anim-xy'], skinnable:false});
 
