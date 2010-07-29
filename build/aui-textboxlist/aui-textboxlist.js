@@ -196,6 +196,13 @@ var TextboxList = A.Component.create(
 
 				instance.entries.add(entry);
 			},
+									 
+			addEntries: function(instance) {
+				var instance = this;
+				var inputNode = instance.inputNode;
+				
+				instance.entries.add(inputNode.val(), {});
+			},
 
 			insert: function(index, label) {
 				var instance = this;
@@ -323,7 +330,7 @@ var TextboxList = A.Component.create(
 				}
 				else {
 					if (keyCode == KEY_ENTER && instance.get('allowAnyEntry')) {
-						instance.entries.add(inputNode.val(), {});
+						instance.addEntries();
 					}
 				}
 			},
@@ -517,4 +524,4 @@ var TextboxListEntry = A.Component.create(
 A.TextboxList = TextboxList;
 A.TextboxListEntry = TextboxListEntry;
 
-}, '@VERSION@' ,{skinnable:true, requires:['anim-node-plugin','aui-autocomplete','node-focusmanager']});
+}, '@VERSION@' ,{requires:['anim-node-plugin','aui-autocomplete','node-focusmanager'], skinnable:true});
