@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.1.1
+version: 3.2.0PR1
 build: nightly
 */
 /**
@@ -46,7 +46,7 @@ if (typeof YUI === 'undefined') {
             // set up the core environment
             Y._init();
             if (gconf) {
-                Y._config(gconf);
+                Y.applyConfig(gconf);
             }
             // bind the specified additional modules for this instance
             if (!l) {
@@ -56,7 +56,7 @@ if (typeof YUI === 'undefined') {
 
         if (l) {
             for (; i<l; i++) {
-                Y._config(a[i]);
+                Y.applyConfig(a[i]);
             }
 
             Y._setup();
@@ -68,7 +68,7 @@ if (typeof YUI === 'undefined') {
 
 (function() {
     var proto, prop,
-        VERSION       = '3.1.1', 
+        VERSION       = '3.2.0PR1', 
         BASE          = 'http://yui.yahooapis.com/',
         DOC_LABEL     = 'yui3-js-enabled',
         NOOP          = function() {},
@@ -140,7 +140,16 @@ if (VERSION.indexOf('@') > -1) {
 }
         
 proto = {
-    _config: function(o) {
+    /**
+     * Applies a new configuration object to the YUI instance config.
+     * This will merge new group/module definitions, and will also
+     * update the loader cache if necessary.  Updating Y.config directly
+     * will not update the cache.
+     * @method applyConfig
+     * @param the configuration object
+     * @since 3.2.0
+     */
+    applyConfig: function(o) {
 
         o = o || NOOP;
         
@@ -183,6 +192,10 @@ proto = {
         if (loader) {
             loader._config(o);
         }
+    },
+
+    _config: function(o) {
+        this.applyConfig(o);
     },
 
     /**
@@ -867,7 +880,10 @@ proto = {
  * The config object contains all of the configuration options for
  * the YUI instance.  This object is supplied by the implementer 
  * when instantiating a YUI instance.  Some properties have default
- * values if they are not supplied by the implementer.
+ * values if they are not supplied by the implementer.  This should
+ * not be updated directly because some values are cached.  Use
+ * applyConfig() to update the config object on a YUI instance that
+ * has already been configured.
  *
  * @class config
  * @static
@@ -2521,7 +2537,7 @@ Y.UA = YUI.Env.UA || function() {
 }();
 
 
-}, '3.1.1' );
+}, '3.2.0PR1' );
 YUI.add('get', function(Y) {
 
 (function() {
@@ -3245,7 +3261,7 @@ Y.Get = function() {
 })();
 
 
-}, '3.1.1' );
+}, '3.2.0PR1' );
 YUI.add('intl-base', function(Y) {
 
 /** 
@@ -3329,7 +3345,7 @@ Y.mix(Y.namespace("Intl"), {
 });
 
 
-}, '3.1.1' ,{requires:['yui-base']});
+}, '3.2.0PR1' ,{requires:['yui-base']});
 YUI.add('yui-log', function(Y) {
 
 /**
@@ -3438,7 +3454,7 @@ INSTANCE.message = function() {
 })();
 
 
-}, '3.1.1' ,{requires:['yui-base']});
+}, '3.2.0PR1' ,{requires:['yui-base']});
 YUI.add('yui-later', function(Y) {
 
 /**
@@ -3507,7 +3523,7 @@ YUI.add('yui-later', function(Y) {
 })();
 
 
-}, '3.1.1' ,{requires:['yui-base']});
+}, '3.2.0PR1' ,{requires:['yui-base']});
 YUI.add('yui-throttle', function(Y) {
 
 /**
@@ -3557,10 +3573,10 @@ Y.throttle = throttle;
 
 
 
-}, '3.1.1' ,{requires:['yui-base']});
+}, '3.2.0PR1' ,{requires:['yui-base']});
 
 
-YUI.add('yui', function(Y){}, '3.1.1' ,{use:['yui-base','get','intl-base','yui-log','yui-later','yui-throttle']});
+YUI.add('yui', function(Y){}, '3.2.0PR1' ,{use:['yui-base','get','intl-base','yui-log','yui-later','yui-throttle']});
 
 ;(function() {
 	YUI.AUI_config = {
@@ -3906,19 +3922,6 @@ A.mix(A.Array, {
 		return A.Array.remove(a, index);
 	}
 });
-
-A.mix(
-	A.Object,
-	{
-		isEmpty: function(o) {
-			for (var name in o) {
-				return false;
-			}
-
-			return true;
-		}
-	}
-);
 
 var Lang = A.Lang;
 var isArray = Lang.isArray;

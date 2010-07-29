@@ -343,19 +343,6 @@ A.mix(A.Array, {
 	}
 });
 
-A.mix(
-	A.Object,
-	{
-		isEmpty: function(o) {
-			for (var name in o) {
-				return false;
-			}
-
-			return true;
-		}
-	}
-);
-
 var Lang = A.Lang;
 var isArray = Lang.isArray;
 var isFunction = Lang.isFunction;
