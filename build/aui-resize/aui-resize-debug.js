@@ -736,7 +736,7 @@ var Resize = A.Component.create(
 			},
 
 		    /**
-		     * Bind the events related to the handles (_onHandleMouseOver, _onHandleMouseOut).
+		     * Bind the events related to the handles (_onHandleMouseEnter, _onHandleMouseLeave).
 		     *
 		     * @method _bindHandle
 		     * @private
@@ -747,8 +747,8 @@ var Resize = A.Component.create(
 
 				wrapper.on('mouseenter', A.bind(instance._onWrapperMouseEnter, instance));
 				wrapper.on('mouseleave', A.bind(instance._onWrapperMouseLeave, instance));
-				wrapper.delegate('mouseout', A.bind(instance._onHandleMouseOut, instance), DOT+CSS_RESIZE_HANDLE);
-				wrapper.delegate('mouseover', A.bind(instance._onHandleMouseOver, instance), DOT+CSS_RESIZE_HANDLE);
+				wrapper.delegate('mouseenter', A.bind(instance._onHandleMouseEnter, instance), DOT+CSS_RESIZE_HANDLE);
+				wrapper.delegate('mouseleave', A.bind(instance._onHandleMouseLeave, instance), DOT+CSS_RESIZE_HANDLE);
 			},
 
 		    /**
@@ -1721,11 +1721,11 @@ var Resize = A.Component.create(
 			/**
 			 * Mouseover event handler for the handles.
 			 *
-			 * @method _onHandleMouseOver
+			 * @method _onHandleMouseEnter
 		     * @param {EventFacade} event
 			 * @protected
 			 */
-			_onHandleMouseOver: function(event) {
+			_onHandleMouseEnter: function(event) {
 				var instance = this;
 				var node = event.currentTarget;
 				var handle = instance._extractHandleName(node);
@@ -1742,11 +1742,11 @@ var Resize = A.Component.create(
 			/**
 			 * Mouseout event handler for the handles.
 			 *
-			 * @method _onHandleMouseOut
+			 * @method _onHandleMouseLeave
 		     * @param {EventFacade} event
 			 * @protected
 			 */
-			_onHandleMouseOut: function(event) {
+			_onHandleMouseLeave: function(event) {
 				var instance = this;
 
 				if (!instance.get(RESIZING)) {
