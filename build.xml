@@ -335,24 +335,10 @@
 
 	<target name="patch-yui">
 		<echo>Adding patches to [${project.dir}/lib/yui3/build]</echo>
-
-		<!-- Loader Patch for AUI-91 -->
-		<replaceregexp match="this.dirty = true;" replace="//this.dirty = true;">
-			<fileset dir="${project.dir}/lib/yui3/src/loader/js/" includes="loader.js"/>
-        </replaceregexp>
-
-		<subant target="all" failonerror="false">
-			<property name="lint.skip" value="true"/>
-			<fileset
-				dir="${project.dir}/lib/yui3/src/loader"
-				includes="build.xml"
-			/>
-		</subant>
-		<!-- /End Loader Patch -->
-		
-		<!-- Loader Patch for dd -->
-		<replace file="${project.dir}/lib/yui3/src/dd/js/drop.js">
-			<replacefilter token="this.shim.get('parentNode').removeChild(this.shim);" value="this.shim.remove();" />
+	
+		<!-- Patch for dd -->
+		<replace file="${project.dir}/lib/yui3/src/dd/js/drag.js">
+			<replacefilter token="node.on(GESTURE_MOVE, Y.throttle(Y.bind(DDM._move, DDM), DDM.get('throttleTime')), { standAlone: true });" value="node.on(GESTURE_MOVE, Y.throttle(Y.bind(DDM._move, DDM), DDM.get('throttleTime')));" />
 		</replace>
 
 		<subant target="all" failonerror="false">
