@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<alloy>
+	<component name="CharCounter" module="aui-char-counter" namespace="alloy" bodyContent="false">
+		<attributes>
+			<attribute name="input" type="java.lang.String"/>
+			<attribute name="maxLength" type="java.lang.Integer"/>
+			<attribute name="counter" type="java.lang.String"/>
+		</attributes>
+	</component>
+	<component name="Rating" module="aui-rating">
+		<attributes>
+			<attribute name="selectedIndex" type="java.lang.Integer"/>
+			<attribute name="defaultSelected" type="java.lang.Integer"/>
+			<attribute name="labelNode" type="java.lang.String"/>
+			<attribute name="label" type="java.lang.String"/>
+			<attribute name="inputName" type="java.lang.String"/>
+			<attribute name="size" type="java.lang.Integer"/>
+			<attribute name="title" type="java.lang.String"/>
+			<attribute name="hiddenInput" type="java.lang.String"/>
+			<attribute name="value" type="java.lang.String"/>
+			<attribute name="canReset" type="java.lang.String"/>
+			<attribute name="showTitle" type="java.lang.String"/>
+			<attribute name="elements" type="java.lang.String"/>
+			<attribute name="disabled" type="java.lang.String"/>
+		</attributes>
+	</component>
+	<component name="ProgressBar" module="aui-progressbar">
+		<attributes>
+			<attribute name="min" type="java.lang.String"/>
+			<attribute name="orientation" type="java.lang.String"/>
+			<attribute name="textNode" type="java.lang.String"/>
+			<attribute name="height" type="java.lang.String"/>
+			<attribute name="statusNode" type="java.lang.String"/>
+			<attribute name="max" type="java.lang.String"/>
+			<attribute name="ratio" type="java.lang.String"/>
+			<attribute name="value" type="java.lang.Integer"/>
+			<attribute name="label" type="java.lang.String"/>
+			<attribute name="step" type="java.lang.String"/>
+		</attributes>
+	</component>
+	<component name="DatePickerSelect" module="aui-calendar">
+		<attributes>
+			<attribute name="appendOrder" type="java.lang.String"/>
+			<attribute name="trigger" type="java.lang.String"/>
+			<attribute name="populateDay" type="java.lang.String"/>
+			<attribute name="buttonNode" type="java.lang.String"/>
+			<attribute name="visible" type="java.lang.String"/>
+			<attribute name="populateYear" type="java.lang.String"/>
+			<attribute name="dayNodeName" type="java.lang.String"/>
+			<attribute name="populateMonth" type="java.lang.String"/>
+			<attribute name="setValue" type="java.lang.String"/>
+			<attribute name="yearNodeName" type="java.lang.String"/>
+			<attribute name="dayNode" type="java.lang.String"/>
+			<attribute name="yearNode" type="java.lang.String"/>
+			<attribute name="monthNodeName" type="java.lang.String"/>
+			<attribute name="monthNode" type="java.lang.String"/>
+			<attribute name="baseName" type="java.lang.String"/>
+			<attribute name="yearRange" type="java.lang.String"/>
+			<attribute name="selectWrapperNode" type="java.lang.String"/>
+		</attributes>
+	</component>
+</alloy>

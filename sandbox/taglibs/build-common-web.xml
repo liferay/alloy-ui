@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<project name="build-common-web" xmlns:antelope="antlib:ise.antelope.tasks">
+	<import file="build-common.xml" />
+
+	<target name="clean">
+		<delete dir="docroot/WEB-INF/classes" />
+		<delete file="${war.file}.war" failonerror="false" />
+	</target>
+
+	<target name="compile">
+	</target>
+
+	<target name="deploy" depends="compile">
+		<property name="war.file.dest" value="${app.server.portal.dir}" />
+
+		<if>
+			<equals arg1="${deploy.liferay}" arg2="false" />
+			<then>
+				<copy todir="${project.dir}/alloy-web/docroot/WEB-INF/lib">
+					<fileset dir="${project.dir}/lib/application" includes="*.jar" />
+				</copy>
+			</then>
+		</if>
+
+		<copy todir="${war.file.dest}" preservelastmodified="true">
+			<fileset dir="docroot" excludes="web.xml" />
+		</copy>
+	</target>
+
+	<target name="war" depends="compile">
+	</target>
+</project>

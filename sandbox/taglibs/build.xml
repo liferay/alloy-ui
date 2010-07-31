@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+
+<project name="alloy" basedir="." default="compile" xmlns:antelope="antlib:ise.antelope.tasks">
+	<property name="project.dir" value="." />
+
+	<import file="build-common.xml" />
+
+	<target name="all">
+		<antcall target="clean" />
+		<antcall target="start" />
+		<antcall target="deploy" />
+	</target>
+
+	<target name="clean">
+		<ant dir="alloy-kernel" target="clean" inheritAll="false" />
+
+		<ant dir="alloy-taglib" target="clean" inheritAll="false" />
+
+		<ant dir="alloy-web" target="clean" inheritAll="false" />
+
+		<antcall target="print-current-time" />
+	</target>
+
+	<target name="compile">
+		<ant dir="alloy-kernel" target="compile" inheritAll="false" />
+
+		<ant dir="alloy-taglib" target="compile" inheritAll="false" />
+
+		<ant dir="alloy-web" target="compile" inheritAll="false" />
+	</target>
+
+	<target name="deploy">
+		<ant dir="alloy-kernel" target="deploy" inheritAll="false" />
+
+		<ant dir="alloy-taglib" target="deploy" inheritAll="false" />
+
+		<ant dir="alloy-web" target="deploy" inheritAll="false" />
+
+		<antcall target="print-current-time" />
+	</target>
+
+	<target name="jar">
+		<ant dir="alloy-kernel" target="jar" inheritAll="false" />
+
+		<ant dir="alloy-taglib" target="jar" inheritAll="false" />
+
+		<ant dir="alloy-web" target="war" inheritAll="false" />
+	</target>
+
+	<target name="start">
+		<antcall target="compile" />
+
+		<antcall target="jar" />
+
+		<antcall target="print-current-time" />
+	</target>
+
+	<target name="build-tags">
+		<java
+			classname="com.liferay.alloy.tools.tagbuilder.TagBuilder"
+			classpathref="project.classpath"
+			fork="true"
+			maxmemory="256m"
+			newenvironment="true"
+		>
+			<jvmarg value="-Dtagbuilder.tld.dir=${tagbuilder.tld.dir}" />
+			<jvmarg value="-Dtagbuilder.components.xml=${tagbuilder.components.xml}" />
+			<jvmarg value="-Dtagbuilder.templates.dir=${tagbuilder.templates.dir}" />
+			<jvmarg value="-Dtagbuilder.java.output.dir=${tagbuilder.java.output.dir}" />
+			<jvmarg value="-Dtagbuilder.java.output.base.dir=${tagbuilder.java.output.base.dir}" />
+			<jvmarg value="-Dtagbuilder.java.output.package=${tagbuilder.java.output.package}" />
+			<jvmarg value="-Dtagbuilder.java.output.base.package=${tagbuilder.java.output.base.package}" />
+			<jvmarg value="-Dtagbuilder.jsp.docroot.dir=${tagbuilder.docroot.dir}" />
+			<jvmarg value="-Dtagbuilder.jsp.dir=${tagbuilder.jsp.dir}" />
+			<jvmarg value="-Dtagbuilder.jsp.output.dir=${tagbuilder.jsp.output.dir}" />
+		</java>
+	</target>
+</project>

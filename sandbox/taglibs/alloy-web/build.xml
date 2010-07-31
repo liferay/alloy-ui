@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<project name="alloy-web" basedir="." default="war" xmlns:antelope="antlib:ise.antelope.tasks">
+	<import file="../build-common-web.xml" />
+
+	<property name="war.file" value="${ant.project.name}" />
+
+	<target name="clean" depends="build-common-web.clean">
+		<delete>
+			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+		</delete>
+	</target>
+
+	<target name="deploy">
+		<antcall target="build-common-web.deploy" />
+	</target>
+
+	<target name="deploy-fast">
+		<copy todir="${app.server.portal.dir}" preservelastmodified="true">
+			<fileset dir="docroot">
+				<include name="**/*.css" />
+				<include name="**/*.dtd" />
+				<include name="**/*.gif" />
+				<include name="**/*.jar" />
+				<include name="**/*.jpg" />
+				<include name="**/*.js" />
+				<include name="**/*.jsp" />
+				<include name="**/*.jspf" />
+				<include name="**/*.png" />
+				<include name="**/*.properties" />
+				<include name="**/*.tld" />
+				<include name="**/*.vm" />
+				<include name="**/*.xml" />
+			</fileset>
+		</copy>
+	</target>
+</project>

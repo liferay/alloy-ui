@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<project name="alloy-taglib" basedir="." default="compile">
+	<import file="../build-common-java.xml" />
+
+	<property name="deploy.dir" value="${app.server.portal.dir}/WEB-INF/lib" />
+	<property name="jar.file" value="${ant.project.name}" />
+</project>

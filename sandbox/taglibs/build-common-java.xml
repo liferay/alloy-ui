@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<project name="build-common-java" xmlns:antelope="antlib:ise.antelope.tasks">
+	<import file="build-common.xml" />
+
+	<target name="clean">
+		<delete dir="classes" />
+		<delete file="${jar.file}.jar" failonerror="false" />
+	</target>
+
+	<target name="compile">
+		<mkdir dir="classes" />
+
+		<copy todir="classes">
+			<fileset dir="src" excludes="**/*.java" />
+		</copy>
+
+		<if>
+			<equals arg1="${javac.compiler}" arg2="modern" />
+			<then>
+				<javac
+					classpathref="project.classpath"
+					compiler="${javac.compiler}"
+					debug="${javac.debug}"
+					deprecation="${javac.deprecation}"
+					destdir="classes"
+					fork="${javac.fork}"
+					includeAntRuntime="false"
+					memoryMaximumSize="${javac.memoryMaximumSize}"
+					nowarn="${javac.nowarn}"
+					srcdir="src"
+				/>
+			</then>
+			<else>
+				<javac
+					classpathref="project.classpath"
+					compiler="${javac.compiler}"
+					debug="${javac.debug}"
+					deprecation="${javac.deprecation}"
+					destdir="classes"
+					includeAntRuntime="false"
+					nowarn="${javac.nowarn}"
+					srcdir="src"
+				/>
+			</else>
+		</if>
+	</target>
+
+	<target name="deploy" depends="jar">
+		<copy file="${jar.file}.jar" todir="${deploy.dir}" />
+
+		<copy todir="${project.dir}/alloy-web/docroot/WEB-INF/lib">
+			<fileset
+				dir="."
+				includes="${jar.file}.jar"
+			/>
+		</copy>
+	</target>
+
+	<target name="jar" depends="compile">
+		<jar
+			basedir="classes"
+			jarfile="${jar.file}.jar"
+		/>
+	</target>
+</project>

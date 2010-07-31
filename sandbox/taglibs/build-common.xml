@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+
+<project name="common" xmlns:antelope="antlib:ise.antelope.tasks">
+	<property name="project.dir" value=".." />
+
+	<property environment="env" />
+
+	<property file="${project.dir}/build.${user.name}.properties" />
+	<property file="${project.dir}/build.${env.COMPUTERNAME}.properties" />
+	<property file="${project.dir}/build.${env.HOST}.properties" />
+	<property file="${project.dir}/build.${env.HOSTNAME}.properties" />
+	<property file="${project.dir}/build.properties" />
+
+	<path id="lib.classpath">
+		<fileset dir="${project.dir}/lib/application" includes="*.jar" />
+		<fileset dir="${project.dir}/lib/development" includes="*.jar" />
+	</path>
+
+	<path id="project.classpath">
+		<pathelement path="${classpath}" />
+		<path refid="lib.classpath" />
+	</path>
+
+	<taskdef classpathref="lib.classpath" resource="net/sf/antcontrib/antlib.xml" />
+	<taskdef classpathref="lib.classpath" resource="ise/antelope/tasks/antlib.xml" uri="antlib:ise.antelope.tasks" />
+
+	<propertycopy name="app.server.portal.dir" from="app.server.${app.server.type}.portal.dir" />
+	<propertycopy name="app.server.lib.global.dir" from="app.server.${app.server.type}.lib.global.dir" />
+	<propertycopy name="app.server.dir" from="app.server.${app.server.type}.dir" />
+	<propertycopy name="app.server.deploy.dir" from="app.server.${app.server.type}.deploy.dir" />
+
+	<condition property="correct.ant.version">
+		<antversion atleast="1.7.0" />
+	</condition>
+
+	<if>
+		<not>
+			<equals arg1="${correct.ant.version}" arg2="true" />
+		</not>
+		<then>
+			<fail>
+.
+
+Please use Ant 1.7.0 or above.
+			</fail>
+		</then>
+	</if>
+
+	<target name="compile">
+	</target>
+
+	<target name="print-current-time">
+		<tstamp>
+			<format property="current.time" pattern="MMMM d, yyyy 'at' hh:mm aa" />
+		</tstamp>
+
+		<echo message="${current.time}" />
+	</target>
+</project>
