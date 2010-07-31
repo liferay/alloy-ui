@@ -29,6 +29,10 @@ import com.liferay.portal.kernel.util.StringPool;
  */
 public class ComponentTag extends IncludeTag {
 
+	public void init() {
+		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
+	}
+
 	public String getJsVar() {
 		return _jsVar;
 	}
@@ -47,10 +51,6 @@ public class ComponentTag extends IncludeTag {
 
 	public String getYuiVariable() {
 		return _yuiVariable;
-	}
-
-	public void init() {
-		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
 	}
 
 	public void setJsVar(String jsVar) {
