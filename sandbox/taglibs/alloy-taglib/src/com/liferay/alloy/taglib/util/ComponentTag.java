@@ -94,13 +94,13 @@ public class ComponentTag extends IncludeTag {
 	protected void setAttributes(HttpServletRequest request) {
 		StringBundler optionsSB = new StringBundler();
 
-		_buildOptionsString(optionsSB, getOptions());
+		_buildOptionsString(optionsSB, _options);
 
-		setNamespacedAttribute(request, "var", getVar());
-		setNamespacedAttribute(request, "module", getModule());
-		setNamespacedAttribute(request, "name", getName());
+		setNamespacedAttribute(request, "var", _var);
+		setNamespacedAttribute(request, "module", _module);
+		setNamespacedAttribute(request, "name", _name);
 		setNamespacedAttribute(request, "options", optionsSB.toString());
-		setNamespacedAttribute(request, "yuiVariable", getYuiVariable());
+		setNamespacedAttribute(request, "yuiVariable", _yuiVariable);
 	}
 
 	private void _buildArrayString(StringBundler sb, Object[] array) {

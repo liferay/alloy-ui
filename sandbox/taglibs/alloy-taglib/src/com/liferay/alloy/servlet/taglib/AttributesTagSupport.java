@@ -48,7 +48,7 @@ public class AttributesTagSupport
 
 	public Object getNamespacedAttribute(Object obj, String key) {
 		return AttributeUtil.getAttribute(
-			obj, getAttributeNamespace().concat(key));
+			obj, _attributeNamespace.concat(key));
 	}
 
 	public Object getScopedAttribute(String key) {
@@ -71,7 +71,7 @@ public class AttributesTagSupport
 
 	public void setNamespacedAttribute(Object obj, String key, Object  value) {
 		AttributeUtil.setAttribute(
-			obj, getAttributeNamespace().concat(key), value);
+			obj, _attributeNamespace.concat(key), value);
 	}
 
 	public void setScopedAttribute(String name, Object value) {

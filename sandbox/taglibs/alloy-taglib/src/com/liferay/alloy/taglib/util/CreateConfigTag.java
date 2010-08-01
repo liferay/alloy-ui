@@ -150,7 +150,7 @@ public class CreateConfigTag extends IncludeTag {
 	}
 
 	private boolean _isValidAttribute(String key) {
-		return !(getExcludeAttributes().contains(key) ||
+		return !(_excludeAttributes.contains(key) ||
 			key.equals(_DYNAMIC_ATTRIBUTES));
 	}
 
