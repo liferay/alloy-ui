@@ -43,7 +43,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _ratio;
 	}
 
-	public java.lang.String getValue() {
+	public java.lang.Integer getValue() {
 		return _value;
 	}
 
@@ -97,7 +97,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		setScopedAttribute("ratio", ratio);
 	}
 
-	public void setValue(java.lang.String value) {
+	public void setValue(java.lang.Integer value) {
 		_value = value;
 
 		setScopedAttribute("value", value);
@@ -131,7 +131,7 @@ public class BaseProgressBarTag extends IncludeTag {
 	private java.lang.String _statusNode;
 	private java.lang.String _max;
 	private java.lang.String _ratio;
-	private java.lang.String _value;
+	private java.lang.Integer _value;
 	private java.lang.String _label;
 	private java.lang.String _step;
 
