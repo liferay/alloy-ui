@@ -1,5 +1,5 @@
 <alloy:component
-	jsVar="DatePickerSelect1"
+	var="DatePickerSelect1"
 	module="aui-calendar"
 	name="DatePickerSelect"
 	options="${options}"

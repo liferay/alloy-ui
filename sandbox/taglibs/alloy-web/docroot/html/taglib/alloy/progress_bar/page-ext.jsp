@@ -1,5 +1,5 @@
 <alloy:component
-	jsVar="ProgressBar1"
+	var="ProgressBar1"
 	module="aui-progressbar"
 	name="ProgressBar"
 	options="${options}"

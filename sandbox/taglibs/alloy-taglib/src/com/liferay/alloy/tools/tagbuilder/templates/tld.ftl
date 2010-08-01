@@ -60,7 +60,7 @@
 		<tag-class>com.liferay.alloy.taglib.util.ComponentTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
-			<name>jsVar</name>
+			<name>var</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>

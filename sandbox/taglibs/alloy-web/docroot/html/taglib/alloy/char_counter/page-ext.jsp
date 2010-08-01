@@ -1,5 +1,5 @@
 <alloy:component
-	jsVar="CharCounter1"
+	var="CharCounter1"
 	module="aui-char-counter"
 	name="CharCounter"
 	options="${options}"

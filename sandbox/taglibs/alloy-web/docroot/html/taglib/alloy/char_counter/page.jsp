@@ -6,8 +6,7 @@ Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute
 %>
 
 <alloy:createConfig
-	excludeAttributes="jsVar,javaScriptAttributes"
-	javaScriptAttributes="abc,cde"
+	excludeAttributes="var,javaScriptAttributes"
 	tagPageContext="<%= pageContext %>"
 	tagDynamicAttributes="<%= dynamicAttributes %>"
 	tagScopedAttributes="<%= scopedAttributes %>"

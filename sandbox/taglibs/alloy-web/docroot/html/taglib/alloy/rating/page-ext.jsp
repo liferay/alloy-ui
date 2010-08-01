@@ -1,5 +1,5 @@
 <alloy:component
-	jsVar="Rating1"
+	var="Rating1"
 	module="aui-rating"
 	name="Rating"
 	options="${options}"

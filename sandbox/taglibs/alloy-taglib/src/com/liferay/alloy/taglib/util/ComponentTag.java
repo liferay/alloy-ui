@@ -33,10 +33,6 @@ public class ComponentTag extends IncludeTag {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
 	}
 
-	public String getJsVar() {
-		return _jsVar;
-	}
-
 	public String getModule() {
 		return _module;
 	}
@@ -49,12 +45,12 @@ public class ComponentTag extends IncludeTag {
 		return _options;
 	}
 
-	public String getYuiVariable() {
-		return _yuiVariable;
+	public String getVar() {
+		return _var;
 	}
 
-	public void setJsVar(String jsVar) {
-		_jsVar = jsVar;
+	public String getYuiVariable() {
+		return _yuiVariable;
 	}
 
 	public void setModule(String module) {
@@ -69,12 +65,16 @@ public class ComponentTag extends IncludeTag {
 		_options = options;
 	}
 
+	public void setVar(String var) {
+		_var = var;
+	}
+
 	public void setYuiVariable(String yuiVariable) {
 		_yuiVariable = yuiVariable;
 	}
 
 	protected void cleanUp() {
-		_jsVar = null;
+		_var = null;
 		_module = null;
 		_options = null;
 		_yuiVariable = null;
@@ -93,7 +93,7 @@ public class ComponentTag extends IncludeTag {
 
 		_buildOptionsString(optionsSB, getOptions());
 
-		request.setAttribute(getAttributeNamespace() + "jsVar", getJsVar());
+		request.setAttribute(getAttributeNamespace() + "var", getVar());
 
 		request.setAttribute(getAttributeNamespace() + "module", getModule());
 
@@ -172,11 +172,11 @@ public class ComponentTag extends IncludeTag {
 
 	private static final String _PAGE =
 		"/html/taglib/alloy-util/component/page.jsp";
-
-	private String _jsVar;
 	private String _module;
 	private String _name;
 	private Map<String, Object> _options;
+
+	private String _var;
 	private String _yuiVariable;
 
 }
