@@ -15,6 +15,7 @@
 package com.liferay.alloy.taglib.util;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -116,15 +117,24 @@ public class CreateConfigTag extends IncludeTag {
 
 	private Object _getEscapedAttributeValue(String key, Object rawValue) {
 		if (rawValue != null) {
-			String simpleClassName = rawValue.getClass().getSimpleName();
+			List<String> javaScriptValues = Collections.EMPTY_LIST;
 
-			List<String> javaScriptValues = (List<String>) Arrays.asList(
-				getJavaScriptAttributes().split(StringPool.COMMA));
+			if (_javaScriptAttributes != null) {
+				javaScriptValues = (List<String>)Arrays.asList(
+					_javaScriptAttributes.split(StringPool.COMMA));
+			}
 
 			if (!javaScriptValues.contains(key)) {
+				String simpleClassName = rawValue.getClass().getSimpleName();
+
 				if (simpleClassName.equals("String")) {
-					return (
-						StringPool.APOSTROPHE + rawValue + StringPool.APOSTROPHE);
+					StringBuilder sb = new StringBuilder();
+
+					sb.append(StringPool.APOSTROPHE);
+					sb.append(rawValue.toString());
+					sb.append(StringPool.APOSTROPHE);
+
+					return sb.toString();
 				}
 			}
 		}
@@ -217,10 +227,10 @@ public class CreateConfigTag extends IncludeTag {
 	private static final Pattern _EVENT_ON_REGEX = Pattern.compile("on[A-Z]");
 
 	private static final String _ON = "on";
+
 	private String _excludeAttributes;
 	private String _javaScriptAttributes;
 	private Map<String, Object> _tagDynamicAttributes;
-
 	private PageContext _tagPageContext;
 	private Map<String, Object> _tagScopedAttributes;
 	private String _var;
