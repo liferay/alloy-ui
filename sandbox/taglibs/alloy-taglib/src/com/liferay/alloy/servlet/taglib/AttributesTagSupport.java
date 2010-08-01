@@ -14,6 +14,8 @@
 
 package com.liferay.alloy.servlet.taglib;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.DynamicAttributes;
 
+import com.liferay.alloy.util.AttributeUtil;
 import com.liferay.portal.kernel.util.StringPool;
 
 /**
@@ -31,41 +34,51 @@ import com.liferay.portal.kernel.util.StringPool;
 public class AttributesTagSupport
 	extends BaseBodyTagSupport implements DynamicAttributes {
 
+	public String getAttributeNamespace() {
+		return _attributeNamespace;
+	}
+
+	public Object getDynamicAttribute(String key) {
+		return _dynamicAttributes.get(key);
+	}
+
+	public Map<String, Object> getDynamicAttributes() {
+		return _dynamicAttributes;
+	}
+
+	public Object getNamespacedAttribute(Object obj, String key) {
+		return AttributeUtil.getAttribute(
+			obj, getAttributeNamespace().concat(key));
+	}
+
+	public Object getScopedAttribute(String key) {
+		return _scopedAttributes.get(key);
+	}
+
+	public Map<String, Object> getScopedAttributes() {
+		return _scopedAttributes;
+	}
+
+	public void setAttributeNamespace(String attributeNamespace) {
+		_attributeNamespace = attributeNamespace;
+	}
+
 	public void setDynamicAttribute(
 		String uri, String localName, Object value) {
 
 		_dynamicAttributes.put(localName, value);
 	}
 
+	public void setNamespacedAttribute(Object obj, String key, Object  value) {
+		AttributeUtil.setAttribute(
+			obj, getAttributeNamespace().concat(key), value);
+	}
+
 	public void setScopedAttribute(String name, Object value) {
 		_scopedAttributes.put(name, value);
 	}
 
-	protected String getAttributeNamespace() {
-		return _attributeNamespace;
-	}
-
-	protected Object getDynamicAttribute(String key) {
-		return _dynamicAttributes.get(key);
-	}
-
-	protected Map<String, Object> getDynamicAttributes() {
-		return _dynamicAttributes;
-	}
-
-	protected Object getScopedAttribute(String key) {
-		return _scopedAttributes.get(key);
-	}
-
-	protected Map<String, Object> getScopedAttributes() {
-		return _scopedAttributes;
-	}
-
-	protected void setAttributeNamespace(String attributeNamespace) {
-		_attributeNamespace = attributeNamespace;
-	}
-
-	protected String _attributeNamespace;
+	private String _attributeNamespace = StringPool.BLANK;
 
 	private Map<String, Object> _dynamicAttributes =
 		new HashMap<String, Object>();

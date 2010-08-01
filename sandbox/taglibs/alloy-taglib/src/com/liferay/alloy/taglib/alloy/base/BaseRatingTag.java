@@ -2,6 +2,8 @@ package com.liferay.alloy.taglib.alloy.base;
 
 import com.liferay.alloy.taglib.util.IncludeTag;
 
+import javax.servlet.jsp.JspException;
+
 /**
  * <a href="BaseRatingTag.java.html"><b><i>View Source</i></b></a>
  *
@@ -11,8 +13,10 @@ import com.liferay.alloy.taglib.util.IncludeTag;
  */
 public class BaseRatingTag extends IncludeTag {
 
-	public void init() {
+	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
+
+		return super.doStartTag();
 	}
 
 	public java.lang.Integer getSelectedIndex() {

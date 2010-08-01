@@ -141,11 +141,11 @@ public class IncludeTag	extends AttributesTagSupport {
 			request = _trackedRequest;
 		}
 
-		request.setAttribute(getAttributeNamespace() + "dynamicAttributes",
-			getDynamicAttributes());
+		setNamespacedAttribute(
+			request, "dynamicAttributes", getDynamicAttributes());
 
-		request.setAttribute(getAttributeNamespace() + "scopedAttributes",
-			getScopedAttributes());
+		setNamespacedAttribute(
+			request, "scopedAttributes", getScopedAttributes());
 
 		setAttributes(request);
 	}

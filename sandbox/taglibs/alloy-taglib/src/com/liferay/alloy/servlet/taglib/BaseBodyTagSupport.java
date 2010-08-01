@@ -26,14 +26,6 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class BaseBodyTagSupport extends BodyTagSupport {
 
-	public BaseBodyTagSupport() {
-		super();
-
-		init();
-	};
-
-	public void init() {}
-
 	public ServletContext getServletContext() {
 		if (_servletContext != null) {
 			return _servletContext;

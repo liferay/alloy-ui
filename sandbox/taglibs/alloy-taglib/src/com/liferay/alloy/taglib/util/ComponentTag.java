@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.jsp.JspException;
 
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -29,8 +30,10 @@ import com.liferay.portal.kernel.util.StringPool;
  */
 public class ComponentTag extends IncludeTag {
 
-	public void init() {
+	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
+
+		return super.doStartTag();
 	}
 
 	public String getModule() {
@@ -93,17 +96,11 @@ public class ComponentTag extends IncludeTag {
 
 		_buildOptionsString(optionsSB, getOptions());
 
-		request.setAttribute(getAttributeNamespace() + "var", getVar());
-
-		request.setAttribute(getAttributeNamespace() + "module", getModule());
-
-		request.setAttribute(getAttributeNamespace() + "name", getName());
-
-		request.setAttribute(getAttributeNamespace() + "options",
-			optionsSB.toString());
-
-		request.setAttribute(getAttributeNamespace() + "yuiVariable",
-			getYuiVariable());
+		setNamespacedAttribute(request, "var", getVar());
+		setNamespacedAttribute(request, "module", getModule());
+		setNamespacedAttribute(request, "name", getName());
+		setNamespacedAttribute(request, "options", optionsSB.toString());
+		setNamespacedAttribute(request, "yuiVariable", getYuiVariable());
 	}
 
 	private void _buildArrayString(StringBundler sb, Object[] array) {
@@ -172,10 +169,10 @@ public class ComponentTag extends IncludeTag {
 
 	private static final String _PAGE =
 		"/html/taglib/alloy-util/component/page.jsp";
+
 	private String _module;
 	private String _name;
 	private Map<String, Object> _options;
-
 	private String _var;
 	private String _yuiVariable;
 
