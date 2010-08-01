@@ -55,7 +55,7 @@
 		<antcall target="print-current-time" />
 	</target>
 
-	<target name="build-tags">
+	<target name="build-tags" depends="compile">
 		<java
 			classname="com.liferay.alloy.tools.tagbuilder.TagBuilder"
 			classpathref="project.classpath"
