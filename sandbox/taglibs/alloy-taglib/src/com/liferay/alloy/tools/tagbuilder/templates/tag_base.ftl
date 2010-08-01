@@ -2,6 +2,7 @@ package ${packageBasePath};
 
 import com.liferay.alloy.taglib.util.IncludeTag;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 
 /**
@@ -46,6 +47,12 @@ public class Base${component.getName()}Tag extends IncludeTag {
 		return _PAGE;
 	}
 	</#if>
+
+	protected void setAttributes(HttpServletRequest request) {
+		<#list component.getAttributes() as attribute>
+		setNamespacedAttribute(request, "${attribute.getName()}", _${attribute.getName()});
+		</#list>
+	}
 
 	private static final String _ATTRIBUTE_NAMESPACE = "${namespace}";
 
