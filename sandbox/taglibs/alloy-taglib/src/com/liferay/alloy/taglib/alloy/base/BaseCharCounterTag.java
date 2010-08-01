@@ -2,6 +2,7 @@ package com.liferay.alloy.taglib.alloy.base;
 
 import com.liferay.alloy.taglib.util.IncludeTag;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 
 /**
@@ -51,6 +52,12 @@ public class BaseCharCounterTag extends IncludeTag {
 
 	protected String getPage() {
 		return _PAGE;
+	}
+
+	protected void setAttributes(HttpServletRequest request) {
+		setNamespacedAttribute(request, "input", _input);
+		setNamespacedAttribute(request, "maxLength", _maxLength);
+		setNamespacedAttribute(request, "counter", _counter);
 	}
 
 	private static final String _ATTRIBUTE_NAMESPACE = "alloy:char-counter:";

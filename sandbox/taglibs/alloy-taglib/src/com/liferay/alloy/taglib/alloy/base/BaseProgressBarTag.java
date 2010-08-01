@@ -2,6 +2,7 @@ package com.liferay.alloy.taglib.alloy.base;
 
 import com.liferay.alloy.taglib.util.IncludeTag;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 
 /**
@@ -121,6 +122,19 @@ public class BaseProgressBarTag extends IncludeTag {
 
 	protected String getPage() {
 		return _PAGE;
+	}
+
+	protected void setAttributes(HttpServletRequest request) {
+		setNamespacedAttribute(request, "min", _min);
+		setNamespacedAttribute(request, "orientation", _orientation);
+		setNamespacedAttribute(request, "textNode", _textNode);
+		setNamespacedAttribute(request, "height", _height);
+		setNamespacedAttribute(request, "statusNode", _statusNode);
+		setNamespacedAttribute(request, "max", _max);
+		setNamespacedAttribute(request, "ratio", _ratio);
+		setNamespacedAttribute(request, "value", _value);
+		setNamespacedAttribute(request, "label", _label);
+		setNamespacedAttribute(request, "step", _step);
 	}
 
 	private static final String _ATTRIBUTE_NAMESPACE = "alloy:progress-bar:";

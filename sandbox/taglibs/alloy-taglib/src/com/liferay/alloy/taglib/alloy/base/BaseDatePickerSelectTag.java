@@ -2,6 +2,7 @@ package com.liferay.alloy.taglib.alloy.base;
 
 import com.liferay.alloy.taglib.util.IncludeTag;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 
 /**
@@ -191,6 +192,26 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 
 	protected String getPage() {
 		return _PAGE;
+	}
+
+	protected void setAttributes(HttpServletRequest request) {
+		setNamespacedAttribute(request, "appendOrder", _appendOrder);
+		setNamespacedAttribute(request, "trigger", _trigger);
+		setNamespacedAttribute(request, "populateDay", _populateDay);
+		setNamespacedAttribute(request, "buttonNode", _buttonNode);
+		setNamespacedAttribute(request, "visible", _visible);
+		setNamespacedAttribute(request, "populateYear", _populateYear);
+		setNamespacedAttribute(request, "dayNodeName", _dayNodeName);
+		setNamespacedAttribute(request, "populateMonth", _populateMonth);
+		setNamespacedAttribute(request, "setValue", _setValue);
+		setNamespacedAttribute(request, "yearNodeName", _yearNodeName);
+		setNamespacedAttribute(request, "dayNode", _dayNode);
+		setNamespacedAttribute(request, "yearNode", _yearNode);
+		setNamespacedAttribute(request, "monthNodeName", _monthNodeName);
+		setNamespacedAttribute(request, "monthNode", _monthNode);
+		setNamespacedAttribute(request, "baseName", _baseName);
+		setNamespacedAttribute(request, "yearRange", _yearRange);
+		setNamespacedAttribute(request, "selectWrapperNode", _selectWrapperNode);
 	}
 
 	private static final String _ATTRIBUTE_NAMESPACE = "alloy:date-picker-select:";

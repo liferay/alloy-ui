@@ -2,6 +2,7 @@ package com.liferay.alloy.taglib.alloy.base;
 
 import com.liferay.alloy.taglib.util.IncludeTag;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 
 /**
@@ -151,6 +152,22 @@ public class BaseRatingTag extends IncludeTag {
 
 	protected String getPage() {
 		return _PAGE;
+	}
+
+	protected void setAttributes(HttpServletRequest request) {
+		setNamespacedAttribute(request, "selectedIndex", _selectedIndex);
+		setNamespacedAttribute(request, "defaultSelected", _defaultSelected);
+		setNamespacedAttribute(request, "labelNode", _labelNode);
+		setNamespacedAttribute(request, "label", _label);
+		setNamespacedAttribute(request, "inputName", _inputName);
+		setNamespacedAttribute(request, "size", _size);
+		setNamespacedAttribute(request, "title", _title);
+		setNamespacedAttribute(request, "hiddenInput", _hiddenInput);
+		setNamespacedAttribute(request, "value", _value);
+		setNamespacedAttribute(request, "canReset", _canReset);
+		setNamespacedAttribute(request, "showTitle", _showTitle);
+		setNamespacedAttribute(request, "elements", _elements);
+		setNamespacedAttribute(request, "disabled", _disabled);
 	}
 
 	private static final String _ATTRIBUTE_NAMESPACE = "alloy:rating:";
