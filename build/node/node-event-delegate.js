@@ -32,4 +32,4 @@ Y.Node.prototype.delegate = function(type, fn, selector) {
 };
 
 
-}, '3.2.0PR1' ,{requires:['node-base', 'event-delegate', 'pluginhost']});
+}, '3.2.0PR1' ,{requires:['node-base', 'event-delegate']});

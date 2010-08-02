@@ -128,4 +128,4 @@ if (Y.UA.ie && !Y.HistoryBase.nativeHashChange) {
 }
 
 
-}, '3.2.0PR1' ,{requires:['history-base', 'history-hash', 'node-base']});
+}, '3.2.0PR1' ,{requires:['history-hash', 'node-base']});

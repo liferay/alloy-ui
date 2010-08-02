@@ -431,4 +431,4 @@ YUI.add('dd-scroll', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{optional:['dd-proxy'], requires:['dd-drag'], skinnable:false});
+}, '3.2.0PR1' ,{optional:['dd-proxy'], skinnable:false, requires:['dd-drag']});

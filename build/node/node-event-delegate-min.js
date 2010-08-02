@@ -5,4 +5,4 @@ http://developer.yahoo.com/yui/license.html
 version: 3.2.0PR1
 build: nightly
 */
-YUI.add("node-event-delegate",function(A){A.Node.prototype.delegate=function(E,D,B){var C=A.Array(arguments,0,true);C.splice(2,0,this._node);return A.delegate.apply(A,C);};},"3.2.0PR1",{requires:["node-base","event-delegate","pluginhost"]});
+YUI.add("node-event-delegate",function(A){A.Node.prototype.delegate=function(E,D,B){var C=A.Array(arguments,0,true);C.splice(2,0,this._node);return A.delegate.apply(A,C);};},"3.2.0PR1",{requires:["node-base","event-delegate"]});

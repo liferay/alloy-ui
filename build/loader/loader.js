@@ -545,11 +545,7 @@ Y.Loader = function(o) {
         GLOBAL_ENV._renderedMods = Y.merge(self.moduleInfo);
     }
 
-    YObject.each(ON_PAGE, function(v, k) {
-        if ((!(k in self.moduleInfo)) && ('details' in v)) {
-            self.addModule(v.details, k);
-        }
-    });
+    self._inspectPage();
 
     self._internal = false;
 
@@ -644,6 +640,21 @@ Y.Loader.prototype = {
         }
     },
 
+    _inspectPage: function() {
+        YObject.each(ON_PAGE, function(v, k) {
+            if (v.details) {
+                var m = this.moduleInfo[k],
+                    req = v.details.requires,
+                    mr = m && m.requires;
+                if (m && !m._inspected && req && mr.length != req.length) {
+                    delete m.expanded;
+                    m._inspected = true;
+                } else {
+                    this.addModule(v.details, k);
+                }
+            }
+        }, this);
+    },
 
 // returns true if b is not loaded, and is required
 // directly or by means of modules it supersedes.
@@ -2848,6 +2859,18 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
         ]
     }, 
     "history": {
+        "plugins": {
+            "history-hash-ie": {
+                "condition": {
+                    "trigger": "history-hash", 
+                    "ua": "ie"
+                }, 
+                "requires": [
+                    "history-hash", 
+                    "node-base"
+                ]
+            }
+        }, 
         "submodules": {
             "history-base": {
                 "after": [
@@ -2865,13 +2888,6 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
                     "event-synthetic", 
                     "history-base", 
                     "yui-later"
-                ]
-            }, 
-            "history-hash-ie": {
-                "requires": [
-                    "history-base", 
-                    "history-hash", 
-                    "node-base"
                 ]
             }, 
             "history-html5": {
@@ -3249,11 +3265,17 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
     "swfdetect": {}, 
     "tabview": {
         "plugins": {
+            "tabview-base": {
+                "requires": [
+                    "node-event-delegate", 
+                    "classnamemanager", 
+                    "skin-sam-tabview"
+                ]
+            }, 
             "tabview-plugin": {
                 "requires": [
                     "tabview-base"
-                ], 
-                "skinnable": true
+                ]
             }
         }, 
         "requires": [
@@ -3262,16 +3284,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
             "widget-child", 
             "tabview-base"
         ], 
-        "skinnable": true, 
-        "submodules": {
-            "tabview-base": {
-                "requires": [
-                    "node-event-delegate", 
-                    "node-focusmanager", 
-                    "classnamemanager"
-                ]
-            }
-        }
+        "skinnable": true
     }, 
     "test": {
         "requires": [
@@ -3392,7 +3405,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
         }
     }
 };
-YUI.Env[Y.version].md5 = 'b255ff371461675263aae41767a7df7f';
+YUI.Env[Y.version].md5 = '9102af0fa0930a570c7686a435b193af';
 
 
 }, '3.2.0PR1' ,{requires:['loader-base']});

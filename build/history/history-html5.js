@@ -93,6 +93,8 @@ Y.extend(HistoryHTML5, HistoryBase, {
     _init: function (config) {
         Y.on('popstate', this._onPopState, win, this);
 
+        HistoryHTML5.superclass._init.apply(this, arguments);
+
         // If window.onload has already fired and the sessionStorage fallback is
         // enabled, try to restore the last state from sessionStorage. This
         // works around a shortcoming of the HTML5 history API: it's impossible
@@ -102,8 +104,6 @@ Y.extend(HistoryHTML5, HistoryBase, {
         if (config && config[ENABLE_FALLBACK] && YUI.Env.windowLoaded) {
             this._loadSessionState();
         }
-
-        HistoryHTML5.superclass._init.apply(this, arguments);
     },
 
     // -- Protected Methods ----------------------------------------------------
@@ -245,4 +245,4 @@ if (useHistoryHTML5 === true || (useHistoryHTML5 !== false &&
 }
 
 
-}, '3.2.0PR1' ,{requires:['event-base', 'history-base', 'node-base'], optional:['json']});
+}, '3.2.0PR1' ,{optional:['json'], requires:['event-base', 'history-base', 'node-base']});
