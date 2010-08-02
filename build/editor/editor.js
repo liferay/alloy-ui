@@ -152,9 +152,14 @@ YUI.add('frame', function(Y) {
             
             Y.each(Y.Node.DOM_EVENTS, function(v, k) {
                 if (v === 1) {
-                    inst.on(k, fn, inst.config.doc);
+                    if (k !== 'focus' && k !== 'blur') {
+                        inst.on(k, fn, inst.config.doc);
+                    }
                 }
             });
+            //Adding focus/blur to the window object
+            inst.on('focus', fn, inst.config.win);
+            inst.on('blur', fn, inst.config.win);
             inst._use = inst.use;
             inst.use = Y.bind(this.use, this);
 
@@ -1231,7 +1236,9 @@ YUI.add('selection', function(Y) {
                 if (node.nodeType === 3) {
                     node = node.parentNode;
                 }
-                range.moveToElementText(node);
+                try {
+                    range.moveToElementText(node);
+                } catch(e) {}
                 if (collapse) {
                     range.collapse(((end) ? false : true));
                 }

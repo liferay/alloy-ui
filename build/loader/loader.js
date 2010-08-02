@@ -197,7 +197,7 @@ var NOT_FOUND       = {},
     ON_PAGE         = GLOBAL_ENV.mods,
     modulekey,
     win             = Y.config.win,
-    localStorage    = win && win.JSON && win.localStorage,
+    // localStorage    = win && win.JSON && win.localStorage,
     cache,
 
     _path           = function(dir, file, type, nomin) {
@@ -522,27 +522,31 @@ Y.Loader = function(o) {
 
     if (cache) {
         self.moduleInfo = Y.merge(cache);
-    } else if (localStorage) {
-        cache = localStorage.getItem(modulekey);
-        if (cache) {
-            self.moduleInfo = JSON.parse(cache);
-        }
-        // console.log('cached rendered module info');
+        self.conditions = Y.merge(GLOBAL_ENV._conditions);
     } 
+
+    // else if (localStorage) {
+    //     cache = localStorage.getItem(modulekey);
+    //     if (cache) {
+    //         self.moduleInfo = JSON.parse(cache);
+    //     }
+    //     // console.log('cached rendered module info');
+    // } 
 
     if (!cache) {
         YObject.each(defaults, function(v, k) {
             self.addModule(v, k);
         });
-        if (localStorage) {
-            try {
-                localStorage.setItem(modulekey, JSON.stringify(self.moduleInfo));
-            } catch(e) { }
-        }
+        // if (localStorage) {
+        //     try {
+        //         localStorage.setItem(modulekey, JSON.stringify(self.moduleInfo));
+        //     } catch(e) { }
+        // }
     }
 
     if (!GLOBAL_ENV._renderedMods) {
         GLOBAL_ENV._renderedMods = Y.merge(self.moduleInfo);
+        GLOBAL_ENV._conditions = Y.merge(self.conditions);
     }
 
     self._inspectPage();
@@ -2620,9 +2624,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
             }, 
             "dd-drag": {
                 "requires": [
-                    "dd-ddm-base", 
-                    "event-synthetic", 
-                    "event-gestures"
+                    "dd-ddm-base"
                 ]
             }, 
             "dd-drop": {
@@ -2633,6 +2635,19 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
             "dd-drop-plugin": {
                 "requires": [
                     "dd-drop"
+                ]
+            }, 
+            "dd-gestures": {
+                "condition": {
+                    "test": function(Y) {
+    return ('ontouchstart' in Y.config.win && !Y.UA.chrome);                        
+}, 
+                    "trigger": "dd-drag"
+                }, 
+                "requires": [
+                    "dd-drag", 
+                    "event-synthetic", 
+                    "event-gestures"
                 ]
             }, 
             "dd-plugin": {
@@ -2862,8 +2877,13 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
         "plugins": {
             "history-hash-ie": {
                 "condition": {
-                    "trigger": "history-hash", 
-                    "ua": "ie"
+                    "test": function (Y) {
+    var docMode = Y.config.doc.documentMode;
+
+    return Y.UA.ie && (!('onhashchange' in Y.config.win) ||
+            !docMode || docMode < 8);
+}, 
+                    "trigger": "history-hash"
                 }, 
                 "requires": [
                     "history-hash", 
@@ -3405,7 +3425,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
         }
     }
 };
-YUI.Env[Y.version].md5 = '9102af0fa0930a570c7686a435b193af';
+YUI.Env[Y.version].md5 = '3dd64d2201d126f43699db6d8265413e';
 
 
 }, '3.2.0PR1' ,{requires:['loader-base']});

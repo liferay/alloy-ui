@@ -462,9 +462,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
             }, 
             "dd-drag": {
                 "requires": [
-                    "dd-ddm-base", 
-                    "event-synthetic", 
-                    "event-gestures"
+                    "dd-ddm-base"
                 ]
             }, 
             "dd-drop": {
@@ -475,6 +473,19 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
             "dd-drop-plugin": {
                 "requires": [
                     "dd-drop"
+                ]
+            }, 
+            "dd-gestures": {
+                "condition": {
+                    "test": function(Y) {
+    return ('ontouchstart' in Y.config.win && !Y.UA.chrome);                        
+}, 
+                    "trigger": "dd-drag"
+                }, 
+                "requires": [
+                    "dd-drag", 
+                    "event-synthetic", 
+                    "event-gestures"
                 ]
             }, 
             "dd-plugin": {
@@ -704,8 +715,13 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
         "plugins": {
             "history-hash-ie": {
                 "condition": {
-                    "trigger": "history-hash", 
-                    "ua": "ie"
+                    "test": function (Y) {
+    var docMode = Y.config.doc.documentMode;
+
+    return Y.UA.ie && (!('onhashchange' in Y.config.win) ||
+            !docMode || docMode < 8);
+}, 
+                    "trigger": "history-hash"
                 }, 
                 "requires": [
                     "history-hash", 
@@ -1247,7 +1263,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
         }
     }
 };
-YUI.Env[Y.version].md5 = '9102af0fa0930a570c7686a435b193af';
+YUI.Env[Y.version].md5 = '3dd64d2201d126f43699db6d8265413e';
 
 
 }, '3.2.0PR1' ,{requires:['loader-base']});

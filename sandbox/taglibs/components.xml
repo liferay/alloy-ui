@@ -59,4 +59,20 @@
 			<attribute name="selectWrapperNode" type="java.lang.String"/>
 		</attributes>
 	</component>
+	<component name="SearchBar" module="">
+		<attributes>
+			<attribute name="inputName" type="java.lang.String"/>
+			<attribute name="cssClass" type="java.lang.String"/>
+		</attributes>
+	</component>
+	<component name="Panel" module="aui-panel">
+		<attributes>
+			<attribute name="header" type="java.lang.String"/>
+			<attribute name="cssClass" type="java.lang.String"/>
+			<attribute name="collapsed" type="java.lang.Boolean"/>
+			<attribute name="collapsible" type="java.lang.Boolean"/>
+			<attribute name="title" type="java.lang.String"/>
+			<attribute name="icons" type="java.lang.String"/>
+		</attributes>
+	</component>
 </alloy>
