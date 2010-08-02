@@ -125,7 +125,7 @@ public class ComponentTag extends IncludeTag {
 	}
 
 	private void _buildOptionsString(
-		StringBundler sb,Map<String, Object> hashMap) {
+		StringBundler sb, Map<String, Object> hashMap) {
 
 		Set<String> keys = hashMap.keySet();
 		Iterator<String> iterator = keys.iterator();

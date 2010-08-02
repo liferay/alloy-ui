@@ -36,8 +36,7 @@ public class TagBuilder {
 	public TagBuilder(String componentsXML, String templatesDir,
 			String javaOutputDir, String javaOutputBaseDir,
 			String javaOutputPackage, String javaOutputBasePackage,
-			String docrootDir, String jspDir, String jspOutputDir,
-			String tldDir)
+			String jspDir, String jspOutputDir, String tldDir)
 		throws Exception {
 
 		_componentsXML = componentsXML;
@@ -46,7 +45,6 @@ public class TagBuilder {
 		_javaOutputBaseDir = javaOutputBaseDir;
 		_javaOutputPackage = javaOutputPackage;
 		_javaOutputBasePackage = javaOutputBasePackage;
-		_docrootDir = docrootDir;
 		_jspDir = jspDir;
 		_jspOutputDir = jspOutputDir;
 		_tldDir = tldDir;
@@ -55,8 +53,8 @@ public class TagBuilder {
 		_tplTag = _templatesDir + "tag.ftl";
 		_tplTagBase = _templatesDir + "tag_base.ftl";
 		_tplJsp = _templatesDir + "jsp.ftl";
-		_tplExtJsp = _templatesDir + "jsp_ext.ftl";
-		_tplEndJsp = _templatesDir + "end_jsp.ftl";
+		_tplInitJsp = _templatesDir + "init_jsp.ftl";
+		_tplStartJsp = _templatesDir + "start_jsp.ftl";
 
 		_create();
 	}
@@ -68,15 +66,14 @@ public class TagBuilder {
 		String javaOutputBaseDir = System.getProperty("tagbuilder.java.output.base.dir");
 		String javaOutputPackage = System.getProperty("tagbuilder.java.output.package");
 		String javaOutputBasePackage = System.getProperty("tagbuilder.java.output.base.package");
-		String docrootDir = System.getProperty("tagbuilder.docroot.dir");
 		String jspDir = System.getProperty("tagbuilder.jsp.dir");
 		String jspOutputDir = System.getProperty("tagbuilder.jsp.output.dir");
 		String tldDir = System.getProperty("tagbuilder.tld.dir");
 
 		new TagBuilder(
 			componentsXML, templatesDir, javaOutputDir, javaOutputBaseDir,
-			javaOutputPackage, javaOutputBasePackage, docrootDir, jspDir,
-			jspOutputDir, tldDir);
+			javaOutputPackage, javaOutputBasePackage, jspDir, jspOutputDir,
+			tldDir);
 	}
 
 	public Map<String, Object> getDefaultTemplateContext() {
@@ -144,23 +141,20 @@ public class TagBuilder {
 		String path = _jspOutputDir.concat(pathName);
 
 		String contentJsp = _processTemplate(_tplJsp, context);
-		String contentExtJsp = _processTemplate(_tplExtJsp, context);
+		String contentInitJsp = _processTemplate(_tplInitJsp, context);
+
+		_writeFile(new File(path.concat(_INIT_PAGE)), contentInitJsp);
+		_writeFile(new File(path.concat(_INIT_EXT_PAGE)), StringPool.BLANK);
 
 		if (component.isBodyContent()) {
-			String contentEnd = _processTemplate(_tplEndJsp, context);
+			String contentStart = _processTemplate(_tplStartJsp, context);
 
-			_writeFile(new File(path.concat(_START_PAGE)), contentJsp);
+			_writeFile(new File(path.concat(_START_PAGE)), contentStart);
 
-			_writeFile(new File(path.concat(_END_PAGE)), contentEnd);
-
-			_writeFile(new File(path.concat(_START_PAGE_EXT)), contentExtJsp);
-
-			_writeFile(new File(path.concat(_END_PAGE_EXT)), StringPool.BLANK);
+			_writeFile(new File(path.concat(_END_PAGE)), contentJsp);
 		}
 		else {
 			_writeFile(new File(path.concat(_PAGE)), contentJsp);
-
-			_writeFile(new File(path.concat(_PAGE_EXT)), contentExtJsp);
 		}
 	}
 
@@ -284,15 +278,13 @@ public class TagBuilder {
 
 	private static final String _DEFAULT_NAMESPACE = "alloy";
 	private static final String _END_PAGE = "/end.jsp";
-	private static final String _END_PAGE_EXT = "/end-ext.jsp";
+	private static final String _INIT_EXT_PAGE = "/init-ext.jsp";
+	private static final String _INIT_PAGE = "/init.jsp";
 	private static final String _PAGE = "/page.jsp";
-	private static final String _PAGE_EXT = "/page-ext.jsp";
 	private static final String _START_PAGE = "/start.jsp";
-	private static final String _START_PAGE_EXT = "/start-ext.jsp";
 
 
 	private String _componentsXML;
-	private String _docrootDir;
 	private String _javaOutputBaseDir;
 	private String _javaOutputBasePackage;
 	private String _javaOutputDir;
@@ -301,9 +293,9 @@ public class TagBuilder {
 	private String _jspOutputDir;
 	private String _templatesDir;
 	private String _tldDir;
-	private String _tplEndJsp;
-	private String _tplExtJsp;
+	private String _tplInitJsp;
 	private String _tplJsp;
+	private String _tplStartJsp;
 	private String _tplTag;
 	private String _tplTagBase;
 	private String _tplTld;

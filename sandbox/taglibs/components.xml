@@ -7,7 +7,7 @@
 			<attribute name="counter" type="java.lang.String"/>
 		</attributes>
 	</component>
-	<component name="Rating" module="aui-rating">
+	<component name="Rating" module="aui-rating" bodyContent="false">
 		<attributes>
 			<attribute name="selectedIndex" type="java.lang.Integer"/>
 			<attribute name="defaultSelected" type="java.lang.Integer"/>

@@ -167,6 +167,10 @@ public class CreateConfigTag extends IncludeTag {
 			if (_isValidAttribute(key)) {
 				Object value = sourceMap.get(key);
 
+				if (value == null) {
+					continue;
+				}
+
 				if (value instanceof Map) {
 					Map<String, Object> childOptionsMap =
 						new HashMap<String, Object>();
