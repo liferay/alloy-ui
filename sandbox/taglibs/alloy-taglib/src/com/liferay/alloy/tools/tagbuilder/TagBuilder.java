@@ -82,6 +82,7 @@ public class TagBuilder {
 	public Map<String, Object> getDefaultTemplateContext() {
 		Map<String, Object> context = new HashMap<String, Object>();
 
+		context.put("authors", AUTHORS);
 		context.put("jspDir", _jspDir);
 		context.put("packagePath", _javaOutputBasePackage);
 		context.put("packageBasePath", _javaOutputBasePackage);
@@ -214,11 +215,10 @@ public class TagBuilder {
 	private List<ComponentModel> _getComponents() throws Exception {
 		List<ComponentModel> components = new ArrayList<ComponentModel>();
 
-		SAXReader reader = new SAXReader();
-
 		try {
 			File file = new File(_componentsXML);
 
+			SAXReader reader = new SAXReader();
 			Document doc = reader.read(file);
 			Element root = doc.getRootElement();
 
@@ -226,8 +226,7 @@ public class TagBuilder {
 
 			for (Element node : componentNodes) {
 				String namespace = GetterUtil.getString(
-					node.attributeValue("namespace"),
-					_DEFAULT_NAMESPACE);
+					node.attributeValue("namespace"), _DEFAULT_NAMESPACE);
 
 				String name = node.attributeValue("name");
 				String module = node.attributeValue("module");
@@ -258,10 +257,8 @@ public class TagBuilder {
 	private String _processTemplate(String name, Map<String, Object> context)
 		throws Exception {
 
-		context.put("authors", AUTHORS);
-
 		return StringUtil.replace(
-			FreeMarkerUtil.process(name, context), '\r', "");
+			FreeMarkerUtil.process(name, context), '\r', StringPool.BLANK);
 	}
 
 	private void _writeFile(File file, String content) {
