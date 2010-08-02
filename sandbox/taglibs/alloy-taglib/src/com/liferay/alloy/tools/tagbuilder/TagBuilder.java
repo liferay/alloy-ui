@@ -144,17 +144,18 @@ public class TagBuilder {
 		String contentInitJsp = _processTemplate(_tplInitJsp, context);
 
 		_writeFile(new File(path.concat(_INIT_PAGE)), contentInitJsp);
-		_writeFile(new File(path.concat(_INIT_EXT_PAGE)), StringPool.BLANK);
+		_writeFile(
+			new File(path.concat(_INIT_EXT_PAGE)), StringPool.BLANK, false);
 
 		if (component.isBodyContent()) {
 			String contentStart = _processTemplate(_tplStartJsp, context);
 
-			_writeFile(new File(path.concat(_START_PAGE)), contentStart);
+			_writeFile(new File(path.concat(_START_PAGE)), contentStart, false);
 
-			_writeFile(new File(path.concat(_END_PAGE)), contentJsp);
+			_writeFile(new File(path.concat(_END_PAGE)), contentJsp, false);
 		}
 		else {
-			_writeFile(new File(path.concat(_PAGE)), contentJsp);
+			_writeFile(new File(path.concat(_PAGE)), contentJsp, false);
 		}
 	}
 
@@ -256,22 +257,29 @@ public class TagBuilder {
 	}
 
 	private void _writeFile(File file, String content) {
-		String oldContent = null;
+		_writeFile(file, content, true);
+	}
 
+	private void _writeFile(File file, String content, boolean overwrite) {
 		try {
-			if (file.exists()) {
-				oldContent = FileUtil.read(file);
-			}
+			if (overwrite || !file.exists()) {
+				String oldContent = StringPool.BLANK;
 
-			if ((oldContent == null) || !oldContent.equals(content)) {
-				System.out.println("Writing " + file);
+				if (file.exists()) {
+					oldContent = FileUtil.read(file);
+				}
 
-				FileUtil.write(file, content);
+				if (!content.equals(oldContent)) {
+					System.out.println("Writing " + file);
+
+					FileUtil.write(file, content);
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+
 	private static final String _ALLOY_TLD = "alloy.tld";
 	private static final String _BASE_CLASS_PREFIX = "Base";
 	private static final String _CLASS_SUFFIX = "Tag.java";
