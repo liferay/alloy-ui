@@ -3,6 +3,10 @@
 <%
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("${namespace}dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("${namespace}scopedAttributes");
+
+<#list component.getAttributes() as attribute>
+${attribute.getType()} _${attribute.getName()} = (${attribute.getType()})request.getAttribute("${namespace}${attribute.getName()}");
+</#list>
 %>
 
 <alloy:createConfig
