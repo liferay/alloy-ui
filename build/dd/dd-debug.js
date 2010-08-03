@@ -3216,7 +3216,7 @@ YUI.add('dd-scroll', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{optional:['dd-proxy'], skinnable:false, requires:['dd-drag']});
+}, '3.2.0PR1' ,{optional:['dd-proxy'], requires:['dd-drag'], skinnable:false});
 YUI.add('dd-plugin', function(Y) {
 
 
@@ -3262,7 +3262,7 @@ YUI.add('dd-plugin', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{optional:['dd-constrain', 'dd-proxy'], skinnable:false, requires:['dd-drag']});
+}, '3.2.0PR1' ,{optional:['dd-constrain', 'dd-proxy'], requires:['dd-drag'], skinnable:false});
 YUI.add('dd-drop', function(Y) {
 
 
@@ -4186,7 +4186,7 @@ YUI.add('dd-delegate', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{optional:['dd-drop-plugin'], skinnable:false, requires:['dd-drag', 'event-mouseenter']});
+}, '3.2.0PR1' ,{optional:['dd-drop-plugin'], requires:['dd-drag', 'event-mouseenter'], skinnable:false});
 YUI.add('dd-gestures', function(Y) {
 
 
