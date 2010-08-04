@@ -20,17 +20,17 @@ public class Base${component.getName()}Tag extends IncludeTag {
 		return super.doStartTag();
 	}
 
-	<#list component.getAttributes() as attribute>
-	public ${attribute.getType()} get${attribute.getCapitalizedName()}() {
-		return _${attribute.getName()};
+	<#list component.getAttributesAndEvents() as attribute>
+	public ${attribute.getJavaType()} get${attribute.getCapitalizedName()}() {
+		return _${attribute.getSafeName()};
 	}
 
 	</#list>
-	<#list component.getAttributes() as attribute>
-	public void set${attribute.getCapitalizedName()}(${attribute.getType()} ${attribute.getName()}) {
-		_${attribute.getName()} = ${attribute.getName()};
+	<#list component.getAttributesAndEvents() as attribute>
+	public void set${attribute.getCapitalizedName()}(${attribute.getJavaType()} ${attribute.getSafeName()}) {
+		_${attribute.getSafeName()} = ${attribute.getSafeName()};
 
-		setScopedAttribute("${attribute.getName()}", ${attribute.getName()});
+		setScopedAttribute("${attribute.getSafeName()}", ${attribute.getSafeName()});
 	}
 
 	</#list>
@@ -49,8 +49,8 @@ public class Base${component.getName()}Tag extends IncludeTag {
 	</#if>
 
 	protected void setAttributes(HttpServletRequest request) {
-		<#list component.getAttributes() as attribute>
-		setNamespacedAttribute(request, "${attribute.getName()}", _${attribute.getName()});
+		<#list component.getAttributesAndEvents() as attribute>
+		setNamespacedAttribute(request, "${attribute.getSafeName()}", _${attribute.getSafeName()});
 		</#list>
 	}
 
@@ -67,8 +67,8 @@ public class Base${component.getName()}Tag extends IncludeTag {
 		"${jspRelativePath}/page.jsp";
 	</#if>
 
-	<#list component.getAttributes() as attribute>
-	private ${attribute.getType()} _${attribute.getName()};
+	<#list component.getAttributesAndEvents() as attribute>
+	private ${attribute.getJavaType()} _${attribute.getSafeName()};
 	</#list>
 
 }

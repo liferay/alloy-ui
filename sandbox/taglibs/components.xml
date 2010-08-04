@@ -1,78 +1,125 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <alloy>
-	<component name="CharCounter" module="aui-char-counter" namespace="alloy" bodyContent="false">
-		<attributes>
-			<attribute name="input" type="java.lang.String"/>
-			<attribute name="maxLength" type="java.lang.Integer"/>
-			<attribute name="counter" type="java.lang.String"/>
-		</attributes>
-	</component>
-	<component name="Rating" module="aui-rating" bodyContent="false">
-		<attributes>
-			<attribute name="selectedIndex" type="java.lang.Integer"/>
-			<attribute name="defaultSelected" type="java.lang.Integer"/>
-			<attribute name="labelNode" type="java.lang.String"/>
-			<attribute name="label" type="java.lang.String"/>
-			<attribute name="inputName" type="java.lang.String"/>
-			<attribute name="size" type="java.lang.Integer"/>
-			<attribute name="title" type="java.lang.String"/>
-			<attribute name="hiddenInput" type="java.lang.String"/>
-			<attribute name="value" type="java.lang.String"/>
-			<attribute name="canReset" type="java.lang.String"/>
-			<attribute name="showTitle" type="java.lang.String"/>
-			<attribute name="elements" type="java.lang.String"/>
-			<attribute name="disabled" type="java.lang.String"/>
-		</attributes>
-	</component>
-	<component name="ProgressBar" module="aui-progressbar">
-		<attributes>
-			<attribute name="min" type="java.lang.String"/>
-			<attribute name="orientation" type="java.lang.String"/>
-			<attribute name="textNode" type="java.lang.String"/>
-			<attribute name="height" type="java.lang.String"/>
-			<attribute name="statusNode" type="java.lang.String"/>
-			<attribute name="max" type="java.lang.String"/>
-			<attribute name="ratio" type="java.lang.String"/>
-			<attribute name="value" type="java.lang.Integer"/>
-			<attribute name="label" type="java.lang.String"/>
-			<attribute name="step" type="java.lang.String"/>
-		</attributes>
-	</component>
-	<component name="DatePickerSelect" module="aui-calendar">
-		<attributes>
-			<attribute name="appendOrder" type="java.lang.String"/>
-			<attribute name="trigger" type="java.lang.String"/>
-			<attribute name="populateDay" type="java.lang.String"/>
-			<attribute name="buttonNode" type="java.lang.String"/>
-			<attribute name="visible" type="java.lang.String"/>
-			<attribute name="populateYear" type="java.lang.String"/>
-			<attribute name="dayNodeName" type="java.lang.String"/>
-			<attribute name="populateMonth" type="java.lang.String"/>
-			<attribute name="setValue" type="java.lang.String"/>
-			<attribute name="yearNodeName" type="java.lang.String"/>
-			<attribute name="dayNode" type="java.lang.String"/>
-			<attribute name="yearNode" type="java.lang.String"/>
-			<attribute name="monthNodeName" type="java.lang.String"/>
-			<attribute name="monthNode" type="java.lang.String"/>
-			<attribute name="baseName" type="java.lang.String"/>
-			<attribute name="yearRange" type="java.lang.String"/>
-			<attribute name="selectWrapperNode" type="java.lang.String"/>
-		</attributes>
-	</component>
-	<component name="SearchBar" module="">
-		<attributes>
-			<attribute name="inputName" type="java.lang.String"/>
-			<attribute name="cssClass" type="java.lang.String"/>
-		</attributes>
-	</component>
-	<component name="Panel" module="aui-panel">
-		<attributes>
-			<attribute name="header" type="java.lang.String"/>
-			<attribute name="cssClass" type="java.lang.String"/>
-			<attribute name="collapsed" type="java.lang.Boolean"/>
-			<attribute name="collapsible" type="java.lang.Boolean"/>
-			<attribute name="title" type="java.lang.String"/>
-			<attribute name="icons" type="java.lang.String"/>
-		</attributes>
-	</component>
+  <component name="CharCounter" module="aui-char-counter" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="counter" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="input" type="java.lang.String"/>
+      <attribute name="maxLength" type="java.lang.Number"/>
+    </attributes>
+    <events>
+      <event name="counterChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="inputChange" type="java.lang.String"/>
+      <event name="maxLengthChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="ProgressBar" module="aui-progressbar" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="height" type="java.lang.Integer"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="label" type="java.lang.String"/>
+      <attribute name="max" type="java.lang.Integer"/>
+      <attribute name="min" type="java.lang.Integer"/>
+      <attribute name="orientation" type="java.lang.String"/>
+      <attribute name="ratio" type="java.lang.Number"/>
+      <attribute name="statusNode" type="java.lang.String"/>
+      <attribute name="step" type="java.lang.Number"/>
+      <attribute name="textNode" type="java.lang.String"/>
+      <attribute name="value" type="java.lang.Integer"/>
+    </attributes>
+    <events>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="labelChange" type="java.lang.String"/>
+      <event name="maxChange" type="java.lang.String"/>
+      <event name="minChange" type="java.lang.String"/>
+      <event name="orientationChange" type="java.lang.String"/>
+      <event name="ratioChange" type="java.lang.String"/>
+      <event name="statusNodeChange" type="java.lang.String"/>
+      <event name="stepChange" type="java.lang.String"/>
+      <event name="textNodeChange" type="java.lang.String"/>
+      <event name="valueChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="Rating" module="aui-rating" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="canReset" type="java.lang.Boolean"/>
+      <attribute name="contentBox" type="java.lang.String"/>
+      <attribute name="cssClass" type="java.lang.String"/>
+      <attribute name="defaultSelected" type="java.lang.Number"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="elements" type="java.lang.String"/>
+      <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="height" type="java.lang.String"/>
+      <attribute name="hiddenInput" type="java.lang.String"/>
+      <attribute name="hideClass" type="java.lang.String"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="inputName" type="java.lang.String"/>
+      <attribute name="label" type="java.lang.String"/>
+      <attribute name="labelNode" type="java.lang.String"/>
+      <attribute name="render" type="java.lang.Boolean"/>
+      <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="selectedIndex" type="java.lang.Number"/>
+      <attribute name="showTitle" type="java.lang.Boolean"/>
+      <attribute name="size" type="java.lang.Number"/>
+      <attribute name="srcNode" type="java.lang.String"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="tabIndex" type="java.lang.Number"/>
+      <attribute name="title" type="java.lang.String"/>
+      <attribute name="value" type="java.lang.String"/>
+      <attribute name="visible" type="java.lang.Boolean"/>
+      <attribute name="width" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="canResetChange" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
+      <event name="defaultSelectedChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="elementsChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="hiddenInputChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="inputNameChange" type="java.lang.String"/>
+      <event name="itemClick" type="java.lang.String"/>
+      <event name="itemOut" type="java.lang.String"/>
+      <event name="itemSelect" type="java.lang.String"/>
+      <event name="labelChange" type="java.lang.String"/>
+      <event name="labelNodeChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="selectedIndexChange" type="java.lang.String"/>
+      <event name="showTitleChange" type="java.lang.String"/>
+      <event name="sizeChange" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
+      <event name="titleChange" type="java.lang.String"/>
+      <event name="valueChange" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget_contentUpdate" type="java.lang.String"/>
+      <event name="widget_render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
+    </events>
+  </component>
 </alloy>

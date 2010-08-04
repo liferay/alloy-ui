@@ -95,12 +95,12 @@
 		<name>${component.getUncamelizedName()}</name>
 		<tag-class>${packagePath}.${component.getName()}Tag</tag-class>
 		<body-content>JSP</body-content>
-		<#list component.getAttributes() as attribute>
+		<#list component.getAttributesAndEvents() as attribute>
 		<attribute>
-			<name>${attribute.getName()}</name>
+			<name>${attribute.getSafeName()}</name>
 			<required>${attribute.isRequired()?string("true", "false")}</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>${attribute.getType()}</type>
+			<type>${attribute.getJavaType()}</type>
 		</attribute>
 		</#list>
 		<dynamic-attributes>true</dynamic-attributes>

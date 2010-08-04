@@ -55,6 +55,20 @@
 		<antcall target="print-current-time" />
 	</target>
 
+	<target name="build-component-xml" depends="compile">
+		<java
+			classname="com.liferay.alloy.tools.xmlbuilder.XMLBuilder"
+			classpathref="project.classpath"
+			fork="true"
+			maxmemory="256m"
+			newenvironment="true"
+		>
+			<jvmarg value="-Dxmlbuilder.components.json=${xmlbuilder.components.json}" />
+			<jvmarg value="-Dtagbuilder.components.xml=${tagbuilder.components.xml}" />
+			<jvmarg value="-Dxmlbuilder.components.excluded=${xmlbuilder.components.excluded}" />
+		</java>
+	</target>
+
 	<target name="build-tags" depends="compile">
 		<java
 			classname="com.liferay.alloy.tools.tagbuilder.TagBuilder"
