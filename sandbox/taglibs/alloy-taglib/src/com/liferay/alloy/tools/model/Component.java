@@ -7,28 +7,18 @@ import com.liferay.portal.kernel.util.StringUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Component implements Comparable<Component> {
+public class Component extends BaseModel {
 
 	public Component(String namespace, String name, String module,
 		boolean bodyContent, List<Attribute> attributes,
 		List<Attribute> events) {
 
-		_namespace = namespace;
-		_name = name;
-		_module = module;
-		_bodyContent = bodyContent;
-		_attributes = attributes;
-		_events = events;
-	}
-
-	public int compareTo(Component o) {
-		return _name.compareTo(o.getName());
-	}
-
-	public boolean equals(Object o) {
-		Component component = (Component)o;
-
-		return _name.equals(component.getName());
+		setEvents(events);
+		setAttributes(attributes);
+		setBodyContent(bodyContent);
+		setModule(module);
+		setNamespace(namespace);
+		setName(name);
 	}
 
 	public String getAttributeNamespace() {
@@ -56,7 +46,7 @@ public class Component implements Comparable<Component> {
 	}
 
 	public String getCamelizedName() {
-		return StringUtils.camelize(_name);
+		return StringUtils.camelize(getName());
 	}
 
 	public List<Attribute> getEvents() {
@@ -67,28 +57,20 @@ public class Component implements Comparable<Component> {
 		return _module;
 	}
 
-	public String getName() {
-		return _name;
-	}
-
 	public String getNamespace() {
 		return _namespace;
 	}
 
 	public String getSafeName() {
-		return StringUtil.replace(_name, StringPool.PERIOD, StringPool.BLANK);
+		return StringUtil.replace(getName(), StringPool.PERIOD, StringPool.BLANK);
 	}
 
 	public String getUncamelizedName() {
-		return StringUtils.uncamelize(_name);
+		return StringUtils.uncamelize(getName());
 	}
 
 	public String getUncamelizedName(String delimiter) {
-		return StringUtils.uncamelize(_name, delimiter);
-	}
-
-	public int hashCode() {
-		return _name.hashCode();
+		return StringUtils.uncamelize(getName(), delimiter);
 	}
 
 	public boolean isBodyContent() {
@@ -111,10 +93,6 @@ public class Component implements Comparable<Component> {
 		_module = type;
 	}
 
-	public void setName(String name) {
-		_name = name;
-	}
-
 	public void setNamespace(String namespace) {
 		_namespace = namespace;
 	}
@@ -123,7 +101,6 @@ public class Component implements Comparable<Component> {
 	private boolean _bodyContent;
 	private List<Attribute> _events;
 	private String _module;
-	private String _name;
 	private String _namespace;
 
 }

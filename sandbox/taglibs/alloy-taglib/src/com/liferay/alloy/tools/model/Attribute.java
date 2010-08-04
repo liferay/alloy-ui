@@ -7,27 +7,12 @@ import org.apache.commons.lang.StringUtils;
 
 import java.util.HashMap;
 
-public class Attribute implements Comparable<Attribute> {
+public class Attribute extends BaseModel {
 
 	public Attribute(String name, String type, boolean required) {
-		this.setName(name);
-		this.setType(type);
-		this.setRequired(required);
-	}
-
-	public int compareTo(Attribute o) {
-		return _name.compareTo(o.getName());
-	}
-
-	public boolean equals(Object o) {
-		Attribute attribute = (Attribute)o;
-
-		return _name.equals(attribute.getName());
-	}
-
-	public String getSafeName() {
-		return StringUtil.replace(_name, StringPool.COLON,
-			StringPool.UNDERLINE);
+		setName(name);
+		setType(type);
+		setRequired(required);
 	}
 
 	public String getCapitalizedName() {
@@ -38,24 +23,17 @@ public class Attribute implements Comparable<Attribute> {
 		return TypeUtil.getJavaType(_type);
 	}
 
-	public String getName() {
-		return _name;
+	public String getSafeName() {
+		return StringUtil.replace(getName(), StringPool.COLON,
+			StringPool.UNDERLINE);
 	}
 
 	public String getType() {
 		return _type;
 	}
 
-	public int hashCode() {
-		return _name.hashCode();
-	}
-
 	public boolean isRequired() {
 		return _required;
-	}
-
-	public void setName(String name) {
-		_name = name;
 	}
 
 	public void setRequired(boolean required) {
@@ -66,7 +44,6 @@ public class Attribute implements Comparable<Attribute> {
 		_type = type;
 	}
 
-	private String _name;
 	private boolean _required;
 	private String _type;
 
