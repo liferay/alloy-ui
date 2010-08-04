@@ -362,6 +362,9 @@
 				<include name="*.txt" />
 			</fileset>
 		</copy>
+		
+		<delete dir="${release.temp.dir}/sandbox/tags" />
+		<delete dir="${release.temp.dir}/sandbox/taglibs" />
 
 		<echo>Replacing @VERSION@ tokens</echo>
 
