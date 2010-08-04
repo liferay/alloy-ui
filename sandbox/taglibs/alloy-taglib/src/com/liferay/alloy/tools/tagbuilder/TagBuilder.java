@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.liferay.alloy.tools.tagbuilder.model.AttributeModel;
-import com.liferay.alloy.tools.tagbuilder.model.ComponentModel;
+import com.liferay.alloy.tools.model.Component;
+import com.liferay.alloy.tools.model.Attribute;
 import com.liferay.alloy.util.StringUtils;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -88,7 +88,7 @@ public class TagBuilder {
 		return context;
 	}
 
-	public Map<String, Object> getTemplateContext(ComponentModel component) {
+	public Map<String, Object> getTemplateContext(Component component) {
 		Map<String, Object> context = getDefaultTemplateContext();
 
 		String jspRelativePath = _jspDir.concat(
@@ -102,9 +102,9 @@ public class TagBuilder {
 	}
 
 	private void _create() throws Exception {
-		List<ComponentModel> components = _getComponents();
+		List<Component> components = _getComponents();
 
-		for (ComponentModel component : components) {
+		for (Component component : components) {
 			Map<String, Object> context = getTemplateContext(component);
 
 			_createBaseTag(component, context);
@@ -116,7 +116,7 @@ public class TagBuilder {
 	}
 
 	private void _createBaseTag(
-			ComponentModel component, Map<String, Object> context)
+			Component component, Map<String, Object> context)
 		throws Exception {
 
 		StringBuilder sb = new StringBuilder();
@@ -134,7 +134,7 @@ public class TagBuilder {
 	}
 
 	private void _createPageJSP(
-			ComponentModel component, Map<String, Object> context)
+			Component component, Map<String, Object> context)
 		throws Exception {
 
 		String pathName = component.getUncamelizedName(StringPool.UNDERLINE);
@@ -160,7 +160,7 @@ public class TagBuilder {
 	}
 
 	private void _createTag(
-			ComponentModel component, Map<String, Object> context)
+			Component component, Map<String, Object> context)
 		throws Exception {
 
 		StringBuilder sb = new StringBuilder();
@@ -177,23 +177,29 @@ public class TagBuilder {
 	}
 
 	private void _createTld(
-			List<ComponentModel> components, Map<String, Object> context)
+			List<Component> components, Map<String, Object> context)
 		throws Exception {
 
 		context.put("components", components);
 
 		String content = _processTemplate(_tplTld, context);
 
-		File tagFile = new File(_tldDir + _ALLOY_TLD);
+		File tagFile = new File(_tldDir.concat(_ALLOY_TLD));
 
 		_writeFile(tagFile, content);
 	}
 
-	private List<AttributeModel> _getAttributes(Element componentNode) {
-		Element attributesNode = componentNode.element("attributes");
-		List<Element> attributesNodes = attributesNode.elements("attribute");
+	private List<Attribute> _getAttributes(Element componentNode) {
+		return _getAttributes(componentNode, "attributes", "attribute");
+	}
 
-		List<AttributeModel> attributes = new ArrayList<AttributeModel>();
+	private List<Attribute> _getAttributes(
+		Element componentNode, String group, String node) {
+
+		Element attributesNode = componentNode.element(group);
+		List<Element> attributesNodes = attributesNode.elements(node);
+
+		List<Attribute> attributes = new ArrayList<Attribute>();
 
 		for (Element attributeNode : attributesNodes) {
 			String name = attributeNode.attributeValue("name");
@@ -201,14 +207,14 @@ public class TagBuilder {
 			boolean required = GetterUtil.getBoolean(
 				attributeNode.attributeValue("required"));
 
-			attributes.add(new AttributeModel(name, type, required));
+			attributes.add(new Attribute(name, type, required));
 		}
 
 		return attributes;
 	}
 
-	private List<ComponentModel> _getComponents() throws Exception {
-		List<ComponentModel> components = new ArrayList<ComponentModel>();
+	private List<Component> _getComponents() throws Exception {
+		List<Component> components = new ArrayList<Component>();
 
 		try {
 			File file = new File(_componentsXML);
@@ -229,9 +235,9 @@ public class TagBuilder {
 				boolean bodyContent = GetterUtil.getBoolean(
 					node.attributeValue("bodyContent"));
 
-				ComponentModel component = new ComponentModel(
+				Component component = new Component(
 					namespace, name, module, bodyContent,
-					_getAttributes(node));
+					_getAttributes(node), _getPrefixedEvents(node));
 
 				components.add(component);
 			}
@@ -242,11 +248,47 @@ public class TagBuilder {
 		return components;
 	}
 
-	private String _getJspDir(ComponentModel component, String page) {
+	private List<Attribute> _getEvents(Element componentNode) {
+		return _getAttributes(componentNode, "events", "event");
+	}
+
+	private String _getJspDir(Component component, String page) {
 		String componentName = StringUtils.uncamelize(
 			component.getName(), StringPool.UNDERLINE);
 
 		return _jspDir.concat(componentName).concat(page);
+	}
+
+	private List<Attribute> _getPrefixedEvents(Element componentNode) {
+		List<Attribute> afterEvents = _getAttributes(
+			componentNode, "events", "event");
+
+		List<Attribute> onEvents = _getAttributes(
+			componentNode, "events", "event");
+
+		List<Attribute> prefixedEvents = new ArrayList<Attribute>();
+
+		for (Attribute event : afterEvents) {
+			String name = _AFTER.concat(
+				org.apache.commons.lang.StringUtils.capitalize(
+					event.getSafeName()));
+
+			event.setName(name);
+
+			prefixedEvents.add(event);
+		}
+
+		for (Attribute event : onEvents) {
+			String name = _ON.concat(
+				org.apache.commons.lang.StringUtils.capitalize(
+					event.getSafeName()));
+
+			event.setName(name);
+
+			prefixedEvents.add(event);
+		}
+
+		return prefixedEvents;
 	}
 
 	private String _processTemplate(String name, Map<String, Object> context)
@@ -280,17 +322,17 @@ public class TagBuilder {
 		}
 	}
 
+	private static final String _AFTER = "after";
 	private static final String _ALLOY_TLD = "alloy.tld";
 	private static final String _BASE_CLASS_PREFIX = "Base";
 	private static final String _CLASS_SUFFIX = "Tag.java";
-
 	private static final String _DEFAULT_NAMESPACE = "alloy";
 	private static final String _END_PAGE = "/end.jsp";
 	private static final String _INIT_EXT_PAGE = "/init-ext.jsp";
 	private static final String _INIT_PAGE = "/init.jsp";
+	private static final String _ON = "on";
 	private static final String _PAGE = "/page.jsp";
 	private static final String _START_PAGE = "/start.jsp";
-
 
 	private String _componentsXML;
 	private String _javaOutputBaseDir;
