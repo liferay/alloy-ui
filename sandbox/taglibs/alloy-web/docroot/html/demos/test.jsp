@@ -26,7 +26,7 @@
 
 <alloy:progress-bar
 	boundingBox="#pb1"
-	value="50"
+	value="90"
 	render="true"
 	width="500"
 />
