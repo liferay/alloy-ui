@@ -134,7 +134,7 @@ public class XMLBuilder {
 		for (Component component : components) {
 			Element componentNode = root.addElement("component");
 
-			componentNode.addAttribute("name", component.getName());
+			componentNode.addAttribute("name", component.getSafeName());
 			componentNode.addAttribute("module", component.getModule());
 			componentNode.addAttribute("namespace", component.getNamespace());
 			componentNode.addAttribute("bodyContent", String.valueOf(

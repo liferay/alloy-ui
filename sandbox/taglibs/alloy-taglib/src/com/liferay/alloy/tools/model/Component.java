@@ -2,6 +2,7 @@ package com.liferay.alloy.tools.model;
 
 import com.liferay.alloy.util.StringUtils;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,6 @@ public class Component implements Comparable<Component> {
 		_events = events;
 	}
 
-	
 	public int compareTo(Component o) {
 		return _name.compareTo(o.getName());
 	}
@@ -73,6 +73,10 @@ public class Component implements Comparable<Component> {
 
 	public String getNamespace() {
 		return _namespace;
+	}
+
+	public String getSafeName() {
+		return StringUtil.replace(_name, StringPool.PERIOD, StringPool.BLANK);
 	}
 
 	public String getUncamelizedName() {

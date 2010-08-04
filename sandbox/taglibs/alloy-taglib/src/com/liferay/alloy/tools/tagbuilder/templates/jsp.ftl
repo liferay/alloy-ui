@@ -1,7 +1,7 @@
 <%@ include file="init.jsp" %>
 
 <alloy:component
-	var="${component.getName()}1"
+	var="${component.getSafeName()}1"
 	module="${component.getModule()}"
 	name="${component.getName()}"
 	options="${r"${options}"}"

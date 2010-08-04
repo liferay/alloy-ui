@@ -123,7 +123,7 @@ public class TagBuilder {
 
 		sb.append(_javaOutputBaseDir);
 		sb.append(_BASE_CLASS_PREFIX);
-		sb.append(component.getName());
+		sb.append(component.getSafeName());
 		sb.append(_CLASS_SUFFIX);
 
 		String content = _processTemplate(_tplTagBase, context);
@@ -166,7 +166,7 @@ public class TagBuilder {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(_javaOutputDir);
-		sb.append(component.getName());
+		sb.append(component.getSafeName());
 		sb.append(_CLASS_SUFFIX);
 
 		String content = _processTemplate(_tplTag, context);
@@ -254,7 +254,7 @@ public class TagBuilder {
 
 	private String _getJspDir(Component component, String page) {
 		String componentName = StringUtils.uncamelize(
-			component.getName(), StringPool.UNDERLINE);
+			component.getSafeName(), StringPool.UNDERLINE);
 
 		return _jspDir.concat(componentName).concat(page);
 	}

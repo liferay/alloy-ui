@@ -6,13 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 
 /**
- * <a href="Base${component.getName()}Tag.java.html"><b><i>View Source</i></b></a>
+ * <a href="Base${component.getSafeName()}Tag.java.html"><b><i>View Source</i></b></a>
  *
 <#list authors as author>
  * @author ${author}
 </#list>
  */
-public class Base${component.getName()}Tag extends IncludeTag {
+public class Base${component.getSafeName()}Tag extends IncludeTag {
 
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
