@@ -311,7 +311,7 @@ public class TagBuilder {
 					oldContent = FileUtil.read(file);
 				}
 
-				if (!content.equals(oldContent)) {
+				if (!file.exists() || !content.equals(oldContent)) {
 					System.out.println("Writing " + file);
 
 					FileUtil.write(file, content);
