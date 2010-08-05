@@ -14,7 +14,7 @@ ${attribute.getJavaType()} _${attribute.getSafeName()} = (${attribute.getJavaTyp
 <%
 <#list component.getAttributesAndEvents() as attribute>
 if (_${attribute.getSafeName()} != null) {
-	scopedAttributes.put("${attribute.getSafeName()}",  _${attribute.getSafeName()});
+	scopedAttributes.put("${attribute.getSafeName()}", _${attribute.getSafeName()});
 }
 
 </#list>

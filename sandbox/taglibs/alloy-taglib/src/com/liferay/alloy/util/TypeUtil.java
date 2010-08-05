@@ -51,6 +51,10 @@ public class TypeUtil {
 	};
 
 	public static String getJavaType(String type) {
+		if (type.startsWith(_JAVA_LANG)) {
+			return type;
+		}
+
 		if (_TYPES == null) {
 			_TYPES = new HashMap<String, String>();
 
@@ -75,6 +79,8 @@ public class TypeUtil {
 			_TYPES.put(type.toLowerCase(), javaType);
 		}
 	}
+
+	private static final String _JAVA_LANG = "java.lang";
 
 	private static HashMap<String, String> _TYPES = null;
 

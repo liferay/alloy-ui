@@ -21,6 +21,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 
+import com.liferay.alloy.util.ReservedAttributeUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 
@@ -76,22 +77,11 @@ public class ComponentTag extends IncludeTag {
 		_yuiVariable = yuiVariable;
 	}
 
-	protected void cleanUp() {
-		_var = null;
-		_module = null;
-		_options = null;
-		_yuiVariable = null;
-	}
-
-	protected String getPage() {
+	protected String _getPage() {
 		return _PAGE;
 	}
 
-	protected boolean isCleanUpSetAttributes() {
-		return _CLEAN_UP_SET_ATTRIBUTES;
-	}
-
-	protected void setAttributes(HttpServletRequest request) {
+	protected void _setAttributes(HttpServletRequest request) {
 		StringBundler optionsSB = new StringBundler();
 
 		_buildOptionsString(optionsSB, _options);
@@ -101,6 +91,17 @@ public class ComponentTag extends IncludeTag {
 		setNamespacedAttribute(request, "name", _name);
 		setNamespacedAttribute(request, "options", optionsSB.toString());
 		setNamespacedAttribute(request, "yuiVariable", _yuiVariable);
+	}
+
+	protected void cleanUp() {
+		_var = null;
+		_module = null;
+		_options = null;
+		_yuiVariable = null;
+	}
+
+	protected boolean isCleanUpSetAttributes() {
+		return _CLEAN_UP_SET_ATTRIBUTES;
 	}
 
 	private void _buildArrayString(StringBundler sb, Object[] array) {
@@ -133,10 +134,16 @@ public class ComponentTag extends IncludeTag {
 		sb.append(StringPool.OPEN_CURLY_BRACE);
 
 		while (iterator.hasNext()) {
-			String key = iterator.next().toString();
-			Object value = hashMap.get(key);
+			String attributeName = iterator.next().toString();
 
-			sb.append(key);
+			Object value = hashMap.get(attributeName);
+
+			String originalName = ReservedAttributeUtil.getOriginalName(
+				getName(), attributeName);
+
+			sb.append(StringPool.QUOTE);
+			sb.append(originalName);
+			sb.append(StringPool.QUOTE);
 			sb.append(StringPool.COLON);
 
 			if (value instanceof Map) {

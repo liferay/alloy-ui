@@ -1,15 +1,16 @@
 package com.liferay.alloy.tools.model;
 
+import com.liferay.alloy.util.ReservedAttributeUtil;
+import com.liferay.alloy.util.StringUtil;
 import com.liferay.alloy.util.TypeUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import org.apache.commons.lang.StringUtils;
-
-import java.util.HashMap;
 
 public class Attribute extends BaseModel {
 
-	public Attribute(String name, String type, boolean required) {
+	public Attribute(
+		String name, String type, boolean required) {
+
 		setName(name);
 		setType(type);
 		setRequired(required);
@@ -19,13 +20,16 @@ public class Attribute extends BaseModel {
 		return StringUtils.capitalize(getSafeName());
 	}
 
+	public Component getComponent() {
+		return _component;
+	}
+
 	public String getJavaType() {
 		return TypeUtil.getJavaType(_type);
 	}
 
 	public String getSafeName() {
-		return StringUtil.replace(getName(), StringPool.COLON,
-			StringPool.UNDERLINE);
+		return ReservedAttributeUtil.getSafeName(this);
 	}
 
 	public String getType() {
@@ -36,6 +40,10 @@ public class Attribute extends BaseModel {
 		return _required;
 	}
 
+	public void setComponent(Component component) {
+		this._component = component;
+	}
+
 	public void setRequired(boolean required) {
 		_required = required;
 	}
@@ -44,6 +52,7 @@ public class Attribute extends BaseModel {
 		_type = type;
 	}
 
+	private Component _component;
 	private boolean _required;
 	private String _type;
 

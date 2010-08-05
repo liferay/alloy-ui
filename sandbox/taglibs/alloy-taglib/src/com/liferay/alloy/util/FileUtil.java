@@ -11,7 +11,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 
 /**
- * <a href="StringUtils.java.html"><b><i>View Source</i></b></a>
+ * <a href="StringUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Eduardo Lundgren
  * @author Bruno Basto

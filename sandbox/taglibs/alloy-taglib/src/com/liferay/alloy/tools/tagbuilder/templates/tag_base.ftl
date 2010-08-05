@@ -20,6 +20,20 @@ public class Base${component.getSafeName()}Tag extends IncludeTag {
 		return super.doStartTag();
 	}
 
+	<#if component.isBodyContent() == true>
+	protected String _getEndPage() {
+		return _END_PAGE;
+	}
+
+	protected String _getStartPage() {
+		return _START_PAGE;
+	}
+	<#else>
+	protected String _getPage() {
+		return _PAGE;
+	}
+	</#if>
+
 	<#list component.getAttributesAndEvents() as attribute>
 	public ${attribute.getJavaType()} get${attribute.getCapitalizedName()}() {
 		return _${attribute.getSafeName()};
@@ -34,21 +48,8 @@ public class Base${component.getSafeName()}Tag extends IncludeTag {
 	}
 
 	</#list>
-	<#if component.isBodyContent() == true>
-	protected String getEndPage() {
-		return _END_PAGE;
-	}
 
-	protected String getStartPage() {
-		return _START_PAGE;
-	}
-	<#else>
-	protected String getPage() {
-		return _PAGE;
-	}
-	</#if>
-
-	protected void setAttributes(HttpServletRequest request) {
+	protected void _setAttributes(HttpServletRequest request) {
 		<#list component.getAttributesAndEvents() as attribute>
 		setNamespacedAttribute(request, "${attribute.getSafeName()}", _${attribute.getSafeName()});
 		</#list>

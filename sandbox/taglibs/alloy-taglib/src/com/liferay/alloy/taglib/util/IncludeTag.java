@@ -33,10 +33,10 @@ public class IncludeTag	extends AttributesTagSupport {
 
 	public int doEndTag() throws JspException {
 		try {
-			String page = getPage();
+			String page = _getPage();
 
 			if (Validator.isNull(page)) {
-				page = getEndPage();
+				page = _getEndPage();
 			}
 
 			_callSetAttributes();
@@ -61,7 +61,7 @@ public class IncludeTag	extends AttributesTagSupport {
 	}
 
 	public int doStartTag() throws JspException {
-		String page = getStartPage();
+		String page = _getStartPage();
 
 		if (Validator.isNull(page)) {
 			return EVAL_BODY_BUFFERED;
@@ -74,36 +74,27 @@ public class IncludeTag	extends AttributesTagSupport {
 		return EVAL_BODY_INCLUDE;
 	}
 
-	public void runEndTag() throws JspException {
-		doStartTag();
-	}
-
-	public void runStartTag() throws JspException {
-		doStartTag();
-	}
-
-	public void runTag() throws JspException {
-		doStartTag();
-		doEndTag();
-	}
-
-	public void setPage(String page) {
+	public void _setPage(String page) {
 		_page = page;
 	}
 
-	protected void cleanUp() {
-	}
-
-	protected String getEndPage() {
+	protected String _getEndPage() {
 		return null;
 	}
 
-	protected String getPage() {
+	protected String _getPage() {
 		return _page;
 	}
 
-	protected String getStartPage() {
+	protected String _getStartPage() {
 		return null;
+	}
+
+	protected void _setAttributes(HttpServletRequest request) {
+
+	}
+
+	protected void cleanUp() {
 	}
 
 	protected void include(String page) throws Exception {
@@ -119,10 +110,6 @@ public class IncludeTag	extends AttributesTagSupport {
 
 	protected boolean isCleanUpSetAttributes() {
 		return _CLEAN_UP_SET_ATTRIBUTES;
-	}
-
-	protected void setAttributes(HttpServletRequest request) {
-
 	}
 
 	private void _callSetAttributes() {
@@ -147,7 +134,7 @@ public class IncludeTag	extends AttributesTagSupport {
 		setNamespacedAttribute(
 			request, "scopedAttributes", getScopedAttributes());
 
-		setAttributes(request);
+		_setAttributes(request);
 	}
 
 	private void _cleanUpSetAttributes() {
@@ -174,7 +161,6 @@ public class IncludeTag	extends AttributesTagSupport {
 	}
 
 	private static final boolean _CLEAN_UP_SET_ATTRIBUTES = false;
-
 
 	private boolean _calledSetAttributes;
 	private String _page;

@@ -17,14 +17,12 @@ package com.liferay.alloy.util;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringPool;
 
-import java.util.regex.Pattern;
-
 /**
- * <a href="StringUtils.java.html"><b><i>View Source</i></b></a>
+ * <a href="StringUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Eduardo Lundgren
  */
-public class StringUtils {
+public class StringUtil extends com.liferay.portal.kernel.util.StringUtil {
 	public static String camelize(String str) {
 		StringBuilder sb = new StringBuilder();
 

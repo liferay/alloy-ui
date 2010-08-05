@@ -89,17 +89,7 @@ public class CreateConfigTag extends IncludeTag {
 		setScopedAttribute("var", var);
 	}
 
-	protected void cleanUp() {
-		_var = null;
-		_excludeAttributes = null;
-		_javaScriptAttributes = null;
-	}
-
-	protected boolean isCleanUpSetAttributes() {
-		return _CLEAN_UP_SET_ATTRIBUTES;
-	}
-
-	protected void setAttributes(HttpServletRequest request) {
+	protected void _setAttributes(HttpServletRequest request) {
 		Map<String, Object> tagDynamicAttributes = getTagDynamicAttributes();
 		Map<String, Object> tagScopedAttributes = getTagScopedAttributes();
 		Map<String, Object> options = new HashMap<String, Object>();
@@ -113,6 +103,16 @@ public class CreateConfigTag extends IncludeTag {
 		}
 
 		pageContext.setAttribute(_var, options);
+	}
+
+	protected void cleanUp() {
+		_var = null;
+		_excludeAttributes = null;
+		_javaScriptAttributes = null;
+	}
+
+	protected boolean isCleanUpSetAttributes() {
+		return _CLEAN_UP_SET_ATTRIBUTES;
 	}
 
 	private Object _getEscapedAttributeValue(String key, Object rawValue) {
@@ -183,8 +183,9 @@ public class CreateConfigTag extends IncludeTag {
 				}
 
 				if (_isEventAttribute(key)) {
-					_processEventAttribute(key, String.valueOf(value),
-						afterEventOptionsMap, onEventOptionsMap);
+					_processEventAttribute(
+						key, String.valueOf(value), afterEventOptionsMap,
+						onEventOptionsMap);
 				} else {
 					optionsMap.put(key, _getEscapedAttributeValue(key, value));
 				}

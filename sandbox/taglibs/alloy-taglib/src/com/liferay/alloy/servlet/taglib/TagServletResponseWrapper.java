@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponseWrapper;
 import javax.servlet.jsp.PageContext;
 
 /**
- * <a href="StringUtils.java.html"><b><i>View Source</i></b></a>
+ * <a href="StringUtil.java.html"><b><i>View Source</i></b></a>
  *
  * @author Eduardo Lundgren
  */

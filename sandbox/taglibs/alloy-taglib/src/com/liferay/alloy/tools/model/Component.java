@@ -1,8 +1,7 @@
 package com.liferay.alloy.tools.model;
 
-import com.liferay.alloy.util.StringUtils;
+import com.liferay.alloy.util.StringUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +45,7 @@ public class Component extends BaseModel {
 	}
 
 	public String getCamelizedName() {
-		return StringUtils.camelize(getName());
+		return StringUtil.camelize(getName());
 	}
 
 	public List<Attribute> getEvents() {
@@ -62,15 +61,16 @@ public class Component extends BaseModel {
 	}
 
 	public String getSafeName() {
-		return StringUtil.replace(getName(), StringPool.PERIOD, StringPool.BLANK);
+		return com.liferay.portal.kernel.util.StringUtil.replace(
+			getName(), StringPool.PERIOD, StringPool.BLANK);
 	}
 
 	public String getUncamelizedName() {
-		return StringUtils.uncamelize(getName());
+		return StringUtil.uncamelize(getName());
 	}
 
 	public String getUncamelizedName(String delimiter) {
-		return StringUtils.uncamelize(getName(), delimiter);
+		return StringUtil.uncamelize(getName(), delimiter);
 	}
 
 	public boolean isBodyContent() {
@@ -79,6 +79,10 @@ public class Component extends BaseModel {
 
 	public void setAttributes(List<Attribute> attributes) {
 		_attributes = attributes;
+
+		for (Attribute attribute : attributes) {
+			attribute.setComponent(this);
+		}
 	}
 
 	public void setBodyContent(boolean bodyContent) {

@@ -134,7 +134,7 @@ public class XMLBuilder {
 		for (Component component : components) {
 			Element componentNode = root.addElement("component");
 
-			componentNode.addAttribute("name", component.getSafeName());
+			componentNode.addAttribute("name", component.getName());
 			componentNode.addAttribute("module", component.getModule());
 			componentNode.addAttribute("namespace", component.getNamespace());
 			componentNode.addAttribute("bodyContent", String.valueOf(
@@ -146,14 +146,14 @@ public class XMLBuilder {
 			for (Attribute attribute : component.getAttributes()) {
 				Element attributeNode = attributesNode.addElement("attribute");
 
-				attributeNode.addAttribute("name", attribute.getSafeName());
+				attributeNode.addAttribute("name", attribute.getName());
 				attributeNode.addAttribute("type", attribute.getJavaType());
 			}
 
 			for (Attribute event : component.getEvents()) {
 				Element eventNode = eventsNode.addElement("event");
 
-				eventNode.addAttribute("name", event.getSafeName());
+				eventNode.addAttribute("name", event.getName());
 				eventNode.addAttribute("type", event.getJavaType());
 			}
 		}

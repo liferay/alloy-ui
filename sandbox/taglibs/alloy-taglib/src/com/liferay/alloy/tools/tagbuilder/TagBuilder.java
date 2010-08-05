@@ -2,14 +2,11 @@ package com.liferay.alloy.tools.tagbuilder;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.liferay.alloy.tools.model.Component;
 import com.liferay.alloy.tools.model.Attribute;
-import com.liferay.alloy.util.StringUtils;
+import com.liferay.alloy.util.StringUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import org.dom4j.Document;
@@ -19,7 +16,6 @@ import org.dom4j.io.SAXReader;
 
 import com.liferay.alloy.util.FileUtil;
 import com.liferay.portal.freemarker.FreeMarkerUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 
 /**
  * <a href="TagBuilder.java.html"><b><i>View Source</i></b></a>
@@ -253,7 +249,7 @@ public class TagBuilder {
 	}
 
 	private String _getJspDir(Component component, String page) {
-		String componentName = StringUtils.uncamelize(
+		String componentName = StringUtil.uncamelize(
 			component.getSafeName(), StringPool.UNDERLINE);
 
 		return _jspDir.concat(componentName).concat(page);
@@ -294,7 +290,7 @@ public class TagBuilder {
 	private String _processTemplate(String name, Map<String, Object> context)
 		throws Exception {
 
-		return StringUtil.replace(
+		return com.liferay.portal.kernel.util.StringUtil.replace(
 			FreeMarkerUtil.process(name, context), '\r', StringPool.BLANK);
 	}
 
