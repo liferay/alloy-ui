@@ -1,6 +1,266 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <alloy>
+  <component name="A.io" module="aui-io" namespace="alloy" bodyContent="false">
+    <attributes/>
+    <events/>
+  </component>
+  <component name="AutoComplete" module="aui-autocomplete" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="alwaysShowContainer" type="java.lang.Boolean"/>
+      <attribute name="applyLocalFilter" type="java.lang.Boolean"/>
+      <attribute name="autoHighlight" type="java.lang.Boolean"/>
+      <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="button" type="java.lang.Boolean"/>
+      <attribute name="contentBox" type="java.lang.String"/>
+      <attribute name="cssClass" type="java.lang.String"/>
+      <attribute name="dataSource" type="java.lang.String"/>
+      <attribute name="dataSourceType" type="java.lang.String"/>
+      <attribute name="delimChar" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="forceSelection" type="java.lang.Boolean"/>
+      <attribute name="height" type="java.lang.String"/>
+      <attribute name="hideClass" type="java.lang.String"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="input" type="java.lang.String"/>
+      <attribute name="matchKey" type="java.lang.String"/>
+      <attribute name="maxResultsDisplayed" type="java.lang.Number"/>
+      <attribute name="minQueryLength" type="java.lang.Number"/>
+      <attribute name="queryDelay" type="java.lang.Number"/>
+      <attribute name="queryInterval" type="java.lang.Number"/>
+      <attribute name="queryMatchCase" type="java.lang.Boolean"/>
+      <attribute name="queryMatchContains" type="java.lang.Boolean"/>
+      <attribute name="queryQuestionMark" type="java.lang.Boolean"/>
+      <attribute name="render" type="java.lang.Boolean"/>
+      <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="schema" type="java.lang.Object"/>
+      <attribute name="schemaType" type="java.lang.String"/>
+      <attribute name="srcNode" type="java.lang.String"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="suppressInputUpdate" type="java.lang.Boolean"/>
+      <attribute name="tabIndex" type="java.lang.Number"/>
+      <attribute name="typeAhead" type="java.lang.Boolean"/>
+      <attribute name="typeAheadDelay" type="java.lang.Number"/>
+      <attribute name="uniqueName" type="java.lang.String"/>
+      <attribute name="visible" type="java.lang.Boolean"/>
+      <attribute name="width" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="alwaysShowContainerChange" type="java.lang.String"/>
+      <event name="applyLocalFilterChange" type="java.lang.String"/>
+      <event name="autoHighlightChange" type="java.lang.String"/>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="buttonChange" type="java.lang.String"/>
+      <event name="containerCollapse" type="java.lang.String"/>
+      <event name="containerExpand" type="java.lang.String"/>
+      <event name="containerPopulate" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
+      <event name="dataError" type="java.lang.String"/>
+      <event name="dataRequest" type="java.lang.String"/>
+      <event name="dataReturn" type="java.lang.String"/>
+      <event name="dataSourceChange" type="java.lang.String"/>
+      <event name="dataSourceTypeChange" type="java.lang.String"/>
+      <event name="delimCharChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
+      <event name="forceSelectionChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="inputChange" type="java.lang.String"/>
+      <event name="itemArrowFrom" type="java.lang.String"/>
+      <event name="itemArrowTo" type="java.lang.String"/>
+      <event name="itemMouseOut" type="java.lang.String"/>
+      <event name="itemMouseOver" type="java.lang.String"/>
+      <event name="itemSelect" type="java.lang.String"/>
+      <event name="matchKeyChange" type="java.lang.String"/>
+      <event name="maxResultsDisplayedChange" type="java.lang.String"/>
+      <event name="minQueryLengthChange" type="java.lang.String"/>
+      <event name="queryDelayChange" type="java.lang.String"/>
+      <event name="queryIntervalChange" type="java.lang.String"/>
+      <event name="queryMatchCaseChange" type="java.lang.String"/>
+      <event name="queryMatchContainsChange" type="java.lang.String"/>
+      <event name="queryQuestionMarkChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="schemaChange" type="java.lang.String"/>
+      <event name="schemaTypeChange" type="java.lang.String"/>
+      <event name="selectionEnforce" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="suppressInputUpdateChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
+      <event name="textboxBlur" type="java.lang.String"/>
+      <event name="textboxChange" type="java.lang.String"/>
+      <event name="textboxFocus" type="java.lang.String"/>
+      <event name="textboxKey" type="java.lang.String"/>
+      <event name="typeAhead" type="java.lang.String"/>
+      <event name="typeAheadChange" type="java.lang.String"/>
+      <event name="typeAheadDelayChange" type="java.lang.String"/>
+      <event name="uniqueNameChange" type="java.lang.String"/>
+      <event name="unmatchedItemSelect" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="ButtonItem" module="aui-button-item" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="activeState" type="java.lang.Boolean"/>
+      <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="classNames" type="java.lang.Object"/>
+      <attribute name="contentBox" type="java.lang.String"/>
+      <attribute name="cssClass" type="java.lang.String"/>
+      <attribute name="defaultState" type="java.lang.Boolean"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="handler" type="java.lang.String"/>
+      <attribute name="height" type="java.lang.String"/>
+      <attribute name="hideClass" type="java.lang.String"/>
+      <attribute name="hoverState" type="java.lang.Boolean"/>
+      <attribute name="icon" type="java.lang.String"/>
+      <attribute name="iconNode" type="java.lang.String"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="label" type="java.lang.String"/>
+      <attribute name="labelNode" type="java.lang.String"/>
+      <attribute name="render" type="java.lang.Boolean"/>
+      <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="srcNode" type="java.lang.String"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="tabIndex" type="java.lang.Number"/>
+      <attribute name="title" type="java.lang.String"/>
+      <attribute name="visible" type="java.lang.Boolean"/>
+      <attribute name="width" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="activeStateChange" type="java.lang.String"/>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="classNamesChange" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
+      <event name="defaultStateChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
+      <event name="handlerChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="hoverStateChange" type="java.lang.String"/>
+      <event name="iconChange" type="java.lang.String"/>
+      <event name="iconNodeChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="labelChange" type="java.lang.String"/>
+      <event name="labelNodeChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
+      <event name="titleChange" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="Calendar" module="aui-calendar" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="align" type="java.lang.Object"/>
+      <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="cancellableHide" type="java.lang.Boolean"/>
+      <attribute name="contentBox" type="java.lang.String"/>
+      <attribute name="cssClass" type="java.lang.String"/>
+      <attribute name="currentDay" type="java.lang.Number"/>
+      <attribute name="currentMonth" type="java.lang.Number"/>
+      <attribute name="currentNode" type="java.lang.String"/>
+      <attribute name="currentYear" type="java.lang.Number"/>
+      <attribute name="dateFormat" type="java.lang.String"/>
+      <attribute name="dates" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="firstDayOfWeek" type="java.lang.Number"/>
+      <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="height" type="java.lang.String"/>
+      <attribute name="hideClass" type="java.lang.String"/>
+      <attribute name="hideDelay" type="java.lang.Number"/>
+      <attribute name="hideOn" type="java.lang.String"/>
+      <attribute name="hideOnDocumentClick" type="java.lang.Boolean"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="maxDate" type="java.lang.String"/>
+      <attribute name="minDate" type="java.lang.String"/>
+      <attribute name="render" type="java.lang.Boolean"/>
+      <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="selectMultipleDates" type="java.lang.Boolean"/>
+      <attribute name="setValue" type="java.lang.Boolean"/>
+      <attribute name="showDelay" type="java.lang.Number"/>
+      <attribute name="showOn" type="java.lang.String"/>
+      <attribute name="srcNode" type="java.lang.String"/>
+      <attribute name="stack" type="java.lang.Boolean"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="tabIndex" type="java.lang.Number"/>
+      <attribute name="trigger" type="java.lang.String"/>
+      <attribute name="visible" type="java.lang.Boolean"/>
+      <attribute name="width" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="alignChange" type="java.lang.String"/>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="cancellableHideChange" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
+      <event name="currentDayChange" type="java.lang.String"/>
+      <event name="currentMonthChange" type="java.lang.String"/>
+      <event name="currentNodeChange" type="java.lang.String"/>
+      <event name="currentYearChange" type="java.lang.String"/>
+      <event name="dateFormatChange" type="java.lang.String"/>
+      <event name="datesChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="firstDayOfWeekChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="hideDelayChange" type="java.lang.String"/>
+      <event name="hideOnChange" type="java.lang.String"/>
+      <event name="hideOnDocumentClickChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="maxDateChange" type="java.lang.String"/>
+      <event name="minDateChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="selectMultipleDatesChange" type="java.lang.String"/>
+      <event name="setValueChange" type="java.lang.String"/>
+      <event name="showDelayChange" type="java.lang.String"/>
+      <event name="showOnChange" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
+      <event name="stackChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
+      <event name="triggerChange" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
+    </events>
+  </component>
   <component name="CharCounter" module="aui-char-counter" namespace="alloy" bodyContent="false">
     <attributes>
       <attribute name="counter" type="java.lang.String"/>
@@ -17,6 +277,1020 @@
       <event name="initializedChange" type="java.lang.String"/>
       <event name="inputChange" type="java.lang.String"/>
       <event name="maxLengthChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="ColorPicker" module="aui-color-picker" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="align" type="java.lang.Object"/>
+      <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="cancellableHide" type="java.lang.Boolean"/>
+      <attribute name="contentBox" type="java.lang.String"/>
+      <attribute name="cssClass" type="java.lang.String"/>
+      <attribute name="currentNode" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="height" type="java.lang.String"/>
+      <attribute name="hideClass" type="java.lang.String"/>
+      <attribute name="hideDelay" type="java.lang.Number"/>
+      <attribute name="hideOn" type="java.lang.String"/>
+      <attribute name="hideOnDocumentClick" type="java.lang.Boolean"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="render" type="java.lang.Boolean"/>
+      <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="showDelay" type="java.lang.Number"/>
+      <attribute name="showOn" type="java.lang.String"/>
+      <attribute name="srcNode" type="java.lang.String"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="tabIndex" type="java.lang.Number"/>
+      <attribute name="trigger" type="java.lang.String"/>
+      <attribute name="visible" type="java.lang.Boolean"/>
+      <attribute name="width" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="alignChange" type="java.lang.String"/>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="cancellableHideChange" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
+      <event name="currentNodeChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="hideDelayChange" type="java.lang.String"/>
+      <event name="hideOnChange" type="java.lang.String"/>
+      <event name="hideOnDocumentClickChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="showDelayChange" type="java.lang.String"/>
+      <event name="showOnChange" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
+      <event name="triggerChange" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="DatePickerSelect" module="aui-calendar" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="align" type="java.lang.Object"/>
+      <attribute name="appendOrder" type="java.lang.String"/>
+      <attribute name="baseName" type="java.lang.String"/>
+      <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="buttonNode" type="java.lang.String"/>
+      <attribute name="cancellableHide" type="java.lang.Boolean"/>
+      <attribute name="contentBox" type="java.lang.String"/>
+      <attribute name="cssClass" type="java.lang.String"/>
+      <attribute name="currentDay" type="java.lang.Number"/>
+      <attribute name="currentMonth" type="java.lang.Number"/>
+      <attribute name="currentNode" type="java.lang.String"/>
+      <attribute name="currentYear" type="java.lang.Number"/>
+      <attribute name="dateFormat" type="java.lang.String"/>
+      <attribute name="dates" type="java.lang.String"/>
+      <attribute name="dayNode" type="java.lang.String"/>
+      <attribute name="dayNodeName" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="firstDayOfWeek" type="java.lang.Number"/>
+      <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="height" type="java.lang.String"/>
+      <attribute name="hideClass" type="java.lang.String"/>
+      <attribute name="hideDelay" type="java.lang.Number"/>
+      <attribute name="hideOn" type="java.lang.String"/>
+      <attribute name="hideOnDocumentClick" type="java.lang.Boolean"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="maxDate" type="java.lang.String"/>
+      <attribute name="minDate" type="java.lang.String"/>
+      <attribute name="monthNode" type="java.lang.String"/>
+      <attribute name="monthNodeName" type="java.lang.String"/>
+      <attribute name="populateDay" type="java.lang.Boolean"/>
+      <attribute name="populateMonth" type="java.lang.Boolean"/>
+      <attribute name="populateYear" type="java.lang.Boolean"/>
+      <attribute name="render" type="java.lang.Boolean"/>
+      <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="selectMultipleDates" type="java.lang.Boolean"/>
+      <attribute name="selectWrapperNode" type="java.lang.String"/>
+      <attribute name="setValue" type="java.lang.Boolean"/>
+      <attribute name="showDelay" type="java.lang.Number"/>
+      <attribute name="showOn" type="java.lang.String"/>
+      <attribute name="srcNode" type="java.lang.String"/>
+      <attribute name="stack" type="java.lang.Boolean"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="tabIndex" type="java.lang.Number"/>
+      <attribute name="trigger" type="java.lang.String"/>
+      <attribute name="visible" type="java.lang.Boolean"/>
+      <attribute name="width" type="java.lang.String"/>
+      <attribute name="yearNode" type="java.lang.String"/>
+      <attribute name="yearNodeName" type="java.lang.String"/>
+      <attribute name="yearRange" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="alignChange" type="java.lang.String"/>
+      <event name="appendOrderChange" type="java.lang.String"/>
+      <event name="baseNameChange" type="java.lang.String"/>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="buttonNodeChange" type="java.lang.String"/>
+      <event name="cancellableHideChange" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
+      <event name="currentDayChange" type="java.lang.String"/>
+      <event name="currentMonthChange" type="java.lang.String"/>
+      <event name="currentNodeChange" type="java.lang.String"/>
+      <event name="currentYearChange" type="java.lang.String"/>
+      <event name="dateFormatChange" type="java.lang.String"/>
+      <event name="datesChange" type="java.lang.String"/>
+      <event name="dayNodeChange" type="java.lang.String"/>
+      <event name="dayNodeNameChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="firstDayOfWeekChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="hideDelayChange" type="java.lang.String"/>
+      <event name="hideOnChange" type="java.lang.String"/>
+      <event name="hideOnDocumentClickChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="maxDateChange" type="java.lang.String"/>
+      <event name="minDateChange" type="java.lang.String"/>
+      <event name="monthNodeChange" type="java.lang.String"/>
+      <event name="monthNodeNameChange" type="java.lang.String"/>
+      <event name="populateDayChange" type="java.lang.String"/>
+      <event name="populateMonthChange" type="java.lang.String"/>
+      <event name="populateYearChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="selectMultipleDatesChange" type="java.lang.String"/>
+      <event name="selectWrapperNodeChange" type="java.lang.String"/>
+      <event name="setValueChange" type="java.lang.String"/>
+      <event name="showDelayChange" type="java.lang.String"/>
+      <event name="showOnChange" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
+      <event name="stackChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
+      <event name="triggerChange" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
+      <event name="yearNodeChange" type="java.lang.String"/>
+      <event name="yearNodeNameChange" type="java.lang.String"/>
+      <event name="yearRangeChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="Dialog" module="aui-dialog" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="bodyContent" type="java.lang.String"/>
+      <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="buttons" type="java.lang.String"/>
+      <attribute name="close" type="java.lang.Boolean"/>
+      <attribute name="collapsed" type="java.lang.Boolean"/>
+      <attribute name="collapsible" type="java.lang.Boolean"/>
+      <attribute name="constrain2view" type="java.lang.Object"/>
+      <attribute name="contentBox" type="java.lang.String"/>
+      <attribute name="cssClass" type="java.lang.String"/>
+      <attribute name="destroyOnClose" type="java.lang.Boolean"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="dragInstance" type="java.lang.String"/>
+      <attribute name="draggable" type="java.lang.Boolean"/>
+      <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="height" type="java.lang.String"/>
+      <attribute name="hideClass" type="java.lang.String"/>
+      <attribute name="icons" type="java.lang.String"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="modal" type="java.lang.Boolean"/>
+      <attribute name="render" type="java.lang.Boolean"/>
+      <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="resizable" type="java.lang.Boolean"/>
+      <attribute name="resizableInstance" type="java.lang.String"/>
+      <attribute name="srcNode" type="java.lang.String"/>
+      <attribute name="stack" type="java.lang.Boolean"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="tabIndex" type="java.lang.Number"/>
+      <attribute name="title" type="java.lang.String"/>
+      <attribute name="visible" type="java.lang.Boolean"/>
+      <attribute name="width" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="bodyContentChange" type="java.lang.String"/>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="buttonsChange" type="java.lang.String"/>
+      <event name="closeChange" type="java.lang.String"/>
+      <event name="collapsedChange" type="java.lang.String"/>
+      <event name="collapsibleChange" type="java.lang.String"/>
+      <event name="constrain2viewChange" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyOnCloseChange" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="dragInstanceChange" type="java.lang.String"/>
+      <event name="draggableChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="iconsChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="modalChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="resizableChange" type="java.lang.String"/>
+      <event name="resizableInstanceChange" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
+      <event name="stackChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
+      <event name="titleChange" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="Editable" module="aui-editable" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="cancelButton" type="java.lang.String"/>
+      <attribute name="contentBox" type="java.lang.String"/>
+      <attribute name="contentText" type="java.lang.String"/>
+      <attribute name="cssClass" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="eventType" type="java.lang.String"/>
+      <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="formatInput" type="java.lang.String"/>
+      <attribute name="formatOutput" type="java.lang.String"/>
+      <attribute name="height" type="java.lang.String"/>
+      <attribute name="hideClass" type="java.lang.String"/>
+      <attribute name="icons" type="java.lang.String"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="inputType" type="java.lang.String"/>
+      <attribute name="node" type="java.lang.String"/>
+      <attribute name="render" type="java.lang.Boolean"/>
+      <attribute name="renderTo" type="java.lang.String"/>
+      <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="saveButton" type="java.lang.String"/>
+      <attribute name="srcNode" type="java.lang.String"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="tabIndex" type="java.lang.Number"/>
+      <attribute name="visible" type="java.lang.Boolean"/>
+      <attribute name="width" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="cancel" type="java.lang.String"/>
+      <event name="cancelButtonChange" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="contentTextChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="eventTypeChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
+      <event name="formatInputChange" type="java.lang.String"/>
+      <event name="formatOutputChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="iconsChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="inputTypeChange" type="java.lang.String"/>
+      <event name="nodeChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderToChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="save" type="java.lang.String"/>
+      <event name="saveButtonChange" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
+      <event name="startEditing" type="java.lang.String"/>
+      <event name="stopEditing" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="IORequest" module="aui-io" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="active" type="java.lang.Boolean"/>
+      <attribute name="arguments" type="java.lang.Object"/>
+      <attribute name="autoLoad" type="java.lang.Boolean"/>
+      <attribute name="cache" type="java.lang.Boolean"/>
+      <attribute name="cfg" type="java.lang.String"/>
+      <attribute name="context" type="java.lang.Object"/>
+      <attribute name="data" type="java.lang.Object"/>
+      <attribute name="dataType" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="form" type="java.lang.Object"/>
+      <attribute name="headers" type="java.lang.Object"/>
+      <attribute name="host" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="method" type="java.lang.String"/>
+      <attribute name="responseData" type="java.lang.String"/>
+      <attribute name="sync" type="java.lang.Boolean"/>
+      <attribute name="timeout" type="java.lang.Number"/>
+      <attribute name="transaction" type="java.lang.Object"/>
+      <attribute name="uri" type="java.lang.String"/>
+      <attribute name="xdr" type="java.lang.Object"/>
+    </attributes>
+    <events>
+      <event name="activeChange" type="java.lang.String"/>
+      <event name="argumentsChange" type="java.lang.String"/>
+      <event name="autoLoadChange" type="java.lang.String"/>
+      <event name="cacheChange" type="java.lang.String"/>
+      <event name="cfgChange" type="java.lang.String"/>
+      <event name="contextChange" type="java.lang.String"/>
+      <event name="dataChange" type="java.lang.String"/>
+      <event name="dataTypeChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="formChange" type="java.lang.String"/>
+      <event name="headersChange" type="java.lang.String"/>
+      <event name="hostChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="methodChange" type="java.lang.String"/>
+      <event name="responseDataChange" type="java.lang.String"/>
+      <event name="syncChange" type="java.lang.String"/>
+      <event name="timeoutChange" type="java.lang.String"/>
+      <event name="transactionChange" type="java.lang.String"/>
+      <event name="uriChange" type="java.lang.String"/>
+      <event name="xdrChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="ImageGallery" module="aui-image-viewer" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="anim" type="java.lang.Boolean"/>
+      <attribute name="arrowLeftEl" type="java.lang.String"/>
+      <attribute name="arrowRightEl" type="java.lang.String"/>
+      <attribute name="autoPlay" type="java.lang.Boolean"/>
+      <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="caption" type="java.lang.String"/>
+      <attribute name="captionEl" type="java.lang.String"/>
+      <attribute name="captionFromTitle" type="java.lang.Boolean"/>
+      <attribute name="centered" type="java.lang.Boolean"/>
+      <attribute name="closeEl" type="java.lang.String"/>
+      <attribute name="contentBox" type="java.lang.String"/>
+      <attribute name="cssClass" type="java.lang.String"/>
+      <attribute name="currentIndex" type="java.lang.Number"/>
+      <attribute name="delay" type="java.lang.Number"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="height" type="java.lang.String"/>
+      <attribute name="hideClass" type="java.lang.String"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="image" type="java.lang.String"/>
+      <attribute name="imageAnim" type="java.lang.Object"/>
+      <attribute name="infoEl" type="java.lang.String"/>
+      <attribute name="infoTemplate" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="links" type="java.lang.String"/>
+      <attribute name="loader" type="java.lang.String"/>
+      <attribute name="loading" type="java.lang.Boolean"/>
+      <attribute name="loadingEl" type="java.lang.String"/>
+      <attribute name="maxHeight" type="java.lang.Number"/>
+      <attribute name="maxWidth" type="java.lang.Number"/>
+      <attribute name="modal" type="java.lang.String"/>
+      <attribute name="paginator" type="java.lang.Object"/>
+      <attribute name="paginatorEl" type="java.lang.String"/>
+      <attribute name="paginatorInstance" type="java.lang.String"/>
+      <attribute name="paused" type="java.lang.Boolean"/>
+      <attribute name="pausedLabel" type="java.lang.String"/>
+      <attribute name="playing" type="java.lang.Boolean"/>
+      <attribute name="playingLabel" type="java.lang.String"/>
+      <attribute name="preloadAllImages" type="java.lang.Boolean"/>
+      <attribute name="render" type="java.lang.Boolean"/>
+      <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="repeat" type="java.lang.Boolean"/>
+      <attribute name="showArrows" type="java.lang.Boolean"/>
+      <attribute name="showClose" type="java.lang.Boolean"/>
+      <attribute name="showPlayer" type="java.lang.Boolean"/>
+      <attribute name="srcNode" type="java.lang.String"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="tabIndex" type="java.lang.Number"/>
+      <attribute name="toolbar" type="java.lang.String"/>
+      <attribute name="totalLinks" type="java.lang.Boolean"/>
+      <attribute name="useOriginalImage" type="java.lang.Boolean"/>
+      <attribute name="visible" type="java.lang.Boolean"/>
+      <attribute name="width" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="anim" type="java.lang.String"/>
+      <event name="animChange" type="java.lang.String"/>
+      <event name="arrowLeftElChange" type="java.lang.String"/>
+      <event name="arrowRightElChange" type="java.lang.String"/>
+      <event name="autoPlayChange" type="java.lang.String"/>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="captionChange" type="java.lang.String"/>
+      <event name="captionElChange" type="java.lang.String"/>
+      <event name="captionFromTitleChange" type="java.lang.String"/>
+      <event name="centeredChange" type="java.lang.String"/>
+      <event name="closeElChange" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
+      <event name="currentIndexChange" type="java.lang.String"/>
+      <event name="delayChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="imageAnimChange" type="java.lang.String"/>
+      <event name="imageChange" type="java.lang.String"/>
+      <event name="infoElChange" type="java.lang.String"/>
+      <event name="infoTemplateChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="linksChange" type="java.lang.String"/>
+      <event name="load" type="java.lang.String"/>
+      <event name="loaderChange" type="java.lang.String"/>
+      <event name="loadingChange" type="java.lang.String"/>
+      <event name="loadingElChange" type="java.lang.String"/>
+      <event name="maxHeightChange" type="java.lang.String"/>
+      <event name="maxWidthChange" type="java.lang.String"/>
+      <event name="modalChange" type="java.lang.String"/>
+      <event name="paginatorChange" type="java.lang.String"/>
+      <event name="paginatorElChange" type="java.lang.String"/>
+      <event name="paginatorInstanceChange" type="java.lang.String"/>
+      <event name="pausedChange" type="java.lang.String"/>
+      <event name="pausedLabelChange" type="java.lang.String"/>
+      <event name="playingChange" type="java.lang.String"/>
+      <event name="playingLabelChange" type="java.lang.String"/>
+      <event name="preloadAllImagesChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="repeatChange" type="java.lang.String"/>
+      <event name="request" type="java.lang.String"/>
+      <event name="showArrowsChange" type="java.lang.String"/>
+      <event name="showCloseChange" type="java.lang.String"/>
+      <event name="showPlayerChange" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
+      <event name="toolbarChange" type="java.lang.String"/>
+      <event name="totalLinksChange" type="java.lang.String"/>
+      <event name="useOriginalImageChange" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="ImageViewer" module="aui-image-viewer" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="anim" type="java.lang.Boolean"/>
+      <attribute name="arrowLeftEl" type="java.lang.String"/>
+      <attribute name="arrowRightEl" type="java.lang.String"/>
+      <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="caption" type="java.lang.String"/>
+      <attribute name="captionEl" type="java.lang.String"/>
+      <attribute name="captionFromTitle" type="java.lang.Boolean"/>
+      <attribute name="centered" type="java.lang.Boolean"/>
+      <attribute name="closeEl" type="java.lang.String"/>
+      <attribute name="contentBox" type="java.lang.String"/>
+      <attribute name="cssClass" type="java.lang.String"/>
+      <attribute name="currentIndex" type="java.lang.Number"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="height" type="java.lang.String"/>
+      <attribute name="hideClass" type="java.lang.String"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="image" type="java.lang.String"/>
+      <attribute name="imageAnim" type="java.lang.Object"/>
+      <attribute name="infoEl" type="java.lang.String"/>
+      <attribute name="infoTemplate" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="links" type="java.lang.String"/>
+      <attribute name="loader" type="java.lang.String"/>
+      <attribute name="loading" type="java.lang.Boolean"/>
+      <attribute name="loadingEl" type="java.lang.String"/>
+      <attribute name="maxHeight" type="java.lang.Number"/>
+      <attribute name="maxWidth" type="java.lang.Number"/>
+      <attribute name="modal" type="java.lang.String"/>
+      <attribute name="preloadAllImages" type="java.lang.Boolean"/>
+      <attribute name="render" type="java.lang.Boolean"/>
+      <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="showArrows" type="java.lang.Boolean"/>
+      <attribute name="showClose" type="java.lang.Boolean"/>
+      <attribute name="srcNode" type="java.lang.String"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="tabIndex" type="java.lang.Number"/>
+      <attribute name="totalLinks" type="java.lang.Boolean"/>
+      <attribute name="visible" type="java.lang.Boolean"/>
+      <attribute name="width" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="anim" type="java.lang.String"/>
+      <event name="animChange" type="java.lang.String"/>
+      <event name="arrowLeftElChange" type="java.lang.String"/>
+      <event name="arrowRightElChange" type="java.lang.String"/>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="captionChange" type="java.lang.String"/>
+      <event name="captionElChange" type="java.lang.String"/>
+      <event name="captionFromTitleChange" type="java.lang.String"/>
+      <event name="centeredChange" type="java.lang.String"/>
+      <event name="closeElChange" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
+      <event name="currentIndexChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="imageAnimChange" type="java.lang.String"/>
+      <event name="imageChange" type="java.lang.String"/>
+      <event name="infoElChange" type="java.lang.String"/>
+      <event name="infoTemplateChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="linksChange" type="java.lang.String"/>
+      <event name="load" type="java.lang.String"/>
+      <event name="loaderChange" type="java.lang.String"/>
+      <event name="loadingChange" type="java.lang.String"/>
+      <event name="loadingElChange" type="java.lang.String"/>
+      <event name="maxHeightChange" type="java.lang.String"/>
+      <event name="maxWidthChange" type="java.lang.String"/>
+      <event name="modalChange" type="java.lang.String"/>
+      <event name="preloadAllImagesChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="request" type="java.lang.String"/>
+      <event name="showArrowsChange" type="java.lang.String"/>
+      <event name="showCloseChange" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
+      <event name="totalLinksChange" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="LiveSearch" module="aui-live-search" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="data" type="java.lang.String"/>
+      <attribute name="delay" type="java.lang.Number"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="hide" type="java.lang.String"/>
+      <attribute name="index" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="input" type="java.lang.String"/>
+      <attribute name="matchRegex" type="java.lang.String"/>
+      <attribute name="nodes" type="java.lang.String"/>
+      <attribute name="show" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="dataChange" type="java.lang.String"/>
+      <event name="delayChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="hideChange" type="java.lang.String"/>
+      <event name="indexChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="inputChange" type="java.lang.String"/>
+      <event name="matchRegexChange" type="java.lang.String"/>
+      <event name="nodesChange" type="java.lang.String"/>
+      <event name="showChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="LoadingMask" module="aui-loading-mask" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="host" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="messageEl" type="java.lang.String"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="target" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="hostChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="messageElChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="targetChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="NestedList" module="aui-nested-list" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+    </attributes>
+    <events>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="OverlayBase" module="aui-overlay" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="contentBox" type="java.lang.String"/>
+      <attribute name="cssClass" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="height" type="java.lang.String"/>
+      <attribute name="hideClass" type="java.lang.String"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="render" type="java.lang.Boolean"/>
+      <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="srcNode" type="java.lang.String"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="tabIndex" type="java.lang.Number"/>
+      <attribute name="visible" type="java.lang.Boolean"/>
+      <attribute name="width" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="OverlayContext" module="aui-overlay" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="align" type="java.lang.Object"/>
+      <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="cancellableHide" type="java.lang.Boolean"/>
+      <attribute name="contentBox" type="java.lang.String"/>
+      <attribute name="cssClass" type="java.lang.String"/>
+      <attribute name="currentNode" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="height" type="java.lang.String"/>
+      <attribute name="hideClass" type="java.lang.String"/>
+      <attribute name="hideDelay" type="java.lang.Number"/>
+      <attribute name="hideOn" type="java.lang.String"/>
+      <attribute name="hideOnDocumentClick" type="java.lang.Boolean"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="render" type="java.lang.Boolean"/>
+      <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="showDelay" type="java.lang.Number"/>
+      <attribute name="showOn" type="java.lang.String"/>
+      <attribute name="srcNode" type="java.lang.String"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="tabIndex" type="java.lang.Number"/>
+      <attribute name="trigger" type="java.lang.String"/>
+      <attribute name="visible" type="java.lang.Boolean"/>
+      <attribute name="width" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="alignChange" type="java.lang.String"/>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="cancellableHideChange" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
+      <event name="currentNodeChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="hideDelayChange" type="java.lang.String"/>
+      <event name="hideOnChange" type="java.lang.String"/>
+      <event name="hideOnDocumentClickChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="showDelayChange" type="java.lang.String"/>
+      <event name="showOnChange" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
+      <event name="triggerChange" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="OverlayContextPanel" module="aui-overlay" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="align" type="java.lang.Object"/>
+      <attribute name="anim" type="java.lang.Object"/>
+      <attribute name="arrow" type="java.lang.String"/>
+      <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="cancellableHide" type="java.lang.Boolean"/>
+      <attribute name="contentBox" type="java.lang.String"/>
+      <attribute name="cssClass" type="java.lang.String"/>
+      <attribute name="currentNode" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="height" type="java.lang.String"/>
+      <attribute name="hideClass" type="java.lang.String"/>
+      <attribute name="hideDelay" type="java.lang.Number"/>
+      <attribute name="hideOn" type="java.lang.String"/>
+      <attribute name="hideOnDocumentClick" type="java.lang.Boolean"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="render" type="java.lang.Boolean"/>
+      <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="showArrow" type="java.lang.Boolean"/>
+      <attribute name="showDelay" type="java.lang.Number"/>
+      <attribute name="showOn" type="java.lang.String"/>
+      <attribute name="srcNode" type="java.lang.String"/>
+      <attribute name="stack" type="java.lang.Boolean"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="tabIndex" type="java.lang.Number"/>
+      <attribute name="trigger" type="java.lang.String"/>
+      <attribute name="visible" type="java.lang.Boolean"/>
+      <attribute name="width" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="alignChange" type="java.lang.String"/>
+      <event name="animChange" type="java.lang.String"/>
+      <event name="arrowChange" type="java.lang.String"/>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="cancellableHideChange" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
+      <event name="currentNodeChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="hideDelayChange" type="java.lang.String"/>
+      <event name="hideOnChange" type="java.lang.String"/>
+      <event name="hideOnDocumentClickChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="showArrowChange" type="java.lang.String"/>
+      <event name="showDelayChange" type="java.lang.String"/>
+      <event name="showOnChange" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
+      <event name="stackChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
+      <event name="triggerChange" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="OverlayMask" module="aui-overlay" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="alignPoints" type="java.lang.String"/>
+      <attribute name="background" type="java.lang.String"/>
+      <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="contentBox" type="java.lang.String"/>
+      <attribute name="cssClass" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="height" type="java.lang.String"/>
+      <attribute name="hideClass" type="java.lang.String"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="opacity" type="java.lang.Number"/>
+      <attribute name="render" type="java.lang.Boolean"/>
+      <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="shim" type="java.lang.Boolean"/>
+      <attribute name="srcNode" type="java.lang.String"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="tabIndex" type="java.lang.Number"/>
+      <attribute name="target" type="java.lang.String"/>
+      <attribute name="visible" type="java.lang.Boolean"/>
+      <attribute name="width" type="java.lang.String"/>
+      <attribute name="zIndex" type="java.lang.Number"/>
+    </attributes>
+    <events>
+      <event name="alignPointsChange" type="java.lang.String"/>
+      <event name="backgroundChange" type="java.lang.String"/>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="opacityChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="shimChange" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
+      <event name="targetChange" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
+      <event name="zIndexChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="Paginator" module="aui-paginator" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="alwaysVisible" type="java.lang.Boolean"/>
+      <attribute name="containers" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="firstPageLink" type="java.lang.String"/>
+      <attribute name="firstPageLinkLabel" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="lastPageLink" type="java.lang.String"/>
+      <attribute name="lastPageLinkLabel" type="java.lang.String"/>
+      <attribute name="maxPageLinks" type="java.lang.Number"/>
+      <attribute name="nextPageLink" type="java.lang.String"/>
+      <attribute name="nextPageLinkLabel" type="java.lang.String"/>
+      <attribute name="page" type="java.lang.Number"/>
+      <attribute name="pageContainerTemplate" type="java.lang.String"/>
+      <attribute name="pageLinkContent" type="java.lang.String"/>
+      <attribute name="pageLinkTemplate" type="java.lang.String"/>
+      <attribute name="pageReportEl" type="java.lang.String"/>
+      <attribute name="pageReportLabelTemplate" type="java.lang.String"/>
+      <attribute name="prevPageLink" type="java.lang.String"/>
+      <attribute name="prevPageLinkLabel" type="java.lang.String"/>
+      <attribute name="rowsPerPage" type="java.lang.Number"/>
+      <attribute name="rowsPerPageEl" type="java.lang.String"/>
+      <attribute name="rowsPerPageOptions" type="java.lang.String"/>
+      <attribute name="state" type="java.lang.Object"/>
+      <attribute name="template" type="java.lang.String"/>
+      <attribute name="total" type="java.lang.Number"/>
+      <attribute name="totalEl" type="java.lang.String"/>
+      <attribute name="totalLabel" type="java.lang.String"/>
+      <attribute name="totalPages" type="java.lang.Number"/>
+    </attributes>
+    <events>
+      <event name="alwaysVisibleChange" type="java.lang.String"/>
+      <event name="containersChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="firstPageLinkChange" type="java.lang.String"/>
+      <event name="firstPageLinkLabelChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="lastPageLinkChange" type="java.lang.String"/>
+      <event name="lastPageLinkLabelChange" type="java.lang.String"/>
+      <event name="maxPageLinksChange" type="java.lang.String"/>
+      <event name="nextPageLinkChange" type="java.lang.String"/>
+      <event name="nextPageLinkLabelChange" type="java.lang.String"/>
+      <event name="pageChange" type="java.lang.String"/>
+      <event name="pageContainerTemplateChange" type="java.lang.String"/>
+      <event name="pageLinkContentChange" type="java.lang.String"/>
+      <event name="pageLinkTemplateChange" type="java.lang.String"/>
+      <event name="pageReportElChange" type="java.lang.String"/>
+      <event name="pageReportLabelTemplateChange" type="java.lang.String"/>
+      <event name="prevPageLinkChange" type="java.lang.String"/>
+      <event name="prevPageLinkLabelChange" type="java.lang.String"/>
+      <event name="rowsPerPageChange" type="java.lang.String"/>
+      <event name="rowsPerPageElChange" type="java.lang.String"/>
+      <event name="rowsPerPageOptionsChange" type="java.lang.String"/>
+      <event name="stateChange" type="java.lang.String"/>
+      <event name="templateChange" type="java.lang.String"/>
+      <event name="totalChange" type="java.lang.String"/>
+      <event name="totalElChange" type="java.lang.String"/>
+      <event name="totalLabelChange" type="java.lang.String"/>
+      <event name="totalPagesChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="Panel" module="aui-panel" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="collapsed" type="java.lang.Boolean"/>
+      <attribute name="collapsible" type="java.lang.Boolean"/>
+      <attribute name="contentBox" type="java.lang.String"/>
+      <attribute name="cssClass" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="height" type="java.lang.String"/>
+      <attribute name="hideClass" type="java.lang.String"/>
+      <attribute name="icons" type="java.lang.String"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="render" type="java.lang.Boolean"/>
+      <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="srcNode" type="java.lang.String"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="tabIndex" type="java.lang.Number"/>
+      <attribute name="title" type="java.lang.String"/>
+      <attribute name="visible" type="java.lang.Boolean"/>
+      <attribute name="width" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="collapsedChange" type="java.lang.String"/>
+      <event name="collapsibleChange" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="iconsChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
+      <event name="titleChange" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="ParseContent" module="aui-parse-content" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="host" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+    </attributes>
+    <events>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="hostChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="PortalLayout" module="aui-portal-layout" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+    </attributes>
+    <events>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
     </events>
   </component>
   <component name="ProgressBar" module="aui-progressbar" namespace="alloy" bodyContent="false">
@@ -117,9 +1391,494 @@
       <event name="titleChange" type="java.lang.String"/>
       <event name="valueChange" type="java.lang.String"/>
       <event name="visibleChange" type="java.lang.String"/>
-      <event name="widget_contentUpdate" type="java.lang.String"/>
-      <event name="widget_render" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
       <event name="widthChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="Resize" module="aui-resize" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="activeHandle" type="java.lang.String"/>
+      <attribute name="activeHandleEl" type="java.lang.String"/>
+      <attribute name="autoHide" type="java.lang.Boolean"/>
+      <attribute name="constrain" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="handles" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="maxHeight" type="java.lang.Number"/>
+      <attribute name="maxWidth" type="java.lang.Number"/>
+      <attribute name="minHeight" type="java.lang.Number"/>
+      <attribute name="minWidth" type="java.lang.Number"/>
+      <attribute name="node" type="java.lang.String"/>
+      <attribute name="preserveRatio" type="java.lang.Boolean"/>
+      <attribute name="proxy" type="java.lang.Boolean"/>
+      <attribute name="proxyEl" type="java.lang.String"/>
+      <attribute name="resizing" type="java.lang.Boolean"/>
+      <attribute name="tickX" type="java.lang.String"/>
+      <attribute name="tickY" type="java.lang.String"/>
+      <attribute name="wrap" type="java.lang.Boolean"/>
+      <attribute name="wrapTypes" type="java.lang.String"/>
+      <attribute name="wrapper" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="activeHandleChange" type="java.lang.String"/>
+      <event name="activeHandleElChange" type="java.lang.String"/>
+      <event name="autoHideChange" type="java.lang.String"/>
+      <event name="constrainChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="handlesChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="maxHeightChange" type="java.lang.String"/>
+      <event name="maxWidthChange" type="java.lang.String"/>
+      <event name="minHeightChange" type="java.lang.String"/>
+      <event name="minWidthChange" type="java.lang.String"/>
+      <event name="nodeChange" type="java.lang.String"/>
+      <event name="preserveRatioChange" type="java.lang.String"/>
+      <event name="proxyChange" type="java.lang.String"/>
+      <event name="proxyElChange" type="java.lang.String"/>
+      <event name="resize:end" type="java.lang.String"/>
+      <event name="resize:mouseUp" type="java.lang.String"/>
+      <event name="resize:resize" type="java.lang.String"/>
+      <event name="resize:start" type="java.lang.String"/>
+      <event name="resizingChange" type="java.lang.String"/>
+      <event name="tickXChange" type="java.lang.String"/>
+      <event name="tickYChange" type="java.lang.String"/>
+      <event name="wrapChange" type="java.lang.String"/>
+      <event name="wrapTypesChange" type="java.lang.String"/>
+      <event name="wrapperChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="Textboxlist" module="aui-textboxlist" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="alwaysShowContainer" type="java.lang.Boolean"/>
+      <attribute name="applyLocalFilter" type="java.lang.Boolean"/>
+      <attribute name="autoHighlight" type="java.lang.Boolean"/>
+      <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="button" type="java.lang.Boolean"/>
+      <attribute name="contentBox" type="java.lang.String"/>
+      <attribute name="cssClass" type="java.lang.String"/>
+      <attribute name="dataSource" type="java.lang.String"/>
+      <attribute name="dataSourceType" type="java.lang.String"/>
+      <attribute name="delimChar" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="forceSelection" type="java.lang.Boolean"/>
+      <attribute name="height" type="java.lang.String"/>
+      <attribute name="hideClass" type="java.lang.String"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="input" type="java.lang.String"/>
+      <attribute name="matchKey" type="java.lang.String"/>
+      <attribute name="maxResultsDisplayed" type="java.lang.Number"/>
+      <attribute name="minQueryLength" type="java.lang.Number"/>
+      <attribute name="queryDelay" type="java.lang.Number"/>
+      <attribute name="queryInterval" type="java.lang.Number"/>
+      <attribute name="queryMatchCase" type="java.lang.Boolean"/>
+      <attribute name="queryMatchContains" type="java.lang.Boolean"/>
+      <attribute name="queryQuestionMark" type="java.lang.Boolean"/>
+      <attribute name="render" type="java.lang.Boolean"/>
+      <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="schema" type="java.lang.Object"/>
+      <attribute name="schemaType" type="java.lang.String"/>
+      <attribute name="srcNode" type="java.lang.String"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="suppressInputUpdate" type="java.lang.Boolean"/>
+      <attribute name="tabIndex" type="java.lang.Number"/>
+      <attribute name="typeAhead" type="java.lang.Boolean"/>
+      <attribute name="typeAheadDelay" type="java.lang.Number"/>
+      <attribute name="uniqueName" type="java.lang.String"/>
+      <attribute name="visible" type="java.lang.Boolean"/>
+      <attribute name="width" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="alwaysShowContainerChange" type="java.lang.String"/>
+      <event name="applyLocalFilterChange" type="java.lang.String"/>
+      <event name="autoHighlightChange" type="java.lang.String"/>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="buttonChange" type="java.lang.String"/>
+      <event name="containerCollapse" type="java.lang.String"/>
+      <event name="containerExpand" type="java.lang.String"/>
+      <event name="containerPopulate" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
+      <event name="dataError" type="java.lang.String"/>
+      <event name="dataRequest" type="java.lang.String"/>
+      <event name="dataReturn" type="java.lang.String"/>
+      <event name="dataSourceChange" type="java.lang.String"/>
+      <event name="dataSourceTypeChange" type="java.lang.String"/>
+      <event name="delimCharChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
+      <event name="forceSelectionChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="inputChange" type="java.lang.String"/>
+      <event name="itemArrowFrom" type="java.lang.String"/>
+      <event name="itemArrowTo" type="java.lang.String"/>
+      <event name="itemMouseOut" type="java.lang.String"/>
+      <event name="itemMouseOver" type="java.lang.String"/>
+      <event name="itemSelect" type="java.lang.String"/>
+      <event name="matchKeyChange" type="java.lang.String"/>
+      <event name="maxResultsDisplayedChange" type="java.lang.String"/>
+      <event name="minQueryLengthChange" type="java.lang.String"/>
+      <event name="queryDelayChange" type="java.lang.String"/>
+      <event name="queryIntervalChange" type="java.lang.String"/>
+      <event name="queryMatchCaseChange" type="java.lang.String"/>
+      <event name="queryMatchContainsChange" type="java.lang.String"/>
+      <event name="queryQuestionMarkChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="schemaChange" type="java.lang.String"/>
+      <event name="schemaTypeChange" type="java.lang.String"/>
+      <event name="selectionEnforce" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="suppressInputUpdateChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
+      <event name="textboxBlur" type="java.lang.String"/>
+      <event name="textboxChange" type="java.lang.String"/>
+      <event name="textboxFocus" type="java.lang.String"/>
+      <event name="textboxKey" type="java.lang.String"/>
+      <event name="typeAhead" type="java.lang.String"/>
+      <event name="typeAheadChange" type="java.lang.String"/>
+      <event name="typeAheadDelayChange" type="java.lang.String"/>
+      <event name="uniqueNameChange" type="java.lang.String"/>
+      <event name="unmatchedItemSelect" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="ThumbRating" module="aui-rating" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="canReset" type="java.lang.Boolean"/>
+      <attribute name="contentBox" type="java.lang.String"/>
+      <attribute name="cssClass" type="java.lang.String"/>
+      <attribute name="defaultSelected" type="java.lang.Number"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="elements" type="java.lang.String"/>
+      <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="height" type="java.lang.String"/>
+      <attribute name="hiddenInput" type="java.lang.String"/>
+      <attribute name="hideClass" type="java.lang.String"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="inputName" type="java.lang.String"/>
+      <attribute name="label" type="java.lang.String"/>
+      <attribute name="labelNode" type="java.lang.String"/>
+      <attribute name="render" type="java.lang.Boolean"/>
+      <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="selectedIndex" type="java.lang.Number"/>
+      <attribute name="showTitle" type="java.lang.Boolean"/>
+      <attribute name="size" type="java.lang.Number"/>
+      <attribute name="srcNode" type="java.lang.String"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="tabIndex" type="java.lang.Number"/>
+      <attribute name="title" type="java.lang.String"/>
+      <attribute name="value" type="java.lang.String"/>
+      <attribute name="visible" type="java.lang.Boolean"/>
+      <attribute name="width" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="canResetChange" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
+      <event name="defaultSelectedChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="elementsChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="hiddenInputChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="inputNameChange" type="java.lang.String"/>
+      <event name="itemClick" type="java.lang.String"/>
+      <event name="itemOut" type="java.lang.String"/>
+      <event name="itemSelect" type="java.lang.String"/>
+      <event name="labelChange" type="java.lang.String"/>
+      <event name="labelNodeChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="selectedIndexChange" type="java.lang.String"/>
+      <event name="showTitleChange" type="java.lang.String"/>
+      <event name="sizeChange" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
+      <event name="titleChange" type="java.lang.String"/>
+      <event name="valueChange" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="Toolbar" module="aui-toolbar" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="activeState" type="java.lang.Boolean"/>
+      <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="contentBox" type="java.lang.String"/>
+      <attribute name="cssClass" type="java.lang.String"/>
+      <attribute name="defaultChildType" type="java.lang.String"/>
+      <attribute name="defaultState" type="java.lang.Boolean"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="height" type="java.lang.String"/>
+      <attribute name="hideClass" type="java.lang.String"/>
+      <attribute name="hoverState" type="java.lang.Boolean"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="orientation" type="java.lang.String"/>
+      <attribute name="render" type="java.lang.Boolean"/>
+      <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="srcNode" type="java.lang.String"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="tabIndex" type="java.lang.Number"/>
+      <attribute name="visible" type="java.lang.Boolean"/>
+      <attribute name="width" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="activeStateChange" type="java.lang.String"/>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
+      <event name="defaultChildTypeChange" type="java.lang.String"/>
+      <event name="defaultStateChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="hoverStateChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="orientationChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="Tooltip" module="aui-tooltip" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="align" type="java.lang.Object"/>
+      <attribute name="anim" type="java.lang.Object"/>
+      <attribute name="arrow" type="java.lang.String"/>
+      <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="cancellableHide" type="java.lang.Boolean"/>
+      <attribute name="contentBox" type="java.lang.String"/>
+      <attribute name="cssClass" type="java.lang.String"/>
+      <attribute name="currentNode" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="height" type="java.lang.String"/>
+      <attribute name="hideClass" type="java.lang.String"/>
+      <attribute name="hideDelay" type="java.lang.Number"/>
+      <attribute name="hideOn" type="java.lang.String"/>
+      <attribute name="hideOnDocumentClick" type="java.lang.Boolean"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="render" type="java.lang.Boolean"/>
+      <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="showArrow" type="java.lang.Boolean"/>
+      <attribute name="showDelay" type="java.lang.Number"/>
+      <attribute name="showOn" type="java.lang.String"/>
+      <attribute name="srcNode" type="java.lang.String"/>
+      <attribute name="stack" type="java.lang.Boolean"/>
+      <attribute name="strings" type="java.lang.Object"/>
+      <attribute name="tabIndex" type="java.lang.Number"/>
+      <attribute name="title" type="java.lang.Boolean"/>
+      <attribute name="trigger" type="java.lang.String"/>
+      <attribute name="visible" type="java.lang.Boolean"/>
+      <attribute name="width" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="alignChange" type="java.lang.String"/>
+      <event name="animChange" type="java.lang.String"/>
+      <event name="arrowChange" type="java.lang.String"/>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="cancellableHideChange" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
+      <event name="currentNodeChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
+      <event name="heightChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="hideDelayChange" type="java.lang.String"/>
+      <event name="hideOnChange" type="java.lang.String"/>
+      <event name="hideOnDocumentClickChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="showArrowChange" type="java.lang.String"/>
+      <event name="showDelayChange" type="java.lang.String"/>
+      <event name="showOnChange" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
+      <event name="stackChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
+      <event name="titleChange" type="java.lang.String"/>
+      <event name="triggerChange" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="TreeNodeTask" module="aui-tree" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="alwaysShowHitArea" type="java.lang.Boolean"/>
+      <attribute name="cache" type="java.lang.Boolean"/>
+      <attribute name="checkContainerEl" type="java.lang.String"/>
+      <attribute name="checkEl" type="java.lang.String"/>
+      <attribute name="checkName" type="java.lang.String"/>
+      <attribute name="checked" type="java.lang.Boolean"/>
+      <attribute name="children" type="java.lang.String"/>
+      <attribute name="container" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="draggable" type="java.lang.Boolean"/>
+      <attribute name="expanded" type="java.lang.Boolean"/>
+      <attribute name="hitAreaEl" type="java.lang.String"/>
+      <attribute name="iconEl" type="java.lang.String"/>
+      <attribute name="id" type="java.lang.String"/>
+      <attribute name="index" type="java.lang.Object"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="io" type="java.lang.Object"/>
+      <attribute name="label" type="java.lang.String"/>
+      <attribute name="labelEl" type="java.lang.String"/>
+      <attribute name="leaf" type="java.lang.Boolean"/>
+      <attribute name="loaded" type="java.lang.Boolean"/>
+      <attribute name="loading" type="java.lang.Boolean"/>
+      <attribute name="nextSibling" type="java.lang.String"/>
+      <attribute name="ownerTree" type="java.lang.String"/>
+      <attribute name="parentNode" type="java.lang.String"/>
+      <attribute name="prevSibling" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="alwaysShowHitAreaChange" type="java.lang.String"/>
+      <event name="cacheChange" type="java.lang.String"/>
+      <event name="checkContainerElChange" type="java.lang.String"/>
+      <event name="checkElChange" type="java.lang.String"/>
+      <event name="checkNameChange" type="java.lang.String"/>
+      <event name="checkedChange" type="java.lang.String"/>
+      <event name="childrenChange" type="java.lang.String"/>
+      <event name="containerChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="draggableChange" type="java.lang.String"/>
+      <event name="expandedChange" type="java.lang.String"/>
+      <event name="hitAreaElChange" type="java.lang.String"/>
+      <event name="iconElChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
+      <event name="indexChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="ioChange" type="java.lang.String"/>
+      <event name="labelChange" type="java.lang.String"/>
+      <event name="labelElChange" type="java.lang.String"/>
+      <event name="leafChange" type="java.lang.String"/>
+      <event name="loadedChange" type="java.lang.String"/>
+      <event name="loadingChange" type="java.lang.String"/>
+      <event name="nextSiblingChange" type="java.lang.String"/>
+      <event name="ownerTreeChange" type="java.lang.String"/>
+      <event name="parentNodeChange" type="java.lang.String"/>
+      <event name="prevSiblingChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="TreeView" module="aui-tree" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="children" type="java.lang.String"/>
+      <attribute name="container" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="index" type="java.lang.Object"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="io" type="java.lang.Object"/>
+      <attribute name="lastSelected" type="java.lang.String"/>
+      <attribute name="type" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="childrenChange" type="java.lang.String"/>
+      <event name="containerChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="indexChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="ioChange" type="java.lang.String"/>
+      <event name="lastSelectedChange" type="java.lang.String"/>
+      <event name="typeChange" type="java.lang.String"/>
+    </events>
+  </component>
+  <component name="TreeViewDD" module="aui-tree" namespace="alloy" bodyContent="false">
+    <attributes>
+      <attribute name="checkContainerEl" type="java.lang.String"/>
+      <attribute name="checkEl" type="java.lang.String"/>
+      <attribute name="checkName" type="java.lang.String"/>
+      <attribute name="checked" type="java.lang.Boolean"/>
+      <attribute name="children" type="java.lang.String"/>
+      <attribute name="container" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean"/>
+      <attribute name="dropAction" type="java.lang.String"/>
+      <attribute name="helper" type="java.lang.String"/>
+      <attribute name="index" type="java.lang.Object"/>
+      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="io" type="java.lang.Object"/>
+      <attribute name="lastSelected" type="java.lang.String"/>
+      <attribute name="lastY" type="java.lang.Number"/>
+      <attribute name="nodeContent" type="java.lang.String"/>
+      <attribute name="scrollDelay" type="java.lang.Number"/>
+      <attribute name="type" type="java.lang.String"/>
+    </attributes>
+    <events>
+      <event name="checkContainerElChange" type="java.lang.String"/>
+      <event name="checkElChange" type="java.lang.String"/>
+      <event name="checkNameChange" type="java.lang.String"/>
+      <event name="checkedChange" type="java.lang.String"/>
+      <event name="childrenChange" type="java.lang.String"/>
+      <event name="containerChange" type="java.lang.String"/>
+      <event name="destroy" type="java.lang.String"/>
+      <event name="destroyedChange" type="java.lang.String"/>
+      <event name="dropActionChange" type="java.lang.String"/>
+      <event name="helperChange" type="java.lang.String"/>
+      <event name="indexChange" type="java.lang.String"/>
+      <event name="init" type="java.lang.String"/>
+      <event name="initializedChange" type="java.lang.String"/>
+      <event name="ioChange" type="java.lang.String"/>
+      <event name="lastSelectedChange" type="java.lang.String"/>
+      <event name="lastYChange" type="java.lang.String"/>
+      <event name="nodeContentChange" type="java.lang.String"/>
+      <event name="scrollDelayChange" type="java.lang.String"/>
+      <event name="typeChange" type="java.lang.String"/>
     </events>
   </component>
 </alloy>
