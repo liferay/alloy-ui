@@ -20,15 +20,19 @@ public class BaseProgressBarTag extends IncludeTag {
 		return super.doStartTag();
 	}
 
-	public java.lang.String getDestroyed() {
+	protected String _getPage() {
+		return _PAGE;
+	}
+
+	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.String getHeight() {
+	public java.lang.Integer getHeight() {
 		return _height;
 	}
 
-	public java.lang.String getInitialized() {
+	public java.lang.Boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -36,11 +40,11 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _label;
 	}
 
-	public java.lang.String getMax() {
+	public java.lang.Integer getMax() {
 		return _max;
 	}
 
-	public java.lang.String getMin() {
+	public java.lang.Integer getMin() {
 		return _min;
 	}
 
@@ -48,7 +52,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _orientation;
 	}
 
-	public java.lang.String getRatio() {
+	public java.lang.Number getRatio() {
 		return _ratio;
 	}
 
@@ -56,7 +60,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _statusNode;
 	}
 
-	public java.lang.String getStep() {
+	public java.lang.Number getStep() {
 		return _step;
 	}
 
@@ -64,8 +68,8 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _textNode;
 	}
 
-	public java.lang.String getValue() {
-		return _value;
+	public java.lang.Integer getProgressbarValue() {
+		return _progressbarValue;
 	}
 
 	public java.lang.String getAfterDestroy() {
@@ -180,19 +184,19 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _onValueChange;
 	}
 
-	public void setDestroyed(java.lang.String destroyed) {
+	public void setDestroyed(java.lang.Boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setHeight(java.lang.String height) {
+	public void setHeight(java.lang.Integer height) {
 		_height = height;
 
 		setScopedAttribute("height", height);
 	}
 
-	public void setInitialized(java.lang.String initialized) {
+	public void setInitialized(java.lang.Boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -204,13 +208,13 @@ public class BaseProgressBarTag extends IncludeTag {
 		setScopedAttribute("label", label);
 	}
 
-	public void setMax(java.lang.String max) {
+	public void setMax(java.lang.Integer max) {
 		_max = max;
 
 		setScopedAttribute("max", max);
 	}
 
-	public void setMin(java.lang.String min) {
+	public void setMin(java.lang.Integer min) {
 		_min = min;
 
 		setScopedAttribute("min", min);
@@ -222,7 +226,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		setScopedAttribute("orientation", orientation);
 	}
 
-	public void setRatio(java.lang.String ratio) {
+	public void setRatio(java.lang.Number ratio) {
 		_ratio = ratio;
 
 		setScopedAttribute("ratio", ratio);
@@ -234,7 +238,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		setScopedAttribute("statusNode", statusNode);
 	}
 
-	public void setStep(java.lang.String step) {
+	public void setStep(java.lang.Number step) {
 		_step = step;
 
 		setScopedAttribute("step", step);
@@ -246,10 +250,10 @@ public class BaseProgressBarTag extends IncludeTag {
 		setScopedAttribute("textNode", textNode);
 	}
 
-	public void setValue(java.lang.String value) {
-		_value = value;
+	public void setProgressbarValue(java.lang.Integer progressbarValue) {
+		_progressbarValue = progressbarValue;
 
-		setScopedAttribute("value", value);
+		setScopedAttribute("progressbarValue", progressbarValue);
 	}
 
 	public void setAfterDestroy(java.lang.String afterDestroy) {
@@ -420,11 +424,8 @@ public class BaseProgressBarTag extends IncludeTag {
 		setScopedAttribute("onValueChange", onValueChange);
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
 
-	protected void setAttributes(HttpServletRequest request) {
+	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "height", _height);
 		setNamespacedAttribute(request, "initialized", _initialized);
@@ -436,7 +437,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		setNamespacedAttribute(request, "statusNode", _statusNode);
 		setNamespacedAttribute(request, "step", _step);
 		setNamespacedAttribute(request, "textNode", _textNode);
-		setNamespacedAttribute(request, "value", _value);
+		setNamespacedAttribute(request, "progressbarValue", _progressbarValue);
 		setNamespacedAttribute(request, "afterDestroy", _afterDestroy);
 		setNamespacedAttribute(request, "afterDestroyedChange", _afterDestroyedChange);
 		setNamespacedAttribute(request, "afterHeightChange", _afterHeightChange);
@@ -472,18 +473,18 @@ public class BaseProgressBarTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/progress_bar/page.jsp";
 
-	private java.lang.String _destroyed;
-	private java.lang.String _height;
-	private java.lang.String _initialized;
+	private java.lang.Boolean _destroyed;
+	private java.lang.Integer _height;
+	private java.lang.Boolean _initialized;
 	private java.lang.String _label;
-	private java.lang.String _max;
-	private java.lang.String _min;
+	private java.lang.Integer _max;
+	private java.lang.Integer _min;
 	private java.lang.String _orientation;
-	private java.lang.String _ratio;
+	private java.lang.Number _ratio;
 	private java.lang.String _statusNode;
-	private java.lang.String _step;
+	private java.lang.Number _step;
 	private java.lang.String _textNode;
-	private java.lang.String _value;
+	private java.lang.Integer _progressbarValue;
 	private java.lang.String _afterDestroy;
 	private java.lang.String _afterDestroyedChange;
 	private java.lang.String _afterHeightChange;

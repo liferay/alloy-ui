@@ -18,21 +18,26 @@
 <alloy:char-counter
 	counter="#counter0"
 	input="#input0"
-	maxLength="5"
+	maxLength="<%= 5 %>"
 	afterMaxLength="function(e) { console.log('max') }"
-	onKeyDown="function(e) { console.log(e.keyCode) }"
-	onMouseMove="function(e) { console.log('moved') }"
 />
 
 <alloy:progress-bar
 	boundingBox="#pb1"
-	value="90"
 	render="true"
 	width="500"
+	progressbarValue="90"
 />
 
 <alloy:rating
 	boundingBox="#rating1"
 	label="Ratings"
 	render="true"
+	onRender="function() {console.log('asdasd');}"
+/>
+
+<alloy:dialog
+	render="true"
+	title="Eduardo"
+	dialogBodyContent="asdasdasdddddddd"
 />

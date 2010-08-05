@@ -20,11 +20,15 @@ public class BaseRatingTag extends IncludeTag {
 		return super.doStartTag();
 	}
 
+	protected String _getPage() {
+		return _PAGE;
+	}
+
 	public java.lang.String getBoundingBox() {
 		return _boundingBox;
 	}
 
-	public java.lang.String getCanReset() {
+	public java.lang.Boolean getCanReset() {
 		return _canReset;
 	}
 
@@ -36,15 +40,15 @@ public class BaseRatingTag extends IncludeTag {
 		return _cssClass;
 	}
 
-	public java.lang.String getDefaultSelected() {
+	public java.lang.Number getDefaultSelected() {
 		return _defaultSelected;
 	}
 
-	public java.lang.String getDestroyed() {
+	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.String getDisabled() {
+	public java.lang.Boolean getDisabled() {
 		return _disabled;
 	}
 
@@ -52,7 +56,7 @@ public class BaseRatingTag extends IncludeTag {
 		return _elements;
 	}
 
-	public java.lang.String getFocused() {
+	public java.lang.Boolean getFocused() {
 		return _focused;
 	}
 
@@ -68,11 +72,11 @@ public class BaseRatingTag extends IncludeTag {
 		return _hideClass;
 	}
 
-	public java.lang.String getId() {
-		return _id;
+	public java.lang.String getRatingId() {
+		return _ratingId;
 	}
 
-	public java.lang.String getInitialized() {
+	public java.lang.Boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -88,23 +92,23 @@ public class BaseRatingTag extends IncludeTag {
 		return _labelNode;
 	}
 
-	public java.lang.String getRender() {
+	public java.lang.Boolean getRender() {
 		return _render;
 	}
 
-	public java.lang.String getRendered() {
+	public java.lang.Boolean getRendered() {
 		return _rendered;
 	}
 
-	public java.lang.String getSelectedIndex() {
+	public java.lang.Number getSelectedIndex() {
 		return _selectedIndex;
 	}
 
-	public java.lang.String getShowTitle() {
+	public java.lang.Boolean getShowTitle() {
 		return _showTitle;
 	}
 
-	public java.lang.String getSize() {
+	public java.lang.Number getSize() {
 		return _size;
 	}
 
@@ -112,11 +116,11 @@ public class BaseRatingTag extends IncludeTag {
 		return _srcNode;
 	}
 
-	public java.lang.String getStrings() {
+	public java.lang.Object getStrings() {
 		return _strings;
 	}
 
-	public java.lang.String getTabIndex() {
+	public java.lang.Number getTabIndex() {
 		return _tabIndex;
 	}
 
@@ -124,11 +128,11 @@ public class BaseRatingTag extends IncludeTag {
 		return _title;
 	}
 
-	public java.lang.String getValue() {
-		return _value;
+	public java.lang.String getRatingValue() {
+		return _ratingValue;
 	}
 
-	public java.lang.String getVisible() {
+	public java.lang.Boolean getVisible() {
 		return _visible;
 	}
 
@@ -268,12 +272,12 @@ public class BaseRatingTag extends IncludeTag {
 		return _afterVisibleChange;
 	}
 
-	public java.lang.String getAfterWidget_contentUpdate() {
-		return _afterWidget_contentUpdate;
+	public java.lang.String getAfterContentUpdate() {
+		return _afterContentUpdate;
 	}
 
-	public java.lang.String getAfterWidget_render() {
-		return _afterWidget_render;
+	public java.lang.String getAfterRender() {
+		return _afterRender;
 	}
 
 	public java.lang.String getAfterWidthChange() {
@@ -412,12 +416,12 @@ public class BaseRatingTag extends IncludeTag {
 		return _onVisibleChange;
 	}
 
-	public java.lang.String getOnWidget_contentUpdate() {
-		return _onWidget_contentUpdate;
+	public java.lang.String getOnContentUpdate() {
+		return _onContentUpdate;
 	}
 
-	public java.lang.String getOnWidget_render() {
-		return _onWidget_render;
+	public java.lang.String getOnRender() {
+		return _onRender;
 	}
 
 	public java.lang.String getOnWidthChange() {
@@ -430,7 +434,7 @@ public class BaseRatingTag extends IncludeTag {
 		setScopedAttribute("boundingBox", boundingBox);
 	}
 
-	public void setCanReset(java.lang.String canReset) {
+	public void setCanReset(java.lang.Boolean canReset) {
 		_canReset = canReset;
 
 		setScopedAttribute("canReset", canReset);
@@ -448,19 +452,19 @@ public class BaseRatingTag extends IncludeTag {
 		setScopedAttribute("cssClass", cssClass);
 	}
 
-	public void setDefaultSelected(java.lang.String defaultSelected) {
+	public void setDefaultSelected(java.lang.Number defaultSelected) {
 		_defaultSelected = defaultSelected;
 
 		setScopedAttribute("defaultSelected", defaultSelected);
 	}
 
-	public void setDestroyed(java.lang.String destroyed) {
+	public void setDestroyed(java.lang.Boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.String disabled) {
+	public void setDisabled(java.lang.Boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
@@ -472,7 +476,7 @@ public class BaseRatingTag extends IncludeTag {
 		setScopedAttribute("elements", elements);
 	}
 
-	public void setFocused(java.lang.String focused) {
+	public void setFocused(java.lang.Boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -496,13 +500,13 @@ public class BaseRatingTag extends IncludeTag {
 		setScopedAttribute("hideClass", hideClass);
 	}
 
-	public void setId(java.lang.String id) {
-		_id = id;
+	public void setRatingId(java.lang.String ratingId) {
+		_ratingId = ratingId;
 
-		setScopedAttribute("id", id);
+		setScopedAttribute("ratingId", ratingId);
 	}
 
-	public void setInitialized(java.lang.String initialized) {
+	public void setInitialized(java.lang.Boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -526,31 +530,31 @@ public class BaseRatingTag extends IncludeTag {
 		setScopedAttribute("labelNode", labelNode);
 	}
 
-	public void setRender(java.lang.String render) {
+	public void setRender(java.lang.Boolean render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.String rendered) {
+	public void setRendered(java.lang.Boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setSelectedIndex(java.lang.String selectedIndex) {
+	public void setSelectedIndex(java.lang.Number selectedIndex) {
 		_selectedIndex = selectedIndex;
 
 		setScopedAttribute("selectedIndex", selectedIndex);
 	}
 
-	public void setShowTitle(java.lang.String showTitle) {
+	public void setShowTitle(java.lang.Boolean showTitle) {
 		_showTitle = showTitle;
 
 		setScopedAttribute("showTitle", showTitle);
 	}
 
-	public void setSize(java.lang.String size) {
+	public void setSize(java.lang.Number size) {
 		_size = size;
 
 		setScopedAttribute("size", size);
@@ -562,13 +566,13 @@ public class BaseRatingTag extends IncludeTag {
 		setScopedAttribute("srcNode", srcNode);
 	}
 
-	public void setStrings(java.lang.String strings) {
+	public void setStrings(java.lang.Object strings) {
 		_strings = strings;
 
 		setScopedAttribute("strings", strings);
 	}
 
-	public void setTabIndex(java.lang.String tabIndex) {
+	public void setTabIndex(java.lang.Number tabIndex) {
 		_tabIndex = tabIndex;
 
 		setScopedAttribute("tabIndex", tabIndex);
@@ -580,13 +584,13 @@ public class BaseRatingTag extends IncludeTag {
 		setScopedAttribute("title", title);
 	}
 
-	public void setValue(java.lang.String value) {
-		_value = value;
+	public void setRatingValue(java.lang.String ratingValue) {
+		_ratingValue = ratingValue;
 
-		setScopedAttribute("value", value);
+		setScopedAttribute("ratingValue", ratingValue);
 	}
 
-	public void setVisible(java.lang.String visible) {
+	public void setVisible(java.lang.Boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -796,16 +800,16 @@ public class BaseRatingTag extends IncludeTag {
 		setScopedAttribute("afterVisibleChange", afterVisibleChange);
 	}
 
-	public void setAfterWidget_contentUpdate(java.lang.String afterWidget_contentUpdate) {
-		_afterWidget_contentUpdate = afterWidget_contentUpdate;
+	public void setAfterContentUpdate(java.lang.String afterContentUpdate) {
+		_afterContentUpdate = afterContentUpdate;
 
-		setScopedAttribute("afterWidget_contentUpdate", afterWidget_contentUpdate);
+		setScopedAttribute("afterContentUpdate", afterContentUpdate);
 	}
 
-	public void setAfterWidget_render(java.lang.String afterWidget_render) {
-		_afterWidget_render = afterWidget_render;
+	public void setAfterRender(java.lang.String afterRender) {
+		_afterRender = afterRender;
 
-		setScopedAttribute("afterWidget_render", afterWidget_render);
+		setScopedAttribute("afterRender", afterRender);
 	}
 
 	public void setAfterWidthChange(java.lang.String afterWidthChange) {
@@ -1012,16 +1016,16 @@ public class BaseRatingTag extends IncludeTag {
 		setScopedAttribute("onVisibleChange", onVisibleChange);
 	}
 
-	public void setOnWidget_contentUpdate(java.lang.String onWidget_contentUpdate) {
-		_onWidget_contentUpdate = onWidget_contentUpdate;
+	public void setOnContentUpdate(java.lang.String onContentUpdate) {
+		_onContentUpdate = onContentUpdate;
 
-		setScopedAttribute("onWidget_contentUpdate", onWidget_contentUpdate);
+		setScopedAttribute("onContentUpdate", onContentUpdate);
 	}
 
-	public void setOnWidget_render(java.lang.String onWidget_render) {
-		_onWidget_render = onWidget_render;
+	public void setOnRender(java.lang.String onRender) {
+		_onRender = onRender;
 
-		setScopedAttribute("onWidget_render", onWidget_render);
+		setScopedAttribute("onRender", onRender);
 	}
 
 	public void setOnWidthChange(java.lang.String onWidthChange) {
@@ -1030,11 +1034,8 @@ public class BaseRatingTag extends IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
 
-	protected void setAttributes(HttpServletRequest request) {
+	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);
 		setNamespacedAttribute(request, "canReset", _canReset);
 		setNamespacedAttribute(request, "contentBox", _contentBox);
@@ -1047,7 +1048,7 @@ public class BaseRatingTag extends IncludeTag {
 		setNamespacedAttribute(request, "height", _height);
 		setNamespacedAttribute(request, "hiddenInput", _hiddenInput);
 		setNamespacedAttribute(request, "hideClass", _hideClass);
-		setNamespacedAttribute(request, "id", _id);
+		setNamespacedAttribute(request, "ratingId", _ratingId);
 		setNamespacedAttribute(request, "initialized", _initialized);
 		setNamespacedAttribute(request, "inputName", _inputName);
 		setNamespacedAttribute(request, "label", _label);
@@ -1061,7 +1062,7 @@ public class BaseRatingTag extends IncludeTag {
 		setNamespacedAttribute(request, "strings", _strings);
 		setNamespacedAttribute(request, "tabIndex", _tabIndex);
 		setNamespacedAttribute(request, "title", _title);
-		setNamespacedAttribute(request, "value", _value);
+		setNamespacedAttribute(request, "ratingValue", _ratingValue);
 		setNamespacedAttribute(request, "visible", _visible);
 		setNamespacedAttribute(request, "width", _width);
 		setNamespacedAttribute(request, "afterBoundingBoxChange", _afterBoundingBoxChange);
@@ -1097,8 +1098,8 @@ public class BaseRatingTag extends IncludeTag {
 		setNamespacedAttribute(request, "afterTitleChange", _afterTitleChange);
 		setNamespacedAttribute(request, "afterValueChange", _afterValueChange);
 		setNamespacedAttribute(request, "afterVisibleChange", _afterVisibleChange);
-		setNamespacedAttribute(request, "afterWidget_contentUpdate", _afterWidget_contentUpdate);
-		setNamespacedAttribute(request, "afterWidget_render", _afterWidget_render);
+		setNamespacedAttribute(request, "afterContentUpdate", _afterContentUpdate);
+		setNamespacedAttribute(request, "afterRender", _afterRender);
 		setNamespacedAttribute(request, "afterWidthChange", _afterWidthChange);
 		setNamespacedAttribute(request, "onBoundingBoxChange", _onBoundingBoxChange);
 		setNamespacedAttribute(request, "onCanResetChange", _onCanResetChange);
@@ -1133,8 +1134,8 @@ public class BaseRatingTag extends IncludeTag {
 		setNamespacedAttribute(request, "onTitleChange", _onTitleChange);
 		setNamespacedAttribute(request, "onValueChange", _onValueChange);
 		setNamespacedAttribute(request, "onVisibleChange", _onVisibleChange);
-		setNamespacedAttribute(request, "onWidget_contentUpdate", _onWidget_contentUpdate);
-		setNamespacedAttribute(request, "onWidget_render", _onWidget_render);
+		setNamespacedAttribute(request, "onContentUpdate", _onContentUpdate);
+		setNamespacedAttribute(request, "onRender", _onRender);
 		setNamespacedAttribute(request, "onWidthChange", _onWidthChange);
 	}
 
@@ -1144,33 +1145,33 @@ public class BaseRatingTag extends IncludeTag {
 		"/html/taglib/alloy/rating/page.jsp";
 
 	private java.lang.String _boundingBox;
-	private java.lang.String _canReset;
+	private java.lang.Boolean _canReset;
 	private java.lang.String _contentBox;
 	private java.lang.String _cssClass;
-	private java.lang.String _defaultSelected;
-	private java.lang.String _destroyed;
-	private java.lang.String _disabled;
+	private java.lang.Number _defaultSelected;
+	private java.lang.Boolean _destroyed;
+	private java.lang.Boolean _disabled;
 	private java.lang.String _elements;
-	private java.lang.String _focused;
+	private java.lang.Boolean _focused;
 	private java.lang.String _height;
 	private java.lang.String _hiddenInput;
 	private java.lang.String _hideClass;
-	private java.lang.String _id;
-	private java.lang.String _initialized;
+	private java.lang.String _ratingId;
+	private java.lang.Boolean _initialized;
 	private java.lang.String _inputName;
 	private java.lang.String _label;
 	private java.lang.String _labelNode;
-	private java.lang.String _render;
-	private java.lang.String _rendered;
-	private java.lang.String _selectedIndex;
-	private java.lang.String _showTitle;
-	private java.lang.String _size;
+	private java.lang.Boolean _render;
+	private java.lang.Boolean _rendered;
+	private java.lang.Number _selectedIndex;
+	private java.lang.Boolean _showTitle;
+	private java.lang.Number _size;
 	private java.lang.String _srcNode;
-	private java.lang.String _strings;
-	private java.lang.String _tabIndex;
+	private java.lang.Object _strings;
+	private java.lang.Number _tabIndex;
 	private java.lang.String _title;
-	private java.lang.String _value;
-	private java.lang.String _visible;
+	private java.lang.String _ratingValue;
+	private java.lang.Boolean _visible;
 	private java.lang.String _width;
 	private java.lang.String _afterBoundingBoxChange;
 	private java.lang.String _afterCanResetChange;
@@ -1205,8 +1206,8 @@ public class BaseRatingTag extends IncludeTag {
 	private java.lang.String _afterTitleChange;
 	private java.lang.String _afterValueChange;
 	private java.lang.String _afterVisibleChange;
-	private java.lang.String _afterWidget_contentUpdate;
-	private java.lang.String _afterWidget_render;
+	private java.lang.String _afterContentUpdate;
+	private java.lang.String _afterRender;
 	private java.lang.String _afterWidthChange;
 	private java.lang.String _onBoundingBoxChange;
 	private java.lang.String _onCanResetChange;
@@ -1241,8 +1242,8 @@ public class BaseRatingTag extends IncludeTag {
 	private java.lang.String _onTitleChange;
 	private java.lang.String _onValueChange;
 	private java.lang.String _onVisibleChange;
-	private java.lang.String _onWidget_contentUpdate;
-	private java.lang.String _onWidget_render;
+	private java.lang.String _onContentUpdate;
+	private java.lang.String _onRender;
 	private java.lang.String _onWidthChange;
 
 }

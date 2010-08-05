@@ -4,18 +4,18 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:progress-bar:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:progress-bar:scopedAttributes");
 
-java.lang.String _destroyed = (java.lang.String)request.getAttribute("alloy:progress-bar:destroyed");
-java.lang.String _height = (java.lang.String)request.getAttribute("alloy:progress-bar:height");
-java.lang.String _initialized = (java.lang.String)request.getAttribute("alloy:progress-bar:initialized");
+java.lang.Boolean _destroyed = (java.lang.Boolean)request.getAttribute("alloy:progress-bar:destroyed");
+java.lang.Integer _height = (java.lang.Integer)request.getAttribute("alloy:progress-bar:height");
+java.lang.Boolean _initialized = (java.lang.Boolean)request.getAttribute("alloy:progress-bar:initialized");
 java.lang.String _label = (java.lang.String)request.getAttribute("alloy:progress-bar:label");
-java.lang.String _max = (java.lang.String)request.getAttribute("alloy:progress-bar:max");
-java.lang.String _min = (java.lang.String)request.getAttribute("alloy:progress-bar:min");
+java.lang.Integer _max = (java.lang.Integer)request.getAttribute("alloy:progress-bar:max");
+java.lang.Integer _min = (java.lang.Integer)request.getAttribute("alloy:progress-bar:min");
 java.lang.String _orientation = (java.lang.String)request.getAttribute("alloy:progress-bar:orientation");
-java.lang.String _ratio = (java.lang.String)request.getAttribute("alloy:progress-bar:ratio");
+java.lang.Number _ratio = (java.lang.Number)request.getAttribute("alloy:progress-bar:ratio");
 java.lang.String _statusNode = (java.lang.String)request.getAttribute("alloy:progress-bar:statusNode");
-java.lang.String _step = (java.lang.String)request.getAttribute("alloy:progress-bar:step");
+java.lang.Number _step = (java.lang.Number)request.getAttribute("alloy:progress-bar:step");
 java.lang.String _textNode = (java.lang.String)request.getAttribute("alloy:progress-bar:textNode");
-java.lang.String _value = (java.lang.String)request.getAttribute("alloy:progress-bar:value");
+java.lang.Integer _progressbarValue = (java.lang.Integer)request.getAttribute("alloy:progress-bar:progressbarValue");
 java.lang.String _afterDestroy = (java.lang.String)request.getAttribute("alloy:progress-bar:afterDestroy");
 java.lang.String _afterDestroyedChange = (java.lang.String)request.getAttribute("alloy:progress-bar:afterDestroyedChange");
 java.lang.String _afterHeightChange = (java.lang.String)request.getAttribute("alloy:progress-bar:afterHeightChange");
@@ -50,163 +50,163 @@ java.lang.String _onValueChange = (java.lang.String)request.getAttribute("alloy:
 
 <%
 if (_destroyed != null) {
-	scopedAttributes.put("destroyed",  _destroyed);
+	scopedAttributes.put("destroyed", _destroyed);
 }
 
 if (_height != null) {
-	scopedAttributes.put("height",  _height);
+	scopedAttributes.put("height", _height);
 }
 
 if (_initialized != null) {
-	scopedAttributes.put("initialized",  _initialized);
+	scopedAttributes.put("initialized", _initialized);
 }
 
 if (_label != null) {
-	scopedAttributes.put("label",  _label);
+	scopedAttributes.put("label", _label);
 }
 
 if (_max != null) {
-	scopedAttributes.put("max",  _max);
+	scopedAttributes.put("max", _max);
 }
 
 if (_min != null) {
-	scopedAttributes.put("min",  _min);
+	scopedAttributes.put("min", _min);
 }
 
 if (_orientation != null) {
-	scopedAttributes.put("orientation",  _orientation);
+	scopedAttributes.put("orientation", _orientation);
 }
 
 if (_ratio != null) {
-	scopedAttributes.put("ratio",  _ratio);
+	scopedAttributes.put("ratio", _ratio);
 }
 
 if (_statusNode != null) {
-	scopedAttributes.put("statusNode",  _statusNode);
+	scopedAttributes.put("statusNode", _statusNode);
 }
 
 if (_step != null) {
-	scopedAttributes.put("step",  _step);
+	scopedAttributes.put("step", _step);
 }
 
 if (_textNode != null) {
-	scopedAttributes.put("textNode",  _textNode);
+	scopedAttributes.put("textNode", _textNode);
 }
 
-if (_value != null) {
-	scopedAttributes.put("value",  _value);
+if (_progressbarValue != null) {
+	scopedAttributes.put("progressbarValue", _progressbarValue);
 }
 
 if (_afterDestroy != null) {
-	scopedAttributes.put("afterDestroy",  _afterDestroy);
+	scopedAttributes.put("afterDestroy", _afterDestroy);
 }
 
 if (_afterDestroyedChange != null) {
-	scopedAttributes.put("afterDestroyedChange",  _afterDestroyedChange);
+	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
 }
 
 if (_afterHeightChange != null) {
-	scopedAttributes.put("afterHeightChange",  _afterHeightChange);
+	scopedAttributes.put("afterHeightChange", _afterHeightChange);
 }
 
 if (_afterInit != null) {
-	scopedAttributes.put("afterInit",  _afterInit);
+	scopedAttributes.put("afterInit", _afterInit);
 }
 
 if (_afterInitializedChange != null) {
-	scopedAttributes.put("afterInitializedChange",  _afterInitializedChange);
+	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
 }
 
 if (_afterLabelChange != null) {
-	scopedAttributes.put("afterLabelChange",  _afterLabelChange);
+	scopedAttributes.put("afterLabelChange", _afterLabelChange);
 }
 
 if (_afterMaxChange != null) {
-	scopedAttributes.put("afterMaxChange",  _afterMaxChange);
+	scopedAttributes.put("afterMaxChange", _afterMaxChange);
 }
 
 if (_afterMinChange != null) {
-	scopedAttributes.put("afterMinChange",  _afterMinChange);
+	scopedAttributes.put("afterMinChange", _afterMinChange);
 }
 
 if (_afterOrientationChange != null) {
-	scopedAttributes.put("afterOrientationChange",  _afterOrientationChange);
+	scopedAttributes.put("afterOrientationChange", _afterOrientationChange);
 }
 
 if (_afterRatioChange != null) {
-	scopedAttributes.put("afterRatioChange",  _afterRatioChange);
+	scopedAttributes.put("afterRatioChange", _afterRatioChange);
 }
 
 if (_afterStatusNodeChange != null) {
-	scopedAttributes.put("afterStatusNodeChange",  _afterStatusNodeChange);
+	scopedAttributes.put("afterStatusNodeChange", _afterStatusNodeChange);
 }
 
 if (_afterStepChange != null) {
-	scopedAttributes.put("afterStepChange",  _afterStepChange);
+	scopedAttributes.put("afterStepChange", _afterStepChange);
 }
 
 if (_afterTextNodeChange != null) {
-	scopedAttributes.put("afterTextNodeChange",  _afterTextNodeChange);
+	scopedAttributes.put("afterTextNodeChange", _afterTextNodeChange);
 }
 
 if (_afterValueChange != null) {
-	scopedAttributes.put("afterValueChange",  _afterValueChange);
+	scopedAttributes.put("afterValueChange", _afterValueChange);
 }
 
 if (_onDestroy != null) {
-	scopedAttributes.put("onDestroy",  _onDestroy);
+	scopedAttributes.put("onDestroy", _onDestroy);
 }
 
 if (_onDestroyedChange != null) {
-	scopedAttributes.put("onDestroyedChange",  _onDestroyedChange);
+	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
 }
 
 if (_onHeightChange != null) {
-	scopedAttributes.put("onHeightChange",  _onHeightChange);
+	scopedAttributes.put("onHeightChange", _onHeightChange);
 }
 
 if (_onInit != null) {
-	scopedAttributes.put("onInit",  _onInit);
+	scopedAttributes.put("onInit", _onInit);
 }
 
 if (_onInitializedChange != null) {
-	scopedAttributes.put("onInitializedChange",  _onInitializedChange);
+	scopedAttributes.put("onInitializedChange", _onInitializedChange);
 }
 
 if (_onLabelChange != null) {
-	scopedAttributes.put("onLabelChange",  _onLabelChange);
+	scopedAttributes.put("onLabelChange", _onLabelChange);
 }
 
 if (_onMaxChange != null) {
-	scopedAttributes.put("onMaxChange",  _onMaxChange);
+	scopedAttributes.put("onMaxChange", _onMaxChange);
 }
 
 if (_onMinChange != null) {
-	scopedAttributes.put("onMinChange",  _onMinChange);
+	scopedAttributes.put("onMinChange", _onMinChange);
 }
 
 if (_onOrientationChange != null) {
-	scopedAttributes.put("onOrientationChange",  _onOrientationChange);
+	scopedAttributes.put("onOrientationChange", _onOrientationChange);
 }
 
 if (_onRatioChange != null) {
-	scopedAttributes.put("onRatioChange",  _onRatioChange);
+	scopedAttributes.put("onRatioChange", _onRatioChange);
 }
 
 if (_onStatusNodeChange != null) {
-	scopedAttributes.put("onStatusNodeChange",  _onStatusNodeChange);
+	scopedAttributes.put("onStatusNodeChange", _onStatusNodeChange);
 }
 
 if (_onStepChange != null) {
-	scopedAttributes.put("onStepChange",  _onStepChange);
+	scopedAttributes.put("onStepChange", _onStepChange);
 }
 
 if (_onTextNodeChange != null) {
-	scopedAttributes.put("onTextNodeChange",  _onTextNodeChange);
+	scopedAttributes.put("onTextNodeChange", _onTextNodeChange);
 }
 
 if (_onValueChange != null) {
-	scopedAttributes.put("onValueChange",  _onValueChange);
+	scopedAttributes.put("onValueChange", _onValueChange);
 }
 
 %>
