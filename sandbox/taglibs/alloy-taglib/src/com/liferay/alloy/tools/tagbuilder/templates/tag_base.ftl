@@ -28,12 +28,13 @@ public class Base${component.getSafeName()}Tag extends IncludeTag {
 	protected String _getStartPage() {
 		return _START_PAGE;
 	}
+
 	<#else>
 	protected String _getPage() {
 		return _PAGE;
 	}
-	</#if>
 
+	</#if>
 	<#list component.getAttributesAndEvents() as attribute>
 	public ${attribute.getJavaType()} get${attribute.getCapitalizedName()}() {
 		return _${attribute.getSafeName()};
@@ -48,7 +49,6 @@ public class Base${component.getSafeName()}Tag extends IncludeTag {
 	}
 
 	</#list>
-
 	protected void _setAttributes(HttpServletRequest request) {
 		<#list component.getAttributesAndEvents() as attribute>
 		setNamespacedAttribute(request, "${attribute.getSafeName()}", _${attribute.getSafeName()});
