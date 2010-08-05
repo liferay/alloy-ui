@@ -113,8 +113,8 @@ public class ComponentTag extends IncludeTag {
 			if (_isArray(item)) {
 				_buildArrayString(sb, (Object[])item);
 			} else {
-				sb.append(StringPool.APOSTROPHE + item.toString() +
-					StringPool.APOSTROPHE);
+				sb.append(StringPool.QUOTE + item.toString() +
+					StringPool.QUOTE);
 			}
 
 			if (i < array.length - 1) {

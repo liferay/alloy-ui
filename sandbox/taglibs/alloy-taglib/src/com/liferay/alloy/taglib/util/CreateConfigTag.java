@@ -130,9 +130,9 @@ public class CreateConfigTag extends IncludeTag {
 				if (simpleClassName.equals("String")) {
 					StringBuilder sb = new StringBuilder();
 
-					sb.append(StringPool.APOSTROPHE);
+					sb.append(StringPool.QUOTE);
 					sb.append(rawValue.toString());
-					sb.append(StringPool.APOSTROPHE);
+					sb.append(StringPool.QUOTE);
 
 					return sb.toString();
 				}
