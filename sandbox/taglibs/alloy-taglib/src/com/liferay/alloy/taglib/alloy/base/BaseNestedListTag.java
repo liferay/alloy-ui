@@ -124,7 +124,6 @@ public class BaseNestedListTag extends IncludeTag {
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "initialized", _initialized);

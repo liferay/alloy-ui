@@ -1034,7 +1034,6 @@ public class BaseTooltipTag extends IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "align", _align);
 		setNamespacedAttribute(request, "anim", _anim);

@@ -1784,7 +1784,6 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "anim", _anim);
 		setNamespacedAttribute(request, "arrowLeftEl", _arrowLeftEl);

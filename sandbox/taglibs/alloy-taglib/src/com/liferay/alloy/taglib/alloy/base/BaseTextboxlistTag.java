@@ -1664,7 +1664,6 @@ public class BaseTextboxlistTag extends IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "alwaysShowContainer", _alwaysShowContainer);
 		setNamespacedAttribute(request, "applyLocalFilter", _applyLocalFilter);

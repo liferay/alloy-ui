@@ -884,7 +884,6 @@ public class BaseOverlayContextTag extends IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "align", _align);
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);

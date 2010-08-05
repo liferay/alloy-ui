@@ -764,7 +764,6 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "activeState", _activeState);
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);

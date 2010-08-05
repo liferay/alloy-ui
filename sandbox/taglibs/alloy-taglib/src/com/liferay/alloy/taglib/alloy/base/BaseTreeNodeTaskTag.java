@@ -844,7 +844,6 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		setScopedAttribute("onPrevSiblingChange", onPrevSiblingChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "alwaysShowHitArea", _alwaysShowHitArea);
 		setNamespacedAttribute(request, "cache", _cache);

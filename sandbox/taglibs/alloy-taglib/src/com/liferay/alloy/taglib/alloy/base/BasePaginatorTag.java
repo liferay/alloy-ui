@@ -904,7 +904,6 @@ public class BasePaginatorTag extends IncludeTag {
 		setScopedAttribute("onTotalPagesChange", onTotalPagesChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "alwaysVisible", _alwaysVisible);
 		setNamespacedAttribute(request, "containers", _containers);

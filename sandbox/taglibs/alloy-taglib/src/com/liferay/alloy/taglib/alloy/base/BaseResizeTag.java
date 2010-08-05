@@ -774,7 +774,6 @@ public class BaseResizeTag extends IncludeTag {
 		setScopedAttribute("onWrapperChange", onWrapperChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "activeHandle", _activeHandle);
 		setNamespacedAttribute(request, "activeHandleEl", _activeHandleEl);

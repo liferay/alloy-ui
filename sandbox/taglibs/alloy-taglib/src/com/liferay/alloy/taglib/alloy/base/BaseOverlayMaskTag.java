@@ -794,7 +794,6 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		setScopedAttribute("onZIndexChange", onZIndexChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "alignPoints", _alignPoints);
 		setNamespacedAttribute(request, "background", _background);

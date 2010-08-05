@@ -664,7 +664,6 @@ public class BaseIORequestTag extends IncludeTag {
 		setScopedAttribute("onXdrChange", onXdrChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "active", _active);
 		setNamespacedAttribute(request, "arguments", _arguments);

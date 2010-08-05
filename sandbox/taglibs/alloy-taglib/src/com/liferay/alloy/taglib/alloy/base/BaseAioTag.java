@@ -24,7 +24,6 @@ public class BaseAioTag extends IncludeTag {
 		return _PAGE;
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 	}
 

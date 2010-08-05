@@ -1634,7 +1634,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("onYearRangeChange", onYearRangeChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "align", _align);
 		setNamespacedAttribute(request, "appendOrder", _appendOrder);

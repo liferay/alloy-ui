@@ -364,7 +364,6 @@ public class BaseLiveSearchTag extends IncludeTag {
 		setScopedAttribute("onShowChange", onShowChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "data", _data);
 		setNamespacedAttribute(request, "delay", _delay);

@@ -574,7 +574,6 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		setScopedAttribute("onTypeChange", onTypeChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "checkContainerEl", _checkContainerEl);
 		setNamespacedAttribute(request, "checkEl", _checkEl);

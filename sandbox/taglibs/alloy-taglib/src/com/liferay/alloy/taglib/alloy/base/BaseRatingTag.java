@@ -1034,7 +1034,6 @@ public class BaseRatingTag extends IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);
 		setNamespacedAttribute(request, "canReset", _canReset);

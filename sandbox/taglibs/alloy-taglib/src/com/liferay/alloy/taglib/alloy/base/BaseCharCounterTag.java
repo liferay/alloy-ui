@@ -214,7 +214,6 @@ public class BaseCharCounterTag extends IncludeTag {
 		setScopedAttribute("onMaxLengthChange", onMaxLengthChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "counter", _counter);
 		setNamespacedAttribute(request, "destroyed", _destroyed);

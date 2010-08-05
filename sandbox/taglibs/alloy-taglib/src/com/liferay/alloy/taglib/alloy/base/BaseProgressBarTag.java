@@ -424,7 +424,6 @@ public class BaseProgressBarTag extends IncludeTag {
 		setScopedAttribute("onValueChange", onValueChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "height", _height);

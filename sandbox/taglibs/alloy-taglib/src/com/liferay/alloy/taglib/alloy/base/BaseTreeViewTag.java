@@ -304,7 +304,6 @@ public class BaseTreeViewTag extends IncludeTag {
 		setScopedAttribute("onTypeChange", onTypeChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "children", _children);
 		setNamespacedAttribute(request, "container", _container);

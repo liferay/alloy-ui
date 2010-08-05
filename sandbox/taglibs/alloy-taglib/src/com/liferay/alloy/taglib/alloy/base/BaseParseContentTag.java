@@ -154,7 +154,6 @@ public class BaseParseContentTag extends IncludeTag {
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "host", _host);

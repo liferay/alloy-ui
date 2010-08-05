@@ -244,7 +244,6 @@ public class BaseLoadingMaskTag extends IncludeTag {
 		setScopedAttribute("onTargetChange", onTargetChange);
 	}
 
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "host", _host);
