@@ -264,4 +264,16 @@
 	};
 
 	AUI._uaExtensions(ALLOY);
+
+	/*
+	* Disable background image flickering in IE6
+	*/
+
+	if (UA.ie && UA.version.major <= 6) {
+		try {
+			document.execCommand('BackgroundImageCache', false, true);
+		}
+		catch (e) {
+		}
+	}
 })();
