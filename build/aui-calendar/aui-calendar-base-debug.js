@@ -1297,4 +1297,4 @@ A.CalendarManager = new A.OverlayManager({
 	zIndexBase: 1000
 });
 
-}, '@VERSION@' ,{requires:['aui-overlay-context','datatype-date','widget-locale'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-context','datatype-date','widget-locale']});

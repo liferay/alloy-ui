@@ -1600,7 +1600,6 @@ body {
 	_height:0;
 }
 .aui-autocomplete-results-content,
-.aui-datepicker-content,
 .aui-calendar-content,
 .aui-colorpicker-content,
 .aui-dialog-content,
@@ -1618,7 +1617,6 @@ shadow or rounded corners.
 .aui-overlaycontextpanel-content,
 .aui-tooltip-content,
 .aui-calendar-content,
-.aui-datepicker-content,
 .aui-colorpicker-content,
 .aui-tree-drag-helper-content {
 	-moz-box-shadow: 4px 4px 14px #777;
@@ -1642,7 +1640,6 @@ shadow or rounded corners.
 .aui-state-active,
 .aui-state-hover,
 .aui-calendar-content,
-.aui-datepicker-content,
 .aui-colorpicker-content,
 .aui-colorpicker-panel-content,
 .aui-image-gallery-paginator .aui-image-gallery-paginator-thumb,
