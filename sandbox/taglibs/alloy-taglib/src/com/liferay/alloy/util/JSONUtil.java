@@ -14,13 +14,12 @@
 
 package com.liferay.alloy.util;
 
+import com.liferay.portal.kernel.util.ArrayUtil;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * <a href="JSONUtil.java.html"><b><i>View Source</i></b></a>
@@ -28,6 +27,19 @@ import java.util.TreeSet;
  * @author Eduardo Lundgren
  */
 public class JSONUtil {
+
+	public static JSONArray getJSONArray(JSONObject json, String key) {
+		try {
+			if (json.has(key)) {
+				return json.getJSONArray(key);
+			}
+		}
+		catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
 
 	public static JSONObject getJSONObject(JSONObject json, String key) {
 		try {
@@ -40,6 +52,29 @@ public class JSONUtil {
 		}
 
 		return null;
+	}
+
+	public static List<String> getList(JSONObject json, String key) {
+		List<String> out = new ArrayList<String>();
+
+		try {
+			JSONArray jsonArray = getJSONArray(json, key);
+
+			if (jsonArray != null) {
+				for (int i = 0; i < jsonArray.length(); i++) {
+					Object value = jsonArray.get(i);
+
+					if (value != null) {
+						out.add((String)value);
+					}
+				}
+			}
+		}
+		catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return out;
 	}
 
 	public static String getString(JSONObject json, String key) {

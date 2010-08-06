@@ -25,8 +25,10 @@ import org.dom4j.DocumentFactory;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONStringer;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -236,17 +238,20 @@ public class XMLBuilder {
 		String className, ArrayList<String> hierarchy) {
 
 		try{
-			JSONObject componentJSON =
-				JSONUtil.getJSONObject(_classMapJSON, className);
+			JSONObject componentJSON = JSONUtil.getJSONObject(
+				_classMapJSON, className);
 
 			if (componentJSON != null) {
 				hierarchy.add(className);
 
-				if (componentJSON.has("extends")) {
-					String extendClass = componentJSON.getString("extends");
+				String extendClass = JSONUtil.getString(
+					componentJSON, "extends");
 
+				if (extendClass != null) {
 					_getComponentHierarchy(extendClass, hierarchy);
 				}
+
+				hierarchy.addAll(JSONUtil.getList(componentJSON, "uses"));
 			}
 		}
 		catch (Exception e) {

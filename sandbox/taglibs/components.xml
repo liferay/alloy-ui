@@ -180,8 +180,11 @@
   <component name="Calendar" module="aui-calendar" namespace="alloy" bodyContent="false">
     <attributes>
       <attribute name="align" type="java.lang.Object"/>
+      <attribute name="bodyContent" type="java.lang.String"/>
       <attribute name="boundingBox" type="java.lang.String"/>
       <attribute name="cancellableHide" type="java.lang.Boolean"/>
+      <attribute name="centered" type="java.lang.String"/>
+      <attribute name="constrain" type="java.lang.String"/>
       <attribute name="contentBox" type="java.lang.String"/>
       <attribute name="cssClass" type="java.lang.String"/>
       <attribute name="currentDay" type="java.lang.Number"/>
@@ -192,8 +195,11 @@
       <attribute name="dates" type="java.lang.String"/>
       <attribute name="destroyed" type="java.lang.Boolean"/>
       <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="fillHeight" type="java.lang.String"/>
       <attribute name="firstDayOfWeek" type="java.lang.Number"/>
       <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="footerContent" type="java.lang.String"/>
+      <attribute name="headerContent" type="java.lang.String"/>
       <attribute name="height" type="java.lang.String"/>
       <attribute name="hideClass" type="java.lang.String"/>
       <attribute name="hideDelay" type="java.lang.Number"/>
@@ -203,10 +209,12 @@
       <attribute name="initialized" type="java.lang.Boolean"/>
       <attribute name="maxDate" type="java.lang.String"/>
       <attribute name="minDate" type="java.lang.String"/>
+      <attribute name="preventOverlap" type="java.lang.Boolean"/>
       <attribute name="render" type="java.lang.Boolean"/>
       <attribute name="rendered" type="java.lang.Boolean"/>
       <attribute name="selectMultipleDates" type="java.lang.Boolean"/>
       <attribute name="setValue" type="java.lang.Boolean"/>
+      <attribute name="shim" type="java.lang.Boolean"/>
       <attribute name="showDelay" type="java.lang.Number"/>
       <attribute name="showOn" type="java.lang.String"/>
       <attribute name="srcNode" type="java.lang.String"/>
@@ -216,11 +224,18 @@
       <attribute name="trigger" type="java.lang.String"/>
       <attribute name="visible" type="java.lang.Boolean"/>
       <attribute name="width" type="java.lang.String"/>
+      <attribute name="x" type="java.lang.Number"/>
+      <attribute name="xy" type="java.lang.String"/>
+      <attribute name="y" type="java.lang.Number"/>
+      <attribute name="zIndex" type="java.lang.Number"/>
     </attributes>
     <events>
       <event name="alignChange" type="java.lang.String"/>
+      <event name="bodyContentChange" type="java.lang.String"/>
       <event name="boundingBoxChange" type="java.lang.String"/>
       <event name="cancellableHideChange" type="java.lang.String"/>
+      <event name="centeredChange" type="java.lang.String"/>
+      <event name="constrainChange" type="java.lang.String"/>
       <event name="contentBoxChange" type="java.lang.String"/>
       <event name="cssClassChange" type="java.lang.String"/>
       <event name="currentDayChange" type="java.lang.String"/>
@@ -232,8 +247,11 @@
       <event name="destroy" type="java.lang.String"/>
       <event name="destroyedChange" type="java.lang.String"/>
       <event name="disabledChange" type="java.lang.String"/>
+      <event name="fillHeightChange" type="java.lang.String"/>
       <event name="firstDayOfWeekChange" type="java.lang.String"/>
       <event name="focusedChange" type="java.lang.String"/>
+      <event name="footerContentChange" type="java.lang.String"/>
+      <event name="headerContentChange" type="java.lang.String"/>
       <event name="heightChange" type="java.lang.String"/>
       <event name="hideClassChange" type="java.lang.String"/>
       <event name="hideDelayChange" type="java.lang.String"/>
@@ -244,10 +262,12 @@
       <event name="initializedChange" type="java.lang.String"/>
       <event name="maxDateChange" type="java.lang.String"/>
       <event name="minDateChange" type="java.lang.String"/>
+      <event name="preventOverlapChange" type="java.lang.String"/>
       <event name="renderChange" type="java.lang.String"/>
       <event name="renderedChange" type="java.lang.String"/>
       <event name="selectMultipleDatesChange" type="java.lang.String"/>
       <event name="setValueChange" type="java.lang.String"/>
+      <event name="shimChange" type="java.lang.String"/>
       <event name="showDelayChange" type="java.lang.String"/>
       <event name="showOnChange" type="java.lang.String"/>
       <event name="srcNodeChange" type="java.lang.String"/>
@@ -259,6 +279,10 @@
       <event name="widget:contentUpdate" type="java.lang.String"/>
       <event name="widget:render" type="java.lang.String"/>
       <event name="widthChange" type="java.lang.String"/>
+      <event name="xChange" type="java.lang.String"/>
+      <event name="xyChange" type="java.lang.String"/>
+      <event name="yChange" type="java.lang.String"/>
+      <event name="zIndexChange" type="java.lang.String"/>
     </events>
   </component>
   <component name="CharCounter" module="aui-char-counter" namespace="alloy" bodyContent="false">
@@ -282,14 +306,20 @@
   <component name="ColorPicker" module="aui-color-picker" namespace="alloy" bodyContent="false">
     <attributes>
       <attribute name="align" type="java.lang.Object"/>
+      <attribute name="bodyContent" type="java.lang.String"/>
       <attribute name="boundingBox" type="java.lang.String"/>
       <attribute name="cancellableHide" type="java.lang.Boolean"/>
+      <attribute name="centered" type="java.lang.String"/>
+      <attribute name="constrain" type="java.lang.String"/>
       <attribute name="contentBox" type="java.lang.String"/>
       <attribute name="cssClass" type="java.lang.String"/>
       <attribute name="currentNode" type="java.lang.String"/>
       <attribute name="destroyed" type="java.lang.Boolean"/>
       <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="fillHeight" type="java.lang.String"/>
       <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="footerContent" type="java.lang.String"/>
+      <attribute name="headerContent" type="java.lang.String"/>
       <attribute name="height" type="java.lang.String"/>
       <attribute name="hideClass" type="java.lang.String"/>
       <attribute name="hideDelay" type="java.lang.Number"/>
@@ -297,8 +327,10 @@
       <attribute name="hideOnDocumentClick" type="java.lang.Boolean"/>
       <attribute name="id" type="java.lang.String"/>
       <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="preventOverlap" type="java.lang.Boolean"/>
       <attribute name="render" type="java.lang.Boolean"/>
       <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="shim" type="java.lang.Boolean"/>
       <attribute name="showDelay" type="java.lang.Number"/>
       <attribute name="showOn" type="java.lang.String"/>
       <attribute name="srcNode" type="java.lang.String"/>
@@ -307,18 +339,28 @@
       <attribute name="trigger" type="java.lang.String"/>
       <attribute name="visible" type="java.lang.Boolean"/>
       <attribute name="width" type="java.lang.String"/>
+      <attribute name="x" type="java.lang.Number"/>
+      <attribute name="xy" type="java.lang.String"/>
+      <attribute name="y" type="java.lang.Number"/>
+      <attribute name="zIndex" type="java.lang.Number"/>
     </attributes>
     <events>
       <event name="alignChange" type="java.lang.String"/>
+      <event name="bodyContentChange" type="java.lang.String"/>
       <event name="boundingBoxChange" type="java.lang.String"/>
       <event name="cancellableHideChange" type="java.lang.String"/>
+      <event name="centeredChange" type="java.lang.String"/>
+      <event name="constrainChange" type="java.lang.String"/>
       <event name="contentBoxChange" type="java.lang.String"/>
       <event name="cssClassChange" type="java.lang.String"/>
       <event name="currentNodeChange" type="java.lang.String"/>
       <event name="destroy" type="java.lang.String"/>
       <event name="destroyedChange" type="java.lang.String"/>
       <event name="disabledChange" type="java.lang.String"/>
+      <event name="fillHeightChange" type="java.lang.String"/>
       <event name="focusedChange" type="java.lang.String"/>
+      <event name="footerContentChange" type="java.lang.String"/>
+      <event name="headerContentChange" type="java.lang.String"/>
       <event name="heightChange" type="java.lang.String"/>
       <event name="hideClassChange" type="java.lang.String"/>
       <event name="hideDelayChange" type="java.lang.String"/>
@@ -327,8 +369,10 @@
       <event name="idChange" type="java.lang.String"/>
       <event name="init" type="java.lang.String"/>
       <event name="initializedChange" type="java.lang.String"/>
+      <event name="preventOverlapChange" type="java.lang.String"/>
       <event name="renderChange" type="java.lang.String"/>
       <event name="renderedChange" type="java.lang.String"/>
+      <event name="shimChange" type="java.lang.String"/>
       <event name="showDelayChange" type="java.lang.String"/>
       <event name="showOnChange" type="java.lang.String"/>
       <event name="srcNodeChange" type="java.lang.String"/>
@@ -339,6 +383,10 @@
       <event name="widget:contentUpdate" type="java.lang.String"/>
       <event name="widget:render" type="java.lang.String"/>
       <event name="widthChange" type="java.lang.String"/>
+      <event name="xChange" type="java.lang.String"/>
+      <event name="xyChange" type="java.lang.String"/>
+      <event name="yChange" type="java.lang.String"/>
+      <event name="zIndexChange" type="java.lang.String"/>
     </events>
   </component>
   <component name="DatePickerSelect" module="aui-calendar" namespace="alloy" bodyContent="false">
@@ -346,9 +394,12 @@
       <attribute name="align" type="java.lang.Object"/>
       <attribute name="appendOrder" type="java.lang.String"/>
       <attribute name="baseName" type="java.lang.String"/>
+      <attribute name="bodyContent" type="java.lang.String"/>
       <attribute name="boundingBox" type="java.lang.String"/>
       <attribute name="buttonNode" type="java.lang.String"/>
       <attribute name="cancellableHide" type="java.lang.Boolean"/>
+      <attribute name="centered" type="java.lang.String"/>
+      <attribute name="constrain" type="java.lang.String"/>
       <attribute name="contentBox" type="java.lang.String"/>
       <attribute name="cssClass" type="java.lang.String"/>
       <attribute name="currentDay" type="java.lang.Number"/>
@@ -361,8 +412,11 @@
       <attribute name="dayNodeName" type="java.lang.String"/>
       <attribute name="destroyed" type="java.lang.Boolean"/>
       <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="fillHeight" type="java.lang.String"/>
       <attribute name="firstDayOfWeek" type="java.lang.Number"/>
       <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="footerContent" type="java.lang.String"/>
+      <attribute name="headerContent" type="java.lang.String"/>
       <attribute name="height" type="java.lang.String"/>
       <attribute name="hideClass" type="java.lang.String"/>
       <attribute name="hideDelay" type="java.lang.Number"/>
@@ -377,11 +431,13 @@
       <attribute name="populateDay" type="java.lang.Boolean"/>
       <attribute name="populateMonth" type="java.lang.Boolean"/>
       <attribute name="populateYear" type="java.lang.Boolean"/>
+      <attribute name="preventOverlap" type="java.lang.Boolean"/>
       <attribute name="render" type="java.lang.Boolean"/>
       <attribute name="rendered" type="java.lang.Boolean"/>
       <attribute name="selectMultipleDates" type="java.lang.Boolean"/>
       <attribute name="selectWrapperNode" type="java.lang.String"/>
       <attribute name="setValue" type="java.lang.Boolean"/>
+      <attribute name="shim" type="java.lang.Boolean"/>
       <attribute name="showDelay" type="java.lang.Number"/>
       <attribute name="showOn" type="java.lang.String"/>
       <attribute name="srcNode" type="java.lang.String"/>
@@ -391,17 +447,24 @@
       <attribute name="trigger" type="java.lang.String"/>
       <attribute name="visible" type="java.lang.Boolean"/>
       <attribute name="width" type="java.lang.String"/>
+      <attribute name="x" type="java.lang.Number"/>
+      <attribute name="xy" type="java.lang.String"/>
+      <attribute name="y" type="java.lang.Number"/>
       <attribute name="yearNode" type="java.lang.String"/>
       <attribute name="yearNodeName" type="java.lang.String"/>
       <attribute name="yearRange" type="java.lang.String"/>
+      <attribute name="zIndex" type="java.lang.Number"/>
     </attributes>
     <events>
       <event name="alignChange" type="java.lang.String"/>
       <event name="appendOrderChange" type="java.lang.String"/>
       <event name="baseNameChange" type="java.lang.String"/>
+      <event name="bodyContentChange" type="java.lang.String"/>
       <event name="boundingBoxChange" type="java.lang.String"/>
       <event name="buttonNodeChange" type="java.lang.String"/>
       <event name="cancellableHideChange" type="java.lang.String"/>
+      <event name="centeredChange" type="java.lang.String"/>
+      <event name="constrainChange" type="java.lang.String"/>
       <event name="contentBoxChange" type="java.lang.String"/>
       <event name="cssClassChange" type="java.lang.String"/>
       <event name="currentDayChange" type="java.lang.String"/>
@@ -415,8 +478,11 @@
       <event name="destroy" type="java.lang.String"/>
       <event name="destroyedChange" type="java.lang.String"/>
       <event name="disabledChange" type="java.lang.String"/>
+      <event name="fillHeightChange" type="java.lang.String"/>
       <event name="firstDayOfWeekChange" type="java.lang.String"/>
       <event name="focusedChange" type="java.lang.String"/>
+      <event name="footerContentChange" type="java.lang.String"/>
+      <event name="headerContentChange" type="java.lang.String"/>
       <event name="heightChange" type="java.lang.String"/>
       <event name="hideClassChange" type="java.lang.String"/>
       <event name="hideDelayChange" type="java.lang.String"/>
@@ -432,11 +498,13 @@
       <event name="populateDayChange" type="java.lang.String"/>
       <event name="populateMonthChange" type="java.lang.String"/>
       <event name="populateYearChange" type="java.lang.String"/>
+      <event name="preventOverlapChange" type="java.lang.String"/>
       <event name="renderChange" type="java.lang.String"/>
       <event name="renderedChange" type="java.lang.String"/>
       <event name="selectMultipleDatesChange" type="java.lang.String"/>
       <event name="selectWrapperNodeChange" type="java.lang.String"/>
       <event name="setValueChange" type="java.lang.String"/>
+      <event name="shimChange" type="java.lang.String"/>
       <event name="showDelayChange" type="java.lang.String"/>
       <event name="showOnChange" type="java.lang.String"/>
       <event name="srcNodeChange" type="java.lang.String"/>
@@ -448,9 +516,13 @@
       <event name="widget:contentUpdate" type="java.lang.String"/>
       <event name="widget:render" type="java.lang.String"/>
       <event name="widthChange" type="java.lang.String"/>
+      <event name="xChange" type="java.lang.String"/>
+      <event name="xyChange" type="java.lang.String"/>
+      <event name="yChange" type="java.lang.String"/>
       <event name="yearNodeChange" type="java.lang.String"/>
       <event name="yearNodeNameChange" type="java.lang.String"/>
       <event name="yearRangeChange" type="java.lang.String"/>
+      <event name="zIndexChange" type="java.lang.String"/>
     </events>
   </component>
   <component name="Dialog" module="aui-dialog" namespace="alloy" bodyContent="false">
@@ -469,7 +541,10 @@
       <attribute name="disabled" type="java.lang.Boolean"/>
       <attribute name="dragInstance" type="java.lang.String"/>
       <attribute name="draggable" type="java.lang.Boolean"/>
+      <attribute name="fillHeight" type="java.lang.String"/>
       <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="footerContent" type="java.lang.String"/>
+      <attribute name="headerContent" type="java.lang.String"/>
       <attribute name="height" type="java.lang.String"/>
       <attribute name="hideClass" type="java.lang.String"/>
       <attribute name="icons" type="java.lang.String"/>
@@ -504,7 +579,10 @@
       <event name="disabledChange" type="java.lang.String"/>
       <event name="dragInstanceChange" type="java.lang.String"/>
       <event name="draggableChange" type="java.lang.String"/>
+      <event name="fillHeightChange" type="java.lang.String"/>
       <event name="focusedChange" type="java.lang.String"/>
+      <event name="footerContentChange" type="java.lang.String"/>
+      <event name="headerContentChange" type="java.lang.String"/>
       <event name="heightChange" type="java.lang.String"/>
       <event name="hideClassChange" type="java.lang.String"/>
       <event name="iconsChange" type="java.lang.String"/>
@@ -634,6 +712,12 @@
       <event name="hostChange" type="java.lang.String"/>
       <event name="init" type="java.lang.String"/>
       <event name="initializedChange" type="java.lang.String"/>
+      <event name="io:complete" type="java.lang.String"/>
+      <event name="io:end" type="java.lang.String"/>
+      <event name="io:failure" type="java.lang.String"/>
+      <event name="io:start" type="java.lang.String"/>
+      <event name="io:success" type="java.lang.String"/>
+      <event name="io:xdrReady" type="java.lang.String"/>
       <event name="methodChange" type="java.lang.String"/>
       <event name="responseDataChange" type="java.lang.String"/>
       <event name="syncChange" type="java.lang.String"/>
@@ -645,23 +729,29 @@
   </component>
   <component name="ImageGallery" module="aui-image-viewer" namespace="alloy" bodyContent="false">
     <attributes>
+      <attribute name="align" type="java.lang.Object"/>
       <attribute name="anim" type="java.lang.Boolean"/>
       <attribute name="arrowLeftEl" type="java.lang.String"/>
       <attribute name="arrowRightEl" type="java.lang.String"/>
       <attribute name="autoPlay" type="java.lang.Boolean"/>
+      <attribute name="bodyContent" type="java.lang.String"/>
       <attribute name="boundingBox" type="java.lang.String"/>
       <attribute name="caption" type="java.lang.String"/>
       <attribute name="captionEl" type="java.lang.String"/>
       <attribute name="captionFromTitle" type="java.lang.Boolean"/>
       <attribute name="centered" type="java.lang.Boolean"/>
       <attribute name="closeEl" type="java.lang.String"/>
+      <attribute name="constrain" type="java.lang.String"/>
       <attribute name="contentBox" type="java.lang.String"/>
       <attribute name="cssClass" type="java.lang.String"/>
       <attribute name="currentIndex" type="java.lang.Number"/>
       <attribute name="delay" type="java.lang.Number"/>
       <attribute name="destroyed" type="java.lang.Boolean"/>
       <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="fillHeight" type="java.lang.String"/>
       <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="footerContent" type="java.lang.String"/>
+      <attribute name="headerContent" type="java.lang.String"/>
       <attribute name="height" type="java.lang.String"/>
       <attribute name="hideClass" type="java.lang.String"/>
       <attribute name="id" type="java.lang.String"/>
@@ -685,9 +775,11 @@
       <attribute name="playing" type="java.lang.Boolean"/>
       <attribute name="playingLabel" type="java.lang.String"/>
       <attribute name="preloadAllImages" type="java.lang.Boolean"/>
+      <attribute name="preventOverlap" type="java.lang.Boolean"/>
       <attribute name="render" type="java.lang.Boolean"/>
       <attribute name="rendered" type="java.lang.Boolean"/>
       <attribute name="repeat" type="java.lang.Boolean"/>
+      <attribute name="shim" type="java.lang.Boolean"/>
       <attribute name="showArrows" type="java.lang.Boolean"/>
       <attribute name="showClose" type="java.lang.Boolean"/>
       <attribute name="showPlayer" type="java.lang.Boolean"/>
@@ -699,19 +791,26 @@
       <attribute name="useOriginalImage" type="java.lang.Boolean"/>
       <attribute name="visible" type="java.lang.Boolean"/>
       <attribute name="width" type="java.lang.String"/>
+      <attribute name="x" type="java.lang.Number"/>
+      <attribute name="xy" type="java.lang.String"/>
+      <attribute name="y" type="java.lang.Number"/>
+      <attribute name="zIndex" type="java.lang.Number"/>
     </attributes>
     <events>
+      <event name="alignChange" type="java.lang.String"/>
       <event name="anim" type="java.lang.String"/>
       <event name="animChange" type="java.lang.String"/>
       <event name="arrowLeftElChange" type="java.lang.String"/>
       <event name="arrowRightElChange" type="java.lang.String"/>
       <event name="autoPlayChange" type="java.lang.String"/>
+      <event name="bodyContentChange" type="java.lang.String"/>
       <event name="boundingBoxChange" type="java.lang.String"/>
       <event name="captionChange" type="java.lang.String"/>
       <event name="captionElChange" type="java.lang.String"/>
       <event name="captionFromTitleChange" type="java.lang.String"/>
       <event name="centeredChange" type="java.lang.String"/>
       <event name="closeElChange" type="java.lang.String"/>
+      <event name="constrainChange" type="java.lang.String"/>
       <event name="contentBoxChange" type="java.lang.String"/>
       <event name="cssClassChange" type="java.lang.String"/>
       <event name="currentIndexChange" type="java.lang.String"/>
@@ -719,7 +818,10 @@
       <event name="destroy" type="java.lang.String"/>
       <event name="destroyedChange" type="java.lang.String"/>
       <event name="disabledChange" type="java.lang.String"/>
+      <event name="fillHeightChange" type="java.lang.String"/>
       <event name="focusedChange" type="java.lang.String"/>
+      <event name="footerContentChange" type="java.lang.String"/>
+      <event name="headerContentChange" type="java.lang.String"/>
       <event name="heightChange" type="java.lang.String"/>
       <event name="hideClassChange" type="java.lang.String"/>
       <event name="idChange" type="java.lang.String"/>
@@ -745,10 +847,12 @@
       <event name="playingChange" type="java.lang.String"/>
       <event name="playingLabelChange" type="java.lang.String"/>
       <event name="preloadAllImagesChange" type="java.lang.String"/>
+      <event name="preventOverlapChange" type="java.lang.String"/>
       <event name="renderChange" type="java.lang.String"/>
       <event name="renderedChange" type="java.lang.String"/>
       <event name="repeatChange" type="java.lang.String"/>
       <event name="request" type="java.lang.String"/>
+      <event name="shimChange" type="java.lang.String"/>
       <event name="showArrowsChange" type="java.lang.String"/>
       <event name="showCloseChange" type="java.lang.String"/>
       <event name="showPlayerChange" type="java.lang.String"/>
@@ -762,25 +866,35 @@
       <event name="widget:contentUpdate" type="java.lang.String"/>
       <event name="widget:render" type="java.lang.String"/>
       <event name="widthChange" type="java.lang.String"/>
+      <event name="xChange" type="java.lang.String"/>
+      <event name="xyChange" type="java.lang.String"/>
+      <event name="yChange" type="java.lang.String"/>
+      <event name="zIndexChange" type="java.lang.String"/>
     </events>
   </component>
   <component name="ImageViewer" module="aui-image-viewer" namespace="alloy" bodyContent="false">
     <attributes>
+      <attribute name="align" type="java.lang.Object"/>
       <attribute name="anim" type="java.lang.Boolean"/>
       <attribute name="arrowLeftEl" type="java.lang.String"/>
       <attribute name="arrowRightEl" type="java.lang.String"/>
+      <attribute name="bodyContent" type="java.lang.String"/>
       <attribute name="boundingBox" type="java.lang.String"/>
       <attribute name="caption" type="java.lang.String"/>
       <attribute name="captionEl" type="java.lang.String"/>
       <attribute name="captionFromTitle" type="java.lang.Boolean"/>
       <attribute name="centered" type="java.lang.Boolean"/>
       <attribute name="closeEl" type="java.lang.String"/>
+      <attribute name="constrain" type="java.lang.String"/>
       <attribute name="contentBox" type="java.lang.String"/>
       <attribute name="cssClass" type="java.lang.String"/>
       <attribute name="currentIndex" type="java.lang.Number"/>
       <attribute name="destroyed" type="java.lang.Boolean"/>
       <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="fillHeight" type="java.lang.String"/>
       <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="footerContent" type="java.lang.String"/>
+      <attribute name="headerContent" type="java.lang.String"/>
       <attribute name="height" type="java.lang.String"/>
       <attribute name="hideClass" type="java.lang.String"/>
       <attribute name="id" type="java.lang.String"/>
@@ -797,8 +911,10 @@
       <attribute name="maxWidth" type="java.lang.Number"/>
       <attribute name="modal" type="java.lang.String"/>
       <attribute name="preloadAllImages" type="java.lang.Boolean"/>
+      <attribute name="preventOverlap" type="java.lang.Boolean"/>
       <attribute name="render" type="java.lang.Boolean"/>
       <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="shim" type="java.lang.Boolean"/>
       <attribute name="showArrows" type="java.lang.Boolean"/>
       <attribute name="showClose" type="java.lang.Boolean"/>
       <attribute name="srcNode" type="java.lang.String"/>
@@ -807,25 +923,35 @@
       <attribute name="totalLinks" type="java.lang.Boolean"/>
       <attribute name="visible" type="java.lang.Boolean"/>
       <attribute name="width" type="java.lang.String"/>
+      <attribute name="x" type="java.lang.Number"/>
+      <attribute name="xy" type="java.lang.String"/>
+      <attribute name="y" type="java.lang.Number"/>
+      <attribute name="zIndex" type="java.lang.Number"/>
     </attributes>
     <events>
+      <event name="alignChange" type="java.lang.String"/>
       <event name="anim" type="java.lang.String"/>
       <event name="animChange" type="java.lang.String"/>
       <event name="arrowLeftElChange" type="java.lang.String"/>
       <event name="arrowRightElChange" type="java.lang.String"/>
+      <event name="bodyContentChange" type="java.lang.String"/>
       <event name="boundingBoxChange" type="java.lang.String"/>
       <event name="captionChange" type="java.lang.String"/>
       <event name="captionElChange" type="java.lang.String"/>
       <event name="captionFromTitleChange" type="java.lang.String"/>
       <event name="centeredChange" type="java.lang.String"/>
       <event name="closeElChange" type="java.lang.String"/>
+      <event name="constrainChange" type="java.lang.String"/>
       <event name="contentBoxChange" type="java.lang.String"/>
       <event name="cssClassChange" type="java.lang.String"/>
       <event name="currentIndexChange" type="java.lang.String"/>
       <event name="destroy" type="java.lang.String"/>
       <event name="destroyedChange" type="java.lang.String"/>
       <event name="disabledChange" type="java.lang.String"/>
+      <event name="fillHeightChange" type="java.lang.String"/>
       <event name="focusedChange" type="java.lang.String"/>
+      <event name="footerContentChange" type="java.lang.String"/>
+      <event name="headerContentChange" type="java.lang.String"/>
       <event name="heightChange" type="java.lang.String"/>
       <event name="hideClassChange" type="java.lang.String"/>
       <event name="idChange" type="java.lang.String"/>
@@ -844,9 +970,11 @@
       <event name="maxWidthChange" type="java.lang.String"/>
       <event name="modalChange" type="java.lang.String"/>
       <event name="preloadAllImagesChange" type="java.lang.String"/>
+      <event name="preventOverlapChange" type="java.lang.String"/>
       <event name="renderChange" type="java.lang.String"/>
       <event name="renderedChange" type="java.lang.String"/>
       <event name="request" type="java.lang.String"/>
+      <event name="shimChange" type="java.lang.String"/>
       <event name="showArrowsChange" type="java.lang.String"/>
       <event name="showCloseChange" type="java.lang.String"/>
       <event name="srcNodeChange" type="java.lang.String"/>
@@ -857,6 +985,10 @@
       <event name="widget:contentUpdate" type="java.lang.String"/>
       <event name="widget:render" type="java.lang.String"/>
       <event name="widthChange" type="java.lang.String"/>
+      <event name="xChange" type="java.lang.String"/>
+      <event name="xyChange" type="java.lang.String"/>
+      <event name="yChange" type="java.lang.String"/>
+      <event name="zIndexChange" type="java.lang.String"/>
     </events>
   </component>
   <component name="LiveSearch" module="aui-live-search" namespace="alloy" bodyContent="false">
@@ -921,39 +1053,61 @@
   </component>
   <component name="OverlayBase" module="aui-overlay" namespace="alloy" bodyContent="false">
     <attributes>
+      <attribute name="align" type="java.lang.Object"/>
+      <attribute name="bodyContent" type="java.lang.String"/>
       <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="centered" type="java.lang.String"/>
+      <attribute name="constrain" type="java.lang.String"/>
       <attribute name="contentBox" type="java.lang.String"/>
       <attribute name="cssClass" type="java.lang.String"/>
       <attribute name="destroyed" type="java.lang.Boolean"/>
       <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="fillHeight" type="java.lang.String"/>
       <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="footerContent" type="java.lang.String"/>
+      <attribute name="headerContent" type="java.lang.String"/>
       <attribute name="height" type="java.lang.String"/>
       <attribute name="hideClass" type="java.lang.String"/>
       <attribute name="id" type="java.lang.String"/>
       <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="preventOverlap" type="java.lang.Boolean"/>
       <attribute name="render" type="java.lang.Boolean"/>
       <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="shim" type="java.lang.Boolean"/>
       <attribute name="srcNode" type="java.lang.String"/>
       <attribute name="strings" type="java.lang.Object"/>
       <attribute name="tabIndex" type="java.lang.Number"/>
       <attribute name="visible" type="java.lang.Boolean"/>
       <attribute name="width" type="java.lang.String"/>
+      <attribute name="x" type="java.lang.Number"/>
+      <attribute name="xy" type="java.lang.String"/>
+      <attribute name="y" type="java.lang.Number"/>
+      <attribute name="zIndex" type="java.lang.Number"/>
     </attributes>
     <events>
+      <event name="alignChange" type="java.lang.String"/>
+      <event name="bodyContentChange" type="java.lang.String"/>
       <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="centeredChange" type="java.lang.String"/>
+      <event name="constrainChange" type="java.lang.String"/>
       <event name="contentBoxChange" type="java.lang.String"/>
       <event name="cssClassChange" type="java.lang.String"/>
       <event name="destroy" type="java.lang.String"/>
       <event name="destroyedChange" type="java.lang.String"/>
       <event name="disabledChange" type="java.lang.String"/>
+      <event name="fillHeightChange" type="java.lang.String"/>
       <event name="focusedChange" type="java.lang.String"/>
+      <event name="footerContentChange" type="java.lang.String"/>
+      <event name="headerContentChange" type="java.lang.String"/>
       <event name="heightChange" type="java.lang.String"/>
       <event name="hideClassChange" type="java.lang.String"/>
       <event name="idChange" type="java.lang.String"/>
       <event name="init" type="java.lang.String"/>
       <event name="initializedChange" type="java.lang.String"/>
+      <event name="preventOverlapChange" type="java.lang.String"/>
       <event name="renderChange" type="java.lang.String"/>
       <event name="renderedChange" type="java.lang.String"/>
+      <event name="shimChange" type="java.lang.String"/>
       <event name="srcNodeChange" type="java.lang.String"/>
       <event name="stringsChange" type="java.lang.String"/>
       <event name="tabIndexChange" type="java.lang.String"/>
@@ -961,19 +1115,29 @@
       <event name="widget:contentUpdate" type="java.lang.String"/>
       <event name="widget:render" type="java.lang.String"/>
       <event name="widthChange" type="java.lang.String"/>
+      <event name="xChange" type="java.lang.String"/>
+      <event name="xyChange" type="java.lang.String"/>
+      <event name="yChange" type="java.lang.String"/>
+      <event name="zIndexChange" type="java.lang.String"/>
     </events>
   </component>
   <component name="OverlayContext" module="aui-overlay" namespace="alloy" bodyContent="false">
     <attributes>
       <attribute name="align" type="java.lang.Object"/>
+      <attribute name="bodyContent" type="java.lang.String"/>
       <attribute name="boundingBox" type="java.lang.String"/>
       <attribute name="cancellableHide" type="java.lang.Boolean"/>
+      <attribute name="centered" type="java.lang.String"/>
+      <attribute name="constrain" type="java.lang.String"/>
       <attribute name="contentBox" type="java.lang.String"/>
       <attribute name="cssClass" type="java.lang.String"/>
       <attribute name="currentNode" type="java.lang.String"/>
       <attribute name="destroyed" type="java.lang.Boolean"/>
       <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="fillHeight" type="java.lang.String"/>
       <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="footerContent" type="java.lang.String"/>
+      <attribute name="headerContent" type="java.lang.String"/>
       <attribute name="height" type="java.lang.String"/>
       <attribute name="hideClass" type="java.lang.String"/>
       <attribute name="hideDelay" type="java.lang.Number"/>
@@ -981,8 +1145,10 @@
       <attribute name="hideOnDocumentClick" type="java.lang.Boolean"/>
       <attribute name="id" type="java.lang.String"/>
       <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="preventOverlap" type="java.lang.Boolean"/>
       <attribute name="render" type="java.lang.Boolean"/>
       <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="shim" type="java.lang.Boolean"/>
       <attribute name="showDelay" type="java.lang.Number"/>
       <attribute name="showOn" type="java.lang.String"/>
       <attribute name="srcNode" type="java.lang.String"/>
@@ -991,18 +1157,28 @@
       <attribute name="trigger" type="java.lang.String"/>
       <attribute name="visible" type="java.lang.Boolean"/>
       <attribute name="width" type="java.lang.String"/>
+      <attribute name="x" type="java.lang.Number"/>
+      <attribute name="xy" type="java.lang.String"/>
+      <attribute name="y" type="java.lang.Number"/>
+      <attribute name="zIndex" type="java.lang.Number"/>
     </attributes>
     <events>
       <event name="alignChange" type="java.lang.String"/>
+      <event name="bodyContentChange" type="java.lang.String"/>
       <event name="boundingBoxChange" type="java.lang.String"/>
       <event name="cancellableHideChange" type="java.lang.String"/>
+      <event name="centeredChange" type="java.lang.String"/>
+      <event name="constrainChange" type="java.lang.String"/>
       <event name="contentBoxChange" type="java.lang.String"/>
       <event name="cssClassChange" type="java.lang.String"/>
       <event name="currentNodeChange" type="java.lang.String"/>
       <event name="destroy" type="java.lang.String"/>
       <event name="destroyedChange" type="java.lang.String"/>
       <event name="disabledChange" type="java.lang.String"/>
+      <event name="fillHeightChange" type="java.lang.String"/>
       <event name="focusedChange" type="java.lang.String"/>
+      <event name="footerContentChange" type="java.lang.String"/>
+      <event name="headerContentChange" type="java.lang.String"/>
       <event name="heightChange" type="java.lang.String"/>
       <event name="hideClassChange" type="java.lang.String"/>
       <event name="hideDelayChange" type="java.lang.String"/>
@@ -1011,8 +1187,10 @@
       <event name="idChange" type="java.lang.String"/>
       <event name="init" type="java.lang.String"/>
       <event name="initializedChange" type="java.lang.String"/>
+      <event name="preventOverlapChange" type="java.lang.String"/>
       <event name="renderChange" type="java.lang.String"/>
       <event name="renderedChange" type="java.lang.String"/>
+      <event name="shimChange" type="java.lang.String"/>
       <event name="showDelayChange" type="java.lang.String"/>
       <event name="showOnChange" type="java.lang.String"/>
       <event name="srcNodeChange" type="java.lang.String"/>
@@ -1023,6 +1201,10 @@
       <event name="widget:contentUpdate" type="java.lang.String"/>
       <event name="widget:render" type="java.lang.String"/>
       <event name="widthChange" type="java.lang.String"/>
+      <event name="xChange" type="java.lang.String"/>
+      <event name="xyChange" type="java.lang.String"/>
+      <event name="yChange" type="java.lang.String"/>
+      <event name="zIndexChange" type="java.lang.String"/>
     </events>
   </component>
   <component name="OverlayContextPanel" module="aui-overlay" namespace="alloy" bodyContent="false">
@@ -1030,14 +1212,20 @@
       <attribute name="align" type="java.lang.Object"/>
       <attribute name="anim" type="java.lang.Object"/>
       <attribute name="arrow" type="java.lang.String"/>
+      <attribute name="bodyContent" type="java.lang.String"/>
       <attribute name="boundingBox" type="java.lang.String"/>
       <attribute name="cancellableHide" type="java.lang.Boolean"/>
+      <attribute name="centered" type="java.lang.String"/>
+      <attribute name="constrain" type="java.lang.String"/>
       <attribute name="contentBox" type="java.lang.String"/>
       <attribute name="cssClass" type="java.lang.String"/>
       <attribute name="currentNode" type="java.lang.String"/>
       <attribute name="destroyed" type="java.lang.Boolean"/>
       <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="fillHeight" type="java.lang.String"/>
       <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="footerContent" type="java.lang.String"/>
+      <attribute name="headerContent" type="java.lang.String"/>
       <attribute name="height" type="java.lang.String"/>
       <attribute name="hideClass" type="java.lang.String"/>
       <attribute name="hideDelay" type="java.lang.Number"/>
@@ -1045,8 +1233,10 @@
       <attribute name="hideOnDocumentClick" type="java.lang.Boolean"/>
       <attribute name="id" type="java.lang.String"/>
       <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="preventOverlap" type="java.lang.Boolean"/>
       <attribute name="render" type="java.lang.Boolean"/>
       <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="shim" type="java.lang.Boolean"/>
       <attribute name="showArrow" type="java.lang.Boolean"/>
       <attribute name="showDelay" type="java.lang.Number"/>
       <attribute name="showOn" type="java.lang.String"/>
@@ -1057,20 +1247,30 @@
       <attribute name="trigger" type="java.lang.String"/>
       <attribute name="visible" type="java.lang.Boolean"/>
       <attribute name="width" type="java.lang.String"/>
+      <attribute name="x" type="java.lang.Number"/>
+      <attribute name="xy" type="java.lang.String"/>
+      <attribute name="y" type="java.lang.Number"/>
+      <attribute name="zIndex" type="java.lang.Number"/>
     </attributes>
     <events>
       <event name="alignChange" type="java.lang.String"/>
       <event name="animChange" type="java.lang.String"/>
       <event name="arrowChange" type="java.lang.String"/>
+      <event name="bodyContentChange" type="java.lang.String"/>
       <event name="boundingBoxChange" type="java.lang.String"/>
       <event name="cancellableHideChange" type="java.lang.String"/>
+      <event name="centeredChange" type="java.lang.String"/>
+      <event name="constrainChange" type="java.lang.String"/>
       <event name="contentBoxChange" type="java.lang.String"/>
       <event name="cssClassChange" type="java.lang.String"/>
       <event name="currentNodeChange" type="java.lang.String"/>
       <event name="destroy" type="java.lang.String"/>
       <event name="destroyedChange" type="java.lang.String"/>
       <event name="disabledChange" type="java.lang.String"/>
+      <event name="fillHeightChange" type="java.lang.String"/>
       <event name="focusedChange" type="java.lang.String"/>
+      <event name="footerContentChange" type="java.lang.String"/>
+      <event name="headerContentChange" type="java.lang.String"/>
       <event name="heightChange" type="java.lang.String"/>
       <event name="hideClassChange" type="java.lang.String"/>
       <event name="hideDelayChange" type="java.lang.String"/>
@@ -1079,8 +1279,10 @@
       <event name="idChange" type="java.lang.String"/>
       <event name="init" type="java.lang.String"/>
       <event name="initializedChange" type="java.lang.String"/>
+      <event name="preventOverlapChange" type="java.lang.String"/>
       <event name="renderChange" type="java.lang.String"/>
       <event name="renderedChange" type="java.lang.String"/>
+      <event name="shimChange" type="java.lang.String"/>
       <event name="showArrowChange" type="java.lang.String"/>
       <event name="showDelayChange" type="java.lang.String"/>
       <event name="showOnChange" type="java.lang.String"/>
@@ -1093,23 +1295,35 @@
       <event name="widget:contentUpdate" type="java.lang.String"/>
       <event name="widget:render" type="java.lang.String"/>
       <event name="widthChange" type="java.lang.String"/>
+      <event name="xChange" type="java.lang.String"/>
+      <event name="xyChange" type="java.lang.String"/>
+      <event name="yChange" type="java.lang.String"/>
+      <event name="zIndexChange" type="java.lang.String"/>
     </events>
   </component>
   <component name="OverlayMask" module="aui-overlay" namespace="alloy" bodyContent="false">
     <attributes>
+      <attribute name="align" type="java.lang.Object"/>
       <attribute name="alignPoints" type="java.lang.String"/>
       <attribute name="background" type="java.lang.String"/>
+      <attribute name="bodyContent" type="java.lang.String"/>
       <attribute name="boundingBox" type="java.lang.String"/>
+      <attribute name="centered" type="java.lang.String"/>
+      <attribute name="constrain" type="java.lang.String"/>
       <attribute name="contentBox" type="java.lang.String"/>
       <attribute name="cssClass" type="java.lang.String"/>
       <attribute name="destroyed" type="java.lang.Boolean"/>
       <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="fillHeight" type="java.lang.String"/>
       <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="footerContent" type="java.lang.String"/>
+      <attribute name="headerContent" type="java.lang.String"/>
       <attribute name="height" type="java.lang.String"/>
       <attribute name="hideClass" type="java.lang.String"/>
       <attribute name="id" type="java.lang.String"/>
       <attribute name="initialized" type="java.lang.Boolean"/>
       <attribute name="opacity" type="java.lang.Number"/>
+      <attribute name="preventOverlap" type="java.lang.Boolean"/>
       <attribute name="render" type="java.lang.Boolean"/>
       <attribute name="rendered" type="java.lang.Boolean"/>
       <attribute name="shim" type="java.lang.Boolean"/>
@@ -1119,24 +1333,35 @@
       <attribute name="target" type="java.lang.String"/>
       <attribute name="visible" type="java.lang.Boolean"/>
       <attribute name="width" type="java.lang.String"/>
+      <attribute name="x" type="java.lang.Number"/>
+      <attribute name="xy" type="java.lang.String"/>
+      <attribute name="y" type="java.lang.Number"/>
       <attribute name="zIndex" type="java.lang.Number"/>
     </attributes>
     <events>
+      <event name="alignChange" type="java.lang.String"/>
       <event name="alignPointsChange" type="java.lang.String"/>
       <event name="backgroundChange" type="java.lang.String"/>
+      <event name="bodyContentChange" type="java.lang.String"/>
       <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="centeredChange" type="java.lang.String"/>
+      <event name="constrainChange" type="java.lang.String"/>
       <event name="contentBoxChange" type="java.lang.String"/>
       <event name="cssClassChange" type="java.lang.String"/>
       <event name="destroy" type="java.lang.String"/>
       <event name="destroyedChange" type="java.lang.String"/>
       <event name="disabledChange" type="java.lang.String"/>
+      <event name="fillHeightChange" type="java.lang.String"/>
       <event name="focusedChange" type="java.lang.String"/>
+      <event name="footerContentChange" type="java.lang.String"/>
+      <event name="headerContentChange" type="java.lang.String"/>
       <event name="heightChange" type="java.lang.String"/>
       <event name="hideClassChange" type="java.lang.String"/>
       <event name="idChange" type="java.lang.String"/>
       <event name="init" type="java.lang.String"/>
       <event name="initializedChange" type="java.lang.String"/>
       <event name="opacityChange" type="java.lang.String"/>
+      <event name="preventOverlapChange" type="java.lang.String"/>
       <event name="renderChange" type="java.lang.String"/>
       <event name="renderedChange" type="java.lang.String"/>
       <event name="shimChange" type="java.lang.String"/>
@@ -1148,6 +1373,9 @@
       <event name="widget:contentUpdate" type="java.lang.String"/>
       <event name="widget:render" type="java.lang.String"/>
       <event name="widthChange" type="java.lang.String"/>
+      <event name="xChange" type="java.lang.String"/>
+      <event name="xyChange" type="java.lang.String"/>
+      <event name="yChange" type="java.lang.String"/>
       <event name="zIndexChange" type="java.lang.String"/>
     </events>
   </component>
@@ -1217,6 +1445,7 @@
   </component>
   <component name="Panel" module="aui-panel" namespace="alloy" bodyContent="false">
     <attributes>
+      <attribute name="bodyContent" type="java.lang.String"/>
       <attribute name="boundingBox" type="java.lang.String"/>
       <attribute name="collapsed" type="java.lang.Boolean"/>
       <attribute name="collapsible" type="java.lang.Boolean"/>
@@ -1224,7 +1453,10 @@
       <attribute name="cssClass" type="java.lang.String"/>
       <attribute name="destroyed" type="java.lang.Boolean"/>
       <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="fillHeight" type="java.lang.String"/>
       <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="footerContent" type="java.lang.String"/>
+      <attribute name="headerContent" type="java.lang.String"/>
       <attribute name="height" type="java.lang.String"/>
       <attribute name="hideClass" type="java.lang.String"/>
       <attribute name="icons" type="java.lang.String"/>
@@ -1240,6 +1472,7 @@
       <attribute name="width" type="java.lang.String"/>
     </attributes>
     <events>
+      <event name="bodyContentChange" type="java.lang.String"/>
       <event name="boundingBoxChange" type="java.lang.String"/>
       <event name="collapsedChange" type="java.lang.String"/>
       <event name="collapsibleChange" type="java.lang.String"/>
@@ -1248,7 +1481,10 @@
       <event name="destroy" type="java.lang.String"/>
       <event name="destroyedChange" type="java.lang.String"/>
       <event name="disabledChange" type="java.lang.String"/>
+      <event name="fillHeightChange" type="java.lang.String"/>
       <event name="focusedChange" type="java.lang.String"/>
+      <event name="footerContentChange" type="java.lang.String"/>
+      <event name="headerContentChange" type="java.lang.String"/>
       <event name="heightChange" type="java.lang.String"/>
       <event name="hideClassChange" type="java.lang.String"/>
       <event name="iconsChange" type="java.lang.String"/>
@@ -1631,6 +1867,7 @@
   </component>
   <component name="Toolbar" module="aui-toolbar" namespace="alloy" bodyContent="false">
     <attributes>
+      <attribute name="activeDescendant" type="java.lang.String"/>
       <attribute name="activeState" type="java.lang.Boolean"/>
       <attribute name="boundingBox" type="java.lang.String"/>
       <attribute name="contentBox" type="java.lang.String"/>
@@ -1645,9 +1882,11 @@
       <attribute name="hoverState" type="java.lang.Boolean"/>
       <attribute name="id" type="java.lang.String"/>
       <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="multiple" type="java.lang.Boolean"/>
       <attribute name="orientation" type="java.lang.String"/>
       <attribute name="render" type="java.lang.Boolean"/>
       <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="selection" type="java.lang.String"/>
       <attribute name="srcNode" type="java.lang.String"/>
       <attribute name="strings" type="java.lang.Object"/>
       <attribute name="tabIndex" type="java.lang.Number"/>
@@ -1655,7 +1894,9 @@
       <attribute name="width" type="java.lang.String"/>
     </attributes>
     <events>
+      <event name="activeDescendantChange" type="java.lang.String"/>
       <event name="activeStateChange" type="java.lang.String"/>
+      <event name="addChild" type="java.lang.String"/>
       <event name="boundingBoxChange" type="java.lang.String"/>
       <event name="contentBoxChange" type="java.lang.String"/>
       <event name="cssClassChange" type="java.lang.String"/>
@@ -1671,9 +1912,12 @@
       <event name="idChange" type="java.lang.String"/>
       <event name="init" type="java.lang.String"/>
       <event name="initializedChange" type="java.lang.String"/>
+      <event name="multipleChange" type="java.lang.String"/>
       <event name="orientationChange" type="java.lang.String"/>
+      <event name="removeChild" type="java.lang.String"/>
       <event name="renderChange" type="java.lang.String"/>
       <event name="renderedChange" type="java.lang.String"/>
+      <event name="selectionChange" type="java.lang.String"/>
       <event name="srcNodeChange" type="java.lang.String"/>
       <event name="stringsChange" type="java.lang.String"/>
       <event name="tabIndexChange" type="java.lang.String"/>
@@ -1688,14 +1932,20 @@
       <attribute name="align" type="java.lang.Object"/>
       <attribute name="anim" type="java.lang.Object"/>
       <attribute name="arrow" type="java.lang.String"/>
+      <attribute name="bodyContent" type="java.lang.String"/>
       <attribute name="boundingBox" type="java.lang.String"/>
       <attribute name="cancellableHide" type="java.lang.Boolean"/>
+      <attribute name="centered" type="java.lang.String"/>
+      <attribute name="constrain" type="java.lang.String"/>
       <attribute name="contentBox" type="java.lang.String"/>
       <attribute name="cssClass" type="java.lang.String"/>
       <attribute name="currentNode" type="java.lang.String"/>
       <attribute name="destroyed" type="java.lang.Boolean"/>
       <attribute name="disabled" type="java.lang.Boolean"/>
+      <attribute name="fillHeight" type="java.lang.String"/>
       <attribute name="focused" type="java.lang.Boolean"/>
+      <attribute name="footerContent" type="java.lang.String"/>
+      <attribute name="headerContent" type="java.lang.String"/>
       <attribute name="height" type="java.lang.String"/>
       <attribute name="hideClass" type="java.lang.String"/>
       <attribute name="hideDelay" type="java.lang.Number"/>
@@ -1703,8 +1953,10 @@
       <attribute name="hideOnDocumentClick" type="java.lang.Boolean"/>
       <attribute name="id" type="java.lang.String"/>
       <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="preventOverlap" type="java.lang.Boolean"/>
       <attribute name="render" type="java.lang.Boolean"/>
       <attribute name="rendered" type="java.lang.Boolean"/>
+      <attribute name="shim" type="java.lang.Boolean"/>
       <attribute name="showArrow" type="java.lang.Boolean"/>
       <attribute name="showDelay" type="java.lang.Number"/>
       <attribute name="showOn" type="java.lang.String"/>
@@ -1716,20 +1968,30 @@
       <attribute name="trigger" type="java.lang.String"/>
       <attribute name="visible" type="java.lang.Boolean"/>
       <attribute name="width" type="java.lang.String"/>
+      <attribute name="x" type="java.lang.Number"/>
+      <attribute name="xy" type="java.lang.String"/>
+      <attribute name="y" type="java.lang.Number"/>
+      <attribute name="zIndex" type="java.lang.Number"/>
     </attributes>
     <events>
       <event name="alignChange" type="java.lang.String"/>
       <event name="animChange" type="java.lang.String"/>
       <event name="arrowChange" type="java.lang.String"/>
+      <event name="bodyContentChange" type="java.lang.String"/>
       <event name="boundingBoxChange" type="java.lang.String"/>
       <event name="cancellableHideChange" type="java.lang.String"/>
+      <event name="centeredChange" type="java.lang.String"/>
+      <event name="constrainChange" type="java.lang.String"/>
       <event name="contentBoxChange" type="java.lang.String"/>
       <event name="cssClassChange" type="java.lang.String"/>
       <event name="currentNodeChange" type="java.lang.String"/>
       <event name="destroy" type="java.lang.String"/>
       <event name="destroyedChange" type="java.lang.String"/>
       <event name="disabledChange" type="java.lang.String"/>
+      <event name="fillHeightChange" type="java.lang.String"/>
       <event name="focusedChange" type="java.lang.String"/>
+      <event name="footerContentChange" type="java.lang.String"/>
+      <event name="headerContentChange" type="java.lang.String"/>
       <event name="heightChange" type="java.lang.String"/>
       <event name="hideClassChange" type="java.lang.String"/>
       <event name="hideDelayChange" type="java.lang.String"/>
@@ -1738,8 +2000,10 @@
       <event name="idChange" type="java.lang.String"/>
       <event name="init" type="java.lang.String"/>
       <event name="initializedChange" type="java.lang.String"/>
+      <event name="preventOverlapChange" type="java.lang.String"/>
       <event name="renderChange" type="java.lang.String"/>
       <event name="renderedChange" type="java.lang.String"/>
+      <event name="shimChange" type="java.lang.String"/>
       <event name="showArrowChange" type="java.lang.String"/>
       <event name="showDelayChange" type="java.lang.String"/>
       <event name="showOnChange" type="java.lang.String"/>
@@ -1753,6 +2017,10 @@
       <event name="widget:contentUpdate" type="java.lang.String"/>
       <event name="widget:render" type="java.lang.String"/>
       <event name="widthChange" type="java.lang.String"/>
+      <event name="xChange" type="java.lang.String"/>
+      <event name="xyChange" type="java.lang.String"/>
+      <event name="yChange" type="java.lang.String"/>
+      <event name="zIndexChange" type="java.lang.String"/>
     </events>
   </component>
   <component name="TreeNodeTask" module="aui-tree" namespace="alloy" bodyContent="false">
