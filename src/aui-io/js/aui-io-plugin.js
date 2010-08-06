@@ -312,11 +312,11 @@ var IOPlugin = A.Component.create(
 
 				instance._bindParseContent();
 
+				instance._getContentSetterByType().apply(instance, [content]);
+
 				if (instance.overlayMaskBoundingBox) {
 					instance.overlayMaskBoundingBox.remove();
 				}
-
-				instance._getContentSetterByType().apply(instance, [content]);
 			},
 
 			/**
