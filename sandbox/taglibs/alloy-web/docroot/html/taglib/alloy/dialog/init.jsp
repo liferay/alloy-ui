@@ -18,7 +18,10 @@ java.lang.Boolean _destroyed = (java.lang.Boolean)request.getAttribute("alloy:di
 java.lang.Boolean _disabled = (java.lang.Boolean)request.getAttribute("alloy:dialog:disabled");
 java.lang.String _dragInstance = (java.lang.String)request.getAttribute("alloy:dialog:dragInstance");
 java.lang.Boolean _draggable = (java.lang.Boolean)request.getAttribute("alloy:dialog:draggable");
+java.lang.String _fillHeight = (java.lang.String)request.getAttribute("alloy:dialog:fillHeight");
 java.lang.Boolean _focused = (java.lang.Boolean)request.getAttribute("alloy:dialog:focused");
+java.lang.String _footerContent = (java.lang.String)request.getAttribute("alloy:dialog:footerContent");
+java.lang.String _headerContent = (java.lang.String)request.getAttribute("alloy:dialog:headerContent");
 java.lang.String _height = (java.lang.String)request.getAttribute("alloy:dialog:height");
 java.lang.String _hideClass = (java.lang.String)request.getAttribute("alloy:dialog:hideClass");
 java.lang.String _icons = (java.lang.String)request.getAttribute("alloy:dialog:icons");
@@ -51,7 +54,10 @@ java.lang.String _afterDestroyedChange = (java.lang.String)request.getAttribute(
 java.lang.String _afterDisabledChange = (java.lang.String)request.getAttribute("alloy:dialog:afterDisabledChange");
 java.lang.String _afterDragInstanceChange = (java.lang.String)request.getAttribute("alloy:dialog:afterDragInstanceChange");
 java.lang.String _afterDraggableChange = (java.lang.String)request.getAttribute("alloy:dialog:afterDraggableChange");
+java.lang.String _afterFillHeightChange = (java.lang.String)request.getAttribute("alloy:dialog:afterFillHeightChange");
 java.lang.String _afterFocusedChange = (java.lang.String)request.getAttribute("alloy:dialog:afterFocusedChange");
+java.lang.String _afterFooterContentChange = (java.lang.String)request.getAttribute("alloy:dialog:afterFooterContentChange");
+java.lang.String _afterHeaderContentChange = (java.lang.String)request.getAttribute("alloy:dialog:afterHeaderContentChange");
 java.lang.String _afterHeightChange = (java.lang.String)request.getAttribute("alloy:dialog:afterHeightChange");
 java.lang.String _afterHideClassChange = (java.lang.String)request.getAttribute("alloy:dialog:afterHideClassChange");
 java.lang.String _afterIconsChange = (java.lang.String)request.getAttribute("alloy:dialog:afterIconsChange");
@@ -87,7 +93,10 @@ java.lang.String _onDestroyedChange = (java.lang.String)request.getAttribute("al
 java.lang.String _onDisabledChange = (java.lang.String)request.getAttribute("alloy:dialog:onDisabledChange");
 java.lang.String _onDragInstanceChange = (java.lang.String)request.getAttribute("alloy:dialog:onDragInstanceChange");
 java.lang.String _onDraggableChange = (java.lang.String)request.getAttribute("alloy:dialog:onDraggableChange");
+java.lang.String _onFillHeightChange = (java.lang.String)request.getAttribute("alloy:dialog:onFillHeightChange");
 java.lang.String _onFocusedChange = (java.lang.String)request.getAttribute("alloy:dialog:onFocusedChange");
+java.lang.String _onFooterContentChange = (java.lang.String)request.getAttribute("alloy:dialog:onFooterContentChange");
+java.lang.String _onHeaderContentChange = (java.lang.String)request.getAttribute("alloy:dialog:onHeaderContentChange");
 java.lang.String _onHeightChange = (java.lang.String)request.getAttribute("alloy:dialog:onHeightChange");
 java.lang.String _onHideClassChange = (java.lang.String)request.getAttribute("alloy:dialog:onHideClassChange");
 java.lang.String _onIconsChange = (java.lang.String)request.getAttribute("alloy:dialog:onIconsChange");
@@ -169,8 +178,20 @@ if (_draggable != null) {
 	scopedAttributes.put("draggable", _draggable);
 }
 
+if (_fillHeight != null) {
+	scopedAttributes.put("fillHeight", _fillHeight);
+}
+
 if (_focused != null) {
 	scopedAttributes.put("focused", _focused);
+}
+
+if (_footerContent != null) {
+	scopedAttributes.put("footerContent", _footerContent);
+}
+
+if (_headerContent != null) {
+	scopedAttributes.put("headerContent", _headerContent);
 }
 
 if (_height != null) {
@@ -301,8 +322,20 @@ if (_afterDraggableChange != null) {
 	scopedAttributes.put("afterDraggableChange", _afterDraggableChange);
 }
 
+if (_afterFillHeightChange != null) {
+	scopedAttributes.put("afterFillHeightChange", _afterFillHeightChange);
+}
+
 if (_afterFocusedChange != null) {
 	scopedAttributes.put("afterFocusedChange", _afterFocusedChange);
+}
+
+if (_afterFooterContentChange != null) {
+	scopedAttributes.put("afterFooterContentChange", _afterFooterContentChange);
+}
+
+if (_afterHeaderContentChange != null) {
+	scopedAttributes.put("afterHeaderContentChange", _afterHeaderContentChange);
 }
 
 if (_afterHeightChange != null) {
@@ -445,8 +478,20 @@ if (_onDraggableChange != null) {
 	scopedAttributes.put("onDraggableChange", _onDraggableChange);
 }
 
+if (_onFillHeightChange != null) {
+	scopedAttributes.put("onFillHeightChange", _onFillHeightChange);
+}
+
 if (_onFocusedChange != null) {
 	scopedAttributes.put("onFocusedChange", _onFocusedChange);
+}
+
+if (_onFooterContentChange != null) {
+	scopedAttributes.put("onFooterContentChange", _onFooterContentChange);
+}
+
+if (_onHeaderContentChange != null) {
+	scopedAttributes.put("onHeaderContentChange", _onHeaderContentChange);
 }
 
 if (_onHeightChange != null) {

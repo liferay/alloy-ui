@@ -7,14 +7,20 @@ Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute
 java.lang.Object _align = (java.lang.Object)request.getAttribute("alloy:tooltip:align");
 java.lang.Object _anim = (java.lang.Object)request.getAttribute("alloy:tooltip:anim");
 java.lang.String _arrow = (java.lang.String)request.getAttribute("alloy:tooltip:arrow");
+java.lang.String _tooltipBodyContent = (java.lang.String)request.getAttribute("alloy:tooltip:tooltipBodyContent");
 java.lang.String _boundingBox = (java.lang.String)request.getAttribute("alloy:tooltip:boundingBox");
 java.lang.Boolean _cancellableHide = (java.lang.Boolean)request.getAttribute("alloy:tooltip:cancellableHide");
+java.lang.String _centered = (java.lang.String)request.getAttribute("alloy:tooltip:centered");
+java.lang.String _constrain = (java.lang.String)request.getAttribute("alloy:tooltip:constrain");
 java.lang.String _contentBox = (java.lang.String)request.getAttribute("alloy:tooltip:contentBox");
 java.lang.String _cssClass = (java.lang.String)request.getAttribute("alloy:tooltip:cssClass");
 java.lang.String _currentNode = (java.lang.String)request.getAttribute("alloy:tooltip:currentNode");
 java.lang.Boolean _destroyed = (java.lang.Boolean)request.getAttribute("alloy:tooltip:destroyed");
 java.lang.Boolean _disabled = (java.lang.Boolean)request.getAttribute("alloy:tooltip:disabled");
+java.lang.String _fillHeight = (java.lang.String)request.getAttribute("alloy:tooltip:fillHeight");
 java.lang.Boolean _focused = (java.lang.Boolean)request.getAttribute("alloy:tooltip:focused");
+java.lang.String _footerContent = (java.lang.String)request.getAttribute("alloy:tooltip:footerContent");
+java.lang.String _headerContent = (java.lang.String)request.getAttribute("alloy:tooltip:headerContent");
 java.lang.String _height = (java.lang.String)request.getAttribute("alloy:tooltip:height");
 java.lang.String _hideClass = (java.lang.String)request.getAttribute("alloy:tooltip:hideClass");
 java.lang.Number _hideDelay = (java.lang.Number)request.getAttribute("alloy:tooltip:hideDelay");
@@ -22,8 +28,10 @@ java.lang.String _hideOn = (java.lang.String)request.getAttribute("alloy:tooltip
 java.lang.Boolean _hideOnDocumentClick = (java.lang.Boolean)request.getAttribute("alloy:tooltip:hideOnDocumentClick");
 java.lang.String _tooltipId = (java.lang.String)request.getAttribute("alloy:tooltip:tooltipId");
 java.lang.Boolean _initialized = (java.lang.Boolean)request.getAttribute("alloy:tooltip:initialized");
+java.lang.Boolean _preventOverlap = (java.lang.Boolean)request.getAttribute("alloy:tooltip:preventOverlap");
 java.lang.Boolean _render = (java.lang.Boolean)request.getAttribute("alloy:tooltip:render");
 java.lang.Boolean _rendered = (java.lang.Boolean)request.getAttribute("alloy:tooltip:rendered");
+java.lang.Boolean _shim = (java.lang.Boolean)request.getAttribute("alloy:tooltip:shim");
 java.lang.Boolean _showArrow = (java.lang.Boolean)request.getAttribute("alloy:tooltip:showArrow");
 java.lang.Number _showDelay = (java.lang.Number)request.getAttribute("alloy:tooltip:showDelay");
 java.lang.String _showOn = (java.lang.String)request.getAttribute("alloy:tooltip:showOn");
@@ -35,18 +43,28 @@ java.lang.Boolean _title = (java.lang.Boolean)request.getAttribute("alloy:toolti
 java.lang.String _trigger = (java.lang.String)request.getAttribute("alloy:tooltip:trigger");
 java.lang.Boolean _visible = (java.lang.Boolean)request.getAttribute("alloy:tooltip:visible");
 java.lang.String _width = (java.lang.String)request.getAttribute("alloy:tooltip:width");
+java.lang.Number _x = (java.lang.Number)request.getAttribute("alloy:tooltip:x");
+java.lang.String _xy = (java.lang.String)request.getAttribute("alloy:tooltip:xy");
+java.lang.Number _y = (java.lang.Number)request.getAttribute("alloy:tooltip:y");
+java.lang.Number _zIndex = (java.lang.Number)request.getAttribute("alloy:tooltip:zIndex");
 java.lang.String _afterAlignChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterAlignChange");
 java.lang.String _afterAnimChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterAnimChange");
 java.lang.String _afterArrowChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterArrowChange");
+java.lang.String _afterBodyContentChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterBodyContentChange");
 java.lang.String _afterBoundingBoxChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterBoundingBoxChange");
 java.lang.String _afterCancellableHideChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterCancellableHideChange");
+java.lang.String _afterCenteredChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterCenteredChange");
+java.lang.String _afterConstrainChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterConstrainChange");
 java.lang.String _afterContentBoxChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterContentBoxChange");
 java.lang.String _afterCssClassChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterCssClassChange");
 java.lang.String _afterCurrentNodeChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterCurrentNodeChange");
 java.lang.String _afterDestroy = (java.lang.String)request.getAttribute("alloy:tooltip:afterDestroy");
 java.lang.String _afterDestroyedChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterDestroyedChange");
 java.lang.String _afterDisabledChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterDisabledChange");
+java.lang.String _afterFillHeightChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterFillHeightChange");
 java.lang.String _afterFocusedChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterFocusedChange");
+java.lang.String _afterFooterContentChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterFooterContentChange");
+java.lang.String _afterHeaderContentChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterHeaderContentChange");
 java.lang.String _afterHeightChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterHeightChange");
 java.lang.String _afterHideClassChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterHideClassChange");
 java.lang.String _afterHideDelayChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterHideDelayChange");
@@ -55,8 +73,10 @@ java.lang.String _afterHideOnDocumentClickChange = (java.lang.String)request.get
 java.lang.String _afterIdChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterIdChange");
 java.lang.String _afterInit = (java.lang.String)request.getAttribute("alloy:tooltip:afterInit");
 java.lang.String _afterInitializedChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterInitializedChange");
+java.lang.String _afterPreventOverlapChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterPreventOverlapChange");
 java.lang.String _afterRenderChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterRenderChange");
 java.lang.String _afterRenderedChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterRenderedChange");
+java.lang.String _afterShimChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterShimChange");
 java.lang.String _afterShowArrowChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterShowArrowChange");
 java.lang.String _afterShowDelayChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterShowDelayChange");
 java.lang.String _afterShowOnChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterShowOnChange");
@@ -70,18 +90,28 @@ java.lang.String _afterVisibleChange = (java.lang.String)request.getAttribute("a
 java.lang.String _afterContentUpdate = (java.lang.String)request.getAttribute("alloy:tooltip:afterContentUpdate");
 java.lang.String _afterRender = (java.lang.String)request.getAttribute("alloy:tooltip:afterRender");
 java.lang.String _afterWidthChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterWidthChange");
+java.lang.String _afterXChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterXChange");
+java.lang.String _afterXyChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterXyChange");
+java.lang.String _afterYChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterYChange");
+java.lang.String _afterZIndexChange = (java.lang.String)request.getAttribute("alloy:tooltip:afterZIndexChange");
 java.lang.String _onAlignChange = (java.lang.String)request.getAttribute("alloy:tooltip:onAlignChange");
 java.lang.String _onAnimChange = (java.lang.String)request.getAttribute("alloy:tooltip:onAnimChange");
 java.lang.String _onArrowChange = (java.lang.String)request.getAttribute("alloy:tooltip:onArrowChange");
+java.lang.String _onBodyContentChange = (java.lang.String)request.getAttribute("alloy:tooltip:onBodyContentChange");
 java.lang.String _onBoundingBoxChange = (java.lang.String)request.getAttribute("alloy:tooltip:onBoundingBoxChange");
 java.lang.String _onCancellableHideChange = (java.lang.String)request.getAttribute("alloy:tooltip:onCancellableHideChange");
+java.lang.String _onCenteredChange = (java.lang.String)request.getAttribute("alloy:tooltip:onCenteredChange");
+java.lang.String _onConstrainChange = (java.lang.String)request.getAttribute("alloy:tooltip:onConstrainChange");
 java.lang.String _onContentBoxChange = (java.lang.String)request.getAttribute("alloy:tooltip:onContentBoxChange");
 java.lang.String _onCssClassChange = (java.lang.String)request.getAttribute("alloy:tooltip:onCssClassChange");
 java.lang.String _onCurrentNodeChange = (java.lang.String)request.getAttribute("alloy:tooltip:onCurrentNodeChange");
 java.lang.String _onDestroy = (java.lang.String)request.getAttribute("alloy:tooltip:onDestroy");
 java.lang.String _onDestroyedChange = (java.lang.String)request.getAttribute("alloy:tooltip:onDestroyedChange");
 java.lang.String _onDisabledChange = (java.lang.String)request.getAttribute("alloy:tooltip:onDisabledChange");
+java.lang.String _onFillHeightChange = (java.lang.String)request.getAttribute("alloy:tooltip:onFillHeightChange");
 java.lang.String _onFocusedChange = (java.lang.String)request.getAttribute("alloy:tooltip:onFocusedChange");
+java.lang.String _onFooterContentChange = (java.lang.String)request.getAttribute("alloy:tooltip:onFooterContentChange");
+java.lang.String _onHeaderContentChange = (java.lang.String)request.getAttribute("alloy:tooltip:onHeaderContentChange");
 java.lang.String _onHeightChange = (java.lang.String)request.getAttribute("alloy:tooltip:onHeightChange");
 java.lang.String _onHideClassChange = (java.lang.String)request.getAttribute("alloy:tooltip:onHideClassChange");
 java.lang.String _onHideDelayChange = (java.lang.String)request.getAttribute("alloy:tooltip:onHideDelayChange");
@@ -90,8 +120,10 @@ java.lang.String _onHideOnDocumentClickChange = (java.lang.String)request.getAtt
 java.lang.String _onIdChange = (java.lang.String)request.getAttribute("alloy:tooltip:onIdChange");
 java.lang.String _onInit = (java.lang.String)request.getAttribute("alloy:tooltip:onInit");
 java.lang.String _onInitializedChange = (java.lang.String)request.getAttribute("alloy:tooltip:onInitializedChange");
+java.lang.String _onPreventOverlapChange = (java.lang.String)request.getAttribute("alloy:tooltip:onPreventOverlapChange");
 java.lang.String _onRenderChange = (java.lang.String)request.getAttribute("alloy:tooltip:onRenderChange");
 java.lang.String _onRenderedChange = (java.lang.String)request.getAttribute("alloy:tooltip:onRenderedChange");
+java.lang.String _onShimChange = (java.lang.String)request.getAttribute("alloy:tooltip:onShimChange");
 java.lang.String _onShowArrowChange = (java.lang.String)request.getAttribute("alloy:tooltip:onShowArrowChange");
 java.lang.String _onShowDelayChange = (java.lang.String)request.getAttribute("alloy:tooltip:onShowDelayChange");
 java.lang.String _onShowOnChange = (java.lang.String)request.getAttribute("alloy:tooltip:onShowOnChange");
@@ -105,6 +137,10 @@ java.lang.String _onVisibleChange = (java.lang.String)request.getAttribute("allo
 java.lang.String _onContentUpdate = (java.lang.String)request.getAttribute("alloy:tooltip:onContentUpdate");
 java.lang.String _onRender = (java.lang.String)request.getAttribute("alloy:tooltip:onRender");
 java.lang.String _onWidthChange = (java.lang.String)request.getAttribute("alloy:tooltip:onWidthChange");
+java.lang.String _onXChange = (java.lang.String)request.getAttribute("alloy:tooltip:onXChange");
+java.lang.String _onXyChange = (java.lang.String)request.getAttribute("alloy:tooltip:onXyChange");
+java.lang.String _onYChange = (java.lang.String)request.getAttribute("alloy:tooltip:onYChange");
+java.lang.String _onZIndexChange = (java.lang.String)request.getAttribute("alloy:tooltip:onZIndexChange");
 %>
 
 <%@ include file="init-ext.jsp" %>
@@ -122,12 +158,24 @@ if (_arrow != null) {
 	scopedAttributes.put("arrow", _arrow);
 }
 
+if (_tooltipBodyContent != null) {
+	scopedAttributes.put("tooltipBodyContent", _tooltipBodyContent);
+}
+
 if (_boundingBox != null) {
 	scopedAttributes.put("boundingBox", _boundingBox);
 }
 
 if (_cancellableHide != null) {
 	scopedAttributes.put("cancellableHide", _cancellableHide);
+}
+
+if (_centered != null) {
+	scopedAttributes.put("centered", _centered);
+}
+
+if (_constrain != null) {
+	scopedAttributes.put("constrain", _constrain);
 }
 
 if (_contentBox != null) {
@@ -150,8 +198,20 @@ if (_disabled != null) {
 	scopedAttributes.put("disabled", _disabled);
 }
 
+if (_fillHeight != null) {
+	scopedAttributes.put("fillHeight", _fillHeight);
+}
+
 if (_focused != null) {
 	scopedAttributes.put("focused", _focused);
+}
+
+if (_footerContent != null) {
+	scopedAttributes.put("footerContent", _footerContent);
+}
+
+if (_headerContent != null) {
+	scopedAttributes.put("headerContent", _headerContent);
 }
 
 if (_height != null) {
@@ -182,12 +242,20 @@ if (_initialized != null) {
 	scopedAttributes.put("initialized", _initialized);
 }
 
+if (_preventOverlap != null) {
+	scopedAttributes.put("preventOverlap", _preventOverlap);
+}
+
 if (_render != null) {
 	scopedAttributes.put("render", _render);
 }
 
 if (_rendered != null) {
 	scopedAttributes.put("rendered", _rendered);
+}
+
+if (_shim != null) {
+	scopedAttributes.put("shim", _shim);
 }
 
 if (_showArrow != null) {
@@ -234,6 +302,22 @@ if (_width != null) {
 	scopedAttributes.put("width", _width);
 }
 
+if (_x != null) {
+	scopedAttributes.put("x", _x);
+}
+
+if (_xy != null) {
+	scopedAttributes.put("xy", _xy);
+}
+
+if (_y != null) {
+	scopedAttributes.put("y", _y);
+}
+
+if (_zIndex != null) {
+	scopedAttributes.put("zIndex", _zIndex);
+}
+
 if (_afterAlignChange != null) {
 	scopedAttributes.put("afterAlignChange", _afterAlignChange);
 }
@@ -246,12 +330,24 @@ if (_afterArrowChange != null) {
 	scopedAttributes.put("afterArrowChange", _afterArrowChange);
 }
 
+if (_afterBodyContentChange != null) {
+	scopedAttributes.put("afterBodyContentChange", _afterBodyContentChange);
+}
+
 if (_afterBoundingBoxChange != null) {
 	scopedAttributes.put("afterBoundingBoxChange", _afterBoundingBoxChange);
 }
 
 if (_afterCancellableHideChange != null) {
 	scopedAttributes.put("afterCancellableHideChange", _afterCancellableHideChange);
+}
+
+if (_afterCenteredChange != null) {
+	scopedAttributes.put("afterCenteredChange", _afterCenteredChange);
+}
+
+if (_afterConstrainChange != null) {
+	scopedAttributes.put("afterConstrainChange", _afterConstrainChange);
 }
 
 if (_afterContentBoxChange != null) {
@@ -278,8 +374,20 @@ if (_afterDisabledChange != null) {
 	scopedAttributes.put("afterDisabledChange", _afterDisabledChange);
 }
 
+if (_afterFillHeightChange != null) {
+	scopedAttributes.put("afterFillHeightChange", _afterFillHeightChange);
+}
+
 if (_afterFocusedChange != null) {
 	scopedAttributes.put("afterFocusedChange", _afterFocusedChange);
+}
+
+if (_afterFooterContentChange != null) {
+	scopedAttributes.put("afterFooterContentChange", _afterFooterContentChange);
+}
+
+if (_afterHeaderContentChange != null) {
+	scopedAttributes.put("afterHeaderContentChange", _afterHeaderContentChange);
 }
 
 if (_afterHeightChange != null) {
@@ -314,12 +422,20 @@ if (_afterInitializedChange != null) {
 	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
 }
 
+if (_afterPreventOverlapChange != null) {
+	scopedAttributes.put("afterPreventOverlapChange", _afterPreventOverlapChange);
+}
+
 if (_afterRenderChange != null) {
 	scopedAttributes.put("afterRenderChange", _afterRenderChange);
 }
 
 if (_afterRenderedChange != null) {
 	scopedAttributes.put("afterRenderedChange", _afterRenderedChange);
+}
+
+if (_afterShimChange != null) {
+	scopedAttributes.put("afterShimChange", _afterShimChange);
 }
 
 if (_afterShowArrowChange != null) {
@@ -374,6 +490,22 @@ if (_afterWidthChange != null) {
 	scopedAttributes.put("afterWidthChange", _afterWidthChange);
 }
 
+if (_afterXChange != null) {
+	scopedAttributes.put("afterXChange", _afterXChange);
+}
+
+if (_afterXyChange != null) {
+	scopedAttributes.put("afterXyChange", _afterXyChange);
+}
+
+if (_afterYChange != null) {
+	scopedAttributes.put("afterYChange", _afterYChange);
+}
+
+if (_afterZIndexChange != null) {
+	scopedAttributes.put("afterZIndexChange", _afterZIndexChange);
+}
+
 if (_onAlignChange != null) {
 	scopedAttributes.put("onAlignChange", _onAlignChange);
 }
@@ -386,12 +518,24 @@ if (_onArrowChange != null) {
 	scopedAttributes.put("onArrowChange", _onArrowChange);
 }
 
+if (_onBodyContentChange != null) {
+	scopedAttributes.put("onBodyContentChange", _onBodyContentChange);
+}
+
 if (_onBoundingBoxChange != null) {
 	scopedAttributes.put("onBoundingBoxChange", _onBoundingBoxChange);
 }
 
 if (_onCancellableHideChange != null) {
 	scopedAttributes.put("onCancellableHideChange", _onCancellableHideChange);
+}
+
+if (_onCenteredChange != null) {
+	scopedAttributes.put("onCenteredChange", _onCenteredChange);
+}
+
+if (_onConstrainChange != null) {
+	scopedAttributes.put("onConstrainChange", _onConstrainChange);
 }
 
 if (_onContentBoxChange != null) {
@@ -418,8 +562,20 @@ if (_onDisabledChange != null) {
 	scopedAttributes.put("onDisabledChange", _onDisabledChange);
 }
 
+if (_onFillHeightChange != null) {
+	scopedAttributes.put("onFillHeightChange", _onFillHeightChange);
+}
+
 if (_onFocusedChange != null) {
 	scopedAttributes.put("onFocusedChange", _onFocusedChange);
+}
+
+if (_onFooterContentChange != null) {
+	scopedAttributes.put("onFooterContentChange", _onFooterContentChange);
+}
+
+if (_onHeaderContentChange != null) {
+	scopedAttributes.put("onHeaderContentChange", _onHeaderContentChange);
 }
 
 if (_onHeightChange != null) {
@@ -454,12 +610,20 @@ if (_onInitializedChange != null) {
 	scopedAttributes.put("onInitializedChange", _onInitializedChange);
 }
 
+if (_onPreventOverlapChange != null) {
+	scopedAttributes.put("onPreventOverlapChange", _onPreventOverlapChange);
+}
+
 if (_onRenderChange != null) {
 	scopedAttributes.put("onRenderChange", _onRenderChange);
 }
 
 if (_onRenderedChange != null) {
 	scopedAttributes.put("onRenderedChange", _onRenderedChange);
+}
+
+if (_onShimChange != null) {
+	scopedAttributes.put("onShimChange", _onShimChange);
 }
 
 if (_onShowArrowChange != null) {
@@ -512,6 +676,22 @@ if (_onRender != null) {
 
 if (_onWidthChange != null) {
 	scopedAttributes.put("onWidthChange", _onWidthChange);
+}
+
+if (_onXChange != null) {
+	scopedAttributes.put("onXChange", _onXChange);
+}
+
+if (_onXyChange != null) {
+	scopedAttributes.put("onXyChange", _onXyChange);
+}
+
+if (_onYChange != null) {
+	scopedAttributes.put("onYChange", _onYChange);
+}
+
+if (_onZIndexChange != null) {
+	scopedAttributes.put("onZIndexChange", _onZIndexChange);
 }
 
 %>

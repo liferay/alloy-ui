@@ -39,6 +39,12 @@ java.lang.String _afterHeadersChange = (java.lang.String)request.getAttribute("a
 java.lang.String _afterHostChange = (java.lang.String)request.getAttribute("alloy:io-request:afterHostChange");
 java.lang.String _afterInit = (java.lang.String)request.getAttribute("alloy:io-request:afterInit");
 java.lang.String _afterInitializedChange = (java.lang.String)request.getAttribute("alloy:io-request:afterInitializedChange");
+java.lang.String _afterComplete = (java.lang.String)request.getAttribute("alloy:io-request:afterComplete");
+java.lang.String _afterEnd = (java.lang.String)request.getAttribute("alloy:io-request:afterEnd");
+java.lang.String _afterFailure = (java.lang.String)request.getAttribute("alloy:io-request:afterFailure");
+java.lang.String _afterStart = (java.lang.String)request.getAttribute("alloy:io-request:afterStart");
+java.lang.String _afterSuccess = (java.lang.String)request.getAttribute("alloy:io-request:afterSuccess");
+java.lang.String _afterXdrReady = (java.lang.String)request.getAttribute("alloy:io-request:afterXdrReady");
 java.lang.String _afterMethodChange = (java.lang.String)request.getAttribute("alloy:io-request:afterMethodChange");
 java.lang.String _afterResponseDataChange = (java.lang.String)request.getAttribute("alloy:io-request:afterResponseDataChange");
 java.lang.String _afterSyncChange = (java.lang.String)request.getAttribute("alloy:io-request:afterSyncChange");
@@ -61,6 +67,12 @@ java.lang.String _onHeadersChange = (java.lang.String)request.getAttribute("allo
 java.lang.String _onHostChange = (java.lang.String)request.getAttribute("alloy:io-request:onHostChange");
 java.lang.String _onInit = (java.lang.String)request.getAttribute("alloy:io-request:onInit");
 java.lang.String _onInitializedChange = (java.lang.String)request.getAttribute("alloy:io-request:onInitializedChange");
+java.lang.String _onComplete = (java.lang.String)request.getAttribute("alloy:io-request:onComplete");
+java.lang.String _onEnd = (java.lang.String)request.getAttribute("alloy:io-request:onEnd");
+java.lang.String _onFailure = (java.lang.String)request.getAttribute("alloy:io-request:onFailure");
+java.lang.String _onStart = (java.lang.String)request.getAttribute("alloy:io-request:onStart");
+java.lang.String _onSuccess = (java.lang.String)request.getAttribute("alloy:io-request:onSuccess");
+java.lang.String _onXdrReady = (java.lang.String)request.getAttribute("alloy:io-request:onXdrReady");
 java.lang.String _onMethodChange = (java.lang.String)request.getAttribute("alloy:io-request:onMethodChange");
 java.lang.String _onResponseDataChange = (java.lang.String)request.getAttribute("alloy:io-request:onResponseDataChange");
 java.lang.String _onSyncChange = (java.lang.String)request.getAttribute("alloy:io-request:onSyncChange");
@@ -213,6 +225,30 @@ if (_afterInitializedChange != null) {
 	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
 }
 
+if (_afterComplete != null) {
+	scopedAttributes.put("afterComplete", _afterComplete);
+}
+
+if (_afterEnd != null) {
+	scopedAttributes.put("afterEnd", _afterEnd);
+}
+
+if (_afterFailure != null) {
+	scopedAttributes.put("afterFailure", _afterFailure);
+}
+
+if (_afterStart != null) {
+	scopedAttributes.put("afterStart", _afterStart);
+}
+
+if (_afterSuccess != null) {
+	scopedAttributes.put("afterSuccess", _afterSuccess);
+}
+
+if (_afterXdrReady != null) {
+	scopedAttributes.put("afterXdrReady", _afterXdrReady);
+}
+
 if (_afterMethodChange != null) {
 	scopedAttributes.put("afterMethodChange", _afterMethodChange);
 }
@@ -299,6 +335,30 @@ if (_onInit != null) {
 
 if (_onInitializedChange != null) {
 	scopedAttributes.put("onInitializedChange", _onInitializedChange);
+}
+
+if (_onComplete != null) {
+	scopedAttributes.put("onComplete", _onComplete);
+}
+
+if (_onEnd != null) {
+	scopedAttributes.put("onEnd", _onEnd);
+}
+
+if (_onFailure != null) {
+	scopedAttributes.put("onFailure", _onFailure);
+}
+
+if (_onStart != null) {
+	scopedAttributes.put("onStart", _onStart);
+}
+
+if (_onSuccess != null) {
+	scopedAttributes.put("onSuccess", _onSuccess);
+}
+
+if (_onXdrReady != null) {
+	scopedAttributes.put("onXdrReady", _onXdrReady);
 }
 
 if (_onMethodChange != null) {

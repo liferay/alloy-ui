@@ -7,9 +7,12 @@ Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute
 java.lang.Object _align = (java.lang.Object)request.getAttribute("alloy:date-picker-select:align");
 java.lang.String _appendOrder = (java.lang.String)request.getAttribute("alloy:date-picker-select:appendOrder");
 java.lang.String _baseName = (java.lang.String)request.getAttribute("alloy:date-picker-select:baseName");
+java.lang.String _datepickerselectBodyContent = (java.lang.String)request.getAttribute("alloy:date-picker-select:datepickerselectBodyContent");
 java.lang.String _boundingBox = (java.lang.String)request.getAttribute("alloy:date-picker-select:boundingBox");
 java.lang.String _buttonNode = (java.lang.String)request.getAttribute("alloy:date-picker-select:buttonNode");
 java.lang.Boolean _cancellableHide = (java.lang.Boolean)request.getAttribute("alloy:date-picker-select:cancellableHide");
+java.lang.String _centered = (java.lang.String)request.getAttribute("alloy:date-picker-select:centered");
+java.lang.String _constrain = (java.lang.String)request.getAttribute("alloy:date-picker-select:constrain");
 java.lang.String _contentBox = (java.lang.String)request.getAttribute("alloy:date-picker-select:contentBox");
 java.lang.String _cssClass = (java.lang.String)request.getAttribute("alloy:date-picker-select:cssClass");
 java.lang.Number _currentDay = (java.lang.Number)request.getAttribute("alloy:date-picker-select:currentDay");
@@ -22,8 +25,11 @@ java.lang.String _dayNode = (java.lang.String)request.getAttribute("alloy:date-p
 java.lang.String _dayNodeName = (java.lang.String)request.getAttribute("alloy:date-picker-select:dayNodeName");
 java.lang.Boolean _destroyed = (java.lang.Boolean)request.getAttribute("alloy:date-picker-select:destroyed");
 java.lang.Boolean _disabled = (java.lang.Boolean)request.getAttribute("alloy:date-picker-select:disabled");
+java.lang.String _fillHeight = (java.lang.String)request.getAttribute("alloy:date-picker-select:fillHeight");
 java.lang.Number _firstDayOfWeek = (java.lang.Number)request.getAttribute("alloy:date-picker-select:firstDayOfWeek");
 java.lang.Boolean _focused = (java.lang.Boolean)request.getAttribute("alloy:date-picker-select:focused");
+java.lang.String _footerContent = (java.lang.String)request.getAttribute("alloy:date-picker-select:footerContent");
+java.lang.String _headerContent = (java.lang.String)request.getAttribute("alloy:date-picker-select:headerContent");
 java.lang.String _height = (java.lang.String)request.getAttribute("alloy:date-picker-select:height");
 java.lang.String _hideClass = (java.lang.String)request.getAttribute("alloy:date-picker-select:hideClass");
 java.lang.Number _hideDelay = (java.lang.Number)request.getAttribute("alloy:date-picker-select:hideDelay");
@@ -38,11 +44,13 @@ java.lang.String _monthNodeName = (java.lang.String)request.getAttribute("alloy:
 java.lang.Boolean _populateDay = (java.lang.Boolean)request.getAttribute("alloy:date-picker-select:populateDay");
 java.lang.Boolean _populateMonth = (java.lang.Boolean)request.getAttribute("alloy:date-picker-select:populateMonth");
 java.lang.Boolean _populateYear = (java.lang.Boolean)request.getAttribute("alloy:date-picker-select:populateYear");
+java.lang.Boolean _preventOverlap = (java.lang.Boolean)request.getAttribute("alloy:date-picker-select:preventOverlap");
 java.lang.Boolean _render = (java.lang.Boolean)request.getAttribute("alloy:date-picker-select:render");
 java.lang.Boolean _rendered = (java.lang.Boolean)request.getAttribute("alloy:date-picker-select:rendered");
 java.lang.Boolean _selectMultipleDates = (java.lang.Boolean)request.getAttribute("alloy:date-picker-select:selectMultipleDates");
 java.lang.String _selectWrapperNode = (java.lang.String)request.getAttribute("alloy:date-picker-select:selectWrapperNode");
 java.lang.Boolean _setValue = (java.lang.Boolean)request.getAttribute("alloy:date-picker-select:setValue");
+java.lang.Boolean _shim = (java.lang.Boolean)request.getAttribute("alloy:date-picker-select:shim");
 java.lang.Number _showDelay = (java.lang.Number)request.getAttribute("alloy:date-picker-select:showDelay");
 java.lang.String _showOn = (java.lang.String)request.getAttribute("alloy:date-picker-select:showOn");
 java.lang.String _srcNode = (java.lang.String)request.getAttribute("alloy:date-picker-select:srcNode");
@@ -52,15 +60,22 @@ java.lang.Number _tabIndex = (java.lang.Number)request.getAttribute("alloy:date-
 java.lang.String _trigger = (java.lang.String)request.getAttribute("alloy:date-picker-select:trigger");
 java.lang.Boolean _visible = (java.lang.Boolean)request.getAttribute("alloy:date-picker-select:visible");
 java.lang.String _width = (java.lang.String)request.getAttribute("alloy:date-picker-select:width");
+java.lang.Number _x = (java.lang.Number)request.getAttribute("alloy:date-picker-select:x");
+java.lang.String _xy = (java.lang.String)request.getAttribute("alloy:date-picker-select:xy");
+java.lang.Number _y = (java.lang.Number)request.getAttribute("alloy:date-picker-select:y");
 java.lang.String _yearNode = (java.lang.String)request.getAttribute("alloy:date-picker-select:yearNode");
 java.lang.String _yearNodeName = (java.lang.String)request.getAttribute("alloy:date-picker-select:yearNodeName");
 java.lang.String _yearRange = (java.lang.String)request.getAttribute("alloy:date-picker-select:yearRange");
+java.lang.Number _zIndex = (java.lang.Number)request.getAttribute("alloy:date-picker-select:zIndex");
 java.lang.String _afterAlignChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterAlignChange");
 java.lang.String _afterAppendOrderChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterAppendOrderChange");
 java.lang.String _afterBaseNameChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterBaseNameChange");
+java.lang.String _afterBodyContentChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterBodyContentChange");
 java.lang.String _afterBoundingBoxChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterBoundingBoxChange");
 java.lang.String _afterButtonNodeChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterButtonNodeChange");
 java.lang.String _afterCancellableHideChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterCancellableHideChange");
+java.lang.String _afterCenteredChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterCenteredChange");
+java.lang.String _afterConstrainChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterConstrainChange");
 java.lang.String _afterContentBoxChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterContentBoxChange");
 java.lang.String _afterCssClassChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterCssClassChange");
 java.lang.String _afterCurrentDayChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterCurrentDayChange");
@@ -74,8 +89,11 @@ java.lang.String _afterDayNodeNameChange = (java.lang.String)request.getAttribut
 java.lang.String _afterDestroy = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterDestroy");
 java.lang.String _afterDestroyedChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterDestroyedChange");
 java.lang.String _afterDisabledChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterDisabledChange");
+java.lang.String _afterFillHeightChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterFillHeightChange");
 java.lang.String _afterFirstDayOfWeekChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterFirstDayOfWeekChange");
 java.lang.String _afterFocusedChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterFocusedChange");
+java.lang.String _afterFooterContentChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterFooterContentChange");
+java.lang.String _afterHeaderContentChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterHeaderContentChange");
 java.lang.String _afterHeightChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterHeightChange");
 java.lang.String _afterHideClassChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterHideClassChange");
 java.lang.String _afterHideDelayChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterHideDelayChange");
@@ -91,11 +109,13 @@ java.lang.String _afterMonthNodeNameChange = (java.lang.String)request.getAttrib
 java.lang.String _afterPopulateDayChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterPopulateDayChange");
 java.lang.String _afterPopulateMonthChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterPopulateMonthChange");
 java.lang.String _afterPopulateYearChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterPopulateYearChange");
+java.lang.String _afterPreventOverlapChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterPreventOverlapChange");
 java.lang.String _afterRenderChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterRenderChange");
 java.lang.String _afterRenderedChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterRenderedChange");
 java.lang.String _afterSelectMultipleDatesChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterSelectMultipleDatesChange");
 java.lang.String _afterSelectWrapperNodeChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterSelectWrapperNodeChange");
 java.lang.String _afterSetValueChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterSetValueChange");
+java.lang.String _afterShimChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterShimChange");
 java.lang.String _afterShowDelayChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterShowDelayChange");
 java.lang.String _afterShowOnChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterShowOnChange");
 java.lang.String _afterSrcNodeChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterSrcNodeChange");
@@ -107,15 +127,22 @@ java.lang.String _afterVisibleChange = (java.lang.String)request.getAttribute("a
 java.lang.String _afterContentUpdate = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterContentUpdate");
 java.lang.String _afterRender = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterRender");
 java.lang.String _afterWidthChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterWidthChange");
+java.lang.String _afterXChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterXChange");
+java.lang.String _afterXyChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterXyChange");
+java.lang.String _afterYChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterYChange");
 java.lang.String _afterYearNodeChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterYearNodeChange");
 java.lang.String _afterYearNodeNameChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterYearNodeNameChange");
 java.lang.String _afterYearRangeChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterYearRangeChange");
+java.lang.String _afterZIndexChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:afterZIndexChange");
 java.lang.String _onAlignChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onAlignChange");
 java.lang.String _onAppendOrderChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onAppendOrderChange");
 java.lang.String _onBaseNameChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onBaseNameChange");
+java.lang.String _onBodyContentChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onBodyContentChange");
 java.lang.String _onBoundingBoxChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onBoundingBoxChange");
 java.lang.String _onButtonNodeChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onButtonNodeChange");
 java.lang.String _onCancellableHideChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onCancellableHideChange");
+java.lang.String _onCenteredChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onCenteredChange");
+java.lang.String _onConstrainChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onConstrainChange");
 java.lang.String _onContentBoxChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onContentBoxChange");
 java.lang.String _onCssClassChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onCssClassChange");
 java.lang.String _onCurrentDayChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onCurrentDayChange");
@@ -129,8 +156,11 @@ java.lang.String _onDayNodeNameChange = (java.lang.String)request.getAttribute("
 java.lang.String _onDestroy = (java.lang.String)request.getAttribute("alloy:date-picker-select:onDestroy");
 java.lang.String _onDestroyedChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onDestroyedChange");
 java.lang.String _onDisabledChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onDisabledChange");
+java.lang.String _onFillHeightChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onFillHeightChange");
 java.lang.String _onFirstDayOfWeekChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onFirstDayOfWeekChange");
 java.lang.String _onFocusedChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onFocusedChange");
+java.lang.String _onFooterContentChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onFooterContentChange");
+java.lang.String _onHeaderContentChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onHeaderContentChange");
 java.lang.String _onHeightChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onHeightChange");
 java.lang.String _onHideClassChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onHideClassChange");
 java.lang.String _onHideDelayChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onHideDelayChange");
@@ -146,11 +176,13 @@ java.lang.String _onMonthNodeNameChange = (java.lang.String)request.getAttribute
 java.lang.String _onPopulateDayChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onPopulateDayChange");
 java.lang.String _onPopulateMonthChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onPopulateMonthChange");
 java.lang.String _onPopulateYearChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onPopulateYearChange");
+java.lang.String _onPreventOverlapChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onPreventOverlapChange");
 java.lang.String _onRenderChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onRenderChange");
 java.lang.String _onRenderedChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onRenderedChange");
 java.lang.String _onSelectMultipleDatesChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onSelectMultipleDatesChange");
 java.lang.String _onSelectWrapperNodeChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onSelectWrapperNodeChange");
 java.lang.String _onSetValueChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onSetValueChange");
+java.lang.String _onShimChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onShimChange");
 java.lang.String _onShowDelayChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onShowDelayChange");
 java.lang.String _onShowOnChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onShowOnChange");
 java.lang.String _onSrcNodeChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onSrcNodeChange");
@@ -162,9 +194,13 @@ java.lang.String _onVisibleChange = (java.lang.String)request.getAttribute("allo
 java.lang.String _onContentUpdate = (java.lang.String)request.getAttribute("alloy:date-picker-select:onContentUpdate");
 java.lang.String _onRender = (java.lang.String)request.getAttribute("alloy:date-picker-select:onRender");
 java.lang.String _onWidthChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onWidthChange");
+java.lang.String _onXChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onXChange");
+java.lang.String _onXyChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onXyChange");
+java.lang.String _onYChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onYChange");
 java.lang.String _onYearNodeChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onYearNodeChange");
 java.lang.String _onYearNodeNameChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onYearNodeNameChange");
 java.lang.String _onYearRangeChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onYearRangeChange");
+java.lang.String _onZIndexChange = (java.lang.String)request.getAttribute("alloy:date-picker-select:onZIndexChange");
 %>
 
 <%@ include file="init-ext.jsp" %>
@@ -182,6 +218,10 @@ if (_baseName != null) {
 	scopedAttributes.put("baseName", _baseName);
 }
 
+if (_datepickerselectBodyContent != null) {
+	scopedAttributes.put("datepickerselectBodyContent", _datepickerselectBodyContent);
+}
+
 if (_boundingBox != null) {
 	scopedAttributes.put("boundingBox", _boundingBox);
 }
@@ -192,6 +232,14 @@ if (_buttonNode != null) {
 
 if (_cancellableHide != null) {
 	scopedAttributes.put("cancellableHide", _cancellableHide);
+}
+
+if (_centered != null) {
+	scopedAttributes.put("centered", _centered);
+}
+
+if (_constrain != null) {
+	scopedAttributes.put("constrain", _constrain);
 }
 
 if (_contentBox != null) {
@@ -242,12 +290,24 @@ if (_disabled != null) {
 	scopedAttributes.put("disabled", _disabled);
 }
 
+if (_fillHeight != null) {
+	scopedAttributes.put("fillHeight", _fillHeight);
+}
+
 if (_firstDayOfWeek != null) {
 	scopedAttributes.put("firstDayOfWeek", _firstDayOfWeek);
 }
 
 if (_focused != null) {
 	scopedAttributes.put("focused", _focused);
+}
+
+if (_footerContent != null) {
+	scopedAttributes.put("footerContent", _footerContent);
+}
+
+if (_headerContent != null) {
+	scopedAttributes.put("headerContent", _headerContent);
 }
 
 if (_height != null) {
@@ -306,6 +366,10 @@ if (_populateYear != null) {
 	scopedAttributes.put("populateYear", _populateYear);
 }
 
+if (_preventOverlap != null) {
+	scopedAttributes.put("preventOverlap", _preventOverlap);
+}
+
 if (_render != null) {
 	scopedAttributes.put("render", _render);
 }
@@ -324,6 +388,10 @@ if (_selectWrapperNode != null) {
 
 if (_setValue != null) {
 	scopedAttributes.put("setValue", _setValue);
+}
+
+if (_shim != null) {
+	scopedAttributes.put("shim", _shim);
 }
 
 if (_showDelay != null) {
@@ -362,6 +430,18 @@ if (_width != null) {
 	scopedAttributes.put("width", _width);
 }
 
+if (_x != null) {
+	scopedAttributes.put("x", _x);
+}
+
+if (_xy != null) {
+	scopedAttributes.put("xy", _xy);
+}
+
+if (_y != null) {
+	scopedAttributes.put("y", _y);
+}
+
 if (_yearNode != null) {
 	scopedAttributes.put("yearNode", _yearNode);
 }
@@ -372,6 +452,10 @@ if (_yearNodeName != null) {
 
 if (_yearRange != null) {
 	scopedAttributes.put("yearRange", _yearRange);
+}
+
+if (_zIndex != null) {
+	scopedAttributes.put("zIndex", _zIndex);
 }
 
 if (_afterAlignChange != null) {
@@ -386,6 +470,10 @@ if (_afterBaseNameChange != null) {
 	scopedAttributes.put("afterBaseNameChange", _afterBaseNameChange);
 }
 
+if (_afterBodyContentChange != null) {
+	scopedAttributes.put("afterBodyContentChange", _afterBodyContentChange);
+}
+
 if (_afterBoundingBoxChange != null) {
 	scopedAttributes.put("afterBoundingBoxChange", _afterBoundingBoxChange);
 }
@@ -396,6 +484,14 @@ if (_afterButtonNodeChange != null) {
 
 if (_afterCancellableHideChange != null) {
 	scopedAttributes.put("afterCancellableHideChange", _afterCancellableHideChange);
+}
+
+if (_afterCenteredChange != null) {
+	scopedAttributes.put("afterCenteredChange", _afterCenteredChange);
+}
+
+if (_afterConstrainChange != null) {
+	scopedAttributes.put("afterConstrainChange", _afterConstrainChange);
 }
 
 if (_afterContentBoxChange != null) {
@@ -450,12 +546,24 @@ if (_afterDisabledChange != null) {
 	scopedAttributes.put("afterDisabledChange", _afterDisabledChange);
 }
 
+if (_afterFillHeightChange != null) {
+	scopedAttributes.put("afterFillHeightChange", _afterFillHeightChange);
+}
+
 if (_afterFirstDayOfWeekChange != null) {
 	scopedAttributes.put("afterFirstDayOfWeekChange", _afterFirstDayOfWeekChange);
 }
 
 if (_afterFocusedChange != null) {
 	scopedAttributes.put("afterFocusedChange", _afterFocusedChange);
+}
+
+if (_afterFooterContentChange != null) {
+	scopedAttributes.put("afterFooterContentChange", _afterFooterContentChange);
+}
+
+if (_afterHeaderContentChange != null) {
+	scopedAttributes.put("afterHeaderContentChange", _afterHeaderContentChange);
 }
 
 if (_afterHeightChange != null) {
@@ -518,6 +626,10 @@ if (_afterPopulateYearChange != null) {
 	scopedAttributes.put("afterPopulateYearChange", _afterPopulateYearChange);
 }
 
+if (_afterPreventOverlapChange != null) {
+	scopedAttributes.put("afterPreventOverlapChange", _afterPreventOverlapChange);
+}
+
 if (_afterRenderChange != null) {
 	scopedAttributes.put("afterRenderChange", _afterRenderChange);
 }
@@ -536,6 +648,10 @@ if (_afterSelectWrapperNodeChange != null) {
 
 if (_afterSetValueChange != null) {
 	scopedAttributes.put("afterSetValueChange", _afterSetValueChange);
+}
+
+if (_afterShimChange != null) {
+	scopedAttributes.put("afterShimChange", _afterShimChange);
 }
 
 if (_afterShowDelayChange != null) {
@@ -582,6 +698,18 @@ if (_afterWidthChange != null) {
 	scopedAttributes.put("afterWidthChange", _afterWidthChange);
 }
 
+if (_afterXChange != null) {
+	scopedAttributes.put("afterXChange", _afterXChange);
+}
+
+if (_afterXyChange != null) {
+	scopedAttributes.put("afterXyChange", _afterXyChange);
+}
+
+if (_afterYChange != null) {
+	scopedAttributes.put("afterYChange", _afterYChange);
+}
+
 if (_afterYearNodeChange != null) {
 	scopedAttributes.put("afterYearNodeChange", _afterYearNodeChange);
 }
@@ -592,6 +720,10 @@ if (_afterYearNodeNameChange != null) {
 
 if (_afterYearRangeChange != null) {
 	scopedAttributes.put("afterYearRangeChange", _afterYearRangeChange);
+}
+
+if (_afterZIndexChange != null) {
+	scopedAttributes.put("afterZIndexChange", _afterZIndexChange);
 }
 
 if (_onAlignChange != null) {
@@ -606,6 +738,10 @@ if (_onBaseNameChange != null) {
 	scopedAttributes.put("onBaseNameChange", _onBaseNameChange);
 }
 
+if (_onBodyContentChange != null) {
+	scopedAttributes.put("onBodyContentChange", _onBodyContentChange);
+}
+
 if (_onBoundingBoxChange != null) {
 	scopedAttributes.put("onBoundingBoxChange", _onBoundingBoxChange);
 }
@@ -616,6 +752,14 @@ if (_onButtonNodeChange != null) {
 
 if (_onCancellableHideChange != null) {
 	scopedAttributes.put("onCancellableHideChange", _onCancellableHideChange);
+}
+
+if (_onCenteredChange != null) {
+	scopedAttributes.put("onCenteredChange", _onCenteredChange);
+}
+
+if (_onConstrainChange != null) {
+	scopedAttributes.put("onConstrainChange", _onConstrainChange);
 }
 
 if (_onContentBoxChange != null) {
@@ -670,12 +814,24 @@ if (_onDisabledChange != null) {
 	scopedAttributes.put("onDisabledChange", _onDisabledChange);
 }
 
+if (_onFillHeightChange != null) {
+	scopedAttributes.put("onFillHeightChange", _onFillHeightChange);
+}
+
 if (_onFirstDayOfWeekChange != null) {
 	scopedAttributes.put("onFirstDayOfWeekChange", _onFirstDayOfWeekChange);
 }
 
 if (_onFocusedChange != null) {
 	scopedAttributes.put("onFocusedChange", _onFocusedChange);
+}
+
+if (_onFooterContentChange != null) {
+	scopedAttributes.put("onFooterContentChange", _onFooterContentChange);
+}
+
+if (_onHeaderContentChange != null) {
+	scopedAttributes.put("onHeaderContentChange", _onHeaderContentChange);
 }
 
 if (_onHeightChange != null) {
@@ -738,6 +894,10 @@ if (_onPopulateYearChange != null) {
 	scopedAttributes.put("onPopulateYearChange", _onPopulateYearChange);
 }
 
+if (_onPreventOverlapChange != null) {
+	scopedAttributes.put("onPreventOverlapChange", _onPreventOverlapChange);
+}
+
 if (_onRenderChange != null) {
 	scopedAttributes.put("onRenderChange", _onRenderChange);
 }
@@ -756,6 +916,10 @@ if (_onSelectWrapperNodeChange != null) {
 
 if (_onSetValueChange != null) {
 	scopedAttributes.put("onSetValueChange", _onSetValueChange);
+}
+
+if (_onShimChange != null) {
+	scopedAttributes.put("onShimChange", _onShimChange);
 }
 
 if (_onShowDelayChange != null) {
@@ -802,6 +966,18 @@ if (_onWidthChange != null) {
 	scopedAttributes.put("onWidthChange", _onWidthChange);
 }
 
+if (_onXChange != null) {
+	scopedAttributes.put("onXChange", _onXChange);
+}
+
+if (_onXyChange != null) {
+	scopedAttributes.put("onXyChange", _onXyChange);
+}
+
+if (_onYChange != null) {
+	scopedAttributes.put("onYChange", _onYChange);
+}
+
 if (_onYearNodeChange != null) {
 	scopedAttributes.put("onYearNodeChange", _onYearNodeChange);
 }
@@ -812,6 +988,10 @@ if (_onYearNodeNameChange != null) {
 
 if (_onYearRangeChange != null) {
 	scopedAttributes.put("onYearRangeChange", _onYearRangeChange);
+}
+
+if (_onZIndexChange != null) {
+	scopedAttributes.put("onZIndexChange", _onZIndexChange);
 }
 
 %>

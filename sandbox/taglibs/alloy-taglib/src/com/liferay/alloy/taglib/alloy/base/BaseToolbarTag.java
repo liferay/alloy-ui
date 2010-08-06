@@ -24,6 +24,10 @@ public class BaseToolbarTag extends IncludeTag {
 		return _PAGE;
 	}
 
+	public java.lang.String getActiveDescendant() {
+		return _activeDescendant;
+	}
+
 	public java.lang.Boolean getActiveState() {
 		return _activeState;
 	}
@@ -80,6 +84,10 @@ public class BaseToolbarTag extends IncludeTag {
 		return _initialized;
 	}
 
+	public java.lang.Boolean getMultiple() {
+		return _multiple;
+	}
+
 	public java.lang.String getOrientation() {
 		return _orientation;
 	}
@@ -90,6 +98,10 @@ public class BaseToolbarTag extends IncludeTag {
 
 	public java.lang.Boolean getRendered() {
 		return _rendered;
+	}
+
+	public java.lang.String getSelection() {
+		return _selection;
 	}
 
 	public java.lang.String getSrcNode() {
@@ -112,8 +124,16 @@ public class BaseToolbarTag extends IncludeTag {
 		return _width;
 	}
 
+	public java.lang.String getAfterActiveDescendantChange() {
+		return _afterActiveDescendantChange;
+	}
+
 	public java.lang.String getAfterActiveStateChange() {
 		return _afterActiveStateChange;
+	}
+
+	public java.lang.String getAfterAddChild() {
+		return _afterAddChild;
 	}
 
 	public java.lang.String getAfterBoundingBoxChange() {
@@ -176,8 +196,16 @@ public class BaseToolbarTag extends IncludeTag {
 		return _afterInitializedChange;
 	}
 
+	public java.lang.String getAfterMultipleChange() {
+		return _afterMultipleChange;
+	}
+
 	public java.lang.String getAfterOrientationChange() {
 		return _afterOrientationChange;
+	}
+
+	public java.lang.String getAfterRemoveChild() {
+		return _afterRemoveChild;
 	}
 
 	public java.lang.String getAfterRenderChange() {
@@ -186,6 +214,10 @@ public class BaseToolbarTag extends IncludeTag {
 
 	public java.lang.String getAfterRenderedChange() {
 		return _afterRenderedChange;
+	}
+
+	public java.lang.String getAfterSelectionChange() {
+		return _afterSelectionChange;
 	}
 
 	public java.lang.String getAfterSrcNodeChange() {
@@ -216,8 +248,16 @@ public class BaseToolbarTag extends IncludeTag {
 		return _afterWidthChange;
 	}
 
+	public java.lang.String getOnActiveDescendantChange() {
+		return _onActiveDescendantChange;
+	}
+
 	public java.lang.String getOnActiveStateChange() {
 		return _onActiveStateChange;
+	}
+
+	public java.lang.String getOnAddChild() {
+		return _onAddChild;
 	}
 
 	public java.lang.String getOnBoundingBoxChange() {
@@ -280,8 +320,16 @@ public class BaseToolbarTag extends IncludeTag {
 		return _onInitializedChange;
 	}
 
+	public java.lang.String getOnMultipleChange() {
+		return _onMultipleChange;
+	}
+
 	public java.lang.String getOnOrientationChange() {
 		return _onOrientationChange;
+	}
+
+	public java.lang.String getOnRemoveChild() {
+		return _onRemoveChild;
 	}
 
 	public java.lang.String getOnRenderChange() {
@@ -290,6 +338,10 @@ public class BaseToolbarTag extends IncludeTag {
 
 	public java.lang.String getOnRenderedChange() {
 		return _onRenderedChange;
+	}
+
+	public java.lang.String getOnSelectionChange() {
+		return _onSelectionChange;
 	}
 
 	public java.lang.String getOnSrcNodeChange() {
@@ -318,6 +370,12 @@ public class BaseToolbarTag extends IncludeTag {
 
 	public java.lang.String getOnWidthChange() {
 		return _onWidthChange;
+	}
+
+	public void setActiveDescendant(java.lang.String activeDescendant) {
+		_activeDescendant = activeDescendant;
+
+		setScopedAttribute("activeDescendant", activeDescendant);
 	}
 
 	public void setActiveState(java.lang.Boolean activeState) {
@@ -404,6 +462,12 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("initialized", initialized);
 	}
 
+	public void setMultiple(java.lang.Boolean multiple) {
+		_multiple = multiple;
+
+		setScopedAttribute("multiple", multiple);
+	}
+
 	public void setOrientation(java.lang.String orientation) {
 		_orientation = orientation;
 
@@ -420,6 +484,12 @@ public class BaseToolbarTag extends IncludeTag {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
+	}
+
+	public void setSelection(java.lang.String selection) {
+		_selection = selection;
+
+		setScopedAttribute("selection", selection);
 	}
 
 	public void setSrcNode(java.lang.String srcNode) {
@@ -452,10 +522,22 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("width", width);
 	}
 
+	public void setAfterActiveDescendantChange(java.lang.String afterActiveDescendantChange) {
+		_afterActiveDescendantChange = afterActiveDescendantChange;
+
+		setScopedAttribute("afterActiveDescendantChange", afterActiveDescendantChange);
+	}
+
 	public void setAfterActiveStateChange(java.lang.String afterActiveStateChange) {
 		_afterActiveStateChange = afterActiveStateChange;
 
 		setScopedAttribute("afterActiveStateChange", afterActiveStateChange);
+	}
+
+	public void setAfterAddChild(java.lang.String afterAddChild) {
+		_afterAddChild = afterAddChild;
+
+		setScopedAttribute("afterAddChild", afterAddChild);
 	}
 
 	public void setAfterBoundingBoxChange(java.lang.String afterBoundingBoxChange) {
@@ -548,10 +630,22 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
+	public void setAfterMultipleChange(java.lang.String afterMultipleChange) {
+		_afterMultipleChange = afterMultipleChange;
+
+		setScopedAttribute("afterMultipleChange", afterMultipleChange);
+	}
+
 	public void setAfterOrientationChange(java.lang.String afterOrientationChange) {
 		_afterOrientationChange = afterOrientationChange;
 
 		setScopedAttribute("afterOrientationChange", afterOrientationChange);
+	}
+
+	public void setAfterRemoveChild(java.lang.String afterRemoveChild) {
+		_afterRemoveChild = afterRemoveChild;
+
+		setScopedAttribute("afterRemoveChild", afterRemoveChild);
 	}
 
 	public void setAfterRenderChange(java.lang.String afterRenderChange) {
@@ -564,6 +658,12 @@ public class BaseToolbarTag extends IncludeTag {
 		_afterRenderedChange = afterRenderedChange;
 
 		setScopedAttribute("afterRenderedChange", afterRenderedChange);
+	}
+
+	public void setAfterSelectionChange(java.lang.String afterSelectionChange) {
+		_afterSelectionChange = afterSelectionChange;
+
+		setScopedAttribute("afterSelectionChange", afterSelectionChange);
 	}
 
 	public void setAfterSrcNodeChange(java.lang.String afterSrcNodeChange) {
@@ -608,10 +708,22 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("afterWidthChange", afterWidthChange);
 	}
 
+	public void setOnActiveDescendantChange(java.lang.String onActiveDescendantChange) {
+		_onActiveDescendantChange = onActiveDescendantChange;
+
+		setScopedAttribute("onActiveDescendantChange", onActiveDescendantChange);
+	}
+
 	public void setOnActiveStateChange(java.lang.String onActiveStateChange) {
 		_onActiveStateChange = onActiveStateChange;
 
 		setScopedAttribute("onActiveStateChange", onActiveStateChange);
+	}
+
+	public void setOnAddChild(java.lang.String onAddChild) {
+		_onAddChild = onAddChild;
+
+		setScopedAttribute("onAddChild", onAddChild);
 	}
 
 	public void setOnBoundingBoxChange(java.lang.String onBoundingBoxChange) {
@@ -704,10 +816,22 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
+	public void setOnMultipleChange(java.lang.String onMultipleChange) {
+		_onMultipleChange = onMultipleChange;
+
+		setScopedAttribute("onMultipleChange", onMultipleChange);
+	}
+
 	public void setOnOrientationChange(java.lang.String onOrientationChange) {
 		_onOrientationChange = onOrientationChange;
 
 		setScopedAttribute("onOrientationChange", onOrientationChange);
+	}
+
+	public void setOnRemoveChild(java.lang.String onRemoveChild) {
+		_onRemoveChild = onRemoveChild;
+
+		setScopedAttribute("onRemoveChild", onRemoveChild);
 	}
 
 	public void setOnRenderChange(java.lang.String onRenderChange) {
@@ -720,6 +844,12 @@ public class BaseToolbarTag extends IncludeTag {
 		_onRenderedChange = onRenderedChange;
 
 		setScopedAttribute("onRenderedChange", onRenderedChange);
+	}
+
+	public void setOnSelectionChange(java.lang.String onSelectionChange) {
+		_onSelectionChange = onSelectionChange;
+
+		setScopedAttribute("onSelectionChange", onSelectionChange);
 	}
 
 	public void setOnSrcNodeChange(java.lang.String onSrcNodeChange) {
@@ -765,6 +895,7 @@ public class BaseToolbarTag extends IncludeTag {
 	}
 
 	protected void _setAttributes(HttpServletRequest request) {
+		setNamespacedAttribute(request, "activeDescendant", _activeDescendant);
 		setNamespacedAttribute(request, "activeState", _activeState);
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);
 		setNamespacedAttribute(request, "contentBox", _contentBox);
@@ -779,15 +910,19 @@ public class BaseToolbarTag extends IncludeTag {
 		setNamespacedAttribute(request, "hoverState", _hoverState);
 		setNamespacedAttribute(request, "toolbarId", _toolbarId);
 		setNamespacedAttribute(request, "initialized", _initialized);
+		setNamespacedAttribute(request, "multiple", _multiple);
 		setNamespacedAttribute(request, "orientation", _orientation);
 		setNamespacedAttribute(request, "render", _render);
 		setNamespacedAttribute(request, "rendered", _rendered);
+		setNamespacedAttribute(request, "selection", _selection);
 		setNamespacedAttribute(request, "srcNode", _srcNode);
 		setNamespacedAttribute(request, "strings", _strings);
 		setNamespacedAttribute(request, "tabIndex", _tabIndex);
 		setNamespacedAttribute(request, "visible", _visible);
 		setNamespacedAttribute(request, "width", _width);
+		setNamespacedAttribute(request, "afterActiveDescendantChange", _afterActiveDescendantChange);
 		setNamespacedAttribute(request, "afterActiveStateChange", _afterActiveStateChange);
+		setNamespacedAttribute(request, "afterAddChild", _afterAddChild);
 		setNamespacedAttribute(request, "afterBoundingBoxChange", _afterBoundingBoxChange);
 		setNamespacedAttribute(request, "afterContentBoxChange", _afterContentBoxChange);
 		setNamespacedAttribute(request, "afterCssClassChange", _afterCssClassChange);
@@ -803,9 +938,12 @@ public class BaseToolbarTag extends IncludeTag {
 		setNamespacedAttribute(request, "afterIdChange", _afterIdChange);
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
+		setNamespacedAttribute(request, "afterMultipleChange", _afterMultipleChange);
 		setNamespacedAttribute(request, "afterOrientationChange", _afterOrientationChange);
+		setNamespacedAttribute(request, "afterRemoveChild", _afterRemoveChild);
 		setNamespacedAttribute(request, "afterRenderChange", _afterRenderChange);
 		setNamespacedAttribute(request, "afterRenderedChange", _afterRenderedChange);
+		setNamespacedAttribute(request, "afterSelectionChange", _afterSelectionChange);
 		setNamespacedAttribute(request, "afterSrcNodeChange", _afterSrcNodeChange);
 		setNamespacedAttribute(request, "afterStringsChange", _afterStringsChange);
 		setNamespacedAttribute(request, "afterTabIndexChange", _afterTabIndexChange);
@@ -813,7 +951,9 @@ public class BaseToolbarTag extends IncludeTag {
 		setNamespacedAttribute(request, "afterContentUpdate", _afterContentUpdate);
 		setNamespacedAttribute(request, "afterRender", _afterRender);
 		setNamespacedAttribute(request, "afterWidthChange", _afterWidthChange);
+		setNamespacedAttribute(request, "onActiveDescendantChange", _onActiveDescendantChange);
 		setNamespacedAttribute(request, "onActiveStateChange", _onActiveStateChange);
+		setNamespacedAttribute(request, "onAddChild", _onAddChild);
 		setNamespacedAttribute(request, "onBoundingBoxChange", _onBoundingBoxChange);
 		setNamespacedAttribute(request, "onContentBoxChange", _onContentBoxChange);
 		setNamespacedAttribute(request, "onCssClassChange", _onCssClassChange);
@@ -829,9 +969,12 @@ public class BaseToolbarTag extends IncludeTag {
 		setNamespacedAttribute(request, "onIdChange", _onIdChange);
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
+		setNamespacedAttribute(request, "onMultipleChange", _onMultipleChange);
 		setNamespacedAttribute(request, "onOrientationChange", _onOrientationChange);
+		setNamespacedAttribute(request, "onRemoveChild", _onRemoveChild);
 		setNamespacedAttribute(request, "onRenderChange", _onRenderChange);
 		setNamespacedAttribute(request, "onRenderedChange", _onRenderedChange);
+		setNamespacedAttribute(request, "onSelectionChange", _onSelectionChange);
 		setNamespacedAttribute(request, "onSrcNodeChange", _onSrcNodeChange);
 		setNamespacedAttribute(request, "onStringsChange", _onStringsChange);
 		setNamespacedAttribute(request, "onTabIndexChange", _onTabIndexChange);
@@ -846,6 +989,7 @@ public class BaseToolbarTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/toolbar/page.jsp";
 
+	private java.lang.String _activeDescendant;
 	private java.lang.Boolean _activeState;
 	private java.lang.String _boundingBox;
 	private java.lang.String _contentBox;
@@ -860,15 +1004,19 @@ public class BaseToolbarTag extends IncludeTag {
 	private java.lang.Boolean _hoverState;
 	private java.lang.String _toolbarId;
 	private java.lang.Boolean _initialized;
+	private java.lang.Boolean _multiple;
 	private java.lang.String _orientation;
 	private java.lang.Boolean _render;
 	private java.lang.Boolean _rendered;
+	private java.lang.String _selection;
 	private java.lang.String _srcNode;
 	private java.lang.Object _strings;
 	private java.lang.Number _tabIndex;
 	private java.lang.Boolean _visible;
 	private java.lang.String _width;
+	private java.lang.String _afterActiveDescendantChange;
 	private java.lang.String _afterActiveStateChange;
+	private java.lang.String _afterAddChild;
 	private java.lang.String _afterBoundingBoxChange;
 	private java.lang.String _afterContentBoxChange;
 	private java.lang.String _afterCssClassChange;
@@ -884,9 +1032,12 @@ public class BaseToolbarTag extends IncludeTag {
 	private java.lang.String _afterIdChange;
 	private java.lang.String _afterInit;
 	private java.lang.String _afterInitializedChange;
+	private java.lang.String _afterMultipleChange;
 	private java.lang.String _afterOrientationChange;
+	private java.lang.String _afterRemoveChild;
 	private java.lang.String _afterRenderChange;
 	private java.lang.String _afterRenderedChange;
+	private java.lang.String _afterSelectionChange;
 	private java.lang.String _afterSrcNodeChange;
 	private java.lang.String _afterStringsChange;
 	private java.lang.String _afterTabIndexChange;
@@ -894,7 +1045,9 @@ public class BaseToolbarTag extends IncludeTag {
 	private java.lang.String _afterContentUpdate;
 	private java.lang.String _afterRender;
 	private java.lang.String _afterWidthChange;
+	private java.lang.String _onActiveDescendantChange;
 	private java.lang.String _onActiveStateChange;
+	private java.lang.String _onAddChild;
 	private java.lang.String _onBoundingBoxChange;
 	private java.lang.String _onContentBoxChange;
 	private java.lang.String _onCssClassChange;
@@ -910,9 +1063,12 @@ public class BaseToolbarTag extends IncludeTag {
 	private java.lang.String _onIdChange;
 	private java.lang.String _onInit;
 	private java.lang.String _onInitializedChange;
+	private java.lang.String _onMultipleChange;
 	private java.lang.String _onOrientationChange;
+	private java.lang.String _onRemoveChild;
 	private java.lang.String _onRenderChange;
 	private java.lang.String _onRenderedChange;
+	private java.lang.String _onSelectionChange;
 	private java.lang.String _onSrcNodeChange;
 	private java.lang.String _onStringsChange;
 	private java.lang.String _onTabIndexChange;

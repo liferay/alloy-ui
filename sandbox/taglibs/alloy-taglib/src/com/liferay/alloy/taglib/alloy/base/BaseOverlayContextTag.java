@@ -28,12 +28,24 @@ public class BaseOverlayContextTag extends IncludeTag {
 		return _align;
 	}
 
+	public java.lang.String getOverlaycontextBodyContent() {
+		return _overlaycontextBodyContent;
+	}
+
 	public java.lang.String getBoundingBox() {
 		return _boundingBox;
 	}
 
 	public java.lang.Boolean getCancellableHide() {
 		return _cancellableHide;
+	}
+
+	public java.lang.String getCentered() {
+		return _centered;
+	}
+
+	public java.lang.String getConstrain() {
+		return _constrain;
 	}
 
 	public java.lang.String getContentBox() {
@@ -56,8 +68,20 @@ public class BaseOverlayContextTag extends IncludeTag {
 		return _disabled;
 	}
 
+	public java.lang.String getFillHeight() {
+		return _fillHeight;
+	}
+
 	public java.lang.Boolean getFocused() {
 		return _focused;
+	}
+
+	public java.lang.String getFooterContent() {
+		return _footerContent;
+	}
+
+	public java.lang.String getHeaderContent() {
+		return _headerContent;
 	}
 
 	public java.lang.String getHeight() {
@@ -88,12 +112,20 @@ public class BaseOverlayContextTag extends IncludeTag {
 		return _initialized;
 	}
 
+	public java.lang.Boolean getPreventOverlap() {
+		return _preventOverlap;
+	}
+
 	public java.lang.Boolean getRender() {
 		return _render;
 	}
 
 	public java.lang.Boolean getRendered() {
 		return _rendered;
+	}
+
+	public java.lang.Boolean getShim() {
+		return _shim;
 	}
 
 	public java.lang.Number getShowDelay() {
@@ -128,8 +160,28 @@ public class BaseOverlayContextTag extends IncludeTag {
 		return _width;
 	}
 
+	public java.lang.Number getX() {
+		return _x;
+	}
+
+	public java.lang.String getXy() {
+		return _xy;
+	}
+
+	public java.lang.Number getY() {
+		return _y;
+	}
+
+	public java.lang.Number getZIndex() {
+		return _zIndex;
+	}
+
 	public java.lang.String getAfterAlignChange() {
 		return _afterAlignChange;
+	}
+
+	public java.lang.String getAfterBodyContentChange() {
+		return _afterBodyContentChange;
 	}
 
 	public java.lang.String getAfterBoundingBoxChange() {
@@ -138,6 +190,14 @@ public class BaseOverlayContextTag extends IncludeTag {
 
 	public java.lang.String getAfterCancellableHideChange() {
 		return _afterCancellableHideChange;
+	}
+
+	public java.lang.String getAfterCenteredChange() {
+		return _afterCenteredChange;
+	}
+
+	public java.lang.String getAfterConstrainChange() {
+		return _afterConstrainChange;
 	}
 
 	public java.lang.String getAfterContentBoxChange() {
@@ -164,8 +224,20 @@ public class BaseOverlayContextTag extends IncludeTag {
 		return _afterDisabledChange;
 	}
 
+	public java.lang.String getAfterFillHeightChange() {
+		return _afterFillHeightChange;
+	}
+
 	public java.lang.String getAfterFocusedChange() {
 		return _afterFocusedChange;
+	}
+
+	public java.lang.String getAfterFooterContentChange() {
+		return _afterFooterContentChange;
+	}
+
+	public java.lang.String getAfterHeaderContentChange() {
+		return _afterHeaderContentChange;
 	}
 
 	public java.lang.String getAfterHeightChange() {
@@ -200,12 +272,20 @@ public class BaseOverlayContextTag extends IncludeTag {
 		return _afterInitializedChange;
 	}
 
+	public java.lang.String getAfterPreventOverlapChange() {
+		return _afterPreventOverlapChange;
+	}
+
 	public java.lang.String getAfterRenderChange() {
 		return _afterRenderChange;
 	}
 
 	public java.lang.String getAfterRenderedChange() {
 		return _afterRenderedChange;
+	}
+
+	public java.lang.String getAfterShimChange() {
+		return _afterShimChange;
 	}
 
 	public java.lang.String getAfterShowDelayChange() {
@@ -248,8 +328,28 @@ public class BaseOverlayContextTag extends IncludeTag {
 		return _afterWidthChange;
 	}
 
+	public java.lang.String getAfterXChange() {
+		return _afterXChange;
+	}
+
+	public java.lang.String getAfterXyChange() {
+		return _afterXyChange;
+	}
+
+	public java.lang.String getAfterYChange() {
+		return _afterYChange;
+	}
+
+	public java.lang.String getAfterZIndexChange() {
+		return _afterZIndexChange;
+	}
+
 	public java.lang.String getOnAlignChange() {
 		return _onAlignChange;
+	}
+
+	public java.lang.String getOnBodyContentChange() {
+		return _onBodyContentChange;
 	}
 
 	public java.lang.String getOnBoundingBoxChange() {
@@ -258,6 +358,14 @@ public class BaseOverlayContextTag extends IncludeTag {
 
 	public java.lang.String getOnCancellableHideChange() {
 		return _onCancellableHideChange;
+	}
+
+	public java.lang.String getOnCenteredChange() {
+		return _onCenteredChange;
+	}
+
+	public java.lang.String getOnConstrainChange() {
+		return _onConstrainChange;
 	}
 
 	public java.lang.String getOnContentBoxChange() {
@@ -284,8 +392,20 @@ public class BaseOverlayContextTag extends IncludeTag {
 		return _onDisabledChange;
 	}
 
+	public java.lang.String getOnFillHeightChange() {
+		return _onFillHeightChange;
+	}
+
 	public java.lang.String getOnFocusedChange() {
 		return _onFocusedChange;
+	}
+
+	public java.lang.String getOnFooterContentChange() {
+		return _onFooterContentChange;
+	}
+
+	public java.lang.String getOnHeaderContentChange() {
+		return _onHeaderContentChange;
 	}
 
 	public java.lang.String getOnHeightChange() {
@@ -320,12 +440,20 @@ public class BaseOverlayContextTag extends IncludeTag {
 		return _onInitializedChange;
 	}
 
+	public java.lang.String getOnPreventOverlapChange() {
+		return _onPreventOverlapChange;
+	}
+
 	public java.lang.String getOnRenderChange() {
 		return _onRenderChange;
 	}
 
 	public java.lang.String getOnRenderedChange() {
 		return _onRenderedChange;
+	}
+
+	public java.lang.String getOnShimChange() {
+		return _onShimChange;
 	}
 
 	public java.lang.String getOnShowDelayChange() {
@@ -368,10 +496,32 @@ public class BaseOverlayContextTag extends IncludeTag {
 		return _onWidthChange;
 	}
 
+	public java.lang.String getOnXChange() {
+		return _onXChange;
+	}
+
+	public java.lang.String getOnXyChange() {
+		return _onXyChange;
+	}
+
+	public java.lang.String getOnYChange() {
+		return _onYChange;
+	}
+
+	public java.lang.String getOnZIndexChange() {
+		return _onZIndexChange;
+	}
+
 	public void setAlign(java.lang.Object align) {
 		_align = align;
 
 		setScopedAttribute("align", align);
+	}
+
+	public void setOverlaycontextBodyContent(java.lang.String overlaycontextBodyContent) {
+		_overlaycontextBodyContent = overlaycontextBodyContent;
+
+		setScopedAttribute("overlaycontextBodyContent", overlaycontextBodyContent);
 	}
 
 	public void setBoundingBox(java.lang.String boundingBox) {
@@ -384,6 +534,18 @@ public class BaseOverlayContextTag extends IncludeTag {
 		_cancellableHide = cancellableHide;
 
 		setScopedAttribute("cancellableHide", cancellableHide);
+	}
+
+	public void setCentered(java.lang.String centered) {
+		_centered = centered;
+
+		setScopedAttribute("centered", centered);
+	}
+
+	public void setConstrain(java.lang.String constrain) {
+		_constrain = constrain;
+
+		setScopedAttribute("constrain", constrain);
 	}
 
 	public void setContentBox(java.lang.String contentBox) {
@@ -416,10 +578,28 @@ public class BaseOverlayContextTag extends IncludeTag {
 		setScopedAttribute("disabled", disabled);
 	}
 
+	public void setFillHeight(java.lang.String fillHeight) {
+		_fillHeight = fillHeight;
+
+		setScopedAttribute("fillHeight", fillHeight);
+	}
+
 	public void setFocused(java.lang.Boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
+	}
+
+	public void setFooterContent(java.lang.String footerContent) {
+		_footerContent = footerContent;
+
+		setScopedAttribute("footerContent", footerContent);
+	}
+
+	public void setHeaderContent(java.lang.String headerContent) {
+		_headerContent = headerContent;
+
+		setScopedAttribute("headerContent", headerContent);
 	}
 
 	public void setHeight(java.lang.String height) {
@@ -464,6 +644,12 @@ public class BaseOverlayContextTag extends IncludeTag {
 		setScopedAttribute("initialized", initialized);
 	}
 
+	public void setPreventOverlap(java.lang.Boolean preventOverlap) {
+		_preventOverlap = preventOverlap;
+
+		setScopedAttribute("preventOverlap", preventOverlap);
+	}
+
 	public void setRender(java.lang.Boolean render) {
 		_render = render;
 
@@ -474,6 +660,12 @@ public class BaseOverlayContextTag extends IncludeTag {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
+	}
+
+	public void setShim(java.lang.Boolean shim) {
+		_shim = shim;
+
+		setScopedAttribute("shim", shim);
 	}
 
 	public void setShowDelay(java.lang.Number showDelay) {
@@ -524,10 +716,40 @@ public class BaseOverlayContextTag extends IncludeTag {
 		setScopedAttribute("width", width);
 	}
 
+	public void setX(java.lang.Number x) {
+		_x = x;
+
+		setScopedAttribute("x", x);
+	}
+
+	public void setXy(java.lang.String xy) {
+		_xy = xy;
+
+		setScopedAttribute("xy", xy);
+	}
+
+	public void setY(java.lang.Number y) {
+		_y = y;
+
+		setScopedAttribute("y", y);
+	}
+
+	public void setZIndex(java.lang.Number zIndex) {
+		_zIndex = zIndex;
+
+		setScopedAttribute("zIndex", zIndex);
+	}
+
 	public void setAfterAlignChange(java.lang.String afterAlignChange) {
 		_afterAlignChange = afterAlignChange;
 
 		setScopedAttribute("afterAlignChange", afterAlignChange);
+	}
+
+	public void setAfterBodyContentChange(java.lang.String afterBodyContentChange) {
+		_afterBodyContentChange = afterBodyContentChange;
+
+		setScopedAttribute("afterBodyContentChange", afterBodyContentChange);
 	}
 
 	public void setAfterBoundingBoxChange(java.lang.String afterBoundingBoxChange) {
@@ -540,6 +762,18 @@ public class BaseOverlayContextTag extends IncludeTag {
 		_afterCancellableHideChange = afterCancellableHideChange;
 
 		setScopedAttribute("afterCancellableHideChange", afterCancellableHideChange);
+	}
+
+	public void setAfterCenteredChange(java.lang.String afterCenteredChange) {
+		_afterCenteredChange = afterCenteredChange;
+
+		setScopedAttribute("afterCenteredChange", afterCenteredChange);
+	}
+
+	public void setAfterConstrainChange(java.lang.String afterConstrainChange) {
+		_afterConstrainChange = afterConstrainChange;
+
+		setScopedAttribute("afterConstrainChange", afterConstrainChange);
 	}
 
 	public void setAfterContentBoxChange(java.lang.String afterContentBoxChange) {
@@ -578,10 +812,28 @@ public class BaseOverlayContextTag extends IncludeTag {
 		setScopedAttribute("afterDisabledChange", afterDisabledChange);
 	}
 
+	public void setAfterFillHeightChange(java.lang.String afterFillHeightChange) {
+		_afterFillHeightChange = afterFillHeightChange;
+
+		setScopedAttribute("afterFillHeightChange", afterFillHeightChange);
+	}
+
 	public void setAfterFocusedChange(java.lang.String afterFocusedChange) {
 		_afterFocusedChange = afterFocusedChange;
 
 		setScopedAttribute("afterFocusedChange", afterFocusedChange);
+	}
+
+	public void setAfterFooterContentChange(java.lang.String afterFooterContentChange) {
+		_afterFooterContentChange = afterFooterContentChange;
+
+		setScopedAttribute("afterFooterContentChange", afterFooterContentChange);
+	}
+
+	public void setAfterHeaderContentChange(java.lang.String afterHeaderContentChange) {
+		_afterHeaderContentChange = afterHeaderContentChange;
+
+		setScopedAttribute("afterHeaderContentChange", afterHeaderContentChange);
 	}
 
 	public void setAfterHeightChange(java.lang.String afterHeightChange) {
@@ -632,6 +884,12 @@ public class BaseOverlayContextTag extends IncludeTag {
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
+	public void setAfterPreventOverlapChange(java.lang.String afterPreventOverlapChange) {
+		_afterPreventOverlapChange = afterPreventOverlapChange;
+
+		setScopedAttribute("afterPreventOverlapChange", afterPreventOverlapChange);
+	}
+
 	public void setAfterRenderChange(java.lang.String afterRenderChange) {
 		_afterRenderChange = afterRenderChange;
 
@@ -642,6 +900,12 @@ public class BaseOverlayContextTag extends IncludeTag {
 		_afterRenderedChange = afterRenderedChange;
 
 		setScopedAttribute("afterRenderedChange", afterRenderedChange);
+	}
+
+	public void setAfterShimChange(java.lang.String afterShimChange) {
+		_afterShimChange = afterShimChange;
+
+		setScopedAttribute("afterShimChange", afterShimChange);
 	}
 
 	public void setAfterShowDelayChange(java.lang.String afterShowDelayChange) {
@@ -704,10 +968,40 @@ public class BaseOverlayContextTag extends IncludeTag {
 		setScopedAttribute("afterWidthChange", afterWidthChange);
 	}
 
+	public void setAfterXChange(java.lang.String afterXChange) {
+		_afterXChange = afterXChange;
+
+		setScopedAttribute("afterXChange", afterXChange);
+	}
+
+	public void setAfterXyChange(java.lang.String afterXyChange) {
+		_afterXyChange = afterXyChange;
+
+		setScopedAttribute("afterXyChange", afterXyChange);
+	}
+
+	public void setAfterYChange(java.lang.String afterYChange) {
+		_afterYChange = afterYChange;
+
+		setScopedAttribute("afterYChange", afterYChange);
+	}
+
+	public void setAfterZIndexChange(java.lang.String afterZIndexChange) {
+		_afterZIndexChange = afterZIndexChange;
+
+		setScopedAttribute("afterZIndexChange", afterZIndexChange);
+	}
+
 	public void setOnAlignChange(java.lang.String onAlignChange) {
 		_onAlignChange = onAlignChange;
 
 		setScopedAttribute("onAlignChange", onAlignChange);
+	}
+
+	public void setOnBodyContentChange(java.lang.String onBodyContentChange) {
+		_onBodyContentChange = onBodyContentChange;
+
+		setScopedAttribute("onBodyContentChange", onBodyContentChange);
 	}
 
 	public void setOnBoundingBoxChange(java.lang.String onBoundingBoxChange) {
@@ -720,6 +1014,18 @@ public class BaseOverlayContextTag extends IncludeTag {
 		_onCancellableHideChange = onCancellableHideChange;
 
 		setScopedAttribute("onCancellableHideChange", onCancellableHideChange);
+	}
+
+	public void setOnCenteredChange(java.lang.String onCenteredChange) {
+		_onCenteredChange = onCenteredChange;
+
+		setScopedAttribute("onCenteredChange", onCenteredChange);
+	}
+
+	public void setOnConstrainChange(java.lang.String onConstrainChange) {
+		_onConstrainChange = onConstrainChange;
+
+		setScopedAttribute("onConstrainChange", onConstrainChange);
 	}
 
 	public void setOnContentBoxChange(java.lang.String onContentBoxChange) {
@@ -758,10 +1064,28 @@ public class BaseOverlayContextTag extends IncludeTag {
 		setScopedAttribute("onDisabledChange", onDisabledChange);
 	}
 
+	public void setOnFillHeightChange(java.lang.String onFillHeightChange) {
+		_onFillHeightChange = onFillHeightChange;
+
+		setScopedAttribute("onFillHeightChange", onFillHeightChange);
+	}
+
 	public void setOnFocusedChange(java.lang.String onFocusedChange) {
 		_onFocusedChange = onFocusedChange;
 
 		setScopedAttribute("onFocusedChange", onFocusedChange);
+	}
+
+	public void setOnFooterContentChange(java.lang.String onFooterContentChange) {
+		_onFooterContentChange = onFooterContentChange;
+
+		setScopedAttribute("onFooterContentChange", onFooterContentChange);
+	}
+
+	public void setOnHeaderContentChange(java.lang.String onHeaderContentChange) {
+		_onHeaderContentChange = onHeaderContentChange;
+
+		setScopedAttribute("onHeaderContentChange", onHeaderContentChange);
 	}
 
 	public void setOnHeightChange(java.lang.String onHeightChange) {
@@ -812,6 +1136,12 @@ public class BaseOverlayContextTag extends IncludeTag {
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
+	public void setOnPreventOverlapChange(java.lang.String onPreventOverlapChange) {
+		_onPreventOverlapChange = onPreventOverlapChange;
+
+		setScopedAttribute("onPreventOverlapChange", onPreventOverlapChange);
+	}
+
 	public void setOnRenderChange(java.lang.String onRenderChange) {
 		_onRenderChange = onRenderChange;
 
@@ -822,6 +1152,12 @@ public class BaseOverlayContextTag extends IncludeTag {
 		_onRenderedChange = onRenderedChange;
 
 		setScopedAttribute("onRenderedChange", onRenderedChange);
+	}
+
+	public void setOnShimChange(java.lang.String onShimChange) {
+		_onShimChange = onShimChange;
+
+		setScopedAttribute("onShimChange", onShimChange);
 	}
 
 	public void setOnShowDelayChange(java.lang.String onShowDelayChange) {
@@ -884,16 +1220,46 @@ public class BaseOverlayContextTag extends IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
+	public void setOnXChange(java.lang.String onXChange) {
+		_onXChange = onXChange;
+
+		setScopedAttribute("onXChange", onXChange);
+	}
+
+	public void setOnXyChange(java.lang.String onXyChange) {
+		_onXyChange = onXyChange;
+
+		setScopedAttribute("onXyChange", onXyChange);
+	}
+
+	public void setOnYChange(java.lang.String onYChange) {
+		_onYChange = onYChange;
+
+		setScopedAttribute("onYChange", onYChange);
+	}
+
+	public void setOnZIndexChange(java.lang.String onZIndexChange) {
+		_onZIndexChange = onZIndexChange;
+
+		setScopedAttribute("onZIndexChange", onZIndexChange);
+	}
+
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "align", _align);
+		setNamespacedAttribute(request, "overlaycontextBodyContent", _overlaycontextBodyContent);
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);
 		setNamespacedAttribute(request, "cancellableHide", _cancellableHide);
+		setNamespacedAttribute(request, "centered", _centered);
+		setNamespacedAttribute(request, "constrain", _constrain);
 		setNamespacedAttribute(request, "contentBox", _contentBox);
 		setNamespacedAttribute(request, "cssClass", _cssClass);
 		setNamespacedAttribute(request, "currentNode", _currentNode);
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "disabled", _disabled);
+		setNamespacedAttribute(request, "fillHeight", _fillHeight);
 		setNamespacedAttribute(request, "focused", _focused);
+		setNamespacedAttribute(request, "footerContent", _footerContent);
+		setNamespacedAttribute(request, "headerContent", _headerContent);
 		setNamespacedAttribute(request, "height", _height);
 		setNamespacedAttribute(request, "hideClass", _hideClass);
 		setNamespacedAttribute(request, "hideDelay", _hideDelay);
@@ -901,8 +1267,10 @@ public class BaseOverlayContextTag extends IncludeTag {
 		setNamespacedAttribute(request, "hideOnDocumentClick", _hideOnDocumentClick);
 		setNamespacedAttribute(request, "overlaycontextId", _overlaycontextId);
 		setNamespacedAttribute(request, "initialized", _initialized);
+		setNamespacedAttribute(request, "preventOverlap", _preventOverlap);
 		setNamespacedAttribute(request, "render", _render);
 		setNamespacedAttribute(request, "rendered", _rendered);
+		setNamespacedAttribute(request, "shim", _shim);
 		setNamespacedAttribute(request, "showDelay", _showDelay);
 		setNamespacedAttribute(request, "showOn", _showOn);
 		setNamespacedAttribute(request, "srcNode", _srcNode);
@@ -911,16 +1279,26 @@ public class BaseOverlayContextTag extends IncludeTag {
 		setNamespacedAttribute(request, "trigger", _trigger);
 		setNamespacedAttribute(request, "visible", _visible);
 		setNamespacedAttribute(request, "width", _width);
+		setNamespacedAttribute(request, "x", _x);
+		setNamespacedAttribute(request, "xy", _xy);
+		setNamespacedAttribute(request, "y", _y);
+		setNamespacedAttribute(request, "zIndex", _zIndex);
 		setNamespacedAttribute(request, "afterAlignChange", _afterAlignChange);
+		setNamespacedAttribute(request, "afterBodyContentChange", _afterBodyContentChange);
 		setNamespacedAttribute(request, "afterBoundingBoxChange", _afterBoundingBoxChange);
 		setNamespacedAttribute(request, "afterCancellableHideChange", _afterCancellableHideChange);
+		setNamespacedAttribute(request, "afterCenteredChange", _afterCenteredChange);
+		setNamespacedAttribute(request, "afterConstrainChange", _afterConstrainChange);
 		setNamespacedAttribute(request, "afterContentBoxChange", _afterContentBoxChange);
 		setNamespacedAttribute(request, "afterCssClassChange", _afterCssClassChange);
 		setNamespacedAttribute(request, "afterCurrentNodeChange", _afterCurrentNodeChange);
 		setNamespacedAttribute(request, "afterDestroy", _afterDestroy);
 		setNamespacedAttribute(request, "afterDestroyedChange", _afterDestroyedChange);
 		setNamespacedAttribute(request, "afterDisabledChange", _afterDisabledChange);
+		setNamespacedAttribute(request, "afterFillHeightChange", _afterFillHeightChange);
 		setNamespacedAttribute(request, "afterFocusedChange", _afterFocusedChange);
+		setNamespacedAttribute(request, "afterFooterContentChange", _afterFooterContentChange);
+		setNamespacedAttribute(request, "afterHeaderContentChange", _afterHeaderContentChange);
 		setNamespacedAttribute(request, "afterHeightChange", _afterHeightChange);
 		setNamespacedAttribute(request, "afterHideClassChange", _afterHideClassChange);
 		setNamespacedAttribute(request, "afterHideDelayChange", _afterHideDelayChange);
@@ -929,8 +1307,10 @@ public class BaseOverlayContextTag extends IncludeTag {
 		setNamespacedAttribute(request, "afterIdChange", _afterIdChange);
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
+		setNamespacedAttribute(request, "afterPreventOverlapChange", _afterPreventOverlapChange);
 		setNamespacedAttribute(request, "afterRenderChange", _afterRenderChange);
 		setNamespacedAttribute(request, "afterRenderedChange", _afterRenderedChange);
+		setNamespacedAttribute(request, "afterShimChange", _afterShimChange);
 		setNamespacedAttribute(request, "afterShowDelayChange", _afterShowDelayChange);
 		setNamespacedAttribute(request, "afterShowOnChange", _afterShowOnChange);
 		setNamespacedAttribute(request, "afterSrcNodeChange", _afterSrcNodeChange);
@@ -941,16 +1321,26 @@ public class BaseOverlayContextTag extends IncludeTag {
 		setNamespacedAttribute(request, "afterContentUpdate", _afterContentUpdate);
 		setNamespacedAttribute(request, "afterRender", _afterRender);
 		setNamespacedAttribute(request, "afterWidthChange", _afterWidthChange);
+		setNamespacedAttribute(request, "afterXChange", _afterXChange);
+		setNamespacedAttribute(request, "afterXyChange", _afterXyChange);
+		setNamespacedAttribute(request, "afterYChange", _afterYChange);
+		setNamespacedAttribute(request, "afterZIndexChange", _afterZIndexChange);
 		setNamespacedAttribute(request, "onAlignChange", _onAlignChange);
+		setNamespacedAttribute(request, "onBodyContentChange", _onBodyContentChange);
 		setNamespacedAttribute(request, "onBoundingBoxChange", _onBoundingBoxChange);
 		setNamespacedAttribute(request, "onCancellableHideChange", _onCancellableHideChange);
+		setNamespacedAttribute(request, "onCenteredChange", _onCenteredChange);
+		setNamespacedAttribute(request, "onConstrainChange", _onConstrainChange);
 		setNamespacedAttribute(request, "onContentBoxChange", _onContentBoxChange);
 		setNamespacedAttribute(request, "onCssClassChange", _onCssClassChange);
 		setNamespacedAttribute(request, "onCurrentNodeChange", _onCurrentNodeChange);
 		setNamespacedAttribute(request, "onDestroy", _onDestroy);
 		setNamespacedAttribute(request, "onDestroyedChange", _onDestroyedChange);
 		setNamespacedAttribute(request, "onDisabledChange", _onDisabledChange);
+		setNamespacedAttribute(request, "onFillHeightChange", _onFillHeightChange);
 		setNamespacedAttribute(request, "onFocusedChange", _onFocusedChange);
+		setNamespacedAttribute(request, "onFooterContentChange", _onFooterContentChange);
+		setNamespacedAttribute(request, "onHeaderContentChange", _onHeaderContentChange);
 		setNamespacedAttribute(request, "onHeightChange", _onHeightChange);
 		setNamespacedAttribute(request, "onHideClassChange", _onHideClassChange);
 		setNamespacedAttribute(request, "onHideDelayChange", _onHideDelayChange);
@@ -959,8 +1349,10 @@ public class BaseOverlayContextTag extends IncludeTag {
 		setNamespacedAttribute(request, "onIdChange", _onIdChange);
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
+		setNamespacedAttribute(request, "onPreventOverlapChange", _onPreventOverlapChange);
 		setNamespacedAttribute(request, "onRenderChange", _onRenderChange);
 		setNamespacedAttribute(request, "onRenderedChange", _onRenderedChange);
+		setNamespacedAttribute(request, "onShimChange", _onShimChange);
 		setNamespacedAttribute(request, "onShowDelayChange", _onShowDelayChange);
 		setNamespacedAttribute(request, "onShowOnChange", _onShowOnChange);
 		setNamespacedAttribute(request, "onSrcNodeChange", _onSrcNodeChange);
@@ -971,6 +1363,10 @@ public class BaseOverlayContextTag extends IncludeTag {
 		setNamespacedAttribute(request, "onContentUpdate", _onContentUpdate);
 		setNamespacedAttribute(request, "onRender", _onRender);
 		setNamespacedAttribute(request, "onWidthChange", _onWidthChange);
+		setNamespacedAttribute(request, "onXChange", _onXChange);
+		setNamespacedAttribute(request, "onXyChange", _onXyChange);
+		setNamespacedAttribute(request, "onYChange", _onYChange);
+		setNamespacedAttribute(request, "onZIndexChange", _onZIndexChange);
 	}
 
 	private static final String _ATTRIBUTE_NAMESPACE = "alloy:overlay-context:";
@@ -979,14 +1375,20 @@ public class BaseOverlayContextTag extends IncludeTag {
 		"/html/taglib/alloy/overlay_context/page.jsp";
 
 	private java.lang.Object _align;
+	private java.lang.String _overlaycontextBodyContent;
 	private java.lang.String _boundingBox;
 	private java.lang.Boolean _cancellableHide;
+	private java.lang.String _centered;
+	private java.lang.String _constrain;
 	private java.lang.String _contentBox;
 	private java.lang.String _cssClass;
 	private java.lang.String _currentNode;
 	private java.lang.Boolean _destroyed;
 	private java.lang.Boolean _disabled;
+	private java.lang.String _fillHeight;
 	private java.lang.Boolean _focused;
+	private java.lang.String _footerContent;
+	private java.lang.String _headerContent;
 	private java.lang.String _height;
 	private java.lang.String _hideClass;
 	private java.lang.Number _hideDelay;
@@ -994,8 +1396,10 @@ public class BaseOverlayContextTag extends IncludeTag {
 	private java.lang.Boolean _hideOnDocumentClick;
 	private java.lang.String _overlaycontextId;
 	private java.lang.Boolean _initialized;
+	private java.lang.Boolean _preventOverlap;
 	private java.lang.Boolean _render;
 	private java.lang.Boolean _rendered;
+	private java.lang.Boolean _shim;
 	private java.lang.Number _showDelay;
 	private java.lang.String _showOn;
 	private java.lang.String _srcNode;
@@ -1004,16 +1408,26 @@ public class BaseOverlayContextTag extends IncludeTag {
 	private java.lang.String _trigger;
 	private java.lang.Boolean _visible;
 	private java.lang.String _width;
+	private java.lang.Number _x;
+	private java.lang.String _xy;
+	private java.lang.Number _y;
+	private java.lang.Number _zIndex;
 	private java.lang.String _afterAlignChange;
+	private java.lang.String _afterBodyContentChange;
 	private java.lang.String _afterBoundingBoxChange;
 	private java.lang.String _afterCancellableHideChange;
+	private java.lang.String _afterCenteredChange;
+	private java.lang.String _afterConstrainChange;
 	private java.lang.String _afterContentBoxChange;
 	private java.lang.String _afterCssClassChange;
 	private java.lang.String _afterCurrentNodeChange;
 	private java.lang.String _afterDestroy;
 	private java.lang.String _afterDestroyedChange;
 	private java.lang.String _afterDisabledChange;
+	private java.lang.String _afterFillHeightChange;
 	private java.lang.String _afterFocusedChange;
+	private java.lang.String _afterFooterContentChange;
+	private java.lang.String _afterHeaderContentChange;
 	private java.lang.String _afterHeightChange;
 	private java.lang.String _afterHideClassChange;
 	private java.lang.String _afterHideDelayChange;
@@ -1022,8 +1436,10 @@ public class BaseOverlayContextTag extends IncludeTag {
 	private java.lang.String _afterIdChange;
 	private java.lang.String _afterInit;
 	private java.lang.String _afterInitializedChange;
+	private java.lang.String _afterPreventOverlapChange;
 	private java.lang.String _afterRenderChange;
 	private java.lang.String _afterRenderedChange;
+	private java.lang.String _afterShimChange;
 	private java.lang.String _afterShowDelayChange;
 	private java.lang.String _afterShowOnChange;
 	private java.lang.String _afterSrcNodeChange;
@@ -1034,16 +1450,26 @@ public class BaseOverlayContextTag extends IncludeTag {
 	private java.lang.String _afterContentUpdate;
 	private java.lang.String _afterRender;
 	private java.lang.String _afterWidthChange;
+	private java.lang.String _afterXChange;
+	private java.lang.String _afterXyChange;
+	private java.lang.String _afterYChange;
+	private java.lang.String _afterZIndexChange;
 	private java.lang.String _onAlignChange;
+	private java.lang.String _onBodyContentChange;
 	private java.lang.String _onBoundingBoxChange;
 	private java.lang.String _onCancellableHideChange;
+	private java.lang.String _onCenteredChange;
+	private java.lang.String _onConstrainChange;
 	private java.lang.String _onContentBoxChange;
 	private java.lang.String _onCssClassChange;
 	private java.lang.String _onCurrentNodeChange;
 	private java.lang.String _onDestroy;
 	private java.lang.String _onDestroyedChange;
 	private java.lang.String _onDisabledChange;
+	private java.lang.String _onFillHeightChange;
 	private java.lang.String _onFocusedChange;
+	private java.lang.String _onFooterContentChange;
+	private java.lang.String _onHeaderContentChange;
 	private java.lang.String _onHeightChange;
 	private java.lang.String _onHideClassChange;
 	private java.lang.String _onHideDelayChange;
@@ -1052,8 +1478,10 @@ public class BaseOverlayContextTag extends IncludeTag {
 	private java.lang.String _onIdChange;
 	private java.lang.String _onInit;
 	private java.lang.String _onInitializedChange;
+	private java.lang.String _onPreventOverlapChange;
 	private java.lang.String _onRenderChange;
 	private java.lang.String _onRenderedChange;
+	private java.lang.String _onShimChange;
 	private java.lang.String _onShowDelayChange;
 	private java.lang.String _onShowOnChange;
 	private java.lang.String _onSrcNodeChange;
@@ -1064,5 +1492,9 @@ public class BaseOverlayContextTag extends IncludeTag {
 	private java.lang.String _onContentUpdate;
 	private java.lang.String _onRender;
 	private java.lang.String _onWidthChange;
+	private java.lang.String _onXChange;
+	private java.lang.String _onXyChange;
+	private java.lang.String _onYChange;
+	private java.lang.String _onZIndexChange;
 
 }

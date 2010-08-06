@@ -24,6 +24,10 @@ public class BaseImageViewerTag extends IncludeTag {
 		return _PAGE;
 	}
 
+	public java.lang.Object getAlign() {
+		return _align;
+	}
+
 	public java.lang.Boolean getAnim() {
 		return _anim;
 	}
@@ -34,6 +38,10 @@ public class BaseImageViewerTag extends IncludeTag {
 
 	public java.lang.String getArrowRightEl() {
 		return _arrowRightEl;
+	}
+
+	public java.lang.String getImageviewerBodyContent() {
+		return _imageviewerBodyContent;
 	}
 
 	public java.lang.String getBoundingBox() {
@@ -60,6 +68,10 @@ public class BaseImageViewerTag extends IncludeTag {
 		return _closeEl;
 	}
 
+	public java.lang.String getConstrain() {
+		return _constrain;
+	}
+
 	public java.lang.String getContentBox() {
 		return _contentBox;
 	}
@@ -80,8 +92,20 @@ public class BaseImageViewerTag extends IncludeTag {
 		return _disabled;
 	}
 
+	public java.lang.String getFillHeight() {
+		return _fillHeight;
+	}
+
 	public java.lang.Boolean getFocused() {
 		return _focused;
+	}
+
+	public java.lang.String getFooterContent() {
+		return _footerContent;
+	}
+
+	public java.lang.String getHeaderContent() {
+		return _headerContent;
 	}
 
 	public java.lang.String getHeight() {
@@ -148,12 +172,20 @@ public class BaseImageViewerTag extends IncludeTag {
 		return _preloadAllImages;
 	}
 
+	public java.lang.Boolean getPreventOverlap() {
+		return _preventOverlap;
+	}
+
 	public java.lang.Boolean getRender() {
 		return _render;
 	}
 
 	public java.lang.Boolean getRendered() {
 		return _rendered;
+	}
+
+	public java.lang.Boolean getShim() {
+		return _shim;
 	}
 
 	public java.lang.Boolean getShowArrows() {
@@ -188,6 +220,26 @@ public class BaseImageViewerTag extends IncludeTag {
 		return _width;
 	}
 
+	public java.lang.Number getX() {
+		return _x;
+	}
+
+	public java.lang.String getXy() {
+		return _xy;
+	}
+
+	public java.lang.Number getY() {
+		return _y;
+	}
+
+	public java.lang.Number getZIndex() {
+		return _zIndex;
+	}
+
+	public java.lang.String getAfterAlignChange() {
+		return _afterAlignChange;
+	}
+
 	public java.lang.String getAfterAnim() {
 		return _afterAnim;
 	}
@@ -202,6 +254,10 @@ public class BaseImageViewerTag extends IncludeTag {
 
 	public java.lang.String getAfterArrowRightElChange() {
 		return _afterArrowRightElChange;
+	}
+
+	public java.lang.String getAfterBodyContentChange() {
+		return _afterBodyContentChange;
 	}
 
 	public java.lang.String getAfterBoundingBoxChange() {
@@ -228,6 +284,10 @@ public class BaseImageViewerTag extends IncludeTag {
 		return _afterCloseElChange;
 	}
 
+	public java.lang.String getAfterConstrainChange() {
+		return _afterConstrainChange;
+	}
+
 	public java.lang.String getAfterContentBoxChange() {
 		return _afterContentBoxChange;
 	}
@@ -252,8 +312,20 @@ public class BaseImageViewerTag extends IncludeTag {
 		return _afterDisabledChange;
 	}
 
+	public java.lang.String getAfterFillHeightChange() {
+		return _afterFillHeightChange;
+	}
+
 	public java.lang.String getAfterFocusedChange() {
 		return _afterFocusedChange;
+	}
+
+	public java.lang.String getAfterFooterContentChange() {
+		return _afterFooterContentChange;
+	}
+
+	public java.lang.String getAfterHeaderContentChange() {
+		return _afterHeaderContentChange;
 	}
 
 	public java.lang.String getAfterHeightChange() {
@@ -328,6 +400,10 @@ public class BaseImageViewerTag extends IncludeTag {
 		return _afterPreloadAllImagesChange;
 	}
 
+	public java.lang.String getAfterPreventOverlapChange() {
+		return _afterPreventOverlapChange;
+	}
+
 	public java.lang.String getAfterRenderChange() {
 		return _afterRenderChange;
 	}
@@ -338,6 +414,10 @@ public class BaseImageViewerTag extends IncludeTag {
 
 	public java.lang.String getAfterRequest() {
 		return _afterRequest;
+	}
+
+	public java.lang.String getAfterShimChange() {
+		return _afterShimChange;
 	}
 
 	public java.lang.String getAfterShowArrowsChange() {
@@ -380,6 +460,26 @@ public class BaseImageViewerTag extends IncludeTag {
 		return _afterWidthChange;
 	}
 
+	public java.lang.String getAfterXChange() {
+		return _afterXChange;
+	}
+
+	public java.lang.String getAfterXyChange() {
+		return _afterXyChange;
+	}
+
+	public java.lang.String getAfterYChange() {
+		return _afterYChange;
+	}
+
+	public java.lang.String getAfterZIndexChange() {
+		return _afterZIndexChange;
+	}
+
+	public java.lang.String getOnAlignChange() {
+		return _onAlignChange;
+	}
+
 	public java.lang.String getOnAnim() {
 		return _onAnim;
 	}
@@ -394,6 +494,10 @@ public class BaseImageViewerTag extends IncludeTag {
 
 	public java.lang.String getOnArrowRightElChange() {
 		return _onArrowRightElChange;
+	}
+
+	public java.lang.String getOnBodyContentChange() {
+		return _onBodyContentChange;
 	}
 
 	public java.lang.String getOnBoundingBoxChange() {
@@ -420,6 +524,10 @@ public class BaseImageViewerTag extends IncludeTag {
 		return _onCloseElChange;
 	}
 
+	public java.lang.String getOnConstrainChange() {
+		return _onConstrainChange;
+	}
+
 	public java.lang.String getOnContentBoxChange() {
 		return _onContentBoxChange;
 	}
@@ -444,8 +552,20 @@ public class BaseImageViewerTag extends IncludeTag {
 		return _onDisabledChange;
 	}
 
+	public java.lang.String getOnFillHeightChange() {
+		return _onFillHeightChange;
+	}
+
 	public java.lang.String getOnFocusedChange() {
 		return _onFocusedChange;
+	}
+
+	public java.lang.String getOnFooterContentChange() {
+		return _onFooterContentChange;
+	}
+
+	public java.lang.String getOnHeaderContentChange() {
+		return _onHeaderContentChange;
 	}
 
 	public java.lang.String getOnHeightChange() {
@@ -520,6 +640,10 @@ public class BaseImageViewerTag extends IncludeTag {
 		return _onPreloadAllImagesChange;
 	}
 
+	public java.lang.String getOnPreventOverlapChange() {
+		return _onPreventOverlapChange;
+	}
+
 	public java.lang.String getOnRenderChange() {
 		return _onRenderChange;
 	}
@@ -530,6 +654,10 @@ public class BaseImageViewerTag extends IncludeTag {
 
 	public java.lang.String getOnRequest() {
 		return _onRequest;
+	}
+
+	public java.lang.String getOnShimChange() {
+		return _onShimChange;
 	}
 
 	public java.lang.String getOnShowArrowsChange() {
@@ -572,6 +700,28 @@ public class BaseImageViewerTag extends IncludeTag {
 		return _onWidthChange;
 	}
 
+	public java.lang.String getOnXChange() {
+		return _onXChange;
+	}
+
+	public java.lang.String getOnXyChange() {
+		return _onXyChange;
+	}
+
+	public java.lang.String getOnYChange() {
+		return _onYChange;
+	}
+
+	public java.lang.String getOnZIndexChange() {
+		return _onZIndexChange;
+	}
+
+	public void setAlign(java.lang.Object align) {
+		_align = align;
+
+		setScopedAttribute("align", align);
+	}
+
 	public void setAnim(java.lang.Boolean anim) {
 		_anim = anim;
 
@@ -588,6 +738,12 @@ public class BaseImageViewerTag extends IncludeTag {
 		_arrowRightEl = arrowRightEl;
 
 		setScopedAttribute("arrowRightEl", arrowRightEl);
+	}
+
+	public void setImageviewerBodyContent(java.lang.String imageviewerBodyContent) {
+		_imageviewerBodyContent = imageviewerBodyContent;
+
+		setScopedAttribute("imageviewerBodyContent", imageviewerBodyContent);
 	}
 
 	public void setBoundingBox(java.lang.String boundingBox) {
@@ -626,6 +782,12 @@ public class BaseImageViewerTag extends IncludeTag {
 		setScopedAttribute("closeEl", closeEl);
 	}
 
+	public void setConstrain(java.lang.String constrain) {
+		_constrain = constrain;
+
+		setScopedAttribute("constrain", constrain);
+	}
+
 	public void setContentBox(java.lang.String contentBox) {
 		_contentBox = contentBox;
 
@@ -656,10 +818,28 @@ public class BaseImageViewerTag extends IncludeTag {
 		setScopedAttribute("disabled", disabled);
 	}
 
+	public void setFillHeight(java.lang.String fillHeight) {
+		_fillHeight = fillHeight;
+
+		setScopedAttribute("fillHeight", fillHeight);
+	}
+
 	public void setFocused(java.lang.Boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
+	}
+
+	public void setFooterContent(java.lang.String footerContent) {
+		_footerContent = footerContent;
+
+		setScopedAttribute("footerContent", footerContent);
+	}
+
+	public void setHeaderContent(java.lang.String headerContent) {
+		_headerContent = headerContent;
+
+		setScopedAttribute("headerContent", headerContent);
 	}
 
 	public void setHeight(java.lang.String height) {
@@ -758,6 +938,12 @@ public class BaseImageViewerTag extends IncludeTag {
 		setScopedAttribute("preloadAllImages", preloadAllImages);
 	}
 
+	public void setPreventOverlap(java.lang.Boolean preventOverlap) {
+		_preventOverlap = preventOverlap;
+
+		setScopedAttribute("preventOverlap", preventOverlap);
+	}
+
 	public void setRender(java.lang.Boolean render) {
 		_render = render;
 
@@ -768,6 +954,12 @@ public class BaseImageViewerTag extends IncludeTag {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
+	}
+
+	public void setShim(java.lang.Boolean shim) {
+		_shim = shim;
+
+		setScopedAttribute("shim", shim);
 	}
 
 	public void setShowArrows(java.lang.Boolean showArrows) {
@@ -818,6 +1010,36 @@ public class BaseImageViewerTag extends IncludeTag {
 		setScopedAttribute("width", width);
 	}
 
+	public void setX(java.lang.Number x) {
+		_x = x;
+
+		setScopedAttribute("x", x);
+	}
+
+	public void setXy(java.lang.String xy) {
+		_xy = xy;
+
+		setScopedAttribute("xy", xy);
+	}
+
+	public void setY(java.lang.Number y) {
+		_y = y;
+
+		setScopedAttribute("y", y);
+	}
+
+	public void setZIndex(java.lang.Number zIndex) {
+		_zIndex = zIndex;
+
+		setScopedAttribute("zIndex", zIndex);
+	}
+
+	public void setAfterAlignChange(java.lang.String afterAlignChange) {
+		_afterAlignChange = afterAlignChange;
+
+		setScopedAttribute("afterAlignChange", afterAlignChange);
+	}
+
 	public void setAfterAnim(java.lang.String afterAnim) {
 		_afterAnim = afterAnim;
 
@@ -840,6 +1062,12 @@ public class BaseImageViewerTag extends IncludeTag {
 		_afterArrowRightElChange = afterArrowRightElChange;
 
 		setScopedAttribute("afterArrowRightElChange", afterArrowRightElChange);
+	}
+
+	public void setAfterBodyContentChange(java.lang.String afterBodyContentChange) {
+		_afterBodyContentChange = afterBodyContentChange;
+
+		setScopedAttribute("afterBodyContentChange", afterBodyContentChange);
 	}
 
 	public void setAfterBoundingBoxChange(java.lang.String afterBoundingBoxChange) {
@@ -878,6 +1106,12 @@ public class BaseImageViewerTag extends IncludeTag {
 		setScopedAttribute("afterCloseElChange", afterCloseElChange);
 	}
 
+	public void setAfterConstrainChange(java.lang.String afterConstrainChange) {
+		_afterConstrainChange = afterConstrainChange;
+
+		setScopedAttribute("afterConstrainChange", afterConstrainChange);
+	}
+
 	public void setAfterContentBoxChange(java.lang.String afterContentBoxChange) {
 		_afterContentBoxChange = afterContentBoxChange;
 
@@ -914,10 +1148,28 @@ public class BaseImageViewerTag extends IncludeTag {
 		setScopedAttribute("afterDisabledChange", afterDisabledChange);
 	}
 
+	public void setAfterFillHeightChange(java.lang.String afterFillHeightChange) {
+		_afterFillHeightChange = afterFillHeightChange;
+
+		setScopedAttribute("afterFillHeightChange", afterFillHeightChange);
+	}
+
 	public void setAfterFocusedChange(java.lang.String afterFocusedChange) {
 		_afterFocusedChange = afterFocusedChange;
 
 		setScopedAttribute("afterFocusedChange", afterFocusedChange);
+	}
+
+	public void setAfterFooterContentChange(java.lang.String afterFooterContentChange) {
+		_afterFooterContentChange = afterFooterContentChange;
+
+		setScopedAttribute("afterFooterContentChange", afterFooterContentChange);
+	}
+
+	public void setAfterHeaderContentChange(java.lang.String afterHeaderContentChange) {
+		_afterHeaderContentChange = afterHeaderContentChange;
+
+		setScopedAttribute("afterHeaderContentChange", afterHeaderContentChange);
 	}
 
 	public void setAfterHeightChange(java.lang.String afterHeightChange) {
@@ -1028,6 +1280,12 @@ public class BaseImageViewerTag extends IncludeTag {
 		setScopedAttribute("afterPreloadAllImagesChange", afterPreloadAllImagesChange);
 	}
 
+	public void setAfterPreventOverlapChange(java.lang.String afterPreventOverlapChange) {
+		_afterPreventOverlapChange = afterPreventOverlapChange;
+
+		setScopedAttribute("afterPreventOverlapChange", afterPreventOverlapChange);
+	}
+
 	public void setAfterRenderChange(java.lang.String afterRenderChange) {
 		_afterRenderChange = afterRenderChange;
 
@@ -1044,6 +1302,12 @@ public class BaseImageViewerTag extends IncludeTag {
 		_afterRequest = afterRequest;
 
 		setScopedAttribute("afterRequest", afterRequest);
+	}
+
+	public void setAfterShimChange(java.lang.String afterShimChange) {
+		_afterShimChange = afterShimChange;
+
+		setScopedAttribute("afterShimChange", afterShimChange);
 	}
 
 	public void setAfterShowArrowsChange(java.lang.String afterShowArrowsChange) {
@@ -1106,6 +1370,36 @@ public class BaseImageViewerTag extends IncludeTag {
 		setScopedAttribute("afterWidthChange", afterWidthChange);
 	}
 
+	public void setAfterXChange(java.lang.String afterXChange) {
+		_afterXChange = afterXChange;
+
+		setScopedAttribute("afterXChange", afterXChange);
+	}
+
+	public void setAfterXyChange(java.lang.String afterXyChange) {
+		_afterXyChange = afterXyChange;
+
+		setScopedAttribute("afterXyChange", afterXyChange);
+	}
+
+	public void setAfterYChange(java.lang.String afterYChange) {
+		_afterYChange = afterYChange;
+
+		setScopedAttribute("afterYChange", afterYChange);
+	}
+
+	public void setAfterZIndexChange(java.lang.String afterZIndexChange) {
+		_afterZIndexChange = afterZIndexChange;
+
+		setScopedAttribute("afterZIndexChange", afterZIndexChange);
+	}
+
+	public void setOnAlignChange(java.lang.String onAlignChange) {
+		_onAlignChange = onAlignChange;
+
+		setScopedAttribute("onAlignChange", onAlignChange);
+	}
+
 	public void setOnAnim(java.lang.String onAnim) {
 		_onAnim = onAnim;
 
@@ -1128,6 +1422,12 @@ public class BaseImageViewerTag extends IncludeTag {
 		_onArrowRightElChange = onArrowRightElChange;
 
 		setScopedAttribute("onArrowRightElChange", onArrowRightElChange);
+	}
+
+	public void setOnBodyContentChange(java.lang.String onBodyContentChange) {
+		_onBodyContentChange = onBodyContentChange;
+
+		setScopedAttribute("onBodyContentChange", onBodyContentChange);
 	}
 
 	public void setOnBoundingBoxChange(java.lang.String onBoundingBoxChange) {
@@ -1166,6 +1466,12 @@ public class BaseImageViewerTag extends IncludeTag {
 		setScopedAttribute("onCloseElChange", onCloseElChange);
 	}
 
+	public void setOnConstrainChange(java.lang.String onConstrainChange) {
+		_onConstrainChange = onConstrainChange;
+
+		setScopedAttribute("onConstrainChange", onConstrainChange);
+	}
+
 	public void setOnContentBoxChange(java.lang.String onContentBoxChange) {
 		_onContentBoxChange = onContentBoxChange;
 
@@ -1202,10 +1508,28 @@ public class BaseImageViewerTag extends IncludeTag {
 		setScopedAttribute("onDisabledChange", onDisabledChange);
 	}
 
+	public void setOnFillHeightChange(java.lang.String onFillHeightChange) {
+		_onFillHeightChange = onFillHeightChange;
+
+		setScopedAttribute("onFillHeightChange", onFillHeightChange);
+	}
+
 	public void setOnFocusedChange(java.lang.String onFocusedChange) {
 		_onFocusedChange = onFocusedChange;
 
 		setScopedAttribute("onFocusedChange", onFocusedChange);
+	}
+
+	public void setOnFooterContentChange(java.lang.String onFooterContentChange) {
+		_onFooterContentChange = onFooterContentChange;
+
+		setScopedAttribute("onFooterContentChange", onFooterContentChange);
+	}
+
+	public void setOnHeaderContentChange(java.lang.String onHeaderContentChange) {
+		_onHeaderContentChange = onHeaderContentChange;
+
+		setScopedAttribute("onHeaderContentChange", onHeaderContentChange);
 	}
 
 	public void setOnHeightChange(java.lang.String onHeightChange) {
@@ -1316,6 +1640,12 @@ public class BaseImageViewerTag extends IncludeTag {
 		setScopedAttribute("onPreloadAllImagesChange", onPreloadAllImagesChange);
 	}
 
+	public void setOnPreventOverlapChange(java.lang.String onPreventOverlapChange) {
+		_onPreventOverlapChange = onPreventOverlapChange;
+
+		setScopedAttribute("onPreventOverlapChange", onPreventOverlapChange);
+	}
+
 	public void setOnRenderChange(java.lang.String onRenderChange) {
 		_onRenderChange = onRenderChange;
 
@@ -1332,6 +1662,12 @@ public class BaseImageViewerTag extends IncludeTag {
 		_onRequest = onRequest;
 
 		setScopedAttribute("onRequest", onRequest);
+	}
+
+	public void setOnShimChange(java.lang.String onShimChange) {
+		_onShimChange = onShimChange;
+
+		setScopedAttribute("onShimChange", onShimChange);
 	}
 
 	public void setOnShowArrowsChange(java.lang.String onShowArrowsChange) {
@@ -1394,22 +1730,52 @@ public class BaseImageViewerTag extends IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
+	public void setOnXChange(java.lang.String onXChange) {
+		_onXChange = onXChange;
+
+		setScopedAttribute("onXChange", onXChange);
+	}
+
+	public void setOnXyChange(java.lang.String onXyChange) {
+		_onXyChange = onXyChange;
+
+		setScopedAttribute("onXyChange", onXyChange);
+	}
+
+	public void setOnYChange(java.lang.String onYChange) {
+		_onYChange = onYChange;
+
+		setScopedAttribute("onYChange", onYChange);
+	}
+
+	public void setOnZIndexChange(java.lang.String onZIndexChange) {
+		_onZIndexChange = onZIndexChange;
+
+		setScopedAttribute("onZIndexChange", onZIndexChange);
+	}
+
 	protected void _setAttributes(HttpServletRequest request) {
+		setNamespacedAttribute(request, "align", _align);
 		setNamespacedAttribute(request, "anim", _anim);
 		setNamespacedAttribute(request, "arrowLeftEl", _arrowLeftEl);
 		setNamespacedAttribute(request, "arrowRightEl", _arrowRightEl);
+		setNamespacedAttribute(request, "imageviewerBodyContent", _imageviewerBodyContent);
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);
 		setNamespacedAttribute(request, "caption", _caption);
 		setNamespacedAttribute(request, "captionEl", _captionEl);
 		setNamespacedAttribute(request, "captionFromTitle", _captionFromTitle);
 		setNamespacedAttribute(request, "centered", _centered);
 		setNamespacedAttribute(request, "closeEl", _closeEl);
+		setNamespacedAttribute(request, "constrain", _constrain);
 		setNamespacedAttribute(request, "contentBox", _contentBox);
 		setNamespacedAttribute(request, "cssClass", _cssClass);
 		setNamespacedAttribute(request, "currentIndex", _currentIndex);
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "disabled", _disabled);
+		setNamespacedAttribute(request, "fillHeight", _fillHeight);
 		setNamespacedAttribute(request, "focused", _focused);
+		setNamespacedAttribute(request, "footerContent", _footerContent);
+		setNamespacedAttribute(request, "headerContent", _headerContent);
 		setNamespacedAttribute(request, "height", _height);
 		setNamespacedAttribute(request, "hideClass", _hideClass);
 		setNamespacedAttribute(request, "imageviewerId", _imageviewerId);
@@ -1426,8 +1792,10 @@ public class BaseImageViewerTag extends IncludeTag {
 		setNamespacedAttribute(request, "maxWidth", _maxWidth);
 		setNamespacedAttribute(request, "modal", _modal);
 		setNamespacedAttribute(request, "preloadAllImages", _preloadAllImages);
+		setNamespacedAttribute(request, "preventOverlap", _preventOverlap);
 		setNamespacedAttribute(request, "render", _render);
 		setNamespacedAttribute(request, "rendered", _rendered);
+		setNamespacedAttribute(request, "shim", _shim);
 		setNamespacedAttribute(request, "showArrows", _showArrows);
 		setNamespacedAttribute(request, "showClose", _showClose);
 		setNamespacedAttribute(request, "srcNode", _srcNode);
@@ -1436,23 +1804,33 @@ public class BaseImageViewerTag extends IncludeTag {
 		setNamespacedAttribute(request, "totalLinks", _totalLinks);
 		setNamespacedAttribute(request, "visible", _visible);
 		setNamespacedAttribute(request, "width", _width);
+		setNamespacedAttribute(request, "x", _x);
+		setNamespacedAttribute(request, "xy", _xy);
+		setNamespacedAttribute(request, "y", _y);
+		setNamespacedAttribute(request, "zIndex", _zIndex);
+		setNamespacedAttribute(request, "afterAlignChange", _afterAlignChange);
 		setNamespacedAttribute(request, "afterAnim", _afterAnim);
 		setNamespacedAttribute(request, "afterAnimChange", _afterAnimChange);
 		setNamespacedAttribute(request, "afterArrowLeftElChange", _afterArrowLeftElChange);
 		setNamespacedAttribute(request, "afterArrowRightElChange", _afterArrowRightElChange);
+		setNamespacedAttribute(request, "afterBodyContentChange", _afterBodyContentChange);
 		setNamespacedAttribute(request, "afterBoundingBoxChange", _afterBoundingBoxChange);
 		setNamespacedAttribute(request, "afterCaptionChange", _afterCaptionChange);
 		setNamespacedAttribute(request, "afterCaptionElChange", _afterCaptionElChange);
 		setNamespacedAttribute(request, "afterCaptionFromTitleChange", _afterCaptionFromTitleChange);
 		setNamespacedAttribute(request, "afterCenteredChange", _afterCenteredChange);
 		setNamespacedAttribute(request, "afterCloseElChange", _afterCloseElChange);
+		setNamespacedAttribute(request, "afterConstrainChange", _afterConstrainChange);
 		setNamespacedAttribute(request, "afterContentBoxChange", _afterContentBoxChange);
 		setNamespacedAttribute(request, "afterCssClassChange", _afterCssClassChange);
 		setNamespacedAttribute(request, "afterCurrentIndexChange", _afterCurrentIndexChange);
 		setNamespacedAttribute(request, "afterDestroy", _afterDestroy);
 		setNamespacedAttribute(request, "afterDestroyedChange", _afterDestroyedChange);
 		setNamespacedAttribute(request, "afterDisabledChange", _afterDisabledChange);
+		setNamespacedAttribute(request, "afterFillHeightChange", _afterFillHeightChange);
 		setNamespacedAttribute(request, "afterFocusedChange", _afterFocusedChange);
+		setNamespacedAttribute(request, "afterFooterContentChange", _afterFooterContentChange);
+		setNamespacedAttribute(request, "afterHeaderContentChange", _afterHeaderContentChange);
 		setNamespacedAttribute(request, "afterHeightChange", _afterHeightChange);
 		setNamespacedAttribute(request, "afterHideClassChange", _afterHideClassChange);
 		setNamespacedAttribute(request, "afterIdChange", _afterIdChange);
@@ -1471,9 +1849,11 @@ public class BaseImageViewerTag extends IncludeTag {
 		setNamespacedAttribute(request, "afterMaxWidthChange", _afterMaxWidthChange);
 		setNamespacedAttribute(request, "afterModalChange", _afterModalChange);
 		setNamespacedAttribute(request, "afterPreloadAllImagesChange", _afterPreloadAllImagesChange);
+		setNamespacedAttribute(request, "afterPreventOverlapChange", _afterPreventOverlapChange);
 		setNamespacedAttribute(request, "afterRenderChange", _afterRenderChange);
 		setNamespacedAttribute(request, "afterRenderedChange", _afterRenderedChange);
 		setNamespacedAttribute(request, "afterRequest", _afterRequest);
+		setNamespacedAttribute(request, "afterShimChange", _afterShimChange);
 		setNamespacedAttribute(request, "afterShowArrowsChange", _afterShowArrowsChange);
 		setNamespacedAttribute(request, "afterShowCloseChange", _afterShowCloseChange);
 		setNamespacedAttribute(request, "afterSrcNodeChange", _afterSrcNodeChange);
@@ -1484,23 +1864,33 @@ public class BaseImageViewerTag extends IncludeTag {
 		setNamespacedAttribute(request, "afterContentUpdate", _afterContentUpdate);
 		setNamespacedAttribute(request, "afterRender", _afterRender);
 		setNamespacedAttribute(request, "afterWidthChange", _afterWidthChange);
+		setNamespacedAttribute(request, "afterXChange", _afterXChange);
+		setNamespacedAttribute(request, "afterXyChange", _afterXyChange);
+		setNamespacedAttribute(request, "afterYChange", _afterYChange);
+		setNamespacedAttribute(request, "afterZIndexChange", _afterZIndexChange);
+		setNamespacedAttribute(request, "onAlignChange", _onAlignChange);
 		setNamespacedAttribute(request, "onAnim", _onAnim);
 		setNamespacedAttribute(request, "onAnimChange", _onAnimChange);
 		setNamespacedAttribute(request, "onArrowLeftElChange", _onArrowLeftElChange);
 		setNamespacedAttribute(request, "onArrowRightElChange", _onArrowRightElChange);
+		setNamespacedAttribute(request, "onBodyContentChange", _onBodyContentChange);
 		setNamespacedAttribute(request, "onBoundingBoxChange", _onBoundingBoxChange);
 		setNamespacedAttribute(request, "onCaptionChange", _onCaptionChange);
 		setNamespacedAttribute(request, "onCaptionElChange", _onCaptionElChange);
 		setNamespacedAttribute(request, "onCaptionFromTitleChange", _onCaptionFromTitleChange);
 		setNamespacedAttribute(request, "onCenteredChange", _onCenteredChange);
 		setNamespacedAttribute(request, "onCloseElChange", _onCloseElChange);
+		setNamespacedAttribute(request, "onConstrainChange", _onConstrainChange);
 		setNamespacedAttribute(request, "onContentBoxChange", _onContentBoxChange);
 		setNamespacedAttribute(request, "onCssClassChange", _onCssClassChange);
 		setNamespacedAttribute(request, "onCurrentIndexChange", _onCurrentIndexChange);
 		setNamespacedAttribute(request, "onDestroy", _onDestroy);
 		setNamespacedAttribute(request, "onDestroyedChange", _onDestroyedChange);
 		setNamespacedAttribute(request, "onDisabledChange", _onDisabledChange);
+		setNamespacedAttribute(request, "onFillHeightChange", _onFillHeightChange);
 		setNamespacedAttribute(request, "onFocusedChange", _onFocusedChange);
+		setNamespacedAttribute(request, "onFooterContentChange", _onFooterContentChange);
+		setNamespacedAttribute(request, "onHeaderContentChange", _onHeaderContentChange);
 		setNamespacedAttribute(request, "onHeightChange", _onHeightChange);
 		setNamespacedAttribute(request, "onHideClassChange", _onHideClassChange);
 		setNamespacedAttribute(request, "onIdChange", _onIdChange);
@@ -1519,9 +1909,11 @@ public class BaseImageViewerTag extends IncludeTag {
 		setNamespacedAttribute(request, "onMaxWidthChange", _onMaxWidthChange);
 		setNamespacedAttribute(request, "onModalChange", _onModalChange);
 		setNamespacedAttribute(request, "onPreloadAllImagesChange", _onPreloadAllImagesChange);
+		setNamespacedAttribute(request, "onPreventOverlapChange", _onPreventOverlapChange);
 		setNamespacedAttribute(request, "onRenderChange", _onRenderChange);
 		setNamespacedAttribute(request, "onRenderedChange", _onRenderedChange);
 		setNamespacedAttribute(request, "onRequest", _onRequest);
+		setNamespacedAttribute(request, "onShimChange", _onShimChange);
 		setNamespacedAttribute(request, "onShowArrowsChange", _onShowArrowsChange);
 		setNamespacedAttribute(request, "onShowCloseChange", _onShowCloseChange);
 		setNamespacedAttribute(request, "onSrcNodeChange", _onSrcNodeChange);
@@ -1532,6 +1924,10 @@ public class BaseImageViewerTag extends IncludeTag {
 		setNamespacedAttribute(request, "onContentUpdate", _onContentUpdate);
 		setNamespacedAttribute(request, "onRender", _onRender);
 		setNamespacedAttribute(request, "onWidthChange", _onWidthChange);
+		setNamespacedAttribute(request, "onXChange", _onXChange);
+		setNamespacedAttribute(request, "onXyChange", _onXyChange);
+		setNamespacedAttribute(request, "onYChange", _onYChange);
+		setNamespacedAttribute(request, "onZIndexChange", _onZIndexChange);
 	}
 
 	private static final String _ATTRIBUTE_NAMESPACE = "alloy:image-viewer:";
@@ -1539,21 +1935,27 @@ public class BaseImageViewerTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/image_viewer/page.jsp";
 
+	private java.lang.Object _align;
 	private java.lang.Boolean _anim;
 	private java.lang.String _arrowLeftEl;
 	private java.lang.String _arrowRightEl;
+	private java.lang.String _imageviewerBodyContent;
 	private java.lang.String _boundingBox;
 	private java.lang.String _caption;
 	private java.lang.String _captionEl;
 	private java.lang.Boolean _captionFromTitle;
 	private java.lang.Boolean _centered;
 	private java.lang.String _closeEl;
+	private java.lang.String _constrain;
 	private java.lang.String _contentBox;
 	private java.lang.String _cssClass;
 	private java.lang.Number _currentIndex;
 	private java.lang.Boolean _destroyed;
 	private java.lang.Boolean _disabled;
+	private java.lang.String _fillHeight;
 	private java.lang.Boolean _focused;
+	private java.lang.String _footerContent;
+	private java.lang.String _headerContent;
 	private java.lang.String _height;
 	private java.lang.String _hideClass;
 	private java.lang.String _imageviewerId;
@@ -1570,8 +1972,10 @@ public class BaseImageViewerTag extends IncludeTag {
 	private java.lang.Number _maxWidth;
 	private java.lang.String _modal;
 	private java.lang.Boolean _preloadAllImages;
+	private java.lang.Boolean _preventOverlap;
 	private java.lang.Boolean _render;
 	private java.lang.Boolean _rendered;
+	private java.lang.Boolean _shim;
 	private java.lang.Boolean _showArrows;
 	private java.lang.Boolean _showClose;
 	private java.lang.String _srcNode;
@@ -1580,23 +1984,33 @@ public class BaseImageViewerTag extends IncludeTag {
 	private java.lang.Boolean _totalLinks;
 	private java.lang.Boolean _visible;
 	private java.lang.String _width;
+	private java.lang.Number _x;
+	private java.lang.String _xy;
+	private java.lang.Number _y;
+	private java.lang.Number _zIndex;
+	private java.lang.String _afterAlignChange;
 	private java.lang.String _afterAnim;
 	private java.lang.String _afterAnimChange;
 	private java.lang.String _afterArrowLeftElChange;
 	private java.lang.String _afterArrowRightElChange;
+	private java.lang.String _afterBodyContentChange;
 	private java.lang.String _afterBoundingBoxChange;
 	private java.lang.String _afterCaptionChange;
 	private java.lang.String _afterCaptionElChange;
 	private java.lang.String _afterCaptionFromTitleChange;
 	private java.lang.String _afterCenteredChange;
 	private java.lang.String _afterCloseElChange;
+	private java.lang.String _afterConstrainChange;
 	private java.lang.String _afterContentBoxChange;
 	private java.lang.String _afterCssClassChange;
 	private java.lang.String _afterCurrentIndexChange;
 	private java.lang.String _afterDestroy;
 	private java.lang.String _afterDestroyedChange;
 	private java.lang.String _afterDisabledChange;
+	private java.lang.String _afterFillHeightChange;
 	private java.lang.String _afterFocusedChange;
+	private java.lang.String _afterFooterContentChange;
+	private java.lang.String _afterHeaderContentChange;
 	private java.lang.String _afterHeightChange;
 	private java.lang.String _afterHideClassChange;
 	private java.lang.String _afterIdChange;
@@ -1615,9 +2029,11 @@ public class BaseImageViewerTag extends IncludeTag {
 	private java.lang.String _afterMaxWidthChange;
 	private java.lang.String _afterModalChange;
 	private java.lang.String _afterPreloadAllImagesChange;
+	private java.lang.String _afterPreventOverlapChange;
 	private java.lang.String _afterRenderChange;
 	private java.lang.String _afterRenderedChange;
 	private java.lang.String _afterRequest;
+	private java.lang.String _afterShimChange;
 	private java.lang.String _afterShowArrowsChange;
 	private java.lang.String _afterShowCloseChange;
 	private java.lang.String _afterSrcNodeChange;
@@ -1628,23 +2044,33 @@ public class BaseImageViewerTag extends IncludeTag {
 	private java.lang.String _afterContentUpdate;
 	private java.lang.String _afterRender;
 	private java.lang.String _afterWidthChange;
+	private java.lang.String _afterXChange;
+	private java.lang.String _afterXyChange;
+	private java.lang.String _afterYChange;
+	private java.lang.String _afterZIndexChange;
+	private java.lang.String _onAlignChange;
 	private java.lang.String _onAnim;
 	private java.lang.String _onAnimChange;
 	private java.lang.String _onArrowLeftElChange;
 	private java.lang.String _onArrowRightElChange;
+	private java.lang.String _onBodyContentChange;
 	private java.lang.String _onBoundingBoxChange;
 	private java.lang.String _onCaptionChange;
 	private java.lang.String _onCaptionElChange;
 	private java.lang.String _onCaptionFromTitleChange;
 	private java.lang.String _onCenteredChange;
 	private java.lang.String _onCloseElChange;
+	private java.lang.String _onConstrainChange;
 	private java.lang.String _onContentBoxChange;
 	private java.lang.String _onCssClassChange;
 	private java.lang.String _onCurrentIndexChange;
 	private java.lang.String _onDestroy;
 	private java.lang.String _onDestroyedChange;
 	private java.lang.String _onDisabledChange;
+	private java.lang.String _onFillHeightChange;
 	private java.lang.String _onFocusedChange;
+	private java.lang.String _onFooterContentChange;
+	private java.lang.String _onHeaderContentChange;
 	private java.lang.String _onHeightChange;
 	private java.lang.String _onHideClassChange;
 	private java.lang.String _onIdChange;
@@ -1663,9 +2089,11 @@ public class BaseImageViewerTag extends IncludeTag {
 	private java.lang.String _onMaxWidthChange;
 	private java.lang.String _onModalChange;
 	private java.lang.String _onPreloadAllImagesChange;
+	private java.lang.String _onPreventOverlapChange;
 	private java.lang.String _onRenderChange;
 	private java.lang.String _onRenderedChange;
 	private java.lang.String _onRequest;
+	private java.lang.String _onShimChange;
 	private java.lang.String _onShowArrowsChange;
 	private java.lang.String _onShowCloseChange;
 	private java.lang.String _onSrcNodeChange;
@@ -1676,5 +2104,9 @@ public class BaseImageViewerTag extends IncludeTag {
 	private java.lang.String _onContentUpdate;
 	private java.lang.String _onRender;
 	private java.lang.String _onWidthChange;
+	private java.lang.String _onXChange;
+	private java.lang.String _onXyChange;
+	private java.lang.String _onYChange;
+	private java.lang.String _onZIndexChange;
 
 }

@@ -24,6 +24,10 @@ public class BasePanelTag extends IncludeTag {
 		return _PAGE;
 	}
 
+	public java.lang.String getPanelBodyContent() {
+		return _panelBodyContent;
+	}
+
 	public java.lang.String getBoundingBox() {
 		return _boundingBox;
 	}
@@ -52,8 +56,20 @@ public class BasePanelTag extends IncludeTag {
 		return _disabled;
 	}
 
+	public java.lang.String getFillHeight() {
+		return _fillHeight;
+	}
+
 	public java.lang.Boolean getFocused() {
 		return _focused;
+	}
+
+	public java.lang.String getFooterContent() {
+		return _footerContent;
+	}
+
+	public java.lang.String getHeaderContent() {
+		return _headerContent;
 	}
 
 	public java.lang.String getHeight() {
@@ -108,6 +124,10 @@ public class BasePanelTag extends IncludeTag {
 		return _width;
 	}
 
+	public java.lang.String getAfterBodyContentChange() {
+		return _afterBodyContentChange;
+	}
+
 	public java.lang.String getAfterBoundingBoxChange() {
 		return _afterBoundingBoxChange;
 	}
@@ -140,8 +160,20 @@ public class BasePanelTag extends IncludeTag {
 		return _afterDisabledChange;
 	}
 
+	public java.lang.String getAfterFillHeightChange() {
+		return _afterFillHeightChange;
+	}
+
 	public java.lang.String getAfterFocusedChange() {
 		return _afterFocusedChange;
+	}
+
+	public java.lang.String getAfterFooterContentChange() {
+		return _afterFooterContentChange;
+	}
+
+	public java.lang.String getAfterHeaderContentChange() {
+		return _afterHeaderContentChange;
 	}
 
 	public java.lang.String getAfterHeightChange() {
@@ -208,6 +240,10 @@ public class BasePanelTag extends IncludeTag {
 		return _afterWidthChange;
 	}
 
+	public java.lang.String getOnBodyContentChange() {
+		return _onBodyContentChange;
+	}
+
 	public java.lang.String getOnBoundingBoxChange() {
 		return _onBoundingBoxChange;
 	}
@@ -240,8 +276,20 @@ public class BasePanelTag extends IncludeTag {
 		return _onDisabledChange;
 	}
 
+	public java.lang.String getOnFillHeightChange() {
+		return _onFillHeightChange;
+	}
+
 	public java.lang.String getOnFocusedChange() {
 		return _onFocusedChange;
+	}
+
+	public java.lang.String getOnFooterContentChange() {
+		return _onFooterContentChange;
+	}
+
+	public java.lang.String getOnHeaderContentChange() {
+		return _onHeaderContentChange;
 	}
 
 	public java.lang.String getOnHeightChange() {
@@ -308,6 +356,12 @@ public class BasePanelTag extends IncludeTag {
 		return _onWidthChange;
 	}
 
+	public void setPanelBodyContent(java.lang.String panelBodyContent) {
+		_panelBodyContent = panelBodyContent;
+
+		setScopedAttribute("panelBodyContent", panelBodyContent);
+	}
+
 	public void setBoundingBox(java.lang.String boundingBox) {
 		_boundingBox = boundingBox;
 
@@ -350,10 +404,28 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("disabled", disabled);
 	}
 
+	public void setFillHeight(java.lang.String fillHeight) {
+		_fillHeight = fillHeight;
+
+		setScopedAttribute("fillHeight", fillHeight);
+	}
+
 	public void setFocused(java.lang.Boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
+	}
+
+	public void setFooterContent(java.lang.String footerContent) {
+		_footerContent = footerContent;
+
+		setScopedAttribute("footerContent", footerContent);
+	}
+
+	public void setHeaderContent(java.lang.String headerContent) {
+		_headerContent = headerContent;
+
+		setScopedAttribute("headerContent", headerContent);
 	}
 
 	public void setHeight(java.lang.String height) {
@@ -434,6 +506,12 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("width", width);
 	}
 
+	public void setAfterBodyContentChange(java.lang.String afterBodyContentChange) {
+		_afterBodyContentChange = afterBodyContentChange;
+
+		setScopedAttribute("afterBodyContentChange", afterBodyContentChange);
+	}
+
 	public void setAfterBoundingBoxChange(java.lang.String afterBoundingBoxChange) {
 		_afterBoundingBoxChange = afterBoundingBoxChange;
 
@@ -482,10 +560,28 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("afterDisabledChange", afterDisabledChange);
 	}
 
+	public void setAfterFillHeightChange(java.lang.String afterFillHeightChange) {
+		_afterFillHeightChange = afterFillHeightChange;
+
+		setScopedAttribute("afterFillHeightChange", afterFillHeightChange);
+	}
+
 	public void setAfterFocusedChange(java.lang.String afterFocusedChange) {
 		_afterFocusedChange = afterFocusedChange;
 
 		setScopedAttribute("afterFocusedChange", afterFocusedChange);
+	}
+
+	public void setAfterFooterContentChange(java.lang.String afterFooterContentChange) {
+		_afterFooterContentChange = afterFooterContentChange;
+
+		setScopedAttribute("afterFooterContentChange", afterFooterContentChange);
+	}
+
+	public void setAfterHeaderContentChange(java.lang.String afterHeaderContentChange) {
+		_afterHeaderContentChange = afterHeaderContentChange;
+
+		setScopedAttribute("afterHeaderContentChange", afterHeaderContentChange);
 	}
 
 	public void setAfterHeightChange(java.lang.String afterHeightChange) {
@@ -584,6 +680,12 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("afterWidthChange", afterWidthChange);
 	}
 
+	public void setOnBodyContentChange(java.lang.String onBodyContentChange) {
+		_onBodyContentChange = onBodyContentChange;
+
+		setScopedAttribute("onBodyContentChange", onBodyContentChange);
+	}
+
 	public void setOnBoundingBoxChange(java.lang.String onBoundingBoxChange) {
 		_onBoundingBoxChange = onBoundingBoxChange;
 
@@ -632,10 +734,28 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("onDisabledChange", onDisabledChange);
 	}
 
+	public void setOnFillHeightChange(java.lang.String onFillHeightChange) {
+		_onFillHeightChange = onFillHeightChange;
+
+		setScopedAttribute("onFillHeightChange", onFillHeightChange);
+	}
+
 	public void setOnFocusedChange(java.lang.String onFocusedChange) {
 		_onFocusedChange = onFocusedChange;
 
 		setScopedAttribute("onFocusedChange", onFocusedChange);
+	}
+
+	public void setOnFooterContentChange(java.lang.String onFooterContentChange) {
+		_onFooterContentChange = onFooterContentChange;
+
+		setScopedAttribute("onFooterContentChange", onFooterContentChange);
+	}
+
+	public void setOnHeaderContentChange(java.lang.String onHeaderContentChange) {
+		_onHeaderContentChange = onHeaderContentChange;
+
+		setScopedAttribute("onHeaderContentChange", onHeaderContentChange);
 	}
 
 	public void setOnHeightChange(java.lang.String onHeightChange) {
@@ -735,6 +855,7 @@ public class BasePanelTag extends IncludeTag {
 	}
 
 	protected void _setAttributes(HttpServletRequest request) {
+		setNamespacedAttribute(request, "panelBodyContent", _panelBodyContent);
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);
 		setNamespacedAttribute(request, "collapsed", _collapsed);
 		setNamespacedAttribute(request, "collapsible", _collapsible);
@@ -742,7 +863,10 @@ public class BasePanelTag extends IncludeTag {
 		setNamespacedAttribute(request, "cssClass", _cssClass);
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "disabled", _disabled);
+		setNamespacedAttribute(request, "fillHeight", _fillHeight);
 		setNamespacedAttribute(request, "focused", _focused);
+		setNamespacedAttribute(request, "footerContent", _footerContent);
+		setNamespacedAttribute(request, "headerContent", _headerContent);
 		setNamespacedAttribute(request, "height", _height);
 		setNamespacedAttribute(request, "hideClass", _hideClass);
 		setNamespacedAttribute(request, "icons", _icons);
@@ -756,6 +880,7 @@ public class BasePanelTag extends IncludeTag {
 		setNamespacedAttribute(request, "title", _title);
 		setNamespacedAttribute(request, "visible", _visible);
 		setNamespacedAttribute(request, "width", _width);
+		setNamespacedAttribute(request, "afterBodyContentChange", _afterBodyContentChange);
 		setNamespacedAttribute(request, "afterBoundingBoxChange", _afterBoundingBoxChange);
 		setNamespacedAttribute(request, "afterCollapsedChange", _afterCollapsedChange);
 		setNamespacedAttribute(request, "afterCollapsibleChange", _afterCollapsibleChange);
@@ -764,7 +889,10 @@ public class BasePanelTag extends IncludeTag {
 		setNamespacedAttribute(request, "afterDestroy", _afterDestroy);
 		setNamespacedAttribute(request, "afterDestroyedChange", _afterDestroyedChange);
 		setNamespacedAttribute(request, "afterDisabledChange", _afterDisabledChange);
+		setNamespacedAttribute(request, "afterFillHeightChange", _afterFillHeightChange);
 		setNamespacedAttribute(request, "afterFocusedChange", _afterFocusedChange);
+		setNamespacedAttribute(request, "afterFooterContentChange", _afterFooterContentChange);
+		setNamespacedAttribute(request, "afterHeaderContentChange", _afterHeaderContentChange);
 		setNamespacedAttribute(request, "afterHeightChange", _afterHeightChange);
 		setNamespacedAttribute(request, "afterHideClassChange", _afterHideClassChange);
 		setNamespacedAttribute(request, "afterIconsChange", _afterIconsChange);
@@ -781,6 +909,7 @@ public class BasePanelTag extends IncludeTag {
 		setNamespacedAttribute(request, "afterContentUpdate", _afterContentUpdate);
 		setNamespacedAttribute(request, "afterRender", _afterRender);
 		setNamespacedAttribute(request, "afterWidthChange", _afterWidthChange);
+		setNamespacedAttribute(request, "onBodyContentChange", _onBodyContentChange);
 		setNamespacedAttribute(request, "onBoundingBoxChange", _onBoundingBoxChange);
 		setNamespacedAttribute(request, "onCollapsedChange", _onCollapsedChange);
 		setNamespacedAttribute(request, "onCollapsibleChange", _onCollapsibleChange);
@@ -789,7 +918,10 @@ public class BasePanelTag extends IncludeTag {
 		setNamespacedAttribute(request, "onDestroy", _onDestroy);
 		setNamespacedAttribute(request, "onDestroyedChange", _onDestroyedChange);
 		setNamespacedAttribute(request, "onDisabledChange", _onDisabledChange);
+		setNamespacedAttribute(request, "onFillHeightChange", _onFillHeightChange);
 		setNamespacedAttribute(request, "onFocusedChange", _onFocusedChange);
+		setNamespacedAttribute(request, "onFooterContentChange", _onFooterContentChange);
+		setNamespacedAttribute(request, "onHeaderContentChange", _onHeaderContentChange);
 		setNamespacedAttribute(request, "onHeightChange", _onHeightChange);
 		setNamespacedAttribute(request, "onHideClassChange", _onHideClassChange);
 		setNamespacedAttribute(request, "onIconsChange", _onIconsChange);
@@ -813,6 +945,7 @@ public class BasePanelTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/panel/page.jsp";
 
+	private java.lang.String _panelBodyContent;
 	private java.lang.String _boundingBox;
 	private java.lang.Boolean _collapsed;
 	private java.lang.Boolean _collapsible;
@@ -820,7 +953,10 @@ public class BasePanelTag extends IncludeTag {
 	private java.lang.String _cssClass;
 	private java.lang.Boolean _destroyed;
 	private java.lang.Boolean _disabled;
+	private java.lang.String _fillHeight;
 	private java.lang.Boolean _focused;
+	private java.lang.String _footerContent;
+	private java.lang.String _headerContent;
 	private java.lang.String _height;
 	private java.lang.String _hideClass;
 	private java.lang.String _icons;
@@ -834,6 +970,7 @@ public class BasePanelTag extends IncludeTag {
 	private java.lang.String _title;
 	private java.lang.Boolean _visible;
 	private java.lang.String _width;
+	private java.lang.String _afterBodyContentChange;
 	private java.lang.String _afterBoundingBoxChange;
 	private java.lang.String _afterCollapsedChange;
 	private java.lang.String _afterCollapsibleChange;
@@ -842,7 +979,10 @@ public class BasePanelTag extends IncludeTag {
 	private java.lang.String _afterDestroy;
 	private java.lang.String _afterDestroyedChange;
 	private java.lang.String _afterDisabledChange;
+	private java.lang.String _afterFillHeightChange;
 	private java.lang.String _afterFocusedChange;
+	private java.lang.String _afterFooterContentChange;
+	private java.lang.String _afterHeaderContentChange;
 	private java.lang.String _afterHeightChange;
 	private java.lang.String _afterHideClassChange;
 	private java.lang.String _afterIconsChange;
@@ -859,6 +999,7 @@ public class BasePanelTag extends IncludeTag {
 	private java.lang.String _afterContentUpdate;
 	private java.lang.String _afterRender;
 	private java.lang.String _afterWidthChange;
+	private java.lang.String _onBodyContentChange;
 	private java.lang.String _onBoundingBoxChange;
 	private java.lang.String _onCollapsedChange;
 	private java.lang.String _onCollapsibleChange;
@@ -867,7 +1008,10 @@ public class BasePanelTag extends IncludeTag {
 	private java.lang.String _onDestroy;
 	private java.lang.String _onDestroyedChange;
 	private java.lang.String _onDisabledChange;
+	private java.lang.String _onFillHeightChange;
 	private java.lang.String _onFocusedChange;
+	private java.lang.String _onFooterContentChange;
+	private java.lang.String _onHeaderContentChange;
 	private java.lang.String _onHeightChange;
 	private java.lang.String _onHideClassChange;
 	private java.lang.String _onIconsChange;

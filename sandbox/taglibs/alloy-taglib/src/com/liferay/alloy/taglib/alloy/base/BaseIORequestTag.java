@@ -164,6 +164,30 @@ public class BaseIORequestTag extends IncludeTag {
 		return _afterInitializedChange;
 	}
 
+	public java.lang.String getAfterComplete() {
+		return _afterComplete;
+	}
+
+	public java.lang.String getAfterEnd() {
+		return _afterEnd;
+	}
+
+	public java.lang.String getAfterFailure() {
+		return _afterFailure;
+	}
+
+	public java.lang.String getAfterStart() {
+		return _afterStart;
+	}
+
+	public java.lang.String getAfterSuccess() {
+		return _afterSuccess;
+	}
+
+	public java.lang.String getAfterXdrReady() {
+		return _afterXdrReady;
+	}
+
 	public java.lang.String getAfterMethodChange() {
 		return _afterMethodChange;
 	}
@@ -250,6 +274,30 @@ public class BaseIORequestTag extends IncludeTag {
 
 	public java.lang.String getOnInitializedChange() {
 		return _onInitializedChange;
+	}
+
+	public java.lang.String getOnComplete() {
+		return _onComplete;
+	}
+
+	public java.lang.String getOnEnd() {
+		return _onEnd;
+	}
+
+	public java.lang.String getOnFailure() {
+		return _onFailure;
+	}
+
+	public java.lang.String getOnStart() {
+		return _onStart;
+	}
+
+	public java.lang.String getOnSuccess() {
+		return _onSuccess;
+	}
+
+	public java.lang.String getOnXdrReady() {
+		return _onXdrReady;
 	}
 
 	public java.lang.String getOnMethodChange() {
@@ -490,6 +538,42 @@ public class BaseIORequestTag extends IncludeTag {
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
+	public void setAfterComplete(java.lang.String afterComplete) {
+		_afterComplete = afterComplete;
+
+		setScopedAttribute("afterComplete", afterComplete);
+	}
+
+	public void setAfterEnd(java.lang.String afterEnd) {
+		_afterEnd = afterEnd;
+
+		setScopedAttribute("afterEnd", afterEnd);
+	}
+
+	public void setAfterFailure(java.lang.String afterFailure) {
+		_afterFailure = afterFailure;
+
+		setScopedAttribute("afterFailure", afterFailure);
+	}
+
+	public void setAfterStart(java.lang.String afterStart) {
+		_afterStart = afterStart;
+
+		setScopedAttribute("afterStart", afterStart);
+	}
+
+	public void setAfterSuccess(java.lang.String afterSuccess) {
+		_afterSuccess = afterSuccess;
+
+		setScopedAttribute("afterSuccess", afterSuccess);
+	}
+
+	public void setAfterXdrReady(java.lang.String afterXdrReady) {
+		_afterXdrReady = afterXdrReady;
+
+		setScopedAttribute("afterXdrReady", afterXdrReady);
+	}
+
 	public void setAfterMethodChange(java.lang.String afterMethodChange) {
 		_afterMethodChange = afterMethodChange;
 
@@ -622,6 +706,42 @@ public class BaseIORequestTag extends IncludeTag {
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
+	public void setOnComplete(java.lang.String onComplete) {
+		_onComplete = onComplete;
+
+		setScopedAttribute("onComplete", onComplete);
+	}
+
+	public void setOnEnd(java.lang.String onEnd) {
+		_onEnd = onEnd;
+
+		setScopedAttribute("onEnd", onEnd);
+	}
+
+	public void setOnFailure(java.lang.String onFailure) {
+		_onFailure = onFailure;
+
+		setScopedAttribute("onFailure", onFailure);
+	}
+
+	public void setOnStart(java.lang.String onStart) {
+		_onStart = onStart;
+
+		setScopedAttribute("onStart", onStart);
+	}
+
+	public void setOnSuccess(java.lang.String onSuccess) {
+		_onSuccess = onSuccess;
+
+		setScopedAttribute("onSuccess", onSuccess);
+	}
+
+	public void setOnXdrReady(java.lang.String onXdrReady) {
+		_onXdrReady = onXdrReady;
+
+		setScopedAttribute("onXdrReady", onXdrReady);
+	}
+
 	public void setOnMethodChange(java.lang.String onMethodChange) {
 		_onMethodChange = onMethodChange;
 
@@ -700,6 +820,12 @@ public class BaseIORequestTag extends IncludeTag {
 		setNamespacedAttribute(request, "afterHostChange", _afterHostChange);
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
+		setNamespacedAttribute(request, "afterComplete", _afterComplete);
+		setNamespacedAttribute(request, "afterEnd", _afterEnd);
+		setNamespacedAttribute(request, "afterFailure", _afterFailure);
+		setNamespacedAttribute(request, "afterStart", _afterStart);
+		setNamespacedAttribute(request, "afterSuccess", _afterSuccess);
+		setNamespacedAttribute(request, "afterXdrReady", _afterXdrReady);
 		setNamespacedAttribute(request, "afterMethodChange", _afterMethodChange);
 		setNamespacedAttribute(request, "afterResponseDataChange", _afterResponseDataChange);
 		setNamespacedAttribute(request, "afterSyncChange", _afterSyncChange);
@@ -722,6 +848,12 @@ public class BaseIORequestTag extends IncludeTag {
 		setNamespacedAttribute(request, "onHostChange", _onHostChange);
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
+		setNamespacedAttribute(request, "onComplete", _onComplete);
+		setNamespacedAttribute(request, "onEnd", _onEnd);
+		setNamespacedAttribute(request, "onFailure", _onFailure);
+		setNamespacedAttribute(request, "onStart", _onStart);
+		setNamespacedAttribute(request, "onSuccess", _onSuccess);
+		setNamespacedAttribute(request, "onXdrReady", _onXdrReady);
 		setNamespacedAttribute(request, "onMethodChange", _onMethodChange);
 		setNamespacedAttribute(request, "onResponseDataChange", _onResponseDataChange);
 		setNamespacedAttribute(request, "onSyncChange", _onSyncChange);
@@ -771,6 +903,12 @@ public class BaseIORequestTag extends IncludeTag {
 	private java.lang.String _afterHostChange;
 	private java.lang.String _afterInit;
 	private java.lang.String _afterInitializedChange;
+	private java.lang.String _afterComplete;
+	private java.lang.String _afterEnd;
+	private java.lang.String _afterFailure;
+	private java.lang.String _afterStart;
+	private java.lang.String _afterSuccess;
+	private java.lang.String _afterXdrReady;
 	private java.lang.String _afterMethodChange;
 	private java.lang.String _afterResponseDataChange;
 	private java.lang.String _afterSyncChange;
@@ -793,6 +931,12 @@ public class BaseIORequestTag extends IncludeTag {
 	private java.lang.String _onHostChange;
 	private java.lang.String _onInit;
 	private java.lang.String _onInitializedChange;
+	private java.lang.String _onComplete;
+	private java.lang.String _onEnd;
+	private java.lang.String _onFailure;
+	private java.lang.String _onStart;
+	private java.lang.String _onSuccess;
+	private java.lang.String _onXdrReady;
 	private java.lang.String _onMethodChange;
 	private java.lang.String _onResponseDataChange;
 	private java.lang.String _onSyncChange;

@@ -4,6 +4,7 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:panel:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:panel:scopedAttributes");
 
+java.lang.String _panelBodyContent = (java.lang.String)request.getAttribute("alloy:panel:panelBodyContent");
 java.lang.String _boundingBox = (java.lang.String)request.getAttribute("alloy:panel:boundingBox");
 java.lang.Boolean _collapsed = (java.lang.Boolean)request.getAttribute("alloy:panel:collapsed");
 java.lang.Boolean _collapsible = (java.lang.Boolean)request.getAttribute("alloy:panel:collapsible");
@@ -11,7 +12,10 @@ java.lang.String _contentBox = (java.lang.String)request.getAttribute("alloy:pan
 java.lang.String _cssClass = (java.lang.String)request.getAttribute("alloy:panel:cssClass");
 java.lang.Boolean _destroyed = (java.lang.Boolean)request.getAttribute("alloy:panel:destroyed");
 java.lang.Boolean _disabled = (java.lang.Boolean)request.getAttribute("alloy:panel:disabled");
+java.lang.String _fillHeight = (java.lang.String)request.getAttribute("alloy:panel:fillHeight");
 java.lang.Boolean _focused = (java.lang.Boolean)request.getAttribute("alloy:panel:focused");
+java.lang.String _footerContent = (java.lang.String)request.getAttribute("alloy:panel:footerContent");
+java.lang.String _headerContent = (java.lang.String)request.getAttribute("alloy:panel:headerContent");
 java.lang.String _height = (java.lang.String)request.getAttribute("alloy:panel:height");
 java.lang.String _hideClass = (java.lang.String)request.getAttribute("alloy:panel:hideClass");
 java.lang.String _icons = (java.lang.String)request.getAttribute("alloy:panel:icons");
@@ -25,6 +29,7 @@ java.lang.Number _tabIndex = (java.lang.Number)request.getAttribute("alloy:panel
 java.lang.String _title = (java.lang.String)request.getAttribute("alloy:panel:title");
 java.lang.Boolean _visible = (java.lang.Boolean)request.getAttribute("alloy:panel:visible");
 java.lang.String _width = (java.lang.String)request.getAttribute("alloy:panel:width");
+java.lang.String _afterBodyContentChange = (java.lang.String)request.getAttribute("alloy:panel:afterBodyContentChange");
 java.lang.String _afterBoundingBoxChange = (java.lang.String)request.getAttribute("alloy:panel:afterBoundingBoxChange");
 java.lang.String _afterCollapsedChange = (java.lang.String)request.getAttribute("alloy:panel:afterCollapsedChange");
 java.lang.String _afterCollapsibleChange = (java.lang.String)request.getAttribute("alloy:panel:afterCollapsibleChange");
@@ -33,7 +38,10 @@ java.lang.String _afterCssClassChange = (java.lang.String)request.getAttribute("
 java.lang.String _afterDestroy = (java.lang.String)request.getAttribute("alloy:panel:afterDestroy");
 java.lang.String _afterDestroyedChange = (java.lang.String)request.getAttribute("alloy:panel:afterDestroyedChange");
 java.lang.String _afterDisabledChange = (java.lang.String)request.getAttribute("alloy:panel:afterDisabledChange");
+java.lang.String _afterFillHeightChange = (java.lang.String)request.getAttribute("alloy:panel:afterFillHeightChange");
 java.lang.String _afterFocusedChange = (java.lang.String)request.getAttribute("alloy:panel:afterFocusedChange");
+java.lang.String _afterFooterContentChange = (java.lang.String)request.getAttribute("alloy:panel:afterFooterContentChange");
+java.lang.String _afterHeaderContentChange = (java.lang.String)request.getAttribute("alloy:panel:afterHeaderContentChange");
 java.lang.String _afterHeightChange = (java.lang.String)request.getAttribute("alloy:panel:afterHeightChange");
 java.lang.String _afterHideClassChange = (java.lang.String)request.getAttribute("alloy:panel:afterHideClassChange");
 java.lang.String _afterIconsChange = (java.lang.String)request.getAttribute("alloy:panel:afterIconsChange");
@@ -50,6 +58,7 @@ java.lang.String _afterVisibleChange = (java.lang.String)request.getAttribute("a
 java.lang.String _afterContentUpdate = (java.lang.String)request.getAttribute("alloy:panel:afterContentUpdate");
 java.lang.String _afterRender = (java.lang.String)request.getAttribute("alloy:panel:afterRender");
 java.lang.String _afterWidthChange = (java.lang.String)request.getAttribute("alloy:panel:afterWidthChange");
+java.lang.String _onBodyContentChange = (java.lang.String)request.getAttribute("alloy:panel:onBodyContentChange");
 java.lang.String _onBoundingBoxChange = (java.lang.String)request.getAttribute("alloy:panel:onBoundingBoxChange");
 java.lang.String _onCollapsedChange = (java.lang.String)request.getAttribute("alloy:panel:onCollapsedChange");
 java.lang.String _onCollapsibleChange = (java.lang.String)request.getAttribute("alloy:panel:onCollapsibleChange");
@@ -58,7 +67,10 @@ java.lang.String _onCssClassChange = (java.lang.String)request.getAttribute("all
 java.lang.String _onDestroy = (java.lang.String)request.getAttribute("alloy:panel:onDestroy");
 java.lang.String _onDestroyedChange = (java.lang.String)request.getAttribute("alloy:panel:onDestroyedChange");
 java.lang.String _onDisabledChange = (java.lang.String)request.getAttribute("alloy:panel:onDisabledChange");
+java.lang.String _onFillHeightChange = (java.lang.String)request.getAttribute("alloy:panel:onFillHeightChange");
 java.lang.String _onFocusedChange = (java.lang.String)request.getAttribute("alloy:panel:onFocusedChange");
+java.lang.String _onFooterContentChange = (java.lang.String)request.getAttribute("alloy:panel:onFooterContentChange");
+java.lang.String _onHeaderContentChange = (java.lang.String)request.getAttribute("alloy:panel:onHeaderContentChange");
 java.lang.String _onHeightChange = (java.lang.String)request.getAttribute("alloy:panel:onHeightChange");
 java.lang.String _onHideClassChange = (java.lang.String)request.getAttribute("alloy:panel:onHideClassChange");
 java.lang.String _onIconsChange = (java.lang.String)request.getAttribute("alloy:panel:onIconsChange");
@@ -80,6 +92,10 @@ java.lang.String _onWidthChange = (java.lang.String)request.getAttribute("alloy:
 <%@ include file="init-ext.jsp" %>
 
 <%
+if (_panelBodyContent != null) {
+	scopedAttributes.put("panelBodyContent", _panelBodyContent);
+}
+
 if (_boundingBox != null) {
 	scopedAttributes.put("boundingBox", _boundingBox);
 }
@@ -108,8 +124,20 @@ if (_disabled != null) {
 	scopedAttributes.put("disabled", _disabled);
 }
 
+if (_fillHeight != null) {
+	scopedAttributes.put("fillHeight", _fillHeight);
+}
+
 if (_focused != null) {
 	scopedAttributes.put("focused", _focused);
+}
+
+if (_footerContent != null) {
+	scopedAttributes.put("footerContent", _footerContent);
+}
+
+if (_headerContent != null) {
+	scopedAttributes.put("headerContent", _headerContent);
 }
 
 if (_height != null) {
@@ -164,6 +192,10 @@ if (_width != null) {
 	scopedAttributes.put("width", _width);
 }
 
+if (_afterBodyContentChange != null) {
+	scopedAttributes.put("afterBodyContentChange", _afterBodyContentChange);
+}
+
 if (_afterBoundingBoxChange != null) {
 	scopedAttributes.put("afterBoundingBoxChange", _afterBoundingBoxChange);
 }
@@ -196,8 +228,20 @@ if (_afterDisabledChange != null) {
 	scopedAttributes.put("afterDisabledChange", _afterDisabledChange);
 }
 
+if (_afterFillHeightChange != null) {
+	scopedAttributes.put("afterFillHeightChange", _afterFillHeightChange);
+}
+
 if (_afterFocusedChange != null) {
 	scopedAttributes.put("afterFocusedChange", _afterFocusedChange);
+}
+
+if (_afterFooterContentChange != null) {
+	scopedAttributes.put("afterFooterContentChange", _afterFooterContentChange);
+}
+
+if (_afterHeaderContentChange != null) {
+	scopedAttributes.put("afterHeaderContentChange", _afterHeaderContentChange);
 }
 
 if (_afterHeightChange != null) {
@@ -264,6 +308,10 @@ if (_afterWidthChange != null) {
 	scopedAttributes.put("afterWidthChange", _afterWidthChange);
 }
 
+if (_onBodyContentChange != null) {
+	scopedAttributes.put("onBodyContentChange", _onBodyContentChange);
+}
+
 if (_onBoundingBoxChange != null) {
 	scopedAttributes.put("onBoundingBoxChange", _onBoundingBoxChange);
 }
@@ -296,8 +344,20 @@ if (_onDisabledChange != null) {
 	scopedAttributes.put("onDisabledChange", _onDisabledChange);
 }
 
+if (_onFillHeightChange != null) {
+	scopedAttributes.put("onFillHeightChange", _onFillHeightChange);
+}
+
 if (_onFocusedChange != null) {
 	scopedAttributes.put("onFocusedChange", _onFocusedChange);
+}
+
+if (_onFooterContentChange != null) {
+	scopedAttributes.put("onFooterContentChange", _onFooterContentChange);
+}
+
+if (_onHeaderContentChange != null) {
+	scopedAttributes.put("onHeaderContentChange", _onHeaderContentChange);
 }
 
 if (_onHeightChange != null) {
