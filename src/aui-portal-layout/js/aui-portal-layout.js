@@ -200,7 +200,7 @@ var PortalLayout = A.Component.create(
 					var placeholder = isString(val) ? A.Node.create(val) : val;
 
 					if (!placeholder.inDoc()) {
-						A.getBody().append(
+						A.getBody().prepend(
 							placeholder.hide()
 						);
 					}
