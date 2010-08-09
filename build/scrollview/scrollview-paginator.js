@@ -105,7 +105,7 @@ Y.extend(PaginatorPlugin, Y.Plugin.Base, {
         
         this.afterHostMethod('_uiDimensionsChange', this._calculatePageOffsets);
         this.afterHostMethod('_onGestureMoveStart', this._setBoundaryPoints);
-        this.afterHostMethod('_flick', this._afterFlick);
+        this.beforeHostMethod('_flickFrame', this._flickFrame);
         this.afterHostEvent('scrollEnd', this._scrollEnded);
         this.after('indexChange', this._afterIndexChange);
 
@@ -115,13 +115,13 @@ Y.extend(PaginatorPlugin, Y.Plugin.Base, {
             host.set('bounce', BOUNCE_DECELERATION_CONST);
         }
     },
-    
+
     /**
      * Destructor removes anything added by the plugin
      *
-     * @method destroy
+     * @method destructor
      */
-    destroy: function() {
+    destructor: function() {
         var host = this._host;
 
         if(host.get('bounce') !== 0) {
@@ -178,35 +178,31 @@ Y.extend(PaginatorPlugin, Y.Plugin.Base, {
     },
 
     /**
-     * Executed as soon as the flick event occurs. This is needed to
-     * determine if the next or prev page should be activated.
-     * 
-     * @method _afterFlick
-     * @param e {Event.Facade} The flick event facade.
+     * Executed to respond to the flick event, by over-riding the default flickFrame animation. 
+     * This is needed to determine if the next or prev page should be activated.
+     *
+     * @method _flickFrame
      * @protected
      */
-    _afterFlick: function(e) {
+    _flickFrame: function() {
         var host = this._host,
             velocity = host._currentVelocity,
 
             inc = velocity < 0,
-            speed = Math.abs(velocity),
 
             pageIndex = this.get('index'),
             pageCount = this.get('total');
 
-        // @TODO: find the right minimum velocity to turn the page.
-        // Right now, hard-coding at 1.
-        if(speed < 1) {
-            host._currentVelocity = inc ? -1 : 1;
+        if (velocity) {
+
+            if (inc && pageIndex < pageCount-1) {
+                this.set('index', pageIndex+1);
+            } else if (!inc && pageIndex > 0) {
+                this.set('index', pageIndex-1);
+            }
         }
 
-        if(inc && pageIndex < pageCount-1) {
-            this.set('index', pageIndex+1, { src: UI });
-        } else if(!inc && pageIndex > 0) {
-            this.set('index', pageIndex-1, { src: UI });
-        }
-        
+        return this._prevent;
     },
 
     /**
@@ -221,8 +217,8 @@ Y.extend(PaginatorPlugin, Y.Plugin.Base, {
              pageIndex = this.get('index'),
              pageCount = this.get('total');
 
-         // Stale scroll - snap to current/next/prev page
-         if(e.staleScroll) {
+
+         if(e.onGestureMoveEnd && !host._flicking) {
              if(host._scrolledHalfway) {
                  if(host._scrolledForward && pageIndex < pageCount-1) {
                      this.set('index', pageIndex+1);
@@ -235,6 +231,8 @@ Y.extend(PaginatorPlugin, Y.Plugin.Base, {
                  this.snapToCurrent();
              }
          }
+
+         host._flicking = false;
      },
 
     /**
@@ -316,11 +314,14 @@ Y.extend(PaginatorPlugin, Y.Plugin.Base, {
 
         this._host._killTimer();
 
+
         this._host.set('scrollX', this._minPoints[this.get('index')], {
             duration: 300,
             easing: 'ease-out'
         });
-    }
+    },
+    
+    _prevent: new Y.Do.Prevent()
     
 });
 

@@ -203,6 +203,13 @@ YUI.add('dd-drag', function(Y) {
     };
 
     Drag.NAME = 'drag';
+    
+    /**
+    * This property defaults to "mousedown", but when drag-gestures is loaded, it is changed to "gesturemovestart"
+    * @static
+    * @property START_EVENT
+    */
+    Drag.START_EVENT = 'mousedown';
 
     Drag.ATTRS = {
         /**
@@ -416,6 +423,14 @@ YUI.add('dd-drag', function(Y) {
                 this.addTarget(t);
                 return t;
             }
+        },
+        /**
+        * @attribute haltDown
+        * @description Should the mousedown event be halted. Default: true
+        * @type Boolean
+        */
+        haltDown: {
+            value: true
         }
     };
 
@@ -747,7 +762,11 @@ YUI.add('dd-drag', function(Y) {
             }
             if (this.validClick(ev)) {
                 this._fixIEMouseDown();
-                ev.preventDefault();
+                if (this.get('haltDown')) {
+                    ev.halt();
+                } else {
+                    ev.preventDefault();
+                }
                 
                 this._setStartPosition([ev.pageX, ev.pageY]);
 
@@ -962,7 +981,7 @@ YUI.add('dd-drag', function(Y) {
             node.addClass(DDM.CSS_PREFIX + '-draggable');
 
             node.addClass(DDM.CSS_PREFIX + '-draggable');
-            node.on('mousedown', Y.bind(this._handleMouseDownEvent, this));
+            node.on(Drag.START_EVENT, Y.bind(this._handleMouseDownEvent, this));
             node.on('mouseup', Y.bind(this._handleMouseUp, this));
             node.on('dragstart', Y.bind(this._fixDragStart, this));
         },

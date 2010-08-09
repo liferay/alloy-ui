@@ -41,7 +41,7 @@ var getClassName = Y.ClassNameManager.getClassName,
 Y.Node.DOM_EVENTS.DOMSubtreeModified = true;
 
 /**
- * ScrollView provides a srollable widget, supporting flick gestures, across both touch and mouse based devices. 
+ * ScrollView provides a scrollable widget, supporting flick gestures, across both touch and mouse based devices. 
  *
  * @class ScrollView
  * @namespace 
@@ -64,6 +64,10 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
      */
     initializer: function() {
         this._createEvents();
+
+        // Cache - they're write once, and not going to change
+        this._cb = this.get(CONTENT_BOX);
+        this._bb = this.get(BOUNDING_BOX);
     },
 
     /** 
@@ -106,7 +110,10 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
      * @private
      */
     _transitionEnded: function() {
-        this.fire(EV_SCROLL_END);
+        if (!this._transitionsHack) {
+            this._transitionsHack = true;
+            this.fire(EV_SCROLL_END);
+        }
     },
 
     /**
@@ -117,13 +124,14 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
      */
     bindUI: function() {
 
-        var cb = this.get(CONTENT_BOX),
+        var cb = this._cb,
             flick = this.get(FLICK); 
 
-        this.get(BOUNDING_BOX).on('gesturemovestart', Y.bind(this._onGestureMoveStart, this));
+        this._bb.on('gesturemovestart', Y.bind(this._onGestureMoveStart, this));
+
         cb.on('transition:end', Y.bind(this._transitionEnded, this), false);
 
-        // TODO: Fires way to often when using non-native transitions
+        // TODO: Fires way to often when using non-native transitions, due to property change
         if (NATIVE_TRANSITIONS) {
             cb.on('DOMSubtreeModified', Y.bind(this._uiDimensionsChange, this));
         }
@@ -161,19 +169,22 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
      * @param easing {String} An easing equation if duration is set
      */
     scrollTo: function(x, y, duration, easing) {
-        var cb = this.get(CONTENT_BOX),
-            xMove = x * -1,
-            yMove = y * -1,
+
+        var cb = this._cb,
+            xSet = (x !== null),
+            ySet = (y !== null),
+            xMove = (xSet) ? x * -1 : 0,
+            yMove = (ySet) ? y * -1 : 0,
             transition;
 
         duration = duration || 0;
         easing = easing || ScrollView.EASING;
 
-        if(x !== this.get(SCROLL_X)) {
+        if (xSet) {
             this.set(SCROLL_X, x, { src: UI });
         }
 
-        if(y !== this.get(SCROLL_Y)) {
+        if (ySet) {
             this.set(SCROLL_Y, y, { src: UI });
         }
 
@@ -182,15 +193,16 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
             duration : duration/1000
         };
 
-        Y.log("Transition: duration, easing:" + transition.duration, transition.easing, "scrollview");        
-
         if (NATIVE_TRANSITIONS) {
             transition.transform = 'translate('+ xMove +'px,'+ yMove +'px)';
         } else {
-            transition.left = xMove + "px";
-            transition.top = yMove + "px";
+            if (xSet) { transition.left = xMove + "px"; }
+            if (ySet) { transition.top = yMove + "px"; }
         }
 
+        Y.log("Transition: duration, easing:" + [transition.duration, transition.easing], "scrollview");        
+
+        this._transitionsHack = false;
         cb.transition(transition);
     },
 
@@ -203,12 +215,11 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
      */
     _onGestureMoveStart: function(e) {
 
-        var preventable = e._orig || e;
-        preventable.preventDefault();
+        e.preventDefault();
 
         this._killTimer();
 
-        var bb = this.get(BOUNDING_BOX);
+        var bb = this._bb;
 
         this._moveEvt = bb.on('gesturemove', Y.bind(this._onGestureMove, this));
         this._moveEndEvt = bb.on('gesturemoveend', Y.bind(this._onGestureMoveEnd, this));
@@ -233,9 +244,8 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
      */
     _onGestureMove: function(e) {
 
-        var preventable = e._orig || e;
-        preventable.preventDefault();
-        
+        e.preventDefault();
+
         this._isDragging = true;
         this._moveEndClientY = e.clientY;
         this._moveEndClientX = e.clientX;
@@ -244,7 +254,7 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
         if(this._scrollsVertical) {
             this.set(SCROLL_Y, -(e.clientY - this._moveStartY));
         }
-        
+
         if(this._scrollsHorizontal) {
             this.set(SCROLL_X, -(e.clientX - this._moveStartX));
         }
@@ -258,9 +268,8 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
      * @private
      */
     _onGestureMoveEnd: function(e) {
-        
-        var preventable = e._orig || e;
-        preventable.preventDefault();
+
+        e.preventDefault();
         
         var minY = this._minScrollY,
             maxY = this._maxScrollY,
@@ -281,6 +290,7 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
             this._scrolledHalfway = true;
             this._scrolledForward = distance > 0;
         }
+
         if(this._scrollsVertical && Math.abs(distance) > (this.get('height')/2)) {
             this._scrolledHalfway = true;
             this._scrolledForward = distance > 0;
@@ -309,18 +319,18 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
             this._snapToEdge = true;
             this.set(SCROLL_X, maxX);
         }
-        
+
+        Y.log("half:" + this._scrolledHalfway + ", fwd:"  + this._scrolledForward, "scrollview");
+
         if(this._snapToEdge) {
             return;
         }
 
-        // Check for staleness
-        if(+(new Date()) - this._moveStartTime > 100) {
-            this.fire(EV_SCROLL_END, {
-                staleScroll: true
-            });
-            return;
-        }
+        this.fire(EV_SCROLL_END, {
+            onGestureMoveEnd: true
+        });
+
+        return;
     },
 
     /**
@@ -335,7 +345,7 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
             this._uiScrollY(e.newVal, e.duration, e.easing);
         }
     },
-    
+
     /**
      * Update the UI when the scrollY attr changes
      *
@@ -349,9 +359,9 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
         duration = duration || this._snapToEdge ? 400 : 0;
         easing = easing || this._snapToEdge ? ScrollView.SNAP_EASING : null;
 
-        this.scrollTo(this.get(SCROLL_X), val, duration, easing);
+        this.scrollTo(null, val, duration, easing);
     },
-    
+
     /**
      * after listener for changes to the scrollX attr
      *
@@ -378,7 +388,7 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
         duration = duration || this._snapToEdge ? 400 : 0;
         easing = easing || this._snapToEdge ? ScrollView.SNAP_EASING : null;
 
-        this.scrollTo(val, this.get(SCROLL_Y), duration, easing);
+        this.scrollTo(val, null, duration, easing);
     },
     
     /**
@@ -411,7 +421,7 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
      * @protected
      */
     _uiDimensionsChange: function() {
-        var bb = this.get(BOUNDING_BOX),
+        var bb = this._bb,
 
             height = this.get('height'),
             width = this.get('width'),
@@ -451,6 +461,10 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
         
         this._currentVelocity = flick.velocity;
         this._flicking = true;
+
+        this._decelCached = this.get('deceleration');
+        this._bounceCached = this.get('bounce');
+
         this._flickFrame();
 
         this.fire(EV_SCROLL_FLICK);
@@ -471,20 +485,23 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
             minX,
             scrollsVertical  = this._scrollsVertical,
             scrollsHorizontal = this._scrollsHorizontal,
+            deceleration = this._decelCached,
+            bounce = this._bounceCached,
             step = ScrollView.FRAME_STEP;
-        
+
         if(scrollsVertical) {
             maxY = this._maxScrollY;
             minY = this._minScrollY;
             newY = this.get(SCROLL_Y) - (this._currentVelocity * step);
         }
+
         if(scrollsHorizontal) {
             maxX = this._maxScrollX;
             minX = this._minScrollX;
             newX = this.get(SCROLL_X) - (this._currentVelocity * step);
         }
         
-        this._currentVelocity = (this._currentVelocity*this.get('deceleration'));
+        this._currentVelocity = (this._currentVelocity * deceleration);
 
         if(Math.abs(this._currentVelocity).toFixed(4) <= 0.015) {
             this._flicking = false;
@@ -509,31 +526,33 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
                     this.set(SCROLL_X, maxX);
                 }
             }
-            
+
             return;
         }
-        
-        if(scrollsVertical) {
+
+        if (scrollsVertical) {
             if (newY < minY || newY > maxY) {
                 this._exceededYBoundary = true;
-                this._currentVelocity *= this.get(BOUNCE);
+                this._currentVelocity *= bounce;
             }
 
             this.set(SCROLL_Y, newY);
         }
 
-        if(scrollsHorizontal) {
+        if (scrollsHorizontal) {
             if (newX < minX || newX > maxX) {
                 this._exceededXBoundary = true;
-                this._currentVelocity *= this.get(BOUNCE);
+                this._currentVelocity *= bounce;
             }
 
             this.set(SCROLL_X, newX);
         }
-        
-        this._flickTimer = Y.later(step, this, '_flickFrame');
+
+        if (!this._flickTimer) {
+            this._flickTimer = Y.later(step, this, '_flickFrame', null, true);
+        }
     },
-    
+
     /**
      * Stop the animation timer
      *
@@ -544,8 +563,9 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
     _killTimer: function(fireEvent) {
         if(this._flickTimer) {
             this._flickTimer.cancel();
+            this._flickTimer = null;
         }
-        
+
         if(fireEvent) {
             this.fire(EV_SCROLL_END);
         }
@@ -558,8 +578,9 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
      * @param {String} dim
      */
     _setScroll : function(val, dim) {
-        var bouncing = this.get(BOUNCE),
+        var bouncing = this._cachedBounce || this.get(BOUNCE),
             range = ScrollView.BOUNCE_RANGE,
+
             maxScroll = (dim == DIM_X) ? this._maxScrollX : this._maxScrollY,
 
             min = bouncing ? -range : 0,

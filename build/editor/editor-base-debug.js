@@ -375,11 +375,12 @@ YUI.add('editor-base', function(Y) {
         /**
         * Focus the contentWindow of the iframe
         * @method focus
+        * @param {Function} fn Callback function to execute after focus happens
         * @return {EditorBase}
         * @chainable
         */
-        focus: function() {
-            this.frame.focus();
+        focus: function(fn) {
+            this.frame.focus(fn);
             return this;
         },
         /**
@@ -494,7 +495,7 @@ YUI.add('editor-base', function(Y) {
         * @property USE
         * @type Array
         */
-        USE: ['substitute', 'node','selector-css3', 'selection', 'stylesheet'],
+        USE: ['substitute', 'node', 'selector-css3', 'selection', 'stylesheet'],
         /**
         * The Class Name: editorBase
         * @static

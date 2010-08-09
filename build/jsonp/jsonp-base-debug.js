@@ -170,7 +170,9 @@ Y.jsonp = function (url,c) {
     return new Y.JSONPRequest(url,c).send();
 };
 
-YUI.Env.JSONP = {};
+if (!YUI.Env.JSONP) {
+    YUI.Env.JSONP = {};
+}
 
 
 }, '3.2.0PR1' ,{requires:['get','oop']});

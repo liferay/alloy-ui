@@ -14,6 +14,7 @@ YUI.add('cache-base', function(Y) {
  * @module cache
  */
 var LANG = Y.Lang,
+    isDate = Y.Lang.isDate,
 
 /**
  * Base class for the YUI Cache utility.
@@ -80,6 +81,20 @@ Y.mix(Cache, {
         */
         uniqueKeys: {
             value: false
+        },
+
+        /**
+        * @attribute expires
+        * @description Absolute Date when data expires or
+        * relative number of milliseconds. Zero disables expiration.
+        * @type Date | Number
+        * @default 0
+        */
+        expires: {
+            value: 0,
+            validator: function(v) {
+                return Y.Lang.isDate(v) || (Y.Lang.isNumber(v) && v >= 0);
+            }
         },
 
         /**
@@ -277,7 +292,10 @@ Y.extend(Cache, Y.Base, {
      * @protected
      */
     _isMatch: function(request, entry) {
-        return (request === entry.request);
+        if(!entry.expires || new Date() < entry.expires) {
+            return (request === entry.request);
+        }
+        return false;
     },
 
     /////////////////////////////////////////////////////////////////////////////
@@ -288,7 +306,7 @@ Y.extend(Cache, Y.Base, {
 
     /**
      * Adds a new entry to the cache of the format
-     * {request:request, response:response}.
+     * {request:request, response:response, cached:cached, expires:expires}.
      * If cache is full, evicts the stalest entry before adding the new one.
      *
      * @method add
@@ -296,9 +314,16 @@ Y.extend(Cache, Y.Base, {
      * @param response {Object} Response value.
      */
     add: function(request, response) {
+        var expires = this.get("expires");
         if(this.get("initialized") && ((this.get("max") === null) || this.get("max") > 0) &&
                 (LANG.isValue(request) || LANG.isNull(request) || LANG.isUndefined(request))) {
-            this.fire("add", {entry: {request:request, response:response, cached: new Date()}});
+            this.fire("add", {entry: {
+                request:request,
+                response:response,
+                cached: new Date(),
+                expires: isDate(expires) ? expires :
+            (expires ? new Date(new Date().getTime() + this.get("expires")) : null)
+            }});
         }
         else {
         }
@@ -374,7 +399,6 @@ function CacheOffline() {
 }
 
 var localStorage = Y.config.win.localStorage,
-    isDate = Y.Lang.isDate,
     JSON = Y.JSON,
 
     /////////////////////////////////////////////////////////////////////////////
@@ -421,13 +445,10 @@ var localStorage = Y.config.win.localStorage,
         * @description Absolute Date when data expires or
         * relative number of milliseconds. Zero disables expiration.
         * @type Date | Number
-        * @default 0
+        * @default 86400000 (one day)
         */
         expires: {
-            value: 86400000, //one day
-            validator: function(v) {
-                return Y.Lang.isDate(v) || (Y.Lang.isNumber(v) && v >= 0);
-            }
+            value: 86400000
         },
 
         /**
@@ -569,10 +590,12 @@ var localStorage = Y.config.win.localStorage,
     _defAddFn: function(e) {
         var entry = e.entry,
             request = entry.request,
-            expires = this.get("expires");
+            cached = entry.cached,
+            expires = entry.expires;
             
-        entry.expires = isDate(expires) ? expires :
-            (expires ? new Date(new Date().getTime() + this.get("expires")) : null);
+        // Convert Dates to msecs on the way into localStorage
+        entry.cached = cached.getTime();
+        entry.expires = expires ? expires.getTime() : expires;
 
         try {
             localStorage.setItem(this.get("sandbox")+JSON.stringify({"request":request}), JSON.stringify(entry));
@@ -608,7 +631,7 @@ var localStorage = Y.config.win.localStorage,
     /////////////////////////////////////////////////////////////////////////////
     /**
      * Adds a new entry to the cache of the format
-     * {request:request, response:response, expires: expires}.
+     * {request:request, response:response, cached:cached, expires: expires}.
      *
      * @method add
      * @param request {Object} Request value must be a String or JSON.
@@ -627,12 +650,12 @@ var localStorage = Y.config.win.localStorage,
     retrieve: function(request) {
         this.fire("request", {request: request});
 
-        var entry, expires, cached;
+        var entry, expires, sandboxedrequest;
 
         try {
-            request = this.get("sandbox")+JSON.stringify({"request":request});
+            sandboxedrequest = this.get("sandbox")+JSON.stringify({"request":request});
             try {
-                entry = JSON.parse(localStorage.getItem(request));
+                entry = JSON.parse(localStorage.getItem(sandboxedrequest));
             }
             catch(e) {
             }
@@ -641,11 +664,13 @@ var localStorage = Y.config.win.localStorage,
         }
 
         if(entry) {
+            // Convert msecs to Dates on the way out of localStorage
             entry.cached = new Date(entry.cached);
             expires = entry.expires;
             expires = !expires ? null : new Date(expires);
-            if(!expires || new Date() < expires) {
-                entry.expires = expires;
+            entry.expires = expires;
+            
+            if(this._isMatch(request, entry)) {
                 this.fire("retrieve", {entry: entry});
                 return entry;
             }
@@ -661,44 +686,6 @@ var localStorage = Y.config.win.localStorage,
      */
     _setMax: function(value) {
         return null;
-    },
-
-    /**
-     * Adds entry to cache with an expires property.
-     *
-     * @method _defAddFn
-     * @param e {Event.Facade} Event Facade with the following properties:
-     * <dl>
-     * <dt>entry (Object)</dt> <dd>The cached entry.</dd>
-     * </dl>
-     * @protected
-     */
-    _defAddFn: function(e) {
-        var expires = this.get("expires");
-        e.entry.expires = isDate(expires) ? expires :
-            (expires ? new Date(new Date().getTime() + this.get("expires")) : null);
-        
-        CacheOffline.superclass._defAddFn.call(this, e);
-    },
-
-    /**
-     * Overrides the default method to check for expired entry.
-     * Returns true if current request matches the cached request, otherwise
-     * false. Implementers should override this method to customize the
-     * cache-matching algorithm.
-     *
-     * @method _isMatch
-     * @param request {Object} Request object.
-     * @param entry {Object} Cached entry.
-     * @return {Boolean} True if current request matches given cached request
-     * and entry has not expired, false otherwise.
-     * @protected
-     */
-    _isMatch: function(request, entry) {
-        if(!entry.expires || new Date() < entry.expires) {
-            return (request === entry.request);
-        }
-        return false;
     }
 };
 
@@ -712,7 +699,55 @@ Y.CacheOffline = CacheOffline;
 
 }, '3.2.0PR1' ,{requires:['cache-base', 'json']});
 
+YUI.add('cache-plugin', function(Y) {
+
+/**
+ * Plugin.Cache adds pluginizability to Cache.
+ * @class Plugin.Cache
+ * @extends Cache
+ * @uses Plugin.Base
+ */
+function CachePlugin(config) {
+    var cache = config && config.cache ? config.cache : Y.Cache,
+        tmpclass = Y.Base.create("dataSourceCache", cache, [Y.Plugin.Base]),
+        tmpinstance = new tmpclass(config);
+    tmpclass.NS = "tmpClass";
+    return tmpinstance;
+}
+
+Y.mix(CachePlugin, {
+    /**
+     * The namespace for the plugin. This will be the property on the host which
+     * references the plugin instance.
+     *
+     * @property NS
+     * @type String
+     * @static
+     * @final
+     * @value "cache"
+     */
+    NS: "cache",
+
+    /**
+     * Class name.
+     *
+     * @property NAME
+     * @type String
+     * @static
+     * @final
+     * @value "dataSourceCache"
+     */
+    NAME: "cachePlugin"
+});
 
 
-YUI.add('cache', function(Y){}, '3.2.0PR1' ,{use:['cache-base','cache-offline']});
+Y.namespace("Plugin").Cache = CachePlugin;
+
+
+
+}, '3.2.0PR1' ,{requires:['cache-base']});
+
+
+
+YUI.add('cache', function(Y){}, '3.2.0PR1' ,{use:['cache-base','cache-offline','cache-plugin']});
 

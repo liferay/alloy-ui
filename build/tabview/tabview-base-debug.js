@@ -148,4 +148,4 @@ Y.mix(TabviewBase.prototype, {
 Y.TabviewBase = TabviewBase;
 
 
-}, '3.2.0PR1' ,{requires:['node-event-delegate', 'classnamemanager']});
+}, '3.2.0PR1' ,{requires:['node-event-delegate', 'classnamemanager', 'skin-sam-tabview']});

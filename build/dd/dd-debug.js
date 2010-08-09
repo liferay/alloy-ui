@@ -172,8 +172,6 @@ YUI.add('dd-ddm-base', function(Y) {
             var doc = Y.one(Y.config.doc);
             doc.on('mousemove', Y.throttle(Y.bind(this._move, this), this.get('throttleTime')));
             doc.on('mouseup', Y.bind(this._end, this));
-            doc.on('move', Y.bind(this._move, this));
-            doc.on('moveend', Y.bind(this._end, this));
         },
         /**
         * @private
@@ -343,11 +341,6 @@ YUI.add('dd-ddm-base', function(Y) {
     Y.namespace('DD');
     Y.DD.DDM = new DDMBase();
 
-    Y.DD.DDM.gestureTest = function(Y) {
-        console.log('gestureTest: ', arguments);
-        return ('ontouchstart' in Y.config.win && !Y.UA.chrome);  
-    };
-
     /**
     * @event ddm:start
     * @description Fires from the DDM before all drag events fire.
@@ -471,9 +464,8 @@ YUI.add('dd-ddm', function(Y) {
             pg.addClass(Y.DD.DDM.CSS_PREFIX + '-shim');
             bd.prepend(pg);
             this._pg = pg;
-            //this._pg.on(GESTURE_MOVE, Y.throttle(Y.bind(this._move, this), this.get('throttleTime')));
             this._pg.on('mousemove', Y.throttle(Y.bind(this._move, this), this.get('throttleTime')));
-            this._pg.on('gesturemoveend', Y.bind(this._end, this));
+            this._pg.on('mouseup', Y.bind(this._end, this));
             
             win = Y.one('win');
             Y.on('window:resize', Y.bind(this._pg_size, this));
@@ -1094,6 +1086,13 @@ YUI.add('dd-drag', function(Y) {
     };
 
     Drag.NAME = 'drag';
+    
+    /**
+    * This property defaults to "mousedown", but when drag-gestures is loaded, it is changed to "gesturemovestart"
+    * @static
+    * @property START_EVENT
+    */
+    Drag.START_EVENT = 'mousedown';
 
     Drag.ATTRS = {
         /**
@@ -1308,6 +1307,14 @@ YUI.add('dd-drag', function(Y) {
                 this.addTarget(t);
                 return t;
             }
+        },
+        /**
+        * @attribute haltDown
+        * @description Should the mousedown event be halted. Default: true
+        * @type Boolean
+        */
+        haltDown: {
+            value: true
         }
     };
 
@@ -1639,7 +1646,13 @@ YUI.add('dd-drag', function(Y) {
             }
             if (this.validClick(ev)) {
                 this._fixIEMouseDown();
-                ev.preventDefault();
+                if (this.get('haltDown')) {
+                    Y.log('Halting MouseDown', 'info', 'drag');
+                    ev.halt();
+                } else {
+                    Y.log('Preventing Default on MouseDown', 'info', 'drag');
+                    ev.preventDefault();
+                }
                 
                 this._setStartPosition([ev.pageX, ev.pageY]);
 
@@ -1854,7 +1867,7 @@ YUI.add('dd-drag', function(Y) {
             node.addClass(DDM.CSS_PREFIX + '-draggable');
 
             node.addClass(DDM.CSS_PREFIX + '-draggable');
-            node.on('mousedown', Y.bind(this._handleMouseDownEvent, this));
+            node.on(Drag.START_EVENT, Y.bind(this._handleMouseDownEvent, this));
             node.on('mouseup', Y.bind(this._handleMouseUp, this));
             node.on('dragstart', Y.bind(this._fixDragStart, this));
         },
@@ -3217,52 +3230,6 @@ YUI.add('dd-scroll', function(Y) {
 
 
 }, '3.2.0PR1' ,{optional:['dd-proxy'], requires:['dd-drag'], skinnable:false});
-YUI.add('dd-plugin', function(Y) {
-
-
-       /**
-        * Simple Drag plugin that can be attached to a Node via the plug method.
-        * @module dd
-        * @submodule dd-plugin
-        */
-       /**
-        * Simple Drag plugin that can be attached to a Node via the plug method.
-        * @class Drag
-        * @extends DD.Drag
-        * @constructor
-        * @namespace Plugin
-        */
-
-
-        var Drag = function(config) {
-            config.node = ((Y.Widget && config.host instanceof Y.Widget) ? config.host.get('boundingBox') : config.host);
-            Drag.superclass.constructor.call(this, config);
-        };
-        
-        /**
-        * @property NAME
-        * @description dd-plugin
-        * @type {String}
-        */
-        Drag.NAME = "dd-plugin";
-
-        /**
-        * @property NS
-        * @description The Drag instance will be placed on the Node instance under the dd namespace. It can be accessed via Node.dd;
-        * @type {String}
-        */
-        Drag.NS = "dd";
-
-
-        Y.extend(Drag, Y.DD.Drag);
-        Y.namespace('Plugin');
-        Y.Plugin.Drag = Drag;
-
-
-
-
-
-}, '3.2.0PR1' ,{optional:['dd-constrain', 'dd-proxy'], requires:['dd-drag'], skinnable:false});
 YUI.add('dd-drop', function(Y) {
 
 
@@ -3812,51 +3779,6 @@ YUI.add('dd-drop', function(Y) {
 
 
 }, '3.2.0PR1' ,{requires:['dd-ddm-drop', 'dd-drag'], skinnable:false});
-YUI.add('dd-drop-plugin', function(Y) {
-
-
-       /**
-        * Simple Drop plugin that can be attached to a Node via the plug method.
-        * @module dd
-        * @submodule dd-drop-plugin
-        */
-       /**
-        * Simple Drop plugin that can be attached to a Node via the plug method.
-        * @class Drop
-        * @extends DD.Drop
-        * @constructor
-        * @namespace Plugin
-        */
-
-
-        var Drop = function(config) {
-            config.node = config.host;
-            Drop.superclass.constructor.apply(this, arguments);
-        };
-        
-        /**
-        * @property NAME
-        * @description dd-drop-plugin
-        * @type {String}
-        */
-        Drop.NAME = "dd-drop-plugin";
-        /**
-        * @property NS
-        * @description The Drop instance will be placed on the Node instance under the drop namespace. It can be accessed via Node.drop;
-        * @type {String}
-        */
-        Drop.NS = "drop";
-
-
-        Y.extend(Drop, Y.DD.Drop);
-        Y.namespace('Plugin');
-        Y.Plugin.Drop = Drop;
-
-
-
-
-
-}, '3.2.0PR1' ,{requires:['dd-drop'], skinnable:false});
 YUI.add('dd-delegate', function(Y) {
 
 
@@ -3993,7 +3915,7 @@ YUI.add('dd-delegate', function(Y) {
             this.dd.on('dragNodeChange', Y.bind(this._onNodeChange, this));
 
             //Attach the delegate to the container
-            this._handles.push(Y.delegate('gesturemovestart', Y.bind(this._delMouseDown, this), cont, this.get(NODES)));
+            this._handles.push(Y.delegate(Y.DD.Drag.START_EVENT, Y.bind(this._delMouseDown, this), cont, this.get(NODES)));
 
             this._handles.push(Y.on('mouseenter', Y.bind(this._onMouseEnter, this), cont));
 
@@ -4187,38 +4109,7 @@ YUI.add('dd-delegate', function(Y) {
 
 
 }, '3.2.0PR1' ,{optional:['dd-drop-plugin'], requires:['dd-drag', 'event-mouseenter'], skinnable:false});
-YUI.add('dd-gestures', function(Y) {
 
 
-    Y.log('Drag gesture support loaded', 'info', 'drag-gestures');
-    
-    Y.DD.Drag.prototype._prep = function() {
-        Y.log('Using DD override prep to attach gesture events', 'info', 'drag-gestures');
-        this._dragThreshMet = false;
-        var node = this.get('node'), DDM = Y.DD.DDM;
-
-        node.addClass(DDM.CSS_PREFIX + '-draggable');
-
-        node.on('gesturemovestart', Y.bind(this._handleMouseDownEvent, this), {
-            minDistance: 0,
-            minTime: 0
-        });
-        node.setData('dd', true);
-        node.on('gesturemoveend', Y.bind(this._handleMouseUp, this), { standAlone: true });
-        node.on('dragstart', Y.bind(this._fixDragStart, this));
-        node.on('gesturemove', Y.throttle(Y.bind(DDM._move, DDM), DDM.get('throttleTime')), { standAlone: true });
-
-    };
-
-    Y.DD.DDM._setupListeners = function() {
-        this._createPG();
-        this._active = true;
-    };
-
-
-
-}, '3.2.0PR1' ,{requires:['dd-drag', 'event-synthetic', 'event-gestures'], skinnable:false});
-
-
-YUI.add('dd', function(Y){}, '3.2.0PR1' ,{skinnable:false, use:['dd-ddm-base', 'dd-ddm', 'dd-ddm-drop', 'dd-drag', 'dd-proxy', 'dd-constrain', 'dd-plugin', 'dd-drop', 'dd-drop-plugin', 'dd-scroll', 'dd-delegate', 'dd-gestures']});
+YUI.add('dd', function(Y){}, '3.2.0PR1' ,{use:['dd-ddm-base', 'dd-ddm', 'dd-ddm-drop', 'dd-drag', 'dd-proxy', 'dd-constrain', 'dd-drop', 'dd-scroll', 'dd-delegate'], skinnable:false});
 
