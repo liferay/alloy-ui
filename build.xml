@@ -337,7 +337,7 @@
 		<echo>Adding patches to [${project.dir}/lib/yui3/build]</echo>
 	
 		<!-- Patch for dd -->
-		<replace file="${project.dir}/lib/yui3/src/dd/js/drag.js">
+		<!-- <replace file="${project.dir}/lib/yui3/src/dd/js/drag.js">
 			<replacefilter token="node.on(GESTURE_MOVE, Y.throttle(Y.bind(DDM._move, DDM), DDM.get('throttleTime')), { standAlone: true });" value="node.on(GESTURE_MOVE, Y.throttle(Y.bind(DDM._move, DDM), DDM.get('throttleTime')));" />
 		</replace>
 
@@ -347,7 +347,7 @@
 				dir="${project.dir}/lib/yui3/src/dd"
 				includes="build.xml"
 			/>
-		</subant>
+		</subant> -->
 		<!-- /End Loader Patch -->
 	</target>
 
