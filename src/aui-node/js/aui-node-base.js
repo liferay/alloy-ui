@@ -92,6 +92,8 @@ var Lang = A.Lang,
 		MAP_WRAPPERS._default = [1, 'div<div>', '</div>'];
 	}
 
+	div = null;
+
 /**
  * Augment the <a href="Node.html">YUI3 Node</a> with more util methods.
  *
@@ -982,6 +984,42 @@ A.mix(A.Node.prototype, {
 		out: Lang.emptyFn
 	}
 }, true);
+
+if (!SUPPORT_OPTIONAL_TBODY) {
+	A.DOM._ADD_HTML = A.DOM.addHTML;
+
+	A.DOM.addHTML = function(node, content, where) {
+		var nodeName = node.nodeName.toLowerCase();
+
+		var tagName;
+
+		if (!isUndefined(content)) {
+			if (isString(content)) {
+				tagName = (REGEX_TAGNAME.exec(content) || ARRAY_EMPTY_STRINGS)[1];
+			}
+			else if (content.nodeName) {
+				tagName = content.nodeName;
+			}
+
+			tagName = tagName.toLowerCase();
+		}
+
+		if (nodeName == 'table' && tagName == 'tr') {
+			node = node.getElementsByTagName('tbody')[0] || node.appendChild(node.ownerDocument.createElement('tbody'));
+
+			var whereNodeName = ((where && where.nodeName) || STR_EMPTY).toLowerCase();
+
+			// Assuming if the "where" is a tbody node,
+			// we're trying to prepend to a table. Attempt to
+			// grab the first child of the tbody.
+			if (whereNodeName == 'tbody' && where.childNodes.length > 0) {
+				where = where.firstChild;
+			}
+		}
+
+		A.DOM._ADD_HTML(node, content, where);
+	};
+}
 
 A.Node._prepareHTML = function(element) {
 	var doc = A.config.doc;
