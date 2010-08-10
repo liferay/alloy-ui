@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title>untitled</title>
+	<script src="../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+</head>
+
+<body>
+	<table id="table1">
+		<tr id="tr1">
+			<td id="td1">1</td>
+			<td id="td2">2</td>
+		</tr>
+	</table>
+
+	<select id="select1"></select>
+	<select id="select2"><option>Test</option></select>
+
+	<script type="text/javascript">
+		AUI().use(
+			'aui-node',
+			function(A) {
+				var tr2 = A.one('#tr1').clone().appendTo('#table1');
+				var select1a = A.one('#select1').clone().appendTo('body');
+				var select2a = A.one('#select2').clone().appendTo('body');
+
+				var rows = A.all(A.Node._prepareHTML('<tr><td>append 1a</td><td>append 2a</td></tr><tr><td>append 1b</td><td>append 2b</td></tr>'));
+
+				rows.appendTo('#table1');
+
+				A.one('#table1').prepend('<tr><td>prepend 1a</td><td>prepend 2a</td></tr><tr><td>prepend 1b</td><td>prepend 2b</td></tr>');
+
+				// alert(A.all('#table1 tr').size());
+
+				var cloneTags = [
+					'<table/>', '<tr/>', '<td/>', '<div/>',
+					'<button/>', '<ul/>', '<ol/>', '<li/>',
+					'<input type="checkbox" />', '<select/>', '<option/>', '<textarea/>',
+					'<tbody/>', '<thead/>', '<tfoot/>', '<iframe/>'
+				];
+				var buffer = [];
+
+				for (var i = 0; i < cloneTags.length; i++) {
+					var j = A.Node.create(cloneTags[i]);
+
+					buffer.push(
+						[j.getDOM().tagName == j.clone().getDOM().tagName , ' - Clone a &lt;' + cloneTags[i].substring(1)].join('')
+					);
+				}
+
+				var output = A.Node.create('<div />');
+
+				output.html(buffer.join('<br />'));
+
+				A.getBody().append(output);
+			}
+		);
+	</script>
+</body>
+</html>
