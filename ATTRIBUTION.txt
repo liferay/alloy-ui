@@ -7,3 +7,8 @@ Fugue Icons (icon_sprite.png)
 Copyright (C) 2009 Yusuke Kamiyamane. All rights reserved.
 The icons are licensed under a Creative Commons Attribution 3.0 license.
 <http://creativecommons.org/licenses/by/3.0/>
+----------------------------------
+Portions of the aui-node-base module
+were used from the jQuery Javascript library
+Copyright (c) 2010 John Resig & the jQuery team (http://jquery.com)
+Dual licensed under the MIT (MIT-LICENSE.txt) and GPL (GPL-LICENSE.txt) licenses.
