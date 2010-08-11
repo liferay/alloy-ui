@@ -867,12 +867,11 @@ var ImageViewer = A.Component.create(
 			 */
 			showLoading: function() {
 				var instance = this;
-				var bodyNode = instance.bodyNode;
+				var loadingEl = instance.get(LOADING_EL);
 
-				instance.setStdModContent(
-					BODY,
-					instance.get(LOADING_EL)
-				);
+				instance.setStdModContent(BODY, loadingEl);
+
+				loadingEl.center(instance.bodyNode);
 			},
 
 			/**
