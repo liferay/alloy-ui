@@ -868,12 +868,11 @@ var ImageViewer = A.Component.create(
 			 */
 			showLoading: function() {
 				var instance = this;
-				var bodyNode = instance.bodyNode;
+				var loadingEl = instance.get(LOADING_EL);
 
-				instance.setStdModContent(
-					BODY,
-					instance.get(LOADING_EL)
-				);
+				instance.setStdModContent(BODY, loadingEl);
+
+				loadingEl.center(instance.bodyNode);
 			},
 
 			/**
@@ -1346,4 +1345,4 @@ A.ImageViewer = ImageViewer;
  */
 A.ImageViewerMask = new A.OverlayMask().render();
 
-}, '@VERSION@' ,{skinnable:true, requires:['anim','aui-overlay-mask','substitute']});
+}, '@VERSION@' ,{requires:['anim','aui-overlay-mask','substitute'], skinnable:true});

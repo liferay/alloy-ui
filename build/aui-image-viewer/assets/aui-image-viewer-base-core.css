@@ -24,6 +24,10 @@
 	font-weight: bold;
 }
 
+.aui-image-viewer-loading .aui-image-viewer-content .aui-widget-ft {
+	visibility: hidden;
+}
+
 .aui-image-viewer-info {
 	color: #777;
 }
