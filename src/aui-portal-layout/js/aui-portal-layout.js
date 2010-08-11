@@ -181,7 +181,6 @@ var PortalLayout = A.Component.create(
 			},
 
 			dropNodes: {
-				value: false,
 				setter: nodeListSetter
 			},
 
@@ -444,10 +443,13 @@ var PortalLayout = A.Component.create(
 
 			_bindDropZones: function() {
 				var instance = this;
+				var dropNodes = instance.get(DROP_NODES);
 
-				instance.get(DROP_NODES).each(function(node, i) {
-					instance.addDropNode(node);
-				});
+				if (dropNodes) {
+					dropNodes.each(function(node, i) {
+						instance.addDropNode(node);
+					});
+				}
 			},
 
 			_defPlaceholderAlign: function(event) {
