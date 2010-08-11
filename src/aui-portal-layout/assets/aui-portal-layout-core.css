@@ -3,11 +3,10 @@
 	height: 6px;
 	position: absolute;
 	width: 100px;
-	z-index: 9999;
+	z-index: 900;
 }
 
 .aui-portal-layout-drag-target-indicator {
-
 }
 
 .aui-portal-layout-drag-indicator-icon {
