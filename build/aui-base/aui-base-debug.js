@@ -14,10 +14,10 @@
             alloy: {
 	            combine: false,
                 modules: {
-						'aui-autocomplete': {skinnable:true, requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox']},
-						'aui-base': {skinnable:false, requires:['aui-node','aui-component','aui-delayed-task','event','oop','widget-css']},
-						'aui-button-item': {skinnable:true, requires:['aui-base','aui-state-interaction','widget-child']},
-						'aui-calendar': {submodules: {'aui-calendar-base': {requires:['aui-overlay-context','datatype-date','widget-locale'], skinnable:true} }, skinnable:true, use:['aui-calendar-base']},
+						'aui-autocomplete': {requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox'], skinnable:true},
+						'aui-base': {requires:['aui-node','aui-component','aui-delayed-task','aui-selector','event','oop','widget-css'], skinnable:false},
+						'aui-button-item': {requires:['aui-base','aui-state-interaction','widget-child'], skinnable:true},
+						'aui-calendar': {submodules: {'aui-calendar-base': {requires:['aui-overlay-context','datatype-date','widget-locale'], skinnable:true} }, use:['aui-calendar-base'], skinnable:true},
 						'aui-carousel': {requires:['aui-base','anim'], skinnable:true},
 						'aui-char-counter': {requires:['aui-base','aui-event-input'], skinnable:false},
 						'aui-chart': {requires:['datasource','aui-swf','json'], skinnable:false},
@@ -45,9 +45,10 @@
 						'aui-progressbar': {requires:['aui-base'], skinnable:true},
 						'aui-rating': {requires:['aui-base'], skinnable:true},
 						'aui-resize': {requires:['aui-base','dd-constrain','dd-drag','dd-drop','substitute'], skinnable:true},
+						'aui-selector': {requires:['selector'], skinnable:true},
 						'aui-skin-base': {type: 'css', path: 'aui-skin-base/css/aui-skin-base.css'},
 						'aui-skin-classic-all': {type: 'css', path: 'aui-skin-classic/css/aui-skin-classic-all.css'},
-						'aui-skin-classic': {type: 'css', requires:['aui-skin-base'], path: 'aui-skin-classic/css/aui-skin-classic.css'},
+						'aui-skin-classic': {type: 'css', path: 'aui-skin-classic/css/aui-skin-classic.css', requires:['aui-skin-base']},
 						'aui-sortable': {requires:['aui-base','dd-constrain','dd-drag','dd-drop','dd-proxy'], skinnable:true},
 						'aui-state-interaction': {requires:['aui-base','plugin'], skinnable:false},
 						'aui-swf': {requires:['aui-base','querystring-stringify-simple'], skinnable:false},
@@ -429,4 +430,4 @@ A.mix(
 	}
 );
 
-}, '@VERSION@' ,{requires:['aui-node','aui-component','aui-delayed-task','event','oop','widget-css'], skinnable:false});
+}, '@VERSION@' ,{requires:['aui-node','aui-component','aui-delayed-task','aui-selector','event','oop','widget-css'], skinnable:false});

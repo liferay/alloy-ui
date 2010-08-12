@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title>untitled</title>
+	<script src="../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+
+		.aui-separate-console {
+			position: absolute;
+			right: 1em;
+			top: 1em;
+			z-index: 999;
+		}
+		.aui-inline-console {
+			display: -moz-inline-stack;
+			display: inline-block;*display:inline;
+			zoom: 1;
+			vertical-align: top;
+		}
+		.aui-inline-console .aui-console-content {
+			position: relative;
+		}
+		.aui-console-content {
+			background: #777;
+			_background: #D8D8DA url(../../lib/yui/build/console/assets/skins/sam/bg.png) repeat-x 0 0;
+			font: normal 13px/1.3 Arial,sans-serif;
+			text-align: left;
+			border: 1px solid #777;
+			border-radius: 10px;
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
+		}
+		.aui-console-hd,.aui-console-bd,.aui-console-ft {
+			position: relative;
+		}
+		.aui-console-hd,.aui-console-ft .aui-console-controls {
+			text-align: right;
+		}
+		.aui-console-hd {
+			background: #D8D8DA url(../../lib/yui/build/console/assets/skins/sam/bg.png) repeat-x 0 0;
+			padding: 1ex;
+			border: 1px solid transparent;
+			_border: 0 none;
+			border-top-right-radius: 10px;
+			border-top-left-radius: 10px;
+			-moz-border-radius-topright: 10px;
+			-moz-border-radius-topleft: 10px;
+			-webkit-border-top-right-radius: 10px;
+			-webkit-border-top-left-radius: 10px;
+		}
+		.aui-console-bd {
+			background: #fff;
+			border-top: 1px solid #777;
+			border-bottom: 1px solid #777;
+			color: #000;
+			font-size: 11px;
+			overflow: auto;
+			overflow-x: auto;
+			overflow-y: scroll;
+			_width: 100%;
+		}
+		.aui-console-ft {
+			background: #D8D8DA url(../../lib/yui/build/console/assets/skins/sam/bg.png) repeat-x 0 0;
+			border: 1px solid transparent;
+			_border: 0 none;
+			border-bottom-right-radius: 10px;
+			border-bottom-left-radius: 10px;
+			-moz-border-radius-bottomright: 10px;
+			-moz-border-radius-bottomleft: 10px;
+			-webkit-border-bottom-right-radius: 10px;
+			-webkit-border-bottom-left-radius: 10px;
+		}
+		.aui-console-controls {
+			padding: 4px 1ex;
+			zoom: 1;
+		}
+		.aui-console-title {
+			color: #000;
+			display: inline;
+			float: left;
+			font-weight: bold;
+			font-size: 13px;
+			height: 24px;
+			line-height: 24px;
+			margin: 0;
+			padding-left: 1ex;
+		}
+		.aui-console-pause-label {
+			float: left;
+		}
+		.aui-console-button {
+			line-height: 1.3;
+		}
+		.aui-console-collapsed .aui-console-bd,.aui-console-collapsed .aui-console-ft {
+			display: none;
+		}
+		.aui-console-content.aui-console-collapsed {
+			-webkit-border-radius: 0;
+		}
+		.aui-console-collapsed .aui-console-hd {
+			border-radius: 10px;
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 0;
+		}
+		.aui-console-entry {
+			border-bottom: 1px solid #aaa;
+			min-height: 32px;
+			_height: 32px;
+		}
+		.aui-console-entry-meta {
+			margin: 0;
+			overflow: hidden;
+		}
+		.aui-console-entry-content {
+			margin: 0;
+			padding: 0 1ex;
+			white-space: pre-wrap;
+			word-wrap: break-word;
+		}
+		.aui-console-entry-meta .aui-console-entry-src {
+			color: #000;
+			font-style: italic;
+			font-weight: bold;
+			float: right;
+			margin: 2px 5px 0 0;
+		}
+		.aui-console-entry-meta .aui-console-entry-time {
+			color: #777;
+			padding-left: 1ex;
+		}
+		.aui-console-entry-warn .aui-console-entry-meta .aui-console-entry-time {
+			color: #555;
+		}
+		.aui-console-entry-info .aui-console-entry-meta .aui-console-entry-cat,.aui-console-entry-warn .aui-console-entry-meta .aui-console-entry-cat,.aui-console-entry-error .aui-console-entry-meta .aui-console-entry-cat {
+			display: none;
+		}
+		.aui-console-entry-warn {
+			background: #aee url(../../lib/yui/build/console/assets/warn_error.png) no-repeat -15px 15px;
+		}
+		.aui-console-entry-error {
+			background: #ffa url(../../lib/yui/build/console/assets/warn_error.png) no-repeat 5px -24px;
+			color: #900;
+		}
+		.aui-console-entry-warn .aui-console-entry-content,.aui-console-entry-error .aui-console-entry-content {
+			padding-left: 24px;
+		}
+		.aui-console-entry-cat {
+			text-transform: uppercase;
+			padding: 1px 4px;
+			background-color: #ccc;
+		}
+		.aui-console-entry-info .aui-console-entry-cat {
+			background-color: #ac2;
+		}
+		.aui-console-entry-warn .aui-console-entry-cat {
+			background-color: #e81;
+		}
+		.aui-console-entry-error .aui-console-entry-cat {
+			background-color: #b00;
+			color: #fff;
+		}
+		.aui-console-hidden {
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	
+			<div id="main">
+				<table id="table1">
+					<tr id="tr1">
+						<td id="td1">1</td>
+						<td id="td2">2</td>
+					</tr>
+					<tr id="tr2" style="display: none;">
+						<td id="td1">1</td>
+						<td id="td2">2</td>
+					</tr>
+					<tr id="tr3" class="aui-helper-hidden">
+						<td id="td1">1</td>
+						<td id="td2">2</td>
+					</tr>
+				</table>
+				<ul>
+					<li class="l1 aui-helper-hidden">h</li>
+					<li class="l1" style="display: none;">h</li>
+					<li class="l1 aui-helper-hidden-accessible">h</li>
+					<li class="l1" style="visibility: hidden;">h</li>
+					<li class="l1">h</li>
+					<li class="l1">h</li>
+					<li class="l1">h</li>
+					<li class="l1">h</li>
+					<li class="l1">h</li>
+					<li class="l1">h</li>
+				</ul>
+				<h2>test header</h2>
+				<form id="testForm">
+					<input name="test1" type="hidden" />
+					<input name="test1" type="button" />
+					<input name="test1" type="text" />
+					<input name="test1" type="checkbox" />
+					<input name="test1" type="password" />
+					<input name="test1" type="submit" />
+					<input name="test1" type="file" />
+					<input name="test1" type="reset" />
+					<input name="test1" type="radio" />
+					<input name="test1" type="image" />
+					<input name="test1" type="text" disabled="disabled" />
+					<input name="test1" type="checkbox" checked="checked" />
+					<select><option selected="selected">x</option><option>y</option></select>
+					<button id="testButton">Button<button>
+				</form>
+
+			</div>
+			<script type="text/javascript" charset="utf-8">
+			AUI().use(
+				'aui-base',
+				'console',
+				'test',
+				function(A) {
+
+					var testConfig = {
+						name: 'SelectorExtTests',
+						setUp: function() {
+							this.node = A.one('#main');
+						},
+						testHidden: function() {
+							var instance = this;
+
+							A.Assert.areSame(4, A.all('ul li:hidden').size());
+						},
+						testVisible: function() {
+							var instance = this;
+
+							A.Assert.areSame(6, A.all('ul li:visible').size());
+						},
+						testTrHidden: function() {
+							A.Assert.areSame(true, this.node.one('#tr1').test(':visible'));
+							A.Assert.areSame(true, this.node.one('#tr2').test(':hidden'));
+							A.Assert.areSame(true, this.node.one('#tr3').test(':hidden'));
+
+							A.Assert.areSame(false, this.node.one('#tr1').test(':hidden'));
+							A.Assert.areSame(false, this.node.one('#tr2').test(':visible'));
+							A.Assert.areSame(false, this.node.one('#tr3').test(':visible'));
+						}
+					};
+
+					var tests = {
+						enabled: true,
+						disabled: true,
+						checked: true,
+						selected: true,
+						parent: true,
+						empty: true,
+						header: true,
+						text: true,
+						radio: true,
+						checkbox: true,
+						file: true,
+						password: true,
+						submit: true,
+						image: true,
+						reset: true,
+						button: true,
+						input: true,
+						hidden: true,
+						visible: true
+					};
+
+					for (var i in tests) {
+						(function(i) {
+							testConfig['test' + i.substring(0,1).toUpperCase() + i.substring(1)] = function() {
+								A.Assert.areNotSame(0, this.node.all(':' + i).size());
+							};
+						}(i));
+					}
+
+					var selectorTests = new A.Test.Case(testConfig);
+
+					new A.Console(
+						{
+							newestOnTop: false
+						}
+					).render('#demo');
+
+					A.Test.Runner.add(selectorTests);
+					A.Test.Runner.run();
+				}
+			);
+
+			</script>
+</body>
+</html>
