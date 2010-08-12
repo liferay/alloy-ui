@@ -3646,7 +3646,7 @@ YUI.add('yui', function(Y){}, '3.2.0PR1' ,{use:['yui-base','get','intl-base','yu
 						'aui-progressbar': {requires:['aui-base'], skinnable:true},
 						'aui-rating': {requires:['aui-base'], skinnable:true},
 						'aui-resize': {requires:['aui-base','dd-constrain','dd-drag','dd-drop','substitute'], skinnable:true},
-						'aui-selector': {requires:['selector'], skinnable:true},
+						'aui-selector': {requires:['selector'], skinnable:false},
 						'aui-skin-base': {type: 'css', path: 'aui-skin-base/css/aui-skin-base.css'},
 						'aui-skin-classic-all': {type: 'css', path: 'aui-skin-classic/css/aui-skin-classic-all.css'},
 						'aui-skin-classic': {type: 'css', path: 'aui-skin-classic/css/aui-skin-classic.css', requires:['aui-skin-base']},
