@@ -141,6 +141,21 @@ var TreeData = A.Component.create(
 			},
 
 			/**
+			 * Descructor lifecycle implementation for the TreeData class.
+			 * Purges events attached to the node (and all child nodes).
+			 *
+			 * @method destructor
+			 * @protected
+			 */
+			destructor: function() {
+				var instance = this;
+
+				instance.eachChildren(function(node) {
+					node.destroy();
+				}, true);
+			},
+
+			/**
 			 * Get a TreeNode by id.
 			 *
 			 * @method getNodeById
@@ -3108,6 +3123,22 @@ var TreeViewDD = A.Component.create(
 			nodeContent: null,
 
 			/**
+			 * Descructor lifecycle implementation for the TreeViewDD class.
+			 * Purges events attached to the node (and all child nodes).
+			 *
+			 * @method destructor
+			 * @protected
+			 */
+			destructor: function() {
+				var instance = this;
+				var helper = instance.get(HELPER);
+
+				if (helper) {
+					helper.remove(true);
+				}
+			},
+
+			/**
 			 * Bind the events on the TreeViewDD UI. Lifecycle.
 			 *
 			 * @method bindUI
@@ -3521,8 +3552,8 @@ var TreeViewDD = A.Component.create(
 
 A.TreeViewDD = TreeViewDD;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-tree-node','dd-drag','dd-drop','dd-proxy']});
+}, '@VERSION@' ,{requires:['aui-tree-node','dd-drag','dd-drop','dd-proxy'], skinnable:true});
 
 
-AUI.add('aui-tree', function(A){}, '@VERSION@' ,{use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true});
+AUI.add('aui-tree', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view']});
 

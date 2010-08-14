@@ -520,6 +520,22 @@ var TreeViewDD = A.Component.create(
 			nodeContent: null,
 
 			/**
+			 * Descructor lifecycle implementation for the TreeViewDD class.
+			 * Purges events attached to the node (and all child nodes).
+			 *
+			 * @method destructor
+			 * @protected
+			 */
+			destructor: function() {
+				var instance = this;
+				var helper = instance.get(HELPER);
+
+				if (helper) {
+					helper.remove(true);
+				}
+			},
+
+			/**
 			 * Bind the events on the TreeViewDD UI. Lifecycle.
 			 *
 			 * @method bindUI
