@@ -118,6 +118,19 @@ AUI().ready(
 			}
 		};
 
+		var drag = new A.DD.Drag({
+			node: cropper
+		})
+		.plug(A.Plugin.DDConstrained, {
+			constrain2node: '#container'
+		});
+
+		drag.on('drag:drag', function(event){
+			var xy = event.info.xy;
+
+			syncBackground(xy[0], xy[1]);
+		});
+
 		var resize = new A.Resize({
 			node: cropper,
 			// proxy: true,
@@ -140,19 +153,6 @@ AUI().ready(
 			if (this.get('proxy')) {
 				syncBackground(info.left, info.top);
 			}
-		});
-
-		var drag = new A.DD.Drag({
-			node: cropper
-		})
-		.plug(A.Plugin.DDConstrained, {
-			constrain2node: '#container'
-		});
-
-		drag.on('drag:drag', function(event){
-			var xy = event.info.xy;
-
-			syncBackground(xy[0], xy[1]);
 		});
 
 		syncBackground(0, 0);

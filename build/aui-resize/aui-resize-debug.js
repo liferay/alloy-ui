@@ -22,7 +22,6 @@ var Lang = A.Lang,
 	ACTIVE_HANDLE = 'activeHandle',
 	ACTIVE_HANDLE_EL = 'activeHandleEl',
 	ALL = 'all',
-	AUTO = 'auto',
 	AUTO_HIDE = 'autoHide',
 	BOTTOM = 'bottom',
 	CLASS_NAME = 'className',
@@ -55,7 +54,6 @@ var Lang = A.Lang,
 	PRESEVE_RATIO = 'preserveRatio',
 	PROXY = 'proxy',
 	PROXY_EL = 'proxyEl',
-	PX = 'px',
 	REGION = 'region',
 	RELATIVE = 'relative',
 	RESIZE = 'resize',
@@ -574,6 +572,15 @@ var Resize = A.Component.create(
 			 */
 			constrainBorderInfo: null,
 
+			/**
+			 * Store DD.Delegate reference for the respective Resize instance.
+			 *
+			 * @property delegate
+			 * @default null
+			 * @type Object
+			 */
+			delegate: null,
+
 		    /**
 		     * Stores the current values for the height, width, top and left. You are
 		     * able to manipulate these values on resize in order to change the resize
@@ -680,11 +687,7 @@ var Resize = A.Component.create(
 
 				// destroy handles dd and remove them from the dom
 				instance.eachHandle(function(handleEl) {
-					var dd = handleEl.dd;
-
-					if (dd) {
-						dd.destroy();
-					}
+					instance.delegate.dd.destroy();
 
 					// remove handle
 					handleEl.remove(true);
@@ -728,6 +731,29 @@ var Resize = A.Component.create(
 		     */
 			_bindDD: function() {
 				var instance = this;
+
+				instance.delegate = new A.DD.Delegate(
+					{
+						bubbleTargets: instance,
+						container: instance.get(WRAPPER),
+						dragConfig: {
+							clickPixelThresh: 0,
+							clickTimeThresh: 0,
+							useShim: true,
+							move: false
+						},
+						nodes: DOT+CSS_RESIZE_HANDLE,
+						target: false
+					}
+				);
+
+				instance.delegate.dd.plug(
+					A.Plugin.DDConstrained,
+					{
+						tickX: instance.get(TICK_X),
+						tickY: instance.get(TICK_Y)
+					}
+				);
 
 				instance.on('drag:drag', instance._handleResizeEvent);
 				instance.on('drag:dropmiss', instance._handleMouseUpEvent);
@@ -922,8 +948,6 @@ var Resize = A.Component.create(
 				node.one(DOT+CSS_RESIZE_HANDLE_INNER).addClass(
 					instance.CSS_INNER_HANDLE_MAP[handle]
 				);
-
-				instance._setupHandleDD(handle, node);
 
 				return node;
 			},
@@ -1313,43 +1337,6 @@ var Resize = A.Component.create(
 				rules[handle](dx, dy);
 			},
 
-		    /**
-		     * Initialize the DragDrop on the handle.
-		     *
-		     * @method _setupHandleDD
-		     * @param {String} handle Handle name.
-		     * @param {Node} node Node reference which the DragDrop will be created.
-		     * @private
-		     */
-			_setupHandleDD: function(handle, node) {
-				var instance = this;
-
-				var dd = new A.DD.Drag(
-					{
-						bubbleTargets: instance,
-						clickPixelThresh: 0,
-						clickTimeThresh: 0,
-						data: {
-							handle: handle,
-							node: node
-						},
-						node: node,
-						useShim: true,
-						move: false
-					}
-				);
-
-				dd.plug(
-					A.Plugin.DDConstrained,
-					{
-						stickX: (handle == R || handle == L),
-						stickY: (handle == T || handle == B),
-						tickX: instance.get(TICK_X),
-						tickY: instance.get(TICK_Y)
-					}
-				);
-			},
-
 			/**
 			 * Set offsetWidth and offsetHeight of the passed node.
 			 *
@@ -1411,7 +1398,7 @@ var Resize = A.Component.create(
 
 				proxyEl.show().setStyle(CURSOR, cursor);
 
-				activeHandleEl.dd.set(DRAG_CURSOR, cursor);
+				instance.delegate.dd.set(DRAG_CURSOR, cursor);
 
 				instance._setOffset(proxyEl, info.offsetWidth, info.offsetHeight);
 
@@ -1770,4 +1757,4 @@ A.each(ALL_HANDLES, function(handle, i) {
 
 A.Resize = Resize;
 
-}, '@VERSION@' ,{requires:['aui-base','dd-constrain','dd-drag','dd-drop','substitute'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-base','dd-constrain','dd-drag','dd-delegate','dd-drop','substitute'], skinnable:true});
