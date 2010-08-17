@@ -990,7 +990,7 @@ if (!SUPPORT_OPTIONAL_TBODY) {
 	A.DOM._ADD_HTML = A.DOM.addHTML;
 
 	A.DOM.addHTML = function(node, content, where) {
-		var nodeName = node.nodeName.toLowerCase();
+		var nodeName = (node.nodeName && node.nodeName.toLowerCase()) || '';
 
 		var tagName;
 
