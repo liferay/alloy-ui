@@ -131,7 +131,7 @@ var Chart = A.Component.create(
 					flashVars: {
 						allowedDomain: document.location.hostname
 					},
-					backgroundColor: contentBox.getComputedStyle('backgroundColor'),
+					backgroundColor: contentBox.getStyle('backgroundColor'),
 					url: instance.get('swfURL'),
 					height: instance.get('height'),
 					width: instance.get('width'),
