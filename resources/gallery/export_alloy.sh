@@ -117,6 +117,13 @@ do
 	perl -pi -e "s/^component.use=/component.requires=/g;" $oldModuleDir/build.properties
 done
 
+#manual cleanup
+#change node requires rollup to not require html5/fx by default (they can "use" those modules).
+perl -pi -e "s/^component.requires=gallery-aui-node-base,/component.use=/g;" ${srcDir}/gallery-aui-node/build.properties
+perl -pi -e "s/^(component.use=)/component.requires=gallery-aui-node-base\n\$1/g;" ${srcDir}/gallery-aui-node/build.properties
+#change aui-base to only include gallery-aui-node-base 
+perl -pi -e "s/^component.requires=gallery-aui-node/component.requires=gallery-aui-node-base/g;" ${srcDir}/gallery-aui-base/build.properties
+
 find ${toDir} -type f -name "build.properties" | xargs perl -pi -e "s/^(component=)/lint.skip=true\n\$1/"
 find ${toDir} -type f -name "build.properties" | xargs perl -pi -e "s/^(component=)/yui.variable=A\n\$1/"
 
