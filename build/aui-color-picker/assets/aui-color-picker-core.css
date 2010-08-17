@@ -108,3 +108,8 @@
 	height: 11px;
 	width: 11px;
 }
+
+.aui-colorpicker-hue-slider-content {
+	display: inline;
+	position: static;
+}
