@@ -3645,7 +3645,7 @@ YUI.add('yui', function(Y){}, '3.2.0PR1' ,{use:['yui-base','get','intl-base','yu
 						'aui-portal-layout': {requires:['aui-base','dd-drag','dd-delegate','dd-drop','dd-proxy'], skinnable:true},
 						'aui-progressbar': {requires:['aui-base'], skinnable:true},
 						'aui-rating': {requires:['aui-base'], skinnable:true},
-						'aui-resize': {requires:['aui-base','dd-constrain','dd-drag','dd-delegate','dd-drop','substitute'], skinnable:true},
+						'aui-resize': {submodules: {'aui-resize-constrain': {requires:['aui-resize-base','dd-constrain','plugin'], skinnable:false}, 'aui-resize-base': {requires:['aui-base','dd-drag','dd-delegate','dd-drop','substitute'], skinnable:true} }, use:['aui-resize-base','aui-resize-constrain'], skinnable:true},
 						'aui-selector': {requires:['selector'], skinnable:false},
 						'aui-skin-base': {type: 'css', path: 'aui-skin-base/css/aui-skin-base.css'},
 						'aui-skin-classic-all': {type: 'css', path: 'aui-skin-classic/css/aui-skin-classic-all.css'},

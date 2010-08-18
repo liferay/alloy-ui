@@ -1,3 +1,4 @@
+AUI.add('aui-resize-base', function(A) {
 /**
  * The Resize Utility allows you to make an HTML element resizable.
  *
@@ -7,7 +8,6 @@
 var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isBoolean = Lang.isBoolean,
-	isNumber = Lang.isNumber,
 	isString = Lang.isString,
 
 	trim = Lang.trim,
@@ -24,7 +24,6 @@ var Lang = A.Lang,
 	AUTO_HIDE = 'autoHide',
 	BOTTOM = 'bottom',
 	CLASS_NAME = 'className',
-	CONSTRAIN = 'constrain',
 	CURSOR = 'cursor',
 	DIAGONAL = 'diagonal',
 	DOTTED = 'dotted',
@@ -39,10 +38,6 @@ var Lang = A.Lang,
 	INNER = 'inner',
 	LEFT = 'left',
 	MARGIN = 'margin',
-	MAX_HEIGHT = 'maxHeight',
-	MAX_WIDTH = 'maxWidth',
-	MIN_HEIGHT = 'minHeight',
-	MIN_WIDTH = 'minWidth',
 	NODE = 'node',
 	NODE_NAME = 'nodeName',
 	NONE = 'none',
@@ -50,32 +45,22 @@ var Lang = A.Lang,
 	OFFSET_WIDTH = 'offsetWidth',
 	PARENT_NODE = 'parentNode',
 	POSITION = 'position',
-	PRESEVE_RATIO = 'preserveRatio',
 	PROXY = 'proxy',
 	PROXY_EL = 'proxyEl',
-	REGION = 'region',
 	RELATIVE = 'relative',
 	RESIZE = 'resize',
 	RESIZING = 'resizing',
 	RIGHT = 'right',
 	STATIC = 'static',
-	TICK_X = 'tickX',
-	TICK_Y = 'tickY',
 	TOP = 'top',
 	VERTICAL = 'vertical',
-	VIEW = 'view',
-	VIEWPORT_REGION = 'viewportRegion',
 	WRAP = 'wrap',
 	WRAPPER = 'wrapper',
 	WRAP_TYPES = 'wrapTypes',
 
-	BORDER_BOTTOM_WIDTH = 'borderBottomWidth',
-	BORDER_LEFT_WIDTH = 'borderLeftWidth',
-	BORDER_RIGHT_WIDTH = 'borderRightWidth',
-	BORDER_TOP_WIDTH = 'borderTopWidth',
-
 	EV_MOUSE_UP = 'resize:mouseUp',
 	EV_RESIZE = 'resize:resize',
+	EV_RESIZE_ALIGN = 'resize:align',
 	EV_RESIZE_END = 'resize:end',
 	EV_RESIZE_START = 'resize:start',
 
@@ -239,25 +224,6 @@ var Resize = A.Component.create(
 			},
 
 	        /**
-	        * Will attempt to constrain the resize node to the boundaries. Arguments:<br>
-	        * 'view': Contrain to Viewport<br>
-	        * '#selector_string': Constrain to this node<br>
-	        * '{Region Object}': An Object Literal containing a valid region (top, right, bottom, left) of page positions
-	        *
-	        * @attribute constrain
-	        * @type {String/Object/Node}
-	        */
-			constrain: {
-				setter: function(v) {
-					if (v && (isNode(v) || isString(v) || v.nodeType)) {
-						v = A.one(v);
-					}
-
-					return v;
-				}
-			},
-
-	        /**
 	         * The handles to use (any combination of): 't', 'b', 'r', 'l', 'bl',
 	         * 'br', 'tl', 'tr'. Can use a shortcut of All.
 	         *
@@ -300,54 +266,6 @@ var Resize = A.Component.create(
 				value: ALL
 			},
 
-	        /**
-	         * The minimum height of the element
-	         *
-	         * @attribute minHeight
-	         * @default 15
-	         * @type Number
-	         */
-			minHeight: {
-				value: 15,
-				validator: isNumber
-			},
-
-	        /**
-	         * The minimum width of the element
-	         *
-	         * @attribute minWidth
-	         * @default 15
-	         * @type Number
-	         */
-			minWidth: {
-				value: 15,
-				validator: isNumber
-			},
-
-	        /**
-	         * The maximum height of the element
-	         *
-	         * @attribute maxHeight
-	         * @default Infinity
-	         * @type Number
-	         */
-			maxHeight: {
-				value: Infinity,
-				validator: isNumber
-			},
-
-	        /**
-	         * The maximum width of the element
-	         *
-	         * @attribute maxWidth
-	         * @default Infinity
-	         * @type Number
-	         */
-			maxWidth: {
-				value: Infinity,
-				validator: isNumber
-			},
-
 			/**
 	         * The selector or element to resize. Required.
 	         *
@@ -356,18 +274,6 @@ var Resize = A.Component.create(
 	         */
 			node: {
 				setter: A.one
-			},
-
-			/**
-	         * Maintain the element's ratio when resizing.
-	         *
-	         * @attribute preserveRatio
-	         * @default false
-	         * @type boolean
-	         */
-			preserveRatio: {
-				value: false,
-				validator: isBoolean
 			},
 
 			/**
@@ -406,28 +312,6 @@ var Resize = A.Component.create(
 			resizing: {
 				value: false,
 				validator: isBoolean
-			},
-
-	        /**
-	         * The number of x ticks to span the resize to.
-	         *
-	         * @attribute tickX
-	         * @default false
-	         * @type Number | false
-	         */
-			tickX: {
-				value: false
-			},
-
-	        /**
-	         * The number of y ticks to span the resize to.
-	         *
-	         * @attribute tickY
-	         * @default false
-	         * @type Number | false
-	         */
-			tickY: {
-				value: false
 			},
 
 			/**
@@ -562,16 +446,6 @@ var Resize = A.Component.create(
 			changeWidthHandles: false,
 
 			/**
-			 * Cache the border widths of the contrain node if constrain
-             * option is being used.
-			 *
-			 * @property constrainBorderInfo
-			 * @default {}
-			 * @type Object
-			 */
-			constrainBorderInfo: null,
-
-			/**
 			 * Store DD.Delegate reference for the respective Resize instance.
 			 *
 			 * @property delegate
@@ -590,6 +464,15 @@ var Resize = A.Component.create(
 		     * @protected
 		     */
 			info: null,
+
+			/**
+		     * Stores the last values for the height, width, top and left.
+		     *
+		     * @property lastInfo
+		     * @type Object
+		     * @protected
+		     */
+			lastInfo: null,
 
 		    /**
 		     * Stores the original values for the height, width, top and left, stored
@@ -613,13 +496,6 @@ var Resize = A.Component.create(
 				instance.info = {};
 
 				instance.originalInfo = {};
-
-				instance.constrainBorderInfo = {
-					bottom: 0,
-					left: 0,
-					right: 0,
-					top: 0
-				};
 
 				instance.get(NODE).addClass(CSS_RESIZE);
 
@@ -649,7 +525,6 @@ var Resize = A.Component.create(
 				var instance = this;
 
 				instance._createEvents();
-				instance._bindResize();
 				instance._bindDD();
 				instance._bindHandle();
 			},
@@ -723,6 +598,31 @@ var Resize = A.Component.create(
 		    },
 
 		    /**
+		     * <p>Loop through each handle which is being used and executes a callback.</p>
+		     * <p>Example:</p>
+		     * <pre><code>instance.eachHandle(
+			 *      function(handleName, index) { ... }
+			 *  );</code></pre>
+		     *
+		     * @method eachHandle
+		     * @param {function} fn Callback function to be executed for each handle.
+		     */
+			eachHandle: function(fn) {
+				var instance = this;
+
+				A.each(
+					instance.get(HANDLES),
+					function(handle, i) {
+						var handleEl = instance.get(
+							handleAttrName(handle)
+						);
+
+						fn.apply(instance, [handleEl, handle, i]);
+					}
+				);
+			},
+
+		    /**
 		     * Bind the handles DragDrop events to the Resize instance.
 		     *
 		     * @method _bindDD
@@ -746,14 +646,6 @@ var Resize = A.Component.create(
 					}
 				);
 
-				instance.delegate.dd.plug(
-					A.Plugin.DDConstrained,
-					{
-						tickX: instance.get(TICK_X),
-						tickY: instance.get(TICK_Y)
-					}
-				);
-
 				instance.on('drag:drag', instance._handleResizeEvent);
 				instance.on('drag:dropmiss', instance._handleMouseUpEvent);
 				instance.on('drag:end', instance._handleResizeEndEvent);
@@ -774,18 +666,6 @@ var Resize = A.Component.create(
 				wrapper.on('mouseleave', A.bind(instance._onWrapperMouseLeave, instance));
 				wrapper.delegate('mouseenter', A.bind(instance._onHandleMouseEnter, instance), DOT+CSS_RESIZE_HANDLE);
 				wrapper.delegate('mouseleave', A.bind(instance._onHandleMouseLeave, instance), DOT+CSS_RESIZE_HANDLE);
-			},
-
-		    /**
-		     * Bind the resize events to the Resize.
-		     *
-		     * @method _bindDD
-		     * @private
-		     */
-			_bindResize: function() {
-				var instance = this;
-
-				instance.after(EV_RESIZE, instance._afterResize);
 			},
 
 		    /**
@@ -836,6 +716,20 @@ var Resize = A.Component.create(
 				publish(
 					EV_RESIZE,
 					this._defResizeFn
+				);
+
+				/**
+				 * Handles the resize align event.
+				 *
+		         * @event resize:align
+		         * @preventable _defResizeAlignFn
+		         * @param {Event.Facade} event The resize align event.
+		         * @bubbles Resize
+		         * @type {Event.Custom}
+		         */
+				publish(
+					EV_RESIZE_ALIGN,
+					this._defResizeAlignFn
 				);
 
 				/**
@@ -901,31 +795,6 @@ var Resize = A.Component.create(
 			},
 
 		    /**
-		     * <p>Loop through each handle which is being used and executes a callback.</p>
-		     * <p>Example:</p>
-		     * <pre><code>instance.eachHandle(
-			 *      function(handleName, index) { ... }
-			 *  );</code></pre>
-		     *
-		     * @method eachHandle
-		     * @param {function} fn Callback function to be executed for each handle.
-		     */
-			eachHandle: function(fn) {
-				var instance = this;
-
-				A.each(
-					instance.get(HANDLES),
-					function(handle, i) {
-						var handleEl = instance.get(
-							handleAttrName(handle)
-						);
-
-						fn.apply(instance, [handleEl, handle, i]);
-					}
-				);
-			},
-
-		    /**
 		     * Creates the handle element based on the handle name and initialize the
 		     * DragDrop on it.
 		     *
@@ -952,186 +821,31 @@ var Resize = A.Component.create(
 			},
 
 			/**
-		     * Helper method to update the current values on
+		     * Helper method to update the current size value on
 		     * <a href="Resize.html#property_info">info</a> to respect the
-             * constrain node.
+		     * min/max values and fix the top/left calculations.
 			 *
-			 * @method _checkConstrain
-			 * @param {String} axis 'top' or 'left'
-			 * @param {String} axisConstrain 'bottom' or 'right'
+			 * @method _checkSize
 			 * @param {String} offset 'offsetHeight' or 'offsetWidth'
+			 * @param {number} size Size to restrict the offset
 			 * @protected
 			 */
-			_checkConstrain: function(axis, axisConstrain, offset) {
-				var instance = this;
-				var info = instance.info;
-
-				var region = instance._getConstrainRegion();
-
-				if (region) {
-					var point1 = info[axis] + info[offset];
-					var point1Constrain = region[axisConstrain] - instance.constrainBorderInfo[axisConstrain];
-
-					if (point1 >= point1Constrain) {
-						info[offset] -= (point1 - point1Constrain);
-					}
-
-					var point2 = info[axis];
-					var point2Constrain = region[axis] + instance.constrainBorderInfo[axis];
-
-					if (point2 <= point2Constrain) {
-						info[axis] += (point2Constrain - point2);
-						info[offset] -= (point2Constrain - point2);
-					}
-				}
-			},
-
-		    /**
-		     * Update the current values on <a href="Resize.html#property_info">info</a>
-		     * to respect the maxHeight and minHeight.
-		     *
-		     * @method _checkHeight
-		     * @protected
-		     */
-			_checkHeight: function() {
+			_checkSize: function(offset, size) {
 				var instance = this;
 				var info = instance.info;
 				var originalInfo = instance.originalInfo;
-				var maxHeight = instance.get(MAX_HEIGHT);
-				var minHeight = instance.get(MIN_HEIGHT);
 
-				instance._checkConstrain(TOP, BOTTOM, OFFSET_HEIGHT);
+				var axis = (offset == OFFSET_HEIGHT) ? TOP : LEFT;
 
-				var isMaxHeight = (info.offsetHeight > maxHeight);
-				var isMinHeight = (info.offsetHeight < minHeight);
+				// forcing the offsetHeight/offsetWidth to be the passed size
+				info[offset] = size;
 
-				if (isMaxHeight) {
-					info.offsetHeight = maxHeight;
+				// predicting, based on the original information, the last left valid in case of reach the min/max dimension
+				// this calculation avoid browser event leaks when user interact very fast with their mouse
+				if (((axis == LEFT) && instance.changeLeftHandles) ||
+					((axis == TOP) && instance.changeTopHandles)) {
 
-					if (instance.changeTopHandles) {
-						// predicting, based on the original information, the last top valid in case of reach the min/max dimension
-						// this calculation avoid browser event leaks when user interact very fast with their mouse
-						info.top = originalInfo.top + originalInfo.offsetHeight - maxHeight;
-					}
-				}
-
-				if (isMinHeight) {
-					info.offsetHeight = minHeight;
-
-					if (instance.changeTopHandles) {
-						// predicting, based on the original information, the last top valid in case of reach the min/max dimension
-						// this calculation avoid browser event leaks when user interact very fast with their mouse
-						info.top = originalInfo.top + originalInfo.offsetHeight - minHeight;
-					}
-				}
-			},
-
-		    /**
-		     * Update the current values on <a href="Resize.html#property_info">info</a>
-		     * calculating the correct ratio for the other values.
-		     *
-		     * @method _checkRatio
-		     * @protected
-		     */
-			_checkRatio: function() {
-				var instance = this;
-
-				var info = instance.info;
-				var originalInfo = instance.originalInfo;
-				var oWidth = originalInfo.offsetWidth;
-				var oHeight = originalInfo.offsetHeight;
-				var oTop = originalInfo.top;
-				var oLeft = originalInfo.left;
-
-				// wRatio/hRatio functions keep the ratio information always synced with the current info information
-				// RETURN: percentage how much width/height has changed from the original width/height
-				var wRatio = function() {
-					return (info.offsetWidth/oWidth);
-				};
-
-				var hRatio = function() {
-					return (info.offsetHeight/oHeight);
-				};
-
-				// handles which only change the height, need to vary the width first
-				// and then check width to constrain to max/min dimensions
-				if (instance.changeHeightHandles) {
-					info.offsetWidth = oWidth*hRatio();
-					instance._checkWidth();
-					info.offsetHeight = oHeight*wRatio();
-				}
-				// handles which are able to change the width need to vary the height first
-				// and then check height to constrain to max/min dimensions
-				else if (instance.changeWidthHandles) {
-					info.offsetHeight = oHeight*wRatio();
-					instance._checkHeight();
-					info.offsetWidth = oWidth*hRatio();
-				}
-
-				// fixing the top on handles which are able to change top
-				// the idea here is change the top based on how much the height has changed instead of follow the dy
-				if (instance.changeTopHandles) {
-					info.top = oTop + (oHeight - info.offsetHeight);
-				}
-
-				// fixing the left on handles which are able to change left
-				// the idea here is change the left based on how much the width has changed instead of follow the dx
-				if (instance.changeLeftHandles) {
-					info.left = oLeft + (oWidth - info.offsetWidth);
-				}
-			},
-
-			/**
-			 * Check whether the resizable node is inside the constrain region.
-			 *
-			 * @method _checkRegion
-			 * @protected
-			 * @return {boolean}
-			 */
-			_checkRegion: function() {
-				var instance = this;
-				var region = instance._getConstrainRegion();
-
-				return A.DOM.inRegion(null, region, true, instance.info);
-			},
-
-		    /**
-		     * Update the current values on <a href="Resize.html#property_info">info</a>
-		     * to respect the maxWidth and minWidth.
-		     *
-		     * @method _checkWidth
-		     * @protected
-		     */
-			_checkWidth: function() {
-				var instance = this;
-				var info = instance.info;
-				var originalInfo = instance.originalInfo;
-				var maxWidth = instance.get(MAX_WIDTH);
-				var minWidth = instance.get(MIN_WIDTH);
-
-				instance._checkConstrain(LEFT, RIGHT, OFFSET_WIDTH);
-
-				var isMaxWidth = (info.offsetWidth > maxWidth);
-				var isMinWidth = (info.offsetWidth < minWidth);
-
-				if (isMaxWidth) {
-					info.offsetWidth = maxWidth;
-
-					if (instance.changeLeftHandles) {
-						// predicting, based on the original information, the last left valid in case of reach the min/max dimension
-						// this calculation avoid browser event leaks when user interact very fast with their mouse
-						info.left = originalInfo.left + originalInfo.offsetWidth - maxWidth;
-					}
-				}
-
-				if (isMinWidth) {
-					info.offsetWidth = minWidth;
-
-					if (instance.changeLeftHandles) {
-						// predicting, based on the original information, the last left valid in case of reach the min/max dimension
-						// this calculation avoid browser event leaks when user interact very fast with their mouse
-						info.left = originalInfo.left + originalInfo.offsetWidth - minWidth;
-					}
+					info[axis] = originalInfo[axis] + originalInfo[offset] - size;
 				}
 			},
 
@@ -1202,36 +916,6 @@ var Resize = A.Component.create(
 				}
 			),
 
-			/**
-			 * Get the constrain region based on the <code>constrain</code>
-             * attribute.
-			 *
-			 * @method _getConstrainRegion
-			 * @protected
-			 * @return {Object Region}
-			 */
-			_getConstrainRegion: function() {
-				var instance = this;
-				var node = instance.get(NODE);
-				var constrain = instance.get(CONSTRAIN);
-
-				var region = null;
-
-				if (constrain) {
-					if (constrain == VIEW) {
-						region = node.get(VIEWPORT_REGION);
-					}
-					else if (isNode(constrain)) {
-						region = constrain.get(REGION);
-					}
-					else {
-						region = constrain;
-					}
-				}
-
-				return region;
-			},
-
 		    /**
 		     * <p>Generates metadata to the <a href="Resize.html#property_info">info</a>
 		     * and <a href="Resize.html#property_originalInfo">originalInfo</a></p>
@@ -1266,22 +950,6 @@ var Resize = A.Component.create(
 					right: (nodeX + offsetWidth),
 					top: nodeY
 				};
-			},
-
-		    /**
-		     * Update left and top information on
-		     * <a href="Resize.html#property_info">info</a> based on the new top and left.
-		     *
-		     * @method _recalculateXY
-		     * @private
-		     */
-			_recalculateXY: function() {
-				var instance = this;
-				var info = instance.info;
-				var originalInfo = instance.originalInfo;
-
-				info.left = originalInfo.left + (info.left - originalInfo.left);
-				info.top = originalInfo.top + (info.top - originalInfo.top);
 			},
 
 		    /**
@@ -1422,29 +1090,6 @@ var Resize = A.Component.create(
 			},
 
 			/**
-		     * Update <code>instance.constrainBorderInfo</code> values (bottom,
-             * left, top, right).
-		     *
-		     * @method _updateConstrainBorderInfo
-		     * @private
-		     */
-			_updateConstrainBorderInfo: function() {
-				var instance = this;
-				var constrain = instance.get(CONSTRAIN);
-
-				if (isNode(constrain)) {
-					var getStyle = function(val) {
-						return parseFloat(constrain.getStyle(val)) || 0;
-					};
-
-					instance.constrainBorderInfo.bottom = getStyle(BORDER_BOTTOM_WIDTH);
-					instance.constrainBorderInfo.left = getStyle(BORDER_LEFT_WIDTH);
-					instance.constrainBorderInfo.right = getStyle(BORDER_RIGHT_WIDTH);
-					instance.constrainBorderInfo.top = getStyle(BORDER_TOP_WIDTH);
-				}
-			},
-
-			/**
 		     * Update <a href="Resize.html#property_info">info</a> values (bottom, actXY, left, top, offsetHeight, offsetWidth, right).
 		     *
 		     * @method _updateInfo
@@ -1530,31 +1175,49 @@ var Resize = A.Component.create(
 		     */
 			_defResizeFn: function(event) {
 				var instance = this;
-				var infoBefore = instance.info;
+
+				instance._handleResizeAlignEvent(event.dragEvent);
+
+				// if proxy is true _syncProxyUI instead of _syncUI
+				if (instance.get(PROXY)) {
+					instance._syncProxyUI();
+				}
+				else {
+					// _syncUI of the wrapper, not using proxy
+					instance._syncUI();
+				}
+			},
+
+			/**
+		     * Default resize:align handler
+		     *
+		     * @method _defResizeAlignFn
+		     * @param {EventFacade} event The Event object
+		     * @protected
+		     */
+			_defResizeAlignFn: function(event) {
+				var instance = this;
+				var originalInfo = instance.originalInfo;
+
+				instance.lastInfo = instance.info;
 
 				// update the instance.info values
 				instance._updateInfo(event);
 
+				var info = instance.info;
+
 				// basic resize calculations
 				instance._resize();
 
-				// check the max/min height and locking top when these values are reach
-				instance._checkHeight();
+				// if A.Plugin.ResizeConstrained is not plugged, check for min dimension
+				if (!instance.con) {
+					if (info.offsetHeight <= 15) {
+						instance._checkSize(OFFSET_HEIGHT, 15);
+					}
 
-				// check the max/min width and locking left when these values are reach
-				instance._checkWidth();
-
-				// calculating the ratio, for proportionally resizing
-				if (instance.get(PRESEVE_RATIO)) {
-					instance._checkRatio();
-				}
-
-				// left and top information need to be updated based on the new top/left
-				// top/top is used to position the proxyEl
-				instance._recalculateXY();
-
-				if (instance.get(CONSTRAIN) && !instance._checkRegion()) {
-					instance.info = infoBefore;
+					if (info.offsetWidth <= 15) {
+						instance._checkSize(OFFSET_WIDTH, 15);
+					}
 				}
 			},
 
@@ -1607,27 +1270,6 @@ var Resize = A.Component.create(
 				);
 
 				instance._updateInfo(event);
-				instance._updateConstrainBorderInfo();
-			},
-
-		    /**
-		     * Fires after resize:resize event.
-		     *
-		     * @method _afterResize
-		     * @param {EventFacade} event resize:resize custom event
-		     * @protected
-		     */
-			_afterResize: function(event) {
-				var instance = this;
-
-				// if proxy is true _syncProxyUI instead of _syncUI
-				if (instance.get(PROXY)) {
-					instance._syncProxyUI();
-				}
-				else {
-					// _syncUI of the wrapper, not using proxy
-					instance._syncUI();
-				}
 			},
 
 		    /**
@@ -1650,6 +1292,17 @@ var Resize = A.Component.create(
 		     */
 			_handleResizeEvent: function(event) {
 				this.fire(EV_RESIZE, { dragEvent: event, info: this.info });
+			},
+
+		    /**
+		     * Fires the resize:align event.
+		     *
+		     * @method _handleResizeAlignEvent
+		     * @param {EventFacade} event resize:resize event facade
+		     * @protected
+		     */
+			_handleResizeAlignEvent: function(event) {
+				this.fire(EV_RESIZE_ALIGN, { dragEvent: event, info: this.info });
 			},
 
 		    /**
@@ -1755,3 +1408,5 @@ A.each(ALL_HANDLES, function(handle, i) {
 });
 
 A.Resize = Resize;
+
+}, '@VERSION@' ,{requires:['aui-base','dd-drag','dd-delegate','dd-drop','substitute'], skinnable:true});

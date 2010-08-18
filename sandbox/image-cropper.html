@@ -133,11 +133,17 @@ AUI().ready(
 
 		var resize = new A.Resize({
 			node: cropper,
-			// proxy: true,
-			minWidth: 100,
-			minHeight: 100,
-			constrain: '#container'
+			// proxy: true
 		});
+
+		resize.plug(
+			A.Plugin.ResizeConstrained,
+			{
+				minWidth: 100,
+				minHeight: 100,
+				constrain: '#container'
+			}
+		);
 
 		resize.on('resize', function(event) {
 			var info = event.info;
