@@ -48,8 +48,12 @@
 			position: relative;
 			width: 500px;
 			height: 200px;
-			border: 5px solid #ccc;
+			border: 1px solid #ccc;
 			border-width: 5px 10px 20px 30px;
+		}
+
+		.aui-resize-proxy {
+/*			border: 5px solid #000 !important;*/
 		}
 	</style>
 </head>
@@ -91,18 +95,15 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 </div>
 
 <script type="text/javascript" charset="utf-8">
-AUI().ready(
+AUI().use(
 	'aui-resize',
 	function(A) {
 
 		var resize1 = new A.Resize({
 			node: '#resize1',
 			proxy: true,
-			preserveRatio: true,
 			wrap: true,
 			// handles: 'all',
-			maxHeight: 170,
-			maxWidth: 400,
 			on: {
 				resize: function(event) {
 					// event.halt();
@@ -111,11 +112,17 @@ AUI().ready(
 			handles: 't, tr, r, br, b, bl, l, tl'
 		});
 
+		resize1.plug(A.Plugin.ResizeConstrained, {
+			preserveRatio: true,
+			maxHeight: 170,
+			maxWidth: 400
+		});
+
 		// resize1.destroy();
 
 		var resize2 = new A.Resize({
 			node: '#resize2',
-			proxy: true,
+			// proxy: true,
 			// wrap: true,
 			// handles: 'all',
 			// handles: 't, tr, r, br, b, bl, l, tl'
@@ -126,10 +133,8 @@ AUI().ready(
 			node: '#resize3',
 			autoHide: true,
 			proxy: true,
-			preserveRatio: true,
 			// wrap: true,
 			// handles: 'all',
-			// aspectRatio: 1,
 			on: {
 				resize: function(event) {
 					// event.halt();
@@ -138,12 +143,19 @@ AUI().ready(
 			handles: 't, tr, r, br, b, bl, l, tl'
 		});
 
+		resize3.plug(A.Plugin.ResizeConstrained, {
+			preserveRatio: true
+		});
+
 		// resize3.destroy();
 
 		var resize4 = new A.Resize({
 			node: '#resize4',
-			proxy: true,
-			// preserveRatio: true,
+			proxy: true
+		});
+
+		resize4.plug(A.Plugin.ResizeConstrained, {
+			preserveRatio: true,
 			tickX: 30,
 			tickY: 30
 		});
@@ -151,9 +163,14 @@ AUI().ready(
 		var resize5 = new A.Resize({
 			node: '#resize5',
 			proxy: true,
-			// preserveRatio: true,
-			autoHide: true,
-			constrain: '#parent'
+			// autoHide: true
+		});
+
+		resize5.plug(A.Plugin.ResizeConstrained, {
+			constrain: '#parent',
+			minHeight: 30,
+			minWidth: 30,
+			preserveRatio: true,
 			// constrain: 'view'
 			// constrain: { 'bottom': 700, 'left': 0, 'right': 1665, 'top': 100 }
 		});
@@ -176,6 +193,7 @@ AUI().ready(
 		A.all('#resize4 .destroy').on('click', function() {
 			resize4.destroy();
 		});
+
 	}
 );
 
