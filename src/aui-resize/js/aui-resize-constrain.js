@@ -234,11 +234,11 @@ A.extend(ResizeConstrained, A.Plugin.Base, {
 		instance._checkConstrain(TOP, BOTTOM, OFFSET_HEIGHT);
 
 		if (info.offsetHeight > maxHeight) {
-			host._checkSize(OFFSET_HEIGHT, minHeight);
+			host._checkSize(OFFSET_HEIGHT, maxHeight);
 		}
 
 		if (info.offsetHeight < minHeight) {
-			host._checkSize(OFFSET_HEIGHT, maxHeight);
+			host._checkSize(OFFSET_HEIGHT, minHeight);
 		}
 	},
 
