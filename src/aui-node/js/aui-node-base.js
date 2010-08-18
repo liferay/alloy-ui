@@ -14,6 +14,8 @@ var Lang = A.Lang,
 
 	getClassName = A.ClassNameManager.getClassName,
 
+	CONFIG = A.config,
+
 	STR_EMPTY = '',
 
 	ARRAY_EMPTY_STRINGS = [STR_EMPTY, STR_EMPTY],
@@ -1022,7 +1024,7 @@ if (!SUPPORT_OPTIONAL_TBODY) {
 }
 
 A.Node._prepareHTML = function(element) {
-	var doc = A.config.doc;
+	var doc = CONFIG.doc;
 
 	var returnData = [];
 
@@ -1244,7 +1246,7 @@ A.mix(
 			var instance = this;
 
 			if (!instance._bodyNode) {
-				instance._bodyNode = A.one(document.body);
+				instance._bodyNode = A.one(CONFIG.doc.body);
 			}
 
 			return instance._bodyNode;
@@ -1259,7 +1261,7 @@ A.mix(
 			var instance = this;
 
 			if (!instance._documentNode) {
-				instance._documentNode = A.one(document);
+				instance._documentNode = A.one(CONFIG.doc);
 			}
 
 			return instance._documentNode;
@@ -1274,7 +1276,7 @@ A.mix(
 			var instance = this;
 
 			if (!instance._windowNode) {
-				instance._windowNode = A.one(window);
+				instance._windowNode = A.one(CONFIG.win);
 			}
 
 			return instance._windowNode;
