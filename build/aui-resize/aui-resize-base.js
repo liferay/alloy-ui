@@ -111,7 +111,7 @@ var Lang = A.Lang,
 	CSS_ICON_HORIZONTAL = concat(CSS_ICON, CSS_ICON_GRIP_DOTTED_HORIZONTAL),
 	CSS_ICON_VERTICAL = concat(CSS_ICON, CSS_ICON_GRIP_DOTTED_VERTICAL),
 
-	REGEX_CHANGE_HEIGHT = /^(t|b)$/i,
+	REGEX_CHANGE_HEIGHT = /^(t|b|br)$/i,
 	REGEX_CHANGE_LEFT = /^(tl|l|bl)$/i,
 	REGEX_CHANGE_TOP = /^(tl|t|tr)$/i,
 	REGEX_CHANGE_WIDTH = /^(bl|br|l|r|tl|tr)$/i,
