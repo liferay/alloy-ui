@@ -391,10 +391,6 @@ A.extend(ResizeConstrained, A.Plugin.Base, {
 			instance._checkRatio();
 		}
 
-		// left and top information need to be updated based on the new top/left
-		// top/top is used to position the proxyEl
-		instance._recalculateXY();
-
 		if (instance.get(CONSTRAIN) && !instance._checkRegion()) {
 			host.info = host.lastInfo;
 		}
@@ -404,23 +400,6 @@ A.extend(ResizeConstrained, A.Plugin.Base, {
 		var instance = this;
 
 		instance._updateConstrainBorderInfo();
-	},
-
-    /**
-     * Update left and top information on
-     * <a href="Resize.html#property_info">info</a> based on the new top and left.
-     *
-     * @method _recalculateXY
-     * @private
-     */
-	_recalculateXY: function() {
-		var instance = this;
-		var host = instance.get(HOST);
-		var info = host.info;
-		var originalInfo = host.originalInfo;
-
-		info.left = originalInfo.left + (info.left - originalInfo.left);
-		info.top = originalInfo.top + (info.top - originalInfo.top);
 	},
 
 	/**
