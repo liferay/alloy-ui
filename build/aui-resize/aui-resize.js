@@ -1708,6 +1708,13 @@ A.extend(ResizeConstrained, A.Plugin.Base, {
 		if (host.changeLeftHandles) {
 			info.left = oLeft + (oWidth - info.offsetWidth);
 		}
+
+		// rounding values to avoid pixel jumpings
+		A.each(info, function(value, key) {
+			if (isNumber(value)) {
+				info[key] = Math.round(value);
+			}
+		});
 	},
 
 	/**
