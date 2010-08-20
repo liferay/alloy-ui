@@ -4,453 +4,453 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:button-item:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:button-item:scopedAttributes");
 
-java.lang.Boolean _activeState = (java.lang.Boolean)request.getAttribute("alloy:button-item:activeState");
-java.lang.String _boundingBox = (java.lang.String)request.getAttribute("alloy:button-item:boundingBox");
+java.lang.Boolean _activeState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:activeState"));
+java.lang.String _boundingBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:boundingBox"));
 java.lang.Object _classNames = (java.lang.Object)request.getAttribute("alloy:button-item:classNames");
-java.lang.String _contentBox = (java.lang.String)request.getAttribute("alloy:button-item:contentBox");
-java.lang.String _cssClass = (java.lang.String)request.getAttribute("alloy:button-item:cssClass");
-java.lang.Boolean _defaultState = (java.lang.Boolean)request.getAttribute("alloy:button-item:defaultState");
-java.lang.Boolean _destroyed = (java.lang.Boolean)request.getAttribute("alloy:button-item:destroyed");
-java.lang.Boolean _disabled = (java.lang.Boolean)request.getAttribute("alloy:button-item:disabled");
-java.lang.Boolean _focused = (java.lang.Boolean)request.getAttribute("alloy:button-item:focused");
-java.lang.String _handler = (java.lang.String)request.getAttribute("alloy:button-item:handler");
-java.lang.String _height = (java.lang.String)request.getAttribute("alloy:button-item:height");
-java.lang.String _hideClass = (java.lang.String)request.getAttribute("alloy:button-item:hideClass");
-java.lang.Boolean _hoverState = (java.lang.Boolean)request.getAttribute("alloy:button-item:hoverState");
-java.lang.String _icon = (java.lang.String)request.getAttribute("alloy:button-item:icon");
-java.lang.String _iconNode = (java.lang.String)request.getAttribute("alloy:button-item:iconNode");
-java.lang.String _buttonitemId = (java.lang.String)request.getAttribute("alloy:button-item:buttonitemId");
-java.lang.Boolean _initialized = (java.lang.Boolean)request.getAttribute("alloy:button-item:initialized");
-java.lang.String _label = (java.lang.String)request.getAttribute("alloy:button-item:label");
-java.lang.String _labelNode = (java.lang.String)request.getAttribute("alloy:button-item:labelNode");
-java.lang.Boolean _render = (java.lang.Boolean)request.getAttribute("alloy:button-item:render");
-java.lang.Boolean _rendered = (java.lang.Boolean)request.getAttribute("alloy:button-item:rendered");
-java.lang.String _srcNode = (java.lang.String)request.getAttribute("alloy:button-item:srcNode");
+java.lang.String _contentBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:contentBox"));
+java.lang.String _cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:cssClass"));
+java.lang.Boolean _defaultState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:defaultState"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:destroyed"));
+java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:disabled"));
+java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:focused"));
+java.lang.String _handler = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:handler"));
+java.lang.String _height = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:height"));
+java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:hideClass"));
+java.lang.Boolean _hoverState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:hoverState"));
+java.lang.String _icon = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:icon"));
+java.lang.String _iconNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:iconNode"));
+java.lang.String _buttonitemId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:buttonitemId"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:initialized"));
+java.lang.String _label = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:label"));
+java.lang.String _labelNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:labelNode"));
+java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:render"));
+java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:rendered"));
+java.lang.String _srcNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:srcNode"));
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:button-item:strings");
-java.lang.Number _tabIndex = (java.lang.Number)request.getAttribute("alloy:button-item:tabIndex");
-java.lang.String _title = (java.lang.String)request.getAttribute("alloy:button-item:title");
-java.lang.Boolean _visible = (java.lang.Boolean)request.getAttribute("alloy:button-item:visible");
-java.lang.String _width = (java.lang.String)request.getAttribute("alloy:button-item:width");
-java.lang.String _afterActiveStateChange = (java.lang.String)request.getAttribute("alloy:button-item:afterActiveStateChange");
-java.lang.String _afterBoundingBoxChange = (java.lang.String)request.getAttribute("alloy:button-item:afterBoundingBoxChange");
-java.lang.String _afterClassNamesChange = (java.lang.String)request.getAttribute("alloy:button-item:afterClassNamesChange");
-java.lang.String _afterContentBoxChange = (java.lang.String)request.getAttribute("alloy:button-item:afterContentBoxChange");
-java.lang.String _afterCssClassChange = (java.lang.String)request.getAttribute("alloy:button-item:afterCssClassChange");
-java.lang.String _afterDefaultStateChange = (java.lang.String)request.getAttribute("alloy:button-item:afterDefaultStateChange");
-java.lang.String _afterDestroy = (java.lang.String)request.getAttribute("alloy:button-item:afterDestroy");
-java.lang.String _afterDestroyedChange = (java.lang.String)request.getAttribute("alloy:button-item:afterDestroyedChange");
-java.lang.String _afterDisabledChange = (java.lang.String)request.getAttribute("alloy:button-item:afterDisabledChange");
-java.lang.String _afterFocusedChange = (java.lang.String)request.getAttribute("alloy:button-item:afterFocusedChange");
-java.lang.String _afterHandlerChange = (java.lang.String)request.getAttribute("alloy:button-item:afterHandlerChange");
-java.lang.String _afterHeightChange = (java.lang.String)request.getAttribute("alloy:button-item:afterHeightChange");
-java.lang.String _afterHideClassChange = (java.lang.String)request.getAttribute("alloy:button-item:afterHideClassChange");
-java.lang.String _afterHoverStateChange = (java.lang.String)request.getAttribute("alloy:button-item:afterHoverStateChange");
-java.lang.String _afterIconChange = (java.lang.String)request.getAttribute("alloy:button-item:afterIconChange");
-java.lang.String _afterIconNodeChange = (java.lang.String)request.getAttribute("alloy:button-item:afterIconNodeChange");
-java.lang.String _afterIdChange = (java.lang.String)request.getAttribute("alloy:button-item:afterIdChange");
-java.lang.String _afterInit = (java.lang.String)request.getAttribute("alloy:button-item:afterInit");
-java.lang.String _afterInitializedChange = (java.lang.String)request.getAttribute("alloy:button-item:afterInitializedChange");
-java.lang.String _afterLabelChange = (java.lang.String)request.getAttribute("alloy:button-item:afterLabelChange");
-java.lang.String _afterLabelNodeChange = (java.lang.String)request.getAttribute("alloy:button-item:afterLabelNodeChange");
-java.lang.String _afterRenderChange = (java.lang.String)request.getAttribute("alloy:button-item:afterRenderChange");
-java.lang.String _afterRenderedChange = (java.lang.String)request.getAttribute("alloy:button-item:afterRenderedChange");
-java.lang.String _afterSrcNodeChange = (java.lang.String)request.getAttribute("alloy:button-item:afterSrcNodeChange");
-java.lang.String _afterStringsChange = (java.lang.String)request.getAttribute("alloy:button-item:afterStringsChange");
-java.lang.String _afterTabIndexChange = (java.lang.String)request.getAttribute("alloy:button-item:afterTabIndexChange");
-java.lang.String _afterTitleChange = (java.lang.String)request.getAttribute("alloy:button-item:afterTitleChange");
-java.lang.String _afterVisibleChange = (java.lang.String)request.getAttribute("alloy:button-item:afterVisibleChange");
-java.lang.String _afterContentUpdate = (java.lang.String)request.getAttribute("alloy:button-item:afterContentUpdate");
-java.lang.String _afterRender = (java.lang.String)request.getAttribute("alloy:button-item:afterRender");
-java.lang.String _afterWidthChange = (java.lang.String)request.getAttribute("alloy:button-item:afterWidthChange");
-java.lang.String _onActiveStateChange = (java.lang.String)request.getAttribute("alloy:button-item:onActiveStateChange");
-java.lang.String _onBoundingBoxChange = (java.lang.String)request.getAttribute("alloy:button-item:onBoundingBoxChange");
-java.lang.String _onClassNamesChange = (java.lang.String)request.getAttribute("alloy:button-item:onClassNamesChange");
-java.lang.String _onContentBoxChange = (java.lang.String)request.getAttribute("alloy:button-item:onContentBoxChange");
-java.lang.String _onCssClassChange = (java.lang.String)request.getAttribute("alloy:button-item:onCssClassChange");
-java.lang.String _onDefaultStateChange = (java.lang.String)request.getAttribute("alloy:button-item:onDefaultStateChange");
-java.lang.String _onDestroy = (java.lang.String)request.getAttribute("alloy:button-item:onDestroy");
-java.lang.String _onDestroyedChange = (java.lang.String)request.getAttribute("alloy:button-item:onDestroyedChange");
-java.lang.String _onDisabledChange = (java.lang.String)request.getAttribute("alloy:button-item:onDisabledChange");
-java.lang.String _onFocusedChange = (java.lang.String)request.getAttribute("alloy:button-item:onFocusedChange");
-java.lang.String _onHandlerChange = (java.lang.String)request.getAttribute("alloy:button-item:onHandlerChange");
-java.lang.String _onHeightChange = (java.lang.String)request.getAttribute("alloy:button-item:onHeightChange");
-java.lang.String _onHideClassChange = (java.lang.String)request.getAttribute("alloy:button-item:onHideClassChange");
-java.lang.String _onHoverStateChange = (java.lang.String)request.getAttribute("alloy:button-item:onHoverStateChange");
-java.lang.String _onIconChange = (java.lang.String)request.getAttribute("alloy:button-item:onIconChange");
-java.lang.String _onIconNodeChange = (java.lang.String)request.getAttribute("alloy:button-item:onIconNodeChange");
-java.lang.String _onIdChange = (java.lang.String)request.getAttribute("alloy:button-item:onIdChange");
-java.lang.String _onInit = (java.lang.String)request.getAttribute("alloy:button-item:onInit");
-java.lang.String _onInitializedChange = (java.lang.String)request.getAttribute("alloy:button-item:onInitializedChange");
-java.lang.String _onLabelChange = (java.lang.String)request.getAttribute("alloy:button-item:onLabelChange");
-java.lang.String _onLabelNodeChange = (java.lang.String)request.getAttribute("alloy:button-item:onLabelNodeChange");
-java.lang.String _onRenderChange = (java.lang.String)request.getAttribute("alloy:button-item:onRenderChange");
-java.lang.String _onRenderedChange = (java.lang.String)request.getAttribute("alloy:button-item:onRenderedChange");
-java.lang.String _onSrcNodeChange = (java.lang.String)request.getAttribute("alloy:button-item:onSrcNodeChange");
-java.lang.String _onStringsChange = (java.lang.String)request.getAttribute("alloy:button-item:onStringsChange");
-java.lang.String _onTabIndexChange = (java.lang.String)request.getAttribute("alloy:button-item:onTabIndexChange");
-java.lang.String _onTitleChange = (java.lang.String)request.getAttribute("alloy:button-item:onTitleChange");
-java.lang.String _onVisibleChange = (java.lang.String)request.getAttribute("alloy:button-item:onVisibleChange");
-java.lang.String _onContentUpdate = (java.lang.String)request.getAttribute("alloy:button-item:onContentUpdate");
-java.lang.String _onRender = (java.lang.String)request.getAttribute("alloy:button-item:onRender");
-java.lang.String _onWidthChange = (java.lang.String)request.getAttribute("alloy:button-item:onWidthChange");
+java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:button-item:tabIndex"));
+java.lang.String _title = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:title"));
+java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:visible"));
+java.lang.String _width = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:width"));
+java.lang.String _afterActiveStateChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterActiveStateChange"));
+java.lang.String _afterBoundingBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterBoundingBoxChange"));
+java.lang.String _afterClassNamesChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterClassNamesChange"));
+java.lang.String _afterContentBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterContentBoxChange"));
+java.lang.String _afterCssClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterCssClassChange"));
+java.lang.String _afterDefaultStateChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterDefaultStateChange"));
+java.lang.String _afterDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterDestroy"));
+java.lang.String _afterDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterDestroyedChange"));
+java.lang.String _afterDisabledChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterDisabledChange"));
+java.lang.String _afterFocusedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterFocusedChange"));
+java.lang.String _afterHandlerChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterHandlerChange"));
+java.lang.String _afterHeightChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterHeightChange"));
+java.lang.String _afterHideClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterHideClassChange"));
+java.lang.String _afterHoverStateChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterHoverStateChange"));
+java.lang.String _afterIconChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterIconChange"));
+java.lang.String _afterIconNodeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterIconNodeChange"));
+java.lang.String _afterIdChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterIdChange"));
+java.lang.String _afterInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterInit"));
+java.lang.String _afterInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterInitializedChange"));
+java.lang.String _afterLabelChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterLabelChange"));
+java.lang.String _afterLabelNodeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterLabelNodeChange"));
+java.lang.String _afterRenderChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterRenderChange"));
+java.lang.String _afterRenderedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterRenderedChange"));
+java.lang.String _afterSrcNodeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterSrcNodeChange"));
+java.lang.String _afterStringsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterStringsChange"));
+java.lang.String _afterTabIndexChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterTabIndexChange"));
+java.lang.String _afterTitleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterTitleChange"));
+java.lang.String _afterVisibleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterVisibleChange"));
+java.lang.String _afterContentUpdate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterContentUpdate"));
+java.lang.String _afterRender = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterRender"));
+java.lang.String _afterWidthChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterWidthChange"));
+java.lang.String _onActiveStateChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onActiveStateChange"));
+java.lang.String _onBoundingBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onBoundingBoxChange"));
+java.lang.String _onClassNamesChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onClassNamesChange"));
+java.lang.String _onContentBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onContentBoxChange"));
+java.lang.String _onCssClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onCssClassChange"));
+java.lang.String _onDefaultStateChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onDefaultStateChange"));
+java.lang.String _onDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onDestroy"));
+java.lang.String _onDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onDestroyedChange"));
+java.lang.String _onDisabledChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onDisabledChange"));
+java.lang.String _onFocusedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onFocusedChange"));
+java.lang.String _onHandlerChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onHandlerChange"));
+java.lang.String _onHeightChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onHeightChange"));
+java.lang.String _onHideClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onHideClassChange"));
+java.lang.String _onHoverStateChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onHoverStateChange"));
+java.lang.String _onIconChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onIconChange"));
+java.lang.String _onIconNodeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onIconNodeChange"));
+java.lang.String _onIdChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onIdChange"));
+java.lang.String _onInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onInit"));
+java.lang.String _onInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onInitializedChange"));
+java.lang.String _onLabelChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onLabelChange"));
+java.lang.String _onLabelNodeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onLabelNodeChange"));
+java.lang.String _onRenderChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onRenderChange"));
+java.lang.String _onRenderedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onRenderedChange"));
+java.lang.String _onSrcNodeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onSrcNodeChange"));
+java.lang.String _onStringsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onStringsChange"));
+java.lang.String _onTabIndexChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onTabIndexChange"));
+java.lang.String _onTitleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onTitleChange"));
+java.lang.String _onVisibleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onVisibleChange"));
+java.lang.String _onContentUpdate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onContentUpdate"));
+java.lang.String _onRender = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onRender"));
+java.lang.String _onWidthChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:onWidthChange"));
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (_activeState != null) {
+if (request.getAttribute("alloy:button-item:activeState") != null) {
 	scopedAttributes.put("activeState", _activeState);
 }
 
-if (_boundingBox != null) {
+if (request.getAttribute("alloy:button-item:boundingBox") != null) {
 	scopedAttributes.put("boundingBox", _boundingBox);
 }
 
-if (_classNames != null) {
+if (request.getAttribute("alloy:button-item:classNames") != null) {
 	scopedAttributes.put("classNames", _classNames);
 }
 
-if (_contentBox != null) {
+if (request.getAttribute("alloy:button-item:contentBox") != null) {
 	scopedAttributes.put("contentBox", _contentBox);
 }
 
-if (_cssClass != null) {
+if (request.getAttribute("alloy:button-item:cssClass") != null) {
 	scopedAttributes.put("cssClass", _cssClass);
 }
 
-if (_defaultState != null) {
+if (request.getAttribute("alloy:button-item:defaultState") != null) {
 	scopedAttributes.put("defaultState", _defaultState);
 }
 
-if (_destroyed != null) {
+if (request.getAttribute("alloy:button-item:destroyed") != null) {
 	scopedAttributes.put("destroyed", _destroyed);
 }
 
-if (_disabled != null) {
+if (request.getAttribute("alloy:button-item:disabled") != null) {
 	scopedAttributes.put("disabled", _disabled);
 }
 
-if (_focused != null) {
+if (request.getAttribute("alloy:button-item:focused") != null) {
 	scopedAttributes.put("focused", _focused);
 }
 
-if (_handler != null) {
+if (request.getAttribute("alloy:button-item:handler") != null) {
 	scopedAttributes.put("handler", _handler);
 }
 
-if (_height != null) {
+if (request.getAttribute("alloy:button-item:height") != null) {
 	scopedAttributes.put("height", _height);
 }
 
-if (_hideClass != null) {
+if (request.getAttribute("alloy:button-item:hideClass") != null) {
 	scopedAttributes.put("hideClass", _hideClass);
 }
 
-if (_hoverState != null) {
+if (request.getAttribute("alloy:button-item:hoverState") != null) {
 	scopedAttributes.put("hoverState", _hoverState);
 }
 
-if (_icon != null) {
+if (request.getAttribute("alloy:button-item:icon") != null) {
 	scopedAttributes.put("icon", _icon);
 }
 
-if (_iconNode != null) {
+if (request.getAttribute("alloy:button-item:iconNode") != null) {
 	scopedAttributes.put("iconNode", _iconNode);
 }
 
-if (_buttonitemId != null) {
+if (request.getAttribute("alloy:button-item:buttonitemId") != null) {
 	scopedAttributes.put("buttonitemId", _buttonitemId);
 }
 
-if (_initialized != null) {
+if (request.getAttribute("alloy:button-item:initialized") != null) {
 	scopedAttributes.put("initialized", _initialized);
 }
 
-if (_label != null) {
+if (request.getAttribute("alloy:button-item:label") != null) {
 	scopedAttributes.put("label", _label);
 }
 
-if (_labelNode != null) {
+if (request.getAttribute("alloy:button-item:labelNode") != null) {
 	scopedAttributes.put("labelNode", _labelNode);
 }
 
-if (_render != null) {
+if (request.getAttribute("alloy:button-item:render") != null) {
 	scopedAttributes.put("render", _render);
 }
 
-if (_rendered != null) {
+if (request.getAttribute("alloy:button-item:rendered") != null) {
 	scopedAttributes.put("rendered", _rendered);
 }
 
-if (_srcNode != null) {
+if (request.getAttribute("alloy:button-item:srcNode") != null) {
 	scopedAttributes.put("srcNode", _srcNode);
 }
 
-if (_strings != null) {
+if (request.getAttribute("alloy:button-item:strings") != null) {
 	scopedAttributes.put("strings", _strings);
 }
 
-if (_tabIndex != null) {
+if (request.getAttribute("alloy:button-item:tabIndex") != null) {
 	scopedAttributes.put("tabIndex", _tabIndex);
 }
 
-if (_title != null) {
+if (request.getAttribute("alloy:button-item:title") != null) {
 	scopedAttributes.put("title", _title);
 }
 
-if (_visible != null) {
+if (request.getAttribute("alloy:button-item:visible") != null) {
 	scopedAttributes.put("visible", _visible);
 }
 
-if (_width != null) {
+if (request.getAttribute("alloy:button-item:width") != null) {
 	scopedAttributes.put("width", _width);
 }
 
-if (_afterActiveStateChange != null) {
+if (request.getAttribute("alloy:button-item:afterActiveStateChange") != null) {
 	scopedAttributes.put("afterActiveStateChange", _afterActiveStateChange);
 }
 
-if (_afterBoundingBoxChange != null) {
+if (request.getAttribute("alloy:button-item:afterBoundingBoxChange") != null) {
 	scopedAttributes.put("afterBoundingBoxChange", _afterBoundingBoxChange);
 }
 
-if (_afterClassNamesChange != null) {
+if (request.getAttribute("alloy:button-item:afterClassNamesChange") != null) {
 	scopedAttributes.put("afterClassNamesChange", _afterClassNamesChange);
 }
 
-if (_afterContentBoxChange != null) {
+if (request.getAttribute("alloy:button-item:afterContentBoxChange") != null) {
 	scopedAttributes.put("afterContentBoxChange", _afterContentBoxChange);
 }
 
-if (_afterCssClassChange != null) {
+if (request.getAttribute("alloy:button-item:afterCssClassChange") != null) {
 	scopedAttributes.put("afterCssClassChange", _afterCssClassChange);
 }
 
-if (_afterDefaultStateChange != null) {
+if (request.getAttribute("alloy:button-item:afterDefaultStateChange") != null) {
 	scopedAttributes.put("afterDefaultStateChange", _afterDefaultStateChange);
 }
 
-if (_afterDestroy != null) {
+if (request.getAttribute("alloy:button-item:afterDestroy") != null) {
 	scopedAttributes.put("afterDestroy", _afterDestroy);
 }
 
-if (_afterDestroyedChange != null) {
+if (request.getAttribute("alloy:button-item:afterDestroyedChange") != null) {
 	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
 }
 
-if (_afterDisabledChange != null) {
+if (request.getAttribute("alloy:button-item:afterDisabledChange") != null) {
 	scopedAttributes.put("afterDisabledChange", _afterDisabledChange);
 }
 
-if (_afterFocusedChange != null) {
+if (request.getAttribute("alloy:button-item:afterFocusedChange") != null) {
 	scopedAttributes.put("afterFocusedChange", _afterFocusedChange);
 }
 
-if (_afterHandlerChange != null) {
+if (request.getAttribute("alloy:button-item:afterHandlerChange") != null) {
 	scopedAttributes.put("afterHandlerChange", _afterHandlerChange);
 }
 
-if (_afterHeightChange != null) {
+if (request.getAttribute("alloy:button-item:afterHeightChange") != null) {
 	scopedAttributes.put("afterHeightChange", _afterHeightChange);
 }
 
-if (_afterHideClassChange != null) {
+if (request.getAttribute("alloy:button-item:afterHideClassChange") != null) {
 	scopedAttributes.put("afterHideClassChange", _afterHideClassChange);
 }
 
-if (_afterHoverStateChange != null) {
+if (request.getAttribute("alloy:button-item:afterHoverStateChange") != null) {
 	scopedAttributes.put("afterHoverStateChange", _afterHoverStateChange);
 }
 
-if (_afterIconChange != null) {
+if (request.getAttribute("alloy:button-item:afterIconChange") != null) {
 	scopedAttributes.put("afterIconChange", _afterIconChange);
 }
 
-if (_afterIconNodeChange != null) {
+if (request.getAttribute("alloy:button-item:afterIconNodeChange") != null) {
 	scopedAttributes.put("afterIconNodeChange", _afterIconNodeChange);
 }
 
-if (_afterIdChange != null) {
+if (request.getAttribute("alloy:button-item:afterIdChange") != null) {
 	scopedAttributes.put("afterIdChange", _afterIdChange);
 }
 
-if (_afterInit != null) {
+if (request.getAttribute("alloy:button-item:afterInit") != null) {
 	scopedAttributes.put("afterInit", _afterInit);
 }
 
-if (_afterInitializedChange != null) {
+if (request.getAttribute("alloy:button-item:afterInitializedChange") != null) {
 	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
 }
 
-if (_afterLabelChange != null) {
+if (request.getAttribute("alloy:button-item:afterLabelChange") != null) {
 	scopedAttributes.put("afterLabelChange", _afterLabelChange);
 }
 
-if (_afterLabelNodeChange != null) {
+if (request.getAttribute("alloy:button-item:afterLabelNodeChange") != null) {
 	scopedAttributes.put("afterLabelNodeChange", _afterLabelNodeChange);
 }
 
-if (_afterRenderChange != null) {
+if (request.getAttribute("alloy:button-item:afterRenderChange") != null) {
 	scopedAttributes.put("afterRenderChange", _afterRenderChange);
 }
 
-if (_afterRenderedChange != null) {
+if (request.getAttribute("alloy:button-item:afterRenderedChange") != null) {
 	scopedAttributes.put("afterRenderedChange", _afterRenderedChange);
 }
 
-if (_afterSrcNodeChange != null) {
+if (request.getAttribute("alloy:button-item:afterSrcNodeChange") != null) {
 	scopedAttributes.put("afterSrcNodeChange", _afterSrcNodeChange);
 }
 
-if (_afterStringsChange != null) {
+if (request.getAttribute("alloy:button-item:afterStringsChange") != null) {
 	scopedAttributes.put("afterStringsChange", _afterStringsChange);
 }
 
-if (_afterTabIndexChange != null) {
+if (request.getAttribute("alloy:button-item:afterTabIndexChange") != null) {
 	scopedAttributes.put("afterTabIndexChange", _afterTabIndexChange);
 }
 
-if (_afterTitleChange != null) {
+if (request.getAttribute("alloy:button-item:afterTitleChange") != null) {
 	scopedAttributes.put("afterTitleChange", _afterTitleChange);
 }
 
-if (_afterVisibleChange != null) {
+if (request.getAttribute("alloy:button-item:afterVisibleChange") != null) {
 	scopedAttributes.put("afterVisibleChange", _afterVisibleChange);
 }
 
-if (_afterContentUpdate != null) {
+if (request.getAttribute("alloy:button-item:afterContentUpdate") != null) {
 	scopedAttributes.put("afterContentUpdate", _afterContentUpdate);
 }
 
-if (_afterRender != null) {
+if (request.getAttribute("alloy:button-item:afterRender") != null) {
 	scopedAttributes.put("afterRender", _afterRender);
 }
 
-if (_afterWidthChange != null) {
+if (request.getAttribute("alloy:button-item:afterWidthChange") != null) {
 	scopedAttributes.put("afterWidthChange", _afterWidthChange);
 }
 
-if (_onActiveStateChange != null) {
+if (request.getAttribute("alloy:button-item:onActiveStateChange") != null) {
 	scopedAttributes.put("onActiveStateChange", _onActiveStateChange);
 }
 
-if (_onBoundingBoxChange != null) {
+if (request.getAttribute("alloy:button-item:onBoundingBoxChange") != null) {
 	scopedAttributes.put("onBoundingBoxChange", _onBoundingBoxChange);
 }
 
-if (_onClassNamesChange != null) {
+if (request.getAttribute("alloy:button-item:onClassNamesChange") != null) {
 	scopedAttributes.put("onClassNamesChange", _onClassNamesChange);
 }
 
-if (_onContentBoxChange != null) {
+if (request.getAttribute("alloy:button-item:onContentBoxChange") != null) {
 	scopedAttributes.put("onContentBoxChange", _onContentBoxChange);
 }
 
-if (_onCssClassChange != null) {
+if (request.getAttribute("alloy:button-item:onCssClassChange") != null) {
 	scopedAttributes.put("onCssClassChange", _onCssClassChange);
 }
 
-if (_onDefaultStateChange != null) {
+if (request.getAttribute("alloy:button-item:onDefaultStateChange") != null) {
 	scopedAttributes.put("onDefaultStateChange", _onDefaultStateChange);
 }
 
-if (_onDestroy != null) {
+if (request.getAttribute("alloy:button-item:onDestroy") != null) {
 	scopedAttributes.put("onDestroy", _onDestroy);
 }
 
-if (_onDestroyedChange != null) {
+if (request.getAttribute("alloy:button-item:onDestroyedChange") != null) {
 	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
 }
 
-if (_onDisabledChange != null) {
+if (request.getAttribute("alloy:button-item:onDisabledChange") != null) {
 	scopedAttributes.put("onDisabledChange", _onDisabledChange);
 }
 
-if (_onFocusedChange != null) {
+if (request.getAttribute("alloy:button-item:onFocusedChange") != null) {
 	scopedAttributes.put("onFocusedChange", _onFocusedChange);
 }
 
-if (_onHandlerChange != null) {
+if (request.getAttribute("alloy:button-item:onHandlerChange") != null) {
 	scopedAttributes.put("onHandlerChange", _onHandlerChange);
 }
 
-if (_onHeightChange != null) {
+if (request.getAttribute("alloy:button-item:onHeightChange") != null) {
 	scopedAttributes.put("onHeightChange", _onHeightChange);
 }
 
-if (_onHideClassChange != null) {
+if (request.getAttribute("alloy:button-item:onHideClassChange") != null) {
 	scopedAttributes.put("onHideClassChange", _onHideClassChange);
 }
 
-if (_onHoverStateChange != null) {
+if (request.getAttribute("alloy:button-item:onHoverStateChange") != null) {
 	scopedAttributes.put("onHoverStateChange", _onHoverStateChange);
 }
 
-if (_onIconChange != null) {
+if (request.getAttribute("alloy:button-item:onIconChange") != null) {
 	scopedAttributes.put("onIconChange", _onIconChange);
 }
 
-if (_onIconNodeChange != null) {
+if (request.getAttribute("alloy:button-item:onIconNodeChange") != null) {
 	scopedAttributes.put("onIconNodeChange", _onIconNodeChange);
 }
 
-if (_onIdChange != null) {
+if (request.getAttribute("alloy:button-item:onIdChange") != null) {
 	scopedAttributes.put("onIdChange", _onIdChange);
 }
 
-if (_onInit != null) {
+if (request.getAttribute("alloy:button-item:onInit") != null) {
 	scopedAttributes.put("onInit", _onInit);
 }
 
-if (_onInitializedChange != null) {
+if (request.getAttribute("alloy:button-item:onInitializedChange") != null) {
 	scopedAttributes.put("onInitializedChange", _onInitializedChange);
 }
 
-if (_onLabelChange != null) {
+if (request.getAttribute("alloy:button-item:onLabelChange") != null) {
 	scopedAttributes.put("onLabelChange", _onLabelChange);
 }
 
-if (_onLabelNodeChange != null) {
+if (request.getAttribute("alloy:button-item:onLabelNodeChange") != null) {
 	scopedAttributes.put("onLabelNodeChange", _onLabelNodeChange);
 }
 
-if (_onRenderChange != null) {
+if (request.getAttribute("alloy:button-item:onRenderChange") != null) {
 	scopedAttributes.put("onRenderChange", _onRenderChange);
 }
 
-if (_onRenderedChange != null) {
+if (request.getAttribute("alloy:button-item:onRenderedChange") != null) {
 	scopedAttributes.put("onRenderedChange", _onRenderedChange);
 }
 
-if (_onSrcNodeChange != null) {
+if (request.getAttribute("alloy:button-item:onSrcNodeChange") != null) {
 	scopedAttributes.put("onSrcNodeChange", _onSrcNodeChange);
 }
 
-if (_onStringsChange != null) {
+if (request.getAttribute("alloy:button-item:onStringsChange") != null) {
 	scopedAttributes.put("onStringsChange", _onStringsChange);
 }
 
-if (_onTabIndexChange != null) {
+if (request.getAttribute("alloy:button-item:onTabIndexChange") != null) {
 	scopedAttributes.put("onTabIndexChange", _onTabIndexChange);
 }
 
-if (_onTitleChange != null) {
+if (request.getAttribute("alloy:button-item:onTitleChange") != null) {
 	scopedAttributes.put("onTitleChange", _onTitleChange);
 }
 
-if (_onVisibleChange != null) {
+if (request.getAttribute("alloy:button-item:onVisibleChange") != null) {
 	scopedAttributes.put("onVisibleChange", _onVisibleChange);
 }
 
-if (_onContentUpdate != null) {
+if (request.getAttribute("alloy:button-item:onContentUpdate") != null) {
 	scopedAttributes.put("onContentUpdate", _onContentUpdate);
 }
 
-if (_onRender != null) {
+if (request.getAttribute("alloy:button-item:onRender") != null) {
 	scopedAttributes.put("onRender", _onRender);
 }
 
-if (_onWidthChange != null) {
+if (request.getAttribute("alloy:button-item:onWidthChange") != null) {
 	scopedAttributes.put("onWidthChange", _onWidthChange);
 }
 

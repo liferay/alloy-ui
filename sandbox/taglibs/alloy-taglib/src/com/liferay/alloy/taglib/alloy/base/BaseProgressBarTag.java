@@ -24,15 +24,15 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public java.lang.String getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Integer getHeight() {
+	public java.lang.String getHeight() {
 		return _height;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public java.lang.String getInitialized() {
 		return _initialized;
 	}
 
@@ -40,11 +40,11 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _label;
 	}
 
-	public java.lang.Integer getMax() {
+	public java.lang.String getMax() {
 		return _max;
 	}
 
-	public java.lang.Integer getMin() {
+	public java.lang.String getMin() {
 		return _min;
 	}
 
@@ -52,7 +52,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _orientation;
 	}
 
-	public java.lang.Number getRatio() {
+	public java.lang.String getRatio() {
 		return _ratio;
 	}
 
@@ -60,7 +60,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _statusNode;
 	}
 
-	public java.lang.Number getStep() {
+	public java.lang.String getStep() {
 		return _step;
 	}
 
@@ -68,7 +68,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _textNode;
 	}
 
-	public java.lang.Integer getProgressbarValue() {
+	public java.lang.String getProgressbarValue() {
 		return _progressbarValue;
 	}
 
@@ -184,19 +184,19 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _onValueChange;
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(java.lang.String destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setHeight(java.lang.Integer height) {
+	public void setHeight(java.lang.String height) {
 		_height = height;
 
 		setScopedAttribute("height", height);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(java.lang.String initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -208,13 +208,13 @@ public class BaseProgressBarTag extends IncludeTag {
 		setScopedAttribute("label", label);
 	}
 
-	public void setMax(java.lang.Integer max) {
+	public void setMax(java.lang.String max) {
 		_max = max;
 
 		setScopedAttribute("max", max);
 	}
 
-	public void setMin(java.lang.Integer min) {
+	public void setMin(java.lang.String min) {
 		_min = min;
 
 		setScopedAttribute("min", min);
@@ -226,7 +226,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		setScopedAttribute("orientation", orientation);
 	}
 
-	public void setRatio(java.lang.Number ratio) {
+	public void setRatio(java.lang.String ratio) {
 		_ratio = ratio;
 
 		setScopedAttribute("ratio", ratio);
@@ -238,7 +238,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		setScopedAttribute("statusNode", statusNode);
 	}
 
-	public void setStep(java.lang.Number step) {
+	public void setStep(java.lang.String step) {
 		_step = step;
 
 		setScopedAttribute("step", step);
@@ -250,7 +250,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		setScopedAttribute("textNode", textNode);
 	}
 
-	public void setProgressbarValue(java.lang.Integer progressbarValue) {
+	public void setProgressbarValue(java.lang.String progressbarValue) {
 		_progressbarValue = progressbarValue;
 
 		setScopedAttribute("progressbarValue", progressbarValue);
@@ -472,18 +472,18 @@ public class BaseProgressBarTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/progress_bar/page.jsp";
 
-	private java.lang.Boolean _destroyed;
-	private java.lang.Integer _height;
-	private java.lang.Boolean _initialized;
+	private java.lang.String _destroyed;
+	private java.lang.String _height;
+	private java.lang.String _initialized;
 	private java.lang.String _label;
-	private java.lang.Integer _max;
-	private java.lang.Integer _min;
+	private java.lang.String _max;
+	private java.lang.String _min;
 	private java.lang.String _orientation;
-	private java.lang.Number _ratio;
+	private java.lang.String _ratio;
 	private java.lang.String _statusNode;
-	private java.lang.Number _step;
+	private java.lang.String _step;
 	private java.lang.String _textNode;
-	private java.lang.Integer _progressbarValue;
+	private java.lang.String _progressbarValue;
 	private java.lang.String _afterDestroy;
 	private java.lang.String _afterDestroyedChange;
 	private java.lang.String _afterHeightChange;

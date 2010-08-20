@@ -4,828 +4,828 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:auto-complete:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:auto-complete:scopedAttributes");
 
-java.lang.Boolean _alwaysShowContainer = (java.lang.Boolean)request.getAttribute("alloy:auto-complete:alwaysShowContainer");
-java.lang.Boolean _applyLocalFilter = (java.lang.Boolean)request.getAttribute("alloy:auto-complete:applyLocalFilter");
-java.lang.Boolean _autoHighlight = (java.lang.Boolean)request.getAttribute("alloy:auto-complete:autoHighlight");
-java.lang.String _boundingBox = (java.lang.String)request.getAttribute("alloy:auto-complete:boundingBox");
-java.lang.Boolean _button = (java.lang.Boolean)request.getAttribute("alloy:auto-complete:button");
-java.lang.String _contentBox = (java.lang.String)request.getAttribute("alloy:auto-complete:contentBox");
-java.lang.String _cssClass = (java.lang.String)request.getAttribute("alloy:auto-complete:cssClass");
-java.lang.String _dataSource = (java.lang.String)request.getAttribute("alloy:auto-complete:dataSource");
-java.lang.String _dataSourceType = (java.lang.String)request.getAttribute("alloy:auto-complete:dataSourceType");
-java.lang.String _delimChar = (java.lang.String)request.getAttribute("alloy:auto-complete:delimChar");
-java.lang.Boolean _destroyed = (java.lang.Boolean)request.getAttribute("alloy:auto-complete:destroyed");
-java.lang.Boolean _disabled = (java.lang.Boolean)request.getAttribute("alloy:auto-complete:disabled");
-java.lang.Boolean _focused = (java.lang.Boolean)request.getAttribute("alloy:auto-complete:focused");
-java.lang.Boolean _forceSelection = (java.lang.Boolean)request.getAttribute("alloy:auto-complete:forceSelection");
-java.lang.String _height = (java.lang.String)request.getAttribute("alloy:auto-complete:height");
-java.lang.String _hideClass = (java.lang.String)request.getAttribute("alloy:auto-complete:hideClass");
-java.lang.String _autocompleteId = (java.lang.String)request.getAttribute("alloy:auto-complete:autocompleteId");
-java.lang.Boolean _initialized = (java.lang.Boolean)request.getAttribute("alloy:auto-complete:initialized");
-java.lang.String _input = (java.lang.String)request.getAttribute("alloy:auto-complete:input");
-java.lang.String _matchKey = (java.lang.String)request.getAttribute("alloy:auto-complete:matchKey");
-java.lang.Number _maxResultsDisplayed = (java.lang.Number)request.getAttribute("alloy:auto-complete:maxResultsDisplayed");
-java.lang.Number _minQueryLength = (java.lang.Number)request.getAttribute("alloy:auto-complete:minQueryLength");
-java.lang.Number _queryDelay = (java.lang.Number)request.getAttribute("alloy:auto-complete:queryDelay");
-java.lang.Number _queryInterval = (java.lang.Number)request.getAttribute("alloy:auto-complete:queryInterval");
-java.lang.Boolean _queryMatchCase = (java.lang.Boolean)request.getAttribute("alloy:auto-complete:queryMatchCase");
-java.lang.Boolean _queryMatchContains = (java.lang.Boolean)request.getAttribute("alloy:auto-complete:queryMatchContains");
-java.lang.Boolean _queryQuestionMark = (java.lang.Boolean)request.getAttribute("alloy:auto-complete:queryQuestionMark");
-java.lang.Boolean _render = (java.lang.Boolean)request.getAttribute("alloy:auto-complete:render");
-java.lang.Boolean _rendered = (java.lang.Boolean)request.getAttribute("alloy:auto-complete:rendered");
+java.lang.Boolean _alwaysShowContainer = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:alwaysShowContainer"));
+java.lang.Boolean _applyLocalFilter = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:applyLocalFilter"));
+java.lang.Boolean _autoHighlight = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:autoHighlight"));
+java.lang.String _boundingBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:boundingBox"));
+java.lang.Boolean _button = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:button"));
+java.lang.String _contentBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:contentBox"));
+java.lang.String _cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:cssClass"));
+java.lang.String _dataSource = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:dataSource"));
+java.lang.String _dataSourceType = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:dataSourceType"));
+java.lang.String _delimChar = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:delimChar"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:destroyed"));
+java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:disabled"));
+java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:focused"));
+java.lang.Boolean _forceSelection = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:forceSelection"));
+java.lang.String _height = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:height"));
+java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:hideClass"));
+java.lang.String _autocompleteId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:autocompleteId"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:initialized"));
+java.lang.String _input = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:input"));
+java.lang.String _matchKey = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:matchKey"));
+java.lang.Number _maxResultsDisplayed = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:auto-complete:maxResultsDisplayed"));
+java.lang.Number _minQueryLength = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:auto-complete:minQueryLength"));
+java.lang.Number _queryDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:auto-complete:queryDelay"));
+java.lang.Number _queryInterval = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:auto-complete:queryInterval"));
+java.lang.Boolean _queryMatchCase = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:queryMatchCase"));
+java.lang.Boolean _queryMatchContains = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:queryMatchContains"));
+java.lang.Boolean _queryQuestionMark = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:queryQuestionMark"));
+java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:render"));
+java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:rendered"));
 java.lang.Object _schema = (java.lang.Object)request.getAttribute("alloy:auto-complete:schema");
-java.lang.String _schemaType = (java.lang.String)request.getAttribute("alloy:auto-complete:schemaType");
-java.lang.String _srcNode = (java.lang.String)request.getAttribute("alloy:auto-complete:srcNode");
+java.lang.String _schemaType = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:schemaType"));
+java.lang.String _srcNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:srcNode"));
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:auto-complete:strings");
-java.lang.Boolean _suppressInputUpdate = (java.lang.Boolean)request.getAttribute("alloy:auto-complete:suppressInputUpdate");
-java.lang.Number _tabIndex = (java.lang.Number)request.getAttribute("alloy:auto-complete:tabIndex");
-java.lang.Boolean _typeAhead = (java.lang.Boolean)request.getAttribute("alloy:auto-complete:typeAhead");
-java.lang.Number _typeAheadDelay = (java.lang.Number)request.getAttribute("alloy:auto-complete:typeAheadDelay");
-java.lang.String _uniqueName = (java.lang.String)request.getAttribute("alloy:auto-complete:uniqueName");
-java.lang.Boolean _visible = (java.lang.Boolean)request.getAttribute("alloy:auto-complete:visible");
-java.lang.String _width = (java.lang.String)request.getAttribute("alloy:auto-complete:width");
-java.lang.String _afterAlwaysShowContainerChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterAlwaysShowContainerChange");
-java.lang.String _afterApplyLocalFilterChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterApplyLocalFilterChange");
-java.lang.String _afterAutoHighlightChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterAutoHighlightChange");
-java.lang.String _afterBoundingBoxChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterBoundingBoxChange");
-java.lang.String _afterButtonChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterButtonChange");
-java.lang.String _afterContainerCollapse = (java.lang.String)request.getAttribute("alloy:auto-complete:afterContainerCollapse");
-java.lang.String _afterContainerExpand = (java.lang.String)request.getAttribute("alloy:auto-complete:afterContainerExpand");
-java.lang.String _afterContainerPopulate = (java.lang.String)request.getAttribute("alloy:auto-complete:afterContainerPopulate");
-java.lang.String _afterContentBoxChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterContentBoxChange");
-java.lang.String _afterCssClassChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterCssClassChange");
-java.lang.String _afterDataError = (java.lang.String)request.getAttribute("alloy:auto-complete:afterDataError");
-java.lang.String _afterDataRequest = (java.lang.String)request.getAttribute("alloy:auto-complete:afterDataRequest");
-java.lang.String _afterDataReturn = (java.lang.String)request.getAttribute("alloy:auto-complete:afterDataReturn");
-java.lang.String _afterDataSourceChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterDataSourceChange");
-java.lang.String _afterDataSourceTypeChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterDataSourceTypeChange");
-java.lang.String _afterDelimCharChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterDelimCharChange");
-java.lang.String _afterDestroy = (java.lang.String)request.getAttribute("alloy:auto-complete:afterDestroy");
-java.lang.String _afterDestroyedChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterDestroyedChange");
-java.lang.String _afterDisabledChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterDisabledChange");
-java.lang.String _afterFocusedChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterFocusedChange");
-java.lang.String _afterForceSelectionChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterForceSelectionChange");
-java.lang.String _afterHeightChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterHeightChange");
-java.lang.String _afterHideClassChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterHideClassChange");
-java.lang.String _afterIdChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterIdChange");
-java.lang.String _afterInit = (java.lang.String)request.getAttribute("alloy:auto-complete:afterInit");
-java.lang.String _afterInitializedChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterInitializedChange");
-java.lang.String _afterInputChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterInputChange");
-java.lang.String _afterItemArrowFrom = (java.lang.String)request.getAttribute("alloy:auto-complete:afterItemArrowFrom");
-java.lang.String _afterItemArrowTo = (java.lang.String)request.getAttribute("alloy:auto-complete:afterItemArrowTo");
-java.lang.String _afterItemMouseOut = (java.lang.String)request.getAttribute("alloy:auto-complete:afterItemMouseOut");
-java.lang.String _afterItemMouseOver = (java.lang.String)request.getAttribute("alloy:auto-complete:afterItemMouseOver");
-java.lang.String _afterItemSelect = (java.lang.String)request.getAttribute("alloy:auto-complete:afterItemSelect");
-java.lang.String _afterMatchKeyChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterMatchKeyChange");
-java.lang.String _afterMaxResultsDisplayedChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterMaxResultsDisplayedChange");
-java.lang.String _afterMinQueryLengthChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterMinQueryLengthChange");
-java.lang.String _afterQueryDelayChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterQueryDelayChange");
-java.lang.String _afterQueryIntervalChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterQueryIntervalChange");
-java.lang.String _afterQueryMatchCaseChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterQueryMatchCaseChange");
-java.lang.String _afterQueryMatchContainsChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterQueryMatchContainsChange");
-java.lang.String _afterQueryQuestionMarkChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterQueryQuestionMarkChange");
-java.lang.String _afterRenderChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterRenderChange");
-java.lang.String _afterRenderedChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterRenderedChange");
-java.lang.String _afterSchemaChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterSchemaChange");
-java.lang.String _afterSchemaTypeChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterSchemaTypeChange");
-java.lang.String _afterSelectionEnforce = (java.lang.String)request.getAttribute("alloy:auto-complete:afterSelectionEnforce");
-java.lang.String _afterSrcNodeChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterSrcNodeChange");
-java.lang.String _afterStringsChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterStringsChange");
-java.lang.String _afterSuppressInputUpdateChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterSuppressInputUpdateChange");
-java.lang.String _afterTabIndexChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterTabIndexChange");
-java.lang.String _afterTextboxBlur = (java.lang.String)request.getAttribute("alloy:auto-complete:afterTextboxBlur");
-java.lang.String _afterTextboxChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterTextboxChange");
-java.lang.String _afterTextboxFocus = (java.lang.String)request.getAttribute("alloy:auto-complete:afterTextboxFocus");
-java.lang.String _afterTextboxKey = (java.lang.String)request.getAttribute("alloy:auto-complete:afterTextboxKey");
-java.lang.String _afterTypeAhead = (java.lang.String)request.getAttribute("alloy:auto-complete:afterTypeAhead");
-java.lang.String _afterTypeAheadChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterTypeAheadChange");
-java.lang.String _afterTypeAheadDelayChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterTypeAheadDelayChange");
-java.lang.String _afterUniqueNameChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterUniqueNameChange");
-java.lang.String _afterUnmatchedItemSelect = (java.lang.String)request.getAttribute("alloy:auto-complete:afterUnmatchedItemSelect");
-java.lang.String _afterVisibleChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterVisibleChange");
-java.lang.String _afterContentUpdate = (java.lang.String)request.getAttribute("alloy:auto-complete:afterContentUpdate");
-java.lang.String _afterRender = (java.lang.String)request.getAttribute("alloy:auto-complete:afterRender");
-java.lang.String _afterWidthChange = (java.lang.String)request.getAttribute("alloy:auto-complete:afterWidthChange");
-java.lang.String _onAlwaysShowContainerChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onAlwaysShowContainerChange");
-java.lang.String _onApplyLocalFilterChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onApplyLocalFilterChange");
-java.lang.String _onAutoHighlightChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onAutoHighlightChange");
-java.lang.String _onBoundingBoxChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onBoundingBoxChange");
-java.lang.String _onButtonChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onButtonChange");
-java.lang.String _onContainerCollapse = (java.lang.String)request.getAttribute("alloy:auto-complete:onContainerCollapse");
-java.lang.String _onContainerExpand = (java.lang.String)request.getAttribute("alloy:auto-complete:onContainerExpand");
-java.lang.String _onContainerPopulate = (java.lang.String)request.getAttribute("alloy:auto-complete:onContainerPopulate");
-java.lang.String _onContentBoxChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onContentBoxChange");
-java.lang.String _onCssClassChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onCssClassChange");
-java.lang.String _onDataError = (java.lang.String)request.getAttribute("alloy:auto-complete:onDataError");
-java.lang.String _onDataRequest = (java.lang.String)request.getAttribute("alloy:auto-complete:onDataRequest");
-java.lang.String _onDataReturn = (java.lang.String)request.getAttribute("alloy:auto-complete:onDataReturn");
-java.lang.String _onDataSourceChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onDataSourceChange");
-java.lang.String _onDataSourceTypeChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onDataSourceTypeChange");
-java.lang.String _onDelimCharChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onDelimCharChange");
-java.lang.String _onDestroy = (java.lang.String)request.getAttribute("alloy:auto-complete:onDestroy");
-java.lang.String _onDestroyedChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onDestroyedChange");
-java.lang.String _onDisabledChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onDisabledChange");
-java.lang.String _onFocusedChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onFocusedChange");
-java.lang.String _onForceSelectionChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onForceSelectionChange");
-java.lang.String _onHeightChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onHeightChange");
-java.lang.String _onHideClassChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onHideClassChange");
-java.lang.String _onIdChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onIdChange");
-java.lang.String _onInit = (java.lang.String)request.getAttribute("alloy:auto-complete:onInit");
-java.lang.String _onInitializedChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onInitializedChange");
-java.lang.String _onInputChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onInputChange");
-java.lang.String _onItemArrowFrom = (java.lang.String)request.getAttribute("alloy:auto-complete:onItemArrowFrom");
-java.lang.String _onItemArrowTo = (java.lang.String)request.getAttribute("alloy:auto-complete:onItemArrowTo");
-java.lang.String _onItemMouseOut = (java.lang.String)request.getAttribute("alloy:auto-complete:onItemMouseOut");
-java.lang.String _onItemMouseOver = (java.lang.String)request.getAttribute("alloy:auto-complete:onItemMouseOver");
-java.lang.String _onItemSelect = (java.lang.String)request.getAttribute("alloy:auto-complete:onItemSelect");
-java.lang.String _onMatchKeyChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onMatchKeyChange");
-java.lang.String _onMaxResultsDisplayedChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onMaxResultsDisplayedChange");
-java.lang.String _onMinQueryLengthChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onMinQueryLengthChange");
-java.lang.String _onQueryDelayChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onQueryDelayChange");
-java.lang.String _onQueryIntervalChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onQueryIntervalChange");
-java.lang.String _onQueryMatchCaseChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onQueryMatchCaseChange");
-java.lang.String _onQueryMatchContainsChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onQueryMatchContainsChange");
-java.lang.String _onQueryQuestionMarkChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onQueryQuestionMarkChange");
-java.lang.String _onRenderChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onRenderChange");
-java.lang.String _onRenderedChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onRenderedChange");
-java.lang.String _onSchemaChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onSchemaChange");
-java.lang.String _onSchemaTypeChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onSchemaTypeChange");
-java.lang.String _onSelectionEnforce = (java.lang.String)request.getAttribute("alloy:auto-complete:onSelectionEnforce");
-java.lang.String _onSrcNodeChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onSrcNodeChange");
-java.lang.String _onStringsChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onStringsChange");
-java.lang.String _onSuppressInputUpdateChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onSuppressInputUpdateChange");
-java.lang.String _onTabIndexChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onTabIndexChange");
-java.lang.String _onTextboxBlur = (java.lang.String)request.getAttribute("alloy:auto-complete:onTextboxBlur");
-java.lang.String _onTextboxChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onTextboxChange");
-java.lang.String _onTextboxFocus = (java.lang.String)request.getAttribute("alloy:auto-complete:onTextboxFocus");
-java.lang.String _onTextboxKey = (java.lang.String)request.getAttribute("alloy:auto-complete:onTextboxKey");
-java.lang.String _onTypeAhead = (java.lang.String)request.getAttribute("alloy:auto-complete:onTypeAhead");
-java.lang.String _onTypeAheadChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onTypeAheadChange");
-java.lang.String _onTypeAheadDelayChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onTypeAheadDelayChange");
-java.lang.String _onUniqueNameChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onUniqueNameChange");
-java.lang.String _onUnmatchedItemSelect = (java.lang.String)request.getAttribute("alloy:auto-complete:onUnmatchedItemSelect");
-java.lang.String _onVisibleChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onVisibleChange");
-java.lang.String _onContentUpdate = (java.lang.String)request.getAttribute("alloy:auto-complete:onContentUpdate");
-java.lang.String _onRender = (java.lang.String)request.getAttribute("alloy:auto-complete:onRender");
-java.lang.String _onWidthChange = (java.lang.String)request.getAttribute("alloy:auto-complete:onWidthChange");
+java.lang.Boolean _suppressInputUpdate = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:suppressInputUpdate"));
+java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:auto-complete:tabIndex"));
+java.lang.Boolean _typeAhead = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:typeAhead"));
+java.lang.Number _typeAheadDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:auto-complete:typeAheadDelay"));
+java.lang.String _uniqueName = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:uniqueName"));
+java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:visible"));
+java.lang.String _width = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:width"));
+java.lang.String _afterAlwaysShowContainerChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterAlwaysShowContainerChange"));
+java.lang.String _afterApplyLocalFilterChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterApplyLocalFilterChange"));
+java.lang.String _afterAutoHighlightChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterAutoHighlightChange"));
+java.lang.String _afterBoundingBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterBoundingBoxChange"));
+java.lang.String _afterButtonChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterButtonChange"));
+java.lang.String _afterContainerCollapse = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterContainerCollapse"));
+java.lang.String _afterContainerExpand = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterContainerExpand"));
+java.lang.String _afterContainerPopulate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterContainerPopulate"));
+java.lang.String _afterContentBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterContentBoxChange"));
+java.lang.String _afterCssClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterCssClassChange"));
+java.lang.String _afterDataError = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterDataError"));
+java.lang.String _afterDataRequest = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterDataRequest"));
+java.lang.String _afterDataReturn = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterDataReturn"));
+java.lang.String _afterDataSourceChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterDataSourceChange"));
+java.lang.String _afterDataSourceTypeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterDataSourceTypeChange"));
+java.lang.String _afterDelimCharChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterDelimCharChange"));
+java.lang.String _afterDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterDestroy"));
+java.lang.String _afterDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterDestroyedChange"));
+java.lang.String _afterDisabledChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterDisabledChange"));
+java.lang.String _afterFocusedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterFocusedChange"));
+java.lang.String _afterForceSelectionChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterForceSelectionChange"));
+java.lang.String _afterHeightChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterHeightChange"));
+java.lang.String _afterHideClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterHideClassChange"));
+java.lang.String _afterIdChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterIdChange"));
+java.lang.String _afterInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterInit"));
+java.lang.String _afterInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterInitializedChange"));
+java.lang.String _afterInputChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterInputChange"));
+java.lang.String _afterItemArrowFrom = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterItemArrowFrom"));
+java.lang.String _afterItemArrowTo = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterItemArrowTo"));
+java.lang.String _afterItemMouseOut = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterItemMouseOut"));
+java.lang.String _afterItemMouseOver = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterItemMouseOver"));
+java.lang.String _afterItemSelect = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterItemSelect"));
+java.lang.String _afterMatchKeyChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterMatchKeyChange"));
+java.lang.String _afterMaxResultsDisplayedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterMaxResultsDisplayedChange"));
+java.lang.String _afterMinQueryLengthChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterMinQueryLengthChange"));
+java.lang.String _afterQueryDelayChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterQueryDelayChange"));
+java.lang.String _afterQueryIntervalChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterQueryIntervalChange"));
+java.lang.String _afterQueryMatchCaseChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterQueryMatchCaseChange"));
+java.lang.String _afterQueryMatchContainsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterQueryMatchContainsChange"));
+java.lang.String _afterQueryQuestionMarkChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterQueryQuestionMarkChange"));
+java.lang.String _afterRenderChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterRenderChange"));
+java.lang.String _afterRenderedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterRenderedChange"));
+java.lang.String _afterSchemaChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterSchemaChange"));
+java.lang.String _afterSchemaTypeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterSchemaTypeChange"));
+java.lang.String _afterSelectionEnforce = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterSelectionEnforce"));
+java.lang.String _afterSrcNodeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterSrcNodeChange"));
+java.lang.String _afterStringsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterStringsChange"));
+java.lang.String _afterSuppressInputUpdateChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterSuppressInputUpdateChange"));
+java.lang.String _afterTabIndexChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterTabIndexChange"));
+java.lang.String _afterTextboxBlur = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterTextboxBlur"));
+java.lang.String _afterTextboxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterTextboxChange"));
+java.lang.String _afterTextboxFocus = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterTextboxFocus"));
+java.lang.String _afterTextboxKey = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterTextboxKey"));
+java.lang.String _afterTypeAhead = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterTypeAhead"));
+java.lang.String _afterTypeAheadChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterTypeAheadChange"));
+java.lang.String _afterTypeAheadDelayChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterTypeAheadDelayChange"));
+java.lang.String _afterUniqueNameChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterUniqueNameChange"));
+java.lang.String _afterUnmatchedItemSelect = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterUnmatchedItemSelect"));
+java.lang.String _afterVisibleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterVisibleChange"));
+java.lang.String _afterContentUpdate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterContentUpdate"));
+java.lang.String _afterRender = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterRender"));
+java.lang.String _afterWidthChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterWidthChange"));
+java.lang.String _onAlwaysShowContainerChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onAlwaysShowContainerChange"));
+java.lang.String _onApplyLocalFilterChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onApplyLocalFilterChange"));
+java.lang.String _onAutoHighlightChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onAutoHighlightChange"));
+java.lang.String _onBoundingBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onBoundingBoxChange"));
+java.lang.String _onButtonChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onButtonChange"));
+java.lang.String _onContainerCollapse = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onContainerCollapse"));
+java.lang.String _onContainerExpand = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onContainerExpand"));
+java.lang.String _onContainerPopulate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onContainerPopulate"));
+java.lang.String _onContentBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onContentBoxChange"));
+java.lang.String _onCssClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onCssClassChange"));
+java.lang.String _onDataError = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onDataError"));
+java.lang.String _onDataRequest = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onDataRequest"));
+java.lang.String _onDataReturn = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onDataReturn"));
+java.lang.String _onDataSourceChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onDataSourceChange"));
+java.lang.String _onDataSourceTypeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onDataSourceTypeChange"));
+java.lang.String _onDelimCharChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onDelimCharChange"));
+java.lang.String _onDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onDestroy"));
+java.lang.String _onDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onDestroyedChange"));
+java.lang.String _onDisabledChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onDisabledChange"));
+java.lang.String _onFocusedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onFocusedChange"));
+java.lang.String _onForceSelectionChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onForceSelectionChange"));
+java.lang.String _onHeightChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onHeightChange"));
+java.lang.String _onHideClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onHideClassChange"));
+java.lang.String _onIdChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onIdChange"));
+java.lang.String _onInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onInit"));
+java.lang.String _onInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onInitializedChange"));
+java.lang.String _onInputChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onInputChange"));
+java.lang.String _onItemArrowFrom = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onItemArrowFrom"));
+java.lang.String _onItemArrowTo = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onItemArrowTo"));
+java.lang.String _onItemMouseOut = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onItemMouseOut"));
+java.lang.String _onItemMouseOver = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onItemMouseOver"));
+java.lang.String _onItemSelect = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onItemSelect"));
+java.lang.String _onMatchKeyChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onMatchKeyChange"));
+java.lang.String _onMaxResultsDisplayedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onMaxResultsDisplayedChange"));
+java.lang.String _onMinQueryLengthChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onMinQueryLengthChange"));
+java.lang.String _onQueryDelayChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onQueryDelayChange"));
+java.lang.String _onQueryIntervalChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onQueryIntervalChange"));
+java.lang.String _onQueryMatchCaseChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onQueryMatchCaseChange"));
+java.lang.String _onQueryMatchContainsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onQueryMatchContainsChange"));
+java.lang.String _onQueryQuestionMarkChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onQueryQuestionMarkChange"));
+java.lang.String _onRenderChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onRenderChange"));
+java.lang.String _onRenderedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onRenderedChange"));
+java.lang.String _onSchemaChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onSchemaChange"));
+java.lang.String _onSchemaTypeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onSchemaTypeChange"));
+java.lang.String _onSelectionEnforce = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onSelectionEnforce"));
+java.lang.String _onSrcNodeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onSrcNodeChange"));
+java.lang.String _onStringsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onStringsChange"));
+java.lang.String _onSuppressInputUpdateChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onSuppressInputUpdateChange"));
+java.lang.String _onTabIndexChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onTabIndexChange"));
+java.lang.String _onTextboxBlur = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onTextboxBlur"));
+java.lang.String _onTextboxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onTextboxChange"));
+java.lang.String _onTextboxFocus = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onTextboxFocus"));
+java.lang.String _onTextboxKey = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onTextboxKey"));
+java.lang.String _onTypeAhead = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onTypeAhead"));
+java.lang.String _onTypeAheadChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onTypeAheadChange"));
+java.lang.String _onTypeAheadDelayChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onTypeAheadDelayChange"));
+java.lang.String _onUniqueNameChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onUniqueNameChange"));
+java.lang.String _onUnmatchedItemSelect = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onUnmatchedItemSelect"));
+java.lang.String _onVisibleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onVisibleChange"));
+java.lang.String _onContentUpdate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onContentUpdate"));
+java.lang.String _onRender = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onRender"));
+java.lang.String _onWidthChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:onWidthChange"));
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (_alwaysShowContainer != null) {
+if (request.getAttribute("alloy:auto-complete:alwaysShowContainer") != null) {
 	scopedAttributes.put("alwaysShowContainer", _alwaysShowContainer);
 }
 
-if (_applyLocalFilter != null) {
+if (request.getAttribute("alloy:auto-complete:applyLocalFilter") != null) {
 	scopedAttributes.put("applyLocalFilter", _applyLocalFilter);
 }
 
-if (_autoHighlight != null) {
+if (request.getAttribute("alloy:auto-complete:autoHighlight") != null) {
 	scopedAttributes.put("autoHighlight", _autoHighlight);
 }
 
-if (_boundingBox != null) {
+if (request.getAttribute("alloy:auto-complete:boundingBox") != null) {
 	scopedAttributes.put("boundingBox", _boundingBox);
 }
 
-if (_button != null) {
+if (request.getAttribute("alloy:auto-complete:button") != null) {
 	scopedAttributes.put("button", _button);
 }
 
-if (_contentBox != null) {
+if (request.getAttribute("alloy:auto-complete:contentBox") != null) {
 	scopedAttributes.put("contentBox", _contentBox);
 }
 
-if (_cssClass != null) {
+if (request.getAttribute("alloy:auto-complete:cssClass") != null) {
 	scopedAttributes.put("cssClass", _cssClass);
 }
 
-if (_dataSource != null) {
+if (request.getAttribute("alloy:auto-complete:dataSource") != null) {
 	scopedAttributes.put("dataSource", _dataSource);
 }
 
-if (_dataSourceType != null) {
+if (request.getAttribute("alloy:auto-complete:dataSourceType") != null) {
 	scopedAttributes.put("dataSourceType", _dataSourceType);
 }
 
-if (_delimChar != null) {
+if (request.getAttribute("alloy:auto-complete:delimChar") != null) {
 	scopedAttributes.put("delimChar", _delimChar);
 }
 
-if (_destroyed != null) {
+if (request.getAttribute("alloy:auto-complete:destroyed") != null) {
 	scopedAttributes.put("destroyed", _destroyed);
 }
 
-if (_disabled != null) {
+if (request.getAttribute("alloy:auto-complete:disabled") != null) {
 	scopedAttributes.put("disabled", _disabled);
 }
 
-if (_focused != null) {
+if (request.getAttribute("alloy:auto-complete:focused") != null) {
 	scopedAttributes.put("focused", _focused);
 }
 
-if (_forceSelection != null) {
+if (request.getAttribute("alloy:auto-complete:forceSelection") != null) {
 	scopedAttributes.put("forceSelection", _forceSelection);
 }
 
-if (_height != null) {
+if (request.getAttribute("alloy:auto-complete:height") != null) {
 	scopedAttributes.put("height", _height);
 }
 
-if (_hideClass != null) {
+if (request.getAttribute("alloy:auto-complete:hideClass") != null) {
 	scopedAttributes.put("hideClass", _hideClass);
 }
 
-if (_autocompleteId != null) {
+if (request.getAttribute("alloy:auto-complete:autocompleteId") != null) {
 	scopedAttributes.put("autocompleteId", _autocompleteId);
 }
 
-if (_initialized != null) {
+if (request.getAttribute("alloy:auto-complete:initialized") != null) {
 	scopedAttributes.put("initialized", _initialized);
 }
 
-if (_input != null) {
+if (request.getAttribute("alloy:auto-complete:input") != null) {
 	scopedAttributes.put("input", _input);
 }
 
-if (_matchKey != null) {
+if (request.getAttribute("alloy:auto-complete:matchKey") != null) {
 	scopedAttributes.put("matchKey", _matchKey);
 }
 
-if (_maxResultsDisplayed != null) {
+if (request.getAttribute("alloy:auto-complete:maxResultsDisplayed") != null) {
 	scopedAttributes.put("maxResultsDisplayed", _maxResultsDisplayed);
 }
 
-if (_minQueryLength != null) {
+if (request.getAttribute("alloy:auto-complete:minQueryLength") != null) {
 	scopedAttributes.put("minQueryLength", _minQueryLength);
 }
 
-if (_queryDelay != null) {
+if (request.getAttribute("alloy:auto-complete:queryDelay") != null) {
 	scopedAttributes.put("queryDelay", _queryDelay);
 }
 
-if (_queryInterval != null) {
+if (request.getAttribute("alloy:auto-complete:queryInterval") != null) {
 	scopedAttributes.put("queryInterval", _queryInterval);
 }
 
-if (_queryMatchCase != null) {
+if (request.getAttribute("alloy:auto-complete:queryMatchCase") != null) {
 	scopedAttributes.put("queryMatchCase", _queryMatchCase);
 }
 
-if (_queryMatchContains != null) {
+if (request.getAttribute("alloy:auto-complete:queryMatchContains") != null) {
 	scopedAttributes.put("queryMatchContains", _queryMatchContains);
 }
 
-if (_queryQuestionMark != null) {
+if (request.getAttribute("alloy:auto-complete:queryQuestionMark") != null) {
 	scopedAttributes.put("queryQuestionMark", _queryQuestionMark);
 }
 
-if (_render != null) {
+if (request.getAttribute("alloy:auto-complete:render") != null) {
 	scopedAttributes.put("render", _render);
 }
 
-if (_rendered != null) {
+if (request.getAttribute("alloy:auto-complete:rendered") != null) {
 	scopedAttributes.put("rendered", _rendered);
 }
 
-if (_schema != null) {
+if (request.getAttribute("alloy:auto-complete:schema") != null) {
 	scopedAttributes.put("schema", _schema);
 }
 
-if (_schemaType != null) {
+if (request.getAttribute("alloy:auto-complete:schemaType") != null) {
 	scopedAttributes.put("schemaType", _schemaType);
 }
 
-if (_srcNode != null) {
+if (request.getAttribute("alloy:auto-complete:srcNode") != null) {
 	scopedAttributes.put("srcNode", _srcNode);
 }
 
-if (_strings != null) {
+if (request.getAttribute("alloy:auto-complete:strings") != null) {
 	scopedAttributes.put("strings", _strings);
 }
 
-if (_suppressInputUpdate != null) {
+if (request.getAttribute("alloy:auto-complete:suppressInputUpdate") != null) {
 	scopedAttributes.put("suppressInputUpdate", _suppressInputUpdate);
 }
 
-if (_tabIndex != null) {
+if (request.getAttribute("alloy:auto-complete:tabIndex") != null) {
 	scopedAttributes.put("tabIndex", _tabIndex);
 }
 
-if (_typeAhead != null) {
+if (request.getAttribute("alloy:auto-complete:typeAhead") != null) {
 	scopedAttributes.put("typeAhead", _typeAhead);
 }
 
-if (_typeAheadDelay != null) {
+if (request.getAttribute("alloy:auto-complete:typeAheadDelay") != null) {
 	scopedAttributes.put("typeAheadDelay", _typeAheadDelay);
 }
 
-if (_uniqueName != null) {
+if (request.getAttribute("alloy:auto-complete:uniqueName") != null) {
 	scopedAttributes.put("uniqueName", _uniqueName);
 }
 
-if (_visible != null) {
+if (request.getAttribute("alloy:auto-complete:visible") != null) {
 	scopedAttributes.put("visible", _visible);
 }
 
-if (_width != null) {
+if (request.getAttribute("alloy:auto-complete:width") != null) {
 	scopedAttributes.put("width", _width);
 }
 
-if (_afterAlwaysShowContainerChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterAlwaysShowContainerChange") != null) {
 	scopedAttributes.put("afterAlwaysShowContainerChange", _afterAlwaysShowContainerChange);
 }
 
-if (_afterApplyLocalFilterChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterApplyLocalFilterChange") != null) {
 	scopedAttributes.put("afterApplyLocalFilterChange", _afterApplyLocalFilterChange);
 }
 
-if (_afterAutoHighlightChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterAutoHighlightChange") != null) {
 	scopedAttributes.put("afterAutoHighlightChange", _afterAutoHighlightChange);
 }
 
-if (_afterBoundingBoxChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterBoundingBoxChange") != null) {
 	scopedAttributes.put("afterBoundingBoxChange", _afterBoundingBoxChange);
 }
 
-if (_afterButtonChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterButtonChange") != null) {
 	scopedAttributes.put("afterButtonChange", _afterButtonChange);
 }
 
-if (_afterContainerCollapse != null) {
+if (request.getAttribute("alloy:auto-complete:afterContainerCollapse") != null) {
 	scopedAttributes.put("afterContainerCollapse", _afterContainerCollapse);
 }
 
-if (_afterContainerExpand != null) {
+if (request.getAttribute("alloy:auto-complete:afterContainerExpand") != null) {
 	scopedAttributes.put("afterContainerExpand", _afterContainerExpand);
 }
 
-if (_afterContainerPopulate != null) {
+if (request.getAttribute("alloy:auto-complete:afterContainerPopulate") != null) {
 	scopedAttributes.put("afterContainerPopulate", _afterContainerPopulate);
 }
 
-if (_afterContentBoxChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterContentBoxChange") != null) {
 	scopedAttributes.put("afterContentBoxChange", _afterContentBoxChange);
 }
 
-if (_afterCssClassChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterCssClassChange") != null) {
 	scopedAttributes.put("afterCssClassChange", _afterCssClassChange);
 }
 
-if (_afterDataError != null) {
+if (request.getAttribute("alloy:auto-complete:afterDataError") != null) {
 	scopedAttributes.put("afterDataError", _afterDataError);
 }
 
-if (_afterDataRequest != null) {
+if (request.getAttribute("alloy:auto-complete:afterDataRequest") != null) {
 	scopedAttributes.put("afterDataRequest", _afterDataRequest);
 }
 
-if (_afterDataReturn != null) {
+if (request.getAttribute("alloy:auto-complete:afterDataReturn") != null) {
 	scopedAttributes.put("afterDataReturn", _afterDataReturn);
 }
 
-if (_afterDataSourceChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterDataSourceChange") != null) {
 	scopedAttributes.put("afterDataSourceChange", _afterDataSourceChange);
 }
 
-if (_afterDataSourceTypeChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterDataSourceTypeChange") != null) {
 	scopedAttributes.put("afterDataSourceTypeChange", _afterDataSourceTypeChange);
 }
 
-if (_afterDelimCharChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterDelimCharChange") != null) {
 	scopedAttributes.put("afterDelimCharChange", _afterDelimCharChange);
 }
 
-if (_afterDestroy != null) {
+if (request.getAttribute("alloy:auto-complete:afterDestroy") != null) {
 	scopedAttributes.put("afterDestroy", _afterDestroy);
 }
 
-if (_afterDestroyedChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterDestroyedChange") != null) {
 	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
 }
 
-if (_afterDisabledChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterDisabledChange") != null) {
 	scopedAttributes.put("afterDisabledChange", _afterDisabledChange);
 }
 
-if (_afterFocusedChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterFocusedChange") != null) {
 	scopedAttributes.put("afterFocusedChange", _afterFocusedChange);
 }
 
-if (_afterForceSelectionChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterForceSelectionChange") != null) {
 	scopedAttributes.put("afterForceSelectionChange", _afterForceSelectionChange);
 }
 
-if (_afterHeightChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterHeightChange") != null) {
 	scopedAttributes.put("afterHeightChange", _afterHeightChange);
 }
 
-if (_afterHideClassChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterHideClassChange") != null) {
 	scopedAttributes.put("afterHideClassChange", _afterHideClassChange);
 }
 
-if (_afterIdChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterIdChange") != null) {
 	scopedAttributes.put("afterIdChange", _afterIdChange);
 }
 
-if (_afterInit != null) {
+if (request.getAttribute("alloy:auto-complete:afterInit") != null) {
 	scopedAttributes.put("afterInit", _afterInit);
 }
 
-if (_afterInitializedChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterInitializedChange") != null) {
 	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
 }
 
-if (_afterInputChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterInputChange") != null) {
 	scopedAttributes.put("afterInputChange", _afterInputChange);
 }
 
-if (_afterItemArrowFrom != null) {
+if (request.getAttribute("alloy:auto-complete:afterItemArrowFrom") != null) {
 	scopedAttributes.put("afterItemArrowFrom", _afterItemArrowFrom);
 }
 
-if (_afterItemArrowTo != null) {
+if (request.getAttribute("alloy:auto-complete:afterItemArrowTo") != null) {
 	scopedAttributes.put("afterItemArrowTo", _afterItemArrowTo);
 }
 
-if (_afterItemMouseOut != null) {
+if (request.getAttribute("alloy:auto-complete:afterItemMouseOut") != null) {
 	scopedAttributes.put("afterItemMouseOut", _afterItemMouseOut);
 }
 
-if (_afterItemMouseOver != null) {
+if (request.getAttribute("alloy:auto-complete:afterItemMouseOver") != null) {
 	scopedAttributes.put("afterItemMouseOver", _afterItemMouseOver);
 }
 
-if (_afterItemSelect != null) {
+if (request.getAttribute("alloy:auto-complete:afterItemSelect") != null) {
 	scopedAttributes.put("afterItemSelect", _afterItemSelect);
 }
 
-if (_afterMatchKeyChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterMatchKeyChange") != null) {
 	scopedAttributes.put("afterMatchKeyChange", _afterMatchKeyChange);
 }
 
-if (_afterMaxResultsDisplayedChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterMaxResultsDisplayedChange") != null) {
 	scopedAttributes.put("afterMaxResultsDisplayedChange", _afterMaxResultsDisplayedChange);
 }
 
-if (_afterMinQueryLengthChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterMinQueryLengthChange") != null) {
 	scopedAttributes.put("afterMinQueryLengthChange", _afterMinQueryLengthChange);
 }
 
-if (_afterQueryDelayChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterQueryDelayChange") != null) {
 	scopedAttributes.put("afterQueryDelayChange", _afterQueryDelayChange);
 }
 
-if (_afterQueryIntervalChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterQueryIntervalChange") != null) {
 	scopedAttributes.put("afterQueryIntervalChange", _afterQueryIntervalChange);
 }
 
-if (_afterQueryMatchCaseChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterQueryMatchCaseChange") != null) {
 	scopedAttributes.put("afterQueryMatchCaseChange", _afterQueryMatchCaseChange);
 }
 
-if (_afterQueryMatchContainsChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterQueryMatchContainsChange") != null) {
 	scopedAttributes.put("afterQueryMatchContainsChange", _afterQueryMatchContainsChange);
 }
 
-if (_afterQueryQuestionMarkChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterQueryQuestionMarkChange") != null) {
 	scopedAttributes.put("afterQueryQuestionMarkChange", _afterQueryQuestionMarkChange);
 }
 
-if (_afterRenderChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterRenderChange") != null) {
 	scopedAttributes.put("afterRenderChange", _afterRenderChange);
 }
 
-if (_afterRenderedChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterRenderedChange") != null) {
 	scopedAttributes.put("afterRenderedChange", _afterRenderedChange);
 }
 
-if (_afterSchemaChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterSchemaChange") != null) {
 	scopedAttributes.put("afterSchemaChange", _afterSchemaChange);
 }
 
-if (_afterSchemaTypeChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterSchemaTypeChange") != null) {
 	scopedAttributes.put("afterSchemaTypeChange", _afterSchemaTypeChange);
 }
 
-if (_afterSelectionEnforce != null) {
+if (request.getAttribute("alloy:auto-complete:afterSelectionEnforce") != null) {
 	scopedAttributes.put("afterSelectionEnforce", _afterSelectionEnforce);
 }
 
-if (_afterSrcNodeChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterSrcNodeChange") != null) {
 	scopedAttributes.put("afterSrcNodeChange", _afterSrcNodeChange);
 }
 
-if (_afterStringsChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterStringsChange") != null) {
 	scopedAttributes.put("afterStringsChange", _afterStringsChange);
 }
 
-if (_afterSuppressInputUpdateChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterSuppressInputUpdateChange") != null) {
 	scopedAttributes.put("afterSuppressInputUpdateChange", _afterSuppressInputUpdateChange);
 }
 
-if (_afterTabIndexChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterTabIndexChange") != null) {
 	scopedAttributes.put("afterTabIndexChange", _afterTabIndexChange);
 }
 
-if (_afterTextboxBlur != null) {
+if (request.getAttribute("alloy:auto-complete:afterTextboxBlur") != null) {
 	scopedAttributes.put("afterTextboxBlur", _afterTextboxBlur);
 }
 
-if (_afterTextboxChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterTextboxChange") != null) {
 	scopedAttributes.put("afterTextboxChange", _afterTextboxChange);
 }
 
-if (_afterTextboxFocus != null) {
+if (request.getAttribute("alloy:auto-complete:afterTextboxFocus") != null) {
 	scopedAttributes.put("afterTextboxFocus", _afterTextboxFocus);
 }
 
-if (_afterTextboxKey != null) {
+if (request.getAttribute("alloy:auto-complete:afterTextboxKey") != null) {
 	scopedAttributes.put("afterTextboxKey", _afterTextboxKey);
 }
 
-if (_afterTypeAhead != null) {
+if (request.getAttribute("alloy:auto-complete:afterTypeAhead") != null) {
 	scopedAttributes.put("afterTypeAhead", _afterTypeAhead);
 }
 
-if (_afterTypeAheadChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterTypeAheadChange") != null) {
 	scopedAttributes.put("afterTypeAheadChange", _afterTypeAheadChange);
 }
 
-if (_afterTypeAheadDelayChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterTypeAheadDelayChange") != null) {
 	scopedAttributes.put("afterTypeAheadDelayChange", _afterTypeAheadDelayChange);
 }
 
-if (_afterUniqueNameChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterUniqueNameChange") != null) {
 	scopedAttributes.put("afterUniqueNameChange", _afterUniqueNameChange);
 }
 
-if (_afterUnmatchedItemSelect != null) {
+if (request.getAttribute("alloy:auto-complete:afterUnmatchedItemSelect") != null) {
 	scopedAttributes.put("afterUnmatchedItemSelect", _afterUnmatchedItemSelect);
 }
 
-if (_afterVisibleChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterVisibleChange") != null) {
 	scopedAttributes.put("afterVisibleChange", _afterVisibleChange);
 }
 
-if (_afterContentUpdate != null) {
+if (request.getAttribute("alloy:auto-complete:afterContentUpdate") != null) {
 	scopedAttributes.put("afterContentUpdate", _afterContentUpdate);
 }
 
-if (_afterRender != null) {
+if (request.getAttribute("alloy:auto-complete:afterRender") != null) {
 	scopedAttributes.put("afterRender", _afterRender);
 }
 
-if (_afterWidthChange != null) {
+if (request.getAttribute("alloy:auto-complete:afterWidthChange") != null) {
 	scopedAttributes.put("afterWidthChange", _afterWidthChange);
 }
 
-if (_onAlwaysShowContainerChange != null) {
+if (request.getAttribute("alloy:auto-complete:onAlwaysShowContainerChange") != null) {
 	scopedAttributes.put("onAlwaysShowContainerChange", _onAlwaysShowContainerChange);
 }
 
-if (_onApplyLocalFilterChange != null) {
+if (request.getAttribute("alloy:auto-complete:onApplyLocalFilterChange") != null) {
 	scopedAttributes.put("onApplyLocalFilterChange", _onApplyLocalFilterChange);
 }
 
-if (_onAutoHighlightChange != null) {
+if (request.getAttribute("alloy:auto-complete:onAutoHighlightChange") != null) {
 	scopedAttributes.put("onAutoHighlightChange", _onAutoHighlightChange);
 }
 
-if (_onBoundingBoxChange != null) {
+if (request.getAttribute("alloy:auto-complete:onBoundingBoxChange") != null) {
 	scopedAttributes.put("onBoundingBoxChange", _onBoundingBoxChange);
 }
 
-if (_onButtonChange != null) {
+if (request.getAttribute("alloy:auto-complete:onButtonChange") != null) {
 	scopedAttributes.put("onButtonChange", _onButtonChange);
 }
 
-if (_onContainerCollapse != null) {
+if (request.getAttribute("alloy:auto-complete:onContainerCollapse") != null) {
 	scopedAttributes.put("onContainerCollapse", _onContainerCollapse);
 }
 
-if (_onContainerExpand != null) {
+if (request.getAttribute("alloy:auto-complete:onContainerExpand") != null) {
 	scopedAttributes.put("onContainerExpand", _onContainerExpand);
 }
 
-if (_onContainerPopulate != null) {
+if (request.getAttribute("alloy:auto-complete:onContainerPopulate") != null) {
 	scopedAttributes.put("onContainerPopulate", _onContainerPopulate);
 }
 
-if (_onContentBoxChange != null) {
+if (request.getAttribute("alloy:auto-complete:onContentBoxChange") != null) {
 	scopedAttributes.put("onContentBoxChange", _onContentBoxChange);
 }
 
-if (_onCssClassChange != null) {
+if (request.getAttribute("alloy:auto-complete:onCssClassChange") != null) {
 	scopedAttributes.put("onCssClassChange", _onCssClassChange);
 }
 
-if (_onDataError != null) {
+if (request.getAttribute("alloy:auto-complete:onDataError") != null) {
 	scopedAttributes.put("onDataError", _onDataError);
 }
 
-if (_onDataRequest != null) {
+if (request.getAttribute("alloy:auto-complete:onDataRequest") != null) {
 	scopedAttributes.put("onDataRequest", _onDataRequest);
 }
 
-if (_onDataReturn != null) {
+if (request.getAttribute("alloy:auto-complete:onDataReturn") != null) {
 	scopedAttributes.put("onDataReturn", _onDataReturn);
 }
 
-if (_onDataSourceChange != null) {
+if (request.getAttribute("alloy:auto-complete:onDataSourceChange") != null) {
 	scopedAttributes.put("onDataSourceChange", _onDataSourceChange);
 }
 
-if (_onDataSourceTypeChange != null) {
+if (request.getAttribute("alloy:auto-complete:onDataSourceTypeChange") != null) {
 	scopedAttributes.put("onDataSourceTypeChange", _onDataSourceTypeChange);
 }
 
-if (_onDelimCharChange != null) {
+if (request.getAttribute("alloy:auto-complete:onDelimCharChange") != null) {
 	scopedAttributes.put("onDelimCharChange", _onDelimCharChange);
 }
 
-if (_onDestroy != null) {
+if (request.getAttribute("alloy:auto-complete:onDestroy") != null) {
 	scopedAttributes.put("onDestroy", _onDestroy);
 }
 
-if (_onDestroyedChange != null) {
+if (request.getAttribute("alloy:auto-complete:onDestroyedChange") != null) {
 	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
 }
 
-if (_onDisabledChange != null) {
+if (request.getAttribute("alloy:auto-complete:onDisabledChange") != null) {
 	scopedAttributes.put("onDisabledChange", _onDisabledChange);
 }
 
-if (_onFocusedChange != null) {
+if (request.getAttribute("alloy:auto-complete:onFocusedChange") != null) {
 	scopedAttributes.put("onFocusedChange", _onFocusedChange);
 }
 
-if (_onForceSelectionChange != null) {
+if (request.getAttribute("alloy:auto-complete:onForceSelectionChange") != null) {
 	scopedAttributes.put("onForceSelectionChange", _onForceSelectionChange);
 }
 
-if (_onHeightChange != null) {
+if (request.getAttribute("alloy:auto-complete:onHeightChange") != null) {
 	scopedAttributes.put("onHeightChange", _onHeightChange);
 }
 
-if (_onHideClassChange != null) {
+if (request.getAttribute("alloy:auto-complete:onHideClassChange") != null) {
 	scopedAttributes.put("onHideClassChange", _onHideClassChange);
 }
 
-if (_onIdChange != null) {
+if (request.getAttribute("alloy:auto-complete:onIdChange") != null) {
 	scopedAttributes.put("onIdChange", _onIdChange);
 }
 
-if (_onInit != null) {
+if (request.getAttribute("alloy:auto-complete:onInit") != null) {
 	scopedAttributes.put("onInit", _onInit);
 }
 
-if (_onInitializedChange != null) {
+if (request.getAttribute("alloy:auto-complete:onInitializedChange") != null) {
 	scopedAttributes.put("onInitializedChange", _onInitializedChange);
 }
 
-if (_onInputChange != null) {
+if (request.getAttribute("alloy:auto-complete:onInputChange") != null) {
 	scopedAttributes.put("onInputChange", _onInputChange);
 }
 
-if (_onItemArrowFrom != null) {
+if (request.getAttribute("alloy:auto-complete:onItemArrowFrom") != null) {
 	scopedAttributes.put("onItemArrowFrom", _onItemArrowFrom);
 }
 
-if (_onItemArrowTo != null) {
+if (request.getAttribute("alloy:auto-complete:onItemArrowTo") != null) {
 	scopedAttributes.put("onItemArrowTo", _onItemArrowTo);
 }
 
-if (_onItemMouseOut != null) {
+if (request.getAttribute("alloy:auto-complete:onItemMouseOut") != null) {
 	scopedAttributes.put("onItemMouseOut", _onItemMouseOut);
 }
 
-if (_onItemMouseOver != null) {
+if (request.getAttribute("alloy:auto-complete:onItemMouseOver") != null) {
 	scopedAttributes.put("onItemMouseOver", _onItemMouseOver);
 }
 
-if (_onItemSelect != null) {
+if (request.getAttribute("alloy:auto-complete:onItemSelect") != null) {
 	scopedAttributes.put("onItemSelect", _onItemSelect);
 }
 
-if (_onMatchKeyChange != null) {
+if (request.getAttribute("alloy:auto-complete:onMatchKeyChange") != null) {
 	scopedAttributes.put("onMatchKeyChange", _onMatchKeyChange);
 }
 
-if (_onMaxResultsDisplayedChange != null) {
+if (request.getAttribute("alloy:auto-complete:onMaxResultsDisplayedChange") != null) {
 	scopedAttributes.put("onMaxResultsDisplayedChange", _onMaxResultsDisplayedChange);
 }
 
-if (_onMinQueryLengthChange != null) {
+if (request.getAttribute("alloy:auto-complete:onMinQueryLengthChange") != null) {
 	scopedAttributes.put("onMinQueryLengthChange", _onMinQueryLengthChange);
 }
 
-if (_onQueryDelayChange != null) {
+if (request.getAttribute("alloy:auto-complete:onQueryDelayChange") != null) {
 	scopedAttributes.put("onQueryDelayChange", _onQueryDelayChange);
 }
 
-if (_onQueryIntervalChange != null) {
+if (request.getAttribute("alloy:auto-complete:onQueryIntervalChange") != null) {
 	scopedAttributes.put("onQueryIntervalChange", _onQueryIntervalChange);
 }
 
-if (_onQueryMatchCaseChange != null) {
+if (request.getAttribute("alloy:auto-complete:onQueryMatchCaseChange") != null) {
 	scopedAttributes.put("onQueryMatchCaseChange", _onQueryMatchCaseChange);
 }
 
-if (_onQueryMatchContainsChange != null) {
+if (request.getAttribute("alloy:auto-complete:onQueryMatchContainsChange") != null) {
 	scopedAttributes.put("onQueryMatchContainsChange", _onQueryMatchContainsChange);
 }
 
-if (_onQueryQuestionMarkChange != null) {
+if (request.getAttribute("alloy:auto-complete:onQueryQuestionMarkChange") != null) {
 	scopedAttributes.put("onQueryQuestionMarkChange", _onQueryQuestionMarkChange);
 }
 
-if (_onRenderChange != null) {
+if (request.getAttribute("alloy:auto-complete:onRenderChange") != null) {
 	scopedAttributes.put("onRenderChange", _onRenderChange);
 }
 
-if (_onRenderedChange != null) {
+if (request.getAttribute("alloy:auto-complete:onRenderedChange") != null) {
 	scopedAttributes.put("onRenderedChange", _onRenderedChange);
 }
 
-if (_onSchemaChange != null) {
+if (request.getAttribute("alloy:auto-complete:onSchemaChange") != null) {
 	scopedAttributes.put("onSchemaChange", _onSchemaChange);
 }
 
-if (_onSchemaTypeChange != null) {
+if (request.getAttribute("alloy:auto-complete:onSchemaTypeChange") != null) {
 	scopedAttributes.put("onSchemaTypeChange", _onSchemaTypeChange);
 }
 
-if (_onSelectionEnforce != null) {
+if (request.getAttribute("alloy:auto-complete:onSelectionEnforce") != null) {
 	scopedAttributes.put("onSelectionEnforce", _onSelectionEnforce);
 }
 
-if (_onSrcNodeChange != null) {
+if (request.getAttribute("alloy:auto-complete:onSrcNodeChange") != null) {
 	scopedAttributes.put("onSrcNodeChange", _onSrcNodeChange);
 }
 
-if (_onStringsChange != null) {
+if (request.getAttribute("alloy:auto-complete:onStringsChange") != null) {
 	scopedAttributes.put("onStringsChange", _onStringsChange);
 }
 
-if (_onSuppressInputUpdateChange != null) {
+if (request.getAttribute("alloy:auto-complete:onSuppressInputUpdateChange") != null) {
 	scopedAttributes.put("onSuppressInputUpdateChange", _onSuppressInputUpdateChange);
 }
 
-if (_onTabIndexChange != null) {
+if (request.getAttribute("alloy:auto-complete:onTabIndexChange") != null) {
 	scopedAttributes.put("onTabIndexChange", _onTabIndexChange);
 }
 
-if (_onTextboxBlur != null) {
+if (request.getAttribute("alloy:auto-complete:onTextboxBlur") != null) {
 	scopedAttributes.put("onTextboxBlur", _onTextboxBlur);
 }
 
-if (_onTextboxChange != null) {
+if (request.getAttribute("alloy:auto-complete:onTextboxChange") != null) {
 	scopedAttributes.put("onTextboxChange", _onTextboxChange);
 }
 
-if (_onTextboxFocus != null) {
+if (request.getAttribute("alloy:auto-complete:onTextboxFocus") != null) {
 	scopedAttributes.put("onTextboxFocus", _onTextboxFocus);
 }
 
-if (_onTextboxKey != null) {
+if (request.getAttribute("alloy:auto-complete:onTextboxKey") != null) {
 	scopedAttributes.put("onTextboxKey", _onTextboxKey);
 }
 
-if (_onTypeAhead != null) {
+if (request.getAttribute("alloy:auto-complete:onTypeAhead") != null) {
 	scopedAttributes.put("onTypeAhead", _onTypeAhead);
 }
 
-if (_onTypeAheadChange != null) {
+if (request.getAttribute("alloy:auto-complete:onTypeAheadChange") != null) {
 	scopedAttributes.put("onTypeAheadChange", _onTypeAheadChange);
 }
 
-if (_onTypeAheadDelayChange != null) {
+if (request.getAttribute("alloy:auto-complete:onTypeAheadDelayChange") != null) {
 	scopedAttributes.put("onTypeAheadDelayChange", _onTypeAheadDelayChange);
 }
 
-if (_onUniqueNameChange != null) {
+if (request.getAttribute("alloy:auto-complete:onUniqueNameChange") != null) {
 	scopedAttributes.put("onUniqueNameChange", _onUniqueNameChange);
 }
 
-if (_onUnmatchedItemSelect != null) {
+if (request.getAttribute("alloy:auto-complete:onUnmatchedItemSelect") != null) {
 	scopedAttributes.put("onUnmatchedItemSelect", _onUnmatchedItemSelect);
 }
 
-if (_onVisibleChange != null) {
+if (request.getAttribute("alloy:auto-complete:onVisibleChange") != null) {
 	scopedAttributes.put("onVisibleChange", _onVisibleChange);
 }
 
-if (_onContentUpdate != null) {
+if (request.getAttribute("alloy:auto-complete:onContentUpdate") != null) {
 	scopedAttributes.put("onContentUpdate", _onContentUpdate);
 }
 
-if (_onRender != null) {
+if (request.getAttribute("alloy:auto-complete:onRender") != null) {
 	scopedAttributes.put("onRender", _onRender);
 }
 
-if (_onWidthChange != null) {
+if (request.getAttribute("alloy:auto-complete:onWidthChange") != null) {
 	scopedAttributes.put("onWidthChange", _onWidthChange);
 }
 

@@ -32,7 +32,7 @@ public class BaseTreeViewTag extends IncludeTag {
 		return _container;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public java.lang.String getDestroyed() {
 		return _destroyed;
 	}
 
@@ -40,7 +40,7 @@ public class BaseTreeViewTag extends IncludeTag {
 		return _index;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public java.lang.String getInitialized() {
 		return _initialized;
 	}
 
@@ -148,7 +148,7 @@ public class BaseTreeViewTag extends IncludeTag {
 		setScopedAttribute("container", container);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(java.lang.String destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
@@ -160,7 +160,7 @@ public class BaseTreeViewTag extends IncludeTag {
 		setScopedAttribute("index", index);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(java.lang.String initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -342,9 +342,9 @@ public class BaseTreeViewTag extends IncludeTag {
 
 	private java.lang.String _children;
 	private java.lang.String _container;
-	private java.lang.Boolean _destroyed;
+	private java.lang.String _destroyed;
 	private java.lang.Object _index;
-	private java.lang.Boolean _initialized;
+	private java.lang.String _initialized;
 	private java.lang.Object _io;
 	private java.lang.String _lastSelected;
 	private java.lang.String _type;

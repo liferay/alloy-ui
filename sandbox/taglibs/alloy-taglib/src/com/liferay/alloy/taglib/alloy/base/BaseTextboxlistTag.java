@@ -24,15 +24,15 @@ public class BaseTextboxlistTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.Boolean getAlwaysShowContainer() {
+	public java.lang.String getAlwaysShowContainer() {
 		return _alwaysShowContainer;
 	}
 
-	public java.lang.Boolean getApplyLocalFilter() {
+	public java.lang.String getApplyLocalFilter() {
 		return _applyLocalFilter;
 	}
 
-	public java.lang.Boolean getAutoHighlight() {
+	public java.lang.String getAutoHighlight() {
 		return _autoHighlight;
 	}
 
@@ -40,7 +40,7 @@ public class BaseTextboxlistTag extends IncludeTag {
 		return _boundingBox;
 	}
 
-	public java.lang.Boolean getButton() {
+	public java.lang.String getButton() {
 		return _button;
 	}
 
@@ -64,19 +64,19 @@ public class BaseTextboxlistTag extends IncludeTag {
 		return _delimChar;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public java.lang.String getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDisabled() {
+	public java.lang.String getDisabled() {
 		return _disabled;
 	}
 
-	public java.lang.Boolean getFocused() {
+	public java.lang.String getFocused() {
 		return _focused;
 	}
 
-	public java.lang.Boolean getForceSelection() {
+	public java.lang.String getForceSelection() {
 		return _forceSelection;
 	}
 
@@ -92,7 +92,7 @@ public class BaseTextboxlistTag extends IncludeTag {
 		return _textboxlistId;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public java.lang.String getInitialized() {
 		return _initialized;
 	}
 
@@ -104,39 +104,39 @@ public class BaseTextboxlistTag extends IncludeTag {
 		return _matchKey;
 	}
 
-	public java.lang.Number getMaxResultsDisplayed() {
+	public java.lang.String getMaxResultsDisplayed() {
 		return _maxResultsDisplayed;
 	}
 
-	public java.lang.Number getMinQueryLength() {
+	public java.lang.String getMinQueryLength() {
 		return _minQueryLength;
 	}
 
-	public java.lang.Number getQueryDelay() {
+	public java.lang.String getQueryDelay() {
 		return _queryDelay;
 	}
 
-	public java.lang.Number getQueryInterval() {
+	public java.lang.String getQueryInterval() {
 		return _queryInterval;
 	}
 
-	public java.lang.Boolean getQueryMatchCase() {
+	public java.lang.String getQueryMatchCase() {
 		return _queryMatchCase;
 	}
 
-	public java.lang.Boolean getQueryMatchContains() {
+	public java.lang.String getQueryMatchContains() {
 		return _queryMatchContains;
 	}
 
-	public java.lang.Boolean getQueryQuestionMark() {
+	public java.lang.String getQueryQuestionMark() {
 		return _queryQuestionMark;
 	}
 
-	public java.lang.Boolean getRender() {
+	public java.lang.String getRender() {
 		return _render;
 	}
 
-	public java.lang.Boolean getRendered() {
+	public java.lang.String getRendered() {
 		return _rendered;
 	}
 
@@ -156,19 +156,19 @@ public class BaseTextboxlistTag extends IncludeTag {
 		return _strings;
 	}
 
-	public java.lang.Boolean getSuppressInputUpdate() {
+	public java.lang.String getSuppressInputUpdate() {
 		return _suppressInputUpdate;
 	}
 
-	public java.lang.Number getTabIndex() {
+	public java.lang.String getTabIndex() {
 		return _tabIndex;
 	}
 
-	public java.lang.Boolean getTypeAhead() {
+	public java.lang.String getTypeAhead() {
 		return _typeAhead;
 	}
 
-	public java.lang.Number getTypeAheadDelay() {
+	public java.lang.String getTypeAheadDelay() {
 		return _typeAheadDelay;
 	}
 
@@ -176,7 +176,7 @@ public class BaseTextboxlistTag extends IncludeTag {
 		return _uniqueName;
 	}
 
-	public java.lang.Boolean getVisible() {
+	public java.lang.String getVisible() {
 		return _visible;
 	}
 
@@ -680,19 +680,19 @@ public class BaseTextboxlistTag extends IncludeTag {
 		return _onWidthChange;
 	}
 
-	public void setAlwaysShowContainer(java.lang.Boolean alwaysShowContainer) {
+	public void setAlwaysShowContainer(java.lang.String alwaysShowContainer) {
 		_alwaysShowContainer = alwaysShowContainer;
 
 		setScopedAttribute("alwaysShowContainer", alwaysShowContainer);
 	}
 
-	public void setApplyLocalFilter(java.lang.Boolean applyLocalFilter) {
+	public void setApplyLocalFilter(java.lang.String applyLocalFilter) {
 		_applyLocalFilter = applyLocalFilter;
 
 		setScopedAttribute("applyLocalFilter", applyLocalFilter);
 	}
 
-	public void setAutoHighlight(java.lang.Boolean autoHighlight) {
+	public void setAutoHighlight(java.lang.String autoHighlight) {
 		_autoHighlight = autoHighlight;
 
 		setScopedAttribute("autoHighlight", autoHighlight);
@@ -704,7 +704,7 @@ public class BaseTextboxlistTag extends IncludeTag {
 		setScopedAttribute("boundingBox", boundingBox);
 	}
 
-	public void setButton(java.lang.Boolean button) {
+	public void setButton(java.lang.String button) {
 		_button = button;
 
 		setScopedAttribute("button", button);
@@ -740,25 +740,25 @@ public class BaseTextboxlistTag extends IncludeTag {
 		setScopedAttribute("delimChar", delimChar);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(java.lang.String destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.Boolean disabled) {
+	public void setDisabled(java.lang.String disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
 	}
 
-	public void setFocused(java.lang.Boolean focused) {
+	public void setFocused(java.lang.String focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
 	}
 
-	public void setForceSelection(java.lang.Boolean forceSelection) {
+	public void setForceSelection(java.lang.String forceSelection) {
 		_forceSelection = forceSelection;
 
 		setScopedAttribute("forceSelection", forceSelection);
@@ -782,7 +782,7 @@ public class BaseTextboxlistTag extends IncludeTag {
 		setScopedAttribute("textboxlistId", textboxlistId);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(java.lang.String initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -800,55 +800,55 @@ public class BaseTextboxlistTag extends IncludeTag {
 		setScopedAttribute("matchKey", matchKey);
 	}
 
-	public void setMaxResultsDisplayed(java.lang.Number maxResultsDisplayed) {
+	public void setMaxResultsDisplayed(java.lang.String maxResultsDisplayed) {
 		_maxResultsDisplayed = maxResultsDisplayed;
 
 		setScopedAttribute("maxResultsDisplayed", maxResultsDisplayed);
 	}
 
-	public void setMinQueryLength(java.lang.Number minQueryLength) {
+	public void setMinQueryLength(java.lang.String minQueryLength) {
 		_minQueryLength = minQueryLength;
 
 		setScopedAttribute("minQueryLength", minQueryLength);
 	}
 
-	public void setQueryDelay(java.lang.Number queryDelay) {
+	public void setQueryDelay(java.lang.String queryDelay) {
 		_queryDelay = queryDelay;
 
 		setScopedAttribute("queryDelay", queryDelay);
 	}
 
-	public void setQueryInterval(java.lang.Number queryInterval) {
+	public void setQueryInterval(java.lang.String queryInterval) {
 		_queryInterval = queryInterval;
 
 		setScopedAttribute("queryInterval", queryInterval);
 	}
 
-	public void setQueryMatchCase(java.lang.Boolean queryMatchCase) {
+	public void setQueryMatchCase(java.lang.String queryMatchCase) {
 		_queryMatchCase = queryMatchCase;
 
 		setScopedAttribute("queryMatchCase", queryMatchCase);
 	}
 
-	public void setQueryMatchContains(java.lang.Boolean queryMatchContains) {
+	public void setQueryMatchContains(java.lang.String queryMatchContains) {
 		_queryMatchContains = queryMatchContains;
 
 		setScopedAttribute("queryMatchContains", queryMatchContains);
 	}
 
-	public void setQueryQuestionMark(java.lang.Boolean queryQuestionMark) {
+	public void setQueryQuestionMark(java.lang.String queryQuestionMark) {
 		_queryQuestionMark = queryQuestionMark;
 
 		setScopedAttribute("queryQuestionMark", queryQuestionMark);
 	}
 
-	public void setRender(java.lang.Boolean render) {
+	public void setRender(java.lang.String render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.Boolean rendered) {
+	public void setRendered(java.lang.String rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
@@ -878,25 +878,25 @@ public class BaseTextboxlistTag extends IncludeTag {
 		setScopedAttribute("strings", strings);
 	}
 
-	public void setSuppressInputUpdate(java.lang.Boolean suppressInputUpdate) {
+	public void setSuppressInputUpdate(java.lang.String suppressInputUpdate) {
 		_suppressInputUpdate = suppressInputUpdate;
 
 		setScopedAttribute("suppressInputUpdate", suppressInputUpdate);
 	}
 
-	public void setTabIndex(java.lang.Number tabIndex) {
+	public void setTabIndex(java.lang.String tabIndex) {
 		_tabIndex = tabIndex;
 
 		setScopedAttribute("tabIndex", tabIndex);
 	}
 
-	public void setTypeAhead(java.lang.Boolean typeAhead) {
+	public void setTypeAhead(java.lang.String typeAhead) {
 		_typeAhead = typeAhead;
 
 		setScopedAttribute("typeAhead", typeAhead);
 	}
 
-	public void setTypeAheadDelay(java.lang.Number typeAheadDelay) {
+	public void setTypeAheadDelay(java.lang.String typeAheadDelay) {
 		_typeAheadDelay = typeAheadDelay;
 
 		setScopedAttribute("typeAheadDelay", typeAheadDelay);
@@ -908,7 +908,7 @@ public class BaseTextboxlistTag extends IncludeTag {
 		setScopedAttribute("uniqueName", uniqueName);
 	}
 
-	public void setVisible(java.lang.Boolean visible) {
+	public void setVisible(java.lang.String visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -1836,45 +1836,45 @@ public class BaseTextboxlistTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/textboxlist/page.jsp";
 
-	private java.lang.Boolean _alwaysShowContainer;
-	private java.lang.Boolean _applyLocalFilter;
-	private java.lang.Boolean _autoHighlight;
+	private java.lang.String _alwaysShowContainer;
+	private java.lang.String _applyLocalFilter;
+	private java.lang.String _autoHighlight;
 	private java.lang.String _boundingBox;
-	private java.lang.Boolean _button;
+	private java.lang.String _button;
 	private java.lang.String _contentBox;
 	private java.lang.String _cssClass;
 	private java.lang.String _dataSource;
 	private java.lang.String _dataSourceType;
 	private java.lang.String _delimChar;
-	private java.lang.Boolean _destroyed;
-	private java.lang.Boolean _disabled;
-	private java.lang.Boolean _focused;
-	private java.lang.Boolean _forceSelection;
+	private java.lang.String _destroyed;
+	private java.lang.String _disabled;
+	private java.lang.String _focused;
+	private java.lang.String _forceSelection;
 	private java.lang.String _height;
 	private java.lang.String _hideClass;
 	private java.lang.String _textboxlistId;
-	private java.lang.Boolean _initialized;
+	private java.lang.String _initialized;
 	private java.lang.String _input;
 	private java.lang.String _matchKey;
-	private java.lang.Number _maxResultsDisplayed;
-	private java.lang.Number _minQueryLength;
-	private java.lang.Number _queryDelay;
-	private java.lang.Number _queryInterval;
-	private java.lang.Boolean _queryMatchCase;
-	private java.lang.Boolean _queryMatchContains;
-	private java.lang.Boolean _queryQuestionMark;
-	private java.lang.Boolean _render;
-	private java.lang.Boolean _rendered;
+	private java.lang.String _maxResultsDisplayed;
+	private java.lang.String _minQueryLength;
+	private java.lang.String _queryDelay;
+	private java.lang.String _queryInterval;
+	private java.lang.String _queryMatchCase;
+	private java.lang.String _queryMatchContains;
+	private java.lang.String _queryQuestionMark;
+	private java.lang.String _render;
+	private java.lang.String _rendered;
 	private java.lang.Object _schema;
 	private java.lang.String _schemaType;
 	private java.lang.String _srcNode;
 	private java.lang.Object _strings;
-	private java.lang.Boolean _suppressInputUpdate;
-	private java.lang.Number _tabIndex;
-	private java.lang.Boolean _typeAhead;
-	private java.lang.Number _typeAheadDelay;
+	private java.lang.String _suppressInputUpdate;
+	private java.lang.String _tabIndex;
+	private java.lang.String _typeAhead;
+	private java.lang.String _typeAheadDelay;
 	private java.lang.String _uniqueName;
-	private java.lang.Boolean _visible;
+	private java.lang.String _visible;
 	private java.lang.String _width;
 	private java.lang.String _afterAlwaysShowContainerChange;
 	private java.lang.String _afterApplyLocalFilterChange;

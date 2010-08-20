@@ -24,11 +24,11 @@ public class BasePortalLayoutTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public java.lang.String getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public java.lang.String getInitialized() {
 		return _initialized;
 	}
 
@@ -64,13 +64,13 @@ public class BasePortalLayoutTag extends IncludeTag {
 		return _onInitializedChange;
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(java.lang.String destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(java.lang.String initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -142,8 +142,8 @@ public class BasePortalLayoutTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/portal_layout/page.jsp";
 
-	private java.lang.Boolean _destroyed;
-	private java.lang.Boolean _initialized;
+	private java.lang.String _destroyed;
+	private java.lang.String _initialized;
 	private java.lang.String _afterDestroy;
 	private java.lang.String _afterDestroyedChange;
 	private java.lang.String _afterInit;

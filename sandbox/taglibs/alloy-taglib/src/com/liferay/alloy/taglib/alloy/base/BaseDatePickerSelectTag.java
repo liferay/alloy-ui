@@ -48,7 +48,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _buttonNode;
 	}
 
-	public java.lang.Boolean getCancellableHide() {
+	public java.lang.String getCancellableHide() {
 		return _cancellableHide;
 	}
 
@@ -68,11 +68,11 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _cssClass;
 	}
 
-	public java.lang.Number getCurrentDay() {
+	public java.lang.String getCurrentDay() {
 		return _currentDay;
 	}
 
-	public java.lang.Number getCurrentMonth() {
+	public java.lang.String getCurrentMonth() {
 		return _currentMonth;
 	}
 
@@ -80,7 +80,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _currentNode;
 	}
 
-	public java.lang.Number getCurrentYear() {
+	public java.lang.String getCurrentYear() {
 		return _currentYear;
 	}
 
@@ -100,11 +100,11 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _dayNodeName;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public java.lang.String getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDisabled() {
+	public java.lang.String getDisabled() {
 		return _disabled;
 	}
 
@@ -112,11 +112,11 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _fillHeight;
 	}
 
-	public java.lang.Number getFirstDayOfWeek() {
+	public java.lang.String getFirstDayOfWeek() {
 		return _firstDayOfWeek;
 	}
 
-	public java.lang.Boolean getFocused() {
+	public java.lang.String getFocused() {
 		return _focused;
 	}
 
@@ -136,7 +136,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _hideClass;
 	}
 
-	public java.lang.Number getHideDelay() {
+	public java.lang.String getHideDelay() {
 		return _hideDelay;
 	}
 
@@ -144,7 +144,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _hideOn;
 	}
 
-	public java.lang.Boolean getHideOnDocumentClick() {
+	public java.lang.String getHideOnDocumentClick() {
 		return _hideOnDocumentClick;
 	}
 
@@ -152,7 +152,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _datepickerselectId;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public java.lang.String getInitialized() {
 		return _initialized;
 	}
 
@@ -172,31 +172,31 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _monthNodeName;
 	}
 
-	public java.lang.Boolean getPopulateDay() {
+	public java.lang.String getPopulateDay() {
 		return _populateDay;
 	}
 
-	public java.lang.Boolean getPopulateMonth() {
+	public java.lang.String getPopulateMonth() {
 		return _populateMonth;
 	}
 
-	public java.lang.Boolean getPopulateYear() {
+	public java.lang.String getPopulateYear() {
 		return _populateYear;
 	}
 
-	public java.lang.Boolean getPreventOverlap() {
+	public java.lang.String getPreventOverlap() {
 		return _preventOverlap;
 	}
 
-	public java.lang.Boolean getRender() {
+	public java.lang.String getRender() {
 		return _render;
 	}
 
-	public java.lang.Boolean getRendered() {
+	public java.lang.String getRendered() {
 		return _rendered;
 	}
 
-	public java.lang.Boolean getSelectMultipleDates() {
+	public java.lang.String getSelectMultipleDates() {
 		return _selectMultipleDates;
 	}
 
@@ -204,15 +204,15 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _selectWrapperNode;
 	}
 
-	public java.lang.Boolean getSetValue() {
+	public java.lang.String getSetValue() {
 		return _setValue;
 	}
 
-	public java.lang.Boolean getShim() {
+	public java.lang.String getShim() {
 		return _shim;
 	}
 
-	public java.lang.Number getShowDelay() {
+	public java.lang.String getShowDelay() {
 		return _showDelay;
 	}
 
@@ -224,7 +224,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _srcNode;
 	}
 
-	public java.lang.Boolean getStack() {
+	public java.lang.String getStack() {
 		return _stack;
 	}
 
@@ -232,7 +232,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _strings;
 	}
 
-	public java.lang.Number getTabIndex() {
+	public java.lang.String getTabIndex() {
 		return _tabIndex;
 	}
 
@@ -240,7 +240,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _trigger;
 	}
 
-	public java.lang.Boolean getVisible() {
+	public java.lang.String getVisible() {
 		return _visible;
 	}
 
@@ -248,7 +248,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _width;
 	}
 
-	public java.lang.Number getX() {
+	public java.lang.String getX() {
 		return _x;
 	}
 
@@ -256,7 +256,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _xy;
 	}
 
-	public java.lang.Number getY() {
+	public java.lang.String getY() {
 		return _y;
 	}
 
@@ -272,7 +272,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _yearRange;
 	}
 
-	public java.lang.Number getZIndex() {
+	public java.lang.String getZIndex() {
 		return _zIndex;
 	}
 
@@ -848,7 +848,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("buttonNode", buttonNode);
 	}
 
-	public void setCancellableHide(java.lang.Boolean cancellableHide) {
+	public void setCancellableHide(java.lang.String cancellableHide) {
 		_cancellableHide = cancellableHide;
 
 		setScopedAttribute("cancellableHide", cancellableHide);
@@ -878,13 +878,13 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("cssClass", cssClass);
 	}
 
-	public void setCurrentDay(java.lang.Number currentDay) {
+	public void setCurrentDay(java.lang.String currentDay) {
 		_currentDay = currentDay;
 
 		setScopedAttribute("currentDay", currentDay);
 	}
 
-	public void setCurrentMonth(java.lang.Number currentMonth) {
+	public void setCurrentMonth(java.lang.String currentMonth) {
 		_currentMonth = currentMonth;
 
 		setScopedAttribute("currentMonth", currentMonth);
@@ -896,7 +896,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("currentNode", currentNode);
 	}
 
-	public void setCurrentYear(java.lang.Number currentYear) {
+	public void setCurrentYear(java.lang.String currentYear) {
 		_currentYear = currentYear;
 
 		setScopedAttribute("currentYear", currentYear);
@@ -926,13 +926,13 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("dayNodeName", dayNodeName);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(java.lang.String destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.Boolean disabled) {
+	public void setDisabled(java.lang.String disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
@@ -944,13 +944,13 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("fillHeight", fillHeight);
 	}
 
-	public void setFirstDayOfWeek(java.lang.Number firstDayOfWeek) {
+	public void setFirstDayOfWeek(java.lang.String firstDayOfWeek) {
 		_firstDayOfWeek = firstDayOfWeek;
 
 		setScopedAttribute("firstDayOfWeek", firstDayOfWeek);
 	}
 
-	public void setFocused(java.lang.Boolean focused) {
+	public void setFocused(java.lang.String focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -980,7 +980,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("hideClass", hideClass);
 	}
 
-	public void setHideDelay(java.lang.Number hideDelay) {
+	public void setHideDelay(java.lang.String hideDelay) {
 		_hideDelay = hideDelay;
 
 		setScopedAttribute("hideDelay", hideDelay);
@@ -992,7 +992,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("hideOn", hideOn);
 	}
 
-	public void setHideOnDocumentClick(java.lang.Boolean hideOnDocumentClick) {
+	public void setHideOnDocumentClick(java.lang.String hideOnDocumentClick) {
 		_hideOnDocumentClick = hideOnDocumentClick;
 
 		setScopedAttribute("hideOnDocumentClick", hideOnDocumentClick);
@@ -1004,7 +1004,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("datepickerselectId", datepickerselectId);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(java.lang.String initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -1034,43 +1034,43 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("monthNodeName", monthNodeName);
 	}
 
-	public void setPopulateDay(java.lang.Boolean populateDay) {
+	public void setPopulateDay(java.lang.String populateDay) {
 		_populateDay = populateDay;
 
 		setScopedAttribute("populateDay", populateDay);
 	}
 
-	public void setPopulateMonth(java.lang.Boolean populateMonth) {
+	public void setPopulateMonth(java.lang.String populateMonth) {
 		_populateMonth = populateMonth;
 
 		setScopedAttribute("populateMonth", populateMonth);
 	}
 
-	public void setPopulateYear(java.lang.Boolean populateYear) {
+	public void setPopulateYear(java.lang.String populateYear) {
 		_populateYear = populateYear;
 
 		setScopedAttribute("populateYear", populateYear);
 	}
 
-	public void setPreventOverlap(java.lang.Boolean preventOverlap) {
+	public void setPreventOverlap(java.lang.String preventOverlap) {
 		_preventOverlap = preventOverlap;
 
 		setScopedAttribute("preventOverlap", preventOverlap);
 	}
 
-	public void setRender(java.lang.Boolean render) {
+	public void setRender(java.lang.String render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.Boolean rendered) {
+	public void setRendered(java.lang.String rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setSelectMultipleDates(java.lang.Boolean selectMultipleDates) {
+	public void setSelectMultipleDates(java.lang.String selectMultipleDates) {
 		_selectMultipleDates = selectMultipleDates;
 
 		setScopedAttribute("selectMultipleDates", selectMultipleDates);
@@ -1082,19 +1082,19 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("selectWrapperNode", selectWrapperNode);
 	}
 
-	public void setSetValue(java.lang.Boolean setValue) {
+	public void setSetValue(java.lang.String setValue) {
 		_setValue = setValue;
 
 		setScopedAttribute("setValue", setValue);
 	}
 
-	public void setShim(java.lang.Boolean shim) {
+	public void setShim(java.lang.String shim) {
 		_shim = shim;
 
 		setScopedAttribute("shim", shim);
 	}
 
-	public void setShowDelay(java.lang.Number showDelay) {
+	public void setShowDelay(java.lang.String showDelay) {
 		_showDelay = showDelay;
 
 		setScopedAttribute("showDelay", showDelay);
@@ -1112,7 +1112,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("srcNode", srcNode);
 	}
 
-	public void setStack(java.lang.Boolean stack) {
+	public void setStack(java.lang.String stack) {
 		_stack = stack;
 
 		setScopedAttribute("stack", stack);
@@ -1124,7 +1124,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("strings", strings);
 	}
 
-	public void setTabIndex(java.lang.Number tabIndex) {
+	public void setTabIndex(java.lang.String tabIndex) {
 		_tabIndex = tabIndex;
 
 		setScopedAttribute("tabIndex", tabIndex);
@@ -1136,7 +1136,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("trigger", trigger);
 	}
 
-	public void setVisible(java.lang.Boolean visible) {
+	public void setVisible(java.lang.String visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -1148,7 +1148,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("width", width);
 	}
 
-	public void setX(java.lang.Number x) {
+	public void setX(java.lang.String x) {
 		_x = x;
 
 		setScopedAttribute("x", x);
@@ -1160,7 +1160,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("xy", xy);
 	}
 
-	public void setY(java.lang.Number y) {
+	public void setY(java.lang.String y) {
 		_y = y;
 
 		setScopedAttribute("y", y);
@@ -1184,7 +1184,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("yearRange", yearRange);
 	}
 
-	public void setZIndex(java.lang.Number zIndex) {
+	public void setZIndex(java.lang.String zIndex) {
 		_zIndex = zIndex;
 
 		setScopedAttribute("zIndex", zIndex);
@@ -2205,63 +2205,63 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 	private java.lang.String _datepickerselectBodyContent;
 	private java.lang.String _boundingBox;
 	private java.lang.String _buttonNode;
-	private java.lang.Boolean _cancellableHide;
+	private java.lang.String _cancellableHide;
 	private java.lang.String _centered;
 	private java.lang.String _constrain;
 	private java.lang.String _contentBox;
 	private java.lang.String _cssClass;
-	private java.lang.Number _currentDay;
-	private java.lang.Number _currentMonth;
+	private java.lang.String _currentDay;
+	private java.lang.String _currentMonth;
 	private java.lang.String _currentNode;
-	private java.lang.Number _currentYear;
+	private java.lang.String _currentYear;
 	private java.lang.String _dateFormat;
 	private java.lang.String _dates;
 	private java.lang.String _dayNode;
 	private java.lang.String _dayNodeName;
-	private java.lang.Boolean _destroyed;
-	private java.lang.Boolean _disabled;
+	private java.lang.String _destroyed;
+	private java.lang.String _disabled;
 	private java.lang.String _fillHeight;
-	private java.lang.Number _firstDayOfWeek;
-	private java.lang.Boolean _focused;
+	private java.lang.String _firstDayOfWeek;
+	private java.lang.String _focused;
 	private java.lang.String _footerContent;
 	private java.lang.String _headerContent;
 	private java.lang.String _height;
 	private java.lang.String _hideClass;
-	private java.lang.Number _hideDelay;
+	private java.lang.String _hideDelay;
 	private java.lang.String _hideOn;
-	private java.lang.Boolean _hideOnDocumentClick;
+	private java.lang.String _hideOnDocumentClick;
 	private java.lang.String _datepickerselectId;
-	private java.lang.Boolean _initialized;
+	private java.lang.String _initialized;
 	private java.lang.String _maxDate;
 	private java.lang.String _minDate;
 	private java.lang.String _monthNode;
 	private java.lang.String _monthNodeName;
-	private java.lang.Boolean _populateDay;
-	private java.lang.Boolean _populateMonth;
-	private java.lang.Boolean _populateYear;
-	private java.lang.Boolean _preventOverlap;
-	private java.lang.Boolean _render;
-	private java.lang.Boolean _rendered;
-	private java.lang.Boolean _selectMultipleDates;
+	private java.lang.String _populateDay;
+	private java.lang.String _populateMonth;
+	private java.lang.String _populateYear;
+	private java.lang.String _preventOverlap;
+	private java.lang.String _render;
+	private java.lang.String _rendered;
+	private java.lang.String _selectMultipleDates;
 	private java.lang.String _selectWrapperNode;
-	private java.lang.Boolean _setValue;
-	private java.lang.Boolean _shim;
-	private java.lang.Number _showDelay;
+	private java.lang.String _setValue;
+	private java.lang.String _shim;
+	private java.lang.String _showDelay;
 	private java.lang.String _showOn;
 	private java.lang.String _srcNode;
-	private java.lang.Boolean _stack;
+	private java.lang.String _stack;
 	private java.lang.Object _strings;
-	private java.lang.Number _tabIndex;
+	private java.lang.String _tabIndex;
 	private java.lang.String _trigger;
-	private java.lang.Boolean _visible;
+	private java.lang.String _visible;
 	private java.lang.String _width;
-	private java.lang.Number _x;
+	private java.lang.String _x;
 	private java.lang.String _xy;
-	private java.lang.Number _y;
+	private java.lang.String _y;
 	private java.lang.String _yearNode;
 	private java.lang.String _yearNodeName;
 	private java.lang.String _yearRange;
-	private java.lang.Number _zIndex;
+	private java.lang.String _zIndex;
 	private java.lang.String _afterAlignChange;
 	private java.lang.String _afterAppendOrderChange;
 	private java.lang.String _afterBaseNameChange;

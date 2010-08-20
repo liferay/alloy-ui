@@ -4,573 +4,573 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:dialog:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:dialog:scopedAttributes");
 
-java.lang.String _dialogBodyContent = (java.lang.String)request.getAttribute("alloy:dialog:dialogBodyContent");
-java.lang.String _boundingBox = (java.lang.String)request.getAttribute("alloy:dialog:boundingBox");
-java.lang.String _buttons = (java.lang.String)request.getAttribute("alloy:dialog:buttons");
-java.lang.Boolean _close = (java.lang.Boolean)request.getAttribute("alloy:dialog:close");
-java.lang.Boolean _collapsed = (java.lang.Boolean)request.getAttribute("alloy:dialog:collapsed");
-java.lang.Boolean _collapsible = (java.lang.Boolean)request.getAttribute("alloy:dialog:collapsible");
+java.lang.String _dialogBodyContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:dialogBodyContent"));
+java.lang.String _boundingBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:boundingBox"));
+java.lang.String _buttons = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:buttons"));
+java.lang.Boolean _close = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:close"));
+java.lang.Boolean _collapsed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:collapsed"));
+java.lang.Boolean _collapsible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:collapsible"));
 java.lang.Object _constrain2view = (java.lang.Object)request.getAttribute("alloy:dialog:constrain2view");
-java.lang.String _contentBox = (java.lang.String)request.getAttribute("alloy:dialog:contentBox");
-java.lang.String _cssClass = (java.lang.String)request.getAttribute("alloy:dialog:cssClass");
-java.lang.Boolean _destroyOnClose = (java.lang.Boolean)request.getAttribute("alloy:dialog:destroyOnClose");
-java.lang.Boolean _destroyed = (java.lang.Boolean)request.getAttribute("alloy:dialog:destroyed");
-java.lang.Boolean _disabled = (java.lang.Boolean)request.getAttribute("alloy:dialog:disabled");
-java.lang.String _dragInstance = (java.lang.String)request.getAttribute("alloy:dialog:dragInstance");
-java.lang.Boolean _draggable = (java.lang.Boolean)request.getAttribute("alloy:dialog:draggable");
-java.lang.String _fillHeight = (java.lang.String)request.getAttribute("alloy:dialog:fillHeight");
-java.lang.Boolean _focused = (java.lang.Boolean)request.getAttribute("alloy:dialog:focused");
-java.lang.String _footerContent = (java.lang.String)request.getAttribute("alloy:dialog:footerContent");
-java.lang.String _headerContent = (java.lang.String)request.getAttribute("alloy:dialog:headerContent");
-java.lang.String _height = (java.lang.String)request.getAttribute("alloy:dialog:height");
-java.lang.String _hideClass = (java.lang.String)request.getAttribute("alloy:dialog:hideClass");
-java.lang.String _icons = (java.lang.String)request.getAttribute("alloy:dialog:icons");
-java.lang.String _dialogId = (java.lang.String)request.getAttribute("alloy:dialog:dialogId");
-java.lang.Boolean _initialized = (java.lang.Boolean)request.getAttribute("alloy:dialog:initialized");
-java.lang.Boolean _modal = (java.lang.Boolean)request.getAttribute("alloy:dialog:modal");
-java.lang.Boolean _render = (java.lang.Boolean)request.getAttribute("alloy:dialog:render");
-java.lang.Boolean _rendered = (java.lang.Boolean)request.getAttribute("alloy:dialog:rendered");
-java.lang.Boolean _resizable = (java.lang.Boolean)request.getAttribute("alloy:dialog:resizable");
-java.lang.String _resizableInstance = (java.lang.String)request.getAttribute("alloy:dialog:resizableInstance");
-java.lang.String _srcNode = (java.lang.String)request.getAttribute("alloy:dialog:srcNode");
-java.lang.Boolean _stack = (java.lang.Boolean)request.getAttribute("alloy:dialog:stack");
+java.lang.String _contentBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:contentBox"));
+java.lang.String _cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:cssClass"));
+java.lang.Boolean _destroyOnClose = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:destroyOnClose"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:destroyed"));
+java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:disabled"));
+java.lang.String _dragInstance = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:dragInstance"));
+java.lang.Boolean _draggable = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:draggable"));
+java.lang.String _fillHeight = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:fillHeight"));
+java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:focused"));
+java.lang.String _footerContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:footerContent"));
+java.lang.String _headerContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:headerContent"));
+java.lang.String _height = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:height"));
+java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:hideClass"));
+java.lang.String _icons = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:icons"));
+java.lang.String _dialogId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:dialogId"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:initialized"));
+java.lang.Boolean _modal = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:modal"));
+java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:render"));
+java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:rendered"));
+java.lang.Boolean _resizable = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:resizable"));
+java.lang.String _resizableInstance = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:resizableInstance"));
+java.lang.String _srcNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:srcNode"));
+java.lang.Boolean _stack = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:stack"));
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:dialog:strings");
-java.lang.Number _tabIndex = (java.lang.Number)request.getAttribute("alloy:dialog:tabIndex");
-java.lang.String _title = (java.lang.String)request.getAttribute("alloy:dialog:title");
-java.lang.Boolean _visible = (java.lang.Boolean)request.getAttribute("alloy:dialog:visible");
-java.lang.String _width = (java.lang.String)request.getAttribute("alloy:dialog:width");
-java.lang.String _afterBodyContentChange = (java.lang.String)request.getAttribute("alloy:dialog:afterBodyContentChange");
-java.lang.String _afterBoundingBoxChange = (java.lang.String)request.getAttribute("alloy:dialog:afterBoundingBoxChange");
-java.lang.String _afterButtonsChange = (java.lang.String)request.getAttribute("alloy:dialog:afterButtonsChange");
-java.lang.String _afterCloseChange = (java.lang.String)request.getAttribute("alloy:dialog:afterCloseChange");
-java.lang.String _afterCollapsedChange = (java.lang.String)request.getAttribute("alloy:dialog:afterCollapsedChange");
-java.lang.String _afterCollapsibleChange = (java.lang.String)request.getAttribute("alloy:dialog:afterCollapsibleChange");
-java.lang.String _afterConstrain2viewChange = (java.lang.String)request.getAttribute("alloy:dialog:afterConstrain2viewChange");
-java.lang.String _afterContentBoxChange = (java.lang.String)request.getAttribute("alloy:dialog:afterContentBoxChange");
-java.lang.String _afterCssClassChange = (java.lang.String)request.getAttribute("alloy:dialog:afterCssClassChange");
-java.lang.String _afterDestroy = (java.lang.String)request.getAttribute("alloy:dialog:afterDestroy");
-java.lang.String _afterDestroyOnCloseChange = (java.lang.String)request.getAttribute("alloy:dialog:afterDestroyOnCloseChange");
-java.lang.String _afterDestroyedChange = (java.lang.String)request.getAttribute("alloy:dialog:afterDestroyedChange");
-java.lang.String _afterDisabledChange = (java.lang.String)request.getAttribute("alloy:dialog:afterDisabledChange");
-java.lang.String _afterDragInstanceChange = (java.lang.String)request.getAttribute("alloy:dialog:afterDragInstanceChange");
-java.lang.String _afterDraggableChange = (java.lang.String)request.getAttribute("alloy:dialog:afterDraggableChange");
-java.lang.String _afterFillHeightChange = (java.lang.String)request.getAttribute("alloy:dialog:afterFillHeightChange");
-java.lang.String _afterFocusedChange = (java.lang.String)request.getAttribute("alloy:dialog:afterFocusedChange");
-java.lang.String _afterFooterContentChange = (java.lang.String)request.getAttribute("alloy:dialog:afterFooterContentChange");
-java.lang.String _afterHeaderContentChange = (java.lang.String)request.getAttribute("alloy:dialog:afterHeaderContentChange");
-java.lang.String _afterHeightChange = (java.lang.String)request.getAttribute("alloy:dialog:afterHeightChange");
-java.lang.String _afterHideClassChange = (java.lang.String)request.getAttribute("alloy:dialog:afterHideClassChange");
-java.lang.String _afterIconsChange = (java.lang.String)request.getAttribute("alloy:dialog:afterIconsChange");
-java.lang.String _afterIdChange = (java.lang.String)request.getAttribute("alloy:dialog:afterIdChange");
-java.lang.String _afterInit = (java.lang.String)request.getAttribute("alloy:dialog:afterInit");
-java.lang.String _afterInitializedChange = (java.lang.String)request.getAttribute("alloy:dialog:afterInitializedChange");
-java.lang.String _afterModalChange = (java.lang.String)request.getAttribute("alloy:dialog:afterModalChange");
-java.lang.String _afterRenderChange = (java.lang.String)request.getAttribute("alloy:dialog:afterRenderChange");
-java.lang.String _afterRenderedChange = (java.lang.String)request.getAttribute("alloy:dialog:afterRenderedChange");
-java.lang.String _afterResizableChange = (java.lang.String)request.getAttribute("alloy:dialog:afterResizableChange");
-java.lang.String _afterResizableInstanceChange = (java.lang.String)request.getAttribute("alloy:dialog:afterResizableInstanceChange");
-java.lang.String _afterSrcNodeChange = (java.lang.String)request.getAttribute("alloy:dialog:afterSrcNodeChange");
-java.lang.String _afterStackChange = (java.lang.String)request.getAttribute("alloy:dialog:afterStackChange");
-java.lang.String _afterStringsChange = (java.lang.String)request.getAttribute("alloy:dialog:afterStringsChange");
-java.lang.String _afterTabIndexChange = (java.lang.String)request.getAttribute("alloy:dialog:afterTabIndexChange");
-java.lang.String _afterTitleChange = (java.lang.String)request.getAttribute("alloy:dialog:afterTitleChange");
-java.lang.String _afterVisibleChange = (java.lang.String)request.getAttribute("alloy:dialog:afterVisibleChange");
-java.lang.String _afterContentUpdate = (java.lang.String)request.getAttribute("alloy:dialog:afterContentUpdate");
-java.lang.String _afterRender = (java.lang.String)request.getAttribute("alloy:dialog:afterRender");
-java.lang.String _afterWidthChange = (java.lang.String)request.getAttribute("alloy:dialog:afterWidthChange");
-java.lang.String _onBodyContentChange = (java.lang.String)request.getAttribute("alloy:dialog:onBodyContentChange");
-java.lang.String _onBoundingBoxChange = (java.lang.String)request.getAttribute("alloy:dialog:onBoundingBoxChange");
-java.lang.String _onButtonsChange = (java.lang.String)request.getAttribute("alloy:dialog:onButtonsChange");
-java.lang.String _onCloseChange = (java.lang.String)request.getAttribute("alloy:dialog:onCloseChange");
-java.lang.String _onCollapsedChange = (java.lang.String)request.getAttribute("alloy:dialog:onCollapsedChange");
-java.lang.String _onCollapsibleChange = (java.lang.String)request.getAttribute("alloy:dialog:onCollapsibleChange");
-java.lang.String _onConstrain2viewChange = (java.lang.String)request.getAttribute("alloy:dialog:onConstrain2viewChange");
-java.lang.String _onContentBoxChange = (java.lang.String)request.getAttribute("alloy:dialog:onContentBoxChange");
-java.lang.String _onCssClassChange = (java.lang.String)request.getAttribute("alloy:dialog:onCssClassChange");
-java.lang.String _onDestroy = (java.lang.String)request.getAttribute("alloy:dialog:onDestroy");
-java.lang.String _onDestroyOnCloseChange = (java.lang.String)request.getAttribute("alloy:dialog:onDestroyOnCloseChange");
-java.lang.String _onDestroyedChange = (java.lang.String)request.getAttribute("alloy:dialog:onDestroyedChange");
-java.lang.String _onDisabledChange = (java.lang.String)request.getAttribute("alloy:dialog:onDisabledChange");
-java.lang.String _onDragInstanceChange = (java.lang.String)request.getAttribute("alloy:dialog:onDragInstanceChange");
-java.lang.String _onDraggableChange = (java.lang.String)request.getAttribute("alloy:dialog:onDraggableChange");
-java.lang.String _onFillHeightChange = (java.lang.String)request.getAttribute("alloy:dialog:onFillHeightChange");
-java.lang.String _onFocusedChange = (java.lang.String)request.getAttribute("alloy:dialog:onFocusedChange");
-java.lang.String _onFooterContentChange = (java.lang.String)request.getAttribute("alloy:dialog:onFooterContentChange");
-java.lang.String _onHeaderContentChange = (java.lang.String)request.getAttribute("alloy:dialog:onHeaderContentChange");
-java.lang.String _onHeightChange = (java.lang.String)request.getAttribute("alloy:dialog:onHeightChange");
-java.lang.String _onHideClassChange = (java.lang.String)request.getAttribute("alloy:dialog:onHideClassChange");
-java.lang.String _onIconsChange = (java.lang.String)request.getAttribute("alloy:dialog:onIconsChange");
-java.lang.String _onIdChange = (java.lang.String)request.getAttribute("alloy:dialog:onIdChange");
-java.lang.String _onInit = (java.lang.String)request.getAttribute("alloy:dialog:onInit");
-java.lang.String _onInitializedChange = (java.lang.String)request.getAttribute("alloy:dialog:onInitializedChange");
-java.lang.String _onModalChange = (java.lang.String)request.getAttribute("alloy:dialog:onModalChange");
-java.lang.String _onRenderChange = (java.lang.String)request.getAttribute("alloy:dialog:onRenderChange");
-java.lang.String _onRenderedChange = (java.lang.String)request.getAttribute("alloy:dialog:onRenderedChange");
-java.lang.String _onResizableChange = (java.lang.String)request.getAttribute("alloy:dialog:onResizableChange");
-java.lang.String _onResizableInstanceChange = (java.lang.String)request.getAttribute("alloy:dialog:onResizableInstanceChange");
-java.lang.String _onSrcNodeChange = (java.lang.String)request.getAttribute("alloy:dialog:onSrcNodeChange");
-java.lang.String _onStackChange = (java.lang.String)request.getAttribute("alloy:dialog:onStackChange");
-java.lang.String _onStringsChange = (java.lang.String)request.getAttribute("alloy:dialog:onStringsChange");
-java.lang.String _onTabIndexChange = (java.lang.String)request.getAttribute("alloy:dialog:onTabIndexChange");
-java.lang.String _onTitleChange = (java.lang.String)request.getAttribute("alloy:dialog:onTitleChange");
-java.lang.String _onVisibleChange = (java.lang.String)request.getAttribute("alloy:dialog:onVisibleChange");
-java.lang.String _onContentUpdate = (java.lang.String)request.getAttribute("alloy:dialog:onContentUpdate");
-java.lang.String _onRender = (java.lang.String)request.getAttribute("alloy:dialog:onRender");
-java.lang.String _onWidthChange = (java.lang.String)request.getAttribute("alloy:dialog:onWidthChange");
+java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:dialog:tabIndex"));
+java.lang.String _title = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:title"));
+java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:visible"));
+java.lang.String _width = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:width"));
+java.lang.String _afterBodyContentChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterBodyContentChange"));
+java.lang.String _afterBoundingBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterBoundingBoxChange"));
+java.lang.String _afterButtonsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterButtonsChange"));
+java.lang.String _afterCloseChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterCloseChange"));
+java.lang.String _afterCollapsedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterCollapsedChange"));
+java.lang.String _afterCollapsibleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterCollapsibleChange"));
+java.lang.String _afterConstrain2viewChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterConstrain2viewChange"));
+java.lang.String _afterContentBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterContentBoxChange"));
+java.lang.String _afterCssClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterCssClassChange"));
+java.lang.String _afterDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterDestroy"));
+java.lang.String _afterDestroyOnCloseChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterDestroyOnCloseChange"));
+java.lang.String _afterDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterDestroyedChange"));
+java.lang.String _afterDisabledChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterDisabledChange"));
+java.lang.String _afterDragInstanceChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterDragInstanceChange"));
+java.lang.String _afterDraggableChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterDraggableChange"));
+java.lang.String _afterFillHeightChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterFillHeightChange"));
+java.lang.String _afterFocusedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterFocusedChange"));
+java.lang.String _afterFooterContentChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterFooterContentChange"));
+java.lang.String _afterHeaderContentChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterHeaderContentChange"));
+java.lang.String _afterHeightChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterHeightChange"));
+java.lang.String _afterHideClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterHideClassChange"));
+java.lang.String _afterIconsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterIconsChange"));
+java.lang.String _afterIdChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterIdChange"));
+java.lang.String _afterInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterInit"));
+java.lang.String _afterInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterInitializedChange"));
+java.lang.String _afterModalChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterModalChange"));
+java.lang.String _afterRenderChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterRenderChange"));
+java.lang.String _afterRenderedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterRenderedChange"));
+java.lang.String _afterResizableChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterResizableChange"));
+java.lang.String _afterResizableInstanceChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterResizableInstanceChange"));
+java.lang.String _afterSrcNodeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterSrcNodeChange"));
+java.lang.String _afterStackChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterStackChange"));
+java.lang.String _afterStringsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterStringsChange"));
+java.lang.String _afterTabIndexChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterTabIndexChange"));
+java.lang.String _afterTitleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterTitleChange"));
+java.lang.String _afterVisibleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterVisibleChange"));
+java.lang.String _afterContentUpdate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterContentUpdate"));
+java.lang.String _afterRender = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterRender"));
+java.lang.String _afterWidthChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterWidthChange"));
+java.lang.String _onBodyContentChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onBodyContentChange"));
+java.lang.String _onBoundingBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onBoundingBoxChange"));
+java.lang.String _onButtonsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onButtonsChange"));
+java.lang.String _onCloseChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onCloseChange"));
+java.lang.String _onCollapsedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onCollapsedChange"));
+java.lang.String _onCollapsibleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onCollapsibleChange"));
+java.lang.String _onConstrain2viewChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onConstrain2viewChange"));
+java.lang.String _onContentBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onContentBoxChange"));
+java.lang.String _onCssClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onCssClassChange"));
+java.lang.String _onDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onDestroy"));
+java.lang.String _onDestroyOnCloseChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onDestroyOnCloseChange"));
+java.lang.String _onDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onDestroyedChange"));
+java.lang.String _onDisabledChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onDisabledChange"));
+java.lang.String _onDragInstanceChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onDragInstanceChange"));
+java.lang.String _onDraggableChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onDraggableChange"));
+java.lang.String _onFillHeightChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onFillHeightChange"));
+java.lang.String _onFocusedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onFocusedChange"));
+java.lang.String _onFooterContentChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onFooterContentChange"));
+java.lang.String _onHeaderContentChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onHeaderContentChange"));
+java.lang.String _onHeightChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onHeightChange"));
+java.lang.String _onHideClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onHideClassChange"));
+java.lang.String _onIconsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onIconsChange"));
+java.lang.String _onIdChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onIdChange"));
+java.lang.String _onInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onInit"));
+java.lang.String _onInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onInitializedChange"));
+java.lang.String _onModalChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onModalChange"));
+java.lang.String _onRenderChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onRenderChange"));
+java.lang.String _onRenderedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onRenderedChange"));
+java.lang.String _onResizableChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onResizableChange"));
+java.lang.String _onResizableInstanceChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onResizableInstanceChange"));
+java.lang.String _onSrcNodeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onSrcNodeChange"));
+java.lang.String _onStackChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onStackChange"));
+java.lang.String _onStringsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onStringsChange"));
+java.lang.String _onTabIndexChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onTabIndexChange"));
+java.lang.String _onTitleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onTitleChange"));
+java.lang.String _onVisibleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onVisibleChange"));
+java.lang.String _onContentUpdate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onContentUpdate"));
+java.lang.String _onRender = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onRender"));
+java.lang.String _onWidthChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:onWidthChange"));
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (_dialogBodyContent != null) {
+if (request.getAttribute("alloy:dialog:dialogBodyContent") != null) {
 	scopedAttributes.put("dialogBodyContent", _dialogBodyContent);
 }
 
-if (_boundingBox != null) {
+if (request.getAttribute("alloy:dialog:boundingBox") != null) {
 	scopedAttributes.put("boundingBox", _boundingBox);
 }
 
-if (_buttons != null) {
+if (request.getAttribute("alloy:dialog:buttons") != null) {
 	scopedAttributes.put("buttons", _buttons);
 }
 
-if (_close != null) {
+if (request.getAttribute("alloy:dialog:close") != null) {
 	scopedAttributes.put("close", _close);
 }
 
-if (_collapsed != null) {
+if (request.getAttribute("alloy:dialog:collapsed") != null) {
 	scopedAttributes.put("collapsed", _collapsed);
 }
 
-if (_collapsible != null) {
+if (request.getAttribute("alloy:dialog:collapsible") != null) {
 	scopedAttributes.put("collapsible", _collapsible);
 }
 
-if (_constrain2view != null) {
+if (request.getAttribute("alloy:dialog:constrain2view") != null) {
 	scopedAttributes.put("constrain2view", _constrain2view);
 }
 
-if (_contentBox != null) {
+if (request.getAttribute("alloy:dialog:contentBox") != null) {
 	scopedAttributes.put("contentBox", _contentBox);
 }
 
-if (_cssClass != null) {
+if (request.getAttribute("alloy:dialog:cssClass") != null) {
 	scopedAttributes.put("cssClass", _cssClass);
 }
 
-if (_destroyOnClose != null) {
+if (request.getAttribute("alloy:dialog:destroyOnClose") != null) {
 	scopedAttributes.put("destroyOnClose", _destroyOnClose);
 }
 
-if (_destroyed != null) {
+if (request.getAttribute("alloy:dialog:destroyed") != null) {
 	scopedAttributes.put("destroyed", _destroyed);
 }
 
-if (_disabled != null) {
+if (request.getAttribute("alloy:dialog:disabled") != null) {
 	scopedAttributes.put("disabled", _disabled);
 }
 
-if (_dragInstance != null) {
+if (request.getAttribute("alloy:dialog:dragInstance") != null) {
 	scopedAttributes.put("dragInstance", _dragInstance);
 }
 
-if (_draggable != null) {
+if (request.getAttribute("alloy:dialog:draggable") != null) {
 	scopedAttributes.put("draggable", _draggable);
 }
 
-if (_fillHeight != null) {
+if (request.getAttribute("alloy:dialog:fillHeight") != null) {
 	scopedAttributes.put("fillHeight", _fillHeight);
 }
 
-if (_focused != null) {
+if (request.getAttribute("alloy:dialog:focused") != null) {
 	scopedAttributes.put("focused", _focused);
 }
 
-if (_footerContent != null) {
+if (request.getAttribute("alloy:dialog:footerContent") != null) {
 	scopedAttributes.put("footerContent", _footerContent);
 }
 
-if (_headerContent != null) {
+if (request.getAttribute("alloy:dialog:headerContent") != null) {
 	scopedAttributes.put("headerContent", _headerContent);
 }
 
-if (_height != null) {
+if (request.getAttribute("alloy:dialog:height") != null) {
 	scopedAttributes.put("height", _height);
 }
 
-if (_hideClass != null) {
+if (request.getAttribute("alloy:dialog:hideClass") != null) {
 	scopedAttributes.put("hideClass", _hideClass);
 }
 
-if (_icons != null) {
+if (request.getAttribute("alloy:dialog:icons") != null) {
 	scopedAttributes.put("icons", _icons);
 }
 
-if (_dialogId != null) {
+if (request.getAttribute("alloy:dialog:dialogId") != null) {
 	scopedAttributes.put("dialogId", _dialogId);
 }
 
-if (_initialized != null) {
+if (request.getAttribute("alloy:dialog:initialized") != null) {
 	scopedAttributes.put("initialized", _initialized);
 }
 
-if (_modal != null) {
+if (request.getAttribute("alloy:dialog:modal") != null) {
 	scopedAttributes.put("modal", _modal);
 }
 
-if (_render != null) {
+if (request.getAttribute("alloy:dialog:render") != null) {
 	scopedAttributes.put("render", _render);
 }
 
-if (_rendered != null) {
+if (request.getAttribute("alloy:dialog:rendered") != null) {
 	scopedAttributes.put("rendered", _rendered);
 }
 
-if (_resizable != null) {
+if (request.getAttribute("alloy:dialog:resizable") != null) {
 	scopedAttributes.put("resizable", _resizable);
 }
 
-if (_resizableInstance != null) {
+if (request.getAttribute("alloy:dialog:resizableInstance") != null) {
 	scopedAttributes.put("resizableInstance", _resizableInstance);
 }
 
-if (_srcNode != null) {
+if (request.getAttribute("alloy:dialog:srcNode") != null) {
 	scopedAttributes.put("srcNode", _srcNode);
 }
 
-if (_stack != null) {
+if (request.getAttribute("alloy:dialog:stack") != null) {
 	scopedAttributes.put("stack", _stack);
 }
 
-if (_strings != null) {
+if (request.getAttribute("alloy:dialog:strings") != null) {
 	scopedAttributes.put("strings", _strings);
 }
 
-if (_tabIndex != null) {
+if (request.getAttribute("alloy:dialog:tabIndex") != null) {
 	scopedAttributes.put("tabIndex", _tabIndex);
 }
 
-if (_title != null) {
+if (request.getAttribute("alloy:dialog:title") != null) {
 	scopedAttributes.put("title", _title);
 }
 
-if (_visible != null) {
+if (request.getAttribute("alloy:dialog:visible") != null) {
 	scopedAttributes.put("visible", _visible);
 }
 
-if (_width != null) {
+if (request.getAttribute("alloy:dialog:width") != null) {
 	scopedAttributes.put("width", _width);
 }
 
-if (_afterBodyContentChange != null) {
+if (request.getAttribute("alloy:dialog:afterBodyContentChange") != null) {
 	scopedAttributes.put("afterBodyContentChange", _afterBodyContentChange);
 }
 
-if (_afterBoundingBoxChange != null) {
+if (request.getAttribute("alloy:dialog:afterBoundingBoxChange") != null) {
 	scopedAttributes.put("afterBoundingBoxChange", _afterBoundingBoxChange);
 }
 
-if (_afterButtonsChange != null) {
+if (request.getAttribute("alloy:dialog:afterButtonsChange") != null) {
 	scopedAttributes.put("afterButtonsChange", _afterButtonsChange);
 }
 
-if (_afterCloseChange != null) {
+if (request.getAttribute("alloy:dialog:afterCloseChange") != null) {
 	scopedAttributes.put("afterCloseChange", _afterCloseChange);
 }
 
-if (_afterCollapsedChange != null) {
+if (request.getAttribute("alloy:dialog:afterCollapsedChange") != null) {
 	scopedAttributes.put("afterCollapsedChange", _afterCollapsedChange);
 }
 
-if (_afterCollapsibleChange != null) {
+if (request.getAttribute("alloy:dialog:afterCollapsibleChange") != null) {
 	scopedAttributes.put("afterCollapsibleChange", _afterCollapsibleChange);
 }
 
-if (_afterConstrain2viewChange != null) {
+if (request.getAttribute("alloy:dialog:afterConstrain2viewChange") != null) {
 	scopedAttributes.put("afterConstrain2viewChange", _afterConstrain2viewChange);
 }
 
-if (_afterContentBoxChange != null) {
+if (request.getAttribute("alloy:dialog:afterContentBoxChange") != null) {
 	scopedAttributes.put("afterContentBoxChange", _afterContentBoxChange);
 }
 
-if (_afterCssClassChange != null) {
+if (request.getAttribute("alloy:dialog:afterCssClassChange") != null) {
 	scopedAttributes.put("afterCssClassChange", _afterCssClassChange);
 }
 
-if (_afterDestroy != null) {
+if (request.getAttribute("alloy:dialog:afterDestroy") != null) {
 	scopedAttributes.put("afterDestroy", _afterDestroy);
 }
 
-if (_afterDestroyOnCloseChange != null) {
+if (request.getAttribute("alloy:dialog:afterDestroyOnCloseChange") != null) {
 	scopedAttributes.put("afterDestroyOnCloseChange", _afterDestroyOnCloseChange);
 }
 
-if (_afterDestroyedChange != null) {
+if (request.getAttribute("alloy:dialog:afterDestroyedChange") != null) {
 	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
 }
 
-if (_afterDisabledChange != null) {
+if (request.getAttribute("alloy:dialog:afterDisabledChange") != null) {
 	scopedAttributes.put("afterDisabledChange", _afterDisabledChange);
 }
 
-if (_afterDragInstanceChange != null) {
+if (request.getAttribute("alloy:dialog:afterDragInstanceChange") != null) {
 	scopedAttributes.put("afterDragInstanceChange", _afterDragInstanceChange);
 }
 
-if (_afterDraggableChange != null) {
+if (request.getAttribute("alloy:dialog:afterDraggableChange") != null) {
 	scopedAttributes.put("afterDraggableChange", _afterDraggableChange);
 }
 
-if (_afterFillHeightChange != null) {
+if (request.getAttribute("alloy:dialog:afterFillHeightChange") != null) {
 	scopedAttributes.put("afterFillHeightChange", _afterFillHeightChange);
 }
 
-if (_afterFocusedChange != null) {
+if (request.getAttribute("alloy:dialog:afterFocusedChange") != null) {
 	scopedAttributes.put("afterFocusedChange", _afterFocusedChange);
 }
 
-if (_afterFooterContentChange != null) {
+if (request.getAttribute("alloy:dialog:afterFooterContentChange") != null) {
 	scopedAttributes.put("afterFooterContentChange", _afterFooterContentChange);
 }
 
-if (_afterHeaderContentChange != null) {
+if (request.getAttribute("alloy:dialog:afterHeaderContentChange") != null) {
 	scopedAttributes.put("afterHeaderContentChange", _afterHeaderContentChange);
 }
 
-if (_afterHeightChange != null) {
+if (request.getAttribute("alloy:dialog:afterHeightChange") != null) {
 	scopedAttributes.put("afterHeightChange", _afterHeightChange);
 }
 
-if (_afterHideClassChange != null) {
+if (request.getAttribute("alloy:dialog:afterHideClassChange") != null) {
 	scopedAttributes.put("afterHideClassChange", _afterHideClassChange);
 }
 
-if (_afterIconsChange != null) {
+if (request.getAttribute("alloy:dialog:afterIconsChange") != null) {
 	scopedAttributes.put("afterIconsChange", _afterIconsChange);
 }
 
-if (_afterIdChange != null) {
+if (request.getAttribute("alloy:dialog:afterIdChange") != null) {
 	scopedAttributes.put("afterIdChange", _afterIdChange);
 }
 
-if (_afterInit != null) {
+if (request.getAttribute("alloy:dialog:afterInit") != null) {
 	scopedAttributes.put("afterInit", _afterInit);
 }
 
-if (_afterInitializedChange != null) {
+if (request.getAttribute("alloy:dialog:afterInitializedChange") != null) {
 	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
 }
 
-if (_afterModalChange != null) {
+if (request.getAttribute("alloy:dialog:afterModalChange") != null) {
 	scopedAttributes.put("afterModalChange", _afterModalChange);
 }
 
-if (_afterRenderChange != null) {
+if (request.getAttribute("alloy:dialog:afterRenderChange") != null) {
 	scopedAttributes.put("afterRenderChange", _afterRenderChange);
 }
 
-if (_afterRenderedChange != null) {
+if (request.getAttribute("alloy:dialog:afterRenderedChange") != null) {
 	scopedAttributes.put("afterRenderedChange", _afterRenderedChange);
 }
 
-if (_afterResizableChange != null) {
+if (request.getAttribute("alloy:dialog:afterResizableChange") != null) {
 	scopedAttributes.put("afterResizableChange", _afterResizableChange);
 }
 
-if (_afterResizableInstanceChange != null) {
+if (request.getAttribute("alloy:dialog:afterResizableInstanceChange") != null) {
 	scopedAttributes.put("afterResizableInstanceChange", _afterResizableInstanceChange);
 }
 
-if (_afterSrcNodeChange != null) {
+if (request.getAttribute("alloy:dialog:afterSrcNodeChange") != null) {
 	scopedAttributes.put("afterSrcNodeChange", _afterSrcNodeChange);
 }
 
-if (_afterStackChange != null) {
+if (request.getAttribute("alloy:dialog:afterStackChange") != null) {
 	scopedAttributes.put("afterStackChange", _afterStackChange);
 }
 
-if (_afterStringsChange != null) {
+if (request.getAttribute("alloy:dialog:afterStringsChange") != null) {
 	scopedAttributes.put("afterStringsChange", _afterStringsChange);
 }
 
-if (_afterTabIndexChange != null) {
+if (request.getAttribute("alloy:dialog:afterTabIndexChange") != null) {
 	scopedAttributes.put("afterTabIndexChange", _afterTabIndexChange);
 }
 
-if (_afterTitleChange != null) {
+if (request.getAttribute("alloy:dialog:afterTitleChange") != null) {
 	scopedAttributes.put("afterTitleChange", _afterTitleChange);
 }
 
-if (_afterVisibleChange != null) {
+if (request.getAttribute("alloy:dialog:afterVisibleChange") != null) {
 	scopedAttributes.put("afterVisibleChange", _afterVisibleChange);
 }
 
-if (_afterContentUpdate != null) {
+if (request.getAttribute("alloy:dialog:afterContentUpdate") != null) {
 	scopedAttributes.put("afterContentUpdate", _afterContentUpdate);
 }
 
-if (_afterRender != null) {
+if (request.getAttribute("alloy:dialog:afterRender") != null) {
 	scopedAttributes.put("afterRender", _afterRender);
 }
 
-if (_afterWidthChange != null) {
+if (request.getAttribute("alloy:dialog:afterWidthChange") != null) {
 	scopedAttributes.put("afterWidthChange", _afterWidthChange);
 }
 
-if (_onBodyContentChange != null) {
+if (request.getAttribute("alloy:dialog:onBodyContentChange") != null) {
 	scopedAttributes.put("onBodyContentChange", _onBodyContentChange);
 }
 
-if (_onBoundingBoxChange != null) {
+if (request.getAttribute("alloy:dialog:onBoundingBoxChange") != null) {
 	scopedAttributes.put("onBoundingBoxChange", _onBoundingBoxChange);
 }
 
-if (_onButtonsChange != null) {
+if (request.getAttribute("alloy:dialog:onButtonsChange") != null) {
 	scopedAttributes.put("onButtonsChange", _onButtonsChange);
 }
 
-if (_onCloseChange != null) {
+if (request.getAttribute("alloy:dialog:onCloseChange") != null) {
 	scopedAttributes.put("onCloseChange", _onCloseChange);
 }
 
-if (_onCollapsedChange != null) {
+if (request.getAttribute("alloy:dialog:onCollapsedChange") != null) {
 	scopedAttributes.put("onCollapsedChange", _onCollapsedChange);
 }
 
-if (_onCollapsibleChange != null) {
+if (request.getAttribute("alloy:dialog:onCollapsibleChange") != null) {
 	scopedAttributes.put("onCollapsibleChange", _onCollapsibleChange);
 }
 
-if (_onConstrain2viewChange != null) {
+if (request.getAttribute("alloy:dialog:onConstrain2viewChange") != null) {
 	scopedAttributes.put("onConstrain2viewChange", _onConstrain2viewChange);
 }
 
-if (_onContentBoxChange != null) {
+if (request.getAttribute("alloy:dialog:onContentBoxChange") != null) {
 	scopedAttributes.put("onContentBoxChange", _onContentBoxChange);
 }
 
-if (_onCssClassChange != null) {
+if (request.getAttribute("alloy:dialog:onCssClassChange") != null) {
 	scopedAttributes.put("onCssClassChange", _onCssClassChange);
 }
 
-if (_onDestroy != null) {
+if (request.getAttribute("alloy:dialog:onDestroy") != null) {
 	scopedAttributes.put("onDestroy", _onDestroy);
 }
 
-if (_onDestroyOnCloseChange != null) {
+if (request.getAttribute("alloy:dialog:onDestroyOnCloseChange") != null) {
 	scopedAttributes.put("onDestroyOnCloseChange", _onDestroyOnCloseChange);
 }
 
-if (_onDestroyedChange != null) {
+if (request.getAttribute("alloy:dialog:onDestroyedChange") != null) {
 	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
 }
 
-if (_onDisabledChange != null) {
+if (request.getAttribute("alloy:dialog:onDisabledChange") != null) {
 	scopedAttributes.put("onDisabledChange", _onDisabledChange);
 }
 
-if (_onDragInstanceChange != null) {
+if (request.getAttribute("alloy:dialog:onDragInstanceChange") != null) {
 	scopedAttributes.put("onDragInstanceChange", _onDragInstanceChange);
 }
 
-if (_onDraggableChange != null) {
+if (request.getAttribute("alloy:dialog:onDraggableChange") != null) {
 	scopedAttributes.put("onDraggableChange", _onDraggableChange);
 }
 
-if (_onFillHeightChange != null) {
+if (request.getAttribute("alloy:dialog:onFillHeightChange") != null) {
 	scopedAttributes.put("onFillHeightChange", _onFillHeightChange);
 }
 
-if (_onFocusedChange != null) {
+if (request.getAttribute("alloy:dialog:onFocusedChange") != null) {
 	scopedAttributes.put("onFocusedChange", _onFocusedChange);
 }
 
-if (_onFooterContentChange != null) {
+if (request.getAttribute("alloy:dialog:onFooterContentChange") != null) {
 	scopedAttributes.put("onFooterContentChange", _onFooterContentChange);
 }
 
-if (_onHeaderContentChange != null) {
+if (request.getAttribute("alloy:dialog:onHeaderContentChange") != null) {
 	scopedAttributes.put("onHeaderContentChange", _onHeaderContentChange);
 }
 
-if (_onHeightChange != null) {
+if (request.getAttribute("alloy:dialog:onHeightChange") != null) {
 	scopedAttributes.put("onHeightChange", _onHeightChange);
 }
 
-if (_onHideClassChange != null) {
+if (request.getAttribute("alloy:dialog:onHideClassChange") != null) {
 	scopedAttributes.put("onHideClassChange", _onHideClassChange);
 }
 
-if (_onIconsChange != null) {
+if (request.getAttribute("alloy:dialog:onIconsChange") != null) {
 	scopedAttributes.put("onIconsChange", _onIconsChange);
 }
 
-if (_onIdChange != null) {
+if (request.getAttribute("alloy:dialog:onIdChange") != null) {
 	scopedAttributes.put("onIdChange", _onIdChange);
 }
 
-if (_onInit != null) {
+if (request.getAttribute("alloy:dialog:onInit") != null) {
 	scopedAttributes.put("onInit", _onInit);
 }
 
-if (_onInitializedChange != null) {
+if (request.getAttribute("alloy:dialog:onInitializedChange") != null) {
 	scopedAttributes.put("onInitializedChange", _onInitializedChange);
 }
 
-if (_onModalChange != null) {
+if (request.getAttribute("alloy:dialog:onModalChange") != null) {
 	scopedAttributes.put("onModalChange", _onModalChange);
 }
 
-if (_onRenderChange != null) {
+if (request.getAttribute("alloy:dialog:onRenderChange") != null) {
 	scopedAttributes.put("onRenderChange", _onRenderChange);
 }
 
-if (_onRenderedChange != null) {
+if (request.getAttribute("alloy:dialog:onRenderedChange") != null) {
 	scopedAttributes.put("onRenderedChange", _onRenderedChange);
 }
 
-if (_onResizableChange != null) {
+if (request.getAttribute("alloy:dialog:onResizableChange") != null) {
 	scopedAttributes.put("onResizableChange", _onResizableChange);
 }
 
-if (_onResizableInstanceChange != null) {
+if (request.getAttribute("alloy:dialog:onResizableInstanceChange") != null) {
 	scopedAttributes.put("onResizableInstanceChange", _onResizableInstanceChange);
 }
 
-if (_onSrcNodeChange != null) {
+if (request.getAttribute("alloy:dialog:onSrcNodeChange") != null) {
 	scopedAttributes.put("onSrcNodeChange", _onSrcNodeChange);
 }
 
-if (_onStackChange != null) {
+if (request.getAttribute("alloy:dialog:onStackChange") != null) {
 	scopedAttributes.put("onStackChange", _onStackChange);
 }
 
-if (_onStringsChange != null) {
+if (request.getAttribute("alloy:dialog:onStringsChange") != null) {
 	scopedAttributes.put("onStringsChange", _onStringsChange);
 }
 
-if (_onTabIndexChange != null) {
+if (request.getAttribute("alloy:dialog:onTabIndexChange") != null) {
 	scopedAttributes.put("onTabIndexChange", _onTabIndexChange);
 }
 
-if (_onTitleChange != null) {
+if (request.getAttribute("alloy:dialog:onTitleChange") != null) {
 	scopedAttributes.put("onTitleChange", _onTitleChange);
 }
 
-if (_onVisibleChange != null) {
+if (request.getAttribute("alloy:dialog:onVisibleChange") != null) {
 	scopedAttributes.put("onVisibleChange", _onVisibleChange);
 }
 
-if (_onContentUpdate != null) {
+if (request.getAttribute("alloy:dialog:onContentUpdate") != null) {
 	scopedAttributes.put("onContentUpdate", _onContentUpdate);
 }
 
-if (_onRender != null) {
+if (request.getAttribute("alloy:dialog:onRender") != null) {
 	scopedAttributes.put("onRender", _onRender);
 }
 
-if (_onWidthChange != null) {
+if (request.getAttribute("alloy:dialog:onWidthChange") != null) {
 	scopedAttributes.put("onWidthChange", _onWidthChange);
 }
 

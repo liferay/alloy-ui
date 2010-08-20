@@ -24,11 +24,11 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.Boolean getAlwaysShowHitArea() {
+	public java.lang.String getAlwaysShowHitArea() {
 		return _alwaysShowHitArea;
 	}
 
-	public java.lang.Boolean getCache() {
+	public java.lang.String getCache() {
 		return _cache;
 	}
 
@@ -44,7 +44,7 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		return _checkName;
 	}
 
-	public java.lang.Boolean getChecked() {
+	public java.lang.String getChecked() {
 		return _checked;
 	}
 
@@ -56,15 +56,15 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		return _container;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public java.lang.String getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDraggable() {
+	public java.lang.String getDraggable() {
 		return _draggable;
 	}
 
-	public java.lang.Boolean getExpanded() {
+	public java.lang.String getExpanded() {
 		return _expanded;
 	}
 
@@ -84,7 +84,7 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		return _index;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public java.lang.String getInitialized() {
 		return _initialized;
 	}
 
@@ -100,15 +100,15 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		return _labelEl;
 	}
 
-	public java.lang.Boolean getLeaf() {
+	public java.lang.String getLeaf() {
 		return _leaf;
 	}
 
-	public java.lang.Boolean getLoaded() {
+	public java.lang.String getLoaded() {
 		return _loaded;
 	}
 
-	public java.lang.Boolean getLoading() {
+	public java.lang.String getLoading() {
 		return _loading;
 	}
 
@@ -352,13 +352,13 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		return _onPrevSiblingChange;
 	}
 
-	public void setAlwaysShowHitArea(java.lang.Boolean alwaysShowHitArea) {
+	public void setAlwaysShowHitArea(java.lang.String alwaysShowHitArea) {
 		_alwaysShowHitArea = alwaysShowHitArea;
 
 		setScopedAttribute("alwaysShowHitArea", alwaysShowHitArea);
 	}
 
-	public void setCache(java.lang.Boolean cache) {
+	public void setCache(java.lang.String cache) {
 		_cache = cache;
 
 		setScopedAttribute("cache", cache);
@@ -382,7 +382,7 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		setScopedAttribute("checkName", checkName);
 	}
 
-	public void setChecked(java.lang.Boolean checked) {
+	public void setChecked(java.lang.String checked) {
 		_checked = checked;
 
 		setScopedAttribute("checked", checked);
@@ -400,19 +400,19 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		setScopedAttribute("container", container);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(java.lang.String destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDraggable(java.lang.Boolean draggable) {
+	public void setDraggable(java.lang.String draggable) {
 		_draggable = draggable;
 
 		setScopedAttribute("draggable", draggable);
 	}
 
-	public void setExpanded(java.lang.Boolean expanded) {
+	public void setExpanded(java.lang.String expanded) {
 		_expanded = expanded;
 
 		setScopedAttribute("expanded", expanded);
@@ -442,7 +442,7 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		setScopedAttribute("index", index);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(java.lang.String initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -466,19 +466,19 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		setScopedAttribute("labelEl", labelEl);
 	}
 
-	public void setLeaf(java.lang.Boolean leaf) {
+	public void setLeaf(java.lang.String leaf) {
 		_leaf = leaf;
 
 		setScopedAttribute("leaf", leaf);
 	}
 
-	public void setLoaded(java.lang.Boolean loaded) {
+	public void setLoaded(java.lang.String loaded) {
 		_loaded = loaded;
 
 		setScopedAttribute("loaded", loaded);
 	}
 
-	public void setLoading(java.lang.Boolean loading) {
+	public void setLoading(java.lang.String loading) {
 		_loading = loading;
 
 		setScopedAttribute("loading", loading);
@@ -934,28 +934,28 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/tree_node_task/page.jsp";
 
-	private java.lang.Boolean _alwaysShowHitArea;
-	private java.lang.Boolean _cache;
+	private java.lang.String _alwaysShowHitArea;
+	private java.lang.String _cache;
 	private java.lang.String _checkContainerEl;
 	private java.lang.String _checkEl;
 	private java.lang.String _checkName;
-	private java.lang.Boolean _checked;
+	private java.lang.String _checked;
 	private java.lang.String _children;
 	private java.lang.String _container;
-	private java.lang.Boolean _destroyed;
-	private java.lang.Boolean _draggable;
-	private java.lang.Boolean _expanded;
+	private java.lang.String _destroyed;
+	private java.lang.String _draggable;
+	private java.lang.String _expanded;
 	private java.lang.String _hitAreaEl;
 	private java.lang.String _iconEl;
 	private java.lang.String _treenodetaskId;
 	private java.lang.Object _index;
-	private java.lang.Boolean _initialized;
+	private java.lang.String _initialized;
 	private java.lang.Object _io;
 	private java.lang.String _label;
 	private java.lang.String _labelEl;
-	private java.lang.Boolean _leaf;
-	private java.lang.Boolean _loaded;
-	private java.lang.Boolean _loading;
+	private java.lang.String _leaf;
+	private java.lang.String _loaded;
+	private java.lang.String _loading;
 	private java.lang.String _nextSibling;
 	private java.lang.String _ownerTree;
 	private java.lang.String _parentNode;

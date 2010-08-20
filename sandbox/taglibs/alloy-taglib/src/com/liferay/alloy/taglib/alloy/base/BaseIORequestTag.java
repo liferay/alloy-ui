@@ -24,7 +24,7 @@ public class BaseIORequestTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.Boolean getActive() {
+	public java.lang.String getActive() {
 		return _active;
 	}
 
@@ -32,11 +32,11 @@ public class BaseIORequestTag extends IncludeTag {
 		return _arguments;
 	}
 
-	public java.lang.Boolean getAutoLoad() {
+	public java.lang.String getAutoLoad() {
 		return _autoLoad;
 	}
 
-	public java.lang.Boolean getCache() {
+	public java.lang.String getCache() {
 		return _cache;
 	}
 
@@ -56,7 +56,7 @@ public class BaseIORequestTag extends IncludeTag {
 		return _dataType;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public java.lang.String getDestroyed() {
 		return _destroyed;
 	}
 
@@ -72,7 +72,7 @@ public class BaseIORequestTag extends IncludeTag {
 		return _host;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public java.lang.String getInitialized() {
 		return _initialized;
 	}
 
@@ -84,11 +84,11 @@ public class BaseIORequestTag extends IncludeTag {
 		return _responseData;
 	}
 
-	public java.lang.Boolean getSync() {
+	public java.lang.String getSync() {
 		return _sync;
 	}
 
-	public java.lang.Number getTimeout() {
+	public java.lang.String getTimeout() {
 		return _timeout;
 	}
 
@@ -328,7 +328,7 @@ public class BaseIORequestTag extends IncludeTag {
 		return _onXdrChange;
 	}
 
-	public void setActive(java.lang.Boolean active) {
+	public void setActive(java.lang.String active) {
 		_active = active;
 
 		setScopedAttribute("active", active);
@@ -340,13 +340,13 @@ public class BaseIORequestTag extends IncludeTag {
 		setScopedAttribute("arguments", arguments);
 	}
 
-	public void setAutoLoad(java.lang.Boolean autoLoad) {
+	public void setAutoLoad(java.lang.String autoLoad) {
 		_autoLoad = autoLoad;
 
 		setScopedAttribute("autoLoad", autoLoad);
 	}
 
-	public void setCache(java.lang.Boolean cache) {
+	public void setCache(java.lang.String cache) {
 		_cache = cache;
 
 		setScopedAttribute("cache", cache);
@@ -376,7 +376,7 @@ public class BaseIORequestTag extends IncludeTag {
 		setScopedAttribute("dataType", dataType);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(java.lang.String destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
@@ -400,7 +400,7 @@ public class BaseIORequestTag extends IncludeTag {
 		setScopedAttribute("host", host);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(java.lang.String initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -418,13 +418,13 @@ public class BaseIORequestTag extends IncludeTag {
 		setScopedAttribute("responseData", responseData);
 	}
 
-	public void setSync(java.lang.Boolean sync) {
+	public void setSync(java.lang.String sync) {
 		_sync = sync;
 
 		setScopedAttribute("sync", sync);
 	}
 
-	public void setTimeout(java.lang.Number timeout) {
+	public void setTimeout(java.lang.String timeout) {
 		_timeout = timeout;
 
 		setScopedAttribute("timeout", timeout);
@@ -868,23 +868,23 @@ public class BaseIORequestTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/io_request/page.jsp";
 
-	private java.lang.Boolean _active;
+	private java.lang.String _active;
 	private java.lang.Object _arguments;
-	private java.lang.Boolean _autoLoad;
-	private java.lang.Boolean _cache;
+	private java.lang.String _autoLoad;
+	private java.lang.String _cache;
 	private java.lang.String _cfg;
 	private java.lang.Object _context;
 	private java.lang.Object _data;
 	private java.lang.String _dataType;
-	private java.lang.Boolean _destroyed;
+	private java.lang.String _destroyed;
 	private java.lang.Object _form;
 	private java.lang.Object _headers;
 	private java.lang.String _host;
-	private java.lang.Boolean _initialized;
+	private java.lang.String _initialized;
 	private java.lang.String _method;
 	private java.lang.String _responseData;
-	private java.lang.Boolean _sync;
-	private java.lang.Number _timeout;
+	private java.lang.String _sync;
+	private java.lang.String _timeout;
 	private java.lang.Object _transaction;
 	private java.lang.String _uri;
 	private java.lang.Object _xdr;

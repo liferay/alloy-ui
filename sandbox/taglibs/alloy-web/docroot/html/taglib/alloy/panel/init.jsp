@@ -4,423 +4,423 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:panel:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:panel:scopedAttributes");
 
-java.lang.String _panelBodyContent = (java.lang.String)request.getAttribute("alloy:panel:panelBodyContent");
-java.lang.String _boundingBox = (java.lang.String)request.getAttribute("alloy:panel:boundingBox");
-java.lang.Boolean _collapsed = (java.lang.Boolean)request.getAttribute("alloy:panel:collapsed");
-java.lang.Boolean _collapsible = (java.lang.Boolean)request.getAttribute("alloy:panel:collapsible");
-java.lang.String _contentBox = (java.lang.String)request.getAttribute("alloy:panel:contentBox");
-java.lang.String _cssClass = (java.lang.String)request.getAttribute("alloy:panel:cssClass");
-java.lang.Boolean _destroyed = (java.lang.Boolean)request.getAttribute("alloy:panel:destroyed");
-java.lang.Boolean _disabled = (java.lang.Boolean)request.getAttribute("alloy:panel:disabled");
-java.lang.String _fillHeight = (java.lang.String)request.getAttribute("alloy:panel:fillHeight");
-java.lang.Boolean _focused = (java.lang.Boolean)request.getAttribute("alloy:panel:focused");
-java.lang.String _footerContent = (java.lang.String)request.getAttribute("alloy:panel:footerContent");
-java.lang.String _headerContent = (java.lang.String)request.getAttribute("alloy:panel:headerContent");
-java.lang.String _height = (java.lang.String)request.getAttribute("alloy:panel:height");
-java.lang.String _hideClass = (java.lang.String)request.getAttribute("alloy:panel:hideClass");
-java.lang.String _icons = (java.lang.String)request.getAttribute("alloy:panel:icons");
-java.lang.String _panelId = (java.lang.String)request.getAttribute("alloy:panel:panelId");
-java.lang.Boolean _initialized = (java.lang.Boolean)request.getAttribute("alloy:panel:initialized");
-java.lang.Boolean _render = (java.lang.Boolean)request.getAttribute("alloy:panel:render");
-java.lang.Boolean _rendered = (java.lang.Boolean)request.getAttribute("alloy:panel:rendered");
-java.lang.String _srcNode = (java.lang.String)request.getAttribute("alloy:panel:srcNode");
+java.lang.String _panelBodyContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:panelBodyContent"));
+java.lang.String _boundingBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:boundingBox"));
+java.lang.Boolean _collapsed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:collapsed"));
+java.lang.Boolean _collapsible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:collapsible"));
+java.lang.String _contentBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:contentBox"));
+java.lang.String _cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:cssClass"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:destroyed"));
+java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:disabled"));
+java.lang.String _fillHeight = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:fillHeight"));
+java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:focused"));
+java.lang.String _footerContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:footerContent"));
+java.lang.String _headerContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:headerContent"));
+java.lang.String _height = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:height"));
+java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:hideClass"));
+java.lang.String _icons = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:icons"));
+java.lang.String _panelId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:panelId"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:initialized"));
+java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:render"));
+java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:rendered"));
+java.lang.String _srcNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:srcNode"));
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:panel:strings");
-java.lang.Number _tabIndex = (java.lang.Number)request.getAttribute("alloy:panel:tabIndex");
-java.lang.String _title = (java.lang.String)request.getAttribute("alloy:panel:title");
-java.lang.Boolean _visible = (java.lang.Boolean)request.getAttribute("alloy:panel:visible");
-java.lang.String _width = (java.lang.String)request.getAttribute("alloy:panel:width");
-java.lang.String _afterBodyContentChange = (java.lang.String)request.getAttribute("alloy:panel:afterBodyContentChange");
-java.lang.String _afterBoundingBoxChange = (java.lang.String)request.getAttribute("alloy:panel:afterBoundingBoxChange");
-java.lang.String _afterCollapsedChange = (java.lang.String)request.getAttribute("alloy:panel:afterCollapsedChange");
-java.lang.String _afterCollapsibleChange = (java.lang.String)request.getAttribute("alloy:panel:afterCollapsibleChange");
-java.lang.String _afterContentBoxChange = (java.lang.String)request.getAttribute("alloy:panel:afterContentBoxChange");
-java.lang.String _afterCssClassChange = (java.lang.String)request.getAttribute("alloy:panel:afterCssClassChange");
-java.lang.String _afterDestroy = (java.lang.String)request.getAttribute("alloy:panel:afterDestroy");
-java.lang.String _afterDestroyedChange = (java.lang.String)request.getAttribute("alloy:panel:afterDestroyedChange");
-java.lang.String _afterDisabledChange = (java.lang.String)request.getAttribute("alloy:panel:afterDisabledChange");
-java.lang.String _afterFillHeightChange = (java.lang.String)request.getAttribute("alloy:panel:afterFillHeightChange");
-java.lang.String _afterFocusedChange = (java.lang.String)request.getAttribute("alloy:panel:afterFocusedChange");
-java.lang.String _afterFooterContentChange = (java.lang.String)request.getAttribute("alloy:panel:afterFooterContentChange");
-java.lang.String _afterHeaderContentChange = (java.lang.String)request.getAttribute("alloy:panel:afterHeaderContentChange");
-java.lang.String _afterHeightChange = (java.lang.String)request.getAttribute("alloy:panel:afterHeightChange");
-java.lang.String _afterHideClassChange = (java.lang.String)request.getAttribute("alloy:panel:afterHideClassChange");
-java.lang.String _afterIconsChange = (java.lang.String)request.getAttribute("alloy:panel:afterIconsChange");
-java.lang.String _afterIdChange = (java.lang.String)request.getAttribute("alloy:panel:afterIdChange");
-java.lang.String _afterInit = (java.lang.String)request.getAttribute("alloy:panel:afterInit");
-java.lang.String _afterInitializedChange = (java.lang.String)request.getAttribute("alloy:panel:afterInitializedChange");
-java.lang.String _afterRenderChange = (java.lang.String)request.getAttribute("alloy:panel:afterRenderChange");
-java.lang.String _afterRenderedChange = (java.lang.String)request.getAttribute("alloy:panel:afterRenderedChange");
-java.lang.String _afterSrcNodeChange = (java.lang.String)request.getAttribute("alloy:panel:afterSrcNodeChange");
-java.lang.String _afterStringsChange = (java.lang.String)request.getAttribute("alloy:panel:afterStringsChange");
-java.lang.String _afterTabIndexChange = (java.lang.String)request.getAttribute("alloy:panel:afterTabIndexChange");
-java.lang.String _afterTitleChange = (java.lang.String)request.getAttribute("alloy:panel:afterTitleChange");
-java.lang.String _afterVisibleChange = (java.lang.String)request.getAttribute("alloy:panel:afterVisibleChange");
-java.lang.String _afterContentUpdate = (java.lang.String)request.getAttribute("alloy:panel:afterContentUpdate");
-java.lang.String _afterRender = (java.lang.String)request.getAttribute("alloy:panel:afterRender");
-java.lang.String _afterWidthChange = (java.lang.String)request.getAttribute("alloy:panel:afterWidthChange");
-java.lang.String _onBodyContentChange = (java.lang.String)request.getAttribute("alloy:panel:onBodyContentChange");
-java.lang.String _onBoundingBoxChange = (java.lang.String)request.getAttribute("alloy:panel:onBoundingBoxChange");
-java.lang.String _onCollapsedChange = (java.lang.String)request.getAttribute("alloy:panel:onCollapsedChange");
-java.lang.String _onCollapsibleChange = (java.lang.String)request.getAttribute("alloy:panel:onCollapsibleChange");
-java.lang.String _onContentBoxChange = (java.lang.String)request.getAttribute("alloy:panel:onContentBoxChange");
-java.lang.String _onCssClassChange = (java.lang.String)request.getAttribute("alloy:panel:onCssClassChange");
-java.lang.String _onDestroy = (java.lang.String)request.getAttribute("alloy:panel:onDestroy");
-java.lang.String _onDestroyedChange = (java.lang.String)request.getAttribute("alloy:panel:onDestroyedChange");
-java.lang.String _onDisabledChange = (java.lang.String)request.getAttribute("alloy:panel:onDisabledChange");
-java.lang.String _onFillHeightChange = (java.lang.String)request.getAttribute("alloy:panel:onFillHeightChange");
-java.lang.String _onFocusedChange = (java.lang.String)request.getAttribute("alloy:panel:onFocusedChange");
-java.lang.String _onFooterContentChange = (java.lang.String)request.getAttribute("alloy:panel:onFooterContentChange");
-java.lang.String _onHeaderContentChange = (java.lang.String)request.getAttribute("alloy:panel:onHeaderContentChange");
-java.lang.String _onHeightChange = (java.lang.String)request.getAttribute("alloy:panel:onHeightChange");
-java.lang.String _onHideClassChange = (java.lang.String)request.getAttribute("alloy:panel:onHideClassChange");
-java.lang.String _onIconsChange = (java.lang.String)request.getAttribute("alloy:panel:onIconsChange");
-java.lang.String _onIdChange = (java.lang.String)request.getAttribute("alloy:panel:onIdChange");
-java.lang.String _onInit = (java.lang.String)request.getAttribute("alloy:panel:onInit");
-java.lang.String _onInitializedChange = (java.lang.String)request.getAttribute("alloy:panel:onInitializedChange");
-java.lang.String _onRenderChange = (java.lang.String)request.getAttribute("alloy:panel:onRenderChange");
-java.lang.String _onRenderedChange = (java.lang.String)request.getAttribute("alloy:panel:onRenderedChange");
-java.lang.String _onSrcNodeChange = (java.lang.String)request.getAttribute("alloy:panel:onSrcNodeChange");
-java.lang.String _onStringsChange = (java.lang.String)request.getAttribute("alloy:panel:onStringsChange");
-java.lang.String _onTabIndexChange = (java.lang.String)request.getAttribute("alloy:panel:onTabIndexChange");
-java.lang.String _onTitleChange = (java.lang.String)request.getAttribute("alloy:panel:onTitleChange");
-java.lang.String _onVisibleChange = (java.lang.String)request.getAttribute("alloy:panel:onVisibleChange");
-java.lang.String _onContentUpdate = (java.lang.String)request.getAttribute("alloy:panel:onContentUpdate");
-java.lang.String _onRender = (java.lang.String)request.getAttribute("alloy:panel:onRender");
-java.lang.String _onWidthChange = (java.lang.String)request.getAttribute("alloy:panel:onWidthChange");
+java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:panel:tabIndex"));
+java.lang.String _title = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:title"));
+java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:visible"));
+java.lang.String _width = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:width"));
+java.lang.String _afterBodyContentChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterBodyContentChange"));
+java.lang.String _afterBoundingBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterBoundingBoxChange"));
+java.lang.String _afterCollapsedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterCollapsedChange"));
+java.lang.String _afterCollapsibleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterCollapsibleChange"));
+java.lang.String _afterContentBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterContentBoxChange"));
+java.lang.String _afterCssClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterCssClassChange"));
+java.lang.String _afterDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterDestroy"));
+java.lang.String _afterDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterDestroyedChange"));
+java.lang.String _afterDisabledChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterDisabledChange"));
+java.lang.String _afterFillHeightChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterFillHeightChange"));
+java.lang.String _afterFocusedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterFocusedChange"));
+java.lang.String _afterFooterContentChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterFooterContentChange"));
+java.lang.String _afterHeaderContentChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterHeaderContentChange"));
+java.lang.String _afterHeightChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterHeightChange"));
+java.lang.String _afterHideClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterHideClassChange"));
+java.lang.String _afterIconsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterIconsChange"));
+java.lang.String _afterIdChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterIdChange"));
+java.lang.String _afterInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterInit"));
+java.lang.String _afterInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterInitializedChange"));
+java.lang.String _afterRenderChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterRenderChange"));
+java.lang.String _afterRenderedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterRenderedChange"));
+java.lang.String _afterSrcNodeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterSrcNodeChange"));
+java.lang.String _afterStringsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterStringsChange"));
+java.lang.String _afterTabIndexChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterTabIndexChange"));
+java.lang.String _afterTitleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterTitleChange"));
+java.lang.String _afterVisibleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterVisibleChange"));
+java.lang.String _afterContentUpdate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterContentUpdate"));
+java.lang.String _afterRender = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterRender"));
+java.lang.String _afterWidthChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterWidthChange"));
+java.lang.String _onBodyContentChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onBodyContentChange"));
+java.lang.String _onBoundingBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onBoundingBoxChange"));
+java.lang.String _onCollapsedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onCollapsedChange"));
+java.lang.String _onCollapsibleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onCollapsibleChange"));
+java.lang.String _onContentBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onContentBoxChange"));
+java.lang.String _onCssClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onCssClassChange"));
+java.lang.String _onDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onDestroy"));
+java.lang.String _onDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onDestroyedChange"));
+java.lang.String _onDisabledChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onDisabledChange"));
+java.lang.String _onFillHeightChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onFillHeightChange"));
+java.lang.String _onFocusedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onFocusedChange"));
+java.lang.String _onFooterContentChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onFooterContentChange"));
+java.lang.String _onHeaderContentChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onHeaderContentChange"));
+java.lang.String _onHeightChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onHeightChange"));
+java.lang.String _onHideClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onHideClassChange"));
+java.lang.String _onIconsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onIconsChange"));
+java.lang.String _onIdChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onIdChange"));
+java.lang.String _onInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onInit"));
+java.lang.String _onInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onInitializedChange"));
+java.lang.String _onRenderChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onRenderChange"));
+java.lang.String _onRenderedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onRenderedChange"));
+java.lang.String _onSrcNodeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onSrcNodeChange"));
+java.lang.String _onStringsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onStringsChange"));
+java.lang.String _onTabIndexChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onTabIndexChange"));
+java.lang.String _onTitleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onTitleChange"));
+java.lang.String _onVisibleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onVisibleChange"));
+java.lang.String _onContentUpdate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onContentUpdate"));
+java.lang.String _onRender = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onRender"));
+java.lang.String _onWidthChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:onWidthChange"));
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (_panelBodyContent != null) {
+if (request.getAttribute("alloy:panel:panelBodyContent") != null) {
 	scopedAttributes.put("panelBodyContent", _panelBodyContent);
 }
 
-if (_boundingBox != null) {
+if (request.getAttribute("alloy:panel:boundingBox") != null) {
 	scopedAttributes.put("boundingBox", _boundingBox);
 }
 
-if (_collapsed != null) {
+if (request.getAttribute("alloy:panel:collapsed") != null) {
 	scopedAttributes.put("collapsed", _collapsed);
 }
 
-if (_collapsible != null) {
+if (request.getAttribute("alloy:panel:collapsible") != null) {
 	scopedAttributes.put("collapsible", _collapsible);
 }
 
-if (_contentBox != null) {
+if (request.getAttribute("alloy:panel:contentBox") != null) {
 	scopedAttributes.put("contentBox", _contentBox);
 }
 
-if (_cssClass != null) {
+if (request.getAttribute("alloy:panel:cssClass") != null) {
 	scopedAttributes.put("cssClass", _cssClass);
 }
 
-if (_destroyed != null) {
+if (request.getAttribute("alloy:panel:destroyed") != null) {
 	scopedAttributes.put("destroyed", _destroyed);
 }
 
-if (_disabled != null) {
+if (request.getAttribute("alloy:panel:disabled") != null) {
 	scopedAttributes.put("disabled", _disabled);
 }
 
-if (_fillHeight != null) {
+if (request.getAttribute("alloy:panel:fillHeight") != null) {
 	scopedAttributes.put("fillHeight", _fillHeight);
 }
 
-if (_focused != null) {
+if (request.getAttribute("alloy:panel:focused") != null) {
 	scopedAttributes.put("focused", _focused);
 }
 
-if (_footerContent != null) {
+if (request.getAttribute("alloy:panel:footerContent") != null) {
 	scopedAttributes.put("footerContent", _footerContent);
 }
 
-if (_headerContent != null) {
+if (request.getAttribute("alloy:panel:headerContent") != null) {
 	scopedAttributes.put("headerContent", _headerContent);
 }
 
-if (_height != null) {
+if (request.getAttribute("alloy:panel:height") != null) {
 	scopedAttributes.put("height", _height);
 }
 
-if (_hideClass != null) {
+if (request.getAttribute("alloy:panel:hideClass") != null) {
 	scopedAttributes.put("hideClass", _hideClass);
 }
 
-if (_icons != null) {
+if (request.getAttribute("alloy:panel:icons") != null) {
 	scopedAttributes.put("icons", _icons);
 }
 
-if (_panelId != null) {
+if (request.getAttribute("alloy:panel:panelId") != null) {
 	scopedAttributes.put("panelId", _panelId);
 }
 
-if (_initialized != null) {
+if (request.getAttribute("alloy:panel:initialized") != null) {
 	scopedAttributes.put("initialized", _initialized);
 }
 
-if (_render != null) {
+if (request.getAttribute("alloy:panel:render") != null) {
 	scopedAttributes.put("render", _render);
 }
 
-if (_rendered != null) {
+if (request.getAttribute("alloy:panel:rendered") != null) {
 	scopedAttributes.put("rendered", _rendered);
 }
 
-if (_srcNode != null) {
+if (request.getAttribute("alloy:panel:srcNode") != null) {
 	scopedAttributes.put("srcNode", _srcNode);
 }
 
-if (_strings != null) {
+if (request.getAttribute("alloy:panel:strings") != null) {
 	scopedAttributes.put("strings", _strings);
 }
 
-if (_tabIndex != null) {
+if (request.getAttribute("alloy:panel:tabIndex") != null) {
 	scopedAttributes.put("tabIndex", _tabIndex);
 }
 
-if (_title != null) {
+if (request.getAttribute("alloy:panel:title") != null) {
 	scopedAttributes.put("title", _title);
 }
 
-if (_visible != null) {
+if (request.getAttribute("alloy:panel:visible") != null) {
 	scopedAttributes.put("visible", _visible);
 }
 
-if (_width != null) {
+if (request.getAttribute("alloy:panel:width") != null) {
 	scopedAttributes.put("width", _width);
 }
 
-if (_afterBodyContentChange != null) {
+if (request.getAttribute("alloy:panel:afterBodyContentChange") != null) {
 	scopedAttributes.put("afterBodyContentChange", _afterBodyContentChange);
 }
 
-if (_afterBoundingBoxChange != null) {
+if (request.getAttribute("alloy:panel:afterBoundingBoxChange") != null) {
 	scopedAttributes.put("afterBoundingBoxChange", _afterBoundingBoxChange);
 }
 
-if (_afterCollapsedChange != null) {
+if (request.getAttribute("alloy:panel:afterCollapsedChange") != null) {
 	scopedAttributes.put("afterCollapsedChange", _afterCollapsedChange);
 }
 
-if (_afterCollapsibleChange != null) {
+if (request.getAttribute("alloy:panel:afterCollapsibleChange") != null) {
 	scopedAttributes.put("afterCollapsibleChange", _afterCollapsibleChange);
 }
 
-if (_afterContentBoxChange != null) {
+if (request.getAttribute("alloy:panel:afterContentBoxChange") != null) {
 	scopedAttributes.put("afterContentBoxChange", _afterContentBoxChange);
 }
 
-if (_afterCssClassChange != null) {
+if (request.getAttribute("alloy:panel:afterCssClassChange") != null) {
 	scopedAttributes.put("afterCssClassChange", _afterCssClassChange);
 }
 
-if (_afterDestroy != null) {
+if (request.getAttribute("alloy:panel:afterDestroy") != null) {
 	scopedAttributes.put("afterDestroy", _afterDestroy);
 }
 
-if (_afterDestroyedChange != null) {
+if (request.getAttribute("alloy:panel:afterDestroyedChange") != null) {
 	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
 }
 
-if (_afterDisabledChange != null) {
+if (request.getAttribute("alloy:panel:afterDisabledChange") != null) {
 	scopedAttributes.put("afterDisabledChange", _afterDisabledChange);
 }
 
-if (_afterFillHeightChange != null) {
+if (request.getAttribute("alloy:panel:afterFillHeightChange") != null) {
 	scopedAttributes.put("afterFillHeightChange", _afterFillHeightChange);
 }
 
-if (_afterFocusedChange != null) {
+if (request.getAttribute("alloy:panel:afterFocusedChange") != null) {
 	scopedAttributes.put("afterFocusedChange", _afterFocusedChange);
 }
 
-if (_afterFooterContentChange != null) {
+if (request.getAttribute("alloy:panel:afterFooterContentChange") != null) {
 	scopedAttributes.put("afterFooterContentChange", _afterFooterContentChange);
 }
 
-if (_afterHeaderContentChange != null) {
+if (request.getAttribute("alloy:panel:afterHeaderContentChange") != null) {
 	scopedAttributes.put("afterHeaderContentChange", _afterHeaderContentChange);
 }
 
-if (_afterHeightChange != null) {
+if (request.getAttribute("alloy:panel:afterHeightChange") != null) {
 	scopedAttributes.put("afterHeightChange", _afterHeightChange);
 }
 
-if (_afterHideClassChange != null) {
+if (request.getAttribute("alloy:panel:afterHideClassChange") != null) {
 	scopedAttributes.put("afterHideClassChange", _afterHideClassChange);
 }
 
-if (_afterIconsChange != null) {
+if (request.getAttribute("alloy:panel:afterIconsChange") != null) {
 	scopedAttributes.put("afterIconsChange", _afterIconsChange);
 }
 
-if (_afterIdChange != null) {
+if (request.getAttribute("alloy:panel:afterIdChange") != null) {
 	scopedAttributes.put("afterIdChange", _afterIdChange);
 }
 
-if (_afterInit != null) {
+if (request.getAttribute("alloy:panel:afterInit") != null) {
 	scopedAttributes.put("afterInit", _afterInit);
 }
 
-if (_afterInitializedChange != null) {
+if (request.getAttribute("alloy:panel:afterInitializedChange") != null) {
 	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
 }
 
-if (_afterRenderChange != null) {
+if (request.getAttribute("alloy:panel:afterRenderChange") != null) {
 	scopedAttributes.put("afterRenderChange", _afterRenderChange);
 }
 
-if (_afterRenderedChange != null) {
+if (request.getAttribute("alloy:panel:afterRenderedChange") != null) {
 	scopedAttributes.put("afterRenderedChange", _afterRenderedChange);
 }
 
-if (_afterSrcNodeChange != null) {
+if (request.getAttribute("alloy:panel:afterSrcNodeChange") != null) {
 	scopedAttributes.put("afterSrcNodeChange", _afterSrcNodeChange);
 }
 
-if (_afterStringsChange != null) {
+if (request.getAttribute("alloy:panel:afterStringsChange") != null) {
 	scopedAttributes.put("afterStringsChange", _afterStringsChange);
 }
 
-if (_afterTabIndexChange != null) {
+if (request.getAttribute("alloy:panel:afterTabIndexChange") != null) {
 	scopedAttributes.put("afterTabIndexChange", _afterTabIndexChange);
 }
 
-if (_afterTitleChange != null) {
+if (request.getAttribute("alloy:panel:afterTitleChange") != null) {
 	scopedAttributes.put("afterTitleChange", _afterTitleChange);
 }
 
-if (_afterVisibleChange != null) {
+if (request.getAttribute("alloy:panel:afterVisibleChange") != null) {
 	scopedAttributes.put("afterVisibleChange", _afterVisibleChange);
 }
 
-if (_afterContentUpdate != null) {
+if (request.getAttribute("alloy:panel:afterContentUpdate") != null) {
 	scopedAttributes.put("afterContentUpdate", _afterContentUpdate);
 }
 
-if (_afterRender != null) {
+if (request.getAttribute("alloy:panel:afterRender") != null) {
 	scopedAttributes.put("afterRender", _afterRender);
 }
 
-if (_afterWidthChange != null) {
+if (request.getAttribute("alloy:panel:afterWidthChange") != null) {
 	scopedAttributes.put("afterWidthChange", _afterWidthChange);
 }
 
-if (_onBodyContentChange != null) {
+if (request.getAttribute("alloy:panel:onBodyContentChange") != null) {
 	scopedAttributes.put("onBodyContentChange", _onBodyContentChange);
 }
 
-if (_onBoundingBoxChange != null) {
+if (request.getAttribute("alloy:panel:onBoundingBoxChange") != null) {
 	scopedAttributes.put("onBoundingBoxChange", _onBoundingBoxChange);
 }
 
-if (_onCollapsedChange != null) {
+if (request.getAttribute("alloy:panel:onCollapsedChange") != null) {
 	scopedAttributes.put("onCollapsedChange", _onCollapsedChange);
 }
 
-if (_onCollapsibleChange != null) {
+if (request.getAttribute("alloy:panel:onCollapsibleChange") != null) {
 	scopedAttributes.put("onCollapsibleChange", _onCollapsibleChange);
 }
 
-if (_onContentBoxChange != null) {
+if (request.getAttribute("alloy:panel:onContentBoxChange") != null) {
 	scopedAttributes.put("onContentBoxChange", _onContentBoxChange);
 }
 
-if (_onCssClassChange != null) {
+if (request.getAttribute("alloy:panel:onCssClassChange") != null) {
 	scopedAttributes.put("onCssClassChange", _onCssClassChange);
 }
 
-if (_onDestroy != null) {
+if (request.getAttribute("alloy:panel:onDestroy") != null) {
 	scopedAttributes.put("onDestroy", _onDestroy);
 }
 
-if (_onDestroyedChange != null) {
+if (request.getAttribute("alloy:panel:onDestroyedChange") != null) {
 	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
 }
 
-if (_onDisabledChange != null) {
+if (request.getAttribute("alloy:panel:onDisabledChange") != null) {
 	scopedAttributes.put("onDisabledChange", _onDisabledChange);
 }
 
-if (_onFillHeightChange != null) {
+if (request.getAttribute("alloy:panel:onFillHeightChange") != null) {
 	scopedAttributes.put("onFillHeightChange", _onFillHeightChange);
 }
 
-if (_onFocusedChange != null) {
+if (request.getAttribute("alloy:panel:onFocusedChange") != null) {
 	scopedAttributes.put("onFocusedChange", _onFocusedChange);
 }
 
-if (_onFooterContentChange != null) {
+if (request.getAttribute("alloy:panel:onFooterContentChange") != null) {
 	scopedAttributes.put("onFooterContentChange", _onFooterContentChange);
 }
 
-if (_onHeaderContentChange != null) {
+if (request.getAttribute("alloy:panel:onHeaderContentChange") != null) {
 	scopedAttributes.put("onHeaderContentChange", _onHeaderContentChange);
 }
 
-if (_onHeightChange != null) {
+if (request.getAttribute("alloy:panel:onHeightChange") != null) {
 	scopedAttributes.put("onHeightChange", _onHeightChange);
 }
 
-if (_onHideClassChange != null) {
+if (request.getAttribute("alloy:panel:onHideClassChange") != null) {
 	scopedAttributes.put("onHideClassChange", _onHideClassChange);
 }
 
-if (_onIconsChange != null) {
+if (request.getAttribute("alloy:panel:onIconsChange") != null) {
 	scopedAttributes.put("onIconsChange", _onIconsChange);
 }
 
-if (_onIdChange != null) {
+if (request.getAttribute("alloy:panel:onIdChange") != null) {
 	scopedAttributes.put("onIdChange", _onIdChange);
 }
 
-if (_onInit != null) {
+if (request.getAttribute("alloy:panel:onInit") != null) {
 	scopedAttributes.put("onInit", _onInit);
 }
 
-if (_onInitializedChange != null) {
+if (request.getAttribute("alloy:panel:onInitializedChange") != null) {
 	scopedAttributes.put("onInitializedChange", _onInitializedChange);
 }
 
-if (_onRenderChange != null) {
+if (request.getAttribute("alloy:panel:onRenderChange") != null) {
 	scopedAttributes.put("onRenderChange", _onRenderChange);
 }
 
-if (_onRenderedChange != null) {
+if (request.getAttribute("alloy:panel:onRenderedChange") != null) {
 	scopedAttributes.put("onRenderedChange", _onRenderedChange);
 }
 
-if (_onSrcNodeChange != null) {
+if (request.getAttribute("alloy:panel:onSrcNodeChange") != null) {
 	scopedAttributes.put("onSrcNodeChange", _onSrcNodeChange);
 }
 
-if (_onStringsChange != null) {
+if (request.getAttribute("alloy:panel:onStringsChange") != null) {
 	scopedAttributes.put("onStringsChange", _onStringsChange);
 }
 
-if (_onTabIndexChange != null) {
+if (request.getAttribute("alloy:panel:onTabIndexChange") != null) {
 	scopedAttributes.put("onTabIndexChange", _onTabIndexChange);
 }
 
-if (_onTitleChange != null) {
+if (request.getAttribute("alloy:panel:onTitleChange") != null) {
 	scopedAttributes.put("onTitleChange", _onTitleChange);
 }
 
-if (_onVisibleChange != null) {
+if (request.getAttribute("alloy:panel:onVisibleChange") != null) {
 	scopedAttributes.put("onVisibleChange", _onVisibleChange);
 }
 
-if (_onContentUpdate != null) {
+if (request.getAttribute("alloy:panel:onContentUpdate") != null) {
 	scopedAttributes.put("onContentUpdate", _onContentUpdate);
 }
 
-if (_onRender != null) {
+if (request.getAttribute("alloy:panel:onRender") != null) {
 	scopedAttributes.put("onRender", _onRender);
 }
 
-if (_onWidthChange != null) {
+if (request.getAttribute("alloy:panel:onWidthChange") != null) {
 	scopedAttributes.put("onWidthChange", _onWidthChange);
 }
 

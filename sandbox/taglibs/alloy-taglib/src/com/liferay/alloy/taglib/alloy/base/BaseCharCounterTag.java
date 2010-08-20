@@ -28,11 +28,11 @@ public class BaseCharCounterTag extends IncludeTag {
 		return _counter;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public java.lang.String getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public java.lang.String getInitialized() {
 		return _initialized;
 	}
 
@@ -40,7 +40,7 @@ public class BaseCharCounterTag extends IncludeTag {
 		return _input;
 	}
 
-	public java.lang.Number getMaxLength() {
+	public java.lang.String getMaxLength() {
 		return _maxLength;
 	}
 
@@ -106,13 +106,13 @@ public class BaseCharCounterTag extends IncludeTag {
 		setScopedAttribute("counter", counter);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(java.lang.String destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(java.lang.String initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -124,7 +124,7 @@ public class BaseCharCounterTag extends IncludeTag {
 		setScopedAttribute("input", input);
 	}
 
-	public void setMaxLength(java.lang.Number maxLength) {
+	public void setMaxLength(java.lang.String maxLength) {
 		_maxLength = maxLength;
 
 		setScopedAttribute("maxLength", maxLength);
@@ -242,10 +242,10 @@ public class BaseCharCounterTag extends IncludeTag {
 		"/html/taglib/alloy/char_counter/page.jsp";
 
 	private java.lang.String _counter;
-	private java.lang.Boolean _destroyed;
-	private java.lang.Boolean _initialized;
+	private java.lang.String _destroyed;
+	private java.lang.String _initialized;
 	private java.lang.String _input;
-	private java.lang.Number _maxLength;
+	private java.lang.String _maxLength;
 	private java.lang.String _afterCounterChange;
 	private java.lang.String _afterDestroy;
 	private java.lang.String _afterDestroyedChange;

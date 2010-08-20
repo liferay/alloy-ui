@@ -24,7 +24,7 @@ public class BasePaginatorTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.Boolean getAlwaysVisible() {
+	public java.lang.String getAlwaysVisible() {
 		return _alwaysVisible;
 	}
 
@@ -32,7 +32,7 @@ public class BasePaginatorTag extends IncludeTag {
 		return _containers;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public java.lang.String getDestroyed() {
 		return _destroyed;
 	}
 
@@ -44,7 +44,7 @@ public class BasePaginatorTag extends IncludeTag {
 		return _firstPageLinkLabel;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public java.lang.String getInitialized() {
 		return _initialized;
 	}
 
@@ -56,7 +56,7 @@ public class BasePaginatorTag extends IncludeTag {
 		return _lastPageLinkLabel;
 	}
 
-	public java.lang.Number getMaxPageLinks() {
+	public java.lang.String getMaxPageLinks() {
 		return _maxPageLinks;
 	}
 
@@ -68,7 +68,7 @@ public class BasePaginatorTag extends IncludeTag {
 		return _nextPageLinkLabel;
 	}
 
-	public java.lang.Number getPage() {
+	public java.lang.String getPage() {
 		return _page;
 	}
 
@@ -100,7 +100,7 @@ public class BasePaginatorTag extends IncludeTag {
 		return _prevPageLinkLabel;
 	}
 
-	public java.lang.Number getRowsPerPage() {
+	public java.lang.String getRowsPerPage() {
 		return _rowsPerPage;
 	}
 
@@ -120,7 +120,7 @@ public class BasePaginatorTag extends IncludeTag {
 		return _template;
 	}
 
-	public java.lang.Number getTotal() {
+	public java.lang.String getTotal() {
 		return _total;
 	}
 
@@ -132,7 +132,7 @@ public class BasePaginatorTag extends IncludeTag {
 		return _totalLabel;
 	}
 
-	public java.lang.Number getTotalPages() {
+	public java.lang.String getTotalPages() {
 		return _totalPages;
 	}
 
@@ -376,7 +376,7 @@ public class BasePaginatorTag extends IncludeTag {
 		return _onTotalPagesChange;
 	}
 
-	public void setAlwaysVisible(java.lang.Boolean alwaysVisible) {
+	public void setAlwaysVisible(java.lang.String alwaysVisible) {
 		_alwaysVisible = alwaysVisible;
 
 		setScopedAttribute("alwaysVisible", alwaysVisible);
@@ -388,7 +388,7 @@ public class BasePaginatorTag extends IncludeTag {
 		setScopedAttribute("containers", containers);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(java.lang.String destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
@@ -406,7 +406,7 @@ public class BasePaginatorTag extends IncludeTag {
 		setScopedAttribute("firstPageLinkLabel", firstPageLinkLabel);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(java.lang.String initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -424,7 +424,7 @@ public class BasePaginatorTag extends IncludeTag {
 		setScopedAttribute("lastPageLinkLabel", lastPageLinkLabel);
 	}
 
-	public void setMaxPageLinks(java.lang.Number maxPageLinks) {
+	public void setMaxPageLinks(java.lang.String maxPageLinks) {
 		_maxPageLinks = maxPageLinks;
 
 		setScopedAttribute("maxPageLinks", maxPageLinks);
@@ -442,7 +442,7 @@ public class BasePaginatorTag extends IncludeTag {
 		setScopedAttribute("nextPageLinkLabel", nextPageLinkLabel);
 	}
 
-	public void setPage(java.lang.Number page) {
+	public void setPage(java.lang.String page) {
 		_page = page;
 
 		setScopedAttribute("page", page);
@@ -490,7 +490,7 @@ public class BasePaginatorTag extends IncludeTag {
 		setScopedAttribute("prevPageLinkLabel", prevPageLinkLabel);
 	}
 
-	public void setRowsPerPage(java.lang.Number rowsPerPage) {
+	public void setRowsPerPage(java.lang.String rowsPerPage) {
 		_rowsPerPage = rowsPerPage;
 
 		setScopedAttribute("rowsPerPage", rowsPerPage);
@@ -520,7 +520,7 @@ public class BasePaginatorTag extends IncludeTag {
 		setScopedAttribute("template", template);
 	}
 
-	public void setTotal(java.lang.Number total) {
+	public void setTotal(java.lang.String total) {
 		_total = total;
 
 		setScopedAttribute("total", total);
@@ -538,7 +538,7 @@ public class BasePaginatorTag extends IncludeTag {
 		setScopedAttribute("totalLabel", totalLabel);
 	}
 
-	public void setTotalPages(java.lang.Number totalPages) {
+	public void setTotalPages(java.lang.String totalPages) {
 		_totalPages = totalPages;
 
 		setScopedAttribute("totalPages", totalPages);
@@ -1000,18 +1000,18 @@ public class BasePaginatorTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/paginator/page.jsp";
 
-	private java.lang.Boolean _alwaysVisible;
+	private java.lang.String _alwaysVisible;
 	private java.lang.String _containers;
-	private java.lang.Boolean _destroyed;
+	private java.lang.String _destroyed;
 	private java.lang.String _firstPageLink;
 	private java.lang.String _firstPageLinkLabel;
-	private java.lang.Boolean _initialized;
+	private java.lang.String _initialized;
 	private java.lang.String _lastPageLink;
 	private java.lang.String _lastPageLinkLabel;
-	private java.lang.Number _maxPageLinks;
+	private java.lang.String _maxPageLinks;
 	private java.lang.String _nextPageLink;
 	private java.lang.String _nextPageLinkLabel;
-	private java.lang.Number _page;
+	private java.lang.String _page;
 	private java.lang.String _pageContainerTemplate;
 	private java.lang.String _pageLinkContent;
 	private java.lang.String _pageLinkTemplate;
@@ -1019,15 +1019,15 @@ public class BasePaginatorTag extends IncludeTag {
 	private java.lang.String _pageReportLabelTemplate;
 	private java.lang.String _prevPageLink;
 	private java.lang.String _prevPageLinkLabel;
-	private java.lang.Number _rowsPerPage;
+	private java.lang.String _rowsPerPage;
 	private java.lang.String _rowsPerPageEl;
 	private java.lang.String _rowsPerPageOptions;
 	private java.lang.Object _state;
 	private java.lang.String _template;
-	private java.lang.Number _total;
+	private java.lang.String _total;
 	private java.lang.String _totalEl;
 	private java.lang.String _totalLabel;
-	private java.lang.Number _totalPages;
+	private java.lang.String _totalPages;
 	private java.lang.String _afterAlwaysVisibleChange;
 	private java.lang.String _afterContainersChange;
 	private java.lang.String _afterDestroy;

@@ -36,7 +36,7 @@ public class BaseColorPickerTag extends IncludeTag {
 		return _boundingBox;
 	}
 
-	public java.lang.Boolean getCancellableHide() {
+	public java.lang.String getCancellableHide() {
 		return _cancellableHide;
 	}
 
@@ -60,11 +60,11 @@ public class BaseColorPickerTag extends IncludeTag {
 		return _currentNode;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public java.lang.String getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDisabled() {
+	public java.lang.String getDisabled() {
 		return _disabled;
 	}
 
@@ -72,7 +72,7 @@ public class BaseColorPickerTag extends IncludeTag {
 		return _fillHeight;
 	}
 
-	public java.lang.Boolean getFocused() {
+	public java.lang.String getFocused() {
 		return _focused;
 	}
 
@@ -92,7 +92,7 @@ public class BaseColorPickerTag extends IncludeTag {
 		return _hideClass;
 	}
 
-	public java.lang.Number getHideDelay() {
+	public java.lang.String getHideDelay() {
 		return _hideDelay;
 	}
 
@@ -100,7 +100,7 @@ public class BaseColorPickerTag extends IncludeTag {
 		return _hideOn;
 	}
 
-	public java.lang.Boolean getHideOnDocumentClick() {
+	public java.lang.String getHideOnDocumentClick() {
 		return _hideOnDocumentClick;
 	}
 
@@ -108,27 +108,27 @@ public class BaseColorPickerTag extends IncludeTag {
 		return _colorpickerId;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public java.lang.String getInitialized() {
 		return _initialized;
 	}
 
-	public java.lang.Boolean getPreventOverlap() {
+	public java.lang.String getPreventOverlap() {
 		return _preventOverlap;
 	}
 
-	public java.lang.Boolean getRender() {
+	public java.lang.String getRender() {
 		return _render;
 	}
 
-	public java.lang.Boolean getRendered() {
+	public java.lang.String getRendered() {
 		return _rendered;
 	}
 
-	public java.lang.Boolean getShim() {
+	public java.lang.String getShim() {
 		return _shim;
 	}
 
-	public java.lang.Number getShowDelay() {
+	public java.lang.String getShowDelay() {
 		return _showDelay;
 	}
 
@@ -144,7 +144,7 @@ public class BaseColorPickerTag extends IncludeTag {
 		return _strings;
 	}
 
-	public java.lang.Number getTabIndex() {
+	public java.lang.String getTabIndex() {
 		return _tabIndex;
 	}
 
@@ -152,7 +152,7 @@ public class BaseColorPickerTag extends IncludeTag {
 		return _trigger;
 	}
 
-	public java.lang.Boolean getVisible() {
+	public java.lang.String getVisible() {
 		return _visible;
 	}
 
@@ -160,7 +160,7 @@ public class BaseColorPickerTag extends IncludeTag {
 		return _width;
 	}
 
-	public java.lang.Number getX() {
+	public java.lang.String getX() {
 		return _x;
 	}
 
@@ -168,11 +168,11 @@ public class BaseColorPickerTag extends IncludeTag {
 		return _xy;
 	}
 
-	public java.lang.Number getY() {
+	public java.lang.String getY() {
 		return _y;
 	}
 
-	public java.lang.Number getZIndex() {
+	public java.lang.String getZIndex() {
 		return _zIndex;
 	}
 
@@ -530,7 +530,7 @@ public class BaseColorPickerTag extends IncludeTag {
 		setScopedAttribute("boundingBox", boundingBox);
 	}
 
-	public void setCancellableHide(java.lang.Boolean cancellableHide) {
+	public void setCancellableHide(java.lang.String cancellableHide) {
 		_cancellableHide = cancellableHide;
 
 		setScopedAttribute("cancellableHide", cancellableHide);
@@ -566,13 +566,13 @@ public class BaseColorPickerTag extends IncludeTag {
 		setScopedAttribute("currentNode", currentNode);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(java.lang.String destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.Boolean disabled) {
+	public void setDisabled(java.lang.String disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
@@ -584,7 +584,7 @@ public class BaseColorPickerTag extends IncludeTag {
 		setScopedAttribute("fillHeight", fillHeight);
 	}
 
-	public void setFocused(java.lang.Boolean focused) {
+	public void setFocused(java.lang.String focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -614,7 +614,7 @@ public class BaseColorPickerTag extends IncludeTag {
 		setScopedAttribute("hideClass", hideClass);
 	}
 
-	public void setHideDelay(java.lang.Number hideDelay) {
+	public void setHideDelay(java.lang.String hideDelay) {
 		_hideDelay = hideDelay;
 
 		setScopedAttribute("hideDelay", hideDelay);
@@ -626,7 +626,7 @@ public class BaseColorPickerTag extends IncludeTag {
 		setScopedAttribute("hideOn", hideOn);
 	}
 
-	public void setHideOnDocumentClick(java.lang.Boolean hideOnDocumentClick) {
+	public void setHideOnDocumentClick(java.lang.String hideOnDocumentClick) {
 		_hideOnDocumentClick = hideOnDocumentClick;
 
 		setScopedAttribute("hideOnDocumentClick", hideOnDocumentClick);
@@ -638,37 +638,37 @@ public class BaseColorPickerTag extends IncludeTag {
 		setScopedAttribute("colorpickerId", colorpickerId);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(java.lang.String initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setPreventOverlap(java.lang.Boolean preventOverlap) {
+	public void setPreventOverlap(java.lang.String preventOverlap) {
 		_preventOverlap = preventOverlap;
 
 		setScopedAttribute("preventOverlap", preventOverlap);
 	}
 
-	public void setRender(java.lang.Boolean render) {
+	public void setRender(java.lang.String render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.Boolean rendered) {
+	public void setRendered(java.lang.String rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setShim(java.lang.Boolean shim) {
+	public void setShim(java.lang.String shim) {
 		_shim = shim;
 
 		setScopedAttribute("shim", shim);
 	}
 
-	public void setShowDelay(java.lang.Number showDelay) {
+	public void setShowDelay(java.lang.String showDelay) {
 		_showDelay = showDelay;
 
 		setScopedAttribute("showDelay", showDelay);
@@ -692,7 +692,7 @@ public class BaseColorPickerTag extends IncludeTag {
 		setScopedAttribute("strings", strings);
 	}
 
-	public void setTabIndex(java.lang.Number tabIndex) {
+	public void setTabIndex(java.lang.String tabIndex) {
 		_tabIndex = tabIndex;
 
 		setScopedAttribute("tabIndex", tabIndex);
@@ -704,7 +704,7 @@ public class BaseColorPickerTag extends IncludeTag {
 		setScopedAttribute("trigger", trigger);
 	}
 
-	public void setVisible(java.lang.Boolean visible) {
+	public void setVisible(java.lang.String visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -716,7 +716,7 @@ public class BaseColorPickerTag extends IncludeTag {
 		setScopedAttribute("width", width);
 	}
 
-	public void setX(java.lang.Number x) {
+	public void setX(java.lang.String x) {
 		_x = x;
 
 		setScopedAttribute("x", x);
@@ -728,13 +728,13 @@ public class BaseColorPickerTag extends IncludeTag {
 		setScopedAttribute("xy", xy);
 	}
 
-	public void setY(java.lang.Number y) {
+	public void setY(java.lang.String y) {
 		_y = y;
 
 		setScopedAttribute("y", y);
 	}
 
-	public void setZIndex(java.lang.Number zIndex) {
+	public void setZIndex(java.lang.String zIndex) {
 		_zIndex = zIndex;
 
 		setScopedAttribute("zIndex", zIndex);
@@ -1377,41 +1377,41 @@ public class BaseColorPickerTag extends IncludeTag {
 	private java.lang.Object _align;
 	private java.lang.String _colorpickerBodyContent;
 	private java.lang.String _boundingBox;
-	private java.lang.Boolean _cancellableHide;
+	private java.lang.String _cancellableHide;
 	private java.lang.String _centered;
 	private java.lang.String _constrain;
 	private java.lang.String _contentBox;
 	private java.lang.String _cssClass;
 	private java.lang.String _currentNode;
-	private java.lang.Boolean _destroyed;
-	private java.lang.Boolean _disabled;
+	private java.lang.String _destroyed;
+	private java.lang.String _disabled;
 	private java.lang.String _fillHeight;
-	private java.lang.Boolean _focused;
+	private java.lang.String _focused;
 	private java.lang.String _footerContent;
 	private java.lang.String _headerContent;
 	private java.lang.String _height;
 	private java.lang.String _hideClass;
-	private java.lang.Number _hideDelay;
+	private java.lang.String _hideDelay;
 	private java.lang.String _hideOn;
-	private java.lang.Boolean _hideOnDocumentClick;
+	private java.lang.String _hideOnDocumentClick;
 	private java.lang.String _colorpickerId;
-	private java.lang.Boolean _initialized;
-	private java.lang.Boolean _preventOverlap;
-	private java.lang.Boolean _render;
-	private java.lang.Boolean _rendered;
-	private java.lang.Boolean _shim;
-	private java.lang.Number _showDelay;
+	private java.lang.String _initialized;
+	private java.lang.String _preventOverlap;
+	private java.lang.String _render;
+	private java.lang.String _rendered;
+	private java.lang.String _shim;
+	private java.lang.String _showDelay;
 	private java.lang.String _showOn;
 	private java.lang.String _srcNode;
 	private java.lang.Object _strings;
-	private java.lang.Number _tabIndex;
+	private java.lang.String _tabIndex;
 	private java.lang.String _trigger;
-	private java.lang.Boolean _visible;
+	private java.lang.String _visible;
 	private java.lang.String _width;
-	private java.lang.Number _x;
+	private java.lang.String _x;
 	private java.lang.String _xy;
-	private java.lang.Number _y;
-	private java.lang.Number _zIndex;
+	private java.lang.String _y;
+	private java.lang.String _zIndex;
 	private java.lang.String _afterAlignChange;
 	private java.lang.String _afterBodyContentChange;
 	private java.lang.String _afterBoundingBoxChange;

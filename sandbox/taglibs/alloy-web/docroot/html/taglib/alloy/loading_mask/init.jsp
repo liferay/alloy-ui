@@ -4,118 +4,118 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:loading-mask:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:loading-mask:scopedAttributes");
 
-java.lang.Boolean _destroyed = (java.lang.Boolean)request.getAttribute("alloy:loading-mask:destroyed");
-java.lang.String _host = (java.lang.String)request.getAttribute("alloy:loading-mask:host");
-java.lang.Boolean _initialized = (java.lang.Boolean)request.getAttribute("alloy:loading-mask:initialized");
-java.lang.String _messageEl = (java.lang.String)request.getAttribute("alloy:loading-mask:messageEl");
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:loading-mask:destroyed"));
+java.lang.String _host = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:host"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:loading-mask:initialized"));
+java.lang.String _messageEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:messageEl"));
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:loading-mask:strings");
-java.lang.String _target = (java.lang.String)request.getAttribute("alloy:loading-mask:target");
-java.lang.String _afterDestroy = (java.lang.String)request.getAttribute("alloy:loading-mask:afterDestroy");
-java.lang.String _afterDestroyedChange = (java.lang.String)request.getAttribute("alloy:loading-mask:afterDestroyedChange");
-java.lang.String _afterHostChange = (java.lang.String)request.getAttribute("alloy:loading-mask:afterHostChange");
-java.lang.String _afterInit = (java.lang.String)request.getAttribute("alloy:loading-mask:afterInit");
-java.lang.String _afterInitializedChange = (java.lang.String)request.getAttribute("alloy:loading-mask:afterInitializedChange");
-java.lang.String _afterMessageElChange = (java.lang.String)request.getAttribute("alloy:loading-mask:afterMessageElChange");
-java.lang.String _afterStringsChange = (java.lang.String)request.getAttribute("alloy:loading-mask:afterStringsChange");
-java.lang.String _afterTargetChange = (java.lang.String)request.getAttribute("alloy:loading-mask:afterTargetChange");
-java.lang.String _onDestroy = (java.lang.String)request.getAttribute("alloy:loading-mask:onDestroy");
-java.lang.String _onDestroyedChange = (java.lang.String)request.getAttribute("alloy:loading-mask:onDestroyedChange");
-java.lang.String _onHostChange = (java.lang.String)request.getAttribute("alloy:loading-mask:onHostChange");
-java.lang.String _onInit = (java.lang.String)request.getAttribute("alloy:loading-mask:onInit");
-java.lang.String _onInitializedChange = (java.lang.String)request.getAttribute("alloy:loading-mask:onInitializedChange");
-java.lang.String _onMessageElChange = (java.lang.String)request.getAttribute("alloy:loading-mask:onMessageElChange");
-java.lang.String _onStringsChange = (java.lang.String)request.getAttribute("alloy:loading-mask:onStringsChange");
-java.lang.String _onTargetChange = (java.lang.String)request.getAttribute("alloy:loading-mask:onTargetChange");
+java.lang.String _target = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:target"));
+java.lang.String _afterDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:afterDestroy"));
+java.lang.String _afterDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:afterDestroyedChange"));
+java.lang.String _afterHostChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:afterHostChange"));
+java.lang.String _afterInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:afterInit"));
+java.lang.String _afterInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:afterInitializedChange"));
+java.lang.String _afterMessageElChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:afterMessageElChange"));
+java.lang.String _afterStringsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:afterStringsChange"));
+java.lang.String _afterTargetChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:afterTargetChange"));
+java.lang.String _onDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:onDestroy"));
+java.lang.String _onDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:onDestroyedChange"));
+java.lang.String _onHostChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:onHostChange"));
+java.lang.String _onInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:onInit"));
+java.lang.String _onInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:onInitializedChange"));
+java.lang.String _onMessageElChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:onMessageElChange"));
+java.lang.String _onStringsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:onStringsChange"));
+java.lang.String _onTargetChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:onTargetChange"));
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (_destroyed != null) {
+if (request.getAttribute("alloy:loading-mask:destroyed") != null) {
 	scopedAttributes.put("destroyed", _destroyed);
 }
 
-if (_host != null) {
+if (request.getAttribute("alloy:loading-mask:host") != null) {
 	scopedAttributes.put("host", _host);
 }
 
-if (_initialized != null) {
+if (request.getAttribute("alloy:loading-mask:initialized") != null) {
 	scopedAttributes.put("initialized", _initialized);
 }
 
-if (_messageEl != null) {
+if (request.getAttribute("alloy:loading-mask:messageEl") != null) {
 	scopedAttributes.put("messageEl", _messageEl);
 }
 
-if (_strings != null) {
+if (request.getAttribute("alloy:loading-mask:strings") != null) {
 	scopedAttributes.put("strings", _strings);
 }
 
-if (_target != null) {
+if (request.getAttribute("alloy:loading-mask:target") != null) {
 	scopedAttributes.put("target", _target);
 }
 
-if (_afterDestroy != null) {
+if (request.getAttribute("alloy:loading-mask:afterDestroy") != null) {
 	scopedAttributes.put("afterDestroy", _afterDestroy);
 }
 
-if (_afterDestroyedChange != null) {
+if (request.getAttribute("alloy:loading-mask:afterDestroyedChange") != null) {
 	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
 }
 
-if (_afterHostChange != null) {
+if (request.getAttribute("alloy:loading-mask:afterHostChange") != null) {
 	scopedAttributes.put("afterHostChange", _afterHostChange);
 }
 
-if (_afterInit != null) {
+if (request.getAttribute("alloy:loading-mask:afterInit") != null) {
 	scopedAttributes.put("afterInit", _afterInit);
 }
 
-if (_afterInitializedChange != null) {
+if (request.getAttribute("alloy:loading-mask:afterInitializedChange") != null) {
 	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
 }
 
-if (_afterMessageElChange != null) {
+if (request.getAttribute("alloy:loading-mask:afterMessageElChange") != null) {
 	scopedAttributes.put("afterMessageElChange", _afterMessageElChange);
 }
 
-if (_afterStringsChange != null) {
+if (request.getAttribute("alloy:loading-mask:afterStringsChange") != null) {
 	scopedAttributes.put("afterStringsChange", _afterStringsChange);
 }
 
-if (_afterTargetChange != null) {
+if (request.getAttribute("alloy:loading-mask:afterTargetChange") != null) {
 	scopedAttributes.put("afterTargetChange", _afterTargetChange);
 }
 
-if (_onDestroy != null) {
+if (request.getAttribute("alloy:loading-mask:onDestroy") != null) {
 	scopedAttributes.put("onDestroy", _onDestroy);
 }
 
-if (_onDestroyedChange != null) {
+if (request.getAttribute("alloy:loading-mask:onDestroyedChange") != null) {
 	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
 }
 
-if (_onHostChange != null) {
+if (request.getAttribute("alloy:loading-mask:onHostChange") != null) {
 	scopedAttributes.put("onHostChange", _onHostChange);
 }
 
-if (_onInit != null) {
+if (request.getAttribute("alloy:loading-mask:onInit") != null) {
 	scopedAttributes.put("onInit", _onInit);
 }
 
-if (_onInitializedChange != null) {
+if (request.getAttribute("alloy:loading-mask:onInitializedChange") != null) {
 	scopedAttributes.put("onInitializedChange", _onInitializedChange);
 }
 
-if (_onMessageElChange != null) {
+if (request.getAttribute("alloy:loading-mask:onMessageElChange") != null) {
 	scopedAttributes.put("onMessageElChange", _onMessageElChange);
 }
 
-if (_onStringsChange != null) {
+if (request.getAttribute("alloy:loading-mask:onStringsChange") != null) {
 	scopedAttributes.put("onStringsChange", _onStringsChange);
 }
 
-if (_onTargetChange != null) {
+if (request.getAttribute("alloy:loading-mask:onTargetChange") != null) {
 	scopedAttributes.put("onTargetChange", _onTargetChange);
 }
 

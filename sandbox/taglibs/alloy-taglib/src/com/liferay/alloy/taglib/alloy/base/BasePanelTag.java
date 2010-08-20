@@ -32,11 +32,11 @@ public class BasePanelTag extends IncludeTag {
 		return _boundingBox;
 	}
 
-	public java.lang.Boolean getCollapsed() {
+	public java.lang.String getCollapsed() {
 		return _collapsed;
 	}
 
-	public java.lang.Boolean getCollapsible() {
+	public java.lang.String getCollapsible() {
 		return _collapsible;
 	}
 
@@ -48,11 +48,11 @@ public class BasePanelTag extends IncludeTag {
 		return _cssClass;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public java.lang.String getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDisabled() {
+	public java.lang.String getDisabled() {
 		return _disabled;
 	}
 
@@ -60,7 +60,7 @@ public class BasePanelTag extends IncludeTag {
 		return _fillHeight;
 	}
 
-	public java.lang.Boolean getFocused() {
+	public java.lang.String getFocused() {
 		return _focused;
 	}
 
@@ -88,15 +88,15 @@ public class BasePanelTag extends IncludeTag {
 		return _panelId;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public java.lang.String getInitialized() {
 		return _initialized;
 	}
 
-	public java.lang.Boolean getRender() {
+	public java.lang.String getRender() {
 		return _render;
 	}
 
-	public java.lang.Boolean getRendered() {
+	public java.lang.String getRendered() {
 		return _rendered;
 	}
 
@@ -108,7 +108,7 @@ public class BasePanelTag extends IncludeTag {
 		return _strings;
 	}
 
-	public java.lang.Number getTabIndex() {
+	public java.lang.String getTabIndex() {
 		return _tabIndex;
 	}
 
@@ -116,7 +116,7 @@ public class BasePanelTag extends IncludeTag {
 		return _title;
 	}
 
-	public java.lang.Boolean getVisible() {
+	public java.lang.String getVisible() {
 		return _visible;
 	}
 
@@ -368,13 +368,13 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("boundingBox", boundingBox);
 	}
 
-	public void setCollapsed(java.lang.Boolean collapsed) {
+	public void setCollapsed(java.lang.String collapsed) {
 		_collapsed = collapsed;
 
 		setScopedAttribute("collapsed", collapsed);
 	}
 
-	public void setCollapsible(java.lang.Boolean collapsible) {
+	public void setCollapsible(java.lang.String collapsible) {
 		_collapsible = collapsible;
 
 		setScopedAttribute("collapsible", collapsible);
@@ -392,13 +392,13 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("cssClass", cssClass);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(java.lang.String destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.Boolean disabled) {
+	public void setDisabled(java.lang.String disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
@@ -410,7 +410,7 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("fillHeight", fillHeight);
 	}
 
-	public void setFocused(java.lang.Boolean focused) {
+	public void setFocused(java.lang.String focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -452,19 +452,19 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("panelId", panelId);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(java.lang.String initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setRender(java.lang.Boolean render) {
+	public void setRender(java.lang.String render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.Boolean rendered) {
+	public void setRendered(java.lang.String rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
@@ -482,7 +482,7 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("strings", strings);
 	}
 
-	public void setTabIndex(java.lang.Number tabIndex) {
+	public void setTabIndex(java.lang.String tabIndex) {
 		_tabIndex = tabIndex;
 
 		setScopedAttribute("tabIndex", tabIndex);
@@ -494,7 +494,7 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("title", title);
 	}
 
-	public void setVisible(java.lang.Boolean visible) {
+	public void setVisible(java.lang.String visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -947,28 +947,28 @@ public class BasePanelTag extends IncludeTag {
 
 	private java.lang.String _panelBodyContent;
 	private java.lang.String _boundingBox;
-	private java.lang.Boolean _collapsed;
-	private java.lang.Boolean _collapsible;
+	private java.lang.String _collapsed;
+	private java.lang.String _collapsible;
 	private java.lang.String _contentBox;
 	private java.lang.String _cssClass;
-	private java.lang.Boolean _destroyed;
-	private java.lang.Boolean _disabled;
+	private java.lang.String _destroyed;
+	private java.lang.String _disabled;
 	private java.lang.String _fillHeight;
-	private java.lang.Boolean _focused;
+	private java.lang.String _focused;
 	private java.lang.String _footerContent;
 	private java.lang.String _headerContent;
 	private java.lang.String _height;
 	private java.lang.String _hideClass;
 	private java.lang.String _icons;
 	private java.lang.String _panelId;
-	private java.lang.Boolean _initialized;
-	private java.lang.Boolean _render;
-	private java.lang.Boolean _rendered;
+	private java.lang.String _initialized;
+	private java.lang.String _render;
+	private java.lang.String _rendered;
 	private java.lang.String _srcNode;
 	private java.lang.Object _strings;
-	private java.lang.Number _tabIndex;
+	private java.lang.String _tabIndex;
 	private java.lang.String _title;
-	private java.lang.Boolean _visible;
+	private java.lang.String _visible;
 	private java.lang.String _width;
 	private java.lang.String _afterBodyContentChange;
 	private java.lang.String _afterBoundingBoxChange;

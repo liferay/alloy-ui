@@ -36,7 +36,7 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		return _checkName;
 	}
 
-	public java.lang.Boolean getChecked() {
+	public java.lang.String getChecked() {
 		return _checked;
 	}
 
@@ -48,7 +48,7 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		return _container;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public java.lang.String getDestroyed() {
 		return _destroyed;
 	}
 
@@ -64,7 +64,7 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		return _index;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public java.lang.String getInitialized() {
 		return _initialized;
 	}
 
@@ -76,7 +76,7 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		return _lastSelected;
 	}
 
-	public java.lang.Number getLastY() {
+	public java.lang.String getLastY() {
 		return _lastY;
 	}
 
@@ -84,7 +84,7 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		return _nodeContent;
 	}
 
-	public java.lang.Number getScrollDelay() {
+	public java.lang.String getScrollDelay() {
 		return _scrollDelay;
 	}
 
@@ -262,7 +262,7 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		setScopedAttribute("checkName", checkName);
 	}
 
-	public void setChecked(java.lang.Boolean checked) {
+	public void setChecked(java.lang.String checked) {
 		_checked = checked;
 
 		setScopedAttribute("checked", checked);
@@ -280,7 +280,7 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		setScopedAttribute("container", container);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(java.lang.String destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
@@ -304,7 +304,7 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		setScopedAttribute("index", index);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(java.lang.String initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -322,7 +322,7 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		setScopedAttribute("lastSelected", lastSelected);
 	}
 
-	public void setLastY(java.lang.Number lastY) {
+	public void setLastY(java.lang.String lastY) {
 		_lastY = lastY;
 
 		setScopedAttribute("lastY", lastY);
@@ -334,7 +334,7 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		setScopedAttribute("nodeContent", nodeContent);
 	}
 
-	public void setScrollDelay(java.lang.Number scrollDelay) {
+	public void setScrollDelay(java.lang.String scrollDelay) {
 		_scrollDelay = scrollDelay;
 
 		setScopedAttribute("scrollDelay", scrollDelay);
@@ -640,19 +640,19 @@ public class BaseTreeViewDDTag extends IncludeTag {
 	private java.lang.String _checkContainerEl;
 	private java.lang.String _checkEl;
 	private java.lang.String _checkName;
-	private java.lang.Boolean _checked;
+	private java.lang.String _checked;
 	private java.lang.String _children;
 	private java.lang.String _container;
-	private java.lang.Boolean _destroyed;
+	private java.lang.String _destroyed;
 	private java.lang.String _dropAction;
 	private java.lang.String _helper;
 	private java.lang.Object _index;
-	private java.lang.Boolean _initialized;
+	private java.lang.String _initialized;
 	private java.lang.Object _io;
 	private java.lang.String _lastSelected;
-	private java.lang.Number _lastY;
+	private java.lang.String _lastY;
 	private java.lang.String _nodeContent;
-	private java.lang.Number _scrollDelay;
+	private java.lang.String _scrollDelay;
 	private java.lang.String _type;
 	private java.lang.String _afterCheckContainerElChange;
 	private java.lang.String _afterCheckElChange;

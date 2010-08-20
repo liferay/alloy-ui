@@ -24,7 +24,7 @@ public class BaseParseContentTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public java.lang.String getDestroyed() {
 		return _destroyed;
 	}
 
@@ -32,7 +32,7 @@ public class BaseParseContentTag extends IncludeTag {
 		return _host;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public java.lang.String getInitialized() {
 		return _initialized;
 	}
 
@@ -76,7 +76,7 @@ public class BaseParseContentTag extends IncludeTag {
 		return _onInitializedChange;
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(java.lang.String destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
@@ -88,7 +88,7 @@ public class BaseParseContentTag extends IncludeTag {
 		setScopedAttribute("host", host);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(java.lang.String initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -175,9 +175,9 @@ public class BaseParseContentTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/parse_content/page.jsp";
 
-	private java.lang.Boolean _destroyed;
+	private java.lang.String _destroyed;
 	private java.lang.String _host;
-	private java.lang.Boolean _initialized;
+	private java.lang.String _initialized;
 	private java.lang.String _afterDestroy;
 	private java.lang.String _afterDestroyedChange;
 	private java.lang.String _afterHostChange;

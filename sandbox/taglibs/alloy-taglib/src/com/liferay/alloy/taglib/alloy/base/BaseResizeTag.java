@@ -32,7 +32,7 @@ public class BaseResizeTag extends IncludeTag {
 		return _activeHandleEl;
 	}
 
-	public java.lang.Boolean getAutoHide() {
+	public java.lang.String getAutoHide() {
 		return _autoHide;
 	}
 
@@ -40,7 +40,7 @@ public class BaseResizeTag extends IncludeTag {
 		return _constrain;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public java.lang.String getDestroyed() {
 		return _destroyed;
 	}
 
@@ -48,23 +48,23 @@ public class BaseResizeTag extends IncludeTag {
 		return _handles;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public java.lang.String getInitialized() {
 		return _initialized;
 	}
 
-	public java.lang.Number getMaxHeight() {
+	public java.lang.String getMaxHeight() {
 		return _maxHeight;
 	}
 
-	public java.lang.Number getMaxWidth() {
+	public java.lang.String getMaxWidth() {
 		return _maxWidth;
 	}
 
-	public java.lang.Number getMinHeight() {
+	public java.lang.String getMinHeight() {
 		return _minHeight;
 	}
 
-	public java.lang.Number getMinWidth() {
+	public java.lang.String getMinWidth() {
 		return _minWidth;
 	}
 
@@ -72,11 +72,11 @@ public class BaseResizeTag extends IncludeTag {
 		return _node;
 	}
 
-	public java.lang.Boolean getPreserveRatio() {
+	public java.lang.String getPreserveRatio() {
 		return _preserveRatio;
 	}
 
-	public java.lang.Boolean getProxy() {
+	public java.lang.String getProxy() {
 		return _proxy;
 	}
 
@@ -84,7 +84,7 @@ public class BaseResizeTag extends IncludeTag {
 		return _proxyEl;
 	}
 
-	public java.lang.Boolean getResizing() {
+	public java.lang.String getResizing() {
 		return _resizing;
 	}
 
@@ -96,7 +96,7 @@ public class BaseResizeTag extends IncludeTag {
 		return _tickY;
 	}
 
-	public java.lang.Boolean getWrap() {
+	public java.lang.String getWrap() {
 		return _wrap;
 	}
 
@@ -336,7 +336,7 @@ public class BaseResizeTag extends IncludeTag {
 		setScopedAttribute("activeHandleEl", activeHandleEl);
 	}
 
-	public void setAutoHide(java.lang.Boolean autoHide) {
+	public void setAutoHide(java.lang.String autoHide) {
 		_autoHide = autoHide;
 
 		setScopedAttribute("autoHide", autoHide);
@@ -348,7 +348,7 @@ public class BaseResizeTag extends IncludeTag {
 		setScopedAttribute("constrain", constrain);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(java.lang.String destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
@@ -360,31 +360,31 @@ public class BaseResizeTag extends IncludeTag {
 		setScopedAttribute("handles", handles);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(java.lang.String initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setMaxHeight(java.lang.Number maxHeight) {
+	public void setMaxHeight(java.lang.String maxHeight) {
 		_maxHeight = maxHeight;
 
 		setScopedAttribute("maxHeight", maxHeight);
 	}
 
-	public void setMaxWidth(java.lang.Number maxWidth) {
+	public void setMaxWidth(java.lang.String maxWidth) {
 		_maxWidth = maxWidth;
 
 		setScopedAttribute("maxWidth", maxWidth);
 	}
 
-	public void setMinHeight(java.lang.Number minHeight) {
+	public void setMinHeight(java.lang.String minHeight) {
 		_minHeight = minHeight;
 
 		setScopedAttribute("minHeight", minHeight);
 	}
 
-	public void setMinWidth(java.lang.Number minWidth) {
+	public void setMinWidth(java.lang.String minWidth) {
 		_minWidth = minWidth;
 
 		setScopedAttribute("minWidth", minWidth);
@@ -396,13 +396,13 @@ public class BaseResizeTag extends IncludeTag {
 		setScopedAttribute("node", node);
 	}
 
-	public void setPreserveRatio(java.lang.Boolean preserveRatio) {
+	public void setPreserveRatio(java.lang.String preserveRatio) {
 		_preserveRatio = preserveRatio;
 
 		setScopedAttribute("preserveRatio", preserveRatio);
 	}
 
-	public void setProxy(java.lang.Boolean proxy) {
+	public void setProxy(java.lang.String proxy) {
 		_proxy = proxy;
 
 		setScopedAttribute("proxy", proxy);
@@ -414,7 +414,7 @@ public class BaseResizeTag extends IncludeTag {
 		setScopedAttribute("proxyEl", proxyEl);
 	}
 
-	public void setResizing(java.lang.Boolean resizing) {
+	public void setResizing(java.lang.String resizing) {
 		_resizing = resizing;
 
 		setScopedAttribute("resizing", resizing);
@@ -432,7 +432,7 @@ public class BaseResizeTag extends IncludeTag {
 		setScopedAttribute("tickY", tickY);
 	}
 
-	public void setWrap(java.lang.Boolean wrap) {
+	public void setWrap(java.lang.String wrap) {
 		_wrap = wrap;
 
 		setScopedAttribute("wrap", wrap);
@@ -859,23 +859,23 @@ public class BaseResizeTag extends IncludeTag {
 
 	private java.lang.String _activeHandle;
 	private java.lang.String _activeHandleEl;
-	private java.lang.Boolean _autoHide;
+	private java.lang.String _autoHide;
 	private java.lang.String _constrain;
-	private java.lang.Boolean _destroyed;
+	private java.lang.String _destroyed;
 	private java.lang.String _handles;
-	private java.lang.Boolean _initialized;
-	private java.lang.Number _maxHeight;
-	private java.lang.Number _maxWidth;
-	private java.lang.Number _minHeight;
-	private java.lang.Number _minWidth;
+	private java.lang.String _initialized;
+	private java.lang.String _maxHeight;
+	private java.lang.String _maxWidth;
+	private java.lang.String _minHeight;
+	private java.lang.String _minWidth;
 	private java.lang.String _node;
-	private java.lang.Boolean _preserveRatio;
-	private java.lang.Boolean _proxy;
+	private java.lang.String _preserveRatio;
+	private java.lang.String _proxy;
 	private java.lang.String _proxyEl;
-	private java.lang.Boolean _resizing;
+	private java.lang.String _resizing;
 	private java.lang.String _tickX;
 	private java.lang.String _tickY;
-	private java.lang.Boolean _wrap;
+	private java.lang.String _wrap;
 	private java.lang.String _wrapTypes;
 	private java.lang.String _wrapper;
 	private java.lang.String _afterActiveHandleChange;

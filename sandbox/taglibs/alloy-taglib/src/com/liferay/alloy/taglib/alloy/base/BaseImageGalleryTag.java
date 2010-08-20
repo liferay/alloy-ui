@@ -28,7 +28,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _align;
 	}
 
-	public java.lang.Boolean getAnim() {
+	public java.lang.String getAnim() {
 		return _anim;
 	}
 
@@ -40,7 +40,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _arrowRightEl;
 	}
 
-	public java.lang.Boolean getAutoPlay() {
+	public java.lang.String getAutoPlay() {
 		return _autoPlay;
 	}
 
@@ -60,11 +60,11 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _captionEl;
 	}
 
-	public java.lang.Boolean getCaptionFromTitle() {
+	public java.lang.String getCaptionFromTitle() {
 		return _captionFromTitle;
 	}
 
-	public java.lang.Boolean getCentered() {
+	public java.lang.String getCentered() {
 		return _centered;
 	}
 
@@ -84,19 +84,19 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _cssClass;
 	}
 
-	public java.lang.Number getCurrentIndex() {
+	public java.lang.String getCurrentIndex() {
 		return _currentIndex;
 	}
 
-	public java.lang.Number getDelay() {
+	public java.lang.String getDelay() {
 		return _delay;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public java.lang.String getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDisabled() {
+	public java.lang.String getDisabled() {
 		return _disabled;
 	}
 
@@ -104,7 +104,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _fillHeight;
 	}
 
-	public java.lang.Boolean getFocused() {
+	public java.lang.String getFocused() {
 		return _focused;
 	}
 
@@ -144,7 +144,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _infoTemplate;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public java.lang.String getInitialized() {
 		return _initialized;
 	}
 
@@ -156,7 +156,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _loader;
 	}
 
-	public java.lang.Boolean getLoading() {
+	public java.lang.String getLoading() {
 		return _loading;
 	}
 
@@ -164,11 +164,11 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _loadingEl;
 	}
 
-	public java.lang.Number getMaxHeight() {
+	public java.lang.String getMaxHeight() {
 		return _maxHeight;
 	}
 
-	public java.lang.Number getMaxWidth() {
+	public java.lang.String getMaxWidth() {
 		return _maxWidth;
 	}
 
@@ -188,7 +188,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _paginatorInstance;
 	}
 
-	public java.lang.Boolean getPaused() {
+	public java.lang.String getPaused() {
 		return _paused;
 	}
 
@@ -196,7 +196,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _pausedLabel;
 	}
 
-	public java.lang.Boolean getPlaying() {
+	public java.lang.String getPlaying() {
 		return _playing;
 	}
 
@@ -204,39 +204,39 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _playingLabel;
 	}
 
-	public java.lang.Boolean getPreloadAllImages() {
+	public java.lang.String getPreloadAllImages() {
 		return _preloadAllImages;
 	}
 
-	public java.lang.Boolean getPreventOverlap() {
+	public java.lang.String getPreventOverlap() {
 		return _preventOverlap;
 	}
 
-	public java.lang.Boolean getRender() {
+	public java.lang.String getRender() {
 		return _render;
 	}
 
-	public java.lang.Boolean getRendered() {
+	public java.lang.String getRendered() {
 		return _rendered;
 	}
 
-	public java.lang.Boolean getRepeat() {
+	public java.lang.String getRepeat() {
 		return _repeat;
 	}
 
-	public java.lang.Boolean getShim() {
+	public java.lang.String getShim() {
 		return _shim;
 	}
 
-	public java.lang.Boolean getShowArrows() {
+	public java.lang.String getShowArrows() {
 		return _showArrows;
 	}
 
-	public java.lang.Boolean getShowClose() {
+	public java.lang.String getShowClose() {
 		return _showClose;
 	}
 
-	public java.lang.Boolean getShowPlayer() {
+	public java.lang.String getShowPlayer() {
 		return _showPlayer;
 	}
 
@@ -248,7 +248,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _strings;
 	}
 
-	public java.lang.Number getTabIndex() {
+	public java.lang.String getTabIndex() {
 		return _tabIndex;
 	}
 
@@ -256,15 +256,15 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _toolbar;
 	}
 
-	public java.lang.Boolean getTotalLinks() {
+	public java.lang.String getTotalLinks() {
 		return _totalLinks;
 	}
 
-	public java.lang.Boolean getUseOriginalImage() {
+	public java.lang.String getUseOriginalImage() {
 		return _useOriginalImage;
 	}
 
-	public java.lang.Boolean getVisible() {
+	public java.lang.String getVisible() {
 		return _visible;
 	}
 
@@ -272,7 +272,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _width;
 	}
 
-	public java.lang.Number getX() {
+	public java.lang.String getX() {
 		return _x;
 	}
 
@@ -280,11 +280,11 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _xy;
 	}
 
-	public java.lang.Number getY() {
+	public java.lang.String getY() {
 		return _y;
 	}
 
-	public java.lang.Number getZIndex() {
+	public java.lang.String getZIndex() {
 		return _zIndex;
 	}
 
@@ -878,7 +878,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("align", align);
 	}
 
-	public void setAnim(java.lang.Boolean anim) {
+	public void setAnim(java.lang.String anim) {
 		_anim = anim;
 
 		setScopedAttribute("anim", anim);
@@ -896,7 +896,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("arrowRightEl", arrowRightEl);
 	}
 
-	public void setAutoPlay(java.lang.Boolean autoPlay) {
+	public void setAutoPlay(java.lang.String autoPlay) {
 		_autoPlay = autoPlay;
 
 		setScopedAttribute("autoPlay", autoPlay);
@@ -926,13 +926,13 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("captionEl", captionEl);
 	}
 
-	public void setCaptionFromTitle(java.lang.Boolean captionFromTitle) {
+	public void setCaptionFromTitle(java.lang.String captionFromTitle) {
 		_captionFromTitle = captionFromTitle;
 
 		setScopedAttribute("captionFromTitle", captionFromTitle);
 	}
 
-	public void setCentered(java.lang.Boolean centered) {
+	public void setCentered(java.lang.String centered) {
 		_centered = centered;
 
 		setScopedAttribute("centered", centered);
@@ -962,25 +962,25 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("cssClass", cssClass);
 	}
 
-	public void setCurrentIndex(java.lang.Number currentIndex) {
+	public void setCurrentIndex(java.lang.String currentIndex) {
 		_currentIndex = currentIndex;
 
 		setScopedAttribute("currentIndex", currentIndex);
 	}
 
-	public void setDelay(java.lang.Number delay) {
+	public void setDelay(java.lang.String delay) {
 		_delay = delay;
 
 		setScopedAttribute("delay", delay);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(java.lang.String destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.Boolean disabled) {
+	public void setDisabled(java.lang.String disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
@@ -992,7 +992,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("fillHeight", fillHeight);
 	}
 
-	public void setFocused(java.lang.Boolean focused) {
+	public void setFocused(java.lang.String focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -1052,7 +1052,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("infoTemplate", infoTemplate);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(java.lang.String initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -1070,7 +1070,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("loader", loader);
 	}
 
-	public void setLoading(java.lang.Boolean loading) {
+	public void setLoading(java.lang.String loading) {
 		_loading = loading;
 
 		setScopedAttribute("loading", loading);
@@ -1082,13 +1082,13 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("loadingEl", loadingEl);
 	}
 
-	public void setMaxHeight(java.lang.Number maxHeight) {
+	public void setMaxHeight(java.lang.String maxHeight) {
 		_maxHeight = maxHeight;
 
 		setScopedAttribute("maxHeight", maxHeight);
 	}
 
-	public void setMaxWidth(java.lang.Number maxWidth) {
+	public void setMaxWidth(java.lang.String maxWidth) {
 		_maxWidth = maxWidth;
 
 		setScopedAttribute("maxWidth", maxWidth);
@@ -1118,7 +1118,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("paginatorInstance", paginatorInstance);
 	}
 
-	public void setPaused(java.lang.Boolean paused) {
+	public void setPaused(java.lang.String paused) {
 		_paused = paused;
 
 		setScopedAttribute("paused", paused);
@@ -1130,7 +1130,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("pausedLabel", pausedLabel);
 	}
 
-	public void setPlaying(java.lang.Boolean playing) {
+	public void setPlaying(java.lang.String playing) {
 		_playing = playing;
 
 		setScopedAttribute("playing", playing);
@@ -1142,55 +1142,55 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("playingLabel", playingLabel);
 	}
 
-	public void setPreloadAllImages(java.lang.Boolean preloadAllImages) {
+	public void setPreloadAllImages(java.lang.String preloadAllImages) {
 		_preloadAllImages = preloadAllImages;
 
 		setScopedAttribute("preloadAllImages", preloadAllImages);
 	}
 
-	public void setPreventOverlap(java.lang.Boolean preventOverlap) {
+	public void setPreventOverlap(java.lang.String preventOverlap) {
 		_preventOverlap = preventOverlap;
 
 		setScopedAttribute("preventOverlap", preventOverlap);
 	}
 
-	public void setRender(java.lang.Boolean render) {
+	public void setRender(java.lang.String render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.Boolean rendered) {
+	public void setRendered(java.lang.String rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setRepeat(java.lang.Boolean repeat) {
+	public void setRepeat(java.lang.String repeat) {
 		_repeat = repeat;
 
 		setScopedAttribute("repeat", repeat);
 	}
 
-	public void setShim(java.lang.Boolean shim) {
+	public void setShim(java.lang.String shim) {
 		_shim = shim;
 
 		setScopedAttribute("shim", shim);
 	}
 
-	public void setShowArrows(java.lang.Boolean showArrows) {
+	public void setShowArrows(java.lang.String showArrows) {
 		_showArrows = showArrows;
 
 		setScopedAttribute("showArrows", showArrows);
 	}
 
-	public void setShowClose(java.lang.Boolean showClose) {
+	public void setShowClose(java.lang.String showClose) {
 		_showClose = showClose;
 
 		setScopedAttribute("showClose", showClose);
 	}
 
-	public void setShowPlayer(java.lang.Boolean showPlayer) {
+	public void setShowPlayer(java.lang.String showPlayer) {
 		_showPlayer = showPlayer;
 
 		setScopedAttribute("showPlayer", showPlayer);
@@ -1208,7 +1208,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("strings", strings);
 	}
 
-	public void setTabIndex(java.lang.Number tabIndex) {
+	public void setTabIndex(java.lang.String tabIndex) {
 		_tabIndex = tabIndex;
 
 		setScopedAttribute("tabIndex", tabIndex);
@@ -1220,19 +1220,19 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("toolbar", toolbar);
 	}
 
-	public void setTotalLinks(java.lang.Boolean totalLinks) {
+	public void setTotalLinks(java.lang.String totalLinks) {
 		_totalLinks = totalLinks;
 
 		setScopedAttribute("totalLinks", totalLinks);
 	}
 
-	public void setUseOriginalImage(java.lang.Boolean useOriginalImage) {
+	public void setUseOriginalImage(java.lang.String useOriginalImage) {
 		_useOriginalImage = useOriginalImage;
 
 		setScopedAttribute("useOriginalImage", useOriginalImage);
 	}
 
-	public void setVisible(java.lang.Boolean visible) {
+	public void setVisible(java.lang.String visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -1244,7 +1244,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("width", width);
 	}
 
-	public void setX(java.lang.Number x) {
+	public void setX(java.lang.String x) {
 		_x = x;
 
 		setScopedAttribute("x", x);
@@ -1256,13 +1256,13 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("xy", xy);
 	}
 
-	public void setY(java.lang.Number y) {
+	public void setY(java.lang.String y) {
 		_y = y;
 
 		setScopedAttribute("y", y);
 	}
 
-	public void setZIndex(java.lang.Number zIndex) {
+	public void setZIndex(java.lang.String zIndex) {
 		_zIndex = zIndex;
 
 		setScopedAttribute("zIndex", zIndex);
@@ -2365,26 +2365,26 @@ public class BaseImageGalleryTag extends IncludeTag {
 		"/html/taglib/alloy/image_gallery/page.jsp";
 
 	private java.lang.Object _align;
-	private java.lang.Boolean _anim;
+	private java.lang.String _anim;
 	private java.lang.String _arrowLeftEl;
 	private java.lang.String _arrowRightEl;
-	private java.lang.Boolean _autoPlay;
+	private java.lang.String _autoPlay;
 	private java.lang.String _imagegalleryBodyContent;
 	private java.lang.String _boundingBox;
 	private java.lang.String _caption;
 	private java.lang.String _captionEl;
-	private java.lang.Boolean _captionFromTitle;
-	private java.lang.Boolean _centered;
+	private java.lang.String _captionFromTitle;
+	private java.lang.String _centered;
 	private java.lang.String _closeEl;
 	private java.lang.String _constrain;
 	private java.lang.String _contentBox;
 	private java.lang.String _cssClass;
-	private java.lang.Number _currentIndex;
-	private java.lang.Number _delay;
-	private java.lang.Boolean _destroyed;
-	private java.lang.Boolean _disabled;
+	private java.lang.String _currentIndex;
+	private java.lang.String _delay;
+	private java.lang.String _destroyed;
+	private java.lang.String _disabled;
 	private java.lang.String _fillHeight;
-	private java.lang.Boolean _focused;
+	private java.lang.String _focused;
 	private java.lang.String _footerContent;
 	private java.lang.String _headerContent;
 	private java.lang.String _height;
@@ -2394,42 +2394,42 @@ public class BaseImageGalleryTag extends IncludeTag {
 	private java.lang.Object _imageAnim;
 	private java.lang.String _infoEl;
 	private java.lang.String _infoTemplate;
-	private java.lang.Boolean _initialized;
+	private java.lang.String _initialized;
 	private java.lang.String _links;
 	private java.lang.String _loader;
-	private java.lang.Boolean _loading;
+	private java.lang.String _loading;
 	private java.lang.String _loadingEl;
-	private java.lang.Number _maxHeight;
-	private java.lang.Number _maxWidth;
+	private java.lang.String _maxHeight;
+	private java.lang.String _maxWidth;
 	private java.lang.String _modal;
 	private java.lang.Object _paginator;
 	private java.lang.String _paginatorEl;
 	private java.lang.String _paginatorInstance;
-	private java.lang.Boolean _paused;
+	private java.lang.String _paused;
 	private java.lang.String _pausedLabel;
-	private java.lang.Boolean _playing;
+	private java.lang.String _playing;
 	private java.lang.String _playingLabel;
-	private java.lang.Boolean _preloadAllImages;
-	private java.lang.Boolean _preventOverlap;
-	private java.lang.Boolean _render;
-	private java.lang.Boolean _rendered;
-	private java.lang.Boolean _repeat;
-	private java.lang.Boolean _shim;
-	private java.lang.Boolean _showArrows;
-	private java.lang.Boolean _showClose;
-	private java.lang.Boolean _showPlayer;
+	private java.lang.String _preloadAllImages;
+	private java.lang.String _preventOverlap;
+	private java.lang.String _render;
+	private java.lang.String _rendered;
+	private java.lang.String _repeat;
+	private java.lang.String _shim;
+	private java.lang.String _showArrows;
+	private java.lang.String _showClose;
+	private java.lang.String _showPlayer;
 	private java.lang.String _srcNode;
 	private java.lang.Object _strings;
-	private java.lang.Number _tabIndex;
+	private java.lang.String _tabIndex;
 	private java.lang.String _toolbar;
-	private java.lang.Boolean _totalLinks;
-	private java.lang.Boolean _useOriginalImage;
-	private java.lang.Boolean _visible;
+	private java.lang.String _totalLinks;
+	private java.lang.String _useOriginalImage;
+	private java.lang.String _visible;
 	private java.lang.String _width;
-	private java.lang.Number _x;
+	private java.lang.String _x;
 	private java.lang.String _xy;
-	private java.lang.Number _y;
-	private java.lang.Number _zIndex;
+	private java.lang.String _y;
+	private java.lang.String _zIndex;
 	private java.lang.String _afterAlignChange;
 	private java.lang.String _afterAnim;
 	private java.lang.String _afterAnimChange;

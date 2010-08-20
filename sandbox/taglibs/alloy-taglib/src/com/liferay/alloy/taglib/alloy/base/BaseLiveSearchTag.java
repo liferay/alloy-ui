@@ -28,11 +28,11 @@ public class BaseLiveSearchTag extends IncludeTag {
 		return _data;
 	}
 
-	public java.lang.Number getDelay() {
+	public java.lang.String getDelay() {
 		return _delay;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public java.lang.String getDestroyed() {
 		return _destroyed;
 	}
 
@@ -44,7 +44,7 @@ public class BaseLiveSearchTag extends IncludeTag {
 		return _index;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public java.lang.String getInitialized() {
 		return _initialized;
 	}
 
@@ -166,13 +166,13 @@ public class BaseLiveSearchTag extends IncludeTag {
 		setScopedAttribute("data", data);
 	}
 
-	public void setDelay(java.lang.Number delay) {
+	public void setDelay(java.lang.String delay) {
 		_delay = delay;
 
 		setScopedAttribute("delay", delay);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(java.lang.String destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
@@ -190,7 +190,7 @@ public class BaseLiveSearchTag extends IncludeTag {
 		setScopedAttribute("index", index);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(java.lang.String initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -407,11 +407,11 @@ public class BaseLiveSearchTag extends IncludeTag {
 		"/html/taglib/alloy/live_search/page.jsp";
 
 	private java.lang.String _data;
-	private java.lang.Number _delay;
-	private java.lang.Boolean _destroyed;
+	private java.lang.String _delay;
+	private java.lang.String _destroyed;
 	private java.lang.String _hide;
 	private java.lang.String _index;
-	private java.lang.Boolean _initialized;
+	private java.lang.String _initialized;
 	private java.lang.String _input;
 	private java.lang.String _matchRegex;
 	private java.lang.String _nodes;

@@ -44,11 +44,11 @@ public class BaseEditableTag extends IncludeTag {
 		return _cssClass;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public java.lang.String getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDisabled() {
+	public java.lang.String getDisabled() {
 		return _disabled;
 	}
 
@@ -56,7 +56,7 @@ public class BaseEditableTag extends IncludeTag {
 		return _eventType;
 	}
 
-	public java.lang.Boolean getFocused() {
+	public java.lang.String getFocused() {
 		return _focused;
 	}
 
@@ -84,7 +84,7 @@ public class BaseEditableTag extends IncludeTag {
 		return _editableId;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public java.lang.String getInitialized() {
 		return _initialized;
 	}
 
@@ -96,7 +96,7 @@ public class BaseEditableTag extends IncludeTag {
 		return _node;
 	}
 
-	public java.lang.Boolean getRender() {
+	public java.lang.String getRender() {
 		return _render;
 	}
 
@@ -104,7 +104,7 @@ public class BaseEditableTag extends IncludeTag {
 		return _renderTo;
 	}
 
-	public java.lang.Boolean getRendered() {
+	public java.lang.String getRendered() {
 		return _rendered;
 	}
 
@@ -120,11 +120,11 @@ public class BaseEditableTag extends IncludeTag {
 		return _strings;
 	}
 
-	public java.lang.Number getTabIndex() {
+	public java.lang.String getTabIndex() {
 		return _tabIndex;
 	}
 
-	public java.lang.Boolean getVisible() {
+	public java.lang.String getVisible() {
 		return _visible;
 	}
 
@@ -442,13 +442,13 @@ public class BaseEditableTag extends IncludeTag {
 		setScopedAttribute("cssClass", cssClass);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(java.lang.String destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.Boolean disabled) {
+	public void setDisabled(java.lang.String disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
@@ -460,7 +460,7 @@ public class BaseEditableTag extends IncludeTag {
 		setScopedAttribute("eventType", eventType);
 	}
 
-	public void setFocused(java.lang.Boolean focused) {
+	public void setFocused(java.lang.String focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -502,7 +502,7 @@ public class BaseEditableTag extends IncludeTag {
 		setScopedAttribute("editableId", editableId);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(java.lang.String initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -520,7 +520,7 @@ public class BaseEditableTag extends IncludeTag {
 		setScopedAttribute("node", node);
 	}
 
-	public void setRender(java.lang.Boolean render) {
+	public void setRender(java.lang.String render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
@@ -532,7 +532,7 @@ public class BaseEditableTag extends IncludeTag {
 		setScopedAttribute("renderTo", renderTo);
 	}
 
-	public void setRendered(java.lang.Boolean rendered) {
+	public void setRendered(java.lang.String rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
@@ -556,13 +556,13 @@ public class BaseEditableTag extends IncludeTag {
 		setScopedAttribute("strings", strings);
 	}
 
-	public void setTabIndex(java.lang.Number tabIndex) {
+	public void setTabIndex(java.lang.String tabIndex) {
 		_tabIndex = tabIndex;
 
 		setScopedAttribute("tabIndex", tabIndex);
 	}
 
-	public void setVisible(java.lang.Boolean visible) {
+	public void setVisible(java.lang.String visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -1104,27 +1104,27 @@ public class BaseEditableTag extends IncludeTag {
 	private java.lang.String _contentBox;
 	private java.lang.String _contentText;
 	private java.lang.String _cssClass;
-	private java.lang.Boolean _destroyed;
-	private java.lang.Boolean _disabled;
+	private java.lang.String _destroyed;
+	private java.lang.String _disabled;
 	private java.lang.String _eventType;
-	private java.lang.Boolean _focused;
+	private java.lang.String _focused;
 	private java.lang.String _formatInput;
 	private java.lang.String _formatOutput;
 	private java.lang.String _height;
 	private java.lang.String _hideClass;
 	private java.lang.String _icons;
 	private java.lang.String _editableId;
-	private java.lang.Boolean _initialized;
+	private java.lang.String _initialized;
 	private java.lang.String _inputType;
 	private java.lang.String _node;
-	private java.lang.Boolean _render;
+	private java.lang.String _render;
 	private java.lang.String _renderTo;
-	private java.lang.Boolean _rendered;
+	private java.lang.String _rendered;
 	private java.lang.String _saveButton;
 	private java.lang.String _srcNode;
 	private java.lang.Object _strings;
-	private java.lang.Number _tabIndex;
-	private java.lang.Boolean _visible;
+	private java.lang.String _tabIndex;
+	private java.lang.String _visible;
 	private java.lang.String _width;
 	private java.lang.String _afterBoundingBoxChange;
 	private java.lang.String _afterCancel;

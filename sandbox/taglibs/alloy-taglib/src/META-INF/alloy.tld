@@ -104,19 +104,19 @@
 			<name>alwaysShowContainer</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>applyLocalFilter</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>autoHighlight</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>boundingBox</name>
@@ -128,7 +128,7 @@
 			<name>button</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>contentBox</name>
@@ -164,25 +164,25 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>forceSelection</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>height</name>
@@ -206,7 +206,7 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>input</name>
@@ -224,55 +224,55 @@
 			<name>maxResultsDisplayed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>minQueryLength</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>queryDelay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>queryInterval</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>queryMatchCase</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>queryMatchContains</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>queryQuestionMark</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>schema</name>
@@ -302,25 +302,25 @@
 			<name>suppressInputUpdate</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>typeAhead</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>typeAheadDelay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>uniqueName</name>
@@ -332,7 +332,7 @@
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>width</name>
@@ -1094,7 +1094,7 @@
 			<name>activeState</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>boundingBox</name>
@@ -1124,25 +1124,25 @@
 			<name>defaultState</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>handler</name>
@@ -1166,7 +1166,7 @@
 			<name>hoverState</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>icon</name>
@@ -1190,7 +1190,7 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>label</name>
@@ -1208,13 +1208,13 @@
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>srcNode</name>
@@ -1232,7 +1232,7 @@
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>title</name>
@@ -1244,7 +1244,7 @@
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>width</name>
@@ -1652,7 +1652,7 @@
 			<name>cancellableHide</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>centered</name>
@@ -1682,13 +1682,13 @@
 			<name>currentDay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>currentMonth</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>currentNode</name>
@@ -1700,7 +1700,7 @@
 			<name>currentYear</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>dateFormat</name>
@@ -1718,13 +1718,13 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>fillHeight</name>
@@ -1736,13 +1736,13 @@
 			<name>firstDayOfWeek</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>footerContent</name>
@@ -1772,7 +1772,7 @@
 			<name>hideDelay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>hideOn</name>
@@ -1784,7 +1784,7 @@
 			<name>hideOnDocumentClick</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>calendarId</name>
@@ -1796,7 +1796,7 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>maxDate</name>
@@ -1814,43 +1814,43 @@
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>selectMultipleDates</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>setValue</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showDelay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showOn</name>
@@ -1868,7 +1868,7 @@
 			<name>stack</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>strings</name>
@@ -1880,7 +1880,7 @@
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>trigger</name>
@@ -1892,7 +1892,7 @@
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>width</name>
@@ -1904,7 +1904,7 @@
 			<name>x</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>xy</name>
@@ -1916,13 +1916,13 @@
 			<name>y</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>zIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>afterAlignChange</name>
@@ -2576,13 +2576,13 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>input</name>
@@ -2594,7 +2594,7 @@
 			<name>maxLength</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>afterCounterChange</name>
@@ -2708,7 +2708,7 @@
 			<name>cancellableHide</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>centered</name>
@@ -2744,13 +2744,13 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>fillHeight</name>
@@ -2762,7 +2762,7 @@
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>footerContent</name>
@@ -2792,7 +2792,7 @@
 			<name>hideDelay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>hideOn</name>
@@ -2804,7 +2804,7 @@
 			<name>hideOnDocumentClick</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>colorpickerId</name>
@@ -2816,37 +2816,37 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showDelay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showOn</name>
@@ -2870,7 +2870,7 @@
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>trigger</name>
@@ -2882,7 +2882,7 @@
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>width</name>
@@ -2894,7 +2894,7 @@
 			<name>x</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>xy</name>
@@ -2906,13 +2906,13 @@
 			<name>y</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>zIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>afterAlignChange</name>
@@ -3464,7 +3464,7 @@
 			<name>cancellableHide</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>centered</name>
@@ -3494,13 +3494,13 @@
 			<name>currentDay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>currentMonth</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>currentNode</name>
@@ -3512,7 +3512,7 @@
 			<name>currentYear</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>dateFormat</name>
@@ -3542,13 +3542,13 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>fillHeight</name>
@@ -3560,13 +3560,13 @@
 			<name>firstDayOfWeek</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>footerContent</name>
@@ -3596,7 +3596,7 @@
 			<name>hideDelay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>hideOn</name>
@@ -3608,7 +3608,7 @@
 			<name>hideOnDocumentClick</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>datepickerselectId</name>
@@ -3620,7 +3620,7 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>maxDate</name>
@@ -3650,43 +3650,43 @@
 			<name>populateDay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>populateMonth</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>populateYear</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>selectMultipleDates</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>selectWrapperNode</name>
@@ -3698,19 +3698,19 @@
 			<name>setValue</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showDelay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showOn</name>
@@ -3728,7 +3728,7 @@
 			<name>stack</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>strings</name>
@@ -3740,7 +3740,7 @@
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>trigger</name>
@@ -3752,7 +3752,7 @@
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>width</name>
@@ -3764,7 +3764,7 @@
 			<name>x</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>xy</name>
@@ -3776,7 +3776,7 @@
 			<name>y</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>yearNode</name>
@@ -3800,7 +3800,7 @@
 			<name>zIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>afterAlignChange</name>
@@ -4634,19 +4634,19 @@
 			<name>close</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>collapsed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>collapsible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>constrain2view</name>
@@ -4670,19 +4670,19 @@
 			<name>destroyOnClose</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>dragInstance</name>
@@ -4694,7 +4694,7 @@
 			<name>draggable</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>fillHeight</name>
@@ -4706,7 +4706,7 @@
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>footerContent</name>
@@ -4748,31 +4748,31 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>modal</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>resizable</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>resizableInstance</name>
@@ -4790,7 +4790,7 @@
 			<name>stack</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>strings</name>
@@ -4802,7 +4802,7 @@
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>title</name>
@@ -4814,7 +4814,7 @@
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>width</name>
@@ -5330,13 +5330,13 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>eventType</name>
@@ -5348,7 +5348,7 @@
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>formatInput</name>
@@ -5390,7 +5390,7 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>inputType</name>
@@ -5408,7 +5408,7 @@
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>renderTo</name>
@@ -5420,7 +5420,7 @@
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>saveButton</name>
@@ -5444,13 +5444,13 @@
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>width</name>
@@ -5888,7 +5888,7 @@
 			<name>active</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>arguments</name>
@@ -5900,13 +5900,13 @@
 			<name>autoLoad</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>cache</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>cfg</name>
@@ -5936,7 +5936,7 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>form</name>
@@ -5960,7 +5960,7 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>method</name>
@@ -5978,13 +5978,13 @@
 			<name>sync</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>timeout</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>transaction</name>
@@ -6356,7 +6356,7 @@
 			<name>anim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>arrowLeftEl</name>
@@ -6374,7 +6374,7 @@
 			<name>autoPlay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>imagegalleryBodyContent</name>
@@ -6404,13 +6404,13 @@
 			<name>captionFromTitle</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>centered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>closeEl</name>
@@ -6440,25 +6440,25 @@
 			<name>currentIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>delay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>fillHeight</name>
@@ -6470,7 +6470,7 @@
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>footerContent</name>
@@ -6530,7 +6530,7 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>links</name>
@@ -6548,7 +6548,7 @@
 			<name>loading</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>loadingEl</name>
@@ -6560,13 +6560,13 @@
 			<name>maxHeight</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>maxWidth</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>modal</name>
@@ -6596,7 +6596,7 @@
 			<name>paused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>pausedLabel</name>
@@ -6608,7 +6608,7 @@
 			<name>playing</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>playingLabel</name>
@@ -6620,55 +6620,55 @@
 			<name>preloadAllImages</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>repeat</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showArrows</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showClose</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showPlayer</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>srcNode</name>
@@ -6686,7 +6686,7 @@
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>toolbar</name>
@@ -6698,19 +6698,19 @@
 			<name>totalLinks</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>useOriginalImage</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>width</name>
@@ -6722,7 +6722,7 @@
 			<name>x</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>xy</name>
@@ -6734,13 +6734,13 @@
 			<name>y</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>zIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>afterAlignChange</name>
@@ -7634,7 +7634,7 @@
 			<name>anim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>arrowLeftEl</name>
@@ -7676,13 +7676,13 @@
 			<name>captionFromTitle</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>centered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>closeEl</name>
@@ -7712,19 +7712,19 @@
 			<name>currentIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>fillHeight</name>
@@ -7736,7 +7736,7 @@
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>footerContent</name>
@@ -7796,7 +7796,7 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>links</name>
@@ -7814,7 +7814,7 @@
 			<name>loading</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>loadingEl</name>
@@ -7826,13 +7826,13 @@
 			<name>maxHeight</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>maxWidth</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>modal</name>
@@ -7844,43 +7844,43 @@
 			<name>preloadAllImages</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showArrows</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showClose</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>srcNode</name>
@@ -7898,19 +7898,19 @@
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>totalLinks</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>width</name>
@@ -7922,7 +7922,7 @@
 			<name>x</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>xy</name>
@@ -7934,13 +7934,13 @@
 			<name>y</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>zIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>afterAlignChange</name>
@@ -8678,13 +8678,13 @@
 			<name>delay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>hide</name>
@@ -8702,7 +8702,7 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>input</name>
@@ -8882,7 +8882,7 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>host</name>
@@ -8894,7 +8894,7 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>messageEl</name>
@@ -9020,13 +9020,13 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>afterDestroy</name>
@@ -9128,13 +9128,13 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>fillHeight</name>
@@ -9146,7 +9146,7 @@
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>footerContent</name>
@@ -9182,31 +9182,31 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>srcNode</name>
@@ -9224,13 +9224,13 @@
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>width</name>
@@ -9242,7 +9242,7 @@
 			<name>x</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>xy</name>
@@ -9254,13 +9254,13 @@
 			<name>y</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>zIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>afterAlignChange</name>
@@ -9698,7 +9698,7 @@
 			<name>cancellableHide</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>centered</name>
@@ -9734,13 +9734,13 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>fillHeight</name>
@@ -9752,7 +9752,7 @@
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>footerContent</name>
@@ -9782,7 +9782,7 @@
 			<name>hideDelay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>hideOn</name>
@@ -9794,7 +9794,7 @@
 			<name>hideOnDocumentClick</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>overlaycontextId</name>
@@ -9806,37 +9806,37 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showDelay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showOn</name>
@@ -9860,7 +9860,7 @@
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>trigger</name>
@@ -9872,7 +9872,7 @@
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>width</name>
@@ -9884,7 +9884,7 @@
 			<name>x</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>xy</name>
@@ -9896,13 +9896,13 @@
 			<name>y</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>zIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>afterAlignChange</name>
@@ -10448,7 +10448,7 @@
 			<name>cancellableHide</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>centered</name>
@@ -10484,13 +10484,13 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>fillHeight</name>
@@ -10502,7 +10502,7 @@
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>footerContent</name>
@@ -10532,7 +10532,7 @@
 			<name>hideDelay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>hideOn</name>
@@ -10544,7 +10544,7 @@
 			<name>hideOnDocumentClick</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>overlaycontextpanelId</name>
@@ -10556,43 +10556,43 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showArrow</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showDelay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showOn</name>
@@ -10610,7 +10610,7 @@
 			<name>stack</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>strings</name>
@@ -10622,7 +10622,7 @@
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>trigger</name>
@@ -10634,7 +10634,7 @@
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>width</name>
@@ -10646,7 +10646,7 @@
 			<name>x</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>xy</name>
@@ -10658,13 +10658,13 @@
 			<name>y</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>zIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>afterAlignChange</name>
@@ -11282,13 +11282,13 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>fillHeight</name>
@@ -11300,7 +11300,7 @@
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>footerContent</name>
@@ -11336,37 +11336,37 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>opacity</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>srcNode</name>
@@ -11384,7 +11384,7 @@
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>target</name>
@@ -11396,7 +11396,7 @@
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>width</name>
@@ -11408,7 +11408,7 @@
 			<name>x</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>xy</name>
@@ -11420,13 +11420,13 @@
 			<name>y</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>zIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>afterAlignChange</name>
@@ -11894,7 +11894,7 @@
 			<name>alwaysVisible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>containers</name>
@@ -11906,7 +11906,7 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>firstPageLink</name>
@@ -11924,7 +11924,7 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>lastPageLink</name>
@@ -11942,7 +11942,7 @@
 			<name>maxPageLinks</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>nextPageLink</name>
@@ -11960,7 +11960,7 @@
 			<name>page</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>pageContainerTemplate</name>
@@ -12008,7 +12008,7 @@
 			<name>rowsPerPage</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>rowsPerPageEl</name>
@@ -12038,7 +12038,7 @@
 			<name>total</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>totalEl</name>
@@ -12056,7 +12056,7 @@
 			<name>totalPages</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>afterAlwaysVisibleChange</name>
@@ -12440,13 +12440,13 @@
 			<name>collapsed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>collapsible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>contentBox</name>
@@ -12464,13 +12464,13 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>fillHeight</name>
@@ -12482,7 +12482,7 @@
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>footerContent</name>
@@ -12524,19 +12524,19 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>srcNode</name>
@@ -12554,7 +12554,7 @@
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>title</name>
@@ -12566,7 +12566,7 @@
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>width</name>
@@ -12932,7 +12932,7 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>host</name>
@@ -12944,7 +12944,7 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>afterDestroy</name>
@@ -13016,13 +13016,13 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>afterDestroy</name>
@@ -13082,19 +13082,19 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>height</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Integer</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>label</name>
@@ -13106,13 +13106,13 @@
 			<name>max</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Integer</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>min</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Integer</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>orientation</name>
@@ -13124,7 +13124,7 @@
 			<name>ratio</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>statusNode</name>
@@ -13136,7 +13136,7 @@
 			<name>step</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>textNode</name>
@@ -13148,7 +13148,7 @@
 			<name>progressbarValue</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Integer</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>afterDestroy</name>
@@ -13334,7 +13334,7 @@
 			<name>canReset</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>contentBox</name>
@@ -13352,19 +13352,19 @@
 			<name>defaultSelected</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>elements</name>
@@ -13376,7 +13376,7 @@
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>height</name>
@@ -13406,7 +13406,7 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>inputName</name>
@@ -13430,31 +13430,31 @@
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>selectedIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showTitle</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>size</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>srcNode</name>
@@ -13472,7 +13472,7 @@
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>title</name>
@@ -13490,7 +13490,7 @@
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>width</name>
@@ -13952,7 +13952,7 @@
 			<name>autoHide</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>constrain</name>
@@ -13964,7 +13964,7 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>handles</name>
@@ -13976,31 +13976,31 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>maxHeight</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>maxWidth</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>minHeight</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>minWidth</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>node</name>
@@ -14012,13 +14012,13 @@
 			<name>preserveRatio</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>proxy</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>proxyEl</name>
@@ -14030,7 +14030,7 @@
 			<name>resizing</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>tickX</name>
@@ -14048,7 +14048,7 @@
 			<name>wrap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>wrapTypes</name>
@@ -14396,19 +14396,19 @@
 			<name>alwaysShowContainer</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>applyLocalFilter</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>autoHighlight</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>boundingBox</name>
@@ -14420,7 +14420,7 @@
 			<name>button</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>contentBox</name>
@@ -14456,25 +14456,25 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>forceSelection</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>height</name>
@@ -14498,7 +14498,7 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>input</name>
@@ -14516,55 +14516,55 @@
 			<name>maxResultsDisplayed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>minQueryLength</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>queryDelay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>queryInterval</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>queryMatchCase</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>queryMatchContains</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>queryQuestionMark</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>schema</name>
@@ -14594,25 +14594,25 @@
 			<name>suppressInputUpdate</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>typeAhead</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>typeAheadDelay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>uniqueName</name>
@@ -14624,7 +14624,7 @@
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>width</name>
@@ -15392,7 +15392,7 @@
 			<name>canReset</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>contentBox</name>
@@ -15410,19 +15410,19 @@
 			<name>defaultSelected</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>elements</name>
@@ -15434,7 +15434,7 @@
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>height</name>
@@ -15464,7 +15464,7 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>inputName</name>
@@ -15488,31 +15488,31 @@
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>selectedIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showTitle</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>size</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>srcNode</name>
@@ -15530,7 +15530,7 @@
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>title</name>
@@ -15548,7 +15548,7 @@
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>width</name>
@@ -16004,7 +16004,7 @@
 			<name>activeState</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>boundingBox</name>
@@ -16034,25 +16034,25 @@
 			<name>defaultState</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>height</name>
@@ -16070,7 +16070,7 @@
 			<name>hoverState</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>toolbarId</name>
@@ -16082,13 +16082,13 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>multiple</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>orientation</name>
@@ -16100,13 +16100,13 @@
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>selection</name>
@@ -16130,13 +16130,13 @@
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>width</name>
@@ -16556,7 +16556,7 @@
 			<name>cancellableHide</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>centered</name>
@@ -16592,13 +16592,13 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>fillHeight</name>
@@ -16610,7 +16610,7 @@
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>footerContent</name>
@@ -16640,7 +16640,7 @@
 			<name>hideDelay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>hideOn</name>
@@ -16652,7 +16652,7 @@
 			<name>hideOnDocumentClick</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>tooltipId</name>
@@ -16664,43 +16664,43 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showArrow</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showDelay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>showOn</name>
@@ -16718,7 +16718,7 @@
 			<name>stack</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>strings</name>
@@ -16730,13 +16730,13 @@
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>title</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>trigger</name>
@@ -16748,7 +16748,7 @@
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>width</name>
@@ -16760,7 +16760,7 @@
 			<name>x</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>xy</name>
@@ -16772,13 +16772,13 @@
 			<name>y</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>zIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>afterAlignChange</name>
@@ -17354,13 +17354,13 @@
 			<name>alwaysShowHitArea</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>cache</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>checkContainerEl</name>
@@ -17384,7 +17384,7 @@
 			<name>checked</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>children</name>
@@ -17402,19 +17402,19 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>draggable</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>expanded</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>hitAreaEl</name>
@@ -17444,7 +17444,7 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>io</name>
@@ -17468,19 +17468,19 @@
 			<name>leaf</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>loaded</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>loading</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>nextSibling</name>
@@ -17864,7 +17864,7 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>index</name>
@@ -17876,7 +17876,7 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>io</name>
@@ -18044,7 +18044,7 @@
 			<name>checked</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>children</name>
@@ -18062,7 +18062,7 @@
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>dropAction</name>
@@ -18086,7 +18086,7 @@
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>io</name>
@@ -18104,7 +18104,7 @@
 			<name>lastY</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>nodeContent</name>
@@ -18116,7 +18116,7 @@
 			<name>scrollDelay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Number</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>type</name>

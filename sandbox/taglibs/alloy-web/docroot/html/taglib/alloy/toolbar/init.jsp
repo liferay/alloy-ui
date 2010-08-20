@@ -4,443 +4,443 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:toolbar:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:toolbar:scopedAttributes");
 
-java.lang.String _activeDescendant = (java.lang.String)request.getAttribute("alloy:toolbar:activeDescendant");
-java.lang.Boolean _activeState = (java.lang.Boolean)request.getAttribute("alloy:toolbar:activeState");
-java.lang.String _boundingBox = (java.lang.String)request.getAttribute("alloy:toolbar:boundingBox");
-java.lang.String _contentBox = (java.lang.String)request.getAttribute("alloy:toolbar:contentBox");
-java.lang.String _cssClass = (java.lang.String)request.getAttribute("alloy:toolbar:cssClass");
-java.lang.String _defaultChildType = (java.lang.String)request.getAttribute("alloy:toolbar:defaultChildType");
-java.lang.Boolean _defaultState = (java.lang.Boolean)request.getAttribute("alloy:toolbar:defaultState");
-java.lang.Boolean _destroyed = (java.lang.Boolean)request.getAttribute("alloy:toolbar:destroyed");
-java.lang.Boolean _disabled = (java.lang.Boolean)request.getAttribute("alloy:toolbar:disabled");
-java.lang.Boolean _focused = (java.lang.Boolean)request.getAttribute("alloy:toolbar:focused");
-java.lang.String _height = (java.lang.String)request.getAttribute("alloy:toolbar:height");
-java.lang.String _hideClass = (java.lang.String)request.getAttribute("alloy:toolbar:hideClass");
-java.lang.Boolean _hoverState = (java.lang.Boolean)request.getAttribute("alloy:toolbar:hoverState");
-java.lang.String _toolbarId = (java.lang.String)request.getAttribute("alloy:toolbar:toolbarId");
-java.lang.Boolean _initialized = (java.lang.Boolean)request.getAttribute("alloy:toolbar:initialized");
-java.lang.Boolean _multiple = (java.lang.Boolean)request.getAttribute("alloy:toolbar:multiple");
-java.lang.String _orientation = (java.lang.String)request.getAttribute("alloy:toolbar:orientation");
-java.lang.Boolean _render = (java.lang.Boolean)request.getAttribute("alloy:toolbar:render");
-java.lang.Boolean _rendered = (java.lang.Boolean)request.getAttribute("alloy:toolbar:rendered");
-java.lang.String _selection = (java.lang.String)request.getAttribute("alloy:toolbar:selection");
-java.lang.String _srcNode = (java.lang.String)request.getAttribute("alloy:toolbar:srcNode");
+java.lang.String _activeDescendant = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:activeDescendant"));
+java.lang.Boolean _activeState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:activeState"));
+java.lang.String _boundingBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:boundingBox"));
+java.lang.String _contentBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:contentBox"));
+java.lang.String _cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:cssClass"));
+java.lang.String _defaultChildType = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:defaultChildType"));
+java.lang.Boolean _defaultState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:defaultState"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:destroyed"));
+java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:disabled"));
+java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:focused"));
+java.lang.String _height = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:height"));
+java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:hideClass"));
+java.lang.Boolean _hoverState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:hoverState"));
+java.lang.String _toolbarId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:toolbarId"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:initialized"));
+java.lang.Boolean _multiple = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:multiple"));
+java.lang.String _orientation = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:orientation"));
+java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:render"));
+java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:rendered"));
+java.lang.String _selection = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:selection"));
+java.lang.String _srcNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:srcNode"));
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:toolbar:strings");
-java.lang.Number _tabIndex = (java.lang.Number)request.getAttribute("alloy:toolbar:tabIndex");
-java.lang.Boolean _visible = (java.lang.Boolean)request.getAttribute("alloy:toolbar:visible");
-java.lang.String _width = (java.lang.String)request.getAttribute("alloy:toolbar:width");
-java.lang.String _afterActiveDescendantChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterActiveDescendantChange");
-java.lang.String _afterActiveStateChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterActiveStateChange");
-java.lang.String _afterAddChild = (java.lang.String)request.getAttribute("alloy:toolbar:afterAddChild");
-java.lang.String _afterBoundingBoxChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterBoundingBoxChange");
-java.lang.String _afterContentBoxChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterContentBoxChange");
-java.lang.String _afterCssClassChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterCssClassChange");
-java.lang.String _afterDefaultChildTypeChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterDefaultChildTypeChange");
-java.lang.String _afterDefaultStateChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterDefaultStateChange");
-java.lang.String _afterDestroy = (java.lang.String)request.getAttribute("alloy:toolbar:afterDestroy");
-java.lang.String _afterDestroyedChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterDestroyedChange");
-java.lang.String _afterDisabledChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterDisabledChange");
-java.lang.String _afterFocusedChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterFocusedChange");
-java.lang.String _afterHeightChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterHeightChange");
-java.lang.String _afterHideClassChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterHideClassChange");
-java.lang.String _afterHoverStateChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterHoverStateChange");
-java.lang.String _afterIdChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterIdChange");
-java.lang.String _afterInit = (java.lang.String)request.getAttribute("alloy:toolbar:afterInit");
-java.lang.String _afterInitializedChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterInitializedChange");
-java.lang.String _afterMultipleChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterMultipleChange");
-java.lang.String _afterOrientationChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterOrientationChange");
-java.lang.String _afterRemoveChild = (java.lang.String)request.getAttribute("alloy:toolbar:afterRemoveChild");
-java.lang.String _afterRenderChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterRenderChange");
-java.lang.String _afterRenderedChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterRenderedChange");
-java.lang.String _afterSelectionChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterSelectionChange");
-java.lang.String _afterSrcNodeChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterSrcNodeChange");
-java.lang.String _afterStringsChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterStringsChange");
-java.lang.String _afterTabIndexChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterTabIndexChange");
-java.lang.String _afterVisibleChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterVisibleChange");
-java.lang.String _afterContentUpdate = (java.lang.String)request.getAttribute("alloy:toolbar:afterContentUpdate");
-java.lang.String _afterRender = (java.lang.String)request.getAttribute("alloy:toolbar:afterRender");
-java.lang.String _afterWidthChange = (java.lang.String)request.getAttribute("alloy:toolbar:afterWidthChange");
-java.lang.String _onActiveDescendantChange = (java.lang.String)request.getAttribute("alloy:toolbar:onActiveDescendantChange");
-java.lang.String _onActiveStateChange = (java.lang.String)request.getAttribute("alloy:toolbar:onActiveStateChange");
-java.lang.String _onAddChild = (java.lang.String)request.getAttribute("alloy:toolbar:onAddChild");
-java.lang.String _onBoundingBoxChange = (java.lang.String)request.getAttribute("alloy:toolbar:onBoundingBoxChange");
-java.lang.String _onContentBoxChange = (java.lang.String)request.getAttribute("alloy:toolbar:onContentBoxChange");
-java.lang.String _onCssClassChange = (java.lang.String)request.getAttribute("alloy:toolbar:onCssClassChange");
-java.lang.String _onDefaultChildTypeChange = (java.lang.String)request.getAttribute("alloy:toolbar:onDefaultChildTypeChange");
-java.lang.String _onDefaultStateChange = (java.lang.String)request.getAttribute("alloy:toolbar:onDefaultStateChange");
-java.lang.String _onDestroy = (java.lang.String)request.getAttribute("alloy:toolbar:onDestroy");
-java.lang.String _onDestroyedChange = (java.lang.String)request.getAttribute("alloy:toolbar:onDestroyedChange");
-java.lang.String _onDisabledChange = (java.lang.String)request.getAttribute("alloy:toolbar:onDisabledChange");
-java.lang.String _onFocusedChange = (java.lang.String)request.getAttribute("alloy:toolbar:onFocusedChange");
-java.lang.String _onHeightChange = (java.lang.String)request.getAttribute("alloy:toolbar:onHeightChange");
-java.lang.String _onHideClassChange = (java.lang.String)request.getAttribute("alloy:toolbar:onHideClassChange");
-java.lang.String _onHoverStateChange = (java.lang.String)request.getAttribute("alloy:toolbar:onHoverStateChange");
-java.lang.String _onIdChange = (java.lang.String)request.getAttribute("alloy:toolbar:onIdChange");
-java.lang.String _onInit = (java.lang.String)request.getAttribute("alloy:toolbar:onInit");
-java.lang.String _onInitializedChange = (java.lang.String)request.getAttribute("alloy:toolbar:onInitializedChange");
-java.lang.String _onMultipleChange = (java.lang.String)request.getAttribute("alloy:toolbar:onMultipleChange");
-java.lang.String _onOrientationChange = (java.lang.String)request.getAttribute("alloy:toolbar:onOrientationChange");
-java.lang.String _onRemoveChild = (java.lang.String)request.getAttribute("alloy:toolbar:onRemoveChild");
-java.lang.String _onRenderChange = (java.lang.String)request.getAttribute("alloy:toolbar:onRenderChange");
-java.lang.String _onRenderedChange = (java.lang.String)request.getAttribute("alloy:toolbar:onRenderedChange");
-java.lang.String _onSelectionChange = (java.lang.String)request.getAttribute("alloy:toolbar:onSelectionChange");
-java.lang.String _onSrcNodeChange = (java.lang.String)request.getAttribute("alloy:toolbar:onSrcNodeChange");
-java.lang.String _onStringsChange = (java.lang.String)request.getAttribute("alloy:toolbar:onStringsChange");
-java.lang.String _onTabIndexChange = (java.lang.String)request.getAttribute("alloy:toolbar:onTabIndexChange");
-java.lang.String _onVisibleChange = (java.lang.String)request.getAttribute("alloy:toolbar:onVisibleChange");
-java.lang.String _onContentUpdate = (java.lang.String)request.getAttribute("alloy:toolbar:onContentUpdate");
-java.lang.String _onRender = (java.lang.String)request.getAttribute("alloy:toolbar:onRender");
-java.lang.String _onWidthChange = (java.lang.String)request.getAttribute("alloy:toolbar:onWidthChange");
+java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:toolbar:tabIndex"));
+java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:visible"));
+java.lang.String _width = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:width"));
+java.lang.String _afterActiveDescendantChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterActiveDescendantChange"));
+java.lang.String _afterActiveStateChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterActiveStateChange"));
+java.lang.String _afterAddChild = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterAddChild"));
+java.lang.String _afterBoundingBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterBoundingBoxChange"));
+java.lang.String _afterContentBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterContentBoxChange"));
+java.lang.String _afterCssClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterCssClassChange"));
+java.lang.String _afterDefaultChildTypeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterDefaultChildTypeChange"));
+java.lang.String _afterDefaultStateChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterDefaultStateChange"));
+java.lang.String _afterDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterDestroy"));
+java.lang.String _afterDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterDestroyedChange"));
+java.lang.String _afterDisabledChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterDisabledChange"));
+java.lang.String _afterFocusedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterFocusedChange"));
+java.lang.String _afterHeightChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterHeightChange"));
+java.lang.String _afterHideClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterHideClassChange"));
+java.lang.String _afterHoverStateChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterHoverStateChange"));
+java.lang.String _afterIdChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterIdChange"));
+java.lang.String _afterInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterInit"));
+java.lang.String _afterInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterInitializedChange"));
+java.lang.String _afterMultipleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterMultipleChange"));
+java.lang.String _afterOrientationChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterOrientationChange"));
+java.lang.String _afterRemoveChild = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterRemoveChild"));
+java.lang.String _afterRenderChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterRenderChange"));
+java.lang.String _afterRenderedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterRenderedChange"));
+java.lang.String _afterSelectionChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterSelectionChange"));
+java.lang.String _afterSrcNodeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterSrcNodeChange"));
+java.lang.String _afterStringsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterStringsChange"));
+java.lang.String _afterTabIndexChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterTabIndexChange"));
+java.lang.String _afterVisibleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterVisibleChange"));
+java.lang.String _afterContentUpdate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterContentUpdate"));
+java.lang.String _afterRender = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterRender"));
+java.lang.String _afterWidthChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterWidthChange"));
+java.lang.String _onActiveDescendantChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onActiveDescendantChange"));
+java.lang.String _onActiveStateChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onActiveStateChange"));
+java.lang.String _onAddChild = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onAddChild"));
+java.lang.String _onBoundingBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onBoundingBoxChange"));
+java.lang.String _onContentBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onContentBoxChange"));
+java.lang.String _onCssClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onCssClassChange"));
+java.lang.String _onDefaultChildTypeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onDefaultChildTypeChange"));
+java.lang.String _onDefaultStateChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onDefaultStateChange"));
+java.lang.String _onDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onDestroy"));
+java.lang.String _onDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onDestroyedChange"));
+java.lang.String _onDisabledChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onDisabledChange"));
+java.lang.String _onFocusedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onFocusedChange"));
+java.lang.String _onHeightChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onHeightChange"));
+java.lang.String _onHideClassChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onHideClassChange"));
+java.lang.String _onHoverStateChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onHoverStateChange"));
+java.lang.String _onIdChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onIdChange"));
+java.lang.String _onInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onInit"));
+java.lang.String _onInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onInitializedChange"));
+java.lang.String _onMultipleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onMultipleChange"));
+java.lang.String _onOrientationChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onOrientationChange"));
+java.lang.String _onRemoveChild = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onRemoveChild"));
+java.lang.String _onRenderChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onRenderChange"));
+java.lang.String _onRenderedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onRenderedChange"));
+java.lang.String _onSelectionChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onSelectionChange"));
+java.lang.String _onSrcNodeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onSrcNodeChange"));
+java.lang.String _onStringsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onStringsChange"));
+java.lang.String _onTabIndexChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onTabIndexChange"));
+java.lang.String _onVisibleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onVisibleChange"));
+java.lang.String _onContentUpdate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onContentUpdate"));
+java.lang.String _onRender = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onRender"));
+java.lang.String _onWidthChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:onWidthChange"));
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (_activeDescendant != null) {
+if (request.getAttribute("alloy:toolbar:activeDescendant") != null) {
 	scopedAttributes.put("activeDescendant", _activeDescendant);
 }
 
-if (_activeState != null) {
+if (request.getAttribute("alloy:toolbar:activeState") != null) {
 	scopedAttributes.put("activeState", _activeState);
 }
 
-if (_boundingBox != null) {
+if (request.getAttribute("alloy:toolbar:boundingBox") != null) {
 	scopedAttributes.put("boundingBox", _boundingBox);
 }
 
-if (_contentBox != null) {
+if (request.getAttribute("alloy:toolbar:contentBox") != null) {
 	scopedAttributes.put("contentBox", _contentBox);
 }
 
-if (_cssClass != null) {
+if (request.getAttribute("alloy:toolbar:cssClass") != null) {
 	scopedAttributes.put("cssClass", _cssClass);
 }
 
-if (_defaultChildType != null) {
+if (request.getAttribute("alloy:toolbar:defaultChildType") != null) {
 	scopedAttributes.put("defaultChildType", _defaultChildType);
 }
 
-if (_defaultState != null) {
+if (request.getAttribute("alloy:toolbar:defaultState") != null) {
 	scopedAttributes.put("defaultState", _defaultState);
 }
 
-if (_destroyed != null) {
+if (request.getAttribute("alloy:toolbar:destroyed") != null) {
 	scopedAttributes.put("destroyed", _destroyed);
 }
 
-if (_disabled != null) {
+if (request.getAttribute("alloy:toolbar:disabled") != null) {
 	scopedAttributes.put("disabled", _disabled);
 }
 
-if (_focused != null) {
+if (request.getAttribute("alloy:toolbar:focused") != null) {
 	scopedAttributes.put("focused", _focused);
 }
 
-if (_height != null) {
+if (request.getAttribute("alloy:toolbar:height") != null) {
 	scopedAttributes.put("height", _height);
 }
 
-if (_hideClass != null) {
+if (request.getAttribute("alloy:toolbar:hideClass") != null) {
 	scopedAttributes.put("hideClass", _hideClass);
 }
 
-if (_hoverState != null) {
+if (request.getAttribute("alloy:toolbar:hoverState") != null) {
 	scopedAttributes.put("hoverState", _hoverState);
 }
 
-if (_toolbarId != null) {
+if (request.getAttribute("alloy:toolbar:toolbarId") != null) {
 	scopedAttributes.put("toolbarId", _toolbarId);
 }
 
-if (_initialized != null) {
+if (request.getAttribute("alloy:toolbar:initialized") != null) {
 	scopedAttributes.put("initialized", _initialized);
 }
 
-if (_multiple != null) {
+if (request.getAttribute("alloy:toolbar:multiple") != null) {
 	scopedAttributes.put("multiple", _multiple);
 }
 
-if (_orientation != null) {
+if (request.getAttribute("alloy:toolbar:orientation") != null) {
 	scopedAttributes.put("orientation", _orientation);
 }
 
-if (_render != null) {
+if (request.getAttribute("alloy:toolbar:render") != null) {
 	scopedAttributes.put("render", _render);
 }
 
-if (_rendered != null) {
+if (request.getAttribute("alloy:toolbar:rendered") != null) {
 	scopedAttributes.put("rendered", _rendered);
 }
 
-if (_selection != null) {
+if (request.getAttribute("alloy:toolbar:selection") != null) {
 	scopedAttributes.put("selection", _selection);
 }
 
-if (_srcNode != null) {
+if (request.getAttribute("alloy:toolbar:srcNode") != null) {
 	scopedAttributes.put("srcNode", _srcNode);
 }
 
-if (_strings != null) {
+if (request.getAttribute("alloy:toolbar:strings") != null) {
 	scopedAttributes.put("strings", _strings);
 }
 
-if (_tabIndex != null) {
+if (request.getAttribute("alloy:toolbar:tabIndex") != null) {
 	scopedAttributes.put("tabIndex", _tabIndex);
 }
 
-if (_visible != null) {
+if (request.getAttribute("alloy:toolbar:visible") != null) {
 	scopedAttributes.put("visible", _visible);
 }
 
-if (_width != null) {
+if (request.getAttribute("alloy:toolbar:width") != null) {
 	scopedAttributes.put("width", _width);
 }
 
-if (_afterActiveDescendantChange != null) {
+if (request.getAttribute("alloy:toolbar:afterActiveDescendantChange") != null) {
 	scopedAttributes.put("afterActiveDescendantChange", _afterActiveDescendantChange);
 }
 
-if (_afterActiveStateChange != null) {
+if (request.getAttribute("alloy:toolbar:afterActiveStateChange") != null) {
 	scopedAttributes.put("afterActiveStateChange", _afterActiveStateChange);
 }
 
-if (_afterAddChild != null) {
+if (request.getAttribute("alloy:toolbar:afterAddChild") != null) {
 	scopedAttributes.put("afterAddChild", _afterAddChild);
 }
 
-if (_afterBoundingBoxChange != null) {
+if (request.getAttribute("alloy:toolbar:afterBoundingBoxChange") != null) {
 	scopedAttributes.put("afterBoundingBoxChange", _afterBoundingBoxChange);
 }
 
-if (_afterContentBoxChange != null) {
+if (request.getAttribute("alloy:toolbar:afterContentBoxChange") != null) {
 	scopedAttributes.put("afterContentBoxChange", _afterContentBoxChange);
 }
 
-if (_afterCssClassChange != null) {
+if (request.getAttribute("alloy:toolbar:afterCssClassChange") != null) {
 	scopedAttributes.put("afterCssClassChange", _afterCssClassChange);
 }
 
-if (_afterDefaultChildTypeChange != null) {
+if (request.getAttribute("alloy:toolbar:afterDefaultChildTypeChange") != null) {
 	scopedAttributes.put("afterDefaultChildTypeChange", _afterDefaultChildTypeChange);
 }
 
-if (_afterDefaultStateChange != null) {
+if (request.getAttribute("alloy:toolbar:afterDefaultStateChange") != null) {
 	scopedAttributes.put("afterDefaultStateChange", _afterDefaultStateChange);
 }
 
-if (_afterDestroy != null) {
+if (request.getAttribute("alloy:toolbar:afterDestroy") != null) {
 	scopedAttributes.put("afterDestroy", _afterDestroy);
 }
 
-if (_afterDestroyedChange != null) {
+if (request.getAttribute("alloy:toolbar:afterDestroyedChange") != null) {
 	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
 }
 
-if (_afterDisabledChange != null) {
+if (request.getAttribute("alloy:toolbar:afterDisabledChange") != null) {
 	scopedAttributes.put("afterDisabledChange", _afterDisabledChange);
 }
 
-if (_afterFocusedChange != null) {
+if (request.getAttribute("alloy:toolbar:afterFocusedChange") != null) {
 	scopedAttributes.put("afterFocusedChange", _afterFocusedChange);
 }
 
-if (_afterHeightChange != null) {
+if (request.getAttribute("alloy:toolbar:afterHeightChange") != null) {
 	scopedAttributes.put("afterHeightChange", _afterHeightChange);
 }
 
-if (_afterHideClassChange != null) {
+if (request.getAttribute("alloy:toolbar:afterHideClassChange") != null) {
 	scopedAttributes.put("afterHideClassChange", _afterHideClassChange);
 }
 
-if (_afterHoverStateChange != null) {
+if (request.getAttribute("alloy:toolbar:afterHoverStateChange") != null) {
 	scopedAttributes.put("afterHoverStateChange", _afterHoverStateChange);
 }
 
-if (_afterIdChange != null) {
+if (request.getAttribute("alloy:toolbar:afterIdChange") != null) {
 	scopedAttributes.put("afterIdChange", _afterIdChange);
 }
 
-if (_afterInit != null) {
+if (request.getAttribute("alloy:toolbar:afterInit") != null) {
 	scopedAttributes.put("afterInit", _afterInit);
 }
 
-if (_afterInitializedChange != null) {
+if (request.getAttribute("alloy:toolbar:afterInitializedChange") != null) {
 	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
 }
 
-if (_afterMultipleChange != null) {
+if (request.getAttribute("alloy:toolbar:afterMultipleChange") != null) {
 	scopedAttributes.put("afterMultipleChange", _afterMultipleChange);
 }
 
-if (_afterOrientationChange != null) {
+if (request.getAttribute("alloy:toolbar:afterOrientationChange") != null) {
 	scopedAttributes.put("afterOrientationChange", _afterOrientationChange);
 }
 
-if (_afterRemoveChild != null) {
+if (request.getAttribute("alloy:toolbar:afterRemoveChild") != null) {
 	scopedAttributes.put("afterRemoveChild", _afterRemoveChild);
 }
 
-if (_afterRenderChange != null) {
+if (request.getAttribute("alloy:toolbar:afterRenderChange") != null) {
 	scopedAttributes.put("afterRenderChange", _afterRenderChange);
 }
 
-if (_afterRenderedChange != null) {
+if (request.getAttribute("alloy:toolbar:afterRenderedChange") != null) {
 	scopedAttributes.put("afterRenderedChange", _afterRenderedChange);
 }
 
-if (_afterSelectionChange != null) {
+if (request.getAttribute("alloy:toolbar:afterSelectionChange") != null) {
 	scopedAttributes.put("afterSelectionChange", _afterSelectionChange);
 }
 
-if (_afterSrcNodeChange != null) {
+if (request.getAttribute("alloy:toolbar:afterSrcNodeChange") != null) {
 	scopedAttributes.put("afterSrcNodeChange", _afterSrcNodeChange);
 }
 
-if (_afterStringsChange != null) {
+if (request.getAttribute("alloy:toolbar:afterStringsChange") != null) {
 	scopedAttributes.put("afterStringsChange", _afterStringsChange);
 }
 
-if (_afterTabIndexChange != null) {
+if (request.getAttribute("alloy:toolbar:afterTabIndexChange") != null) {
 	scopedAttributes.put("afterTabIndexChange", _afterTabIndexChange);
 }
 
-if (_afterVisibleChange != null) {
+if (request.getAttribute("alloy:toolbar:afterVisibleChange") != null) {
 	scopedAttributes.put("afterVisibleChange", _afterVisibleChange);
 }
 
-if (_afterContentUpdate != null) {
+if (request.getAttribute("alloy:toolbar:afterContentUpdate") != null) {
 	scopedAttributes.put("afterContentUpdate", _afterContentUpdate);
 }
 
-if (_afterRender != null) {
+if (request.getAttribute("alloy:toolbar:afterRender") != null) {
 	scopedAttributes.put("afterRender", _afterRender);
 }
 
-if (_afterWidthChange != null) {
+if (request.getAttribute("alloy:toolbar:afterWidthChange") != null) {
 	scopedAttributes.put("afterWidthChange", _afterWidthChange);
 }
 
-if (_onActiveDescendantChange != null) {
+if (request.getAttribute("alloy:toolbar:onActiveDescendantChange") != null) {
 	scopedAttributes.put("onActiveDescendantChange", _onActiveDescendantChange);
 }
 
-if (_onActiveStateChange != null) {
+if (request.getAttribute("alloy:toolbar:onActiveStateChange") != null) {
 	scopedAttributes.put("onActiveStateChange", _onActiveStateChange);
 }
 
-if (_onAddChild != null) {
+if (request.getAttribute("alloy:toolbar:onAddChild") != null) {
 	scopedAttributes.put("onAddChild", _onAddChild);
 }
 
-if (_onBoundingBoxChange != null) {
+if (request.getAttribute("alloy:toolbar:onBoundingBoxChange") != null) {
 	scopedAttributes.put("onBoundingBoxChange", _onBoundingBoxChange);
 }
 
-if (_onContentBoxChange != null) {
+if (request.getAttribute("alloy:toolbar:onContentBoxChange") != null) {
 	scopedAttributes.put("onContentBoxChange", _onContentBoxChange);
 }
 
-if (_onCssClassChange != null) {
+if (request.getAttribute("alloy:toolbar:onCssClassChange") != null) {
 	scopedAttributes.put("onCssClassChange", _onCssClassChange);
 }
 
-if (_onDefaultChildTypeChange != null) {
+if (request.getAttribute("alloy:toolbar:onDefaultChildTypeChange") != null) {
 	scopedAttributes.put("onDefaultChildTypeChange", _onDefaultChildTypeChange);
 }
 
-if (_onDefaultStateChange != null) {
+if (request.getAttribute("alloy:toolbar:onDefaultStateChange") != null) {
 	scopedAttributes.put("onDefaultStateChange", _onDefaultStateChange);
 }
 
-if (_onDestroy != null) {
+if (request.getAttribute("alloy:toolbar:onDestroy") != null) {
 	scopedAttributes.put("onDestroy", _onDestroy);
 }
 
-if (_onDestroyedChange != null) {
+if (request.getAttribute("alloy:toolbar:onDestroyedChange") != null) {
 	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
 }
 
-if (_onDisabledChange != null) {
+if (request.getAttribute("alloy:toolbar:onDisabledChange") != null) {
 	scopedAttributes.put("onDisabledChange", _onDisabledChange);
 }
 
-if (_onFocusedChange != null) {
+if (request.getAttribute("alloy:toolbar:onFocusedChange") != null) {
 	scopedAttributes.put("onFocusedChange", _onFocusedChange);
 }
 
-if (_onHeightChange != null) {
+if (request.getAttribute("alloy:toolbar:onHeightChange") != null) {
 	scopedAttributes.put("onHeightChange", _onHeightChange);
 }
 
-if (_onHideClassChange != null) {
+if (request.getAttribute("alloy:toolbar:onHideClassChange") != null) {
 	scopedAttributes.put("onHideClassChange", _onHideClassChange);
 }
 
-if (_onHoverStateChange != null) {
+if (request.getAttribute("alloy:toolbar:onHoverStateChange") != null) {
 	scopedAttributes.put("onHoverStateChange", _onHoverStateChange);
 }
 
-if (_onIdChange != null) {
+if (request.getAttribute("alloy:toolbar:onIdChange") != null) {
 	scopedAttributes.put("onIdChange", _onIdChange);
 }
 
-if (_onInit != null) {
+if (request.getAttribute("alloy:toolbar:onInit") != null) {
 	scopedAttributes.put("onInit", _onInit);
 }
 
-if (_onInitializedChange != null) {
+if (request.getAttribute("alloy:toolbar:onInitializedChange") != null) {
 	scopedAttributes.put("onInitializedChange", _onInitializedChange);
 }
 
-if (_onMultipleChange != null) {
+if (request.getAttribute("alloy:toolbar:onMultipleChange") != null) {
 	scopedAttributes.put("onMultipleChange", _onMultipleChange);
 }
 
-if (_onOrientationChange != null) {
+if (request.getAttribute("alloy:toolbar:onOrientationChange") != null) {
 	scopedAttributes.put("onOrientationChange", _onOrientationChange);
 }
 
-if (_onRemoveChild != null) {
+if (request.getAttribute("alloy:toolbar:onRemoveChild") != null) {
 	scopedAttributes.put("onRemoveChild", _onRemoveChild);
 }
 
-if (_onRenderChange != null) {
+if (request.getAttribute("alloy:toolbar:onRenderChange") != null) {
 	scopedAttributes.put("onRenderChange", _onRenderChange);
 }
 
-if (_onRenderedChange != null) {
+if (request.getAttribute("alloy:toolbar:onRenderedChange") != null) {
 	scopedAttributes.put("onRenderedChange", _onRenderedChange);
 }
 
-if (_onSelectionChange != null) {
+if (request.getAttribute("alloy:toolbar:onSelectionChange") != null) {
 	scopedAttributes.put("onSelectionChange", _onSelectionChange);
 }
 
-if (_onSrcNodeChange != null) {
+if (request.getAttribute("alloy:toolbar:onSrcNodeChange") != null) {
 	scopedAttributes.put("onSrcNodeChange", _onSrcNodeChange);
 }
 
-if (_onStringsChange != null) {
+if (request.getAttribute("alloy:toolbar:onStringsChange") != null) {
 	scopedAttributes.put("onStringsChange", _onStringsChange);
 }
 
-if (_onTabIndexChange != null) {
+if (request.getAttribute("alloy:toolbar:onTabIndexChange") != null) {
 	scopedAttributes.put("onTabIndexChange", _onTabIndexChange);
 }
 
-if (_onVisibleChange != null) {
+if (request.getAttribute("alloy:toolbar:onVisibleChange") != null) {
 	scopedAttributes.put("onVisibleChange", _onVisibleChange);
 }
 
-if (_onContentUpdate != null) {
+if (request.getAttribute("alloy:toolbar:onContentUpdate") != null) {
 	scopedAttributes.put("onContentUpdate", _onContentUpdate);
 }
 
-if (_onRender != null) {
+if (request.getAttribute("alloy:toolbar:onRender") != null) {
 	scopedAttributes.put("onRender", _onRender);
 }
 
-if (_onWidthChange != null) {
+if (request.getAttribute("alloy:toolbar:onWidthChange") != null) {
 	scopedAttributes.put("onWidthChange", _onWidthChange);
 }
 

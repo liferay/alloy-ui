@@ -36,15 +36,15 @@ public class BaseDialogTag extends IncludeTag {
 		return _buttons;
 	}
 
-	public java.lang.Boolean getClose() {
+	public java.lang.String getClose() {
 		return _close;
 	}
 
-	public java.lang.Boolean getCollapsed() {
+	public java.lang.String getCollapsed() {
 		return _collapsed;
 	}
 
-	public java.lang.Boolean getCollapsible() {
+	public java.lang.String getCollapsible() {
 		return _collapsible;
 	}
 
@@ -60,15 +60,15 @@ public class BaseDialogTag extends IncludeTag {
 		return _cssClass;
 	}
 
-	public java.lang.Boolean getDestroyOnClose() {
+	public java.lang.String getDestroyOnClose() {
 		return _destroyOnClose;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public java.lang.String getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDisabled() {
+	public java.lang.String getDisabled() {
 		return _disabled;
 	}
 
@@ -76,7 +76,7 @@ public class BaseDialogTag extends IncludeTag {
 		return _dragInstance;
 	}
 
-	public java.lang.Boolean getDraggable() {
+	public java.lang.String getDraggable() {
 		return _draggable;
 	}
 
@@ -84,7 +84,7 @@ public class BaseDialogTag extends IncludeTag {
 		return _fillHeight;
 	}
 
-	public java.lang.Boolean getFocused() {
+	public java.lang.String getFocused() {
 		return _focused;
 	}
 
@@ -112,23 +112,23 @@ public class BaseDialogTag extends IncludeTag {
 		return _dialogId;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public java.lang.String getInitialized() {
 		return _initialized;
 	}
 
-	public java.lang.Boolean getModal() {
+	public java.lang.String getModal() {
 		return _modal;
 	}
 
-	public java.lang.Boolean getRender() {
+	public java.lang.String getRender() {
 		return _render;
 	}
 
-	public java.lang.Boolean getRendered() {
+	public java.lang.String getRendered() {
 		return _rendered;
 	}
 
-	public java.lang.Boolean getResizable() {
+	public java.lang.String getResizable() {
 		return _resizable;
 	}
 
@@ -140,7 +140,7 @@ public class BaseDialogTag extends IncludeTag {
 		return _srcNode;
 	}
 
-	public java.lang.Boolean getStack() {
+	public java.lang.String getStack() {
 		return _stack;
 	}
 
@@ -148,7 +148,7 @@ public class BaseDialogTag extends IncludeTag {
 		return _strings;
 	}
 
-	public java.lang.Number getTabIndex() {
+	public java.lang.String getTabIndex() {
 		return _tabIndex;
 	}
 
@@ -156,7 +156,7 @@ public class BaseDialogTag extends IncludeTag {
 		return _title;
 	}
 
-	public java.lang.Boolean getVisible() {
+	public java.lang.String getVisible() {
 		return _visible;
 	}
 
@@ -494,19 +494,19 @@ public class BaseDialogTag extends IncludeTag {
 		setScopedAttribute("buttons", buttons);
 	}
 
-	public void setClose(java.lang.Boolean close) {
+	public void setClose(java.lang.String close) {
 		_close = close;
 
 		setScopedAttribute("close", close);
 	}
 
-	public void setCollapsed(java.lang.Boolean collapsed) {
+	public void setCollapsed(java.lang.String collapsed) {
 		_collapsed = collapsed;
 
 		setScopedAttribute("collapsed", collapsed);
 	}
 
-	public void setCollapsible(java.lang.Boolean collapsible) {
+	public void setCollapsible(java.lang.String collapsible) {
 		_collapsible = collapsible;
 
 		setScopedAttribute("collapsible", collapsible);
@@ -530,19 +530,19 @@ public class BaseDialogTag extends IncludeTag {
 		setScopedAttribute("cssClass", cssClass);
 	}
 
-	public void setDestroyOnClose(java.lang.Boolean destroyOnClose) {
+	public void setDestroyOnClose(java.lang.String destroyOnClose) {
 		_destroyOnClose = destroyOnClose;
 
 		setScopedAttribute("destroyOnClose", destroyOnClose);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(java.lang.String destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.Boolean disabled) {
+	public void setDisabled(java.lang.String disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
@@ -554,7 +554,7 @@ public class BaseDialogTag extends IncludeTag {
 		setScopedAttribute("dragInstance", dragInstance);
 	}
 
-	public void setDraggable(java.lang.Boolean draggable) {
+	public void setDraggable(java.lang.String draggable) {
 		_draggable = draggable;
 
 		setScopedAttribute("draggable", draggable);
@@ -566,7 +566,7 @@ public class BaseDialogTag extends IncludeTag {
 		setScopedAttribute("fillHeight", fillHeight);
 	}
 
-	public void setFocused(java.lang.Boolean focused) {
+	public void setFocused(java.lang.String focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -608,31 +608,31 @@ public class BaseDialogTag extends IncludeTag {
 		setScopedAttribute("dialogId", dialogId);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(java.lang.String initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setModal(java.lang.Boolean modal) {
+	public void setModal(java.lang.String modal) {
 		_modal = modal;
 
 		setScopedAttribute("modal", modal);
 	}
 
-	public void setRender(java.lang.Boolean render) {
+	public void setRender(java.lang.String render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.Boolean rendered) {
+	public void setRendered(java.lang.String rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setResizable(java.lang.Boolean resizable) {
+	public void setResizable(java.lang.String resizable) {
 		_resizable = resizable;
 
 		setScopedAttribute("resizable", resizable);
@@ -650,7 +650,7 @@ public class BaseDialogTag extends IncludeTag {
 		setScopedAttribute("srcNode", srcNode);
 	}
 
-	public void setStack(java.lang.Boolean stack) {
+	public void setStack(java.lang.String stack) {
 		_stack = stack;
 
 		setScopedAttribute("stack", stack);
@@ -662,7 +662,7 @@ public class BaseDialogTag extends IncludeTag {
 		setScopedAttribute("strings", strings);
 	}
 
-	public void setTabIndex(java.lang.Number tabIndex) {
+	public void setTabIndex(java.lang.String tabIndex) {
 		_tabIndex = tabIndex;
 
 		setScopedAttribute("tabIndex", tabIndex);
@@ -674,7 +674,7 @@ public class BaseDialogTag extends IncludeTag {
 		setScopedAttribute("title", title);
 	}
 
-	public void setVisible(java.lang.Boolean visible) {
+	public void setVisible(java.lang.String visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -1278,37 +1278,37 @@ public class BaseDialogTag extends IncludeTag {
 	private java.lang.String _dialogBodyContent;
 	private java.lang.String _boundingBox;
 	private java.lang.String _buttons;
-	private java.lang.Boolean _close;
-	private java.lang.Boolean _collapsed;
-	private java.lang.Boolean _collapsible;
+	private java.lang.String _close;
+	private java.lang.String _collapsed;
+	private java.lang.String _collapsible;
 	private java.lang.Object _constrain2view;
 	private java.lang.String _contentBox;
 	private java.lang.String _cssClass;
-	private java.lang.Boolean _destroyOnClose;
-	private java.lang.Boolean _destroyed;
-	private java.lang.Boolean _disabled;
+	private java.lang.String _destroyOnClose;
+	private java.lang.String _destroyed;
+	private java.lang.String _disabled;
 	private java.lang.String _dragInstance;
-	private java.lang.Boolean _draggable;
+	private java.lang.String _draggable;
 	private java.lang.String _fillHeight;
-	private java.lang.Boolean _focused;
+	private java.lang.String _focused;
 	private java.lang.String _footerContent;
 	private java.lang.String _headerContent;
 	private java.lang.String _height;
 	private java.lang.String _hideClass;
 	private java.lang.String _icons;
 	private java.lang.String _dialogId;
-	private java.lang.Boolean _initialized;
-	private java.lang.Boolean _modal;
-	private java.lang.Boolean _render;
-	private java.lang.Boolean _rendered;
-	private java.lang.Boolean _resizable;
+	private java.lang.String _initialized;
+	private java.lang.String _modal;
+	private java.lang.String _render;
+	private java.lang.String _rendered;
+	private java.lang.String _resizable;
 	private java.lang.String _resizableInstance;
 	private java.lang.String _srcNode;
-	private java.lang.Boolean _stack;
+	private java.lang.String _stack;
 	private java.lang.Object _strings;
-	private java.lang.Number _tabIndex;
+	private java.lang.String _tabIndex;
 	private java.lang.String _title;
-	private java.lang.Boolean _visible;
+	private java.lang.String _visible;
 	private java.lang.String _width;
 	private java.lang.String _afterBodyContentChange;
 	private java.lang.String _afterBoundingBoxChange;
