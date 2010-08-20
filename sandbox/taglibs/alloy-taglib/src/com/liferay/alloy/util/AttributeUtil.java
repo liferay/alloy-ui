@@ -24,6 +24,7 @@ import java.lang.reflect.Method;
  * @author Eduardo Lundgren
  */
 public class AttributeUtil {
+
 	public static Object getAttribute(Object obj, String key) {
 		try {
 			Class[] paramClasses = { String.class };

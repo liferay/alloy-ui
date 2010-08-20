@@ -100,7 +100,7 @@
 			<name>${attribute.getSafeName()}</name>
 			<required>${attribute.isRequired()?string("true", "false")}</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>${attribute.getJavaType()}</type>
+			<type>${attribute.getSafeJavaType()}</type>
 		</attribute>
 		</#list>
 		<dynamic-attributes>true</dynamic-attributes>

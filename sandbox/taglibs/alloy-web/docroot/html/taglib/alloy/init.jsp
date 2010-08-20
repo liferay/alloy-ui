@@ -7,3 +7,4 @@
 <%@ taglib prefix="alloy" uri="http://alloy.liferay.com/tld/alloy" %>
 
 <%@ page import="java.util.Map" %>
+<%@ page import="com.liferay.alloy.util.GetterUtil" %>

@@ -28,6 +28,27 @@ public class Attribute extends BaseModel {
 		return TypeUtil.getJavaType(_type);
 	}
 
+	public String getJavaTypeSimpleClassName() {
+		try {
+			return Class.forName(TypeUtil.getJavaType(_type)).getSimpleName();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return StringPool.BLANK;
+	}
+
+	public String getSafeJavaType() {
+		String safeType = _DEFAULT_JAVA_TYPE;
+
+		if (getJavaType().equals(_JAVA_LANG_OBJECT)) {
+			safeType = _JAVA_LANG_OBJECT;
+		}
+
+		return safeType;
+	}
+
 	public String getSafeName() {
 		return ReservedAttributeUtil.getSafeName(this);
 	}
@@ -51,6 +72,9 @@ public class Attribute extends BaseModel {
 	public void setType(String type) {
 		_type = type;
 	}
+
+	private static final String _DEFAULT_JAVA_TYPE = "java.lang.String";
+	private static final String _JAVA_LANG_OBJECT = "java.lang.Object";
 
 	private Component _component;
 	private boolean _required;

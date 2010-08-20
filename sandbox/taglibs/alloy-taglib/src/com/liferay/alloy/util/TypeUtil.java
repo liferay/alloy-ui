@@ -15,6 +15,7 @@
 package com.liferay.alloy.util;
 
 import com.liferay.portal.kernel.util.Validator;
+import jodd.util.ReflectUtil;
 
 import java.util.HashMap;
 

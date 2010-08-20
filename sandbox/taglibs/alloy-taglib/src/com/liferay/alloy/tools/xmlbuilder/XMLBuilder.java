@@ -210,7 +210,7 @@ public class XMLBuilder {
 
 					String type = GetterUtil.getString(
 						JSONUtil.getString(attributeJSON, "type"),
-						"String");
+							"String");
 
 					boolean required = GetterUtil.getBoolean(
 						JSONUtil.getString(attributeJSON, "required"));

@@ -20,7 +20,7 @@
 <alloy:char-counter
 	counter="#counter0"
 	input="#input0"
-	maxLength="<%= 5 %>"
+	maxLength="5"
 	afterMaxLength="function(e) { console.log('max') }"
 />
 

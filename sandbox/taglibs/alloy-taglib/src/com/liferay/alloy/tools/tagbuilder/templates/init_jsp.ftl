@@ -5,7 +5,12 @@ Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribut
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("${namespace}scopedAttributes");
 
 <#list component.getAttributesAndEvents() as attribute>
+<#assign simpleClassName = attribute.getJavaTypeSimpleClassName()>
+<#if simpleClassName == "Object">
 ${attribute.getJavaType()} _${attribute.getSafeName()} = (${attribute.getJavaType()})request.getAttribute("${namespace}${attribute.getSafeName()}");
+<#else>
+${attribute.getJavaType()} _${attribute.getSafeName()} = GetterUtil.get${simpleClassName}((java.lang.String)request.getAttribute("${namespace}${attribute.getSafeName()}"));
+</#if>
 </#list>
 %>
 
@@ -13,7 +18,7 @@ ${attribute.getJavaType()} _${attribute.getSafeName()} = (${attribute.getJavaTyp
 
 <%
 <#list component.getAttributesAndEvents() as attribute>
-if (_${attribute.getSafeName()} != null) {
+if (request.getAttribute("${namespace}${attribute.getSafeName()}") != null) {
 	scopedAttributes.put("${attribute.getSafeName()}", _${attribute.getSafeName()});
 }
 
