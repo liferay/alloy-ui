@@ -4,6 +4,17 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:resize:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:resize:scopedAttributes");
 
+String uniqueId = StringPool.BLANK;
+String srcNode = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean((java.io.Serializable)dynamicAttributes.get("useMarkup"));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+	
+	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId));
+}
+
 java.lang.String _activeHandle = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:activeHandle"));
 java.lang.String _activeHandleEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:activeHandleEl"));
 java.lang.Boolean _autoHide = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:resize:autoHide"));
@@ -387,7 +398,7 @@ if (request.getAttribute("alloy:resize:onWrapperChange") != null) {
 %>
 
 <alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes"
+	excludeAttributes="var,javaScriptAttributes,useMarkup"
 	tagPageContext="<%= pageContext %>"
 	tagDynamicAttributes="<%= dynamicAttributes %>"
 	tagScopedAttributes="<%= scopedAttributes %>"

@@ -4,6 +4,17 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:date-picker-select:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:date-picker-select:scopedAttributes");
 
+String uniqueId = StringPool.BLANK;
+String srcNode = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean((java.io.Serializable)dynamicAttributes.get("useMarkup"));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+	
+	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId));
+}
+
 java.lang.Object _align = (java.lang.Object)request.getAttribute("alloy:date-picker-select:align");
 java.lang.String _appendOrder = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:date-picker-select:appendOrder"));
 java.lang.String _baseName = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:date-picker-select:baseName"));
@@ -997,7 +1008,7 @@ if (request.getAttribute("alloy:date-picker-select:onZIndexChange") != null) {
 %>
 
 <alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes"
+	excludeAttributes="var,javaScriptAttributes,useMarkup"
 	tagPageContext="<%= pageContext %>"
 	tagDynamicAttributes="<%= dynamicAttributes %>"
 	tagScopedAttributes="<%= scopedAttributes %>"

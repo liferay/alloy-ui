@@ -4,6 +4,17 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:io-request:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:io-request:scopedAttributes");
 
+String uniqueId = StringPool.BLANK;
+String srcNode = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean((java.io.Serializable)dynamicAttributes.get("useMarkup"));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+	
+	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId));
+}
+
 java.lang.Boolean _active = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:io-request:active"));
 java.lang.Object _arguments = (java.lang.Object)request.getAttribute("alloy:io-request:arguments");
 java.lang.Boolean _autoLoad = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:io-request:autoLoad"));
@@ -392,7 +403,7 @@ if (request.getAttribute("alloy:io-request:onXdrChange") != null) {
 %>
 
 <alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes"
+	excludeAttributes="var,javaScriptAttributes,useMarkup"
 	tagPageContext="<%= pageContext %>"
 	tagDynamicAttributes="<%= dynamicAttributes %>"
 	tagScopedAttributes="<%= scopedAttributes %>"

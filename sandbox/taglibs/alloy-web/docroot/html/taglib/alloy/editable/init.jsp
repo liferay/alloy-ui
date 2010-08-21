@@ -4,6 +4,17 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:editable:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:editable:scopedAttributes");
 
+String uniqueId = StringPool.BLANK;
+String srcNode = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean((java.io.Serializable)dynamicAttributes.get("useMarkup"));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+	
+	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId));
+}
+
 java.lang.String _boundingBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:boundingBox"));
 java.lang.String _cancelButton = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:cancelButton"));
 java.lang.String _contentBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:contentBox"));
@@ -497,7 +508,7 @@ if (request.getAttribute("alloy:editable:onWidthChange") != null) {
 %>
 
 <alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes"
+	excludeAttributes="var,javaScriptAttributes,useMarkup"
 	tagPageContext="<%= pageContext %>"
 	tagDynamicAttributes="<%= dynamicAttributes %>"
 	tagScopedAttributes="<%= scopedAttributes %>"

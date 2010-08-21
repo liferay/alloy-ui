@@ -4,6 +4,17 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:tree-view-dd:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:tree-view-dd:scopedAttributes");
 
+String uniqueId = StringPool.BLANK;
+String srcNode = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean((java.io.Serializable)dynamicAttributes.get("useMarkup"));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+	
+	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId));
+}
+
 java.lang.String _checkContainerEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view-dd:checkContainerEl"));
 java.lang.String _checkEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view-dd:checkEl"));
 java.lang.String _checkName = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view-dd:checkName"));
@@ -287,7 +298,7 @@ if (request.getAttribute("alloy:tree-view-dd:onTypeChange") != null) {
 %>
 
 <alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes"
+	excludeAttributes="var,javaScriptAttributes,useMarkup"
 	tagPageContext="<%= pageContext %>"
 	tagDynamicAttributes="<%= dynamicAttributes %>"
 	tagScopedAttributes="<%= scopedAttributes %>"
