@@ -35,6 +35,9 @@
 	boundingBox="#rating1"
 	label="Ratings"
 	render="true"
+	size="5"
+	defaultSelected="2"
+	useMarkup="true"
 />
 
 <alloy:dialog
