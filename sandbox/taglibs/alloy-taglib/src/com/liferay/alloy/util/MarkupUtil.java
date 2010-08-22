@@ -10,25 +10,19 @@ import com.liferay.util.PwdGenerator;
  * @author Bruno Basto
  */
 public class MarkupUtil {
-	
+
 	public static String getClassName(Object... args) {
 		Object[] classes =  ArrayUtil.clone(args);
-		
-		ArrayUtil.combine(
-			new String[] { CSS_CLASS_PREFIX }, args, classes);
 
-		return StringUtil.merge(classes, CSS_CLASS_DELIMITER);
+		ArrayUtil.combine(
+			new String[] { PropsValues.CSS_CLASS_PREFIX }, args, classes);
+
+		return StringUtil.merge(classes, PropsValues.CSS_CLASS_DELIMITER);
 	}
-	
+
 	public static String getUniqueId() {
 		return PwdGenerator.getPassword(
-			PwdGenerator.KEY2 + PwdGenerator.KEY3, 10); 
+			PwdGenerator.KEY2 + PwdGenerator.KEY3, 10);
 	}
 
-	private static final String CSS_CLASS_DELIMITER = 
-		PropsValues.CSS_CLASS_DELIMITER;
-	
-	private static final String CSS_CLASS_PREFIX = 
-		PropsValues.CSS_CLASS_PREFIX;
-	
 }

@@ -16,12 +16,12 @@ package com.liferay.alloy.util;
 
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Bruno Basto
  */
 public class PropsValues {
 
 	public static String CSS_CLASS_DELIMITER = PropsUtil.get(PropsKeys.CSS_CLASS_DELIMITER);
-	
+
 	public static String CSS_CLASS_PREFIX = PropsUtil.get(PropsKeys.CSS_CLASS_PREFIX);
 
 }

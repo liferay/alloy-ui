@@ -15,12 +15,12 @@
 package com.liferay.alloy.util;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Bruno Basto
  */
 public interface PropsKeys {
 
 	public static final String CSS_CLASS_DELIMITER = "css.class.delimiter";
-	
+
 	public static final String CSS_CLASS_PREFIX = "css.class.prefix";
-	
+
 }

@@ -15,7 +15,7 @@
 package com.liferay.alloy.util;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Bruno Basto
  */
 public class PropsFiles {
 
