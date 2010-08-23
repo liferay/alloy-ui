@@ -24,20 +24,8 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.Object getAlign() {
-		return _align;
-	}
-
 	public java.lang.String getAppendOrder() {
 		return _appendOrder;
-	}
-
-	public java.lang.String getBaseName() {
-		return _baseName;
-	}
-
-	public java.lang.String getDatepickerselectBodyContent() {
-		return _datepickerselectBodyContent;
 	}
 
 	public java.lang.String getBoundingBox() {
@@ -48,16 +36,8 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _buttonNode;
 	}
 
-	public java.lang.String getCancellableHide() {
-		return _cancellableHide;
-	}
-
-	public java.lang.String getCentered() {
-		return _centered;
-	}
-
-	public java.lang.String getConstrain() {
-		return _constrain;
+	public java.lang.Object getCalendar() {
+		return _calendar;
 	}
 
 	public java.lang.String getContentBox() {
@@ -66,30 +46,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 
 	public java.lang.String getCssClass() {
 		return _cssClass;
-	}
-
-	public java.lang.String getCurrentDay() {
-		return _currentDay;
-	}
-
-	public java.lang.String getCurrentMonth() {
-		return _currentMonth;
-	}
-
-	public java.lang.String getCurrentNode() {
-		return _currentNode;
-	}
-
-	public java.lang.String getCurrentYear() {
-		return _currentYear;
-	}
-
-	public java.lang.String getDateFormat() {
-		return _dateFormat;
-	}
-
-	public java.lang.String getDates() {
-		return _dates;
 	}
 
 	public java.lang.String getDayNode() {
@@ -108,24 +64,8 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _disabled;
 	}
 
-	public java.lang.String getFillHeight() {
-		return _fillHeight;
-	}
-
-	public java.lang.String getFirstDayOfWeek() {
-		return _firstDayOfWeek;
-	}
-
 	public java.lang.String getFocused() {
 		return _focused;
-	}
-
-	public java.lang.String getFooterContent() {
-		return _footerContent;
-	}
-
-	public java.lang.String getHeaderContent() {
-		return _headerContent;
 	}
 
 	public java.lang.String getHeight() {
@@ -136,32 +76,12 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _hideClass;
 	}
 
-	public java.lang.String getHideDelay() {
-		return _hideDelay;
-	}
-
-	public java.lang.String getHideOn() {
-		return _hideOn;
-	}
-
-	public java.lang.String getHideOnDocumentClick() {
-		return _hideOnDocumentClick;
-	}
-
 	public java.lang.String getDatepickerselectId() {
 		return _datepickerselectId;
 	}
 
 	public java.lang.String getInitialized() {
 		return _initialized;
-	}
-
-	public java.lang.String getMaxDate() {
-		return _maxDate;
-	}
-
-	public java.lang.String getMinDate() {
-		return _minDate;
 	}
 
 	public java.lang.String getMonthNode() {
@@ -184,10 +104,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _populateYear;
 	}
 
-	public java.lang.String getPreventOverlap() {
-		return _preventOverlap;
-	}
-
 	public java.lang.String getRender() {
 		return _render;
 	}
@@ -196,36 +112,12 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _rendered;
 	}
 
-	public java.lang.String getSelectMultipleDates() {
-		return _selectMultipleDates;
-	}
-
 	public java.lang.String getSelectWrapperNode() {
 		return _selectWrapperNode;
 	}
 
-	public java.lang.String getSetValue() {
-		return _setValue;
-	}
-
-	public java.lang.String getShim() {
-		return _shim;
-	}
-
-	public java.lang.String getShowDelay() {
-		return _showDelay;
-	}
-
-	public java.lang.String getShowOn() {
-		return _showOn;
-	}
-
 	public java.lang.String getSrcNode() {
 		return _srcNode;
-	}
-
-	public java.lang.String getStack() {
-		return _stack;
 	}
 
 	public java.lang.Object getStrings() {
@@ -248,18 +140,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _width;
 	}
 
-	public java.lang.String getX() {
-		return _x;
-	}
-
-	public java.lang.String getXy() {
-		return _xy;
-	}
-
-	public java.lang.String getY() {
-		return _y;
-	}
-
 	public java.lang.String getYearNode() {
 		return _yearNode;
 	}
@@ -272,24 +152,8 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _yearRange;
 	}
 
-	public java.lang.String getZIndex() {
-		return _zIndex;
-	}
-
-	public java.lang.String getAfterAlignChange() {
-		return _afterAlignChange;
-	}
-
 	public java.lang.String getAfterAppendOrderChange() {
 		return _afterAppendOrderChange;
-	}
-
-	public java.lang.String getAfterBaseNameChange() {
-		return _afterBaseNameChange;
-	}
-
-	public java.lang.String getAfterBodyContentChange() {
-		return _afterBodyContentChange;
 	}
 
 	public java.lang.String getAfterBoundingBoxChange() {
@@ -300,16 +164,8 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _afterButtonNodeChange;
 	}
 
-	public java.lang.String getAfterCancellableHideChange() {
-		return _afterCancellableHideChange;
-	}
-
-	public java.lang.String getAfterCenteredChange() {
-		return _afterCenteredChange;
-	}
-
-	public java.lang.String getAfterConstrainChange() {
-		return _afterConstrainChange;
+	public java.lang.String getAfterCalendarChange() {
+		return _afterCalendarChange;
 	}
 
 	public java.lang.String getAfterContentBoxChange() {
@@ -318,30 +174,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 
 	public java.lang.String getAfterCssClassChange() {
 		return _afterCssClassChange;
-	}
-
-	public java.lang.String getAfterCurrentDayChange() {
-		return _afterCurrentDayChange;
-	}
-
-	public java.lang.String getAfterCurrentMonthChange() {
-		return _afterCurrentMonthChange;
-	}
-
-	public java.lang.String getAfterCurrentNodeChange() {
-		return _afterCurrentNodeChange;
-	}
-
-	public java.lang.String getAfterCurrentYearChange() {
-		return _afterCurrentYearChange;
-	}
-
-	public java.lang.String getAfterDateFormatChange() {
-		return _afterDateFormatChange;
-	}
-
-	public java.lang.String getAfterDatesChange() {
-		return _afterDatesChange;
 	}
 
 	public java.lang.String getAfterDayNodeChange() {
@@ -364,24 +196,8 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _afterDisabledChange;
 	}
 
-	public java.lang.String getAfterFillHeightChange() {
-		return _afterFillHeightChange;
-	}
-
-	public java.lang.String getAfterFirstDayOfWeekChange() {
-		return _afterFirstDayOfWeekChange;
-	}
-
 	public java.lang.String getAfterFocusedChange() {
 		return _afterFocusedChange;
-	}
-
-	public java.lang.String getAfterFooterContentChange() {
-		return _afterFooterContentChange;
-	}
-
-	public java.lang.String getAfterHeaderContentChange() {
-		return _afterHeaderContentChange;
 	}
 
 	public java.lang.String getAfterHeightChange() {
@@ -390,18 +206,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 
 	public java.lang.String getAfterHideClassChange() {
 		return _afterHideClassChange;
-	}
-
-	public java.lang.String getAfterHideDelayChange() {
-		return _afterHideDelayChange;
-	}
-
-	public java.lang.String getAfterHideOnChange() {
-		return _afterHideOnChange;
-	}
-
-	public java.lang.String getAfterHideOnDocumentClickChange() {
-		return _afterHideOnDocumentClickChange;
 	}
 
 	public java.lang.String getAfterIdChange() {
@@ -414,14 +218,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 
 	public java.lang.String getAfterInitializedChange() {
 		return _afterInitializedChange;
-	}
-
-	public java.lang.String getAfterMaxDateChange() {
-		return _afterMaxDateChange;
-	}
-
-	public java.lang.String getAfterMinDateChange() {
-		return _afterMinDateChange;
 	}
 
 	public java.lang.String getAfterMonthNodeChange() {
@@ -444,10 +240,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _afterPopulateYearChange;
 	}
 
-	public java.lang.String getAfterPreventOverlapChange() {
-		return _afterPreventOverlapChange;
-	}
-
 	public java.lang.String getAfterRenderChange() {
 		return _afterRenderChange;
 	}
@@ -456,36 +248,12 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _afterRenderedChange;
 	}
 
-	public java.lang.String getAfterSelectMultipleDatesChange() {
-		return _afterSelectMultipleDatesChange;
-	}
-
 	public java.lang.String getAfterSelectWrapperNodeChange() {
 		return _afterSelectWrapperNodeChange;
 	}
 
-	public java.lang.String getAfterSetValueChange() {
-		return _afterSetValueChange;
-	}
-
-	public java.lang.String getAfterShimChange() {
-		return _afterShimChange;
-	}
-
-	public java.lang.String getAfterShowDelayChange() {
-		return _afterShowDelayChange;
-	}
-
-	public java.lang.String getAfterShowOnChange() {
-		return _afterShowOnChange;
-	}
-
 	public java.lang.String getAfterSrcNodeChange() {
 		return _afterSrcNodeChange;
-	}
-
-	public java.lang.String getAfterStackChange() {
-		return _afterStackChange;
 	}
 
 	public java.lang.String getAfterStringsChange() {
@@ -516,18 +284,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _afterWidthChange;
 	}
 
-	public java.lang.String getAfterXChange() {
-		return _afterXChange;
-	}
-
-	public java.lang.String getAfterXyChange() {
-		return _afterXyChange;
-	}
-
-	public java.lang.String getAfterYChange() {
-		return _afterYChange;
-	}
-
 	public java.lang.String getAfterYearNodeChange() {
 		return _afterYearNodeChange;
 	}
@@ -540,24 +296,8 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _afterYearRangeChange;
 	}
 
-	public java.lang.String getAfterZIndexChange() {
-		return _afterZIndexChange;
-	}
-
-	public java.lang.String getOnAlignChange() {
-		return _onAlignChange;
-	}
-
 	public java.lang.String getOnAppendOrderChange() {
 		return _onAppendOrderChange;
-	}
-
-	public java.lang.String getOnBaseNameChange() {
-		return _onBaseNameChange;
-	}
-
-	public java.lang.String getOnBodyContentChange() {
-		return _onBodyContentChange;
 	}
 
 	public java.lang.String getOnBoundingBoxChange() {
@@ -568,16 +308,8 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _onButtonNodeChange;
 	}
 
-	public java.lang.String getOnCancellableHideChange() {
-		return _onCancellableHideChange;
-	}
-
-	public java.lang.String getOnCenteredChange() {
-		return _onCenteredChange;
-	}
-
-	public java.lang.String getOnConstrainChange() {
-		return _onConstrainChange;
+	public java.lang.String getOnCalendarChange() {
+		return _onCalendarChange;
 	}
 
 	public java.lang.String getOnContentBoxChange() {
@@ -586,30 +318,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 
 	public java.lang.String getOnCssClassChange() {
 		return _onCssClassChange;
-	}
-
-	public java.lang.String getOnCurrentDayChange() {
-		return _onCurrentDayChange;
-	}
-
-	public java.lang.String getOnCurrentMonthChange() {
-		return _onCurrentMonthChange;
-	}
-
-	public java.lang.String getOnCurrentNodeChange() {
-		return _onCurrentNodeChange;
-	}
-
-	public java.lang.String getOnCurrentYearChange() {
-		return _onCurrentYearChange;
-	}
-
-	public java.lang.String getOnDateFormatChange() {
-		return _onDateFormatChange;
-	}
-
-	public java.lang.String getOnDatesChange() {
-		return _onDatesChange;
 	}
 
 	public java.lang.String getOnDayNodeChange() {
@@ -632,24 +340,8 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _onDisabledChange;
 	}
 
-	public java.lang.String getOnFillHeightChange() {
-		return _onFillHeightChange;
-	}
-
-	public java.lang.String getOnFirstDayOfWeekChange() {
-		return _onFirstDayOfWeekChange;
-	}
-
 	public java.lang.String getOnFocusedChange() {
 		return _onFocusedChange;
-	}
-
-	public java.lang.String getOnFooterContentChange() {
-		return _onFooterContentChange;
-	}
-
-	public java.lang.String getOnHeaderContentChange() {
-		return _onHeaderContentChange;
 	}
 
 	public java.lang.String getOnHeightChange() {
@@ -658,18 +350,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 
 	public java.lang.String getOnHideClassChange() {
 		return _onHideClassChange;
-	}
-
-	public java.lang.String getOnHideDelayChange() {
-		return _onHideDelayChange;
-	}
-
-	public java.lang.String getOnHideOnChange() {
-		return _onHideOnChange;
-	}
-
-	public java.lang.String getOnHideOnDocumentClickChange() {
-		return _onHideOnDocumentClickChange;
 	}
 
 	public java.lang.String getOnIdChange() {
@@ -682,14 +362,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 
 	public java.lang.String getOnInitializedChange() {
 		return _onInitializedChange;
-	}
-
-	public java.lang.String getOnMaxDateChange() {
-		return _onMaxDateChange;
-	}
-
-	public java.lang.String getOnMinDateChange() {
-		return _onMinDateChange;
 	}
 
 	public java.lang.String getOnMonthNodeChange() {
@@ -712,10 +384,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _onPopulateYearChange;
 	}
 
-	public java.lang.String getOnPreventOverlapChange() {
-		return _onPreventOverlapChange;
-	}
-
 	public java.lang.String getOnRenderChange() {
 		return _onRenderChange;
 	}
@@ -724,36 +392,12 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _onRenderedChange;
 	}
 
-	public java.lang.String getOnSelectMultipleDatesChange() {
-		return _onSelectMultipleDatesChange;
-	}
-
 	public java.lang.String getOnSelectWrapperNodeChange() {
 		return _onSelectWrapperNodeChange;
 	}
 
-	public java.lang.String getOnSetValueChange() {
-		return _onSetValueChange;
-	}
-
-	public java.lang.String getOnShimChange() {
-		return _onShimChange;
-	}
-
-	public java.lang.String getOnShowDelayChange() {
-		return _onShowDelayChange;
-	}
-
-	public java.lang.String getOnShowOnChange() {
-		return _onShowOnChange;
-	}
-
 	public java.lang.String getOnSrcNodeChange() {
 		return _onSrcNodeChange;
-	}
-
-	public java.lang.String getOnStackChange() {
-		return _onStackChange;
 	}
 
 	public java.lang.String getOnStringsChange() {
@@ -784,18 +428,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _onWidthChange;
 	}
 
-	public java.lang.String getOnXChange() {
-		return _onXChange;
-	}
-
-	public java.lang.String getOnXyChange() {
-		return _onXyChange;
-	}
-
-	public java.lang.String getOnYChange() {
-		return _onYChange;
-	}
-
 	public java.lang.String getOnYearNodeChange() {
 		return _onYearNodeChange;
 	}
@@ -808,32 +440,10 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _onYearRangeChange;
 	}
 
-	public java.lang.String getOnZIndexChange() {
-		return _onZIndexChange;
-	}
-
-	public void setAlign(java.lang.Object align) {
-		_align = align;
-
-		setScopedAttribute("align", align);
-	}
-
 	public void setAppendOrder(java.lang.String appendOrder) {
 		_appendOrder = appendOrder;
 
 		setScopedAttribute("appendOrder", appendOrder);
-	}
-
-	public void setBaseName(java.lang.String baseName) {
-		_baseName = baseName;
-
-		setScopedAttribute("baseName", baseName);
-	}
-
-	public void setDatepickerselectBodyContent(java.lang.String datepickerselectBodyContent) {
-		_datepickerselectBodyContent = datepickerselectBodyContent;
-
-		setScopedAttribute("datepickerselectBodyContent", datepickerselectBodyContent);
 	}
 
 	public void setBoundingBox(java.lang.String boundingBox) {
@@ -848,22 +458,10 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("buttonNode", buttonNode);
 	}
 
-	public void setCancellableHide(java.lang.String cancellableHide) {
-		_cancellableHide = cancellableHide;
+	public void setCalendar(java.lang.Object calendar) {
+		_calendar = calendar;
 
-		setScopedAttribute("cancellableHide", cancellableHide);
-	}
-
-	public void setCentered(java.lang.String centered) {
-		_centered = centered;
-
-		setScopedAttribute("centered", centered);
-	}
-
-	public void setConstrain(java.lang.String constrain) {
-		_constrain = constrain;
-
-		setScopedAttribute("constrain", constrain);
+		setScopedAttribute("calendar", calendar);
 	}
 
 	public void setContentBox(java.lang.String contentBox) {
@@ -876,42 +474,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		_cssClass = cssClass;
 
 		setScopedAttribute("cssClass", cssClass);
-	}
-
-	public void setCurrentDay(java.lang.String currentDay) {
-		_currentDay = currentDay;
-
-		setScopedAttribute("currentDay", currentDay);
-	}
-
-	public void setCurrentMonth(java.lang.String currentMonth) {
-		_currentMonth = currentMonth;
-
-		setScopedAttribute("currentMonth", currentMonth);
-	}
-
-	public void setCurrentNode(java.lang.String currentNode) {
-		_currentNode = currentNode;
-
-		setScopedAttribute("currentNode", currentNode);
-	}
-
-	public void setCurrentYear(java.lang.String currentYear) {
-		_currentYear = currentYear;
-
-		setScopedAttribute("currentYear", currentYear);
-	}
-
-	public void setDateFormat(java.lang.String dateFormat) {
-		_dateFormat = dateFormat;
-
-		setScopedAttribute("dateFormat", dateFormat);
-	}
-
-	public void setDates(java.lang.String dates) {
-		_dates = dates;
-
-		setScopedAttribute("dates", dates);
 	}
 
 	public void setDayNode(java.lang.String dayNode) {
@@ -938,34 +500,10 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("disabled", disabled);
 	}
 
-	public void setFillHeight(java.lang.String fillHeight) {
-		_fillHeight = fillHeight;
-
-		setScopedAttribute("fillHeight", fillHeight);
-	}
-
-	public void setFirstDayOfWeek(java.lang.String firstDayOfWeek) {
-		_firstDayOfWeek = firstDayOfWeek;
-
-		setScopedAttribute("firstDayOfWeek", firstDayOfWeek);
-	}
-
 	public void setFocused(java.lang.String focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
-	}
-
-	public void setFooterContent(java.lang.String footerContent) {
-		_footerContent = footerContent;
-
-		setScopedAttribute("footerContent", footerContent);
-	}
-
-	public void setHeaderContent(java.lang.String headerContent) {
-		_headerContent = headerContent;
-
-		setScopedAttribute("headerContent", headerContent);
 	}
 
 	public void setHeight(java.lang.String height) {
@@ -980,24 +518,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("hideClass", hideClass);
 	}
 
-	public void setHideDelay(java.lang.String hideDelay) {
-		_hideDelay = hideDelay;
-
-		setScopedAttribute("hideDelay", hideDelay);
-	}
-
-	public void setHideOn(java.lang.String hideOn) {
-		_hideOn = hideOn;
-
-		setScopedAttribute("hideOn", hideOn);
-	}
-
-	public void setHideOnDocumentClick(java.lang.String hideOnDocumentClick) {
-		_hideOnDocumentClick = hideOnDocumentClick;
-
-		setScopedAttribute("hideOnDocumentClick", hideOnDocumentClick);
-	}
-
 	public void setDatepickerselectId(java.lang.String datepickerselectId) {
 		_datepickerselectId = datepickerselectId;
 
@@ -1008,18 +528,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
-	}
-
-	public void setMaxDate(java.lang.String maxDate) {
-		_maxDate = maxDate;
-
-		setScopedAttribute("maxDate", maxDate);
-	}
-
-	public void setMinDate(java.lang.String minDate) {
-		_minDate = minDate;
-
-		setScopedAttribute("minDate", minDate);
 	}
 
 	public void setMonthNode(java.lang.String monthNode) {
@@ -1052,12 +560,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("populateYear", populateYear);
 	}
 
-	public void setPreventOverlap(java.lang.String preventOverlap) {
-		_preventOverlap = preventOverlap;
-
-		setScopedAttribute("preventOverlap", preventOverlap);
-	}
-
 	public void setRender(java.lang.String render) {
 		_render = render;
 
@@ -1070,52 +572,16 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setSelectMultipleDates(java.lang.String selectMultipleDates) {
-		_selectMultipleDates = selectMultipleDates;
-
-		setScopedAttribute("selectMultipleDates", selectMultipleDates);
-	}
-
 	public void setSelectWrapperNode(java.lang.String selectWrapperNode) {
 		_selectWrapperNode = selectWrapperNode;
 
 		setScopedAttribute("selectWrapperNode", selectWrapperNode);
 	}
 
-	public void setSetValue(java.lang.String setValue) {
-		_setValue = setValue;
-
-		setScopedAttribute("setValue", setValue);
-	}
-
-	public void setShim(java.lang.String shim) {
-		_shim = shim;
-
-		setScopedAttribute("shim", shim);
-	}
-
-	public void setShowDelay(java.lang.String showDelay) {
-		_showDelay = showDelay;
-
-		setScopedAttribute("showDelay", showDelay);
-	}
-
-	public void setShowOn(java.lang.String showOn) {
-		_showOn = showOn;
-
-		setScopedAttribute("showOn", showOn);
-	}
-
 	public void setSrcNode(java.lang.String srcNode) {
 		_srcNode = srcNode;
 
 		setScopedAttribute("srcNode", srcNode);
-	}
-
-	public void setStack(java.lang.String stack) {
-		_stack = stack;
-
-		setScopedAttribute("stack", stack);
 	}
 
 	public void setStrings(java.lang.Object strings) {
@@ -1148,24 +614,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("width", width);
 	}
 
-	public void setX(java.lang.String x) {
-		_x = x;
-
-		setScopedAttribute("x", x);
-	}
-
-	public void setXy(java.lang.String xy) {
-		_xy = xy;
-
-		setScopedAttribute("xy", xy);
-	}
-
-	public void setY(java.lang.String y) {
-		_y = y;
-
-		setScopedAttribute("y", y);
-	}
-
 	public void setYearNode(java.lang.String yearNode) {
 		_yearNode = yearNode;
 
@@ -1184,34 +632,10 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("yearRange", yearRange);
 	}
 
-	public void setZIndex(java.lang.String zIndex) {
-		_zIndex = zIndex;
-
-		setScopedAttribute("zIndex", zIndex);
-	}
-
-	public void setAfterAlignChange(java.lang.String afterAlignChange) {
-		_afterAlignChange = afterAlignChange;
-
-		setScopedAttribute("afterAlignChange", afterAlignChange);
-	}
-
 	public void setAfterAppendOrderChange(java.lang.String afterAppendOrderChange) {
 		_afterAppendOrderChange = afterAppendOrderChange;
 
 		setScopedAttribute("afterAppendOrderChange", afterAppendOrderChange);
-	}
-
-	public void setAfterBaseNameChange(java.lang.String afterBaseNameChange) {
-		_afterBaseNameChange = afterBaseNameChange;
-
-		setScopedAttribute("afterBaseNameChange", afterBaseNameChange);
-	}
-
-	public void setAfterBodyContentChange(java.lang.String afterBodyContentChange) {
-		_afterBodyContentChange = afterBodyContentChange;
-
-		setScopedAttribute("afterBodyContentChange", afterBodyContentChange);
 	}
 
 	public void setAfterBoundingBoxChange(java.lang.String afterBoundingBoxChange) {
@@ -1226,22 +650,10 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("afterButtonNodeChange", afterButtonNodeChange);
 	}
 
-	public void setAfterCancellableHideChange(java.lang.String afterCancellableHideChange) {
-		_afterCancellableHideChange = afterCancellableHideChange;
+	public void setAfterCalendarChange(java.lang.String afterCalendarChange) {
+		_afterCalendarChange = afterCalendarChange;
 
-		setScopedAttribute("afterCancellableHideChange", afterCancellableHideChange);
-	}
-
-	public void setAfterCenteredChange(java.lang.String afterCenteredChange) {
-		_afterCenteredChange = afterCenteredChange;
-
-		setScopedAttribute("afterCenteredChange", afterCenteredChange);
-	}
-
-	public void setAfterConstrainChange(java.lang.String afterConstrainChange) {
-		_afterConstrainChange = afterConstrainChange;
-
-		setScopedAttribute("afterConstrainChange", afterConstrainChange);
+		setScopedAttribute("afterCalendarChange", afterCalendarChange);
 	}
 
 	public void setAfterContentBoxChange(java.lang.String afterContentBoxChange) {
@@ -1254,42 +666,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		_afterCssClassChange = afterCssClassChange;
 
 		setScopedAttribute("afterCssClassChange", afterCssClassChange);
-	}
-
-	public void setAfterCurrentDayChange(java.lang.String afterCurrentDayChange) {
-		_afterCurrentDayChange = afterCurrentDayChange;
-
-		setScopedAttribute("afterCurrentDayChange", afterCurrentDayChange);
-	}
-
-	public void setAfterCurrentMonthChange(java.lang.String afterCurrentMonthChange) {
-		_afterCurrentMonthChange = afterCurrentMonthChange;
-
-		setScopedAttribute("afterCurrentMonthChange", afterCurrentMonthChange);
-	}
-
-	public void setAfterCurrentNodeChange(java.lang.String afterCurrentNodeChange) {
-		_afterCurrentNodeChange = afterCurrentNodeChange;
-
-		setScopedAttribute("afterCurrentNodeChange", afterCurrentNodeChange);
-	}
-
-	public void setAfterCurrentYearChange(java.lang.String afterCurrentYearChange) {
-		_afterCurrentYearChange = afterCurrentYearChange;
-
-		setScopedAttribute("afterCurrentYearChange", afterCurrentYearChange);
-	}
-
-	public void setAfterDateFormatChange(java.lang.String afterDateFormatChange) {
-		_afterDateFormatChange = afterDateFormatChange;
-
-		setScopedAttribute("afterDateFormatChange", afterDateFormatChange);
-	}
-
-	public void setAfterDatesChange(java.lang.String afterDatesChange) {
-		_afterDatesChange = afterDatesChange;
-
-		setScopedAttribute("afterDatesChange", afterDatesChange);
 	}
 
 	public void setAfterDayNodeChange(java.lang.String afterDayNodeChange) {
@@ -1322,34 +698,10 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("afterDisabledChange", afterDisabledChange);
 	}
 
-	public void setAfterFillHeightChange(java.lang.String afterFillHeightChange) {
-		_afterFillHeightChange = afterFillHeightChange;
-
-		setScopedAttribute("afterFillHeightChange", afterFillHeightChange);
-	}
-
-	public void setAfterFirstDayOfWeekChange(java.lang.String afterFirstDayOfWeekChange) {
-		_afterFirstDayOfWeekChange = afterFirstDayOfWeekChange;
-
-		setScopedAttribute("afterFirstDayOfWeekChange", afterFirstDayOfWeekChange);
-	}
-
 	public void setAfterFocusedChange(java.lang.String afterFocusedChange) {
 		_afterFocusedChange = afterFocusedChange;
 
 		setScopedAttribute("afterFocusedChange", afterFocusedChange);
-	}
-
-	public void setAfterFooterContentChange(java.lang.String afterFooterContentChange) {
-		_afterFooterContentChange = afterFooterContentChange;
-
-		setScopedAttribute("afterFooterContentChange", afterFooterContentChange);
-	}
-
-	public void setAfterHeaderContentChange(java.lang.String afterHeaderContentChange) {
-		_afterHeaderContentChange = afterHeaderContentChange;
-
-		setScopedAttribute("afterHeaderContentChange", afterHeaderContentChange);
 	}
 
 	public void setAfterHeightChange(java.lang.String afterHeightChange) {
@@ -1362,24 +714,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		_afterHideClassChange = afterHideClassChange;
 
 		setScopedAttribute("afterHideClassChange", afterHideClassChange);
-	}
-
-	public void setAfterHideDelayChange(java.lang.String afterHideDelayChange) {
-		_afterHideDelayChange = afterHideDelayChange;
-
-		setScopedAttribute("afterHideDelayChange", afterHideDelayChange);
-	}
-
-	public void setAfterHideOnChange(java.lang.String afterHideOnChange) {
-		_afterHideOnChange = afterHideOnChange;
-
-		setScopedAttribute("afterHideOnChange", afterHideOnChange);
-	}
-
-	public void setAfterHideOnDocumentClickChange(java.lang.String afterHideOnDocumentClickChange) {
-		_afterHideOnDocumentClickChange = afterHideOnDocumentClickChange;
-
-		setScopedAttribute("afterHideOnDocumentClickChange", afterHideOnDocumentClickChange);
 	}
 
 	public void setAfterIdChange(java.lang.String afterIdChange) {
@@ -1398,18 +732,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		_afterInitializedChange = afterInitializedChange;
 
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
-	}
-
-	public void setAfterMaxDateChange(java.lang.String afterMaxDateChange) {
-		_afterMaxDateChange = afterMaxDateChange;
-
-		setScopedAttribute("afterMaxDateChange", afterMaxDateChange);
-	}
-
-	public void setAfterMinDateChange(java.lang.String afterMinDateChange) {
-		_afterMinDateChange = afterMinDateChange;
-
-		setScopedAttribute("afterMinDateChange", afterMinDateChange);
 	}
 
 	public void setAfterMonthNodeChange(java.lang.String afterMonthNodeChange) {
@@ -1442,12 +764,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("afterPopulateYearChange", afterPopulateYearChange);
 	}
 
-	public void setAfterPreventOverlapChange(java.lang.String afterPreventOverlapChange) {
-		_afterPreventOverlapChange = afterPreventOverlapChange;
-
-		setScopedAttribute("afterPreventOverlapChange", afterPreventOverlapChange);
-	}
-
 	public void setAfterRenderChange(java.lang.String afterRenderChange) {
 		_afterRenderChange = afterRenderChange;
 
@@ -1460,52 +776,16 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("afterRenderedChange", afterRenderedChange);
 	}
 
-	public void setAfterSelectMultipleDatesChange(java.lang.String afterSelectMultipleDatesChange) {
-		_afterSelectMultipleDatesChange = afterSelectMultipleDatesChange;
-
-		setScopedAttribute("afterSelectMultipleDatesChange", afterSelectMultipleDatesChange);
-	}
-
 	public void setAfterSelectWrapperNodeChange(java.lang.String afterSelectWrapperNodeChange) {
 		_afterSelectWrapperNodeChange = afterSelectWrapperNodeChange;
 
 		setScopedAttribute("afterSelectWrapperNodeChange", afterSelectWrapperNodeChange);
 	}
 
-	public void setAfterSetValueChange(java.lang.String afterSetValueChange) {
-		_afterSetValueChange = afterSetValueChange;
-
-		setScopedAttribute("afterSetValueChange", afterSetValueChange);
-	}
-
-	public void setAfterShimChange(java.lang.String afterShimChange) {
-		_afterShimChange = afterShimChange;
-
-		setScopedAttribute("afterShimChange", afterShimChange);
-	}
-
-	public void setAfterShowDelayChange(java.lang.String afterShowDelayChange) {
-		_afterShowDelayChange = afterShowDelayChange;
-
-		setScopedAttribute("afterShowDelayChange", afterShowDelayChange);
-	}
-
-	public void setAfterShowOnChange(java.lang.String afterShowOnChange) {
-		_afterShowOnChange = afterShowOnChange;
-
-		setScopedAttribute("afterShowOnChange", afterShowOnChange);
-	}
-
 	public void setAfterSrcNodeChange(java.lang.String afterSrcNodeChange) {
 		_afterSrcNodeChange = afterSrcNodeChange;
 
 		setScopedAttribute("afterSrcNodeChange", afterSrcNodeChange);
-	}
-
-	public void setAfterStackChange(java.lang.String afterStackChange) {
-		_afterStackChange = afterStackChange;
-
-		setScopedAttribute("afterStackChange", afterStackChange);
 	}
 
 	public void setAfterStringsChange(java.lang.String afterStringsChange) {
@@ -1550,24 +830,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("afterWidthChange", afterWidthChange);
 	}
 
-	public void setAfterXChange(java.lang.String afterXChange) {
-		_afterXChange = afterXChange;
-
-		setScopedAttribute("afterXChange", afterXChange);
-	}
-
-	public void setAfterXyChange(java.lang.String afterXyChange) {
-		_afterXyChange = afterXyChange;
-
-		setScopedAttribute("afterXyChange", afterXyChange);
-	}
-
-	public void setAfterYChange(java.lang.String afterYChange) {
-		_afterYChange = afterYChange;
-
-		setScopedAttribute("afterYChange", afterYChange);
-	}
-
 	public void setAfterYearNodeChange(java.lang.String afterYearNodeChange) {
 		_afterYearNodeChange = afterYearNodeChange;
 
@@ -1586,34 +848,10 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("afterYearRangeChange", afterYearRangeChange);
 	}
 
-	public void setAfterZIndexChange(java.lang.String afterZIndexChange) {
-		_afterZIndexChange = afterZIndexChange;
-
-		setScopedAttribute("afterZIndexChange", afterZIndexChange);
-	}
-
-	public void setOnAlignChange(java.lang.String onAlignChange) {
-		_onAlignChange = onAlignChange;
-
-		setScopedAttribute("onAlignChange", onAlignChange);
-	}
-
 	public void setOnAppendOrderChange(java.lang.String onAppendOrderChange) {
 		_onAppendOrderChange = onAppendOrderChange;
 
 		setScopedAttribute("onAppendOrderChange", onAppendOrderChange);
-	}
-
-	public void setOnBaseNameChange(java.lang.String onBaseNameChange) {
-		_onBaseNameChange = onBaseNameChange;
-
-		setScopedAttribute("onBaseNameChange", onBaseNameChange);
-	}
-
-	public void setOnBodyContentChange(java.lang.String onBodyContentChange) {
-		_onBodyContentChange = onBodyContentChange;
-
-		setScopedAttribute("onBodyContentChange", onBodyContentChange);
 	}
 
 	public void setOnBoundingBoxChange(java.lang.String onBoundingBoxChange) {
@@ -1628,22 +866,10 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("onButtonNodeChange", onButtonNodeChange);
 	}
 
-	public void setOnCancellableHideChange(java.lang.String onCancellableHideChange) {
-		_onCancellableHideChange = onCancellableHideChange;
+	public void setOnCalendarChange(java.lang.String onCalendarChange) {
+		_onCalendarChange = onCalendarChange;
 
-		setScopedAttribute("onCancellableHideChange", onCancellableHideChange);
-	}
-
-	public void setOnCenteredChange(java.lang.String onCenteredChange) {
-		_onCenteredChange = onCenteredChange;
-
-		setScopedAttribute("onCenteredChange", onCenteredChange);
-	}
-
-	public void setOnConstrainChange(java.lang.String onConstrainChange) {
-		_onConstrainChange = onConstrainChange;
-
-		setScopedAttribute("onConstrainChange", onConstrainChange);
+		setScopedAttribute("onCalendarChange", onCalendarChange);
 	}
 
 	public void setOnContentBoxChange(java.lang.String onContentBoxChange) {
@@ -1656,42 +882,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		_onCssClassChange = onCssClassChange;
 
 		setScopedAttribute("onCssClassChange", onCssClassChange);
-	}
-
-	public void setOnCurrentDayChange(java.lang.String onCurrentDayChange) {
-		_onCurrentDayChange = onCurrentDayChange;
-
-		setScopedAttribute("onCurrentDayChange", onCurrentDayChange);
-	}
-
-	public void setOnCurrentMonthChange(java.lang.String onCurrentMonthChange) {
-		_onCurrentMonthChange = onCurrentMonthChange;
-
-		setScopedAttribute("onCurrentMonthChange", onCurrentMonthChange);
-	}
-
-	public void setOnCurrentNodeChange(java.lang.String onCurrentNodeChange) {
-		_onCurrentNodeChange = onCurrentNodeChange;
-
-		setScopedAttribute("onCurrentNodeChange", onCurrentNodeChange);
-	}
-
-	public void setOnCurrentYearChange(java.lang.String onCurrentYearChange) {
-		_onCurrentYearChange = onCurrentYearChange;
-
-		setScopedAttribute("onCurrentYearChange", onCurrentYearChange);
-	}
-
-	public void setOnDateFormatChange(java.lang.String onDateFormatChange) {
-		_onDateFormatChange = onDateFormatChange;
-
-		setScopedAttribute("onDateFormatChange", onDateFormatChange);
-	}
-
-	public void setOnDatesChange(java.lang.String onDatesChange) {
-		_onDatesChange = onDatesChange;
-
-		setScopedAttribute("onDatesChange", onDatesChange);
 	}
 
 	public void setOnDayNodeChange(java.lang.String onDayNodeChange) {
@@ -1724,34 +914,10 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("onDisabledChange", onDisabledChange);
 	}
 
-	public void setOnFillHeightChange(java.lang.String onFillHeightChange) {
-		_onFillHeightChange = onFillHeightChange;
-
-		setScopedAttribute("onFillHeightChange", onFillHeightChange);
-	}
-
-	public void setOnFirstDayOfWeekChange(java.lang.String onFirstDayOfWeekChange) {
-		_onFirstDayOfWeekChange = onFirstDayOfWeekChange;
-
-		setScopedAttribute("onFirstDayOfWeekChange", onFirstDayOfWeekChange);
-	}
-
 	public void setOnFocusedChange(java.lang.String onFocusedChange) {
 		_onFocusedChange = onFocusedChange;
 
 		setScopedAttribute("onFocusedChange", onFocusedChange);
-	}
-
-	public void setOnFooterContentChange(java.lang.String onFooterContentChange) {
-		_onFooterContentChange = onFooterContentChange;
-
-		setScopedAttribute("onFooterContentChange", onFooterContentChange);
-	}
-
-	public void setOnHeaderContentChange(java.lang.String onHeaderContentChange) {
-		_onHeaderContentChange = onHeaderContentChange;
-
-		setScopedAttribute("onHeaderContentChange", onHeaderContentChange);
 	}
 
 	public void setOnHeightChange(java.lang.String onHeightChange) {
@@ -1764,24 +930,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		_onHideClassChange = onHideClassChange;
 
 		setScopedAttribute("onHideClassChange", onHideClassChange);
-	}
-
-	public void setOnHideDelayChange(java.lang.String onHideDelayChange) {
-		_onHideDelayChange = onHideDelayChange;
-
-		setScopedAttribute("onHideDelayChange", onHideDelayChange);
-	}
-
-	public void setOnHideOnChange(java.lang.String onHideOnChange) {
-		_onHideOnChange = onHideOnChange;
-
-		setScopedAttribute("onHideOnChange", onHideOnChange);
-	}
-
-	public void setOnHideOnDocumentClickChange(java.lang.String onHideOnDocumentClickChange) {
-		_onHideOnDocumentClickChange = onHideOnDocumentClickChange;
-
-		setScopedAttribute("onHideOnDocumentClickChange", onHideOnDocumentClickChange);
 	}
 
 	public void setOnIdChange(java.lang.String onIdChange) {
@@ -1800,18 +948,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		_onInitializedChange = onInitializedChange;
 
 		setScopedAttribute("onInitializedChange", onInitializedChange);
-	}
-
-	public void setOnMaxDateChange(java.lang.String onMaxDateChange) {
-		_onMaxDateChange = onMaxDateChange;
-
-		setScopedAttribute("onMaxDateChange", onMaxDateChange);
-	}
-
-	public void setOnMinDateChange(java.lang.String onMinDateChange) {
-		_onMinDateChange = onMinDateChange;
-
-		setScopedAttribute("onMinDateChange", onMinDateChange);
 	}
 
 	public void setOnMonthNodeChange(java.lang.String onMonthNodeChange) {
@@ -1844,12 +980,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("onPopulateYearChange", onPopulateYearChange);
 	}
 
-	public void setOnPreventOverlapChange(java.lang.String onPreventOverlapChange) {
-		_onPreventOverlapChange = onPreventOverlapChange;
-
-		setScopedAttribute("onPreventOverlapChange", onPreventOverlapChange);
-	}
-
 	public void setOnRenderChange(java.lang.String onRenderChange) {
 		_onRenderChange = onRenderChange;
 
@@ -1862,52 +992,16 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("onRenderedChange", onRenderedChange);
 	}
 
-	public void setOnSelectMultipleDatesChange(java.lang.String onSelectMultipleDatesChange) {
-		_onSelectMultipleDatesChange = onSelectMultipleDatesChange;
-
-		setScopedAttribute("onSelectMultipleDatesChange", onSelectMultipleDatesChange);
-	}
-
 	public void setOnSelectWrapperNodeChange(java.lang.String onSelectWrapperNodeChange) {
 		_onSelectWrapperNodeChange = onSelectWrapperNodeChange;
 
 		setScopedAttribute("onSelectWrapperNodeChange", onSelectWrapperNodeChange);
 	}
 
-	public void setOnSetValueChange(java.lang.String onSetValueChange) {
-		_onSetValueChange = onSetValueChange;
-
-		setScopedAttribute("onSetValueChange", onSetValueChange);
-	}
-
-	public void setOnShimChange(java.lang.String onShimChange) {
-		_onShimChange = onShimChange;
-
-		setScopedAttribute("onShimChange", onShimChange);
-	}
-
-	public void setOnShowDelayChange(java.lang.String onShowDelayChange) {
-		_onShowDelayChange = onShowDelayChange;
-
-		setScopedAttribute("onShowDelayChange", onShowDelayChange);
-	}
-
-	public void setOnShowOnChange(java.lang.String onShowOnChange) {
-		_onShowOnChange = onShowOnChange;
-
-		setScopedAttribute("onShowOnChange", onShowOnChange);
-	}
-
 	public void setOnSrcNodeChange(java.lang.String onSrcNodeChange) {
 		_onSrcNodeChange = onSrcNodeChange;
 
 		setScopedAttribute("onSrcNodeChange", onSrcNodeChange);
-	}
-
-	public void setOnStackChange(java.lang.String onStackChange) {
-		_onStackChange = onStackChange;
-
-		setScopedAttribute("onStackChange", onStackChange);
 	}
 
 	public void setOnStringsChange(java.lang.String onStringsChange) {
@@ -1952,24 +1046,6 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
-	public void setOnXChange(java.lang.String onXChange) {
-		_onXChange = onXChange;
-
-		setScopedAttribute("onXChange", onXChange);
-	}
-
-	public void setOnXyChange(java.lang.String onXyChange) {
-		_onXyChange = onXyChange;
-
-		setScopedAttribute("onXyChange", onXyChange);
-	}
-
-	public void setOnYChange(java.lang.String onYChange) {
-		_onYChange = onYChange;
-
-		setScopedAttribute("onYChange", onYChange);
-	}
-
 	public void setOnYearNodeChange(java.lang.String onYearNodeChange) {
 		_onYearNodeChange = onYearNodeChange;
 
@@ -1988,129 +1064,65 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("onYearRangeChange", onYearRangeChange);
 	}
 
-	public void setOnZIndexChange(java.lang.String onZIndexChange) {
-		_onZIndexChange = onZIndexChange;
-
-		setScopedAttribute("onZIndexChange", onZIndexChange);
-	}
-
 	protected void _setAttributes(HttpServletRequest request) {
-		setNamespacedAttribute(request, "align", _align);
 		setNamespacedAttribute(request, "appendOrder", _appendOrder);
-		setNamespacedAttribute(request, "baseName", _baseName);
-		setNamespacedAttribute(request, "datepickerselectBodyContent", _datepickerselectBodyContent);
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);
 		setNamespacedAttribute(request, "buttonNode", _buttonNode);
-		setNamespacedAttribute(request, "cancellableHide", _cancellableHide);
-		setNamespacedAttribute(request, "centered", _centered);
-		setNamespacedAttribute(request, "constrain", _constrain);
+		setNamespacedAttribute(request, "calendar", _calendar);
 		setNamespacedAttribute(request, "contentBox", _contentBox);
 		setNamespacedAttribute(request, "cssClass", _cssClass);
-		setNamespacedAttribute(request, "currentDay", _currentDay);
-		setNamespacedAttribute(request, "currentMonth", _currentMonth);
-		setNamespacedAttribute(request, "currentNode", _currentNode);
-		setNamespacedAttribute(request, "currentYear", _currentYear);
-		setNamespacedAttribute(request, "dateFormat", _dateFormat);
-		setNamespacedAttribute(request, "dates", _dates);
 		setNamespacedAttribute(request, "dayNode", _dayNode);
 		setNamespacedAttribute(request, "dayNodeName", _dayNodeName);
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "disabled", _disabled);
-		setNamespacedAttribute(request, "fillHeight", _fillHeight);
-		setNamespacedAttribute(request, "firstDayOfWeek", _firstDayOfWeek);
 		setNamespacedAttribute(request, "focused", _focused);
-		setNamespacedAttribute(request, "footerContent", _footerContent);
-		setNamespacedAttribute(request, "headerContent", _headerContent);
 		setNamespacedAttribute(request, "height", _height);
 		setNamespacedAttribute(request, "hideClass", _hideClass);
-		setNamespacedAttribute(request, "hideDelay", _hideDelay);
-		setNamespacedAttribute(request, "hideOn", _hideOn);
-		setNamespacedAttribute(request, "hideOnDocumentClick", _hideOnDocumentClick);
 		setNamespacedAttribute(request, "datepickerselectId", _datepickerselectId);
 		setNamespacedAttribute(request, "initialized", _initialized);
-		setNamespacedAttribute(request, "maxDate", _maxDate);
-		setNamespacedAttribute(request, "minDate", _minDate);
 		setNamespacedAttribute(request, "monthNode", _monthNode);
 		setNamespacedAttribute(request, "monthNodeName", _monthNodeName);
 		setNamespacedAttribute(request, "populateDay", _populateDay);
 		setNamespacedAttribute(request, "populateMonth", _populateMonth);
 		setNamespacedAttribute(request, "populateYear", _populateYear);
-		setNamespacedAttribute(request, "preventOverlap", _preventOverlap);
 		setNamespacedAttribute(request, "render", _render);
 		setNamespacedAttribute(request, "rendered", _rendered);
-		setNamespacedAttribute(request, "selectMultipleDates", _selectMultipleDates);
 		setNamespacedAttribute(request, "selectWrapperNode", _selectWrapperNode);
-		setNamespacedAttribute(request, "setValue", _setValue);
-		setNamespacedAttribute(request, "shim", _shim);
-		setNamespacedAttribute(request, "showDelay", _showDelay);
-		setNamespacedAttribute(request, "showOn", _showOn);
 		setNamespacedAttribute(request, "srcNode", _srcNode);
-		setNamespacedAttribute(request, "stack", _stack);
 		setNamespacedAttribute(request, "strings", _strings);
 		setNamespacedAttribute(request, "tabIndex", _tabIndex);
 		setNamespacedAttribute(request, "trigger", _trigger);
 		setNamespacedAttribute(request, "visible", _visible);
 		setNamespacedAttribute(request, "width", _width);
-		setNamespacedAttribute(request, "x", _x);
-		setNamespacedAttribute(request, "xy", _xy);
-		setNamespacedAttribute(request, "y", _y);
 		setNamespacedAttribute(request, "yearNode", _yearNode);
 		setNamespacedAttribute(request, "yearNodeName", _yearNodeName);
 		setNamespacedAttribute(request, "yearRange", _yearRange);
-		setNamespacedAttribute(request, "zIndex", _zIndex);
-		setNamespacedAttribute(request, "afterAlignChange", _afterAlignChange);
 		setNamespacedAttribute(request, "afterAppendOrderChange", _afterAppendOrderChange);
-		setNamespacedAttribute(request, "afterBaseNameChange", _afterBaseNameChange);
-		setNamespacedAttribute(request, "afterBodyContentChange", _afterBodyContentChange);
 		setNamespacedAttribute(request, "afterBoundingBoxChange", _afterBoundingBoxChange);
 		setNamespacedAttribute(request, "afterButtonNodeChange", _afterButtonNodeChange);
-		setNamespacedAttribute(request, "afterCancellableHideChange", _afterCancellableHideChange);
-		setNamespacedAttribute(request, "afterCenteredChange", _afterCenteredChange);
-		setNamespacedAttribute(request, "afterConstrainChange", _afterConstrainChange);
+		setNamespacedAttribute(request, "afterCalendarChange", _afterCalendarChange);
 		setNamespacedAttribute(request, "afterContentBoxChange", _afterContentBoxChange);
 		setNamespacedAttribute(request, "afterCssClassChange", _afterCssClassChange);
-		setNamespacedAttribute(request, "afterCurrentDayChange", _afterCurrentDayChange);
-		setNamespacedAttribute(request, "afterCurrentMonthChange", _afterCurrentMonthChange);
-		setNamespacedAttribute(request, "afterCurrentNodeChange", _afterCurrentNodeChange);
-		setNamespacedAttribute(request, "afterCurrentYearChange", _afterCurrentYearChange);
-		setNamespacedAttribute(request, "afterDateFormatChange", _afterDateFormatChange);
-		setNamespacedAttribute(request, "afterDatesChange", _afterDatesChange);
 		setNamespacedAttribute(request, "afterDayNodeChange", _afterDayNodeChange);
 		setNamespacedAttribute(request, "afterDayNodeNameChange", _afterDayNodeNameChange);
 		setNamespacedAttribute(request, "afterDestroy", _afterDestroy);
 		setNamespacedAttribute(request, "afterDestroyedChange", _afterDestroyedChange);
 		setNamespacedAttribute(request, "afterDisabledChange", _afterDisabledChange);
-		setNamespacedAttribute(request, "afterFillHeightChange", _afterFillHeightChange);
-		setNamespacedAttribute(request, "afterFirstDayOfWeekChange", _afterFirstDayOfWeekChange);
 		setNamespacedAttribute(request, "afterFocusedChange", _afterFocusedChange);
-		setNamespacedAttribute(request, "afterFooterContentChange", _afterFooterContentChange);
-		setNamespacedAttribute(request, "afterHeaderContentChange", _afterHeaderContentChange);
 		setNamespacedAttribute(request, "afterHeightChange", _afterHeightChange);
 		setNamespacedAttribute(request, "afterHideClassChange", _afterHideClassChange);
-		setNamespacedAttribute(request, "afterHideDelayChange", _afterHideDelayChange);
-		setNamespacedAttribute(request, "afterHideOnChange", _afterHideOnChange);
-		setNamespacedAttribute(request, "afterHideOnDocumentClickChange", _afterHideOnDocumentClickChange);
 		setNamespacedAttribute(request, "afterIdChange", _afterIdChange);
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
-		setNamespacedAttribute(request, "afterMaxDateChange", _afterMaxDateChange);
-		setNamespacedAttribute(request, "afterMinDateChange", _afterMinDateChange);
 		setNamespacedAttribute(request, "afterMonthNodeChange", _afterMonthNodeChange);
 		setNamespacedAttribute(request, "afterMonthNodeNameChange", _afterMonthNodeNameChange);
 		setNamespacedAttribute(request, "afterPopulateDayChange", _afterPopulateDayChange);
 		setNamespacedAttribute(request, "afterPopulateMonthChange", _afterPopulateMonthChange);
 		setNamespacedAttribute(request, "afterPopulateYearChange", _afterPopulateYearChange);
-		setNamespacedAttribute(request, "afterPreventOverlapChange", _afterPreventOverlapChange);
 		setNamespacedAttribute(request, "afterRenderChange", _afterRenderChange);
 		setNamespacedAttribute(request, "afterRenderedChange", _afterRenderedChange);
-		setNamespacedAttribute(request, "afterSelectMultipleDatesChange", _afterSelectMultipleDatesChange);
 		setNamespacedAttribute(request, "afterSelectWrapperNodeChange", _afterSelectWrapperNodeChange);
-		setNamespacedAttribute(request, "afterSetValueChange", _afterSetValueChange);
-		setNamespacedAttribute(request, "afterShimChange", _afterShimChange);
-		setNamespacedAttribute(request, "afterShowDelayChange", _afterShowDelayChange);
-		setNamespacedAttribute(request, "afterShowOnChange", _afterShowOnChange);
 		setNamespacedAttribute(request, "afterSrcNodeChange", _afterSrcNodeChange);
-		setNamespacedAttribute(request, "afterStackChange", _afterStackChange);
 		setNamespacedAttribute(request, "afterStringsChange", _afterStringsChange);
 		setNamespacedAttribute(request, "afterTabIndexChange", _afterTabIndexChange);
 		setNamespacedAttribute(request, "afterTriggerChange", _afterTriggerChange);
@@ -2118,66 +1130,35 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setNamespacedAttribute(request, "afterContentUpdate", _afterContentUpdate);
 		setNamespacedAttribute(request, "afterRender", _afterRender);
 		setNamespacedAttribute(request, "afterWidthChange", _afterWidthChange);
-		setNamespacedAttribute(request, "afterXChange", _afterXChange);
-		setNamespacedAttribute(request, "afterXyChange", _afterXyChange);
-		setNamespacedAttribute(request, "afterYChange", _afterYChange);
 		setNamespacedAttribute(request, "afterYearNodeChange", _afterYearNodeChange);
 		setNamespacedAttribute(request, "afterYearNodeNameChange", _afterYearNodeNameChange);
 		setNamespacedAttribute(request, "afterYearRangeChange", _afterYearRangeChange);
-		setNamespacedAttribute(request, "afterZIndexChange", _afterZIndexChange);
-		setNamespacedAttribute(request, "onAlignChange", _onAlignChange);
 		setNamespacedAttribute(request, "onAppendOrderChange", _onAppendOrderChange);
-		setNamespacedAttribute(request, "onBaseNameChange", _onBaseNameChange);
-		setNamespacedAttribute(request, "onBodyContentChange", _onBodyContentChange);
 		setNamespacedAttribute(request, "onBoundingBoxChange", _onBoundingBoxChange);
 		setNamespacedAttribute(request, "onButtonNodeChange", _onButtonNodeChange);
-		setNamespacedAttribute(request, "onCancellableHideChange", _onCancellableHideChange);
-		setNamespacedAttribute(request, "onCenteredChange", _onCenteredChange);
-		setNamespacedAttribute(request, "onConstrainChange", _onConstrainChange);
+		setNamespacedAttribute(request, "onCalendarChange", _onCalendarChange);
 		setNamespacedAttribute(request, "onContentBoxChange", _onContentBoxChange);
 		setNamespacedAttribute(request, "onCssClassChange", _onCssClassChange);
-		setNamespacedAttribute(request, "onCurrentDayChange", _onCurrentDayChange);
-		setNamespacedAttribute(request, "onCurrentMonthChange", _onCurrentMonthChange);
-		setNamespacedAttribute(request, "onCurrentNodeChange", _onCurrentNodeChange);
-		setNamespacedAttribute(request, "onCurrentYearChange", _onCurrentYearChange);
-		setNamespacedAttribute(request, "onDateFormatChange", _onDateFormatChange);
-		setNamespacedAttribute(request, "onDatesChange", _onDatesChange);
 		setNamespacedAttribute(request, "onDayNodeChange", _onDayNodeChange);
 		setNamespacedAttribute(request, "onDayNodeNameChange", _onDayNodeNameChange);
 		setNamespacedAttribute(request, "onDestroy", _onDestroy);
 		setNamespacedAttribute(request, "onDestroyedChange", _onDestroyedChange);
 		setNamespacedAttribute(request, "onDisabledChange", _onDisabledChange);
-		setNamespacedAttribute(request, "onFillHeightChange", _onFillHeightChange);
-		setNamespacedAttribute(request, "onFirstDayOfWeekChange", _onFirstDayOfWeekChange);
 		setNamespacedAttribute(request, "onFocusedChange", _onFocusedChange);
-		setNamespacedAttribute(request, "onFooterContentChange", _onFooterContentChange);
-		setNamespacedAttribute(request, "onHeaderContentChange", _onHeaderContentChange);
 		setNamespacedAttribute(request, "onHeightChange", _onHeightChange);
 		setNamespacedAttribute(request, "onHideClassChange", _onHideClassChange);
-		setNamespacedAttribute(request, "onHideDelayChange", _onHideDelayChange);
-		setNamespacedAttribute(request, "onHideOnChange", _onHideOnChange);
-		setNamespacedAttribute(request, "onHideOnDocumentClickChange", _onHideOnDocumentClickChange);
 		setNamespacedAttribute(request, "onIdChange", _onIdChange);
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
-		setNamespacedAttribute(request, "onMaxDateChange", _onMaxDateChange);
-		setNamespacedAttribute(request, "onMinDateChange", _onMinDateChange);
 		setNamespacedAttribute(request, "onMonthNodeChange", _onMonthNodeChange);
 		setNamespacedAttribute(request, "onMonthNodeNameChange", _onMonthNodeNameChange);
 		setNamespacedAttribute(request, "onPopulateDayChange", _onPopulateDayChange);
 		setNamespacedAttribute(request, "onPopulateMonthChange", _onPopulateMonthChange);
 		setNamespacedAttribute(request, "onPopulateYearChange", _onPopulateYearChange);
-		setNamespacedAttribute(request, "onPreventOverlapChange", _onPreventOverlapChange);
 		setNamespacedAttribute(request, "onRenderChange", _onRenderChange);
 		setNamespacedAttribute(request, "onRenderedChange", _onRenderedChange);
-		setNamespacedAttribute(request, "onSelectMultipleDatesChange", _onSelectMultipleDatesChange);
 		setNamespacedAttribute(request, "onSelectWrapperNodeChange", _onSelectWrapperNodeChange);
-		setNamespacedAttribute(request, "onSetValueChange", _onSetValueChange);
-		setNamespacedAttribute(request, "onShimChange", _onShimChange);
-		setNamespacedAttribute(request, "onShowDelayChange", _onShowDelayChange);
-		setNamespacedAttribute(request, "onShowOnChange", _onShowOnChange);
 		setNamespacedAttribute(request, "onSrcNodeChange", _onSrcNodeChange);
-		setNamespacedAttribute(request, "onStackChange", _onStackChange);
 		setNamespacedAttribute(request, "onStringsChange", _onStringsChange);
 		setNamespacedAttribute(request, "onTabIndexChange", _onTabIndexChange);
 		setNamespacedAttribute(request, "onTriggerChange", _onTriggerChange);
@@ -2185,13 +1166,9 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setNamespacedAttribute(request, "onContentUpdate", _onContentUpdate);
 		setNamespacedAttribute(request, "onRender", _onRender);
 		setNamespacedAttribute(request, "onWidthChange", _onWidthChange);
-		setNamespacedAttribute(request, "onXChange", _onXChange);
-		setNamespacedAttribute(request, "onXyChange", _onXyChange);
-		setNamespacedAttribute(request, "onYChange", _onYChange);
 		setNamespacedAttribute(request, "onYearNodeChange", _onYearNodeChange);
 		setNamespacedAttribute(request, "onYearNodeNameChange", _onYearNodeNameChange);
 		setNamespacedAttribute(request, "onYearRangeChange", _onYearRangeChange);
-		setNamespacedAttribute(request, "onZIndexChange", _onZIndexChange);
 	}
 
 	private static final String _ATTRIBUTE_NAMESPACE = "alloy:date-picker-select:";
@@ -2199,122 +1176,64 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/date_picker_select/page.jsp";
 
-	private java.lang.Object _align;
 	private java.lang.String _appendOrder;
-	private java.lang.String _baseName;
-	private java.lang.String _datepickerselectBodyContent;
 	private java.lang.String _boundingBox;
 	private java.lang.String _buttonNode;
-	private java.lang.String _cancellableHide;
-	private java.lang.String _centered;
-	private java.lang.String _constrain;
+	private java.lang.Object _calendar;
 	private java.lang.String _contentBox;
 	private java.lang.String _cssClass;
-	private java.lang.String _currentDay;
-	private java.lang.String _currentMonth;
-	private java.lang.String _currentNode;
-	private java.lang.String _currentYear;
-	private java.lang.String _dateFormat;
-	private java.lang.String _dates;
 	private java.lang.String _dayNode;
 	private java.lang.String _dayNodeName;
 	private java.lang.String _destroyed;
 	private java.lang.String _disabled;
-	private java.lang.String _fillHeight;
-	private java.lang.String _firstDayOfWeek;
 	private java.lang.String _focused;
-	private java.lang.String _footerContent;
-	private java.lang.String _headerContent;
 	private java.lang.String _height;
 	private java.lang.String _hideClass;
-	private java.lang.String _hideDelay;
-	private java.lang.String _hideOn;
-	private java.lang.String _hideOnDocumentClick;
 	private java.lang.String _datepickerselectId;
 	private java.lang.String _initialized;
-	private java.lang.String _maxDate;
-	private java.lang.String _minDate;
 	private java.lang.String _monthNode;
 	private java.lang.String _monthNodeName;
 	private java.lang.String _populateDay;
 	private java.lang.String _populateMonth;
 	private java.lang.String _populateYear;
-	private java.lang.String _preventOverlap;
 	private java.lang.String _render;
 	private java.lang.String _rendered;
-	private java.lang.String _selectMultipleDates;
 	private java.lang.String _selectWrapperNode;
-	private java.lang.String _setValue;
-	private java.lang.String _shim;
-	private java.lang.String _showDelay;
-	private java.lang.String _showOn;
 	private java.lang.String _srcNode;
-	private java.lang.String _stack;
 	private java.lang.Object _strings;
 	private java.lang.String _tabIndex;
 	private java.lang.String _trigger;
 	private java.lang.String _visible;
 	private java.lang.String _width;
-	private java.lang.String _x;
-	private java.lang.String _xy;
-	private java.lang.String _y;
 	private java.lang.String _yearNode;
 	private java.lang.String _yearNodeName;
 	private java.lang.String _yearRange;
-	private java.lang.String _zIndex;
-	private java.lang.String _afterAlignChange;
 	private java.lang.String _afterAppendOrderChange;
-	private java.lang.String _afterBaseNameChange;
-	private java.lang.String _afterBodyContentChange;
 	private java.lang.String _afterBoundingBoxChange;
 	private java.lang.String _afterButtonNodeChange;
-	private java.lang.String _afterCancellableHideChange;
-	private java.lang.String _afterCenteredChange;
-	private java.lang.String _afterConstrainChange;
+	private java.lang.String _afterCalendarChange;
 	private java.lang.String _afterContentBoxChange;
 	private java.lang.String _afterCssClassChange;
-	private java.lang.String _afterCurrentDayChange;
-	private java.lang.String _afterCurrentMonthChange;
-	private java.lang.String _afterCurrentNodeChange;
-	private java.lang.String _afterCurrentYearChange;
-	private java.lang.String _afterDateFormatChange;
-	private java.lang.String _afterDatesChange;
 	private java.lang.String _afterDayNodeChange;
 	private java.lang.String _afterDayNodeNameChange;
 	private java.lang.String _afterDestroy;
 	private java.lang.String _afterDestroyedChange;
 	private java.lang.String _afterDisabledChange;
-	private java.lang.String _afterFillHeightChange;
-	private java.lang.String _afterFirstDayOfWeekChange;
 	private java.lang.String _afterFocusedChange;
-	private java.lang.String _afterFooterContentChange;
-	private java.lang.String _afterHeaderContentChange;
 	private java.lang.String _afterHeightChange;
 	private java.lang.String _afterHideClassChange;
-	private java.lang.String _afterHideDelayChange;
-	private java.lang.String _afterHideOnChange;
-	private java.lang.String _afterHideOnDocumentClickChange;
 	private java.lang.String _afterIdChange;
 	private java.lang.String _afterInit;
 	private java.lang.String _afterInitializedChange;
-	private java.lang.String _afterMaxDateChange;
-	private java.lang.String _afterMinDateChange;
 	private java.lang.String _afterMonthNodeChange;
 	private java.lang.String _afterMonthNodeNameChange;
 	private java.lang.String _afterPopulateDayChange;
 	private java.lang.String _afterPopulateMonthChange;
 	private java.lang.String _afterPopulateYearChange;
-	private java.lang.String _afterPreventOverlapChange;
 	private java.lang.String _afterRenderChange;
 	private java.lang.String _afterRenderedChange;
-	private java.lang.String _afterSelectMultipleDatesChange;
 	private java.lang.String _afterSelectWrapperNodeChange;
-	private java.lang.String _afterSetValueChange;
-	private java.lang.String _afterShimChange;
-	private java.lang.String _afterShowDelayChange;
-	private java.lang.String _afterShowOnChange;
 	private java.lang.String _afterSrcNodeChange;
-	private java.lang.String _afterStackChange;
 	private java.lang.String _afterStringsChange;
 	private java.lang.String _afterTabIndexChange;
 	private java.lang.String _afterTriggerChange;
@@ -2322,66 +1241,35 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 	private java.lang.String _afterContentUpdate;
 	private java.lang.String _afterRender;
 	private java.lang.String _afterWidthChange;
-	private java.lang.String _afterXChange;
-	private java.lang.String _afterXyChange;
-	private java.lang.String _afterYChange;
 	private java.lang.String _afterYearNodeChange;
 	private java.lang.String _afterYearNodeNameChange;
 	private java.lang.String _afterYearRangeChange;
-	private java.lang.String _afterZIndexChange;
-	private java.lang.String _onAlignChange;
 	private java.lang.String _onAppendOrderChange;
-	private java.lang.String _onBaseNameChange;
-	private java.lang.String _onBodyContentChange;
 	private java.lang.String _onBoundingBoxChange;
 	private java.lang.String _onButtonNodeChange;
-	private java.lang.String _onCancellableHideChange;
-	private java.lang.String _onCenteredChange;
-	private java.lang.String _onConstrainChange;
+	private java.lang.String _onCalendarChange;
 	private java.lang.String _onContentBoxChange;
 	private java.lang.String _onCssClassChange;
-	private java.lang.String _onCurrentDayChange;
-	private java.lang.String _onCurrentMonthChange;
-	private java.lang.String _onCurrentNodeChange;
-	private java.lang.String _onCurrentYearChange;
-	private java.lang.String _onDateFormatChange;
-	private java.lang.String _onDatesChange;
 	private java.lang.String _onDayNodeChange;
 	private java.lang.String _onDayNodeNameChange;
 	private java.lang.String _onDestroy;
 	private java.lang.String _onDestroyedChange;
 	private java.lang.String _onDisabledChange;
-	private java.lang.String _onFillHeightChange;
-	private java.lang.String _onFirstDayOfWeekChange;
 	private java.lang.String _onFocusedChange;
-	private java.lang.String _onFooterContentChange;
-	private java.lang.String _onHeaderContentChange;
 	private java.lang.String _onHeightChange;
 	private java.lang.String _onHideClassChange;
-	private java.lang.String _onHideDelayChange;
-	private java.lang.String _onHideOnChange;
-	private java.lang.String _onHideOnDocumentClickChange;
 	private java.lang.String _onIdChange;
 	private java.lang.String _onInit;
 	private java.lang.String _onInitializedChange;
-	private java.lang.String _onMaxDateChange;
-	private java.lang.String _onMinDateChange;
 	private java.lang.String _onMonthNodeChange;
 	private java.lang.String _onMonthNodeNameChange;
 	private java.lang.String _onPopulateDayChange;
 	private java.lang.String _onPopulateMonthChange;
 	private java.lang.String _onPopulateYearChange;
-	private java.lang.String _onPreventOverlapChange;
 	private java.lang.String _onRenderChange;
 	private java.lang.String _onRenderedChange;
-	private java.lang.String _onSelectMultipleDatesChange;
 	private java.lang.String _onSelectWrapperNodeChange;
-	private java.lang.String _onSetValueChange;
-	private java.lang.String _onShimChange;
-	private java.lang.String _onShowDelayChange;
-	private java.lang.String _onShowOnChange;
 	private java.lang.String _onSrcNodeChange;
-	private java.lang.String _onStackChange;
 	private java.lang.String _onStringsChange;
 	private java.lang.String _onTabIndexChange;
 	private java.lang.String _onTriggerChange;
@@ -2389,12 +1277,8 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 	private java.lang.String _onContentUpdate;
 	private java.lang.String _onRender;
 	private java.lang.String _onWidthChange;
-	private java.lang.String _onXChange;
-	private java.lang.String _onXyChange;
-	private java.lang.String _onYChange;
 	private java.lang.String _onYearNodeChange;
 	private java.lang.String _onYearNodeNameChange;
 	private java.lang.String _onYearRangeChange;
-	private java.lang.String _onZIndexChange;
 
 }
