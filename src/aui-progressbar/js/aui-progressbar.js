@@ -82,7 +82,7 @@ var L = A.Lang,
  *
  * @class ProgressBar
  * @constructor
- * @extends Base
+ * @extends Component
  */
 var ProgressBar = A.Component.create(
 	{
