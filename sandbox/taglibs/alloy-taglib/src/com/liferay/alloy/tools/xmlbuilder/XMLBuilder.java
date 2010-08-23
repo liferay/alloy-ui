@@ -14,26 +14,30 @@
 
 package com.liferay.alloy.tools.xmlbuilder;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentFactory;
+import org.dom4j.Element;
+import org.dom4j.io.OutputFormat;
+import org.dom4j.io.XMLWriter;
+import org.json.JSONObject;
+
 import com.liferay.alloy.tools.model.Attribute;
 import com.liferay.alloy.tools.model.Component;
 import com.liferay.alloy.util.FileUtil;
 import com.liferay.alloy.util.JSONUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import org.dom4j.Document;
-import org.dom4j.DocumentFactory;
-import org.dom4j.Element;
-import org.dom4j.io.OutputFormat;
-import org.dom4j.io.XMLWriter;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONStringer;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.*;
 
 /**
  * <a href="XMLBuilder.java.html"><b><i>View Source</i></b></a>
@@ -90,9 +94,10 @@ public class XMLBuilder {
 				JSONUtil.getJSONObject(_classMapJSON, className);
 
 			String namespace = GetterUtil.getString(_DEFAULT_NAMESPACE);
-
 			String name = JSONUtil.getString(componentJSON, "name");
-			String module = JSONUtil.getString(componentJSON, "module");
+			String module = GetterUtil.getString(
+				JSONUtil.getString(componentJSON, "module"), name);
+
 			boolean bodyContent = GetterUtil.getBoolean(
 				JSONUtil.getString(componentJSON, "bodyContent"));
 
