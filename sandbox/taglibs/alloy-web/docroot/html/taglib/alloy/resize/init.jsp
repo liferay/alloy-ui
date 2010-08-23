@@ -53,6 +53,7 @@ java.lang.String _afterNodeChange = GetterUtil.getString((java.lang.String)reque
 java.lang.String _afterPreserveRatioChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:afterPreserveRatioChange"));
 java.lang.String _afterProxyChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:afterProxyChange"));
 java.lang.String _afterProxyElChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:afterProxyElChange"));
+java.lang.String _afterAlign = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:afterAlign"));
 java.lang.String _afterEnd = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:afterEnd"));
 java.lang.String _afterMouseUp = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:afterMouseUp"));
 java.lang.String _afterResize = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:afterResize"));
@@ -80,6 +81,7 @@ java.lang.String _onNodeChange = GetterUtil.getString((java.lang.String)request.
 java.lang.String _onPreserveRatioChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:onPreserveRatioChange"));
 java.lang.String _onProxyChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:onProxyChange"));
 java.lang.String _onProxyElChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:onProxyElChange"));
+java.lang.String _onAlign = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:onAlign"));
 java.lang.String _onEnd = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:onEnd"));
 java.lang.String _onMouseUp = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:onMouseUp"));
 java.lang.String _onResize = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:onResize"));
@@ -247,6 +249,10 @@ if (request.getAttribute("alloy:resize:afterProxyElChange") != null) {
 	scopedAttributes.put("afterProxyElChange", _afterProxyElChange);
 }
 
+if (request.getAttribute("alloy:resize:afterAlign") != null) {
+	scopedAttributes.put("afterAlign", _afterAlign);
+}
+
 if (request.getAttribute("alloy:resize:afterEnd") != null) {
 	scopedAttributes.put("afterEnd", _afterEnd);
 }
@@ -353,6 +359,10 @@ if (request.getAttribute("alloy:resize:onProxyChange") != null) {
 
 if (request.getAttribute("alloy:resize:onProxyElChange") != null) {
 	scopedAttributes.put("onProxyElChange", _onProxyElChange);
+}
+
+if (request.getAttribute("alloy:resize:onAlign") != null) {
+	scopedAttributes.put("onAlign", _onAlign);
 }
 
 if (request.getAttribute("alloy:resize:onEnd") != null) {
