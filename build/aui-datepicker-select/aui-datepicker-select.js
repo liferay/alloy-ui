@@ -282,6 +282,13 @@ var DatePickerSelect = A.Component.create(
 				validator: isArray
 			},
 
+			/**
+			 * <a href="Calendar.html">Calendar</a> configuration Object.</a>
+			 *
+			 * @attribute calendar
+			 * @default {}
+			 * @type Object
+			 */
 			calendar: {
 				setter: '_setCalendarConfig',
 				value: {}

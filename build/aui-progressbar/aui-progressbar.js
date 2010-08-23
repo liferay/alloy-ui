@@ -67,7 +67,7 @@ var L = A.Lang,
  * </ul>
  *
  * Quick Example:<br/>
- * 
+ *
  * <pre><code>var progress = new A.ProgressBar({
  *	boundingBox: '#boudingBox',
  * 	orientation: 'horizontal',
@@ -83,7 +83,7 @@ var L = A.Lang,
  *
  * @class ProgressBar
  * @constructor
- * @extends Base
+ * @extends Component
  */
 var ProgressBar = A.Component.create(
 	{
