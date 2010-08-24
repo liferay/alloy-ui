@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:panel:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -20,28 +20,28 @@ if (useMarkup) {
 
 java.lang.String _panelBodyContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:panelBodyContent"));
 java.lang.String _boundingBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:boundingBox"));
-java.lang.Boolean _collapsed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:collapsed"));
-java.lang.Boolean _collapsible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:collapsible"));
+java.lang.Boolean _collapsed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:collapsed"), false);
+java.lang.Boolean _collapsible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:collapsible"), false);
 java.lang.String _contentBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:contentBox"));
 java.lang.String _cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:cssClass"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:destroyed"));
-java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:disabled"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:destroyed"), false);
+java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:disabled"), false);
 java.lang.String _fillHeight = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:fillHeight"));
-java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:focused"));
+java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:focused"), false);
 java.lang.String _footerContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:footerContent"));
 java.lang.String _headerContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:headerContent"));
 java.lang.String _height = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:height"));
-java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:hideClass"));
-java.lang.String _icons = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:icons"));
+java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:hideClass"), "aui-helper-hidden");
+java.lang.Object _icons = (java.lang.Object)request.getAttribute("alloy:panel:icons");
 java.lang.String _panelId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:panelId"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:initialized"));
-java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:render"));
-java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:rendered"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:initialized"), false);
+java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:render"), false);
+java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:rendered"), false);
 java.lang.String _srcNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:srcNode"));
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:panel:strings");
-java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:panel:tabIndex"));
+java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:panel:tabIndex"), 0);
 java.lang.String _title = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:title"));
-java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:visible"));
+java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:panel:visible"), true);
 java.lang.String _width = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:width"));
 java.lang.String _afterBodyContentChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterBodyContentChange"));
 java.lang.String _afterBoundingBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:panel:afterBoundingBoxChange"));

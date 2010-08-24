@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:textboxlist:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -18,45 +18,45 @@ if (useMarkup) {
 	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
 }
 
-java.lang.Boolean _alwaysShowContainer = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:alwaysShowContainer"));
-java.lang.Boolean _applyLocalFilter = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:applyLocalFilter"));
-java.lang.Boolean _autoHighlight = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:autoHighlight"));
+java.lang.Boolean _alwaysShowContainer = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:alwaysShowContainer"), false);
+java.lang.Boolean _applyLocalFilter = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:applyLocalFilter"), true);
+java.lang.Boolean _autoHighlight = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:autoHighlight"), true);
 java.lang.String _boundingBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:textboxlist:boundingBox"));
-java.lang.Boolean _button = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:button"));
+java.lang.Boolean _button = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:button"), true);
 java.lang.String _contentBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:textboxlist:contentBox"));
 java.lang.String _cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:textboxlist:cssClass"));
 java.lang.String _dataSource = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:textboxlist:dataSource"));
 java.lang.String _dataSourceType = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:textboxlist:dataSourceType"));
 java.lang.String _delimChar = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:textboxlist:delimChar"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:destroyed"));
-java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:disabled"));
-java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:focused"));
-java.lang.Boolean _forceSelection = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:forceSelection"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:destroyed"), false);
+java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:disabled"), false);
+java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:focused"), false);
+java.lang.Boolean _forceSelection = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:forceSelection"), false);
 java.lang.String _height = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:textboxlist:height"));
-java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:textboxlist:hideClass"));
+java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:textboxlist:hideClass"), "aui-helper-hidden");
 java.lang.String _textboxlistId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:textboxlist:textboxlistId"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:initialized"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:initialized"), false);
 java.lang.String _input = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:textboxlist:input"));
-java.lang.String _matchKey = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:textboxlist:matchKey"));
-java.lang.Number _maxResultsDisplayed = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:textboxlist:maxResultsDisplayed"));
-java.lang.Number _minQueryLength = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:textboxlist:minQueryLength"));
-java.lang.Number _queryDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:textboxlist:queryDelay"));
-java.lang.Number _queryInterval = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:textboxlist:queryInterval"));
-java.lang.Boolean _queryMatchCase = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:queryMatchCase"));
-java.lang.Boolean _queryMatchContains = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:queryMatchContains"));
-java.lang.Boolean _queryQuestionMark = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:queryQuestionMark"));
-java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:render"));
-java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:rendered"));
+java.lang.String _matchKey = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:textboxlist:matchKey"), "0");
+java.lang.Number _maxResultsDisplayed = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:textboxlist:maxResultsDisplayed"), 10);
+java.lang.Number _minQueryLength = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:textboxlist:minQueryLength"), 1);
+java.lang.Number _queryDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:textboxlist:queryDelay"), 0.2);
+java.lang.Number _queryInterval = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:textboxlist:queryInterval"), 0.5);
+java.lang.Boolean _queryMatchCase = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:queryMatchCase"), false);
+java.lang.Boolean _queryMatchContains = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:queryMatchContains"), false);
+java.lang.Boolean _queryQuestionMark = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:queryQuestionMark"), true);
+java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:render"), false);
+java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:rendered"), false);
 java.lang.Object _schema = (java.lang.Object)request.getAttribute("alloy:textboxlist:schema");
 java.lang.String _schemaType = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:textboxlist:schemaType"));
 java.lang.String _srcNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:textboxlist:srcNode"));
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:textboxlist:strings");
-java.lang.Boolean _suppressInputUpdate = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:suppressInputUpdate"));
-java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:textboxlist:tabIndex"));
-java.lang.Boolean _typeAhead = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:typeAhead"));
-java.lang.Number _typeAheadDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:textboxlist:typeAheadDelay"));
+java.lang.Boolean _suppressInputUpdate = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:suppressInputUpdate"), false);
+java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:textboxlist:tabIndex"), 0);
+java.lang.Boolean _typeAhead = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:typeAhead"), false);
+java.lang.Number _typeAheadDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:textboxlist:typeAheadDelay"), 0.2);
 java.lang.String _uniqueName = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:textboxlist:uniqueName"));
-java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:visible"));
+java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:visible"), true);
 java.lang.String _width = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:textboxlist:width"));
 java.lang.String _afterAlwaysShowContainerChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:textboxlist:afterAlwaysShowContainerChange"));
 java.lang.String _afterApplyLocalFilterChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:textboxlist:afterApplyLocalFilterChange"));

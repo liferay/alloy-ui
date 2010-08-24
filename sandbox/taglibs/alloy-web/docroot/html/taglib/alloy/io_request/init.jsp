@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:io-request:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -18,23 +18,23 @@ if (useMarkup) {
 	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
 }
 
-java.lang.Boolean _active = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:io-request:active"));
+java.lang.Boolean _active = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:io-request:active"), false);
 java.lang.Object _arguments = (java.lang.Object)request.getAttribute("alloy:io-request:arguments");
-java.lang.Boolean _autoLoad = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:io-request:autoLoad"));
-java.lang.Boolean _cache = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:io-request:cache"));
+java.lang.Boolean _autoLoad = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:io-request:autoLoad"), true);
+java.lang.Boolean _cache = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:io-request:cache"), true);
 java.lang.String _cfg = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:io-request:cfg"));
 java.lang.Object _context = (java.lang.Object)request.getAttribute("alloy:io-request:context");
 java.lang.Object _data = (java.lang.Object)request.getAttribute("alloy:io-request:data");
 java.lang.String _dataType = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:io-request:dataType"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:io-request:destroyed"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:io-request:destroyed"), false);
 java.lang.Object _form = (java.lang.Object)request.getAttribute("alloy:io-request:form");
 java.lang.Object _headers = (java.lang.Object)request.getAttribute("alloy:io-request:headers");
 java.lang.String _host = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:io-request:host"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:io-request:initialized"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:io-request:initialized"), false);
 java.lang.String _method = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:io-request:method"));
 java.lang.String _responseData = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:io-request:responseData"));
-java.lang.Boolean _sync = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:io-request:sync"));
-java.lang.Number _timeout = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:io-request:timeout"));
+java.lang.Boolean _sync = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:io-request:sync"), false);
+java.lang.Number _timeout = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:io-request:timeout"), 0);
 java.lang.Object _transaction = (java.lang.Object)request.getAttribute("alloy:io-request:transaction");
 java.lang.String _uri = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:io-request:uri"));
 java.lang.Object _xdr = (java.lang.Object)request.getAttribute("alloy:io-request:xdr");

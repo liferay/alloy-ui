@@ -180,7 +180,7 @@ public class BaseOverlayContextPanelTag extends IncludeTag {
 		return _x;
 	}
 
-	public java.lang.String getXy() {
+	public java.lang.Object getXy() {
 		return _xy;
 	}
 
@@ -794,7 +794,7 @@ public class BaseOverlayContextPanelTag extends IncludeTag {
 		setScopedAttribute("x", x);
 	}
 
-	public void setXy(java.lang.String xy) {
+	public void setXy(java.lang.Object xy) {
 		_xy = xy;
 
 		setScopedAttribute("xy", xy);
@@ -1545,7 +1545,7 @@ public class BaseOverlayContextPanelTag extends IncludeTag {
 	private java.lang.String _visible;
 	private java.lang.String _width;
 	private java.lang.String _x;
-	private java.lang.String _xy;
+	private java.lang.Object _xy;
 	private java.lang.String _y;
 	private java.lang.String _zIndex;
 	private java.lang.String _afterAlignChange;

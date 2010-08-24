@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:char-counter:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -19,10 +19,10 @@ if (useMarkup) {
 }
 
 java.lang.String _counter = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:counter"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:char-counter:destroyed"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:char-counter:initialized"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:char-counter:destroyed"), false);
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:char-counter:initialized"), false);
 java.lang.String _input = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:input"));
-java.lang.Number _maxLength = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:char-counter:maxLength"));
+java.lang.Number _maxLength = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:char-counter:maxLength"), 0);
 java.lang.String _afterCounterChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:afterCounterChange"));
 java.lang.String _afterDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:afterDestroy"));
 java.lang.String _afterDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:afterDestroyedChange"));

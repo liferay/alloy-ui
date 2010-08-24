@@ -32,7 +32,7 @@ public class BaseDialogTag extends IncludeTag {
 		return _boundingBox;
 	}
 
-	public java.lang.String getButtons() {
+	public java.lang.Object getButtons() {
 		return _buttons;
 	}
 
@@ -104,7 +104,7 @@ public class BaseDialogTag extends IncludeTag {
 		return _hideClass;
 	}
 
-	public java.lang.String getIcons() {
+	public java.lang.Object getIcons() {
 		return _icons;
 	}
 
@@ -488,7 +488,7 @@ public class BaseDialogTag extends IncludeTag {
 		setScopedAttribute("boundingBox", boundingBox);
 	}
 
-	public void setButtons(java.lang.String buttons) {
+	public void setButtons(java.lang.Object buttons) {
 		_buttons = buttons;
 
 		setScopedAttribute("buttons", buttons);
@@ -596,7 +596,7 @@ public class BaseDialogTag extends IncludeTag {
 		setScopedAttribute("hideClass", hideClass);
 	}
 
-	public void setIcons(java.lang.String icons) {
+	public void setIcons(java.lang.Object icons) {
 		_icons = icons;
 
 		setScopedAttribute("icons", icons);
@@ -1277,7 +1277,7 @@ public class BaseDialogTag extends IncludeTag {
 
 	private java.lang.String _dialogBodyContent;
 	private java.lang.String _boundingBox;
-	private java.lang.String _buttons;
+	private java.lang.Object _buttons;
 	private java.lang.String _close;
 	private java.lang.String _collapsed;
 	private java.lang.String _collapsible;
@@ -1295,7 +1295,7 @@ public class BaseDialogTag extends IncludeTag {
 	private java.lang.String _headerContent;
 	private java.lang.String _height;
 	private java.lang.String _hideClass;
-	private java.lang.String _icons;
+	private java.lang.Object _icons;
 	private java.lang.String _dialogId;
 	private java.lang.String _initialized;
 	private java.lang.String _modal;

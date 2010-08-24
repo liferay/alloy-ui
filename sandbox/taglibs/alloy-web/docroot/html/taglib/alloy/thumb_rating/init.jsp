@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:thumb-rating:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -19,33 +19,33 @@ if (useMarkup) {
 }
 
 java.lang.String _boundingBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:boundingBox"));
-java.lang.Boolean _canReset = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:canReset"));
+java.lang.Boolean _canReset = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:canReset"), true);
 java.lang.String _contentBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:contentBox"));
 java.lang.String _cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:cssClass"));
-java.lang.Number _defaultSelected = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:thumb-rating:defaultSelected"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:destroyed"));
-java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:disabled"));
+java.lang.Number _defaultSelected = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:thumb-rating:defaultSelected"), 0);
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:destroyed"), false);
+java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:disabled"), false);
 java.lang.String _elements = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:elements"));
-java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:focused"));
+java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:focused"), false);
 java.lang.String _height = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:height"));
 java.lang.String _hiddenInput = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:hiddenInput"));
-java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:hideClass"));
+java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:hideClass"), "aui-helper-hidden");
 java.lang.String _thumbratingId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:thumbratingId"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:initialized"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:initialized"), false);
 java.lang.String _inputName = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:inputName"));
 java.lang.String _label = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:label"));
 java.lang.String _labelNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:labelNode"));
-java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:render"));
-java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:rendered"));
-java.lang.Number _selectedIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:thumb-rating:selectedIndex"));
-java.lang.Boolean _showTitle = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:showTitle"));
-java.lang.Number _size = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:thumb-rating:size"));
+java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:render"), false);
+java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:rendered"), false);
+java.lang.Number _selectedIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:thumb-rating:selectedIndex"), -1);
+java.lang.Boolean _showTitle = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:showTitle"), true);
+java.lang.Number _size = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:thumb-rating:size"), 2);
 java.lang.String _srcNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:srcNode"));
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:thumb-rating:strings");
-java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:thumb-rating:tabIndex"));
+java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:thumb-rating:tabIndex"), 0);
 java.lang.String _title = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:title"));
 java.lang.String _thumbratingValue = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:thumbratingValue"));
-java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:visible"));
+java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:visible"), true);
 java.lang.String _width = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:width"));
 java.lang.String _afterBoundingBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:afterBoundingBoxChange"));
 java.lang.String _afterCanResetChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:afterCanResetChange"));

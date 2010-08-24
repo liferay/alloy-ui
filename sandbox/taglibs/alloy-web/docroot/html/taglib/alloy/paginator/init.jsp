@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:paginator:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -18,34 +18,34 @@ if (useMarkup) {
 	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
 }
 
-java.lang.Boolean _alwaysVisible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:paginator:alwaysVisible"));
+java.lang.Boolean _alwaysVisible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:paginator:alwaysVisible"), true);
 java.lang.String _containers = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:containers"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:paginator:destroyed"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:paginator:destroyed"), false);
 java.lang.String _firstPageLink = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:firstPageLink"));
-java.lang.String _firstPageLinkLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:firstPageLinkLabel"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:paginator:initialized"));
+java.lang.String _firstPageLinkLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:firstPageLinkLabel"), "first");
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:paginator:initialized"), false);
 java.lang.String _lastPageLink = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:lastPageLink"));
-java.lang.String _lastPageLinkLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:lastPageLinkLabel"));
-java.lang.Number _maxPageLinks = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:paginator:maxPageLinks"));
+java.lang.String _lastPageLinkLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:lastPageLinkLabel"), "last");
+java.lang.Number _maxPageLinks = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:paginator:maxPageLinks"), 10);
 java.lang.String _nextPageLink = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:nextPageLink"));
-java.lang.String _nextPageLinkLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:nextPageLinkLabel"));
-java.lang.Number _page = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:paginator:page"));
+java.lang.String _nextPageLinkLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:nextPageLinkLabel"), "next &gt;");
+java.lang.Number _page = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:paginator:page"), 1);
 java.lang.String _pageContainerTemplate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:pageContainerTemplate"));
 java.lang.String _pageLinkContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:pageLinkContent"));
 java.lang.String _pageLinkTemplate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:pageLinkTemplate"));
 java.lang.String _pageReportEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:pageReportEl"));
-java.lang.String _pageReportLabelTemplate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:pageReportLabelTemplate"));
+java.lang.String _pageReportLabelTemplate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:pageReportLabelTemplate"), "({page} of {totalPages})");
 java.lang.String _prevPageLink = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:prevPageLink"));
-java.lang.String _prevPageLinkLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:prevPageLinkLabel"));
-java.lang.Number _rowsPerPage = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:paginator:rowsPerPage"));
+java.lang.String _prevPageLinkLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:prevPageLinkLabel"), "&lt; prev");
+java.lang.Number _rowsPerPage = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:paginator:rowsPerPage"), 1);
 java.lang.String _rowsPerPageEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:rowsPerPageEl"));
-java.lang.String _rowsPerPageOptions = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:rowsPerPageOptions"));
+java.lang.Object _rowsPerPageOptions = (java.lang.Object)request.getAttribute("alloy:paginator:rowsPerPageOptions");
 java.lang.Object _state = (java.lang.Object)request.getAttribute("alloy:paginator:state");
-java.lang.String _template = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:template"));
-java.lang.Number _total = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:paginator:total"));
+java.lang.String _template = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:template"), "{FirstPageLink} {PrevPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport} {Total} {RowsPerPageSelect}");
+java.lang.Number _total = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:paginator:total"), 0);
 java.lang.String _totalEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:totalEl"));
-java.lang.String _totalLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:totalLabel"));
-java.lang.Number _totalPages = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:paginator:totalPages"));
+java.lang.String _totalLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:totalLabel"), "(Total {total})");
+java.lang.Number _totalPages = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:paginator:totalPages"), 0);
 java.lang.String _afterAlwaysVisibleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:afterAlwaysVisibleChange"));
 java.lang.String _afterContainersChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:afterContainersChange"));
 java.lang.String _afterDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:afterDestroy"));

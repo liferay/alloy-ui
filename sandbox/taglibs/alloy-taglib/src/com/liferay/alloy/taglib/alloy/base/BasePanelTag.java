@@ -80,7 +80,7 @@ public class BasePanelTag extends IncludeTag {
 		return _hideClass;
 	}
 
-	public java.lang.String getIcons() {
+	public java.lang.Object getIcons() {
 		return _icons;
 	}
 
@@ -440,7 +440,7 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("hideClass", hideClass);
 	}
 
-	public void setIcons(java.lang.String icons) {
+	public void setIcons(java.lang.Object icons) {
 		_icons = icons;
 
 		setScopedAttribute("icons", icons);
@@ -959,7 +959,7 @@ public class BasePanelTag extends IncludeTag {
 	private java.lang.String _headerContent;
 	private java.lang.String _height;
 	private java.lang.String _hideClass;
-	private java.lang.String _icons;
+	private java.lang.Object _icons;
 	private java.lang.String _panelId;
 	private java.lang.String _initialized;
 	private java.lang.String _render;

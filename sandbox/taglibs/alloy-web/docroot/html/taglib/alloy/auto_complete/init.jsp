@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:auto-complete:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -18,45 +18,45 @@ if (useMarkup) {
 	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
 }
 
-java.lang.Boolean _alwaysShowContainer = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:alwaysShowContainer"));
-java.lang.Boolean _applyLocalFilter = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:applyLocalFilter"));
-java.lang.Boolean _autoHighlight = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:autoHighlight"));
+java.lang.Boolean _alwaysShowContainer = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:alwaysShowContainer"), false);
+java.lang.Boolean _applyLocalFilter = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:applyLocalFilter"), true);
+java.lang.Boolean _autoHighlight = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:autoHighlight"), true);
 java.lang.String _boundingBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:boundingBox"));
-java.lang.Boolean _button = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:button"));
+java.lang.Boolean _button = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:button"), true);
 java.lang.String _contentBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:contentBox"));
 java.lang.String _cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:cssClass"));
 java.lang.String _dataSource = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:dataSource"));
 java.lang.String _dataSourceType = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:dataSourceType"));
 java.lang.String _delimChar = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:delimChar"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:destroyed"));
-java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:disabled"));
-java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:focused"));
-java.lang.Boolean _forceSelection = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:forceSelection"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:destroyed"), false);
+java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:disabled"), false);
+java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:focused"), false);
+java.lang.Boolean _forceSelection = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:forceSelection"), false);
 java.lang.String _height = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:height"));
-java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:hideClass"));
+java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:hideClass"), "aui-helper-hidden");
 java.lang.String _autocompleteId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:autocompleteId"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:initialized"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:initialized"), false);
 java.lang.String _input = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:input"));
-java.lang.String _matchKey = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:matchKey"));
-java.lang.Number _maxResultsDisplayed = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:auto-complete:maxResultsDisplayed"));
-java.lang.Number _minQueryLength = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:auto-complete:minQueryLength"));
-java.lang.Number _queryDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:auto-complete:queryDelay"));
-java.lang.Number _queryInterval = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:auto-complete:queryInterval"));
-java.lang.Boolean _queryMatchCase = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:queryMatchCase"));
-java.lang.Boolean _queryMatchContains = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:queryMatchContains"));
-java.lang.Boolean _queryQuestionMark = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:queryQuestionMark"));
-java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:render"));
-java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:rendered"));
+java.lang.String _matchKey = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:matchKey"), "0");
+java.lang.Number _maxResultsDisplayed = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:auto-complete:maxResultsDisplayed"), 10);
+java.lang.Number _minQueryLength = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:auto-complete:minQueryLength"), 1);
+java.lang.Number _queryDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:auto-complete:queryDelay"), 0.2);
+java.lang.Number _queryInterval = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:auto-complete:queryInterval"), 0.5);
+java.lang.Boolean _queryMatchCase = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:queryMatchCase"), false);
+java.lang.Boolean _queryMatchContains = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:queryMatchContains"), false);
+java.lang.Boolean _queryQuestionMark = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:queryQuestionMark"), true);
+java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:render"), false);
+java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:rendered"), false);
 java.lang.Object _schema = (java.lang.Object)request.getAttribute("alloy:auto-complete:schema");
 java.lang.String _schemaType = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:schemaType"));
 java.lang.String _srcNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:srcNode"));
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:auto-complete:strings");
-java.lang.Boolean _suppressInputUpdate = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:suppressInputUpdate"));
-java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:auto-complete:tabIndex"));
-java.lang.Boolean _typeAhead = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:typeAhead"));
-java.lang.Number _typeAheadDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:auto-complete:typeAheadDelay"));
+java.lang.Boolean _suppressInputUpdate = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:suppressInputUpdate"), false);
+java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:auto-complete:tabIndex"), 0);
+java.lang.Boolean _typeAhead = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:typeAhead"), false);
+java.lang.Number _typeAheadDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:auto-complete:typeAheadDelay"), 0.2);
 java.lang.String _uniqueName = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:uniqueName"));
-java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:visible"));
+java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:auto-complete:visible"), true);
 java.lang.String _width = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:width"));
 java.lang.String _afterAlwaysShowContainerChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterAlwaysShowContainerChange"));
 java.lang.String _afterApplyLocalFilterChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:afterApplyLocalFilterChange"));

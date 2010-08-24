@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:live-search:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -19,13 +19,13 @@ if (useMarkup) {
 }
 
 java.lang.String _data = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:live-search:data"));
-java.lang.Number _delay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:live-search:delay"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:live-search:destroyed"));
+java.lang.Number _delay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:live-search:delay"), 250);
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:live-search:destroyed"), false);
 java.lang.String _hide = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:live-search:hide"));
-java.lang.String _index = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:live-search:index"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:live-search:initialized"));
+java.lang.Object _index = (java.lang.Object)request.getAttribute("alloy:live-search:index");
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:live-search:initialized"), false);
 java.lang.String _input = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:live-search:input"));
-java.lang.String _matchRegex = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:live-search:matchRegex"));
+java.lang.String _matchRegex = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:live-search:matchRegex"), "(.)*");
 java.lang.String _nodes = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:live-search:nodes"));
 java.lang.String _show = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:live-search:show"));
 java.lang.String _afterDataChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:live-search:afterDataChange"));

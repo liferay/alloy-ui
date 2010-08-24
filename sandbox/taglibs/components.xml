@@ -7,46 +7,46 @@
   </component>
   <component name="AutoComplete" module="aui-autocomplete" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="alwaysShowContainer" type="java.lang.Boolean"/>
-      <attribute name="applyLocalFilter" type="java.lang.Boolean"/>
-      <attribute name="autoHighlight" type="java.lang.Boolean"/>
-      <attribute name="boundingBox" type="java.lang.String"/>
-      <attribute name="button" type="java.lang.Boolean"/>
-      <attribute name="contentBox" type="java.lang.String"/>
-      <attribute name="cssClass" type="java.lang.String"/>
-      <attribute name="dataSource" type="java.lang.String"/>
-      <attribute name="dataSourceType" type="java.lang.String"/>
-      <attribute name="delimChar" type="java.lang.String"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="disabled" type="java.lang.Boolean"/>
-      <attribute name="focused" type="java.lang.Boolean"/>
-      <attribute name="forceSelection" type="java.lang.Boolean"/>
-      <attribute name="height" type="java.lang.String"/>
-      <attribute name="hideClass" type="java.lang.String"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="input" type="java.lang.String"/>
-      <attribute name="matchKey" type="java.lang.String"/>
-      <attribute name="maxResultsDisplayed" type="java.lang.Number"/>
-      <attribute name="minQueryLength" type="java.lang.Number"/>
-      <attribute name="queryDelay" type="java.lang.Number"/>
-      <attribute name="queryInterval" type="java.lang.Number"/>
-      <attribute name="queryMatchCase" type="java.lang.Boolean"/>
-      <attribute name="queryMatchContains" type="java.lang.Boolean"/>
-      <attribute name="queryQuestionMark" type="java.lang.Boolean"/>
-      <attribute name="render" type="java.lang.Boolean"/>
-      <attribute name="rendered" type="java.lang.Boolean"/>
-      <attribute name="schema" type="java.lang.Object"/>
-      <attribute name="schemaType" type="java.lang.String"/>
-      <attribute name="srcNode" type="java.lang.String"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="suppressInputUpdate" type="java.lang.Boolean"/>
-      <attribute name="tabIndex" type="java.lang.Number"/>
-      <attribute name="typeAhead" type="java.lang.Boolean"/>
-      <attribute name="typeAheadDelay" type="java.lang.Number"/>
-      <attribute name="uniqueName" type="java.lang.String"/>
-      <attribute name="visible" type="java.lang.Boolean"/>
-      <attribute name="width" type="java.lang.String"/>
+      <attribute name="alwaysShowContainer" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="applyLocalFilter" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="autoHighlight" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="button" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
+      <attribute name="dataSource" type="java.lang.String" defaultValue=""/>
+      <attribute name="dataSourceType" type="java.lang.String" defaultValue=""/>
+      <attribute name="delimChar" type="java.lang.String" defaultValue=""/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="forceSelection" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="height" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="input" type="java.lang.String" defaultValue=""/>
+      <attribute name="matchKey" type="java.lang.String" defaultValue="0"/>
+      <attribute name="maxResultsDisplayed" type="java.lang.Number" defaultValue="10"/>
+      <attribute name="minQueryLength" type="java.lang.Number" defaultValue="1"/>
+      <attribute name="queryDelay" type="java.lang.Number" defaultValue="0.2"/>
+      <attribute name="queryInterval" type="java.lang.Number" defaultValue="0.5"/>
+      <attribute name="queryMatchCase" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="queryMatchContains" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="queryQuestionMark" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="schema" type="java.lang.Object" defaultValue=""/>
+      <attribute name="schemaType" type="java.lang.String" defaultValue=""/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="suppressInputUpdate" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="typeAhead" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="typeAheadDelay" type="java.lang.Number" defaultValue="0.2"/>
+      <attribute name="uniqueName" type="java.lang.String" defaultValue=""/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
     </attributes>
     <events>
       <event name="alwaysShowContainerChange" type="java.lang.String"/>
@@ -115,33 +115,33 @@
   </component>
   <component name="ButtonItem" module="aui-button-item" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="activeState" type="java.lang.Boolean"/>
-      <attribute name="boundingBox" type="java.lang.String"/>
-      <attribute name="classNames" type="java.lang.Object"/>
-      <attribute name="contentBox" type="java.lang.String"/>
-      <attribute name="cssClass" type="java.lang.String"/>
-      <attribute name="defaultState" type="java.lang.Boolean"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="disabled" type="java.lang.Boolean"/>
-      <attribute name="focused" type="java.lang.Boolean"/>
-      <attribute name="handler" type="java.lang.String"/>
-      <attribute name="height" type="java.lang.String"/>
-      <attribute name="hideClass" type="java.lang.String"/>
-      <attribute name="hoverState" type="java.lang.Boolean"/>
-      <attribute name="icon" type="java.lang.String"/>
-      <attribute name="iconNode" type="java.lang.String"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="label" type="java.lang.String"/>
-      <attribute name="labelNode" type="java.lang.String"/>
-      <attribute name="render" type="java.lang.Boolean"/>
-      <attribute name="rendered" type="java.lang.Boolean"/>
-      <attribute name="srcNode" type="java.lang.String"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="tabIndex" type="java.lang.Number"/>
-      <attribute name="title" type="java.lang.String"/>
-      <attribute name="visible" type="java.lang.Boolean"/>
-      <attribute name="width" type="java.lang.String"/>
+      <attribute name="activeState" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="classNames" type="java.lang.Object" defaultValue=""/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
+      <attribute name="defaultState" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="handler" type="java.lang.String" defaultValue=""/>
+      <attribute name="height" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="hoverState" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="icon" type="java.lang.String" defaultValue=""/>
+      <attribute name="iconNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="label" type="java.lang.String" defaultValue=""/>
+      <attribute name="labelNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="title" type="java.lang.String" defaultValue=""/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
     </attributes>
     <events>
       <event name="activeStateChange" type="java.lang.String"/>
@@ -179,55 +179,55 @@
   </component>
   <component name="Calendar" module="aui-calendar" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="align" type="java.lang.Object"/>
-      <attribute name="bodyContent" type="java.lang.String"/>
-      <attribute name="boundingBox" type="java.lang.String"/>
-      <attribute name="cancellableHide" type="java.lang.Boolean"/>
-      <attribute name="centered" type="java.lang.String"/>
-      <attribute name="constrain" type="java.lang.String"/>
-      <attribute name="contentBox" type="java.lang.String"/>
-      <attribute name="cssClass" type="java.lang.String"/>
-      <attribute name="currentDay" type="java.lang.Number"/>
-      <attribute name="currentMonth" type="java.lang.Number"/>
-      <attribute name="currentNode" type="java.lang.String"/>
-      <attribute name="currentYear" type="java.lang.Number"/>
-      <attribute name="dateFormat" type="java.lang.String"/>
-      <attribute name="dates" type="java.lang.String"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="disabled" type="java.lang.Boolean"/>
-      <attribute name="fillHeight" type="java.lang.String"/>
-      <attribute name="firstDayOfWeek" type="java.lang.Number"/>
-      <attribute name="focused" type="java.lang.Boolean"/>
-      <attribute name="footerContent" type="java.lang.String"/>
-      <attribute name="headerContent" type="java.lang.String"/>
-      <attribute name="height" type="java.lang.String"/>
-      <attribute name="hideClass" type="java.lang.String"/>
-      <attribute name="hideDelay" type="java.lang.Number"/>
-      <attribute name="hideOn" type="java.lang.String"/>
-      <attribute name="hideOnDocumentClick" type="java.lang.Boolean"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="maxDate" type="java.lang.String"/>
-      <attribute name="minDate" type="java.lang.String"/>
-      <attribute name="preventOverlap" type="java.lang.Boolean"/>
-      <attribute name="render" type="java.lang.Boolean"/>
-      <attribute name="rendered" type="java.lang.Boolean"/>
-      <attribute name="selectMultipleDates" type="java.lang.Boolean"/>
-      <attribute name="setValue" type="java.lang.Boolean"/>
-      <attribute name="shim" type="java.lang.Boolean"/>
-      <attribute name="showDelay" type="java.lang.Number"/>
-      <attribute name="showOn" type="java.lang.String"/>
-      <attribute name="srcNode" type="java.lang.String"/>
-      <attribute name="stack" type="java.lang.Boolean"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="tabIndex" type="java.lang.Number"/>
-      <attribute name="trigger" type="java.lang.String"/>
-      <attribute name="visible" type="java.lang.Boolean"/>
-      <attribute name="width" type="java.lang.String"/>
-      <attribute name="x" type="java.lang.Number"/>
-      <attribute name="xy" type="java.lang.String"/>
-      <attribute name="y" type="java.lang.Number"/>
-      <attribute name="zIndex" type="java.lang.Number"/>
+      <attribute name="align" type="java.lang.Object" defaultValue="{ node: null, points: [ TL, BL ] }"/>
+      <attribute name="bodyContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cancellableHide" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="centered" type="java.lang.String" defaultValue=""/>
+      <attribute name="constrain" type="java.lang.String" defaultValue=""/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
+      <attribute name="currentDay" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="currentMonth" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="currentNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="currentYear" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="dateFormat" type="java.lang.String" defaultValue="%m/%d/%Y"/>
+      <attribute name="dates" type="java.lang.Object" defaultValue=""/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="fillHeight" type="java.lang.String" defaultValue=""/>
+      <attribute name="firstDayOfWeek" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="footerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="headerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="height" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="hideDelay" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="hideOn" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideOnDocumentClick" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="maxDate" type="java.lang.String" defaultValue=""/>
+      <attribute name="minDate" type="java.lang.String" defaultValue=""/>
+      <attribute name="preventOverlap" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="selectMultipleDates" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="setValue" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="shim" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="showDelay" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="showOn" type="java.lang.String" defaultValue=""/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="stack" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="trigger" type="java.lang.String" defaultValue=""/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
+      <attribute name="x" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="xy" type="java.lang.Object" defaultValue="[0,0]"/>
+      <attribute name="y" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="zIndex" type="java.lang.Number" defaultValue="0"/>
     </attributes>
     <events>
       <event name="alignChange" type="java.lang.String"/>
@@ -287,11 +287,11 @@
   </component>
   <component name="CharCounter" module="aui-char-counter" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="counter" type="java.lang.String"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="input" type="java.lang.String"/>
-      <attribute name="maxLength" type="java.lang.Number"/>
+      <attribute name="counter" type="java.lang.String" defaultValue=""/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="input" type="java.lang.String" defaultValue=""/>
+      <attribute name="maxLength" type="java.lang.Number" defaultValue="0"/>
     </attributes>
     <events>
       <event name="counterChange" type="java.lang.String"/>
@@ -305,44 +305,44 @@
   </component>
   <component name="ColorPicker" module="aui-color-picker" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="align" type="java.lang.Object"/>
-      <attribute name="bodyContent" type="java.lang.String"/>
-      <attribute name="boundingBox" type="java.lang.String"/>
-      <attribute name="cancellableHide" type="java.lang.Boolean"/>
-      <attribute name="centered" type="java.lang.String"/>
-      <attribute name="constrain" type="java.lang.String"/>
-      <attribute name="contentBox" type="java.lang.String"/>
-      <attribute name="cssClass" type="java.lang.String"/>
-      <attribute name="currentNode" type="java.lang.String"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="disabled" type="java.lang.Boolean"/>
-      <attribute name="fillHeight" type="java.lang.String"/>
-      <attribute name="focused" type="java.lang.Boolean"/>
-      <attribute name="footerContent" type="java.lang.String"/>
-      <attribute name="headerContent" type="java.lang.String"/>
-      <attribute name="height" type="java.lang.String"/>
-      <attribute name="hideClass" type="java.lang.String"/>
-      <attribute name="hideDelay" type="java.lang.Number"/>
-      <attribute name="hideOn" type="java.lang.String"/>
-      <attribute name="hideOnDocumentClick" type="java.lang.Boolean"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="preventOverlap" type="java.lang.Boolean"/>
-      <attribute name="render" type="java.lang.Boolean"/>
-      <attribute name="rendered" type="java.lang.Boolean"/>
-      <attribute name="shim" type="java.lang.Boolean"/>
-      <attribute name="showDelay" type="java.lang.Number"/>
-      <attribute name="showOn" type="java.lang.String"/>
-      <attribute name="srcNode" type="java.lang.String"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="tabIndex" type="java.lang.Number"/>
-      <attribute name="trigger" type="java.lang.String"/>
-      <attribute name="visible" type="java.lang.Boolean"/>
-      <attribute name="width" type="java.lang.String"/>
-      <attribute name="x" type="java.lang.Number"/>
-      <attribute name="xy" type="java.lang.String"/>
-      <attribute name="y" type="java.lang.Number"/>
-      <attribute name="zIndex" type="java.lang.Number"/>
+      <attribute name="align" type="java.lang.Object" defaultValue="{ node: null, points: [ TL, BL ] }"/>
+      <attribute name="bodyContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cancellableHide" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="centered" type="java.lang.String" defaultValue=""/>
+      <attribute name="constrain" type="java.lang.String" defaultValue=""/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
+      <attribute name="currentNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="fillHeight" type="java.lang.String" defaultValue=""/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="footerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="headerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="height" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="hideDelay" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="hideOn" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideOnDocumentClick" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="preventOverlap" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="shim" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="showDelay" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="showOn" type="java.lang.String" defaultValue=""/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="trigger" type="java.lang.String" defaultValue=""/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
+      <attribute name="x" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="xy" type="java.lang.Object" defaultValue="[0,0]"/>
+      <attribute name="y" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="zIndex" type="java.lang.Number" defaultValue="0"/>
     </attributes>
     <events>
       <event name="alignChange" type="java.lang.String"/>
@@ -391,69 +391,69 @@
   </component>
   <component name="DatePickerSelect" module="aui-calendar" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="align" type="java.lang.Object"/>
-      <attribute name="appendOrder" type="java.lang.String"/>
-      <attribute name="baseName" type="java.lang.String"/>
-      <attribute name="bodyContent" type="java.lang.String"/>
-      <attribute name="boundingBox" type="java.lang.String"/>
-      <attribute name="buttonNode" type="java.lang.String"/>
-      <attribute name="cancellableHide" type="java.lang.Boolean"/>
-      <attribute name="centered" type="java.lang.String"/>
-      <attribute name="constrain" type="java.lang.String"/>
-      <attribute name="contentBox" type="java.lang.String"/>
-      <attribute name="cssClass" type="java.lang.String"/>
-      <attribute name="currentDay" type="java.lang.Number"/>
-      <attribute name="currentMonth" type="java.lang.Number"/>
-      <attribute name="currentNode" type="java.lang.String"/>
-      <attribute name="currentYear" type="java.lang.Number"/>
-      <attribute name="dateFormat" type="java.lang.String"/>
-      <attribute name="dates" type="java.lang.String"/>
-      <attribute name="dayNode" type="java.lang.String"/>
-      <attribute name="dayNodeName" type="java.lang.String"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="disabled" type="java.lang.Boolean"/>
-      <attribute name="fillHeight" type="java.lang.String"/>
-      <attribute name="firstDayOfWeek" type="java.lang.Number"/>
-      <attribute name="focused" type="java.lang.Boolean"/>
-      <attribute name="footerContent" type="java.lang.String"/>
-      <attribute name="headerContent" type="java.lang.String"/>
-      <attribute name="height" type="java.lang.String"/>
-      <attribute name="hideClass" type="java.lang.String"/>
-      <attribute name="hideDelay" type="java.lang.Number"/>
-      <attribute name="hideOn" type="java.lang.String"/>
-      <attribute name="hideOnDocumentClick" type="java.lang.Boolean"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="maxDate" type="java.lang.String"/>
-      <attribute name="minDate" type="java.lang.String"/>
-      <attribute name="monthNode" type="java.lang.String"/>
-      <attribute name="monthNodeName" type="java.lang.String"/>
-      <attribute name="populateDay" type="java.lang.Boolean"/>
-      <attribute name="populateMonth" type="java.lang.Boolean"/>
-      <attribute name="populateYear" type="java.lang.Boolean"/>
-      <attribute name="preventOverlap" type="java.lang.Boolean"/>
-      <attribute name="render" type="java.lang.Boolean"/>
-      <attribute name="rendered" type="java.lang.Boolean"/>
-      <attribute name="selectMultipleDates" type="java.lang.Boolean"/>
-      <attribute name="selectWrapperNode" type="java.lang.String"/>
-      <attribute name="setValue" type="java.lang.Boolean"/>
-      <attribute name="shim" type="java.lang.Boolean"/>
-      <attribute name="showDelay" type="java.lang.Number"/>
-      <attribute name="showOn" type="java.lang.String"/>
-      <attribute name="srcNode" type="java.lang.String"/>
-      <attribute name="stack" type="java.lang.Boolean"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="tabIndex" type="java.lang.Number"/>
-      <attribute name="trigger" type="java.lang.String"/>
-      <attribute name="visible" type="java.lang.Boolean"/>
-      <attribute name="width" type="java.lang.String"/>
-      <attribute name="x" type="java.lang.Number"/>
-      <attribute name="xy" type="java.lang.String"/>
-      <attribute name="y" type="java.lang.Number"/>
-      <attribute name="yearNode" type="java.lang.String"/>
-      <attribute name="yearNodeName" type="java.lang.String"/>
-      <attribute name="yearRange" type="java.lang.String"/>
-      <attribute name="zIndex" type="java.lang.Number"/>
+      <attribute name="align" type="java.lang.Object" defaultValue="{ node: null, points: [ TL, BL ] }"/>
+      <attribute name="appendOrder" type="java.lang.Object" defaultValue="[ 'm', 'd', 'y' ]"/>
+      <attribute name="baseName" type="java.lang.String" defaultValue=""/>
+      <attribute name="bodyContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="buttonNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="cancellableHide" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="centered" type="java.lang.String" defaultValue=""/>
+      <attribute name="constrain" type="java.lang.String" defaultValue=""/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
+      <attribute name="currentDay" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="currentMonth" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="currentNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="currentYear" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="dateFormat" type="java.lang.String" defaultValue="%m/%d/%Y"/>
+      <attribute name="dates" type="java.lang.Object" defaultValue=""/>
+      <attribute name="dayNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="dayNodeName" type="java.lang.String" defaultValue=""/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="fillHeight" type="java.lang.String" defaultValue=""/>
+      <attribute name="firstDayOfWeek" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="footerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="headerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="height" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="hideDelay" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="hideOn" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideOnDocumentClick" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="maxDate" type="java.lang.String" defaultValue=""/>
+      <attribute name="minDate" type="java.lang.String" defaultValue=""/>
+      <attribute name="monthNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="monthNodeName" type="java.lang.String" defaultValue=""/>
+      <attribute name="populateDay" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="populateMonth" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="populateYear" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="preventOverlap" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="selectMultipleDates" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="selectWrapperNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="setValue" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="shim" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="showDelay" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="showOn" type="java.lang.String" defaultValue=""/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="stack" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="trigger" type="java.lang.String" defaultValue=""/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
+      <attribute name="x" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="xy" type="java.lang.Object" defaultValue="[0,0]"/>
+      <attribute name="y" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="yearNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="yearNodeName" type="java.lang.String" defaultValue=""/>
+      <attribute name="yearRange" type="java.lang.Object" defaultValue="[ year - 10, year + 10 ]"/>
+      <attribute name="zIndex" type="java.lang.Number" defaultValue="0"/>
     </attributes>
     <events>
       <event name="alignChange" type="java.lang.String"/>
@@ -527,41 +527,41 @@
   </component>
   <component name="Dialog" module="aui-dialog" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="bodyContent" type="java.lang.String"/>
-      <attribute name="boundingBox" type="java.lang.String"/>
-      <attribute name="buttons" type="java.lang.String"/>
-      <attribute name="close" type="java.lang.Boolean"/>
-      <attribute name="collapsed" type="java.lang.Boolean"/>
-      <attribute name="collapsible" type="java.lang.Boolean"/>
-      <attribute name="constrain2view" type="java.lang.Object"/>
-      <attribute name="contentBox" type="java.lang.String"/>
-      <attribute name="cssClass" type="java.lang.String"/>
-      <attribute name="destroyOnClose" type="java.lang.Boolean"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="disabled" type="java.lang.Boolean"/>
-      <attribute name="dragInstance" type="java.lang.String"/>
-      <attribute name="draggable" type="java.lang.Boolean"/>
-      <attribute name="fillHeight" type="java.lang.String"/>
-      <attribute name="focused" type="java.lang.Boolean"/>
-      <attribute name="footerContent" type="java.lang.String"/>
-      <attribute name="headerContent" type="java.lang.String"/>
-      <attribute name="height" type="java.lang.String"/>
-      <attribute name="hideClass" type="java.lang.String"/>
-      <attribute name="icons" type="java.lang.String"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="modal" type="java.lang.Boolean"/>
-      <attribute name="render" type="java.lang.Boolean"/>
-      <attribute name="rendered" type="java.lang.Boolean"/>
-      <attribute name="resizable" type="java.lang.Boolean"/>
-      <attribute name="resizableInstance" type="java.lang.String"/>
-      <attribute name="srcNode" type="java.lang.String"/>
-      <attribute name="stack" type="java.lang.Boolean"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="tabIndex" type="java.lang.Number"/>
-      <attribute name="title" type="java.lang.String"/>
-      <attribute name="visible" type="java.lang.Boolean"/>
-      <attribute name="width" type="java.lang.String"/>
+      <attribute name="bodyContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="buttons" type="java.lang.Object" defaultValue="[]"/>
+      <attribute name="close" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="collapsed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="collapsible" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="constrain2view" type="java.lang.Object" defaultValue=""/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
+      <attribute name="destroyOnClose" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="dragInstance" type="java.lang.String" defaultValue=""/>
+      <attribute name="draggable" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="fillHeight" type="java.lang.String" defaultValue=""/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="footerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="headerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="height" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="icons" type="java.lang.Object" defaultValue="[]"/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="modal" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="resizable" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="resizableInstance" type="java.lang.String" defaultValue=""/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="stack" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="title" type="java.lang.String" defaultValue=""/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
     </attributes>
     <events>
       <event name="bodyContentChange" type="java.lang.String"/>
@@ -607,33 +607,33 @@
   </component>
   <component name="Editable" module="aui-editable" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="boundingBox" type="java.lang.String"/>
-      <attribute name="cancelButton" type="java.lang.String"/>
-      <attribute name="contentBox" type="java.lang.String"/>
-      <attribute name="contentText" type="java.lang.String"/>
-      <attribute name="cssClass" type="java.lang.String"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="disabled" type="java.lang.Boolean"/>
-      <attribute name="eventType" type="java.lang.String"/>
-      <attribute name="focused" type="java.lang.Boolean"/>
-      <attribute name="formatInput" type="java.lang.String"/>
-      <attribute name="formatOutput" type="java.lang.String"/>
-      <attribute name="height" type="java.lang.String"/>
-      <attribute name="hideClass" type="java.lang.String"/>
-      <attribute name="icons" type="java.lang.String"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="inputType" type="java.lang.String"/>
-      <attribute name="node" type="java.lang.String"/>
-      <attribute name="render" type="java.lang.Boolean"/>
-      <attribute name="renderTo" type="java.lang.String"/>
-      <attribute name="rendered" type="java.lang.Boolean"/>
-      <attribute name="saveButton" type="java.lang.String"/>
-      <attribute name="srcNode" type="java.lang.String"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="tabIndex" type="java.lang.Number"/>
-      <attribute name="visible" type="java.lang.Boolean"/>
-      <attribute name="width" type="java.lang.String"/>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cancelButton" type="java.lang.String" defaultValue=""/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="contentText" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="eventType" type="java.lang.String" defaultValue="click"/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="formatInput" type="java.lang.String" defaultValue=""/>
+      <attribute name="formatOutput" type="java.lang.String" defaultValue=""/>
+      <attribute name="height" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="icons" type="java.lang.Object" defaultValue="[]"/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="inputType" type="java.lang.String" defaultValue="text"/>
+      <attribute name="node" type="java.lang.String" defaultValue=""/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="renderTo" type="java.lang.String" defaultValue=""/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="saveButton" type="java.lang.String" defaultValue=""/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
     </attributes>
     <events>
       <event name="boundingBoxChange" type="java.lang.String"/>
@@ -675,26 +675,26 @@
   </component>
   <component name="IORequest" module="aui-io" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="active" type="java.lang.Boolean"/>
-      <attribute name="arguments" type="java.lang.Object"/>
-      <attribute name="autoLoad" type="java.lang.Boolean"/>
-      <attribute name="cache" type="java.lang.Boolean"/>
-      <attribute name="cfg" type="java.lang.String"/>
-      <attribute name="context" type="java.lang.Object"/>
-      <attribute name="data" type="java.lang.Object"/>
-      <attribute name="dataType" type="java.lang.String"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="form" type="java.lang.Object"/>
-      <attribute name="headers" type="java.lang.Object"/>
-      <attribute name="host" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="method" type="java.lang.String"/>
-      <attribute name="responseData" type="java.lang.String"/>
-      <attribute name="sync" type="java.lang.Boolean"/>
-      <attribute name="timeout" type="java.lang.Number"/>
-      <attribute name="transaction" type="java.lang.Object"/>
-      <attribute name="uri" type="java.lang.String"/>
-      <attribute name="xdr" type="java.lang.Object"/>
+      <attribute name="active" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="arguments" type="java.lang.Object" defaultValue=""/>
+      <attribute name="autoLoad" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="cache" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="cfg" type="java.lang.String" defaultValue=""/>
+      <attribute name="context" type="java.lang.Object" defaultValue=""/>
+      <attribute name="data" type="java.lang.Object" defaultValue=""/>
+      <attribute name="dataType" type="java.lang.String" defaultValue=""/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="form" type="java.lang.Object" defaultValue=""/>
+      <attribute name="headers" type="java.lang.Object" defaultValue=""/>
+      <attribute name="host" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="method" type="java.lang.String" defaultValue=""/>
+      <attribute name="responseData" type="java.lang.String" defaultValue=""/>
+      <attribute name="sync" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="timeout" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="transaction" type="java.lang.Object" defaultValue=""/>
+      <attribute name="uri" type="java.lang.String" defaultValue=""/>
+      <attribute name="xdr" type="java.lang.Object" defaultValue=""/>
     </attributes>
     <events>
       <event name="activeChange" type="java.lang.String"/>
@@ -729,72 +729,72 @@
   </component>
   <component name="ImageGallery" module="aui-image-viewer" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="align" type="java.lang.Object"/>
-      <attribute name="anim" type="java.lang.Boolean"/>
-      <attribute name="arrowLeftEl" type="java.lang.String"/>
-      <attribute name="arrowRightEl" type="java.lang.String"/>
-      <attribute name="autoPlay" type="java.lang.Boolean"/>
-      <attribute name="bodyContent" type="java.lang.String"/>
-      <attribute name="boundingBox" type="java.lang.String"/>
-      <attribute name="caption" type="java.lang.String"/>
-      <attribute name="captionEl" type="java.lang.String"/>
-      <attribute name="captionFromTitle" type="java.lang.Boolean"/>
-      <attribute name="centered" type="java.lang.Boolean"/>
-      <attribute name="closeEl" type="java.lang.String"/>
-      <attribute name="constrain" type="java.lang.String"/>
-      <attribute name="contentBox" type="java.lang.String"/>
-      <attribute name="cssClass" type="java.lang.String"/>
-      <attribute name="currentIndex" type="java.lang.Number"/>
-      <attribute name="delay" type="java.lang.Number"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="disabled" type="java.lang.Boolean"/>
-      <attribute name="fillHeight" type="java.lang.String"/>
-      <attribute name="focused" type="java.lang.Boolean"/>
-      <attribute name="footerContent" type="java.lang.String"/>
-      <attribute name="headerContent" type="java.lang.String"/>
-      <attribute name="height" type="java.lang.String"/>
-      <attribute name="hideClass" type="java.lang.String"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="image" type="java.lang.String"/>
-      <attribute name="imageAnim" type="java.lang.Object"/>
-      <attribute name="infoEl" type="java.lang.String"/>
-      <attribute name="infoTemplate" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="links" type="java.lang.String"/>
-      <attribute name="loader" type="java.lang.String"/>
-      <attribute name="loading" type="java.lang.Boolean"/>
-      <attribute name="loadingEl" type="java.lang.String"/>
-      <attribute name="maxHeight" type="java.lang.Number"/>
-      <attribute name="maxWidth" type="java.lang.Number"/>
-      <attribute name="modal" type="java.lang.String"/>
-      <attribute name="paginator" type="java.lang.Object"/>
-      <attribute name="paginatorEl" type="java.lang.String"/>
-      <attribute name="paginatorInstance" type="java.lang.String"/>
-      <attribute name="paused" type="java.lang.Boolean"/>
-      <attribute name="pausedLabel" type="java.lang.String"/>
-      <attribute name="playing" type="java.lang.Boolean"/>
-      <attribute name="playingLabel" type="java.lang.String"/>
-      <attribute name="preloadAllImages" type="java.lang.Boolean"/>
-      <attribute name="preventOverlap" type="java.lang.Boolean"/>
-      <attribute name="render" type="java.lang.Boolean"/>
-      <attribute name="rendered" type="java.lang.Boolean"/>
-      <attribute name="repeat" type="java.lang.Boolean"/>
-      <attribute name="shim" type="java.lang.Boolean"/>
-      <attribute name="showArrows" type="java.lang.Boolean"/>
-      <attribute name="showClose" type="java.lang.Boolean"/>
-      <attribute name="showPlayer" type="java.lang.Boolean"/>
-      <attribute name="srcNode" type="java.lang.String"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="tabIndex" type="java.lang.Number"/>
-      <attribute name="toolbar" type="java.lang.String"/>
-      <attribute name="totalLinks" type="java.lang.Boolean"/>
-      <attribute name="useOriginalImage" type="java.lang.Boolean"/>
-      <attribute name="visible" type="java.lang.Boolean"/>
-      <attribute name="width" type="java.lang.String"/>
-      <attribute name="x" type="java.lang.Number"/>
-      <attribute name="xy" type="java.lang.String"/>
-      <attribute name="y" type="java.lang.Number"/>
-      <attribute name="zIndex" type="java.lang.Number"/>
+      <attribute name="align" type="java.lang.Object" defaultValue=""/>
+      <attribute name="anim" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="arrowLeftEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="arrowRightEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="autoPlay" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="bodyContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="caption" type="java.lang.String" defaultValue=""/>
+      <attribute name="captionEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="captionFromTitle" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="centered" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="closeEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="constrain" type="java.lang.String" defaultValue=""/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
+      <attribute name="currentIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="delay" type="java.lang.Number" defaultValue="7000"/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="fillHeight" type="java.lang.String" defaultValue=""/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="footerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="headerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="height" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="image" type="java.lang.String" defaultValue=""/>
+      <attribute name="imageAnim" type="java.lang.Object" defaultValue=""/>
+      <attribute name="infoEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="infoTemplate" type="java.lang.String" defaultValue="Image {current} of {total}"/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="links" type="java.lang.String" defaultValue=""/>
+      <attribute name="loader" type="java.lang.String" defaultValue=""/>
+      <attribute name="loading" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="loadingEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="maxHeight" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="maxWidth" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="modal" type="java.lang.String" defaultValue="{ opacity: .8, background: '#000' }"/>
+      <attribute name="paginator" type="java.lang.Object" defaultValue=""/>
+      <attribute name="paginatorEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="paginatorInstance" type="java.lang.String" defaultValue=""/>
+      <attribute name="paused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="pausedLabel" type="java.lang.String" defaultValue=""/>
+      <attribute name="playing" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="playingLabel" type="java.lang.String" defaultValue="(Playing)"/>
+      <attribute name="preloadAllImages" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="preventOverlap" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="repeat" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="shim" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="showArrows" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="showClose" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="showPlayer" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="toolbar" type="java.lang.String" defaultValue=""/>
+      <attribute name="totalLinks" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="useOriginalImage" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
+      <attribute name="x" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="xy" type="java.lang.Object" defaultValue="[0,0]"/>
+      <attribute name="y" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="zIndex" type="java.lang.Number" defaultValue="0"/>
     </attributes>
     <events>
       <event name="alignChange" type="java.lang.String"/>
@@ -874,59 +874,59 @@
   </component>
   <component name="ImageViewer" module="aui-image-viewer" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="align" type="java.lang.Object"/>
-      <attribute name="anim" type="java.lang.Boolean"/>
-      <attribute name="arrowLeftEl" type="java.lang.String"/>
-      <attribute name="arrowRightEl" type="java.lang.String"/>
-      <attribute name="bodyContent" type="java.lang.String"/>
-      <attribute name="boundingBox" type="java.lang.String"/>
-      <attribute name="caption" type="java.lang.String"/>
-      <attribute name="captionEl" type="java.lang.String"/>
-      <attribute name="captionFromTitle" type="java.lang.Boolean"/>
-      <attribute name="centered" type="java.lang.Boolean"/>
-      <attribute name="closeEl" type="java.lang.String"/>
-      <attribute name="constrain" type="java.lang.String"/>
-      <attribute name="contentBox" type="java.lang.String"/>
-      <attribute name="cssClass" type="java.lang.String"/>
-      <attribute name="currentIndex" type="java.lang.Number"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="disabled" type="java.lang.Boolean"/>
-      <attribute name="fillHeight" type="java.lang.String"/>
-      <attribute name="focused" type="java.lang.Boolean"/>
-      <attribute name="footerContent" type="java.lang.String"/>
-      <attribute name="headerContent" type="java.lang.String"/>
-      <attribute name="height" type="java.lang.String"/>
-      <attribute name="hideClass" type="java.lang.String"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="image" type="java.lang.String"/>
-      <attribute name="imageAnim" type="java.lang.Object"/>
-      <attribute name="infoEl" type="java.lang.String"/>
-      <attribute name="infoTemplate" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="links" type="java.lang.String"/>
-      <attribute name="loader" type="java.lang.String"/>
-      <attribute name="loading" type="java.lang.Boolean"/>
-      <attribute name="loadingEl" type="java.lang.String"/>
-      <attribute name="maxHeight" type="java.lang.Number"/>
-      <attribute name="maxWidth" type="java.lang.Number"/>
-      <attribute name="modal" type="java.lang.String"/>
-      <attribute name="preloadAllImages" type="java.lang.Boolean"/>
-      <attribute name="preventOverlap" type="java.lang.Boolean"/>
-      <attribute name="render" type="java.lang.Boolean"/>
-      <attribute name="rendered" type="java.lang.Boolean"/>
-      <attribute name="shim" type="java.lang.Boolean"/>
-      <attribute name="showArrows" type="java.lang.Boolean"/>
-      <attribute name="showClose" type="java.lang.Boolean"/>
-      <attribute name="srcNode" type="java.lang.String"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="tabIndex" type="java.lang.Number"/>
-      <attribute name="totalLinks" type="java.lang.Boolean"/>
-      <attribute name="visible" type="java.lang.Boolean"/>
-      <attribute name="width" type="java.lang.String"/>
-      <attribute name="x" type="java.lang.Number"/>
-      <attribute name="xy" type="java.lang.String"/>
-      <attribute name="y" type="java.lang.Number"/>
-      <attribute name="zIndex" type="java.lang.Number"/>
+      <attribute name="align" type="java.lang.Object" defaultValue=""/>
+      <attribute name="anim" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="arrowLeftEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="arrowRightEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="bodyContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="caption" type="java.lang.String" defaultValue=""/>
+      <attribute name="captionEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="captionFromTitle" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="centered" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="closeEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="constrain" type="java.lang.String" defaultValue=""/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
+      <attribute name="currentIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="fillHeight" type="java.lang.String" defaultValue=""/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="footerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="headerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="height" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="image" type="java.lang.String" defaultValue=""/>
+      <attribute name="imageAnim" type="java.lang.Object" defaultValue=""/>
+      <attribute name="infoEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="infoTemplate" type="java.lang.String" defaultValue="Image {current} of {total}"/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="links" type="java.lang.String" defaultValue=""/>
+      <attribute name="loader" type="java.lang.String" defaultValue=""/>
+      <attribute name="loading" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="loadingEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="maxHeight" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="maxWidth" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="modal" type="java.lang.String" defaultValue="{ opacity: .8, background: '#000' }"/>
+      <attribute name="preloadAllImages" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="preventOverlap" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="shim" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="showArrows" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="showClose" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="totalLinks" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
+      <attribute name="x" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="xy" type="java.lang.Object" defaultValue="[0,0]"/>
+      <attribute name="y" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="zIndex" type="java.lang.Number" defaultValue="0"/>
     </attributes>
     <events>
       <event name="alignChange" type="java.lang.String"/>
@@ -993,16 +993,16 @@
   </component>
   <component name="LiveSearch" module="aui-live-search" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="data" type="java.lang.String"/>
-      <attribute name="delay" type="java.lang.Number"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="hide" type="java.lang.String"/>
-      <attribute name="index" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="input" type="java.lang.String"/>
-      <attribute name="matchRegex" type="java.lang.String"/>
-      <attribute name="nodes" type="java.lang.String"/>
-      <attribute name="show" type="java.lang.String"/>
+      <attribute name="data" type="java.lang.String" defaultValue=""/>
+      <attribute name="delay" type="java.lang.Number" defaultValue="250"/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="hide" type="java.lang.String" defaultValue=""/>
+      <attribute name="index" type="java.lang.Object" defaultValue="[]"/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="input" type="java.lang.String" defaultValue=""/>
+      <attribute name="matchRegex" type="java.lang.String" defaultValue="(.)*"/>
+      <attribute name="nodes" type="java.lang.String" defaultValue=""/>
+      <attribute name="show" type="java.lang.String" defaultValue=""/>
     </attributes>
     <events>
       <event name="dataChange" type="java.lang.String"/>
@@ -1021,12 +1021,12 @@
   </component>
   <component name="LoadingMask" module="aui-loading-mask" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="host" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="messageEl" type="java.lang.String"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="target" type="java.lang.String"/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="host" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="messageEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="strings" type="java.lang.Object" defaultValue="{ loading: 'Loading&amp;hellip;' }"/>
+      <attribute name="target" type="java.lang.String" defaultValue=""/>
     </attributes>
     <events>
       <event name="destroy" type="java.lang.String"/>
@@ -1041,8 +1041,8 @@
   </component>
   <component name="NestedList" module="aui-nested-list" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
     </attributes>
     <events>
       <event name="destroy" type="java.lang.String"/>
@@ -1053,36 +1053,36 @@
   </component>
   <component name="OverlayBase" module="aui-overlay" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="align" type="java.lang.Object"/>
-      <attribute name="bodyContent" type="java.lang.String"/>
-      <attribute name="boundingBox" type="java.lang.String"/>
-      <attribute name="centered" type="java.lang.String"/>
-      <attribute name="constrain" type="java.lang.String"/>
-      <attribute name="contentBox" type="java.lang.String"/>
-      <attribute name="cssClass" type="java.lang.String"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="disabled" type="java.lang.Boolean"/>
-      <attribute name="fillHeight" type="java.lang.String"/>
-      <attribute name="focused" type="java.lang.Boolean"/>
-      <attribute name="footerContent" type="java.lang.String"/>
-      <attribute name="headerContent" type="java.lang.String"/>
-      <attribute name="height" type="java.lang.String"/>
-      <attribute name="hideClass" type="java.lang.String"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="preventOverlap" type="java.lang.Boolean"/>
-      <attribute name="render" type="java.lang.Boolean"/>
-      <attribute name="rendered" type="java.lang.Boolean"/>
-      <attribute name="shim" type="java.lang.Boolean"/>
-      <attribute name="srcNode" type="java.lang.String"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="tabIndex" type="java.lang.Number"/>
-      <attribute name="visible" type="java.lang.Boolean"/>
-      <attribute name="width" type="java.lang.String"/>
-      <attribute name="x" type="java.lang.Number"/>
-      <attribute name="xy" type="java.lang.String"/>
-      <attribute name="y" type="java.lang.Number"/>
-      <attribute name="zIndex" type="java.lang.Number"/>
+      <attribute name="align" type="java.lang.Object" defaultValue=""/>
+      <attribute name="bodyContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="centered" type="java.lang.String" defaultValue=""/>
+      <attribute name="constrain" type="java.lang.String" defaultValue=""/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="fillHeight" type="java.lang.String" defaultValue=""/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="footerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="headerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="height" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="preventOverlap" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="shim" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
+      <attribute name="x" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="xy" type="java.lang.Object" defaultValue="[0,0]"/>
+      <attribute name="y" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="zIndex" type="java.lang.Number" defaultValue="0"/>
     </attributes>
     <events>
       <event name="alignChange" type="java.lang.String"/>
@@ -1123,44 +1123,44 @@
   </component>
   <component name="OverlayContext" module="aui-overlay" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="align" type="java.lang.Object"/>
-      <attribute name="bodyContent" type="java.lang.String"/>
-      <attribute name="boundingBox" type="java.lang.String"/>
-      <attribute name="cancellableHide" type="java.lang.Boolean"/>
-      <attribute name="centered" type="java.lang.String"/>
-      <attribute name="constrain" type="java.lang.String"/>
-      <attribute name="contentBox" type="java.lang.String"/>
-      <attribute name="cssClass" type="java.lang.String"/>
-      <attribute name="currentNode" type="java.lang.String"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="disabled" type="java.lang.Boolean"/>
-      <attribute name="fillHeight" type="java.lang.String"/>
-      <attribute name="focused" type="java.lang.Boolean"/>
-      <attribute name="footerContent" type="java.lang.String"/>
-      <attribute name="headerContent" type="java.lang.String"/>
-      <attribute name="height" type="java.lang.String"/>
-      <attribute name="hideClass" type="java.lang.String"/>
-      <attribute name="hideDelay" type="java.lang.Number"/>
-      <attribute name="hideOn" type="java.lang.String"/>
-      <attribute name="hideOnDocumentClick" type="java.lang.Boolean"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="preventOverlap" type="java.lang.Boolean"/>
-      <attribute name="render" type="java.lang.Boolean"/>
-      <attribute name="rendered" type="java.lang.Boolean"/>
-      <attribute name="shim" type="java.lang.Boolean"/>
-      <attribute name="showDelay" type="java.lang.Number"/>
-      <attribute name="showOn" type="java.lang.String"/>
-      <attribute name="srcNode" type="java.lang.String"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="tabIndex" type="java.lang.Number"/>
-      <attribute name="trigger" type="java.lang.String"/>
-      <attribute name="visible" type="java.lang.Boolean"/>
-      <attribute name="width" type="java.lang.String"/>
-      <attribute name="x" type="java.lang.Number"/>
-      <attribute name="xy" type="java.lang.String"/>
-      <attribute name="y" type="java.lang.Number"/>
-      <attribute name="zIndex" type="java.lang.Number"/>
+      <attribute name="align" type="java.lang.Object" defaultValue="{ node: null, points: [ TL, BL ] }"/>
+      <attribute name="bodyContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cancellableHide" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="centered" type="java.lang.String" defaultValue=""/>
+      <attribute name="constrain" type="java.lang.String" defaultValue=""/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
+      <attribute name="currentNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="fillHeight" type="java.lang.String" defaultValue=""/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="footerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="headerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="height" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="hideDelay" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="hideOn" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideOnDocumentClick" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="preventOverlap" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="shim" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="showDelay" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="showOn" type="java.lang.String" defaultValue=""/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="trigger" type="java.lang.String" defaultValue=""/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
+      <attribute name="x" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="xy" type="java.lang.Object" defaultValue="[0,0]"/>
+      <attribute name="y" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="zIndex" type="java.lang.Number" defaultValue="0"/>
     </attributes>
     <events>
       <event name="alignChange" type="java.lang.String"/>
@@ -1209,48 +1209,48 @@
   </component>
   <component name="OverlayContextPanel" module="aui-overlay" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="align" type="java.lang.Object"/>
-      <attribute name="anim" type="java.lang.Object"/>
-      <attribute name="arrow" type="java.lang.String"/>
-      <attribute name="bodyContent" type="java.lang.String"/>
-      <attribute name="boundingBox" type="java.lang.String"/>
-      <attribute name="cancellableHide" type="java.lang.Boolean"/>
-      <attribute name="centered" type="java.lang.String"/>
-      <attribute name="constrain" type="java.lang.String"/>
-      <attribute name="contentBox" type="java.lang.String"/>
-      <attribute name="cssClass" type="java.lang.String"/>
-      <attribute name="currentNode" type="java.lang.String"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="disabled" type="java.lang.Boolean"/>
-      <attribute name="fillHeight" type="java.lang.String"/>
-      <attribute name="focused" type="java.lang.Boolean"/>
-      <attribute name="footerContent" type="java.lang.String"/>
-      <attribute name="headerContent" type="java.lang.String"/>
-      <attribute name="height" type="java.lang.String"/>
-      <attribute name="hideClass" type="java.lang.String"/>
-      <attribute name="hideDelay" type="java.lang.Number"/>
-      <attribute name="hideOn" type="java.lang.String"/>
-      <attribute name="hideOnDocumentClick" type="java.lang.Boolean"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="preventOverlap" type="java.lang.Boolean"/>
-      <attribute name="render" type="java.lang.Boolean"/>
-      <attribute name="rendered" type="java.lang.Boolean"/>
-      <attribute name="shim" type="java.lang.Boolean"/>
-      <attribute name="showArrow" type="java.lang.Boolean"/>
-      <attribute name="showDelay" type="java.lang.Number"/>
-      <attribute name="showOn" type="java.lang.String"/>
-      <attribute name="srcNode" type="java.lang.String"/>
-      <attribute name="stack" type="java.lang.Boolean"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="tabIndex" type="java.lang.Number"/>
-      <attribute name="trigger" type="java.lang.String"/>
-      <attribute name="visible" type="java.lang.Boolean"/>
-      <attribute name="width" type="java.lang.String"/>
-      <attribute name="x" type="java.lang.Number"/>
-      <attribute name="xy" type="java.lang.String"/>
-      <attribute name="y" type="java.lang.Number"/>
-      <attribute name="zIndex" type="java.lang.Number"/>
+      <attribute name="align" type="java.lang.Object" defaultValue="{ node: null, points: [ TL, BL ] }"/>
+      <attribute name="anim" type="java.lang.Object" defaultValue="{ show: false }"/>
+      <attribute name="arrow" type="java.lang.String" defaultValue=""/>
+      <attribute name="bodyContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cancellableHide" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="centered" type="java.lang.String" defaultValue=""/>
+      <attribute name="constrain" type="java.lang.String" defaultValue=""/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
+      <attribute name="currentNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="fillHeight" type="java.lang.String" defaultValue=""/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="footerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="headerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="height" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="hideDelay" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="hideOn" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideOnDocumentClick" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="preventOverlap" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="shim" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="showArrow" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="showDelay" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="showOn" type="java.lang.String" defaultValue=""/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="stack" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="trigger" type="java.lang.String" defaultValue=""/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
+      <attribute name="x" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="xy" type="java.lang.Object" defaultValue="[0,0]"/>
+      <attribute name="y" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="zIndex" type="java.lang.Number" defaultValue="0"/>
     </attributes>
     <events>
       <event name="alignChange" type="java.lang.String"/>
@@ -1303,40 +1303,40 @@
   </component>
   <component name="OverlayMask" module="aui-overlay" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="align" type="java.lang.Object"/>
-      <attribute name="alignPoints" type="java.lang.String"/>
-      <attribute name="background" type="java.lang.String"/>
-      <attribute name="bodyContent" type="java.lang.String"/>
-      <attribute name="boundingBox" type="java.lang.String"/>
-      <attribute name="centered" type="java.lang.String"/>
-      <attribute name="constrain" type="java.lang.String"/>
-      <attribute name="contentBox" type="java.lang.String"/>
-      <attribute name="cssClass" type="java.lang.String"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="disabled" type="java.lang.Boolean"/>
-      <attribute name="fillHeight" type="java.lang.String"/>
-      <attribute name="focused" type="java.lang.Boolean"/>
-      <attribute name="footerContent" type="java.lang.String"/>
-      <attribute name="headerContent" type="java.lang.String"/>
-      <attribute name="height" type="java.lang.String"/>
-      <attribute name="hideClass" type="java.lang.String"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="opacity" type="java.lang.Number"/>
-      <attribute name="preventOverlap" type="java.lang.Boolean"/>
-      <attribute name="render" type="java.lang.Boolean"/>
-      <attribute name="rendered" type="java.lang.Boolean"/>
-      <attribute name="shim" type="java.lang.Boolean"/>
-      <attribute name="srcNode" type="java.lang.String"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="tabIndex" type="java.lang.Number"/>
-      <attribute name="target" type="java.lang.String"/>
-      <attribute name="visible" type="java.lang.Boolean"/>
-      <attribute name="width" type="java.lang.String"/>
-      <attribute name="x" type="java.lang.Number"/>
-      <attribute name="xy" type="java.lang.String"/>
-      <attribute name="y" type="java.lang.Number"/>
-      <attribute name="zIndex" type="java.lang.Number"/>
+      <attribute name="align" type="java.lang.Object" defaultValue=""/>
+      <attribute name="alignPoints" type="java.lang.Object" defaultValue="[ 'tl', 'tl' ]"/>
+      <attribute name="background" type="java.lang.String" defaultValue=""/>
+      <attribute name="bodyContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="centered" type="java.lang.String" defaultValue=""/>
+      <attribute name="constrain" type="java.lang.String" defaultValue=""/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="fillHeight" type="java.lang.String" defaultValue=""/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="footerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="headerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="height" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="opacity" type="java.lang.Number" defaultValue="0.5"/>
+      <attribute name="preventOverlap" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="shim" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="target" type="java.lang.String" defaultValue=""/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
+      <attribute name="x" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="xy" type="java.lang.Object" defaultValue="[0,0]"/>
+      <attribute name="y" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="zIndex" type="java.lang.Number" defaultValue="1000"/>
     </attributes>
     <events>
       <event name="alignChange" type="java.lang.String"/>
@@ -1381,34 +1381,34 @@
   </component>
   <component name="Paginator" module="aui-paginator" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="alwaysVisible" type="java.lang.Boolean"/>
-      <attribute name="containers" type="java.lang.String"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="firstPageLink" type="java.lang.String"/>
-      <attribute name="firstPageLinkLabel" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="lastPageLink" type="java.lang.String"/>
-      <attribute name="lastPageLinkLabel" type="java.lang.String"/>
-      <attribute name="maxPageLinks" type="java.lang.Number"/>
-      <attribute name="nextPageLink" type="java.lang.String"/>
-      <attribute name="nextPageLinkLabel" type="java.lang.String"/>
-      <attribute name="page" type="java.lang.Number"/>
-      <attribute name="pageContainerTemplate" type="java.lang.String"/>
-      <attribute name="pageLinkContent" type="java.lang.String"/>
-      <attribute name="pageLinkTemplate" type="java.lang.String"/>
-      <attribute name="pageReportEl" type="java.lang.String"/>
-      <attribute name="pageReportLabelTemplate" type="java.lang.String"/>
-      <attribute name="prevPageLink" type="java.lang.String"/>
-      <attribute name="prevPageLinkLabel" type="java.lang.String"/>
-      <attribute name="rowsPerPage" type="java.lang.Number"/>
-      <attribute name="rowsPerPageEl" type="java.lang.String"/>
-      <attribute name="rowsPerPageOptions" type="java.lang.String"/>
-      <attribute name="state" type="java.lang.Object"/>
-      <attribute name="template" type="java.lang.String"/>
-      <attribute name="total" type="java.lang.Number"/>
-      <attribute name="totalEl" type="java.lang.String"/>
-      <attribute name="totalLabel" type="java.lang.String"/>
-      <attribute name="totalPages" type="java.lang.Number"/>
+      <attribute name="alwaysVisible" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="containers" type="java.lang.String" defaultValue=""/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="firstPageLink" type="java.lang.String" defaultValue=""/>
+      <attribute name="firstPageLinkLabel" type="java.lang.String" defaultValue="first"/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="lastPageLink" type="java.lang.String" defaultValue=""/>
+      <attribute name="lastPageLinkLabel" type="java.lang.String" defaultValue="last"/>
+      <attribute name="maxPageLinks" type="java.lang.Number" defaultValue="10"/>
+      <attribute name="nextPageLink" type="java.lang.String" defaultValue=""/>
+      <attribute name="nextPageLinkLabel" type="java.lang.String" defaultValue="next &amp;gt;"/>
+      <attribute name="page" type="java.lang.Number" defaultValue="1"/>
+      <attribute name="pageContainerTemplate" type="java.lang.String" defaultValue=""/>
+      <attribute name="pageLinkContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="pageLinkTemplate" type="java.lang.String" defaultValue=""/>
+      <attribute name="pageReportEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="pageReportLabelTemplate" type="java.lang.String" defaultValue="({page} of {totalPages})"/>
+      <attribute name="prevPageLink" type="java.lang.String" defaultValue=""/>
+      <attribute name="prevPageLinkLabel" type="java.lang.String" defaultValue="&amp;lt; prev"/>
+      <attribute name="rowsPerPage" type="java.lang.Number" defaultValue="1"/>
+      <attribute name="rowsPerPageEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="rowsPerPageOptions" type="java.lang.Object" defaultValue="[]"/>
+      <attribute name="state" type="java.lang.Object" defaultValue="{}"/>
+      <attribute name="template" type="java.lang.String" defaultValue="{FirstPageLink} {PrevPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport} {Total} {RowsPerPageSelect}"/>
+      <attribute name="total" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="totalEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="totalLabel" type="java.lang.String" defaultValue="(Total {total})"/>
+      <attribute name="totalPages" type="java.lang.Number" defaultValue="0"/>
     </attributes>
     <events>
       <event name="alwaysVisibleChange" type="java.lang.String"/>
@@ -1445,31 +1445,31 @@
   </component>
   <component name="Panel" module="aui-panel" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="bodyContent" type="java.lang.String"/>
-      <attribute name="boundingBox" type="java.lang.String"/>
-      <attribute name="collapsed" type="java.lang.Boolean"/>
-      <attribute name="collapsible" type="java.lang.Boolean"/>
-      <attribute name="contentBox" type="java.lang.String"/>
-      <attribute name="cssClass" type="java.lang.String"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="disabled" type="java.lang.Boolean"/>
-      <attribute name="fillHeight" type="java.lang.String"/>
-      <attribute name="focused" type="java.lang.Boolean"/>
-      <attribute name="footerContent" type="java.lang.String"/>
-      <attribute name="headerContent" type="java.lang.String"/>
-      <attribute name="height" type="java.lang.String"/>
-      <attribute name="hideClass" type="java.lang.String"/>
-      <attribute name="icons" type="java.lang.String"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="render" type="java.lang.Boolean"/>
-      <attribute name="rendered" type="java.lang.Boolean"/>
-      <attribute name="srcNode" type="java.lang.String"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="tabIndex" type="java.lang.Number"/>
-      <attribute name="title" type="java.lang.String"/>
-      <attribute name="visible" type="java.lang.Boolean"/>
-      <attribute name="width" type="java.lang.String"/>
+      <attribute name="bodyContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="collapsed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="collapsible" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="fillHeight" type="java.lang.String" defaultValue=""/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="footerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="headerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="height" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="icons" type="java.lang.Object" defaultValue="[]"/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="title" type="java.lang.String" defaultValue=""/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
     </attributes>
     <events>
       <event name="bodyContentChange" type="java.lang.String"/>
@@ -1505,9 +1505,9 @@
   </component>
   <component name="ParseContent" module="aui-parse-content" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="host" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="host" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
     </attributes>
     <events>
       <event name="destroy" type="java.lang.String"/>
@@ -1519,8 +1519,8 @@
   </component>
   <component name="PortalLayout" module="aui-portal-layout" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
     </attributes>
     <events>
       <event name="destroy" type="java.lang.String"/>
@@ -1531,18 +1531,18 @@
   </component>
   <component name="ProgressBar" module="aui-progressbar" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="height" type="java.lang.Integer"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="label" type="java.lang.String"/>
-      <attribute name="max" type="java.lang.Integer"/>
-      <attribute name="min" type="java.lang.Integer"/>
-      <attribute name="orientation" type="java.lang.String"/>
-      <attribute name="ratio" type="java.lang.Number"/>
-      <attribute name="statusNode" type="java.lang.String"/>
-      <attribute name="step" type="java.lang.Number"/>
-      <attribute name="textNode" type="java.lang.String"/>
-      <attribute name="value" type="java.lang.Integer"/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="height" type="java.lang.Integer" defaultValue="25"/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="label" type="java.lang.String" defaultValue=""/>
+      <attribute name="max" type="java.lang.Integer" defaultValue="100"/>
+      <attribute name="min" type="java.lang.Integer" defaultValue="0"/>
+      <attribute name="orientation" type="java.lang.String" defaultValue="horizontal"/>
+      <attribute name="ratio" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="statusNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="step" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="textNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="value" type="java.lang.Integer" defaultValue="0"/>
     </attributes>
     <events>
       <event name="destroy" type="java.lang.String"/>
@@ -1563,35 +1563,35 @@
   </component>
   <component name="Rating" module="aui-rating" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="boundingBox" type="java.lang.String"/>
-      <attribute name="canReset" type="java.lang.Boolean"/>
-      <attribute name="contentBox" type="java.lang.String"/>
-      <attribute name="cssClass" type="java.lang.String"/>
-      <attribute name="defaultSelected" type="java.lang.Number"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="disabled" type="java.lang.Boolean"/>
-      <attribute name="elements" type="java.lang.String"/>
-      <attribute name="focused" type="java.lang.Boolean"/>
-      <attribute name="height" type="java.lang.String"/>
-      <attribute name="hiddenInput" type="java.lang.String"/>
-      <attribute name="hideClass" type="java.lang.String"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="inputName" type="java.lang.String"/>
-      <attribute name="label" type="java.lang.String"/>
-      <attribute name="labelNode" type="java.lang.String"/>
-      <attribute name="render" type="java.lang.Boolean"/>
-      <attribute name="rendered" type="java.lang.Boolean"/>
-      <attribute name="selectedIndex" type="java.lang.Number"/>
-      <attribute name="showTitle" type="java.lang.Boolean"/>
-      <attribute name="size" type="java.lang.Number"/>
-      <attribute name="srcNode" type="java.lang.String"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="tabIndex" type="java.lang.Number"/>
-      <attribute name="title" type="java.lang.String"/>
-      <attribute name="value" type="java.lang.String"/>
-      <attribute name="visible" type="java.lang.Boolean"/>
-      <attribute name="width" type="java.lang.String"/>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="canReset" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
+      <attribute name="defaultSelected" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="elements" type="java.lang.String" defaultValue=""/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="height" type="java.lang.String" defaultValue=""/>
+      <attribute name="hiddenInput" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="inputName" type="java.lang.String" defaultValue=""/>
+      <attribute name="label" type="java.lang.String" defaultValue=""/>
+      <attribute name="labelNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="selectedIndex" type="java.lang.Number" defaultValue="-1"/>
+      <attribute name="showTitle" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="size" type="java.lang.Number" defaultValue="5"/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="title" type="java.lang.String" defaultValue=""/>
+      <attribute name="value" type="java.lang.String" defaultValue=""/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
     </attributes>
     <events>
       <event name="boundingBoxChange" type="java.lang.String"/>
@@ -1634,27 +1634,27 @@
   </component>
   <component name="Resize" module="aui-resize" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="activeHandle" type="java.lang.String"/>
-      <attribute name="activeHandleEl" type="java.lang.String"/>
-      <attribute name="autoHide" type="java.lang.Boolean"/>
-      <attribute name="constrain" type="java.lang.String"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="handles" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="maxHeight" type="java.lang.Number"/>
-      <attribute name="maxWidth" type="java.lang.Number"/>
-      <attribute name="minHeight" type="java.lang.Number"/>
-      <attribute name="minWidth" type="java.lang.Number"/>
-      <attribute name="node" type="java.lang.String"/>
-      <attribute name="preserveRatio" type="java.lang.Boolean"/>
-      <attribute name="proxy" type="java.lang.Boolean"/>
-      <attribute name="proxyEl" type="java.lang.String"/>
-      <attribute name="resizing" type="java.lang.Boolean"/>
-      <attribute name="tickX" type="java.lang.String"/>
-      <attribute name="tickY" type="java.lang.String"/>
-      <attribute name="wrap" type="java.lang.Boolean"/>
-      <attribute name="wrapTypes" type="java.lang.String"/>
-      <attribute name="wrapper" type="java.lang.String"/>
+      <attribute name="activeHandle" type="java.lang.String" defaultValue=""/>
+      <attribute name="activeHandleEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="autoHide" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="constrain" type="java.lang.String" defaultValue=""/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="handles" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="maxHeight" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="maxWidth" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="minHeight" type="java.lang.Number" defaultValue="15"/>
+      <attribute name="minWidth" type="java.lang.Number" defaultValue="15"/>
+      <attribute name="node" type="java.lang.String" defaultValue=""/>
+      <attribute name="preserveRatio" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="proxy" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="proxyEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="resizing" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="tickX" type="java.lang.String" defaultValue=""/>
+      <attribute name="tickY" type="java.lang.String" defaultValue=""/>
+      <attribute name="wrap" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="wrapTypes" type="java.lang.String" defaultValue="/canvas|textarea|input|select|button|img/i"/>
+      <attribute name="wrapper" type="java.lang.String" defaultValue=""/>
     </attributes>
     <events>
       <event name="activeHandleChange" type="java.lang.String"/>
@@ -1688,46 +1688,46 @@
   </component>
   <component name="Textboxlist" module="aui-textboxlist" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="alwaysShowContainer" type="java.lang.Boolean"/>
-      <attribute name="applyLocalFilter" type="java.lang.Boolean"/>
-      <attribute name="autoHighlight" type="java.lang.Boolean"/>
-      <attribute name="boundingBox" type="java.lang.String"/>
-      <attribute name="button" type="java.lang.Boolean"/>
-      <attribute name="contentBox" type="java.lang.String"/>
-      <attribute name="cssClass" type="java.lang.String"/>
-      <attribute name="dataSource" type="java.lang.String"/>
-      <attribute name="dataSourceType" type="java.lang.String"/>
-      <attribute name="delimChar" type="java.lang.String"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="disabled" type="java.lang.Boolean"/>
-      <attribute name="focused" type="java.lang.Boolean"/>
-      <attribute name="forceSelection" type="java.lang.Boolean"/>
-      <attribute name="height" type="java.lang.String"/>
-      <attribute name="hideClass" type="java.lang.String"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="input" type="java.lang.String"/>
-      <attribute name="matchKey" type="java.lang.String"/>
-      <attribute name="maxResultsDisplayed" type="java.lang.Number"/>
-      <attribute name="minQueryLength" type="java.lang.Number"/>
-      <attribute name="queryDelay" type="java.lang.Number"/>
-      <attribute name="queryInterval" type="java.lang.Number"/>
-      <attribute name="queryMatchCase" type="java.lang.Boolean"/>
-      <attribute name="queryMatchContains" type="java.lang.Boolean"/>
-      <attribute name="queryQuestionMark" type="java.lang.Boolean"/>
-      <attribute name="render" type="java.lang.Boolean"/>
-      <attribute name="rendered" type="java.lang.Boolean"/>
-      <attribute name="schema" type="java.lang.Object"/>
-      <attribute name="schemaType" type="java.lang.String"/>
-      <attribute name="srcNode" type="java.lang.String"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="suppressInputUpdate" type="java.lang.Boolean"/>
-      <attribute name="tabIndex" type="java.lang.Number"/>
-      <attribute name="typeAhead" type="java.lang.Boolean"/>
-      <attribute name="typeAheadDelay" type="java.lang.Number"/>
-      <attribute name="uniqueName" type="java.lang.String"/>
-      <attribute name="visible" type="java.lang.Boolean"/>
-      <attribute name="width" type="java.lang.String"/>
+      <attribute name="alwaysShowContainer" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="applyLocalFilter" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="autoHighlight" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="button" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
+      <attribute name="dataSource" type="java.lang.String" defaultValue=""/>
+      <attribute name="dataSourceType" type="java.lang.String" defaultValue=""/>
+      <attribute name="delimChar" type="java.lang.String" defaultValue=""/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="forceSelection" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="height" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="input" type="java.lang.String" defaultValue=""/>
+      <attribute name="matchKey" type="java.lang.String" defaultValue="0"/>
+      <attribute name="maxResultsDisplayed" type="java.lang.Number" defaultValue="10"/>
+      <attribute name="minQueryLength" type="java.lang.Number" defaultValue="1"/>
+      <attribute name="queryDelay" type="java.lang.Number" defaultValue="0.2"/>
+      <attribute name="queryInterval" type="java.lang.Number" defaultValue="0.5"/>
+      <attribute name="queryMatchCase" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="queryMatchContains" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="queryQuestionMark" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="schema" type="java.lang.Object" defaultValue=""/>
+      <attribute name="schemaType" type="java.lang.String" defaultValue=""/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="suppressInputUpdate" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="typeAhead" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="typeAheadDelay" type="java.lang.Number" defaultValue="0.2"/>
+      <attribute name="uniqueName" type="java.lang.String" defaultValue=""/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
     </attributes>
     <events>
       <event name="alwaysShowContainerChange" type="java.lang.String"/>
@@ -1796,35 +1796,35 @@
   </component>
   <component name="ThumbRating" module="aui-rating" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="boundingBox" type="java.lang.String"/>
-      <attribute name="canReset" type="java.lang.Boolean"/>
-      <attribute name="contentBox" type="java.lang.String"/>
-      <attribute name="cssClass" type="java.lang.String"/>
-      <attribute name="defaultSelected" type="java.lang.Number"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="disabled" type="java.lang.Boolean"/>
-      <attribute name="elements" type="java.lang.String"/>
-      <attribute name="focused" type="java.lang.Boolean"/>
-      <attribute name="height" type="java.lang.String"/>
-      <attribute name="hiddenInput" type="java.lang.String"/>
-      <attribute name="hideClass" type="java.lang.String"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="inputName" type="java.lang.String"/>
-      <attribute name="label" type="java.lang.String"/>
-      <attribute name="labelNode" type="java.lang.String"/>
-      <attribute name="render" type="java.lang.Boolean"/>
-      <attribute name="rendered" type="java.lang.Boolean"/>
-      <attribute name="selectedIndex" type="java.lang.Number"/>
-      <attribute name="showTitle" type="java.lang.Boolean"/>
-      <attribute name="size" type="java.lang.Number"/>
-      <attribute name="srcNode" type="java.lang.String"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="tabIndex" type="java.lang.Number"/>
-      <attribute name="title" type="java.lang.String"/>
-      <attribute name="value" type="java.lang.String"/>
-      <attribute name="visible" type="java.lang.Boolean"/>
-      <attribute name="width" type="java.lang.String"/>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="canReset" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
+      <attribute name="defaultSelected" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="elements" type="java.lang.String" defaultValue=""/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="height" type="java.lang.String" defaultValue=""/>
+      <attribute name="hiddenInput" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="inputName" type="java.lang.String" defaultValue=""/>
+      <attribute name="label" type="java.lang.String" defaultValue=""/>
+      <attribute name="labelNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="selectedIndex" type="java.lang.Number" defaultValue="-1"/>
+      <attribute name="showTitle" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="size" type="java.lang.Number" defaultValue="2"/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="title" type="java.lang.String" defaultValue=""/>
+      <attribute name="value" type="java.lang.String" defaultValue=""/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
     </attributes>
     <events>
       <event name="boundingBoxChange" type="java.lang.String"/>
@@ -1867,31 +1867,31 @@
   </component>
   <component name="Toolbar" module="aui-toolbar" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="activeDescendant" type="java.lang.String"/>
-      <attribute name="activeState" type="java.lang.Boolean"/>
-      <attribute name="boundingBox" type="java.lang.String"/>
-      <attribute name="contentBox" type="java.lang.String"/>
-      <attribute name="cssClass" type="java.lang.String"/>
-      <attribute name="defaultChildType" type="java.lang.String"/>
-      <attribute name="defaultState" type="java.lang.Boolean"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="disabled" type="java.lang.Boolean"/>
-      <attribute name="focused" type="java.lang.Boolean"/>
-      <attribute name="height" type="java.lang.String"/>
-      <attribute name="hideClass" type="java.lang.String"/>
-      <attribute name="hoverState" type="java.lang.Boolean"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="multiple" type="java.lang.Boolean"/>
-      <attribute name="orientation" type="java.lang.String"/>
-      <attribute name="render" type="java.lang.Boolean"/>
-      <attribute name="rendered" type="java.lang.Boolean"/>
-      <attribute name="selection" type="java.lang.String"/>
-      <attribute name="srcNode" type="java.lang.String"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="tabIndex" type="java.lang.Number"/>
-      <attribute name="visible" type="java.lang.Boolean"/>
-      <attribute name="width" type="java.lang.String"/>
+      <attribute name="activeDescendant" type="java.lang.String" defaultValue=""/>
+      <attribute name="activeState" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
+      <attribute name="defaultChildType" type="java.lang.String" defaultValue=""/>
+      <attribute name="defaultState" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="height" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="hoverState" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="multiple" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="orientation" type="java.lang.String" defaultValue="horizontal"/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="selection" type="java.lang.String" defaultValue=""/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
     </attributes>
     <events>
       <event name="activeDescendantChange" type="java.lang.String"/>
@@ -1929,49 +1929,49 @@
   </component>
   <component name="Tooltip" module="aui-tooltip" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="align" type="java.lang.Object"/>
-      <attribute name="anim" type="java.lang.Object"/>
-      <attribute name="arrow" type="java.lang.String"/>
-      <attribute name="bodyContent" type="java.lang.String"/>
-      <attribute name="boundingBox" type="java.lang.String"/>
-      <attribute name="cancellableHide" type="java.lang.Boolean"/>
-      <attribute name="centered" type="java.lang.String"/>
-      <attribute name="constrain" type="java.lang.String"/>
-      <attribute name="contentBox" type="java.lang.String"/>
-      <attribute name="cssClass" type="java.lang.String"/>
-      <attribute name="currentNode" type="java.lang.String"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="disabled" type="java.lang.Boolean"/>
-      <attribute name="fillHeight" type="java.lang.String"/>
-      <attribute name="focused" type="java.lang.Boolean"/>
-      <attribute name="footerContent" type="java.lang.String"/>
-      <attribute name="headerContent" type="java.lang.String"/>
-      <attribute name="height" type="java.lang.String"/>
-      <attribute name="hideClass" type="java.lang.String"/>
-      <attribute name="hideDelay" type="java.lang.Number"/>
-      <attribute name="hideOn" type="java.lang.String"/>
-      <attribute name="hideOnDocumentClick" type="java.lang.Boolean"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="preventOverlap" type="java.lang.Boolean"/>
-      <attribute name="render" type="java.lang.Boolean"/>
-      <attribute name="rendered" type="java.lang.Boolean"/>
-      <attribute name="shim" type="java.lang.Boolean"/>
-      <attribute name="showArrow" type="java.lang.Boolean"/>
-      <attribute name="showDelay" type="java.lang.Number"/>
-      <attribute name="showOn" type="java.lang.String"/>
-      <attribute name="srcNode" type="java.lang.String"/>
-      <attribute name="stack" type="java.lang.Boolean"/>
-      <attribute name="strings" type="java.lang.Object"/>
-      <attribute name="tabIndex" type="java.lang.Number"/>
-      <attribute name="title" type="java.lang.Boolean"/>
-      <attribute name="trigger" type="java.lang.String"/>
-      <attribute name="visible" type="java.lang.Boolean"/>
-      <attribute name="width" type="java.lang.String"/>
-      <attribute name="x" type="java.lang.Number"/>
-      <attribute name="xy" type="java.lang.String"/>
-      <attribute name="y" type="java.lang.Number"/>
-      <attribute name="zIndex" type="java.lang.Number"/>
+      <attribute name="align" type="java.lang.Object" defaultValue="{ node: null, points: [ BL, TR ] }"/>
+      <attribute name="anim" type="java.lang.Object" defaultValue="{ show: false }"/>
+      <attribute name="arrow" type="java.lang.String" defaultValue=""/>
+      <attribute name="bodyContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cancellableHide" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="centered" type="java.lang.String" defaultValue=""/>
+      <attribute name="constrain" type="java.lang.String" defaultValue=""/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
+      <attribute name="currentNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="fillHeight" type="java.lang.String" defaultValue=""/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="footerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="headerContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="height" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="hideDelay" type="java.lang.Number" defaultValue="500"/>
+      <attribute name="hideOn" type="java.lang.String" defaultValue=""/>
+      <attribute name="hideOnDocumentClick" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="preventOverlap" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="shim" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="showArrow" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="showDelay" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="showOn" type="java.lang.String" defaultValue=""/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="stack" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="title" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="trigger" type="java.lang.String" defaultValue=""/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
+      <attribute name="x" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="xy" type="java.lang.Object" defaultValue="[0,0]"/>
+      <attribute name="y" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="zIndex" type="java.lang.Number" defaultValue="0"/>
     </attributes>
     <events>
       <event name="alignChange" type="java.lang.String"/>
@@ -2025,32 +2025,32 @@
   </component>
   <component name="TreeNodeTask" module="aui-tree" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="alwaysShowHitArea" type="java.lang.Boolean"/>
-      <attribute name="cache" type="java.lang.Boolean"/>
-      <attribute name="checkContainerEl" type="java.lang.String"/>
-      <attribute name="checkEl" type="java.lang.String"/>
-      <attribute name="checkName" type="java.lang.String"/>
-      <attribute name="checked" type="java.lang.Boolean"/>
-      <attribute name="children" type="java.lang.String"/>
-      <attribute name="container" type="java.lang.String"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="draggable" type="java.lang.Boolean"/>
-      <attribute name="expanded" type="java.lang.Boolean"/>
-      <attribute name="hitAreaEl" type="java.lang.String"/>
-      <attribute name="iconEl" type="java.lang.String"/>
-      <attribute name="id" type="java.lang.String"/>
-      <attribute name="index" type="java.lang.Object"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="io" type="java.lang.Object"/>
-      <attribute name="label" type="java.lang.String"/>
-      <attribute name="labelEl" type="java.lang.String"/>
-      <attribute name="leaf" type="java.lang.Boolean"/>
-      <attribute name="loaded" type="java.lang.Boolean"/>
-      <attribute name="loading" type="java.lang.Boolean"/>
-      <attribute name="nextSibling" type="java.lang.String"/>
-      <attribute name="ownerTree" type="java.lang.String"/>
-      <attribute name="parentNode" type="java.lang.String"/>
-      <attribute name="prevSibling" type="java.lang.String"/>
+      <attribute name="alwaysShowHitArea" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="cache" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="checkContainerEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="checkEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="checkName" type="java.lang.String" defaultValue="tree-node-check"/>
+      <attribute name="checked" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="children" type="java.lang.Object" defaultValue="[]"/>
+      <attribute name="container" type="java.lang.String" defaultValue=""/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="draggable" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="expanded" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="hitAreaEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="iconEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
+      <attribute name="index" type="java.lang.Object" defaultValue="{}"/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="io" type="java.lang.Object" defaultValue=""/>
+      <attribute name="label" type="java.lang.String" defaultValue=""/>
+      <attribute name="labelEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="leaf" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="loaded" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="loading" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="nextSibling" type="java.lang.String" defaultValue=""/>
+      <attribute name="ownerTree" type="java.lang.String" defaultValue=""/>
+      <attribute name="parentNode" type="java.lang.String" defaultValue=""/>
+      <attribute name="prevSibling" type="java.lang.String" defaultValue=""/>
     </attributes>
     <events>
       <event name="alwaysShowHitAreaChange" type="java.lang.String"/>
@@ -2085,14 +2085,14 @@
   </component>
   <component name="TreeView" module="aui-tree" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="children" type="java.lang.String"/>
-      <attribute name="container" type="java.lang.String"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="index" type="java.lang.Object"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="io" type="java.lang.Object"/>
-      <attribute name="lastSelected" type="java.lang.String"/>
-      <attribute name="type" type="java.lang.String"/>
+      <attribute name="children" type="java.lang.Object" defaultValue="[]"/>
+      <attribute name="container" type="java.lang.String" defaultValue=""/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="index" type="java.lang.Object" defaultValue="{}"/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="io" type="java.lang.Object" defaultValue=""/>
+      <attribute name="lastSelected" type="java.lang.String" defaultValue=""/>
+      <attribute name="type" type="java.lang.String" defaultValue="file"/>
     </attributes>
     <events>
       <event name="childrenChange" type="java.lang.String"/>
@@ -2109,23 +2109,23 @@
   </component>
   <component name="TreeViewDD" module="aui-tree" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="checkContainerEl" type="java.lang.String"/>
-      <attribute name="checkEl" type="java.lang.String"/>
-      <attribute name="checkName" type="java.lang.String"/>
-      <attribute name="checked" type="java.lang.Boolean"/>
-      <attribute name="children" type="java.lang.String"/>
-      <attribute name="container" type="java.lang.String"/>
-      <attribute name="destroyed" type="java.lang.Boolean"/>
-      <attribute name="dropAction" type="java.lang.String"/>
-      <attribute name="helper" type="java.lang.String"/>
-      <attribute name="index" type="java.lang.Object"/>
-      <attribute name="initialized" type="java.lang.Boolean"/>
-      <attribute name="io" type="java.lang.Object"/>
-      <attribute name="lastSelected" type="java.lang.String"/>
-      <attribute name="lastY" type="java.lang.Number"/>
-      <attribute name="nodeContent" type="java.lang.String"/>
-      <attribute name="scrollDelay" type="java.lang.Number"/>
-      <attribute name="type" type="java.lang.String"/>
+      <attribute name="checkContainerEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="checkEl" type="java.lang.String" defaultValue=""/>
+      <attribute name="checkName" type="java.lang.String" defaultValue="tree-node-check"/>
+      <attribute name="checked" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="children" type="java.lang.Object" defaultValue="[]"/>
+      <attribute name="container" type="java.lang.String" defaultValue=""/>
+      <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="dropAction" type="java.lang.String" defaultValue=""/>
+      <attribute name="helper" type="java.lang.String" defaultValue=""/>
+      <attribute name="index" type="java.lang.Object" defaultValue="{}"/>
+      <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="io" type="java.lang.Object" defaultValue=""/>
+      <attribute name="lastSelected" type="java.lang.String" defaultValue=""/>
+      <attribute name="lastY" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="nodeContent" type="java.lang.String" defaultValue=""/>
+      <attribute name="scrollDelay" type="java.lang.Number" defaultValue="100"/>
+      <attribute name="type" type="java.lang.String" defaultValue="file"/>
     </attributes>
     <events>
       <event name="checkContainerElChange" type="java.lang.String"/>

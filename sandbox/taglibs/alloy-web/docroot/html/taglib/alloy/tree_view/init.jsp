@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:tree-view:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -18,14 +18,14 @@ if (useMarkup) {
 	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
 }
 
-java.lang.String _children = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:children"));
+java.lang.Object _children = (java.lang.Object)request.getAttribute("alloy:tree-view:children");
 java.lang.String _container = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:container"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-view:destroyed"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-view:destroyed"), false);
 java.lang.Object _index = (java.lang.Object)request.getAttribute("alloy:tree-view:index");
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-view:initialized"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-view:initialized"), false);
 java.lang.Object _io = (java.lang.Object)request.getAttribute("alloy:tree-view:io");
 java.lang.String _lastSelected = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:lastSelected"));
-java.lang.String _type = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:type"));
+java.lang.String _type = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:type"), "file");
 java.lang.String _afterChildrenChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:afterChildrenChange"));
 java.lang.String _afterContainerChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:afterContainerChange"));
 java.lang.String _afterDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:afterDestroy"));

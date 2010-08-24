@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:overlay-mask:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -19,7 +19,7 @@ if (useMarkup) {
 }
 
 java.lang.Object _align = (java.lang.Object)request.getAttribute("alloy:overlay-mask:align");
-java.lang.String _alignPoints = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:alignPoints"));
+java.lang.Object _alignPoints = (java.lang.Object)request.getAttribute("alloy:overlay-mask:alignPoints");
 java.lang.String _background = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:background"));
 java.lang.String _overlaymaskBodyContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:overlaymaskBodyContent"));
 java.lang.String _boundingBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:boundingBox"));
@@ -27,31 +27,31 @@ java.lang.String _centered = GetterUtil.getString((java.lang.String)request.getA
 java.lang.String _constrain = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:constrain"));
 java.lang.String _contentBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:contentBox"));
 java.lang.String _cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:cssClass"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:destroyed"));
-java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:disabled"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:destroyed"), false);
+java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:disabled"), false);
 java.lang.String _fillHeight = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:fillHeight"));
-java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:focused"));
+java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:focused"), false);
 java.lang.String _footerContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:footerContent"));
 java.lang.String _headerContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:headerContent"));
 java.lang.String _height = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:height"));
-java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:hideClass"));
+java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:hideClass"), "aui-helper-hidden");
 java.lang.String _overlaymaskId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:overlaymaskId"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:initialized"));
-java.lang.Number _opacity = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-mask:opacity"));
-java.lang.Boolean _preventOverlap = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:preventOverlap"));
-java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:render"));
-java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:rendered"));
-java.lang.Boolean _shim = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:shim"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:initialized"), false);
+java.lang.Number _opacity = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-mask:opacity"), 0.5);
+java.lang.Boolean _preventOverlap = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:preventOverlap"), false);
+java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:render"), false);
+java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:rendered"), false);
+java.lang.Boolean _shim = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:shim"), false);
 java.lang.String _srcNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:srcNode"));
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:overlay-mask:strings");
-java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-mask:tabIndex"));
+java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-mask:tabIndex"), 0);
 java.lang.String _target = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:target"));
-java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:visible"));
+java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:visible"), false);
 java.lang.String _width = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:width"));
-java.lang.Number _x = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-mask:x"));
-java.lang.String _xy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:xy"));
-java.lang.Number _y = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-mask:y"));
-java.lang.Number _zIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-mask:zIndex"));
+java.lang.Number _x = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-mask:x"), 0);
+java.lang.Object _xy = (java.lang.Object)request.getAttribute("alloy:overlay-mask:xy");
+java.lang.Number _y = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-mask:y"), 0);
+java.lang.Number _zIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-mask:zIndex"), 1000);
 java.lang.String _afterAlignChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:afterAlignChange"));
 java.lang.String _afterAlignPointsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:afterAlignPointsChange"));
 java.lang.String _afterBackgroundChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:afterBackgroundChange"));

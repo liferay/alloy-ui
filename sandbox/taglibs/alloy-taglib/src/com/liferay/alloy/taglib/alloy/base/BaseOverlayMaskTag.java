@@ -28,7 +28,7 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		return _align;
 	}
 
-	public java.lang.String getAlignPoints() {
+	public java.lang.Object getAlignPoints() {
 		return _alignPoints;
 	}
 
@@ -148,7 +148,7 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		return _x;
 	}
 
-	public java.lang.String getXy() {
+	public java.lang.Object getXy() {
 		return _xy;
 	}
 
@@ -470,7 +470,7 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		setScopedAttribute("align", align);
 	}
 
-	public void setAlignPoints(java.lang.String alignPoints) {
+	public void setAlignPoints(java.lang.Object alignPoints) {
 		_alignPoints = alignPoints;
 
 		setScopedAttribute("alignPoints", alignPoints);
@@ -650,7 +650,7 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		setScopedAttribute("x", x);
 	}
 
-	public void setXy(java.lang.String xy) {
+	public void setXy(java.lang.Object xy) {
 		_xy = xy;
 
 		setScopedAttribute("xy", xy);
@@ -1243,7 +1243,7 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		"/html/taglib/alloy/overlay_mask/page.jsp";
 
 	private java.lang.Object _align;
-	private java.lang.String _alignPoints;
+	private java.lang.Object _alignPoints;
 	private java.lang.String _background;
 	private java.lang.String _overlaymaskBodyContent;
 	private java.lang.String _boundingBox;
@@ -1273,7 +1273,7 @@ public class BaseOverlayMaskTag extends IncludeTag {
 	private java.lang.String _visible;
 	private java.lang.String _width;
 	private java.lang.String _x;
-	private java.lang.String _xy;
+	private java.lang.Object _xy;
 	private java.lang.String _y;
 	private java.lang.String _zIndex;
 	private java.lang.String _afterAlignChange;

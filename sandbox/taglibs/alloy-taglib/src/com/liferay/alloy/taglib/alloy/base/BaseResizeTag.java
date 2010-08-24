@@ -176,10 +176,6 @@ public class BaseResizeTag extends IncludeTag {
 		return _afterProxyElChange;
 	}
 
-	public java.lang.String getAfterAlign() {
-		return _afterAlign;
-	}
-
 	public java.lang.String getAfterEnd() {
 		return _afterEnd;
 	}
@@ -286,10 +282,6 @@ public class BaseResizeTag extends IncludeTag {
 
 	public java.lang.String getOnProxyElChange() {
 		return _onProxyElChange;
-	}
-
-	public java.lang.String getOnAlign() {
-		return _onAlign;
 	}
 
 	public java.lang.String getOnEnd() {
@@ -560,12 +552,6 @@ public class BaseResizeTag extends IncludeTag {
 		setScopedAttribute("afterProxyElChange", afterProxyElChange);
 	}
 
-	public void setAfterAlign(java.lang.String afterAlign) {
-		_afterAlign = afterAlign;
-
-		setScopedAttribute("afterAlign", afterAlign);
-	}
-
 	public void setAfterEnd(java.lang.String afterEnd) {
 		_afterEnd = afterEnd;
 
@@ -728,12 +714,6 @@ public class BaseResizeTag extends IncludeTag {
 		setScopedAttribute("onProxyElChange", onProxyElChange);
 	}
 
-	public void setOnAlign(java.lang.String onAlign) {
-		_onAlign = onAlign;
-
-		setScopedAttribute("onAlign", onAlign);
-	}
-
 	public void setOnEnd(java.lang.String onEnd) {
 		_onEnd = onEnd;
 
@@ -833,7 +813,6 @@ public class BaseResizeTag extends IncludeTag {
 		setNamespacedAttribute(request, "afterPreserveRatioChange", _afterPreserveRatioChange);
 		setNamespacedAttribute(request, "afterProxyChange", _afterProxyChange);
 		setNamespacedAttribute(request, "afterProxyElChange", _afterProxyElChange);
-		setNamespacedAttribute(request, "afterAlign", _afterAlign);
 		setNamespacedAttribute(request, "afterEnd", _afterEnd);
 		setNamespacedAttribute(request, "afterMouseUp", _afterMouseUp);
 		setNamespacedAttribute(request, "afterResize", _afterResize);
@@ -861,7 +840,6 @@ public class BaseResizeTag extends IncludeTag {
 		setNamespacedAttribute(request, "onPreserveRatioChange", _onPreserveRatioChange);
 		setNamespacedAttribute(request, "onProxyChange", _onProxyChange);
 		setNamespacedAttribute(request, "onProxyElChange", _onProxyElChange);
-		setNamespacedAttribute(request, "onAlign", _onAlign);
 		setNamespacedAttribute(request, "onEnd", _onEnd);
 		setNamespacedAttribute(request, "onMouseUp", _onMouseUp);
 		setNamespacedAttribute(request, "onResize", _onResize);
@@ -917,7 +895,6 @@ public class BaseResizeTag extends IncludeTag {
 	private java.lang.String _afterPreserveRatioChange;
 	private java.lang.String _afterProxyChange;
 	private java.lang.String _afterProxyElChange;
-	private java.lang.String _afterAlign;
 	private java.lang.String _afterEnd;
 	private java.lang.String _afterMouseUp;
 	private java.lang.String _afterResize;
@@ -945,7 +922,6 @@ public class BaseResizeTag extends IncludeTag {
 	private java.lang.String _onPreserveRatioChange;
 	private java.lang.String _onProxyChange;
 	private java.lang.String _onProxyElChange;
-	private java.lang.String _onAlign;
 	private java.lang.String _onEnd;
 	private java.lang.String _onMouseUp;
 	private java.lang.String _onResize;

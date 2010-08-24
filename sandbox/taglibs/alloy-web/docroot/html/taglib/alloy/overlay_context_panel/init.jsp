@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:overlay-context-panel:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -23,43 +23,43 @@ java.lang.Object _anim = (java.lang.Object)request.getAttribute("alloy:overlay-c
 java.lang.String _arrow = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:arrow"));
 java.lang.String _overlaycontextpanelBodyContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:overlaycontextpanelBodyContent"));
 java.lang.String _boundingBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:boundingBox"));
-java.lang.Boolean _cancellableHide = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:cancellableHide"));
+java.lang.Boolean _cancellableHide = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:cancellableHide"), true);
 java.lang.String _centered = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:centered"));
 java.lang.String _constrain = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:constrain"));
 java.lang.String _contentBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:contentBox"));
 java.lang.String _cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:cssClass"));
 java.lang.String _currentNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:currentNode"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:destroyed"));
-java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:disabled"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:destroyed"), false);
+java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:disabled"), false);
 java.lang.String _fillHeight = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:fillHeight"));
-java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:focused"));
+java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:focused"), false);
 java.lang.String _footerContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:footerContent"));
 java.lang.String _headerContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:headerContent"));
 java.lang.String _height = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:height"));
-java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:hideClass"));
-java.lang.Number _hideDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-context-panel:hideDelay"));
+java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:hideClass"), "aui-helper-hidden");
+java.lang.Number _hideDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-context-panel:hideDelay"), 0);
 java.lang.String _hideOn = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:hideOn"));
-java.lang.Boolean _hideOnDocumentClick = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:hideOnDocumentClick"));
+java.lang.Boolean _hideOnDocumentClick = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:hideOnDocumentClick"), true);
 java.lang.String _overlaycontextpanelId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:overlaycontextpanelId"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:initialized"));
-java.lang.Boolean _preventOverlap = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:preventOverlap"));
-java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:render"));
-java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:rendered"));
-java.lang.Boolean _shim = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:shim"));
-java.lang.Boolean _showArrow = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:showArrow"));
-java.lang.Number _showDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-context-panel:showDelay"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:initialized"), false);
+java.lang.Boolean _preventOverlap = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:preventOverlap"), false);
+java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:render"), false);
+java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:rendered"), false);
+java.lang.Boolean _shim = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:shim"), false);
+java.lang.Boolean _showArrow = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:showArrow"), true);
+java.lang.Number _showDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-context-panel:showDelay"), 0);
 java.lang.String _showOn = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:showOn"));
 java.lang.String _srcNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:srcNode"));
-java.lang.Boolean _stack = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:stack"));
+java.lang.Boolean _stack = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:stack"), true);
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:overlay-context-panel:strings");
-java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-context-panel:tabIndex"));
+java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-context-panel:tabIndex"), 0);
 java.lang.String _trigger = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:trigger"));
-java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:visible"));
+java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-context-panel:visible"), false);
 java.lang.String _width = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:width"));
-java.lang.Number _x = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-context-panel:x"));
-java.lang.String _xy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:xy"));
-java.lang.Number _y = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-context-panel:y"));
-java.lang.Number _zIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-context-panel:zIndex"));
+java.lang.Number _x = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-context-panel:x"), 0);
+java.lang.Object _xy = (java.lang.Object)request.getAttribute("alloy:overlay-context-panel:xy");
+java.lang.Number _y = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-context-panel:y"), 0);
+java.lang.Number _zIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-context-panel:zIndex"), 0);
 java.lang.String _afterAlignChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:afterAlignChange"));
 java.lang.String _afterAnimChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:afterAnimChange"));
 java.lang.String _afterArrowChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:afterArrowChange"));

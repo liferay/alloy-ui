@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:resize:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -20,24 +20,24 @@ if (useMarkup) {
 
 java.lang.String _activeHandle = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:activeHandle"));
 java.lang.String _activeHandleEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:activeHandleEl"));
-java.lang.Boolean _autoHide = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:resize:autoHide"));
+java.lang.Boolean _autoHide = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:resize:autoHide"), false);
 java.lang.String _constrain = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:constrain"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:resize:destroyed"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:resize:destroyed"), false);
 java.lang.String _handles = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:handles"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:resize:initialized"));
-java.lang.Number _maxHeight = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:resize:maxHeight"));
-java.lang.Number _maxWidth = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:resize:maxWidth"));
-java.lang.Number _minHeight = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:resize:minHeight"));
-java.lang.Number _minWidth = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:resize:minWidth"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:resize:initialized"), false);
+java.lang.Number _maxHeight = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:resize:maxHeight"), 0);
+java.lang.Number _maxWidth = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:resize:maxWidth"), 0);
+java.lang.Number _minHeight = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:resize:minHeight"), 15);
+java.lang.Number _minWidth = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:resize:minWidth"), 15);
 java.lang.String _node = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:node"));
-java.lang.Boolean _preserveRatio = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:resize:preserveRatio"));
-java.lang.Boolean _proxy = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:resize:proxy"));
+java.lang.Boolean _preserveRatio = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:resize:preserveRatio"), false);
+java.lang.Boolean _proxy = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:resize:proxy"), false);
 java.lang.String _proxyEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:proxyEl"));
-java.lang.Boolean _resizing = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:resize:resizing"));
+java.lang.Boolean _resizing = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:resize:resizing"), false);
 java.lang.String _tickX = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:tickX"));
 java.lang.String _tickY = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:tickY"));
-java.lang.Boolean _wrap = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:resize:wrap"));
-java.lang.String _wrapTypes = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:wrapTypes"));
+java.lang.Boolean _wrap = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:resize:wrap"), false);
+java.lang.String _wrapTypes = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:wrapTypes"), "/canvas|textarea|input|select|button|img/i");
 java.lang.String _wrapper = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:wrapper"));
 java.lang.String _afterActiveHandleChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:afterActiveHandleChange"));
 java.lang.String _afterActiveHandleElChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:afterActiveHandleElChange"));
@@ -56,7 +56,6 @@ java.lang.String _afterNodeChange = GetterUtil.getString((java.lang.String)reque
 java.lang.String _afterPreserveRatioChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:afterPreserveRatioChange"));
 java.lang.String _afterProxyChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:afterProxyChange"));
 java.lang.String _afterProxyElChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:afterProxyElChange"));
-java.lang.String _afterAlign = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:afterAlign"));
 java.lang.String _afterEnd = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:afterEnd"));
 java.lang.String _afterMouseUp = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:afterMouseUp"));
 java.lang.String _afterResize = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:afterResize"));
@@ -84,7 +83,6 @@ java.lang.String _onNodeChange = GetterUtil.getString((java.lang.String)request.
 java.lang.String _onPreserveRatioChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:onPreserveRatioChange"));
 java.lang.String _onProxyChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:onProxyChange"));
 java.lang.String _onProxyElChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:onProxyElChange"));
-java.lang.String _onAlign = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:onAlign"));
 java.lang.String _onEnd = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:onEnd"));
 java.lang.String _onMouseUp = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:onMouseUp"));
 java.lang.String _onResize = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:onResize"));
@@ -252,10 +250,6 @@ if (request.getAttribute("alloy:resize:afterProxyElChange") != null) {
 	scopedAttributes.put("afterProxyElChange", _afterProxyElChange);
 }
 
-if (request.getAttribute("alloy:resize:afterAlign") != null) {
-	scopedAttributes.put("afterAlign", _afterAlign);
-}
-
 if (request.getAttribute("alloy:resize:afterEnd") != null) {
 	scopedAttributes.put("afterEnd", _afterEnd);
 }
@@ -362,10 +356,6 @@ if (request.getAttribute("alloy:resize:onProxyChange") != null) {
 
 if (request.getAttribute("alloy:resize:onProxyElChange") != null) {
 	scopedAttributes.put("onProxyElChange", _onProxyElChange);
-}
-
-if (request.getAttribute("alloy:resize:onAlign") != null) {
-	scopedAttributes.put("onAlign", _onAlign);
 }
 
 if (request.getAttribute("alloy:resize:onEnd") != null) {

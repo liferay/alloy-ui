@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:toolbar:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -19,29 +19,29 @@ if (useMarkup) {
 }
 
 java.lang.String _activeDescendant = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:activeDescendant"));
-java.lang.Boolean _activeState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:activeState"));
+java.lang.Boolean _activeState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:activeState"), false);
 java.lang.String _boundingBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:boundingBox"));
 java.lang.String _contentBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:contentBox"));
 java.lang.String _cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:cssClass"));
 java.lang.String _defaultChildType = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:defaultChildType"));
-java.lang.Boolean _defaultState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:defaultState"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:destroyed"));
-java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:disabled"));
-java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:focused"));
+java.lang.Boolean _defaultState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:defaultState"), false);
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:destroyed"), false);
+java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:disabled"), false);
+java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:focused"), false);
 java.lang.String _height = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:height"));
-java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:hideClass"));
-java.lang.Boolean _hoverState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:hoverState"));
+java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:hideClass"), "aui-helper-hidden");
+java.lang.Boolean _hoverState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:hoverState"), false);
 java.lang.String _toolbarId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:toolbarId"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:initialized"));
-java.lang.Boolean _multiple = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:multiple"));
-java.lang.String _orientation = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:orientation"));
-java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:render"));
-java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:rendered"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:initialized"), false);
+java.lang.Boolean _multiple = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:multiple"), false);
+java.lang.String _orientation = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:orientation"), "horizontal");
+java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:render"), false);
+java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:rendered"), false);
 java.lang.String _selection = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:selection"));
 java.lang.String _srcNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:srcNode"));
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:toolbar:strings");
-java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:toolbar:tabIndex"));
-java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:visible"));
+java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:toolbar:tabIndex"), 0);
+java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:visible"), true);
 java.lang.String _width = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:width"));
 java.lang.String _afterActiveDescendantChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterActiveDescendantChange"));
 java.lang.String _afterActiveStateChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:afterActiveStateChange"));

@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:button-item:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -18,32 +18,32 @@ if (useMarkup) {
 	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
 }
 
-java.lang.Boolean _activeState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:activeState"));
+java.lang.Boolean _activeState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:activeState"), false);
 java.lang.String _boundingBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:boundingBox"));
 java.lang.Object _classNames = (java.lang.Object)request.getAttribute("alloy:button-item:classNames");
 java.lang.String _contentBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:contentBox"));
 java.lang.String _cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:cssClass"));
-java.lang.Boolean _defaultState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:defaultState"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:destroyed"));
-java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:disabled"));
-java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:focused"));
+java.lang.Boolean _defaultState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:defaultState"), true);
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:destroyed"), false);
+java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:disabled"), false);
+java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:focused"), false);
 java.lang.String _handler = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:handler"));
 java.lang.String _height = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:height"));
-java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:hideClass"));
-java.lang.Boolean _hoverState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:hoverState"));
+java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:hideClass"), "aui-helper-hidden");
+java.lang.Boolean _hoverState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:hoverState"), true);
 java.lang.String _icon = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:icon"));
 java.lang.String _iconNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:iconNode"));
 java.lang.String _buttonitemId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:buttonitemId"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:initialized"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:initialized"), false);
 java.lang.String _label = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:label"));
 java.lang.String _labelNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:labelNode"));
-java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:render"));
-java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:rendered"));
+java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:render"), false);
+java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:rendered"), false);
 java.lang.String _srcNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:srcNode"));
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:button-item:strings");
-java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:button-item:tabIndex"));
+java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:button-item:tabIndex"), 0);
 java.lang.String _title = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:title"));
-java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:visible"));
+java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:visible"), true);
 java.lang.String _width = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:width"));
 java.lang.String _afterActiveStateChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterActiveStateChange"));
 java.lang.String _afterBoundingBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:afterBoundingBoxChange"));

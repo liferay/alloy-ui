@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:tree-view-dd:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -20,21 +20,21 @@ if (useMarkup) {
 
 java.lang.String _checkContainerEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view-dd:checkContainerEl"));
 java.lang.String _checkEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view-dd:checkEl"));
-java.lang.String _checkName = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view-dd:checkName"));
-java.lang.Boolean _checked = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-view-dd:checked"));
-java.lang.String _children = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view-dd:children"));
+java.lang.String _checkName = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view-dd:checkName"), "tree-node-check");
+java.lang.Boolean _checked = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-view-dd:checked"), false);
+java.lang.Object _children = (java.lang.Object)request.getAttribute("alloy:tree-view-dd:children");
 java.lang.String _container = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view-dd:container"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-view-dd:destroyed"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-view-dd:destroyed"), false);
 java.lang.String _dropAction = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view-dd:dropAction"));
 java.lang.String _helper = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view-dd:helper"));
 java.lang.Object _index = (java.lang.Object)request.getAttribute("alloy:tree-view-dd:index");
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-view-dd:initialized"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-view-dd:initialized"), false);
 java.lang.Object _io = (java.lang.Object)request.getAttribute("alloy:tree-view-dd:io");
 java.lang.String _lastSelected = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view-dd:lastSelected"));
-java.lang.Number _lastY = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:tree-view-dd:lastY"));
+java.lang.Number _lastY = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:tree-view-dd:lastY"), 0);
 java.lang.String _nodeContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view-dd:nodeContent"));
-java.lang.Number _scrollDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:tree-view-dd:scrollDelay"));
-java.lang.String _type = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view-dd:type"));
+java.lang.Number _scrollDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:tree-view-dd:scrollDelay"), 100);
+java.lang.String _type = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view-dd:type"), "file");
 java.lang.String _afterCheckContainerElChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view-dd:afterCheckContainerElChange"));
 java.lang.String _afterCheckElChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view-dd:afterCheckElChange"));
 java.lang.String _afterCheckNameChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view-dd:afterCheckNameChange"));

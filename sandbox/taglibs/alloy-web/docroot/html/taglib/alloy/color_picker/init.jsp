@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:color-picker:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -21,41 +21,41 @@ if (useMarkup) {
 java.lang.Object _align = (java.lang.Object)request.getAttribute("alloy:color-picker:align");
 java.lang.String _colorpickerBodyContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:colorpickerBodyContent"));
 java.lang.String _boundingBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:boundingBox"));
-java.lang.Boolean _cancellableHide = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:cancellableHide"));
+java.lang.Boolean _cancellableHide = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:cancellableHide"), true);
 java.lang.String _centered = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:centered"));
 java.lang.String _constrain = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:constrain"));
 java.lang.String _contentBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:contentBox"));
 java.lang.String _cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:cssClass"));
 java.lang.String _currentNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:currentNode"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:destroyed"));
-java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:disabled"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:destroyed"), false);
+java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:disabled"), false);
 java.lang.String _fillHeight = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:fillHeight"));
-java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:focused"));
+java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:focused"), false);
 java.lang.String _footerContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:footerContent"));
 java.lang.String _headerContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:headerContent"));
 java.lang.String _height = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:height"));
-java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:hideClass"));
-java.lang.Number _hideDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:color-picker:hideDelay"));
+java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:hideClass"), "aui-helper-hidden");
+java.lang.Number _hideDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:color-picker:hideDelay"), 0);
 java.lang.String _hideOn = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:hideOn"));
-java.lang.Boolean _hideOnDocumentClick = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:hideOnDocumentClick"));
+java.lang.Boolean _hideOnDocumentClick = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:hideOnDocumentClick"), true);
 java.lang.String _colorpickerId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:colorpickerId"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:initialized"));
-java.lang.Boolean _preventOverlap = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:preventOverlap"));
-java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:render"));
-java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:rendered"));
-java.lang.Boolean _shim = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:shim"));
-java.lang.Number _showDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:color-picker:showDelay"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:initialized"), false);
+java.lang.Boolean _preventOverlap = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:preventOverlap"), false);
+java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:render"), false);
+java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:rendered"), false);
+java.lang.Boolean _shim = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:shim"), false);
+java.lang.Number _showDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:color-picker:showDelay"), 0);
 java.lang.String _showOn = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:showOn"));
 java.lang.String _srcNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:srcNode"));
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:color-picker:strings");
-java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:color-picker:tabIndex"));
+java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:color-picker:tabIndex"), 0);
 java.lang.String _trigger = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:trigger"));
-java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:visible"));
+java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:color-picker:visible"), false);
 java.lang.String _width = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:width"));
-java.lang.Number _x = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:color-picker:x"));
-java.lang.String _xy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:xy"));
-java.lang.Number _y = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:color-picker:y"));
-java.lang.Number _zIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:color-picker:zIndex"));
+java.lang.Number _x = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:color-picker:x"), 0);
+java.lang.Object _xy = (java.lang.Object)request.getAttribute("alloy:color-picker:xy");
+java.lang.Number _y = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:color-picker:y"), 0);
+java.lang.Number _zIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:color-picker:zIndex"), 0);
 java.lang.String _afterAlignChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:afterAlignChange"));
 java.lang.String _afterBodyContentChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:afterBodyContentChange"));
 java.lang.String _afterBoundingBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:afterBoundingBoxChange"));

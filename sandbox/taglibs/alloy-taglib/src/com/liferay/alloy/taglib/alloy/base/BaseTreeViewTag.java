@@ -24,7 +24,7 @@ public class BaseTreeViewTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.String getChildren() {
+	public java.lang.Object getChildren() {
 		return _children;
 	}
 
@@ -136,7 +136,7 @@ public class BaseTreeViewTag extends IncludeTag {
 		return _onTypeChange;
 	}
 
-	public void setChildren(java.lang.String children) {
+	public void setChildren(java.lang.Object children) {
 		_children = children;
 
 		setScopedAttribute("children", children);
@@ -340,7 +340,7 @@ public class BaseTreeViewTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/tree_view/page.jsp";
 
-	private java.lang.String _children;
+	private java.lang.Object _children;
 	private java.lang.String _container;
 	private java.lang.String _destroyed;
 	private java.lang.Object _index;

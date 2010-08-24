@@ -76,7 +76,7 @@ public class BaseCalendarTag extends IncludeTag {
 		return _dateFormat;
 	}
 
-	public java.lang.String getDates() {
+	public java.lang.Object getDates() {
 		return _dates;
 	}
 
@@ -208,7 +208,7 @@ public class BaseCalendarTag extends IncludeTag {
 		return _x;
 	}
 
-	public java.lang.String getXy() {
+	public java.lang.Object getXy() {
 		return _xy;
 	}
 
@@ -722,7 +722,7 @@ public class BaseCalendarTag extends IncludeTag {
 		setScopedAttribute("dateFormat", dateFormat);
 	}
 
-	public void setDates(java.lang.String dates) {
+	public void setDates(java.lang.Object dates) {
 		_dates = dates;
 
 		setScopedAttribute("dates", dates);
@@ -920,7 +920,7 @@ public class BaseCalendarTag extends IncludeTag {
 		setScopedAttribute("x", x);
 	}
 
-	public void setXy(java.lang.String xy) {
+	public void setXy(java.lang.Object xy) {
 		_xy = xy;
 
 		setScopedAttribute("xy", xy);
@@ -1750,7 +1750,7 @@ public class BaseCalendarTag extends IncludeTag {
 	private java.lang.String _currentNode;
 	private java.lang.String _currentYear;
 	private java.lang.String _dateFormat;
-	private java.lang.String _dates;
+	private java.lang.Object _dates;
 	private java.lang.String _destroyed;
 	private java.lang.String _disabled;
 	private java.lang.String _fillHeight;
@@ -1783,7 +1783,7 @@ public class BaseCalendarTag extends IncludeTag {
 	private java.lang.String _visible;
 	private java.lang.String _width;
 	private java.lang.String _x;
-	private java.lang.String _xy;
+	private java.lang.Object _xy;
 	private java.lang.String _y;
 	private java.lang.String _zIndex;
 	private java.lang.String _afterAlignChange;

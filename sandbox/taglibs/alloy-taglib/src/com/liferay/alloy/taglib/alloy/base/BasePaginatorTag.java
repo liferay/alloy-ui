@@ -108,7 +108,7 @@ public class BasePaginatorTag extends IncludeTag {
 		return _rowsPerPageEl;
 	}
 
-	public java.lang.String getRowsPerPageOptions() {
+	public java.lang.Object getRowsPerPageOptions() {
 		return _rowsPerPageOptions;
 	}
 
@@ -502,7 +502,7 @@ public class BasePaginatorTag extends IncludeTag {
 		setScopedAttribute("rowsPerPageEl", rowsPerPageEl);
 	}
 
-	public void setRowsPerPageOptions(java.lang.String rowsPerPageOptions) {
+	public void setRowsPerPageOptions(java.lang.Object rowsPerPageOptions) {
 		_rowsPerPageOptions = rowsPerPageOptions;
 
 		setScopedAttribute("rowsPerPageOptions", rowsPerPageOptions);
@@ -1021,7 +1021,7 @@ public class BasePaginatorTag extends IncludeTag {
 	private java.lang.String _prevPageLinkLabel;
 	private java.lang.String _rowsPerPage;
 	private java.lang.String _rowsPerPageEl;
-	private java.lang.String _rowsPerPageOptions;
+	private java.lang.Object _rowsPerPageOptions;
 	private java.lang.Object _state;
 	private java.lang.String _template;
 	private java.lang.String _total;

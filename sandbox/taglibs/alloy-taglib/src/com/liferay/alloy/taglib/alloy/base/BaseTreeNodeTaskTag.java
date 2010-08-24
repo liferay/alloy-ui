@@ -48,7 +48,7 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		return _checked;
 	}
 
-	public java.lang.String getChildren() {
+	public java.lang.Object getChildren() {
 		return _children;
 	}
 
@@ -388,7 +388,7 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		setScopedAttribute("checked", checked);
 	}
 
-	public void setChildren(java.lang.String children) {
+	public void setChildren(java.lang.Object children) {
 		_children = children;
 
 		setScopedAttribute("children", children);
@@ -940,7 +940,7 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 	private java.lang.String _checkEl;
 	private java.lang.String _checkName;
 	private java.lang.String _checked;
-	private java.lang.String _children;
+	private java.lang.Object _children;
 	private java.lang.String _container;
 	private java.lang.String _destroyed;
 	private java.lang.String _draggable;

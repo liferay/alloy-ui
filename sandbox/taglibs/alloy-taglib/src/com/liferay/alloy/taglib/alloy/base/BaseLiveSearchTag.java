@@ -40,7 +40,7 @@ public class BaseLiveSearchTag extends IncludeTag {
 		return _hide;
 	}
 
-	public java.lang.String getIndex() {
+	public java.lang.Object getIndex() {
 		return _index;
 	}
 
@@ -184,7 +184,7 @@ public class BaseLiveSearchTag extends IncludeTag {
 		setScopedAttribute("hide", hide);
 	}
 
-	public void setIndex(java.lang.String index) {
+	public void setIndex(java.lang.Object index) {
 		_index = index;
 
 		setScopedAttribute("index", index);
@@ -410,7 +410,7 @@ public class BaseLiveSearchTag extends IncludeTag {
 	private java.lang.String _delay;
 	private java.lang.String _destroyed;
 	private java.lang.String _hide;
-	private java.lang.String _index;
+	private java.lang.Object _index;
 	private java.lang.String _initialized;
 	private java.lang.String _input;
 	private java.lang.String _matchRegex;

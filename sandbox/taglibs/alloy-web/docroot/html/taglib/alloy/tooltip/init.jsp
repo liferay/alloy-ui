@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:tooltip:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -23,44 +23,44 @@ java.lang.Object _anim = (java.lang.Object)request.getAttribute("alloy:tooltip:a
 java.lang.String _arrow = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:arrow"));
 java.lang.String _tooltipBodyContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:tooltipBodyContent"));
 java.lang.String _boundingBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:boundingBox"));
-java.lang.Boolean _cancellableHide = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:cancellableHide"));
+java.lang.Boolean _cancellableHide = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:cancellableHide"), true);
 java.lang.String _centered = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:centered"));
 java.lang.String _constrain = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:constrain"));
 java.lang.String _contentBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:contentBox"));
 java.lang.String _cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:cssClass"));
 java.lang.String _currentNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:currentNode"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:destroyed"));
-java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:disabled"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:destroyed"), false);
+java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:disabled"), false);
 java.lang.String _fillHeight = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:fillHeight"));
-java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:focused"));
+java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:focused"), false);
 java.lang.String _footerContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:footerContent"));
 java.lang.String _headerContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:headerContent"));
 java.lang.String _height = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:height"));
-java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:hideClass"));
-java.lang.Number _hideDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:tooltip:hideDelay"));
+java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:hideClass"), "aui-helper-hidden");
+java.lang.Number _hideDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:tooltip:hideDelay"), 500);
 java.lang.String _hideOn = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:hideOn"));
-java.lang.Boolean _hideOnDocumentClick = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:hideOnDocumentClick"));
+java.lang.Boolean _hideOnDocumentClick = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:hideOnDocumentClick"), true);
 java.lang.String _tooltipId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:tooltipId"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:initialized"));
-java.lang.Boolean _preventOverlap = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:preventOverlap"));
-java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:render"));
-java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:rendered"));
-java.lang.Boolean _shim = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:shim"));
-java.lang.Boolean _showArrow = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:showArrow"));
-java.lang.Number _showDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:tooltip:showDelay"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:initialized"), false);
+java.lang.Boolean _preventOverlap = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:preventOverlap"), false);
+java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:render"), false);
+java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:rendered"), false);
+java.lang.Boolean _shim = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:shim"), false);
+java.lang.Boolean _showArrow = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:showArrow"), true);
+java.lang.Number _showDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:tooltip:showDelay"), 0);
 java.lang.String _showOn = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:showOn"));
 java.lang.String _srcNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:srcNode"));
-java.lang.Boolean _stack = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:stack"));
+java.lang.Boolean _stack = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:stack"), true);
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:tooltip:strings");
-java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:tooltip:tabIndex"));
-java.lang.Boolean _title = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:title"));
+java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:tooltip:tabIndex"), 0);
+java.lang.Boolean _title = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:title"), false);
 java.lang.String _trigger = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:trigger"));
-java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:visible"));
+java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tooltip:visible"), false);
 java.lang.String _width = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:width"));
-java.lang.Number _x = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:tooltip:x"));
-java.lang.String _xy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:xy"));
-java.lang.Number _y = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:tooltip:y"));
-java.lang.Number _zIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:tooltip:zIndex"));
+java.lang.Number _x = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:tooltip:x"), 0);
+java.lang.Object _xy = (java.lang.Object)request.getAttribute("alloy:tooltip:xy");
+java.lang.Number _y = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:tooltip:y"), 0);
+java.lang.Number _zIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:tooltip:zIndex"), 0);
 java.lang.String _afterAlignChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:afterAlignChange"));
 java.lang.String _afterAnimChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:afterAnimChange"));
 java.lang.String _afterArrowChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:afterArrowChange"));

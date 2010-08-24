@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:image-viewer:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -19,58 +19,58 @@ if (useMarkup) {
 }
 
 java.lang.Object _align = (java.lang.Object)request.getAttribute("alloy:image-viewer:align");
-java.lang.Boolean _anim = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:anim"));
+java.lang.Boolean _anim = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:anim"), true);
 java.lang.String _arrowLeftEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:arrowLeftEl"));
 java.lang.String _arrowRightEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:arrowRightEl"));
 java.lang.String _imageviewerBodyContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:imageviewerBodyContent"));
 java.lang.String _boundingBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:boundingBox"));
 java.lang.String _caption = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:caption"));
 java.lang.String _captionEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:captionEl"));
-java.lang.Boolean _captionFromTitle = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:captionFromTitle"));
-java.lang.Boolean _centered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:centered"));
+java.lang.Boolean _captionFromTitle = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:captionFromTitle"), true);
+java.lang.Boolean _centered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:centered"), true);
 java.lang.String _closeEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:closeEl"));
 java.lang.String _constrain = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:constrain"));
 java.lang.String _contentBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:contentBox"));
 java.lang.String _cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:cssClass"));
-java.lang.Number _currentIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:image-viewer:currentIndex"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:destroyed"));
-java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:disabled"));
+java.lang.Number _currentIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:image-viewer:currentIndex"), 0);
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:destroyed"), false);
+java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:disabled"), false);
 java.lang.String _fillHeight = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:fillHeight"));
-java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:focused"));
+java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:focused"), false);
 java.lang.String _footerContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:footerContent"));
 java.lang.String _headerContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:headerContent"));
 java.lang.String _height = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:height"));
-java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:hideClass"));
+java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:hideClass"), "aui-helper-hidden");
 java.lang.String _imageviewerId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:imageviewerId"));
 java.lang.String _image = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:image"));
 java.lang.Object _imageAnim = (java.lang.Object)request.getAttribute("alloy:image-viewer:imageAnim");
 java.lang.String _infoEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:infoEl"));
-java.lang.String _infoTemplate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:infoTemplate"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:initialized"));
+java.lang.String _infoTemplate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:infoTemplate"), "Image {current} of {total}");
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:initialized"), false);
 java.lang.String _links = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:links"));
 java.lang.String _loader = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:loader"));
-java.lang.Boolean _loading = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:loading"));
+java.lang.Boolean _loading = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:loading"), false);
 java.lang.String _loadingEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:loadingEl"));
-java.lang.Number _maxHeight = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:image-viewer:maxHeight"));
-java.lang.Number _maxWidth = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:image-viewer:maxWidth"));
-java.lang.String _modal = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:modal"));
-java.lang.Boolean _preloadAllImages = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:preloadAllImages"));
-java.lang.Boolean _preventOverlap = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:preventOverlap"));
-java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:render"));
-java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:rendered"));
-java.lang.Boolean _shim = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:shim"));
-java.lang.Boolean _showArrows = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:showArrows"));
-java.lang.Boolean _showClose = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:showClose"));
+java.lang.Number _maxHeight = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:image-viewer:maxHeight"), 0);
+java.lang.Number _maxWidth = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:image-viewer:maxWidth"), 0);
+java.lang.String _modal = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:modal"), "{ opacity: .8, background: '#000' }");
+java.lang.Boolean _preloadAllImages = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:preloadAllImages"), false);
+java.lang.Boolean _preventOverlap = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:preventOverlap"), false);
+java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:render"), false);
+java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:rendered"), false);
+java.lang.Boolean _shim = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:shim"), false);
+java.lang.Boolean _showArrows = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:showArrows"), true);
+java.lang.Boolean _showClose = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:showClose"), true);
 java.lang.String _srcNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:srcNode"));
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:image-viewer:strings");
-java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:image-viewer:tabIndex"));
-java.lang.Boolean _totalLinks = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:totalLinks"));
-java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:visible"));
+java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:image-viewer:tabIndex"), 0);
+java.lang.Boolean _totalLinks = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:totalLinks"), true);
+java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-viewer:visible"), true);
 java.lang.String _width = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:width"));
-java.lang.Number _x = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:image-viewer:x"));
-java.lang.String _xy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:xy"));
-java.lang.Number _y = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:image-viewer:y"));
-java.lang.Number _zIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:image-viewer:zIndex"));
+java.lang.Number _x = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:image-viewer:x"), 0);
+java.lang.Object _xy = (java.lang.Object)request.getAttribute("alloy:image-viewer:xy");
+java.lang.Number _y = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:image-viewer:y"), 0);
+java.lang.Number _zIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:image-viewer:zIndex"), 0);
 java.lang.String _afterAlignChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:afterAlignChange"));
 java.lang.String _afterAnim = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:afterAnim"));
 java.lang.String _afterAnimChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:afterAnimChange"));

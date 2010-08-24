@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:parse-content:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -18,9 +18,9 @@ if (useMarkup) {
 	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
 }
 
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:parse-content:destroyed"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:parse-content:destroyed"), false);
 java.lang.String _host = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:parse-content:host"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:parse-content:initialized"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:parse-content:initialized"), false);
 java.lang.String _afterDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:parse-content:afterDestroy"));
 java.lang.String _afterDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:parse-content:afterDestroyedChange"));
 java.lang.String _afterHostChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:parse-content:afterHostChange"));

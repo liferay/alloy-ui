@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:dialog:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -20,38 +20,38 @@ if (useMarkup) {
 
 java.lang.String _dialogBodyContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:dialogBodyContent"));
 java.lang.String _boundingBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:boundingBox"));
-java.lang.String _buttons = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:buttons"));
-java.lang.Boolean _close = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:close"));
-java.lang.Boolean _collapsed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:collapsed"));
-java.lang.Boolean _collapsible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:collapsible"));
+java.lang.Object _buttons = (java.lang.Object)request.getAttribute("alloy:dialog:buttons");
+java.lang.Boolean _close = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:close"), true);
+java.lang.Boolean _collapsed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:collapsed"), false);
+java.lang.Boolean _collapsible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:collapsible"), false);
 java.lang.Object _constrain2view = (java.lang.Object)request.getAttribute("alloy:dialog:constrain2view");
 java.lang.String _contentBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:contentBox"));
 java.lang.String _cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:cssClass"));
-java.lang.Boolean _destroyOnClose = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:destroyOnClose"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:destroyed"));
-java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:disabled"));
+java.lang.Boolean _destroyOnClose = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:destroyOnClose"), false);
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:destroyed"), false);
+java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:disabled"), false);
 java.lang.String _dragInstance = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:dragInstance"));
-java.lang.Boolean _draggable = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:draggable"));
+java.lang.Boolean _draggable = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:draggable"), true);
 java.lang.String _fillHeight = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:fillHeight"));
-java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:focused"));
+java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:focused"), false);
 java.lang.String _footerContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:footerContent"));
 java.lang.String _headerContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:headerContent"));
 java.lang.String _height = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:height"));
-java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:hideClass"));
-java.lang.String _icons = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:icons"));
+java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:hideClass"), "aui-helper-hidden");
+java.lang.Object _icons = (java.lang.Object)request.getAttribute("alloy:dialog:icons");
 java.lang.String _dialogId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:dialogId"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:initialized"));
-java.lang.Boolean _modal = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:modal"));
-java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:render"));
-java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:rendered"));
-java.lang.Boolean _resizable = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:resizable"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:initialized"), false);
+java.lang.Boolean _modal = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:modal"), false);
+java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:render"), false);
+java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:rendered"), false);
+java.lang.Boolean _resizable = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:resizable"), true);
 java.lang.String _resizableInstance = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:resizableInstance"));
 java.lang.String _srcNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:srcNode"));
-java.lang.Boolean _stack = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:stack"));
+java.lang.Boolean _stack = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:stack"), true);
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:dialog:strings");
-java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:dialog:tabIndex"));
+java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:dialog:tabIndex"), 0);
 java.lang.String _title = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:title"));
-java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:visible"));
+java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:dialog:visible"), true);
 java.lang.String _width = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:width"));
 java.lang.String _afterBodyContentChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterBodyContentChange"));
 java.lang.String _afterBoundingBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:afterBoundingBoxChange"));

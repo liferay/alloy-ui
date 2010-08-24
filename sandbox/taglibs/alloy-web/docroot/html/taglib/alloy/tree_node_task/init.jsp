@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:tree-node-task:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -18,28 +18,28 @@ if (useMarkup) {
 	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
 }
 
-java.lang.Boolean _alwaysShowHitArea = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:alwaysShowHitArea"));
-java.lang.Boolean _cache = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:cache"));
+java.lang.Boolean _alwaysShowHitArea = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:alwaysShowHitArea"), true);
+java.lang.Boolean _cache = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:cache"), true);
 java.lang.String _checkContainerEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-node-task:checkContainerEl"));
 java.lang.String _checkEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-node-task:checkEl"));
-java.lang.String _checkName = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-node-task:checkName"));
-java.lang.Boolean _checked = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:checked"));
-java.lang.String _children = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-node-task:children"));
+java.lang.String _checkName = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-node-task:checkName"), "tree-node-check");
+java.lang.Boolean _checked = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:checked"), false);
+java.lang.Object _children = (java.lang.Object)request.getAttribute("alloy:tree-node-task:children");
 java.lang.String _container = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-node-task:container"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:destroyed"));
-java.lang.Boolean _draggable = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:draggable"));
-java.lang.Boolean _expanded = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:expanded"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:destroyed"), false);
+java.lang.Boolean _draggable = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:draggable"), true);
+java.lang.Boolean _expanded = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:expanded"), false);
 java.lang.String _hitAreaEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-node-task:hitAreaEl"));
 java.lang.String _iconEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-node-task:iconEl"));
 java.lang.String _treenodetaskId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-node-task:treenodetaskId"));
 java.lang.Object _index = (java.lang.Object)request.getAttribute("alloy:tree-node-task:index");
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:initialized"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:initialized"), false);
 java.lang.Object _io = (java.lang.Object)request.getAttribute("alloy:tree-node-task:io");
 java.lang.String _label = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-node-task:label"));
 java.lang.String _labelEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-node-task:labelEl"));
-java.lang.Boolean _leaf = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:leaf"));
-java.lang.Boolean _loaded = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:loaded"));
-java.lang.Boolean _loading = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:loading"));
+java.lang.Boolean _leaf = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:leaf"), true);
+java.lang.Boolean _loaded = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:loaded"), false);
+java.lang.Boolean _loading = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:loading"), false);
 java.lang.String _nextSibling = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-node-task:nextSibling"));
 java.lang.String _ownerTree = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-node-task:ownerTree"));
 java.lang.String _parentNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-node-task:parentNode"));

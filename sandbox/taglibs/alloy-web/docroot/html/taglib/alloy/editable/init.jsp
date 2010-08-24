@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("alloy:editable:boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -23,27 +23,27 @@ java.lang.String _cancelButton = GetterUtil.getString((java.lang.String)request.
 java.lang.String _contentBox = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:contentBox"));
 java.lang.String _contentText = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:contentText"));
 java.lang.String _cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:cssClass"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:editable:destroyed"));
-java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:editable:disabled"));
-java.lang.String _eventType = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:eventType"));
-java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:editable:focused"));
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:editable:destroyed"), false);
+java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:editable:disabled"), false);
+java.lang.String _eventType = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:eventType"), "click");
+java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:editable:focused"), false);
 java.lang.String _formatInput = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:formatInput"));
 java.lang.String _formatOutput = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:formatOutput"));
 java.lang.String _height = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:height"));
-java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:hideClass"));
-java.lang.String _icons = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:icons"));
+java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:hideClass"), "aui-helper-hidden");
+java.lang.Object _icons = (java.lang.Object)request.getAttribute("alloy:editable:icons");
 java.lang.String _editableId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:editableId"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:editable:initialized"));
-java.lang.String _inputType = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:inputType"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:editable:initialized"), false);
+java.lang.String _inputType = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:inputType"), "text");
 java.lang.String _node = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:node"));
-java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:editable:render"));
+java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:editable:render"), false);
 java.lang.String _renderTo = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:renderTo"));
-java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:editable:rendered"));
+java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:editable:rendered"), false);
 java.lang.String _saveButton = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:saveButton"));
 java.lang.String _srcNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:srcNode"));
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:editable:strings");
-java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:editable:tabIndex"));
-java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:editable:visible"));
+java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:editable:tabIndex"), 0);
+java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:editable:visible"), true);
 java.lang.String _width = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:width"));
 java.lang.String _afterBoundingBoxChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:afterBoundingBoxChange"));
 java.lang.String _afterCancel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:afterCancel"));
