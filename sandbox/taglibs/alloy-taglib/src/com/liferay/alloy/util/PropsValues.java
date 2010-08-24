@@ -24,4 +24,6 @@ public class PropsValues {
 
 	public static String CSS_CLASS_PREFIX = PropsUtil.get(PropsKeys.CSS_CLASS_PREFIX);
 
+	public static String ALLOY_BASE_PATH = PropsUtil.get(PropsKeys.ALLOY_BASE_PATH);
+
 }
