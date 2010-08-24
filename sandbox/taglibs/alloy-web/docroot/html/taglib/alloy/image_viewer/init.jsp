@@ -5,14 +5,17 @@ Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribut
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:image-viewer:scopedAttributes");
 
 String uniqueId = StringPool.BLANK;
-String srcNode = StringPool.BLANK;
 
-boolean useMarkup = GetterUtil.getBoolean((java.io.Serializable)dynamicAttributes.get("useMarkup"));
+boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
 	
-	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId));
+	if ((String)request.getAttribute("alloy:image-viewer:boundingBox") == null) {
+		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
+	}
+	
+	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
 }
 
 java.lang.Object _align = (java.lang.Object)request.getAttribute("alloy:image-viewer:align");

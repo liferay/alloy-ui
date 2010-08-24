@@ -5,14 +5,17 @@ Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribut
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:button-item:scopedAttributes");
 
 String uniqueId = StringPool.BLANK;
-String srcNode = StringPool.BLANK;
 
-boolean useMarkup = GetterUtil.getBoolean((java.io.Serializable)dynamicAttributes.get("useMarkup"));
+boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
 	
-	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId));
+	if ((String)request.getAttribute("alloy:button-item:boundingBox") == null) {
+		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
+	}
+	
+	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
 }
 
 java.lang.Boolean _activeState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:activeState"));

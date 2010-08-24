@@ -14,6 +14,10 @@
 
 package com.liferay.alloy.util;
 
+import java.text.MessageFormat;
+
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringPool;
 
@@ -74,5 +78,32 @@ public class StringUtil extends com.liferay.portal.kernel.util.StringUtil {
 
 		return org.apache.commons.lang.StringUtils.join(output, delimiter);
 	}
+	
+	public static String substitute(String pattern, Object[] arguments) {
+		
+		String value = null;
+
+		try {
+			if (arguments != null) {
+				pattern = replace(
+					pattern, StringPool.APOSTROPHE,
+					StringPool.DOUBLE_APOSTROPHE);
+
+				value = MessageFormat.format(pattern, arguments);
+			}
+			else {
+				value = pattern;
+			}
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(e, e);
+			}
+		}
+		
+		return value;
+	}
+	
+	private static Log _log = LogFactoryUtil.getLog(StringUtil.class);
 
 }
