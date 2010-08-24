@@ -28,10 +28,8 @@ body {
 <br/>
 
 <alloy:rating
-	defaultSelected="2"
 	label="Created from HTML markup"
 	render="true"
-	size="5"
 	useMarkup="true"
 />
 
