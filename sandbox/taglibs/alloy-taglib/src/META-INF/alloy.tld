@@ -1712,7 +1712,7 @@
 			<name>dates</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>destroyed</name>
@@ -1910,7 +1910,7 @@
 			<name>xy</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>y</name>
@@ -2900,7 +2900,7 @@
 			<name>xy</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>y</name>
@@ -3425,7 +3425,25 @@
 		<tag-class>com.liferay.alloy.taglib.alloy.DatePickerSelectTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
+			<name>align</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
 			<name>appendOrder</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<name>baseName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>datepickerselectBodyContent</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -3443,10 +3461,22 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<name>calendar</name>
+			<name>cancellableHide</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Object</type>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>centered</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>constrain</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>contentBox</name>
@@ -3459,6 +3489,42 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>currentDay</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>currentMonth</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>currentNode</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>currentYear</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>dateFormat</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>dates</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>dayNode</name>
@@ -3485,7 +3551,31 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<name>fillHeight</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>firstDayOfWeek</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>focused</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>footerContent</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>headerContent</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -3503,6 +3593,24 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<name>hideDelay</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>hideOn</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>hideOnDocumentClick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>datepickerselectId</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -3510,6 +3618,18 @@
 		</attribute>
 		<attribute>
 			<name>initialized</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>maxDate</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>minDate</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -3545,6 +3665,12 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<name>preventOverlap</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -3557,13 +3683,49 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<name>selectMultipleDates</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>selectWrapperNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<name>setValue</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>shim</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>showDelay</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>showOn</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>srcNode</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>stack</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -3599,6 +3761,24 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<name>x</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>xy</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<name>y</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>yearNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -3614,10 +3794,34 @@
 			<name>yearRange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<name>zIndex</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterAlignChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>afterAppendOrderChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterBaseNameChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterBodyContentChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -3635,7 +3839,19 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<name>afterCalendarChange</name>
+			<name>afterCancellableHideChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterCenteredChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterConstrainChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -3648,6 +3864,42 @@
 		</attribute>
 		<attribute>
 			<name>afterCssClassChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterCurrentDayChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterCurrentMonthChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterCurrentNodeChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterCurrentYearChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterDateFormatChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterDatesChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -3683,7 +3935,31 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<name>afterFillHeightChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterFirstDayOfWeekChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>afterFocusedChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterFooterContentChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterHeaderContentChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -3696,6 +3972,24 @@
 		</attribute>
 		<attribute>
 			<name>afterHideClassChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterHideDelayChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterHideOnChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterHideOnDocumentClickChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -3714,6 +4008,18 @@
 		</attribute>
 		<attribute>
 			<name>afterInitializedChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterMaxDateChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterMinDateChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -3749,6 +4055,12 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<name>afterPreventOverlapChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>afterRenderChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -3761,13 +4073,49 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<name>afterSelectMultipleDatesChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>afterSelectWrapperNodeChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<name>afterSetValueChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterShimChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterShowDelayChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterShowOnChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>afterSrcNodeChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterStackChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -3815,6 +4163,24 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<name>afterXChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterXyChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterYChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>afterYearNodeChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -3833,7 +4199,31 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<name>afterZIndexChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onAlignChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>onAppendOrderChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onBaseNameChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onBodyContentChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -3851,7 +4241,19 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<name>onCalendarChange</name>
+			<name>onCancellableHideChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onCenteredChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onConstrainChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -3864,6 +4266,42 @@
 		</attribute>
 		<attribute>
 			<name>onCssClassChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onCurrentDayChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onCurrentMonthChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onCurrentNodeChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onCurrentYearChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onDateFormatChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onDatesChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -3899,7 +4337,31 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<name>onFillHeightChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onFirstDayOfWeekChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>onFocusedChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onFooterContentChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onHeaderContentChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -3912,6 +4374,24 @@
 		</attribute>
 		<attribute>
 			<name>onHideClassChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onHideDelayChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onHideOnChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onHideOnDocumentClickChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -3930,6 +4410,18 @@
 		</attribute>
 		<attribute>
 			<name>onInitializedChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onMaxDateChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onMinDateChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -3965,6 +4457,12 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<name>onPreventOverlapChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>onRenderChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -3977,13 +4475,49 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<name>onSelectMultipleDatesChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>onSelectWrapperNodeChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<name>onSetValueChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onShimChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onShowDelayChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onShowOnChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>onSrcNodeChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onStackChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -4031,6 +4565,24 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<name>onXChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onXyChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onYChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>onYearNodeChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -4044,6 +4596,12 @@
 		</attribute>
 		<attribute>
 			<name>onYearRangeChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>onZIndexChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -4070,7 +4628,7 @@
 			<name>buttons</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>close</name>
@@ -4178,7 +4736,7 @@
 			<name>icons</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>dialogId</name>
@@ -4820,7 +5378,7 @@
 			<name>icons</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>editableId</name>
@@ -6170,7 +6728,7 @@
 			<name>xy</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>y</name>
@@ -7370,7 +7928,7 @@
 			<name>xy</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>y</name>
@@ -8138,7 +8696,7 @@
 			<name>index</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>initialized</name>
@@ -8690,7 +9248,7 @@
 			<name>xy</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>y</name>
@@ -9332,7 +9890,7 @@
 			<name>xy</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>y</name>
@@ -10094,7 +10652,7 @@
 			<name>xy</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>y</name>
@@ -10676,7 +11234,7 @@
 			<name>alignPoints</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>background</name>
@@ -10856,7 +11414,7 @@
 			<name>xy</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>y</name>
@@ -11462,7 +12020,7 @@
 			<name>rowsPerPageOptions</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>state</name>
@@ -11954,7 +12512,7 @@
 			<name>icons</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>panelId</name>
@@ -12521,55 +13079,13 @@
 		<tag-class>com.liferay.alloy.taglib.alloy.ProgressBarTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
-			<name>boundingBox</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>contentBox</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>cssClass</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<name>disabled</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>focused</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<name>height</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>hideClass</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>progressbarId</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -12611,24 +13127,6 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<name>render</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>rendered</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>srcNode</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<name>statusNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -12636,18 +13134,6 @@
 		</attribute>
 		<attribute>
 			<name>step</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>strings</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Object</type>
-		</attribute>
-		<attribute>
-			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -12665,36 +13151,6 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<name>visible</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>width</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>afterBoundingBoxChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>afterContentBoxChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>afterCssClassChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<name>afterDestroy</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -12707,31 +13163,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<name>afterDisabledChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>afterFocusedChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<name>afterHeightChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>afterHideClassChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>afterIdChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -12779,24 +13211,6 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<name>afterRenderChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>afterRenderedChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>afterSrcNodeChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<name>afterStatusNodeChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -12804,18 +13218,6 @@
 		</attribute>
 		<attribute>
 			<name>afterStepChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>afterStringsChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>afterTabIndexChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -12833,48 +13235,6 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<name>afterVisibleChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>afterContentUpdate</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>afterRender</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>afterWidthChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>onBoundingBoxChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>onContentBoxChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>onCssClassChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<name>onDestroy</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -12887,31 +13247,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<name>onDisabledChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>onFocusedChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<name>onHeightChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>onHideClassChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>onIdChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -12959,24 +13295,6 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<name>onRenderChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>onRenderedChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>onSrcNodeChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<name>onStatusNodeChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -12989,18 +13307,6 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<name>onStringsChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>onTabIndexChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<name>onTextNodeChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -13008,30 +13314,6 @@
 		</attribute>
 		<attribute>
 			<name>onValueChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>onVisibleChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>onContentUpdate</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>onRender</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>onWidthChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -13883,12 +14165,6 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<name>afterAlign</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<name>afterEnd</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -14046,12 +14322,6 @@
 		</attribute>
 		<attribute>
 			<name>onProxyElChange</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>onAlign</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
@@ -16496,7 +16766,7 @@
 			<name>xy</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>y</name>
@@ -17120,7 +17390,7 @@
 			<name>children</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>container</name>
@@ -17582,7 +17852,7 @@
 			<name>children</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>container</name>
@@ -17780,7 +18050,7 @@
 			<name>children</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<name>container</name>

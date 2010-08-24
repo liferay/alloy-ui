@@ -26,9 +26,12 @@ import java.util.HashMap;
  */
 public class TypeUtil {
 
+	public static final String[] _ARRAY = {
+		"array", "[]"
+	};
+
 	public static final String[] _BOOLEAN = {
-		"boolean",
-		"bool"
+		"boolean", "bool"
 	};
 
 	public static final String[] _FLOAT = {
@@ -36,19 +39,15 @@ public class TypeUtil {
 	};
 
 	public static final String[] _INTEGER = {
-		"integer",
-		"int",
-		"int | string"
+		"integer", "int", "int | string"
 	};
 
 	public static final String[] _NUMBER = {
-		"num",
-		"number"
+		"num", "number"
 	};
 
 	public static final String[] _OBJECT = {
-		"object",
-		"{}"
+		"object", "{}"
 	};
 
 	public static String getJavaType(String type) {
@@ -59,6 +58,7 @@ public class TypeUtil {
 		if (_TYPES == null) {
 			_TYPES = new HashMap<String, String>();
 
+			_registerTypes(_ARRAY, Object.class.getName());
 			_registerTypes(_BOOLEAN, Boolean.class.getName());
 			_registerTypes(_FLOAT, Float.class.getName());
 			_registerTypes(_INTEGER, Integer.class.getName());

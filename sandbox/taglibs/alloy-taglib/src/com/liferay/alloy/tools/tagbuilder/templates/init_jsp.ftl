@@ -10,7 +10,7 @@ boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
-	
+
 	if ((String)request.getAttribute("${namespace}boundingBox") == null) {
 		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
 	}
@@ -23,7 +23,15 @@ if (useMarkup) {
 <#if simpleClassName == "Object">
 ${attribute.getJavaType()} _${attribute.getSafeName()} = (${attribute.getJavaType()})request.getAttribute("${namespace}${attribute.getSafeName()}");
 <#else>
+<#if attribute.getDefaultValue()?? && (attribute.getDefaultValue() != "")>
+<#if (simpleClassName == "String")>
+${attribute.getJavaType()} _${attribute.getSafeName()} = GetterUtil.get${simpleClassName}((java.lang.String)request.getAttribute("${namespace}${attribute.getSafeName()}"), "${attribute.getDefaultValue()}");
+<#else>
+${attribute.getJavaType()} _${attribute.getSafeName()} = GetterUtil.get${simpleClassName}((java.lang.String)request.getAttribute("${namespace}${attribute.getSafeName()}"), ${attribute.getDefaultValue()});
+</#if>
+<#else>
 ${attribute.getJavaType()} _${attribute.getSafeName()} = GetterUtil.get${simpleClassName}((java.lang.String)request.getAttribute("${namespace}${attribute.getSafeName()}"));
+</#if>
 </#if>
 </#list>
 %>

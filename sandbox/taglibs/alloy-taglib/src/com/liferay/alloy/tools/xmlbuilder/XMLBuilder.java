@@ -25,6 +25,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import com.liferay.alloy.util.DefaultValueUtil;
+import com.liferay.alloy.util.TypeUtil;
 import org.dom4j.Document;
 import org.dom4j.DocumentFactory;
 import org.dom4j.Element;
@@ -155,6 +157,8 @@ public class XMLBuilder {
 
 				attributeNode.addAttribute("name", attribute.getName());
 				attributeNode.addAttribute("type", attribute.getJavaType());
+				attributeNode.addAttribute(
+					"defaultValue", attribute.getDefaultValue());
 			}
 
 			for (Attribute event : component.getEvents()) {
@@ -217,11 +221,16 @@ public class XMLBuilder {
 						JSONUtil.getString(attributeJSON, "type"),
 							"String");
 
+					String javaType = TypeUtil.getJavaType(type);
+
+					String defaultValue = DefaultValueUtil.getDefaultValue(
+						javaType, JSONUtil.getString(attributeJSON, "default"));
+
 					boolean required = GetterUtil.getBoolean(
 						JSONUtil.getString(attributeJSON, "required"));
 
 					Attribute attribute = new Attribute(
-						attributeName, type, required);
+						attributeName, type, defaultValue, required);
 
 					attributes.add(attribute);
 				}

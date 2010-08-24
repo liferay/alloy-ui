@@ -106,4 +106,21 @@ public class StringUtil extends com.liferay.portal.kernel.util.StringUtil {
 	
 	private static Log _log = LogFactoryUtil.getLog(StringUtil.class);
 
+	public static String unquote(String s) {
+		if (s == null) {
+			return s;
+		}
+
+		if ((s.startsWith(StringPool.QUOTE) && s.endsWith(StringPool.QUOTE)) ||
+			(s.startsWith(StringPool.APOSTROPHE) &&
+				s.endsWith(StringPool.APOSTROPHE))) {
+
+			s = s.replaceAll("\"$", StringPool.BLANK);
+			s = s.replaceAll("^\"", StringPool.BLANK);
+			s = s.replaceAll("'$", StringPool.BLANK);
+			s = s.replaceAll("^'", StringPool.BLANK);
+		}
+
+		return s;
+	}
 }
