@@ -391,124 +391,66 @@
   </component>
   <component name="DatePickerSelect" module="aui-calendar" namespace="alloy" bodyContent="false">
     <attributes>
-      <attribute name="align" type="java.lang.Object" defaultValue="{ node: null, points: [ TL, BL ] }"/>
       <attribute name="appendOrder" type="java.lang.Object" defaultValue="[ 'm', 'd', 'y' ]"/>
-      <attribute name="baseName" type="java.lang.String" defaultValue=""/>
-      <attribute name="bodyContent" type="java.lang.String" defaultValue=""/>
       <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
       <attribute name="buttonNode" type="java.lang.String" defaultValue=""/>
-      <attribute name="cancellableHide" type="java.lang.Boolean" defaultValue="true"/>
-      <attribute name="centered" type="java.lang.String" defaultValue=""/>
-      <attribute name="constrain" type="java.lang.String" defaultValue=""/>
+      <attribute name="calendar" type="java.lang.Object" defaultValue="{}"/>
       <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
       <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
-      <attribute name="currentDay" type="java.lang.Number" defaultValue="0"/>
-      <attribute name="currentMonth" type="java.lang.Number" defaultValue="0"/>
-      <attribute name="currentNode" type="java.lang.String" defaultValue=""/>
-      <attribute name="currentYear" type="java.lang.Number" defaultValue="0"/>
-      <attribute name="dateFormat" type="java.lang.String" defaultValue="%m/%d/%Y"/>
-      <attribute name="dates" type="java.lang.Object" defaultValue=""/>
       <attribute name="dayNode" type="java.lang.String" defaultValue=""/>
       <attribute name="dayNodeName" type="java.lang.String" defaultValue=""/>
       <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
       <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
-      <attribute name="fillHeight" type="java.lang.String" defaultValue=""/>
-      <attribute name="firstDayOfWeek" type="java.lang.Number" defaultValue="0"/>
       <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
-      <attribute name="footerContent" type="java.lang.String" defaultValue=""/>
-      <attribute name="headerContent" type="java.lang.String" defaultValue=""/>
       <attribute name="height" type="java.lang.String" defaultValue=""/>
       <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
-      <attribute name="hideDelay" type="java.lang.Number" defaultValue="0"/>
-      <attribute name="hideOn" type="java.lang.String" defaultValue=""/>
-      <attribute name="hideOnDocumentClick" type="java.lang.Boolean" defaultValue="true"/>
       <attribute name="id" type="java.lang.String" defaultValue=""/>
       <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
-      <attribute name="maxDate" type="java.lang.String" defaultValue=""/>
-      <attribute name="minDate" type="java.lang.String" defaultValue=""/>
       <attribute name="monthNode" type="java.lang.String" defaultValue=""/>
       <attribute name="monthNodeName" type="java.lang.String" defaultValue=""/>
       <attribute name="populateDay" type="java.lang.Boolean" defaultValue="true"/>
       <attribute name="populateMonth" type="java.lang.Boolean" defaultValue="true"/>
       <attribute name="populateYear" type="java.lang.Boolean" defaultValue="true"/>
-      <attribute name="preventOverlap" type="java.lang.Boolean" defaultValue="false"/>
       <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
       <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
-      <attribute name="selectMultipleDates" type="java.lang.Boolean" defaultValue="false"/>
       <attribute name="selectWrapperNode" type="java.lang.String" defaultValue=""/>
-      <attribute name="setValue" type="java.lang.Boolean" defaultValue="false"/>
-      <attribute name="shim" type="java.lang.Boolean" defaultValue="false"/>
-      <attribute name="showDelay" type="java.lang.Number" defaultValue="0"/>
-      <attribute name="showOn" type="java.lang.String" defaultValue=""/>
       <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
-      <attribute name="stack" type="java.lang.Boolean" defaultValue="true"/>
       <attribute name="strings" type="java.lang.Object" defaultValue=""/>
       <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
       <attribute name="trigger" type="java.lang.String" defaultValue=""/>
-      <attribute name="visible" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="true"/>
       <attribute name="width" type="java.lang.String" defaultValue=""/>
-      <attribute name="x" type="java.lang.Number" defaultValue="0"/>
-      <attribute name="xy" type="java.lang.Object" defaultValue="[0,0]"/>
-      <attribute name="y" type="java.lang.Number" defaultValue="0"/>
       <attribute name="yearNode" type="java.lang.String" defaultValue=""/>
       <attribute name="yearNodeName" type="java.lang.String" defaultValue=""/>
       <attribute name="yearRange" type="java.lang.Object" defaultValue="[ year - 10, year + 10 ]"/>
-      <attribute name="zIndex" type="java.lang.Number" defaultValue="0"/>
     </attributes>
     <events>
-      <event name="alignChange" type="java.lang.String"/>
       <event name="appendOrderChange" type="java.lang.String"/>
-      <event name="baseNameChange" type="java.lang.String"/>
-      <event name="bodyContentChange" type="java.lang.String"/>
       <event name="boundingBoxChange" type="java.lang.String"/>
       <event name="buttonNodeChange" type="java.lang.String"/>
-      <event name="cancellableHideChange" type="java.lang.String"/>
-      <event name="centeredChange" type="java.lang.String"/>
-      <event name="constrainChange" type="java.lang.String"/>
+      <event name="calendarChange" type="java.lang.String"/>
       <event name="contentBoxChange" type="java.lang.String"/>
       <event name="cssClassChange" type="java.lang.String"/>
-      <event name="currentDayChange" type="java.lang.String"/>
-      <event name="currentMonthChange" type="java.lang.String"/>
-      <event name="currentNodeChange" type="java.lang.String"/>
-      <event name="currentYearChange" type="java.lang.String"/>
-      <event name="dateFormatChange" type="java.lang.String"/>
-      <event name="datesChange" type="java.lang.String"/>
       <event name="dayNodeChange" type="java.lang.String"/>
       <event name="dayNodeNameChange" type="java.lang.String"/>
       <event name="destroy" type="java.lang.String"/>
       <event name="destroyedChange" type="java.lang.String"/>
       <event name="disabledChange" type="java.lang.String"/>
-      <event name="fillHeightChange" type="java.lang.String"/>
-      <event name="firstDayOfWeekChange" type="java.lang.String"/>
       <event name="focusedChange" type="java.lang.String"/>
-      <event name="footerContentChange" type="java.lang.String"/>
-      <event name="headerContentChange" type="java.lang.String"/>
       <event name="heightChange" type="java.lang.String"/>
       <event name="hideClassChange" type="java.lang.String"/>
-      <event name="hideDelayChange" type="java.lang.String"/>
-      <event name="hideOnChange" type="java.lang.String"/>
-      <event name="hideOnDocumentClickChange" type="java.lang.String"/>
       <event name="idChange" type="java.lang.String"/>
       <event name="init" type="java.lang.String"/>
       <event name="initializedChange" type="java.lang.String"/>
-      <event name="maxDateChange" type="java.lang.String"/>
-      <event name="minDateChange" type="java.lang.String"/>
       <event name="monthNodeChange" type="java.lang.String"/>
       <event name="monthNodeNameChange" type="java.lang.String"/>
       <event name="populateDayChange" type="java.lang.String"/>
       <event name="populateMonthChange" type="java.lang.String"/>
       <event name="populateYearChange" type="java.lang.String"/>
-      <event name="preventOverlapChange" type="java.lang.String"/>
       <event name="renderChange" type="java.lang.String"/>
       <event name="renderedChange" type="java.lang.String"/>
-      <event name="selectMultipleDatesChange" type="java.lang.String"/>
       <event name="selectWrapperNodeChange" type="java.lang.String"/>
-      <event name="setValueChange" type="java.lang.String"/>
-      <event name="shimChange" type="java.lang.String"/>
-      <event name="showDelayChange" type="java.lang.String"/>
-      <event name="showOnChange" type="java.lang.String"/>
       <event name="srcNodeChange" type="java.lang.String"/>
-      <event name="stackChange" type="java.lang.String"/>
       <event name="stringsChange" type="java.lang.String"/>
       <event name="tabIndexChange" type="java.lang.String"/>
       <event name="triggerChange" type="java.lang.String"/>
@@ -516,13 +458,9 @@
       <event name="widget:contentUpdate" type="java.lang.String"/>
       <event name="widget:render" type="java.lang.String"/>
       <event name="widthChange" type="java.lang.String"/>
-      <event name="xChange" type="java.lang.String"/>
-      <event name="xyChange" type="java.lang.String"/>
-      <event name="yChange" type="java.lang.String"/>
       <event name="yearNodeChange" type="java.lang.String"/>
       <event name="yearNodeNameChange" type="java.lang.String"/>
       <event name="yearRangeChange" type="java.lang.String"/>
-      <event name="zIndexChange" type="java.lang.String"/>
     </events>
   </component>
   <component name="Dialog" module="aui-dialog" namespace="alloy" bodyContent="false">
@@ -1531,23 +1469,44 @@
   </component>
   <component name="ProgressBar" module="aui-progressbar" namespace="alloy" bodyContent="false">
     <attributes>
+      <attribute name="boundingBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="contentBox" type="java.lang.String" defaultValue=""/>
+      <attribute name="cssClass" type="java.lang.String" defaultValue=""/>
       <attribute name="destroyed" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="disabled" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="focused" type="java.lang.Boolean" defaultValue="false"/>
       <attribute name="height" type="java.lang.Integer" defaultValue="25"/>
+      <attribute name="hideClass" type="java.lang.String" defaultValue="aui-helper-hidden"/>
+      <attribute name="id" type="java.lang.String" defaultValue=""/>
       <attribute name="initialized" type="java.lang.Boolean" defaultValue="false"/>
       <attribute name="label" type="java.lang.String" defaultValue=""/>
       <attribute name="max" type="java.lang.Integer" defaultValue="100"/>
       <attribute name="min" type="java.lang.Integer" defaultValue="0"/>
       <attribute name="orientation" type="java.lang.String" defaultValue="horizontal"/>
       <attribute name="ratio" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="render" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="rendered" type="java.lang.Boolean" defaultValue="false"/>
+      <attribute name="srcNode" type="java.lang.String" defaultValue=""/>
       <attribute name="statusNode" type="java.lang.String" defaultValue=""/>
       <attribute name="step" type="java.lang.Number" defaultValue="0"/>
+      <attribute name="strings" type="java.lang.Object" defaultValue=""/>
+      <attribute name="tabIndex" type="java.lang.Number" defaultValue="0"/>
       <attribute name="textNode" type="java.lang.String" defaultValue=""/>
       <attribute name="value" type="java.lang.Integer" defaultValue="0"/>
+      <attribute name="visible" type="java.lang.Boolean" defaultValue="true"/>
+      <attribute name="width" type="java.lang.String" defaultValue=""/>
     </attributes>
     <events>
+      <event name="boundingBoxChange" type="java.lang.String"/>
+      <event name="contentBoxChange" type="java.lang.String"/>
+      <event name="cssClassChange" type="java.lang.String"/>
       <event name="destroy" type="java.lang.String"/>
       <event name="destroyedChange" type="java.lang.String"/>
+      <event name="disabledChange" type="java.lang.String"/>
+      <event name="focusedChange" type="java.lang.String"/>
       <event name="heightChange" type="java.lang.String"/>
+      <event name="hideClassChange" type="java.lang.String"/>
+      <event name="idChange" type="java.lang.String"/>
       <event name="init" type="java.lang.String"/>
       <event name="initializedChange" type="java.lang.String"/>
       <event name="labelChange" type="java.lang.String"/>
@@ -1555,10 +1514,19 @@
       <event name="minChange" type="java.lang.String"/>
       <event name="orientationChange" type="java.lang.String"/>
       <event name="ratioChange" type="java.lang.String"/>
+      <event name="renderChange" type="java.lang.String"/>
+      <event name="renderedChange" type="java.lang.String"/>
+      <event name="srcNodeChange" type="java.lang.String"/>
       <event name="statusNodeChange" type="java.lang.String"/>
       <event name="stepChange" type="java.lang.String"/>
+      <event name="stringsChange" type="java.lang.String"/>
+      <event name="tabIndexChange" type="java.lang.String"/>
       <event name="textNodeChange" type="java.lang.String"/>
       <event name="valueChange" type="java.lang.String"/>
+      <event name="visibleChange" type="java.lang.String"/>
+      <event name="widget:contentUpdate" type="java.lang.String"/>
+      <event name="widget:render" type="java.lang.String"/>
+      <event name="widthChange" type="java.lang.String"/>
     </events>
   </component>
   <component name="Rating" module="aui-rating" namespace="alloy" bodyContent="false">
@@ -1674,6 +1642,7 @@
       <event name="preserveRatioChange" type="java.lang.String"/>
       <event name="proxyChange" type="java.lang.String"/>
       <event name="proxyElChange" type="java.lang.String"/>
+      <event name="resize:align" type="java.lang.String"/>
       <event name="resize:end" type="java.lang.String"/>
       <event name="resize:mouseUp" type="java.lang.String"/>
       <event name="resize:resize" type="java.lang.String"/>
