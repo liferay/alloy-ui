@@ -159,6 +159,11 @@ public class XMLBuilder {
 				attributeNode.addAttribute("type", attribute.getJavaType());
 				attributeNode.addAttribute(
 					"defaultValue", attribute.getDefaultValue());
+
+				Element descriptionNode =
+					attributeNode.addElement("description");
+
+				descriptionNode.addCDATA(attribute.getDescription());
 			}
 
 			for (Attribute event : component.getEvents()) {
@@ -226,11 +231,15 @@ public class XMLBuilder {
 					String defaultValue = DefaultValueUtil.getDefaultValue(
 						javaType, JSONUtil.getString(attributeJSON, "default"));
 
+					String description = GetterUtil.getString(
+						JSONUtil.getString(attributeJSON, "description"));
+
 					boolean required = GetterUtil.getBoolean(
 						JSONUtil.getString(attributeJSON, "required"));
 
 					Attribute attribute = new Attribute(
-						attributeName, type, defaultValue, required);
+						attributeName, type, defaultValue, description,
+							required);
 
 					attributes.add(attribute);
 				}
@@ -274,7 +283,6 @@ public class XMLBuilder {
 
 		return hierarchy;
 	}
-
 	private static final String AUI_PREFIX = "aui-";
 	private static final String UTF_8 = "UTF-8";
 	private static final String _DEFAULT_NAMESPACE = "alloy";

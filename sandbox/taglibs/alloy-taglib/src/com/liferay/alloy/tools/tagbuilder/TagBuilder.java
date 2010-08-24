@@ -201,10 +201,12 @@ public class TagBuilder {
 			String name = attributeNode.attributeValue("name");
 			String type = attributeNode.attributeValue("type");
 			String defaultValue = attributeNode.attributeValue("defaultValue");
+			String description = attributeNode.elementText("description");
 			boolean required = GetterUtil.getBoolean(
 				attributeNode.attributeValue("required"));
 
-			attributes.add(new Attribute(name, type, defaultValue, required));
+			attributes.add(
+				new Attribute(name, type, defaultValue, description, required));
 		}
 
 		return attributes;

@@ -97,6 +97,9 @@
 		<body-content>JSP</body-content>
 		<#list component.getAttributesAndEvents() as attribute>
 		<attribute>
+			<#if attribute.getDescription()??>
+			<description><![CDATA[${attribute.getDescription()}]]></description>
+			</#if>
 			<name>${attribute.getSafeName()}</name>
 			<required>${attribute.isRequired()?string("true", "false")}</required>
 			<rtexprvalue>true</rtexprvalue>

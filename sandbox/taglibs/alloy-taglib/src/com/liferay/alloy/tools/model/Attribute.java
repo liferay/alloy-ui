@@ -9,11 +9,13 @@ import org.apache.commons.lang.StringUtils;
 public class Attribute extends BaseModel {
 
 	public Attribute(
-		String name, String type, String defaultValue, boolean required) {
+		String name, String type, String defaultValue, String description,
+		boolean required) {
 
 		setName(name);
 		setType(type);
 		setDefaultValue(defaultValue);
+		setDescription(description);
 		setRequired(required);
 	}
 
@@ -27,6 +29,10 @@ public class Attribute extends BaseModel {
 
 	public String getDefaultValue() {
 		return _defaultValue;
+	}
+
+	public String getDescription() {
+		return _description;
 	}
 
 	public String getJavaType() {
@@ -74,6 +80,10 @@ public class Attribute extends BaseModel {
 		_defaultValue = defaultValue;
 	}
 
+	public void setDescription(String description) {
+		_description = description;
+	}
+
 	public void setRequired(boolean required) {
 		_required = required;
 	}
@@ -87,6 +97,7 @@ public class Attribute extends BaseModel {
 
 	private Component _component;
 	private String _defaultValue;
+	private String _description;
 	private boolean _required;
 	private String _type;
 
