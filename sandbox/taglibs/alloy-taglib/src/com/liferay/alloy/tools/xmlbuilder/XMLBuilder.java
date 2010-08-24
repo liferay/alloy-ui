@@ -154,23 +154,27 @@ public class XMLBuilder {
 
 			for (Attribute attribute : component.getAttributes()) {
 				Element attributeNode = attributesNode.addElement("attribute");
-
-				attributeNode.addAttribute("name", attribute.getName());
-				attributeNode.addAttribute("type", attribute.getJavaType());
-				attributeNode.addAttribute(
-					"defaultValue", attribute.getDefaultValue());
+				Element nameNode = attributeNode.addElement("name");
+				Element typeNode = attributeNode.addElement("type");
+				Element defaultValueNode =
+					attributeNode.addElement("defaultValue");
 
 				Element descriptionNode =
 					attributeNode.addElement("description");
 
+				nameNode.setText(attribute.getName());
+				typeNode.setText(attribute.getJavaType());
+				defaultValueNode.setText(attribute.getDefaultValue());
 				descriptionNode.addCDATA(attribute.getDescription());
 			}
 
 			for (Attribute event : component.getEvents()) {
 				Element eventNode = eventsNode.addElement("event");
+				Element nameNode = eventNode.addElement("name");
+				Element typeNode = eventNode.addElement("type");
 
-				eventNode.addAttribute("name", event.getName());
-				eventNode.addAttribute("type", event.getJavaType());
+				nameNode.setText(event.getName());
+				typeNode.setText(event.getJavaType());
 			}
 		}
 

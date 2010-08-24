@@ -198,12 +198,12 @@ public class TagBuilder {
 		List<Attribute> attributes = new ArrayList<Attribute>();
 
 		for (Element attributeNode : attributesNodes) {
-			String name = attributeNode.attributeValue("name");
-			String type = attributeNode.attributeValue("type");
-			String defaultValue = attributeNode.attributeValue("defaultValue");
+			String name = attributeNode.elementText("name");
+			String type = attributeNode.elementText("type");
+			String defaultValue = attributeNode.elementText("defaultValue");
 			String description = attributeNode.elementText("description");
 			boolean required = GetterUtil.getBoolean(
-				attributeNode.attributeValue("required"));
+				attributeNode.elementText("required"));
 
 			attributes.add(
 				new Attribute(name, type, defaultValue, description, required));
