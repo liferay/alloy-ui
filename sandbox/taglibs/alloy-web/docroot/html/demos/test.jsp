@@ -1,21 +1,26 @@
+<%@page import="com.liferay.alloy.util.PropsValues"%>
+
 <%@ include file="/html/taglib/alloy/init.jsp" %>
 
-<%@page import="java.util.HashMap"%>
+<%
+final String ALLOY_BUILD = PropsValues.ALLOY_BASE_PATH;
+%>
 
-<script src="http://alloy.liferay.com/deploy/build/yui/yui-min.js" type="text/javascript"></script>
-<script src="http://alloy.liferay.com/deploy/build/aui-base/aui-base-min.js" type="text/javascript"></script>
+<script src="<%= ALLOY_BUILD %>yui/yui-min.js" type="text/javascript"></script>
+<script src="<%= ALLOY_BUILD %>/aui-base/aui-base-min.js" type="text/javascript"></script>
 
-<link href="http://alloy.liferay.com/deploy/build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" rel="stylesheet" />
-<link href="http://alloy.liferay.com/deploy/build/aui-button-item/assets/skins/sam/aui-button-item.css" type="text/css" rel="stylesheet" />
-<link href="http://alloy.liferay.com/deploy/build/aui-panel/assets/skins/sam/aui-panel.css" type="text/css" rel="stylesheet" />
-<link href="http://alloy.liferay.com/deploy/build/aui-progressbar/assets/skins/sam/aui-progressbar.css" type="text/css" rel="stylesheet" />
+<link href="<%= ALLOY_BUILD %>/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" rel="stylesheet" />
+<link href="<%= ALLOY_BUILD %>/aui-button-item/assets/skins/sam/aui-button-item.css" type="text/css" rel="stylesheet" />
+<link href="<%= ALLOY_BUILD %>/aui-panel/assets/skins/sam/aui-panel.css" type="text/css" rel="stylesheet" />
+<link href="<%= ALLOY_BUILD %>/aui-progressbar/assets/skins/sam/aui-progressbar.css" type="text/css" rel="stylesheet" />
+<link href="<%= ALLOY_BUILD %>/aui-datepicker-select/assets/skins/sam/aui-datepicker-select.css" type="text/css" rel="stylesheet" />
 
 <style>
 body {
 	padding: 10px;
 }
 
-#panel {
+#panelContainer {
 	width: 400px;
 }
 
@@ -62,6 +67,30 @@ body {
 	input="#input0"
 	maxLength="5"
 	afterMaxLength="function(e) { console.log('max') }"
+/>
+
+
+<br /><br />
+
+<div id="panelContainer">
+	<alloy:panel
+		collapsible="true"
+		headerContent="Header"
+		panelBodyContent="Test"
+		render="true"
+		useMarkup="true"
+	/>
+</div>
+
+<br /><br />
+
+<div id="datePicker"></div>
+
+<alloy:date-picker-select
+	appendOrder='<%= new String[] {"y", "m", "d"} %>'
+	render="true"
+	useMarkup="true"
+	yearRange="<%= new Integer[] {1980, 2010} %>"
 />
 
 <alloy:dialog

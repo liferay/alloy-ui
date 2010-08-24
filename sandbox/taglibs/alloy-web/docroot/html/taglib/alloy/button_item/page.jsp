@@ -3,12 +3,12 @@
 <c:if test="<%= useMarkup %>">
 	
 	<%
-	final String CSS_COMPONENT = MarkupUtil.getClassName("component");
 	final String CSS_BUTTON_ITEM = MarkupUtil.getClassName("buttonitem");
 	final String CSS_BUTTON_ITEM_CONTENT = MarkupUtil.getClassName("buttonitem", "content");
 	final String CSS_BUTTON_ITEM_LABEL  = MarkupUtil.getClassName("buttonitem", "label");
 	final String CSS_BUTTON_ITEM_ICON = MarkupUtil.getClassName("buttonitem", "icon");
 	final String CSS_BUTTON_ITEM_ICON_LABEL  = MarkupUtil.getClassName("buttonitem", "icon", "label");
+	final String CSS_COMPONENT = MarkupUtil.getClassName("component");
 	final String CSS_CUSTOM_ICON = MarkupUtil.getClassName("icon", _icon);
 	final String CSS_ICON = MarkupUtil.getClassName("icon");
 	final String CSS_STATE_DEFAULT = MarkupUtil.getClassName("state", "default");
@@ -18,7 +18,7 @@
 	%>
 	
 	<c:if test="<%= Validator.isNull(_boundingBox) %>">
-		<button id="<%= uniqueId %>BoundingBox" class="<%= BOUNDING_BOX_CLASS %>">
+		<button class="<%= BOUNDING_BOX_CLASS %>" id="<%= uniqueId %>BoundingBox">
 	</c:if>
 	
 	<span class="<%= StringUtil.merge(new String[] { CSS_BUTTON_ITEM_ICON, CSS_ICON, CSS_CUSTOM_ICON }, StringPool.SPACE) %>"></span>
