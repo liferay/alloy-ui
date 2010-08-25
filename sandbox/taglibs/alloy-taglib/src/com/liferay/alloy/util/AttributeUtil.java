@@ -14,9 +14,9 @@
 
 package com.liferay.alloy.util;
 
-import jodd.util.ReflectUtil;
-
 import java.lang.reflect.Method;
+
+import jodd.util.ReflectUtil;
 
 /**
  * <a href="AttributeUtil.java.html"><b><i>View Source</i></b></a>
@@ -27,7 +27,7 @@ public class AttributeUtil {
 
 	public static Object getAttribute(Object obj, String key) {
 		try {
-			Class[] paramClasses = { String.class };
+			Class<?>[] paramClasses = { String.class };
 			Object[] params = { key };
 
 			return ReflectUtil.invoke(
@@ -42,10 +42,10 @@ public class AttributeUtil {
 
 	public static void setAttribute(Object obj, String key, Object  value) {
 		try {
-			Class[] paramClasses = { String.class, Object.class };
-			Object[] params = { key, value };
+			Method setAttribute = ReflectUtil.findMethod(obj.getClass(), "setAttribute");
 
-			ReflectUtil.invoke(obj, "setAttribute", paramClasses, params);
+			setAttribute.setAccessible(true);
+			setAttribute.invoke(obj, key, value);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
