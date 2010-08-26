@@ -1270,7 +1270,7 @@ A.OverlayContextPanelManager = new A.OverlayManager({
 	zIndexBase: 1000
 });
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-context','anim']});
+}, '@VERSION@' ,{requires:['aui-overlay-context','anim'], skinnable:true});
 AUI.add('aui-overlay-manager', function(A) {
 /**
  * The OverlayManager Utility
@@ -1617,11 +1617,11 @@ var L = A.Lang,
 	isNumber = L.isNumber,
 	isValue = L.isValue,
 
+	CONFIG = A.config,
+
 	UA = A.UA,
 
-	isDoc = false,
-	isWin = false,
-	ie6 = (UA.ie && UA.version.major <= 6),
+	IE6 = (UA.ie && UA.version.major <= 6),
 
 	ABSOLUTE = 'absolute',
 	ALIGN_POINTS = 'alignPoints',
@@ -1725,10 +1725,14 @@ var OverlayMask = A.Component.create(
 				lazyAdd: false,
 				value: document,
 				setter: function(v) {
+					var instance = this;
+
 					var target = A.one(v);
 
-					isDoc = target.compareTo(document);
-					isWin = target.compareTo(window);
+					var isDoc = instance._isDoc = target.compareTo(CONFIG.doc);
+					var isWin = instance._isWin = target.compareTo(CONFIG.win);
+
+					instance._fullPage = isDoc || isWin;
 
 					return target;
 				}
@@ -1829,10 +1833,13 @@ var OverlayMask = A.Component.create(
 				var instance = this;
 				var target = instance.get(TARGET);
 
+				var isDoc = instance._isDoc;
+				var isWin = instance._isWin;
+
 				var height = target.get(OFFSET_HEIGHT);
 				var width = target.get(OFFSET_WIDTH);
 
-				if (ie6) {
+				if (IE6) {
 					// IE6 doesn't support height/width 100% on doc/win
 					if (isWin) {
 						width = A.DOM.winWidth();
@@ -1844,7 +1851,7 @@ var OverlayMask = A.Component.create(
 					}
 				}
 				// good browsers...
-				else if (isDoc || isWin) {
+				else if (instance._fullPage) {
 					height = '100%';
 					width = '100%';
 				}
@@ -1866,10 +1873,10 @@ var OverlayMask = A.Component.create(
 				var boundingBox = instance.get(BOUNDING_BOX);
 				var targetSize = instance.getTargetSize();
 
-				var fullPage = (isDoc || isWin);
+				var fullPage = instance._fullPage;
 
 				boundingBox.setStyles({
-					position: (ie6 || !fullPage) ? ABSOLUTE : FIXED,
+					position: (IE6 || !fullPage) ? ABSOLUTE : FIXED,
 					left: 0,
 					top: 0
 				});
@@ -1955,6 +1962,22 @@ var OverlayMask = A.Component.create(
 				var instance = this;
 
 				instance._uiSetVisible(event.newVal);
+			},
+
+			/**
+			 * UI Setter for the 
+			 * <a href="Paginator.html#config_xy">XY</a> attribute.
+			 *
+			 * @method _uiSetXY
+			 * @param {EventFacade} event
+			 * @protected
+			 */
+			_uiSetXY: function() {
+				var instance = this;
+
+				if (!instance._fullPage || IE6) {
+					OverlayMask.superclass._uiSetXY.apply(instance, arguments);
+				}
 			}
 		}
 	}
@@ -1962,8 +1985,8 @@ var OverlayMask = A.Component.create(
 
 A.OverlayMask = OverlayMask;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-overlay-base','event-resize']});
+}, '@VERSION@' ,{requires:['aui-base','aui-overlay-base','event-resize'], skinnable:true});
 
 
-AUI.add('aui-overlay', function(A){}, '@VERSION@' ,{use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-manager','aui-overlay-mask'], skinnable:true});
+AUI.add('aui-overlay', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-manager','aui-overlay-mask']});
 
