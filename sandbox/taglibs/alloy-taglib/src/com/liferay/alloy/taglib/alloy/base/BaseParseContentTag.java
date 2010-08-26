@@ -28,7 +28,7 @@ public class BaseParseContentTag extends IncludeTag {
 		return _destroyed;
 	}
 
-	public java.lang.String getHost() {
+	public java.lang.Object getHost() {
 		return _host;
 	}
 
@@ -36,43 +36,43 @@ public class BaseParseContentTag extends IncludeTag {
 		return _initialized;
 	}
 
-	public java.lang.String getAfterDestroy() {
+	public java.lang.Object getAfterDestroy() {
 		return _afterDestroy;
 	}
 
-	public java.lang.String getAfterDestroyedChange() {
+	public java.lang.Object getAfterDestroyedChange() {
 		return _afterDestroyedChange;
 	}
 
-	public java.lang.String getAfterHostChange() {
+	public java.lang.Object getAfterHostChange() {
 		return _afterHostChange;
 	}
 
-	public java.lang.String getAfterInit() {
+	public java.lang.Object getAfterInit() {
 		return _afterInit;
 	}
 
-	public java.lang.String getAfterInitializedChange() {
+	public java.lang.Object getAfterInitializedChange() {
 		return _afterInitializedChange;
 	}
 
-	public java.lang.String getOnDestroy() {
+	public java.lang.Object getOnDestroy() {
 		return _onDestroy;
 	}
 
-	public java.lang.String getOnDestroyedChange() {
+	public java.lang.Object getOnDestroyedChange() {
 		return _onDestroyedChange;
 	}
 
-	public java.lang.String getOnHostChange() {
+	public java.lang.Object getOnHostChange() {
 		return _onHostChange;
 	}
 
-	public java.lang.String getOnInit() {
+	public java.lang.Object getOnInit() {
 		return _onInit;
 	}
 
-	public java.lang.String getOnInitializedChange() {
+	public java.lang.Object getOnInitializedChange() {
 		return _onInitializedChange;
 	}
 
@@ -82,7 +82,7 @@ public class BaseParseContentTag extends IncludeTag {
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setHost(java.lang.String host) {
+	public void setHost(java.lang.Object host) {
 		_host = host;
 
 		setScopedAttribute("host", host);
@@ -94,61 +94,61 @@ public class BaseParseContentTag extends IncludeTag {
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setAfterDestroy(java.lang.String afterDestroy) {
+	public void setAfterDestroy(java.lang.Object afterDestroy) {
 		_afterDestroy = afterDestroy;
 
 		setScopedAttribute("afterDestroy", afterDestroy);
 	}
 
-	public void setAfterDestroyedChange(java.lang.String afterDestroyedChange) {
+	public void setAfterDestroyedChange(java.lang.Object afterDestroyedChange) {
 		_afterDestroyedChange = afterDestroyedChange;
 
 		setScopedAttribute("afterDestroyedChange", afterDestroyedChange);
 	}
 
-	public void setAfterHostChange(java.lang.String afterHostChange) {
+	public void setAfterHostChange(java.lang.Object afterHostChange) {
 		_afterHostChange = afterHostChange;
 
 		setScopedAttribute("afterHostChange", afterHostChange);
 	}
 
-	public void setAfterInit(java.lang.String afterInit) {
+	public void setAfterInit(java.lang.Object afterInit) {
 		_afterInit = afterInit;
 
 		setScopedAttribute("afterInit", afterInit);
 	}
 
-	public void setAfterInitializedChange(java.lang.String afterInitializedChange) {
+	public void setAfterInitializedChange(java.lang.Object afterInitializedChange) {
 		_afterInitializedChange = afterInitializedChange;
 
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
-	public void setOnDestroy(java.lang.String onDestroy) {
+	public void setOnDestroy(java.lang.Object onDestroy) {
 		_onDestroy = onDestroy;
 
 		setScopedAttribute("onDestroy", onDestroy);
 	}
 
-	public void setOnDestroyedChange(java.lang.String onDestroyedChange) {
+	public void setOnDestroyedChange(java.lang.Object onDestroyedChange) {
 		_onDestroyedChange = onDestroyedChange;
 
 		setScopedAttribute("onDestroyedChange", onDestroyedChange);
 	}
 
-	public void setOnHostChange(java.lang.String onHostChange) {
+	public void setOnHostChange(java.lang.Object onHostChange) {
 		_onHostChange = onHostChange;
 
 		setScopedAttribute("onHostChange", onHostChange);
 	}
 
-	public void setOnInit(java.lang.String onInit) {
+	public void setOnInit(java.lang.Object onInit) {
 		_onInit = onInit;
 
 		setScopedAttribute("onInit", onInit);
 	}
 
-	public void setOnInitializedChange(java.lang.String onInitializedChange) {
+	public void setOnInitializedChange(java.lang.Object onInitializedChange) {
 		_onInitializedChange = onInitializedChange;
 
 		setScopedAttribute("onInitializedChange", onInitializedChange);
@@ -176,17 +176,17 @@ public class BaseParseContentTag extends IncludeTag {
 		"/html/taglib/alloy/parse_content/page.jsp";
 
 	private java.lang.String _destroyed;
-	private java.lang.String _host;
+	private java.lang.Object _host;
 	private java.lang.String _initialized;
-	private java.lang.String _afterDestroy;
-	private java.lang.String _afterDestroyedChange;
-	private java.lang.String _afterHostChange;
-	private java.lang.String _afterInit;
-	private java.lang.String _afterInitializedChange;
-	private java.lang.String _onDestroy;
-	private java.lang.String _onDestroyedChange;
-	private java.lang.String _onHostChange;
-	private java.lang.String _onInit;
-	private java.lang.String _onInitializedChange;
+	private java.lang.Object _afterDestroy;
+	private java.lang.Object _afterDestroyedChange;
+	private java.lang.Object _afterHostChange;
+	private java.lang.Object _afterInit;
+	private java.lang.Object _afterInitializedChange;
+	private java.lang.Object _onDestroy;
+	private java.lang.Object _onDestroyedChange;
+	private java.lang.Object _onHostChange;
+	private java.lang.Object _onInit;
+	private java.lang.Object _onInitializedChange;
 
 }

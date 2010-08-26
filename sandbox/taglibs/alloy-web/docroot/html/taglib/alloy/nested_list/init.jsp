@@ -20,14 +20,14 @@ if (useMarkup) {
 
 java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:nested-list:destroyed"), false);
 java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:nested-list:initialized"), false);
-java.lang.String _afterDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:nested-list:afterDestroy"));
-java.lang.String _afterDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:nested-list:afterDestroyedChange"));
-java.lang.String _afterInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:nested-list:afterInit"));
-java.lang.String _afterInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:nested-list:afterInitializedChange"));
-java.lang.String _onDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:nested-list:onDestroy"));
-java.lang.String _onDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:nested-list:onDestroyedChange"));
-java.lang.String _onInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:nested-list:onInit"));
-java.lang.String _onInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:nested-list:onInitializedChange"));
+java.lang.Object _afterDestroy = (java.lang.Object)request.getAttribute("alloy:nested-list:afterDestroy");
+java.lang.Object _afterDestroyedChange = (java.lang.Object)request.getAttribute("alloy:nested-list:afterDestroyedChange");
+java.lang.Object _afterInit = (java.lang.Object)request.getAttribute("alloy:nested-list:afterInit");
+java.lang.Object _afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:nested-list:afterInitializedChange");
+java.lang.Object _onDestroy = (java.lang.Object)request.getAttribute("alloy:nested-list:onDestroy");
+java.lang.Object _onDestroyedChange = (java.lang.Object)request.getAttribute("alloy:nested-list:onDestroyedChange");
+java.lang.Object _onInit = (java.lang.Object)request.getAttribute("alloy:nested-list:onInit");
+java.lang.Object _onInitializedChange = (java.lang.Object)request.getAttribute("alloy:nested-list:onInitializedChange");
 %>
 
 <%@ include file="init-ext.jsp" %>

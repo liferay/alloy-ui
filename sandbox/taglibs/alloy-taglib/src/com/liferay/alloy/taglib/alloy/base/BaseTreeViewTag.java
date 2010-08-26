@@ -28,7 +28,7 @@ public class BaseTreeViewTag extends IncludeTag {
 		return _children;
 	}
 
-	public java.lang.String getContainer() {
+	public java.lang.Object getContainer() {
 		return _container;
 	}
 
@@ -48,91 +48,91 @@ public class BaseTreeViewTag extends IncludeTag {
 		return _io;
 	}
 
-	public java.lang.String getLastSelected() {
+	public java.lang.Object getLastSelected() {
 		return _lastSelected;
 	}
 
-	public java.lang.String getType() {
+	public java.lang.Object getType() {
 		return _type;
 	}
 
-	public java.lang.String getAfterChildrenChange() {
+	public java.lang.Object getAfterChildrenChange() {
 		return _afterChildrenChange;
 	}
 
-	public java.lang.String getAfterContainerChange() {
+	public java.lang.Object getAfterContainerChange() {
 		return _afterContainerChange;
 	}
 
-	public java.lang.String getAfterDestroy() {
+	public java.lang.Object getAfterDestroy() {
 		return _afterDestroy;
 	}
 
-	public java.lang.String getAfterDestroyedChange() {
+	public java.lang.Object getAfterDestroyedChange() {
 		return _afterDestroyedChange;
 	}
 
-	public java.lang.String getAfterIndexChange() {
+	public java.lang.Object getAfterIndexChange() {
 		return _afterIndexChange;
 	}
 
-	public java.lang.String getAfterInit() {
+	public java.lang.Object getAfterInit() {
 		return _afterInit;
 	}
 
-	public java.lang.String getAfterInitializedChange() {
+	public java.lang.Object getAfterInitializedChange() {
 		return _afterInitializedChange;
 	}
 
-	public java.lang.String getAfterIoChange() {
+	public java.lang.Object getAfterIoChange() {
 		return _afterIoChange;
 	}
 
-	public java.lang.String getAfterLastSelectedChange() {
+	public java.lang.Object getAfterLastSelectedChange() {
 		return _afterLastSelectedChange;
 	}
 
-	public java.lang.String getAfterTypeChange() {
+	public java.lang.Object getAfterTypeChange() {
 		return _afterTypeChange;
 	}
 
-	public java.lang.String getOnChildrenChange() {
+	public java.lang.Object getOnChildrenChange() {
 		return _onChildrenChange;
 	}
 
-	public java.lang.String getOnContainerChange() {
+	public java.lang.Object getOnContainerChange() {
 		return _onContainerChange;
 	}
 
-	public java.lang.String getOnDestroy() {
+	public java.lang.Object getOnDestroy() {
 		return _onDestroy;
 	}
 
-	public java.lang.String getOnDestroyedChange() {
+	public java.lang.Object getOnDestroyedChange() {
 		return _onDestroyedChange;
 	}
 
-	public java.lang.String getOnIndexChange() {
+	public java.lang.Object getOnIndexChange() {
 		return _onIndexChange;
 	}
 
-	public java.lang.String getOnInit() {
+	public java.lang.Object getOnInit() {
 		return _onInit;
 	}
 
-	public java.lang.String getOnInitializedChange() {
+	public java.lang.Object getOnInitializedChange() {
 		return _onInitializedChange;
 	}
 
-	public java.lang.String getOnIoChange() {
+	public java.lang.Object getOnIoChange() {
 		return _onIoChange;
 	}
 
-	public java.lang.String getOnLastSelectedChange() {
+	public java.lang.Object getOnLastSelectedChange() {
 		return _onLastSelectedChange;
 	}
 
-	public java.lang.String getOnTypeChange() {
+	public java.lang.Object getOnTypeChange() {
 		return _onTypeChange;
 	}
 
@@ -142,7 +142,7 @@ public class BaseTreeViewTag extends IncludeTag {
 		setScopedAttribute("children", children);
 	}
 
-	public void setContainer(java.lang.String container) {
+	public void setContainer(java.lang.Object container) {
 		_container = container;
 
 		setScopedAttribute("container", container);
@@ -172,133 +172,133 @@ public class BaseTreeViewTag extends IncludeTag {
 		setScopedAttribute("io", io);
 	}
 
-	public void setLastSelected(java.lang.String lastSelected) {
+	public void setLastSelected(java.lang.Object lastSelected) {
 		_lastSelected = lastSelected;
 
 		setScopedAttribute("lastSelected", lastSelected);
 	}
 
-	public void setType(java.lang.String type) {
+	public void setType(java.lang.Object type) {
 		_type = type;
 
 		setScopedAttribute("type", type);
 	}
 
-	public void setAfterChildrenChange(java.lang.String afterChildrenChange) {
+	public void setAfterChildrenChange(java.lang.Object afterChildrenChange) {
 		_afterChildrenChange = afterChildrenChange;
 
 		setScopedAttribute("afterChildrenChange", afterChildrenChange);
 	}
 
-	public void setAfterContainerChange(java.lang.String afterContainerChange) {
+	public void setAfterContainerChange(java.lang.Object afterContainerChange) {
 		_afterContainerChange = afterContainerChange;
 
 		setScopedAttribute("afterContainerChange", afterContainerChange);
 	}
 
-	public void setAfterDestroy(java.lang.String afterDestroy) {
+	public void setAfterDestroy(java.lang.Object afterDestroy) {
 		_afterDestroy = afterDestroy;
 
 		setScopedAttribute("afterDestroy", afterDestroy);
 	}
 
-	public void setAfterDestroyedChange(java.lang.String afterDestroyedChange) {
+	public void setAfterDestroyedChange(java.lang.Object afterDestroyedChange) {
 		_afterDestroyedChange = afterDestroyedChange;
 
 		setScopedAttribute("afterDestroyedChange", afterDestroyedChange);
 	}
 
-	public void setAfterIndexChange(java.lang.String afterIndexChange) {
+	public void setAfterIndexChange(java.lang.Object afterIndexChange) {
 		_afterIndexChange = afterIndexChange;
 
 		setScopedAttribute("afterIndexChange", afterIndexChange);
 	}
 
-	public void setAfterInit(java.lang.String afterInit) {
+	public void setAfterInit(java.lang.Object afterInit) {
 		_afterInit = afterInit;
 
 		setScopedAttribute("afterInit", afterInit);
 	}
 
-	public void setAfterInitializedChange(java.lang.String afterInitializedChange) {
+	public void setAfterInitializedChange(java.lang.Object afterInitializedChange) {
 		_afterInitializedChange = afterInitializedChange;
 
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
-	public void setAfterIoChange(java.lang.String afterIoChange) {
+	public void setAfterIoChange(java.lang.Object afterIoChange) {
 		_afterIoChange = afterIoChange;
 
 		setScopedAttribute("afterIoChange", afterIoChange);
 	}
 
-	public void setAfterLastSelectedChange(java.lang.String afterLastSelectedChange) {
+	public void setAfterLastSelectedChange(java.lang.Object afterLastSelectedChange) {
 		_afterLastSelectedChange = afterLastSelectedChange;
 
 		setScopedAttribute("afterLastSelectedChange", afterLastSelectedChange);
 	}
 
-	public void setAfterTypeChange(java.lang.String afterTypeChange) {
+	public void setAfterTypeChange(java.lang.Object afterTypeChange) {
 		_afterTypeChange = afterTypeChange;
 
 		setScopedAttribute("afterTypeChange", afterTypeChange);
 	}
 
-	public void setOnChildrenChange(java.lang.String onChildrenChange) {
+	public void setOnChildrenChange(java.lang.Object onChildrenChange) {
 		_onChildrenChange = onChildrenChange;
 
 		setScopedAttribute("onChildrenChange", onChildrenChange);
 	}
 
-	public void setOnContainerChange(java.lang.String onContainerChange) {
+	public void setOnContainerChange(java.lang.Object onContainerChange) {
 		_onContainerChange = onContainerChange;
 
 		setScopedAttribute("onContainerChange", onContainerChange);
 	}
 
-	public void setOnDestroy(java.lang.String onDestroy) {
+	public void setOnDestroy(java.lang.Object onDestroy) {
 		_onDestroy = onDestroy;
 
 		setScopedAttribute("onDestroy", onDestroy);
 	}
 
-	public void setOnDestroyedChange(java.lang.String onDestroyedChange) {
+	public void setOnDestroyedChange(java.lang.Object onDestroyedChange) {
 		_onDestroyedChange = onDestroyedChange;
 
 		setScopedAttribute("onDestroyedChange", onDestroyedChange);
 	}
 
-	public void setOnIndexChange(java.lang.String onIndexChange) {
+	public void setOnIndexChange(java.lang.Object onIndexChange) {
 		_onIndexChange = onIndexChange;
 
 		setScopedAttribute("onIndexChange", onIndexChange);
 	}
 
-	public void setOnInit(java.lang.String onInit) {
+	public void setOnInit(java.lang.Object onInit) {
 		_onInit = onInit;
 
 		setScopedAttribute("onInit", onInit);
 	}
 
-	public void setOnInitializedChange(java.lang.String onInitializedChange) {
+	public void setOnInitializedChange(java.lang.Object onInitializedChange) {
 		_onInitializedChange = onInitializedChange;
 
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
-	public void setOnIoChange(java.lang.String onIoChange) {
+	public void setOnIoChange(java.lang.Object onIoChange) {
 		_onIoChange = onIoChange;
 
 		setScopedAttribute("onIoChange", onIoChange);
 	}
 
-	public void setOnLastSelectedChange(java.lang.String onLastSelectedChange) {
+	public void setOnLastSelectedChange(java.lang.Object onLastSelectedChange) {
 		_onLastSelectedChange = onLastSelectedChange;
 
 		setScopedAttribute("onLastSelectedChange", onLastSelectedChange);
 	}
 
-	public void setOnTypeChange(java.lang.String onTypeChange) {
+	public void setOnTypeChange(java.lang.Object onTypeChange) {
 		_onTypeChange = onTypeChange;
 
 		setScopedAttribute("onTypeChange", onTypeChange);
@@ -341,32 +341,32 @@ public class BaseTreeViewTag extends IncludeTag {
 		"/html/taglib/alloy/tree_view/page.jsp";
 
 	private java.lang.Object _children;
-	private java.lang.String _container;
+	private java.lang.Object _container;
 	private java.lang.String _destroyed;
 	private java.lang.Object _index;
 	private java.lang.String _initialized;
 	private java.lang.Object _io;
-	private java.lang.String _lastSelected;
-	private java.lang.String _type;
-	private java.lang.String _afterChildrenChange;
-	private java.lang.String _afterContainerChange;
-	private java.lang.String _afterDestroy;
-	private java.lang.String _afterDestroyedChange;
-	private java.lang.String _afterIndexChange;
-	private java.lang.String _afterInit;
-	private java.lang.String _afterInitializedChange;
-	private java.lang.String _afterIoChange;
-	private java.lang.String _afterLastSelectedChange;
-	private java.lang.String _afterTypeChange;
-	private java.lang.String _onChildrenChange;
-	private java.lang.String _onContainerChange;
-	private java.lang.String _onDestroy;
-	private java.lang.String _onDestroyedChange;
-	private java.lang.String _onIndexChange;
-	private java.lang.String _onInit;
-	private java.lang.String _onInitializedChange;
-	private java.lang.String _onIoChange;
-	private java.lang.String _onLastSelectedChange;
-	private java.lang.String _onTypeChange;
+	private java.lang.Object _lastSelected;
+	private java.lang.Object _type;
+	private java.lang.Object _afterChildrenChange;
+	private java.lang.Object _afterContainerChange;
+	private java.lang.Object _afterDestroy;
+	private java.lang.Object _afterDestroyedChange;
+	private java.lang.Object _afterIndexChange;
+	private java.lang.Object _afterInit;
+	private java.lang.Object _afterInitializedChange;
+	private java.lang.Object _afterIoChange;
+	private java.lang.Object _afterLastSelectedChange;
+	private java.lang.Object _afterTypeChange;
+	private java.lang.Object _onChildrenChange;
+	private java.lang.Object _onContainerChange;
+	private java.lang.Object _onDestroy;
+	private java.lang.Object _onDestroyedChange;
+	private java.lang.Object _onIndexChange;
+	private java.lang.Object _onInit;
+	private java.lang.Object _onInitializedChange;
+	private java.lang.Object _onIoChange;
+	private java.lang.Object _onLastSelectedChange;
+	private java.lang.Object _onTypeChange;
 
 }

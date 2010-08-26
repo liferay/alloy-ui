@@ -24,11 +24,11 @@ public class BasePanelTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.String getPanelBodyContent() {
+	public java.lang.Object getPanelBodyContent() {
 		return _panelBodyContent;
 	}
 
-	public java.lang.String getBoundingBox() {
+	public java.lang.Object getBoundingBox() {
 		return _boundingBox;
 	}
 
@@ -40,11 +40,11 @@ public class BasePanelTag extends IncludeTag {
 		return _collapsible;
 	}
 
-	public java.lang.String getContentBox() {
+	public java.lang.Object getContentBox() {
 		return _contentBox;
 	}
 
-	public java.lang.String getCssClass() {
+	public java.lang.Object getCssClass() {
 		return _cssClass;
 	}
 
@@ -56,7 +56,7 @@ public class BasePanelTag extends IncludeTag {
 		return _disabled;
 	}
 
-	public java.lang.String getFillHeight() {
+	public java.lang.Object getFillHeight() {
 		return _fillHeight;
 	}
 
@@ -64,19 +64,19 @@ public class BasePanelTag extends IncludeTag {
 		return _focused;
 	}
 
-	public java.lang.String getFooterContent() {
+	public java.lang.Object getFooterContent() {
 		return _footerContent;
 	}
 
-	public java.lang.String getHeaderContent() {
+	public java.lang.Object getHeaderContent() {
 		return _headerContent;
 	}
 
-	public java.lang.String getHeight() {
+	public java.lang.Object getHeight() {
 		return _height;
 	}
 
-	public java.lang.String getHideClass() {
+	public java.lang.Object getHideClass() {
 		return _hideClass;
 	}
 
@@ -84,7 +84,7 @@ public class BasePanelTag extends IncludeTag {
 		return _icons;
 	}
 
-	public java.lang.String getPanelId() {
+	public java.lang.Object getPanelId() {
 		return _panelId;
 	}
 
@@ -100,7 +100,7 @@ public class BasePanelTag extends IncludeTag {
 		return _rendered;
 	}
 
-	public java.lang.String getSrcNode() {
+	public java.lang.Object getSrcNode() {
 		return _srcNode;
 	}
 
@@ -112,7 +112,7 @@ public class BasePanelTag extends IncludeTag {
 		return _tabIndex;
 	}
 
-	public java.lang.String getTitle() {
+	public java.lang.Object getTitle() {
 		return _title;
 	}
 
@@ -120,249 +120,249 @@ public class BasePanelTag extends IncludeTag {
 		return _visible;
 	}
 
-	public java.lang.String getWidth() {
+	public java.lang.Object getWidth() {
 		return _width;
 	}
 
-	public java.lang.String getAfterBodyContentChange() {
+	public java.lang.Object getAfterBodyContentChange() {
 		return _afterBodyContentChange;
 	}
 
-	public java.lang.String getAfterBoundingBoxChange() {
+	public java.lang.Object getAfterBoundingBoxChange() {
 		return _afterBoundingBoxChange;
 	}
 
-	public java.lang.String getAfterCollapsedChange() {
+	public java.lang.Object getAfterCollapsedChange() {
 		return _afterCollapsedChange;
 	}
 
-	public java.lang.String getAfterCollapsibleChange() {
+	public java.lang.Object getAfterCollapsibleChange() {
 		return _afterCollapsibleChange;
 	}
 
-	public java.lang.String getAfterContentBoxChange() {
+	public java.lang.Object getAfterContentBoxChange() {
 		return _afterContentBoxChange;
 	}
 
-	public java.lang.String getAfterCssClassChange() {
+	public java.lang.Object getAfterCssClassChange() {
 		return _afterCssClassChange;
 	}
 
-	public java.lang.String getAfterDestroy() {
+	public java.lang.Object getAfterDestroy() {
 		return _afterDestroy;
 	}
 
-	public java.lang.String getAfterDestroyedChange() {
+	public java.lang.Object getAfterDestroyedChange() {
 		return _afterDestroyedChange;
 	}
 
-	public java.lang.String getAfterDisabledChange() {
+	public java.lang.Object getAfterDisabledChange() {
 		return _afterDisabledChange;
 	}
 
-	public java.lang.String getAfterFillHeightChange() {
+	public java.lang.Object getAfterFillHeightChange() {
 		return _afterFillHeightChange;
 	}
 
-	public java.lang.String getAfterFocusedChange() {
+	public java.lang.Object getAfterFocusedChange() {
 		return _afterFocusedChange;
 	}
 
-	public java.lang.String getAfterFooterContentChange() {
+	public java.lang.Object getAfterFooterContentChange() {
 		return _afterFooterContentChange;
 	}
 
-	public java.lang.String getAfterHeaderContentChange() {
+	public java.lang.Object getAfterHeaderContentChange() {
 		return _afterHeaderContentChange;
 	}
 
-	public java.lang.String getAfterHeightChange() {
+	public java.lang.Object getAfterHeightChange() {
 		return _afterHeightChange;
 	}
 
-	public java.lang.String getAfterHideClassChange() {
+	public java.lang.Object getAfterHideClassChange() {
 		return _afterHideClassChange;
 	}
 
-	public java.lang.String getAfterIconsChange() {
+	public java.lang.Object getAfterIconsChange() {
 		return _afterIconsChange;
 	}
 
-	public java.lang.String getAfterIdChange() {
+	public java.lang.Object getAfterIdChange() {
 		return _afterIdChange;
 	}
 
-	public java.lang.String getAfterInit() {
+	public java.lang.Object getAfterInit() {
 		return _afterInit;
 	}
 
-	public java.lang.String getAfterInitializedChange() {
+	public java.lang.Object getAfterInitializedChange() {
 		return _afterInitializedChange;
 	}
 
-	public java.lang.String getAfterRenderChange() {
+	public java.lang.Object getAfterRenderChange() {
 		return _afterRenderChange;
 	}
 
-	public java.lang.String getAfterRenderedChange() {
+	public java.lang.Object getAfterRenderedChange() {
 		return _afterRenderedChange;
 	}
 
-	public java.lang.String getAfterSrcNodeChange() {
+	public java.lang.Object getAfterSrcNodeChange() {
 		return _afterSrcNodeChange;
 	}
 
-	public java.lang.String getAfterStringsChange() {
+	public java.lang.Object getAfterStringsChange() {
 		return _afterStringsChange;
 	}
 
-	public java.lang.String getAfterTabIndexChange() {
+	public java.lang.Object getAfterTabIndexChange() {
 		return _afterTabIndexChange;
 	}
 
-	public java.lang.String getAfterTitleChange() {
+	public java.lang.Object getAfterTitleChange() {
 		return _afterTitleChange;
 	}
 
-	public java.lang.String getAfterVisibleChange() {
+	public java.lang.Object getAfterVisibleChange() {
 		return _afterVisibleChange;
 	}
 
-	public java.lang.String getAfterContentUpdate() {
+	public java.lang.Object getAfterContentUpdate() {
 		return _afterContentUpdate;
 	}
 
-	public java.lang.String getAfterRender() {
+	public java.lang.Object getAfterRender() {
 		return _afterRender;
 	}
 
-	public java.lang.String getAfterWidthChange() {
+	public java.lang.Object getAfterWidthChange() {
 		return _afterWidthChange;
 	}
 
-	public java.lang.String getOnBodyContentChange() {
+	public java.lang.Object getOnBodyContentChange() {
 		return _onBodyContentChange;
 	}
 
-	public java.lang.String getOnBoundingBoxChange() {
+	public java.lang.Object getOnBoundingBoxChange() {
 		return _onBoundingBoxChange;
 	}
 
-	public java.lang.String getOnCollapsedChange() {
+	public java.lang.Object getOnCollapsedChange() {
 		return _onCollapsedChange;
 	}
 
-	public java.lang.String getOnCollapsibleChange() {
+	public java.lang.Object getOnCollapsibleChange() {
 		return _onCollapsibleChange;
 	}
 
-	public java.lang.String getOnContentBoxChange() {
+	public java.lang.Object getOnContentBoxChange() {
 		return _onContentBoxChange;
 	}
 
-	public java.lang.String getOnCssClassChange() {
+	public java.lang.Object getOnCssClassChange() {
 		return _onCssClassChange;
 	}
 
-	public java.lang.String getOnDestroy() {
+	public java.lang.Object getOnDestroy() {
 		return _onDestroy;
 	}
 
-	public java.lang.String getOnDestroyedChange() {
+	public java.lang.Object getOnDestroyedChange() {
 		return _onDestroyedChange;
 	}
 
-	public java.lang.String getOnDisabledChange() {
+	public java.lang.Object getOnDisabledChange() {
 		return _onDisabledChange;
 	}
 
-	public java.lang.String getOnFillHeightChange() {
+	public java.lang.Object getOnFillHeightChange() {
 		return _onFillHeightChange;
 	}
 
-	public java.lang.String getOnFocusedChange() {
+	public java.lang.Object getOnFocusedChange() {
 		return _onFocusedChange;
 	}
 
-	public java.lang.String getOnFooterContentChange() {
+	public java.lang.Object getOnFooterContentChange() {
 		return _onFooterContentChange;
 	}
 
-	public java.lang.String getOnHeaderContentChange() {
+	public java.lang.Object getOnHeaderContentChange() {
 		return _onHeaderContentChange;
 	}
 
-	public java.lang.String getOnHeightChange() {
+	public java.lang.Object getOnHeightChange() {
 		return _onHeightChange;
 	}
 
-	public java.lang.String getOnHideClassChange() {
+	public java.lang.Object getOnHideClassChange() {
 		return _onHideClassChange;
 	}
 
-	public java.lang.String getOnIconsChange() {
+	public java.lang.Object getOnIconsChange() {
 		return _onIconsChange;
 	}
 
-	public java.lang.String getOnIdChange() {
+	public java.lang.Object getOnIdChange() {
 		return _onIdChange;
 	}
 
-	public java.lang.String getOnInit() {
+	public java.lang.Object getOnInit() {
 		return _onInit;
 	}
 
-	public java.lang.String getOnInitializedChange() {
+	public java.lang.Object getOnInitializedChange() {
 		return _onInitializedChange;
 	}
 
-	public java.lang.String getOnRenderChange() {
+	public java.lang.Object getOnRenderChange() {
 		return _onRenderChange;
 	}
 
-	public java.lang.String getOnRenderedChange() {
+	public java.lang.Object getOnRenderedChange() {
 		return _onRenderedChange;
 	}
 
-	public java.lang.String getOnSrcNodeChange() {
+	public java.lang.Object getOnSrcNodeChange() {
 		return _onSrcNodeChange;
 	}
 
-	public java.lang.String getOnStringsChange() {
+	public java.lang.Object getOnStringsChange() {
 		return _onStringsChange;
 	}
 
-	public java.lang.String getOnTabIndexChange() {
+	public java.lang.Object getOnTabIndexChange() {
 		return _onTabIndexChange;
 	}
 
-	public java.lang.String getOnTitleChange() {
+	public java.lang.Object getOnTitleChange() {
 		return _onTitleChange;
 	}
 
-	public java.lang.String getOnVisibleChange() {
+	public java.lang.Object getOnVisibleChange() {
 		return _onVisibleChange;
 	}
 
-	public java.lang.String getOnContentUpdate() {
+	public java.lang.Object getOnContentUpdate() {
 		return _onContentUpdate;
 	}
 
-	public java.lang.String getOnRender() {
+	public java.lang.Object getOnRender() {
 		return _onRender;
 	}
 
-	public java.lang.String getOnWidthChange() {
+	public java.lang.Object getOnWidthChange() {
 		return _onWidthChange;
 	}
 
-	public void setPanelBodyContent(java.lang.String panelBodyContent) {
+	public void setPanelBodyContent(java.lang.Object panelBodyContent) {
 		_panelBodyContent = panelBodyContent;
 
 		setScopedAttribute("panelBodyContent", panelBodyContent);
 	}
 
-	public void setBoundingBox(java.lang.String boundingBox) {
+	public void setBoundingBox(java.lang.Object boundingBox) {
 		_boundingBox = boundingBox;
 
 		setScopedAttribute("boundingBox", boundingBox);
@@ -380,13 +380,13 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("collapsible", collapsible);
 	}
 
-	public void setContentBox(java.lang.String contentBox) {
+	public void setContentBox(java.lang.Object contentBox) {
 		_contentBox = contentBox;
 
 		setScopedAttribute("contentBox", contentBox);
 	}
 
-	public void setCssClass(java.lang.String cssClass) {
+	public void setCssClass(java.lang.Object cssClass) {
 		_cssClass = cssClass;
 
 		setScopedAttribute("cssClass", cssClass);
@@ -404,7 +404,7 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("disabled", disabled);
 	}
 
-	public void setFillHeight(java.lang.String fillHeight) {
+	public void setFillHeight(java.lang.Object fillHeight) {
 		_fillHeight = fillHeight;
 
 		setScopedAttribute("fillHeight", fillHeight);
@@ -416,25 +416,25 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("focused", focused);
 	}
 
-	public void setFooterContent(java.lang.String footerContent) {
+	public void setFooterContent(java.lang.Object footerContent) {
 		_footerContent = footerContent;
 
 		setScopedAttribute("footerContent", footerContent);
 	}
 
-	public void setHeaderContent(java.lang.String headerContent) {
+	public void setHeaderContent(java.lang.Object headerContent) {
 		_headerContent = headerContent;
 
 		setScopedAttribute("headerContent", headerContent);
 	}
 
-	public void setHeight(java.lang.String height) {
+	public void setHeight(java.lang.Object height) {
 		_height = height;
 
 		setScopedAttribute("height", height);
 	}
 
-	public void setHideClass(java.lang.String hideClass) {
+	public void setHideClass(java.lang.Object hideClass) {
 		_hideClass = hideClass;
 
 		setScopedAttribute("hideClass", hideClass);
@@ -446,7 +446,7 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("icons", icons);
 	}
 
-	public void setPanelId(java.lang.String panelId) {
+	public void setPanelId(java.lang.Object panelId) {
 		_panelId = panelId;
 
 		setScopedAttribute("panelId", panelId);
@@ -470,7 +470,7 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setSrcNode(java.lang.String srcNode) {
+	public void setSrcNode(java.lang.Object srcNode) {
 		_srcNode = srcNode;
 
 		setScopedAttribute("srcNode", srcNode);
@@ -488,7 +488,7 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("tabIndex", tabIndex);
 	}
 
-	public void setTitle(java.lang.String title) {
+	public void setTitle(java.lang.Object title) {
 		_title = title;
 
 		setScopedAttribute("title", title);
@@ -500,355 +500,355 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("visible", visible);
 	}
 
-	public void setWidth(java.lang.String width) {
+	public void setWidth(java.lang.Object width) {
 		_width = width;
 
 		setScopedAttribute("width", width);
 	}
 
-	public void setAfterBodyContentChange(java.lang.String afterBodyContentChange) {
+	public void setAfterBodyContentChange(java.lang.Object afterBodyContentChange) {
 		_afterBodyContentChange = afterBodyContentChange;
 
 		setScopedAttribute("afterBodyContentChange", afterBodyContentChange);
 	}
 
-	public void setAfterBoundingBoxChange(java.lang.String afterBoundingBoxChange) {
+	public void setAfterBoundingBoxChange(java.lang.Object afterBoundingBoxChange) {
 		_afterBoundingBoxChange = afterBoundingBoxChange;
 
 		setScopedAttribute("afterBoundingBoxChange", afterBoundingBoxChange);
 	}
 
-	public void setAfterCollapsedChange(java.lang.String afterCollapsedChange) {
+	public void setAfterCollapsedChange(java.lang.Object afterCollapsedChange) {
 		_afterCollapsedChange = afterCollapsedChange;
 
 		setScopedAttribute("afterCollapsedChange", afterCollapsedChange);
 	}
 
-	public void setAfterCollapsibleChange(java.lang.String afterCollapsibleChange) {
+	public void setAfterCollapsibleChange(java.lang.Object afterCollapsibleChange) {
 		_afterCollapsibleChange = afterCollapsibleChange;
 
 		setScopedAttribute("afterCollapsibleChange", afterCollapsibleChange);
 	}
 
-	public void setAfterContentBoxChange(java.lang.String afterContentBoxChange) {
+	public void setAfterContentBoxChange(java.lang.Object afterContentBoxChange) {
 		_afterContentBoxChange = afterContentBoxChange;
 
 		setScopedAttribute("afterContentBoxChange", afterContentBoxChange);
 	}
 
-	public void setAfterCssClassChange(java.lang.String afterCssClassChange) {
+	public void setAfterCssClassChange(java.lang.Object afterCssClassChange) {
 		_afterCssClassChange = afterCssClassChange;
 
 		setScopedAttribute("afterCssClassChange", afterCssClassChange);
 	}
 
-	public void setAfterDestroy(java.lang.String afterDestroy) {
+	public void setAfterDestroy(java.lang.Object afterDestroy) {
 		_afterDestroy = afterDestroy;
 
 		setScopedAttribute("afterDestroy", afterDestroy);
 	}
 
-	public void setAfterDestroyedChange(java.lang.String afterDestroyedChange) {
+	public void setAfterDestroyedChange(java.lang.Object afterDestroyedChange) {
 		_afterDestroyedChange = afterDestroyedChange;
 
 		setScopedAttribute("afterDestroyedChange", afterDestroyedChange);
 	}
 
-	public void setAfterDisabledChange(java.lang.String afterDisabledChange) {
+	public void setAfterDisabledChange(java.lang.Object afterDisabledChange) {
 		_afterDisabledChange = afterDisabledChange;
 
 		setScopedAttribute("afterDisabledChange", afterDisabledChange);
 	}
 
-	public void setAfterFillHeightChange(java.lang.String afterFillHeightChange) {
+	public void setAfterFillHeightChange(java.lang.Object afterFillHeightChange) {
 		_afterFillHeightChange = afterFillHeightChange;
 
 		setScopedAttribute("afterFillHeightChange", afterFillHeightChange);
 	}
 
-	public void setAfterFocusedChange(java.lang.String afterFocusedChange) {
+	public void setAfterFocusedChange(java.lang.Object afterFocusedChange) {
 		_afterFocusedChange = afterFocusedChange;
 
 		setScopedAttribute("afterFocusedChange", afterFocusedChange);
 	}
 
-	public void setAfterFooterContentChange(java.lang.String afterFooterContentChange) {
+	public void setAfterFooterContentChange(java.lang.Object afterFooterContentChange) {
 		_afterFooterContentChange = afterFooterContentChange;
 
 		setScopedAttribute("afterFooterContentChange", afterFooterContentChange);
 	}
 
-	public void setAfterHeaderContentChange(java.lang.String afterHeaderContentChange) {
+	public void setAfterHeaderContentChange(java.lang.Object afterHeaderContentChange) {
 		_afterHeaderContentChange = afterHeaderContentChange;
 
 		setScopedAttribute("afterHeaderContentChange", afterHeaderContentChange);
 	}
 
-	public void setAfterHeightChange(java.lang.String afterHeightChange) {
+	public void setAfterHeightChange(java.lang.Object afterHeightChange) {
 		_afterHeightChange = afterHeightChange;
 
 		setScopedAttribute("afterHeightChange", afterHeightChange);
 	}
 
-	public void setAfterHideClassChange(java.lang.String afterHideClassChange) {
+	public void setAfterHideClassChange(java.lang.Object afterHideClassChange) {
 		_afterHideClassChange = afterHideClassChange;
 
 		setScopedAttribute("afterHideClassChange", afterHideClassChange);
 	}
 
-	public void setAfterIconsChange(java.lang.String afterIconsChange) {
+	public void setAfterIconsChange(java.lang.Object afterIconsChange) {
 		_afterIconsChange = afterIconsChange;
 
 		setScopedAttribute("afterIconsChange", afterIconsChange);
 	}
 
-	public void setAfterIdChange(java.lang.String afterIdChange) {
+	public void setAfterIdChange(java.lang.Object afterIdChange) {
 		_afterIdChange = afterIdChange;
 
 		setScopedAttribute("afterIdChange", afterIdChange);
 	}
 
-	public void setAfterInit(java.lang.String afterInit) {
+	public void setAfterInit(java.lang.Object afterInit) {
 		_afterInit = afterInit;
 
 		setScopedAttribute("afterInit", afterInit);
 	}
 
-	public void setAfterInitializedChange(java.lang.String afterInitializedChange) {
+	public void setAfterInitializedChange(java.lang.Object afterInitializedChange) {
 		_afterInitializedChange = afterInitializedChange;
 
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
-	public void setAfterRenderChange(java.lang.String afterRenderChange) {
+	public void setAfterRenderChange(java.lang.Object afterRenderChange) {
 		_afterRenderChange = afterRenderChange;
 
 		setScopedAttribute("afterRenderChange", afterRenderChange);
 	}
 
-	public void setAfterRenderedChange(java.lang.String afterRenderedChange) {
+	public void setAfterRenderedChange(java.lang.Object afterRenderedChange) {
 		_afterRenderedChange = afterRenderedChange;
 
 		setScopedAttribute("afterRenderedChange", afterRenderedChange);
 	}
 
-	public void setAfterSrcNodeChange(java.lang.String afterSrcNodeChange) {
+	public void setAfterSrcNodeChange(java.lang.Object afterSrcNodeChange) {
 		_afterSrcNodeChange = afterSrcNodeChange;
 
 		setScopedAttribute("afterSrcNodeChange", afterSrcNodeChange);
 	}
 
-	public void setAfterStringsChange(java.lang.String afterStringsChange) {
+	public void setAfterStringsChange(java.lang.Object afterStringsChange) {
 		_afterStringsChange = afterStringsChange;
 
 		setScopedAttribute("afterStringsChange", afterStringsChange);
 	}
 
-	public void setAfterTabIndexChange(java.lang.String afterTabIndexChange) {
+	public void setAfterTabIndexChange(java.lang.Object afterTabIndexChange) {
 		_afterTabIndexChange = afterTabIndexChange;
 
 		setScopedAttribute("afterTabIndexChange", afterTabIndexChange);
 	}
 
-	public void setAfterTitleChange(java.lang.String afterTitleChange) {
+	public void setAfterTitleChange(java.lang.Object afterTitleChange) {
 		_afterTitleChange = afterTitleChange;
 
 		setScopedAttribute("afterTitleChange", afterTitleChange);
 	}
 
-	public void setAfterVisibleChange(java.lang.String afterVisibleChange) {
+	public void setAfterVisibleChange(java.lang.Object afterVisibleChange) {
 		_afterVisibleChange = afterVisibleChange;
 
 		setScopedAttribute("afterVisibleChange", afterVisibleChange);
 	}
 
-	public void setAfterContentUpdate(java.lang.String afterContentUpdate) {
+	public void setAfterContentUpdate(java.lang.Object afterContentUpdate) {
 		_afterContentUpdate = afterContentUpdate;
 
 		setScopedAttribute("afterContentUpdate", afterContentUpdate);
 	}
 
-	public void setAfterRender(java.lang.String afterRender) {
+	public void setAfterRender(java.lang.Object afterRender) {
 		_afterRender = afterRender;
 
 		setScopedAttribute("afterRender", afterRender);
 	}
 
-	public void setAfterWidthChange(java.lang.String afterWidthChange) {
+	public void setAfterWidthChange(java.lang.Object afterWidthChange) {
 		_afterWidthChange = afterWidthChange;
 
 		setScopedAttribute("afterWidthChange", afterWidthChange);
 	}
 
-	public void setOnBodyContentChange(java.lang.String onBodyContentChange) {
+	public void setOnBodyContentChange(java.lang.Object onBodyContentChange) {
 		_onBodyContentChange = onBodyContentChange;
 
 		setScopedAttribute("onBodyContentChange", onBodyContentChange);
 	}
 
-	public void setOnBoundingBoxChange(java.lang.String onBoundingBoxChange) {
+	public void setOnBoundingBoxChange(java.lang.Object onBoundingBoxChange) {
 		_onBoundingBoxChange = onBoundingBoxChange;
 
 		setScopedAttribute("onBoundingBoxChange", onBoundingBoxChange);
 	}
 
-	public void setOnCollapsedChange(java.lang.String onCollapsedChange) {
+	public void setOnCollapsedChange(java.lang.Object onCollapsedChange) {
 		_onCollapsedChange = onCollapsedChange;
 
 		setScopedAttribute("onCollapsedChange", onCollapsedChange);
 	}
 
-	public void setOnCollapsibleChange(java.lang.String onCollapsibleChange) {
+	public void setOnCollapsibleChange(java.lang.Object onCollapsibleChange) {
 		_onCollapsibleChange = onCollapsibleChange;
 
 		setScopedAttribute("onCollapsibleChange", onCollapsibleChange);
 	}
 
-	public void setOnContentBoxChange(java.lang.String onContentBoxChange) {
+	public void setOnContentBoxChange(java.lang.Object onContentBoxChange) {
 		_onContentBoxChange = onContentBoxChange;
 
 		setScopedAttribute("onContentBoxChange", onContentBoxChange);
 	}
 
-	public void setOnCssClassChange(java.lang.String onCssClassChange) {
+	public void setOnCssClassChange(java.lang.Object onCssClassChange) {
 		_onCssClassChange = onCssClassChange;
 
 		setScopedAttribute("onCssClassChange", onCssClassChange);
 	}
 
-	public void setOnDestroy(java.lang.String onDestroy) {
+	public void setOnDestroy(java.lang.Object onDestroy) {
 		_onDestroy = onDestroy;
 
 		setScopedAttribute("onDestroy", onDestroy);
 	}
 
-	public void setOnDestroyedChange(java.lang.String onDestroyedChange) {
+	public void setOnDestroyedChange(java.lang.Object onDestroyedChange) {
 		_onDestroyedChange = onDestroyedChange;
 
 		setScopedAttribute("onDestroyedChange", onDestroyedChange);
 	}
 
-	public void setOnDisabledChange(java.lang.String onDisabledChange) {
+	public void setOnDisabledChange(java.lang.Object onDisabledChange) {
 		_onDisabledChange = onDisabledChange;
 
 		setScopedAttribute("onDisabledChange", onDisabledChange);
 	}
 
-	public void setOnFillHeightChange(java.lang.String onFillHeightChange) {
+	public void setOnFillHeightChange(java.lang.Object onFillHeightChange) {
 		_onFillHeightChange = onFillHeightChange;
 
 		setScopedAttribute("onFillHeightChange", onFillHeightChange);
 	}
 
-	public void setOnFocusedChange(java.lang.String onFocusedChange) {
+	public void setOnFocusedChange(java.lang.Object onFocusedChange) {
 		_onFocusedChange = onFocusedChange;
 
 		setScopedAttribute("onFocusedChange", onFocusedChange);
 	}
 
-	public void setOnFooterContentChange(java.lang.String onFooterContentChange) {
+	public void setOnFooterContentChange(java.lang.Object onFooterContentChange) {
 		_onFooterContentChange = onFooterContentChange;
 
 		setScopedAttribute("onFooterContentChange", onFooterContentChange);
 	}
 
-	public void setOnHeaderContentChange(java.lang.String onHeaderContentChange) {
+	public void setOnHeaderContentChange(java.lang.Object onHeaderContentChange) {
 		_onHeaderContentChange = onHeaderContentChange;
 
 		setScopedAttribute("onHeaderContentChange", onHeaderContentChange);
 	}
 
-	public void setOnHeightChange(java.lang.String onHeightChange) {
+	public void setOnHeightChange(java.lang.Object onHeightChange) {
 		_onHeightChange = onHeightChange;
 
 		setScopedAttribute("onHeightChange", onHeightChange);
 	}
 
-	public void setOnHideClassChange(java.lang.String onHideClassChange) {
+	public void setOnHideClassChange(java.lang.Object onHideClassChange) {
 		_onHideClassChange = onHideClassChange;
 
 		setScopedAttribute("onHideClassChange", onHideClassChange);
 	}
 
-	public void setOnIconsChange(java.lang.String onIconsChange) {
+	public void setOnIconsChange(java.lang.Object onIconsChange) {
 		_onIconsChange = onIconsChange;
 
 		setScopedAttribute("onIconsChange", onIconsChange);
 	}
 
-	public void setOnIdChange(java.lang.String onIdChange) {
+	public void setOnIdChange(java.lang.Object onIdChange) {
 		_onIdChange = onIdChange;
 
 		setScopedAttribute("onIdChange", onIdChange);
 	}
 
-	public void setOnInit(java.lang.String onInit) {
+	public void setOnInit(java.lang.Object onInit) {
 		_onInit = onInit;
 
 		setScopedAttribute("onInit", onInit);
 	}
 
-	public void setOnInitializedChange(java.lang.String onInitializedChange) {
+	public void setOnInitializedChange(java.lang.Object onInitializedChange) {
 		_onInitializedChange = onInitializedChange;
 
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
-	public void setOnRenderChange(java.lang.String onRenderChange) {
+	public void setOnRenderChange(java.lang.Object onRenderChange) {
 		_onRenderChange = onRenderChange;
 
 		setScopedAttribute("onRenderChange", onRenderChange);
 	}
 
-	public void setOnRenderedChange(java.lang.String onRenderedChange) {
+	public void setOnRenderedChange(java.lang.Object onRenderedChange) {
 		_onRenderedChange = onRenderedChange;
 
 		setScopedAttribute("onRenderedChange", onRenderedChange);
 	}
 
-	public void setOnSrcNodeChange(java.lang.String onSrcNodeChange) {
+	public void setOnSrcNodeChange(java.lang.Object onSrcNodeChange) {
 		_onSrcNodeChange = onSrcNodeChange;
 
 		setScopedAttribute("onSrcNodeChange", onSrcNodeChange);
 	}
 
-	public void setOnStringsChange(java.lang.String onStringsChange) {
+	public void setOnStringsChange(java.lang.Object onStringsChange) {
 		_onStringsChange = onStringsChange;
 
 		setScopedAttribute("onStringsChange", onStringsChange);
 	}
 
-	public void setOnTabIndexChange(java.lang.String onTabIndexChange) {
+	public void setOnTabIndexChange(java.lang.Object onTabIndexChange) {
 		_onTabIndexChange = onTabIndexChange;
 
 		setScopedAttribute("onTabIndexChange", onTabIndexChange);
 	}
 
-	public void setOnTitleChange(java.lang.String onTitleChange) {
+	public void setOnTitleChange(java.lang.Object onTitleChange) {
 		_onTitleChange = onTitleChange;
 
 		setScopedAttribute("onTitleChange", onTitleChange);
 	}
 
-	public void setOnVisibleChange(java.lang.String onVisibleChange) {
+	public void setOnVisibleChange(java.lang.Object onVisibleChange) {
 		_onVisibleChange = onVisibleChange;
 
 		setScopedAttribute("onVisibleChange", onVisibleChange);
 	}
 
-	public void setOnContentUpdate(java.lang.String onContentUpdate) {
+	public void setOnContentUpdate(java.lang.Object onContentUpdate) {
 		_onContentUpdate = onContentUpdate;
 
 		setScopedAttribute("onContentUpdate", onContentUpdate);
 	}
 
-	public void setOnRender(java.lang.String onRender) {
+	public void setOnRender(java.lang.Object onRender) {
 		_onRender = onRender;
 
 		setScopedAttribute("onRender", onRender);
 	}
 
-	public void setOnWidthChange(java.lang.String onWidthChange) {
+	public void setOnWidthChange(java.lang.Object onWidthChange) {
 		_onWidthChange = onWidthChange;
 
 		setScopedAttribute("onWidthChange", onWidthChange);
@@ -945,88 +945,88 @@ public class BasePanelTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/panel/page.jsp";
 
-	private java.lang.String _panelBodyContent;
-	private java.lang.String _boundingBox;
+	private java.lang.Object _panelBodyContent;
+	private java.lang.Object _boundingBox;
 	private java.lang.String _collapsed;
 	private java.lang.String _collapsible;
-	private java.lang.String _contentBox;
-	private java.lang.String _cssClass;
+	private java.lang.Object _contentBox;
+	private java.lang.Object _cssClass;
 	private java.lang.String _destroyed;
 	private java.lang.String _disabled;
-	private java.lang.String _fillHeight;
+	private java.lang.Object _fillHeight;
 	private java.lang.String _focused;
-	private java.lang.String _footerContent;
-	private java.lang.String _headerContent;
-	private java.lang.String _height;
-	private java.lang.String _hideClass;
+	private java.lang.Object _footerContent;
+	private java.lang.Object _headerContent;
+	private java.lang.Object _height;
+	private java.lang.Object _hideClass;
 	private java.lang.Object _icons;
-	private java.lang.String _panelId;
+	private java.lang.Object _panelId;
 	private java.lang.String _initialized;
 	private java.lang.String _render;
 	private java.lang.String _rendered;
-	private java.lang.String _srcNode;
+	private java.lang.Object _srcNode;
 	private java.lang.Object _strings;
 	private java.lang.String _tabIndex;
-	private java.lang.String _title;
+	private java.lang.Object _title;
 	private java.lang.String _visible;
-	private java.lang.String _width;
-	private java.lang.String _afterBodyContentChange;
-	private java.lang.String _afterBoundingBoxChange;
-	private java.lang.String _afterCollapsedChange;
-	private java.lang.String _afterCollapsibleChange;
-	private java.lang.String _afterContentBoxChange;
-	private java.lang.String _afterCssClassChange;
-	private java.lang.String _afterDestroy;
-	private java.lang.String _afterDestroyedChange;
-	private java.lang.String _afterDisabledChange;
-	private java.lang.String _afterFillHeightChange;
-	private java.lang.String _afterFocusedChange;
-	private java.lang.String _afterFooterContentChange;
-	private java.lang.String _afterHeaderContentChange;
-	private java.lang.String _afterHeightChange;
-	private java.lang.String _afterHideClassChange;
-	private java.lang.String _afterIconsChange;
-	private java.lang.String _afterIdChange;
-	private java.lang.String _afterInit;
-	private java.lang.String _afterInitializedChange;
-	private java.lang.String _afterRenderChange;
-	private java.lang.String _afterRenderedChange;
-	private java.lang.String _afterSrcNodeChange;
-	private java.lang.String _afterStringsChange;
-	private java.lang.String _afterTabIndexChange;
-	private java.lang.String _afterTitleChange;
-	private java.lang.String _afterVisibleChange;
-	private java.lang.String _afterContentUpdate;
-	private java.lang.String _afterRender;
-	private java.lang.String _afterWidthChange;
-	private java.lang.String _onBodyContentChange;
-	private java.lang.String _onBoundingBoxChange;
-	private java.lang.String _onCollapsedChange;
-	private java.lang.String _onCollapsibleChange;
-	private java.lang.String _onContentBoxChange;
-	private java.lang.String _onCssClassChange;
-	private java.lang.String _onDestroy;
-	private java.lang.String _onDestroyedChange;
-	private java.lang.String _onDisabledChange;
-	private java.lang.String _onFillHeightChange;
-	private java.lang.String _onFocusedChange;
-	private java.lang.String _onFooterContentChange;
-	private java.lang.String _onHeaderContentChange;
-	private java.lang.String _onHeightChange;
-	private java.lang.String _onHideClassChange;
-	private java.lang.String _onIconsChange;
-	private java.lang.String _onIdChange;
-	private java.lang.String _onInit;
-	private java.lang.String _onInitializedChange;
-	private java.lang.String _onRenderChange;
-	private java.lang.String _onRenderedChange;
-	private java.lang.String _onSrcNodeChange;
-	private java.lang.String _onStringsChange;
-	private java.lang.String _onTabIndexChange;
-	private java.lang.String _onTitleChange;
-	private java.lang.String _onVisibleChange;
-	private java.lang.String _onContentUpdate;
-	private java.lang.String _onRender;
-	private java.lang.String _onWidthChange;
+	private java.lang.Object _width;
+	private java.lang.Object _afterBodyContentChange;
+	private java.lang.Object _afterBoundingBoxChange;
+	private java.lang.Object _afterCollapsedChange;
+	private java.lang.Object _afterCollapsibleChange;
+	private java.lang.Object _afterContentBoxChange;
+	private java.lang.Object _afterCssClassChange;
+	private java.lang.Object _afterDestroy;
+	private java.lang.Object _afterDestroyedChange;
+	private java.lang.Object _afterDisabledChange;
+	private java.lang.Object _afterFillHeightChange;
+	private java.lang.Object _afterFocusedChange;
+	private java.lang.Object _afterFooterContentChange;
+	private java.lang.Object _afterHeaderContentChange;
+	private java.lang.Object _afterHeightChange;
+	private java.lang.Object _afterHideClassChange;
+	private java.lang.Object _afterIconsChange;
+	private java.lang.Object _afterIdChange;
+	private java.lang.Object _afterInit;
+	private java.lang.Object _afterInitializedChange;
+	private java.lang.Object _afterRenderChange;
+	private java.lang.Object _afterRenderedChange;
+	private java.lang.Object _afterSrcNodeChange;
+	private java.lang.Object _afterStringsChange;
+	private java.lang.Object _afterTabIndexChange;
+	private java.lang.Object _afterTitleChange;
+	private java.lang.Object _afterVisibleChange;
+	private java.lang.Object _afterContentUpdate;
+	private java.lang.Object _afterRender;
+	private java.lang.Object _afterWidthChange;
+	private java.lang.Object _onBodyContentChange;
+	private java.lang.Object _onBoundingBoxChange;
+	private java.lang.Object _onCollapsedChange;
+	private java.lang.Object _onCollapsibleChange;
+	private java.lang.Object _onContentBoxChange;
+	private java.lang.Object _onCssClassChange;
+	private java.lang.Object _onDestroy;
+	private java.lang.Object _onDestroyedChange;
+	private java.lang.Object _onDisabledChange;
+	private java.lang.Object _onFillHeightChange;
+	private java.lang.Object _onFocusedChange;
+	private java.lang.Object _onFooterContentChange;
+	private java.lang.Object _onHeaderContentChange;
+	private java.lang.Object _onHeightChange;
+	private java.lang.Object _onHideClassChange;
+	private java.lang.Object _onIconsChange;
+	private java.lang.Object _onIdChange;
+	private java.lang.Object _onInit;
+	private java.lang.Object _onInitializedChange;
+	private java.lang.Object _onRenderChange;
+	private java.lang.Object _onRenderedChange;
+	private java.lang.Object _onSrcNodeChange;
+	private java.lang.Object _onStringsChange;
+	private java.lang.Object _onTabIndexChange;
+	private java.lang.Object _onTitleChange;
+	private java.lang.Object _onVisibleChange;
+	private java.lang.Object _onContentUpdate;
+	private java.lang.Object _onRender;
+	private java.lang.Object _onWidthChange;
 
 }

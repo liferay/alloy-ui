@@ -40,7 +40,7 @@ public class BaseIORequestTag extends IncludeTag {
 		return _cache;
 	}
 
-	public java.lang.String getCfg() {
+	public java.lang.Object getCfg() {
 		return _cfg;
 	}
 
@@ -52,7 +52,7 @@ public class BaseIORequestTag extends IncludeTag {
 		return _data;
 	}
 
-	public java.lang.String getDataType() {
+	public java.lang.Object getDataType() {
 		return _dataType;
 	}
 
@@ -68,7 +68,7 @@ public class BaseIORequestTag extends IncludeTag {
 		return _headers;
 	}
 
-	public java.lang.String getHost() {
+	public java.lang.Object getHost() {
 		return _host;
 	}
 
@@ -76,11 +76,11 @@ public class BaseIORequestTag extends IncludeTag {
 		return _initialized;
 	}
 
-	public java.lang.String getMethod() {
+	public java.lang.Object getMethod() {
 		return _method;
 	}
 
-	public java.lang.String getResponseData() {
+	public java.lang.Object getResponseData() {
 		return _responseData;
 	}
 
@@ -96,7 +96,7 @@ public class BaseIORequestTag extends IncludeTag {
 		return _transaction;
 	}
 
-	public java.lang.String getUri() {
+	public java.lang.Object getUri() {
 		return _uri;
 	}
 
@@ -104,227 +104,227 @@ public class BaseIORequestTag extends IncludeTag {
 		return _xdr;
 	}
 
-	public java.lang.String getAfterActiveChange() {
+	public java.lang.Object getAfterActiveChange() {
 		return _afterActiveChange;
 	}
 
-	public java.lang.String getAfterArgumentsChange() {
+	public java.lang.Object getAfterArgumentsChange() {
 		return _afterArgumentsChange;
 	}
 
-	public java.lang.String getAfterAutoLoadChange() {
+	public java.lang.Object getAfterAutoLoadChange() {
 		return _afterAutoLoadChange;
 	}
 
-	public java.lang.String getAfterCacheChange() {
+	public java.lang.Object getAfterCacheChange() {
 		return _afterCacheChange;
 	}
 
-	public java.lang.String getAfterCfgChange() {
+	public java.lang.Object getAfterCfgChange() {
 		return _afterCfgChange;
 	}
 
-	public java.lang.String getAfterContextChange() {
+	public java.lang.Object getAfterContextChange() {
 		return _afterContextChange;
 	}
 
-	public java.lang.String getAfterDataChange() {
+	public java.lang.Object getAfterDataChange() {
 		return _afterDataChange;
 	}
 
-	public java.lang.String getAfterDataTypeChange() {
+	public java.lang.Object getAfterDataTypeChange() {
 		return _afterDataTypeChange;
 	}
 
-	public java.lang.String getAfterDestroy() {
+	public java.lang.Object getAfterDestroy() {
 		return _afterDestroy;
 	}
 
-	public java.lang.String getAfterDestroyedChange() {
+	public java.lang.Object getAfterDestroyedChange() {
 		return _afterDestroyedChange;
 	}
 
-	public java.lang.String getAfterFormChange() {
+	public java.lang.Object getAfterFormChange() {
 		return _afterFormChange;
 	}
 
-	public java.lang.String getAfterHeadersChange() {
+	public java.lang.Object getAfterHeadersChange() {
 		return _afterHeadersChange;
 	}
 
-	public java.lang.String getAfterHostChange() {
+	public java.lang.Object getAfterHostChange() {
 		return _afterHostChange;
 	}
 
-	public java.lang.String getAfterInit() {
+	public java.lang.Object getAfterInit() {
 		return _afterInit;
 	}
 
-	public java.lang.String getAfterInitializedChange() {
+	public java.lang.Object getAfterInitializedChange() {
 		return _afterInitializedChange;
 	}
 
-	public java.lang.String getAfterComplete() {
+	public java.lang.Object getAfterComplete() {
 		return _afterComplete;
 	}
 
-	public java.lang.String getAfterEnd() {
+	public java.lang.Object getAfterEnd() {
 		return _afterEnd;
 	}
 
-	public java.lang.String getAfterFailure() {
+	public java.lang.Object getAfterFailure() {
 		return _afterFailure;
 	}
 
-	public java.lang.String getAfterStart() {
+	public java.lang.Object getAfterStart() {
 		return _afterStart;
 	}
 
-	public java.lang.String getAfterSuccess() {
+	public java.lang.Object getAfterSuccess() {
 		return _afterSuccess;
 	}
 
-	public java.lang.String getAfterXdrReady() {
+	public java.lang.Object getAfterXdrReady() {
 		return _afterXdrReady;
 	}
 
-	public java.lang.String getAfterMethodChange() {
+	public java.lang.Object getAfterMethodChange() {
 		return _afterMethodChange;
 	}
 
-	public java.lang.String getAfterResponseDataChange() {
+	public java.lang.Object getAfterResponseDataChange() {
 		return _afterResponseDataChange;
 	}
 
-	public java.lang.String getAfterSyncChange() {
+	public java.lang.Object getAfterSyncChange() {
 		return _afterSyncChange;
 	}
 
-	public java.lang.String getAfterTimeoutChange() {
+	public java.lang.Object getAfterTimeoutChange() {
 		return _afterTimeoutChange;
 	}
 
-	public java.lang.String getAfterTransactionChange() {
+	public java.lang.Object getAfterTransactionChange() {
 		return _afterTransactionChange;
 	}
 
-	public java.lang.String getAfterUriChange() {
+	public java.lang.Object getAfterUriChange() {
 		return _afterUriChange;
 	}
 
-	public java.lang.String getAfterXdrChange() {
+	public java.lang.Object getAfterXdrChange() {
 		return _afterXdrChange;
 	}
 
-	public java.lang.String getOnActiveChange() {
+	public java.lang.Object getOnActiveChange() {
 		return _onActiveChange;
 	}
 
-	public java.lang.String getOnArgumentsChange() {
+	public java.lang.Object getOnArgumentsChange() {
 		return _onArgumentsChange;
 	}
 
-	public java.lang.String getOnAutoLoadChange() {
+	public java.lang.Object getOnAutoLoadChange() {
 		return _onAutoLoadChange;
 	}
 
-	public java.lang.String getOnCacheChange() {
+	public java.lang.Object getOnCacheChange() {
 		return _onCacheChange;
 	}
 
-	public java.lang.String getOnCfgChange() {
+	public java.lang.Object getOnCfgChange() {
 		return _onCfgChange;
 	}
 
-	public java.lang.String getOnContextChange() {
+	public java.lang.Object getOnContextChange() {
 		return _onContextChange;
 	}
 
-	public java.lang.String getOnDataChange() {
+	public java.lang.Object getOnDataChange() {
 		return _onDataChange;
 	}
 
-	public java.lang.String getOnDataTypeChange() {
+	public java.lang.Object getOnDataTypeChange() {
 		return _onDataTypeChange;
 	}
 
-	public java.lang.String getOnDestroy() {
+	public java.lang.Object getOnDestroy() {
 		return _onDestroy;
 	}
 
-	public java.lang.String getOnDestroyedChange() {
+	public java.lang.Object getOnDestroyedChange() {
 		return _onDestroyedChange;
 	}
 
-	public java.lang.String getOnFormChange() {
+	public java.lang.Object getOnFormChange() {
 		return _onFormChange;
 	}
 
-	public java.lang.String getOnHeadersChange() {
+	public java.lang.Object getOnHeadersChange() {
 		return _onHeadersChange;
 	}
 
-	public java.lang.String getOnHostChange() {
+	public java.lang.Object getOnHostChange() {
 		return _onHostChange;
 	}
 
-	public java.lang.String getOnInit() {
+	public java.lang.Object getOnInit() {
 		return _onInit;
 	}
 
-	public java.lang.String getOnInitializedChange() {
+	public java.lang.Object getOnInitializedChange() {
 		return _onInitializedChange;
 	}
 
-	public java.lang.String getOnComplete() {
+	public java.lang.Object getOnComplete() {
 		return _onComplete;
 	}
 
-	public java.lang.String getOnEnd() {
+	public java.lang.Object getOnEnd() {
 		return _onEnd;
 	}
 
-	public java.lang.String getOnFailure() {
+	public java.lang.Object getOnFailure() {
 		return _onFailure;
 	}
 
-	public java.lang.String getOnStart() {
+	public java.lang.Object getOnStart() {
 		return _onStart;
 	}
 
-	public java.lang.String getOnSuccess() {
+	public java.lang.Object getOnSuccess() {
 		return _onSuccess;
 	}
 
-	public java.lang.String getOnXdrReady() {
+	public java.lang.Object getOnXdrReady() {
 		return _onXdrReady;
 	}
 
-	public java.lang.String getOnMethodChange() {
+	public java.lang.Object getOnMethodChange() {
 		return _onMethodChange;
 	}
 
-	public java.lang.String getOnResponseDataChange() {
+	public java.lang.Object getOnResponseDataChange() {
 		return _onResponseDataChange;
 	}
 
-	public java.lang.String getOnSyncChange() {
+	public java.lang.Object getOnSyncChange() {
 		return _onSyncChange;
 	}
 
-	public java.lang.String getOnTimeoutChange() {
+	public java.lang.Object getOnTimeoutChange() {
 		return _onTimeoutChange;
 	}
 
-	public java.lang.String getOnTransactionChange() {
+	public java.lang.Object getOnTransactionChange() {
 		return _onTransactionChange;
 	}
 
-	public java.lang.String getOnUriChange() {
+	public java.lang.Object getOnUriChange() {
 		return _onUriChange;
 	}
 
-	public java.lang.String getOnXdrChange() {
+	public java.lang.Object getOnXdrChange() {
 		return _onXdrChange;
 	}
 
@@ -352,7 +352,7 @@ public class BaseIORequestTag extends IncludeTag {
 		setScopedAttribute("cache", cache);
 	}
 
-	public void setCfg(java.lang.String cfg) {
+	public void setCfg(java.lang.Object cfg) {
 		_cfg = cfg;
 
 		setScopedAttribute("cfg", cfg);
@@ -370,7 +370,7 @@ public class BaseIORequestTag extends IncludeTag {
 		setScopedAttribute("data", data);
 	}
 
-	public void setDataType(java.lang.String dataType) {
+	public void setDataType(java.lang.Object dataType) {
 		_dataType = dataType;
 
 		setScopedAttribute("dataType", dataType);
@@ -394,7 +394,7 @@ public class BaseIORequestTag extends IncludeTag {
 		setScopedAttribute("headers", headers);
 	}
 
-	public void setHost(java.lang.String host) {
+	public void setHost(java.lang.Object host) {
 		_host = host;
 
 		setScopedAttribute("host", host);
@@ -406,13 +406,13 @@ public class BaseIORequestTag extends IncludeTag {
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setMethod(java.lang.String method) {
+	public void setMethod(java.lang.Object method) {
 		_method = method;
 
 		setScopedAttribute("method", method);
 	}
 
-	public void setResponseData(java.lang.String responseData) {
+	public void setResponseData(java.lang.Object responseData) {
 		_responseData = responseData;
 
 		setScopedAttribute("responseData", responseData);
@@ -436,7 +436,7 @@ public class BaseIORequestTag extends IncludeTag {
 		setScopedAttribute("transaction", transaction);
 	}
 
-	public void setUri(java.lang.String uri) {
+	public void setUri(java.lang.Object uri) {
 		_uri = uri;
 
 		setScopedAttribute("uri", uri);
@@ -448,337 +448,337 @@ public class BaseIORequestTag extends IncludeTag {
 		setScopedAttribute("xdr", xdr);
 	}
 
-	public void setAfterActiveChange(java.lang.String afterActiveChange) {
+	public void setAfterActiveChange(java.lang.Object afterActiveChange) {
 		_afterActiveChange = afterActiveChange;
 
 		setScopedAttribute("afterActiveChange", afterActiveChange);
 	}
 
-	public void setAfterArgumentsChange(java.lang.String afterArgumentsChange) {
+	public void setAfterArgumentsChange(java.lang.Object afterArgumentsChange) {
 		_afterArgumentsChange = afterArgumentsChange;
 
 		setScopedAttribute("afterArgumentsChange", afterArgumentsChange);
 	}
 
-	public void setAfterAutoLoadChange(java.lang.String afterAutoLoadChange) {
+	public void setAfterAutoLoadChange(java.lang.Object afterAutoLoadChange) {
 		_afterAutoLoadChange = afterAutoLoadChange;
 
 		setScopedAttribute("afterAutoLoadChange", afterAutoLoadChange);
 	}
 
-	public void setAfterCacheChange(java.lang.String afterCacheChange) {
+	public void setAfterCacheChange(java.lang.Object afterCacheChange) {
 		_afterCacheChange = afterCacheChange;
 
 		setScopedAttribute("afterCacheChange", afterCacheChange);
 	}
 
-	public void setAfterCfgChange(java.lang.String afterCfgChange) {
+	public void setAfterCfgChange(java.lang.Object afterCfgChange) {
 		_afterCfgChange = afterCfgChange;
 
 		setScopedAttribute("afterCfgChange", afterCfgChange);
 	}
 
-	public void setAfterContextChange(java.lang.String afterContextChange) {
+	public void setAfterContextChange(java.lang.Object afterContextChange) {
 		_afterContextChange = afterContextChange;
 
 		setScopedAttribute("afterContextChange", afterContextChange);
 	}
 
-	public void setAfterDataChange(java.lang.String afterDataChange) {
+	public void setAfterDataChange(java.lang.Object afterDataChange) {
 		_afterDataChange = afterDataChange;
 
 		setScopedAttribute("afterDataChange", afterDataChange);
 	}
 
-	public void setAfterDataTypeChange(java.lang.String afterDataTypeChange) {
+	public void setAfterDataTypeChange(java.lang.Object afterDataTypeChange) {
 		_afterDataTypeChange = afterDataTypeChange;
 
 		setScopedAttribute("afterDataTypeChange", afterDataTypeChange);
 	}
 
-	public void setAfterDestroy(java.lang.String afterDestroy) {
+	public void setAfterDestroy(java.lang.Object afterDestroy) {
 		_afterDestroy = afterDestroy;
 
 		setScopedAttribute("afterDestroy", afterDestroy);
 	}
 
-	public void setAfterDestroyedChange(java.lang.String afterDestroyedChange) {
+	public void setAfterDestroyedChange(java.lang.Object afterDestroyedChange) {
 		_afterDestroyedChange = afterDestroyedChange;
 
 		setScopedAttribute("afterDestroyedChange", afterDestroyedChange);
 	}
 
-	public void setAfterFormChange(java.lang.String afterFormChange) {
+	public void setAfterFormChange(java.lang.Object afterFormChange) {
 		_afterFormChange = afterFormChange;
 
 		setScopedAttribute("afterFormChange", afterFormChange);
 	}
 
-	public void setAfterHeadersChange(java.lang.String afterHeadersChange) {
+	public void setAfterHeadersChange(java.lang.Object afterHeadersChange) {
 		_afterHeadersChange = afterHeadersChange;
 
 		setScopedAttribute("afterHeadersChange", afterHeadersChange);
 	}
 
-	public void setAfterHostChange(java.lang.String afterHostChange) {
+	public void setAfterHostChange(java.lang.Object afterHostChange) {
 		_afterHostChange = afterHostChange;
 
 		setScopedAttribute("afterHostChange", afterHostChange);
 	}
 
-	public void setAfterInit(java.lang.String afterInit) {
+	public void setAfterInit(java.lang.Object afterInit) {
 		_afterInit = afterInit;
 
 		setScopedAttribute("afterInit", afterInit);
 	}
 
-	public void setAfterInitializedChange(java.lang.String afterInitializedChange) {
+	public void setAfterInitializedChange(java.lang.Object afterInitializedChange) {
 		_afterInitializedChange = afterInitializedChange;
 
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
-	public void setAfterComplete(java.lang.String afterComplete) {
+	public void setAfterComplete(java.lang.Object afterComplete) {
 		_afterComplete = afterComplete;
 
 		setScopedAttribute("afterComplete", afterComplete);
 	}
 
-	public void setAfterEnd(java.lang.String afterEnd) {
+	public void setAfterEnd(java.lang.Object afterEnd) {
 		_afterEnd = afterEnd;
 
 		setScopedAttribute("afterEnd", afterEnd);
 	}
 
-	public void setAfterFailure(java.lang.String afterFailure) {
+	public void setAfterFailure(java.lang.Object afterFailure) {
 		_afterFailure = afterFailure;
 
 		setScopedAttribute("afterFailure", afterFailure);
 	}
 
-	public void setAfterStart(java.lang.String afterStart) {
+	public void setAfterStart(java.lang.Object afterStart) {
 		_afterStart = afterStart;
 
 		setScopedAttribute("afterStart", afterStart);
 	}
 
-	public void setAfterSuccess(java.lang.String afterSuccess) {
+	public void setAfterSuccess(java.lang.Object afterSuccess) {
 		_afterSuccess = afterSuccess;
 
 		setScopedAttribute("afterSuccess", afterSuccess);
 	}
 
-	public void setAfterXdrReady(java.lang.String afterXdrReady) {
+	public void setAfterXdrReady(java.lang.Object afterXdrReady) {
 		_afterXdrReady = afterXdrReady;
 
 		setScopedAttribute("afterXdrReady", afterXdrReady);
 	}
 
-	public void setAfterMethodChange(java.lang.String afterMethodChange) {
+	public void setAfterMethodChange(java.lang.Object afterMethodChange) {
 		_afterMethodChange = afterMethodChange;
 
 		setScopedAttribute("afterMethodChange", afterMethodChange);
 	}
 
-	public void setAfterResponseDataChange(java.lang.String afterResponseDataChange) {
+	public void setAfterResponseDataChange(java.lang.Object afterResponseDataChange) {
 		_afterResponseDataChange = afterResponseDataChange;
 
 		setScopedAttribute("afterResponseDataChange", afterResponseDataChange);
 	}
 
-	public void setAfterSyncChange(java.lang.String afterSyncChange) {
+	public void setAfterSyncChange(java.lang.Object afterSyncChange) {
 		_afterSyncChange = afterSyncChange;
 
 		setScopedAttribute("afterSyncChange", afterSyncChange);
 	}
 
-	public void setAfterTimeoutChange(java.lang.String afterTimeoutChange) {
+	public void setAfterTimeoutChange(java.lang.Object afterTimeoutChange) {
 		_afterTimeoutChange = afterTimeoutChange;
 
 		setScopedAttribute("afterTimeoutChange", afterTimeoutChange);
 	}
 
-	public void setAfterTransactionChange(java.lang.String afterTransactionChange) {
+	public void setAfterTransactionChange(java.lang.Object afterTransactionChange) {
 		_afterTransactionChange = afterTransactionChange;
 
 		setScopedAttribute("afterTransactionChange", afterTransactionChange);
 	}
 
-	public void setAfterUriChange(java.lang.String afterUriChange) {
+	public void setAfterUriChange(java.lang.Object afterUriChange) {
 		_afterUriChange = afterUriChange;
 
 		setScopedAttribute("afterUriChange", afterUriChange);
 	}
 
-	public void setAfterXdrChange(java.lang.String afterXdrChange) {
+	public void setAfterXdrChange(java.lang.Object afterXdrChange) {
 		_afterXdrChange = afterXdrChange;
 
 		setScopedAttribute("afterXdrChange", afterXdrChange);
 	}
 
-	public void setOnActiveChange(java.lang.String onActiveChange) {
+	public void setOnActiveChange(java.lang.Object onActiveChange) {
 		_onActiveChange = onActiveChange;
 
 		setScopedAttribute("onActiveChange", onActiveChange);
 	}
 
-	public void setOnArgumentsChange(java.lang.String onArgumentsChange) {
+	public void setOnArgumentsChange(java.lang.Object onArgumentsChange) {
 		_onArgumentsChange = onArgumentsChange;
 
 		setScopedAttribute("onArgumentsChange", onArgumentsChange);
 	}
 
-	public void setOnAutoLoadChange(java.lang.String onAutoLoadChange) {
+	public void setOnAutoLoadChange(java.lang.Object onAutoLoadChange) {
 		_onAutoLoadChange = onAutoLoadChange;
 
 		setScopedAttribute("onAutoLoadChange", onAutoLoadChange);
 	}
 
-	public void setOnCacheChange(java.lang.String onCacheChange) {
+	public void setOnCacheChange(java.lang.Object onCacheChange) {
 		_onCacheChange = onCacheChange;
 
 		setScopedAttribute("onCacheChange", onCacheChange);
 	}
 
-	public void setOnCfgChange(java.lang.String onCfgChange) {
+	public void setOnCfgChange(java.lang.Object onCfgChange) {
 		_onCfgChange = onCfgChange;
 
 		setScopedAttribute("onCfgChange", onCfgChange);
 	}
 
-	public void setOnContextChange(java.lang.String onContextChange) {
+	public void setOnContextChange(java.lang.Object onContextChange) {
 		_onContextChange = onContextChange;
 
 		setScopedAttribute("onContextChange", onContextChange);
 	}
 
-	public void setOnDataChange(java.lang.String onDataChange) {
+	public void setOnDataChange(java.lang.Object onDataChange) {
 		_onDataChange = onDataChange;
 
 		setScopedAttribute("onDataChange", onDataChange);
 	}
 
-	public void setOnDataTypeChange(java.lang.String onDataTypeChange) {
+	public void setOnDataTypeChange(java.lang.Object onDataTypeChange) {
 		_onDataTypeChange = onDataTypeChange;
 
 		setScopedAttribute("onDataTypeChange", onDataTypeChange);
 	}
 
-	public void setOnDestroy(java.lang.String onDestroy) {
+	public void setOnDestroy(java.lang.Object onDestroy) {
 		_onDestroy = onDestroy;
 
 		setScopedAttribute("onDestroy", onDestroy);
 	}
 
-	public void setOnDestroyedChange(java.lang.String onDestroyedChange) {
+	public void setOnDestroyedChange(java.lang.Object onDestroyedChange) {
 		_onDestroyedChange = onDestroyedChange;
 
 		setScopedAttribute("onDestroyedChange", onDestroyedChange);
 	}
 
-	public void setOnFormChange(java.lang.String onFormChange) {
+	public void setOnFormChange(java.lang.Object onFormChange) {
 		_onFormChange = onFormChange;
 
 		setScopedAttribute("onFormChange", onFormChange);
 	}
 
-	public void setOnHeadersChange(java.lang.String onHeadersChange) {
+	public void setOnHeadersChange(java.lang.Object onHeadersChange) {
 		_onHeadersChange = onHeadersChange;
 
 		setScopedAttribute("onHeadersChange", onHeadersChange);
 	}
 
-	public void setOnHostChange(java.lang.String onHostChange) {
+	public void setOnHostChange(java.lang.Object onHostChange) {
 		_onHostChange = onHostChange;
 
 		setScopedAttribute("onHostChange", onHostChange);
 	}
 
-	public void setOnInit(java.lang.String onInit) {
+	public void setOnInit(java.lang.Object onInit) {
 		_onInit = onInit;
 
 		setScopedAttribute("onInit", onInit);
 	}
 
-	public void setOnInitializedChange(java.lang.String onInitializedChange) {
+	public void setOnInitializedChange(java.lang.Object onInitializedChange) {
 		_onInitializedChange = onInitializedChange;
 
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
-	public void setOnComplete(java.lang.String onComplete) {
+	public void setOnComplete(java.lang.Object onComplete) {
 		_onComplete = onComplete;
 
 		setScopedAttribute("onComplete", onComplete);
 	}
 
-	public void setOnEnd(java.lang.String onEnd) {
+	public void setOnEnd(java.lang.Object onEnd) {
 		_onEnd = onEnd;
 
 		setScopedAttribute("onEnd", onEnd);
 	}
 
-	public void setOnFailure(java.lang.String onFailure) {
+	public void setOnFailure(java.lang.Object onFailure) {
 		_onFailure = onFailure;
 
 		setScopedAttribute("onFailure", onFailure);
 	}
 
-	public void setOnStart(java.lang.String onStart) {
+	public void setOnStart(java.lang.Object onStart) {
 		_onStart = onStart;
 
 		setScopedAttribute("onStart", onStart);
 	}
 
-	public void setOnSuccess(java.lang.String onSuccess) {
+	public void setOnSuccess(java.lang.Object onSuccess) {
 		_onSuccess = onSuccess;
 
 		setScopedAttribute("onSuccess", onSuccess);
 	}
 
-	public void setOnXdrReady(java.lang.String onXdrReady) {
+	public void setOnXdrReady(java.lang.Object onXdrReady) {
 		_onXdrReady = onXdrReady;
 
 		setScopedAttribute("onXdrReady", onXdrReady);
 	}
 
-	public void setOnMethodChange(java.lang.String onMethodChange) {
+	public void setOnMethodChange(java.lang.Object onMethodChange) {
 		_onMethodChange = onMethodChange;
 
 		setScopedAttribute("onMethodChange", onMethodChange);
 	}
 
-	public void setOnResponseDataChange(java.lang.String onResponseDataChange) {
+	public void setOnResponseDataChange(java.lang.Object onResponseDataChange) {
 		_onResponseDataChange = onResponseDataChange;
 
 		setScopedAttribute("onResponseDataChange", onResponseDataChange);
 	}
 
-	public void setOnSyncChange(java.lang.String onSyncChange) {
+	public void setOnSyncChange(java.lang.Object onSyncChange) {
 		_onSyncChange = onSyncChange;
 
 		setScopedAttribute("onSyncChange", onSyncChange);
 	}
 
-	public void setOnTimeoutChange(java.lang.String onTimeoutChange) {
+	public void setOnTimeoutChange(java.lang.Object onTimeoutChange) {
 		_onTimeoutChange = onTimeoutChange;
 
 		setScopedAttribute("onTimeoutChange", onTimeoutChange);
 	}
 
-	public void setOnTransactionChange(java.lang.String onTransactionChange) {
+	public void setOnTransactionChange(java.lang.Object onTransactionChange) {
 		_onTransactionChange = onTransactionChange;
 
 		setScopedAttribute("onTransactionChange", onTransactionChange);
 	}
 
-	public void setOnUriChange(java.lang.String onUriChange) {
+	public void setOnUriChange(java.lang.Object onUriChange) {
 		_onUriChange = onUriChange;
 
 		setScopedAttribute("onUriChange", onUriChange);
 	}
 
-	public void setOnXdrChange(java.lang.String onXdrChange) {
+	public void setOnXdrChange(java.lang.Object onXdrChange) {
 		_onXdrChange = onXdrChange;
 
 		setScopedAttribute("onXdrChange", onXdrChange);
@@ -872,77 +872,77 @@ public class BaseIORequestTag extends IncludeTag {
 	private java.lang.Object _arguments;
 	private java.lang.String _autoLoad;
 	private java.lang.String _cache;
-	private java.lang.String _cfg;
+	private java.lang.Object _cfg;
 	private java.lang.Object _context;
 	private java.lang.Object _data;
-	private java.lang.String _dataType;
+	private java.lang.Object _dataType;
 	private java.lang.String _destroyed;
 	private java.lang.Object _form;
 	private java.lang.Object _headers;
-	private java.lang.String _host;
+	private java.lang.Object _host;
 	private java.lang.String _initialized;
-	private java.lang.String _method;
-	private java.lang.String _responseData;
+	private java.lang.Object _method;
+	private java.lang.Object _responseData;
 	private java.lang.String _sync;
 	private java.lang.String _timeout;
 	private java.lang.Object _transaction;
-	private java.lang.String _uri;
+	private java.lang.Object _uri;
 	private java.lang.Object _xdr;
-	private java.lang.String _afterActiveChange;
-	private java.lang.String _afterArgumentsChange;
-	private java.lang.String _afterAutoLoadChange;
-	private java.lang.String _afterCacheChange;
-	private java.lang.String _afterCfgChange;
-	private java.lang.String _afterContextChange;
-	private java.lang.String _afterDataChange;
-	private java.lang.String _afterDataTypeChange;
-	private java.lang.String _afterDestroy;
-	private java.lang.String _afterDestroyedChange;
-	private java.lang.String _afterFormChange;
-	private java.lang.String _afterHeadersChange;
-	private java.lang.String _afterHostChange;
-	private java.lang.String _afterInit;
-	private java.lang.String _afterInitializedChange;
-	private java.lang.String _afterComplete;
-	private java.lang.String _afterEnd;
-	private java.lang.String _afterFailure;
-	private java.lang.String _afterStart;
-	private java.lang.String _afterSuccess;
-	private java.lang.String _afterXdrReady;
-	private java.lang.String _afterMethodChange;
-	private java.lang.String _afterResponseDataChange;
-	private java.lang.String _afterSyncChange;
-	private java.lang.String _afterTimeoutChange;
-	private java.lang.String _afterTransactionChange;
-	private java.lang.String _afterUriChange;
-	private java.lang.String _afterXdrChange;
-	private java.lang.String _onActiveChange;
-	private java.lang.String _onArgumentsChange;
-	private java.lang.String _onAutoLoadChange;
-	private java.lang.String _onCacheChange;
-	private java.lang.String _onCfgChange;
-	private java.lang.String _onContextChange;
-	private java.lang.String _onDataChange;
-	private java.lang.String _onDataTypeChange;
-	private java.lang.String _onDestroy;
-	private java.lang.String _onDestroyedChange;
-	private java.lang.String _onFormChange;
-	private java.lang.String _onHeadersChange;
-	private java.lang.String _onHostChange;
-	private java.lang.String _onInit;
-	private java.lang.String _onInitializedChange;
-	private java.lang.String _onComplete;
-	private java.lang.String _onEnd;
-	private java.lang.String _onFailure;
-	private java.lang.String _onStart;
-	private java.lang.String _onSuccess;
-	private java.lang.String _onXdrReady;
-	private java.lang.String _onMethodChange;
-	private java.lang.String _onResponseDataChange;
-	private java.lang.String _onSyncChange;
-	private java.lang.String _onTimeoutChange;
-	private java.lang.String _onTransactionChange;
-	private java.lang.String _onUriChange;
-	private java.lang.String _onXdrChange;
+	private java.lang.Object _afterActiveChange;
+	private java.lang.Object _afterArgumentsChange;
+	private java.lang.Object _afterAutoLoadChange;
+	private java.lang.Object _afterCacheChange;
+	private java.lang.Object _afterCfgChange;
+	private java.lang.Object _afterContextChange;
+	private java.lang.Object _afterDataChange;
+	private java.lang.Object _afterDataTypeChange;
+	private java.lang.Object _afterDestroy;
+	private java.lang.Object _afterDestroyedChange;
+	private java.lang.Object _afterFormChange;
+	private java.lang.Object _afterHeadersChange;
+	private java.lang.Object _afterHostChange;
+	private java.lang.Object _afterInit;
+	private java.lang.Object _afterInitializedChange;
+	private java.lang.Object _afterComplete;
+	private java.lang.Object _afterEnd;
+	private java.lang.Object _afterFailure;
+	private java.lang.Object _afterStart;
+	private java.lang.Object _afterSuccess;
+	private java.lang.Object _afterXdrReady;
+	private java.lang.Object _afterMethodChange;
+	private java.lang.Object _afterResponseDataChange;
+	private java.lang.Object _afterSyncChange;
+	private java.lang.Object _afterTimeoutChange;
+	private java.lang.Object _afterTransactionChange;
+	private java.lang.Object _afterUriChange;
+	private java.lang.Object _afterXdrChange;
+	private java.lang.Object _onActiveChange;
+	private java.lang.Object _onArgumentsChange;
+	private java.lang.Object _onAutoLoadChange;
+	private java.lang.Object _onCacheChange;
+	private java.lang.Object _onCfgChange;
+	private java.lang.Object _onContextChange;
+	private java.lang.Object _onDataChange;
+	private java.lang.Object _onDataTypeChange;
+	private java.lang.Object _onDestroy;
+	private java.lang.Object _onDestroyedChange;
+	private java.lang.Object _onFormChange;
+	private java.lang.Object _onHeadersChange;
+	private java.lang.Object _onHostChange;
+	private java.lang.Object _onInit;
+	private java.lang.Object _onInitializedChange;
+	private java.lang.Object _onComplete;
+	private java.lang.Object _onEnd;
+	private java.lang.Object _onFailure;
+	private java.lang.Object _onStart;
+	private java.lang.Object _onSuccess;
+	private java.lang.Object _onXdrReady;
+	private java.lang.Object _onMethodChange;
+	private java.lang.Object _onResponseDataChange;
+	private java.lang.Object _onSyncChange;
+	private java.lang.Object _onTimeoutChange;
+	private java.lang.Object _onTransactionChange;
+	private java.lang.Object _onUriChange;
+	private java.lang.Object _onXdrChange;
 
 }

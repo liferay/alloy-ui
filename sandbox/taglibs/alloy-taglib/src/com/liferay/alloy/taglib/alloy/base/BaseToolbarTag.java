@@ -24,7 +24,7 @@ public class BaseToolbarTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.String getActiveDescendant() {
+	public java.lang.Object getActiveDescendant() {
 		return _activeDescendant;
 	}
 
@@ -32,19 +32,19 @@ public class BaseToolbarTag extends IncludeTag {
 		return _activeState;
 	}
 
-	public java.lang.String getBoundingBox() {
+	public java.lang.Object getBoundingBox() {
 		return _boundingBox;
 	}
 
-	public java.lang.String getContentBox() {
+	public java.lang.Object getContentBox() {
 		return _contentBox;
 	}
 
-	public java.lang.String getCssClass() {
+	public java.lang.Object getCssClass() {
 		return _cssClass;
 	}
 
-	public java.lang.String getDefaultChildType() {
+	public java.lang.Object getDefaultChildType() {
 		return _defaultChildType;
 	}
 
@@ -64,11 +64,11 @@ public class BaseToolbarTag extends IncludeTag {
 		return _focused;
 	}
 
-	public java.lang.String getHeight() {
+	public java.lang.Object getHeight() {
 		return _height;
 	}
 
-	public java.lang.String getHideClass() {
+	public java.lang.Object getHideClass() {
 		return _hideClass;
 	}
 
@@ -76,7 +76,7 @@ public class BaseToolbarTag extends IncludeTag {
 		return _hoverState;
 	}
 
-	public java.lang.String getToolbarId() {
+	public java.lang.Object getToolbarId() {
 		return _toolbarId;
 	}
 
@@ -88,7 +88,7 @@ public class BaseToolbarTag extends IncludeTag {
 		return _multiple;
 	}
 
-	public java.lang.String getOrientation() {
+	public java.lang.Object getOrientation() {
 		return _orientation;
 	}
 
@@ -100,11 +100,11 @@ public class BaseToolbarTag extends IncludeTag {
 		return _rendered;
 	}
 
-	public java.lang.String getSelection() {
+	public java.lang.Object getSelection() {
 		return _selection;
 	}
 
-	public java.lang.String getSrcNode() {
+	public java.lang.Object getSrcNode() {
 		return _srcNode;
 	}
 
@@ -120,259 +120,259 @@ public class BaseToolbarTag extends IncludeTag {
 		return _visible;
 	}
 
-	public java.lang.String getWidth() {
+	public java.lang.Object getWidth() {
 		return _width;
 	}
 
-	public java.lang.String getAfterActiveDescendantChange() {
+	public java.lang.Object getAfterActiveDescendantChange() {
 		return _afterActiveDescendantChange;
 	}
 
-	public java.lang.String getAfterActiveStateChange() {
+	public java.lang.Object getAfterActiveStateChange() {
 		return _afterActiveStateChange;
 	}
 
-	public java.lang.String getAfterAddChild() {
+	public java.lang.Object getAfterAddChild() {
 		return _afterAddChild;
 	}
 
-	public java.lang.String getAfterBoundingBoxChange() {
+	public java.lang.Object getAfterBoundingBoxChange() {
 		return _afterBoundingBoxChange;
 	}
 
-	public java.lang.String getAfterContentBoxChange() {
+	public java.lang.Object getAfterContentBoxChange() {
 		return _afterContentBoxChange;
 	}
 
-	public java.lang.String getAfterCssClassChange() {
+	public java.lang.Object getAfterCssClassChange() {
 		return _afterCssClassChange;
 	}
 
-	public java.lang.String getAfterDefaultChildTypeChange() {
+	public java.lang.Object getAfterDefaultChildTypeChange() {
 		return _afterDefaultChildTypeChange;
 	}
 
-	public java.lang.String getAfterDefaultStateChange() {
+	public java.lang.Object getAfterDefaultStateChange() {
 		return _afterDefaultStateChange;
 	}
 
-	public java.lang.String getAfterDestroy() {
+	public java.lang.Object getAfterDestroy() {
 		return _afterDestroy;
 	}
 
-	public java.lang.String getAfterDestroyedChange() {
+	public java.lang.Object getAfterDestroyedChange() {
 		return _afterDestroyedChange;
 	}
 
-	public java.lang.String getAfterDisabledChange() {
+	public java.lang.Object getAfterDisabledChange() {
 		return _afterDisabledChange;
 	}
 
-	public java.lang.String getAfterFocusedChange() {
+	public java.lang.Object getAfterFocusedChange() {
 		return _afterFocusedChange;
 	}
 
-	public java.lang.String getAfterHeightChange() {
+	public java.lang.Object getAfterHeightChange() {
 		return _afterHeightChange;
 	}
 
-	public java.lang.String getAfterHideClassChange() {
+	public java.lang.Object getAfterHideClassChange() {
 		return _afterHideClassChange;
 	}
 
-	public java.lang.String getAfterHoverStateChange() {
+	public java.lang.Object getAfterHoverStateChange() {
 		return _afterHoverStateChange;
 	}
 
-	public java.lang.String getAfterIdChange() {
+	public java.lang.Object getAfterIdChange() {
 		return _afterIdChange;
 	}
 
-	public java.lang.String getAfterInit() {
+	public java.lang.Object getAfterInit() {
 		return _afterInit;
 	}
 
-	public java.lang.String getAfterInitializedChange() {
+	public java.lang.Object getAfterInitializedChange() {
 		return _afterInitializedChange;
 	}
 
-	public java.lang.String getAfterMultipleChange() {
+	public java.lang.Object getAfterMultipleChange() {
 		return _afterMultipleChange;
 	}
 
-	public java.lang.String getAfterOrientationChange() {
+	public java.lang.Object getAfterOrientationChange() {
 		return _afterOrientationChange;
 	}
 
-	public java.lang.String getAfterRemoveChild() {
+	public java.lang.Object getAfterRemoveChild() {
 		return _afterRemoveChild;
 	}
 
-	public java.lang.String getAfterRenderChange() {
+	public java.lang.Object getAfterRenderChange() {
 		return _afterRenderChange;
 	}
 
-	public java.lang.String getAfterRenderedChange() {
+	public java.lang.Object getAfterRenderedChange() {
 		return _afterRenderedChange;
 	}
 
-	public java.lang.String getAfterSelectionChange() {
+	public java.lang.Object getAfterSelectionChange() {
 		return _afterSelectionChange;
 	}
 
-	public java.lang.String getAfterSrcNodeChange() {
+	public java.lang.Object getAfterSrcNodeChange() {
 		return _afterSrcNodeChange;
 	}
 
-	public java.lang.String getAfterStringsChange() {
+	public java.lang.Object getAfterStringsChange() {
 		return _afterStringsChange;
 	}
 
-	public java.lang.String getAfterTabIndexChange() {
+	public java.lang.Object getAfterTabIndexChange() {
 		return _afterTabIndexChange;
 	}
 
-	public java.lang.String getAfterVisibleChange() {
+	public java.lang.Object getAfterVisibleChange() {
 		return _afterVisibleChange;
 	}
 
-	public java.lang.String getAfterContentUpdate() {
+	public java.lang.Object getAfterContentUpdate() {
 		return _afterContentUpdate;
 	}
 
-	public java.lang.String getAfterRender() {
+	public java.lang.Object getAfterRender() {
 		return _afterRender;
 	}
 
-	public java.lang.String getAfterWidthChange() {
+	public java.lang.Object getAfterWidthChange() {
 		return _afterWidthChange;
 	}
 
-	public java.lang.String getOnActiveDescendantChange() {
+	public java.lang.Object getOnActiveDescendantChange() {
 		return _onActiveDescendantChange;
 	}
 
-	public java.lang.String getOnActiveStateChange() {
+	public java.lang.Object getOnActiveStateChange() {
 		return _onActiveStateChange;
 	}
 
-	public java.lang.String getOnAddChild() {
+	public java.lang.Object getOnAddChild() {
 		return _onAddChild;
 	}
 
-	public java.lang.String getOnBoundingBoxChange() {
+	public java.lang.Object getOnBoundingBoxChange() {
 		return _onBoundingBoxChange;
 	}
 
-	public java.lang.String getOnContentBoxChange() {
+	public java.lang.Object getOnContentBoxChange() {
 		return _onContentBoxChange;
 	}
 
-	public java.lang.String getOnCssClassChange() {
+	public java.lang.Object getOnCssClassChange() {
 		return _onCssClassChange;
 	}
 
-	public java.lang.String getOnDefaultChildTypeChange() {
+	public java.lang.Object getOnDefaultChildTypeChange() {
 		return _onDefaultChildTypeChange;
 	}
 
-	public java.lang.String getOnDefaultStateChange() {
+	public java.lang.Object getOnDefaultStateChange() {
 		return _onDefaultStateChange;
 	}
 
-	public java.lang.String getOnDestroy() {
+	public java.lang.Object getOnDestroy() {
 		return _onDestroy;
 	}
 
-	public java.lang.String getOnDestroyedChange() {
+	public java.lang.Object getOnDestroyedChange() {
 		return _onDestroyedChange;
 	}
 
-	public java.lang.String getOnDisabledChange() {
+	public java.lang.Object getOnDisabledChange() {
 		return _onDisabledChange;
 	}
 
-	public java.lang.String getOnFocusedChange() {
+	public java.lang.Object getOnFocusedChange() {
 		return _onFocusedChange;
 	}
 
-	public java.lang.String getOnHeightChange() {
+	public java.lang.Object getOnHeightChange() {
 		return _onHeightChange;
 	}
 
-	public java.lang.String getOnHideClassChange() {
+	public java.lang.Object getOnHideClassChange() {
 		return _onHideClassChange;
 	}
 
-	public java.lang.String getOnHoverStateChange() {
+	public java.lang.Object getOnHoverStateChange() {
 		return _onHoverStateChange;
 	}
 
-	public java.lang.String getOnIdChange() {
+	public java.lang.Object getOnIdChange() {
 		return _onIdChange;
 	}
 
-	public java.lang.String getOnInit() {
+	public java.lang.Object getOnInit() {
 		return _onInit;
 	}
 
-	public java.lang.String getOnInitializedChange() {
+	public java.lang.Object getOnInitializedChange() {
 		return _onInitializedChange;
 	}
 
-	public java.lang.String getOnMultipleChange() {
+	public java.lang.Object getOnMultipleChange() {
 		return _onMultipleChange;
 	}
 
-	public java.lang.String getOnOrientationChange() {
+	public java.lang.Object getOnOrientationChange() {
 		return _onOrientationChange;
 	}
 
-	public java.lang.String getOnRemoveChild() {
+	public java.lang.Object getOnRemoveChild() {
 		return _onRemoveChild;
 	}
 
-	public java.lang.String getOnRenderChange() {
+	public java.lang.Object getOnRenderChange() {
 		return _onRenderChange;
 	}
 
-	public java.lang.String getOnRenderedChange() {
+	public java.lang.Object getOnRenderedChange() {
 		return _onRenderedChange;
 	}
 
-	public java.lang.String getOnSelectionChange() {
+	public java.lang.Object getOnSelectionChange() {
 		return _onSelectionChange;
 	}
 
-	public java.lang.String getOnSrcNodeChange() {
+	public java.lang.Object getOnSrcNodeChange() {
 		return _onSrcNodeChange;
 	}
 
-	public java.lang.String getOnStringsChange() {
+	public java.lang.Object getOnStringsChange() {
 		return _onStringsChange;
 	}
 
-	public java.lang.String getOnTabIndexChange() {
+	public java.lang.Object getOnTabIndexChange() {
 		return _onTabIndexChange;
 	}
 
-	public java.lang.String getOnVisibleChange() {
+	public java.lang.Object getOnVisibleChange() {
 		return _onVisibleChange;
 	}
 
-	public java.lang.String getOnContentUpdate() {
+	public java.lang.Object getOnContentUpdate() {
 		return _onContentUpdate;
 	}
 
-	public java.lang.String getOnRender() {
+	public java.lang.Object getOnRender() {
 		return _onRender;
 	}
 
-	public java.lang.String getOnWidthChange() {
+	public java.lang.Object getOnWidthChange() {
 		return _onWidthChange;
 	}
 
-	public void setActiveDescendant(java.lang.String activeDescendant) {
+	public void setActiveDescendant(java.lang.Object activeDescendant) {
 		_activeDescendant = activeDescendant;
 
 		setScopedAttribute("activeDescendant", activeDescendant);
@@ -384,25 +384,25 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("activeState", activeState);
 	}
 
-	public void setBoundingBox(java.lang.String boundingBox) {
+	public void setBoundingBox(java.lang.Object boundingBox) {
 		_boundingBox = boundingBox;
 
 		setScopedAttribute("boundingBox", boundingBox);
 	}
 
-	public void setContentBox(java.lang.String contentBox) {
+	public void setContentBox(java.lang.Object contentBox) {
 		_contentBox = contentBox;
 
 		setScopedAttribute("contentBox", contentBox);
 	}
 
-	public void setCssClass(java.lang.String cssClass) {
+	public void setCssClass(java.lang.Object cssClass) {
 		_cssClass = cssClass;
 
 		setScopedAttribute("cssClass", cssClass);
 	}
 
-	public void setDefaultChildType(java.lang.String defaultChildType) {
+	public void setDefaultChildType(java.lang.Object defaultChildType) {
 		_defaultChildType = defaultChildType;
 
 		setScopedAttribute("defaultChildType", defaultChildType);
@@ -432,13 +432,13 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("focused", focused);
 	}
 
-	public void setHeight(java.lang.String height) {
+	public void setHeight(java.lang.Object height) {
 		_height = height;
 
 		setScopedAttribute("height", height);
 	}
 
-	public void setHideClass(java.lang.String hideClass) {
+	public void setHideClass(java.lang.Object hideClass) {
 		_hideClass = hideClass;
 
 		setScopedAttribute("hideClass", hideClass);
@@ -450,7 +450,7 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("hoverState", hoverState);
 	}
 
-	public void setToolbarId(java.lang.String toolbarId) {
+	public void setToolbarId(java.lang.Object toolbarId) {
 		_toolbarId = toolbarId;
 
 		setScopedAttribute("toolbarId", toolbarId);
@@ -468,7 +468,7 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("multiple", multiple);
 	}
 
-	public void setOrientation(java.lang.String orientation) {
+	public void setOrientation(java.lang.Object orientation) {
 		_orientation = orientation;
 
 		setScopedAttribute("orientation", orientation);
@@ -486,13 +486,13 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setSelection(java.lang.String selection) {
+	public void setSelection(java.lang.Object selection) {
 		_selection = selection;
 
 		setScopedAttribute("selection", selection);
 	}
 
-	public void setSrcNode(java.lang.String srcNode) {
+	public void setSrcNode(java.lang.Object srcNode) {
 		_srcNode = srcNode;
 
 		setScopedAttribute("srcNode", srcNode);
@@ -516,379 +516,379 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("visible", visible);
 	}
 
-	public void setWidth(java.lang.String width) {
+	public void setWidth(java.lang.Object width) {
 		_width = width;
 
 		setScopedAttribute("width", width);
 	}
 
-	public void setAfterActiveDescendantChange(java.lang.String afterActiveDescendantChange) {
+	public void setAfterActiveDescendantChange(java.lang.Object afterActiveDescendantChange) {
 		_afterActiveDescendantChange = afterActiveDescendantChange;
 
 		setScopedAttribute("afterActiveDescendantChange", afterActiveDescendantChange);
 	}
 
-	public void setAfterActiveStateChange(java.lang.String afterActiveStateChange) {
+	public void setAfterActiveStateChange(java.lang.Object afterActiveStateChange) {
 		_afterActiveStateChange = afterActiveStateChange;
 
 		setScopedAttribute("afterActiveStateChange", afterActiveStateChange);
 	}
 
-	public void setAfterAddChild(java.lang.String afterAddChild) {
+	public void setAfterAddChild(java.lang.Object afterAddChild) {
 		_afterAddChild = afterAddChild;
 
 		setScopedAttribute("afterAddChild", afterAddChild);
 	}
 
-	public void setAfterBoundingBoxChange(java.lang.String afterBoundingBoxChange) {
+	public void setAfterBoundingBoxChange(java.lang.Object afterBoundingBoxChange) {
 		_afterBoundingBoxChange = afterBoundingBoxChange;
 
 		setScopedAttribute("afterBoundingBoxChange", afterBoundingBoxChange);
 	}
 
-	public void setAfterContentBoxChange(java.lang.String afterContentBoxChange) {
+	public void setAfterContentBoxChange(java.lang.Object afterContentBoxChange) {
 		_afterContentBoxChange = afterContentBoxChange;
 
 		setScopedAttribute("afterContentBoxChange", afterContentBoxChange);
 	}
 
-	public void setAfterCssClassChange(java.lang.String afterCssClassChange) {
+	public void setAfterCssClassChange(java.lang.Object afterCssClassChange) {
 		_afterCssClassChange = afterCssClassChange;
 
 		setScopedAttribute("afterCssClassChange", afterCssClassChange);
 	}
 
-	public void setAfterDefaultChildTypeChange(java.lang.String afterDefaultChildTypeChange) {
+	public void setAfterDefaultChildTypeChange(java.lang.Object afterDefaultChildTypeChange) {
 		_afterDefaultChildTypeChange = afterDefaultChildTypeChange;
 
 		setScopedAttribute("afterDefaultChildTypeChange", afterDefaultChildTypeChange);
 	}
 
-	public void setAfterDefaultStateChange(java.lang.String afterDefaultStateChange) {
+	public void setAfterDefaultStateChange(java.lang.Object afterDefaultStateChange) {
 		_afterDefaultStateChange = afterDefaultStateChange;
 
 		setScopedAttribute("afterDefaultStateChange", afterDefaultStateChange);
 	}
 
-	public void setAfterDestroy(java.lang.String afterDestroy) {
+	public void setAfterDestroy(java.lang.Object afterDestroy) {
 		_afterDestroy = afterDestroy;
 
 		setScopedAttribute("afterDestroy", afterDestroy);
 	}
 
-	public void setAfterDestroyedChange(java.lang.String afterDestroyedChange) {
+	public void setAfterDestroyedChange(java.lang.Object afterDestroyedChange) {
 		_afterDestroyedChange = afterDestroyedChange;
 
 		setScopedAttribute("afterDestroyedChange", afterDestroyedChange);
 	}
 
-	public void setAfterDisabledChange(java.lang.String afterDisabledChange) {
+	public void setAfterDisabledChange(java.lang.Object afterDisabledChange) {
 		_afterDisabledChange = afterDisabledChange;
 
 		setScopedAttribute("afterDisabledChange", afterDisabledChange);
 	}
 
-	public void setAfterFocusedChange(java.lang.String afterFocusedChange) {
+	public void setAfterFocusedChange(java.lang.Object afterFocusedChange) {
 		_afterFocusedChange = afterFocusedChange;
 
 		setScopedAttribute("afterFocusedChange", afterFocusedChange);
 	}
 
-	public void setAfterHeightChange(java.lang.String afterHeightChange) {
+	public void setAfterHeightChange(java.lang.Object afterHeightChange) {
 		_afterHeightChange = afterHeightChange;
 
 		setScopedAttribute("afterHeightChange", afterHeightChange);
 	}
 
-	public void setAfterHideClassChange(java.lang.String afterHideClassChange) {
+	public void setAfterHideClassChange(java.lang.Object afterHideClassChange) {
 		_afterHideClassChange = afterHideClassChange;
 
 		setScopedAttribute("afterHideClassChange", afterHideClassChange);
 	}
 
-	public void setAfterHoverStateChange(java.lang.String afterHoverStateChange) {
+	public void setAfterHoverStateChange(java.lang.Object afterHoverStateChange) {
 		_afterHoverStateChange = afterHoverStateChange;
 
 		setScopedAttribute("afterHoverStateChange", afterHoverStateChange);
 	}
 
-	public void setAfterIdChange(java.lang.String afterIdChange) {
+	public void setAfterIdChange(java.lang.Object afterIdChange) {
 		_afterIdChange = afterIdChange;
 
 		setScopedAttribute("afterIdChange", afterIdChange);
 	}
 
-	public void setAfterInit(java.lang.String afterInit) {
+	public void setAfterInit(java.lang.Object afterInit) {
 		_afterInit = afterInit;
 
 		setScopedAttribute("afterInit", afterInit);
 	}
 
-	public void setAfterInitializedChange(java.lang.String afterInitializedChange) {
+	public void setAfterInitializedChange(java.lang.Object afterInitializedChange) {
 		_afterInitializedChange = afterInitializedChange;
 
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
-	public void setAfterMultipleChange(java.lang.String afterMultipleChange) {
+	public void setAfterMultipleChange(java.lang.Object afterMultipleChange) {
 		_afterMultipleChange = afterMultipleChange;
 
 		setScopedAttribute("afterMultipleChange", afterMultipleChange);
 	}
 
-	public void setAfterOrientationChange(java.lang.String afterOrientationChange) {
+	public void setAfterOrientationChange(java.lang.Object afterOrientationChange) {
 		_afterOrientationChange = afterOrientationChange;
 
 		setScopedAttribute("afterOrientationChange", afterOrientationChange);
 	}
 
-	public void setAfterRemoveChild(java.lang.String afterRemoveChild) {
+	public void setAfterRemoveChild(java.lang.Object afterRemoveChild) {
 		_afterRemoveChild = afterRemoveChild;
 
 		setScopedAttribute("afterRemoveChild", afterRemoveChild);
 	}
 
-	public void setAfterRenderChange(java.lang.String afterRenderChange) {
+	public void setAfterRenderChange(java.lang.Object afterRenderChange) {
 		_afterRenderChange = afterRenderChange;
 
 		setScopedAttribute("afterRenderChange", afterRenderChange);
 	}
 
-	public void setAfterRenderedChange(java.lang.String afterRenderedChange) {
+	public void setAfterRenderedChange(java.lang.Object afterRenderedChange) {
 		_afterRenderedChange = afterRenderedChange;
 
 		setScopedAttribute("afterRenderedChange", afterRenderedChange);
 	}
 
-	public void setAfterSelectionChange(java.lang.String afterSelectionChange) {
+	public void setAfterSelectionChange(java.lang.Object afterSelectionChange) {
 		_afterSelectionChange = afterSelectionChange;
 
 		setScopedAttribute("afterSelectionChange", afterSelectionChange);
 	}
 
-	public void setAfterSrcNodeChange(java.lang.String afterSrcNodeChange) {
+	public void setAfterSrcNodeChange(java.lang.Object afterSrcNodeChange) {
 		_afterSrcNodeChange = afterSrcNodeChange;
 
 		setScopedAttribute("afterSrcNodeChange", afterSrcNodeChange);
 	}
 
-	public void setAfterStringsChange(java.lang.String afterStringsChange) {
+	public void setAfterStringsChange(java.lang.Object afterStringsChange) {
 		_afterStringsChange = afterStringsChange;
 
 		setScopedAttribute("afterStringsChange", afterStringsChange);
 	}
 
-	public void setAfterTabIndexChange(java.lang.String afterTabIndexChange) {
+	public void setAfterTabIndexChange(java.lang.Object afterTabIndexChange) {
 		_afterTabIndexChange = afterTabIndexChange;
 
 		setScopedAttribute("afterTabIndexChange", afterTabIndexChange);
 	}
 
-	public void setAfterVisibleChange(java.lang.String afterVisibleChange) {
+	public void setAfterVisibleChange(java.lang.Object afterVisibleChange) {
 		_afterVisibleChange = afterVisibleChange;
 
 		setScopedAttribute("afterVisibleChange", afterVisibleChange);
 	}
 
-	public void setAfterContentUpdate(java.lang.String afterContentUpdate) {
+	public void setAfterContentUpdate(java.lang.Object afterContentUpdate) {
 		_afterContentUpdate = afterContentUpdate;
 
 		setScopedAttribute("afterContentUpdate", afterContentUpdate);
 	}
 
-	public void setAfterRender(java.lang.String afterRender) {
+	public void setAfterRender(java.lang.Object afterRender) {
 		_afterRender = afterRender;
 
 		setScopedAttribute("afterRender", afterRender);
 	}
 
-	public void setAfterWidthChange(java.lang.String afterWidthChange) {
+	public void setAfterWidthChange(java.lang.Object afterWidthChange) {
 		_afterWidthChange = afterWidthChange;
 
 		setScopedAttribute("afterWidthChange", afterWidthChange);
 	}
 
-	public void setOnActiveDescendantChange(java.lang.String onActiveDescendantChange) {
+	public void setOnActiveDescendantChange(java.lang.Object onActiveDescendantChange) {
 		_onActiveDescendantChange = onActiveDescendantChange;
 
 		setScopedAttribute("onActiveDescendantChange", onActiveDescendantChange);
 	}
 
-	public void setOnActiveStateChange(java.lang.String onActiveStateChange) {
+	public void setOnActiveStateChange(java.lang.Object onActiveStateChange) {
 		_onActiveStateChange = onActiveStateChange;
 
 		setScopedAttribute("onActiveStateChange", onActiveStateChange);
 	}
 
-	public void setOnAddChild(java.lang.String onAddChild) {
+	public void setOnAddChild(java.lang.Object onAddChild) {
 		_onAddChild = onAddChild;
 
 		setScopedAttribute("onAddChild", onAddChild);
 	}
 
-	public void setOnBoundingBoxChange(java.lang.String onBoundingBoxChange) {
+	public void setOnBoundingBoxChange(java.lang.Object onBoundingBoxChange) {
 		_onBoundingBoxChange = onBoundingBoxChange;
 
 		setScopedAttribute("onBoundingBoxChange", onBoundingBoxChange);
 	}
 
-	public void setOnContentBoxChange(java.lang.String onContentBoxChange) {
+	public void setOnContentBoxChange(java.lang.Object onContentBoxChange) {
 		_onContentBoxChange = onContentBoxChange;
 
 		setScopedAttribute("onContentBoxChange", onContentBoxChange);
 	}
 
-	public void setOnCssClassChange(java.lang.String onCssClassChange) {
+	public void setOnCssClassChange(java.lang.Object onCssClassChange) {
 		_onCssClassChange = onCssClassChange;
 
 		setScopedAttribute("onCssClassChange", onCssClassChange);
 	}
 
-	public void setOnDefaultChildTypeChange(java.lang.String onDefaultChildTypeChange) {
+	public void setOnDefaultChildTypeChange(java.lang.Object onDefaultChildTypeChange) {
 		_onDefaultChildTypeChange = onDefaultChildTypeChange;
 
 		setScopedAttribute("onDefaultChildTypeChange", onDefaultChildTypeChange);
 	}
 
-	public void setOnDefaultStateChange(java.lang.String onDefaultStateChange) {
+	public void setOnDefaultStateChange(java.lang.Object onDefaultStateChange) {
 		_onDefaultStateChange = onDefaultStateChange;
 
 		setScopedAttribute("onDefaultStateChange", onDefaultStateChange);
 	}
 
-	public void setOnDestroy(java.lang.String onDestroy) {
+	public void setOnDestroy(java.lang.Object onDestroy) {
 		_onDestroy = onDestroy;
 
 		setScopedAttribute("onDestroy", onDestroy);
 	}
 
-	public void setOnDestroyedChange(java.lang.String onDestroyedChange) {
+	public void setOnDestroyedChange(java.lang.Object onDestroyedChange) {
 		_onDestroyedChange = onDestroyedChange;
 
 		setScopedAttribute("onDestroyedChange", onDestroyedChange);
 	}
 
-	public void setOnDisabledChange(java.lang.String onDisabledChange) {
+	public void setOnDisabledChange(java.lang.Object onDisabledChange) {
 		_onDisabledChange = onDisabledChange;
 
 		setScopedAttribute("onDisabledChange", onDisabledChange);
 	}
 
-	public void setOnFocusedChange(java.lang.String onFocusedChange) {
+	public void setOnFocusedChange(java.lang.Object onFocusedChange) {
 		_onFocusedChange = onFocusedChange;
 
 		setScopedAttribute("onFocusedChange", onFocusedChange);
 	}
 
-	public void setOnHeightChange(java.lang.String onHeightChange) {
+	public void setOnHeightChange(java.lang.Object onHeightChange) {
 		_onHeightChange = onHeightChange;
 
 		setScopedAttribute("onHeightChange", onHeightChange);
 	}
 
-	public void setOnHideClassChange(java.lang.String onHideClassChange) {
+	public void setOnHideClassChange(java.lang.Object onHideClassChange) {
 		_onHideClassChange = onHideClassChange;
 
 		setScopedAttribute("onHideClassChange", onHideClassChange);
 	}
 
-	public void setOnHoverStateChange(java.lang.String onHoverStateChange) {
+	public void setOnHoverStateChange(java.lang.Object onHoverStateChange) {
 		_onHoverStateChange = onHoverStateChange;
 
 		setScopedAttribute("onHoverStateChange", onHoverStateChange);
 	}
 
-	public void setOnIdChange(java.lang.String onIdChange) {
+	public void setOnIdChange(java.lang.Object onIdChange) {
 		_onIdChange = onIdChange;
 
 		setScopedAttribute("onIdChange", onIdChange);
 	}
 
-	public void setOnInit(java.lang.String onInit) {
+	public void setOnInit(java.lang.Object onInit) {
 		_onInit = onInit;
 
 		setScopedAttribute("onInit", onInit);
 	}
 
-	public void setOnInitializedChange(java.lang.String onInitializedChange) {
+	public void setOnInitializedChange(java.lang.Object onInitializedChange) {
 		_onInitializedChange = onInitializedChange;
 
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
-	public void setOnMultipleChange(java.lang.String onMultipleChange) {
+	public void setOnMultipleChange(java.lang.Object onMultipleChange) {
 		_onMultipleChange = onMultipleChange;
 
 		setScopedAttribute("onMultipleChange", onMultipleChange);
 	}
 
-	public void setOnOrientationChange(java.lang.String onOrientationChange) {
+	public void setOnOrientationChange(java.lang.Object onOrientationChange) {
 		_onOrientationChange = onOrientationChange;
 
 		setScopedAttribute("onOrientationChange", onOrientationChange);
 	}
 
-	public void setOnRemoveChild(java.lang.String onRemoveChild) {
+	public void setOnRemoveChild(java.lang.Object onRemoveChild) {
 		_onRemoveChild = onRemoveChild;
 
 		setScopedAttribute("onRemoveChild", onRemoveChild);
 	}
 
-	public void setOnRenderChange(java.lang.String onRenderChange) {
+	public void setOnRenderChange(java.lang.Object onRenderChange) {
 		_onRenderChange = onRenderChange;
 
 		setScopedAttribute("onRenderChange", onRenderChange);
 	}
 
-	public void setOnRenderedChange(java.lang.String onRenderedChange) {
+	public void setOnRenderedChange(java.lang.Object onRenderedChange) {
 		_onRenderedChange = onRenderedChange;
 
 		setScopedAttribute("onRenderedChange", onRenderedChange);
 	}
 
-	public void setOnSelectionChange(java.lang.String onSelectionChange) {
+	public void setOnSelectionChange(java.lang.Object onSelectionChange) {
 		_onSelectionChange = onSelectionChange;
 
 		setScopedAttribute("onSelectionChange", onSelectionChange);
 	}
 
-	public void setOnSrcNodeChange(java.lang.String onSrcNodeChange) {
+	public void setOnSrcNodeChange(java.lang.Object onSrcNodeChange) {
 		_onSrcNodeChange = onSrcNodeChange;
 
 		setScopedAttribute("onSrcNodeChange", onSrcNodeChange);
 	}
 
-	public void setOnStringsChange(java.lang.String onStringsChange) {
+	public void setOnStringsChange(java.lang.Object onStringsChange) {
 		_onStringsChange = onStringsChange;
 
 		setScopedAttribute("onStringsChange", onStringsChange);
 	}
 
-	public void setOnTabIndexChange(java.lang.String onTabIndexChange) {
+	public void setOnTabIndexChange(java.lang.Object onTabIndexChange) {
 		_onTabIndexChange = onTabIndexChange;
 
 		setScopedAttribute("onTabIndexChange", onTabIndexChange);
 	}
 
-	public void setOnVisibleChange(java.lang.String onVisibleChange) {
+	public void setOnVisibleChange(java.lang.Object onVisibleChange) {
 		_onVisibleChange = onVisibleChange;
 
 		setScopedAttribute("onVisibleChange", onVisibleChange);
 	}
 
-	public void setOnContentUpdate(java.lang.String onContentUpdate) {
+	public void setOnContentUpdate(java.lang.Object onContentUpdate) {
 		_onContentUpdate = onContentUpdate;
 
 		setScopedAttribute("onContentUpdate", onContentUpdate);
 	}
 
-	public void setOnRender(java.lang.String onRender) {
+	public void setOnRender(java.lang.Object onRender) {
 		_onRender = onRender;
 
 		setScopedAttribute("onRender", onRender);
 	}
 
-	public void setOnWidthChange(java.lang.String onWidthChange) {
+	public void setOnWidthChange(java.lang.Object onWidthChange) {
 		_onWidthChange = onWidthChange;
 
 		setScopedAttribute("onWidthChange", onWidthChange);
@@ -989,92 +989,92 @@ public class BaseToolbarTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/toolbar/page.jsp";
 
-	private java.lang.String _activeDescendant;
+	private java.lang.Object _activeDescendant;
 	private java.lang.String _activeState;
-	private java.lang.String _boundingBox;
-	private java.lang.String _contentBox;
-	private java.lang.String _cssClass;
-	private java.lang.String _defaultChildType;
+	private java.lang.Object _boundingBox;
+	private java.lang.Object _contentBox;
+	private java.lang.Object _cssClass;
+	private java.lang.Object _defaultChildType;
 	private java.lang.String _defaultState;
 	private java.lang.String _destroyed;
 	private java.lang.String _disabled;
 	private java.lang.String _focused;
-	private java.lang.String _height;
-	private java.lang.String _hideClass;
+	private java.lang.Object _height;
+	private java.lang.Object _hideClass;
 	private java.lang.String _hoverState;
-	private java.lang.String _toolbarId;
+	private java.lang.Object _toolbarId;
 	private java.lang.String _initialized;
 	private java.lang.String _multiple;
-	private java.lang.String _orientation;
+	private java.lang.Object _orientation;
 	private java.lang.String _render;
 	private java.lang.String _rendered;
-	private java.lang.String _selection;
-	private java.lang.String _srcNode;
+	private java.lang.Object _selection;
+	private java.lang.Object _srcNode;
 	private java.lang.Object _strings;
 	private java.lang.String _tabIndex;
 	private java.lang.String _visible;
-	private java.lang.String _width;
-	private java.lang.String _afterActiveDescendantChange;
-	private java.lang.String _afterActiveStateChange;
-	private java.lang.String _afterAddChild;
-	private java.lang.String _afterBoundingBoxChange;
-	private java.lang.String _afterContentBoxChange;
-	private java.lang.String _afterCssClassChange;
-	private java.lang.String _afterDefaultChildTypeChange;
-	private java.lang.String _afterDefaultStateChange;
-	private java.lang.String _afterDestroy;
-	private java.lang.String _afterDestroyedChange;
-	private java.lang.String _afterDisabledChange;
-	private java.lang.String _afterFocusedChange;
-	private java.lang.String _afterHeightChange;
-	private java.lang.String _afterHideClassChange;
-	private java.lang.String _afterHoverStateChange;
-	private java.lang.String _afterIdChange;
-	private java.lang.String _afterInit;
-	private java.lang.String _afterInitializedChange;
-	private java.lang.String _afterMultipleChange;
-	private java.lang.String _afterOrientationChange;
-	private java.lang.String _afterRemoveChild;
-	private java.lang.String _afterRenderChange;
-	private java.lang.String _afterRenderedChange;
-	private java.lang.String _afterSelectionChange;
-	private java.lang.String _afterSrcNodeChange;
-	private java.lang.String _afterStringsChange;
-	private java.lang.String _afterTabIndexChange;
-	private java.lang.String _afterVisibleChange;
-	private java.lang.String _afterContentUpdate;
-	private java.lang.String _afterRender;
-	private java.lang.String _afterWidthChange;
-	private java.lang.String _onActiveDescendantChange;
-	private java.lang.String _onActiveStateChange;
-	private java.lang.String _onAddChild;
-	private java.lang.String _onBoundingBoxChange;
-	private java.lang.String _onContentBoxChange;
-	private java.lang.String _onCssClassChange;
-	private java.lang.String _onDefaultChildTypeChange;
-	private java.lang.String _onDefaultStateChange;
-	private java.lang.String _onDestroy;
-	private java.lang.String _onDestroyedChange;
-	private java.lang.String _onDisabledChange;
-	private java.lang.String _onFocusedChange;
-	private java.lang.String _onHeightChange;
-	private java.lang.String _onHideClassChange;
-	private java.lang.String _onHoverStateChange;
-	private java.lang.String _onIdChange;
-	private java.lang.String _onInit;
-	private java.lang.String _onInitializedChange;
-	private java.lang.String _onMultipleChange;
-	private java.lang.String _onOrientationChange;
-	private java.lang.String _onRemoveChild;
-	private java.lang.String _onRenderChange;
-	private java.lang.String _onRenderedChange;
-	private java.lang.String _onSelectionChange;
-	private java.lang.String _onSrcNodeChange;
-	private java.lang.String _onStringsChange;
-	private java.lang.String _onTabIndexChange;
-	private java.lang.String _onVisibleChange;
-	private java.lang.String _onContentUpdate;
-	private java.lang.String _onRender;
-	private java.lang.String _onWidthChange;
+	private java.lang.Object _width;
+	private java.lang.Object _afterActiveDescendantChange;
+	private java.lang.Object _afterActiveStateChange;
+	private java.lang.Object _afterAddChild;
+	private java.lang.Object _afterBoundingBoxChange;
+	private java.lang.Object _afterContentBoxChange;
+	private java.lang.Object _afterCssClassChange;
+	private java.lang.Object _afterDefaultChildTypeChange;
+	private java.lang.Object _afterDefaultStateChange;
+	private java.lang.Object _afterDestroy;
+	private java.lang.Object _afterDestroyedChange;
+	private java.lang.Object _afterDisabledChange;
+	private java.lang.Object _afterFocusedChange;
+	private java.lang.Object _afterHeightChange;
+	private java.lang.Object _afterHideClassChange;
+	private java.lang.Object _afterHoverStateChange;
+	private java.lang.Object _afterIdChange;
+	private java.lang.Object _afterInit;
+	private java.lang.Object _afterInitializedChange;
+	private java.lang.Object _afterMultipleChange;
+	private java.lang.Object _afterOrientationChange;
+	private java.lang.Object _afterRemoveChild;
+	private java.lang.Object _afterRenderChange;
+	private java.lang.Object _afterRenderedChange;
+	private java.lang.Object _afterSelectionChange;
+	private java.lang.Object _afterSrcNodeChange;
+	private java.lang.Object _afterStringsChange;
+	private java.lang.Object _afterTabIndexChange;
+	private java.lang.Object _afterVisibleChange;
+	private java.lang.Object _afterContentUpdate;
+	private java.lang.Object _afterRender;
+	private java.lang.Object _afterWidthChange;
+	private java.lang.Object _onActiveDescendantChange;
+	private java.lang.Object _onActiveStateChange;
+	private java.lang.Object _onAddChild;
+	private java.lang.Object _onBoundingBoxChange;
+	private java.lang.Object _onContentBoxChange;
+	private java.lang.Object _onCssClassChange;
+	private java.lang.Object _onDefaultChildTypeChange;
+	private java.lang.Object _onDefaultStateChange;
+	private java.lang.Object _onDestroy;
+	private java.lang.Object _onDestroyedChange;
+	private java.lang.Object _onDisabledChange;
+	private java.lang.Object _onFocusedChange;
+	private java.lang.Object _onHeightChange;
+	private java.lang.Object _onHideClassChange;
+	private java.lang.Object _onHoverStateChange;
+	private java.lang.Object _onIdChange;
+	private java.lang.Object _onInit;
+	private java.lang.Object _onInitializedChange;
+	private java.lang.Object _onMultipleChange;
+	private java.lang.Object _onOrientationChange;
+	private java.lang.Object _onRemoveChild;
+	private java.lang.Object _onRenderChange;
+	private java.lang.Object _onRenderedChange;
+	private java.lang.Object _onSelectionChange;
+	private java.lang.Object _onSrcNodeChange;
+	private java.lang.Object _onStringsChange;
+	private java.lang.Object _onTabIndexChange;
+	private java.lang.Object _onVisibleChange;
+	private java.lang.Object _onContentUpdate;
+	private java.lang.Object _onRender;
+	private java.lang.Object _onWidthChange;
 
 }

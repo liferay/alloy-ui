@@ -28,27 +28,27 @@ public class BaseOverlayBaseTag extends IncludeTag {
 		return _align;
 	}
 
-	public java.lang.String getOverlaybaseBodyContent() {
+	public java.lang.Object getOverlaybaseBodyContent() {
 		return _overlaybaseBodyContent;
 	}
 
-	public java.lang.String getBoundingBox() {
+	public java.lang.Object getBoundingBox() {
 		return _boundingBox;
 	}
 
-	public java.lang.String getCentered() {
+	public java.lang.Object getCentered() {
 		return _centered;
 	}
 
-	public java.lang.String getConstrain() {
+	public java.lang.Object getConstrain() {
 		return _constrain;
 	}
 
-	public java.lang.String getContentBox() {
+	public java.lang.Object getContentBox() {
 		return _contentBox;
 	}
 
-	public java.lang.String getCssClass() {
+	public java.lang.Object getCssClass() {
 		return _cssClass;
 	}
 
@@ -60,7 +60,7 @@ public class BaseOverlayBaseTag extends IncludeTag {
 		return _disabled;
 	}
 
-	public java.lang.String getFillHeight() {
+	public java.lang.Object getFillHeight() {
 		return _fillHeight;
 	}
 
@@ -68,23 +68,23 @@ public class BaseOverlayBaseTag extends IncludeTag {
 		return _focused;
 	}
 
-	public java.lang.String getFooterContent() {
+	public java.lang.Object getFooterContent() {
 		return _footerContent;
 	}
 
-	public java.lang.String getHeaderContent() {
+	public java.lang.Object getHeaderContent() {
 		return _headerContent;
 	}
 
-	public java.lang.String getHeight() {
+	public java.lang.Object getHeight() {
 		return _height;
 	}
 
-	public java.lang.String getHideClass() {
+	public java.lang.Object getHideClass() {
 		return _hideClass;
 	}
 
-	public java.lang.String getOverlaybaseId() {
+	public java.lang.Object getOverlaybaseId() {
 		return _overlaybaseId;
 	}
 
@@ -108,7 +108,7 @@ public class BaseOverlayBaseTag extends IncludeTag {
 		return _shim;
 	}
 
-	public java.lang.String getSrcNode() {
+	public java.lang.Object getSrcNode() {
 		return _srcNode;
 	}
 
@@ -124,7 +124,7 @@ public class BaseOverlayBaseTag extends IncludeTag {
 		return _visible;
 	}
 
-	public java.lang.String getWidth() {
+	public java.lang.Object getWidth() {
 		return _width;
 	}
 
@@ -144,275 +144,275 @@ public class BaseOverlayBaseTag extends IncludeTag {
 		return _zIndex;
 	}
 
-	public java.lang.String getAfterAlignChange() {
+	public java.lang.Object getAfterAlignChange() {
 		return _afterAlignChange;
 	}
 
-	public java.lang.String getAfterBodyContentChange() {
+	public java.lang.Object getAfterBodyContentChange() {
 		return _afterBodyContentChange;
 	}
 
-	public java.lang.String getAfterBoundingBoxChange() {
+	public java.lang.Object getAfterBoundingBoxChange() {
 		return _afterBoundingBoxChange;
 	}
 
-	public java.lang.String getAfterCenteredChange() {
+	public java.lang.Object getAfterCenteredChange() {
 		return _afterCenteredChange;
 	}
 
-	public java.lang.String getAfterConstrainChange() {
+	public java.lang.Object getAfterConstrainChange() {
 		return _afterConstrainChange;
 	}
 
-	public java.lang.String getAfterContentBoxChange() {
+	public java.lang.Object getAfterContentBoxChange() {
 		return _afterContentBoxChange;
 	}
 
-	public java.lang.String getAfterCssClassChange() {
+	public java.lang.Object getAfterCssClassChange() {
 		return _afterCssClassChange;
 	}
 
-	public java.lang.String getAfterDestroy() {
+	public java.lang.Object getAfterDestroy() {
 		return _afterDestroy;
 	}
 
-	public java.lang.String getAfterDestroyedChange() {
+	public java.lang.Object getAfterDestroyedChange() {
 		return _afterDestroyedChange;
 	}
 
-	public java.lang.String getAfterDisabledChange() {
+	public java.lang.Object getAfterDisabledChange() {
 		return _afterDisabledChange;
 	}
 
-	public java.lang.String getAfterFillHeightChange() {
+	public java.lang.Object getAfterFillHeightChange() {
 		return _afterFillHeightChange;
 	}
 
-	public java.lang.String getAfterFocusedChange() {
+	public java.lang.Object getAfterFocusedChange() {
 		return _afterFocusedChange;
 	}
 
-	public java.lang.String getAfterFooterContentChange() {
+	public java.lang.Object getAfterFooterContentChange() {
 		return _afterFooterContentChange;
 	}
 
-	public java.lang.String getAfterHeaderContentChange() {
+	public java.lang.Object getAfterHeaderContentChange() {
 		return _afterHeaderContentChange;
 	}
 
-	public java.lang.String getAfterHeightChange() {
+	public java.lang.Object getAfterHeightChange() {
 		return _afterHeightChange;
 	}
 
-	public java.lang.String getAfterHideClassChange() {
+	public java.lang.Object getAfterHideClassChange() {
 		return _afterHideClassChange;
 	}
 
-	public java.lang.String getAfterIdChange() {
+	public java.lang.Object getAfterIdChange() {
 		return _afterIdChange;
 	}
 
-	public java.lang.String getAfterInit() {
+	public java.lang.Object getAfterInit() {
 		return _afterInit;
 	}
 
-	public java.lang.String getAfterInitializedChange() {
+	public java.lang.Object getAfterInitializedChange() {
 		return _afterInitializedChange;
 	}
 
-	public java.lang.String getAfterPreventOverlapChange() {
+	public java.lang.Object getAfterPreventOverlapChange() {
 		return _afterPreventOverlapChange;
 	}
 
-	public java.lang.String getAfterRenderChange() {
+	public java.lang.Object getAfterRenderChange() {
 		return _afterRenderChange;
 	}
 
-	public java.lang.String getAfterRenderedChange() {
+	public java.lang.Object getAfterRenderedChange() {
 		return _afterRenderedChange;
 	}
 
-	public java.lang.String getAfterShimChange() {
+	public java.lang.Object getAfterShimChange() {
 		return _afterShimChange;
 	}
 
-	public java.lang.String getAfterSrcNodeChange() {
+	public java.lang.Object getAfterSrcNodeChange() {
 		return _afterSrcNodeChange;
 	}
 
-	public java.lang.String getAfterStringsChange() {
+	public java.lang.Object getAfterStringsChange() {
 		return _afterStringsChange;
 	}
 
-	public java.lang.String getAfterTabIndexChange() {
+	public java.lang.Object getAfterTabIndexChange() {
 		return _afterTabIndexChange;
 	}
 
-	public java.lang.String getAfterVisibleChange() {
+	public java.lang.Object getAfterVisibleChange() {
 		return _afterVisibleChange;
 	}
 
-	public java.lang.String getAfterContentUpdate() {
+	public java.lang.Object getAfterContentUpdate() {
 		return _afterContentUpdate;
 	}
 
-	public java.lang.String getAfterRender() {
+	public java.lang.Object getAfterRender() {
 		return _afterRender;
 	}
 
-	public java.lang.String getAfterWidthChange() {
+	public java.lang.Object getAfterWidthChange() {
 		return _afterWidthChange;
 	}
 
-	public java.lang.String getAfterXChange() {
+	public java.lang.Object getAfterXChange() {
 		return _afterXChange;
 	}
 
-	public java.lang.String getAfterXyChange() {
+	public java.lang.Object getAfterXyChange() {
 		return _afterXyChange;
 	}
 
-	public java.lang.String getAfterYChange() {
+	public java.lang.Object getAfterYChange() {
 		return _afterYChange;
 	}
 
-	public java.lang.String getAfterZIndexChange() {
+	public java.lang.Object getAfterZIndexChange() {
 		return _afterZIndexChange;
 	}
 
-	public java.lang.String getOnAlignChange() {
+	public java.lang.Object getOnAlignChange() {
 		return _onAlignChange;
 	}
 
-	public java.lang.String getOnBodyContentChange() {
+	public java.lang.Object getOnBodyContentChange() {
 		return _onBodyContentChange;
 	}
 
-	public java.lang.String getOnBoundingBoxChange() {
+	public java.lang.Object getOnBoundingBoxChange() {
 		return _onBoundingBoxChange;
 	}
 
-	public java.lang.String getOnCenteredChange() {
+	public java.lang.Object getOnCenteredChange() {
 		return _onCenteredChange;
 	}
 
-	public java.lang.String getOnConstrainChange() {
+	public java.lang.Object getOnConstrainChange() {
 		return _onConstrainChange;
 	}
 
-	public java.lang.String getOnContentBoxChange() {
+	public java.lang.Object getOnContentBoxChange() {
 		return _onContentBoxChange;
 	}
 
-	public java.lang.String getOnCssClassChange() {
+	public java.lang.Object getOnCssClassChange() {
 		return _onCssClassChange;
 	}
 
-	public java.lang.String getOnDestroy() {
+	public java.lang.Object getOnDestroy() {
 		return _onDestroy;
 	}
 
-	public java.lang.String getOnDestroyedChange() {
+	public java.lang.Object getOnDestroyedChange() {
 		return _onDestroyedChange;
 	}
 
-	public java.lang.String getOnDisabledChange() {
+	public java.lang.Object getOnDisabledChange() {
 		return _onDisabledChange;
 	}
 
-	public java.lang.String getOnFillHeightChange() {
+	public java.lang.Object getOnFillHeightChange() {
 		return _onFillHeightChange;
 	}
 
-	public java.lang.String getOnFocusedChange() {
+	public java.lang.Object getOnFocusedChange() {
 		return _onFocusedChange;
 	}
 
-	public java.lang.String getOnFooterContentChange() {
+	public java.lang.Object getOnFooterContentChange() {
 		return _onFooterContentChange;
 	}
 
-	public java.lang.String getOnHeaderContentChange() {
+	public java.lang.Object getOnHeaderContentChange() {
 		return _onHeaderContentChange;
 	}
 
-	public java.lang.String getOnHeightChange() {
+	public java.lang.Object getOnHeightChange() {
 		return _onHeightChange;
 	}
 
-	public java.lang.String getOnHideClassChange() {
+	public java.lang.Object getOnHideClassChange() {
 		return _onHideClassChange;
 	}
 
-	public java.lang.String getOnIdChange() {
+	public java.lang.Object getOnIdChange() {
 		return _onIdChange;
 	}
 
-	public java.lang.String getOnInit() {
+	public java.lang.Object getOnInit() {
 		return _onInit;
 	}
 
-	public java.lang.String getOnInitializedChange() {
+	public java.lang.Object getOnInitializedChange() {
 		return _onInitializedChange;
 	}
 
-	public java.lang.String getOnPreventOverlapChange() {
+	public java.lang.Object getOnPreventOverlapChange() {
 		return _onPreventOverlapChange;
 	}
 
-	public java.lang.String getOnRenderChange() {
+	public java.lang.Object getOnRenderChange() {
 		return _onRenderChange;
 	}
 
-	public java.lang.String getOnRenderedChange() {
+	public java.lang.Object getOnRenderedChange() {
 		return _onRenderedChange;
 	}
 
-	public java.lang.String getOnShimChange() {
+	public java.lang.Object getOnShimChange() {
 		return _onShimChange;
 	}
 
-	public java.lang.String getOnSrcNodeChange() {
+	public java.lang.Object getOnSrcNodeChange() {
 		return _onSrcNodeChange;
 	}
 
-	public java.lang.String getOnStringsChange() {
+	public java.lang.Object getOnStringsChange() {
 		return _onStringsChange;
 	}
 
-	public java.lang.String getOnTabIndexChange() {
+	public java.lang.Object getOnTabIndexChange() {
 		return _onTabIndexChange;
 	}
 
-	public java.lang.String getOnVisibleChange() {
+	public java.lang.Object getOnVisibleChange() {
 		return _onVisibleChange;
 	}
 
-	public java.lang.String getOnContentUpdate() {
+	public java.lang.Object getOnContentUpdate() {
 		return _onContentUpdate;
 	}
 
-	public java.lang.String getOnRender() {
+	public java.lang.Object getOnRender() {
 		return _onRender;
 	}
 
-	public java.lang.String getOnWidthChange() {
+	public java.lang.Object getOnWidthChange() {
 		return _onWidthChange;
 	}
 
-	public java.lang.String getOnXChange() {
+	public java.lang.Object getOnXChange() {
 		return _onXChange;
 	}
 
-	public java.lang.String getOnXyChange() {
+	public java.lang.Object getOnXyChange() {
 		return _onXyChange;
 	}
 
-	public java.lang.String getOnYChange() {
+	public java.lang.Object getOnYChange() {
 		return _onYChange;
 	}
 
-	public java.lang.String getOnZIndexChange() {
+	public java.lang.Object getOnZIndexChange() {
 		return _onZIndexChange;
 	}
 
@@ -422,37 +422,37 @@ public class BaseOverlayBaseTag extends IncludeTag {
 		setScopedAttribute("align", align);
 	}
 
-	public void setOverlaybaseBodyContent(java.lang.String overlaybaseBodyContent) {
+	public void setOverlaybaseBodyContent(java.lang.Object overlaybaseBodyContent) {
 		_overlaybaseBodyContent = overlaybaseBodyContent;
 
 		setScopedAttribute("overlaybaseBodyContent", overlaybaseBodyContent);
 	}
 
-	public void setBoundingBox(java.lang.String boundingBox) {
+	public void setBoundingBox(java.lang.Object boundingBox) {
 		_boundingBox = boundingBox;
 
 		setScopedAttribute("boundingBox", boundingBox);
 	}
 
-	public void setCentered(java.lang.String centered) {
+	public void setCentered(java.lang.Object centered) {
 		_centered = centered;
 
 		setScopedAttribute("centered", centered);
 	}
 
-	public void setConstrain(java.lang.String constrain) {
+	public void setConstrain(java.lang.Object constrain) {
 		_constrain = constrain;
 
 		setScopedAttribute("constrain", constrain);
 	}
 
-	public void setContentBox(java.lang.String contentBox) {
+	public void setContentBox(java.lang.Object contentBox) {
 		_contentBox = contentBox;
 
 		setScopedAttribute("contentBox", contentBox);
 	}
 
-	public void setCssClass(java.lang.String cssClass) {
+	public void setCssClass(java.lang.Object cssClass) {
 		_cssClass = cssClass;
 
 		setScopedAttribute("cssClass", cssClass);
@@ -470,7 +470,7 @@ public class BaseOverlayBaseTag extends IncludeTag {
 		setScopedAttribute("disabled", disabled);
 	}
 
-	public void setFillHeight(java.lang.String fillHeight) {
+	public void setFillHeight(java.lang.Object fillHeight) {
 		_fillHeight = fillHeight;
 
 		setScopedAttribute("fillHeight", fillHeight);
@@ -482,31 +482,31 @@ public class BaseOverlayBaseTag extends IncludeTag {
 		setScopedAttribute("focused", focused);
 	}
 
-	public void setFooterContent(java.lang.String footerContent) {
+	public void setFooterContent(java.lang.Object footerContent) {
 		_footerContent = footerContent;
 
 		setScopedAttribute("footerContent", footerContent);
 	}
 
-	public void setHeaderContent(java.lang.String headerContent) {
+	public void setHeaderContent(java.lang.Object headerContent) {
 		_headerContent = headerContent;
 
 		setScopedAttribute("headerContent", headerContent);
 	}
 
-	public void setHeight(java.lang.String height) {
+	public void setHeight(java.lang.Object height) {
 		_height = height;
 
 		setScopedAttribute("height", height);
 	}
 
-	public void setHideClass(java.lang.String hideClass) {
+	public void setHideClass(java.lang.Object hideClass) {
 		_hideClass = hideClass;
 
 		setScopedAttribute("hideClass", hideClass);
 	}
 
-	public void setOverlaybaseId(java.lang.String overlaybaseId) {
+	public void setOverlaybaseId(java.lang.Object overlaybaseId) {
 		_overlaybaseId = overlaybaseId;
 
 		setScopedAttribute("overlaybaseId", overlaybaseId);
@@ -542,7 +542,7 @@ public class BaseOverlayBaseTag extends IncludeTag {
 		setScopedAttribute("shim", shim);
 	}
 
-	public void setSrcNode(java.lang.String srcNode) {
+	public void setSrcNode(java.lang.Object srcNode) {
 		_srcNode = srcNode;
 
 		setScopedAttribute("srcNode", srcNode);
@@ -566,7 +566,7 @@ public class BaseOverlayBaseTag extends IncludeTag {
 		setScopedAttribute("visible", visible);
 	}
 
-	public void setWidth(java.lang.String width) {
+	public void setWidth(java.lang.Object width) {
 		_width = width;
 
 		setScopedAttribute("width", width);
@@ -596,409 +596,409 @@ public class BaseOverlayBaseTag extends IncludeTag {
 		setScopedAttribute("zIndex", zIndex);
 	}
 
-	public void setAfterAlignChange(java.lang.String afterAlignChange) {
+	public void setAfterAlignChange(java.lang.Object afterAlignChange) {
 		_afterAlignChange = afterAlignChange;
 
 		setScopedAttribute("afterAlignChange", afterAlignChange);
 	}
 
-	public void setAfterBodyContentChange(java.lang.String afterBodyContentChange) {
+	public void setAfterBodyContentChange(java.lang.Object afterBodyContentChange) {
 		_afterBodyContentChange = afterBodyContentChange;
 
 		setScopedAttribute("afterBodyContentChange", afterBodyContentChange);
 	}
 
-	public void setAfterBoundingBoxChange(java.lang.String afterBoundingBoxChange) {
+	public void setAfterBoundingBoxChange(java.lang.Object afterBoundingBoxChange) {
 		_afterBoundingBoxChange = afterBoundingBoxChange;
 
 		setScopedAttribute("afterBoundingBoxChange", afterBoundingBoxChange);
 	}
 
-	public void setAfterCenteredChange(java.lang.String afterCenteredChange) {
+	public void setAfterCenteredChange(java.lang.Object afterCenteredChange) {
 		_afterCenteredChange = afterCenteredChange;
 
 		setScopedAttribute("afterCenteredChange", afterCenteredChange);
 	}
 
-	public void setAfterConstrainChange(java.lang.String afterConstrainChange) {
+	public void setAfterConstrainChange(java.lang.Object afterConstrainChange) {
 		_afterConstrainChange = afterConstrainChange;
 
 		setScopedAttribute("afterConstrainChange", afterConstrainChange);
 	}
 
-	public void setAfterContentBoxChange(java.lang.String afterContentBoxChange) {
+	public void setAfterContentBoxChange(java.lang.Object afterContentBoxChange) {
 		_afterContentBoxChange = afterContentBoxChange;
 
 		setScopedAttribute("afterContentBoxChange", afterContentBoxChange);
 	}
 
-	public void setAfterCssClassChange(java.lang.String afterCssClassChange) {
+	public void setAfterCssClassChange(java.lang.Object afterCssClassChange) {
 		_afterCssClassChange = afterCssClassChange;
 
 		setScopedAttribute("afterCssClassChange", afterCssClassChange);
 	}
 
-	public void setAfterDestroy(java.lang.String afterDestroy) {
+	public void setAfterDestroy(java.lang.Object afterDestroy) {
 		_afterDestroy = afterDestroy;
 
 		setScopedAttribute("afterDestroy", afterDestroy);
 	}
 
-	public void setAfterDestroyedChange(java.lang.String afterDestroyedChange) {
+	public void setAfterDestroyedChange(java.lang.Object afterDestroyedChange) {
 		_afterDestroyedChange = afterDestroyedChange;
 
 		setScopedAttribute("afterDestroyedChange", afterDestroyedChange);
 	}
 
-	public void setAfterDisabledChange(java.lang.String afterDisabledChange) {
+	public void setAfterDisabledChange(java.lang.Object afterDisabledChange) {
 		_afterDisabledChange = afterDisabledChange;
 
 		setScopedAttribute("afterDisabledChange", afterDisabledChange);
 	}
 
-	public void setAfterFillHeightChange(java.lang.String afterFillHeightChange) {
+	public void setAfterFillHeightChange(java.lang.Object afterFillHeightChange) {
 		_afterFillHeightChange = afterFillHeightChange;
 
 		setScopedAttribute("afterFillHeightChange", afterFillHeightChange);
 	}
 
-	public void setAfterFocusedChange(java.lang.String afterFocusedChange) {
+	public void setAfterFocusedChange(java.lang.Object afterFocusedChange) {
 		_afterFocusedChange = afterFocusedChange;
 
 		setScopedAttribute("afterFocusedChange", afterFocusedChange);
 	}
 
-	public void setAfterFooterContentChange(java.lang.String afterFooterContentChange) {
+	public void setAfterFooterContentChange(java.lang.Object afterFooterContentChange) {
 		_afterFooterContentChange = afterFooterContentChange;
 
 		setScopedAttribute("afterFooterContentChange", afterFooterContentChange);
 	}
 
-	public void setAfterHeaderContentChange(java.lang.String afterHeaderContentChange) {
+	public void setAfterHeaderContentChange(java.lang.Object afterHeaderContentChange) {
 		_afterHeaderContentChange = afterHeaderContentChange;
 
 		setScopedAttribute("afterHeaderContentChange", afterHeaderContentChange);
 	}
 
-	public void setAfterHeightChange(java.lang.String afterHeightChange) {
+	public void setAfterHeightChange(java.lang.Object afterHeightChange) {
 		_afterHeightChange = afterHeightChange;
 
 		setScopedAttribute("afterHeightChange", afterHeightChange);
 	}
 
-	public void setAfterHideClassChange(java.lang.String afterHideClassChange) {
+	public void setAfterHideClassChange(java.lang.Object afterHideClassChange) {
 		_afterHideClassChange = afterHideClassChange;
 
 		setScopedAttribute("afterHideClassChange", afterHideClassChange);
 	}
 
-	public void setAfterIdChange(java.lang.String afterIdChange) {
+	public void setAfterIdChange(java.lang.Object afterIdChange) {
 		_afterIdChange = afterIdChange;
 
 		setScopedAttribute("afterIdChange", afterIdChange);
 	}
 
-	public void setAfterInit(java.lang.String afterInit) {
+	public void setAfterInit(java.lang.Object afterInit) {
 		_afterInit = afterInit;
 
 		setScopedAttribute("afterInit", afterInit);
 	}
 
-	public void setAfterInitializedChange(java.lang.String afterInitializedChange) {
+	public void setAfterInitializedChange(java.lang.Object afterInitializedChange) {
 		_afterInitializedChange = afterInitializedChange;
 
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
-	public void setAfterPreventOverlapChange(java.lang.String afterPreventOverlapChange) {
+	public void setAfterPreventOverlapChange(java.lang.Object afterPreventOverlapChange) {
 		_afterPreventOverlapChange = afterPreventOverlapChange;
 
 		setScopedAttribute("afterPreventOverlapChange", afterPreventOverlapChange);
 	}
 
-	public void setAfterRenderChange(java.lang.String afterRenderChange) {
+	public void setAfterRenderChange(java.lang.Object afterRenderChange) {
 		_afterRenderChange = afterRenderChange;
 
 		setScopedAttribute("afterRenderChange", afterRenderChange);
 	}
 
-	public void setAfterRenderedChange(java.lang.String afterRenderedChange) {
+	public void setAfterRenderedChange(java.lang.Object afterRenderedChange) {
 		_afterRenderedChange = afterRenderedChange;
 
 		setScopedAttribute("afterRenderedChange", afterRenderedChange);
 	}
 
-	public void setAfterShimChange(java.lang.String afterShimChange) {
+	public void setAfterShimChange(java.lang.Object afterShimChange) {
 		_afterShimChange = afterShimChange;
 
 		setScopedAttribute("afterShimChange", afterShimChange);
 	}
 
-	public void setAfterSrcNodeChange(java.lang.String afterSrcNodeChange) {
+	public void setAfterSrcNodeChange(java.lang.Object afterSrcNodeChange) {
 		_afterSrcNodeChange = afterSrcNodeChange;
 
 		setScopedAttribute("afterSrcNodeChange", afterSrcNodeChange);
 	}
 
-	public void setAfterStringsChange(java.lang.String afterStringsChange) {
+	public void setAfterStringsChange(java.lang.Object afterStringsChange) {
 		_afterStringsChange = afterStringsChange;
 
 		setScopedAttribute("afterStringsChange", afterStringsChange);
 	}
 
-	public void setAfterTabIndexChange(java.lang.String afterTabIndexChange) {
+	public void setAfterTabIndexChange(java.lang.Object afterTabIndexChange) {
 		_afterTabIndexChange = afterTabIndexChange;
 
 		setScopedAttribute("afterTabIndexChange", afterTabIndexChange);
 	}
 
-	public void setAfterVisibleChange(java.lang.String afterVisibleChange) {
+	public void setAfterVisibleChange(java.lang.Object afterVisibleChange) {
 		_afterVisibleChange = afterVisibleChange;
 
 		setScopedAttribute("afterVisibleChange", afterVisibleChange);
 	}
 
-	public void setAfterContentUpdate(java.lang.String afterContentUpdate) {
+	public void setAfterContentUpdate(java.lang.Object afterContentUpdate) {
 		_afterContentUpdate = afterContentUpdate;
 
 		setScopedAttribute("afterContentUpdate", afterContentUpdate);
 	}
 
-	public void setAfterRender(java.lang.String afterRender) {
+	public void setAfterRender(java.lang.Object afterRender) {
 		_afterRender = afterRender;
 
 		setScopedAttribute("afterRender", afterRender);
 	}
 
-	public void setAfterWidthChange(java.lang.String afterWidthChange) {
+	public void setAfterWidthChange(java.lang.Object afterWidthChange) {
 		_afterWidthChange = afterWidthChange;
 
 		setScopedAttribute("afterWidthChange", afterWidthChange);
 	}
 
-	public void setAfterXChange(java.lang.String afterXChange) {
+	public void setAfterXChange(java.lang.Object afterXChange) {
 		_afterXChange = afterXChange;
 
 		setScopedAttribute("afterXChange", afterXChange);
 	}
 
-	public void setAfterXyChange(java.lang.String afterXyChange) {
+	public void setAfterXyChange(java.lang.Object afterXyChange) {
 		_afterXyChange = afterXyChange;
 
 		setScopedAttribute("afterXyChange", afterXyChange);
 	}
 
-	public void setAfterYChange(java.lang.String afterYChange) {
+	public void setAfterYChange(java.lang.Object afterYChange) {
 		_afterYChange = afterYChange;
 
 		setScopedAttribute("afterYChange", afterYChange);
 	}
 
-	public void setAfterZIndexChange(java.lang.String afterZIndexChange) {
+	public void setAfterZIndexChange(java.lang.Object afterZIndexChange) {
 		_afterZIndexChange = afterZIndexChange;
 
 		setScopedAttribute("afterZIndexChange", afterZIndexChange);
 	}
 
-	public void setOnAlignChange(java.lang.String onAlignChange) {
+	public void setOnAlignChange(java.lang.Object onAlignChange) {
 		_onAlignChange = onAlignChange;
 
 		setScopedAttribute("onAlignChange", onAlignChange);
 	}
 
-	public void setOnBodyContentChange(java.lang.String onBodyContentChange) {
+	public void setOnBodyContentChange(java.lang.Object onBodyContentChange) {
 		_onBodyContentChange = onBodyContentChange;
 
 		setScopedAttribute("onBodyContentChange", onBodyContentChange);
 	}
 
-	public void setOnBoundingBoxChange(java.lang.String onBoundingBoxChange) {
+	public void setOnBoundingBoxChange(java.lang.Object onBoundingBoxChange) {
 		_onBoundingBoxChange = onBoundingBoxChange;
 
 		setScopedAttribute("onBoundingBoxChange", onBoundingBoxChange);
 	}
 
-	public void setOnCenteredChange(java.lang.String onCenteredChange) {
+	public void setOnCenteredChange(java.lang.Object onCenteredChange) {
 		_onCenteredChange = onCenteredChange;
 
 		setScopedAttribute("onCenteredChange", onCenteredChange);
 	}
 
-	public void setOnConstrainChange(java.lang.String onConstrainChange) {
+	public void setOnConstrainChange(java.lang.Object onConstrainChange) {
 		_onConstrainChange = onConstrainChange;
 
 		setScopedAttribute("onConstrainChange", onConstrainChange);
 	}
 
-	public void setOnContentBoxChange(java.lang.String onContentBoxChange) {
+	public void setOnContentBoxChange(java.lang.Object onContentBoxChange) {
 		_onContentBoxChange = onContentBoxChange;
 
 		setScopedAttribute("onContentBoxChange", onContentBoxChange);
 	}
 
-	public void setOnCssClassChange(java.lang.String onCssClassChange) {
+	public void setOnCssClassChange(java.lang.Object onCssClassChange) {
 		_onCssClassChange = onCssClassChange;
 
 		setScopedAttribute("onCssClassChange", onCssClassChange);
 	}
 
-	public void setOnDestroy(java.lang.String onDestroy) {
+	public void setOnDestroy(java.lang.Object onDestroy) {
 		_onDestroy = onDestroy;
 
 		setScopedAttribute("onDestroy", onDestroy);
 	}
 
-	public void setOnDestroyedChange(java.lang.String onDestroyedChange) {
+	public void setOnDestroyedChange(java.lang.Object onDestroyedChange) {
 		_onDestroyedChange = onDestroyedChange;
 
 		setScopedAttribute("onDestroyedChange", onDestroyedChange);
 	}
 
-	public void setOnDisabledChange(java.lang.String onDisabledChange) {
+	public void setOnDisabledChange(java.lang.Object onDisabledChange) {
 		_onDisabledChange = onDisabledChange;
 
 		setScopedAttribute("onDisabledChange", onDisabledChange);
 	}
 
-	public void setOnFillHeightChange(java.lang.String onFillHeightChange) {
+	public void setOnFillHeightChange(java.lang.Object onFillHeightChange) {
 		_onFillHeightChange = onFillHeightChange;
 
 		setScopedAttribute("onFillHeightChange", onFillHeightChange);
 	}
 
-	public void setOnFocusedChange(java.lang.String onFocusedChange) {
+	public void setOnFocusedChange(java.lang.Object onFocusedChange) {
 		_onFocusedChange = onFocusedChange;
 
 		setScopedAttribute("onFocusedChange", onFocusedChange);
 	}
 
-	public void setOnFooterContentChange(java.lang.String onFooterContentChange) {
+	public void setOnFooterContentChange(java.lang.Object onFooterContentChange) {
 		_onFooterContentChange = onFooterContentChange;
 
 		setScopedAttribute("onFooterContentChange", onFooterContentChange);
 	}
 
-	public void setOnHeaderContentChange(java.lang.String onHeaderContentChange) {
+	public void setOnHeaderContentChange(java.lang.Object onHeaderContentChange) {
 		_onHeaderContentChange = onHeaderContentChange;
 
 		setScopedAttribute("onHeaderContentChange", onHeaderContentChange);
 	}
 
-	public void setOnHeightChange(java.lang.String onHeightChange) {
+	public void setOnHeightChange(java.lang.Object onHeightChange) {
 		_onHeightChange = onHeightChange;
 
 		setScopedAttribute("onHeightChange", onHeightChange);
 	}
 
-	public void setOnHideClassChange(java.lang.String onHideClassChange) {
+	public void setOnHideClassChange(java.lang.Object onHideClassChange) {
 		_onHideClassChange = onHideClassChange;
 
 		setScopedAttribute("onHideClassChange", onHideClassChange);
 	}
 
-	public void setOnIdChange(java.lang.String onIdChange) {
+	public void setOnIdChange(java.lang.Object onIdChange) {
 		_onIdChange = onIdChange;
 
 		setScopedAttribute("onIdChange", onIdChange);
 	}
 
-	public void setOnInit(java.lang.String onInit) {
+	public void setOnInit(java.lang.Object onInit) {
 		_onInit = onInit;
 
 		setScopedAttribute("onInit", onInit);
 	}
 
-	public void setOnInitializedChange(java.lang.String onInitializedChange) {
+	public void setOnInitializedChange(java.lang.Object onInitializedChange) {
 		_onInitializedChange = onInitializedChange;
 
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
-	public void setOnPreventOverlapChange(java.lang.String onPreventOverlapChange) {
+	public void setOnPreventOverlapChange(java.lang.Object onPreventOverlapChange) {
 		_onPreventOverlapChange = onPreventOverlapChange;
 
 		setScopedAttribute("onPreventOverlapChange", onPreventOverlapChange);
 	}
 
-	public void setOnRenderChange(java.lang.String onRenderChange) {
+	public void setOnRenderChange(java.lang.Object onRenderChange) {
 		_onRenderChange = onRenderChange;
 
 		setScopedAttribute("onRenderChange", onRenderChange);
 	}
 
-	public void setOnRenderedChange(java.lang.String onRenderedChange) {
+	public void setOnRenderedChange(java.lang.Object onRenderedChange) {
 		_onRenderedChange = onRenderedChange;
 
 		setScopedAttribute("onRenderedChange", onRenderedChange);
 	}
 
-	public void setOnShimChange(java.lang.String onShimChange) {
+	public void setOnShimChange(java.lang.Object onShimChange) {
 		_onShimChange = onShimChange;
 
 		setScopedAttribute("onShimChange", onShimChange);
 	}
 
-	public void setOnSrcNodeChange(java.lang.String onSrcNodeChange) {
+	public void setOnSrcNodeChange(java.lang.Object onSrcNodeChange) {
 		_onSrcNodeChange = onSrcNodeChange;
 
 		setScopedAttribute("onSrcNodeChange", onSrcNodeChange);
 	}
 
-	public void setOnStringsChange(java.lang.String onStringsChange) {
+	public void setOnStringsChange(java.lang.Object onStringsChange) {
 		_onStringsChange = onStringsChange;
 
 		setScopedAttribute("onStringsChange", onStringsChange);
 	}
 
-	public void setOnTabIndexChange(java.lang.String onTabIndexChange) {
+	public void setOnTabIndexChange(java.lang.Object onTabIndexChange) {
 		_onTabIndexChange = onTabIndexChange;
 
 		setScopedAttribute("onTabIndexChange", onTabIndexChange);
 	}
 
-	public void setOnVisibleChange(java.lang.String onVisibleChange) {
+	public void setOnVisibleChange(java.lang.Object onVisibleChange) {
 		_onVisibleChange = onVisibleChange;
 
 		setScopedAttribute("onVisibleChange", onVisibleChange);
 	}
 
-	public void setOnContentUpdate(java.lang.String onContentUpdate) {
+	public void setOnContentUpdate(java.lang.Object onContentUpdate) {
 		_onContentUpdate = onContentUpdate;
 
 		setScopedAttribute("onContentUpdate", onContentUpdate);
 	}
 
-	public void setOnRender(java.lang.String onRender) {
+	public void setOnRender(java.lang.Object onRender) {
 		_onRender = onRender;
 
 		setScopedAttribute("onRender", onRender);
 	}
 
-	public void setOnWidthChange(java.lang.String onWidthChange) {
+	public void setOnWidthChange(java.lang.Object onWidthChange) {
 		_onWidthChange = onWidthChange;
 
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
-	public void setOnXChange(java.lang.String onXChange) {
+	public void setOnXChange(java.lang.Object onXChange) {
 		_onXChange = onXChange;
 
 		setScopedAttribute("onXChange", onXChange);
 	}
 
-	public void setOnXyChange(java.lang.String onXyChange) {
+	public void setOnXyChange(java.lang.Object onXyChange) {
 		_onXyChange = onXyChange;
 
 		setScopedAttribute("onXyChange", onXyChange);
 	}
 
-	public void setOnYChange(java.lang.String onYChange) {
+	public void setOnYChange(java.lang.Object onYChange) {
 		_onYChange = onYChange;
 
 		setScopedAttribute("onYChange", onYChange);
 	}
 
-	public void setOnZIndexChange(java.lang.String onZIndexChange) {
+	public void setOnZIndexChange(java.lang.Object onZIndexChange) {
 		_onZIndexChange = onZIndexChange;
 
 		setScopedAttribute("onZIndexChange", onZIndexChange);
@@ -1111,102 +1111,102 @@ public class BaseOverlayBaseTag extends IncludeTag {
 		"/html/taglib/alloy/overlay_base/page.jsp";
 
 	private java.lang.Object _align;
-	private java.lang.String _overlaybaseBodyContent;
-	private java.lang.String _boundingBox;
-	private java.lang.String _centered;
-	private java.lang.String _constrain;
-	private java.lang.String _contentBox;
-	private java.lang.String _cssClass;
+	private java.lang.Object _overlaybaseBodyContent;
+	private java.lang.Object _boundingBox;
+	private java.lang.Object _centered;
+	private java.lang.Object _constrain;
+	private java.lang.Object _contentBox;
+	private java.lang.Object _cssClass;
 	private java.lang.String _destroyed;
 	private java.lang.String _disabled;
-	private java.lang.String _fillHeight;
+	private java.lang.Object _fillHeight;
 	private java.lang.String _focused;
-	private java.lang.String _footerContent;
-	private java.lang.String _headerContent;
-	private java.lang.String _height;
-	private java.lang.String _hideClass;
-	private java.lang.String _overlaybaseId;
+	private java.lang.Object _footerContent;
+	private java.lang.Object _headerContent;
+	private java.lang.Object _height;
+	private java.lang.Object _hideClass;
+	private java.lang.Object _overlaybaseId;
 	private java.lang.String _initialized;
 	private java.lang.String _preventOverlap;
 	private java.lang.String _render;
 	private java.lang.String _rendered;
 	private java.lang.String _shim;
-	private java.lang.String _srcNode;
+	private java.lang.Object _srcNode;
 	private java.lang.Object _strings;
 	private java.lang.String _tabIndex;
 	private java.lang.String _visible;
-	private java.lang.String _width;
+	private java.lang.Object _width;
 	private java.lang.String _x;
 	private java.lang.Object _xy;
 	private java.lang.String _y;
 	private java.lang.String _zIndex;
-	private java.lang.String _afterAlignChange;
-	private java.lang.String _afterBodyContentChange;
-	private java.lang.String _afterBoundingBoxChange;
-	private java.lang.String _afterCenteredChange;
-	private java.lang.String _afterConstrainChange;
-	private java.lang.String _afterContentBoxChange;
-	private java.lang.String _afterCssClassChange;
-	private java.lang.String _afterDestroy;
-	private java.lang.String _afterDestroyedChange;
-	private java.lang.String _afterDisabledChange;
-	private java.lang.String _afterFillHeightChange;
-	private java.lang.String _afterFocusedChange;
-	private java.lang.String _afterFooterContentChange;
-	private java.lang.String _afterHeaderContentChange;
-	private java.lang.String _afterHeightChange;
-	private java.lang.String _afterHideClassChange;
-	private java.lang.String _afterIdChange;
-	private java.lang.String _afterInit;
-	private java.lang.String _afterInitializedChange;
-	private java.lang.String _afterPreventOverlapChange;
-	private java.lang.String _afterRenderChange;
-	private java.lang.String _afterRenderedChange;
-	private java.lang.String _afterShimChange;
-	private java.lang.String _afterSrcNodeChange;
-	private java.lang.String _afterStringsChange;
-	private java.lang.String _afterTabIndexChange;
-	private java.lang.String _afterVisibleChange;
-	private java.lang.String _afterContentUpdate;
-	private java.lang.String _afterRender;
-	private java.lang.String _afterWidthChange;
-	private java.lang.String _afterXChange;
-	private java.lang.String _afterXyChange;
-	private java.lang.String _afterYChange;
-	private java.lang.String _afterZIndexChange;
-	private java.lang.String _onAlignChange;
-	private java.lang.String _onBodyContentChange;
-	private java.lang.String _onBoundingBoxChange;
-	private java.lang.String _onCenteredChange;
-	private java.lang.String _onConstrainChange;
-	private java.lang.String _onContentBoxChange;
-	private java.lang.String _onCssClassChange;
-	private java.lang.String _onDestroy;
-	private java.lang.String _onDestroyedChange;
-	private java.lang.String _onDisabledChange;
-	private java.lang.String _onFillHeightChange;
-	private java.lang.String _onFocusedChange;
-	private java.lang.String _onFooterContentChange;
-	private java.lang.String _onHeaderContentChange;
-	private java.lang.String _onHeightChange;
-	private java.lang.String _onHideClassChange;
-	private java.lang.String _onIdChange;
-	private java.lang.String _onInit;
-	private java.lang.String _onInitializedChange;
-	private java.lang.String _onPreventOverlapChange;
-	private java.lang.String _onRenderChange;
-	private java.lang.String _onRenderedChange;
-	private java.lang.String _onShimChange;
-	private java.lang.String _onSrcNodeChange;
-	private java.lang.String _onStringsChange;
-	private java.lang.String _onTabIndexChange;
-	private java.lang.String _onVisibleChange;
-	private java.lang.String _onContentUpdate;
-	private java.lang.String _onRender;
-	private java.lang.String _onWidthChange;
-	private java.lang.String _onXChange;
-	private java.lang.String _onXyChange;
-	private java.lang.String _onYChange;
-	private java.lang.String _onZIndexChange;
+	private java.lang.Object _afterAlignChange;
+	private java.lang.Object _afterBodyContentChange;
+	private java.lang.Object _afterBoundingBoxChange;
+	private java.lang.Object _afterCenteredChange;
+	private java.lang.Object _afterConstrainChange;
+	private java.lang.Object _afterContentBoxChange;
+	private java.lang.Object _afterCssClassChange;
+	private java.lang.Object _afterDestroy;
+	private java.lang.Object _afterDestroyedChange;
+	private java.lang.Object _afterDisabledChange;
+	private java.lang.Object _afterFillHeightChange;
+	private java.lang.Object _afterFocusedChange;
+	private java.lang.Object _afterFooterContentChange;
+	private java.lang.Object _afterHeaderContentChange;
+	private java.lang.Object _afterHeightChange;
+	private java.lang.Object _afterHideClassChange;
+	private java.lang.Object _afterIdChange;
+	private java.lang.Object _afterInit;
+	private java.lang.Object _afterInitializedChange;
+	private java.lang.Object _afterPreventOverlapChange;
+	private java.lang.Object _afterRenderChange;
+	private java.lang.Object _afterRenderedChange;
+	private java.lang.Object _afterShimChange;
+	private java.lang.Object _afterSrcNodeChange;
+	private java.lang.Object _afterStringsChange;
+	private java.lang.Object _afterTabIndexChange;
+	private java.lang.Object _afterVisibleChange;
+	private java.lang.Object _afterContentUpdate;
+	private java.lang.Object _afterRender;
+	private java.lang.Object _afterWidthChange;
+	private java.lang.Object _afterXChange;
+	private java.lang.Object _afterXyChange;
+	private java.lang.Object _afterYChange;
+	private java.lang.Object _afterZIndexChange;
+	private java.lang.Object _onAlignChange;
+	private java.lang.Object _onBodyContentChange;
+	private java.lang.Object _onBoundingBoxChange;
+	private java.lang.Object _onCenteredChange;
+	private java.lang.Object _onConstrainChange;
+	private java.lang.Object _onContentBoxChange;
+	private java.lang.Object _onCssClassChange;
+	private java.lang.Object _onDestroy;
+	private java.lang.Object _onDestroyedChange;
+	private java.lang.Object _onDisabledChange;
+	private java.lang.Object _onFillHeightChange;
+	private java.lang.Object _onFocusedChange;
+	private java.lang.Object _onFooterContentChange;
+	private java.lang.Object _onHeaderContentChange;
+	private java.lang.Object _onHeightChange;
+	private java.lang.Object _onHideClassChange;
+	private java.lang.Object _onIdChange;
+	private java.lang.Object _onInit;
+	private java.lang.Object _onInitializedChange;
+	private java.lang.Object _onPreventOverlapChange;
+	private java.lang.Object _onRenderChange;
+	private java.lang.Object _onRenderedChange;
+	private java.lang.Object _onShimChange;
+	private java.lang.Object _onSrcNodeChange;
+	private java.lang.Object _onStringsChange;
+	private java.lang.Object _onTabIndexChange;
+	private java.lang.Object _onVisibleChange;
+	private java.lang.Object _onContentUpdate;
+	private java.lang.Object _onRender;
+	private java.lang.Object _onWidthChange;
+	private java.lang.Object _onXChange;
+	private java.lang.Object _onXyChange;
+	private java.lang.Object _onYChange;
+	private java.lang.Object _onZIndexChange;
 
 }

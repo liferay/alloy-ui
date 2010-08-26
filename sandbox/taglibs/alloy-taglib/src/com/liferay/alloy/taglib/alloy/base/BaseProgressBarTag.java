@@ -24,15 +24,15 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.String getBoundingBox() {
+	public java.lang.Object getBoundingBox() {
 		return _boundingBox;
 	}
 
-	public java.lang.String getContentBox() {
+	public java.lang.Object getContentBox() {
 		return _contentBox;
 	}
 
-	public java.lang.String getCssClass() {
+	public java.lang.Object getCssClass() {
 		return _cssClass;
 	}
 
@@ -52,11 +52,11 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _height;
 	}
 
-	public java.lang.String getHideClass() {
+	public java.lang.Object getHideClass() {
 		return _hideClass;
 	}
 
-	public java.lang.String getProgressbarId() {
+	public java.lang.Object getProgressbarId() {
 		return _progressbarId;
 	}
 
@@ -64,7 +64,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _initialized;
 	}
 
-	public java.lang.String getLabel() {
+	public java.lang.Object getLabel() {
 		return _label;
 	}
 
@@ -76,7 +76,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _min;
 	}
 
-	public java.lang.String getOrientation() {
+	public java.lang.Object getOrientation() {
 		return _orientation;
 	}
 
@@ -92,11 +92,11 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _rendered;
 	}
 
-	public java.lang.String getSrcNode() {
+	public java.lang.Object getSrcNode() {
 		return _srcNode;
 	}
 
-	public java.lang.String getStatusNode() {
+	public java.lang.Object getStatusNode() {
 		return _statusNode;
 	}
 
@@ -112,7 +112,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _tabIndex;
 	}
 
-	public java.lang.String getTextNode() {
+	public java.lang.Object getTextNode() {
 		return _textNode;
 	}
 
@@ -124,263 +124,263 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _visible;
 	}
 
-	public java.lang.String getWidth() {
+	public java.lang.Object getWidth() {
 		return _width;
 	}
 
-	public java.lang.String getAfterBoundingBoxChange() {
+	public java.lang.Object getAfterBoundingBoxChange() {
 		return _afterBoundingBoxChange;
 	}
 
-	public java.lang.String getAfterContentBoxChange() {
+	public java.lang.Object getAfterContentBoxChange() {
 		return _afterContentBoxChange;
 	}
 
-	public java.lang.String getAfterCssClassChange() {
+	public java.lang.Object getAfterCssClassChange() {
 		return _afterCssClassChange;
 	}
 
-	public java.lang.String getAfterDestroy() {
+	public java.lang.Object getAfterDestroy() {
 		return _afterDestroy;
 	}
 
-	public java.lang.String getAfterDestroyedChange() {
+	public java.lang.Object getAfterDestroyedChange() {
 		return _afterDestroyedChange;
 	}
 
-	public java.lang.String getAfterDisabledChange() {
+	public java.lang.Object getAfterDisabledChange() {
 		return _afterDisabledChange;
 	}
 
-	public java.lang.String getAfterFocusedChange() {
+	public java.lang.Object getAfterFocusedChange() {
 		return _afterFocusedChange;
 	}
 
-	public java.lang.String getAfterHeightChange() {
+	public java.lang.Object getAfterHeightChange() {
 		return _afterHeightChange;
 	}
 
-	public java.lang.String getAfterHideClassChange() {
+	public java.lang.Object getAfterHideClassChange() {
 		return _afterHideClassChange;
 	}
 
-	public java.lang.String getAfterIdChange() {
+	public java.lang.Object getAfterIdChange() {
 		return _afterIdChange;
 	}
 
-	public java.lang.String getAfterInit() {
+	public java.lang.Object getAfterInit() {
 		return _afterInit;
 	}
 
-	public java.lang.String getAfterInitializedChange() {
+	public java.lang.Object getAfterInitializedChange() {
 		return _afterInitializedChange;
 	}
 
-	public java.lang.String getAfterLabelChange() {
+	public java.lang.Object getAfterLabelChange() {
 		return _afterLabelChange;
 	}
 
-	public java.lang.String getAfterMaxChange() {
+	public java.lang.Object getAfterMaxChange() {
 		return _afterMaxChange;
 	}
 
-	public java.lang.String getAfterMinChange() {
+	public java.lang.Object getAfterMinChange() {
 		return _afterMinChange;
 	}
 
-	public java.lang.String getAfterOrientationChange() {
+	public java.lang.Object getAfterOrientationChange() {
 		return _afterOrientationChange;
 	}
 
-	public java.lang.String getAfterRatioChange() {
+	public java.lang.Object getAfterRatioChange() {
 		return _afterRatioChange;
 	}
 
-	public java.lang.String getAfterRenderChange() {
+	public java.lang.Object getAfterRenderChange() {
 		return _afterRenderChange;
 	}
 
-	public java.lang.String getAfterRenderedChange() {
+	public java.lang.Object getAfterRenderedChange() {
 		return _afterRenderedChange;
 	}
 
-	public java.lang.String getAfterSrcNodeChange() {
+	public java.lang.Object getAfterSrcNodeChange() {
 		return _afterSrcNodeChange;
 	}
 
-	public java.lang.String getAfterStatusNodeChange() {
+	public java.lang.Object getAfterStatusNodeChange() {
 		return _afterStatusNodeChange;
 	}
 
-	public java.lang.String getAfterStepChange() {
+	public java.lang.Object getAfterStepChange() {
 		return _afterStepChange;
 	}
 
-	public java.lang.String getAfterStringsChange() {
+	public java.lang.Object getAfterStringsChange() {
 		return _afterStringsChange;
 	}
 
-	public java.lang.String getAfterTabIndexChange() {
+	public java.lang.Object getAfterTabIndexChange() {
 		return _afterTabIndexChange;
 	}
 
-	public java.lang.String getAfterTextNodeChange() {
+	public java.lang.Object getAfterTextNodeChange() {
 		return _afterTextNodeChange;
 	}
 
-	public java.lang.String getAfterValueChange() {
+	public java.lang.Object getAfterValueChange() {
 		return _afterValueChange;
 	}
 
-	public java.lang.String getAfterVisibleChange() {
+	public java.lang.Object getAfterVisibleChange() {
 		return _afterVisibleChange;
 	}
 
-	public java.lang.String getAfterContentUpdate() {
+	public java.lang.Object getAfterContentUpdate() {
 		return _afterContentUpdate;
 	}
 
-	public java.lang.String getAfterRender() {
+	public java.lang.Object getAfterRender() {
 		return _afterRender;
 	}
 
-	public java.lang.String getAfterWidthChange() {
+	public java.lang.Object getAfterWidthChange() {
 		return _afterWidthChange;
 	}
 
-	public java.lang.String getOnBoundingBoxChange() {
+	public java.lang.Object getOnBoundingBoxChange() {
 		return _onBoundingBoxChange;
 	}
 
-	public java.lang.String getOnContentBoxChange() {
+	public java.lang.Object getOnContentBoxChange() {
 		return _onContentBoxChange;
 	}
 
-	public java.lang.String getOnCssClassChange() {
+	public java.lang.Object getOnCssClassChange() {
 		return _onCssClassChange;
 	}
 
-	public java.lang.String getOnDestroy() {
+	public java.lang.Object getOnDestroy() {
 		return _onDestroy;
 	}
 
-	public java.lang.String getOnDestroyedChange() {
+	public java.lang.Object getOnDestroyedChange() {
 		return _onDestroyedChange;
 	}
 
-	public java.lang.String getOnDisabledChange() {
+	public java.lang.Object getOnDisabledChange() {
 		return _onDisabledChange;
 	}
 
-	public java.lang.String getOnFocusedChange() {
+	public java.lang.Object getOnFocusedChange() {
 		return _onFocusedChange;
 	}
 
-	public java.lang.String getOnHeightChange() {
+	public java.lang.Object getOnHeightChange() {
 		return _onHeightChange;
 	}
 
-	public java.lang.String getOnHideClassChange() {
+	public java.lang.Object getOnHideClassChange() {
 		return _onHideClassChange;
 	}
 
-	public java.lang.String getOnIdChange() {
+	public java.lang.Object getOnIdChange() {
 		return _onIdChange;
 	}
 
-	public java.lang.String getOnInit() {
+	public java.lang.Object getOnInit() {
 		return _onInit;
 	}
 
-	public java.lang.String getOnInitializedChange() {
+	public java.lang.Object getOnInitializedChange() {
 		return _onInitializedChange;
 	}
 
-	public java.lang.String getOnLabelChange() {
+	public java.lang.Object getOnLabelChange() {
 		return _onLabelChange;
 	}
 
-	public java.lang.String getOnMaxChange() {
+	public java.lang.Object getOnMaxChange() {
 		return _onMaxChange;
 	}
 
-	public java.lang.String getOnMinChange() {
+	public java.lang.Object getOnMinChange() {
 		return _onMinChange;
 	}
 
-	public java.lang.String getOnOrientationChange() {
+	public java.lang.Object getOnOrientationChange() {
 		return _onOrientationChange;
 	}
 
-	public java.lang.String getOnRatioChange() {
+	public java.lang.Object getOnRatioChange() {
 		return _onRatioChange;
 	}
 
-	public java.lang.String getOnRenderChange() {
+	public java.lang.Object getOnRenderChange() {
 		return _onRenderChange;
 	}
 
-	public java.lang.String getOnRenderedChange() {
+	public java.lang.Object getOnRenderedChange() {
 		return _onRenderedChange;
 	}
 
-	public java.lang.String getOnSrcNodeChange() {
+	public java.lang.Object getOnSrcNodeChange() {
 		return _onSrcNodeChange;
 	}
 
-	public java.lang.String getOnStatusNodeChange() {
+	public java.lang.Object getOnStatusNodeChange() {
 		return _onStatusNodeChange;
 	}
 
-	public java.lang.String getOnStepChange() {
+	public java.lang.Object getOnStepChange() {
 		return _onStepChange;
 	}
 
-	public java.lang.String getOnStringsChange() {
+	public java.lang.Object getOnStringsChange() {
 		return _onStringsChange;
 	}
 
-	public java.lang.String getOnTabIndexChange() {
+	public java.lang.Object getOnTabIndexChange() {
 		return _onTabIndexChange;
 	}
 
-	public java.lang.String getOnTextNodeChange() {
+	public java.lang.Object getOnTextNodeChange() {
 		return _onTextNodeChange;
 	}
 
-	public java.lang.String getOnValueChange() {
+	public java.lang.Object getOnValueChange() {
 		return _onValueChange;
 	}
 
-	public java.lang.String getOnVisibleChange() {
+	public java.lang.Object getOnVisibleChange() {
 		return _onVisibleChange;
 	}
 
-	public java.lang.String getOnContentUpdate() {
+	public java.lang.Object getOnContentUpdate() {
 		return _onContentUpdate;
 	}
 
-	public java.lang.String getOnRender() {
+	public java.lang.Object getOnRender() {
 		return _onRender;
 	}
 
-	public java.lang.String getOnWidthChange() {
+	public java.lang.Object getOnWidthChange() {
 		return _onWidthChange;
 	}
 
-	public void setBoundingBox(java.lang.String boundingBox) {
+	public void setBoundingBox(java.lang.Object boundingBox) {
 		_boundingBox = boundingBox;
 
 		setScopedAttribute("boundingBox", boundingBox);
 	}
 
-	public void setContentBox(java.lang.String contentBox) {
+	public void setContentBox(java.lang.Object contentBox) {
 		_contentBox = contentBox;
 
 		setScopedAttribute("contentBox", contentBox);
 	}
 
-	public void setCssClass(java.lang.String cssClass) {
+	public void setCssClass(java.lang.Object cssClass) {
 		_cssClass = cssClass;
 
 		setScopedAttribute("cssClass", cssClass);
@@ -410,13 +410,13 @@ public class BaseProgressBarTag extends IncludeTag {
 		setScopedAttribute("height", height);
 	}
 
-	public void setHideClass(java.lang.String hideClass) {
+	public void setHideClass(java.lang.Object hideClass) {
 		_hideClass = hideClass;
 
 		setScopedAttribute("hideClass", hideClass);
 	}
 
-	public void setProgressbarId(java.lang.String progressbarId) {
+	public void setProgressbarId(java.lang.Object progressbarId) {
 		_progressbarId = progressbarId;
 
 		setScopedAttribute("progressbarId", progressbarId);
@@ -428,7 +428,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setLabel(java.lang.String label) {
+	public void setLabel(java.lang.Object label) {
 		_label = label;
 
 		setScopedAttribute("label", label);
@@ -446,7 +446,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		setScopedAttribute("min", min);
 	}
 
-	public void setOrientation(java.lang.String orientation) {
+	public void setOrientation(java.lang.Object orientation) {
 		_orientation = orientation;
 
 		setScopedAttribute("orientation", orientation);
@@ -470,13 +470,13 @@ public class BaseProgressBarTag extends IncludeTag {
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setSrcNode(java.lang.String srcNode) {
+	public void setSrcNode(java.lang.Object srcNode) {
 		_srcNode = srcNode;
 
 		setScopedAttribute("srcNode", srcNode);
 	}
 
-	public void setStatusNode(java.lang.String statusNode) {
+	public void setStatusNode(java.lang.Object statusNode) {
 		_statusNode = statusNode;
 
 		setScopedAttribute("statusNode", statusNode);
@@ -500,7 +500,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		setScopedAttribute("tabIndex", tabIndex);
 	}
 
-	public void setTextNode(java.lang.String textNode) {
+	public void setTextNode(java.lang.Object textNode) {
 		_textNode = textNode;
 
 		setScopedAttribute("textNode", textNode);
@@ -518,367 +518,367 @@ public class BaseProgressBarTag extends IncludeTag {
 		setScopedAttribute("visible", visible);
 	}
 
-	public void setWidth(java.lang.String width) {
+	public void setWidth(java.lang.Object width) {
 		_width = width;
 
 		setScopedAttribute("width", width);
 	}
 
-	public void setAfterBoundingBoxChange(java.lang.String afterBoundingBoxChange) {
+	public void setAfterBoundingBoxChange(java.lang.Object afterBoundingBoxChange) {
 		_afterBoundingBoxChange = afterBoundingBoxChange;
 
 		setScopedAttribute("afterBoundingBoxChange", afterBoundingBoxChange);
 	}
 
-	public void setAfterContentBoxChange(java.lang.String afterContentBoxChange) {
+	public void setAfterContentBoxChange(java.lang.Object afterContentBoxChange) {
 		_afterContentBoxChange = afterContentBoxChange;
 
 		setScopedAttribute("afterContentBoxChange", afterContentBoxChange);
 	}
 
-	public void setAfterCssClassChange(java.lang.String afterCssClassChange) {
+	public void setAfterCssClassChange(java.lang.Object afterCssClassChange) {
 		_afterCssClassChange = afterCssClassChange;
 
 		setScopedAttribute("afterCssClassChange", afterCssClassChange);
 	}
 
-	public void setAfterDestroy(java.lang.String afterDestroy) {
+	public void setAfterDestroy(java.lang.Object afterDestroy) {
 		_afterDestroy = afterDestroy;
 
 		setScopedAttribute("afterDestroy", afterDestroy);
 	}
 
-	public void setAfterDestroyedChange(java.lang.String afterDestroyedChange) {
+	public void setAfterDestroyedChange(java.lang.Object afterDestroyedChange) {
 		_afterDestroyedChange = afterDestroyedChange;
 
 		setScopedAttribute("afterDestroyedChange", afterDestroyedChange);
 	}
 
-	public void setAfterDisabledChange(java.lang.String afterDisabledChange) {
+	public void setAfterDisabledChange(java.lang.Object afterDisabledChange) {
 		_afterDisabledChange = afterDisabledChange;
 
 		setScopedAttribute("afterDisabledChange", afterDisabledChange);
 	}
 
-	public void setAfterFocusedChange(java.lang.String afterFocusedChange) {
+	public void setAfterFocusedChange(java.lang.Object afterFocusedChange) {
 		_afterFocusedChange = afterFocusedChange;
 
 		setScopedAttribute("afterFocusedChange", afterFocusedChange);
 	}
 
-	public void setAfterHeightChange(java.lang.String afterHeightChange) {
+	public void setAfterHeightChange(java.lang.Object afterHeightChange) {
 		_afterHeightChange = afterHeightChange;
 
 		setScopedAttribute("afterHeightChange", afterHeightChange);
 	}
 
-	public void setAfterHideClassChange(java.lang.String afterHideClassChange) {
+	public void setAfterHideClassChange(java.lang.Object afterHideClassChange) {
 		_afterHideClassChange = afterHideClassChange;
 
 		setScopedAttribute("afterHideClassChange", afterHideClassChange);
 	}
 
-	public void setAfterIdChange(java.lang.String afterIdChange) {
+	public void setAfterIdChange(java.lang.Object afterIdChange) {
 		_afterIdChange = afterIdChange;
 
 		setScopedAttribute("afterIdChange", afterIdChange);
 	}
 
-	public void setAfterInit(java.lang.String afterInit) {
+	public void setAfterInit(java.lang.Object afterInit) {
 		_afterInit = afterInit;
 
 		setScopedAttribute("afterInit", afterInit);
 	}
 
-	public void setAfterInitializedChange(java.lang.String afterInitializedChange) {
+	public void setAfterInitializedChange(java.lang.Object afterInitializedChange) {
 		_afterInitializedChange = afterInitializedChange;
 
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
-	public void setAfterLabelChange(java.lang.String afterLabelChange) {
+	public void setAfterLabelChange(java.lang.Object afterLabelChange) {
 		_afterLabelChange = afterLabelChange;
 
 		setScopedAttribute("afterLabelChange", afterLabelChange);
 	}
 
-	public void setAfterMaxChange(java.lang.String afterMaxChange) {
+	public void setAfterMaxChange(java.lang.Object afterMaxChange) {
 		_afterMaxChange = afterMaxChange;
 
 		setScopedAttribute("afterMaxChange", afterMaxChange);
 	}
 
-	public void setAfterMinChange(java.lang.String afterMinChange) {
+	public void setAfterMinChange(java.lang.Object afterMinChange) {
 		_afterMinChange = afterMinChange;
 
 		setScopedAttribute("afterMinChange", afterMinChange);
 	}
 
-	public void setAfterOrientationChange(java.lang.String afterOrientationChange) {
+	public void setAfterOrientationChange(java.lang.Object afterOrientationChange) {
 		_afterOrientationChange = afterOrientationChange;
 
 		setScopedAttribute("afterOrientationChange", afterOrientationChange);
 	}
 
-	public void setAfterRatioChange(java.lang.String afterRatioChange) {
+	public void setAfterRatioChange(java.lang.Object afterRatioChange) {
 		_afterRatioChange = afterRatioChange;
 
 		setScopedAttribute("afterRatioChange", afterRatioChange);
 	}
 
-	public void setAfterRenderChange(java.lang.String afterRenderChange) {
+	public void setAfterRenderChange(java.lang.Object afterRenderChange) {
 		_afterRenderChange = afterRenderChange;
 
 		setScopedAttribute("afterRenderChange", afterRenderChange);
 	}
 
-	public void setAfterRenderedChange(java.lang.String afterRenderedChange) {
+	public void setAfterRenderedChange(java.lang.Object afterRenderedChange) {
 		_afterRenderedChange = afterRenderedChange;
 
 		setScopedAttribute("afterRenderedChange", afterRenderedChange);
 	}
 
-	public void setAfterSrcNodeChange(java.lang.String afterSrcNodeChange) {
+	public void setAfterSrcNodeChange(java.lang.Object afterSrcNodeChange) {
 		_afterSrcNodeChange = afterSrcNodeChange;
 
 		setScopedAttribute("afterSrcNodeChange", afterSrcNodeChange);
 	}
 
-	public void setAfterStatusNodeChange(java.lang.String afterStatusNodeChange) {
+	public void setAfterStatusNodeChange(java.lang.Object afterStatusNodeChange) {
 		_afterStatusNodeChange = afterStatusNodeChange;
 
 		setScopedAttribute("afterStatusNodeChange", afterStatusNodeChange);
 	}
 
-	public void setAfterStepChange(java.lang.String afterStepChange) {
+	public void setAfterStepChange(java.lang.Object afterStepChange) {
 		_afterStepChange = afterStepChange;
 
 		setScopedAttribute("afterStepChange", afterStepChange);
 	}
 
-	public void setAfterStringsChange(java.lang.String afterStringsChange) {
+	public void setAfterStringsChange(java.lang.Object afterStringsChange) {
 		_afterStringsChange = afterStringsChange;
 
 		setScopedAttribute("afterStringsChange", afterStringsChange);
 	}
 
-	public void setAfterTabIndexChange(java.lang.String afterTabIndexChange) {
+	public void setAfterTabIndexChange(java.lang.Object afterTabIndexChange) {
 		_afterTabIndexChange = afterTabIndexChange;
 
 		setScopedAttribute("afterTabIndexChange", afterTabIndexChange);
 	}
 
-	public void setAfterTextNodeChange(java.lang.String afterTextNodeChange) {
+	public void setAfterTextNodeChange(java.lang.Object afterTextNodeChange) {
 		_afterTextNodeChange = afterTextNodeChange;
 
 		setScopedAttribute("afterTextNodeChange", afterTextNodeChange);
 	}
 
-	public void setAfterValueChange(java.lang.String afterValueChange) {
+	public void setAfterValueChange(java.lang.Object afterValueChange) {
 		_afterValueChange = afterValueChange;
 
 		setScopedAttribute("afterValueChange", afterValueChange);
 	}
 
-	public void setAfterVisibleChange(java.lang.String afterVisibleChange) {
+	public void setAfterVisibleChange(java.lang.Object afterVisibleChange) {
 		_afterVisibleChange = afterVisibleChange;
 
 		setScopedAttribute("afterVisibleChange", afterVisibleChange);
 	}
 
-	public void setAfterContentUpdate(java.lang.String afterContentUpdate) {
+	public void setAfterContentUpdate(java.lang.Object afterContentUpdate) {
 		_afterContentUpdate = afterContentUpdate;
 
 		setScopedAttribute("afterContentUpdate", afterContentUpdate);
 	}
 
-	public void setAfterRender(java.lang.String afterRender) {
+	public void setAfterRender(java.lang.Object afterRender) {
 		_afterRender = afterRender;
 
 		setScopedAttribute("afterRender", afterRender);
 	}
 
-	public void setAfterWidthChange(java.lang.String afterWidthChange) {
+	public void setAfterWidthChange(java.lang.Object afterWidthChange) {
 		_afterWidthChange = afterWidthChange;
 
 		setScopedAttribute("afterWidthChange", afterWidthChange);
 	}
 
-	public void setOnBoundingBoxChange(java.lang.String onBoundingBoxChange) {
+	public void setOnBoundingBoxChange(java.lang.Object onBoundingBoxChange) {
 		_onBoundingBoxChange = onBoundingBoxChange;
 
 		setScopedAttribute("onBoundingBoxChange", onBoundingBoxChange);
 	}
 
-	public void setOnContentBoxChange(java.lang.String onContentBoxChange) {
+	public void setOnContentBoxChange(java.lang.Object onContentBoxChange) {
 		_onContentBoxChange = onContentBoxChange;
 
 		setScopedAttribute("onContentBoxChange", onContentBoxChange);
 	}
 
-	public void setOnCssClassChange(java.lang.String onCssClassChange) {
+	public void setOnCssClassChange(java.lang.Object onCssClassChange) {
 		_onCssClassChange = onCssClassChange;
 
 		setScopedAttribute("onCssClassChange", onCssClassChange);
 	}
 
-	public void setOnDestroy(java.lang.String onDestroy) {
+	public void setOnDestroy(java.lang.Object onDestroy) {
 		_onDestroy = onDestroy;
 
 		setScopedAttribute("onDestroy", onDestroy);
 	}
 
-	public void setOnDestroyedChange(java.lang.String onDestroyedChange) {
+	public void setOnDestroyedChange(java.lang.Object onDestroyedChange) {
 		_onDestroyedChange = onDestroyedChange;
 
 		setScopedAttribute("onDestroyedChange", onDestroyedChange);
 	}
 
-	public void setOnDisabledChange(java.lang.String onDisabledChange) {
+	public void setOnDisabledChange(java.lang.Object onDisabledChange) {
 		_onDisabledChange = onDisabledChange;
 
 		setScopedAttribute("onDisabledChange", onDisabledChange);
 	}
 
-	public void setOnFocusedChange(java.lang.String onFocusedChange) {
+	public void setOnFocusedChange(java.lang.Object onFocusedChange) {
 		_onFocusedChange = onFocusedChange;
 
 		setScopedAttribute("onFocusedChange", onFocusedChange);
 	}
 
-	public void setOnHeightChange(java.lang.String onHeightChange) {
+	public void setOnHeightChange(java.lang.Object onHeightChange) {
 		_onHeightChange = onHeightChange;
 
 		setScopedAttribute("onHeightChange", onHeightChange);
 	}
 
-	public void setOnHideClassChange(java.lang.String onHideClassChange) {
+	public void setOnHideClassChange(java.lang.Object onHideClassChange) {
 		_onHideClassChange = onHideClassChange;
 
 		setScopedAttribute("onHideClassChange", onHideClassChange);
 	}
 
-	public void setOnIdChange(java.lang.String onIdChange) {
+	public void setOnIdChange(java.lang.Object onIdChange) {
 		_onIdChange = onIdChange;
 
 		setScopedAttribute("onIdChange", onIdChange);
 	}
 
-	public void setOnInit(java.lang.String onInit) {
+	public void setOnInit(java.lang.Object onInit) {
 		_onInit = onInit;
 
 		setScopedAttribute("onInit", onInit);
 	}
 
-	public void setOnInitializedChange(java.lang.String onInitializedChange) {
+	public void setOnInitializedChange(java.lang.Object onInitializedChange) {
 		_onInitializedChange = onInitializedChange;
 
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
-	public void setOnLabelChange(java.lang.String onLabelChange) {
+	public void setOnLabelChange(java.lang.Object onLabelChange) {
 		_onLabelChange = onLabelChange;
 
 		setScopedAttribute("onLabelChange", onLabelChange);
 	}
 
-	public void setOnMaxChange(java.lang.String onMaxChange) {
+	public void setOnMaxChange(java.lang.Object onMaxChange) {
 		_onMaxChange = onMaxChange;
 
 		setScopedAttribute("onMaxChange", onMaxChange);
 	}
 
-	public void setOnMinChange(java.lang.String onMinChange) {
+	public void setOnMinChange(java.lang.Object onMinChange) {
 		_onMinChange = onMinChange;
 
 		setScopedAttribute("onMinChange", onMinChange);
 	}
 
-	public void setOnOrientationChange(java.lang.String onOrientationChange) {
+	public void setOnOrientationChange(java.lang.Object onOrientationChange) {
 		_onOrientationChange = onOrientationChange;
 
 		setScopedAttribute("onOrientationChange", onOrientationChange);
 	}
 
-	public void setOnRatioChange(java.lang.String onRatioChange) {
+	public void setOnRatioChange(java.lang.Object onRatioChange) {
 		_onRatioChange = onRatioChange;
 
 		setScopedAttribute("onRatioChange", onRatioChange);
 	}
 
-	public void setOnRenderChange(java.lang.String onRenderChange) {
+	public void setOnRenderChange(java.lang.Object onRenderChange) {
 		_onRenderChange = onRenderChange;
 
 		setScopedAttribute("onRenderChange", onRenderChange);
 	}
 
-	public void setOnRenderedChange(java.lang.String onRenderedChange) {
+	public void setOnRenderedChange(java.lang.Object onRenderedChange) {
 		_onRenderedChange = onRenderedChange;
 
 		setScopedAttribute("onRenderedChange", onRenderedChange);
 	}
 
-	public void setOnSrcNodeChange(java.lang.String onSrcNodeChange) {
+	public void setOnSrcNodeChange(java.lang.Object onSrcNodeChange) {
 		_onSrcNodeChange = onSrcNodeChange;
 
 		setScopedAttribute("onSrcNodeChange", onSrcNodeChange);
 	}
 
-	public void setOnStatusNodeChange(java.lang.String onStatusNodeChange) {
+	public void setOnStatusNodeChange(java.lang.Object onStatusNodeChange) {
 		_onStatusNodeChange = onStatusNodeChange;
 
 		setScopedAttribute("onStatusNodeChange", onStatusNodeChange);
 	}
 
-	public void setOnStepChange(java.lang.String onStepChange) {
+	public void setOnStepChange(java.lang.Object onStepChange) {
 		_onStepChange = onStepChange;
 
 		setScopedAttribute("onStepChange", onStepChange);
 	}
 
-	public void setOnStringsChange(java.lang.String onStringsChange) {
+	public void setOnStringsChange(java.lang.Object onStringsChange) {
 		_onStringsChange = onStringsChange;
 
 		setScopedAttribute("onStringsChange", onStringsChange);
 	}
 
-	public void setOnTabIndexChange(java.lang.String onTabIndexChange) {
+	public void setOnTabIndexChange(java.lang.Object onTabIndexChange) {
 		_onTabIndexChange = onTabIndexChange;
 
 		setScopedAttribute("onTabIndexChange", onTabIndexChange);
 	}
 
-	public void setOnTextNodeChange(java.lang.String onTextNodeChange) {
+	public void setOnTextNodeChange(java.lang.Object onTextNodeChange) {
 		_onTextNodeChange = onTextNodeChange;
 
 		setScopedAttribute("onTextNodeChange", onTextNodeChange);
 	}
 
-	public void setOnValueChange(java.lang.String onValueChange) {
+	public void setOnValueChange(java.lang.Object onValueChange) {
 		_onValueChange = onValueChange;
 
 		setScopedAttribute("onValueChange", onValueChange);
 	}
 
-	public void setOnVisibleChange(java.lang.String onVisibleChange) {
+	public void setOnVisibleChange(java.lang.Object onVisibleChange) {
 		_onVisibleChange = onVisibleChange;
 
 		setScopedAttribute("onVisibleChange", onVisibleChange);
 	}
 
-	public void setOnContentUpdate(java.lang.String onContentUpdate) {
+	public void setOnContentUpdate(java.lang.Object onContentUpdate) {
 		_onContentUpdate = onContentUpdate;
 
 		setScopedAttribute("onContentUpdate", onContentUpdate);
 	}
 
-	public void setOnRender(java.lang.String onRender) {
+	public void setOnRender(java.lang.Object onRender) {
 		_onRender = onRender;
 
 		setScopedAttribute("onRender", onRender);
 	}
 
-	public void setOnWidthChange(java.lang.String onWidthChange) {
+	public void setOnWidthChange(java.lang.Object onWidthChange) {
 		_onWidthChange = onWidthChange;
 
 		setScopedAttribute("onWidthChange", onWidthChange);
@@ -978,91 +978,91 @@ public class BaseProgressBarTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/progress_bar/page.jsp";
 
-	private java.lang.String _boundingBox;
-	private java.lang.String _contentBox;
-	private java.lang.String _cssClass;
+	private java.lang.Object _boundingBox;
+	private java.lang.Object _contentBox;
+	private java.lang.Object _cssClass;
 	private java.lang.String _destroyed;
 	private java.lang.String _disabled;
 	private java.lang.String _focused;
 	private java.lang.String _height;
-	private java.lang.String _hideClass;
-	private java.lang.String _progressbarId;
+	private java.lang.Object _hideClass;
+	private java.lang.Object _progressbarId;
 	private java.lang.String _initialized;
-	private java.lang.String _label;
+	private java.lang.Object _label;
 	private java.lang.String _max;
 	private java.lang.String _min;
-	private java.lang.String _orientation;
+	private java.lang.Object _orientation;
 	private java.lang.String _ratio;
 	private java.lang.String _render;
 	private java.lang.String _rendered;
-	private java.lang.String _srcNode;
-	private java.lang.String _statusNode;
+	private java.lang.Object _srcNode;
+	private java.lang.Object _statusNode;
 	private java.lang.String _step;
 	private java.lang.Object _strings;
 	private java.lang.String _tabIndex;
-	private java.lang.String _textNode;
+	private java.lang.Object _textNode;
 	private java.lang.String _progressbarValue;
 	private java.lang.String _visible;
-	private java.lang.String _width;
-	private java.lang.String _afterBoundingBoxChange;
-	private java.lang.String _afterContentBoxChange;
-	private java.lang.String _afterCssClassChange;
-	private java.lang.String _afterDestroy;
-	private java.lang.String _afterDestroyedChange;
-	private java.lang.String _afterDisabledChange;
-	private java.lang.String _afterFocusedChange;
-	private java.lang.String _afterHeightChange;
-	private java.lang.String _afterHideClassChange;
-	private java.lang.String _afterIdChange;
-	private java.lang.String _afterInit;
-	private java.lang.String _afterInitializedChange;
-	private java.lang.String _afterLabelChange;
-	private java.lang.String _afterMaxChange;
-	private java.lang.String _afterMinChange;
-	private java.lang.String _afterOrientationChange;
-	private java.lang.String _afterRatioChange;
-	private java.lang.String _afterRenderChange;
-	private java.lang.String _afterRenderedChange;
-	private java.lang.String _afterSrcNodeChange;
-	private java.lang.String _afterStatusNodeChange;
-	private java.lang.String _afterStepChange;
-	private java.lang.String _afterStringsChange;
-	private java.lang.String _afterTabIndexChange;
-	private java.lang.String _afterTextNodeChange;
-	private java.lang.String _afterValueChange;
-	private java.lang.String _afterVisibleChange;
-	private java.lang.String _afterContentUpdate;
-	private java.lang.String _afterRender;
-	private java.lang.String _afterWidthChange;
-	private java.lang.String _onBoundingBoxChange;
-	private java.lang.String _onContentBoxChange;
-	private java.lang.String _onCssClassChange;
-	private java.lang.String _onDestroy;
-	private java.lang.String _onDestroyedChange;
-	private java.lang.String _onDisabledChange;
-	private java.lang.String _onFocusedChange;
-	private java.lang.String _onHeightChange;
-	private java.lang.String _onHideClassChange;
-	private java.lang.String _onIdChange;
-	private java.lang.String _onInit;
-	private java.lang.String _onInitializedChange;
-	private java.lang.String _onLabelChange;
-	private java.lang.String _onMaxChange;
-	private java.lang.String _onMinChange;
-	private java.lang.String _onOrientationChange;
-	private java.lang.String _onRatioChange;
-	private java.lang.String _onRenderChange;
-	private java.lang.String _onRenderedChange;
-	private java.lang.String _onSrcNodeChange;
-	private java.lang.String _onStatusNodeChange;
-	private java.lang.String _onStepChange;
-	private java.lang.String _onStringsChange;
-	private java.lang.String _onTabIndexChange;
-	private java.lang.String _onTextNodeChange;
-	private java.lang.String _onValueChange;
-	private java.lang.String _onVisibleChange;
-	private java.lang.String _onContentUpdate;
-	private java.lang.String _onRender;
-	private java.lang.String _onWidthChange;
+	private java.lang.Object _width;
+	private java.lang.Object _afterBoundingBoxChange;
+	private java.lang.Object _afterContentBoxChange;
+	private java.lang.Object _afterCssClassChange;
+	private java.lang.Object _afterDestroy;
+	private java.lang.Object _afterDestroyedChange;
+	private java.lang.Object _afterDisabledChange;
+	private java.lang.Object _afterFocusedChange;
+	private java.lang.Object _afterHeightChange;
+	private java.lang.Object _afterHideClassChange;
+	private java.lang.Object _afterIdChange;
+	private java.lang.Object _afterInit;
+	private java.lang.Object _afterInitializedChange;
+	private java.lang.Object _afterLabelChange;
+	private java.lang.Object _afterMaxChange;
+	private java.lang.Object _afterMinChange;
+	private java.lang.Object _afterOrientationChange;
+	private java.lang.Object _afterRatioChange;
+	private java.lang.Object _afterRenderChange;
+	private java.lang.Object _afterRenderedChange;
+	private java.lang.Object _afterSrcNodeChange;
+	private java.lang.Object _afterStatusNodeChange;
+	private java.lang.Object _afterStepChange;
+	private java.lang.Object _afterStringsChange;
+	private java.lang.Object _afterTabIndexChange;
+	private java.lang.Object _afterTextNodeChange;
+	private java.lang.Object _afterValueChange;
+	private java.lang.Object _afterVisibleChange;
+	private java.lang.Object _afterContentUpdate;
+	private java.lang.Object _afterRender;
+	private java.lang.Object _afterWidthChange;
+	private java.lang.Object _onBoundingBoxChange;
+	private java.lang.Object _onContentBoxChange;
+	private java.lang.Object _onCssClassChange;
+	private java.lang.Object _onDestroy;
+	private java.lang.Object _onDestroyedChange;
+	private java.lang.Object _onDisabledChange;
+	private java.lang.Object _onFocusedChange;
+	private java.lang.Object _onHeightChange;
+	private java.lang.Object _onHideClassChange;
+	private java.lang.Object _onIdChange;
+	private java.lang.Object _onInit;
+	private java.lang.Object _onInitializedChange;
+	private java.lang.Object _onLabelChange;
+	private java.lang.Object _onMaxChange;
+	private java.lang.Object _onMinChange;
+	private java.lang.Object _onOrientationChange;
+	private java.lang.Object _onRatioChange;
+	private java.lang.Object _onRenderChange;
+	private java.lang.Object _onRenderedChange;
+	private java.lang.Object _onSrcNodeChange;
+	private java.lang.Object _onStatusNodeChange;
+	private java.lang.Object _onStepChange;
+	private java.lang.Object _onStringsChange;
+	private java.lang.Object _onTabIndexChange;
+	private java.lang.Object _onTextNodeChange;
+	private java.lang.Object _onValueChange;
+	private java.lang.Object _onVisibleChange;
+	private java.lang.Object _onContentUpdate;
+	private java.lang.Object _onRender;
+	private java.lang.Object _onWidthChange;
 
 }

@@ -18,25 +18,25 @@ if (useMarkup) {
 	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
 }
 
-java.lang.String _counter = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:counter"));
+java.lang.Object _counter = (java.lang.Object)request.getAttribute("alloy:char-counter:counter");
 java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:char-counter:destroyed"), false);
 java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:char-counter:initialized"), false);
-java.lang.String _input = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:input"));
+java.lang.Object _input = (java.lang.Object)request.getAttribute("alloy:char-counter:input");
 java.lang.Number _maxLength = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:char-counter:maxLength"), 0);
-java.lang.String _afterCounterChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:afterCounterChange"));
-java.lang.String _afterDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:afterDestroy"));
-java.lang.String _afterDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:afterDestroyedChange"));
-java.lang.String _afterInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:afterInit"));
-java.lang.String _afterInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:afterInitializedChange"));
-java.lang.String _afterInputChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:afterInputChange"));
-java.lang.String _afterMaxLengthChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:afterMaxLengthChange"));
-java.lang.String _onCounterChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:onCounterChange"));
-java.lang.String _onDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:onDestroy"));
-java.lang.String _onDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:onDestroyedChange"));
-java.lang.String _onInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:onInit"));
-java.lang.String _onInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:onInitializedChange"));
-java.lang.String _onInputChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:onInputChange"));
-java.lang.String _onMaxLengthChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:char-counter:onMaxLengthChange"));
+java.lang.Object _afterCounterChange = (java.lang.Object)request.getAttribute("alloy:char-counter:afterCounterChange");
+java.lang.Object _afterDestroy = (java.lang.Object)request.getAttribute("alloy:char-counter:afterDestroy");
+java.lang.Object _afterDestroyedChange = (java.lang.Object)request.getAttribute("alloy:char-counter:afterDestroyedChange");
+java.lang.Object _afterInit = (java.lang.Object)request.getAttribute("alloy:char-counter:afterInit");
+java.lang.Object _afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:char-counter:afterInitializedChange");
+java.lang.Object _afterInputChange = (java.lang.Object)request.getAttribute("alloy:char-counter:afterInputChange");
+java.lang.Object _afterMaxLengthChange = (java.lang.Object)request.getAttribute("alloy:char-counter:afterMaxLengthChange");
+java.lang.Object _onCounterChange = (java.lang.Object)request.getAttribute("alloy:char-counter:onCounterChange");
+java.lang.Object _onDestroy = (java.lang.Object)request.getAttribute("alloy:char-counter:onDestroy");
+java.lang.Object _onDestroyedChange = (java.lang.Object)request.getAttribute("alloy:char-counter:onDestroyedChange");
+java.lang.Object _onInit = (java.lang.Object)request.getAttribute("alloy:char-counter:onInit");
+java.lang.Object _onInitializedChange = (java.lang.Object)request.getAttribute("alloy:char-counter:onInitializedChange");
+java.lang.Object _onInputChange = (java.lang.Object)request.getAttribute("alloy:char-counter:onInputChange");
+java.lang.Object _onMaxLengthChange = (java.lang.Object)request.getAttribute("alloy:char-counter:onMaxLengthChange");
 %>
 
 <%@ include file="init-ext.jsp" %>

@@ -20,14 +20,14 @@ if (useMarkup) {
 
 java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:portal-layout:destroyed"), false);
 java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:portal-layout:initialized"), false);
-java.lang.String _afterDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:portal-layout:afterDestroy"));
-java.lang.String _afterDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:portal-layout:afterDestroyedChange"));
-java.lang.String _afterInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:portal-layout:afterInit"));
-java.lang.String _afterInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:portal-layout:afterInitializedChange"));
-java.lang.String _onDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:portal-layout:onDestroy"));
-java.lang.String _onDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:portal-layout:onDestroyedChange"));
-java.lang.String _onInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:portal-layout:onInit"));
-java.lang.String _onInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:portal-layout:onInitializedChange"));
+java.lang.Object _afterDestroy = (java.lang.Object)request.getAttribute("alloy:portal-layout:afterDestroy");
+java.lang.Object _afterDestroyedChange = (java.lang.Object)request.getAttribute("alloy:portal-layout:afterDestroyedChange");
+java.lang.Object _afterInit = (java.lang.Object)request.getAttribute("alloy:portal-layout:afterInit");
+java.lang.Object _afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:portal-layout:afterInitializedChange");
+java.lang.Object _onDestroy = (java.lang.Object)request.getAttribute("alloy:portal-layout:onDestroy");
+java.lang.Object _onDestroyedChange = (java.lang.Object)request.getAttribute("alloy:portal-layout:onDestroyedChange");
+java.lang.Object _onInit = (java.lang.Object)request.getAttribute("alloy:portal-layout:onInit");
+java.lang.Object _onInitializedChange = (java.lang.Object)request.getAttribute("alloy:portal-layout:onInitializedChange");
 %>
 
 <%@ include file="init-ext.jsp" %>

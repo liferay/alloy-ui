@@ -19,18 +19,18 @@ if (useMarkup) {
 }
 
 java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:parse-content:destroyed"), false);
-java.lang.String _host = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:parse-content:host"));
+java.lang.Object _host = (java.lang.Object)request.getAttribute("alloy:parse-content:host");
 java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:parse-content:initialized"), false);
-java.lang.String _afterDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:parse-content:afterDestroy"));
-java.lang.String _afterDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:parse-content:afterDestroyedChange"));
-java.lang.String _afterHostChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:parse-content:afterHostChange"));
-java.lang.String _afterInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:parse-content:afterInit"));
-java.lang.String _afterInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:parse-content:afterInitializedChange"));
-java.lang.String _onDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:parse-content:onDestroy"));
-java.lang.String _onDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:parse-content:onDestroyedChange"));
-java.lang.String _onHostChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:parse-content:onHostChange"));
-java.lang.String _onInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:parse-content:onInit"));
-java.lang.String _onInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:parse-content:onInitializedChange"));
+java.lang.Object _afterDestroy = (java.lang.Object)request.getAttribute("alloy:parse-content:afterDestroy");
+java.lang.Object _afterDestroyedChange = (java.lang.Object)request.getAttribute("alloy:parse-content:afterDestroyedChange");
+java.lang.Object _afterHostChange = (java.lang.Object)request.getAttribute("alloy:parse-content:afterHostChange");
+java.lang.Object _afterInit = (java.lang.Object)request.getAttribute("alloy:parse-content:afterInit");
+java.lang.Object _afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:parse-content:afterInitializedChange");
+java.lang.Object _onDestroy = (java.lang.Object)request.getAttribute("alloy:parse-content:onDestroy");
+java.lang.Object _onDestroyedChange = (java.lang.Object)request.getAttribute("alloy:parse-content:onDestroyedChange");
+java.lang.Object _onHostChange = (java.lang.Object)request.getAttribute("alloy:parse-content:onHostChange");
+java.lang.Object _onInit = (java.lang.Object)request.getAttribute("alloy:parse-content:onInit");
+java.lang.Object _onInitializedChange = (java.lang.Object)request.getAttribute("alloy:parse-content:onInitializedChange");
 %>
 
 <%@ include file="init-ext.jsp" %>

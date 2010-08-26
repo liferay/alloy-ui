@@ -36,7 +36,7 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		return _autoHighlight;
 	}
 
-	public java.lang.String getBoundingBox() {
+	public java.lang.Object getBoundingBox() {
 		return _boundingBox;
 	}
 
@@ -44,23 +44,23 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		return _button;
 	}
 
-	public java.lang.String getContentBox() {
+	public java.lang.Object getContentBox() {
 		return _contentBox;
 	}
 
-	public java.lang.String getCssClass() {
+	public java.lang.Object getCssClass() {
 		return _cssClass;
 	}
 
-	public java.lang.String getDataSource() {
+	public java.lang.Object getDataSource() {
 		return _dataSource;
 	}
 
-	public java.lang.String getDataSourceType() {
+	public java.lang.Object getDataSourceType() {
 		return _dataSourceType;
 	}
 
-	public java.lang.String getDelimChar() {
+	public java.lang.Object getDelimChar() {
 		return _delimChar;
 	}
 
@@ -80,15 +80,15 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		return _forceSelection;
 	}
 
-	public java.lang.String getHeight() {
+	public java.lang.Object getHeight() {
 		return _height;
 	}
 
-	public java.lang.String getHideClass() {
+	public java.lang.Object getHideClass() {
 		return _hideClass;
 	}
 
-	public java.lang.String getAutocompleteId() {
+	public java.lang.Object getAutocompleteId() {
 		return _autocompleteId;
 	}
 
@@ -96,11 +96,11 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		return _initialized;
 	}
 
-	public java.lang.String getInput() {
+	public java.lang.Object getInput() {
 		return _input;
 	}
 
-	public java.lang.String getMatchKey() {
+	public java.lang.Object getMatchKey() {
 		return _matchKey;
 	}
 
@@ -144,11 +144,11 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		return _schema;
 	}
 
-	public java.lang.String getSchemaType() {
+	public java.lang.Object getSchemaType() {
 		return _schemaType;
 	}
 
-	public java.lang.String getSrcNode() {
+	public java.lang.Object getSrcNode() {
 		return _srcNode;
 	}
 
@@ -172,7 +172,7 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		return _typeAheadDelay;
 	}
 
-	public java.lang.String getUniqueName() {
+	public java.lang.Object getUniqueName() {
 		return _uniqueName;
 	}
 
@@ -180,503 +180,503 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		return _visible;
 	}
 
-	public java.lang.String getWidth() {
+	public java.lang.Object getWidth() {
 		return _width;
 	}
 
-	public java.lang.String getAfterAlwaysShowContainerChange() {
+	public java.lang.Object getAfterAlwaysShowContainerChange() {
 		return _afterAlwaysShowContainerChange;
 	}
 
-	public java.lang.String getAfterApplyLocalFilterChange() {
+	public java.lang.Object getAfterApplyLocalFilterChange() {
 		return _afterApplyLocalFilterChange;
 	}
 
-	public java.lang.String getAfterAutoHighlightChange() {
+	public java.lang.Object getAfterAutoHighlightChange() {
 		return _afterAutoHighlightChange;
 	}
 
-	public java.lang.String getAfterBoundingBoxChange() {
+	public java.lang.Object getAfterBoundingBoxChange() {
 		return _afterBoundingBoxChange;
 	}
 
-	public java.lang.String getAfterButtonChange() {
+	public java.lang.Object getAfterButtonChange() {
 		return _afterButtonChange;
 	}
 
-	public java.lang.String getAfterContainerCollapse() {
+	public java.lang.Object getAfterContainerCollapse() {
 		return _afterContainerCollapse;
 	}
 
-	public java.lang.String getAfterContainerExpand() {
+	public java.lang.Object getAfterContainerExpand() {
 		return _afterContainerExpand;
 	}
 
-	public java.lang.String getAfterContainerPopulate() {
+	public java.lang.Object getAfterContainerPopulate() {
 		return _afterContainerPopulate;
 	}
 
-	public java.lang.String getAfterContentBoxChange() {
+	public java.lang.Object getAfterContentBoxChange() {
 		return _afterContentBoxChange;
 	}
 
-	public java.lang.String getAfterCssClassChange() {
+	public java.lang.Object getAfterCssClassChange() {
 		return _afterCssClassChange;
 	}
 
-	public java.lang.String getAfterDataError() {
+	public java.lang.Object getAfterDataError() {
 		return _afterDataError;
 	}
 
-	public java.lang.String getAfterDataRequest() {
+	public java.lang.Object getAfterDataRequest() {
 		return _afterDataRequest;
 	}
 
-	public java.lang.String getAfterDataReturn() {
+	public java.lang.Object getAfterDataReturn() {
 		return _afterDataReturn;
 	}
 
-	public java.lang.String getAfterDataSourceChange() {
+	public java.lang.Object getAfterDataSourceChange() {
 		return _afterDataSourceChange;
 	}
 
-	public java.lang.String getAfterDataSourceTypeChange() {
+	public java.lang.Object getAfterDataSourceTypeChange() {
 		return _afterDataSourceTypeChange;
 	}
 
-	public java.lang.String getAfterDelimCharChange() {
+	public java.lang.Object getAfterDelimCharChange() {
 		return _afterDelimCharChange;
 	}
 
-	public java.lang.String getAfterDestroy() {
+	public java.lang.Object getAfterDestroy() {
 		return _afterDestroy;
 	}
 
-	public java.lang.String getAfterDestroyedChange() {
+	public java.lang.Object getAfterDestroyedChange() {
 		return _afterDestroyedChange;
 	}
 
-	public java.lang.String getAfterDisabledChange() {
+	public java.lang.Object getAfterDisabledChange() {
 		return _afterDisabledChange;
 	}
 
-	public java.lang.String getAfterFocusedChange() {
+	public java.lang.Object getAfterFocusedChange() {
 		return _afterFocusedChange;
 	}
 
-	public java.lang.String getAfterForceSelectionChange() {
+	public java.lang.Object getAfterForceSelectionChange() {
 		return _afterForceSelectionChange;
 	}
 
-	public java.lang.String getAfterHeightChange() {
+	public java.lang.Object getAfterHeightChange() {
 		return _afterHeightChange;
 	}
 
-	public java.lang.String getAfterHideClassChange() {
+	public java.lang.Object getAfterHideClassChange() {
 		return _afterHideClassChange;
 	}
 
-	public java.lang.String getAfterIdChange() {
+	public java.lang.Object getAfterIdChange() {
 		return _afterIdChange;
 	}
 
-	public java.lang.String getAfterInit() {
+	public java.lang.Object getAfterInit() {
 		return _afterInit;
 	}
 
-	public java.lang.String getAfterInitializedChange() {
+	public java.lang.Object getAfterInitializedChange() {
 		return _afterInitializedChange;
 	}
 
-	public java.lang.String getAfterInputChange() {
+	public java.lang.Object getAfterInputChange() {
 		return _afterInputChange;
 	}
 
-	public java.lang.String getAfterItemArrowFrom() {
+	public java.lang.Object getAfterItemArrowFrom() {
 		return _afterItemArrowFrom;
 	}
 
-	public java.lang.String getAfterItemArrowTo() {
+	public java.lang.Object getAfterItemArrowTo() {
 		return _afterItemArrowTo;
 	}
 
-	public java.lang.String getAfterItemMouseOut() {
+	public java.lang.Object getAfterItemMouseOut() {
 		return _afterItemMouseOut;
 	}
 
-	public java.lang.String getAfterItemMouseOver() {
+	public java.lang.Object getAfterItemMouseOver() {
 		return _afterItemMouseOver;
 	}
 
-	public java.lang.String getAfterItemSelect() {
+	public java.lang.Object getAfterItemSelect() {
 		return _afterItemSelect;
 	}
 
-	public java.lang.String getAfterMatchKeyChange() {
+	public java.lang.Object getAfterMatchKeyChange() {
 		return _afterMatchKeyChange;
 	}
 
-	public java.lang.String getAfterMaxResultsDisplayedChange() {
+	public java.lang.Object getAfterMaxResultsDisplayedChange() {
 		return _afterMaxResultsDisplayedChange;
 	}
 
-	public java.lang.String getAfterMinQueryLengthChange() {
+	public java.lang.Object getAfterMinQueryLengthChange() {
 		return _afterMinQueryLengthChange;
 	}
 
-	public java.lang.String getAfterQueryDelayChange() {
+	public java.lang.Object getAfterQueryDelayChange() {
 		return _afterQueryDelayChange;
 	}
 
-	public java.lang.String getAfterQueryIntervalChange() {
+	public java.lang.Object getAfterQueryIntervalChange() {
 		return _afterQueryIntervalChange;
 	}
 
-	public java.lang.String getAfterQueryMatchCaseChange() {
+	public java.lang.Object getAfterQueryMatchCaseChange() {
 		return _afterQueryMatchCaseChange;
 	}
 
-	public java.lang.String getAfterQueryMatchContainsChange() {
+	public java.lang.Object getAfterQueryMatchContainsChange() {
 		return _afterQueryMatchContainsChange;
 	}
 
-	public java.lang.String getAfterQueryQuestionMarkChange() {
+	public java.lang.Object getAfterQueryQuestionMarkChange() {
 		return _afterQueryQuestionMarkChange;
 	}
 
-	public java.lang.String getAfterRenderChange() {
+	public java.lang.Object getAfterRenderChange() {
 		return _afterRenderChange;
 	}
 
-	public java.lang.String getAfterRenderedChange() {
+	public java.lang.Object getAfterRenderedChange() {
 		return _afterRenderedChange;
 	}
 
-	public java.lang.String getAfterSchemaChange() {
+	public java.lang.Object getAfterSchemaChange() {
 		return _afterSchemaChange;
 	}
 
-	public java.lang.String getAfterSchemaTypeChange() {
+	public java.lang.Object getAfterSchemaTypeChange() {
 		return _afterSchemaTypeChange;
 	}
 
-	public java.lang.String getAfterSelectionEnforce() {
+	public java.lang.Object getAfterSelectionEnforce() {
 		return _afterSelectionEnforce;
 	}
 
-	public java.lang.String getAfterSrcNodeChange() {
+	public java.lang.Object getAfterSrcNodeChange() {
 		return _afterSrcNodeChange;
 	}
 
-	public java.lang.String getAfterStringsChange() {
+	public java.lang.Object getAfterStringsChange() {
 		return _afterStringsChange;
 	}
 
-	public java.lang.String getAfterSuppressInputUpdateChange() {
+	public java.lang.Object getAfterSuppressInputUpdateChange() {
 		return _afterSuppressInputUpdateChange;
 	}
 
-	public java.lang.String getAfterTabIndexChange() {
+	public java.lang.Object getAfterTabIndexChange() {
 		return _afterTabIndexChange;
 	}
 
-	public java.lang.String getAfterTextboxBlur() {
+	public java.lang.Object getAfterTextboxBlur() {
 		return _afterTextboxBlur;
 	}
 
-	public java.lang.String getAfterTextboxChange() {
+	public java.lang.Object getAfterTextboxChange() {
 		return _afterTextboxChange;
 	}
 
-	public java.lang.String getAfterTextboxFocus() {
+	public java.lang.Object getAfterTextboxFocus() {
 		return _afterTextboxFocus;
 	}
 
-	public java.lang.String getAfterTextboxKey() {
+	public java.lang.Object getAfterTextboxKey() {
 		return _afterTextboxKey;
 	}
 
-	public java.lang.String getAfterTypeAhead() {
+	public java.lang.Object getAfterTypeAhead() {
 		return _afterTypeAhead;
 	}
 
-	public java.lang.String getAfterTypeAheadChange() {
+	public java.lang.Object getAfterTypeAheadChange() {
 		return _afterTypeAheadChange;
 	}
 
-	public java.lang.String getAfterTypeAheadDelayChange() {
+	public java.lang.Object getAfterTypeAheadDelayChange() {
 		return _afterTypeAheadDelayChange;
 	}
 
-	public java.lang.String getAfterUniqueNameChange() {
+	public java.lang.Object getAfterUniqueNameChange() {
 		return _afterUniqueNameChange;
 	}
 
-	public java.lang.String getAfterUnmatchedItemSelect() {
+	public java.lang.Object getAfterUnmatchedItemSelect() {
 		return _afterUnmatchedItemSelect;
 	}
 
-	public java.lang.String getAfterVisibleChange() {
+	public java.lang.Object getAfterVisibleChange() {
 		return _afterVisibleChange;
 	}
 
-	public java.lang.String getAfterContentUpdate() {
+	public java.lang.Object getAfterContentUpdate() {
 		return _afterContentUpdate;
 	}
 
-	public java.lang.String getAfterRender() {
+	public java.lang.Object getAfterRender() {
 		return _afterRender;
 	}
 
-	public java.lang.String getAfterWidthChange() {
+	public java.lang.Object getAfterWidthChange() {
 		return _afterWidthChange;
 	}
 
-	public java.lang.String getOnAlwaysShowContainerChange() {
+	public java.lang.Object getOnAlwaysShowContainerChange() {
 		return _onAlwaysShowContainerChange;
 	}
 
-	public java.lang.String getOnApplyLocalFilterChange() {
+	public java.lang.Object getOnApplyLocalFilterChange() {
 		return _onApplyLocalFilterChange;
 	}
 
-	public java.lang.String getOnAutoHighlightChange() {
+	public java.lang.Object getOnAutoHighlightChange() {
 		return _onAutoHighlightChange;
 	}
 
-	public java.lang.String getOnBoundingBoxChange() {
+	public java.lang.Object getOnBoundingBoxChange() {
 		return _onBoundingBoxChange;
 	}
 
-	public java.lang.String getOnButtonChange() {
+	public java.lang.Object getOnButtonChange() {
 		return _onButtonChange;
 	}
 
-	public java.lang.String getOnContainerCollapse() {
+	public java.lang.Object getOnContainerCollapse() {
 		return _onContainerCollapse;
 	}
 
-	public java.lang.String getOnContainerExpand() {
+	public java.lang.Object getOnContainerExpand() {
 		return _onContainerExpand;
 	}
 
-	public java.lang.String getOnContainerPopulate() {
+	public java.lang.Object getOnContainerPopulate() {
 		return _onContainerPopulate;
 	}
 
-	public java.lang.String getOnContentBoxChange() {
+	public java.lang.Object getOnContentBoxChange() {
 		return _onContentBoxChange;
 	}
 
-	public java.lang.String getOnCssClassChange() {
+	public java.lang.Object getOnCssClassChange() {
 		return _onCssClassChange;
 	}
 
-	public java.lang.String getOnDataError() {
+	public java.lang.Object getOnDataError() {
 		return _onDataError;
 	}
 
-	public java.lang.String getOnDataRequest() {
+	public java.lang.Object getOnDataRequest() {
 		return _onDataRequest;
 	}
 
-	public java.lang.String getOnDataReturn() {
+	public java.lang.Object getOnDataReturn() {
 		return _onDataReturn;
 	}
 
-	public java.lang.String getOnDataSourceChange() {
+	public java.lang.Object getOnDataSourceChange() {
 		return _onDataSourceChange;
 	}
 
-	public java.lang.String getOnDataSourceTypeChange() {
+	public java.lang.Object getOnDataSourceTypeChange() {
 		return _onDataSourceTypeChange;
 	}
 
-	public java.lang.String getOnDelimCharChange() {
+	public java.lang.Object getOnDelimCharChange() {
 		return _onDelimCharChange;
 	}
 
-	public java.lang.String getOnDestroy() {
+	public java.lang.Object getOnDestroy() {
 		return _onDestroy;
 	}
 
-	public java.lang.String getOnDestroyedChange() {
+	public java.lang.Object getOnDestroyedChange() {
 		return _onDestroyedChange;
 	}
 
-	public java.lang.String getOnDisabledChange() {
+	public java.lang.Object getOnDisabledChange() {
 		return _onDisabledChange;
 	}
 
-	public java.lang.String getOnFocusedChange() {
+	public java.lang.Object getOnFocusedChange() {
 		return _onFocusedChange;
 	}
 
-	public java.lang.String getOnForceSelectionChange() {
+	public java.lang.Object getOnForceSelectionChange() {
 		return _onForceSelectionChange;
 	}
 
-	public java.lang.String getOnHeightChange() {
+	public java.lang.Object getOnHeightChange() {
 		return _onHeightChange;
 	}
 
-	public java.lang.String getOnHideClassChange() {
+	public java.lang.Object getOnHideClassChange() {
 		return _onHideClassChange;
 	}
 
-	public java.lang.String getOnIdChange() {
+	public java.lang.Object getOnIdChange() {
 		return _onIdChange;
 	}
 
-	public java.lang.String getOnInit() {
+	public java.lang.Object getOnInit() {
 		return _onInit;
 	}
 
-	public java.lang.String getOnInitializedChange() {
+	public java.lang.Object getOnInitializedChange() {
 		return _onInitializedChange;
 	}
 
-	public java.lang.String getOnInputChange() {
+	public java.lang.Object getOnInputChange() {
 		return _onInputChange;
 	}
 
-	public java.lang.String getOnItemArrowFrom() {
+	public java.lang.Object getOnItemArrowFrom() {
 		return _onItemArrowFrom;
 	}
 
-	public java.lang.String getOnItemArrowTo() {
+	public java.lang.Object getOnItemArrowTo() {
 		return _onItemArrowTo;
 	}
 
-	public java.lang.String getOnItemMouseOut() {
+	public java.lang.Object getOnItemMouseOut() {
 		return _onItemMouseOut;
 	}
 
-	public java.lang.String getOnItemMouseOver() {
+	public java.lang.Object getOnItemMouseOver() {
 		return _onItemMouseOver;
 	}
 
-	public java.lang.String getOnItemSelect() {
+	public java.lang.Object getOnItemSelect() {
 		return _onItemSelect;
 	}
 
-	public java.lang.String getOnMatchKeyChange() {
+	public java.lang.Object getOnMatchKeyChange() {
 		return _onMatchKeyChange;
 	}
 
-	public java.lang.String getOnMaxResultsDisplayedChange() {
+	public java.lang.Object getOnMaxResultsDisplayedChange() {
 		return _onMaxResultsDisplayedChange;
 	}
 
-	public java.lang.String getOnMinQueryLengthChange() {
+	public java.lang.Object getOnMinQueryLengthChange() {
 		return _onMinQueryLengthChange;
 	}
 
-	public java.lang.String getOnQueryDelayChange() {
+	public java.lang.Object getOnQueryDelayChange() {
 		return _onQueryDelayChange;
 	}
 
-	public java.lang.String getOnQueryIntervalChange() {
+	public java.lang.Object getOnQueryIntervalChange() {
 		return _onQueryIntervalChange;
 	}
 
-	public java.lang.String getOnQueryMatchCaseChange() {
+	public java.lang.Object getOnQueryMatchCaseChange() {
 		return _onQueryMatchCaseChange;
 	}
 
-	public java.lang.String getOnQueryMatchContainsChange() {
+	public java.lang.Object getOnQueryMatchContainsChange() {
 		return _onQueryMatchContainsChange;
 	}
 
-	public java.lang.String getOnQueryQuestionMarkChange() {
+	public java.lang.Object getOnQueryQuestionMarkChange() {
 		return _onQueryQuestionMarkChange;
 	}
 
-	public java.lang.String getOnRenderChange() {
+	public java.lang.Object getOnRenderChange() {
 		return _onRenderChange;
 	}
 
-	public java.lang.String getOnRenderedChange() {
+	public java.lang.Object getOnRenderedChange() {
 		return _onRenderedChange;
 	}
 
-	public java.lang.String getOnSchemaChange() {
+	public java.lang.Object getOnSchemaChange() {
 		return _onSchemaChange;
 	}
 
-	public java.lang.String getOnSchemaTypeChange() {
+	public java.lang.Object getOnSchemaTypeChange() {
 		return _onSchemaTypeChange;
 	}
 
-	public java.lang.String getOnSelectionEnforce() {
+	public java.lang.Object getOnSelectionEnforce() {
 		return _onSelectionEnforce;
 	}
 
-	public java.lang.String getOnSrcNodeChange() {
+	public java.lang.Object getOnSrcNodeChange() {
 		return _onSrcNodeChange;
 	}
 
-	public java.lang.String getOnStringsChange() {
+	public java.lang.Object getOnStringsChange() {
 		return _onStringsChange;
 	}
 
-	public java.lang.String getOnSuppressInputUpdateChange() {
+	public java.lang.Object getOnSuppressInputUpdateChange() {
 		return _onSuppressInputUpdateChange;
 	}
 
-	public java.lang.String getOnTabIndexChange() {
+	public java.lang.Object getOnTabIndexChange() {
 		return _onTabIndexChange;
 	}
 
-	public java.lang.String getOnTextboxBlur() {
+	public java.lang.Object getOnTextboxBlur() {
 		return _onTextboxBlur;
 	}
 
-	public java.lang.String getOnTextboxChange() {
+	public java.lang.Object getOnTextboxChange() {
 		return _onTextboxChange;
 	}
 
-	public java.lang.String getOnTextboxFocus() {
+	public java.lang.Object getOnTextboxFocus() {
 		return _onTextboxFocus;
 	}
 
-	public java.lang.String getOnTextboxKey() {
+	public java.lang.Object getOnTextboxKey() {
 		return _onTextboxKey;
 	}
 
-	public java.lang.String getOnTypeAhead() {
+	public java.lang.Object getOnTypeAhead() {
 		return _onTypeAhead;
 	}
 
-	public java.lang.String getOnTypeAheadChange() {
+	public java.lang.Object getOnTypeAheadChange() {
 		return _onTypeAheadChange;
 	}
 
-	public java.lang.String getOnTypeAheadDelayChange() {
+	public java.lang.Object getOnTypeAheadDelayChange() {
 		return _onTypeAheadDelayChange;
 	}
 
-	public java.lang.String getOnUniqueNameChange() {
+	public java.lang.Object getOnUniqueNameChange() {
 		return _onUniqueNameChange;
 	}
 
-	public java.lang.String getOnUnmatchedItemSelect() {
+	public java.lang.Object getOnUnmatchedItemSelect() {
 		return _onUnmatchedItemSelect;
 	}
 
-	public java.lang.String getOnVisibleChange() {
+	public java.lang.Object getOnVisibleChange() {
 		return _onVisibleChange;
 	}
 
-	public java.lang.String getOnContentUpdate() {
+	public java.lang.Object getOnContentUpdate() {
 		return _onContentUpdate;
 	}
 
-	public java.lang.String getOnRender() {
+	public java.lang.Object getOnRender() {
 		return _onRender;
 	}
 
-	public java.lang.String getOnWidthChange() {
+	public java.lang.Object getOnWidthChange() {
 		return _onWidthChange;
 	}
 
@@ -698,7 +698,7 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		setScopedAttribute("autoHighlight", autoHighlight);
 	}
 
-	public void setBoundingBox(java.lang.String boundingBox) {
+	public void setBoundingBox(java.lang.Object boundingBox) {
 		_boundingBox = boundingBox;
 
 		setScopedAttribute("boundingBox", boundingBox);
@@ -710,31 +710,31 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		setScopedAttribute("button", button);
 	}
 
-	public void setContentBox(java.lang.String contentBox) {
+	public void setContentBox(java.lang.Object contentBox) {
 		_contentBox = contentBox;
 
 		setScopedAttribute("contentBox", contentBox);
 	}
 
-	public void setCssClass(java.lang.String cssClass) {
+	public void setCssClass(java.lang.Object cssClass) {
 		_cssClass = cssClass;
 
 		setScopedAttribute("cssClass", cssClass);
 	}
 
-	public void setDataSource(java.lang.String dataSource) {
+	public void setDataSource(java.lang.Object dataSource) {
 		_dataSource = dataSource;
 
 		setScopedAttribute("dataSource", dataSource);
 	}
 
-	public void setDataSourceType(java.lang.String dataSourceType) {
+	public void setDataSourceType(java.lang.Object dataSourceType) {
 		_dataSourceType = dataSourceType;
 
 		setScopedAttribute("dataSourceType", dataSourceType);
 	}
 
-	public void setDelimChar(java.lang.String delimChar) {
+	public void setDelimChar(java.lang.Object delimChar) {
 		_delimChar = delimChar;
 
 		setScopedAttribute("delimChar", delimChar);
@@ -764,19 +764,19 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		setScopedAttribute("forceSelection", forceSelection);
 	}
 
-	public void setHeight(java.lang.String height) {
+	public void setHeight(java.lang.Object height) {
 		_height = height;
 
 		setScopedAttribute("height", height);
 	}
 
-	public void setHideClass(java.lang.String hideClass) {
+	public void setHideClass(java.lang.Object hideClass) {
 		_hideClass = hideClass;
 
 		setScopedAttribute("hideClass", hideClass);
 	}
 
-	public void setAutocompleteId(java.lang.String autocompleteId) {
+	public void setAutocompleteId(java.lang.Object autocompleteId) {
 		_autocompleteId = autocompleteId;
 
 		setScopedAttribute("autocompleteId", autocompleteId);
@@ -788,13 +788,13 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setInput(java.lang.String input) {
+	public void setInput(java.lang.Object input) {
 		_input = input;
 
 		setScopedAttribute("input", input);
 	}
 
-	public void setMatchKey(java.lang.String matchKey) {
+	public void setMatchKey(java.lang.Object matchKey) {
 		_matchKey = matchKey;
 
 		setScopedAttribute("matchKey", matchKey);
@@ -860,13 +860,13 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		setScopedAttribute("schema", schema);
 	}
 
-	public void setSchemaType(java.lang.String schemaType) {
+	public void setSchemaType(java.lang.Object schemaType) {
 		_schemaType = schemaType;
 
 		setScopedAttribute("schemaType", schemaType);
 	}
 
-	public void setSrcNode(java.lang.String srcNode) {
+	public void setSrcNode(java.lang.Object srcNode) {
 		_srcNode = srcNode;
 
 		setScopedAttribute("srcNode", srcNode);
@@ -902,7 +902,7 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		setScopedAttribute("typeAheadDelay", typeAheadDelay);
 	}
 
-	public void setUniqueName(java.lang.String uniqueName) {
+	public void setUniqueName(java.lang.Object uniqueName) {
 		_uniqueName = uniqueName;
 
 		setScopedAttribute("uniqueName", uniqueName);
@@ -914,751 +914,751 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		setScopedAttribute("visible", visible);
 	}
 
-	public void setWidth(java.lang.String width) {
+	public void setWidth(java.lang.Object width) {
 		_width = width;
 
 		setScopedAttribute("width", width);
 	}
 
-	public void setAfterAlwaysShowContainerChange(java.lang.String afterAlwaysShowContainerChange) {
+	public void setAfterAlwaysShowContainerChange(java.lang.Object afterAlwaysShowContainerChange) {
 		_afterAlwaysShowContainerChange = afterAlwaysShowContainerChange;
 
 		setScopedAttribute("afterAlwaysShowContainerChange", afterAlwaysShowContainerChange);
 	}
 
-	public void setAfterApplyLocalFilterChange(java.lang.String afterApplyLocalFilterChange) {
+	public void setAfterApplyLocalFilterChange(java.lang.Object afterApplyLocalFilterChange) {
 		_afterApplyLocalFilterChange = afterApplyLocalFilterChange;
 
 		setScopedAttribute("afterApplyLocalFilterChange", afterApplyLocalFilterChange);
 	}
 
-	public void setAfterAutoHighlightChange(java.lang.String afterAutoHighlightChange) {
+	public void setAfterAutoHighlightChange(java.lang.Object afterAutoHighlightChange) {
 		_afterAutoHighlightChange = afterAutoHighlightChange;
 
 		setScopedAttribute("afterAutoHighlightChange", afterAutoHighlightChange);
 	}
 
-	public void setAfterBoundingBoxChange(java.lang.String afterBoundingBoxChange) {
+	public void setAfterBoundingBoxChange(java.lang.Object afterBoundingBoxChange) {
 		_afterBoundingBoxChange = afterBoundingBoxChange;
 
 		setScopedAttribute("afterBoundingBoxChange", afterBoundingBoxChange);
 	}
 
-	public void setAfterButtonChange(java.lang.String afterButtonChange) {
+	public void setAfterButtonChange(java.lang.Object afterButtonChange) {
 		_afterButtonChange = afterButtonChange;
 
 		setScopedAttribute("afterButtonChange", afterButtonChange);
 	}
 
-	public void setAfterContainerCollapse(java.lang.String afterContainerCollapse) {
+	public void setAfterContainerCollapse(java.lang.Object afterContainerCollapse) {
 		_afterContainerCollapse = afterContainerCollapse;
 
 		setScopedAttribute("afterContainerCollapse", afterContainerCollapse);
 	}
 
-	public void setAfterContainerExpand(java.lang.String afterContainerExpand) {
+	public void setAfterContainerExpand(java.lang.Object afterContainerExpand) {
 		_afterContainerExpand = afterContainerExpand;
 
 		setScopedAttribute("afterContainerExpand", afterContainerExpand);
 	}
 
-	public void setAfterContainerPopulate(java.lang.String afterContainerPopulate) {
+	public void setAfterContainerPopulate(java.lang.Object afterContainerPopulate) {
 		_afterContainerPopulate = afterContainerPopulate;
 
 		setScopedAttribute("afterContainerPopulate", afterContainerPopulate);
 	}
 
-	public void setAfterContentBoxChange(java.lang.String afterContentBoxChange) {
+	public void setAfterContentBoxChange(java.lang.Object afterContentBoxChange) {
 		_afterContentBoxChange = afterContentBoxChange;
 
 		setScopedAttribute("afterContentBoxChange", afterContentBoxChange);
 	}
 
-	public void setAfterCssClassChange(java.lang.String afterCssClassChange) {
+	public void setAfterCssClassChange(java.lang.Object afterCssClassChange) {
 		_afterCssClassChange = afterCssClassChange;
 
 		setScopedAttribute("afterCssClassChange", afterCssClassChange);
 	}
 
-	public void setAfterDataError(java.lang.String afterDataError) {
+	public void setAfterDataError(java.lang.Object afterDataError) {
 		_afterDataError = afterDataError;
 
 		setScopedAttribute("afterDataError", afterDataError);
 	}
 
-	public void setAfterDataRequest(java.lang.String afterDataRequest) {
+	public void setAfterDataRequest(java.lang.Object afterDataRequest) {
 		_afterDataRequest = afterDataRequest;
 
 		setScopedAttribute("afterDataRequest", afterDataRequest);
 	}
 
-	public void setAfterDataReturn(java.lang.String afterDataReturn) {
+	public void setAfterDataReturn(java.lang.Object afterDataReturn) {
 		_afterDataReturn = afterDataReturn;
 
 		setScopedAttribute("afterDataReturn", afterDataReturn);
 	}
 
-	public void setAfterDataSourceChange(java.lang.String afterDataSourceChange) {
+	public void setAfterDataSourceChange(java.lang.Object afterDataSourceChange) {
 		_afterDataSourceChange = afterDataSourceChange;
 
 		setScopedAttribute("afterDataSourceChange", afterDataSourceChange);
 	}
 
-	public void setAfterDataSourceTypeChange(java.lang.String afterDataSourceTypeChange) {
+	public void setAfterDataSourceTypeChange(java.lang.Object afterDataSourceTypeChange) {
 		_afterDataSourceTypeChange = afterDataSourceTypeChange;
 
 		setScopedAttribute("afterDataSourceTypeChange", afterDataSourceTypeChange);
 	}
 
-	public void setAfterDelimCharChange(java.lang.String afterDelimCharChange) {
+	public void setAfterDelimCharChange(java.lang.Object afterDelimCharChange) {
 		_afterDelimCharChange = afterDelimCharChange;
 
 		setScopedAttribute("afterDelimCharChange", afterDelimCharChange);
 	}
 
-	public void setAfterDestroy(java.lang.String afterDestroy) {
+	public void setAfterDestroy(java.lang.Object afterDestroy) {
 		_afterDestroy = afterDestroy;
 
 		setScopedAttribute("afterDestroy", afterDestroy);
 	}
 
-	public void setAfterDestroyedChange(java.lang.String afterDestroyedChange) {
+	public void setAfterDestroyedChange(java.lang.Object afterDestroyedChange) {
 		_afterDestroyedChange = afterDestroyedChange;
 
 		setScopedAttribute("afterDestroyedChange", afterDestroyedChange);
 	}
 
-	public void setAfterDisabledChange(java.lang.String afterDisabledChange) {
+	public void setAfterDisabledChange(java.lang.Object afterDisabledChange) {
 		_afterDisabledChange = afterDisabledChange;
 
 		setScopedAttribute("afterDisabledChange", afterDisabledChange);
 	}
 
-	public void setAfterFocusedChange(java.lang.String afterFocusedChange) {
+	public void setAfterFocusedChange(java.lang.Object afterFocusedChange) {
 		_afterFocusedChange = afterFocusedChange;
 
 		setScopedAttribute("afterFocusedChange", afterFocusedChange);
 	}
 
-	public void setAfterForceSelectionChange(java.lang.String afterForceSelectionChange) {
+	public void setAfterForceSelectionChange(java.lang.Object afterForceSelectionChange) {
 		_afterForceSelectionChange = afterForceSelectionChange;
 
 		setScopedAttribute("afterForceSelectionChange", afterForceSelectionChange);
 	}
 
-	public void setAfterHeightChange(java.lang.String afterHeightChange) {
+	public void setAfterHeightChange(java.lang.Object afterHeightChange) {
 		_afterHeightChange = afterHeightChange;
 
 		setScopedAttribute("afterHeightChange", afterHeightChange);
 	}
 
-	public void setAfterHideClassChange(java.lang.String afterHideClassChange) {
+	public void setAfterHideClassChange(java.lang.Object afterHideClassChange) {
 		_afterHideClassChange = afterHideClassChange;
 
 		setScopedAttribute("afterHideClassChange", afterHideClassChange);
 	}
 
-	public void setAfterIdChange(java.lang.String afterIdChange) {
+	public void setAfterIdChange(java.lang.Object afterIdChange) {
 		_afterIdChange = afterIdChange;
 
 		setScopedAttribute("afterIdChange", afterIdChange);
 	}
 
-	public void setAfterInit(java.lang.String afterInit) {
+	public void setAfterInit(java.lang.Object afterInit) {
 		_afterInit = afterInit;
 
 		setScopedAttribute("afterInit", afterInit);
 	}
 
-	public void setAfterInitializedChange(java.lang.String afterInitializedChange) {
+	public void setAfterInitializedChange(java.lang.Object afterInitializedChange) {
 		_afterInitializedChange = afterInitializedChange;
 
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
-	public void setAfterInputChange(java.lang.String afterInputChange) {
+	public void setAfterInputChange(java.lang.Object afterInputChange) {
 		_afterInputChange = afterInputChange;
 
 		setScopedAttribute("afterInputChange", afterInputChange);
 	}
 
-	public void setAfterItemArrowFrom(java.lang.String afterItemArrowFrom) {
+	public void setAfterItemArrowFrom(java.lang.Object afterItemArrowFrom) {
 		_afterItemArrowFrom = afterItemArrowFrom;
 
 		setScopedAttribute("afterItemArrowFrom", afterItemArrowFrom);
 	}
 
-	public void setAfterItemArrowTo(java.lang.String afterItemArrowTo) {
+	public void setAfterItemArrowTo(java.lang.Object afterItemArrowTo) {
 		_afterItemArrowTo = afterItemArrowTo;
 
 		setScopedAttribute("afterItemArrowTo", afterItemArrowTo);
 	}
 
-	public void setAfterItemMouseOut(java.lang.String afterItemMouseOut) {
+	public void setAfterItemMouseOut(java.lang.Object afterItemMouseOut) {
 		_afterItemMouseOut = afterItemMouseOut;
 
 		setScopedAttribute("afterItemMouseOut", afterItemMouseOut);
 	}
 
-	public void setAfterItemMouseOver(java.lang.String afterItemMouseOver) {
+	public void setAfterItemMouseOver(java.lang.Object afterItemMouseOver) {
 		_afterItemMouseOver = afterItemMouseOver;
 
 		setScopedAttribute("afterItemMouseOver", afterItemMouseOver);
 	}
 
-	public void setAfterItemSelect(java.lang.String afterItemSelect) {
+	public void setAfterItemSelect(java.lang.Object afterItemSelect) {
 		_afterItemSelect = afterItemSelect;
 
 		setScopedAttribute("afterItemSelect", afterItemSelect);
 	}
 
-	public void setAfterMatchKeyChange(java.lang.String afterMatchKeyChange) {
+	public void setAfterMatchKeyChange(java.lang.Object afterMatchKeyChange) {
 		_afterMatchKeyChange = afterMatchKeyChange;
 
 		setScopedAttribute("afterMatchKeyChange", afterMatchKeyChange);
 	}
 
-	public void setAfterMaxResultsDisplayedChange(java.lang.String afterMaxResultsDisplayedChange) {
+	public void setAfterMaxResultsDisplayedChange(java.lang.Object afterMaxResultsDisplayedChange) {
 		_afterMaxResultsDisplayedChange = afterMaxResultsDisplayedChange;
 
 		setScopedAttribute("afterMaxResultsDisplayedChange", afterMaxResultsDisplayedChange);
 	}
 
-	public void setAfterMinQueryLengthChange(java.lang.String afterMinQueryLengthChange) {
+	public void setAfterMinQueryLengthChange(java.lang.Object afterMinQueryLengthChange) {
 		_afterMinQueryLengthChange = afterMinQueryLengthChange;
 
 		setScopedAttribute("afterMinQueryLengthChange", afterMinQueryLengthChange);
 	}
 
-	public void setAfterQueryDelayChange(java.lang.String afterQueryDelayChange) {
+	public void setAfterQueryDelayChange(java.lang.Object afterQueryDelayChange) {
 		_afterQueryDelayChange = afterQueryDelayChange;
 
 		setScopedAttribute("afterQueryDelayChange", afterQueryDelayChange);
 	}
 
-	public void setAfterQueryIntervalChange(java.lang.String afterQueryIntervalChange) {
+	public void setAfterQueryIntervalChange(java.lang.Object afterQueryIntervalChange) {
 		_afterQueryIntervalChange = afterQueryIntervalChange;
 
 		setScopedAttribute("afterQueryIntervalChange", afterQueryIntervalChange);
 	}
 
-	public void setAfterQueryMatchCaseChange(java.lang.String afterQueryMatchCaseChange) {
+	public void setAfterQueryMatchCaseChange(java.lang.Object afterQueryMatchCaseChange) {
 		_afterQueryMatchCaseChange = afterQueryMatchCaseChange;
 
 		setScopedAttribute("afterQueryMatchCaseChange", afterQueryMatchCaseChange);
 	}
 
-	public void setAfterQueryMatchContainsChange(java.lang.String afterQueryMatchContainsChange) {
+	public void setAfterQueryMatchContainsChange(java.lang.Object afterQueryMatchContainsChange) {
 		_afterQueryMatchContainsChange = afterQueryMatchContainsChange;
 
 		setScopedAttribute("afterQueryMatchContainsChange", afterQueryMatchContainsChange);
 	}
 
-	public void setAfterQueryQuestionMarkChange(java.lang.String afterQueryQuestionMarkChange) {
+	public void setAfterQueryQuestionMarkChange(java.lang.Object afterQueryQuestionMarkChange) {
 		_afterQueryQuestionMarkChange = afterQueryQuestionMarkChange;
 
 		setScopedAttribute("afterQueryQuestionMarkChange", afterQueryQuestionMarkChange);
 	}
 
-	public void setAfterRenderChange(java.lang.String afterRenderChange) {
+	public void setAfterRenderChange(java.lang.Object afterRenderChange) {
 		_afterRenderChange = afterRenderChange;
 
 		setScopedAttribute("afterRenderChange", afterRenderChange);
 	}
 
-	public void setAfterRenderedChange(java.lang.String afterRenderedChange) {
+	public void setAfterRenderedChange(java.lang.Object afterRenderedChange) {
 		_afterRenderedChange = afterRenderedChange;
 
 		setScopedAttribute("afterRenderedChange", afterRenderedChange);
 	}
 
-	public void setAfterSchemaChange(java.lang.String afterSchemaChange) {
+	public void setAfterSchemaChange(java.lang.Object afterSchemaChange) {
 		_afterSchemaChange = afterSchemaChange;
 
 		setScopedAttribute("afterSchemaChange", afterSchemaChange);
 	}
 
-	public void setAfterSchemaTypeChange(java.lang.String afterSchemaTypeChange) {
+	public void setAfterSchemaTypeChange(java.lang.Object afterSchemaTypeChange) {
 		_afterSchemaTypeChange = afterSchemaTypeChange;
 
 		setScopedAttribute("afterSchemaTypeChange", afterSchemaTypeChange);
 	}
 
-	public void setAfterSelectionEnforce(java.lang.String afterSelectionEnforce) {
+	public void setAfterSelectionEnforce(java.lang.Object afterSelectionEnforce) {
 		_afterSelectionEnforce = afterSelectionEnforce;
 
 		setScopedAttribute("afterSelectionEnforce", afterSelectionEnforce);
 	}
 
-	public void setAfterSrcNodeChange(java.lang.String afterSrcNodeChange) {
+	public void setAfterSrcNodeChange(java.lang.Object afterSrcNodeChange) {
 		_afterSrcNodeChange = afterSrcNodeChange;
 
 		setScopedAttribute("afterSrcNodeChange", afterSrcNodeChange);
 	}
 
-	public void setAfterStringsChange(java.lang.String afterStringsChange) {
+	public void setAfterStringsChange(java.lang.Object afterStringsChange) {
 		_afterStringsChange = afterStringsChange;
 
 		setScopedAttribute("afterStringsChange", afterStringsChange);
 	}
 
-	public void setAfterSuppressInputUpdateChange(java.lang.String afterSuppressInputUpdateChange) {
+	public void setAfterSuppressInputUpdateChange(java.lang.Object afterSuppressInputUpdateChange) {
 		_afterSuppressInputUpdateChange = afterSuppressInputUpdateChange;
 
 		setScopedAttribute("afterSuppressInputUpdateChange", afterSuppressInputUpdateChange);
 	}
 
-	public void setAfterTabIndexChange(java.lang.String afterTabIndexChange) {
+	public void setAfterTabIndexChange(java.lang.Object afterTabIndexChange) {
 		_afterTabIndexChange = afterTabIndexChange;
 
 		setScopedAttribute("afterTabIndexChange", afterTabIndexChange);
 	}
 
-	public void setAfterTextboxBlur(java.lang.String afterTextboxBlur) {
+	public void setAfterTextboxBlur(java.lang.Object afterTextboxBlur) {
 		_afterTextboxBlur = afterTextboxBlur;
 
 		setScopedAttribute("afterTextboxBlur", afterTextboxBlur);
 	}
 
-	public void setAfterTextboxChange(java.lang.String afterTextboxChange) {
+	public void setAfterTextboxChange(java.lang.Object afterTextboxChange) {
 		_afterTextboxChange = afterTextboxChange;
 
 		setScopedAttribute("afterTextboxChange", afterTextboxChange);
 	}
 
-	public void setAfterTextboxFocus(java.lang.String afterTextboxFocus) {
+	public void setAfterTextboxFocus(java.lang.Object afterTextboxFocus) {
 		_afterTextboxFocus = afterTextboxFocus;
 
 		setScopedAttribute("afterTextboxFocus", afterTextboxFocus);
 	}
 
-	public void setAfterTextboxKey(java.lang.String afterTextboxKey) {
+	public void setAfterTextboxKey(java.lang.Object afterTextboxKey) {
 		_afterTextboxKey = afterTextboxKey;
 
 		setScopedAttribute("afterTextboxKey", afterTextboxKey);
 	}
 
-	public void setAfterTypeAhead(java.lang.String afterTypeAhead) {
+	public void setAfterTypeAhead(java.lang.Object afterTypeAhead) {
 		_afterTypeAhead = afterTypeAhead;
 
 		setScopedAttribute("afterTypeAhead", afterTypeAhead);
 	}
 
-	public void setAfterTypeAheadChange(java.lang.String afterTypeAheadChange) {
+	public void setAfterTypeAheadChange(java.lang.Object afterTypeAheadChange) {
 		_afterTypeAheadChange = afterTypeAheadChange;
 
 		setScopedAttribute("afterTypeAheadChange", afterTypeAheadChange);
 	}
 
-	public void setAfterTypeAheadDelayChange(java.lang.String afterTypeAheadDelayChange) {
+	public void setAfterTypeAheadDelayChange(java.lang.Object afterTypeAheadDelayChange) {
 		_afterTypeAheadDelayChange = afterTypeAheadDelayChange;
 
 		setScopedAttribute("afterTypeAheadDelayChange", afterTypeAheadDelayChange);
 	}
 
-	public void setAfterUniqueNameChange(java.lang.String afterUniqueNameChange) {
+	public void setAfterUniqueNameChange(java.lang.Object afterUniqueNameChange) {
 		_afterUniqueNameChange = afterUniqueNameChange;
 
 		setScopedAttribute("afterUniqueNameChange", afterUniqueNameChange);
 	}
 
-	public void setAfterUnmatchedItemSelect(java.lang.String afterUnmatchedItemSelect) {
+	public void setAfterUnmatchedItemSelect(java.lang.Object afterUnmatchedItemSelect) {
 		_afterUnmatchedItemSelect = afterUnmatchedItemSelect;
 
 		setScopedAttribute("afterUnmatchedItemSelect", afterUnmatchedItemSelect);
 	}
 
-	public void setAfterVisibleChange(java.lang.String afterVisibleChange) {
+	public void setAfterVisibleChange(java.lang.Object afterVisibleChange) {
 		_afterVisibleChange = afterVisibleChange;
 
 		setScopedAttribute("afterVisibleChange", afterVisibleChange);
 	}
 
-	public void setAfterContentUpdate(java.lang.String afterContentUpdate) {
+	public void setAfterContentUpdate(java.lang.Object afterContentUpdate) {
 		_afterContentUpdate = afterContentUpdate;
 
 		setScopedAttribute("afterContentUpdate", afterContentUpdate);
 	}
 
-	public void setAfterRender(java.lang.String afterRender) {
+	public void setAfterRender(java.lang.Object afterRender) {
 		_afterRender = afterRender;
 
 		setScopedAttribute("afterRender", afterRender);
 	}
 
-	public void setAfterWidthChange(java.lang.String afterWidthChange) {
+	public void setAfterWidthChange(java.lang.Object afterWidthChange) {
 		_afterWidthChange = afterWidthChange;
 
 		setScopedAttribute("afterWidthChange", afterWidthChange);
 	}
 
-	public void setOnAlwaysShowContainerChange(java.lang.String onAlwaysShowContainerChange) {
+	public void setOnAlwaysShowContainerChange(java.lang.Object onAlwaysShowContainerChange) {
 		_onAlwaysShowContainerChange = onAlwaysShowContainerChange;
 
 		setScopedAttribute("onAlwaysShowContainerChange", onAlwaysShowContainerChange);
 	}
 
-	public void setOnApplyLocalFilterChange(java.lang.String onApplyLocalFilterChange) {
+	public void setOnApplyLocalFilterChange(java.lang.Object onApplyLocalFilterChange) {
 		_onApplyLocalFilterChange = onApplyLocalFilterChange;
 
 		setScopedAttribute("onApplyLocalFilterChange", onApplyLocalFilterChange);
 	}
 
-	public void setOnAutoHighlightChange(java.lang.String onAutoHighlightChange) {
+	public void setOnAutoHighlightChange(java.lang.Object onAutoHighlightChange) {
 		_onAutoHighlightChange = onAutoHighlightChange;
 
 		setScopedAttribute("onAutoHighlightChange", onAutoHighlightChange);
 	}
 
-	public void setOnBoundingBoxChange(java.lang.String onBoundingBoxChange) {
+	public void setOnBoundingBoxChange(java.lang.Object onBoundingBoxChange) {
 		_onBoundingBoxChange = onBoundingBoxChange;
 
 		setScopedAttribute("onBoundingBoxChange", onBoundingBoxChange);
 	}
 
-	public void setOnButtonChange(java.lang.String onButtonChange) {
+	public void setOnButtonChange(java.lang.Object onButtonChange) {
 		_onButtonChange = onButtonChange;
 
 		setScopedAttribute("onButtonChange", onButtonChange);
 	}
 
-	public void setOnContainerCollapse(java.lang.String onContainerCollapse) {
+	public void setOnContainerCollapse(java.lang.Object onContainerCollapse) {
 		_onContainerCollapse = onContainerCollapse;
 
 		setScopedAttribute("onContainerCollapse", onContainerCollapse);
 	}
 
-	public void setOnContainerExpand(java.lang.String onContainerExpand) {
+	public void setOnContainerExpand(java.lang.Object onContainerExpand) {
 		_onContainerExpand = onContainerExpand;
 
 		setScopedAttribute("onContainerExpand", onContainerExpand);
 	}
 
-	public void setOnContainerPopulate(java.lang.String onContainerPopulate) {
+	public void setOnContainerPopulate(java.lang.Object onContainerPopulate) {
 		_onContainerPopulate = onContainerPopulate;
 
 		setScopedAttribute("onContainerPopulate", onContainerPopulate);
 	}
 
-	public void setOnContentBoxChange(java.lang.String onContentBoxChange) {
+	public void setOnContentBoxChange(java.lang.Object onContentBoxChange) {
 		_onContentBoxChange = onContentBoxChange;
 
 		setScopedAttribute("onContentBoxChange", onContentBoxChange);
 	}
 
-	public void setOnCssClassChange(java.lang.String onCssClassChange) {
+	public void setOnCssClassChange(java.lang.Object onCssClassChange) {
 		_onCssClassChange = onCssClassChange;
 
 		setScopedAttribute("onCssClassChange", onCssClassChange);
 	}
 
-	public void setOnDataError(java.lang.String onDataError) {
+	public void setOnDataError(java.lang.Object onDataError) {
 		_onDataError = onDataError;
 
 		setScopedAttribute("onDataError", onDataError);
 	}
 
-	public void setOnDataRequest(java.lang.String onDataRequest) {
+	public void setOnDataRequest(java.lang.Object onDataRequest) {
 		_onDataRequest = onDataRequest;
 
 		setScopedAttribute("onDataRequest", onDataRequest);
 	}
 
-	public void setOnDataReturn(java.lang.String onDataReturn) {
+	public void setOnDataReturn(java.lang.Object onDataReturn) {
 		_onDataReturn = onDataReturn;
 
 		setScopedAttribute("onDataReturn", onDataReturn);
 	}
 
-	public void setOnDataSourceChange(java.lang.String onDataSourceChange) {
+	public void setOnDataSourceChange(java.lang.Object onDataSourceChange) {
 		_onDataSourceChange = onDataSourceChange;
 
 		setScopedAttribute("onDataSourceChange", onDataSourceChange);
 	}
 
-	public void setOnDataSourceTypeChange(java.lang.String onDataSourceTypeChange) {
+	public void setOnDataSourceTypeChange(java.lang.Object onDataSourceTypeChange) {
 		_onDataSourceTypeChange = onDataSourceTypeChange;
 
 		setScopedAttribute("onDataSourceTypeChange", onDataSourceTypeChange);
 	}
 
-	public void setOnDelimCharChange(java.lang.String onDelimCharChange) {
+	public void setOnDelimCharChange(java.lang.Object onDelimCharChange) {
 		_onDelimCharChange = onDelimCharChange;
 
 		setScopedAttribute("onDelimCharChange", onDelimCharChange);
 	}
 
-	public void setOnDestroy(java.lang.String onDestroy) {
+	public void setOnDestroy(java.lang.Object onDestroy) {
 		_onDestroy = onDestroy;
 
 		setScopedAttribute("onDestroy", onDestroy);
 	}
 
-	public void setOnDestroyedChange(java.lang.String onDestroyedChange) {
+	public void setOnDestroyedChange(java.lang.Object onDestroyedChange) {
 		_onDestroyedChange = onDestroyedChange;
 
 		setScopedAttribute("onDestroyedChange", onDestroyedChange);
 	}
 
-	public void setOnDisabledChange(java.lang.String onDisabledChange) {
+	public void setOnDisabledChange(java.lang.Object onDisabledChange) {
 		_onDisabledChange = onDisabledChange;
 
 		setScopedAttribute("onDisabledChange", onDisabledChange);
 	}
 
-	public void setOnFocusedChange(java.lang.String onFocusedChange) {
+	public void setOnFocusedChange(java.lang.Object onFocusedChange) {
 		_onFocusedChange = onFocusedChange;
 
 		setScopedAttribute("onFocusedChange", onFocusedChange);
 	}
 
-	public void setOnForceSelectionChange(java.lang.String onForceSelectionChange) {
+	public void setOnForceSelectionChange(java.lang.Object onForceSelectionChange) {
 		_onForceSelectionChange = onForceSelectionChange;
 
 		setScopedAttribute("onForceSelectionChange", onForceSelectionChange);
 	}
 
-	public void setOnHeightChange(java.lang.String onHeightChange) {
+	public void setOnHeightChange(java.lang.Object onHeightChange) {
 		_onHeightChange = onHeightChange;
 
 		setScopedAttribute("onHeightChange", onHeightChange);
 	}
 
-	public void setOnHideClassChange(java.lang.String onHideClassChange) {
+	public void setOnHideClassChange(java.lang.Object onHideClassChange) {
 		_onHideClassChange = onHideClassChange;
 
 		setScopedAttribute("onHideClassChange", onHideClassChange);
 	}
 
-	public void setOnIdChange(java.lang.String onIdChange) {
+	public void setOnIdChange(java.lang.Object onIdChange) {
 		_onIdChange = onIdChange;
 
 		setScopedAttribute("onIdChange", onIdChange);
 	}
 
-	public void setOnInit(java.lang.String onInit) {
+	public void setOnInit(java.lang.Object onInit) {
 		_onInit = onInit;
 
 		setScopedAttribute("onInit", onInit);
 	}
 
-	public void setOnInitializedChange(java.lang.String onInitializedChange) {
+	public void setOnInitializedChange(java.lang.Object onInitializedChange) {
 		_onInitializedChange = onInitializedChange;
 
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
-	public void setOnInputChange(java.lang.String onInputChange) {
+	public void setOnInputChange(java.lang.Object onInputChange) {
 		_onInputChange = onInputChange;
 
 		setScopedAttribute("onInputChange", onInputChange);
 	}
 
-	public void setOnItemArrowFrom(java.lang.String onItemArrowFrom) {
+	public void setOnItemArrowFrom(java.lang.Object onItemArrowFrom) {
 		_onItemArrowFrom = onItemArrowFrom;
 
 		setScopedAttribute("onItemArrowFrom", onItemArrowFrom);
 	}
 
-	public void setOnItemArrowTo(java.lang.String onItemArrowTo) {
+	public void setOnItemArrowTo(java.lang.Object onItemArrowTo) {
 		_onItemArrowTo = onItemArrowTo;
 
 		setScopedAttribute("onItemArrowTo", onItemArrowTo);
 	}
 
-	public void setOnItemMouseOut(java.lang.String onItemMouseOut) {
+	public void setOnItemMouseOut(java.lang.Object onItemMouseOut) {
 		_onItemMouseOut = onItemMouseOut;
 
 		setScopedAttribute("onItemMouseOut", onItemMouseOut);
 	}
 
-	public void setOnItemMouseOver(java.lang.String onItemMouseOver) {
+	public void setOnItemMouseOver(java.lang.Object onItemMouseOver) {
 		_onItemMouseOver = onItemMouseOver;
 
 		setScopedAttribute("onItemMouseOver", onItemMouseOver);
 	}
 
-	public void setOnItemSelect(java.lang.String onItemSelect) {
+	public void setOnItemSelect(java.lang.Object onItemSelect) {
 		_onItemSelect = onItemSelect;
 
 		setScopedAttribute("onItemSelect", onItemSelect);
 	}
 
-	public void setOnMatchKeyChange(java.lang.String onMatchKeyChange) {
+	public void setOnMatchKeyChange(java.lang.Object onMatchKeyChange) {
 		_onMatchKeyChange = onMatchKeyChange;
 
 		setScopedAttribute("onMatchKeyChange", onMatchKeyChange);
 	}
 
-	public void setOnMaxResultsDisplayedChange(java.lang.String onMaxResultsDisplayedChange) {
+	public void setOnMaxResultsDisplayedChange(java.lang.Object onMaxResultsDisplayedChange) {
 		_onMaxResultsDisplayedChange = onMaxResultsDisplayedChange;
 
 		setScopedAttribute("onMaxResultsDisplayedChange", onMaxResultsDisplayedChange);
 	}
 
-	public void setOnMinQueryLengthChange(java.lang.String onMinQueryLengthChange) {
+	public void setOnMinQueryLengthChange(java.lang.Object onMinQueryLengthChange) {
 		_onMinQueryLengthChange = onMinQueryLengthChange;
 
 		setScopedAttribute("onMinQueryLengthChange", onMinQueryLengthChange);
 	}
 
-	public void setOnQueryDelayChange(java.lang.String onQueryDelayChange) {
+	public void setOnQueryDelayChange(java.lang.Object onQueryDelayChange) {
 		_onQueryDelayChange = onQueryDelayChange;
 
 		setScopedAttribute("onQueryDelayChange", onQueryDelayChange);
 	}
 
-	public void setOnQueryIntervalChange(java.lang.String onQueryIntervalChange) {
+	public void setOnQueryIntervalChange(java.lang.Object onQueryIntervalChange) {
 		_onQueryIntervalChange = onQueryIntervalChange;
 
 		setScopedAttribute("onQueryIntervalChange", onQueryIntervalChange);
 	}
 
-	public void setOnQueryMatchCaseChange(java.lang.String onQueryMatchCaseChange) {
+	public void setOnQueryMatchCaseChange(java.lang.Object onQueryMatchCaseChange) {
 		_onQueryMatchCaseChange = onQueryMatchCaseChange;
 
 		setScopedAttribute("onQueryMatchCaseChange", onQueryMatchCaseChange);
 	}
 
-	public void setOnQueryMatchContainsChange(java.lang.String onQueryMatchContainsChange) {
+	public void setOnQueryMatchContainsChange(java.lang.Object onQueryMatchContainsChange) {
 		_onQueryMatchContainsChange = onQueryMatchContainsChange;
 
 		setScopedAttribute("onQueryMatchContainsChange", onQueryMatchContainsChange);
 	}
 
-	public void setOnQueryQuestionMarkChange(java.lang.String onQueryQuestionMarkChange) {
+	public void setOnQueryQuestionMarkChange(java.lang.Object onQueryQuestionMarkChange) {
 		_onQueryQuestionMarkChange = onQueryQuestionMarkChange;
 
 		setScopedAttribute("onQueryQuestionMarkChange", onQueryQuestionMarkChange);
 	}
 
-	public void setOnRenderChange(java.lang.String onRenderChange) {
+	public void setOnRenderChange(java.lang.Object onRenderChange) {
 		_onRenderChange = onRenderChange;
 
 		setScopedAttribute("onRenderChange", onRenderChange);
 	}
 
-	public void setOnRenderedChange(java.lang.String onRenderedChange) {
+	public void setOnRenderedChange(java.lang.Object onRenderedChange) {
 		_onRenderedChange = onRenderedChange;
 
 		setScopedAttribute("onRenderedChange", onRenderedChange);
 	}
 
-	public void setOnSchemaChange(java.lang.String onSchemaChange) {
+	public void setOnSchemaChange(java.lang.Object onSchemaChange) {
 		_onSchemaChange = onSchemaChange;
 
 		setScopedAttribute("onSchemaChange", onSchemaChange);
 	}
 
-	public void setOnSchemaTypeChange(java.lang.String onSchemaTypeChange) {
+	public void setOnSchemaTypeChange(java.lang.Object onSchemaTypeChange) {
 		_onSchemaTypeChange = onSchemaTypeChange;
 
 		setScopedAttribute("onSchemaTypeChange", onSchemaTypeChange);
 	}
 
-	public void setOnSelectionEnforce(java.lang.String onSelectionEnforce) {
+	public void setOnSelectionEnforce(java.lang.Object onSelectionEnforce) {
 		_onSelectionEnforce = onSelectionEnforce;
 
 		setScopedAttribute("onSelectionEnforce", onSelectionEnforce);
 	}
 
-	public void setOnSrcNodeChange(java.lang.String onSrcNodeChange) {
+	public void setOnSrcNodeChange(java.lang.Object onSrcNodeChange) {
 		_onSrcNodeChange = onSrcNodeChange;
 
 		setScopedAttribute("onSrcNodeChange", onSrcNodeChange);
 	}
 
-	public void setOnStringsChange(java.lang.String onStringsChange) {
+	public void setOnStringsChange(java.lang.Object onStringsChange) {
 		_onStringsChange = onStringsChange;
 
 		setScopedAttribute("onStringsChange", onStringsChange);
 	}
 
-	public void setOnSuppressInputUpdateChange(java.lang.String onSuppressInputUpdateChange) {
+	public void setOnSuppressInputUpdateChange(java.lang.Object onSuppressInputUpdateChange) {
 		_onSuppressInputUpdateChange = onSuppressInputUpdateChange;
 
 		setScopedAttribute("onSuppressInputUpdateChange", onSuppressInputUpdateChange);
 	}
 
-	public void setOnTabIndexChange(java.lang.String onTabIndexChange) {
+	public void setOnTabIndexChange(java.lang.Object onTabIndexChange) {
 		_onTabIndexChange = onTabIndexChange;
 
 		setScopedAttribute("onTabIndexChange", onTabIndexChange);
 	}
 
-	public void setOnTextboxBlur(java.lang.String onTextboxBlur) {
+	public void setOnTextboxBlur(java.lang.Object onTextboxBlur) {
 		_onTextboxBlur = onTextboxBlur;
 
 		setScopedAttribute("onTextboxBlur", onTextboxBlur);
 	}
 
-	public void setOnTextboxChange(java.lang.String onTextboxChange) {
+	public void setOnTextboxChange(java.lang.Object onTextboxChange) {
 		_onTextboxChange = onTextboxChange;
 
 		setScopedAttribute("onTextboxChange", onTextboxChange);
 	}
 
-	public void setOnTextboxFocus(java.lang.String onTextboxFocus) {
+	public void setOnTextboxFocus(java.lang.Object onTextboxFocus) {
 		_onTextboxFocus = onTextboxFocus;
 
 		setScopedAttribute("onTextboxFocus", onTextboxFocus);
 	}
 
-	public void setOnTextboxKey(java.lang.String onTextboxKey) {
+	public void setOnTextboxKey(java.lang.Object onTextboxKey) {
 		_onTextboxKey = onTextboxKey;
 
 		setScopedAttribute("onTextboxKey", onTextboxKey);
 	}
 
-	public void setOnTypeAhead(java.lang.String onTypeAhead) {
+	public void setOnTypeAhead(java.lang.Object onTypeAhead) {
 		_onTypeAhead = onTypeAhead;
 
 		setScopedAttribute("onTypeAhead", onTypeAhead);
 	}
 
-	public void setOnTypeAheadChange(java.lang.String onTypeAheadChange) {
+	public void setOnTypeAheadChange(java.lang.Object onTypeAheadChange) {
 		_onTypeAheadChange = onTypeAheadChange;
 
 		setScopedAttribute("onTypeAheadChange", onTypeAheadChange);
 	}
 
-	public void setOnTypeAheadDelayChange(java.lang.String onTypeAheadDelayChange) {
+	public void setOnTypeAheadDelayChange(java.lang.Object onTypeAheadDelayChange) {
 		_onTypeAheadDelayChange = onTypeAheadDelayChange;
 
 		setScopedAttribute("onTypeAheadDelayChange", onTypeAheadDelayChange);
 	}
 
-	public void setOnUniqueNameChange(java.lang.String onUniqueNameChange) {
+	public void setOnUniqueNameChange(java.lang.Object onUniqueNameChange) {
 		_onUniqueNameChange = onUniqueNameChange;
 
 		setScopedAttribute("onUniqueNameChange", onUniqueNameChange);
 	}
 
-	public void setOnUnmatchedItemSelect(java.lang.String onUnmatchedItemSelect) {
+	public void setOnUnmatchedItemSelect(java.lang.Object onUnmatchedItemSelect) {
 		_onUnmatchedItemSelect = onUnmatchedItemSelect;
 
 		setScopedAttribute("onUnmatchedItemSelect", onUnmatchedItemSelect);
 	}
 
-	public void setOnVisibleChange(java.lang.String onVisibleChange) {
+	public void setOnVisibleChange(java.lang.Object onVisibleChange) {
 		_onVisibleChange = onVisibleChange;
 
 		setScopedAttribute("onVisibleChange", onVisibleChange);
 	}
 
-	public void setOnContentUpdate(java.lang.String onContentUpdate) {
+	public void setOnContentUpdate(java.lang.Object onContentUpdate) {
 		_onContentUpdate = onContentUpdate;
 
 		setScopedAttribute("onContentUpdate", onContentUpdate);
 	}
 
-	public void setOnRender(java.lang.String onRender) {
+	public void setOnRender(java.lang.Object onRender) {
 		_onRender = onRender;
 
 		setScopedAttribute("onRender", onRender);
 	}
 
-	public void setOnWidthChange(java.lang.String onWidthChange) {
+	public void setOnWidthChange(java.lang.Object onWidthChange) {
 		_onWidthChange = onWidthChange;
 
 		setScopedAttribute("onWidthChange", onWidthChange);
@@ -1839,23 +1839,23 @@ public class BaseAutoCompleteTag extends IncludeTag {
 	private java.lang.String _alwaysShowContainer;
 	private java.lang.String _applyLocalFilter;
 	private java.lang.String _autoHighlight;
-	private java.lang.String _boundingBox;
+	private java.lang.Object _boundingBox;
 	private java.lang.String _button;
-	private java.lang.String _contentBox;
-	private java.lang.String _cssClass;
-	private java.lang.String _dataSource;
-	private java.lang.String _dataSourceType;
-	private java.lang.String _delimChar;
+	private java.lang.Object _contentBox;
+	private java.lang.Object _cssClass;
+	private java.lang.Object _dataSource;
+	private java.lang.Object _dataSourceType;
+	private java.lang.Object _delimChar;
 	private java.lang.String _destroyed;
 	private java.lang.String _disabled;
 	private java.lang.String _focused;
 	private java.lang.String _forceSelection;
-	private java.lang.String _height;
-	private java.lang.String _hideClass;
-	private java.lang.String _autocompleteId;
+	private java.lang.Object _height;
+	private java.lang.Object _hideClass;
+	private java.lang.Object _autocompleteId;
 	private java.lang.String _initialized;
-	private java.lang.String _input;
-	private java.lang.String _matchKey;
+	private java.lang.Object _input;
+	private java.lang.Object _matchKey;
 	private java.lang.String _maxResultsDisplayed;
 	private java.lang.String _minQueryLength;
 	private java.lang.String _queryDelay;
@@ -1866,139 +1866,139 @@ public class BaseAutoCompleteTag extends IncludeTag {
 	private java.lang.String _render;
 	private java.lang.String _rendered;
 	private java.lang.Object _schema;
-	private java.lang.String _schemaType;
-	private java.lang.String _srcNode;
+	private java.lang.Object _schemaType;
+	private java.lang.Object _srcNode;
 	private java.lang.Object _strings;
 	private java.lang.String _suppressInputUpdate;
 	private java.lang.String _tabIndex;
 	private java.lang.String _typeAhead;
 	private java.lang.String _typeAheadDelay;
-	private java.lang.String _uniqueName;
+	private java.lang.Object _uniqueName;
 	private java.lang.String _visible;
-	private java.lang.String _width;
-	private java.lang.String _afterAlwaysShowContainerChange;
-	private java.lang.String _afterApplyLocalFilterChange;
-	private java.lang.String _afterAutoHighlightChange;
-	private java.lang.String _afterBoundingBoxChange;
-	private java.lang.String _afterButtonChange;
-	private java.lang.String _afterContainerCollapse;
-	private java.lang.String _afterContainerExpand;
-	private java.lang.String _afterContainerPopulate;
-	private java.lang.String _afterContentBoxChange;
-	private java.lang.String _afterCssClassChange;
-	private java.lang.String _afterDataError;
-	private java.lang.String _afterDataRequest;
-	private java.lang.String _afterDataReturn;
-	private java.lang.String _afterDataSourceChange;
-	private java.lang.String _afterDataSourceTypeChange;
-	private java.lang.String _afterDelimCharChange;
-	private java.lang.String _afterDestroy;
-	private java.lang.String _afterDestroyedChange;
-	private java.lang.String _afterDisabledChange;
-	private java.lang.String _afterFocusedChange;
-	private java.lang.String _afterForceSelectionChange;
-	private java.lang.String _afterHeightChange;
-	private java.lang.String _afterHideClassChange;
-	private java.lang.String _afterIdChange;
-	private java.lang.String _afterInit;
-	private java.lang.String _afterInitializedChange;
-	private java.lang.String _afterInputChange;
-	private java.lang.String _afterItemArrowFrom;
-	private java.lang.String _afterItemArrowTo;
-	private java.lang.String _afterItemMouseOut;
-	private java.lang.String _afterItemMouseOver;
-	private java.lang.String _afterItemSelect;
-	private java.lang.String _afterMatchKeyChange;
-	private java.lang.String _afterMaxResultsDisplayedChange;
-	private java.lang.String _afterMinQueryLengthChange;
-	private java.lang.String _afterQueryDelayChange;
-	private java.lang.String _afterQueryIntervalChange;
-	private java.lang.String _afterQueryMatchCaseChange;
-	private java.lang.String _afterQueryMatchContainsChange;
-	private java.lang.String _afterQueryQuestionMarkChange;
-	private java.lang.String _afterRenderChange;
-	private java.lang.String _afterRenderedChange;
-	private java.lang.String _afterSchemaChange;
-	private java.lang.String _afterSchemaTypeChange;
-	private java.lang.String _afterSelectionEnforce;
-	private java.lang.String _afterSrcNodeChange;
-	private java.lang.String _afterStringsChange;
-	private java.lang.String _afterSuppressInputUpdateChange;
-	private java.lang.String _afterTabIndexChange;
-	private java.lang.String _afterTextboxBlur;
-	private java.lang.String _afterTextboxChange;
-	private java.lang.String _afterTextboxFocus;
-	private java.lang.String _afterTextboxKey;
-	private java.lang.String _afterTypeAhead;
-	private java.lang.String _afterTypeAheadChange;
-	private java.lang.String _afterTypeAheadDelayChange;
-	private java.lang.String _afterUniqueNameChange;
-	private java.lang.String _afterUnmatchedItemSelect;
-	private java.lang.String _afterVisibleChange;
-	private java.lang.String _afterContentUpdate;
-	private java.lang.String _afterRender;
-	private java.lang.String _afterWidthChange;
-	private java.lang.String _onAlwaysShowContainerChange;
-	private java.lang.String _onApplyLocalFilterChange;
-	private java.lang.String _onAutoHighlightChange;
-	private java.lang.String _onBoundingBoxChange;
-	private java.lang.String _onButtonChange;
-	private java.lang.String _onContainerCollapse;
-	private java.lang.String _onContainerExpand;
-	private java.lang.String _onContainerPopulate;
-	private java.lang.String _onContentBoxChange;
-	private java.lang.String _onCssClassChange;
-	private java.lang.String _onDataError;
-	private java.lang.String _onDataRequest;
-	private java.lang.String _onDataReturn;
-	private java.lang.String _onDataSourceChange;
-	private java.lang.String _onDataSourceTypeChange;
-	private java.lang.String _onDelimCharChange;
-	private java.lang.String _onDestroy;
-	private java.lang.String _onDestroyedChange;
-	private java.lang.String _onDisabledChange;
-	private java.lang.String _onFocusedChange;
-	private java.lang.String _onForceSelectionChange;
-	private java.lang.String _onHeightChange;
-	private java.lang.String _onHideClassChange;
-	private java.lang.String _onIdChange;
-	private java.lang.String _onInit;
-	private java.lang.String _onInitializedChange;
-	private java.lang.String _onInputChange;
-	private java.lang.String _onItemArrowFrom;
-	private java.lang.String _onItemArrowTo;
-	private java.lang.String _onItemMouseOut;
-	private java.lang.String _onItemMouseOver;
-	private java.lang.String _onItemSelect;
-	private java.lang.String _onMatchKeyChange;
-	private java.lang.String _onMaxResultsDisplayedChange;
-	private java.lang.String _onMinQueryLengthChange;
-	private java.lang.String _onQueryDelayChange;
-	private java.lang.String _onQueryIntervalChange;
-	private java.lang.String _onQueryMatchCaseChange;
-	private java.lang.String _onQueryMatchContainsChange;
-	private java.lang.String _onQueryQuestionMarkChange;
-	private java.lang.String _onRenderChange;
-	private java.lang.String _onRenderedChange;
-	private java.lang.String _onSchemaChange;
-	private java.lang.String _onSchemaTypeChange;
-	private java.lang.String _onSelectionEnforce;
-	private java.lang.String _onSrcNodeChange;
-	private java.lang.String _onStringsChange;
-	private java.lang.String _onSuppressInputUpdateChange;
-	private java.lang.String _onTabIndexChange;
-	private java.lang.String _onTextboxBlur;
-	private java.lang.String _onTextboxChange;
-	private java.lang.String _onTextboxFocus;
-	private java.lang.String _onTextboxKey;
-	private java.lang.String _onTypeAhead;
-	private java.lang.String _onTypeAheadChange;
-	private java.lang.String _onTypeAheadDelayChange;
-	private java.lang.String _onUniqueNameChange;
-	private java.lang.String _onUnmatchedItemSelect;
-	private java.lang.String _onVisibleChange;
-	private java.lang.String _onContentUpdate;
-	private java.lang.String _onRender;
-	private java.lang.String _onWidthChange;
+	private java.lang.Object _width;
+	private java.lang.Object _afterAlwaysShowContainerChange;
+	private java.lang.Object _afterApplyLocalFilterChange;
+	private java.lang.Object _afterAutoHighlightChange;
+	private java.lang.Object _afterBoundingBoxChange;
+	private java.lang.Object _afterButtonChange;
+	private java.lang.Object _afterContainerCollapse;
+	private java.lang.Object _afterContainerExpand;
+	private java.lang.Object _afterContainerPopulate;
+	private java.lang.Object _afterContentBoxChange;
+	private java.lang.Object _afterCssClassChange;
+	private java.lang.Object _afterDataError;
+	private java.lang.Object _afterDataRequest;
+	private java.lang.Object _afterDataReturn;
+	private java.lang.Object _afterDataSourceChange;
+	private java.lang.Object _afterDataSourceTypeChange;
+	private java.lang.Object _afterDelimCharChange;
+	private java.lang.Object _afterDestroy;
+	private java.lang.Object _afterDestroyedChange;
+	private java.lang.Object _afterDisabledChange;
+	private java.lang.Object _afterFocusedChange;
+	private java.lang.Object _afterForceSelectionChange;
+	private java.lang.Object _afterHeightChange;
+	private java.lang.Object _afterHideClassChange;
+	private java.lang.Object _afterIdChange;
+	private java.lang.Object _afterInit;
+	private java.lang.Object _afterInitializedChange;
+	private java.lang.Object _afterInputChange;
+	private java.lang.Object _afterItemArrowFrom;
+	private java.lang.Object _afterItemArrowTo;
+	private java.lang.Object _afterItemMouseOut;
+	private java.lang.Object _afterItemMouseOver;
+	private java.lang.Object _afterItemSelect;
+	private java.lang.Object _afterMatchKeyChange;
+	private java.lang.Object _afterMaxResultsDisplayedChange;
+	private java.lang.Object _afterMinQueryLengthChange;
+	private java.lang.Object _afterQueryDelayChange;
+	private java.lang.Object _afterQueryIntervalChange;
+	private java.lang.Object _afterQueryMatchCaseChange;
+	private java.lang.Object _afterQueryMatchContainsChange;
+	private java.lang.Object _afterQueryQuestionMarkChange;
+	private java.lang.Object _afterRenderChange;
+	private java.lang.Object _afterRenderedChange;
+	private java.lang.Object _afterSchemaChange;
+	private java.lang.Object _afterSchemaTypeChange;
+	private java.lang.Object _afterSelectionEnforce;
+	private java.lang.Object _afterSrcNodeChange;
+	private java.lang.Object _afterStringsChange;
+	private java.lang.Object _afterSuppressInputUpdateChange;
+	private java.lang.Object _afterTabIndexChange;
+	private java.lang.Object _afterTextboxBlur;
+	private java.lang.Object _afterTextboxChange;
+	private java.lang.Object _afterTextboxFocus;
+	private java.lang.Object _afterTextboxKey;
+	private java.lang.Object _afterTypeAhead;
+	private java.lang.Object _afterTypeAheadChange;
+	private java.lang.Object _afterTypeAheadDelayChange;
+	private java.lang.Object _afterUniqueNameChange;
+	private java.lang.Object _afterUnmatchedItemSelect;
+	private java.lang.Object _afterVisibleChange;
+	private java.lang.Object _afterContentUpdate;
+	private java.lang.Object _afterRender;
+	private java.lang.Object _afterWidthChange;
+	private java.lang.Object _onAlwaysShowContainerChange;
+	private java.lang.Object _onApplyLocalFilterChange;
+	private java.lang.Object _onAutoHighlightChange;
+	private java.lang.Object _onBoundingBoxChange;
+	private java.lang.Object _onButtonChange;
+	private java.lang.Object _onContainerCollapse;
+	private java.lang.Object _onContainerExpand;
+	private java.lang.Object _onContainerPopulate;
+	private java.lang.Object _onContentBoxChange;
+	private java.lang.Object _onCssClassChange;
+	private java.lang.Object _onDataError;
+	private java.lang.Object _onDataRequest;
+	private java.lang.Object _onDataReturn;
+	private java.lang.Object _onDataSourceChange;
+	private java.lang.Object _onDataSourceTypeChange;
+	private java.lang.Object _onDelimCharChange;
+	private java.lang.Object _onDestroy;
+	private java.lang.Object _onDestroyedChange;
+	private java.lang.Object _onDisabledChange;
+	private java.lang.Object _onFocusedChange;
+	private java.lang.Object _onForceSelectionChange;
+	private java.lang.Object _onHeightChange;
+	private java.lang.Object _onHideClassChange;
+	private java.lang.Object _onIdChange;
+	private java.lang.Object _onInit;
+	private java.lang.Object _onInitializedChange;
+	private java.lang.Object _onInputChange;
+	private java.lang.Object _onItemArrowFrom;
+	private java.lang.Object _onItemArrowTo;
+	private java.lang.Object _onItemMouseOut;
+	private java.lang.Object _onItemMouseOver;
+	private java.lang.Object _onItemSelect;
+	private java.lang.Object _onMatchKeyChange;
+	private java.lang.Object _onMaxResultsDisplayedChange;
+	private java.lang.Object _onMinQueryLengthChange;
+	private java.lang.Object _onQueryDelayChange;
+	private java.lang.Object _onQueryIntervalChange;
+	private java.lang.Object _onQueryMatchCaseChange;
+	private java.lang.Object _onQueryMatchContainsChange;
+	private java.lang.Object _onQueryQuestionMarkChange;
+	private java.lang.Object _onRenderChange;
+	private java.lang.Object _onRenderedChange;
+	private java.lang.Object _onSchemaChange;
+	private java.lang.Object _onSchemaTypeChange;
+	private java.lang.Object _onSelectionEnforce;
+	private java.lang.Object _onSrcNodeChange;
+	private java.lang.Object _onStringsChange;
+	private java.lang.Object _onSuppressInputUpdateChange;
+	private java.lang.Object _onTabIndexChange;
+	private java.lang.Object _onTextboxBlur;
+	private java.lang.Object _onTextboxChange;
+	private java.lang.Object _onTextboxFocus;
+	private java.lang.Object _onTextboxKey;
+	private java.lang.Object _onTypeAhead;
+	private java.lang.Object _onTypeAheadChange;
+	private java.lang.Object _onTypeAheadDelayChange;
+	private java.lang.Object _onUniqueNameChange;
+	private java.lang.Object _onUnmatchedItemSelect;
+	private java.lang.Object _onVisibleChange;
+	private java.lang.Object _onContentUpdate;
+	private java.lang.Object _onRender;
+	private java.lang.Object _onWidthChange;
 
 }

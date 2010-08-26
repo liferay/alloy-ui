@@ -19,33 +19,33 @@ if (useMarkup) {
 }
 
 java.lang.Object _children = (java.lang.Object)request.getAttribute("alloy:tree-view:children");
-java.lang.String _container = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:container"));
+java.lang.Object _container = (java.lang.Object)request.getAttribute("alloy:tree-view:container");
 java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-view:destroyed"), false);
 java.lang.Object _index = (java.lang.Object)request.getAttribute("alloy:tree-view:index");
 java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-view:initialized"), false);
 java.lang.Object _io = (java.lang.Object)request.getAttribute("alloy:tree-view:io");
-java.lang.String _lastSelected = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:lastSelected"));
-java.lang.String _type = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:type"), "file");
-java.lang.String _afterChildrenChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:afterChildrenChange"));
-java.lang.String _afterContainerChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:afterContainerChange"));
-java.lang.String _afterDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:afterDestroy"));
-java.lang.String _afterDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:afterDestroyedChange"));
-java.lang.String _afterIndexChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:afterIndexChange"));
-java.lang.String _afterInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:afterInit"));
-java.lang.String _afterInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:afterInitializedChange"));
-java.lang.String _afterIoChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:afterIoChange"));
-java.lang.String _afterLastSelectedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:afterLastSelectedChange"));
-java.lang.String _afterTypeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:afterTypeChange"));
-java.lang.String _onChildrenChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:onChildrenChange"));
-java.lang.String _onContainerChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:onContainerChange"));
-java.lang.String _onDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:onDestroy"));
-java.lang.String _onDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:onDestroyedChange"));
-java.lang.String _onIndexChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:onIndexChange"));
-java.lang.String _onInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:onInit"));
-java.lang.String _onInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:onInitializedChange"));
-java.lang.String _onIoChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:onIoChange"));
-java.lang.String _onLastSelectedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:onLastSelectedChange"));
-java.lang.String _onTypeChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:onTypeChange"));
+java.lang.Object _lastSelected = (java.lang.Object)request.getAttribute("alloy:tree-view:lastSelected");
+java.lang.Object _type = (java.lang.Object)request.getAttribute("alloy:tree-view:type");
+java.lang.Object _afterChildrenChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterChildrenChange");
+java.lang.Object _afterContainerChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterContainerChange");
+java.lang.Object _afterDestroy = (java.lang.Object)request.getAttribute("alloy:tree-view:afterDestroy");
+java.lang.Object _afterDestroyedChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterDestroyedChange");
+java.lang.Object _afterIndexChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterIndexChange");
+java.lang.Object _afterInit = (java.lang.Object)request.getAttribute("alloy:tree-view:afterInit");
+java.lang.Object _afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterInitializedChange");
+java.lang.Object _afterIoChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterIoChange");
+java.lang.Object _afterLastSelectedChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterLastSelectedChange");
+java.lang.Object _afterTypeChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterTypeChange");
+java.lang.Object _onChildrenChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onChildrenChange");
+java.lang.Object _onContainerChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onContainerChange");
+java.lang.Object _onDestroy = (java.lang.Object)request.getAttribute("alloy:tree-view:onDestroy");
+java.lang.Object _onDestroyedChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onDestroyedChange");
+java.lang.Object _onIndexChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onIndexChange");
+java.lang.Object _onInit = (java.lang.Object)request.getAttribute("alloy:tree-view:onInit");
+java.lang.Object _onInitializedChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onInitializedChange");
+java.lang.Object _onIoChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onIoChange");
+java.lang.Object _onLastSelectedChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onLastSelectedChange");
+java.lang.Object _onTypeChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onTypeChange");
 %>
 
 <%@ include file="init-ext.jsp" %>

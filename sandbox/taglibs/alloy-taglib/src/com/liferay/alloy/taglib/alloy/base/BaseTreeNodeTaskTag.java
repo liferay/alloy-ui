@@ -32,15 +32,15 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		return _cache;
 	}
 
-	public java.lang.String getCheckContainerEl() {
+	public java.lang.Object getCheckContainerEl() {
 		return _checkContainerEl;
 	}
 
-	public java.lang.String getCheckEl() {
+	public java.lang.Object getCheckEl() {
 		return _checkEl;
 	}
 
-	public java.lang.String getCheckName() {
+	public java.lang.Object getCheckName() {
 		return _checkName;
 	}
 
@@ -52,7 +52,7 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		return _children;
 	}
 
-	public java.lang.String getContainer() {
+	public java.lang.Object getContainer() {
 		return _container;
 	}
 
@@ -68,15 +68,15 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		return _expanded;
 	}
 
-	public java.lang.String getHitAreaEl() {
+	public java.lang.Object getHitAreaEl() {
 		return _hitAreaEl;
 	}
 
-	public java.lang.String getIconEl() {
+	public java.lang.Object getIconEl() {
 		return _iconEl;
 	}
 
-	public java.lang.String getTreenodetaskId() {
+	public java.lang.Object getTreenodetaskId() {
 		return _treenodetaskId;
 	}
 
@@ -92,11 +92,11 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		return _io;
 	}
 
-	public java.lang.String getLabel() {
+	public java.lang.Object getLabel() {
 		return _label;
 	}
 
-	public java.lang.String getLabelEl() {
+	public java.lang.Object getLabelEl() {
 		return _labelEl;
 	}
 
@@ -112,243 +112,243 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		return _loading;
 	}
 
-	public java.lang.String getNextSibling() {
+	public java.lang.Object getNextSibling() {
 		return _nextSibling;
 	}
 
-	public java.lang.String getOwnerTree() {
+	public java.lang.Object getOwnerTree() {
 		return _ownerTree;
 	}
 
-	public java.lang.String getParentNode() {
+	public java.lang.Object getParentNode() {
 		return _parentNode;
 	}
 
-	public java.lang.String getPrevSibling() {
+	public java.lang.Object getPrevSibling() {
 		return _prevSibling;
 	}
 
-	public java.lang.String getAfterAlwaysShowHitAreaChange() {
+	public java.lang.Object getAfterAlwaysShowHitAreaChange() {
 		return _afterAlwaysShowHitAreaChange;
 	}
 
-	public java.lang.String getAfterCacheChange() {
+	public java.lang.Object getAfterCacheChange() {
 		return _afterCacheChange;
 	}
 
-	public java.lang.String getAfterCheckContainerElChange() {
+	public java.lang.Object getAfterCheckContainerElChange() {
 		return _afterCheckContainerElChange;
 	}
 
-	public java.lang.String getAfterCheckElChange() {
+	public java.lang.Object getAfterCheckElChange() {
 		return _afterCheckElChange;
 	}
 
-	public java.lang.String getAfterCheckNameChange() {
+	public java.lang.Object getAfterCheckNameChange() {
 		return _afterCheckNameChange;
 	}
 
-	public java.lang.String getAfterCheckedChange() {
+	public java.lang.Object getAfterCheckedChange() {
 		return _afterCheckedChange;
 	}
 
-	public java.lang.String getAfterChildrenChange() {
+	public java.lang.Object getAfterChildrenChange() {
 		return _afterChildrenChange;
 	}
 
-	public java.lang.String getAfterContainerChange() {
+	public java.lang.Object getAfterContainerChange() {
 		return _afterContainerChange;
 	}
 
-	public java.lang.String getAfterDestroy() {
+	public java.lang.Object getAfterDestroy() {
 		return _afterDestroy;
 	}
 
-	public java.lang.String getAfterDestroyedChange() {
+	public java.lang.Object getAfterDestroyedChange() {
 		return _afterDestroyedChange;
 	}
 
-	public java.lang.String getAfterDraggableChange() {
+	public java.lang.Object getAfterDraggableChange() {
 		return _afterDraggableChange;
 	}
 
-	public java.lang.String getAfterExpandedChange() {
+	public java.lang.Object getAfterExpandedChange() {
 		return _afterExpandedChange;
 	}
 
-	public java.lang.String getAfterHitAreaElChange() {
+	public java.lang.Object getAfterHitAreaElChange() {
 		return _afterHitAreaElChange;
 	}
 
-	public java.lang.String getAfterIconElChange() {
+	public java.lang.Object getAfterIconElChange() {
 		return _afterIconElChange;
 	}
 
-	public java.lang.String getAfterIdChange() {
+	public java.lang.Object getAfterIdChange() {
 		return _afterIdChange;
 	}
 
-	public java.lang.String getAfterIndexChange() {
+	public java.lang.Object getAfterIndexChange() {
 		return _afterIndexChange;
 	}
 
-	public java.lang.String getAfterInit() {
+	public java.lang.Object getAfterInit() {
 		return _afterInit;
 	}
 
-	public java.lang.String getAfterInitializedChange() {
+	public java.lang.Object getAfterInitializedChange() {
 		return _afterInitializedChange;
 	}
 
-	public java.lang.String getAfterIoChange() {
+	public java.lang.Object getAfterIoChange() {
 		return _afterIoChange;
 	}
 
-	public java.lang.String getAfterLabelChange() {
+	public java.lang.Object getAfterLabelChange() {
 		return _afterLabelChange;
 	}
 
-	public java.lang.String getAfterLabelElChange() {
+	public java.lang.Object getAfterLabelElChange() {
 		return _afterLabelElChange;
 	}
 
-	public java.lang.String getAfterLeafChange() {
+	public java.lang.Object getAfterLeafChange() {
 		return _afterLeafChange;
 	}
 
-	public java.lang.String getAfterLoadedChange() {
+	public java.lang.Object getAfterLoadedChange() {
 		return _afterLoadedChange;
 	}
 
-	public java.lang.String getAfterLoadingChange() {
+	public java.lang.Object getAfterLoadingChange() {
 		return _afterLoadingChange;
 	}
 
-	public java.lang.String getAfterNextSiblingChange() {
+	public java.lang.Object getAfterNextSiblingChange() {
 		return _afterNextSiblingChange;
 	}
 
-	public java.lang.String getAfterOwnerTreeChange() {
+	public java.lang.Object getAfterOwnerTreeChange() {
 		return _afterOwnerTreeChange;
 	}
 
-	public java.lang.String getAfterParentNodeChange() {
+	public java.lang.Object getAfterParentNodeChange() {
 		return _afterParentNodeChange;
 	}
 
-	public java.lang.String getAfterPrevSiblingChange() {
+	public java.lang.Object getAfterPrevSiblingChange() {
 		return _afterPrevSiblingChange;
 	}
 
-	public java.lang.String getOnAlwaysShowHitAreaChange() {
+	public java.lang.Object getOnAlwaysShowHitAreaChange() {
 		return _onAlwaysShowHitAreaChange;
 	}
 
-	public java.lang.String getOnCacheChange() {
+	public java.lang.Object getOnCacheChange() {
 		return _onCacheChange;
 	}
 
-	public java.lang.String getOnCheckContainerElChange() {
+	public java.lang.Object getOnCheckContainerElChange() {
 		return _onCheckContainerElChange;
 	}
 
-	public java.lang.String getOnCheckElChange() {
+	public java.lang.Object getOnCheckElChange() {
 		return _onCheckElChange;
 	}
 
-	public java.lang.String getOnCheckNameChange() {
+	public java.lang.Object getOnCheckNameChange() {
 		return _onCheckNameChange;
 	}
 
-	public java.lang.String getOnCheckedChange() {
+	public java.lang.Object getOnCheckedChange() {
 		return _onCheckedChange;
 	}
 
-	public java.lang.String getOnChildrenChange() {
+	public java.lang.Object getOnChildrenChange() {
 		return _onChildrenChange;
 	}
 
-	public java.lang.String getOnContainerChange() {
+	public java.lang.Object getOnContainerChange() {
 		return _onContainerChange;
 	}
 
-	public java.lang.String getOnDestroy() {
+	public java.lang.Object getOnDestroy() {
 		return _onDestroy;
 	}
 
-	public java.lang.String getOnDestroyedChange() {
+	public java.lang.Object getOnDestroyedChange() {
 		return _onDestroyedChange;
 	}
 
-	public java.lang.String getOnDraggableChange() {
+	public java.lang.Object getOnDraggableChange() {
 		return _onDraggableChange;
 	}
 
-	public java.lang.String getOnExpandedChange() {
+	public java.lang.Object getOnExpandedChange() {
 		return _onExpandedChange;
 	}
 
-	public java.lang.String getOnHitAreaElChange() {
+	public java.lang.Object getOnHitAreaElChange() {
 		return _onHitAreaElChange;
 	}
 
-	public java.lang.String getOnIconElChange() {
+	public java.lang.Object getOnIconElChange() {
 		return _onIconElChange;
 	}
 
-	public java.lang.String getOnIdChange() {
+	public java.lang.Object getOnIdChange() {
 		return _onIdChange;
 	}
 
-	public java.lang.String getOnIndexChange() {
+	public java.lang.Object getOnIndexChange() {
 		return _onIndexChange;
 	}
 
-	public java.lang.String getOnInit() {
+	public java.lang.Object getOnInit() {
 		return _onInit;
 	}
 
-	public java.lang.String getOnInitializedChange() {
+	public java.lang.Object getOnInitializedChange() {
 		return _onInitializedChange;
 	}
 
-	public java.lang.String getOnIoChange() {
+	public java.lang.Object getOnIoChange() {
 		return _onIoChange;
 	}
 
-	public java.lang.String getOnLabelChange() {
+	public java.lang.Object getOnLabelChange() {
 		return _onLabelChange;
 	}
 
-	public java.lang.String getOnLabelElChange() {
+	public java.lang.Object getOnLabelElChange() {
 		return _onLabelElChange;
 	}
 
-	public java.lang.String getOnLeafChange() {
+	public java.lang.Object getOnLeafChange() {
 		return _onLeafChange;
 	}
 
-	public java.lang.String getOnLoadedChange() {
+	public java.lang.Object getOnLoadedChange() {
 		return _onLoadedChange;
 	}
 
-	public java.lang.String getOnLoadingChange() {
+	public java.lang.Object getOnLoadingChange() {
 		return _onLoadingChange;
 	}
 
-	public java.lang.String getOnNextSiblingChange() {
+	public java.lang.Object getOnNextSiblingChange() {
 		return _onNextSiblingChange;
 	}
 
-	public java.lang.String getOnOwnerTreeChange() {
+	public java.lang.Object getOnOwnerTreeChange() {
 		return _onOwnerTreeChange;
 	}
 
-	public java.lang.String getOnParentNodeChange() {
+	public java.lang.Object getOnParentNodeChange() {
 		return _onParentNodeChange;
 	}
 
-	public java.lang.String getOnPrevSiblingChange() {
+	public java.lang.Object getOnPrevSiblingChange() {
 		return _onPrevSiblingChange;
 	}
 
@@ -364,19 +364,19 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		setScopedAttribute("cache", cache);
 	}
 
-	public void setCheckContainerEl(java.lang.String checkContainerEl) {
+	public void setCheckContainerEl(java.lang.Object checkContainerEl) {
 		_checkContainerEl = checkContainerEl;
 
 		setScopedAttribute("checkContainerEl", checkContainerEl);
 	}
 
-	public void setCheckEl(java.lang.String checkEl) {
+	public void setCheckEl(java.lang.Object checkEl) {
 		_checkEl = checkEl;
 
 		setScopedAttribute("checkEl", checkEl);
 	}
 
-	public void setCheckName(java.lang.String checkName) {
+	public void setCheckName(java.lang.Object checkName) {
 		_checkName = checkName;
 
 		setScopedAttribute("checkName", checkName);
@@ -394,7 +394,7 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		setScopedAttribute("children", children);
 	}
 
-	public void setContainer(java.lang.String container) {
+	public void setContainer(java.lang.Object container) {
 		_container = container;
 
 		setScopedAttribute("container", container);
@@ -418,19 +418,19 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		setScopedAttribute("expanded", expanded);
 	}
 
-	public void setHitAreaEl(java.lang.String hitAreaEl) {
+	public void setHitAreaEl(java.lang.Object hitAreaEl) {
 		_hitAreaEl = hitAreaEl;
 
 		setScopedAttribute("hitAreaEl", hitAreaEl);
 	}
 
-	public void setIconEl(java.lang.String iconEl) {
+	public void setIconEl(java.lang.Object iconEl) {
 		_iconEl = iconEl;
 
 		setScopedAttribute("iconEl", iconEl);
 	}
 
-	public void setTreenodetaskId(java.lang.String treenodetaskId) {
+	public void setTreenodetaskId(java.lang.Object treenodetaskId) {
 		_treenodetaskId = treenodetaskId;
 
 		setScopedAttribute("treenodetaskId", treenodetaskId);
@@ -454,13 +454,13 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		setScopedAttribute("io", io);
 	}
 
-	public void setLabel(java.lang.String label) {
+	public void setLabel(java.lang.Object label) {
 		_label = label;
 
 		setScopedAttribute("label", label);
 	}
 
-	public void setLabelEl(java.lang.String labelEl) {
+	public void setLabelEl(java.lang.Object labelEl) {
 		_labelEl = labelEl;
 
 		setScopedAttribute("labelEl", labelEl);
@@ -484,361 +484,361 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		setScopedAttribute("loading", loading);
 	}
 
-	public void setNextSibling(java.lang.String nextSibling) {
+	public void setNextSibling(java.lang.Object nextSibling) {
 		_nextSibling = nextSibling;
 
 		setScopedAttribute("nextSibling", nextSibling);
 	}
 
-	public void setOwnerTree(java.lang.String ownerTree) {
+	public void setOwnerTree(java.lang.Object ownerTree) {
 		_ownerTree = ownerTree;
 
 		setScopedAttribute("ownerTree", ownerTree);
 	}
 
-	public void setParentNode(java.lang.String parentNode) {
+	public void setParentNode(java.lang.Object parentNode) {
 		_parentNode = parentNode;
 
 		setScopedAttribute("parentNode", parentNode);
 	}
 
-	public void setPrevSibling(java.lang.String prevSibling) {
+	public void setPrevSibling(java.lang.Object prevSibling) {
 		_prevSibling = prevSibling;
 
 		setScopedAttribute("prevSibling", prevSibling);
 	}
 
-	public void setAfterAlwaysShowHitAreaChange(java.lang.String afterAlwaysShowHitAreaChange) {
+	public void setAfterAlwaysShowHitAreaChange(java.lang.Object afterAlwaysShowHitAreaChange) {
 		_afterAlwaysShowHitAreaChange = afterAlwaysShowHitAreaChange;
 
 		setScopedAttribute("afterAlwaysShowHitAreaChange", afterAlwaysShowHitAreaChange);
 	}
 
-	public void setAfterCacheChange(java.lang.String afterCacheChange) {
+	public void setAfterCacheChange(java.lang.Object afterCacheChange) {
 		_afterCacheChange = afterCacheChange;
 
 		setScopedAttribute("afterCacheChange", afterCacheChange);
 	}
 
-	public void setAfterCheckContainerElChange(java.lang.String afterCheckContainerElChange) {
+	public void setAfterCheckContainerElChange(java.lang.Object afterCheckContainerElChange) {
 		_afterCheckContainerElChange = afterCheckContainerElChange;
 
 		setScopedAttribute("afterCheckContainerElChange", afterCheckContainerElChange);
 	}
 
-	public void setAfterCheckElChange(java.lang.String afterCheckElChange) {
+	public void setAfterCheckElChange(java.lang.Object afterCheckElChange) {
 		_afterCheckElChange = afterCheckElChange;
 
 		setScopedAttribute("afterCheckElChange", afterCheckElChange);
 	}
 
-	public void setAfterCheckNameChange(java.lang.String afterCheckNameChange) {
+	public void setAfterCheckNameChange(java.lang.Object afterCheckNameChange) {
 		_afterCheckNameChange = afterCheckNameChange;
 
 		setScopedAttribute("afterCheckNameChange", afterCheckNameChange);
 	}
 
-	public void setAfterCheckedChange(java.lang.String afterCheckedChange) {
+	public void setAfterCheckedChange(java.lang.Object afterCheckedChange) {
 		_afterCheckedChange = afterCheckedChange;
 
 		setScopedAttribute("afterCheckedChange", afterCheckedChange);
 	}
 
-	public void setAfterChildrenChange(java.lang.String afterChildrenChange) {
+	public void setAfterChildrenChange(java.lang.Object afterChildrenChange) {
 		_afterChildrenChange = afterChildrenChange;
 
 		setScopedAttribute("afterChildrenChange", afterChildrenChange);
 	}
 
-	public void setAfterContainerChange(java.lang.String afterContainerChange) {
+	public void setAfterContainerChange(java.lang.Object afterContainerChange) {
 		_afterContainerChange = afterContainerChange;
 
 		setScopedAttribute("afterContainerChange", afterContainerChange);
 	}
 
-	public void setAfterDestroy(java.lang.String afterDestroy) {
+	public void setAfterDestroy(java.lang.Object afterDestroy) {
 		_afterDestroy = afterDestroy;
 
 		setScopedAttribute("afterDestroy", afterDestroy);
 	}
 
-	public void setAfterDestroyedChange(java.lang.String afterDestroyedChange) {
+	public void setAfterDestroyedChange(java.lang.Object afterDestroyedChange) {
 		_afterDestroyedChange = afterDestroyedChange;
 
 		setScopedAttribute("afterDestroyedChange", afterDestroyedChange);
 	}
 
-	public void setAfterDraggableChange(java.lang.String afterDraggableChange) {
+	public void setAfterDraggableChange(java.lang.Object afterDraggableChange) {
 		_afterDraggableChange = afterDraggableChange;
 
 		setScopedAttribute("afterDraggableChange", afterDraggableChange);
 	}
 
-	public void setAfterExpandedChange(java.lang.String afterExpandedChange) {
+	public void setAfterExpandedChange(java.lang.Object afterExpandedChange) {
 		_afterExpandedChange = afterExpandedChange;
 
 		setScopedAttribute("afterExpandedChange", afterExpandedChange);
 	}
 
-	public void setAfterHitAreaElChange(java.lang.String afterHitAreaElChange) {
+	public void setAfterHitAreaElChange(java.lang.Object afterHitAreaElChange) {
 		_afterHitAreaElChange = afterHitAreaElChange;
 
 		setScopedAttribute("afterHitAreaElChange", afterHitAreaElChange);
 	}
 
-	public void setAfterIconElChange(java.lang.String afterIconElChange) {
+	public void setAfterIconElChange(java.lang.Object afterIconElChange) {
 		_afterIconElChange = afterIconElChange;
 
 		setScopedAttribute("afterIconElChange", afterIconElChange);
 	}
 
-	public void setAfterIdChange(java.lang.String afterIdChange) {
+	public void setAfterIdChange(java.lang.Object afterIdChange) {
 		_afterIdChange = afterIdChange;
 
 		setScopedAttribute("afterIdChange", afterIdChange);
 	}
 
-	public void setAfterIndexChange(java.lang.String afterIndexChange) {
+	public void setAfterIndexChange(java.lang.Object afterIndexChange) {
 		_afterIndexChange = afterIndexChange;
 
 		setScopedAttribute("afterIndexChange", afterIndexChange);
 	}
 
-	public void setAfterInit(java.lang.String afterInit) {
+	public void setAfterInit(java.lang.Object afterInit) {
 		_afterInit = afterInit;
 
 		setScopedAttribute("afterInit", afterInit);
 	}
 
-	public void setAfterInitializedChange(java.lang.String afterInitializedChange) {
+	public void setAfterInitializedChange(java.lang.Object afterInitializedChange) {
 		_afterInitializedChange = afterInitializedChange;
 
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
-	public void setAfterIoChange(java.lang.String afterIoChange) {
+	public void setAfterIoChange(java.lang.Object afterIoChange) {
 		_afterIoChange = afterIoChange;
 
 		setScopedAttribute("afterIoChange", afterIoChange);
 	}
 
-	public void setAfterLabelChange(java.lang.String afterLabelChange) {
+	public void setAfterLabelChange(java.lang.Object afterLabelChange) {
 		_afterLabelChange = afterLabelChange;
 
 		setScopedAttribute("afterLabelChange", afterLabelChange);
 	}
 
-	public void setAfterLabelElChange(java.lang.String afterLabelElChange) {
+	public void setAfterLabelElChange(java.lang.Object afterLabelElChange) {
 		_afterLabelElChange = afterLabelElChange;
 
 		setScopedAttribute("afterLabelElChange", afterLabelElChange);
 	}
 
-	public void setAfterLeafChange(java.lang.String afterLeafChange) {
+	public void setAfterLeafChange(java.lang.Object afterLeafChange) {
 		_afterLeafChange = afterLeafChange;
 
 		setScopedAttribute("afterLeafChange", afterLeafChange);
 	}
 
-	public void setAfterLoadedChange(java.lang.String afterLoadedChange) {
+	public void setAfterLoadedChange(java.lang.Object afterLoadedChange) {
 		_afterLoadedChange = afterLoadedChange;
 
 		setScopedAttribute("afterLoadedChange", afterLoadedChange);
 	}
 
-	public void setAfterLoadingChange(java.lang.String afterLoadingChange) {
+	public void setAfterLoadingChange(java.lang.Object afterLoadingChange) {
 		_afterLoadingChange = afterLoadingChange;
 
 		setScopedAttribute("afterLoadingChange", afterLoadingChange);
 	}
 
-	public void setAfterNextSiblingChange(java.lang.String afterNextSiblingChange) {
+	public void setAfterNextSiblingChange(java.lang.Object afterNextSiblingChange) {
 		_afterNextSiblingChange = afterNextSiblingChange;
 
 		setScopedAttribute("afterNextSiblingChange", afterNextSiblingChange);
 	}
 
-	public void setAfterOwnerTreeChange(java.lang.String afterOwnerTreeChange) {
+	public void setAfterOwnerTreeChange(java.lang.Object afterOwnerTreeChange) {
 		_afterOwnerTreeChange = afterOwnerTreeChange;
 
 		setScopedAttribute("afterOwnerTreeChange", afterOwnerTreeChange);
 	}
 
-	public void setAfterParentNodeChange(java.lang.String afterParentNodeChange) {
+	public void setAfterParentNodeChange(java.lang.Object afterParentNodeChange) {
 		_afterParentNodeChange = afterParentNodeChange;
 
 		setScopedAttribute("afterParentNodeChange", afterParentNodeChange);
 	}
 
-	public void setAfterPrevSiblingChange(java.lang.String afterPrevSiblingChange) {
+	public void setAfterPrevSiblingChange(java.lang.Object afterPrevSiblingChange) {
 		_afterPrevSiblingChange = afterPrevSiblingChange;
 
 		setScopedAttribute("afterPrevSiblingChange", afterPrevSiblingChange);
 	}
 
-	public void setOnAlwaysShowHitAreaChange(java.lang.String onAlwaysShowHitAreaChange) {
+	public void setOnAlwaysShowHitAreaChange(java.lang.Object onAlwaysShowHitAreaChange) {
 		_onAlwaysShowHitAreaChange = onAlwaysShowHitAreaChange;
 
 		setScopedAttribute("onAlwaysShowHitAreaChange", onAlwaysShowHitAreaChange);
 	}
 
-	public void setOnCacheChange(java.lang.String onCacheChange) {
+	public void setOnCacheChange(java.lang.Object onCacheChange) {
 		_onCacheChange = onCacheChange;
 
 		setScopedAttribute("onCacheChange", onCacheChange);
 	}
 
-	public void setOnCheckContainerElChange(java.lang.String onCheckContainerElChange) {
+	public void setOnCheckContainerElChange(java.lang.Object onCheckContainerElChange) {
 		_onCheckContainerElChange = onCheckContainerElChange;
 
 		setScopedAttribute("onCheckContainerElChange", onCheckContainerElChange);
 	}
 
-	public void setOnCheckElChange(java.lang.String onCheckElChange) {
+	public void setOnCheckElChange(java.lang.Object onCheckElChange) {
 		_onCheckElChange = onCheckElChange;
 
 		setScopedAttribute("onCheckElChange", onCheckElChange);
 	}
 
-	public void setOnCheckNameChange(java.lang.String onCheckNameChange) {
+	public void setOnCheckNameChange(java.lang.Object onCheckNameChange) {
 		_onCheckNameChange = onCheckNameChange;
 
 		setScopedAttribute("onCheckNameChange", onCheckNameChange);
 	}
 
-	public void setOnCheckedChange(java.lang.String onCheckedChange) {
+	public void setOnCheckedChange(java.lang.Object onCheckedChange) {
 		_onCheckedChange = onCheckedChange;
 
 		setScopedAttribute("onCheckedChange", onCheckedChange);
 	}
 
-	public void setOnChildrenChange(java.lang.String onChildrenChange) {
+	public void setOnChildrenChange(java.lang.Object onChildrenChange) {
 		_onChildrenChange = onChildrenChange;
 
 		setScopedAttribute("onChildrenChange", onChildrenChange);
 	}
 
-	public void setOnContainerChange(java.lang.String onContainerChange) {
+	public void setOnContainerChange(java.lang.Object onContainerChange) {
 		_onContainerChange = onContainerChange;
 
 		setScopedAttribute("onContainerChange", onContainerChange);
 	}
 
-	public void setOnDestroy(java.lang.String onDestroy) {
+	public void setOnDestroy(java.lang.Object onDestroy) {
 		_onDestroy = onDestroy;
 
 		setScopedAttribute("onDestroy", onDestroy);
 	}
 
-	public void setOnDestroyedChange(java.lang.String onDestroyedChange) {
+	public void setOnDestroyedChange(java.lang.Object onDestroyedChange) {
 		_onDestroyedChange = onDestroyedChange;
 
 		setScopedAttribute("onDestroyedChange", onDestroyedChange);
 	}
 
-	public void setOnDraggableChange(java.lang.String onDraggableChange) {
+	public void setOnDraggableChange(java.lang.Object onDraggableChange) {
 		_onDraggableChange = onDraggableChange;
 
 		setScopedAttribute("onDraggableChange", onDraggableChange);
 	}
 
-	public void setOnExpandedChange(java.lang.String onExpandedChange) {
+	public void setOnExpandedChange(java.lang.Object onExpandedChange) {
 		_onExpandedChange = onExpandedChange;
 
 		setScopedAttribute("onExpandedChange", onExpandedChange);
 	}
 
-	public void setOnHitAreaElChange(java.lang.String onHitAreaElChange) {
+	public void setOnHitAreaElChange(java.lang.Object onHitAreaElChange) {
 		_onHitAreaElChange = onHitAreaElChange;
 
 		setScopedAttribute("onHitAreaElChange", onHitAreaElChange);
 	}
 
-	public void setOnIconElChange(java.lang.String onIconElChange) {
+	public void setOnIconElChange(java.lang.Object onIconElChange) {
 		_onIconElChange = onIconElChange;
 
 		setScopedAttribute("onIconElChange", onIconElChange);
 	}
 
-	public void setOnIdChange(java.lang.String onIdChange) {
+	public void setOnIdChange(java.lang.Object onIdChange) {
 		_onIdChange = onIdChange;
 
 		setScopedAttribute("onIdChange", onIdChange);
 	}
 
-	public void setOnIndexChange(java.lang.String onIndexChange) {
+	public void setOnIndexChange(java.lang.Object onIndexChange) {
 		_onIndexChange = onIndexChange;
 
 		setScopedAttribute("onIndexChange", onIndexChange);
 	}
 
-	public void setOnInit(java.lang.String onInit) {
+	public void setOnInit(java.lang.Object onInit) {
 		_onInit = onInit;
 
 		setScopedAttribute("onInit", onInit);
 	}
 
-	public void setOnInitializedChange(java.lang.String onInitializedChange) {
+	public void setOnInitializedChange(java.lang.Object onInitializedChange) {
 		_onInitializedChange = onInitializedChange;
 
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
-	public void setOnIoChange(java.lang.String onIoChange) {
+	public void setOnIoChange(java.lang.Object onIoChange) {
 		_onIoChange = onIoChange;
 
 		setScopedAttribute("onIoChange", onIoChange);
 	}
 
-	public void setOnLabelChange(java.lang.String onLabelChange) {
+	public void setOnLabelChange(java.lang.Object onLabelChange) {
 		_onLabelChange = onLabelChange;
 
 		setScopedAttribute("onLabelChange", onLabelChange);
 	}
 
-	public void setOnLabelElChange(java.lang.String onLabelElChange) {
+	public void setOnLabelElChange(java.lang.Object onLabelElChange) {
 		_onLabelElChange = onLabelElChange;
 
 		setScopedAttribute("onLabelElChange", onLabelElChange);
 	}
 
-	public void setOnLeafChange(java.lang.String onLeafChange) {
+	public void setOnLeafChange(java.lang.Object onLeafChange) {
 		_onLeafChange = onLeafChange;
 
 		setScopedAttribute("onLeafChange", onLeafChange);
 	}
 
-	public void setOnLoadedChange(java.lang.String onLoadedChange) {
+	public void setOnLoadedChange(java.lang.Object onLoadedChange) {
 		_onLoadedChange = onLoadedChange;
 
 		setScopedAttribute("onLoadedChange", onLoadedChange);
 	}
 
-	public void setOnLoadingChange(java.lang.String onLoadingChange) {
+	public void setOnLoadingChange(java.lang.Object onLoadingChange) {
 		_onLoadingChange = onLoadingChange;
 
 		setScopedAttribute("onLoadingChange", onLoadingChange);
 	}
 
-	public void setOnNextSiblingChange(java.lang.String onNextSiblingChange) {
+	public void setOnNextSiblingChange(java.lang.Object onNextSiblingChange) {
 		_onNextSiblingChange = onNextSiblingChange;
 
 		setScopedAttribute("onNextSiblingChange", onNextSiblingChange);
 	}
 
-	public void setOnOwnerTreeChange(java.lang.String onOwnerTreeChange) {
+	public void setOnOwnerTreeChange(java.lang.Object onOwnerTreeChange) {
 		_onOwnerTreeChange = onOwnerTreeChange;
 
 		setScopedAttribute("onOwnerTreeChange", onOwnerTreeChange);
 	}
 
-	public void setOnParentNodeChange(java.lang.String onParentNodeChange) {
+	public void setOnParentNodeChange(java.lang.Object onParentNodeChange) {
 		_onParentNodeChange = onParentNodeChange;
 
 		setScopedAttribute("onParentNodeChange", onParentNodeChange);
 	}
 
-	public void setOnPrevSiblingChange(java.lang.String onPrevSiblingChange) {
+	public void setOnPrevSiblingChange(java.lang.Object onPrevSiblingChange) {
 		_onPrevSiblingChange = onPrevSiblingChange;
 
 		setScopedAttribute("onPrevSiblingChange", onPrevSiblingChange);
@@ -936,85 +936,85 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 
 	private java.lang.String _alwaysShowHitArea;
 	private java.lang.String _cache;
-	private java.lang.String _checkContainerEl;
-	private java.lang.String _checkEl;
-	private java.lang.String _checkName;
+	private java.lang.Object _checkContainerEl;
+	private java.lang.Object _checkEl;
+	private java.lang.Object _checkName;
 	private java.lang.String _checked;
 	private java.lang.Object _children;
-	private java.lang.String _container;
+	private java.lang.Object _container;
 	private java.lang.String _destroyed;
 	private java.lang.String _draggable;
 	private java.lang.String _expanded;
-	private java.lang.String _hitAreaEl;
-	private java.lang.String _iconEl;
-	private java.lang.String _treenodetaskId;
+	private java.lang.Object _hitAreaEl;
+	private java.lang.Object _iconEl;
+	private java.lang.Object _treenodetaskId;
 	private java.lang.Object _index;
 	private java.lang.String _initialized;
 	private java.lang.Object _io;
-	private java.lang.String _label;
-	private java.lang.String _labelEl;
+	private java.lang.Object _label;
+	private java.lang.Object _labelEl;
 	private java.lang.String _leaf;
 	private java.lang.String _loaded;
 	private java.lang.String _loading;
-	private java.lang.String _nextSibling;
-	private java.lang.String _ownerTree;
-	private java.lang.String _parentNode;
-	private java.lang.String _prevSibling;
-	private java.lang.String _afterAlwaysShowHitAreaChange;
-	private java.lang.String _afterCacheChange;
-	private java.lang.String _afterCheckContainerElChange;
-	private java.lang.String _afterCheckElChange;
-	private java.lang.String _afterCheckNameChange;
-	private java.lang.String _afterCheckedChange;
-	private java.lang.String _afterChildrenChange;
-	private java.lang.String _afterContainerChange;
-	private java.lang.String _afterDestroy;
-	private java.lang.String _afterDestroyedChange;
-	private java.lang.String _afterDraggableChange;
-	private java.lang.String _afterExpandedChange;
-	private java.lang.String _afterHitAreaElChange;
-	private java.lang.String _afterIconElChange;
-	private java.lang.String _afterIdChange;
-	private java.lang.String _afterIndexChange;
-	private java.lang.String _afterInit;
-	private java.lang.String _afterInitializedChange;
-	private java.lang.String _afterIoChange;
-	private java.lang.String _afterLabelChange;
-	private java.lang.String _afterLabelElChange;
-	private java.lang.String _afterLeafChange;
-	private java.lang.String _afterLoadedChange;
-	private java.lang.String _afterLoadingChange;
-	private java.lang.String _afterNextSiblingChange;
-	private java.lang.String _afterOwnerTreeChange;
-	private java.lang.String _afterParentNodeChange;
-	private java.lang.String _afterPrevSiblingChange;
-	private java.lang.String _onAlwaysShowHitAreaChange;
-	private java.lang.String _onCacheChange;
-	private java.lang.String _onCheckContainerElChange;
-	private java.lang.String _onCheckElChange;
-	private java.lang.String _onCheckNameChange;
-	private java.lang.String _onCheckedChange;
-	private java.lang.String _onChildrenChange;
-	private java.lang.String _onContainerChange;
-	private java.lang.String _onDestroy;
-	private java.lang.String _onDestroyedChange;
-	private java.lang.String _onDraggableChange;
-	private java.lang.String _onExpandedChange;
-	private java.lang.String _onHitAreaElChange;
-	private java.lang.String _onIconElChange;
-	private java.lang.String _onIdChange;
-	private java.lang.String _onIndexChange;
-	private java.lang.String _onInit;
-	private java.lang.String _onInitializedChange;
-	private java.lang.String _onIoChange;
-	private java.lang.String _onLabelChange;
-	private java.lang.String _onLabelElChange;
-	private java.lang.String _onLeafChange;
-	private java.lang.String _onLoadedChange;
-	private java.lang.String _onLoadingChange;
-	private java.lang.String _onNextSiblingChange;
-	private java.lang.String _onOwnerTreeChange;
-	private java.lang.String _onParentNodeChange;
-	private java.lang.String _onPrevSiblingChange;
+	private java.lang.Object _nextSibling;
+	private java.lang.Object _ownerTree;
+	private java.lang.Object _parentNode;
+	private java.lang.Object _prevSibling;
+	private java.lang.Object _afterAlwaysShowHitAreaChange;
+	private java.lang.Object _afterCacheChange;
+	private java.lang.Object _afterCheckContainerElChange;
+	private java.lang.Object _afterCheckElChange;
+	private java.lang.Object _afterCheckNameChange;
+	private java.lang.Object _afterCheckedChange;
+	private java.lang.Object _afterChildrenChange;
+	private java.lang.Object _afterContainerChange;
+	private java.lang.Object _afterDestroy;
+	private java.lang.Object _afterDestroyedChange;
+	private java.lang.Object _afterDraggableChange;
+	private java.lang.Object _afterExpandedChange;
+	private java.lang.Object _afterHitAreaElChange;
+	private java.lang.Object _afterIconElChange;
+	private java.lang.Object _afterIdChange;
+	private java.lang.Object _afterIndexChange;
+	private java.lang.Object _afterInit;
+	private java.lang.Object _afterInitializedChange;
+	private java.lang.Object _afterIoChange;
+	private java.lang.Object _afterLabelChange;
+	private java.lang.Object _afterLabelElChange;
+	private java.lang.Object _afterLeafChange;
+	private java.lang.Object _afterLoadedChange;
+	private java.lang.Object _afterLoadingChange;
+	private java.lang.Object _afterNextSiblingChange;
+	private java.lang.Object _afterOwnerTreeChange;
+	private java.lang.Object _afterParentNodeChange;
+	private java.lang.Object _afterPrevSiblingChange;
+	private java.lang.Object _onAlwaysShowHitAreaChange;
+	private java.lang.Object _onCacheChange;
+	private java.lang.Object _onCheckContainerElChange;
+	private java.lang.Object _onCheckElChange;
+	private java.lang.Object _onCheckNameChange;
+	private java.lang.Object _onCheckedChange;
+	private java.lang.Object _onChildrenChange;
+	private java.lang.Object _onContainerChange;
+	private java.lang.Object _onDestroy;
+	private java.lang.Object _onDestroyedChange;
+	private java.lang.Object _onDraggableChange;
+	private java.lang.Object _onExpandedChange;
+	private java.lang.Object _onHitAreaElChange;
+	private java.lang.Object _onIconElChange;
+	private java.lang.Object _onIdChange;
+	private java.lang.Object _onIndexChange;
+	private java.lang.Object _onInit;
+	private java.lang.Object _onInitializedChange;
+	private java.lang.Object _onIoChange;
+	private java.lang.Object _onLabelChange;
+	private java.lang.Object _onLabelElChange;
+	private java.lang.Object _onLeafChange;
+	private java.lang.Object _onLoadedChange;
+	private java.lang.Object _onLoadingChange;
+	private java.lang.Object _onNextSiblingChange;
+	private java.lang.Object _onOwnerTreeChange;
+	private java.lang.Object _onParentNodeChange;
+	private java.lang.Object _onPrevSiblingChange;
 
 }

@@ -19,27 +19,27 @@ if (useMarkup) {
 }
 
 java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:loading-mask:destroyed"), false);
-java.lang.String _host = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:host"));
+java.lang.Object _host = (java.lang.Object)request.getAttribute("alloy:loading-mask:host");
 java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:loading-mask:initialized"), false);
-java.lang.String _messageEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:messageEl"));
+java.lang.Object _messageEl = (java.lang.Object)request.getAttribute("alloy:loading-mask:messageEl");
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:loading-mask:strings");
-java.lang.String _target = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:target"));
-java.lang.String _afterDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:afterDestroy"));
-java.lang.String _afterDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:afterDestroyedChange"));
-java.lang.String _afterHostChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:afterHostChange"));
-java.lang.String _afterInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:afterInit"));
-java.lang.String _afterInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:afterInitializedChange"));
-java.lang.String _afterMessageElChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:afterMessageElChange"));
-java.lang.String _afterStringsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:afterStringsChange"));
-java.lang.String _afterTargetChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:afterTargetChange"));
-java.lang.String _onDestroy = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:onDestroy"));
-java.lang.String _onDestroyedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:onDestroyedChange"));
-java.lang.String _onHostChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:onHostChange"));
-java.lang.String _onInit = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:onInit"));
-java.lang.String _onInitializedChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:onInitializedChange"));
-java.lang.String _onMessageElChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:onMessageElChange"));
-java.lang.String _onStringsChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:onStringsChange"));
-java.lang.String _onTargetChange = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:onTargetChange"));
+java.lang.Object _target = (java.lang.Object)request.getAttribute("alloy:loading-mask:target");
+java.lang.Object _afterDestroy = (java.lang.Object)request.getAttribute("alloy:loading-mask:afterDestroy");
+java.lang.Object _afterDestroyedChange = (java.lang.Object)request.getAttribute("alloy:loading-mask:afterDestroyedChange");
+java.lang.Object _afterHostChange = (java.lang.Object)request.getAttribute("alloy:loading-mask:afterHostChange");
+java.lang.Object _afterInit = (java.lang.Object)request.getAttribute("alloy:loading-mask:afterInit");
+java.lang.Object _afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:loading-mask:afterInitializedChange");
+java.lang.Object _afterMessageElChange = (java.lang.Object)request.getAttribute("alloy:loading-mask:afterMessageElChange");
+java.lang.Object _afterStringsChange = (java.lang.Object)request.getAttribute("alloy:loading-mask:afterStringsChange");
+java.lang.Object _afterTargetChange = (java.lang.Object)request.getAttribute("alloy:loading-mask:afterTargetChange");
+java.lang.Object _onDestroy = (java.lang.Object)request.getAttribute("alloy:loading-mask:onDestroy");
+java.lang.Object _onDestroyedChange = (java.lang.Object)request.getAttribute("alloy:loading-mask:onDestroyedChange");
+java.lang.Object _onHostChange = (java.lang.Object)request.getAttribute("alloy:loading-mask:onHostChange");
+java.lang.Object _onInit = (java.lang.Object)request.getAttribute("alloy:loading-mask:onInit");
+java.lang.Object _onInitializedChange = (java.lang.Object)request.getAttribute("alloy:loading-mask:onInitializedChange");
+java.lang.Object _onMessageElChange = (java.lang.Object)request.getAttribute("alloy:loading-mask:onMessageElChange");
+java.lang.Object _onStringsChange = (java.lang.Object)request.getAttribute("alloy:loading-mask:onStringsChange");
+java.lang.Object _onTargetChange = (java.lang.Object)request.getAttribute("alloy:loading-mask:onTargetChange");
 %>
 
 <%@ include file="init-ext.jsp" %>

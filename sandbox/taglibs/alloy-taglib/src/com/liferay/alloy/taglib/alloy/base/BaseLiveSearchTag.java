@@ -24,7 +24,7 @@ public class BaseLiveSearchTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.String getData() {
+	public java.lang.Object getData() {
 		return _data;
 	}
 
@@ -36,7 +36,7 @@ public class BaseLiveSearchTag extends IncludeTag {
 		return _destroyed;
 	}
 
-	public java.lang.String getHide() {
+	public java.lang.Object getHide() {
 		return _hide;
 	}
 
@@ -48,119 +48,119 @@ public class BaseLiveSearchTag extends IncludeTag {
 		return _initialized;
 	}
 
-	public java.lang.String getInput() {
+	public java.lang.Object getInput() {
 		return _input;
 	}
 
-	public java.lang.String getMatchRegex() {
+	public java.lang.Object getMatchRegex() {
 		return _matchRegex;
 	}
 
-	public java.lang.String getNodes() {
+	public java.lang.Object getNodes() {
 		return _nodes;
 	}
 
-	public java.lang.String getShow() {
+	public java.lang.Object getShow() {
 		return _show;
 	}
 
-	public java.lang.String getAfterDataChange() {
+	public java.lang.Object getAfterDataChange() {
 		return _afterDataChange;
 	}
 
-	public java.lang.String getAfterDelayChange() {
+	public java.lang.Object getAfterDelayChange() {
 		return _afterDelayChange;
 	}
 
-	public java.lang.String getAfterDestroy() {
+	public java.lang.Object getAfterDestroy() {
 		return _afterDestroy;
 	}
 
-	public java.lang.String getAfterDestroyedChange() {
+	public java.lang.Object getAfterDestroyedChange() {
 		return _afterDestroyedChange;
 	}
 
-	public java.lang.String getAfterHideChange() {
+	public java.lang.Object getAfterHideChange() {
 		return _afterHideChange;
 	}
 
-	public java.lang.String getAfterIndexChange() {
+	public java.lang.Object getAfterIndexChange() {
 		return _afterIndexChange;
 	}
 
-	public java.lang.String getAfterInit() {
+	public java.lang.Object getAfterInit() {
 		return _afterInit;
 	}
 
-	public java.lang.String getAfterInitializedChange() {
+	public java.lang.Object getAfterInitializedChange() {
 		return _afterInitializedChange;
 	}
 
-	public java.lang.String getAfterInputChange() {
+	public java.lang.Object getAfterInputChange() {
 		return _afterInputChange;
 	}
 
-	public java.lang.String getAfterMatchRegexChange() {
+	public java.lang.Object getAfterMatchRegexChange() {
 		return _afterMatchRegexChange;
 	}
 
-	public java.lang.String getAfterNodesChange() {
+	public java.lang.Object getAfterNodesChange() {
 		return _afterNodesChange;
 	}
 
-	public java.lang.String getAfterShowChange() {
+	public java.lang.Object getAfterShowChange() {
 		return _afterShowChange;
 	}
 
-	public java.lang.String getOnDataChange() {
+	public java.lang.Object getOnDataChange() {
 		return _onDataChange;
 	}
 
-	public java.lang.String getOnDelayChange() {
+	public java.lang.Object getOnDelayChange() {
 		return _onDelayChange;
 	}
 
-	public java.lang.String getOnDestroy() {
+	public java.lang.Object getOnDestroy() {
 		return _onDestroy;
 	}
 
-	public java.lang.String getOnDestroyedChange() {
+	public java.lang.Object getOnDestroyedChange() {
 		return _onDestroyedChange;
 	}
 
-	public java.lang.String getOnHideChange() {
+	public java.lang.Object getOnHideChange() {
 		return _onHideChange;
 	}
 
-	public java.lang.String getOnIndexChange() {
+	public java.lang.Object getOnIndexChange() {
 		return _onIndexChange;
 	}
 
-	public java.lang.String getOnInit() {
+	public java.lang.Object getOnInit() {
 		return _onInit;
 	}
 
-	public java.lang.String getOnInitializedChange() {
+	public java.lang.Object getOnInitializedChange() {
 		return _onInitializedChange;
 	}
 
-	public java.lang.String getOnInputChange() {
+	public java.lang.Object getOnInputChange() {
 		return _onInputChange;
 	}
 
-	public java.lang.String getOnMatchRegexChange() {
+	public java.lang.Object getOnMatchRegexChange() {
 		return _onMatchRegexChange;
 	}
 
-	public java.lang.String getOnNodesChange() {
+	public java.lang.Object getOnNodesChange() {
 		return _onNodesChange;
 	}
 
-	public java.lang.String getOnShowChange() {
+	public java.lang.Object getOnShowChange() {
 		return _onShowChange;
 	}
 
-	public void setData(java.lang.String data) {
+	public void setData(java.lang.Object data) {
 		_data = data;
 
 		setScopedAttribute("data", data);
@@ -178,7 +178,7 @@ public class BaseLiveSearchTag extends IncludeTag {
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setHide(java.lang.String hide) {
+	public void setHide(java.lang.Object hide) {
 		_hide = hide;
 
 		setScopedAttribute("hide", hide);
@@ -196,169 +196,169 @@ public class BaseLiveSearchTag extends IncludeTag {
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setInput(java.lang.String input) {
+	public void setInput(java.lang.Object input) {
 		_input = input;
 
 		setScopedAttribute("input", input);
 	}
 
-	public void setMatchRegex(java.lang.String matchRegex) {
+	public void setMatchRegex(java.lang.Object matchRegex) {
 		_matchRegex = matchRegex;
 
 		setScopedAttribute("matchRegex", matchRegex);
 	}
 
-	public void setNodes(java.lang.String nodes) {
+	public void setNodes(java.lang.Object nodes) {
 		_nodes = nodes;
 
 		setScopedAttribute("nodes", nodes);
 	}
 
-	public void setShow(java.lang.String show) {
+	public void setShow(java.lang.Object show) {
 		_show = show;
 
 		setScopedAttribute("show", show);
 	}
 
-	public void setAfterDataChange(java.lang.String afterDataChange) {
+	public void setAfterDataChange(java.lang.Object afterDataChange) {
 		_afterDataChange = afterDataChange;
 
 		setScopedAttribute("afterDataChange", afterDataChange);
 	}
 
-	public void setAfterDelayChange(java.lang.String afterDelayChange) {
+	public void setAfterDelayChange(java.lang.Object afterDelayChange) {
 		_afterDelayChange = afterDelayChange;
 
 		setScopedAttribute("afterDelayChange", afterDelayChange);
 	}
 
-	public void setAfterDestroy(java.lang.String afterDestroy) {
+	public void setAfterDestroy(java.lang.Object afterDestroy) {
 		_afterDestroy = afterDestroy;
 
 		setScopedAttribute("afterDestroy", afterDestroy);
 	}
 
-	public void setAfterDestroyedChange(java.lang.String afterDestroyedChange) {
+	public void setAfterDestroyedChange(java.lang.Object afterDestroyedChange) {
 		_afterDestroyedChange = afterDestroyedChange;
 
 		setScopedAttribute("afterDestroyedChange", afterDestroyedChange);
 	}
 
-	public void setAfterHideChange(java.lang.String afterHideChange) {
+	public void setAfterHideChange(java.lang.Object afterHideChange) {
 		_afterHideChange = afterHideChange;
 
 		setScopedAttribute("afterHideChange", afterHideChange);
 	}
 
-	public void setAfterIndexChange(java.lang.String afterIndexChange) {
+	public void setAfterIndexChange(java.lang.Object afterIndexChange) {
 		_afterIndexChange = afterIndexChange;
 
 		setScopedAttribute("afterIndexChange", afterIndexChange);
 	}
 
-	public void setAfterInit(java.lang.String afterInit) {
+	public void setAfterInit(java.lang.Object afterInit) {
 		_afterInit = afterInit;
 
 		setScopedAttribute("afterInit", afterInit);
 	}
 
-	public void setAfterInitializedChange(java.lang.String afterInitializedChange) {
+	public void setAfterInitializedChange(java.lang.Object afterInitializedChange) {
 		_afterInitializedChange = afterInitializedChange;
 
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
-	public void setAfterInputChange(java.lang.String afterInputChange) {
+	public void setAfterInputChange(java.lang.Object afterInputChange) {
 		_afterInputChange = afterInputChange;
 
 		setScopedAttribute("afterInputChange", afterInputChange);
 	}
 
-	public void setAfterMatchRegexChange(java.lang.String afterMatchRegexChange) {
+	public void setAfterMatchRegexChange(java.lang.Object afterMatchRegexChange) {
 		_afterMatchRegexChange = afterMatchRegexChange;
 
 		setScopedAttribute("afterMatchRegexChange", afterMatchRegexChange);
 	}
 
-	public void setAfterNodesChange(java.lang.String afterNodesChange) {
+	public void setAfterNodesChange(java.lang.Object afterNodesChange) {
 		_afterNodesChange = afterNodesChange;
 
 		setScopedAttribute("afterNodesChange", afterNodesChange);
 	}
 
-	public void setAfterShowChange(java.lang.String afterShowChange) {
+	public void setAfterShowChange(java.lang.Object afterShowChange) {
 		_afterShowChange = afterShowChange;
 
 		setScopedAttribute("afterShowChange", afterShowChange);
 	}
 
-	public void setOnDataChange(java.lang.String onDataChange) {
+	public void setOnDataChange(java.lang.Object onDataChange) {
 		_onDataChange = onDataChange;
 
 		setScopedAttribute("onDataChange", onDataChange);
 	}
 
-	public void setOnDelayChange(java.lang.String onDelayChange) {
+	public void setOnDelayChange(java.lang.Object onDelayChange) {
 		_onDelayChange = onDelayChange;
 
 		setScopedAttribute("onDelayChange", onDelayChange);
 	}
 
-	public void setOnDestroy(java.lang.String onDestroy) {
+	public void setOnDestroy(java.lang.Object onDestroy) {
 		_onDestroy = onDestroy;
 
 		setScopedAttribute("onDestroy", onDestroy);
 	}
 
-	public void setOnDestroyedChange(java.lang.String onDestroyedChange) {
+	public void setOnDestroyedChange(java.lang.Object onDestroyedChange) {
 		_onDestroyedChange = onDestroyedChange;
 
 		setScopedAttribute("onDestroyedChange", onDestroyedChange);
 	}
 
-	public void setOnHideChange(java.lang.String onHideChange) {
+	public void setOnHideChange(java.lang.Object onHideChange) {
 		_onHideChange = onHideChange;
 
 		setScopedAttribute("onHideChange", onHideChange);
 	}
 
-	public void setOnIndexChange(java.lang.String onIndexChange) {
+	public void setOnIndexChange(java.lang.Object onIndexChange) {
 		_onIndexChange = onIndexChange;
 
 		setScopedAttribute("onIndexChange", onIndexChange);
 	}
 
-	public void setOnInit(java.lang.String onInit) {
+	public void setOnInit(java.lang.Object onInit) {
 		_onInit = onInit;
 
 		setScopedAttribute("onInit", onInit);
 	}
 
-	public void setOnInitializedChange(java.lang.String onInitializedChange) {
+	public void setOnInitializedChange(java.lang.Object onInitializedChange) {
 		_onInitializedChange = onInitializedChange;
 
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
-	public void setOnInputChange(java.lang.String onInputChange) {
+	public void setOnInputChange(java.lang.Object onInputChange) {
 		_onInputChange = onInputChange;
 
 		setScopedAttribute("onInputChange", onInputChange);
 	}
 
-	public void setOnMatchRegexChange(java.lang.String onMatchRegexChange) {
+	public void setOnMatchRegexChange(java.lang.Object onMatchRegexChange) {
 		_onMatchRegexChange = onMatchRegexChange;
 
 		setScopedAttribute("onMatchRegexChange", onMatchRegexChange);
 	}
 
-	public void setOnNodesChange(java.lang.String onNodesChange) {
+	public void setOnNodesChange(java.lang.Object onNodesChange) {
 		_onNodesChange = onNodesChange;
 
 		setScopedAttribute("onNodesChange", onNodesChange);
 	}
 
-	public void setOnShowChange(java.lang.String onShowChange) {
+	public void setOnShowChange(java.lang.Object onShowChange) {
 		_onShowChange = onShowChange;
 
 		setScopedAttribute("onShowChange", onShowChange);
@@ -406,39 +406,39 @@ public class BaseLiveSearchTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/live_search/page.jsp";
 
-	private java.lang.String _data;
+	private java.lang.Object _data;
 	private java.lang.String _delay;
 	private java.lang.String _destroyed;
-	private java.lang.String _hide;
+	private java.lang.Object _hide;
 	private java.lang.Object _index;
 	private java.lang.String _initialized;
-	private java.lang.String _input;
-	private java.lang.String _matchRegex;
-	private java.lang.String _nodes;
-	private java.lang.String _show;
-	private java.lang.String _afterDataChange;
-	private java.lang.String _afterDelayChange;
-	private java.lang.String _afterDestroy;
-	private java.lang.String _afterDestroyedChange;
-	private java.lang.String _afterHideChange;
-	private java.lang.String _afterIndexChange;
-	private java.lang.String _afterInit;
-	private java.lang.String _afterInitializedChange;
-	private java.lang.String _afterInputChange;
-	private java.lang.String _afterMatchRegexChange;
-	private java.lang.String _afterNodesChange;
-	private java.lang.String _afterShowChange;
-	private java.lang.String _onDataChange;
-	private java.lang.String _onDelayChange;
-	private java.lang.String _onDestroy;
-	private java.lang.String _onDestroyedChange;
-	private java.lang.String _onHideChange;
-	private java.lang.String _onIndexChange;
-	private java.lang.String _onInit;
-	private java.lang.String _onInitializedChange;
-	private java.lang.String _onInputChange;
-	private java.lang.String _onMatchRegexChange;
-	private java.lang.String _onNodesChange;
-	private java.lang.String _onShowChange;
+	private java.lang.Object _input;
+	private java.lang.Object _matchRegex;
+	private java.lang.Object _nodes;
+	private java.lang.Object _show;
+	private java.lang.Object _afterDataChange;
+	private java.lang.Object _afterDelayChange;
+	private java.lang.Object _afterDestroy;
+	private java.lang.Object _afterDestroyedChange;
+	private java.lang.Object _afterHideChange;
+	private java.lang.Object _afterIndexChange;
+	private java.lang.Object _afterInit;
+	private java.lang.Object _afterInitializedChange;
+	private java.lang.Object _afterInputChange;
+	private java.lang.Object _afterMatchRegexChange;
+	private java.lang.Object _afterNodesChange;
+	private java.lang.Object _afterShowChange;
+	private java.lang.Object _onDataChange;
+	private java.lang.Object _onDelayChange;
+	private java.lang.Object _onDestroy;
+	private java.lang.Object _onDestroyedChange;
+	private java.lang.Object _onHideChange;
+	private java.lang.Object _onIndexChange;
+	private java.lang.Object _onInit;
+	private java.lang.Object _onInitializedChange;
+	private java.lang.Object _onInputChange;
+	private java.lang.Object _onMatchRegexChange;
+	private java.lang.Object _onNodesChange;
+	private java.lang.Object _onShowChange;
 
 }
