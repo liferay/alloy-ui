@@ -112,7 +112,11 @@ public class ComponentTag extends IncludeTag {
 
 			if (_isArray(item)) {
 				_buildArrayString(sb, (Object[])item);
-			} else {
+			}
+			else if (item instanceof Map) {
+				_buildOptionsString(sb, (Map<String, Object>)item);
+			}
+			else {
 				sb.append(StringPool.QUOTE + item.toString() +
 					StringPool.QUOTE);
 			}
@@ -165,6 +169,10 @@ public class ComponentTag extends IncludeTag {
 	}
 
 	private boolean _isArray(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+
 		Class<?> type = obj.getClass();
 
 		return type.isArray();
