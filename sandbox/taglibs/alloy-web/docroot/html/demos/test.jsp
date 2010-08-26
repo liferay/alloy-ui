@@ -2,18 +2,14 @@
 
 <%@ include file="/html/taglib/alloy/init.jsp" %>
 
-<%
-final String ALLOY_BUILD = PropsValues.ALLOY_BASE_PATH;
-%>
+<script src="<%= PropsValues.ALLOY_BASE_PATH %>yui/yui-min.js" type="text/javascript"></script>
+<script src="<%= PropsValues.ALLOY_BASE_PATH %>/aui-base/aui-base-min.js" type="text/javascript"></script>
 
-<script src="<%= ALLOY_BUILD %>yui/yui-min.js" type="text/javascript"></script>
-<script src="<%= ALLOY_BUILD %>/aui-base/aui-base-min.js" type="text/javascript"></script>
-
-<link href="<%= ALLOY_BUILD %>/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" rel="stylesheet" />
-<link href="<%= ALLOY_BUILD %>/aui-button-item/assets/skins/sam/aui-button-item.css" type="text/css" rel="stylesheet" />
-<link href="<%= ALLOY_BUILD %>/aui-panel/assets/skins/sam/aui-panel.css" type="text/css" rel="stylesheet" />
-<link href="<%= ALLOY_BUILD %>/aui-progressbar/assets/skins/sam/aui-progressbar.css" type="text/css" rel="stylesheet" />
-<link href="<%= ALLOY_BUILD %>/aui-datepicker-select/assets/skins/sam/aui-datepicker-select.css" type="text/css" rel="stylesheet" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>/aui-panel/assets/skins/sam/aui-panel.css" type="text/css" rel="stylesheet" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>/aui-button-item/assets/skins/sam/aui-button-item.css" type="text/css" rel="stylesheet" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>/aui-datepicker-select/assets/skins/sam/aui-datepicker-select.css" type="text/css" rel="stylesheet" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>/aui-progressbar/assets/skins/sam/aui-progressbar.css" type="text/css" rel="stylesheet" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" rel="stylesheet" />
 
 <style>
 body {
