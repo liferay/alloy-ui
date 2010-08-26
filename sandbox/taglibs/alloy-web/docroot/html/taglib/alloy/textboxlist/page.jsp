@@ -3,7 +3,7 @@
 <alloy:component
 	var="Textboxlist1"
 	module="aui-textboxlist"
-	name="Textboxlist"
+	name="TextboxList"
 	options="${options}"
 	yuiVariable="A"
 />

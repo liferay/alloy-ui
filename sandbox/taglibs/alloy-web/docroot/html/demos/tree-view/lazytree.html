@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+</head>
+
+<style type="text/css" media="screen">
+
+</style>
+
+<body>
+<h1>Alloy Lazy A.TreeNodeIO</h1>
+
+<div id="markupBoundingBox"></div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('aui-tree-view', function(A) {
+
+	var treeView = new A.TreeView({
+		boundingBox: '#markupBoundingBox',
+		children: [
+			{
+				expanded: true,
+				label: 'ROOT',
+				id: 'root',
+				type: 'io'
+			}
+		],
+		io: 'assets/content.php',
+		paginator: {
+			// autoFocus: false,
+			// element: A.Node.create('<span class="aui-tree-node-paginator">See more</span>'),
+			limit: 2,
+			start: 10,
+			// alwaysVisible: true,
+			// limitParam: 'start',
+			// offsetParam: 'end'
+		},
+		on: {
+			paginatorClick: function(event) {}
+		}
+	})
+	.render();
+
+});
+
+</script>
+
+</body>
+</html>
