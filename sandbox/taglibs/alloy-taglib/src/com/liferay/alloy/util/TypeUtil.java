@@ -14,10 +14,9 @@
 
 package com.liferay.alloy.util;
 
-import com.liferay.portal.kernel.util.Validator;
-import jodd.util.ReflectUtil;
-
 import java.util.HashMap;
+
+import com.liferay.portal.kernel.util.Validator;
 
 /**
  * <a href="TypeUtil.java.html"><b><i>View Source</i></b></a>
@@ -69,7 +68,7 @@ public class TypeUtil {
 		String javaType = _TYPES.get(type.toLowerCase());
 
 		if (Validator.isNull(javaType)) {
-			javaType = String.class.getName();
+			javaType = Object.class.getName();
 		}
 
 		return javaType;
