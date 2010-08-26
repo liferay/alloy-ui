@@ -25,16 +25,20 @@
 		AUI().use(
 			'aui-node',
 			function(A) {
+
 				var tr2 = A.one('#tr1').clone().appendTo('#table1');
 				var select1a = A.one('#select1').clone().appendTo('body');
 				var select2a = A.one('#select2').clone().appendTo('body');
 
-				var rows = A.all(A.Node._prepareHTML('<tr><td>append 1a</td><td>append 2a</td></tr><tr><td>append 1b</td><td>append 2b</td></tr>'));
+				var rows = A.Node.create('<tr><td>append 1a</td><td>append 2a</td></tr><tr><td>append 1b</td><td>append 2b</td></tr>');
 
 				rows.appendTo('#table1');
 
-				A.one('#table1').prepend('<tr><td>prepend 1a</td><td>prepend 2a</td></tr><tr><td>prepend 1b</td><td>prepend 2b</td></tr>');
+				A.one('#table1').append(A.Node.create('<tr><td>appended with created node 1a</td><td>appended with created node 1b</td></tr><tr><td>appended with created node 2a</td><td>appended with created node 2b</td></tr>'));
+				A.one('#table1').append('<tr><td>appended with string 1a</td><td>appended with string 1b</td></tr><tr><td>appended with string 2a</td><td>appended with string 2b</td></tr>');
 
+				A.one('#table1').prepend(A.Node.create('<tr><td>prepended with created node 1a</td><td>prepended with created node 1b</td></tr><tr><td>prepended with created node 2a</td><td>prepended with created node 2b</td></tr>'));
+				A.one('#table1').prepend('<tr><td>prepended with string 1a</td><td>prepended with string 2a</td></tr><tr><td>prepended with string 1b</td><td>prepended with string 2b</td></tr>');
 				// alert(A.all('#table1 tr').size());
 
 				var cloneTags = [

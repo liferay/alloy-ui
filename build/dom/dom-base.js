@@ -304,13 +304,15 @@ Y.DOM = {
             tag, nodes;
 
         if (html != undefined) { // not undefined or null
-            if (m && custom[m[1]]) {
-                if (typeof custom[m[1]] === 'function') {
-                    create = custom[m[1]];
-                } else {
-                    tag = custom[m[1]];
-                }
-            }
+            var creator = m && custom[m[1].toLowerCase()];
+
+	            if (creator) {
+	                if (typeof creator === 'function') {
+	                    create = creator;
+	                } else {
+	                    tag = creator;
+	                }
+	            }
 
             nodes = create(html, doc, tag).childNodes;
 

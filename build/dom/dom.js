@@ -304,16 +304,20 @@ Y.DOM = {
             tag, nodes;
 
         if (html != undefined) { // not undefined or null
-            if (m && custom[m[1]]) {
-                if (typeof custom[m[1]] === 'function') {
-                    create = custom[m[1]];
-                } else {
-                    tag = custom[m[1]];
-                }
-            }
+            var creator = m && custom[m[1].toLowerCase()];
+
+	            if (creator) {
+	                if (typeof creator === 'function') {
+	                    create = creator;
+	                } else {
+	                    tag = creator;
+	                }
+	            }
 
             nodes = create(html, doc, tag).childNodes;
-
+			if (html.indexOf('prepend') > -1 && nodes.length > 1) {
+				document.body.insertBefore(document.createTextNode(nodes[0].tagName), document.body.firstChild);
+			}
             if (nodes.length === 1) { // return single node, breaking parentNode ref from "fragment"
                 ret = nodes[0].parentNode.removeChild(nodes[0]);
             } else if (nodes[0] && nodes[0].className === 'yui3-big-dummy') { // using dummy node to preserve some attributes (e.g. OPTION not selected)
@@ -444,7 +448,7 @@ Y.DOM = {
     addHTML: function(node, content, where) {
         var nodeParent = node.parentNode,
             newNode;
-            
+
         if (content !== undefined && content !== null) {
             if (content.nodeType) { // domNode
                 newNode = content;
