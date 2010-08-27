@@ -78,6 +78,13 @@ var L = A.Lang,
 	CSS_WEEK = getCN(CALENDAR, WEEK),
 	CSS_WEEKDAYS = getCN(CALENDAR, WEEKDAYS),
 
+	FN_HALT = function(event) {
+		event.halt();
+	},
+
+	INT_WEEK_LENGTH = 7,
+	INT_MONTH_LENGTH = 31,
+
 	TPL_CALENDAR_HEADER = '<div class="'+[ CSS_HEADER, CSS_STATE_DEFAULT, CSS_HELPER_CLEARFIX ].join(' ')+'">' +
 							'<a href="" class="'+[ CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_L, CSS_PREV ].join(' ')+'">Back</a>'+
 							'<a href="" class="'+[ CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_R, CSS_NEXT ].join(' ')+'">Prev</a>'+
@@ -91,9 +98,10 @@ var L = A.Lang,
 
 	TPL_CALENDAR_MONTHDAYS = '<div class="'+[ CSS_MONTHDAYS, CSS_HELPER_CLEARFIX ].join(' ')+'"></div>',
 
-	TPL_CALENDAR_WEEK = '<div class="'+CSS_WEEK+'"></div>',
+	TPL_CALENDAR_WEEKDAYS = '<div class="'+[ CSS_WEEKDAYS, CSS_HELPER_CLEARFIX ].join(' ')+'"></div>',
 
-	TPL_CALENDAR_WEEKDAYS = '<div class="'+[ CSS_WEEKDAYS, CSS_HELPER_CLEARFIX ].join(' ')+'"></div>';
+	TPL_BUFFER_WEEKDAYS = ['<div class="'+CSS_WEEK+'">', 0, '</div>'],
+	TPL_BUFFER_MONTH_DAYS = ['<a href="#" class="'+[ CSS_DAY, CSS_STATE_DEFAULT ].join(' ')+'">', 0, '</a>'];
 
 /**
  * <p><img src="assets/images/aui-calendar/main.png"/></p>
@@ -347,7 +355,6 @@ var Calendar = A.Component.create(
 				instance._bindDelegateMonthDays();
 
 				instance.after('datesChange', A.bind(instance._afterSetDates, instance));
-				// instance.after('currentDayChange', A.bind(instance._syncView, instance));
 				instance.after('currentMonthChange', A.bind(instance._syncView, instance));
 				instance.after('currentYearChange', A.bind(instance._syncView, instance));
 			},
@@ -427,7 +434,7 @@ var Calendar = A.Component.create(
 				});
 
 				instance.blankDays.each(function(blankDayNode, day) {
-					var blankDays = (firstWeekDay - instance.get(FIRST_DAY_OF_WEEK) + 7) % 7;
+					var blankDays = (firstWeekDay - instance.get(FIRST_DAY_OF_WEEK) + INT_WEEK_LENGTH) % INT_WEEK_LENGTH;
 
 					if (day < blankDays) {
 						// show padding days to position the firstWeekDay correctly
@@ -536,21 +543,25 @@ var Calendar = A.Component.create(
 			 * @protected
 			 */
 			_renderWeekDays: function() {
-				var day = 0;
 				var instance = this;
-				var weekDay = A.Node.create(TPL_CALENDAR_WEEK);
+
+				var day = 0;
 				var firstWeekDay = instance.get(FIRST_DAY_OF_WEEK);
 
-				while(day < 7) {
-					var fixedDay = (day + firstWeekDay) % 7;
+				var weekDaysBuffer = [];
+
+				while(day < INT_WEEK_LENGTH) {
+					var fixedDay = (day + firstWeekDay) % INT_WEEK_LENGTH;
 					var dayName = instance._getDayNameMin(fixedDay);
 
-					instance.weekDaysNode.append(
-						weekDay.clone().html(dayName)
-					);
+					TPL_BUFFER_WEEKDAYS[1] = dayName;
+
+					weekDaysBuffer[day] = TPL_BUFFER_WEEKDAYS.join('');
 
 					day++;
 				}
+
+				instance.weekDaysNode.append(weekDaysBuffer.join(''));
 			},
 
 			/**
@@ -561,17 +572,22 @@ var Calendar = A.Component.create(
 			 * @protected
 			 */
 			_renderBlankDays: function() {
-				var day = 0;
 				var instance = this;
-				var blankDay = A.Node.create(TPL_CALENDAR_DAY_BLANK);
 
-				while (day++ < 7) {
-					instance.monthDaysNode.append(
-						blankDay.clone()
-					);
+				var day = INT_WEEK_LENGTH;
+
+				var blankDaysBuffer = [];
+
+				while (day--) {
+					blankDaysBuffer.push(TPL_CALENDAR_DAY_BLANK);
 				}
 
-				instance.blankDays = instance.monthDaysNode.all(DOT+CSS_DAY_BLANK);
+				var blankDays = A.DOM.create(blankDaysBuffer.join(''));
+
+				instance.blankDays = A.all(blankDays.childNodes);
+
+				instance.monthDaysNode.append(blankDays);
+
 			},
 
 			/**
@@ -583,15 +599,20 @@ var Calendar = A.Component.create(
 			_renderMonthDays: function() {
 				var day = 0;
 				var instance = this;
-				var monthDay = A.Node.create(TPL_CALENDAR_DAY);
+
+				var monthsBuffer = [];
 
 				while (day++ < 31) {
-					instance.monthDaysNode.append(
-						monthDay.clone().html(day)
-					);
+					TPL_BUFFER_MONTH_DAYS[1] = day;
+
+					monthsBuffer.push(TPL_BUFFER_MONTH_DAYS.join(''));
 				}
 
-				instance.monthDays = instance.monthDaysNode.all(DOT+CSS_DAY);
+				var monthDays = A.DOM.create(monthsBuffer.join(''));
+
+				instance.monthDays = A.all(monthDays.childNodes);
+
+				instance.monthDaysNode.append(monthDays);
 			},
 
 			/**
@@ -602,21 +623,15 @@ var Calendar = A.Component.create(
 			 */
 			_bindDOMEvents: function() {
 				var instance = this;
+
 				var headerContentNode = instance.headerContentNode;
 				var boundingBox = instance.get(BOUNDING_BOX);
 
-				var nextIcon = headerContentNode.one(DOT+CSS_ICON_CIRCLE_TRIANGLE_R)
-				var prevIcon = headerContentNode.one(DOT+CSS_ICON_CIRCLE_TRIANGLE_L)
+				boundingBox.on('click', FN_HALT);
+				boundingBox.on('mousedown', FN_HALT);
 
-				var eventHalt = function(event) {
-					event.halt();
-				};
-
-				boundingBox.on('click', eventHalt);
-				boundingBox.on('mousedown', eventHalt);
-
-				nextIcon.on('mousedown', A.bind(instance._selectNextMonth, instance));
-				prevIcon.on('mousedown', A.bind(instance._selectPrevMonth, instance));
+				headerContentNode.delegate('mousedown', instance._selectNextMonth, DOT+CSS_ICON_CIRCLE_TRIANGLE_R, instance);
+				headerContentNode.delegate('mousedown', instance._selectPrevMonth, DOT+CSS_ICON_CIRCLE_TRIANGLE_L, instance);
 			},
 
 			/**
@@ -826,9 +841,7 @@ var Calendar = A.Component.create(
 					dates = instance.get(DATES);
 				}
 
-				A.Array.each(dates, function() {
-					fn.apply(this, arguments);
-				});
+				A.Array.each(dates, fn, instance);
 			},
 
 			/**
