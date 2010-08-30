@@ -17267,6 +17267,13 @@ for skinning.]]></description>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Receives the toolbar items.]]></description>
+			<name>children</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[A DOM node that is a direct descendent of a Widget's bounding box that 
 houses its content.]]></description>
 			<name>contentBox</name>
@@ -17469,6 +17476,12 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<name>afterChildrenChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
 			<name>afterContentBoxChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -17650,6 +17663,12 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 		</attribute>
 		<attribute>
 			<name>onBoundingBoxChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<name>onChildrenChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>

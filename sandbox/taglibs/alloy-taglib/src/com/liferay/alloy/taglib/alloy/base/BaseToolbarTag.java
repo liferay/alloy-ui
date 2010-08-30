@@ -36,6 +36,10 @@ public class BaseToolbarTag extends IncludeTag {
 		return _boundingBox;
 	}
 
+	public java.lang.Object getChildren() {
+		return _children;
+	}
+
 	public java.lang.Object getContentBox() {
 		return _contentBox;
 	}
@@ -138,6 +142,10 @@ public class BaseToolbarTag extends IncludeTag {
 
 	public java.lang.Object getAfterBoundingBoxChange() {
 		return _afterBoundingBoxChange;
+	}
+
+	public java.lang.Object getAfterChildrenChange() {
+		return _afterChildrenChange;
 	}
 
 	public java.lang.Object getAfterContentBoxChange() {
@@ -264,6 +272,10 @@ public class BaseToolbarTag extends IncludeTag {
 		return _onBoundingBoxChange;
 	}
 
+	public java.lang.Object getOnChildrenChange() {
+		return _onChildrenChange;
+	}
+
 	public java.lang.Object getOnContentBoxChange() {
 		return _onContentBoxChange;
 	}
@@ -388,6 +400,12 @@ public class BaseToolbarTag extends IncludeTag {
 		_boundingBox = boundingBox;
 
 		setScopedAttribute("boundingBox", boundingBox);
+	}
+
+	public void setChildren(java.lang.Object children) {
+		_children = children;
+
+		setScopedAttribute("children", children);
 	}
 
 	public void setContentBox(java.lang.Object contentBox) {
@@ -544,6 +562,12 @@ public class BaseToolbarTag extends IncludeTag {
 		_afterBoundingBoxChange = afterBoundingBoxChange;
 
 		setScopedAttribute("afterBoundingBoxChange", afterBoundingBoxChange);
+	}
+
+	public void setAfterChildrenChange(java.lang.Object afterChildrenChange) {
+		_afterChildrenChange = afterChildrenChange;
+
+		setScopedAttribute("afterChildrenChange", afterChildrenChange);
 	}
 
 	public void setAfterContentBoxChange(java.lang.Object afterContentBoxChange) {
@@ -732,6 +756,12 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("onBoundingBoxChange", onBoundingBoxChange);
 	}
 
+	public void setOnChildrenChange(java.lang.Object onChildrenChange) {
+		_onChildrenChange = onChildrenChange;
+
+		setScopedAttribute("onChildrenChange", onChildrenChange);
+	}
+
 	public void setOnContentBoxChange(java.lang.Object onContentBoxChange) {
 		_onContentBoxChange = onContentBoxChange;
 
@@ -898,6 +928,7 @@ public class BaseToolbarTag extends IncludeTag {
 		setNamespacedAttribute(request, "activeDescendant", _activeDescendant);
 		setNamespacedAttribute(request, "activeState", _activeState);
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);
+		setNamespacedAttribute(request, "children", _children);
 		setNamespacedAttribute(request, "contentBox", _contentBox);
 		setNamespacedAttribute(request, "cssClass", _cssClass);
 		setNamespacedAttribute(request, "defaultChildType", _defaultChildType);
@@ -924,6 +955,7 @@ public class BaseToolbarTag extends IncludeTag {
 		setNamespacedAttribute(request, "afterActiveStateChange", _afterActiveStateChange);
 		setNamespacedAttribute(request, "afterAddChild", _afterAddChild);
 		setNamespacedAttribute(request, "afterBoundingBoxChange", _afterBoundingBoxChange);
+		setNamespacedAttribute(request, "afterChildrenChange", _afterChildrenChange);
 		setNamespacedAttribute(request, "afterContentBoxChange", _afterContentBoxChange);
 		setNamespacedAttribute(request, "afterCssClassChange", _afterCssClassChange);
 		setNamespacedAttribute(request, "afterDefaultChildTypeChange", _afterDefaultChildTypeChange);
@@ -955,6 +987,7 @@ public class BaseToolbarTag extends IncludeTag {
 		setNamespacedAttribute(request, "onActiveStateChange", _onActiveStateChange);
 		setNamespacedAttribute(request, "onAddChild", _onAddChild);
 		setNamespacedAttribute(request, "onBoundingBoxChange", _onBoundingBoxChange);
+		setNamespacedAttribute(request, "onChildrenChange", _onChildrenChange);
 		setNamespacedAttribute(request, "onContentBoxChange", _onContentBoxChange);
 		setNamespacedAttribute(request, "onCssClassChange", _onCssClassChange);
 		setNamespacedAttribute(request, "onDefaultChildTypeChange", _onDefaultChildTypeChange);
@@ -992,6 +1025,7 @@ public class BaseToolbarTag extends IncludeTag {
 	private java.lang.Object _activeDescendant;
 	private java.lang.String _activeState;
 	private java.lang.Object _boundingBox;
+	private java.lang.Object _children;
 	private java.lang.Object _contentBox;
 	private java.lang.Object _cssClass;
 	private java.lang.Object _defaultChildType;
@@ -1018,6 +1052,7 @@ public class BaseToolbarTag extends IncludeTag {
 	private java.lang.Object _afterActiveStateChange;
 	private java.lang.Object _afterAddChild;
 	private java.lang.Object _afterBoundingBoxChange;
+	private java.lang.Object _afterChildrenChange;
 	private java.lang.Object _afterContentBoxChange;
 	private java.lang.Object _afterCssClassChange;
 	private java.lang.Object _afterDefaultChildTypeChange;
@@ -1049,6 +1084,7 @@ public class BaseToolbarTag extends IncludeTag {
 	private java.lang.Object _onActiveStateChange;
 	private java.lang.Object _onAddChild;
 	private java.lang.Object _onBoundingBoxChange;
+	private java.lang.Object _onChildrenChange;
 	private java.lang.Object _onContentBoxChange;
 	private java.lang.Object _onCssClassChange;
 	private java.lang.Object _onDefaultChildTypeChange;

@@ -21,6 +21,7 @@ if (useMarkup) {
 java.lang.Object _activeDescendant = (java.lang.Object)request.getAttribute("alloy:toolbar:activeDescendant");
 java.lang.Boolean _activeState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:toolbar:activeState"), false);
 java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:toolbar:boundingBox");
+java.lang.Object _children = (java.lang.Object)request.getAttribute("alloy:toolbar:children");
 java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:toolbar:contentBox");
 java.lang.Object _cssClass = (java.lang.Object)request.getAttribute("alloy:toolbar:cssClass");
 java.lang.Object _defaultChildType = (java.lang.Object)request.getAttribute("alloy:toolbar:defaultChildType");
@@ -47,6 +48,7 @@ java.lang.Object _afterActiveDescendantChange = (java.lang.Object)request.getAtt
 java.lang.Object _afterActiveStateChange = (java.lang.Object)request.getAttribute("alloy:toolbar:afterActiveStateChange");
 java.lang.Object _afterAddChild = (java.lang.Object)request.getAttribute("alloy:toolbar:afterAddChild");
 java.lang.Object _afterBoundingBoxChange = (java.lang.Object)request.getAttribute("alloy:toolbar:afterBoundingBoxChange");
+java.lang.Object _afterChildrenChange = (java.lang.Object)request.getAttribute("alloy:toolbar:afterChildrenChange");
 java.lang.Object _afterContentBoxChange = (java.lang.Object)request.getAttribute("alloy:toolbar:afterContentBoxChange");
 java.lang.Object _afterCssClassChange = (java.lang.Object)request.getAttribute("alloy:toolbar:afterCssClassChange");
 java.lang.Object _afterDefaultChildTypeChange = (java.lang.Object)request.getAttribute("alloy:toolbar:afterDefaultChildTypeChange");
@@ -78,6 +80,7 @@ java.lang.Object _onActiveDescendantChange = (java.lang.Object)request.getAttrib
 java.lang.Object _onActiveStateChange = (java.lang.Object)request.getAttribute("alloy:toolbar:onActiveStateChange");
 java.lang.Object _onAddChild = (java.lang.Object)request.getAttribute("alloy:toolbar:onAddChild");
 java.lang.Object _onBoundingBoxChange = (java.lang.Object)request.getAttribute("alloy:toolbar:onBoundingBoxChange");
+java.lang.Object _onChildrenChange = (java.lang.Object)request.getAttribute("alloy:toolbar:onChildrenChange");
 java.lang.Object _onContentBoxChange = (java.lang.Object)request.getAttribute("alloy:toolbar:onContentBoxChange");
 java.lang.Object _onCssClassChange = (java.lang.Object)request.getAttribute("alloy:toolbar:onCssClassChange");
 java.lang.Object _onDefaultChildTypeChange = (java.lang.Object)request.getAttribute("alloy:toolbar:onDefaultChildTypeChange");
@@ -120,6 +123,10 @@ if (request.getAttribute("alloy:toolbar:activeState") != null) {
 
 if (request.getAttribute("alloy:toolbar:boundingBox") != null) {
 	scopedAttributes.put("boundingBox", _boundingBox);
+}
+
+if (request.getAttribute("alloy:toolbar:children") != null) {
+	scopedAttributes.put("children", _children);
 }
 
 if (request.getAttribute("alloy:toolbar:contentBox") != null) {
@@ -224,6 +231,10 @@ if (request.getAttribute("alloy:toolbar:afterAddChild") != null) {
 
 if (request.getAttribute("alloy:toolbar:afterBoundingBoxChange") != null) {
 	scopedAttributes.put("afterBoundingBoxChange", _afterBoundingBoxChange);
+}
+
+if (request.getAttribute("alloy:toolbar:afterChildrenChange") != null) {
+	scopedAttributes.put("afterChildrenChange", _afterChildrenChange);
 }
 
 if (request.getAttribute("alloy:toolbar:afterContentBoxChange") != null) {
@@ -348,6 +359,10 @@ if (request.getAttribute("alloy:toolbar:onAddChild") != null) {
 
 if (request.getAttribute("alloy:toolbar:onBoundingBoxChange") != null) {
 	scopedAttributes.put("onBoundingBoxChange", _onBoundingBoxChange);
+}
+
+if (request.getAttribute("alloy:toolbar:onChildrenChange") != null) {
+	scopedAttributes.put("onChildrenChange", _onChildrenChange);
 }
 
 if (request.getAttribute("alloy:toolbar:onContentBoxChange") != null) {

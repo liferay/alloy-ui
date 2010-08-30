@@ -9134,6 +9134,12 @@ of a Widget as well as a containing element for any decorator elements used
 for skinning.]]></description>
       </attribute>
       <attribute>
+        <name>children</name>
+        <type>java.lang.Object</type>
+        <defaultValue></defaultValue>
+        <description><![CDATA[Receives the toolbar items.]]></description>
+      </attribute>
+      <attribute>
         <name>contentBox</name>
         <type>java.lang.Object</type>
         <defaultValue></defaultValue>
@@ -9305,6 +9311,10 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </event>
       <event>
         <name>boundingBoxChange</name>
+        <type>java.lang.Object</type>
+      </event>
+      <event>
+        <name>childrenChange</name>
         <type>java.lang.Object</type>
       </event>
       <event>
