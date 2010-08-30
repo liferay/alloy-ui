@@ -8,6 +8,8 @@ var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isObject = Lang.isObject,
 
+	Color = A.Color,
+
 	NAME = 'colorpicker',
 
 	getClassName = A.ClassNameManager.getClassName,
@@ -38,188 +40,6 @@ var Lang = A.Lang,
 	TPL_SWATCH_ORIGINAL = '<div class="' + CSS_SWATCH_ORIGINAL + '"></div>',
 	TPL_THUMB_CANVAS = '<div class="' + CSS_THUMB_CANVAS + '"><div class="' + CSS_THUMB_CANVAS_IMAGE + '"></div></div>',
 	TPL_THUMB_HUE = '<span class="' + CSS_HUE_THUMB + '"><span class="' + CSS_HUE_THUMB_IMAGE + '"></span></span>';
-
-var Color = {
-	real2dec: function(number) {
-		var instance = this;
-
-		return Math.min(255, Math.round(number * 256));
-	},
-
-	hsv2rgb: function(hue, saturation, value) {
-		var instance = this;
-
-		if (isArray(hue)) {
-			return instance.hsv2rgb.apply(instance, hue);
-		}
-		else if (isObject(hue)) {
-			saturation = hue.saturation;
-			value = hue.value;
-			hue = hue.hue;
-		}
-
-		hue = instance.constrainTo(hue, 0, 360, 0);
-		value = instance.constrainTo(value, 0, 1, 0);
-		saturation = instance.constrainTo(saturation, 0, 1, 0);
-
-		var red,
-			green,
-			blue,
-			i = Math.floor((hue / 60) % 6),
-			f = (hue / 60) - i,
-			p = value * (1 - saturation),
-			q = value * (1 - f * saturation),
-			t = value * (1 - (1 - f) * saturation);
-
-		switch (i) {
-			case 0:
-				red = value;
-				green = t;
-				blue = p;
-			break;
-			case 1:
-				red = q;
-				green = value;
-				blue = p;
-			break;
-			case 2:
-				red = p;
-				green = value;
-				blue = t;
-			break;
-			case 3:
-				red = p;
-				green = q;
-				blue = value;
-			break;
-			case 4:
-				red = t;
-				green = p;
-				blue = value;
-			break;
-			case 5:
-				red = value;
-				green = p;
-				blue = q;
-			break;
-		}
-
-		var real2dec = instance.real2dec;
-
-		return {
-			red: real2dec(red),
-			green: real2dec(green),
-			blue: real2dec(blue)
-		};
-	},
-
-	rgb2hex: function(red, green, blue) {
-		var instance = this;
-
-		if (isArray(red)) {
-			return instance.rgb2hex.apply(instance, red);
-		}
-		else if (isObject(red)) {
-			green = red.green;
-			blue = red.blue;
-			red = red.red;
-		}
-
-		var dec2hex = instance.dec2hex;
-
-		return dec2hex(red) + dec2hex(green) + dec2hex(blue);
-	},
-
-	dec2hex: function(number) {
-		var instance = this;
-
-		number = parseInt(number, 10)|0;
-		number = Color.constrainTo(number, 0, 255, 0);
-
-		return ('0' + number.toString(16)).slice(-2).toUpperCase();
-	},
-
-	hex2dec: function(string) {
-		var instance = this;
-
-		return parseInt(string, 16);
-	},
-
-	hex2rgb: function(string) {
-		var instance = this;
-
-		var hex2dec = instance.hex2dec;
-
-		var red = string.slice(0, 2);
-		var green = string.slice(2, 4);
-		var blue = string.slice(4, 6);
-
-		return {
-			red: hex2dec(red),
-			green: hex2dec(green),
-			blue: hex2dec(blue)
-		};
-	},
-
-	rgb2hsv: function(red, blue, green) {
-		var instance = this;
-
-		if (isArray(red)) {
-			return instance.rgb2hsv.apply(instance, red);
-		}
-		else if (isObject(red)) {
-			green = red.green;
-			blue = red.blue;
-			red = red.red;
-		}
-
-		red /= 255;
-		green /= 255;
-		blue /= 255;
-
-		var hue,
-			saturation,
-			min = Math.min(Math.min(red, green), blue),
-			max = Math.max(Math.max(red, green), blue),
-			delta = max - min;
-
-		switch (max) {
-			case min:
-				hue = 0;
-			break;
-			case red:
-				hue = 60 * (green - blue) / delta;
-				if (green < blue) {
-					hue += 360;
-				}
-			break;
-			case green:
-				hue = (60 * (blue - red) / delta) + 120;
-			break;
-			case blue:
-				hue = (60 * (red - green) / delta) + 240;
-			break;
-		}
-
-		saturation = (max === 0) ? 0 : 1- (min / max);
-
-		return {
-			hue: Math.round(hue),
-			saturation: saturation,
-			value: max
-		};
-	},
-
-	constrainTo: function(number, start, end, defaultNumber) {
-		var instance = this;
-
-		if (number < start || number > end) {
-			number = defaultNumber;
-		}
-
-		return number;
-	}
-};
 
 /**
  * A base class for ColorPicker, providing:
@@ -280,25 +100,24 @@ var ColorPicker = A.Component.create(
 
 					var rgb = instance.get('rgb');
 
-					return Color.rgb2hex(rgb);
+					var hex = rgb.hex;
+
+					if (hex) {
+						hex = hex.split('#').join('')
+					}
+					else {
+						hex = Color.rgb2hex(rgb);
+					}
+
+					return hex;
 				},
 				setter: function(value) {
 					var instance = this;
 
-					var length = value.length;
+					if (value) {
+						var rgb = Color.getRGB('#' + value);
 
-					if (length == 3) {
-						var chars = value.split('');
-
-						for (var i = 0; i < chars.length; i++) {
-							chars[i] += chars[i];
-						}
-
-						value = chars.join('');
-					}
-
-					if ((/[A-Fa-f0-9]{6}/).test(value)) {
-						var rgb = Color.hex2rgb(value);
+						value = rgb.hex.split('#').join('');
 
 						instance.set('rgb', rgb);
 					}
@@ -345,9 +164,9 @@ var ColorPicker = A.Component.create(
 					return value;
 				},
 				value: {
-					hue: 0,
-					saturation: 0,
-					value: 0
+					h: 0,
+					s: 0,
+					v: 0
 				}
 			},
 
@@ -360,33 +179,40 @@ var ColorPicker = A.Component.create(
 			},
 
 			rgb: {
-				value: {
-					blue: 255,
-					green: 255,
-					red: 255
-				},
+				value: new Color.RGB(255, 255, 255),
 
 				setter: function(value) {
 					var instance = this;
 
+					var r;
+					var g;
+					var b;
+
+					var set = true;
+
 					if (isArray(value)) {
-						var current = instance.get('rgb');
-
-						current = {
-							blue: value[2],
-							green: value[1],
-							red: [0]
-						};
-
-						value = current;
+						r = value[0];
+						g = value[0];
+						b = value[0];
 					}
-					else if (!isObject(value)) {
+					else if (isObject) {
+						r = value.r;
+						g = value.g;
+						b = value.b;
+					}
+					else {
 						value = A.Attribute.INVALID_VALUE;
+
+						set = false;
 					}
 
-					value.red = Color.constrainTo(value.red, 0, 255, 255);
-					value.green = Color.constrainTo(value.green, 0, 255, 255);
-					value.blue = Color.constrainTo(value.blue, 0, 255, 255);
+					if (set) {
+						r = Color.constrainTo(r, 0, 255, 255);
+						g = Color.constrainTo(g, 0, 255, 255);
+						b = Color.constrainTo(b, 0, 255, 255);
+
+						value = new Color.RGB(r, g, b);
+					}
 
 					return value;
 				}
@@ -595,12 +421,12 @@ var ColorPicker = A.Component.create(
 			_getHuePicker: function() {
 				var instance = this;
 
-				var size = instance._getPickerSize();
+				var size = instance.get('pickersize');
 				var hue = (size - instance._hueSlider.get('value')) / size;
 
-				hue = Math.round(hue * 360);
+				hue = Color.constrainTo(hue, 0, 1, 0);
 
-				return (hue === 360) ? 0 : hue;
+				return (hue === 1) ? 0 : hue;
 			},
 
 			_getPickerSize: function() {
@@ -740,8 +566,7 @@ var ColorPicker = A.Component.create(
 								}
 							]
 						}
-					)
-					.render(instance.get('contentBox'));
+					).render(instance.get('contentBox'));
 
 					var bodyNode = container.bodyNode;
 
@@ -774,17 +599,17 @@ var ColorPicker = A.Component.create(
 				form.add(
 					[
 						{
-							id: 'red',
+							id: 'r',
 							labelText: strings.R,
 							size: 3
 						},
 						{
-							id: 'green',
+							id: 'g',
 							labelText: strings.G,
 							size: 3
 						},
 						{
-							id: 'blue',
+							id: 'b',
 							labelText: strings.B,
 							size: 3
 						},
@@ -902,7 +727,7 @@ var ColorPicker = A.Component.create(
 
 				rgb = rgb || instance.get('rgb');
 
-				instance._colorCanvas.setStyle('backgroundColor', 'rgb(' + [rgb.red, rgb.green, rgb.blue].join(',') + ')');
+				instance._colorCanvas.setStyle('backgroundColor', 'rgb(' + [rgb.r, rgb.g, rgb.b].join(',') + ')');
 			},
 
 			_updateColorSwatch: function(rgb) {
@@ -910,7 +735,7 @@ var ColorPicker = A.Component.create(
 
 				rgb = rgb || instance.get('rgb');
 
-				instance._colorSwatchCurrent.setStyle('backgroundColor', 'rgb(' + [rgb.red, rgb.green, rgb.blue].join(',') + ')');
+				instance._colorSwatchCurrent.setStyle('backgroundColor', 'rgb(' + [rgb.r, rgb.g, rgb.b].join(',') + ')');
 			},
 
 			_updateControls: function() {
@@ -924,10 +749,10 @@ var ColorPicker = A.Component.create(
 			_updateHue: function() {
 				var instance = this;
 
-				var size = instance._getPickerSize();
-				var hue = instance.get('hsv.hue');
+				var size = instance.get('pickersize');
+				var hue = instance.get('hsv.h');
 
-				hue = size - Math.round(hue / 360 * size);
+				hue = size - Math.round(hue * size);
 
 				if (hue === size) {
 					hue = 0;
@@ -947,7 +772,7 @@ var ColorPicker = A.Component.create(
 
 				rgb = rgb || instance.get('rgb');
 
-				instance._colorSwatchOriginal.setStyle('backgroundColor', 'rgb(' + [rgb.red, rgb.green, rgb.blue].join(',') + ')');
+				instance._colorSwatchOriginal.setStyle('backgroundColor', 'rgb(' + [rgb.r, rgb.g, rgb.b].join(',') + ')');
 			},
 
 			_updateOriginalRGB: function() {
@@ -972,11 +797,11 @@ var ColorPicker = A.Component.create(
 
 				var size = instance.get('pickersize');
 
-				hsv.saturation = Math.round(hsv.saturation * 100);
-				var saturation = hsv.saturation;
+				hsv.s = Math.round(hsv.s * 100);
+				var saturation = hsv.s;
 
-				hsv.value = Math.round(hsv.value * 100);
-				var value = hsv.value;
+				hsv.v = Math.round(hsv.v * 100);
+				var value = hsv.v;
 
 				var xy = instance._convertOffsetToValue(saturation, value);
 
@@ -1013,5 +838,4 @@ var ColorPicker = A.Component.create(
 	}
 );
 
-ColorPicker.Color = Color;
 A.ColorPicker = ColorPicker;
