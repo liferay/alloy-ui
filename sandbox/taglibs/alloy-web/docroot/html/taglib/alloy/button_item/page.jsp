@@ -23,9 +23,11 @@
 
 	<span class="<%= StringUtil.merge(new String[] { CSS_BUTTON_ITEM_ICON, CSS_ICON, CSS_CUSTOM_ICON }, StringPool.SPACE) %>"></span>
 
-	<span class="<%= CSS_BUTTON_ITEM_LABEL %>">
-        <%= _label %>
-    </span>
+	<c:if test="<%= Validator.isNotNull(_label) %>">
+		<span class="<%= CSS_BUTTON_ITEM_LABEL %>">
+			<%= _label %>
+		</span>
+	</c:if>
 
 	<c:if test="<%= !hasBoundingBox %>">
 		</button>
