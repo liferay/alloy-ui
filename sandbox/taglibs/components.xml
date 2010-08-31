@@ -219,7 +219,7 @@ has been through the render lifecycle phase.]]></description>
       <attribute>
         <name>schemaType</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>array</defaultValue>
         <description><![CDATA[A valid type of <a href="module_datasource.html">DataSource</a> schema plugin, such as array, json, xml, etc.]]></description>
       </attribute>
       <attribute>
@@ -603,7 +603,7 @@ has focus.]]></description>
       <attribute>
         <name>handler</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>false</defaultValue>
         <description><![CDATA[An event callback to handle when a user interacts with the button.
 This can either be a function that will be attached on click, or
 an object map that accepts the following keys:
@@ -891,7 +891,7 @@ for skinning.]]></description>
       <attribute>
         <name>centered</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>false</defaultValue>
         <description><![CDATA[A convenience attribute, which can be used as a shortcut for the align attribute.
 If set to true, the Widget is centered in the viewport. If set to a node reference or valid selector string,
 the Widget will be centered within the node. If set the false, no center positioning is applied.]]></description>
@@ -1030,7 +1030,7 @@ OverlayContext.]]></description>
       <attribute>
         <name>hideOn</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>mouseout</defaultValue>
         <description><![CDATA[The event which is responsible to hide the OverlayContext.]]></description>
       </attribute>
       <attribute>
@@ -1122,7 +1122,7 @@ OverlayContext.]]></description>
       <attribute>
         <name>showOn</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>mouseover</defaultValue>
         <description><![CDATA[The event which is responsible to show the OverlayContext.]]></description>
       </attribute>
       <attribute>
@@ -1518,7 +1518,7 @@ for skinning.]]></description>
       <attribute>
         <name>centered</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>false</defaultValue>
         <description><![CDATA[A convenience attribute, which can be used as a shortcut for the align attribute.
 If set to true, the Widget is centered in the viewport. If set to a node reference or valid selector string,
 the Widget will be centered within the node. If set the false, no center positioning is applied.]]></description>
@@ -1619,7 +1619,7 @@ OverlayContext.]]></description>
       <attribute>
         <name>hideOn</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>mouseout</defaultValue>
         <description><![CDATA[The event which is responsible to hide the OverlayContext.]]></description>
       </attribute>
       <attribute>
@@ -1683,7 +1683,7 @@ OverlayContext.]]></description>
       <attribute>
         <name>showOn</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>mouseover</defaultValue>
         <description><![CDATA[The event which is responsible to show the OverlayContext.]]></description>
       </attribute>
       <attribute>
@@ -1984,7 +1984,7 @@ contentBox which matches <code>aui-datepicker-year</code>.]]></description>
       <attribute>
         <name>dayNodeName</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>day</defaultValue>
         <description><![CDATA[Name attribute used on the
 <a href="DatePickerSelect.html#config_dayNode">dayNode</a>.]]></description>
       </attribute>
@@ -2048,7 +2048,7 @@ contentBox which matches <code>aui-datepicker-year</code>.]]></description>
       <attribute>
         <name>monthNodeName</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>month</defaultValue>
         <description><![CDATA[Name attribute used on the
 <a href="DatePickerSelect.html#config_monthNode">monthNode</a>.]]></description>
       </attribute>
@@ -2149,7 +2149,7 @@ contentBox which matches <code>aui-datepicker-year</code>.]]></description>
       <attribute>
         <name>yearNodeName</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>year</defaultValue>
         <description><![CDATA[Name attribute used on the
 <a href="DatePickerSelect.html#config_yearNode">yearNode</a>.]]></description>
       </attribute>
@@ -3134,7 +3134,7 @@ Configuration</a>.]]></description>
       <attribute>
         <name>headers</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>Object</defaultValue>
         <description><![CDATA[Set the correct ACCEPT header based on the dataType.]]></description>
       </attribute>
       <attribute>
@@ -4922,7 +4922,7 @@ for skinning.]]></description>
       <attribute>
         <name>centered</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>false</defaultValue>
         <description><![CDATA[A convenience attribute, which can be used as a shortcut for the align attribute.
 If set to true, the Widget is centered in the viewport. If set to a node reference or valid selector string,
 the Widget will be centered within the node. If set the false, no center positioning is applied.]]></description>
@@ -5284,7 +5284,7 @@ for skinning.]]></description>
       <attribute>
         <name>centered</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>false</defaultValue>
         <description><![CDATA[A convenience attribute, which can be used as a shortcut for the align attribute.
 If set to true, the Widget is centered in the viewport. If set to a node reference or valid selector string,
 the Widget will be centered within the node. If set the false, no center positioning is applied.]]></description>
@@ -5385,7 +5385,7 @@ OverlayContext.]]></description>
       <attribute>
         <name>hideOn</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>mouseout</defaultValue>
         <description><![CDATA[The event which is responsible to hide the OverlayContext.]]></description>
       </attribute>
       <attribute>
@@ -5449,7 +5449,7 @@ OverlayContext.]]></description>
       <attribute>
         <name>showOn</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>mouseover</defaultValue>
         <description><![CDATA[The event which is responsible to show the OverlayContext.]]></description>
       </attribute>
       <attribute>
@@ -5755,7 +5755,7 @@ for skinning.]]></description>
       <attribute>
         <name>centered</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>false</defaultValue>
         <description><![CDATA[A convenience attribute, which can be used as a shortcut for the align attribute.
 If set to true, the Widget is centered in the viewport. If set to a node reference or valid selector string,
 the Widget will be centered within the node. If set the false, no center positioning is applied.]]></description>
@@ -5856,7 +5856,7 @@ OverlayContext.]]></description>
       <attribute>
         <name>hideOn</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>click</defaultValue>
         <description><![CDATA[See <a href="OverlayContext.html#config_hideOn">hideOn</a>.]]></description>
       </attribute>
       <attribute>
@@ -5927,7 +5927,7 @@ OverlayContext.]]></description>
       <attribute>
         <name>showOn</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>click</defaultValue>
         <description><![CDATA[See <a href="OverlayContext.html#config_showOn">showOn</a>.]]></description>
       </attribute>
       <attribute>
@@ -6234,7 +6234,7 @@ for skinning.]]></description>
       <attribute>
         <name>centered</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>false</defaultValue>
         <description><![CDATA[A convenience attribute, which can be used as a shortcut for the align attribute.
 If set to true, the Widget is centered in the viewport. If set to a node reference or valid selector string,
 the Widget will be centered within the node. If set the false, no center positioning is applied.]]></description>
@@ -6391,7 +6391,7 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
       <attribute>
         <name>target</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>document</defaultValue>
         <description><![CDATA[Node where the mask will be positioned and re-dimensioned. The
 default is the document, which means that if not specified the mask
 takes the full screen.]]></description>
@@ -8010,7 +8010,7 @@ has been through the destroy lifecycle phase.]]></description>
       <attribute>
         <name>handles</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>all</defaultValue>
         <description><![CDATA[The handles to use (any combination of): 't', 'b', 'r', 'l', 'bl',
 'br', 'tl', 'tr'. Can use a shortcut of All.]]></description>
       </attribute>
@@ -8078,13 +8078,13 @@ has been through the init lifecycle phase.]]></description>
       <attribute>
         <name>tickX</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>false</defaultValue>
         <description><![CDATA[The number of x ticks to span the resize to.]]></description>
       </attribute>
       <attribute>
         <name>tickY</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>false</defaultValue>
         <description><![CDATA[The number of y ticks to span the resize to.]]></description>
       </attribute>
       <attribute>
@@ -8106,7 +8106,7 @@ which cannot have children elements.]]></description>
       <attribute>
         <name>wrapper</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>div</defaultValue>
         <description><![CDATA[Element to wrap the <code>wrapTypes</code>. This element will house
 the handles elements.]]></description>
       </attribute>
@@ -8440,7 +8440,7 @@ has been through the render lifecycle phase.]]></description>
       <attribute>
         <name>schemaType</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>array</defaultValue>
         <description><![CDATA[A valid type of <a href="module_datasource.html">DataSource</a> schema plugin, such as array, json, xml, etc.]]></description>
       </attribute>
       <attribute>
@@ -9155,7 +9155,7 @@ houses its content.]]></description>
       <attribute>
         <name>defaultChildType</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>ButtonItem</defaultValue>
         <description><![CDATA[The default type of child widget to render into the Element]]></description>
       </attribute>
       <attribute>
@@ -9477,7 +9477,7 @@ for skinning.]]></description>
       <attribute>
         <name>centered</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>false</defaultValue>
         <description><![CDATA[A convenience attribute, which can be used as a shortcut for the align attribute.
 If set to true, the Widget is centered in the viewport. If set to a node reference or valid selector string,
 the Widget will be centered within the node. If set the false, no center positioning is applied.]]></description>
@@ -9577,7 +9577,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       <attribute>
         <name>hideOn</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>mouseout</defaultValue>
         <description><![CDATA[See <a href="OverlayContext.html#config_showOn">OverlayContext showOn</a>.]]></description>
       </attribute>
       <attribute>
@@ -9648,7 +9648,7 @@ OverlayContext.]]></description>
       <attribute>
         <name>showOn</name>
         <type>java.lang.Object</type>
-        <defaultValue></defaultValue>
+        <defaultValue>mouseover</defaultValue>
         <description><![CDATA[See <a href="OverlayContext.html#config_showOn">OverlayContext showOn</a>.]]></description>
       </attribute>
       <attribute>
