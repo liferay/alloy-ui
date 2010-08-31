@@ -29,7 +29,7 @@ public class DefaultValueUtil {
 
 	public static final String[] _EMPTY_STRINGS = {
 		"", "''", "\"\"", "(empty)", "empty", "EMPTY_STR", "undefined",
-		"WidgetStdMod.BODY"
+		"WidgetStdMod.BODY", "HTMLTextNode"
 	};
 
 	public static String getDefaultValue(String className, String value) {
@@ -69,10 +69,14 @@ public class DefaultValueUtil {
 	public static boolean isValidStringValue(String value) {
 		value = StringUtil.trim(GetterUtil.getString(value));
 
-		if (Validator.isNotNull(value) &&
-			!StringUtils.containsIgnoreCase(value, _GENERATED) &&
+		if (Validator.isNull(value)) {
+			return false;
+		}
+
+		if (StringUtils.isAlpha(value) ||
+			(!StringUtils.containsIgnoreCase(value, _GENERATED) &&
 			!StringUtils.isAlpha(value.substring(0, 1)) &&
-			!StringUtils.endsWith(value, StringPool.PERIOD)) {
+			!StringUtils.endsWith(value, StringPool.PERIOD))) {
 
 			return true;
 		}
