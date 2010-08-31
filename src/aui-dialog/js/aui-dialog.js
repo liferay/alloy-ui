@@ -94,6 +94,10 @@ var L = A.Lang,
  * @class Dialog
  * @constructor
  * @extends Panel
+ * @uses WidgetPosition
+ * @uses WidgetStack
+ * @uses WidgetPositionAlign
+ * @uses WidgetPositionConstrain
  */
 var Dialog = function(config) {
 	if (!A.DialogMask) {
