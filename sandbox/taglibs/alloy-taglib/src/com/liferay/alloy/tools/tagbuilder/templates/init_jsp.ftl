@@ -4,22 +4,23 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("${namespace}dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("${namespace}scopedAttributes");
 
-String uniqueId = StringPool.BLANK;
+Map<String, Object> options = new HashMap<String, Object>();
 
-boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
+options.putAll(scopedAttributes);
+options.putAll(dynamicAttributes);
 
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
+java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:boundingBox");
+java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:contentBox");
+java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:srcNode");
 
-	if ((String)request.getAttribute("${namespace}boundingBox") == null) {
-		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
-	}
-	
-	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
-}
+boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
+boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
+boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
 <#list component.getAttributesAndEvents() as attribute>
+<#assign name = attribute.getName()>
 <#assign simpleClassName = attribute.getJavaTypeSimpleClassName()>
+<#if ((name != "boundingBox") && (name != "contentBox") && (name != "srcNode"))>
 <#if simpleClassName == "Object">
 ${attribute.getJavaType()} _${attribute.getSafeName()} = (${attribute.getJavaType()})request.getAttribute("${namespace}${attribute.getSafeName()}");
 <#else>
@@ -33,24 +34,42 @@ ${attribute.getJavaType()} _${attribute.getSafeName()} = GetterUtil.get${simpleC
 ${attribute.getJavaType()} _${attribute.getSafeName()} = GetterUtil.get${simpleClassName}((java.lang.String)request.getAttribute("${namespace}${attribute.getSafeName()}"));
 </#if>
 </#if>
+</#if>
 </#list>
+
+String uniqueId = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+
+	String prefix = StringPool.POUND.concat(uniqueId);
+
+	if (!hasBoundingBox) {
+		_boundingBox = prefix.concat("BoundingBox");
+
+		options.put("boundingBox", _boundingBox);
+	}
+
+	if (!hasSrcNode && !hasContentBox) {
+		_srcNode = prefix.concat("SrcNode");
+
+		options.put("srcNode", _srcNode);
+	}
+
+	if (!hasSrcNode && hasContentBox) {
+		_contentBox = prefix.concat("ContentBox");
+
+		options.put("contentBox", _contentBox);
+	}
+}
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
 <#list component.getAttributesAndEvents() as attribute>
-if (request.getAttribute("${namespace}${attribute.getSafeName()}") != null) {
-	scopedAttributes.put("${attribute.getSafeName()}", _${attribute.getSafeName()});
-}
-
+_updateOptions(options, "${attribute.getSafeName()}", _${attribute.getSafeName()});
 </#list>
 %>
-
-<alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	tagDynamicAttributes="<%= dynamicAttributes %>"
-	tagScopedAttributes="<%= scopedAttributes %>"
-	var="options"
-/>

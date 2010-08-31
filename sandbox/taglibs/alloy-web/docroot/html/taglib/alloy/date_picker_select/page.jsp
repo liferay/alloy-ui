@@ -1,7 +1,7 @@
 <%@ include file="init.jsp" %>
 
 <c:if test="<%= useMarkup %>">
-	
+
 	<%
 	final String CSS_BUTTON_ITEM = MarkupUtil.getClassName("buttonitem");
 	final String CSS_BUTTON_ITEM_CONTENT = MarkupUtil.getClassName("buttonitem", "content");
@@ -22,24 +22,24 @@
 	final String CSS_ICON_CALENDAR = MarkupUtil.getClassName("icon", "calendar");
 	final String CSS_STATE_DEFAULT = MarkupUtil.getClassName("state", "default");
 	final String CSS_WIDGET = MarkupUtil.getClassName("widget");
-	
+
 	final String CSS_DATEPICKER_BUTTON_BOUNDING_BOX_CLASS = StringUtil.merge(new String[] { CSS_WIDGET, CSS_COMPONENT, CSS_BUTTON_ITEM, CSS_BUTTON_ITEM_CONTENT, CSS_STATE_DEFAULT, CSS_BUTTON_ITEM_ICON_ONLY }, StringPool.SPACE);
 	final String CSS_DATEPICKER_BUTTON_ICON_CLASS = StringUtil.merge(new String[] { CSS_BUTTON_ITEM_ICON, CSS_ICON, CSS_ICON_CALENDAR }, StringPool.SPACE);
-	
+
 	final String BOUNDING_BOX_CLASS = StringUtil.merge(new String[] { CSS_DATEPICKER, CSS_DATEPICKER_DISPLAY, CSS_CLEAR_FIX }, StringPool.SPACE);
 	final String CONTENT_BOX_CLASS = StringUtil.merge(new String[] { CSS_DATEPICKER_CONTENT }, StringPool.SPACE);
-	
+
 	final String DAY_NODE_CLASS = StringUtil.merge(new String[] { CSS_CUSTOM_FIELD, CSS_DATEPICKER_DAY }, StringPool.SPACE);
 	final String MONTH_NODE_CLASS = StringUtil.merge(new String[] { CSS_CUSTOM_FIELD, CSS_DATEPICKER_MONTH }, StringPool.SPACE);
 	final String YEAR_NODE_CLASS = StringUtil.merge(new String[] { CSS_CUSTOM_FIELD, CSS_DATEPICKER_YEAR }, StringPool.SPACE);
 	%>
-	
-	<c:if test="<%= Validator.isNull(_boundingBox) %>">
+
+	<c:if test="<%= !hasBoundingBox %>">
 		<div class="<%= BOUNDING_BOX_CLASS %>" id="<%= uniqueId %>BoundingBox">
 	</c:if>
-	
+
 	<div class="<%= CONTENT_BOX_CLASS %>" id="<%= uniqueId %>SrcNode">
-	
+
 		<div class="<%= CSS_DATEPICKER_SELECT_WRAPPER %>">
 
 			<select id="yearNode" class="<%= YEAR_NODE_CLASS %>"></select>
@@ -47,27 +47,29 @@
 			<select id="monthNode" class="<%= MONTH_NODE_CLASS %>"></select>
 
 			<select id="dayNode" class="<%= DAY_NODE_CLASS %>"></select>
-			
+
 		</div>
-		
+
 		<div class="<%= CSS_DATEPICKER_BUTTON_WRAPPER %>">
 			<button class="<%= CSS_DATEPICKER_BUTTON_BOUNDING_BOX_CLASS %>" type="button">
 			    <span class="<%= CSS_DATEPICKER_BUTTON_ICON_CLASS %>"></span>
 			</button>
 		</div>
-    
+
     </div>
-	    
-	<c:if test="<%= Validator.isNull(_boundingBox) %>">
+
+	<c:if test="<%= !hasBoundingBox %>">
 		</div>
 	</c:if>
 
 </c:if>
 
 <alloy:component
+	excludeAttributes="var,javaScriptAttributes,useMarkup"
+	tagPageContext="<%= pageContext %>"
+	options="<%= options %>"
 	var="DatePickerSelect1"
 	module="aui-datepicker-select"
 	name="DatePickerSelect"
-	options="${options}"
 	yuiVariable="A"
 />

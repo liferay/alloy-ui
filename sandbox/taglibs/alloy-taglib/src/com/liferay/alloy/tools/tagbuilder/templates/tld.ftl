@@ -11,19 +11,9 @@
 	<uri>http://alloy.liferay.com/tld/alloy</uri>
 
 	<tag>
-		<name>createConfig</name>
-		<tag-class>com.liferay.alloy.taglib.util.CreateConfigTag</tag-class>
+		<name>component</name>
+		<tag-class>com.liferay.alloy.taglib.util.ComponentTag</tag-class>
 		<body-content>JSP</body-content>
-		<variable>
-			<name-from-attribute>var</name-from-attribute>
-			<variable-class>java.util.Map</variable-class>
-			<declare>true</declare>
-			<scope>AT_BEGIN</scope>
-		</variable>
-		<attribute>
-			<name>var</name>
-			<required>true</required>
-		</attribute>
 		<attribute>
 			<name>excludeAttributes</name>
 			<required>false</required>
@@ -37,28 +27,11 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<name>tagDynamicAttributes</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.util.Map</type>
-		</attribute>
-		<attribute>
-			<name>tagScopedAttributes</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.util.Map</type>
-		</attribute>
-		<attribute>
 			<name>tagPageContext</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>javax.servlet.jsp.JspContext</type>
 		</attribute>
-		<dynamic-attributes>true</dynamic-attributes>
-	</tag>
-
-	<tag>
-		<name>component</name>
-		<tag-class>com.liferay.alloy.taglib.util.ComponentTag</tag-class>
-		<body-content>JSP</body-content>
 		<attribute>
 			<name>var</name>
 			<required>false</required>

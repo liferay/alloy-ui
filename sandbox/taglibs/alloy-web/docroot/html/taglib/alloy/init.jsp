@@ -8,10 +8,19 @@
 
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.Map" %>
-
 <%@ page import="com.liferay.alloy.util.GetterUtil" %>
 <%@ page import="com.liferay.alloy.util.MarkupUtil"%>
 <%@ page import="com.liferay.alloy.util.StringUtil"%>
+<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
+<%@ page import="com.liferay.portal.kernel.util.Validator"%>
 
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator"%>
+
+<%!
+public static void _updateOptions(Map<String, Object> options, String key, Object value) {
+	if ((options != null) && options.containsKey(key)) {
+		options.put(key, value);
+	}
+}
+%>

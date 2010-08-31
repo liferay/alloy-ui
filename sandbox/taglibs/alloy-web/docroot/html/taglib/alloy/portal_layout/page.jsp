@@ -1,9 +1,11 @@
 <%@ include file="init.jsp" %>
 
 <alloy:component
+	excludeAttributes="var,javaScriptAttributes,useMarkup"
+	tagPageContext="<%= pageContext %>"
+	options="<%= options %>"
 	var="PortalLayout1"
 	module="aui-portal-layout"
 	name="PortalLayout"
-	options="${options}"
 	yuiVariable="A"
 />

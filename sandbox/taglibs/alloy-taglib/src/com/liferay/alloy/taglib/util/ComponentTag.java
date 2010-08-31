@@ -14,16 +14,20 @@
 
 package com.liferay.alloy.taglib.util;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.PageContext;
 
 import com.liferay.alloy.util.ReservedAttributeUtil;
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.alloy.util.StringUtil;
+import com.liferay.alloy.util.json.StringTransformer;
 import com.liferay.portal.kernel.util.StringPool;
+import flexjson.JSONSerializer;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * @author Eduardo Lundgren
@@ -35,6 +39,14 @@ public class ComponentTag extends IncludeTag {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
 
 		return super.doStartTag();
+	}
+
+	public String getExcludeAttributes() {
+		return _excludeAttributes;
+	}
+
+	public String getJavaScriptAttributes() {
+		return _javaScriptAttributes;
 	}
 
 	public String getModule() {
@@ -49,12 +61,24 @@ public class ComponentTag extends IncludeTag {
 		return _options;
 	}
 
+	public PageContext getTagPageContext() {
+		return _tagPageContext;
+	}
+
 	public String getVar() {
 		return _var;
 	}
 
 	public String getYuiVariable() {
 		return _yuiVariable;
+	}
+
+	public void setExcludeAttributes(String excludeAttributes) {
+		_excludeAttributes = excludeAttributes;
+	}
+
+	public void setJavaScriptAttributes(String javaScriptAttributes) {
+		_javaScriptAttributes = javaScriptAttributes;
 	}
 
 	public void setModule(String module) {
@@ -67,6 +91,10 @@ public class ComponentTag extends IncludeTag {
 
 	public void setOptions(Map<String, Object> options) {
 		_options = options;
+	}
+
+	public void setTagPageContext(PageContext tagPageContext) {
+		_tagPageContext = tagPageContext;
 	}
 
 	public void setVar(String var) {
@@ -82,112 +110,155 @@ public class ComponentTag extends IncludeTag {
 	}
 
 	protected void _setAttributes(HttpServletRequest request) {
-		StringBundler optionsSB = new StringBundler();
+		HashMap<String, Object> newOptions = new HashMap<String, Object>();
 
-		_buildOptionsString(optionsSB, _options);
+		_proccessAttributes(getOptions(), newOptions);
 
+		setNamespacedAttribute(request, "excludeAttributes", _excludeAttributes);
+		setNamespacedAttribute(request, "tagPageContext", _tagPageContext);
+		setNamespacedAttribute(request, "javaScriptAttributes", _javaScriptAttributes);
 		setNamespacedAttribute(request, "var", _var);
 		setNamespacedAttribute(request, "module", _module);
 		setNamespacedAttribute(request, "name", _name);
-		setNamespacedAttribute(request, "options", optionsSB.toString());
+		setNamespacedAttribute(request, "options", _getJSON(newOptions));
 		setNamespacedAttribute(request, "yuiVariable", _yuiVariable);
 	}
 
 	protected void cleanUp() {
 		_var = null;
 		_module = null;
+		_name = null;
 		_options = null;
 		_yuiVariable = null;
+		_excludeAttributes = null;
+		_tagPageContext = null;
+		_javaScriptAttributes = null;
 	}
 
 	protected boolean isCleanUpSetAttributes() {
 		return _CLEAN_UP_SET_ATTRIBUTES;
 	}
 
-	private void _buildArrayString(StringBundler sb, Object[] array) {
-		sb.append(StringPool.OPEN_BRACKET);
-
-		for (int i = 0; i < array.length; i++) {
-			Object item = array[i];
-
-			if (_isArray(item)) {
-				_buildArrayString(sb, (Object[])item);
-			}
-			else if (item instanceof Map) {
-				_buildOptionsString(sb, (Map<String, Object>)item);
-			}
-			else {
-				sb.append(StringPool.QUOTE + item.toString() +
-					StringPool.QUOTE);
-			}
-
-			if (i < array.length - 1) {
-				sb.append(StringPool.COMMA);
-			}
-		}
-
-		sb.append(StringPool.CLOSE_BRACKET);
+	private String _getJSON(Object value) {
+		return _getJSONSerializer().deepSerialize(value);
 	}
 
-	private void _buildOptionsString(
-		StringBundler sb, Map<String, Object> hashMap) {
+	private JSONSerializer _getJSONSerializer() {
+		StringTransformer stringTransformer = new StringTransformer();
 
-		Set<String> keys = hashMap.keySet();
-		Iterator<String> iterator = keys.iterator();
+		stringTransformer.setJavaScriptAttributes(
+			Arrays.asList(StringUtil.split(_javaScriptAttributes)));
 
-		sb.append(StringPool.OPEN_CURLY_BRACE);
+		return new JSONSerializer().transform(stringTransformer, String.class);
+	}
 
-		while (iterator.hasNext()) {
-			String attributeName = iterator.next().toString();
+	private boolean _isEventAttribute(String key) {
+		Matcher afterMatcher = _EVENT_AFTER_REGEX.matcher(key);
+		Matcher onMatcher = _EVENT_ON_REGEX.matcher(key);
 
-			Object value = hashMap.get(attributeName);
+		return (afterMatcher.find() || onMatcher.find());
+	}
 
-			String originalName = ReservedAttributeUtil.getOriginalName(
-				getName(), attributeName);
+	private boolean _isValidAttribute(String key) {
+		List<String> excludeAttributes = Collections.EMPTY_LIST;
 
-			sb.append(StringPool.QUOTE);
-			sb.append(originalName);
-			sb.append(StringPool.QUOTE);
-			sb.append(StringPool.COLON);
+		if (_excludeAttributes != null) {
+			excludeAttributes = (List<String>)Arrays.asList(
+				_excludeAttributes.split(StringPool.COMMA));
+		}
+
+		return !(excludeAttributes.contains(key) ||
+			key.equals(_DYNAMIC_ATTRIBUTES));
+	}
+
+	private void _proccessAttributes(Map<String, Object> options,
+		Map<String, Object> newOptions) {
+
+		Map<String, String> afterEventOptionsMap =
+			new HashMap<String, String>();
+
+		Map<String, String> onEventOptionsMap =	new HashMap<String, String>();
+
+		for (String key : options.keySet()) {
+			if (!_isValidAttribute(key)) {
+				continue;
+			}
+
+			Object value = options.get(key);
+
+			String originalKey =
+				ReservedAttributeUtil.getOriginalName(_name, key);
 
 			if (value instanceof Map) {
-				_buildOptionsString(sb, (Map<String, Object>)value);
-			}
-			else if (_isArray(value)) {
-				_buildArrayString(sb, (Object[])value);
-			}
-			else {
-				sb.append(value.toString());
+				Map<String, Object> childOptionsMap =
+					new HashMap<String, Object>();
+
+				_proccessAttributes((Map)value, childOptionsMap);
+
+				newOptions.put(originalKey, childOptionsMap);
+
+				continue;
 			}
 
-			if (iterator.hasNext()) {
-				sb.append(StringPool.COMMA);
+			if (_isEventAttribute(key)) {
+				_processEventAttribute(
+					key, String.valueOf(value), afterEventOptionsMap,
+						onEventOptionsMap);
+			} else {
+				newOptions.put(originalKey, value);
 			}
 		}
 
-		sb.append(StringPool.CLOSE_CURLY_BRACE);
-	}
-
-	private boolean _isArray(Object obj) {
-		if (obj == null) {
-			return false;
+		if (afterEventOptionsMap.size() > 0) {
+			newOptions.put(_AFTER, afterEventOptionsMap);
 		}
 
-		Class<?> type = obj.getClass();
-
-		return type.isArray();
+		if (onEventOptionsMap.size() > 0) {
+			newOptions.put(_ON, onEventOptionsMap);
+		}
 	}
+
+	private void _processEventAttribute(String key, String value,
+		Map<String, String> afterEventOptionsMap,
+		Map<String, String> onEventsOptionsMap) {
+
+		if (key.startsWith(_AFTER)) {
+			String event = StringUtils.uncapitalize(
+				key.replaceFirst(_AFTER, StringPool.BLANK));
+
+			afterEventOptionsMap.put(event, value);
+		} else {
+			String event = StringUtils.uncapitalize(
+				key.replaceFirst(_ON, StringPool.BLANK));
+
+			onEventsOptionsMap.put(event, value);
+		}
+	}
+
+	private static final String _AFTER = "after";
 
 	private static final String _ATTRIBUTE_NAMESPACE = "aui:component:";
 
 	private static final boolean _CLEAN_UP_SET_ATTRIBUTES = true;
 
+	private static final String _DYNAMIC_ATTRIBUTES = "dynamicAttributes";
+
+	private static final Pattern _EVENT_AFTER_REGEX = Pattern
+		.compile("after[A-Z]");
+
+	private static final Pattern _EVENT_ON_REGEX = Pattern.compile("on[A-Z]");
+
+	private static final String _ON = "on";
+
 	private static final String _PAGE =
 		"/html/taglib/alloy-util/component/page.jsp";
 
+	private String _excludeAttributes;
+	private String _javaScriptAttributes;
 	private String _module;
 	private String _name;
 	private Map<String, Object> _options;
+	private PageContext _tagPageContext;
 	private String _var;
 	private String _yuiVariable;
 

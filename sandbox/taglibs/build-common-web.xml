@@ -23,6 +23,10 @@
 			</then>
 		</if>
 
+		<copy todir="${project.dir}/alloy-web/docroot/WEB-INF/lib">
+			<fileset dir="${project.dir}/lib/liferay" includes="*.jar" />
+		</copy>
+
 		<copy todir="${war.file.dest}" preservelastmodified="true">
 			<fileset dir="docroot" excludes="web.xml" />
 		</copy>
