@@ -6,7 +6,6 @@ import java.util.*;
 
 import com.liferay.alloy.tools.model.Component;
 import com.liferay.alloy.tools.model.Attribute;
-import com.liferay.alloy.util.StringUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import org.dom4j.Document;
@@ -30,17 +29,14 @@ public class TagBuilder {
 	};
 
 	public TagBuilder(String componentsXML, String templatesDir,
-			String javaOutputDir, String javaOutputBaseDir,
-			String javaOutputPackage, String javaOutputBasePackage,
-			String jspDir, String jspOutputDir, String tldDir)
+			String javaOutputDir, String javaOutputPackage, String jspDir,
+			String jspOutputDir, String tldDir)
 		throws Exception {
 
 		_componentsXML = componentsXML;
 		_templatesDir = templatesDir;
 		_javaOutputDir = javaOutputDir;
-		_javaOutputBaseDir = javaOutputBaseDir;
 		_javaOutputPackage = javaOutputPackage;
-		_javaOutputBasePackage = javaOutputBasePackage;
 		_jspDir = jspDir;
 		_jspOutputDir = jspOutputDir;
 		_tldDir = tldDir;
@@ -59,17 +55,14 @@ public class TagBuilder {
 		String componentsXML = System.getProperty("tagbuilder.components.xml");
 		String templatesDir = System.getProperty("tagbuilder.templates.dir");
 		String javaOutputDir = System.getProperty("tagbuilder.java.output.dir");
-		String javaOutputBaseDir = System.getProperty("tagbuilder.java.output.base.dir");
 		String javaOutputPackage = System.getProperty("tagbuilder.java.output.package");
-		String javaOutputBasePackage = System.getProperty("tagbuilder.java.output.base.package");
 		String jspDir = System.getProperty("tagbuilder.jsp.dir");
 		String jspOutputDir = System.getProperty("tagbuilder.jsp.output.dir");
 		String tldDir = System.getProperty("tagbuilder.tld.dir");
 
 		new TagBuilder(
-			componentsXML, templatesDir, javaOutputDir, javaOutputBaseDir,
-			javaOutputPackage, javaOutputBasePackage, jspDir, jspOutputDir,
-			tldDir);
+			componentsXML, templatesDir, javaOutputDir, javaOutputPackage,
+			jspDir, jspOutputDir, tldDir);
 	}
 
 	public Map<String, Object> getDefaultTemplateContext() {
@@ -77,17 +70,55 @@ public class TagBuilder {
 
 		context.put("authors", AUTHORS);
 		context.put("jspDir", _jspDir);
-		context.put("packagePath", _javaOutputBasePackage);
-		context.put("packageBasePath", _javaOutputBasePackage);
 		context.put("packagePath", _javaOutputPackage);
 
 		return context;
 	}
 
+	public String getJavaOutputBaseDir(Component component) {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(getJavaOutputDir(component));
+		sb.append(_BASE);
+		sb.append(StringPool.SLASH);
+
+		return sb.toString();
+	}
+
+	public String getJavaOutputDir(Component component) {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_javaOutputDir);
+		sb.append(component.getNamespace());
+		sb.append(StringPool.SLASH);
+
+		return sb.toString();
+	}
+
+	public String getJspDir(Component component) {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_jspDir);
+		sb.append(component.getNamespace());
+		sb.append(StringPool.SLASH);
+
+		return sb.toString();
+	}
+
+	public String getJspOutputDir(Component component) {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_jspOutputDir);
+		sb.append(component.getNamespace());
+		sb.append(StringPool.SLASH);
+
+		return sb.toString();
+	}
+
 	public Map<String, Object> getTemplateContext(Component component) {
 		Map<String, Object> context = getDefaultTemplateContext();
 
-		String jspRelativePath = _jspDir.concat(
+		String jspRelativePath = getJspDir(component).concat(
 			component.getUncamelizedName(StringPool.UNDERLINE));
 
 		context.put("component", component);
@@ -117,7 +148,7 @@ public class TagBuilder {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(_javaOutputBaseDir);
+		sb.append(getJavaOutputBaseDir(component));
 		sb.append(_BASE_CLASS_PREFIX);
 		sb.append(component.getSafeName());
 		sb.append(_CLASS_SUFFIX);
@@ -134,7 +165,7 @@ public class TagBuilder {
 		throws Exception {
 
 		String pathName = component.getUncamelizedName(StringPool.UNDERLINE);
-		String path = _jspOutputDir.concat(pathName);
+		String path = getJspOutputDir(component).concat(pathName);
 
 		String contentJsp = _processTemplate(_tplJsp, context);
 		String contentInitJsp = _processTemplate(_tplInitJsp, context);
@@ -161,7 +192,7 @@ public class TagBuilder {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(_javaOutputDir);
+		sb.append(getJavaOutputDir(component));
 		sb.append(component.getSafeName());
 		sb.append(_CLASS_SUFFIX);
 
@@ -251,13 +282,6 @@ public class TagBuilder {
 		return _getAttributes(componentNode, "events", "event");
 	}
 
-	private String _getJspDir(Component component, String page) {
-		String componentName = StringUtil.uncamelize(
-			component.getSafeName(), StringPool.UNDERLINE);
-
-		return _jspDir.concat(componentName).concat(page);
-	}
-
 	private List<Attribute> _getPrefixedEvents(Element componentNode) {
 		List<Attribute> afterEvents = _getAttributes(
 			componentNode, "events", "event");
@@ -320,9 +344,9 @@ public class TagBuilder {
 			e.printStackTrace();
 		}
 	}
-
 	private static final String _AFTER = "after";
 	private static final String _ALLOY_TLD = "alloy.tld";
+	private static final String _BASE = "base";
 	private static final String _BASE_CLASS_PREFIX = "Base";
 	private static final String _CLASS_SUFFIX = "Tag.java";
 	private static final String _DEFAULT_NAMESPACE = "alloy";
@@ -334,8 +358,6 @@ public class TagBuilder {
 	private static final String _START_PAGE = "/start.jsp";
 
 	private String _componentsXML;
-	private String _javaOutputBaseDir;
-	private String _javaOutputBasePackage;
 	private String _javaOutputDir;
 	private String _javaOutputPackage;
 	private String _jspDir;

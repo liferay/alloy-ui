@@ -81,9 +81,7 @@
 			<jvmarg value="-Dtagbuilder.components.xml=${tagbuilder.components.xml}" />
 			<jvmarg value="-Dtagbuilder.templates.dir=${tagbuilder.templates.dir}" />
 			<jvmarg value="-Dtagbuilder.java.output.dir=${tagbuilder.java.output.dir}" />
-			<jvmarg value="-Dtagbuilder.java.output.base.dir=${tagbuilder.java.output.base.dir}" />
 			<jvmarg value="-Dtagbuilder.java.output.package=${tagbuilder.java.output.package}" />
-			<jvmarg value="-Dtagbuilder.java.output.base.package=${tagbuilder.java.output.base.package}" />
 			<jvmarg value="-Dtagbuilder.jsp.docroot.dir=${tagbuilder.docroot.dir}" />
 			<jvmarg value="-Dtagbuilder.jsp.dir=${tagbuilder.jsp.dir}" />
 			<jvmarg value="-Dtagbuilder.jsp.output.dir=${tagbuilder.jsp.output.dir}" />

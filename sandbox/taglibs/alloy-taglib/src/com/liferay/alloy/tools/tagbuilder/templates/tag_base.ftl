@@ -1,4 +1,4 @@
-package ${packageBasePath};
+package ${packagePath}.${component.getNamespace()}.base;
 
 import com.liferay.alloy.taglib.util.IncludeTag;
 

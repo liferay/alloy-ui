@@ -66,7 +66,7 @@
 	<#list components as component>
 	<tag>
 		<name>${component.getUncamelizedName()}</name>
-		<tag-class>${packagePath}.${component.getSafeName()}Tag</tag-class>
+		<tag-class>${packagePath}.${component.getNamespace()}.${component.getSafeName()}Tag</tag-class>
 		<body-content>JSP</body-content>
 		<#list component.getAttributesAndEvents() as attribute>
 		<attribute>
