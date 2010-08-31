@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+	<script src="fonts/museo.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
+
+	<style>
+		li {
+			list-style: none;
+			margin-bottom: 20px;
+
+			display: inline-block;
+			margin: 5px 10px;
+			text-align: center;
+		}
+
+		li a {
+			display: block;
+		}
+
+		img {
+			background: #eee;
+			border: 3px solid #777;
+			padding: 5px;
+			vertical-align: middle;
+			width: 65px;
+		}
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div id="pageTitle">
+		<h1>AlloyUI Drawing Demos</h1>
+	</div>
+
+
+	<div id="demo">
+		<ul>
+			<li><a href="sandbox.html"><img src="images/preview_sandbox.png" /></a> <a href="sandbox.html">Sandbox</a></li>
+			<li>
+				<h6>Charts</h6>
+				<ul>
+					<li><a href="analytics.html"><img src="images/preview_analytics.png" /></a> <a href="analytics.html">Analytics</a></li>
+					<li><a href="chart_interactive.html"><img src="images/preview_chart_interactive.png" /></a> <a href="chart_interactive.html">Interactive chart</a></li>
+					<li><a href="chart_pie.html"><img src="images/preview_chart_pie.png" /></a> <a href="chart_pie.html">Pie chart</a></li>
+					<li><a href="chart_animated.html"><img src="images/preview_charts_animated.png" /></a> <a href="chart_animated.html">Animated chart</a></li>
+				</ul>
+			</li>
+			<li><a href="animation_easing.html"><img src="images/preview_animation_easing.png" /></a> <a href="animation_easing.html">Animation - Easing examples</a></li>
+			<li><a href="animation_bounce.html"><img src="images/preview_animation_bounce.png" /></a> <a href="animation_bounce.html">Animation - bounce examples</a></li>
+			<li><a href="curves.html"><img src="images/preview_curves.png" /></a> <a href="curves.html">Draggable curves</a></li>
+			<li><a href="diagram.html"><img src="images/preview_diagram.png" /></a> <a href="diagram.html">Workflow Editor</a></li>
+			<li><a href="fonts_custom.html"><img src="images/preview_fonts_custom.png" /></a> <a href="fonts_custom.html">Custom fonts</a></li>
+			<li><a href="fonts_typing.html"><img src="images/preview_fonts_typing.png" /></a> <a href="fonts_typing.html">Custom fonts - typing animation</a></li>
+			<li><a href="image_rotation.html"><img src="images/preview_image_rotation.png" /></a> <a href="image_rotation.html">Image rotation</a></li>
+			
+			<li><a href="spinner.html"><img src="images/preview_spinner.png" /></a> <a href="spinner.html">Spinner</a></li>
+		</ul>
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('aui-drawing', 'aui-font-museo', function(A) {
+	var pageTitle = A.one('#pageTitle');
+
+	var title = pageTitle.one('h1').hide();
+
+	var drawing = A.Drawing.create({
+		width: '100%',
+		height: 50,
+		render: pageTitle
+	});
+
+	drawing.path('M30.742,25.994l9.332-9.336l-1.945-6.817l-6.817-1.949l-9.334,9.337l-9.342,9.336l0.082,0.082l-4.6,13.2l13.208-4.599l0.08,0.079L30.742,25.994z M23.528,18.78l8.423-8.424l4.403,1.259l1.255,4.407l-8.418,8.421l-7.789,7.783l-2.832-2.832l-2.832-2.828L23.528,18.78z M15.311,35.051l-2.394-2.395l0.7-2.009l0.021,0.021l0.023-0.065l3.701,3.702l-0.065,0.023l0.022,0.021L15.311,35.051z').attr(
+		{
+			fill: '#333',
+			stroke: 'none'
+		}
+	);
+
+	var museo = drawing.getFont('Museo Sans 500');
+
+	var text = drawing.print(50, 25, title.text(), museo, 36).attr('fill', '#333');
+});
+
+</script>
+
+</body>
+</html>

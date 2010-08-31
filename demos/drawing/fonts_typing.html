@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+	<script src="fonts/helvetica.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
+</head>
+<style type="text/css" media="screen"> 
+	#demo {
+		height: 480px;
+		margin: 0 auto;
+		width: 640px;
+	}
+</style>
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - Drawing Demo</h1>
+	<h2>Start typing</h2>
+
+	<input class="aui-helper-hidden-accessible" type="text" value="" id="keycatcher" />
+
+	<div id="demo"></div>
+</div>
+
+<script type="text/javascript">
+
+AUI().ready('aui-drawing', function(A) {
+	var drawing = A.Drawing.create('#demo', 800, 600);
+
+	var pos = [0, 0];
+
+	var letter = drawing.path('M0,0L0,0z').attr(
+		{
+			fill: '#333',
+			stroke: '#333',
+			'fill-opacity': .3,
+			'stroke-width': 1,
+			'stroke-linecap': 'round',
+			translation: '100 100'
+		}
+	);
+
+	var kc = A.one('#keycatcher');
+
+	kc.on('keyup', function(event) {
+		var key = this.val().substring(this.val().length - 1);
+
+		this.val('');
+
+		if (key && key in helvetica) {
+			letter.animate({
+				path: helvetica[key]
+			}, 200);
+		}
+	});
+
+	var blurCallback = function(event) {
+		kc.focus();
+	};
+
+	kc.on('blur', blurCallback);
+
+	A.getWin().on('focus', blurCallback);
+	A.getDoc().on('click', blurCallback);
+
+	kc.focus();
+});
+</script>
+
+</body>
+</html>

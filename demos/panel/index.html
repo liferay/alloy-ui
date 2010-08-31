@@ -61,6 +61,7 @@
 <script type="text/javascript" charset="utf-8">
 
 AUI().ready(
+	'aui-rating',
 	'aui-panel',
 	'anim',
 	function(A) {
@@ -168,9 +169,10 @@ AUI().ready(
 				contentBox: '#myId > .aui-panel-content'
 			}
 		).render();
+
+		var Rating1 = new A.Rating({size: 4}).render();
 	}
 );
-
 </script>
 
 </body>

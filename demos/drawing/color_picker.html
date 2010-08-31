@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
+</head>
+<style type="text/css" media="screen">
+	#demo {
+		margin: 0 auto;
+		height: 480px;
+		width: 640px;
+		position: relative;
+	}
+	.aui-color-picker, .aui-color-wheel {
+		position: absolute;
+	}
+</style>
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - Drawing Demo</h1>
+
+	<input type="text" id="output" value="#eee" /> 
+
+	<div id="demo">
+		<div id="colorPicker"></div>
+		<div id="colorWheel"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+AUI().ready('aui-drawing', function(A) {
+	A.Drawing.colorpicker = function(x, y, size, initcolor, element) {
+		return new ColorPicker(x, y, size, initcolor, element);
+	};
+
+	A.Drawing.prototype.colorPickerIcon = function(x, y, r) {
+		var segments = pi * r * 2 / Math.min(r / 8, 4);
+		var a = pi / 2 - pi * 2 / segments * 1.5;
+		var path = ['M', x, (y - r), 'A', r, r, 0, 0, 1, (r * Math.cos(a) + x), (y - r * Math.sin(a)), 'L', x, y, 'z'].join();
+
+		for (var i = 0; i < segments; i++) {
+			this.path(path).attr(
+				{
+					stroke: 'none',
+					fill: 'hsb(' + (segments - i) * (360 / segments) + ', 100, 100)',
+					rotation: [90 + (360 / segments) * i, x, y]
+				}
+			);
+		}
+
+		return this.circle(x, y, r).attr(
+			{
+				fill: 'r#fff-#fff',
+				'fill-opacity': 0,
+				'stroke-width': Math.round(r * .03),
+				stroke: '#fff'
+			}
+		);
+	};
+
+	var pi = Math.PI;
+
+	function angle(x, y) {
+		return (x < 0) * 180 + Math.atan(-y / -x) * 180 / pi;
+	}
+
+	var doc = A.getDoc();
+
+	var	ColorPicker = function(x, y, size, initcolor, element) {
+		size = size || 200;
+
+		var w3 = 3 * size / 200;
+
+		var w1 = size / 200;
+		var fi = 1.6180339887;
+
+		var size20 = size / 20;
+		var size2 = size / 2;
+
+		var padding = 2 * size / 200;
+		var height = size + size20 * 2 + padding * 3;
+
+		var instance = this;
+
+		var H = 1;
+		var S = 1;
+		var B = 1;
+
+		var s = size - (size20 * 4);
+
+		var config = {
+			cssClass: 'aui-color-picker',
+			width: size,
+			height: size,
+			x: x,
+			y: y
+		};
+
+		if (element) {
+			config.boundingBox = element;
+		}
+
+		var drawing = A.Drawing.create(config);
+
+		var xy = s / 6 + size20 * 2 + padding;
+		var wh = s * 2 / 3 - padding * 2;
+
+		if (w1 < 1) {
+			w1 = 1;
+		}
+
+		if (w3 < 1) {
+			w3 = 1;
+		}
+
+		drawing.colorPickerIcon(size2, size2, size2 - padding);
+
+		instance.cursor = drawing.createSet();
+
+		instance.cursor.push(
+			drawing.circle(size2, size2, size20 / 2).attr(
+				{
+					stroke: '#000',
+					opacity: .5,
+					'stroke-width': w3
+				}
+			)
+		);
+
+		instance.cursor.push(
+			instance.cursor.item(0).clone().attr(
+				{
+					stroke: '#fff',
+					opacity: 1,
+					'stroke-width': w1
+				}
+			)
+		);
+
+		instance.disc = drawing.circle(size2, size2, size2 - padding).attr(
+			{
+				fill: '#000',
+				'fill-opacity': 0,
+				stroke: 'none',
+				cursor: 'crosshair'
+			}
+		);
+
+		var style = instance.disc.node.style;
+
+		style.unselectable = 'on';
+		style.MozUserSelect =  'none';
+		style.WebkitUserSelect= 'none';
+
+		// brightness drawing
+		var h = size20 * 2 + 2;
+
+		instance.brect = drawing.rect((padding + h / fi / 2), (size + padding * 2), (size - padding * 2 - h / fi), (h - padding * 2)).attr(
+			{
+				stroke: '#fff',
+				fill: '180-#fff-#000'
+			}
+		);
+
+		instance.cursorb = drawing.createSet();
+
+		instance.cursorb.push(
+			drawing.rect(size - padding - h / fi, size + padding, ~~(h / fi), h, w3).attr(
+				{
+					stroke: '#000',
+					opacity: .5,
+					'stroke-width': w3
+				}
+			)
+		);
+
+		instance.cursorb.push(
+			instance.cursorb.item(0).clone().attr(
+				{
+					stroke: '#fff',
+					opacity: 1,
+					'stroke-width': w1
+				}
+			)
+		);
+
+		instance.btop = instance.brect.clone().attr(
+			{
+				stroke: '#000',
+				fill: '#000',
+				opacity: 0
+			}
+		);
+
+		style = instance.btop.node.style;
+		style.unselectable = 'on';
+		style.MozUserSelect =  'none';
+		style.WebkitUserSelect= 'none';
+
+		instance.bwidth = ~~(h / fi) / 2;
+
+		instance.minx = padding + instance.bwidth;
+
+		instance.maxx = size - h / fi - padding + instance.bwidth;
+
+		instance.H = instance.S = instance.B = 1;
+
+		instance.padding = padding;
+		instance.drawing = drawing;
+
+		instance.size2 = size2;
+		instance.size20 = size20;
+
+		instance.x = x;
+		instance.y = y;
+
+		// events
+		instance.disc.drag(
+			function(dx, dy, x, y) {
+				instance.docOnMove(dx, dy, x, y);
+			},
+			function(x, y) {
+				var scrollY = doc.get('scrollTop');
+				var scrollX = doc.get('scrollLeft');
+
+				instance.hsOnTheMove = true;
+
+				instance.setHS(x + scrollX - instance.x, y + scrollY - instance.y);
+
+			},
+			function() {
+				instance.hsOnTheMove = false;
+			}
+		);
+
+		instance.btop.drag(
+			function(dx, dy, x, y) {
+				instance.docOnMove(dx, dy, x, y);
+			},
+			function(x, y) {
+				var scrollX = doc.get('scrollLeft');
+
+				instance.bOnTheMove = true;
+				instance.setB(x + scrollX - instance.x);
+			},
+			function() {
+				instance.bOnTheMove = false;
+			}
+		);
+
+		instance.color(initcolor || '#fff');
+
+		if (this.onchanged) {
+			this.onchanged(this.color());
+		}
+	};
+
+	ColorPicker.prototype.setB = function(x) {
+		if (x < this.minx) {
+			x = this.minx;
+		}
+
+		if (x > this.maxx) {
+			x = this.maxx;
+		}
+
+		this.cursorb.attr('x', x - this.bwidth);
+
+		this.B = (x - this.minx) / (this.maxx - this.minx);
+
+		if (this.onchange) {
+			this.onchange(this.color());
+		}
+	};
+
+	ColorPicker.prototype.setHS = function(x, y) {
+		var X = x - this.size2;
+		var Y = y - this.size2;
+		var R = this.size2 - this.size20 / 2 - this.padding;
+		var d = angle(X, Y);
+		var rd = d * pi / 180;
+
+		if (isNaN(d)) {
+			d = 0;
+		}
+
+		if (X * X + Y * Y > R * R) {
+			x = R * Math.cos(rd) + this.size2;
+			y = R * Math.sin(rd) + this.size2;
+		}
+
+		this.cursor.attr(
+			{
+				cx: x,
+				cy: y
+			}
+		);
+
+		this.H = (1 - d / 360) % 1;
+		this.S = Math.min((X * X + Y * Y) / R / R, 1);
+
+		this.brect.attr('fill', '180-hsl(' + [this.H, this.S] + ',1)-#000');
+
+		if (this.onchange) {
+			this.onchange(this.color());
+		}
+	};
+
+	ColorPicker.prototype.docOnMove = function(dx, dy, x, y) {
+		var scrollY = doc.get('scrollTop');
+		var scrollX = doc.get('scrollLeft');
+
+		if (this.hsOnTheMove) {
+			this.setHS(x + scrollX - this.x, y + scrollY - this.y);
+		}
+
+		if (this.bOnTheMove) {
+			this.setB(x + scrollX - this.x);
+		}
+	};
+
+	ColorPicker.prototype.remove = function() {
+		this.drawing.remove();
+
+		this.color = function() {
+			return false;
+		};
+	};
+
+	ColorPicker.prototype.color = function(color) {
+		if (color) {
+			color = A.Color.getRGB(color);
+
+			var hex = color.hex;
+
+			color = A.Color.rgb2hsb(color.r, color.g, color.b);
+
+			d = color.h * 360;
+
+			this.H = color.h;
+			this.S = color.s;
+			this.B = color.b;
+
+			this.cursorb.attr('x', this.B * (this.maxx - this.minx) + this.minx - this.bwidth);
+
+			this.brect.attr('fill', '180-hsl(' + [this.H, this.S] + ',1)-#000');
+
+			var d = (1 - this.H) * 360;
+			var rd = d * pi / 180;
+
+			var R = (this.size2 - this.size20 / 2 - this.padding) * this.S;
+
+			var x = Math.cos(rd) * R + this.size2;
+			var y = Math.sin(rd) * R + this.size2;
+
+			this.cursor.attr(
+				{
+					cx: x,
+					cy: y
+				}
+			);
+
+			return this;
+		} else {
+			return A.Color.hsb2rgb(this.H, this.S, this.B).hex;
+		}
+	};
+
+	A.Drawing.colorwheel = function(x, y, size, initcolor, element) {
+		return new ColorWheel(x, y, size, initcolor, element);
+	};
+
+	var pi = Math.PI;
+
+	function angle(x, y) {
+		return (x < 0) * 180 + Math.atan(-y / -x) * 180 / pi;
+	}
+
+	var ColorWheel = function(x, y, size, initcolor, element) {
+		var instance = this;
+
+		size = size || 200;
+
+		var w3 = 3 * size / 200;
+		var w1 = size / 200;
+		var fi = 1.6180339887;
+		var segments = pi * size / 5;
+		var size20 = size / 20;
+		var size2 = size / 2;
+		var padding = 2 * size / 200;
+
+		var H = 1;
+		var S = 1;
+		var B = 1;
+		var s = size - (size20 * 4);
+
+		var config = {
+			cssClass: 'aui-color-wheel',
+			width: size,
+			height: size,
+			x: x,
+			y: y
+		};
+
+		if (element) {
+			config.boundingBox = element;
+		}
+
+		var drawing = A.Drawing.create(config);
+
+		var xy = s / 6 + size20 * 2 + padding;
+		var wh = s * 2 / 3 - padding * 2;
+
+		if (w1 < 1) {
+			w1 = 1;
+		}
+
+		if (w3 < 1) {
+			w3 = 1;
+		}
+
+		// ring drawing
+		var a = pi / 2 - pi * 2 / segments * 1.3;
+		var R = size2 - padding;
+		var R2 = size2 - padding - size20 * 2;
+
+		var path = ['M', size2, padding, 'A', R, R, 0, 0, 1, R * Math.cos(a) + R + padding, R - R * Math.sin(a) + padding, 'L', R2 * Math.cos(a) + R + padding, R - R2 * Math.sin(a) + padding, 'A', R2, R2, 0, 0, 0, size2, padding + size20 * 2, 'z'].join();
+
+		for (var i = 0; i < segments; i++) {
+			drawing.path(path).attr(
+				{
+					stroke: 'none',
+					fill: 'hsb(' + i * (360 / segments) + ', 100, 100)',
+					rotation: [(360 / segments) * i, size2, size2]
+				}
+			);
+		}
+
+		drawing.path(['M', size2, padding, 'A', R, R, 0, 1, 1, size2 - 1, padding, 'l1,0', 'M', size2, padding + size20 * 2, 'A', R2, R2, 0, 1, 1, size2 - 1, padding + size20 * 2, 'l1,0']).attr(
+			{
+				'stroke-width': w3,
+				stroke: '#fff'
+			}
+		);
+
+		instance.cursorhsb = drawing.createSet();
+
+		var h = size20 * 2 + 2;
+
+		instance.cursorhsb.push(
+			drawing.rect((size2 - h / fi / 2), (padding - 1), (h / fi), h, (3 * size / 200)).attr(
+				{
+					stroke: '#000',
+					opacity: .5,
+					'stroke-width': w3
+				}
+			)
+		);
+
+		instance.cursorhsb.push(
+			instance.cursorhsb.item(0).clone().attr(
+				{
+					stroke: '#fff',
+					opacity: 1,
+					'stroke-width': w1
+				}
+			)
+		);
+
+		instance.ring = drawing.path(['M', size2, padding, 'A', R, R, 0, 1, 1, size2 - 1, padding, 'l1,0M', size2, padding + size20 * 2, 'A', R2, R2, 0, 1, 1, size2 - 1, padding + size20 * 2, 'l1,0']).attr(
+			{
+				fill: '#000',
+				opacity: 0,
+				stroke: 'none'
+			}
+		);
+
+		// rect drawing
+		instance.main = drawing.rect(xy, xy, wh, wh).attr(
+			{
+				stroke: 'none',
+				fill: '#f00',
+				opacity: 1
+			}
+		);
+
+		instance.main.clone().attr(
+			{
+				stroke: 'none',
+				fill: '0-#fff-#fff',
+				opacity: 0
+			}
+		);
+
+		instance.square = drawing.rect((xy - 1), (xy - 1), (wh + 2), (wh + 2)).attr(
+			{
+				r: 2,
+				stroke: '#fff',
+				'stroke-width': w3,
+				fill: '90-#000-#000',
+				opacity: 0,
+				cursor: 'crosshair'
+			}
+		);
+
+		instance.cursor = drawing.createSet();
+
+		instance.cursor.push(
+			drawing.circle(size2, size2, size20 / 2).attr(
+				{
+					stroke: '#000',
+					opacity: .5,
+					'stroke-width': w3
+				}
+			)
+		);
+
+		instance.cursor.push(
+			instance.cursor.item(0).clone().attr(
+				{
+					stroke: '#fff',
+					opacity: 1,
+					'stroke-width': w1
+				}
+			)
+		);
+
+		instance.H = instance.S = instance.B = 1;
+
+		instance.drawing = drawing;
+
+		instance.size2 = size2;
+
+		instance.wh = wh;
+
+		instance.x = x;
+		instance.xy = xy;
+		instance.y = y;
+
+		// events
+		instance.ring.drag(
+			function(dx, dy, x, y) {
+				instance.docOnMove(dx, dy, x, y);
+			},
+			function(x, y) {
+				instance.hsbOnTheMove = true;
+				instance.setH(x - instance.x - instance.size2, y - instance.y - instance.size2);
+			},
+			function() {
+				instance.hsbOnTheMove = false;
+			}
+		);
+
+		instance.square.drag(
+			function(dx, dy, x, y) {
+				instance.docOnMove(dx, dy, x, y);
+			},
+			function(x, y) {
+				instance.clrOnTheMove = true;
+				instance.setSB(x - instance.x, y - instance.y);
+			},
+			function() {
+				instance.clrOnTheMove = false;
+			}
+		);
+
+		instance.color(initcolor || '#f00');
+
+		if (this.onchanged) {
+			this.onchanged(this.color());
+		}
+	};
+
+	ColorWheel.prototype.setH = function(x, y) {
+		var d = angle(x, y);
+		var rd = d * pi / 180;
+
+		this.cursorhsb.rotate(d + 90, this.size2, this.size2);
+
+		this.H = (d + 90) / 360;
+
+		this.main.attr('fill','hsb(' + this.H + ',1,1)');
+
+		if (this.onchange) {
+			this.onchange(this.color());
+		}
+	};
+
+	ColorWheel.prototype.setSB = function(x, y) {
+		x < this.size2 - this.wh / 2 && (x = this.size2 - this.wh / 2);
+		x > this.size2 + this.wh / 2 && (x = this.size2 + this.wh / 2);
+		y < this.size2 - this.wh / 2 && (y = this.size2 - this.wh / 2);
+		y > this.size2 + this.wh / 2 && (y = this.size2 + this.wh / 2);
+		this.cursor.attr({cx: x, cy: y});
+		this.B = 1 - (y - this.xy) / this.wh;
+		this.S = (x - this.xy) / this.wh;
+		if (this.onchange) {
+			this.onchange(this.color());
+		}
+	};
+
+	ColorWheel.prototype.docOnMove = function(dx, dy, x, y) {
+		if (this.hsbOnTheMove) {
+			this.setH(x - this.x - this.size2, y - this.y - this.size2);
+		}
+
+		if (this.clrOnTheMove) {
+			this.setSB(x - this.x, y - this.y);
+		}
+	};
+
+	ColorWheel.prototype.remove = function() {
+		this.drawing.remove();
+
+		this.color = function() {
+			return false;
+		};
+	};
+
+	ColorWheel.prototype.color = function(color) {
+		if (color) {
+			color = A.Color.getRGB(color);
+			color = A.Color.rgb2hsb(color.r, color.g, color.b);
+
+			var d = color.h * 360;
+
+			this.H = color.h;
+			this.S = color.s;
+			this.B = color.b;
+
+			this.cursorhsb.rotate(d, this.size2, this.size2);
+
+			this.main.attr('fill', 'hsb(' + this.H + ',1,1)');
+
+			var x = this.S * this.wh + this.xy;
+			var y = (1 - this.B) * this.wh + this.xy;
+
+			this.cursor.attr(
+				{
+					cx: x,
+					cy: y
+				}
+			);
+
+			return this;
+		} else {
+			return A.Color.hsb2rgb(this.H, this.S, this.B).hex;
+		}
+	};
+
+	var out = A.one('#output');
+	var reg = /^#(.)\1(.)\2(.)\3$/;
+
+	// this is where colorpicker created
+	var colorPicker = A.Drawing.colorpicker(40, 150, 300, '#eee', '#colorPicker');
+	var colorWheel = A.Drawing.colorwheel(360, 150, 300, '#eee', '#colorWheel');
+
+	out.on('keyup', function() {
+		colorPicker.color(this.val());
+		colorWheel.color(this.val());
+	});
+
+	var setOutColor = function(clr) {
+		out.val(clr.replace(reg, '#$1$2$3'));
+		out.setStyles(
+			{
+				background: clr,
+				color: A.Color.rgb2hsb(clr).b < .5 ? '#fff' : '#000'
+			}
+		);
+	};
+
+	colorPicker.onchange = function(clr) {
+		colorWheel.color(clr);
+		setOutColor(clr);
+	};
+
+	colorWheel.onchange = function(clr) {
+		colorPicker.color(clr);
+		setOutColor(clr);
+	};
+});
+</script>
+
+</body>
+</html>

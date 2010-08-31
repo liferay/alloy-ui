@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+	<script src="fonts/fonts.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
+</head>
+<style type="text/css" media="screen"> 
+	#demo {
+		height: 480px;
+		margin: 0 auto;
+		width: 640px;
+	}
+</style>
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - Drawing Demo</h1>
+
+	<div id="demo"></div>
+</div>
+
+<script type="text/javascript">
+
+AUI().ready('aui-drawing', 'aui-drawing-custom-fonts', function(A) {
+	var drawing = A.Drawing.create('#demo', 640, 480);
+
+	var fonts = [
+		0,
+		drawing.getFont('1'),
+		drawing.getFont('2'),
+		drawing.getFont('3'),
+		drawing.getFont('whoa')
+	];
+
+	var custom = drawing.print(70, 150, 'Custom fonts', fonts[4], 60).attr('fill', '#333');
+	var aseasyas = drawing.print(50, 240, 'As easy as', fonts[4], 60).attr('fill', '#333');
+
+	var nums = [
+		drawing.print(450, 240, '1', fonts[1], 60).attr('fill', '#333'),
+		drawing.print(500, 240, '2', fonts[2], 60).attr('fill', '#333'),
+		drawing.print(550, 240, '3', fonts[3], 60).attr('fill', '#333')
+	];
+
+	var i = 2;
+	var times = 3;
+
+	aseasyas.each(
+		function(item, index, collection) {
+			item.animate({
+				fill: A.Drawing.getColor()
+			}, 2000);
+		}
+	);
+
+	nums[0].animate({
+		fill: A.Drawing.getColor()
+	}, 2000);
+
+	nums[1].animate({
+		fill: A.Drawing.getColor()
+	}, 2000);
+
+	nums[2].animate({
+		fill: A.Drawing.getColor()
+	}, 2000, function() {
+		aseasyas.animate({
+			rotation: 360
+		}, 1000);
+
+		var scale = [
+			nums[0].item(0).scale(),
+			nums[1].item(0).scale(),
+			nums[2].item(0).scale()
+		];
+
+		nums[0].animate({
+			scale: '.6 .6'
+		}, 500, function() {
+			nums[0].animate({
+				scale: [scale[0].x, scale[0].y]
+			}, 1000);
+
+			nums[1].animate({
+				scale: '.6 .6'
+			}, 500, function() {
+				nums[1].animate({
+					scale: [scale[1].x, scale[1].y]
+				}, 1000);
+
+				nums[2].animate({
+					scale: '.6 .6'
+				}, 500, function() {
+					nums[2].animate({
+						scale: [scale[2].x, scale[2].y]
+					}, 1000);
+
+					custom.animate({
+						opacity: .4
+					}, 500);
+				});
+			});
+		});
+	});
+});
+
+</script>
+
+</body>
+</html>
