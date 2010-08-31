@@ -68,6 +68,13 @@ var Toolbar = A.Component.create(
 			activeState: {},
 
 			/**
+			 * Receives the toolbar items.
+			 *
+			 * @attribute children
+			 * @type Array
+			 */
+
+			/**
 			 * Receives a default interaction state.
 			 *
 			 * @attribute defaultState
