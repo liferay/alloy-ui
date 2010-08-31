@@ -9,9 +9,9 @@ Map<String, Object> options = new HashMap<String, Object>();
 options.putAll(scopedAttributes);
 options.putAll(dynamicAttributes);
 
-java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:boundingBox");
-java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:contentBox");
-java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:srcNode");
+java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:resize:boundingBox");
+java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:resize:contentBox");
+java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:resize:srcNode");
 
 boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
 boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
