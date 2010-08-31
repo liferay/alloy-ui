@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
+
+	<style type="text/css" media="screen">
+		#demo {
+			margin: 0 auto;
+			width: 640px;
+			position: relative;
+		}
+
+		#controls {
+			left: 300px;
+			margin: 0;
+			padding: 0;
+			position: absolute;
+			top: 0;
+			width: 300px;
+		}
+
+		.aui-field-content {
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - Drawing Demo</h1>
+
+	<div id="demo"></div>
+</div>
+
+<script type="text/javascript">
+
+AUI().ready('aui-drawing', 'aui-form', function(A) {
+	var remove = spinner('#demo', 70, 120, 12, 25, '#333');
+
+	var form = new A.Form(
+		{
+			nativeSubmit: true,
+			id: 'controls'
+		}
+	).render('#demo');
+
+	form.add([
+		{
+			id: 'innerRadius',
+			labelText: 'Inner radius',
+			value: '70'
+		},
+		{
+			id: 'outerRadius',
+			labelText: 'Outer radius',
+			value: '120'
+		},
+		{
+			id: 'count',
+			labelText: 'Dashes',
+			value: '12'
+		},
+		{
+			id: 'width',
+			labelText: 'Stroke Width',
+			value: '25'
+		},
+		{
+			id: 'color',
+			labelText: 'Color',
+			value: '#333'
+		},
+		{
+			id: 'update',
+			value: 'Update',
+			type: 'submit'
+		}
+	],
+	true);
+
+	form.get('contentBox').on(
+		'submit',
+		function(event) {
+			event.preventDefault();
+
+			remove();
+			remove = spinner(
+				'#demo',
+				+form.getField('innerRadius').get('value'),
+				+form.getField('outerRadius').get('value'),
+				+form.getField('count').get('value'),
+				+form.getField('width').get('value'),
+				form.getField('color').get('value')
+			);
+		}
+	);
+
+	function spinner(holderid, R1, R2, count, stroke_width, colour) {
+		var sectorsCount = count || 12;
+		var color = colour || '#333';
+		var width = stroke_width || 15;
+
+		var r1 = Math.min(R1, R2) || 35;
+		var r2 = Math.max(R1, R2) || 60;
+		var cx = r2 + width;
+		var cy = r2 + width;
+
+		var drawing = A.Drawing.create(holderid, (r2 * 2 + width * 2), (r2 * 2 + width * 2));
+
+		var sectors = [];
+		var opacity = [];
+		var beta = 2 * Math.PI / sectorsCount;
+
+		var pathParams = {
+			stroke: color,
+			'stroke-width': width,
+			'stroke-linecap': 'round'
+		};
+
+		A.Drawing.getColor.reset();
+
+		for (var i = 0; i < sectorsCount; i++) {
+			var alpha = beta * i - Math.PI / 2;
+
+			var cos = Math.cos(alpha);
+			var sin = Math.sin(alpha);
+
+			opacity[i] = 1 / sectorsCount * i;
+
+			sectors[i] = drawing.path([['M', (cx + r1 * cos), (cy + r1 * sin)], ['L', (cx + r2 * cos), (cy + r2 * sin)]]).attr(pathParams);
+
+			if (color == 'rainbow') {
+				sectors[i].attr('stroke', A.Drawing.getColor());
+			}
+		}
+
+		var tick;
+
+		(function ticker() {
+			opacity.unshift(opacity.pop());
+
+			for (var i = 0; i < sectorsCount; i++) {
+				sectors[i].attr('opacity', opacity[i]);
+			}
+
+			drawing.safari();
+
+			tick = setTimeout(ticker, 1000 / sectorsCount);
+		})();
+
+		return function () {
+			clearTimeout(tick);
+			drawing.remove();
+		};
+	}
+});
+</script>
+
+</body>
+</html>

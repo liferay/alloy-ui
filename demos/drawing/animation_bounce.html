@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
+</head>
+<style type="text/css" media="screen"> 
+	#demo {
+		height: 480px;
+		margin: 0 auto;
+		width: 640px;
+	}
+</style>
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - Drawing Demo</h1>
+
+	<div id="form"> 
+		<select id="easingx"> 
+			<option value="">Linear</option> 
+			<option value=">">Ease In</option> 
+			<option value="<">Ease Out</option> 
+			<option value="<>">Ease In and Out</option> 
+			<option value="bounce">Bounce</option> 
+			<option value="elastic">Elastic</option> 
+			<option value="backIn">Back In</option> 
+			<option value="backOut">Back Out</option> 
+		</select> 
+		<select id="easingy"> 
+			<option value="">Linear</option> 
+			<option value=">">Ease In</option> 
+			<option value="<">Ease Out</option> 
+			<option value="<>">Ease In and Out</option> 
+			<option value="bounce">Bounce</option> 
+			<option value="elastic">Elastic</option> 
+			<option value="backIn">Back In</option> 
+			<option value="backOut">Back Out</option> 
+		</select> 
+		<button id="run">Run</button> 
+	</div>
+
+	<div id="demo"></div>
+</div>
+
+<script type="text/javascript">
+
+AUI().ready('aui-drawing', function(A) {
+	var drawing = A.Drawing.create('#demo');
+	var easingx = A.one('#easingx');
+	var easingy = A.one('#easingy');
+	var run = A.one('#run');
+
+	var set = drawing.createSet(
+		drawing.circle(300, 200, 8),
+		drawing.circle(200, 100, 8),
+		drawing.circle(100, 200, 8),
+		drawing.circle(200, 300, 8),
+		drawing.circle(200, 200, 8)
+	).attr(
+		{
+			stroke: 'none',
+			fill: '#868686'
+		}
+	);
+
+	var c = drawing.circle(200, 200, 10).attr(
+		{
+			stroke: '#4d4d4d',
+			'stroke-width': 4
+		}
+	);
+
+	var fade = function (id) {
+		return function () {
+			set.item(id).attr(
+				{
+					fill: '#aaa',
+					r: 12
+				}
+			).animate(
+				{
+					fill: '#868686',
+					r: 8
+				},
+				500
+			);
+		};
+	};
+
+	run.on(
+		'click',
+		function(event) {
+			var ex = easingx.val();
+			var ey = easingy.val();
+
+			c.stop().animate(
+				{
+					'20%': {cy: 200, easing: ey, callback: fade(0)},
+					'40%': {cy: 100, easing: ey, callback: fade(1)},
+					'60%': {cy: 200, easing: ey, callback: fade(2)},
+					'80%': {cy: 300, easing: ey, callback: fade(3)},
+					'100%': {cy: 200, easing: ey, callback: fade(4)}
+				},
+			5000).animate(
+				{
+					'20%': {cx: 300, easing: ex},
+					'40%': {cx: 200, easing: ex},
+					'60%': {cx: 100, easing: ex},
+					'80%': {cx: 200, easing: ex},
+					'100%': {cx: 200, easing: ex}
+				},
+			5000);
+		}
+	);
+});
+</script>
+
+</body>
+</html>

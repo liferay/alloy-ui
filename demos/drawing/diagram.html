@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
+</head>
+<style type="text/css" media="screen"> 
+	#demo {
+		height: 480px;
+		margin: 0 auto;
+		width: 640px;
+	}
+</style>
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - Drawing Demo</h1>
+
+	<div id="demo"></div>
+</div>
+
+<script type="text/javascript">
+
+AUI().ready('aui-drawing', function(A) {
+	A.Drawing.prototype.connection = function (obj1, obj2, line, bg) {
+		if (obj1.line && obj1.from && obj1.to) {
+			line = obj1;
+			obj1 = line.from;
+			obj2 = line.to;
+		}
+
+		var bb1 = obj1.getRegion();
+		var bb2 = obj2.getRegion();
+
+		var p = [
+			{x: bb1.x + bb1.width / 2, y: bb1.y - 1},
+			{x: bb1.x + bb1.width / 2, y: bb1.y + bb1.height + 1},
+			{x: bb1.x - 1, y: bb1.y + bb1.height / 2},
+			{x: bb1.x + bb1.width + 1, y: bb1.y + bb1.height / 2},
+			{x: bb2.x + bb2.width / 2, y: bb2.y - 1},
+			{x: bb2.x + bb2.width / 2, y: bb2.y + bb2.height + 1},
+			{x: bb2.x - 1, y: bb2.y + bb2.height / 2},
+			{x: bb2.x + bb2.width + 1, y: bb2.y + bb2.height / 2}
+		];
+
+		var d = {};
+		var dis = [];
+
+		for (var i = 0; i < 4; i++) {
+			for (var j = 4; j < 8; j++) {
+				var dx = Math.abs(p[i].x - p[j].x);
+				var dy = Math.abs(p[i].y - p[j].y);
+
+				if (
+					(i == j - 4) ||
+					(
+						((i != 3 && j != 6) || p[i].x < p[j].x) &&
+						((i != 2 && j != 7) || p[i].x > p[j].x) &&
+						((i != 0 && j != 5) || p[i].y > p[j].y) &&
+						((i != 1 && j != 4) || p[i].y < p[j].y)
+					)
+				) {
+
+					dis.push(dx + dy);
+					d[dis[dis.length - 1]] = [i, j];
+				}
+			}
+		}
+
+		var res;
+
+		if (dis.length == 0) {
+			res = [0, 4];
+		} else {
+			res = d[Math.min.apply(Math, dis)];
+		}
+
+		var x1 = p[res[0]].x;
+		var y1 = p[res[0]].y;
+		var x4 = p[res[1]].x;
+		var y4 = p[res[1]].y;
+
+		dx = Math.max(Math.abs(x1 - x4) / 2, 10);
+		dy = Math.max(Math.abs(y1 - y4) / 2, 10);
+
+		var x2 = [x1, x1, x1 - dx, x1 + dx][res[0]].toFixed(3);
+		var y2 = [y1 - dy, y1 + dy, y1, y1][res[0]].toFixed(3);
+
+		var x3 = [0, 0, 0, 0, x4, x4, x4 - dx, x4 + dx][res[1]].toFixed(3);
+		var y3 = [0, 0, 0, 0, y1 + dy, y1 - dy, y4, y4][res[1]].toFixed(3);
+
+		var path = ['M', x1.toFixed(3), y1.toFixed(3), 'C', x2, y2, x3, y3, x4.toFixed(3), y4.toFixed(3)].join(',');
+
+		if (line && line.line) {
+			if (line.bg) {
+				line.bg.attr('path', path);
+			}
+
+			line.line.attr('path', path);
+		} else {
+			var color = typeof line == 'string' ? line : '#000';
+
+			return {
+				bg: bg && bg.split && this.path(path).attr(
+					{
+						stroke: bg.split('|')[0],
+						fill: 'none',
+						'stroke-width': bg.split('|')[1] || 3
+					}
+				),
+
+				line: this.path(path).attr(
+					{
+						stroke: color,
+						fill: 'none'
+					}
+				),
+
+				from: obj1,
+				to: obj2
+			};
+		}
+	};
+
+	var el;
+
+	var dragger = function () {
+		this.ox = this.type == 'rect' ? this.attr('x') : this.attr('cx');
+		this.oy = this.type == 'rect' ? this.attr('y') : this.attr('cy');
+
+		this.animate({
+			'fill-opacity': .2
+		}, 500);
+	};
+
+	var	move = function (dx, dy) {
+		var attrPrefix = 'c';
+
+		if (this.type == 'rect') {
+			attrPrefix = '';
+		}
+
+		var attrs = {};
+
+		attrs[attrPrefix + 'x'] = this.ox + dx;
+		attrs[attrPrefix + 'y'] = this.oy + dy;
+
+		this.attr(attrs);
+
+		for (var i = connections.length; i--;) {
+			drawing.connection(connections[i]);
+		}
+
+		drawing.safari();
+	};
+
+	var up = function () {
+		this.animate({
+			'fill-opacity': 0.3
+		}, 500);
+	};
+
+	var drawing = A.Drawing.create('#demo', 640, 480);
+	var connections = [];
+
+	var shapes = [
+		drawing.ellipse(190, 100, 30, 20),
+		drawing.rect(290, 80, 60, 40, 10),
+		drawing.rect(290, 180, 60, 40, 2),
+		drawing.ellipse(450, 100, 20, 20)
+	];
+
+	for (var i = 0, length = shapes.length; i < length; i++) {
+		var color = A.Drawing.getColor();
+
+		shapes[i].attr(
+			{
+				fill: color,
+				stroke: color,
+				'fill-opacity': 0.3,
+				'stroke-width': 2,
+				cursor: 'move'
+			}
+		);
+
+		shapes[i].drag(move, dragger, up);
+	}
+
+	var ellipseToBase = drawing.connection(shapes[0], shapes[1], 'none', 'none');
+	var rectToBase = drawing.connection(shapes[1], shapes[2], 'none', 'none');
+	var circleToBase = drawing.connection(shapes[1], shapes[3], '#fff', '#777|3');
+
+	ellipseToBase.bg.attr(
+		{
+			'stroke-dasharray': '- ',
+			'stroke-width': 2,
+			stroke: '#555'
+		}
+	);
+
+	rectToBase.bg.attr(
+		{
+			'stroke-dasharray': '.',
+			'stroke-width': 2,
+			stroke: '#777'
+		}
+	);
+
+	connections.push(ellipseToBase);
+	connections.push(rectToBase);
+	connections.push(circleToBase);
+});
+
+</script>
+
+</body>
+</html>

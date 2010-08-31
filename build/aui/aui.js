@@ -3615,20 +3615,22 @@ YUI.add('yui', function(Y){}, '3.2.0PR1' ,{use:['yui-base','get','intl-base','yu
             alloy: {
 	            combine: false,
                 modules: {
-						'aui-autocomplete': {skinnable:true, requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox']},
-						'aui-base': {skinnable:false, requires:['aui-node','aui-component','aui-delayed-task','aui-selector','event','oop']},
-						'aui-button-item': {skinnable:true, requires:['aui-base','aui-state-interaction','widget-child']},
-						'aui-calendar': {submodules: {'aui-calendar-base': {requires:['aui-overlay-context','datatype-date','widget-locale'], skinnable:true} }, skinnable:true, use:['aui-calendar-base']},
+						'aui-autocomplete': {requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox'], skinnable:true},
+						'aui-base': {requires:['aui-node','aui-component','aui-delayed-task','aui-selector','event','oop'], skinnable:false},
+						'aui-button-item': {requires:['aui-base','aui-state-interaction','widget-child'], skinnable:true},
+						'aui-calendar': {submodules: {'aui-calendar-base': {requires:['aui-overlay-context','datatype-date','widget-locale'], skinnable:true} }, use:['aui-calendar-base'], skinnable:true},
 						'aui-carousel': {requires:['aui-base','anim'], skinnable:true},
 						'aui-char-counter': {requires:['aui-base','aui-event-input'], skinnable:false},
 						'aui-chart': {requires:['datasource','aui-swf','json'], skinnable:false},
-						'aui-color-picker': {requires:['aui-overlay-context','dd-drag','slider','substitute','aui-button-item','aui-form-base','aui-panel'], skinnable:true},
+						'aui-color-picker': {requires:['aui-overlay-context','dd-drag','slider','substitute','aui-button-item','aui-color','aui-form-base','aui-panel'], skinnable:true},
+						'aui-color': {skinnable:false},
 						'aui-component': {requires:['widget'], skinnable:false},
 						'aui-data-set': {requires:['oop','collection','base'], skinnable:false},
 						'aui-datatype': {requires:['aui-base'], skinnable:false},
 						'aui-datepicker-select': {requires:['aui-calendar-base','aui-button-item'], skinnable:true},
 						'aui-delayed-task': {skinnable:false},
 						'aui-dialog': {requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize'], skinnable:true},
+						'aui-drawing': {submodules: {'aui-drawing-fonts': {requires:['aui-drawing-base']}, 'aui-drawing-drag': {requires:['aui-drawing-base','event-gestures']}, 'aui-drawing-animate': {requires:['aui-drawing-base']}, 'aui-drawing-base': {requires:['aui-base','aui-color','substitute']} }, skinnable:false, use:['aui-drawing-base', 'aui-drawing-animate', 'aui-drawing-drag', 'aui-drawing-fonts'], plugins:{'aui-drawing-vml': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.vml;}}},'aui-drawing-svg': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.svg;}}}, 'aui-drawing-safari': {condition: {trigger: 'aui-drawing-base',test: function(A){var UA = A.UA; return UA.safari && (UA.version.major < 4 || (UA.iphone || UA.ipad));}}}}},
 						'aui-editable': {requires:['aui-base','aui-form-combobox'], skinnable:true},
 						'aui-event': {submodules: {'aui-event-input': {requires:['aui-base']} }, use:['aui-event-input'], skinnable:false},
 						'aui-form': {submodules: {'aui-form-validator': {requires:['aui-base','aui-event-input','selector-css3','substitute']}, 'aui-form-textfield': {requires:['aui-form-field']}, 'aui-form-textarea': {requires:['aui-form-textfield'], skinnable:true}, 'aui-form-field': {requires:['aui-base','aui-component','substitute']}, 'aui-form-combobox': {requires:['aui-form-textarea','aui-toolbar'], skinnable:true}, 'aui-form-base': {requires:['aui-base','aui-data-set','aui-form-field','querystring-parse']} }, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-textarea','aui-form-textfield','aui-form-validator'], skinnable:false},
@@ -3649,7 +3651,7 @@ YUI.add('yui', function(Y){}, '3.2.0PR1' ,{use:['yui-base','get','intl-base','yu
 						'aui-selector': {requires:['selector'], skinnable:false},
 						'aui-skin-base': {type: 'css', path: 'aui-skin-base/css/aui-skin-base.css'},
 						'aui-skin-classic-all': {type: 'css', path: 'aui-skin-classic/css/aui-skin-classic-all.css'},
-						'aui-skin-classic': {type: 'css', requires:['aui-skin-base'], path: 'aui-skin-classic/css/aui-skin-classic.css'},
+						'aui-skin-classic': {type: 'css', path: 'aui-skin-classic/css/aui-skin-classic.css', requires:['aui-skin-base']},
 						'aui-sortable': {requires:['aui-base','dd-constrain','dd-drag','dd-drop','dd-proxy'], skinnable:true},
 						'aui-state-interaction': {requires:['aui-base','plugin'], skinnable:false},
 						'aui-swf': {requires:['aui-base','querystring-stringify-simple'], skinnable:false},
@@ -3921,11 +3923,42 @@ YUI.add('yui', function(Y){}, '3.2.0PR1' ,{use:['yui-base','get','intl-base','yu
 
 		UA.selectors = selectors.join(' ');
 
+		// The methods in this if block only run once across all instances
 		if (!documentElement._yuid) {
 			documentElement.className += ' ' + UA.selectors;
 
+			var CONFIG = A.config,
+				DOC = CONFIG.doc,
+				vml,
+				svg;
+
+			vml = !(svg = !!(CONFIG.win.SVGAngle || DOC.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#BasicStructure', '1.1')));
+
+			if (vml) {
+				var div = DOC.createElement('div');
+				var behaviorObj;
+
+				div.innerHTML = '<v:shape adj="1"/>';
+
+				behaviorObj = div.firstChild;
+
+				behaviorObj.style.behavior = 'url(#default#VML)';
+
+				if (!(behaviorObj && typeof behaviorObj.adj == 'object')) {
+					vml = false;
+				}
+
+				div = null;
+			}
+
+			AUI._VML = vml;
+			AUI._SVG = svg;
+
 			A.stamp(documentElement);
 		}
+
+		UA.vml = AUI._VML;
+		UA.svg = AUI._SVG;
 	};
 
 	AUI._uaExtensions(ALLOY);

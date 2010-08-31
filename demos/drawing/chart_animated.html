@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
+</head>
+<style type="text/css" media="screen"> 
+	#demo {
+		height: 250px;
+		margin: 0 auto;
+		width: 800px;
+	}
+</style>
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - Drawing Demo</h1>
+
+	<div id="demo"></div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('aui-drawing', function(A) {
+	var drawing = A.Drawing.create('#demo', 620, 250);
+	var color = [];
+	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+	var dotsy = [];
+
+	function randomPath(length, j) {
+		var path = '';
+		var x = 10;
+		var y = 0;
+
+		dotsy[j] = dotsy[j] || [];
+
+		for (var i = 0; i < length; i++) {
+			dotsy[j][i] = Math.round(Math.random() * 200);
+
+			if (i) {
+				path += 'C' + [x + 10, y, (x += 20) - 10, (y = 240 - dotsy[j][i]), x, y];
+			}
+			else {
+				path += 'M' + [10, (y = 240 - dotsy[j][i])];
+			}
+		}
+
+		return path;
+	}
+
+	var values = [];
+	var now = 0;
+
+	var bg = drawing.rect(243, 5, 138, 30, 15).attr(
+		{
+			fill: '#999',
+			stroke: '#000',
+			'stroke-opacity': 0.5,
+			'stroke-width': 3
+		}
+	);
+
+	var month = drawing.text(312, 19, months[now]).attr(
+		{
+			fill: '#fff',
+			stroke: 'none',
+			'font': '100 18px "Helvetica Neue", Helvetica, "Arial Unicode MS", Arial, sans-serif'
+		}
+	);
+
+	var rightCircle = drawing.circle(366, 20, 10).attr(
+		{
+			fill: '#fff',
+			stroke: 'none'
+		}
+	);
+
+	var right = drawing.path('M362,15l10,5 -10,5z').attr('fill', '#000');
+
+	var leftCircle = drawing.circle(258, 20, 10).attr(
+		{
+			fill: '#fff',
+			stroke: 'none'
+		}
+	);
+
+	var left = drawing.path('M261,15l-10,5 10,5z').attr('fill', '#000');
+
+	var bg = drawing.path('M0,0').attr(
+		{
+			stroke: 'none',
+			opacity: 0.5
+		}
+	);
+
+	var c = drawing.path('M0,0').attr(
+		{
+			fill: 'none',
+			'stroke-width': 3,
+			'stroke-opacity': 0.8
+		}
+	);
+
+	A.Drawing.getColor.start = {
+		h: 0.54,
+		s: 0.97,
+		b: 0.78
+	};
+
+	for (var i = 0; i < 12; i++) {
+		values[i] = randomPath(30, i);
+		color[i] = A.Drawing.getColor();
+	}
+
+	c.attr(
+		{
+			path: values[0],
+			stroke: color[0]
+		}
+	);
+
+	bg.attr(
+		{
+			path: values[0] + 'L590,250 10,250z',
+			fill: color[0]
+		}
+	);
+
+	var animation = function() {
+		var time = 250;
+
+		if (now == 12) {
+			now = 0;
+		}
+
+		if (now == -1) {
+			now = 11;
+		}
+
+		c.animate(
+			{
+				path: values[now],
+				stroke: color[now]
+			},
+		time, '<>');
+
+		bg.animate(
+			{
+				path: values[now] + 'L590,250 10,250z',
+				fill: color[now]
+			},
+		time, '<>');
+
+		month.attr('text', months[now]);
+	};
+
+	var moveRight = function(event) {
+		now++;
+		animation();
+	};
+
+	var moveLeft = function(event) {
+		now--;
+		animation();
+	};
+
+	rightCircle.on('click', moveRight);
+	right.on('click', moveRight);
+
+	leftCircle.on('click', moveLeft);
+	left.on('click', moveLeft);
+});
+
+</script>
+
+</body>
+</html>

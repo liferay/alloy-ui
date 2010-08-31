@@ -138,11 +138,7 @@ var Color = {
 					return Color.hsl2rgb(red, green, blue);
 				}
 
-				rgb = new Color.RGB(red, green, blue);
-
-				if (isFinite(parseFloat(opacity))) {
-					rgb.o = opacity;
-				}
+				rgb = new Color.RGB(red, green, blue, opacity);
 
 				return rgb;
 			}
@@ -164,7 +160,7 @@ var Color = {
 	hsb2rgb: function() {
 		var instance = this;
 
-		var hsb = instance._getColorArgs('hsb', arguments);
+		var hsb = instance._getColorArgs('hsbo', arguments);
 
 		hsb[2] /= 2;
 
@@ -234,11 +230,12 @@ var Color = {
 	hsl2rgb: function() {
 		var instance = this;
 
-		var hsl = instance._getColorArgs('hsl', arguments);
+		var hsl = instance._getColorArgs('hslo', arguments);
 
 		var h = hsl[0];
 		var s = hsl[1];
 		var l = hsl[2];
+		var o = hsl[3];
 
 		var r, g, b;
 
@@ -256,7 +253,7 @@ var Color = {
 			b = hue2rgb(p, q, h - 1/3);
 		}
 
-		return new Color.RGB(r * 255, g * 255, b * 255);
+		return new Color.RGB(r * 255, g * 255, b * 255, o);
 	},
 
 	rgb2hex: function(red, green, blue) {
@@ -268,9 +265,7 @@ var Color = {
 		var g = rgb[1];
 		var b = rgb[2];
 
-		var dec2hex = instance._dec2hex;
-
-		return dec2hex(r) + dec2hex(g) + dec2hex(b);
+		return (16777216 | b | (g << 8) | (r << 16)).toString(16).slice(1);
 	},
 
 	rgb2hsb: function() {
@@ -381,30 +376,22 @@ var Color = {
 		};
 	},
 
-	_dec2hex: function(number) {
-		var instance = this;
-
-		number = parseInt(number, 10)|0;
-		number = Color.constrainTo(number, 0, 255, 0);
-
-		return ('0' + number.toString(16)).slice(-2).toUpperCase();
-	},
-
 	_getColorArgs: function(type, args) {
 		var instance = this;
 
 		var returnData = [];
 		var firstArg = args[0];
 
-		if (isArray(firstArg) && firstArg.length == 3) {
+		if (isArray(firstArg) && firstArg.length) {
 			returnData = firstArg;
 		}
 		else if (isObject(firstArg)) {
 			var keys = type.split('');
+			var length = keys.length;
 
-			returnData[0] = firstArg[keys[0]];
-			returnData[1] = firstArg[keys[1]];
-			returnData[2] = firstArg[keys[2]];
+			for (var i = 0; i < length; i++) {
+				returnData[i] = firstArg[keys[i]];
+			}
 		}
 		else {
 			returnData = A.Array(args);
@@ -506,7 +493,7 @@ var Color = {
 	}
 };
 
-Color.RGB = function(r, g, b) {
+Color.RGB = function(r, g, b, o) {
 	var instance = this;
 
 	if (r == 'error') {
@@ -518,6 +505,10 @@ Color.RGB = function(r, g, b) {
 		instance.b = ~~b;
 
 		instance.hex = '#' + Color.rgb2hex(instance);
+
+		if (isFinite(parseFloat(o))) {
+			instance.o = o;
+		}
 	}
 };
 

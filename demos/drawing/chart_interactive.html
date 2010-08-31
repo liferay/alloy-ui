@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
+</head>
+<style type="text/css" media="screen"> 
+	#demo {
+		height: 480px;
+		margin: 0 auto;
+		width: 640px;
+	}
+</style>
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - Drawing Demo</h1>
+
+	<div id="demo"></div>
+</div>
+
+<script type="text/javascript">
+
+AUI().ready('aui-drawing', function(A) {
+	var width = 640;
+	var height = 480;
+
+	var drawing = A.Drawing.create('#demo', width, height);
+
+	var values = [];
+	var len = 7;
+
+	while(len--) {
+		values.push(50);
+	};
+
+	function translate(x, y) {
+		return [
+			50 + (width - 60) / (values.length - 1) * x,
+			height - 10 - (height - 20) / 100 * y
+		];
+	}
+
+	function getAnchors(p1x, p1y, p2x, p2y, p3x, p3y) {
+		var l1 = (p2x - p1x) / 2;
+		var l2 = (p3x - p2x) / 2;
+
+		var a = Math.atan((p2x - p1x) / Math.abs(p2y - p1y));
+		var b = Math.atan((p3x - p2x) / Math.abs(p2y - p3y));
+
+		a = p1y < p2y ? Math.PI - a : a;
+		b = p3y < p2y ? Math.PI - b : b;
+
+		var alpha = Math.PI / 2 - ((a + b) % (Math.PI * 2)) / 2;
+
+		var dx1 = l1 * Math.sin(alpha + a);
+		var dy1 = l1 * Math.cos(alpha + a);
+		var dx2 = l2 * Math.sin(alpha + b);
+		var dy2 = l2 * Math.cos(alpha + b);
+
+		return {
+			x1: p2x - dx1,
+			y1: p2y + dy1,
+			x2: p2x + dx2,
+			y2: p2y + dy2
+		};
+	}
+
+	function drawPath() {
+		for (var j = 0, length = X.length - 1; j < length; j++) {
+			if (j) {
+				var next = j + 1;
+				var prev = j - 1;
+
+				var a = getAnchors(X[prev], Y[prev], X[j], Y[j], X[next], Y[next]);
+
+				p = p.concat([a.x1, a.y1, X[j], Y[j], a.x2, a.y2]);
+			} else {
+				p = ['M', X[j], Y[j], 'C', X[j], Y[j]];
+			}
+		}
+
+		p = p.concat([X[length], Y[length], X[length], Y[length]]);
+
+		var subaddon = 'L' + (width - 10) + ',' + (height - 10) + ',50,' + (height - 10) + 'z';
+
+		path.attr({path: p});
+		sub.attr({path: p + subaddon});
+	}
+
+	var p = [['M'].concat(translate(0, values[0]))];
+
+	// shades of green
+	var colorStart = '#638442';
+	var colorEnd = '#bde78c';
+	var colorPath = '#7aa054';
+
+	var color2 = '#62cee6'; // blue
+	var X = [];
+	var Y = [];
+	var blankets = drawing.createSet();
+	var buttons = drawing.createSet();
+
+	var w = (width - 60) / values.length;
+
+	var isDrag = -1;
+	var start = null;
+
+	var sub = drawing.path().attr(
+		{
+			stroke: 'none',
+			fill: [90, colorStart, colorEnd].join('-')
+		}
+	);
+
+	var path = drawing.path().attr(
+		{
+			stroke: colorPath,
+			'stroke-width': 2
+		}
+	);
+
+	var unhighlight = A.Lang.emptyFn;
+
+	var length;
+
+	for (i = 0, length = values.length - 1; i < length; i++) {
+		var xy = translate(i, values[i]);
+		var xy1 = translate(i + 1, values[i + 1]);
+		var f;
+
+		X[i] = xy[0];
+		Y[i] = xy[1];
+
+		(f = function(i, xy) {
+			var buttonCircle = drawing.circle(xy[0], xy[1], 5);
+
+			buttons.push(buttonCircle);
+
+			buttonCircle.attr(
+				{
+					fill: color2,
+					stroke: '#141414',
+					'stroke-opacity': 0.5,
+					'stroke-width': '3'
+				}
+			);
+
+			var blanketCircle = drawing.circle(xy[0], xy[1], w / 2);
+
+			blankets.push(blanketCircle);
+
+			blanketCircle.attr(
+				{
+					stroke: 'none',
+					fill: '#fff',
+					opacity: 0
+				}
+			);
+
+			blanketCircle.hover(
+				function() {
+					if (isDrag + 1) {
+						unhighlight = A.Lang.emptyFn;
+					} else {
+						buttons.item(i).animate({r: 10}, 200);
+					}
+				},
+				function() {
+					if (isDrag + 1) {
+						unhighlight = function() {
+							buttons.item(i).animate({r: 5}, 200);
+						};
+					} else {
+						buttons.item(i).animate({r: 5}, 200);
+					}
+				}
+			);
+
+			blanketCircle.drag(
+				function(dx, dy) {
+					var start = this.start;
+
+					start && update(start.i, start.p + dy);
+				},
+				function(x, y) {
+					this.start = {
+						i: i,
+						m: y,
+						p: Y[i]
+					};
+				}
+			);
+
+			blanketCircle.node.style.cursor = 'move';
+		})(i, xy);
+
+		if (i == length - 1) {
+			f(i + 1, xy1);
+		}
+	}
+
+	xy = translate(length, values[length]);
+
+	X.push(xy[0]);
+	Y.push(xy[1]);
+
+	drawPath();
+
+	var update = function(i, d) {
+		if (d > height - 10) {
+			d = height - 10;
+		}
+
+		if (d < 10) {
+			d = 10;
+		}
+
+		Y[i] = d;
+
+		drawPath();
+
+		var attrObj = {
+			cy: d
+		};
+
+		buttons.item(i).attr(attrObj);
+		blankets.item(i).attr(attrObj);
+
+		drawing.safari();
+	};
+});
+
+</script>
+
+</body>
+</html>

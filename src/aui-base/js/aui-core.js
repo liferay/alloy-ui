@@ -256,11 +256,42 @@
 
 		UA.selectors = selectors.join(' ');
 
+		// The methods in this if block only run once across all instances
 		if (!documentElement._yuid) {
 			documentElement.className += ' ' + UA.selectors;
 
+			var CONFIG = A.config,
+				DOC = CONFIG.doc,
+				vml,
+				svg;
+
+			vml = !(svg = !!(CONFIG.win.SVGAngle || DOC.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#BasicStructure', '1.1')));
+
+			if (vml) {
+				var div = DOC.createElement('div');
+				var behaviorObj;
+
+				div.innerHTML = '<v:shape adj="1"/>';
+
+				behaviorObj = div.firstChild;
+
+				behaviorObj.style.behavior = 'url(#default#VML)';
+
+				if (!(behaviorObj && typeof behaviorObj.adj == 'object')) {
+					vml = false;
+				}
+
+				div = null;
+			}
+
+			AUI._VML = vml;
+			AUI._SVG = svg;
+
 			A.stamp(documentElement);
 		}
+
+		UA.vml = AUI._VML;
+		UA.svg = AUI._SVG;
 	};
 
 	AUI._uaExtensions(ALLOY);

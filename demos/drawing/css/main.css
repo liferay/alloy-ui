@@ -1,0 +1,12 @@
+body, input, button {
+	font-size: 12px;
+}
+
+#wrapper {
+	background: #fff;
+	margin: 10px;
+	padding: 10px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
