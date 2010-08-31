@@ -22,7 +22,7 @@ public class MarkupUtil {
 
 	public static String getUniqueId() {
 		return PwdGenerator.getPassword(
-			PwdGenerator.KEY2 + PwdGenerator.KEY3, 10);
+			PwdGenerator.KEY2 + PwdGenerator.KEY3, 5);
 	}
 
 }
