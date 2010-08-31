@@ -95,6 +95,10 @@ var L = A.Lang,
  * @class Dialog
  * @constructor
  * @extends Panel
+ * @uses WidgetPosition
+ * @uses WidgetStack
+ * @uses WidgetPositionAlign
+ * @uses WidgetPositionConstrain
  */
 var Dialog = function(config) {
 	if (!A.DialogMask) {
@@ -793,4 +797,4 @@ A.mix(
  * @static
  */
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize']});
+}, '@VERSION@' ,{requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize'], skinnable:true});
