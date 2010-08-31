@@ -42,9 +42,11 @@ public class AttributeUtil {
 
 	public static void setAttribute(Object obj, String key, Object  value) {
 		try {
-			Method setAttribute = ReflectUtil.findMethod(obj.getClass(), "setAttribute");
+			Method setAttribute = ReflectUtil.findMethod(
+				obj.getClass(), "setAttribute");
 
 			setAttribute.setAccessible(true);
+
 			setAttribute.invoke(obj, key, value);
 		}
 		catch (Exception e) {
